@@ -1,7 +1,6 @@
 import '../src/assets/index.css';
 
 import type { Preview } from '@storybook/vue3';
-import { withThemeByClassName } from '@storybook/addon-styling';
 
 const preview: Preview = {
 	parameters: {
@@ -28,13 +27,11 @@ const preview: Preview = {
 				},
 			],
 		},
-		...withThemeByClassName({
-			themes: {
-				light: 'light',
-				dark: 'dark',
-			},
-			defaultTheme: 'light',
-		}),
+		themes: {
+			light: 'light',
+			dark: 'dark',
+		},
+		defaultTheme: 'light',
 	},
 };
 
