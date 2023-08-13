@@ -13,8 +13,8 @@
 		"test": "vitest",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"predeploy": "npm run build-storybook",
-		"deploy-storybook": "gh-pages -d storybook-static"
+		"predeploy": "pnpm run build-storybook",
+		"deploy-storybook": "pnpm predeploy && gh-pages -d storybook-static"
 	},
 	"homepage": "http://mrksbnc.github.io/complib",
 	"repository": {
