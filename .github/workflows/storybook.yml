@@ -1,19 +1,22 @@
-name: Build and Deploy Storybook
-
+name: Storybook
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v2.3.1
-      - name: Install and Build 🔧
-        run: | # Install npm packages and build the Storybook files
-          npm install
+
+      - name: Install and Build
+        run: |
+          npm ci
           npm run build-storybook
-      - name: Deploy Storybook 🚀
-        run: | # Deploy the Storybook files to GitHub Pages
-          npm run deploy-storybook
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          branch: gh-pages
+          folder: storybook-static # output folder from `npm run build-storybook`

@@ -4,27 +4,27 @@ repos:
       - id: type-check
         name: Try to type-check
         language: system
-        entry: pnpm run lint
+        entry: npm run type-check
         stages: [commit]
         pass_filenames: false
 
       - id: build
         name: Try to build
         language: system
-        entry: pnpm run build
+        entry: npm run build-only
         stages: [commit]
         pass_filenames: false
 
       - id: lint
         name: Try to lint
         language: system
-        entry: pnpm lint
+        entry: npm run lint
         stages: [commit]
         pass_filenames: false
 
       - id: format
         name: Try to format
         language: system
-        entry: pnpm format
+        entry: npm run format
         stages: [commit]
         pass_filenames: false

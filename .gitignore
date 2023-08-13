@@ -20,5 +20,3 @@ coverage
 *.sln
 *.sw?
 
-# Storybook static build directory
-dist-storybook
