@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"scripts": {
 		"dev": "vite",
-		"build": "run-p type-check build-only",
+		"build": "pnpm type-check && pnpm  build-only",
 		"preview": "vite preview",
 		"test:unit": "vitest",
 		"build-only": "vite build",
@@ -13,8 +13,11 @@
 		"test": "vitest",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"predeploy": "pnpm run build-storybook",
-		"deploy-storybook": "pnpm predeploy && gh-pages -d storybook-static"
+		"patch": "pnpm version patch",
+		"minor": "pnpm version minor",
+		"major": "pnpm version major",
+		"deploy-storybook": "pnpm build-storybook && gh-pages -d storybook-static",
+		"release": "pnpm run build && pnpm run build-storybook && pnpm run deploy-storybook && pnpm publish"
 	},
 	"homepage": "http://mrksbnc.github.io/complib",
 	"repository": {
