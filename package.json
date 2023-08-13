@@ -12,6 +12,10 @@
 		"format": "prettier --write src/",
 		"test": "vitest --run --update"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mrksbnc/complib.git"
+	},
 	"files": [
 		"dist/**/*"
 	],
