@@ -12,12 +12,11 @@
 		"format": "prettier --write src/",
 		"test": "vitest",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build",
+		"build-storybook": "storybook build -o dist-storybook",
 		"patch": "pnpm version patch",
 		"minor": "pnpm version minor",
 		"major": "pnpm version major",
-		"deploy-storybook": "pnpm build-storybook && gh-pages -d storybook-static",
-		"release": "pnpm run build && pnpm run build-storybook && pnpm run deploy-storybook && pnpm publish"
+		"release": "pnpm run build && pnpm publish"
 	},
 	"homepage": "http://mrksbnc.github.io/complib",
 	"repository": {

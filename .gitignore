@@ -21,4 +21,4 @@ coverage
 *.sw?
 
 # Storybook static build directory
-storybook-static
+dist-storybook
