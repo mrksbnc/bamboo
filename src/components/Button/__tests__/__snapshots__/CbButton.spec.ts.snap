@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CbButton > renders correctly 1`] = `
+exports[`ClButton > renders correctly 1`] = `
 VueWrapper {
   "__app": {
     "_component": {
@@ -265,9 +265,9 @@ VueWrapper {
           "da": null,
           "data": {},
           "devtoolsRawSetupState": {
-            "CbLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/CbLoadingSpinner.vue",
-              "__name": "CbLoadingSpinner",
+            "ClLoadingSpinner": {
+              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
                   "default": "blue",
@@ -1324,9 +1324,9 @@ VueWrapper {
             "slots": {},
           },
           "setupState": {
-            "CbLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/CbLoadingSpinner.vue",
-              "__name": "CbLoadingSpinner",
+            "ClLoadingSpinner": {
+              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
                   "default": "blue",
@@ -2008,8 +2008,8 @@ VueWrapper {
           "suspense": null,
           "suspenseId": 0,
           "type": {
-            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/CbButton.vue",
-            "__name": "CbButton",
+            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+            "__name": "ClButton",
             "components": {},
             "props": {
               "disabled": {
@@ -2089,8 +2089,8 @@ VueWrapper {
         "targetAnchor": null,
         "transition": null,
         "type": {
-          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/CbButton.vue",
-          "__name": "CbButton",
+          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+          "__name": "ClButton",
           "components": {},
           "props": {
             "disabled": {
@@ -2432,7 +2432,7 @@ VueWrapper {
 }
 `;
 
-exports[`CbButton > renders correctly with color > <button id="cb-button_1691944059960" class="cb-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none text-sm px-3 py-2 text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800" color="danger">
+exports[`ClButton > renders correctly with color > <button id="cb-button_1691944059960" class="cb-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none text-sm px-3 py-2 text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800" color="danger">
   <div><span></span><span>Test</span><span></span></div>
 </button> 1`] = `
 VueWrapper {
@@ -2716,9 +2716,9 @@ VueWrapper {
           "da": null,
           "data": {},
           "devtoolsRawSetupState": {
-            "CbLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/CbLoadingSpinner.vue",
-              "__name": "CbLoadingSpinner",
+            "ClLoadingSpinner": {
+              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
                   "default": "blue",
@@ -3780,9 +3780,9 @@ VueWrapper {
             "slots": {},
           },
           "setupState": {
-            "CbLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/CbLoadingSpinner.vue",
-              "__name": "CbLoadingSpinner",
+            "ClLoadingSpinner": {
+              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
                   "default": "blue",
@@ -4481,8 +4481,8 @@ VueWrapper {
           "suspense": null,
           "suspenseId": 0,
           "type": {
-            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/CbButton.vue",
-            "__name": "CbButton",
+            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+            "__name": "ClButton",
             "components": {},
             "props": {
               "disabled": {
@@ -4567,8 +4567,8 @@ VueWrapper {
         "targetAnchor": null,
         "transition": null,
         "type": {
-          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/CbButton.vue",
-          "__name": "CbButton",
+          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+          "__name": "ClButton",
           "components": {},
           "props": {
             "disabled": {
@@ -4916,7 +4916,7 @@ VueWrapper {
 }
 `;
 
-exports[`CbButton > renders correctly with color > <button id="cb-button_1691944118726" class="cb-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none text-sm px-3 py-2 text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800" color="danger">
+exports[`ClButton > renders correctly with color > <button id="cb-button_1691944118726" class="cb-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none text-sm px-3 py-2 text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800" color="danger">
   <div><span></span><span>Test</span><span></span></div>
 </button> 1`] = `
 VueWrapper {
@@ -5200,9 +5200,9 @@ VueWrapper {
           "da": null,
           "data": {},
           "devtoolsRawSetupState": {
-            "CbLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/CbLoadingSpinner.vue",
-              "__name": "CbLoadingSpinner",
+            "ClLoadingSpinner": {
+              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
                   "default": "blue",
@@ -6264,9 +6264,9 @@ VueWrapper {
             "slots": {},
           },
           "setupState": {
-            "CbLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/CbLoadingSpinner.vue",
-              "__name": "CbLoadingSpinner",
+            "ClLoadingSpinner": {
+              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
                   "default": "blue",
@@ -6965,8 +6965,8 @@ VueWrapper {
           "suspense": null,
           "suspenseId": 0,
           "type": {
-            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/CbButton.vue",
-            "__name": "CbButton",
+            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+            "__name": "ClButton",
             "components": {},
             "props": {
               "disabled": {
@@ -7051,8 +7051,8 @@ VueWrapper {
         "targetAnchor": null,
         "transition": null,
         "type": {
-          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/CbButton.vue",
-          "__name": "CbButton",
+          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+          "__name": "ClButton",
           "components": {},
           "props": {
             "disabled": {
@@ -7400,7 +7400,7 @@ VueWrapper {
 }
 `;
 
-exports[`CbButton > renders correctly with size > <button id="cb-button_1691944059968" class="cb-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none text-lg px-5 py-3 text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800">
+exports[`ClButton > renders correctly with size > <button id="cb-button_1691944059968" class="cb-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none text-lg px-5 py-3 text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800">
   <div><span></span><span>Test</span><span></span></div>
 </button> 1`] = `
 VueWrapper {
@@ -7681,9 +7681,9 @@ VueWrapper {
           "da": null,
           "data": {},
           "devtoolsRawSetupState": {
-            "CbLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/CbLoadingSpinner.vue",
-              "__name": "CbLoadingSpinner",
+            "ClLoadingSpinner": {
+              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
                   "default": "blue",
@@ -8742,9 +8742,9 @@ VueWrapper {
             "slots": {},
           },
           "setupState": {
-            "CbLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/CbLoadingSpinner.vue",
-              "__name": "CbLoadingSpinner",
+            "ClLoadingSpinner": {
+              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
                   "default": "blue",
@@ -9440,8 +9440,8 @@ VueWrapper {
           "suspense": null,
           "suspenseId": 0,
           "type": {
-            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/CbButton.vue",
-            "__name": "CbButton",
+            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+            "__name": "ClButton",
             "components": {},
             "props": {
               "disabled": {
@@ -9525,8 +9525,8 @@ VueWrapper {
         "targetAnchor": null,
         "transition": null,
         "type": {
-          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/CbButton.vue",
-          "__name": "CbButton",
+          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+          "__name": "ClButton",
           "components": {},
           "props": {
             "disabled": {
@@ -9872,7 +9872,7 @@ VueWrapper {
 }
 `;
 
-exports[`CbButton > renders correctly with size > <button id="cb-button_1691944118736" class="cb-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none text-lg px-5 py-3 text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800">
+exports[`ClButton > renders correctly with size > <button id="cb-button_1691944118736" class="cb-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none text-lg px-5 py-3 text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800">
   <div><span></span><span>Test</span><span></span></div>
 </button> 1`] = `
 VueWrapper {
@@ -10153,9 +10153,9 @@ VueWrapper {
           "da": null,
           "data": {},
           "devtoolsRawSetupState": {
-            "CbLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/CbLoadingSpinner.vue",
-              "__name": "CbLoadingSpinner",
+            "ClLoadingSpinner": {
+              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
                   "default": "blue",
@@ -11214,9 +11214,9 @@ VueWrapper {
             "slots": {},
           },
           "setupState": {
-            "CbLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/CbLoadingSpinner.vue",
-              "__name": "CbLoadingSpinner",
+            "ClLoadingSpinner": {
+              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
                   "default": "blue",
@@ -11912,8 +11912,8 @@ VueWrapper {
           "suspense": null,
           "suspenseId": 0,
           "type": {
-            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/CbButton.vue",
-            "__name": "CbButton",
+            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+            "__name": "ClButton",
             "components": {},
             "props": {
               "disabled": {
@@ -11997,8 +11997,8 @@ VueWrapper {
         "targetAnchor": null,
         "transition": null,
         "type": {
-          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/CbButton.vue",
-          "__name": "CbButton",
+          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+          "__name": "ClButton",
           "components": {},
           "props": {
             "disabled": {

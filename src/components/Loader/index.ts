@@ -1,2 +1,2 @@
-export { default as CbLoadingSpinner } from './CbLoadingSpinner.vue';
+export { default as ClLoadingSpinner } from './ClLoadingSpinner.vue';
 export { LoadingSpinnerColor, LoadingSpinnerSize } from './constants';

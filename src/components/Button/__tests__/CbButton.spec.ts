@@ -1,15 +1,15 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
-import { ButtonSize, ButtonType, CbButton } from '..';
+import { ButtonSize, ButtonType, ClButton } from '..';
 
-describe('CbButton', () => {
+describe('ClButton', () => {
 	test('renders correctly', () => {
-		const wrapper = mount(CbButton);
+		const wrapper = mount(ClButton);
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	test('renders correctly with color', () => {
-		const wrapper = mount(CbButton, {
+		const wrapper = mount(ClButton, {
 			props: {
 				label: 'Test',
 				color: ButtonType.DANGER,
@@ -19,7 +19,7 @@ describe('CbButton', () => {
 	});
 
 	test('renders correctly with size', () => {
-		const wrapper = mount(CbButton, {
+		const wrapper = mount(ClButton, {
 			props: {
 				label: 'Test',
 				size: ButtonSize.LARGE,

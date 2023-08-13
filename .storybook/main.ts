@@ -14,7 +14,6 @@ export const config: StorybookConfig = {
 			options: {},
 		},
 	],
-	staticDirs: ['../src/assets'],
 	framework: {
 		name: '@storybook/vue3-vite',
 		options: {},
@@ -25,7 +24,7 @@ export const config: StorybookConfig = {
 	docs: {
 		autodocs: 'tag',
 	},
-	logLevel: 'debug',
+	logLevel: 'warn',
 };
 
 export default config;

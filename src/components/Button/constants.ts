@@ -11,7 +11,7 @@ export enum ButtonType {
 export enum ButtonSize {
 	EXTRA_SMALL = 'extra-small',
 	SMALL = 'small',
-	MEDIUM = 'medium',
+	BASE = 'base',
 	LARGE = 'large',
 	EXTRA_LARGE = 'extra-large',
 }

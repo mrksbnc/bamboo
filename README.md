@@ -1,52 +1,100 @@
-# lib
+# Vue Component Library
 
-This template should help get you started developing with Vue 3 in Vite.
+Reusable Component collection for Vue.js projects built with [Vite](https://vitejs.dev/). The components are using [TailwindCSS](https://tailwindcss.com/) for styling and the documentation is built with [Storybook](https://storybook.js.org/).
 
-## Recommended IDE Setup
+The project uses the following:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [Vue.js](https://vuejs.org/)
+- [Vite](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Storybook](https://storybook.js.org/)
+- [Vitest](https://vitest.dev)
+- [Prettier](https://prettier.io/)
+- [ESLint](https://eslint.org/)
+- [Pnpm](https://pnpm.io/)
 
-## Type Support for `.vue` Imports in TS
+## Project setup
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+As a prerequisite, you need to node and npm installed on your machine. You can download and install them from [here](https://nodejs.org/en/).
+Ideally, you should use [pnpm](https://pnpm.io/) as your package manager. You can install it by running the following command:
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+```bash
+npm install -g pnpm
+```
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+Once you have node and pnpm installed, you can install the project dependencies by running the following command:
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
 pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+With npm, you can run the following command:
 
-```sh
-pnpm dev
+```bash
+npm install
 ```
 
-### Type-Check, Compile and Minify for Production
+### Compiles and hot-reloads for development
 
-```sh
+To start the development server, run the following command:
+
+```bash
+pnpm storybook
+```
+
+With npm, you can run the following command:
+
+```bash
+npm run storybook
+```
+
+This will start the Storybook server and open the browser at [http://localhost:6006](http://localhost:6006).
+Here you can see the documentation for the components and play around with them.
+
+### Compiles and minifies for production
+
+To build the components for production, run the following command:
+
+```bash
 pnpm build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+With npm, you can run the following command:
 
-```sh
-pnpm test:unit
+```bash
+npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+This will build the components and generate the static files in the `dist` folder.
 
-```sh
+### Run your unit tests
+
+The project uses [Vitest](https://vitest.dev) for unit and snapshot testing. To run the tests, run the following command:
+
+```bash
+pnpm test
+```
+
+With npm, you can run the following command:
+
+```bash
+npm run test
+```
+
+### Lints and fixes files
+
+The project uses [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) for linting and formatting. To run the linter, run the following command:
+
+```bash
 pnpm lint
 ```
+
+With npm, you can run the following command:
+
+```bash
+npm run lint
+```
+
+## License
+
+[MIT](LICENSE)

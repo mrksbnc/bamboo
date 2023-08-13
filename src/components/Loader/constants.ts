@@ -11,9 +11,7 @@ export enum LoadingSpinnerColor {
 }
 
 export enum LoadingSpinnerSize {
-	EXTRA_SMALL = 'extra-small',
 	SMALL = 'small',
-	MEDIUM = 'medium',
+	NORMAL = 'normal',
 	LARGE = 'large',
-	EXTRA_LARGE = 'extra-large',
 }

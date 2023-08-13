@@ -1,6 +1,7 @@
+import '../src/assets/index.css';
+
 import type { Preview } from '@storybook/vue3';
 import { withThemeByClassName } from '@storybook/addon-styling';
-import '../src/assets/index.css';
 
 const preview: Preview = {
 	parameters: {
@@ -27,18 +28,14 @@ const preview: Preview = {
 				},
 			],
 		},
-	},
-	decorators: [
-		// Adds theme switching support.
-		// NOTE: requires setting "darkMode" to "class" in your tailwind config
-		withThemeByClassName({
+		...withThemeByClassName({
 			themes: {
 				light: 'light',
 				dark: 'dark',
 			},
 			defaultTheme: 'light',
 		}),
-	],
+	},
 };
 
 export default preview;
