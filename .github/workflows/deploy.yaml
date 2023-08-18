@@ -1,4 +1,4 @@
-name: Build and Publish storybook to GitHub Pages
+name: Storybook deployment
 
 on:
   push:
