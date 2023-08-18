@@ -28,3 +28,10 @@ repos:
         entry: pnpm format
         stages: [commit]
         pass_filenames: false
+
+      - id: build-storybook
+        name: Build latest storybook
+        language: system
+        entry: pnpm run build-storybook
+        stages: [commit]
+        pass_filenames: false
