@@ -1,6 +1,6 @@
 # Vue Component Library
 
-![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/mrksbnc/complib) ![npm bundle size](https://img.shields.io/bundlephobia/min/@mrksbnc/complib) [![CodeQL](https://github.com/mrksbnc/complib/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/mrksbnc/complib/actions/workflows/codeql.yml) [![Storybook deployment](https://github.com/mrksbnc/complib/actions/workflows/deploy.yaml/badge.svg)](https://github.com/mrksbnc/complib/actions/workflows/deploy.yaml)
+![Version](https://img.shields.io/github/package-json/v/mrksbnc/complib) ![npm bundle size](https://img.shields.io/bundlephobia/min/@mrksbnc/complib) [![CodeQL](https://github.com/mrksbnc/complib/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/mrksbnc/complib/actions/workflows/codeql.yml) [![Storybook deployment](https://github.com/mrksbnc/complib/actions/workflows/deploy.yaml/badge.svg)](https://github.com/mrksbnc/complib/actions/workflows/deploy.yaml)
 
 A reusable Component collection built with [Vite](https://vitejs.dev/) and [Vue 3](https://vuejs.org/). The components are using [TailwindCSS](https://tailwindcss.com/) for styling and the documentation is built with [Storybook](https://storybook.js.org/).
 
