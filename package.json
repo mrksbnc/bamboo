@@ -13,9 +13,9 @@
 		"format": "prettier --write src/",
 		"test": "vitest",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build -o docs",
-		"release": "npm run build && npm publish",
-		"deploy": "npm run build-storybook && gh-pages -d docs"
+		"release": "npm run build && npm publish && npm run deploy-storybook",
+		"pre-deploy": "storybook build",
+		"deploy-storybook": "gh-pages -d storybook-static"
 	},
 	"homepage": "http://mrksbnc.github.io/complib",
 	"repository": {
