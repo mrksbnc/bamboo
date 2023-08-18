@@ -6,13 +6,11 @@ on:
       - 'main'
 jobs:
   deploy:
-    permissions:
-      contents: 'read'
-      id-token: 'write'
     environment:
       name: github-pages
       url: ${{ steps.build-publish.outputs.page_url }}
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - id: build-publish
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.0
