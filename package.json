@@ -1,9 +1,10 @@
 {
 	"name": "@mrksbnc/complib",
 	"version": "0.0.0",
+	"description": "Reusable component collection built with Vite and Vue 3.",
 	"scripts": {
 		"dev": "vite",
-		"build": "pnpm type-check && pnpm  build-only",
+		"build": "npm run type-check && npm run build-only",
 		"preview": "vite preview",
 		"test:unit": "vitest",
 		"build-only": "vite build",
@@ -13,11 +14,8 @@
 		"test": "vitest",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build -o docs",
-		"deploy-storybook": "gh-pages -d docs",
-		"patch": "pnpm version patch",
-		"minor": "pnpm version minor",
-		"major": "pnpm version major",
-		"release": "pnpm run build && pnpm publish"
+		"release": "npm run build && npm publish",
+		"deploy": "npm run build-storybook && gh-pages -d docs"
 	},
 	"homepage": "http://mrksbnc.github.io/complib",
 	"repository": {
