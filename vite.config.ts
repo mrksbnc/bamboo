@@ -15,36 +15,24 @@ export default defineConfig({
 	build: {
 		minify: true,
 		lib: {
-			name: 'complib',
+			name: 'gecko-ui',
 			entry: 'src/index.ts',
 			formats: ['es', 'cjs', 'umd'],
-			fileName: (format) => `lib.${format}.js`,
+			fileName: (format, entry) => {
+				if (entry === 'main') return `index.${format}.js`;
+				return `${entry}.${format}.js`;
+			},
 		},
 		rollupOptions: {
-			external: ['vue'],
 			treeshake: true,
+			external: ['vue'],
+			output: {
+				exports: 'named',
+				globals: { vue: 'Vue' },
+			},
 			input: {
 				main: resolve(__dirname, 'src/index.ts'),
 			},
-			output: {
-				exports: 'named',
-				sourcemap: true,
-				globals: {
-					vue: 'Vue',
-				},
-				assetFileNames: 'assets/[name].[ext]',
-				chunkFileNames: 'chunks/[name].js',
-			},
 		},
-	},
-	test: {
-		coverage: {
-			provider: 'v8',
-			reporter: ['text', 'json-summary', 'json'],
-		},
-		environment: 'jsdom',
-		globals: false,
-		globalSetup: [],
-		setupFiles: [],
 	},
 });

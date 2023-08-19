@@ -28,15 +28,3 @@ export enum IconButtonSize {
 	large = 'large',
 	extra_large = 'extra_large',
 }
-
-export enum ButtonEvents {
-	click = 'click',
-	hover = 'hover',
-	focus = 'focus',
-	mouseenter = 'mouseenter',
-	mouseleave = 'mouseleave',
-	mouseover = 'mouseover',
-	mouseout = 'mouseout',
-	mousedown = 'mousedown',
-	mouseup = 'mouseup',
-}

@@ -1,3 +1,4 @@
+import './index.scss';
 import '../src/assets/index.css';
 
 import type { Preview } from '@storybook/vue3';

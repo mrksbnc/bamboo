@@ -124,8 +124,25 @@ const meta = {
 				},
 			},
 		},
+		onClick: {
+			description: 'The click handler',
+			action: 'clicked',
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: '() => void',
+				},
+				defaultValue: {
+					summary: undefined,
+				},
+			},
+			control: {
+				type: null,
+			},
+		},
 	},
-} satisfies Meta<typeof ClButton>;
+} as Meta<typeof ClButton>;
 
 export default meta;
 

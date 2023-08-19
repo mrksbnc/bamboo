@@ -103,7 +103,7 @@ const meta = {
 					}`,
 				},
 				defaultValue: {
-					summary: Color.black,
+					summary: Color['gray-100'],
 				},
 			},
 			control: {
@@ -134,6 +134,24 @@ const meta = {
 				(m: string) => IconButtonType[m as keyof typeof IconButtonType],
 			),
 		},
+		onClick: {
+			description: 'The function to call when the button is clicked',
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				action: 'clicked',
+				type: {
+					summary: '() => void',
+				},
+				defaultValue: {
+					summary: undefined,
+				},
+			},
+			action: 'clicked',
+			control: {
+				type: null,
+			},
+		},
 	},
 } as Meta<typeof ClIconButton>;
 
@@ -149,6 +167,6 @@ export const Default: Story = {
 		icon: Icon.activity,
 		iconColor: Color.black,
 		buttonSize: IconButtonSize.base,
-		backgroundColor: Color['gray-200'],
+		backgroundColor: Color['gray-100'],
 	},
 };

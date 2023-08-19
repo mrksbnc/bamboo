@@ -5,15 +5,7 @@
 		class="cl-button"
 		:class="[btnClass]"
 		:disabled="disabled"
-		@click="handleClick"
-		@focus="handleFocus"
-		@hover="handleHover"
-		@mouseup="handleMouseup"
-		@mouseout="handleMouseout"
-		@mouseover="handleMouseover"
-		@mousedown="handleMousedown"
-		@mouseenter="handleMouseenter"
-		@mouseleave="handleMouseleave"
+		@click="clickHandler($event)"
 	>
 		<div v-if="isLoading">
 			<cl-loading-spinner
@@ -37,8 +29,8 @@
 </template>
 
 <script setup lang="ts">
-	import { ButtonType, ButtonSize, ButtonEvents } from './constants';
 	import { type PropType, computed, toRefs, ref } from 'vue';
+	import { ButtonType, ButtonSize } from './constants';
 	import { ClLoadingSpinner, LoadingSpinnerColor, LoadingSpinnerSize } from '../Loader';
 
 	const props = defineProps({
@@ -62,21 +54,13 @@
 			type: Boolean,
 			default: false,
 		},
+		onClick: {
+			type: Function as PropType<(event: MouseEvent) => void>,
+			default: () => {},
+		},
 	});
 
-	const { label, type, disabled, size, isLoading } = toRefs(props);
-
-	const emits = defineEmits({
-		[ButtonEvents.click]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.hover]: (event: FocusEvent) => event instanceof FocusEvent,
-		[ButtonEvents.focus]: (event: FocusEvent) => event instanceof FocusEvent,
-		[ButtonEvents.mouseover]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.mouseout]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.mouseenter]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.mouseleave]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.mousedown]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.mouseup]: (event: MouseEvent) => event instanceof MouseEvent,
-	});
+	const { label, type, disabled, size, isLoading, onClick } = toRefs(props);
 
 	const id = ref('cl-button_' + Date.now());
 
@@ -175,57 +159,8 @@
 		}
 	});
 
-	const handleClick = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.click, event);
-		}
-	};
-
-	const handleHover = (event: FocusEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.hover, event);
-		}
-	};
-
-	const handleFocus = (event: FocusEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.focus, event);
-		}
-	};
-
-	const handleMouseenter = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mouseenter, event);
-		}
-	};
-
-	const handleMouseleave = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mouseleave, event);
-		}
-	};
-
-	const handleMouseover = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mouseover, event);
-		}
-	};
-
-	const handleMouseout = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mouseout, event);
-		}
-	};
-
-	const handleMouseup = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mouseup, event);
-		}
-	};
-
-	const handleMousedown = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mousedown, event);
-		}
+	const clickHandler = (event: MouseEvent): void => {
+		if (disabled.value) return;
+		onClick.value(event);
 	};
 </script>

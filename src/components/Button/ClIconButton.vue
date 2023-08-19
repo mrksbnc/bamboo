@@ -1,5 +1,6 @@
 <template>
 	<button
+		aria-label="button-with-icon"
 		:disabled="disabled"
 		:class="[computedTypeClass]"
 		class="flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -8,15 +9,7 @@
 			width: `${computedSize}px`,
 			height: `${computedSize}px`,
 		}"
-		@click="handleClick"
-		@focus="handleFocus"
-		@hover="handleHover"
-		@mouseup="handleMouseup"
-		@mouseout="handleMouseout"
-		@mouseover="handleMouseover"
-		@mousedown="handleMousedown"
-		@mouseenter="handleMouseenter"
-		@mouseleave="handleMouseleave"
+		@click="clickHandler($event)"
 	>
 		<cl-icon
 			:icon="icon"
@@ -30,7 +23,7 @@
 	import { Color } from '@/data';
 	import { ClIcon, Icon } from '../Icon';
 	import { toRefs, type PropType, computed } from 'vue';
-	import { ButtonEvents, IconButtonSize, IconButtonType } from './constants';
+	import { IconButtonSize, IconButtonType } from './constants';
 
 	const props = defineProps({
 		icon: {
@@ -58,21 +51,13 @@
 			type: String as PropType<IconButtonType>,
 			default: IconButtonType.rounded,
 		},
+		onClick: {
+			type: Function as PropType<(event: MouseEvent) => void>,
+			default: () => {},
+		},
 	});
 
-	const { icon, disabled, buttonSize, iconColor, backgroundColor, type } = toRefs(props);
-
-	const emits = defineEmits({
-		[ButtonEvents.click]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.hover]: (event: FocusEvent) => event instanceof FocusEvent,
-		[ButtonEvents.focus]: (event: FocusEvent) => event instanceof FocusEvent,
-		[ButtonEvents.mouseover]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.mouseout]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.mouseenter]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.mouseleave]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.mousedown]: (event: MouseEvent) => event instanceof MouseEvent,
-		[ButtonEvents.mouseup]: (event: MouseEvent) => event instanceof MouseEvent,
-	});
+	const { icon, disabled, buttonSize, iconColor, backgroundColor, type, onClick } = toRefs(props);
 
 	const computedTypeClass = computed(() => {
 		switch (type.value) {
@@ -118,57 +103,8 @@
 		}
 	});
 
-	const handleClick = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.click, event);
-		}
-	};
-
-	const handleHover = (event: FocusEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.hover, event);
-		}
-	};
-
-	const handleFocus = (event: FocusEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.focus, event);
-		}
-	};
-
-	const handleMouseenter = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mouseenter, event);
-		}
-	};
-
-	const handleMouseleave = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mouseleave, event);
-		}
-	};
-
-	const handleMouseover = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mouseover, event);
-		}
-	};
-
-	const handleMouseout = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mouseout, event);
-		}
-	};
-
-	const handleMouseup = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mouseup, event);
-		}
-	};
-
-	const handleMousedown = (event: MouseEvent): void => {
-		if (!disabled.value) {
-			emits(ButtonEvents.mousedown, event);
-		}
+	const clickHandler = (event: MouseEvent): void => {
+		if (disabled.value) return;
+		onClick.value(event);
 	};
 </script>
