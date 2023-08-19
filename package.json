@@ -18,10 +18,10 @@
 		"minor": "npm version --no-git-tag-version minor",
 		"major": "npm version --no-git-tag-version major"
 	},
-	"homepage": "http://mrksbnc.github.io/complib",
+	"homepage": "http://mrksbnc.github.io/shohin",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/mrksbnc/complib.git"
+		"url": "https://github.com/mrksbnc/shohin.git"
 	},
 	"files": [
 		"dist/**/*"
