@@ -2,7 +2,7 @@ name: Test
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
   build-and-deploy:
@@ -11,8 +11,8 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
       - name: Install dependencies
-        run: | # Install the dependencies
+        run: |
           npm install
       - name: Run tests
-        run: | # Runs tests
+        run: |
           npm run test
