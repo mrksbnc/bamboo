@@ -33,7 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [x] Create `ClButton` component
 - [ ] Create `ClButtonGroup` component
 - [ ] Create `ClPillButton` component
-- [ ] Create `ClIconButton` component
+- [x] Create `ClIconButton` component
 - [ ] Create `ClLinkButton` component
 - [ ] Create `ClOutlineButton` component
 - [x] Create `ClLoadingSpinner` component

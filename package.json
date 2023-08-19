@@ -1,5 +1,5 @@
 {
-	"name": "@mrksbnc/complib",
+	"name": "@mrksbnc/gecko",
 	"version": "0.0.0",
 	"description": "Reusable component collection built with Vite and Vue 3.",
 	"scripts": {
@@ -13,8 +13,11 @@
 		"format": "prettier --write src/",
 		"test": "vitest",
 		"storybook": "storybook dev -p 6006",
-		"release": "npm run build && npm publish && npm run deploy-storybook",
-		"build-storybook": "storybook build -o docs"
+		"release": "npm run build && npm publish",
+		"build-storybook": "storybook build -o docs",
+		"patch": "npm version --no-git-tag-version patch",
+		"minor": "npm version --no-git-tag-version minor",
+		"major": "npm version --no-git-tag-version major"
 	},
 	"homepage": "http://mrksbnc.github.io/complib",
 	"repository": {
