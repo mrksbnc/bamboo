@@ -10,7 +10,6 @@ export const config: StorybookConfig = {
 		'@storybook/addon-essentials',
 		'@storybook/addon-styling',
 		'@storybook/addon-interactions',
-		'storybook-dark-mode',
 	],
 	staticDirs: ['../src/assets'],
 	framework: {

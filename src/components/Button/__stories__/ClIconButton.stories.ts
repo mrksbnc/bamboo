@@ -159,12 +159,12 @@ export default meta;
 
 type Story = StoryObj<typeof ClIconButton>;
 
-export const Default: Story = {
+export const Example: Story = {
 	parameters: {
 		backgrounds: { default: 'white' },
 	},
 	args: {
-		icon: Icon.activity,
+		icon: Icon.plus,
 		iconColor: Color.black,
 		buttonSize: IconButtonSize.base,
 		backgroundColor: Color['gray-100'],

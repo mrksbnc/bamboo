@@ -148,6 +148,16 @@ export default meta;
 
 type Story = StoryObj<typeof ClButton>;
 
+export const Example: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Primary',
+		type: ButtonType.primary,
+	},
+};
+
 export const Primary: Story = {
 	parameters: {
 		backgrounds: { default: 'white' },
@@ -214,7 +224,7 @@ export const Dark: Story = {
 	},
 	args: {
 		label: 'Dark',
-		type: ButtonType.DARK,
+		type: ButtonType.dark,
 	},
 };
 

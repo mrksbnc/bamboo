@@ -71,7 +71,7 @@
 		[ButtonType.danger]: 'text-white bg-red-700 hover:bg-red-800 focus:ring-red-300',
 		[ButtonType.warning]: 'text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300',
 		[ButtonType.success]: 'text-white bg-green-500 hover:bg-green-600 focus:ring-green-300',
-		[ButtonType.DARK]: 'text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300',
+		[ButtonType.dark]: 'text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300',
 		[ButtonType.light]: 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-300',
 	};
 
@@ -79,7 +79,7 @@
 		'text-gray-400 bg-gray-200 cursor-not-allowed hover:bg-gray-200 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800';
 
 	const defaultBtnClass =
-		'w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none';
+		'w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none';
 
 	const colorClasses = computed<string>(() => {
 		switch (type.value) {
@@ -93,8 +93,8 @@
 				return btnColorClass[ButtonType.warning];
 			case ButtonType.success:
 				return btnColorClass[ButtonType.success];
-			case ButtonType.DARK:
-				return btnColorClass[ButtonType.DARK];
+			case ButtonType.dark:
+				return btnColorClass[ButtonType.dark];
 			case ButtonType.light:
 				return btnColorClass[ButtonType.light];
 			default:
@@ -137,7 +137,7 @@
 				return LoadingSpinnerColor.yellow;
 			case ButtonType.success:
 				return LoadingSpinnerColor.green;
-			case ButtonType.DARK:
+			case ButtonType.dark:
 				return LoadingSpinnerColor.white;
 			case ButtonType.light:
 				return LoadingSpinnerColor.black;

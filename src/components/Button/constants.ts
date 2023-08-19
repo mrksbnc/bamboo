@@ -5,7 +5,7 @@ export enum ButtonType {
 	warning = 'warning',
 	success = 'success',
 	light = 'light',
-	DARK = 'dark',
+	dark = 'dark',
 }
 
 export enum ButtonSize {

@@ -12,8 +12,8 @@ VueWrapper {
       data-v-app=""
     >
       <button
-        class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-        id="cl-button_1692447043732"
+        class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+        id="cl-button_1692472175850"
       >
         <div>
           <span>
@@ -266,7 +266,7 @@ VueWrapper {
           "data": {},
           "devtoolsRawSetupState": {
             "ClLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Loader/ClLoadingSpinner.vue",
               "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
@@ -295,7 +295,7 @@ VueWrapper {
               "_cacheable": true,
               "_dirty": false,
               "_setter": [Function],
-              "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+              "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
               "dep": Set {
                 ReactiveEffect {
                   "active": true,
@@ -396,6 +396,7 @@ VueWrapper {
               "success": "text-white bg-green-500 hover:bg-green-600 focus:ring-green-300",
               "warning": "text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300",
             },
+            "clickHandler": [Function],
             "colorClasses": ComputedRefImpl {
               "__v_isReadonly": true,
               "__v_isRef": true,
@@ -412,7 +413,7 @@ VueWrapper {
                     "_cacheable": true,
                     "_dirty": false,
                     "_setter": [Function],
-                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                     "dep": Set {
                       ReactiveEffect {
                         "active": true,
@@ -515,7 +516,7 @@ VueWrapper {
                     "_cacheable": true,
                     "_dirty": false,
                     "_setter": [Function],
-                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                     "dep": Set {
                       ReactiveEffect {
                         "active": true,
@@ -602,7 +603,7 @@ VueWrapper {
                 "scheduler": [Function],
               },
             },
-            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none",
+            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none",
             "disabled": ObjectRefImpl {
               "__v_isRef": true,
               "_defaultValue": undefined,
@@ -620,8 +621,8 @@ VueWrapper {
             "id": RefImpl {
               "__v_isRef": true,
               "__v_isShallow": false,
-              "_rawValue": "cl-button_1692447043732",
-              "_value": "cl-button_1692447043732",
+              "_rawValue": "cl-button_1692472175850",
+              "_value": "cl-button_1692472175850",
               "dep": Set {
                 ReactiveEffect {
                   "active": true,
@@ -640,7 +641,7 @@ VueWrapper {
                           "_cacheable": true,
                           "_dirty": false,
                           "_setter": [Function],
-                          "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                          "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                           "dep": Set {
                             [Circular],
                           },
@@ -677,6 +678,19 @@ VueWrapper {
                   "parent": undefined,
                   "scheduler": [Function],
                 },
+              },
+            },
+            "isLoading": ObjectRefImpl {
+              "__v_isRef": true,
+              "_defaultValue": undefined,
+              "_key": "isLoading",
+              "_object": {
+                "disabled": false,
+                "isLoading": false,
+                "label": undefined,
+                "onClick": [Function],
+                "size": "base",
+                "type": "primary",
               },
             },
             "label": ObjectRefImpl {
@@ -793,7 +807,7 @@ VueWrapper {
                     "_cacheable": true,
                     "_dirty": false,
                     "_setter": [Function],
-                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                     "dep": Set {
                       [Circular],
                     },
@@ -909,8 +923,8 @@ VueWrapper {
           },
           "refs": {
             "cl-button": <button
-              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-              id="cl-button_1692447043732"
+              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+              id="cl-button_1692472175850"
             >
               <div>
                 <span>
@@ -955,7 +969,7 @@ VueWrapper {
                         "_cacheable": true,
                         "_dirty": false,
                         "_setter": [Function],
-                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                         "dep": Set {
                           ReactiveEffect {
                             "active": true,
@@ -1058,7 +1072,7 @@ VueWrapper {
                         "_cacheable": true,
                         "_dirty": false,
                         "_setter": [Function],
-                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                         "dep": Set {
                           ReactiveEffect {
                             "active": true,
@@ -1151,7 +1165,7 @@ VueWrapper {
                   "_cacheable": true,
                   "_dirty": false,
                   "_setter": [Function],
-                  "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                  "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                   "dep": Set {
                     ReactiveEffect {
                       "active": true,
@@ -1277,7 +1291,7 @@ VueWrapper {
                         "_cacheable": true,
                         "_dirty": false,
                         "_setter": [Function],
-                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                         "dep": Set {
                           [Circular],
                         },
@@ -1325,7 +1339,7 @@ VueWrapper {
           },
           "setupState": {
             "ClLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Loader/ClLoadingSpinner.vue",
               "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
@@ -1348,7 +1362,7 @@ VueWrapper {
               "render": [Function],
               "setup": [Function],
             },
-            "btnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+            "btnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
             "btnColorClass": {
               "danger": "text-white bg-red-700 hover:bg-red-800 focus:ring-red-300",
               "dark": "text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300",
@@ -1358,12 +1372,14 @@ VueWrapper {
               "success": "text-white bg-green-500 hover:bg-green-600 focus:ring-green-300",
               "warning": "text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300",
             },
+            "clickHandler": [Function],
             "colorClasses": "text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
             "computedBtnSize": "px-5 py-2.5 text-sm font-medium text-center",
-            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none",
+            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none",
             "disabled": false,
             "disabledBtnColorClass": "text-gray-400 bg-gray-200 cursor-not-allowed hover:bg-gray-200 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800",
-            "id": "cl-button_1692447043732",
+            "id": "cl-button_1692472175850",
+            "isLoading": false,
             "label": undefined,
             "loaderColor": "blue",
             "loaderSize": "normal",
@@ -1963,8 +1979,8 @@ VueWrapper {
               "disabled",
             ],
             "el": <button
-              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-              id="cl-button_1692447043732"
+              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+              id="cl-button_1692472175850"
             >
               <div>
                 <span>
@@ -1981,9 +1997,9 @@ VueWrapper {
             "key": null,
             "patchFlag": 10,
             "props": {
-              "class": "cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+              "class": "cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
               "disabled": false,
-              "id": "cl-button_1692447043732",
+              "id": "cl-button_1692472175850",
               "onClick": [Function],
               "ref": "cl-button",
             },
@@ -2008,7 +2024,7 @@ VueWrapper {
           "suspense": null,
           "suspenseId": 0,
           "type": {
-            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+            "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Button/ClButton.vue",
             "__name": "ClButton",
             "components": {},
             "props": {
@@ -2052,8 +2068,8 @@ VueWrapper {
         "dynamicChildren": null,
         "dynamicProps": null,
         "el": <button
-          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-          id="cl-button_1692447043732"
+          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+          id="cl-button_1692472175850"
         >
           <div>
             <span>
@@ -2089,7 +2105,7 @@ VueWrapper {
         "targetAnchor": null,
         "transition": null,
         "type": {
-          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+          "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Button/ClButton.vue",
           "__name": "ClButton",
           "components": {},
           "props": {
@@ -2175,8 +2191,8 @@ VueWrapper {
         "dynamicChildren": null,
         "dynamicProps": null,
         "el": <button
-          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-          id="cl-button_1692447043732"
+          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+          id="cl-button_1692472175850"
         >
           <div>
             <span>
@@ -2414,8 +2430,8 @@ VueWrapper {
     "VTU_COMPONENT": {},
   },
   "wrapperElement": <button
-    class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-    id="cl-button_1692447043732"
+    class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+    id="cl-button_1692472175850"
   >
     <div>
       <span>
@@ -2432,7 +2448,7 @@ VueWrapper {
 }
 `;
 
-exports[`ClButton > renders correctly with color > <button id="cl-button_1692447043747" class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800" color="danger">
+exports[`ClButton > renders correctly with color > <button id="cl-button_1692472175865" class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800" color="danger">
   <div><span></span><span>Test</span><span></span></div>
 </button> 1`] = `
 VueWrapper {
@@ -2446,9 +2462,9 @@ VueWrapper {
       data-v-app=""
     >
       <button
-        class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+        class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
         color="danger"
-        id="cl-button_1692447043747"
+        id="cl-button_1692472175865"
       >
         <div>
           <span>
@@ -2717,7 +2733,7 @@ VueWrapper {
           "data": {},
           "devtoolsRawSetupState": {
             "ClLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Loader/ClLoadingSpinner.vue",
               "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
@@ -2746,7 +2762,7 @@ VueWrapper {
               "_cacheable": true,
               "_dirty": false,
               "_setter": [Function],
-              "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+              "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
               "dep": Set {
                 ReactiveEffect {
                   "active": true,
@@ -2847,6 +2863,7 @@ VueWrapper {
               "success": "text-white bg-green-500 hover:bg-green-600 focus:ring-green-300",
               "warning": "text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300",
             },
+            "clickHandler": [Function],
             "colorClasses": ComputedRefImpl {
               "__v_isReadonly": true,
               "__v_isRef": true,
@@ -2863,7 +2880,7 @@ VueWrapper {
                     "_cacheable": true,
                     "_dirty": false,
                     "_setter": [Function],
-                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                     "dep": Set {
                       ReactiveEffect {
                         "active": true,
@@ -2966,7 +2983,7 @@ VueWrapper {
                     "_cacheable": true,
                     "_dirty": false,
                     "_setter": [Function],
-                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                     "dep": Set {
                       ReactiveEffect {
                         "active": true,
@@ -3053,7 +3070,7 @@ VueWrapper {
                 "scheduler": [Function],
               },
             },
-            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none",
+            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none",
             "disabled": ObjectRefImpl {
               "__v_isRef": true,
               "_defaultValue": undefined,
@@ -3071,8 +3088,8 @@ VueWrapper {
             "id": RefImpl {
               "__v_isRef": true,
               "__v_isShallow": false,
-              "_rawValue": "cl-button_1692447043747",
-              "_value": "cl-button_1692447043747",
+              "_rawValue": "cl-button_1692472175865",
+              "_value": "cl-button_1692472175865",
               "dep": Set {
                 ReactiveEffect {
                   "active": true,
@@ -3091,7 +3108,7 @@ VueWrapper {
                           "_cacheable": true,
                           "_dirty": false,
                           "_setter": [Function],
-                          "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                          "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                           "dep": Set {
                             [Circular],
                           },
@@ -3128,6 +3145,19 @@ VueWrapper {
                   "parent": undefined,
                   "scheduler": [Function],
                 },
+              },
+            },
+            "isLoading": ObjectRefImpl {
+              "__v_isRef": true,
+              "_defaultValue": undefined,
+              "_key": "isLoading",
+              "_object": {
+                "disabled": false,
+                "isLoading": false,
+                "label": "Test",
+                "onClick": [Function],
+                "size": "base",
+                "type": "primary",
               },
             },
             "label": ObjectRefImpl {
@@ -3244,7 +3274,7 @@ VueWrapper {
                     "_cacheable": true,
                     "_dirty": false,
                     "_setter": [Function],
-                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                     "dep": Set {
                       [Circular],
                     },
@@ -3360,9 +3390,9 @@ VueWrapper {
           },
           "refs": {
             "cl-button": <button
-              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
               color="danger"
-              id="cl-button_1692447043747"
+              id="cl-button_1692472175865"
             >
               <div>
                 <span>
@@ -3409,7 +3439,7 @@ VueWrapper {
                         "_cacheable": true,
                         "_dirty": false,
                         "_setter": [Function],
-                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                         "dep": Set {
                           ReactiveEffect {
                             "active": true,
@@ -3512,7 +3542,7 @@ VueWrapper {
                         "_cacheable": true,
                         "_dirty": false,
                         "_setter": [Function],
-                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                         "dep": Set {
                           ReactiveEffect {
                             "active": true,
@@ -3605,7 +3635,7 @@ VueWrapper {
                   "_cacheable": true,
                   "_dirty": false,
                   "_setter": [Function],
-                  "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                  "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                   "dep": Set {
                     ReactiveEffect {
                       "active": true,
@@ -3731,7 +3761,7 @@ VueWrapper {
                         "_cacheable": true,
                         "_dirty": false,
                         "_setter": [Function],
-                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                         "dep": Set {
                           [Circular],
                         },
@@ -3781,7 +3811,7 @@ VueWrapper {
           },
           "setupState": {
             "ClLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Loader/ClLoadingSpinner.vue",
               "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
@@ -3804,7 +3834,7 @@ VueWrapper {
               "render": [Function],
               "setup": [Function],
             },
-            "btnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+            "btnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
             "btnColorClass": {
               "danger": "text-white bg-red-700 hover:bg-red-800 focus:ring-red-300",
               "dark": "text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300",
@@ -3814,12 +3844,14 @@ VueWrapper {
               "success": "text-white bg-green-500 hover:bg-green-600 focus:ring-green-300",
               "warning": "text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300",
             },
+            "clickHandler": [Function],
             "colorClasses": "text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
             "computedBtnSize": "px-5 py-2.5 text-sm font-medium text-center",
-            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none",
+            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none",
             "disabled": false,
             "disabledBtnColorClass": "text-gray-400 bg-gray-200 cursor-not-allowed hover:bg-gray-200 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800",
-            "id": "cl-button_1692447043747",
+            "id": "cl-button_1692472175865",
+            "isLoading": false,
             "label": "Test",
             "loaderColor": "blue",
             "loaderSize": "normal",
@@ -4432,9 +4464,9 @@ VueWrapper {
               "disabled",
             ],
             "el": <button
-              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
               color="danger"
-              id="cl-button_1692447043747"
+              id="cl-button_1692472175865"
             >
               <div>
                 <span>
@@ -4453,10 +4485,10 @@ VueWrapper {
             "key": null,
             "patchFlag": 26,
             "props": {
-              "class": "cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+              "class": "cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
               "color": "danger",
               "disabled": false,
-              "id": "cl-button_1692447043747",
+              "id": "cl-button_1692472175865",
               "onClick": [Function],
               "ref": "cl-button",
             },
@@ -4481,7 +4513,7 @@ VueWrapper {
           "suspense": null,
           "suspenseId": 0,
           "type": {
-            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+            "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Button/ClButton.vue",
             "__name": "ClButton",
             "components": {},
             "props": {
@@ -4525,9 +4557,9 @@ VueWrapper {
         "dynamicChildren": null,
         "dynamicProps": null,
         "el": <button
-          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
           color="danger"
-          id="cl-button_1692447043747"
+          id="cl-button_1692472175865"
         >
           <div>
             <span>
@@ -4567,7 +4599,7 @@ VueWrapper {
         "targetAnchor": null,
         "transition": null,
         "type": {
-          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+          "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Button/ClButton.vue",
           "__name": "ClButton",
           "components": {},
           "props": {
@@ -4653,9 +4685,9 @@ VueWrapper {
         "dynamicChildren": null,
         "dynamicProps": null,
         "el": <button
-          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
           color="danger"
-          id="cl-button_1692447043747"
+          id="cl-button_1692472175865"
         >
           <div>
             <span>
@@ -4895,9 +4927,9 @@ VueWrapper {
     "VTU_COMPONENT": {},
   },
   "wrapperElement": <button
-    class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+    class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
     color="danger"
-    id="cl-button_1692447043747"
+    id="cl-button_1692472175865"
   >
     <div>
       <span>
@@ -4916,7 +4948,7 @@ VueWrapper {
 }
 `;
 
-exports[`ClButton > renders correctly with size > <button id="cl-button_1692447043758" class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800">
+exports[`ClButton > renders correctly with size > <button id="cl-button_1692472175876" class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800">
   <div><span></span><span>Test</span><span></span></div>
 </button> 1`] = `
 VueWrapper {
@@ -4930,8 +4962,8 @@ VueWrapper {
       data-v-app=""
     >
       <button
-        class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-        id="cl-button_1692447043758"
+        class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+        id="cl-button_1692472175876"
       >
         <div>
           <span>
@@ -5198,7 +5230,7 @@ VueWrapper {
           "data": {},
           "devtoolsRawSetupState": {
             "ClLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Loader/ClLoadingSpinner.vue",
               "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
@@ -5227,7 +5259,7 @@ VueWrapper {
               "_cacheable": true,
               "_dirty": false,
               "_setter": [Function],
-              "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+              "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
               "dep": Set {
                 ReactiveEffect {
                   "active": true,
@@ -5328,6 +5360,7 @@ VueWrapper {
               "success": "text-white bg-green-500 hover:bg-green-600 focus:ring-green-300",
               "warning": "text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300",
             },
+            "clickHandler": [Function],
             "colorClasses": ComputedRefImpl {
               "__v_isReadonly": true,
               "__v_isRef": true,
@@ -5344,7 +5377,7 @@ VueWrapper {
                     "_cacheable": true,
                     "_dirty": false,
                     "_setter": [Function],
-                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                     "dep": Set {
                       ReactiveEffect {
                         "active": true,
@@ -5447,7 +5480,7 @@ VueWrapper {
                     "_cacheable": true,
                     "_dirty": false,
                     "_setter": [Function],
-                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                     "dep": Set {
                       ReactiveEffect {
                         "active": true,
@@ -5534,7 +5567,7 @@ VueWrapper {
                 "scheduler": [Function],
               },
             },
-            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none",
+            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none",
             "disabled": ObjectRefImpl {
               "__v_isRef": true,
               "_defaultValue": undefined,
@@ -5552,8 +5585,8 @@ VueWrapper {
             "id": RefImpl {
               "__v_isRef": true,
               "__v_isShallow": false,
-              "_rawValue": "cl-button_1692447043758",
-              "_value": "cl-button_1692447043758",
+              "_rawValue": "cl-button_1692472175876",
+              "_value": "cl-button_1692472175876",
               "dep": Set {
                 ReactiveEffect {
                   "active": true,
@@ -5572,7 +5605,7 @@ VueWrapper {
                           "_cacheable": true,
                           "_dirty": false,
                           "_setter": [Function],
-                          "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                          "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                           "dep": Set {
                             [Circular],
                           },
@@ -5609,6 +5642,19 @@ VueWrapper {
                   "parent": undefined,
                   "scheduler": [Function],
                 },
+              },
+            },
+            "isLoading": ObjectRefImpl {
+              "__v_isRef": true,
+              "_defaultValue": undefined,
+              "_key": "isLoading",
+              "_object": {
+                "disabled": false,
+                "isLoading": false,
+                "label": "Test",
+                "onClick": [Function],
+                "size": "large",
+                "type": "primary",
               },
             },
             "label": ObjectRefImpl {
@@ -5725,7 +5771,7 @@ VueWrapper {
                     "_cacheable": true,
                     "_dirty": false,
                     "_setter": [Function],
-                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                    "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                     "dep": Set {
                       [Circular],
                     },
@@ -5841,8 +5887,8 @@ VueWrapper {
           },
           "refs": {
             "cl-button": <button
-              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-              id="cl-button_1692447043758"
+              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+              id="cl-button_1692472175876"
             >
               <div>
                 <span>
@@ -5889,7 +5935,7 @@ VueWrapper {
                         "_cacheable": true,
                         "_dirty": false,
                         "_setter": [Function],
-                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                         "dep": Set {
                           ReactiveEffect {
                             "active": true,
@@ -5992,7 +6038,7 @@ VueWrapper {
                         "_cacheable": true,
                         "_dirty": false,
                         "_setter": [Function],
-                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                         "dep": Set {
                           ReactiveEffect {
                             "active": true,
@@ -6085,7 +6131,7 @@ VueWrapper {
                   "_cacheable": true,
                   "_dirty": false,
                   "_setter": [Function],
-                  "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                  "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                   "dep": Set {
                     ReactiveEffect {
                       "active": true,
@@ -6211,7 +6257,7 @@ VueWrapper {
                         "_cacheable": true,
                         "_dirty": false,
                         "_setter": [Function],
-                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+                        "_value": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
                         "dep": Set {
                           [Circular],
                         },
@@ -6259,7 +6305,7 @@ VueWrapper {
           },
           "setupState": {
             "ClLoadingSpinner": {
-              "__file": "/Volumes/Data/Code/Projects/complib/src/components/Loader/ClLoadingSpinner.vue",
+              "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Loader/ClLoadingSpinner.vue",
               "__name": "ClLoadingSpinner",
               "props": {
                 "color": {
@@ -6282,7 +6328,7 @@ VueWrapper {
               "render": [Function],
               "setup": [Function],
             },
-            "btnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+            "btnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
             "btnColorClass": {
               "danger": "text-white bg-red-700 hover:bg-red-800 focus:ring-red-300",
               "dark": "text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300",
@@ -6292,12 +6338,14 @@ VueWrapper {
               "success": "text-white bg-green-500 hover:bg-green-600 focus:ring-green-300",
               "warning": "text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300",
             },
+            "clickHandler": [Function],
             "colorClasses": "text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
             "computedBtnSize": "px-5 py-3 text-base font-medium text-center",
-            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none",
+            "defaultBtnClass": "w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none",
             "disabled": false,
             "disabledBtnColorClass": "text-gray-400 bg-gray-200 cursor-not-allowed hover:bg-gray-200 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800",
-            "id": "cl-button_1692447043758",
+            "id": "cl-button_1692472175876",
+            "isLoading": false,
             "label": "Test",
             "loaderColor": "blue",
             "loaderSize": "large",
@@ -6909,8 +6957,8 @@ VueWrapper {
               "disabled",
             ],
             "el": <button
-              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-              id="cl-button_1692447043758"
+              class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+              id="cl-button_1692472175876"
             >
               <div>
                 <span>
@@ -6929,9 +6977,9 @@ VueWrapper {
             "key": null,
             "patchFlag": 10,
             "props": {
-              "class": "cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
+              "class": "cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800",
               "disabled": false,
-              "id": "cl-button_1692447043758",
+              "id": "cl-button_1692472175876",
               "onClick": [Function],
               "ref": "cl-button",
             },
@@ -6956,7 +7004,7 @@ VueWrapper {
           "suspense": null,
           "suspenseId": 0,
           "type": {
-            "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+            "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Button/ClButton.vue",
             "__name": "ClButton",
             "components": {},
             "props": {
@@ -7000,8 +7048,8 @@ VueWrapper {
         "dynamicChildren": null,
         "dynamicProps": null,
         "el": <button
-          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-          id="cl-button_1692447043758"
+          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+          id="cl-button_1692472175876"
         >
           <div>
             <span>
@@ -7041,7 +7089,7 @@ VueWrapper {
         "targetAnchor": null,
         "transition": null,
         "type": {
-          "__file": "/Volumes/Data/Code/Projects/complib/src/components/Button/ClButton.vue",
+          "__file": "/Volumes/Data/Code/Projects/gecko/src/components/Button/ClButton.vue",
           "__name": "ClButton",
           "components": {},
           "props": {
@@ -7127,8 +7175,8 @@ VueWrapper {
         "dynamicChildren": null,
         "dynamicProps": null,
         "el": <button
-          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-          id="cl-button_1692447043758"
+          class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+          id="cl-button_1692472175876"
         >
           <div>
             <span>
@@ -7368,8 +7416,8 @@ VueWrapper {
     "VTU_COMPONENT": {},
   },
   "wrapperElement": <button
-    class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-4 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
-    id="cl-button_1692447043758"
+    class="cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-5 py-3 text-base font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+    id="cl-button_1692472175876"
   >
     <div>
       <span>
