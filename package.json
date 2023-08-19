@@ -1,5 +1,5 @@
 {
-	"name": "@mrksbnc/gecko",
+	"name": "@mrksbnc/shohin",
 	"version": "0.0.0",
 	"description": "Vue 3 UI library built with Vite, TailwindCSS, and Storybook",
 	"scripts": {

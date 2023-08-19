@@ -64,17 +64,6 @@
 
 	const id = ref('cl-button_' + Date.now());
 
-	const btnColorClass: Record<ButtonType, string> = {
-		[ButtonType.primary]:
-			'text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800',
-		[ButtonType.secondary]: 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-300',
-		[ButtonType.danger]: 'text-white bg-red-700 hover:bg-red-800 focus:ring-red-300',
-		[ButtonType.warning]: 'text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300',
-		[ButtonType.success]: 'text-white bg-green-500 hover:bg-green-600 focus:ring-green-300',
-		[ButtonType.dark]: 'text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300',
-		[ButtonType.light]: 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-300',
-	};
-
 	const disabledBtnColorClass =
 		'text-gray-400 bg-gray-200 cursor-not-allowed hover:bg-gray-200 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800';
 
@@ -84,21 +73,21 @@
 	const colorClasses = computed<string>(() => {
 		switch (type.value) {
 			case ButtonType.primary:
-				return btnColorClass[ButtonType.primary];
+				return 'text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800';
 			case ButtonType.secondary:
-				return btnColorClass[ButtonType.secondary];
+				return 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-300';
 			case ButtonType.danger:
-				return btnColorClass[ButtonType.danger];
+				return 'text-white bg-red-700 hover:bg-red-800 focus:ring-red-300';
 			case ButtonType.warning:
-				return btnColorClass[ButtonType.warning];
+				return 'text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300';
 			case ButtonType.success:
-				return btnColorClass[ButtonType.success];
+				return 'text-white bg-green-500 hover:bg-green-600 focus:ring-green-300';
 			case ButtonType.dark:
-				return btnColorClass[ButtonType.dark];
+				return 'text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300';
 			case ButtonType.light:
-				return btnColorClass[ButtonType.light];
+				return 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-300';
 			default:
-				return btnColorClass[ButtonType.primary];
+				return 'text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800';
 		}
 	});
 
