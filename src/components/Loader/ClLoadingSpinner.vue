@@ -36,7 +36,7 @@
 	const props = defineProps({
 		color: {
 			type: String as PropType<LoadingSpinnerColor>,
-			default: LoadingSpinnerColor.BLUE,
+			default: LoadingSpinnerColor.blue,
 		},
 		label: {
 			type: String,
@@ -56,21 +56,21 @@
 
 	const computedFillColor = computed<string>(() => {
 		switch (color.value) {
-			case LoadingSpinnerColor.BLUE:
+			case LoadingSpinnerColor.blue:
 				return 'fill-blue-600 text-gray-200 dark:text-gray-200';
-			case LoadingSpinnerColor.BLACK:
+			case LoadingSpinnerColor.black:
 				return 'fill-black text-gray-100';
-			case LoadingSpinnerColor.WHITE:
+			case LoadingSpinnerColor.white:
 				return 'fill-white text-gray-200 dark:text-gray-200';
 			case LoadingSpinnerColor.GRAY:
 				return 'fill-gray-600 text-gray-200 dark:text-gray-200';
-			case LoadingSpinnerColor.RED:
+			case LoadingSpinnerColor.red:
 				return 'fill-red-600 text-gray-200 dark:text-gray-200';
-			case LoadingSpinnerColor.GREEN:
+			case LoadingSpinnerColor.green:
 				return 'fill-green-600 text-gray-200 dark:text-gray-200';
-			case LoadingSpinnerColor.YELLOW:
+			case LoadingSpinnerColor.yellow:
 				return 'fill-yellow-600 text-gray-200 dark:text-gray-200';
-			case LoadingSpinnerColor.PURPLE:
+			case LoadingSpinnerColor.purple:
 				return 'fill-pink-600 text-gray-200 dark:text-gray-200';
 			case LoadingSpinnerColor.TEAL:
 				return 'fill-teal-600 text-gray-200 dark:text-gray-200';
@@ -81,11 +81,11 @@
 
 	const computedSize = computed<string>(() => {
 		switch (props.size) {
-			case LoadingSpinnerSize.SMALL:
+			case LoadingSpinnerSize.small:
 				return 'w-4 h-4';
 			case LoadingSpinnerSize.NORMAL:
 				return 'w-6 h-6';
-			case LoadingSpinnerSize.LARGE:
+			case LoadingSpinnerSize.large:
 				return 'w-8 h-8';
 			default:
 				return 'w-6 h-6';

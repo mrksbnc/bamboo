@@ -1,7 +1,7 @@
 {
-	"name": "@mrksbnc/complib",
+	"name": "@mrksbnc/gecko",
 	"version": "0.0.0",
-	"description": "Reusable component collection built with Vite and Vue 3.",
+	"description": "Vue 3 UI library built with Vite, TailwindCSS, and Storybook",
 	"scripts": {
 		"dev": "vite",
 		"build": "npm run type-check && npm run build-only",
@@ -42,8 +42,9 @@
 	},
 	"devDependencies": {
 		"@storybook/addon-a11y": "^7.2.2",
-		"@storybook/addon-essentials": "^7.2.2",
-		"@storybook/addon-interactions": "^7.2.2",
+		"@storybook/addon-actions": "^7.3.2",
+		"@storybook/addon-essentials": "^7.3.2",
+		"@storybook/addon-interactions": "^7.3.2",
 		"@storybook/addon-links": "^7.2.3",
 		"@storybook/addon-styling": "^1.3.6",
 		"@storybook/addon-viewport": "^7.2.2",

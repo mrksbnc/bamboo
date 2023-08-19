@@ -12,7 +12,7 @@ describe('ClButton', () => {
 		const wrapper = mount(ClButton, {
 			props: {
 				label: 'Test',
-				color: ButtonType.DANGER,
+				color: ButtonType.danger,
 			},
 		});
 		expect(wrapper).toMatchSnapshot(wrapper.html());
@@ -22,7 +22,7 @@ describe('ClButton', () => {
 		const wrapper = mount(ClButton, {
 			props: {
 				label: 'Test',
-				size: ButtonSize.LARGE,
+				size: ButtonSize.large,
 			},
 		});
 		expect(wrapper).toMatchSnapshot(wrapper.html());

@@ -36,7 +36,7 @@ const meta = {
 					}`,
 				},
 				defaultValue: {
-					summary: ButtonType.PRIMARY,
+					summary: ButtonType.primary,
 				},
 			},
 			control: {
@@ -74,7 +74,7 @@ const meta = {
 					}`,
 				},
 				defaultValue: {
-					summary: ButtonSize.BASE,
+					summary: ButtonSize.base,
 				},
 			},
 			control: {
@@ -97,20 +97,6 @@ const meta = {
 			control: {
 				type: 'boolean',
 			},
-		},
-		onClick: {
-			description: 'The click event handler',
-			table: {
-				category: 'props',
-				subcategory: 'optional',
-				type: {
-					summary: '() => void',
-				},
-			},
-			control: {
-				type: null,
-			},
-			action: 'clicked',
 		},
 		prefix: {
 			description: 'Content of the prefix slot',
@@ -151,7 +137,7 @@ export const Primary: Story = {
 	},
 	args: {
 		label: 'Primary',
-		type: ButtonType.PRIMARY,
+		type: ButtonType.primary,
 	},
 };
 
@@ -161,7 +147,7 @@ export const Secondary: Story = {
 	},
 	args: {
 		label: 'Secondary',
-		type: ButtonType.SECONDARY,
+		type: ButtonType.secondary,
 	},
 };
 
@@ -171,7 +157,7 @@ export const Danger: Story = {
 	},
 	args: {
 		label: 'Danger',
-		type: ButtonType.DANGER,
+		type: ButtonType.danger,
 	},
 };
 
@@ -181,7 +167,7 @@ export const Warning: Story = {
 	},
 	args: {
 		label: 'Warning',
-		type: ButtonType.WARNING,
+		type: ButtonType.warning,
 	},
 };
 
@@ -191,7 +177,7 @@ export const Success: Story = {
 	},
 	args: {
 		label: 'Success',
-		type: ButtonType.SUCCESS,
+		type: ButtonType.success,
 	},
 };
 
@@ -201,7 +187,7 @@ export const Light: Story = {
 	},
 	args: {
 		label: 'Light',
-		type: ButtonType.LIGHT,
+		type: ButtonType.light,
 	},
 };
 
