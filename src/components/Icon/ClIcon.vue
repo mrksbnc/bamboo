@@ -19,7 +19,7 @@
 			default: 24,
 		},
 		color: {
-			type: String as PropType<Color>,
+			type: String as PropType<Color | string>,
 			default: Color.black,
 		},
 	});

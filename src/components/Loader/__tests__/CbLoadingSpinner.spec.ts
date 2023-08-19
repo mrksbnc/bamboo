@@ -12,7 +12,7 @@ describe('ClLoadingSpinner', () => {
 	test('renders correctly with color', () => {
 		const wrapper = mount(ClLoadingSpinner, {
 			props: {
-				color: LoadingSpinnerColor.GREEN,
+				color: LoadingSpinnerColor.green,
 			},
 		});
 		expect(wrapper).toMatchSnapshot(wrapper.html());
