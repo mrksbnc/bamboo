@@ -1,5 +1,5 @@
 {
-	"name": "@mrksbnc/shohin",
+	"name": "@mrksbnc/ds",
 	"version": "0.0.0",
 	"description": "Vue 3 UI library built with Vite, TailwindCSS, and Storybook",
 	"scripts": {
@@ -18,10 +18,10 @@
 		"minor": "npm version --no-git-tag-version minor",
 		"major": "npm version --no-git-tag-version major"
 	},
-	"homepage": "http://mrksbnc.github.io/shohin",
+	"homepage": "http://mrksbnc.github.io/ds",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/mrksbnc/shohin.git"
+		"url": "https://github.com/mrksbnc/ds.git"
 	},
 	"files": [
 		"dist/**/*"

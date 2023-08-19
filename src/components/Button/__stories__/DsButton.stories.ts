@@ -1,9 +1,11 @@
-import { ButtonSize, ButtonType, ClButton } from '..';
+import { DsIcon, Icon } from '@/components/Icon';
 import type { Meta, StoryObj } from '@storybook/vue3';
+import { ButtonForm, ButtonSize, ButtonType, DsButton } from '..';
 
 const meta = {
-	title: 'Button/cl-button',
-	component: ClButton,
+	id: 'DsButton',
+	title: 'Button/ds-button',
+	component: DsButton,
 	tags: ['autodocs'],
 	argTypes: {
 		label: {
@@ -107,8 +109,11 @@ const meta = {
 					summary: 'unkown',
 				},
 				defaultValue: {
-					summary: undefined,
+					summary: '-',
 				},
+			},
+			control: {
+				type: '-',
 			},
 		},
 		suffix: {
@@ -120,8 +125,11 @@ const meta = {
 					summary: 'unkown',
 				},
 				defaultValue: {
-					summary: undefined,
+					summary: '-',
 				},
+			},
+			control: {
+				type: '-',
 			},
 		},
 		onClick: {
@@ -131,22 +139,44 @@ const meta = {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: '() => void',
+					summary: null,
 				},
 				defaultValue: {
 					summary: undefined,
 				},
 			},
 			control: {
-				type: null,
+				type: undefined,
 			},
 		},
+		form: {
+			description: 'The form of the button',
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: 'ButtonForm',
+					detail: `enum ButtonForm {\n${
+						Object.keys(ButtonForm)
+							.map((m: string) => `\t${m} = "${ButtonForm[m as keyof typeof ButtonForm]}",`)
+							.join('\r\n') + '\r\n}'
+					}`,
+				},
+				defaultValue: {
+					summary: undefined,
+				},
+			},
+			control: {
+				type: 'select',
+			},
+			options: Object.keys(ButtonForm).map((m: string) => ButtonForm[m as keyof typeof ButtonForm]),
+		},
 	},
-} as Meta<typeof ClButton>;
+} satisfies Meta<typeof DsButton>;
 
 export default meta;
 
-type Story = StoryObj<typeof ClButton>;
+type Story = StoryObj<typeof DsButton>;
 
 export const Example: Story = {
 	parameters: {
@@ -245,5 +275,51 @@ export const Loading: Story = {
 	args: {
 		label: 'Is Loading',
 		isLoading: true,
+	},
+};
+
+export const Prefix: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	render: (args, { argTypes }) => ({
+		props: Object.keys(argTypes),
+		components: { DsButton, DsIcon },
+		template: `
+			<Ds-button v-bind="args">
+				<template #prefix>
+					<Ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+				</template>
+			</Ds-button>
+		`,
+		setup() {
+			return { args };
+		},
+	}),
+	args: {
+		label: 'Button',
+	},
+};
+
+export const Suffix: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	render: (args, { argTypes }) => ({
+		props: Object.keys(argTypes),
+		components: { DsButton, DsIcon },
+		template: `
+			<Ds-button v-bind="args">
+				<template #suffix>
+					<Ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+				</template>
+			</Ds-button>
+		`,
+		setup() {
+			return { args };
+		},
+	}),
+	args: {
+		label: 'Button',
 	},
 };

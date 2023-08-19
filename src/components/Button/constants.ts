@@ -28,3 +28,8 @@ export enum IconButtonSize {
 	large = 'large',
 	extra_large = 'extra_large',
 }
+
+export enum ButtonForm {
+	base = 'base',
+	pill = 'pill',
+}

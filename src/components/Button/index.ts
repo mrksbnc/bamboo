@@ -1,5 +1,6 @@
 export * from './types';
+export * from './events';
 export * from './constants';
-export { default as ClButton } from './ClButton.vue';
-export { default as ClIconButton } from './ClIconButton.vue';
-export { default as ClButtonGroup } from './ClButtonGroup.vue';
+export { default as DsButton } from './DsButton.vue';
+export { default as DsIconButton } from './DsIconButton.vue';
+export { default as DsButtonGroup } from './DsButtonGroup.vue';

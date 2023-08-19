@@ -1,4 +1,4 @@
-# Vue Component Library
+# Ds - Vue 3 Component Library
 
 ![Version](https://img.shields.io/github/package-json/v/mrksbnc/complib)
 
@@ -46,7 +46,7 @@ npm run build-storybook
 ```
 
 This will build the Storybook documentation and generate the static files in the `docs` folder.
-The directory is used by GitHub Pages to host the documentation.
+The directory is used by DstHub Pages to host the documentation.
 
 ### Run your unit tests
 

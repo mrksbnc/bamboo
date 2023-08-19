@@ -1,9 +1,8 @@
 import type { Color } from '@/data';
 import type { Icon } from '../Icon';
-import type { ButtonType } from '.';
 
 export declare type ButtonGroupItem = {
-	id: string;
+	id: number;
 	label: string;
 	prefix?: Icon;
 	suffix?: Icon;

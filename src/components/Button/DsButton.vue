@@ -1,27 +1,30 @@
 <template>
 	<button
 		:id="id"
-		ref="cl-button"
-		class="cl-button"
+		ref="Ds-button"
+		class="Ds-button"
 		:class="[btnClass]"
 		:disabled="disabled"
 		@click="clickHandler($event)"
 	>
 		<div v-if="isLoading">
-			<cl-loading-spinner
+			<Ds-loading-spinner
 				:size="loaderSize"
 				:show-label="false"
 				:color="loaderColor"
 			/>
 		</div>
-		<div v-else>
-			<span>
+		<div
+			v-else
+			class="flex flex-row justify-center items-center"
+		>
+			<span class="sh-button__prefix mr-2">
 				<slot name="prefix" />
 			</span>
 			<span>
 				{{ label }}
 			</span>
-			<span>
+			<span class="sh-button__suffix ml-2">
 				<slot name="suffix" />
 			</span>
 		</div>
@@ -30,8 +33,8 @@
 
 <script setup lang="ts">
 	import { type PropType, computed, toRefs, ref } from 'vue';
-	import { ButtonType, ButtonSize } from './constants';
-	import { ClLoadingSpinner, LoadingSpinnerColor, LoadingSpinnerSize } from '../Loader';
+	import { ButtonType, ButtonSize, ButtonForm } from './constants';
+	import { DsLoadingSpinner, LoadingSpinnerColor, LoadingSpinnerSize } from '../Loader';
 
 	const props = defineProps({
 		type: {
@@ -58,17 +61,21 @@
 			type: Function as PropType<(event: MouseEvent) => void>,
 			default: () => {},
 		},
+		form: {
+			type: String as PropType<ButtonForm>,
+			default: ButtonForm.base,
+		},
 	});
 
-	const { label, type, disabled, size, isLoading, onClick } = toRefs(props);
+	const { label, type, disabled, size, isLoading, onClick, form } = toRefs(props);
 
-	const id = ref('cl-button_' + Date.now());
+	const id = ref('Ds-button_' + Date.now());
 
 	const disabledBtnColorClass =
 		'text-gray-400 bg-gray-200 cursor-not-allowed hover:bg-gray-200 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800';
 
 	const defaultBtnClass =
-		'w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none';
+		'w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium focus:outline-none';
 
 	const colorClasses = computed<string>(() => {
 		switch (type.value) {
@@ -108,10 +115,21 @@
 		}
 	});
 
+	const computedButtonFormClass = computed<string>(() => {
+		switch (form.value) {
+			case ButtonForm.base:
+				return 'rounded-lg';
+			case ButtonForm.pill:
+				return 'rounded-full';
+			default:
+				return 'rounded-lg';
+		}
+	});
+
 	const btnClass = computed(() => {
 		const color = disabled.value ? disabledBtnColorClass : colorClasses.value;
 
-		return `${defaultBtnClass} ${computedBtnSize.value} ${color}`;
+		return `${defaultBtnClass} ${computedBtnSize.value} ${computedButtonFormClass.value} ${color}`;
 	});
 
 	const loaderColor = computed(() => {

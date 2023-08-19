@@ -1,10 +1,11 @@
 import { Color } from '@/data';
-import { ClIcon, Icon } from '..';
+import { DsIcon, Icon } from '..';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
-	title: 'Icon/cl-icon',
-	component: ClIcon,
+	id: 'DsIcon',
+	title: 'Icon/ds-icon',
+	component: DsIcon,
 	tags: ['autodocs'],
 	argTypes: {
 		icon: {
@@ -65,11 +66,11 @@ const meta = {
 			},
 		},
 	},
-} satisfies Meta<typeof ClIcon>;
+} satisfies Meta<typeof DsIcon>;
 
 export default meta;
 
-type Story = StoryObj<typeof ClIcon>;
+type Story = StoryObj<typeof DsIcon>;
 
 const icons: string[] = [...new Set(Object.values(Icon))];
 
@@ -79,12 +80,12 @@ const stories: Story[] = icons.map((m: string) => {
 			backgrounds: { default: 'white' },
 		},
 		render: (args, { argTypes }) => ({
-			components: { ClIcon },
+			components: { DsIcon },
 			props: Object.keys(argTypes),
 			setup() {
 				return { args };
 			},
-			template: '<cl-icon :icon="args.icon" :size="args.size" :color="args.color" />',
+			template: '<Ds-icon :icon="args.icon" :size="args.size" :color="args.color" />',
 		}),
 		args: {
 			icon: m as Icon,
@@ -94,7 +95,7 @@ const stories: Story[] = icons.map((m: string) => {
 	};
 });
 
-export const Default: Story = {
+export const Example: Story = {
 	parameters: {
 		backgrounds: { default: 'white' },
 	},
@@ -110,7 +111,7 @@ export const All: Story = {
 		backgrounds: { default: 'white' },
 	},
 	render: (args, { argTypes }) => ({
-		components: { ClIcon },
+		components: { DsIcon },
 		props: Object.keys(argTypes),
 		setup() {
 			return { args, icons };
@@ -118,7 +119,7 @@ export const All: Story = {
 		template: `
 			<div class="w-max h-full grid grid-cols-18 gap-4">
 				<span v-for="icon in icons" :key="icon" class="m-1">
-					<cl-icon :icon="icon" :size=24 color="#000000" />
+					<Ds-icon :icon="icon" :size=24 color="#000000" />
 				</span>
 			</div>
 		`,

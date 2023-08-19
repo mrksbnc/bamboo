@@ -3,7 +3,7 @@
 		aria-label="button-with-icon"
 		:disabled="disabled"
 		:class="[computedTypeClass]"
-		class="flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+		class="flex items-center justify-center cursor-pointer hover:opacity-60 transition-opacity duration-50 disabled:opacity-50 disabled:cursor-not-allowed"
 		:style="{
 			backgroundColor: backgroundColor,
 			width: `${computedSize}px`,
@@ -11,7 +11,7 @@
 		}"
 		@click="clickHandler($event)"
 	>
-		<cl-icon
+		<Ds-icon
 			:icon="icon"
 			:color="iconColor"
 			:size="computedIconSize"
@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 	import { Color } from '@/data';
-	import { ClIcon, Icon } from '../Icon';
+	import { DsIcon, Icon } from '../Icon';
 	import { toRefs, type PropType, computed } from 'vue';
 	import { IconButtonSize, IconButtonType } from './constants';
 

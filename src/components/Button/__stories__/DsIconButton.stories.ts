@@ -1,12 +1,13 @@
 import { Color } from '@/data';
 import { Icon } from '@/components/Icon';
-import ClIconButton from '../ClIconButton.vue';
+import DsIconButton from '../DsIconButton.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { IconButtonSize, IconButtonType } from '..';
 
 const meta = {
-	title: 'Button/cl-icon-button',
-	component: ClIconButton,
+	id: 'DsIconButton',
+	title: 'Button/ds-icon-button',
+	component: DsIconButton,
 	tags: ['autodocs'],
 	argTypes: {
 		icon: {
@@ -141,7 +142,7 @@ const meta = {
 				subcategory: 'optional',
 				action: 'clicked',
 				type: {
-					summary: '() => void',
+					summary: null,
 				},
 				defaultValue: {
 					summary: undefined,
@@ -153,11 +154,11 @@ const meta = {
 			},
 		},
 	},
-} as Meta<typeof ClIconButton>;
+} as Meta<typeof DsIconButton>;
 
 export default meta;
 
-type Story = StoryObj<typeof ClIconButton>;
+type Story = StoryObj<typeof DsIconButton>;
 
 export const Example: Story = {
 	parameters: {

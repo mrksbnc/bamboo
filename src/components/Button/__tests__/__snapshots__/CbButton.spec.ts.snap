@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ClButton > renders correctly 1`] = `
-"<button id=\\"cl-button_1692472647093\\" class=\\"cl-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium rounded-lg focus:outline-none px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800\\">
-  <div><span></span><span>Test</span><span></span></div>
+exports[`DsButton > renders correctly 1`] = `
+"<button id=\\"Ds-button_1692480764523\\" class=\\"Ds-button w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium focus:outline-none px-3 py-2 text-sm font-medium text-center rounded-lg text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800\\">
+  <div class=\\"flex flex-row justify-center items-center\\"><span class=\\"sh-button__prefix mr-2\\"></span><span>Test</span><span class=\\"sh-button__suffix ml-2\\"></span></div>
 </button>"
 `;
