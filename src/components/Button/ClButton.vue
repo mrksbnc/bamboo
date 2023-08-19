@@ -5,10 +5,18 @@
 		class="cl-button"
 		:class="[btnClass]"
 		:disabled="disabled"
-		@click="onClick($event)"
+		@click="handleClick"
+		@focus="handleFocus"
+		@hover="handleHover"
+		@mouseup="handleMouseup"
+		@mouseout="handleMouseout"
+		@mouseover="handleMouseover"
+		@mousedown="handleMousedown"
+		@mouseenter="handleMouseenter"
+		@mouseleave="handleMouseleave"
 	>
 		<div v-if="isLoading">
-			<ClLoadingSpinner
+			<cl-loading-spinner
 				:size="loaderSize"
 				:show-label="false"
 				:color="loaderColor"
@@ -29,14 +37,14 @@
 </template>
 
 <script setup lang="ts">
-	import { ButtonType, ButtonSize } from './constants';
+	import { ButtonType, ButtonSize, ButtonEvents } from './constants';
 	import { type PropType, computed, toRefs, ref } from 'vue';
 	import { ClLoadingSpinner, LoadingSpinnerColor, LoadingSpinnerSize } from '../Loader';
 
 	const props = defineProps({
 		type: {
 			type: String as PropType<ButtonType>,
-			default: ButtonType.PRIMARY,
+			default: ButtonType.primary,
 		},
 		label: {
 			type: String,
@@ -48,31 +56,39 @@
 		},
 		size: {
 			type: String as PropType<ButtonSize>,
-			default: ButtonSize.BASE,
+			default: ButtonSize.base,
 		},
 		isLoading: {
 			type: Boolean,
 			default: false,
 		},
-		onClick: {
-			type: Function as PropType<(e: MouseEvent) => void>,
-			default: () => {},
-		},
 	});
 
-	const { label, type, disabled, size, onClick } = toRefs(props);
+	const { label, type, disabled, size, isLoading } = toRefs(props);
+
+	const emits = defineEmits({
+		[ButtonEvents.click]: (event: MouseEvent) => event instanceof MouseEvent,
+		[ButtonEvents.hover]: (event: FocusEvent) => event instanceof FocusEvent,
+		[ButtonEvents.focus]: (event: FocusEvent) => event instanceof FocusEvent,
+		[ButtonEvents.mouseover]: (event: MouseEvent) => event instanceof MouseEvent,
+		[ButtonEvents.mouseout]: (event: MouseEvent) => event instanceof MouseEvent,
+		[ButtonEvents.mouseenter]: (event: MouseEvent) => event instanceof MouseEvent,
+		[ButtonEvents.mouseleave]: (event: MouseEvent) => event instanceof MouseEvent,
+		[ButtonEvents.mousedown]: (event: MouseEvent) => event instanceof MouseEvent,
+		[ButtonEvents.mouseup]: (event: MouseEvent) => event instanceof MouseEvent,
+	});
 
 	const id = ref('cl-button_' + Date.now());
 
 	const btnColorClass: Record<ButtonType, string> = {
-		[ButtonType.PRIMARY]:
+		[ButtonType.primary]:
 			'text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800',
-		[ButtonType.SECONDARY]: 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-300',
-		[ButtonType.DANGER]: 'text-white bg-red-700 hover:bg-red-800 focus:ring-red-300',
-		[ButtonType.WARNING]: 'text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300',
-		[ButtonType.SUCCESS]: 'text-white bg-green-500 hover:bg-green-600 focus:ring-green-300',
+		[ButtonType.secondary]: 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-300',
+		[ButtonType.danger]: 'text-white bg-red-700 hover:bg-red-800 focus:ring-red-300',
+		[ButtonType.warning]: 'text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300',
+		[ButtonType.success]: 'text-white bg-green-500 hover:bg-green-600 focus:ring-green-300',
 		[ButtonType.DARK]: 'text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300',
-		[ButtonType.LIGHT]: 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-300',
+		[ButtonType.light]: 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-300',
 	};
 
 	const disabledBtnColorClass =
@@ -83,36 +99,36 @@
 
 	const colorClasses = computed<string>(() => {
 		switch (type.value) {
-			case ButtonType.PRIMARY:
-				return btnColorClass[ButtonType.PRIMARY];
-			case ButtonType.SECONDARY:
-				return btnColorClass[ButtonType.SECONDARY];
-			case ButtonType.DANGER:
-				return btnColorClass[ButtonType.DANGER];
-			case ButtonType.WARNING:
-				return btnColorClass[ButtonType.WARNING];
-			case ButtonType.SUCCESS:
-				return btnColorClass[ButtonType.SUCCESS];
+			case ButtonType.primary:
+				return btnColorClass[ButtonType.primary];
+			case ButtonType.secondary:
+				return btnColorClass[ButtonType.secondary];
+			case ButtonType.danger:
+				return btnColorClass[ButtonType.danger];
+			case ButtonType.warning:
+				return btnColorClass[ButtonType.warning];
+			case ButtonType.success:
+				return btnColorClass[ButtonType.success];
 			case ButtonType.DARK:
 				return btnColorClass[ButtonType.DARK];
-			case ButtonType.LIGHT:
-				return btnColorClass[ButtonType.LIGHT];
+			case ButtonType.light:
+				return btnColorClass[ButtonType.light];
 			default:
-				return btnColorClass[ButtonType.PRIMARY];
+				return btnColorClass[ButtonType.primary];
 		}
 	});
 
 	const computedBtnSize = computed<string>(() => {
 		switch (size.value) {
-			case ButtonSize.EXTRA_SMALL:
+			case ButtonSize.extra_small:
 				return 'px-3 py-2 text-xs font-medium text-center';
-			case ButtonSize.SMALL:
+			case ButtonSize.small:
 				return 'px-3 py-2 text-sm font-medium text-center';
-			case ButtonSize.BASE:
+			case ButtonSize.base:
 				return 'px-5 py-2.5 text-sm font-medium text-center';
-			case ButtonSize.LARGE:
+			case ButtonSize.large:
 				return 'px-5 py-3 text-base font-medium text-center';
-			case ButtonSize.EXTRA_LARGE:
+			case ButtonSize.extra_large:
 				return 'px-2 py-1 text-xs font-medium text-center';
 			default:
 				return 'tpx-6 py-3.5 text-base font-medium';
@@ -127,35 +143,89 @@
 
 	const loaderColor = computed(() => {
 		switch (type.value) {
-			case ButtonType.PRIMARY:
-				return LoadingSpinnerColor.BLUE;
-			case ButtonType.SECONDARY:
+			case ButtonType.primary:
+				return LoadingSpinnerColor.blue;
+			case ButtonType.secondary:
 				return LoadingSpinnerColor.GRAY;
-			case ButtonType.DANGER:
-				return LoadingSpinnerColor.RED;
-			case ButtonType.WARNING:
-				return LoadingSpinnerColor.YELLOW;
-			case ButtonType.SUCCESS:
-				return LoadingSpinnerColor.GREEN;
+			case ButtonType.danger:
+				return LoadingSpinnerColor.red;
+			case ButtonType.warning:
+				return LoadingSpinnerColor.yellow;
+			case ButtonType.success:
+				return LoadingSpinnerColor.green;
 			case ButtonType.DARK:
-				return LoadingSpinnerColor.WHITE;
-			case ButtonType.LIGHT:
-				return LoadingSpinnerColor.BLACK;
+				return LoadingSpinnerColor.white;
+			case ButtonType.light:
+				return LoadingSpinnerColor.black;
 			default:
-				return LoadingSpinnerColor.BLUE;
+				return LoadingSpinnerColor.blue;
 		}
 	});
 
 	const loaderSize = computed(() => {
 		switch (size.value) {
-			case ButtonSize.SMALL:
-				return LoadingSpinnerSize.SMALL;
-			case ButtonSize.BASE:
+			case ButtonSize.small:
+				return LoadingSpinnerSize.small;
+			case ButtonSize.base:
 				return LoadingSpinnerSize.NORMAL;
-			case ButtonSize.LARGE:
-				return LoadingSpinnerSize.LARGE;
+			case ButtonSize.large:
+				return LoadingSpinnerSize.large;
 			default:
 				return LoadingSpinnerSize.NORMAL;
 		}
 	});
+
+	const handleClick = (event: MouseEvent): void => {
+		if (!disabled.value) {
+			emits(ButtonEvents.click, event);
+		}
+	};
+
+	const handleHover = (event: FocusEvent): void => {
+		if (!disabled.value) {
+			emits(ButtonEvents.hover, event);
+		}
+	};
+
+	const handleFocus = (event: FocusEvent): void => {
+		if (!disabled.value) {
+			emits(ButtonEvents.focus, event);
+		}
+	};
+
+	const handleMouseenter = (event: MouseEvent): void => {
+		if (!disabled.value) {
+			emits(ButtonEvents.mouseenter, event);
+		}
+	};
+
+	const handleMouseleave = (event: MouseEvent): void => {
+		if (!disabled.value) {
+			emits(ButtonEvents.mouseleave, event);
+		}
+	};
+
+	const handleMouseover = (event: MouseEvent): void => {
+		if (!disabled.value) {
+			emits(ButtonEvents.mouseover, event);
+		}
+	};
+
+	const handleMouseout = (event: MouseEvent): void => {
+		if (!disabled.value) {
+			emits(ButtonEvents.mouseout, event);
+		}
+	};
+
+	const handleMouseup = (event: MouseEvent): void => {
+		if (!disabled.value) {
+			emits(ButtonEvents.mouseup, event);
+		}
+	};
+
+	const handleMousedown = (event: MouseEvent): void => {
+		if (!disabled.value) {
+			emits(ButtonEvents.mousedown, event);
+		}
+	};
 </script>

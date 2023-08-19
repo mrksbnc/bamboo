@@ -13,10 +13,6 @@ export const config: StorybookConfig = {
 		'@storybook/addon-actions',
 		'@storybook/addon-essentials',
 		'@storybook/addon-interactions',
-		{
-			name: '@storybook/addon-styling',
-			options: {},
-		},
 	],
 	framework: {
 		name: '@storybook/vue3-vite',
