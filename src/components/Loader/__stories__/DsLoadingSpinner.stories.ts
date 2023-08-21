@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { ClLoadingSpinner, LoadingSpinnerColor, LoadingSpinnerSize } from '..';
+import { DsLoadingSpinner, LoadingSpinnerColor, LoadingSpinnerSize } from '..';
 
 const meta = {
-	title: 'Loader/cl-loading-spinner',
-	component: ClLoadingSpinner,
+	id: 'DsLoadingSpinner',
+	title: 'Loader/ds-loading-spinner',
+	component: DsLoadingSpinner,
 	tags: ['autodocs'],
 	argTypes: {
 		color: {
@@ -23,7 +24,7 @@ const meta = {
 					}`,
 				},
 				defaultValue: {
-					summary: LoadingSpinnerColor.BLUE,
+					summary: LoadingSpinnerColor.blue,
 				},
 			},
 			control: {
@@ -82,7 +83,7 @@ const meta = {
 					}`,
 				},
 				defaultValue: {
-					summary: LoadingSpinnerSize.SMALL,
+					summary: LoadingSpinnerSize.small,
 				},
 			},
 			control: {
@@ -93,18 +94,18 @@ const meta = {
 			),
 		},
 	},
-} satisfies Meta<typeof ClLoadingSpinner>;
+} satisfies Meta<typeof DsLoadingSpinner>;
 
 export default meta;
 
-type Story = StoryObj<typeof ClLoadingSpinner>;
+type Story = StoryObj<typeof DsLoadingSpinner>;
 
 export const Blue: Story = {
 	parameters: {
 		backgrounds: { default: 'white' },
 	},
 	args: {
-		color: LoadingSpinnerColor.BLUE,
+		color: LoadingSpinnerColor.blue,
 	},
 };
 
@@ -113,7 +114,7 @@ export const Black: Story = {
 		backgrounds: { default: 'white' },
 	},
 	args: {
-		color: LoadingSpinnerColor.BLACK,
+		color: LoadingSpinnerColor.black,
 	},
 };
 
@@ -122,7 +123,7 @@ export const White: Story = {
 		backgrounds: { default: 'black' },
 	},
 	args: {
-		color: LoadingSpinnerColor.WHITE,
+		color: LoadingSpinnerColor.white,
 	},
 };
 
@@ -131,7 +132,7 @@ export const Green: Story = {
 		backgrounds: { default: 'white' },
 	},
 	args: {
-		color: LoadingSpinnerColor.GREEN,
+		color: LoadingSpinnerColor.green,
 	},
 };
 
@@ -140,7 +141,7 @@ export const Red: Story = {
 		backgrounds: { default: 'white' },
 	},
 	args: {
-		color: LoadingSpinnerColor.RED,
+		color: LoadingSpinnerColor.red,
 	},
 };
 
@@ -149,7 +150,7 @@ export const Yellow: Story = {
 		backgrounds: { default: 'white' },
 	},
 	args: {
-		color: LoadingSpinnerColor.YELLOW,
+		color: LoadingSpinnerColor.yellow,
 	},
 };
 
@@ -158,7 +159,7 @@ export const Purple: Story = {
 		backgrounds: { default: 'white' },
 	},
 	args: {
-		color: LoadingSpinnerColor.PURPLE,
+		color: LoadingSpinnerColor.purple,
 	},
 };
 
@@ -167,7 +168,7 @@ export const Gray: Story = {
 		backgrounds: { default: 'white' },
 	},
 	args: {
-		color: LoadingSpinnerColor.GRAY,
+		color: LoadingSpinnerColor.gray,
 	},
 };
 
@@ -177,6 +178,6 @@ export const WithLabel: Story = {
 	},
 	args: {
 		showLabel: true,
-		color: LoadingSpinnerColor.BLUE,
+		color: LoadingSpinnerColor.blue,
 	},
 };

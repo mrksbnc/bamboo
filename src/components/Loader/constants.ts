@@ -1,17 +1,17 @@
 export enum LoadingSpinnerColor {
-	BLUE = 'blue',
-	BLACK = 'black',
-	WHITE = 'white',
-	GREEN = 'green',
-	RED = 'red',
-	YELLOW = 'yellow',
-	PURPLE = 'purple',
-	GRAY = 'gray',
-	TEAL = 'teal',
+	blue = 'blue',
+	black = 'black',
+	white = 'white',
+	green = 'green',
+	red = 'red',
+	yellow = 'yellow',
+	purple = 'purple',
+	gray = 'gray',
+	teal = 'teal',
 }
 
 export enum LoadingSpinnerSize {
-	SMALL = 'small',
-	NORMAL = 'normal',
-	LARGE = 'large',
+	small = 'small',
+	normal = 'normal',
+	large = 'large',
 }

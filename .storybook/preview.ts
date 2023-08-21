@@ -1,8 +1,16 @@
-import '../src/assets/index.css';
-
+import './storybook.scss';
+import '../src/assets/index.scss';
 import type { Preview } from '@storybook/vue3';
 
 const preview: Preview = {
+	globalTypes: {
+		darkMode: {
+			defaultValue: true,
+		},
+		className: {
+			defaultValue: 'dark',
+		},
+	},
 	parameters: {
 		actions: { argTypesRegex: '^on[A-Z].*' },
 		controls: {
@@ -27,11 +35,6 @@ const preview: Preview = {
 				},
 			],
 		},
-		themes: {
-			light: 'light',
-			dark: 'dark',
-		},
-		defaultTheme: 'light',
 	},
 };
 

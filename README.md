@@ -1,13 +1,12 @@
-# Vue Component Library
+# Design System
 
-![Version](https://img.shields.io/github/package-json/v/mrksbnc/complib) ![npm bundle size](https://img.shields.io/bundlephobia/min/@mrksbnc/complib) [![CodeQL](https://github.com/mrksbnc/complib/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/mrksbnc/complib/actions/workflows/codeql.yml) [![Storybook deployment](https://github.com/mrksbnc/complib/actions/workflows/deploy.yaml/badge.svg)](https://github.com/mrksbnc/complib/actions/workflows/deploy.yaml)
+![Version](https://img.shields.io/github/package-json/v/mrksbnc/complib)
 
 A reusable Component collection built with [Vite](https://vitejs.dev/) and [Vue 3](https://vuejs.org/). The components are using [TailwindCSS](https://tailwindcss.com/) for styling and the documentation is built with [Storybook](https://storybook.js.org/).
 
 ## Project setup
 
 As a prerequisite, you need to have node and npm installed on your machine. You can download and install them from [here](https://nodejs.org/en/).
-As a package manager, the project uses [npm](https://www.npmjs.com/). This is installed with node by default.
 
 ### Install dependencies
 
@@ -17,7 +16,7 @@ To install the dependencies, run the following command:
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Run documentation
 
 To start the development server, run the following command:
 
@@ -47,7 +46,7 @@ npm run build-storybook
 ```
 
 This will build the Storybook documentation and generate the static files in the `docs` folder.
-The directory is used by GitHub Pages to host the documentation.
+The directory is used by DstHub Pages to host the documentation.
 
 ### Run your unit tests
 
