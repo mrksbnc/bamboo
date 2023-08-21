@@ -1,6 +1,7 @@
+import { Color } from '@/data';
 import { DsIcon, Icon } from '@/components/Icon';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { ButtonForm, ButtonSize, ButtonType, DsButton } from '..';
+import { ButtonSize, ButtonType, DsButton } from '..';
 
 const meta = {
 	id: 'DsButton',
@@ -149,28 +150,6 @@ const meta = {
 				type: undefined,
 			},
 		},
-		form: {
-			description: 'The form of the button',
-			table: {
-				category: 'props',
-				subcategory: 'optional',
-				type: {
-					summary: 'ButtonForm',
-					detail: `enum ButtonForm {\n${
-						Object.keys(ButtonForm)
-							.map((m: string) => `\t${m} = "${ButtonForm[m as keyof typeof ButtonForm]}",`)
-							.join('\r\n') + '\r\n}'
-					}`,
-				},
-				defaultValue: {
-					summary: undefined,
-				},
-			},
-			control: {
-				type: 'select',
-			},
-			options: Object.keys(ButtonForm).map((m: string) => ButtonForm[m as keyof typeof ButtonForm]),
-		},
 	},
 } satisfies Meta<typeof DsButton>;
 
@@ -198,6 +177,26 @@ export const Primary: Story = {
 	},
 };
 
+export const PrimaryPill: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Primary Pill',
+		type: ButtonType.primary_pill,
+	},
+};
+
+export const PrimaryOutline: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Primary Outline',
+		type: ButtonType.primary_outline,
+	},
+};
+
 export const Secondary: Story = {
 	parameters: {
 		backgrounds: { default: 'white' },
@@ -205,6 +204,26 @@ export const Secondary: Story = {
 	args: {
 		label: 'Secondary',
 		type: ButtonType.secondary,
+	},
+};
+
+export const SecondaryPill: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Secondary Pill',
+		type: ButtonType.secondary_pill,
+	},
+};
+
+export const SecondaryOutline: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Secondary Outline',
+		type: ButtonType.secondary_outline,
 	},
 };
 
@@ -218,6 +237,26 @@ export const Danger: Story = {
 	},
 };
 
+export const DangerPill: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Danger Pill',
+		type: ButtonType.danger_pill,
+	},
+};
+
+export const DangerOutline: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Danger Outline',
+		type: ButtonType.danger_outline,
+	},
+};
+
 export const Warning: Story = {
 	parameters: {
 		backgrounds: { default: 'white' },
@@ -225,6 +264,26 @@ export const Warning: Story = {
 	args: {
 		label: 'Warning',
 		type: ButtonType.warning,
+	},
+};
+
+export const WarningPill: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Warning Pill',
+		type: ButtonType.warning_pill,
+	},
+};
+
+export const WarningOutline: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Warning Outline',
+		type: ButtonType.warning_outline,
 	},
 };
 
@@ -238,6 +297,26 @@ export const Success: Story = {
 	},
 };
 
+export const SuccessPill: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Success Pill',
+		type: ButtonType.success_pill,
+	},
+};
+
+export const SuccessOutline: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Success Outline',
+		type: ButtonType.success_outline,
+	},
+};
+
 export const Light: Story = {
 	parameters: {
 		backgrounds: { default: 'white' },
@@ -248,6 +327,26 @@ export const Light: Story = {
 	},
 };
 
+export const LightPill: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Light Pill',
+		type: ButtonType.light_pill,
+	},
+};
+
+export const LightOutline: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Light Outline',
+		type: ButtonType.light_outline,
+	},
+};
+
 export const Dark: Story = {
 	parameters: {
 		backgrounds: { default: 'white' },
@@ -255,6 +354,26 @@ export const Dark: Story = {
 	args: {
 		label: 'Dark',
 		type: ButtonType.dark,
+	},
+};
+
+export const DarkPill: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Dark Pill',
+		type: ButtonType.dark_pill,
+	},
+};
+
+export const DarkOutline: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	args: {
+		label: 'Dark Outline',
+		type: ButtonType.dark_outline,
 	},
 };
 
@@ -286,11 +405,11 @@ export const Prefix: Story = {
 		props: Object.keys(argTypes),
 		components: { DsButton, DsIcon },
 		template: `
-			<Ds-button v-bind="args">
+			<ds-button v-bind="args">
 				<template #prefix>
-					<Ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+					<ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
 				</template>
-			</Ds-button>
+			</ds-button>
 		`,
 		setup() {
 			return { args };
@@ -298,6 +417,54 @@ export const Prefix: Story = {
 	}),
 	args: {
 		label: 'Button',
+	},
+};
+
+export const PillWithPrefix: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	render: (args, { argTypes }) => ({
+		props: Object.keys(argTypes),
+		components: { DsButton, DsIcon },
+		template: `
+			<ds-button v-bind="args">
+				<template #prefix>
+					<ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+				</template>
+			</ds-button>
+		`,
+		setup() {
+			return { args };
+		},
+	}),
+	args: {
+		label: 'Button',
+		type: ButtonType.primary_pill,
+	},
+};
+
+export const OutlineWithPrefix: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	render: (args, { argTypes }) => ({
+		props: Object.keys(argTypes),
+		components: { DsButton, DsIcon },
+		template: `
+				<ds-button v-bind="args">
+					<template #prefix>
+						<ds-icon icon="${Icon.plus}" color="${Color['blue-400']}" :size="16"/>
+					</template>
+				</ds-button>
+			`,
+		setup() {
+			return { args };
+		},
+	}),
+	args: {
+		label: 'Button',
+		type: ButtonType.primary_outline,
 	},
 };
 
@@ -309,11 +476,11 @@ export const Suffix: Story = {
 		props: Object.keys(argTypes),
 		components: { DsButton, DsIcon },
 		template: `
-			<Ds-button v-bind="args">
+			<ds-button v-bind="args">
 				<template #suffix>
-					<Ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+					<ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
 				</template>
-			</Ds-button>
+			</ds-button>
 		`,
 		setup() {
 			return { args };
@@ -321,5 +488,53 @@ export const Suffix: Story = {
 	}),
 	args: {
 		label: 'Button',
+	},
+};
+
+export const PillWithSuffix: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	render: (args, { argTypes }) => ({
+		props: Object.keys(argTypes),
+		components: { DsButton, DsIcon },
+		template: `
+			<ds-button v-bind="args">
+				<template #suffix>
+					<ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+				</template>
+			</ds-button>
+		`,
+		setup() {
+			return { args };
+		},
+	}),
+	args: {
+		label: 'Button',
+		type: ButtonType.primary_pill,
+	},
+};
+
+export const OutlineWithSuffix: Story = {
+	parameters: {
+		backgrounds: { default: 'white' },
+	},
+	render: (args, { argTypes }) => ({
+		props: Object.keys(argTypes),
+		components: { DsButton, DsIcon },
+		template: `
+			<ds-button v-bind="args">
+				<template #suffix>
+					<ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+				</template>
+			</ds-button>
+		`,
+		setup() {
+			return { args };
+		},
+	}),
+	args: {
+		label: 'Button',
+		type: ButtonType.primary_outline,
 	},
 };

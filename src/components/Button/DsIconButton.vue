@@ -3,24 +3,22 @@
 		aria-label="button-with-icon"
 		:disabled="disabled"
 		:class="[computedTypeClass]"
-		class="flex items-center justify-center cursor-pointer hover:opacity-60 transition-opacity duration-50 disabled:opacity-50 disabled:cursor-not-allowed"
+		class="flex items-center justify-center cursor-pointer hover:opacity-60 transition-opacity duration-50 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none bg-gray-200 dark:bg-gray-700"
 		:style="{
-			backgroundColor: backgroundColor,
 			width: `${computedSize}px`,
 			height: `${computedSize}px`,
 		}"
 		@click="clickHandler($event)"
 	>
-		<Ds-icon
+		<ds-icon
 			:icon="icon"
-			:color="iconColor"
 			:size="computedIconSize"
+			class="text-gray-800 dark:text-gray-300"
 		/>
 	</button>
 </template>
 
 <script setup lang="ts">
-	import { Color } from '@/data';
 	import { DsIcon, Icon } from '../Icon';
 	import { toRefs, type PropType, computed } from 'vue';
 	import { IconButtonSize, IconButtonType } from './constants';
@@ -39,14 +37,6 @@
 			type: String as PropType<IconButtonSize>,
 			default: IconButtonSize.base,
 		},
-		iconColor: {
-			type: String as PropType<Color | string>,
-			default: Color.black,
-		},
-		backgroundColor: {
-			type: String as PropType<Color | string>,
-			default: Color['gray-100'],
-		},
 		type: {
 			type: String as PropType<IconButtonType>,
 			default: IconButtonType.rounded,
@@ -57,7 +47,7 @@
 		},
 	});
 
-	const { icon, disabled, buttonSize, iconColor, backgroundColor, type, onClick } = toRefs(props);
+	const { icon, disabled, buttonSize, type, onClick } = toRefs(props);
 
 	const computedTypeClass = computed(() => {
 		switch (type.value) {

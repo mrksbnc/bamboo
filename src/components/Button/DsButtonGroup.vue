@@ -21,22 +21,24 @@
 				class="mr-2"
 				:class="`button_group__prefix__${index}`"
 			>
-				<Ds-icon
+				<ds-icon
 					:size="14"
 					:icon="item.prefix"
-					:color="item.iconColor"
+					class="text-gray-800 dark:text-gray-300"
 				/>
 			</span>
-			{{ item.label }}
+			<span :class="`button_group__label__${index}`">
+				{{ item.label }}
+			</span>
 			<span
 				v-if="item.suffix"
 				class="ml-2"
 				:class="`button_group__suffix__${index}`"
 			>
-				<Ds-icon
+				<ds-icon
 					:size="14"
 					:icon="item.suffix"
-					:color="item.iconColor"
+					class="text-gray-800 dark:text-gray-300"
 				/>
 			</span>
 		</button>
@@ -44,10 +46,11 @@
 </template>
 
 <script setup lang="ts">
+	import { Color } from '@/data';
 	import { DsIcon, Icon } from '../Icon';
 	import { ButtonGroupEvents } from './events';
 	import type { ButtonGroupItem } from './types';
-	import { toRefs, type PropType, ref } from 'vue';
+	import { toRefs, type PropType, ref, computed, watch, nextTick } from 'vue';
 
 	const emits = defineEmits({
 		[ButtonGroupEvents.select]: ({ item, index }: { item: ButtonGroupItem; index: number }) => true,

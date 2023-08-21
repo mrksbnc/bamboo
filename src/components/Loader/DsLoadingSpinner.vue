@@ -4,11 +4,11 @@
 		class="flex flex-col items-center justify-center w-full h-full"
 	>
 		<svg
+			fill="none"
 			aria-hidden="true"
 			:class="[computedFillColor, computedSize]"
-			class="mr-2 animate-spin"
-			viewBox="0 0 100 101"
-			fill="none"
+			class="animate-spin"
+			viewBox="0 0 100 100"
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<path
@@ -20,12 +20,12 @@
 				fill="currentFill"
 			/>
 		</svg>
-		<span
+		<p
 			v-if="showLabel"
-			class="text-gray-500 dark:text-gray-600 text-sm font-normal mt-4"
+			class="text-gray-800 dark:text-gray-300 mt-2"
 		>
 			{{ label }}
-		</span>
+		</p>
 	</div>
 </template>
 
@@ -48,7 +48,7 @@
 		},
 		size: {
 			type: String as PropType<LoadingSpinnerSize>,
-			default: LoadingSpinnerSize.NORMAL,
+			default: LoadingSpinnerSize.normal,
 		},
 	});
 
@@ -62,7 +62,7 @@
 				return 'fill-black text-gray-100';
 			case LoadingSpinnerColor.white:
 				return 'fill-white text-gray-200 dark:text-gray-200';
-			case LoadingSpinnerColor.GRAY:
+			case LoadingSpinnerColor.gray:
 				return 'fill-gray-600 text-gray-200 dark:text-gray-200';
 			case LoadingSpinnerColor.red:
 				return 'fill-red-600 text-gray-200 dark:text-gray-200';
@@ -72,7 +72,7 @@
 				return 'fill-yellow-600 text-gray-200 dark:text-gray-200';
 			case LoadingSpinnerColor.purple:
 				return 'fill-pink-600 text-gray-200 dark:text-gray-200';
-			case LoadingSpinnerColor.TEAL:
+			case LoadingSpinnerColor.teal:
 				return 'fill-teal-600 text-gray-200 dark:text-gray-200';
 			default:
 				return 'fill-blue-600 text-gray-200 dark:text-gray-200';
@@ -83,7 +83,7 @@
 		switch (props.size) {
 			case LoadingSpinnerSize.small:
 				return 'w-4 h-4';
-			case LoadingSpinnerSize.NORMAL:
+			case LoadingSpinnerSize.normal:
 				return 'w-6 h-6';
 			case LoadingSpinnerSize.large:
 				return 'w-8 h-8';

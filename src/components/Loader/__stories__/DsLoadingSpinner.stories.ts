@@ -168,7 +168,7 @@ export const Gray: Story = {
 		backgrounds: { default: 'white' },
 	},
 	args: {
-		color: LoadingSpinnerColor.GRAY,
+		color: LoadingSpinnerColor.gray,
 	},
 };
 

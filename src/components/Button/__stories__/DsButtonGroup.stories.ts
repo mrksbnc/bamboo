@@ -70,8 +70,29 @@ export const Example: Story = {
 	parameters: {
 		backgrounds: { default: 'white' },
 	},
+	render: (args, { argTypes }) => ({
+		props: Object.keys(argTypes),
+		components: { DsButtonGroup, DsIcon },
+		template: '<ds-button-group v-bind="args" />',
+		setup() {
+			return { args };
+		},
+	}),
 	args: {
-		items,
+		items: [
+			{
+				id: 1,
+				label: 'Button 1',
+			},
+			{
+				id: 2,
+				label: 'Button 2',
+			},
+			{
+				id: 2,
+				label: 'Button 3',
+			},
+		],
 		selected: 1,
 	},
 };
@@ -83,13 +104,7 @@ export const Prefix: Story = {
 	render: (args, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { DsButtonGroup, DsIcon },
-		template: `
-			<Ds-button-group v-bind="args">
-				<template #prefix="{ item }">
-					<Ds-icon :icon="item.prefix" />
-				</template>
-			</Ds-button-group>
-		`,
+		template: '<ds-button-group v-bind="args">',
 		setup() {
 			return { args };
 		},
@@ -122,14 +137,8 @@ export const Suffix: Story = {
 	},
 	render: (args, { argTypes }) => ({
 		props: Object.keys(argTypes),
-		components: { DsButtonGroup, DsIcon },
-		template: `
-			<Ds-button-group v-bind="args">
-				<template #suffix="{ item }">
-					<Ds-icon :icon="item.suffix" />
-				</template>
-			</Ds-button-group>
-		`,
+		components: { DsButtonGroup },
+		template: '<ds-button-group v-bind="args">',
 		setup() {
 			return { args };
 		},

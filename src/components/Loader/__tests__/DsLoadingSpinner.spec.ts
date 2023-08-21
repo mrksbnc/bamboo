@@ -21,7 +21,7 @@ describe('DsLoadingSpinner', () => {
 	test('renders correctly with size', () => {
 		const wrapper = mount(DsLoadingSpinner, {
 			props: {
-				size: LoadingSpinnerSize.NORMAL,
+				size: LoadingSpinnerSize.normal,
 			},
 		});
 		expect(wrapper).toMatchSnapshot(wrapper.html());

@@ -2,6 +2,6 @@ import { create } from '@storybook/theming/create';
 
 export default create({
 	base: 'light',
-	brandTitle: 'Shohin',
+	brandTitle: 'Design System',
 	brandUrl: 'https://mrksbnc.github.io/ds',
 });

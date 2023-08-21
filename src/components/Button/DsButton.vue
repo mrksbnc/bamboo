@@ -1,30 +1,29 @@
 <template>
 	<button
 		:id="id"
-		ref="Ds-button"
-		class="Ds-button"
+		ref="ds-button"
+		class="ds-button"
 		:class="[btnClass]"
 		:disabled="disabled"
 		@click="clickHandler($event)"
 	>
-		<div v-if="isLoading">
-			<Ds-loading-spinner
-				:size="loaderSize"
-				:show-label="false"
-				:color="loaderColor"
-			/>
-		</div>
+		<ds-loading-spinner
+			v-if="isLoading"
+			:size="loaderSize"
+			:show-label="false"
+			:color="loaderColor"
+		/>
 		<div
 			v-else
-			class="flex flex-row justify-center items-center"
+			class="flex items-center justify-center"
 		>
-			<span class="sh-button__prefix mr-2">
+			<span class="ds-button__prefix mr-2">
 				<slot name="prefix" />
 			</span>
 			<span>
 				{{ label }}
 			</span>
-			<span class="sh-button__suffix ml-2">
+			<span class="ds-button__suffix ml-2">
 				<slot name="suffix" />
 			</span>
 		</div>
@@ -32,8 +31,8 @@
 </template>
 
 <script setup lang="ts">
+	import { ButtonType, ButtonSize } from './constants';
 	import { type PropType, computed, toRefs, ref } from 'vue';
-	import { ButtonType, ButtonSize, ButtonForm } from './constants';
 	import { DsLoadingSpinner, LoadingSpinnerColor, LoadingSpinnerSize } from '../Loader';
 
 	const props = defineProps({
@@ -61,40 +60,64 @@
 			type: Function as PropType<(event: MouseEvent) => void>,
 			default: () => {},
 		},
-		form: {
-			type: String as PropType<ButtonForm>,
-			default: ButtonForm.base,
-		},
 	});
 
-	const { label, type, disabled, size, isLoading, onClick, form } = toRefs(props);
+	const { label, type, disabled, size, isLoading, onClick } = toRefs(props);
 
-	const id = ref('Ds-button_' + Date.now());
+	const id = ref('ds_button_' + Date.now());
 
 	const disabledBtnColorClass =
-		'text-gray-400 bg-gray-200 cursor-not-allowed hover:bg-gray-200 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800';
+		'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:opacity-90 transition-opacity duration-150 focus-ring-gray-500 dark:focus-ring-gray-600 rounded-lg cursor-not-allowed';
 
 	const defaultBtnClass =
-		'w-full h-full flex flex-row justify-center items-center focus:ring-1 font-medium focus:outline-none';
+		'flex flex-row justify-center items-center shadow-md focus:outline-none focus:ring-1';
 
-	const colorClasses = computed<string>(() => {
+	const computedButtonTypeClass = computed<string>(() => {
 		switch (type.value) {
 			case ButtonType.primary:
-				return 'text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800';
+				return 'bg-blue-600 dark:bg-blue-700 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-blue-500 dark:focus-ring-blue-600 rounded-lg';
+			case ButtonType.primary_outline:
+				return 'text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-300 dark:focus:ring-blue-800 rounded-lg';
+			case ButtonType.primary_pill:
+				return 'bg-blue-600 dark:bg-blue-700 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-blue-500 dark:focus-ring-blue-600 rounded-full';
 			case ButtonType.secondary:
-				return 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-300';
+				return 'bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-white hover:opacity-90 transition-opacity duration-150 focus-ring-gray-500 dark:focus-ring-gray-600 rounded-lg';
+			case ButtonType.secondary_outline:
+				return 'text-gray-600 dark:text-gray-400 border border-gray-600 dark:border-gray-300 hover:bg-gray-700 hover:text-white focus:ring-gray-300 dark:focus:ring-gray-800 rounded-lg';
+			case ButtonType.secondary_pill:
+				return 'bg-gray-200 hover:bg-gray-300 text-gray-800 dark:text-white hover:opacity-90 transition-opacity duration-150 focus-ring-gray-500 dark:focus-ring-gray-600 rounded-full dark:bg-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800';
 			case ButtonType.danger:
-				return 'text-white bg-red-700 hover:bg-red-800 focus:ring-red-300';
+				return 'bg-red-600 dark:bg-red-700 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-red-500 dark:focus-ring-red-600 rounded-lg';
+			case ButtonType.danger_outline:
+				return 'text-red-600 border border-red-600 hover:bg-red-600 hover:text-white focus:ring-red-300 dark:focus:ring-red-800 rounded-lg';
+			case ButtonType.danger_pill:
+				return 'bg-red-600 dark:bg-red-700 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-red-500 dark:focus-ring-red-600 rounded-full';
 			case ButtonType.warning:
-				return 'text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300';
+				return 'bg-yellow-500 dark:bg-yellow-600 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-yellow-500 dark:focus-ring-yellow-500 rounded-lg';
+			case ButtonType.warning_outline:
+				return 'text-yellow-500 border border-yellow-500 hover:bg-yellow-600 hover:text-white focus:ring-yellow-300 dark:focus:ring-yellow-800 rounded-lg';
+			case ButtonType.warning_pill:
+				return 'bg-yellow-500 dark:bg-yellow-600 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-yellow-500 dark:focus-ring-yellow-500 rounded-full';
 			case ButtonType.success:
-				return 'text-white bg-green-500 hover:bg-green-600 focus:ring-green-300';
+				return 'bg-green-600 dark:bg-green-700 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-green-500 dark:focus-ring-green-600 rounded-lg';
+			case ButtonType.success_outline:
+				return 'text-green-600 border border-green-600 hover:bg-green-600 hover:text-white focus:ring-green-300 dark:focus:ring-green-800 rounded-lg';
+			case ButtonType.success_pill:
+				return 'bg-green-600 dark:bg-green-700 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-green-500 dark:focus-ring-green-600 rounded-full';
 			case ButtonType.dark:
-				return 'text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300';
+				return 'bg-gray-800 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-gray-500 dark:focus-ring-gray-600 rounded-lg';
+			case ButtonType.dark_outline:
+				return 'text-gray-800 dark:text-gray-400 border border-gray-800 dark:border-gray-400 hover:bg-gray-800 hover:text-white dark:hover:text-white focus:ring-gray-300 dark:focus:ring-gray-800 rounded-lg';
+			case ButtonType.dark_pill:
+				return 'bg-gray-800 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-gray-500 dark:focus-ring-gray-600 rounded-full';
 			case ButtonType.light:
-				return 'text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-300';
+				return 'bg-white text-gray-800 hover:opacity-90 transition-opacity duration-150 focus-ring-gray-500 dark:focus-ring-gray-600 rounded-lg';
+			case ButtonType.light_outline:
+				return 'border border-white hover:bg-white text-gray-800 focus:ring-gray-300 dark:focus:ring-gray-800 rounded-lg';
+			case ButtonType.light_pill:
+				return 'bg-white text-gray-800 hover:opacity-90 transition-opacity duration-150 focus-ring-gray-500 dark:focus-ring-gray-600 rounded-full';
 			default:
-				return 'text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800';
+				return 'bg-blue-600 dark:bg-blue-700 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-blue-500 dark:focus-ring-blue-600 rounded-lg';
 		}
 	});
 
@@ -111,25 +134,14 @@
 			case ButtonSize.extra_large:
 				return 'px-2 py-1 text-xs font-medium text-center';
 			default:
-				return 'tpx-6 py-3.5 text-base font-medium';
-		}
-	});
-
-	const computedButtonFormClass = computed<string>(() => {
-		switch (form.value) {
-			case ButtonForm.base:
-				return 'rounded-lg';
-			case ButtonForm.pill:
-				return 'rounded-full';
-			default:
-				return 'rounded-lg';
+				return 'px-6 py-3.5 text-base font-medium text-center';
 		}
 	});
 
 	const btnClass = computed(() => {
-		const color = disabled.value ? disabledBtnColorClass : colorClasses.value;
+		const color = disabled.value ? disabledBtnColorClass : computedButtonTypeClass.value;
 
-		return `${defaultBtnClass} ${computedBtnSize.value} ${computedButtonFormClass.value} ${color}`;
+		return `${defaultBtnClass} ${computedBtnSize.value} ${color}`;
 	});
 
 	const loaderColor = computed(() => {
@@ -137,7 +149,7 @@
 			case ButtonType.primary:
 				return LoadingSpinnerColor.blue;
 			case ButtonType.secondary:
-				return LoadingSpinnerColor.GRAY;
+				return LoadingSpinnerColor.gray;
 			case ButtonType.danger:
 				return LoadingSpinnerColor.red;
 			case ButtonType.warning:
@@ -158,11 +170,11 @@
 			case ButtonSize.small:
 				return LoadingSpinnerSize.small;
 			case ButtonSize.base:
-				return LoadingSpinnerSize.NORMAL;
+				return LoadingSpinnerSize.small;
 			case ButtonSize.large:
-				return LoadingSpinnerSize.large;
+				return LoadingSpinnerSize.normal;
 			default:
-				return LoadingSpinnerSize.NORMAL;
+				return LoadingSpinnerSize.small;
 		}
 	});
 

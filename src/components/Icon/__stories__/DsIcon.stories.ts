@@ -44,27 +44,6 @@ const meta = {
 				},
 			},
 		},
-		color: {
-			description: 'Color of the Icon',
-			table: {
-				category: 'props',
-				subcategory: 'optional',
-				type: {
-					summary: 'Color | string',
-					detail: `enum Color {\n${
-						Object.keys(Color)
-							.map((m: string) => `\t${m} = "${Color[m as keyof typeof Color]}",`)
-							.join('\r\n') + '\r\n}'
-					}`,
-				},
-				defaultValue: {
-					summary: Color.black,
-				},
-			},
-			control: {
-				type: 'color',
-			},
-		},
 	},
 } satisfies Meta<typeof DsIcon>;
 
@@ -85,7 +64,7 @@ const stories: Story[] = icons.map((m: string) => {
 			setup() {
 				return { args };
 			},
-			template: '<Ds-icon :icon="args.icon" :size="args.size" :color="args.color" />',
+			template: '<ds-icon :icon="args.icon" :size="args.size" :color="args.color" />',
 		}),
 		args: {
 			icon: m as Icon,
@@ -102,7 +81,6 @@ export const Example: Story = {
 	args: {
 		size: 24,
 		icon: Icon.none,
-		color: Color.black,
 	},
 };
 
@@ -119,7 +97,7 @@ export const All: Story = {
 		template: `
 			<div class="w-max h-full grid grid-cols-18 gap-4">
 				<span v-for="icon in icons" :key="icon" class="m-1">
-					<Ds-icon :icon="icon" :size=24 color="#000000" />
+					<ds-icon :icon="icon" :size=24 />
 				</span>
 			</div>
 		`,

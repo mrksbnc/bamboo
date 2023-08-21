@@ -1,4 +1,3 @@
-import { Color } from '@/data';
 import { Icon } from '@/components/Icon';
 import DsIconButton from '../DsIconButton.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
@@ -69,48 +68,6 @@ const meta = {
 				(m: string) => IconButtonSize[m as keyof typeof IconButtonSize],
 			),
 		},
-		iconColor: {
-			description: 'Color of the Icon',
-			table: {
-				category: 'props',
-				subcategory: 'optional',
-				type: {
-					summary: 'Color | string',
-					detail: `enum Color {\n${
-						Object.keys(Color)
-							.map((m: string) => `\t${m} = "${Color[m as keyof typeof Color]}",`)
-							.join('\r\n') + '\r\n}'
-					}`,
-				},
-				defaultValue: {
-					summary: 'black',
-				},
-			},
-			control: {
-				type: 'color',
-			},
-		},
-		backgroundColor: {
-			description: 'Background color of the button',
-			table: {
-				category: 'props',
-				subcategory: 'optional',
-				type: {
-					summary: 'Color | string',
-					detail: `enum Color {\n${
-						Object.keys(Color)
-							.map((m: string) => `\t${m} = "${Color[m as keyof typeof Color]}",`)
-							.join('\r\n') + '\r\n}'
-					}`,
-				},
-				defaultValue: {
-					summary: Color['gray-100'],
-				},
-			},
-			control: {
-				type: 'color',
-			},
-		},
 		type: {
 			description: 'The type of the button',
 			table: {
@@ -166,8 +123,6 @@ export const Example: Story = {
 	},
 	args: {
 		icon: Icon.plus,
-		iconColor: Color.black,
 		buttonSize: IconButtonSize.base,
-		backgroundColor: Color['gray-100'],
 	},
 };

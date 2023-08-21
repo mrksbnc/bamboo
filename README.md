@@ -1,4 +1,4 @@
-# Ds - Vue 3 Component Library
+# Design System
 
 ![Version](https://img.shields.io/github/package-json/v/mrksbnc/complib)
 
