@@ -116,6 +116,8 @@
 				return 'border border-white hover:bg-white text-gray-800 focus:ring-gray-300 dark:focus:ring-gray-800 rounded-lg';
 			case ButtonType.light_pill:
 				return 'bg-white text-gray-800 hover:opacity-90 transition-opacity duration-150 focus-ring-gray-500 dark:focus-ring-gray-600 rounded-full';
+			case ButtonType.link:
+				return 'text-blue-600 hover:opacity-90 transition-opacity duration-150 focus-ring-blue-500 dark:focus-ring-blue-600 shadow-none rounded-none';
 			default:
 				return 'bg-blue-600 dark:bg-blue-700 text-white hover:opacity-90 transition-opacity duration-150 focus-ring-blue-500 dark:focus-ring-blue-600 rounded-lg';
 		}
