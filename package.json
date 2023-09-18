@@ -54,7 +54,7 @@
 		"@storybook/addons": "^7.3.2",
 		"@storybook/blocks": "^7.3.2",
 		"@storybook/manager-api": "^7.3.2",
-		"@storybook/testing-library": "^0.2.0",
+		"@storybook/testing-library": "^0.2.1",
 		"@storybook/testing-vue3": "^1.0.0",
 		"@storybook/theming": "^7.3.2",
 		"@storybook/vue3": "^7.3.2",
