@@ -51,7 +51,7 @@
 		"@storybook/addon-links": "^7.3.2",
 		"@storybook/addon-styling": "^2.0.2--canary.82.ac39d17.0",
 		"@storybook/addon-viewport": "^7.3.2",
-		"@storybook/addons": "^7.3.2",
+		"@storybook/addons": "^7.4.5",
 		"@storybook/blocks": "^7.3.2",
 		"@storybook/manager-api": "^7.3.2",
 		"@storybook/testing-library": "^0.2.0",
