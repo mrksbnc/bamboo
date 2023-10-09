@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { DsLoadingSpinner, LoadingSpinnerColor, LoadingSpinnerSize } from '..';
+import { RuiLoadingSpinner, LoadingSpinnerColor, LoadingSpinnerSize } from '..';
 
 const meta = {
-	id: 'DsLoadingSpinner',
-	title: 'Loader/ds-loading-spinner',
-	component: DsLoadingSpinner,
+	id: 'RuiLoadingSpinner',
+	title: 'Loader/rui-loading-spinner',
+	component: RuiLoadingSpinner,
 	tags: ['autodocs'],
 	argTypes: {
 		color: {
@@ -94,11 +94,11 @@ const meta = {
 			),
 		},
 	},
-} satisfies Meta<typeof DsLoadingSpinner>;
+} satisfies Meta<typeof RuiLoadingSpinner>;
 
 export default meta;
 
-type Story = StoryObj<typeof DsLoadingSpinner>;
+type Story = StoryObj<typeof RuiLoadingSpinner>;
 
 export const Blue: Story = {
 	parameters: {

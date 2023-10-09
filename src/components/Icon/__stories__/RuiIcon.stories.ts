@@ -1,11 +1,11 @@
 import { Color } from '@/data';
-import { DsIcon, Icon } from '..';
+import { RuiIcon, Icon } from '..';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
-	id: 'DsIcon',
-	title: 'Icon/ds-icon',
-	component: DsIcon,
+	id: 'RuiIcon',
+	title: 'Icon/rui-icon',
+	component: RuiIcon,
 	tags: ['autodocs'],
 	argTypes: {
 		icon: {
@@ -45,11 +45,11 @@ const meta = {
 			},
 		},
 	},
-} satisfies Meta<typeof DsIcon>;
+} satisfies Meta<typeof RuiIcon>;
 
 export default meta;
 
-type Story = StoryObj<typeof DsIcon>;
+type Story = StoryObj<typeof RuiIcon>;
 
 const icons: string[] = [...new Set(Object.values(Icon))];
 
@@ -59,12 +59,12 @@ const stories: Story[] = icons.map((m: string) => {
 			backgrounds: { default: 'white' },
 		},
 		render: (args, { argTypes }) => ({
-			components: { DsIcon },
+			components: { RuiIcon },
 			props: Object.keys(argTypes),
 			setup() {
 				return { args };
 			},
-			template: '<ds-icon :icon="args.icon" :size="args.size" :color="args.color" />',
+			template: '<rui-icon :icon="args.icon" :size="args.size" :color="args.color" />',
 		}),
 		args: {
 			icon: m as Icon,
@@ -89,7 +89,7 @@ export const All: Story = {
 		backgrounds: { default: 'white' },
 	},
 	render: (args, { argTypes }) => ({
-		components: { DsIcon },
+		components: { RuiIcon },
 		props: Object.keys(argTypes),
 		setup() {
 			return { args, icons };
@@ -97,7 +97,7 @@ export const All: Story = {
 		template: `
 			<div class="w-max h-full grid grid-cols-18 gap-4">
 				<span v-for="icon in icons" :key="icon" class="m-1">
-					<ds-icon :icon="icon" :size=24 />
+					<rui-icon :icon="icon" :size=24 />
 				</span>
 			</div>
 		`,

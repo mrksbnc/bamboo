@@ -1,13 +1,13 @@
 <template>
 	<button
 		:id="id"
-		ref="ds-button"
-		class="ds-button"
+		ref="rui-button"
+		class="rui-button"
 		:class="[btnClass]"
 		:disabled="disabled"
 		@click="clickHandler($event)"
 	>
-		<ds-loading-spinner
+		<rui-loading-spinner
 			v-if="isLoading"
 			:size="loaderSize"
 			:show-label="false"
@@ -17,13 +17,13 @@
 			v-else
 			class="flex items-center justify-center"
 		>
-			<span class="ds-button__prefix mr-2">
+			<span class="rui-button__prefix mr-2">
 				<slot name="prefix" />
 			</span>
 			<span>
 				{{ label }}
 			</span>
-			<span class="ds-button__suffix ml-2">
+			<span class="rui-button__suffix ml-2">
 				<slot name="suffix" />
 			</span>
 		</div>
@@ -33,7 +33,7 @@
 <script setup lang="ts">
 	import { ButtonType, ButtonSize } from './constants';
 	import { type PropType, computed, toRefs, ref } from 'vue';
-	import { DsLoadingSpinner, LoadingSpinnerColor, LoadingSpinnerSize } from '../Loader';
+	import { RuiLoadingSpinner, LoadingSpinnerColor, LoadingSpinnerSize } from '../Loader';
 
 	const props = defineProps({
 		type: {

@@ -1,12 +1,12 @@
 import { Color } from '@/data';
-import { DsIcon, Icon } from '@/components/Icon';
+import { RuiIcon, Icon } from '@/components/Icon';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { ButtonSize, ButtonType, DsButton } from '..';
+import { ButtonSize, ButtonType, RuiButton } from '..';
 
 const meta = {
-	id: 'DsButton',
-	title: 'Button/ds-button',
-	component: DsButton,
+	id: 'RuiButton',
+	title: 'Button/rui-button',
+	component: RuiButton,
 	tags: ['autodocs'],
 	argTypes: {
 		label: {
@@ -151,11 +151,11 @@ const meta = {
 			},
 		},
 	},
-} satisfies Meta<typeof DsButton>;
+} satisfies Meta<typeof RuiButton>;
 
 export default meta;
 
-type Story = StoryObj<typeof DsButton>;
+type Story = StoryObj<typeof RuiButton>;
 
 export const Example: Story = {
 	parameters: {
@@ -403,13 +403,13 @@ export const Prefix: Story = {
 	},
 	render: (args, { argTypes }) => ({
 		props: Object.keys(argTypes),
-		components: { DsButton, DsIcon },
+		components: { RuiButton, RuiIcon },
 		template: `
-			<ds-button v-bind="args">
+			<rui-button v-bind="args">
 				<template #prefix>
-					<ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+					<rui-icon icon="${Icon.plus}" color="#fff" :size="16"/>
 				</template>
-			</ds-button>
+			</rui-button>
 		`,
 		setup() {
 			return { args };
@@ -426,13 +426,13 @@ export const PillWithPrefix: Story = {
 	},
 	render: (args, { argTypes }) => ({
 		props: Object.keys(argTypes),
-		components: { DsButton, DsIcon },
+		components: { RuiButton, RuiIcon },
 		template: `
-			<ds-button v-bind="args">
+			<rui-button v-bind="args">
 				<template #prefix>
-					<ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+					<rui-icon icon="${Icon.plus}" color="#fff" :size="16"/>
 				</template>
-			</ds-button>
+			</rui-button>
 		`,
 		setup() {
 			return { args };
@@ -450,13 +450,13 @@ export const OutlineWithPrefix: Story = {
 	},
 	render: (args, { argTypes }) => ({
 		props: Object.keys(argTypes),
-		components: { DsButton, DsIcon },
+		components: { RuiButton, RuiIcon },
 		template: `
-				<ds-button v-bind="args">
+				<rui-button v-bind="args">
 					<template #prefix>
-						<ds-icon icon="${Icon.plus}" color="${Color['blue-400']}" :size="16"/>
+						<rui-icon icon="${Icon.plus}" color="${Color['blue-400']}" :size="16"/>
 					</template>
-				</ds-button>
+				</rui-button>
 			`,
 		setup() {
 			return { args };
@@ -474,13 +474,13 @@ export const Suffix: Story = {
 	},
 	render: (args, { argTypes }) => ({
 		props: Object.keys(argTypes),
-		components: { DsButton, DsIcon },
+		components: { RuiButton, RuiIcon },
 		template: `
-			<ds-button v-bind="args">
+			<rui-button v-bind="args">
 				<template #suffix>
-					<ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+					<rui-icon icon="${Icon.plus}" color="#fff" :size="16"/>
 				</template>
-			</ds-button>
+			</rui-button>
 		`,
 		setup() {
 			return { args };
@@ -497,13 +497,13 @@ export const PillWithSuffix: Story = {
 	},
 	render: (args, { argTypes }) => ({
 		props: Object.keys(argTypes),
-		components: { DsButton, DsIcon },
+		components: { RuiButton, RuiIcon },
 		template: `
-			<ds-button v-bind="args">
+			<rui-button v-bind="args">
 				<template #suffix>
-					<ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+					<rui-icon icon="${Icon.plus}" color="#fff" :size="16"/>
 				</template>
-			</ds-button>
+			</rui-button>
 		`,
 		setup() {
 			return { args };
@@ -521,13 +521,13 @@ export const OutlineWithSuffix: Story = {
 	},
 	render: (args, { argTypes }) => ({
 		props: Object.keys(argTypes),
-		components: { DsButton, DsIcon },
+		components: { RuiButton, RuiIcon },
 		template: `
-			<ds-button v-bind="args">
+			<rui-button v-bind="args">
 				<template #suffix>
-					<ds-icon icon="${Icon.plus}" color="#fff" :size="16"/>
+					<rui-icon icon="${Icon.plus}" color="#fff" :size="16"/>
 				</template>
-			</ds-button>
+			</rui-button>
 		`,
 		setup() {
 			return { args };

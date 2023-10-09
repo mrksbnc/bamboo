@@ -1,2 +1,2 @@
-export { default as DsLoadingSpinner } from './DsLoadingSpinner.vue';
+export { default as RuiLoadingSpinner } from './RuiLoadingSpinner.vue';
 export { LoadingSpinnerColor, LoadingSpinnerSize } from './constants';

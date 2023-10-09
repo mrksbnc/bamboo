@@ -1,12 +1,12 @@
 import { Icon } from '@/components/Icon';
-import DsIconButton from '../DsIconButton.vue';
+import RuiIconButton from '../RuiIconButton.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { IconButtonSize, IconButtonType } from '..';
 
 const meta = {
-	id: 'DsIconButton',
-	title: 'Button/ds-icon-button',
-	component: DsIconButton,
+	id: 'RuiIconButton',
+	title: 'Button/rui-icon-button',
+	component: RuiIconButton,
 	tags: ['autodocs'],
 	argTypes: {
 		icon: {
@@ -111,11 +111,11 @@ const meta = {
 			},
 		},
 	},
-} as Meta<typeof DsIconButton>;
+} as Meta<typeof RuiIconButton>;
 
 export default meta;
 
-type Story = StoryObj<typeof DsIconButton>;
+type Story = StoryObj<typeof RuiIconButton>;
 
 export const Example: Story = {
 	parameters: {

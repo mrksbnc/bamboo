@@ -1,13 +1,13 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
-import { ButtonSize, ButtonType, DsButton } from '..';
+import { ButtonSize, ButtonType, RuiButton } from '..';
 
 const btnType = ButtonType.primary;
 const btnSize = ButtonSize.base;
 
-describe('DsButton', () => {
+describe('RuiButton', () => {
 	test('renders correctly', () => {
-		const wrapper = mount(DsButton, {
+		const wrapper = mount(RuiButton, {
 			props: {
 				label: 'Test',
 				size: 'small' as ButtonSize,

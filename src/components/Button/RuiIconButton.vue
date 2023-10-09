@@ -10,7 +10,7 @@
 		}"
 		@click="clickHandler($event)"
 	>
-		<ds-icon
+		<rui-icon
 			:icon="icon"
 			:size="computedIconSize"
 			class="text-gray-800 dark:text-gray-300"
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-	import { DsIcon, Icon } from '../Icon';
+	import { RuiIcon, Icon } from '../Icon';
 	import { toRefs, type PropType, computed } from 'vue';
 	import { IconButtonSize, IconButtonType } from './constants';
 
