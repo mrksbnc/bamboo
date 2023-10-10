@@ -30,7 +30,7 @@ devDependencies:
     version: 7.4.6(react-dom@18.2.0)(react@18.2.0)
   '@storybook/addon-styling':
     specifier: ^2.0.2--canary.82.ac39d17.0
-    version: 2.0.2-next.4(react-dom@18.2.0)(react@18.2.0)
+    version: 2.0.2--canary.82.ac39d17.0(react-dom@18.2.0)(react@18.2.0)
   '@storybook/addon-viewport':
     specifier: ^7.3.2
     version: 7.4.6(react-dom@18.2.0)(react@18.2.0)
@@ -2870,8 +2870,8 @@ packages:
       - '@types/react-dom'
     dev: true
 
-  /@storybook/addon-styling@2.0.2-next.4(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-tcz1vkzROMc1mvFEHJ8TKZmrBo9Lahfl8JNTGy1XyctGvHFzkyH2EcdlH11ThDjT2EBLDoumQKadHWGBWO4F6g==}
+  /@storybook/addon-styling@2.0.2--canary.82.ac39d17.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-g3vkj9BocGYJgVq164sC08LW68C/2MNl2gjtVC5Nf9rlaMpGDB3em3I4nqYO75CoSxry7bvXnn9szmg7dsW5nA==}
     hasBin: true
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -3557,7 +3557,7 @@ packages:
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       vue: 3.3.4
-      vue-component-type-helpers: 1.8.17
+      vue-component-type-helpers: 1.8.18
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -9675,8 +9675,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /vue-component-type-helpers@1.8.17:
-    resolution: {integrity: sha512-Ysk4EltfGZfpA8CzkJLucmf79fIHwXbURpTwSCP+RrmOtOF+xNvtH0uGzW+aIoRk+hz+mlq4nkR4CmTWABPiBQ==}
+  /vue-component-type-helpers@1.8.18:
+    resolution: {integrity: sha512-SklLIg782E5Ff0qdE68AUrRBhT2YGW97edBewNEjCWCw+RSETcGOjA8m1/6T68CXkymWBSk+KDpPXqIGthqCDg==}
     dev: true
 
   /vue-component-type-helpers@1.8.4:
