@@ -18,7 +18,7 @@ module.exports = {
 	parserOptions: {
 		ecmaVersion: 'latest',
 		tsconfigRootDir: __dirname,
-		project: ['./tsconfig.json'],
+		project: './tsconfig.json',
 		parser: '@typescript-eslint/parser',
 	},
 	rules: {
@@ -36,5 +36,12 @@ module.exports = {
 		'@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'error',
 		'@typescript-eslint/consistent-type-imports': 'error',
 	},
-	ignorePatterns: ['*.snap', '*.cjs', 'scripts/*', 'dist/*', 'node_modules/*'],
+	ignorePatterns: [
+		'*.snap',
+		'*.cjs',
+		'scripts/*',
+		'dist/*',
+		'node_modules/*',
+		'docs/*',
+	],
 }

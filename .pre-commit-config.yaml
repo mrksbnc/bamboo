@@ -21,10 +21,3 @@ repos:
         entry: npm run lint
         stages: [commit]
         pass_filenames: false
-
-      - id: format
-        name: Try to format
-        language: system
-        entry: npm run format
-        stages: [commit]
-        pass_filenames: false
