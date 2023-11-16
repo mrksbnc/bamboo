@@ -25,7 +25,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [x] `LICENSE` file
 - [x] `README.md` file
 - [x] Storybook
-- [x] Tailwindcss
 - [x] Configure eslint
 - [x] Configure prettier
 - [x] Configure vitest

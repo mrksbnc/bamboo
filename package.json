@@ -1,7 +1,7 @@
 {
   "name": "@mrksbnc/bamboo",
   "version": "0.0.0",
-  "description": "Vue 3 UI library built with Vite, TailwindCSS, and Storybook",
+  "description": "Vue 3 UI library built with Vite and Storybook",
   "scripts": {
     "dev": "vite",
     "build": "npm run type-check && npm run lint && vite optimize --force && vite build --mode production",
