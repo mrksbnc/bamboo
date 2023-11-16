@@ -4,7 +4,10 @@ export const stringEnumFormatter = (
 ): string => {
 	return `enum ${name} {\n${
 		Object.keys(stringEnum)
-			.map((m: string) => `\t${m} = "${stringEnum[m as keyof typeof stringEnum]}",`)
+			.map(
+				(m: string) =>
+					`  ${m} = "${stringEnum[m as keyof typeof stringEnum]}",`,
+			)
 			.join('\r\n') + '\r\n}'
-	}`;
-};
+	}`
+}

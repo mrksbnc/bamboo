@@ -1,20 +1,17 @@
-import { fileURLToPath } from 'url';
-import vue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vitest/config';
+import { configDefaults, defineConfig, mergeConfig } from 'vitest/config'
+import viteConfig from './vite.config'
 
-export default defineConfig({
-	plugins: [vue()],
-	resolve: {
-		alias: {
-			'@': fileURLToPath(new URL('./src', import.meta.url)),
+const bambooTestConfig = mergeConfig(
+	viteConfig,
+	defineConfig({
+		test: {
+			alias: {
+				'@/': new URL('./src/', import.meta.url).pathname,
+			},
+			environment: 'jsdom',
+			exclude: [...configDefaults.exclude],
 		},
-	},
-	test: {
-		coverage: {
-			provider: 'v8',
-			reporter: ['text', 'json-summary', 'json'],
-		},
-		environment: 'jsdom',
-		globals: false,
-	},
-});
+	}),
+)
+
+export default bambooTestConfig

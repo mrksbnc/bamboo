@@ -1,14 +1,25 @@
 {
-	"files": [],
-	"references": [
-		{
-			"path": "./tsconfig.node.json"
-		},
-		{
-			"path": "./tsconfig.app.json"
-		},
-		{
-			"path": "./tsconfig.vitest.json"
+	"extends": "@vue/tsconfig/tsconfig.dom.json",
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"alwaysStrict": true,
+		"lib": ["ESNext", "DOM"],
+		"types": ["node", "jsdom"],
+		"moduleResolution": "Bundler",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"],
+			"@utils/*": ["./utils/*"]
 		}
-	]
+	},
+	"include": [
+		"env.d.ts",
+		"src/**/*.ts",
+		"src/**/*.vue",
+		"utils/**/*.ts",
+		"vite.config.*",
+		"vitest.config.*"
+	],
+	"exclude": ["node_modules"]
 }

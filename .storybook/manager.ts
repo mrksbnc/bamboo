@@ -1,6 +1,6 @@
-import theme from './theme';
+import bamboo from './bamboo';
 import { addons } from '@storybook/manager-api';
 
 addons.setConfig({
-	theme,
+	theme: bamboo,
 });

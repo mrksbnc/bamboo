@@ -1,0 +1,56 @@
+@import '@/styles/themes.scss';
+
+.bo-icon {
+	mask-size: contain;
+	position: relative;
+	display: inline-block;
+	mask-repeat: no-repeat;
+	vertical-align: middle;
+	mask-position: center center;
+
+	-webkit-user-select: none;
+	-webkit-mask-size: contain;
+	-webkit-touch-callout: none;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center center;
+	-webkit-tap-highlight-color: transparent;
+
+	user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+
+	&.xxs {
+		height: 8px;
+		width: 8px;
+	}
+
+	&.xs {
+		height: 10px;
+		width: 10px;
+	}
+
+	&.sm {
+		width: 12px;
+		height: 12px;
+	}
+
+	&.md {
+		width: 16px;
+		height: 16px;
+	}
+
+	&.lg {
+		width: 20px;
+		height: 20px;
+	}
+
+	&.xl {
+		width: 24px;
+		height: 24px;
+	}
+
+	&.xxl {
+		width: 32px;
+		height: 32px;
+	}
+}

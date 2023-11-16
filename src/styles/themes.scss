@@ -1,0 +1,9 @@
+@use './colors.scss';
+
+.__dark {
+	--icon-color: var(--white);
+}
+
+.__light {
+	--icon-color: var(--black);
+}

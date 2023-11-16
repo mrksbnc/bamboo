@@ -1,10 +1,10 @@
 # Bamboo
 
-Bamboo (base in Japanese) is a reusable Component collection built with [Vite](https://vitejs.dev/) and [Vue 3](https://vuejs.org/). The components are using [TailwindCSS](https://tailwindcss.com/) for styling and the documentation is built with [Storybook](https://storybook.js.org/).
+Lightweight and flexible (hence the name) UI Library built with [Vite](https://vitejs.dev/) and [Vue 3](https://vuejs.org/). The documentation is created with [Storybook](https://storybook.js.org/).
 
-![Version](https://img.shields.io/github/package-json/v/mrksbnc/complib)
+![Version](https://img.shields.io/github/package-json/v/mrksbnc/bamboo)
 
-## Project setup
+### Project setup
 
 As a prerequisite, you need to have node and npm installed on your machine. You can download and install them from [here](https://nodejs.org/en/).
 
@@ -64,6 +64,6 @@ The project uses [ESLint](https://eslint.org/) and [Prettier](https://prettier.i
 npm run lint
 ```
 
-## License
+### License
 
 [MIT](LICENSE)

@@ -1,27 +1,5 @@
-.css-1njl3fa {
-	border: none !important;
-	background-image: none !important;
-
-	div {
-		:first-child {
-			margin-left: 2px;
-		}
-
-		:last-child {
-			margin-right: 2px;
-		}
-
-		&:not(:first-child):not(:last-child) {
-			margin: 0 1px;
-		}
+.__dark {
+	.docs-story {
+		background: rgba(51, 51, 51) !important;
 	}
-
-	::before {
-		content: none;
-		border-radius: 8px;
-	}
-}
-
-[class^='css'] {
-	transform: none !important;
 }

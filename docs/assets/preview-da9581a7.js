@@ -1,0 +1,2 @@
+import{t as a}from"./chunk-E56DBAEL-fe5ff450.js";const r={parameters:{actions:{argTypesRegex:"^on[A-Z].*"},controls:{matchers:{color:/(background|color)$/i,date:/Date$/i}},docs:{toc:!0,story:{}},darkMode:{stylePreview:!0,darkClass:"__dark",lightClass:"__light",light:{...a.normal,appBg:"#fafafa"},dark:{...a.dark,base:"dark",appBg:"#000000"}}}};export{r as default};
+//# sourceMappingURL=preview-da9581a7.js.map

@@ -1,11 +1,10 @@
-import dts from 'vite-plugin-dts';
-import { resolve } from 'node:path';
-import vue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vitest/config';
-import { fileURLToPath, URL } from 'node:url';
+import vue from '@vitejs/plugin-vue'
+import { fileURLToPath, URL } from 'node:url'
+import dts from 'vite-plugin-dts'
+import { defineConfig, type UserConfig } from 'vitest/config'
 
-// https://vitejs.dev/config/
-export default defineConfig({
+/** https://vitejs.dev/config/ */
+const bambooLibConfig: UserConfig = defineConfig({
 	plugins: [vue(), dts()],
 	build: {
 		minify: true,
@@ -13,10 +12,14 @@ export default defineConfig({
 		lib: {
 			name: 'bamboo',
 			formats: ['es', 'cjs'],
-			entry: ['src/index.ts'],
+			entry: [
+				'src/index.ts',
+				'src/styles/colors.ts',
+				'src/styles/animation.ts',
+			],
 			fileName: (format, entry) => {
-				if (entry === 'main') return `index.${format}.js`;
-				return `${entry}.${format}.js`;
+				if (entry === 'main') return `index.${format}.js`
+				return `${entry}.${format}.js`
 			},
 		},
 		rollupOptions: {
@@ -27,7 +30,11 @@ export default defineConfig({
 				globals: { vue: 'Vue' },
 			},
 			input: {
-				main: resolve(__dirname, 'src/index.ts'),
+				main: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+				colors: fileURLToPath(new URL('src/styles/colors.ts', import.meta.url)),
+				animation: fileURLToPath(
+					new URL('src/styles/animation.ts', import.meta.url),
+				),
 			},
 		},
 	},
@@ -37,4 +44,6 @@ export default defineConfig({
 			'@utils': fileURLToPath(new URL('./utils', import.meta.url)),
 		},
 	},
-});
+})
+
+export default bambooLibConfig
