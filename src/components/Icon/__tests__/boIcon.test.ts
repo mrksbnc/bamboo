@@ -10,6 +10,6 @@ describe('BoIcon', () => {
 				size: IconSize.M,
 			},
 		})
-		expect(wrapper).toMatchSnapshot()
+		expect(wrapper.html()).toMatchSnapshot()
 	})
 })
