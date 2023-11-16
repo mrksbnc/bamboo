@@ -30,28 +30,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [x] Configure prettier
 - [x] Configure vitest
 - [x] Configure vite for library build
-- [ ] Create `rui-badge` component
-- [ ] Create `rui-button` component
-- [ ] Create `rui-button-group` component
-- [ ] Create `rui-pill-button` component
-- [ ] Create `rui-icon-button` component
-- [ ] Create `rui-LinkButton` component
-- [ ] Create `rui-outline-button` component
-- [ ] Create `rui-loading-spinner` component
-- [ ] Create `rui-loading-bar` component
-- [ ] Create `rui-card` component
-- [ ] Create `rui-avatar` component
-- [x] Create `rui-icon` component
-- [ ] Create `rui-input` component
-- [ ] Create `rui-textarea` component
-- [ ] Create `rui-select` component
-- [ ] Create `rui-checkbox` component
-- [ ] Create `rui-radio` component
-- [ ] Create `rui-alert` component
-- [ ] Create `rui-modal` component
-- [ ] Create `rui-dropdown` component
-- [ ] Create `rui-tabs` component
-- [ ] Create `rui-data=table` component
+- [ ] Create `bo-badge` component
+- [ ] Create `bo-button` component
+- [ ] Create `bo-button-group` component
+- [ ] Create `bo-pill-button` component
+- [ ] Create `bo-icon-button` component
+- [ ] Create `bo-LinkButton` component
+- [ ] Create `bo-outline-button` component
+- [ ] Create `bo-loading-spinner` component
+- [ ] Create `bo-loading-bar` component
+- [ ] Create `bo-card` component
+- [ ] Create `bo-avatar` component
+- [ ] Create `bo-icon` component
+- [ ] Create `bo-input` component
+- [ ] Create `bo-textarea` component
+- [ ] Create `bo-select` component
+- [ ] Create `bo-checkbox` component
+- [ ] Create `bo-radio` component
+- [ ] Create `bo-alert` component
+- [ ] Create `bo-modal` component
+- [ ] Create `bo-dropdown` component
+- [ ] Create `bo-tabs` component
+- [ ] Create `bo-data-table` component
 
 ### Fixed
 

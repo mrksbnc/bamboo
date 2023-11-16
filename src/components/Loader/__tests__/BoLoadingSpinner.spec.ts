@@ -1,16 +1,16 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
-import RuiLoadingSpinner from '../RuiLoadingSpinner.vue';
+import BoLoadingSpinner from '../BoLoadingSpinner.vue';
 import { LoadingSpinnerColor, LoadingSpinnerSize } from '..';
 
-describe('RuiLoadingSpinner', () => {
+describe('BoLoadingSpinner', () => {
 	test('renders correctly', () => {
-		const wrapper = mount(RuiLoadingSpinner);
+		const wrapper = mount(BoLoadingSpinner);
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	test('renders correctly with color', () => {
-		const wrapper = mount(RuiLoadingSpinner, {
+		const wrapper = mount(BoLoadingSpinner, {
 			props: {
 				color: LoadingSpinnerColor.green,
 			},
@@ -19,7 +19,7 @@ describe('RuiLoadingSpinner', () => {
 	});
 
 	test('renders correctly with size', () => {
-		const wrapper = mount(RuiLoadingSpinner, {
+		const wrapper = mount(BoLoadingSpinner, {
 			props: {
 				size: LoadingSpinnerSize.normal,
 			},

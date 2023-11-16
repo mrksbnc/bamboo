@@ -1,5 +1,6 @@
 import './storybook.scss';
-import '../src/assets/index.scss';
+import '@/style/index.scss';
+import '@/style/tailwind.scss';
 import type { Preview } from '@storybook/vue3';
 
 const preview: Preview = {
@@ -20,7 +21,10 @@ const preview: Preview = {
 			},
 		},
 		docs: {
-			toc: true, // 👈 Enables the table of contents
+			toc: true,
+			story: {
+				height: '400px',
+			},
 		},
 		backgrounds: {
 			default: 'white',

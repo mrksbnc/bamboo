@@ -1,6 +1,6 @@
-# Rui
+# Bamboo
 
-Rui (base in Japanese) is a reusable Component collection built with [Vite](https://vitejs.dev/) and [Vue 3](https://vuejs.org/). The components are using [TailwindCSS](https://tailwindcss.com/) for styling and the documentation is built with [Storybook](https://storybook.js.org/).
+Bamboo (base in Japanese) is a reusable Component collection built with [Vite](https://vitejs.dev/) and [Vue 3](https://vuejs.org/). The components are using [TailwindCSS](https://tailwindcss.com/) for styling and the documentation is built with [Storybook](https://storybook.js.org/).
 
 ![Version](https://img.shields.io/github/package-json/v/mrksbnc/complib)
 

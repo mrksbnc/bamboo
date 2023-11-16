@@ -566,2535 +566,2517 @@ export enum Icon {
 	none = 'none',
 }
 
-const DEFAULT_ICON_SIZE = 24;
-
 export const IconCollection = new Map<Icon, IconObj>([
 	[
 		Icon.activity,
 		{
 			name: Icon.activity,
-			default: activity,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/activity.svg',
+			svg: activity,
+
+			path: '../../assets/icon/activity.svg',
 		},
 	],
 	[
 		Icon.airplay,
 		{
-			default: airplay,
+			svg: airplay,
 			name: Icon.airplay,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/airplay.svg',
+
+			path: '../../assets/icon/airplay.svg',
 		},
 	],
 	[
 		Icon.alert_circle,
 		{
-			default: alertCircle,
+			svg: alertCircle,
 			name: Icon.alert_circle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/alertcircle.svg',
+
+			path: '../../assets/icon/alertcircle.svg',
 		},
 	],
 	[
 		Icon.alert_octagon,
 		{
-			default: alertOctagon,
-			size: DEFAULT_ICON_SIZE,
+			svg: alertOctagon,
+
 			name: Icon.alert_octagon,
-			svgPath: '../../assets/icon/alertoctagon.svg',
+			path: '../../assets/icon/alertoctagon.svg',
 		},
 	],
 	[
 		Icon.alert_triangle,
 		{
-			default: alertTriangle,
-			size: DEFAULT_ICON_SIZE,
+			svg: alertTriangle,
+
 			name: Icon.alert_triangle,
-			svgPath: '../../assets/icon/alerttriangle.svg',
+			path: '../../assets/icon/alerttriangle.svg',
 		},
 	],
 	[
 		Icon.align_center,
 		{
-			default: alignCenter,
+			svg: alignCenter,
 			name: Icon.align_center,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/aligncenter.svg',
+
+			path: '../../assets/icon/aligncenter.svg',
 		},
 	],
 	[
 		Icon.align_justify,
 		{
-			default: alignJustify,
-			size: DEFAULT_ICON_SIZE,
+			svg: alignJustify,
+
 			name: Icon.align_justify,
-			svgPath: '../../assets/icon/alignjustify.svg',
+			path: '../../assets/icon/alignjustify.svg',
 		},
 	],
 	[
 		Icon.align_left,
 		{
-			default: alignLeft,
+			svg: alignLeft,
 			name: Icon.align_left,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/alignleft.svg',
+
+			path: '../../assets/icon/alignleft.svg',
 		},
 	],
 	[
 		Icon.align_right,
 		{
-			default: alignRight,
+			svg: alignRight,
 			name: Icon.align_right,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/alignright.svg',
+
+			path: '../../assets/icon/alignright.svg',
 		},
 	],
 	[
 		Icon.anchor,
 		{
-			default: anchor,
+			svg: anchor,
 			name: Icon.anchor,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/anchor.svg',
+
+			path: '../../assets/icon/anchor.svg',
 		},
 	],
 	[
 		Icon.aperture,
 		{
-			default: aperture,
+			svg: aperture,
 			name: Icon.aperture,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/aperture.svg',
+
+			path: '../../assets/icon/aperture.svg',
 		},
 	],
 	[
 		Icon.archive,
 		{
-			default: archive,
+			svg: archive,
 			name: Icon.archive,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/archive.svg',
+
+			path: '../../assets/icon/archive.svg',
 		},
 	],
 	[
 		Icon.arrow_down_circle,
 		{
-			size: DEFAULT_ICON_SIZE,
-			default: arrowDownCircle,
+			svg: arrowDownCircle,
 			name: Icon.arrow_down_circle,
-			svgPath: '../../assets/icon/arrowdowncircle.svg',
+			path: '../../assets/icon/arrowdowncircle.svg',
 		},
 	],
 	[
 		Icon.arrow_down_left,
 		{
-			default: arrowDownLeft,
-			size: DEFAULT_ICON_SIZE,
+			svg: arrowDownLeft,
+
 			name: Icon.arrow_down_left,
-			svgPath: '../../assets/icon/arrowdownleft.svg',
+			path: '../../assets/icon/arrowdownleft.svg',
 		},
 	],
 	[
 		Icon.arrow_down_right,
 		{
-			size: DEFAULT_ICON_SIZE,
-			default: arrowDownRightSvg,
+			svg: arrowDownRightSvg,
 			name: Icon.arrow_down_right,
-			svgPath: '../../assets/icon/arrowdownright.svg',
+			path: '../../assets/icon/arrowdownright.svg',
 		},
 	],
 	[
 		Icon.arrow_down,
 		{
 			name: Icon.arrow_down,
-			default: arrowDownSvg,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/arrowdown.svg',
+			svg: arrowDownSvg,
+
+			path: '../../assets/icon/arrowdown.svg',
 		},
 	],
 	[
 		Icon.arrow_left_circle,
 		{
-			size: DEFAULT_ICON_SIZE,
-			default: arrowLeftCircleSvg,
+			svg: arrowLeftCircleSvg,
 			name: Icon.arrow_left_circle,
-			svgPath: '../../assets/icon/arrowleftcircle.svg',
+			path: '../../assets/icon/arrowleftcircle.svg',
 		},
 	],
 	[
 		Icon.arrow_left,
 		{
 			name: Icon.arrow_left,
-			default: arrowLeftSvg,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/arrowleft.svg',
+			svg: arrowLeftSvg,
+
+			path: '../../assets/icon/arrowleft.svg',
 		},
 	],
 	[
 		Icon.arrow_right_circle,
 		{
-			size: DEFAULT_ICON_SIZE,
-			default: arrowRightCircleSvg,
+			svg: arrowRightCircleSvg,
 			name: Icon.arrow_right_circle,
-			svgPath: '../../assets/icon/arrowrightcircle.svg',
+			path: '../../assets/icon/arrowrightcircle.svg',
 		},
 	],
 	[
 		Icon.arrow_right,
 		{
-			default: arrowRightSvg,
+			svg: arrowRightSvg,
 			name: Icon.arrow_right,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/arrowright.svg',
+
+			path: '../../assets/icon/arrowright.svg',
 		},
 	],
 	[
 		Icon.arrow_up_circle,
 		{
-			size: DEFAULT_ICON_SIZE,
-			default: arrowUpCircleSvg,
+			svg: arrowUpCircleSvg,
 			name: Icon.arrow_up_circle,
-			svgPath: '../../assets/icon/arrowupcircle.svg',
+			path: '../../assets/icon/arrowupcircle.svg',
 		},
 	],
 	[
 		Icon.arrow_up_left,
 		{
 			name: Icon.arrow_up_left,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/arrowupleft.svg',
-			default: arrowUpLeftSvg,
+
+			path: '../../assets/icon/arrowupleft.svg',
+			svg: arrowUpLeftSvg,
 		},
 	],
 	[
 		Icon.arrow_up_right,
 		{
 			name: Icon.arrow_up_right,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/arrowupright.svg',
-			default: arrowUpRightSvg,
+
+			path: '../../assets/icon/arrowupright.svg',
+			svg: arrowUpRightSvg,
 		},
 	],
 	[
 		Icon.arrow_up,
 		{
 			name: Icon.arrow_up,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/arrowup.svg',
-			default: arrowUpSvg,
+
+			path: '../../assets/icon/arrowup.svg',
+			svg: arrowUpSvg,
 		},
 	],
 	[
 		Icon.at_sign,
 		{
 			name: Icon.at_sign,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/atsign.svg',
-			default: atSignSvg,
+
+			path: '../../assets/icon/atsign.svg',
+			svg: atSignSvg,
 		},
 	],
 	[
 		Icon.award,
 		{
 			name: Icon.award,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/award.svg',
-			default: awardSvg,
+
+			path: '../../assets/icon/award.svg',
+			svg: awardSvg,
 		},
 	],
 	[
 		Icon.bar_chart_2,
 		{
 			name: Icon.bar_chart_2,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/barchart2.svg',
-			default: barChart2Svg,
+
+			path: '../../assets/icon/barchart2.svg',
+			svg: barChart2Svg,
 		},
 	],
 	[
 		Icon.bar_chart,
 		{
 			name: Icon.bar_chart,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/barchart.svg',
-			default: barChartSvg,
+
+			path: '../../assets/icon/barchart.svg',
+			svg: barChartSvg,
 		},
 	],
 	[
 		Icon.battery_charging,
 		{
 			name: Icon.battery_charging,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/batterycharging.svg',
-			default: batteryChargingSvg,
+
+			path: '../../assets/icon/batterycharging.svg',
+			svg: batteryChargingSvg,
 		},
 	],
 	[
 		Icon.battery,
 		{
 			name: Icon.battery,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/battery.svg',
-			default: batterySvg,
+
+			path: '../../assets/icon/battery.svg',
+			svg: batterySvg,
 		},
 	],
 	[
 		Icon.bell_off,
 		{
 			name: Icon.bell_off,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/belloff.svg',
-			default: bellOffSvg,
+
+			path: '../../assets/icon/belloff.svg',
+			svg: bellOffSvg,
 		},
 	],
 	[
 		Icon.bell,
 		{
 			name: Icon.bell,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/bell.svg',
-			default: bellSvg,
+
+			path: '../../assets/icon/bell.svg',
+			svg: bellSvg,
 		},
 	],
 	[
 		Icon.bluetooth,
 		{
 			name: Icon.bluetooth,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/bluetooth.svg',
-			default: bluetoothSvg,
+
+			path: '../../assets/icon/bluetooth.svg',
+			svg: bluetoothSvg,
 		},
 	],
 	[
 		Icon.bold,
 		{
 			name: Icon.bold,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/bold.svg',
-			default: boldSvg,
+
+			path: '../../assets/icon/bold.svg',
+			svg: boldSvg,
 		},
 	],
 	[
 		Icon.book_open,
 		{
 			name: Icon.book_open,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/bookopen.svg',
-			default: bookOpenSvg,
+
+			path: '../../assets/icon/bookopen.svg',
+			svg: bookOpenSvg,
 		},
 	],
 	[
 		Icon.book,
 		{
 			name: Icon.book,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/book.svg',
-			default: bookSvg,
+
+			path: '../../assets/icon/book.svg',
+			svg: bookSvg,
 		},
 	],
 	[
 		Icon.bookmark,
 		{
 			name: Icon.bookmark,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/bookmark.svg',
-			default: bookmarkSvg,
+
+			path: '../../assets/icon/bookmark.svg',
+			svg: bookmarkSvg,
 		},
 	],
 	[
 		Icon.box,
 		{
 			name: Icon.box,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/box.svg',
-			default: boxSvg,
+
+			path: '../../assets/icon/box.svg',
+			svg: boxSvg,
 		},
 	],
 	[
 		Icon.briefcase,
 		{
 			name: Icon.briefcase,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/briefcase.svg',
-			default: briefcaseSvg,
+
+			path: '../../assets/icon/briefcase.svg',
+			svg: briefcaseSvg,
 		},
 	],
 	[
 		Icon.calendar,
 		{
 			name: Icon.calendar,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/calendar.svg',
-			default: calendarSvg,
+
+			path: '../../assets/icon/calendar.svg',
+			svg: calendarSvg,
 		},
 	],
 	[
 		Icon.camera_off,
 		{
 			name: Icon.camera_off,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cameraoff.svg',
-			default: cameraOffSvg,
+
+			path: '../../assets/icon/cameraoff.svg',
+			svg: cameraOffSvg,
 		},
 	],
 	[
 		Icon.camera,
 		{
 			name: Icon.camera,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/camera.svg',
-			default: cameraSvg,
+
+			path: '../../assets/icon/camera.svg',
+			svg: cameraSvg,
 		},
 	],
 	[
 		Icon.cast,
 		{
 			name: Icon.cast,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cast.svg',
-			default: castSvg,
+
+			path: '../../assets/icon/cast.svg',
+			svg: castSvg,
 		},
 	],
 	[
 		Icon.check_circle,
 		{
 			name: Icon.check_circle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/checkcircle.svg',
-			default: checkCircleSvg,
+
+			path: '../../assets/icon/checkcircle.svg',
+			svg: checkCircleSvg,
 		},
 	],
 	[
 		Icon.check_square,
 		{
 			name: Icon.check_square,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/checksquare.svg',
-			default: checkSquareSvg,
+
+			path: '../../assets/icon/checksquare.svg',
+			svg: checkSquareSvg,
 		},
 	],
 	[
 		Icon.check,
 		{
 			name: Icon.check,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/check.svg',
-			default: checkSvg,
+
+			path: '../../assets/icon/check.svg',
+			svg: checkSvg,
 		},
 	],
 	[
 		Icon.chevron_down,
 		{
 			name: Icon.chevron_down,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/chevrondown.svg',
-			default: chevronDownSvg,
+			path: '../../assets/icon/chevrondown.svg',
+			svg: chevronDownSvg,
 		},
 	],
 	[
 		Icon.chevron_left,
 		{
 			name: Icon.chevron_left,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/chevronleft.svg',
-			default: chevronLeftSvg,
+			path: '../../assets/icon/chevronleft.svg',
+			svg: chevronLeftSvg,
 		},
 	],
 	[
 		Icon.chevron_right,
 		{
 			name: Icon.chevron_right,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/chevronright.svg',
-			default: chevronRightSvg,
+			path: '../../assets/icon/chevronright.svg',
+			svg: chevronRightSvg,
 		},
 	],
 	[
 		Icon.chevron_up,
 		{
 			name: Icon.chevron_up,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/chevronup.svg',
-			default: chevronUpSvg,
+			path: '../../assets/icon/chevronup.svg',
+			svg: chevronUpSvg,
 		},
 	],
 	[
 		Icon.chevrons_down,
 		{
 			name: Icon.chevrons_down,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/chevronsdown.svg',
-			default: chevronsDownSvg,
+			path: '../../assets/icon/chevronsdown.svg',
+			svg: chevronsDownSvg,
 		},
 	],
 	[
 		Icon.chevrons_left,
 		{
 			name: Icon.chevrons_left,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/chevronsleft.svg',
-			default: chevronsLeftSvg,
+
+			path: '../../assets/icon/chevronsleft.svg',
+			svg: chevronsLeftSvg,
 		},
 	],
 	[
 		Icon.chevrons_right,
 		{
 			name: Icon.chevrons_right,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/chevronsright.svg',
-			default: chevronsRightSvg,
+
+			path: '../../assets/icon/chevronsright.svg',
+			svg: chevronsRightSvg,
 		},
 	],
 	[
 		Icon.chevrons_up,
 		{
 			name: Icon.chevrons_up,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/chevronsup.svg',
-			default: chevronsUpSvg,
+
+			path: '../../assets/icon/chevronsup.svg',
+			svg: chevronsUpSvg,
 		},
 	],
 	[
 		Icon.chrome,
 		{
 			name: Icon.chrome,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/chrome.svg',
-			default: chromeSvg,
+
+			path: '../../assets/icon/chrome.svg',
+			svg: chromeSvg,
 		},
 	],
 	[
 		Icon.circle,
 		{
 			name: Icon.circle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/circle.svg',
-			default: circleSvg,
+
+			path: '../../assets/icon/circle.svg',
+			svg: circleSvg,
 		},
 	],
 	[
 		Icon.clipboard,
 		{
 			name: Icon.clipboard,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/clipboard.svg',
-			default: clipboardSvg,
+
+			path: '../../assets/icon/clipboard.svg',
+			svg: clipboardSvg,
 		},
 	],
 	[
 		Icon.clock,
 		{
 			name: Icon.clock,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/clock.svg',
-			default: clockSvg,
+
+			path: '../../assets/icon/clock.svg',
+			svg: clockSvg,
 		},
 	],
 	[
 		Icon.cloud_drizzle,
 		{
 			name: Icon.cloud_drizzle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/clouddrizzle.svg',
-			default: cloudDrizzleSvg,
+
+			path: '../../assets/icon/clouddrizzle.svg',
+			svg: cloudDrizzleSvg,
 		},
 	],
 	[
 		Icon.cloud_lightning,
 		{
 			name: Icon.cloud_lightning,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cloudlightning.svg',
-			default: cloudLightningSvg,
+
+			path: '../../assets/icon/cloudlightning.svg',
+			svg: cloudLightningSvg,
 		},
 	],
 	[
 		Icon.cloud_off,
 		{
 			name: Icon.cloud_off,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cloudoff.svg',
-			default: cloudOffSvg,
+
+			path: '../../assets/icon/cloudoff.svg',
+			svg: cloudOffSvg,
 		},
 	],
 	[
 		Icon.cloud_rain,
 		{
 			name: Icon.cloud_rain,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cloudrain.svg',
-			default: cloudRainSvg,
+
+			path: '../../assets/icon/cloudrain.svg',
+			svg: cloudRainSvg,
 		},
 	],
 	[
 		Icon.cloud_snow,
 		{
 			name: Icon.cloud_snow,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cloudsnow.svg',
-			default: cloudSnowSvg,
+
+			path: '../../assets/icon/cloudsnow.svg',
+			svg: cloudSnowSvg,
 		},
 	],
 	[
 		Icon.cloud,
 		{
 			name: Icon.cloud,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cloud.svg',
-			default: cloudSvg,
+
+			path: '../../assets/icon/cloud.svg',
+			svg: cloudSvg,
 		},
 	],
 	[
 		Icon.code,
 		{
 			name: Icon.code,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/code.svg',
-			default: codeSvg,
+
+			path: '../../assets/icon/code.svg',
+			svg: codeSvg,
 		},
 	],
 	[
 		Icon.codepen,
 		{
 			name: Icon.codepen,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/codepen.svg',
-			default: codepenSvg,
+
+			path: '../../assets/icon/codepen.svg',
+			svg: codepenSvg,
 		},
 	],
 	[
 		Icon.codesandbox,
 		{
 			name: Icon.codesandbox,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/codesandbox.svg',
-			default: codesandboxSvg,
+
+			path: '../../assets/icon/codesandbox.svg',
+			svg: codesandboxSvg,
 		},
 	],
 	[
 		Icon.coffee,
 		{
 			name: Icon.coffee,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/coffee.svg',
-			default: coffeeSvg,
+
+			path: '../../assets/icon/coffee.svg',
+			svg: coffeeSvg,
 		},
 	],
 	[
 		Icon.columns,
 		{
 			name: Icon.columns,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/columns.svg',
-			default: columnsSvg,
+
+			path: '../../assets/icon/columns.svg',
+			svg: columnsSvg,
 		},
 	],
 	[
 		Icon.command,
 		{
 			name: Icon.command,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/command.svg',
-			default: commandSvg,
+
+			path: '../../assets/icon/command.svg',
+			svg: commandSvg,
 		},
 	],
 	[
 		Icon.compass,
 		{
 			name: Icon.compass,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/compass.svg',
-			default: compassSvg,
+
+			path: '../../assets/icon/compass.svg',
+			svg: compassSvg,
 		},
 	],
 	[
 		Icon.copy,
 		{
 			name: Icon.copy,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/copy.svg',
-			default: copySvg,
+
+			path: '../../assets/icon/copy.svg',
+			svg: copySvg,
 		},
 	],
 	[
 		Icon.corner_down_left,
 		{
 			name: Icon.corner_down_left,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cornerdownleft.svg',
-			default: cornerDownLeftSvg,
+
+			path: '../../assets/icon/cornerdownleft.svg',
+			svg: cornerDownLeftSvg,
 		},
 	],
 	[
 		Icon.corner_down_right,
 		{
 			name: Icon.corner_down_right,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cornerdownright.svg',
-			default: cornerDownRightSvg,
+
+			path: '../../assets/icon/cornerdownright.svg',
+			svg: cornerDownRightSvg,
 		},
 	],
 	[
 		Icon.corner_left_down,
 		{
 			name: Icon.corner_left_down,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cornerleftdown.svg',
-			default: cornerLeftDownSvg,
+
+			path: '../../assets/icon/cornerleftdown.svg',
+			svg: cornerLeftDownSvg,
 		},
 	],
 	[
 		Icon.corner_left_up,
 		{
 			name: Icon.corner_left_up,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cornerleftup.svg',
-			default: cornerLeftUpSvg,
+
+			path: '../../assets/icon/cornerleftup.svg',
+			svg: cornerLeftUpSvg,
 		},
 	],
 	[
 		Icon.corner_right_down,
 		{
 			name: Icon.corner_right_down,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cornerrightdown.svg',
-			default: cornerRightDownSvg,
+
+			path: '../../assets/icon/cornerrightdown.svg',
+			svg: cornerRightDownSvg,
 		},
 	],
 	[
 		Icon.corner_right_up,
 		{
 			name: Icon.corner_right_up,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cornerrightup.svg',
-			default: cornerRightUpSvg,
+
+			path: '../../assets/icon/cornerrightup.svg',
+			svg: cornerRightUpSvg,
 		},
 	],
 	[
 		Icon.corner_up_left,
 		{
 			name: Icon.corner_up_left,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cornerupleft.svg',
-			default: cornerUpLeftSvg,
+
+			path: '../../assets/icon/cornerupleft.svg',
+			svg: cornerUpLeftSvg,
 		},
 	],
 	[
 		Icon.corner_up_right,
 		{
 			name: Icon.corner_up_right,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cornerupright.svg',
-			default: cornerUpRightSvg,
+
+			path: '../../assets/icon/cornerupright.svg',
+			svg: cornerUpRightSvg,
 		},
 	],
 	[
 		Icon.cpu,
 		{
 			name: Icon.cpu,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/cpu.svg',
-			default: cpuSvg,
+
+			path: '../../assets/icon/cpu.svg',
+			svg: cpuSvg,
 		},
 	],
 	[
 		Icon.credit_card,
 		{
 			name: Icon.credit_card,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/creditcard.svg',
-			default: creditCardSvg,
+
+			path: '../../assets/icon/creditcard.svg',
+			svg: creditCardSvg,
 		},
 	],
 	[
 		Icon.crop,
 		{
 			name: Icon.crop,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/crop.svg',
-			default: cropSvg,
+
+			path: '../../assets/icon/crop.svg',
+			svg: cropSvg,
 		},
 	],
 	[
 		Icon.crosshair,
 		{
 			name: Icon.crosshair,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/crosshair.svg',
-			default: crosshairSvg,
+
+			path: '../../assets/icon/crosshair.svg',
+			svg: crosshairSvg,
 		},
 	],
 	[
 		Icon.database,
 		{
 			name: Icon.database,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/database.svg',
-			default: databaseSvg,
+
+			path: '../../assets/icon/database.svg',
+			svg: databaseSvg,
 		},
 	],
 	[
 		Icon.delete,
 		{
 			name: Icon.delete,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/delete.svg',
-			default: deleteSvg,
+
+			path: '../../assets/icon/delete.svg',
+			svg: deleteSvg,
 		},
 	],
 	[
 		Icon.disc,
 		{
 			name: Icon.disc,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/disc.svg',
-			default: discSvg,
+
+			path: '../../assets/icon/disc.svg',
+			svg: discSvg,
 		},
 	],
 	[
 		Icon.dollar_sign,
 		{
 			name: Icon.dollar_sign,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/dollarsign.svg',
-			default: dollarSignSvg,
+
+			path: '../../assets/icon/dollarsign.svg',
+			svg: dollarSignSvg,
 		},
 	],
 	[
 		Icon.download_cloud,
 		{
 			name: Icon.download_cloud,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/downloadcloud.svg',
-			default: downloadCloudSvg,
+
+			path: '../../assets/icon/downloadcloud.svg',
+			svg: downloadCloudSvg,
 		},
 	],
 	[
 		Icon.download,
 		{
 			name: Icon.download,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/download.svg',
-			default: downloadSvg,
+
+			path: '../../assets/icon/download.svg',
+			svg: downloadSvg,
 		},
 	],
 	[
 		Icon.droplet,
 		{
 			name: Icon.droplet,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/droplet.svg',
-			default: dropletSvg,
+
+			path: '../../assets/icon/droplet.svg',
+			svg: dropletSvg,
 		},
 	],
 	[
 		Icon.edit_2,
 		{
 			name: Icon.edit_2,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/edit2.svg',
-			default: edit2Svg,
+
+			path: '../../assets/icon/edit2.svg',
+			svg: edit2Svg,
 		},
 	],
 	[
 		Icon.edit_3,
 		{
 			name: Icon.edit_3,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/edit3.svg',
-			default: edit3Svg,
+
+			path: '../../assets/icon/edit3.svg',
+			svg: edit3Svg,
 		},
 	],
 	[
 		Icon.edit,
 		{
 			name: Icon.edit,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/edit.svg',
-			default: editSvg,
+
+			path: '../../assets/icon/edit.svg',
+			svg: editSvg,
 		},
 	],
 	[
 		Icon.external_link,
 		{
 			name: Icon.external_link,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/externallink.svg',
-			default: externalLinkSvg,
+
+			path: '../../assets/icon/externallink.svg',
+			svg: externalLinkSvg,
 		},
 	],
 	[
 		Icon.eye_off,
 		{
 			name: Icon.eye_off,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/eyeoff.svg',
-			default: eyeOffSvg,
+
+			path: '../../assets/icon/eyeoff.svg',
+			svg: eyeOffSvg,
 		},
 	],
 	[
 		Icon.eye,
 		{
 			name: Icon.eye,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/eye.svg',
-			default: eyeSvg,
+
+			path: '../../assets/icon/eye.svg',
+			svg: eyeSvg,
 		},
 	],
 	[
 		Icon.facebook,
 		{
 			name: Icon.facebook,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/facebook.svg',
-			default: facebookSvg,
+
+			path: '../../assets/icon/facebook.svg',
+			svg: facebookSvg,
 		},
 	],
 	[
 		Icon.fast_forward,
 		{
 			name: Icon.fast_forward,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/fastforward.svg',
-			default: fastForwardSvg,
+
+			path: '../../assets/icon/fastforward.svg',
+			svg: fastForwardSvg,
 		},
 	],
 	[
 		Icon.feather,
 		{
 			name: Icon.feather,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/feather.svg',
-			default: featherSvg,
+
+			path: '../../assets/icon/feather.svg',
+			svg: featherSvg,
 		},
 	],
 	[
 		Icon.figma,
 		{
 			name: Icon.figma,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/figma.svg',
-			default: figmaSvg,
+
+			path: '../../assets/icon/figma.svg',
+			svg: figmaSvg,
 		},
 	],
 	[
 		Icon.file_minus,
 		{
 			name: Icon.file_minus,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/fileminus.svg',
-			default: fileMinusSvg,
+
+			path: '../../assets/icon/fileminus.svg',
+			svg: fileMinusSvg,
 		},
 	],
 	[
 		Icon.file_plus,
 		{
 			name: Icon.file_plus,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/fileplus.svg',
-			default: filePlusSvg,
+
+			path: '../../assets/icon/fileplus.svg',
+			svg: filePlusSvg,
 		},
 	],
 	[
 		Icon.file_text,
 		{
 			name: Icon.file_text,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/filetext.svg',
-			default: fileTextSvg,
+
+			path: '../../assets/icon/filetext.svg',
+			svg: fileTextSvg,
 		},
 	],
 	[
 		Icon.file,
 		{
 			name: Icon.file,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/file.svg',
-			default: fileSvg,
+
+			path: '../../assets/icon/file.svg',
+			svg: fileSvg,
 		},
 	],
 	[
 		Icon.film,
 		{
 			name: Icon.film,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/film.svg',
-			default: filmSvg,
+
+			path: '../../assets/icon/film.svg',
+			svg: filmSvg,
 		},
 	],
 	[
 		Icon.filter,
 		{
 			name: Icon.filter,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/filter.svg',
-			default: filterSvg,
+
+			path: '../../assets/icon/filter.svg',
+			svg: filterSvg,
 		},
 	],
 	[
 		Icon.flag,
 		{
 			name: Icon.flag,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/flag.svg',
-			default: flagSvg,
+
+			path: '../../assets/icon/flag.svg',
+			svg: flagSvg,
 		},
 	],
 	[
 		Icon.folder_minus,
 		{
 			name: Icon.folder_minus,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/folderminus.svg',
-			default: folderMinusSvg,
+
+			path: '../../assets/icon/folderminus.svg',
+			svg: folderMinusSvg,
 		},
 	],
 	[
 		Icon.folder_plus,
 		{
 			name: Icon.folder_plus,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/folderplus.svg',
-			default: folderPlusSvg,
+
+			path: '../../assets/icon/folderplus.svg',
+			svg: folderPlusSvg,
 		},
 	],
 	[
 		Icon.folder,
 		{
 			name: Icon.folder,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/folder.svg',
-			default: folderSvg,
+
+			path: '../../assets/icon/folder.svg',
+			svg: folderSvg,
 		},
 	],
 	[
 		Icon.framer,
 		{
 			name: Icon.framer,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/framer.svg',
-			default: framerSvg,
+
+			path: '../../assets/icon/framer.svg',
+			svg: framerSvg,
 		},
 	],
 	[
 		Icon.frown,
 		{
 			name: Icon.frown,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/frown.svg',
-			default: frownSvg,
+
+			path: '../../assets/icon/frown.svg',
+			svg: frownSvg,
 		},
 	],
 	[
 		Icon.gift,
 		{
 			name: Icon.gift,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/gift.svg',
-			default: giftSvg,
+
+			path: '../../assets/icon/gift.svg',
+			svg: giftSvg,
 		},
 	],
 	[
 		Icon.git_branch,
 		{
 			name: Icon.git_branch,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/gitbranch.svg',
-			default: gitBranchSvg,
+
+			path: '../../assets/icon/gitbranch.svg',
+			svg: gitBranchSvg,
 		},
 	],
 	[
 		Icon.git_commit,
 		{
 			name: Icon.git_commit,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/gitcommit.svg',
-			default: gitCommitSvg,
+
+			path: '../../assets/icon/gitcommit.svg',
+			svg: gitCommitSvg,
 		},
 	],
 	[
 		Icon.git_merge,
 		{
 			name: Icon.git_merge,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/gitmerge.svg',
-			default: gitMergeSvg,
+
+			path: '../../assets/icon/gitmerge.svg',
+			svg: gitMergeSvg,
 		},
 	],
 	[
 		Icon.git_pull_request,
 		{
 			name: Icon.git_pull_request,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/gitpullrequest.svg',
-			default: gitPullRequestSvg,
+
+			path: '../../assets/icon/gitpullrequest.svg',
+			svg: gitPullRequestSvg,
 		},
 	],
 	[
 		Icon.github,
 		{
 			name: Icon.github,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/github.svg',
-			default: githubSvg,
+
+			path: '../../assets/icon/github.svg',
+			svg: githubSvg,
 		},
 	],
 	[
 		Icon.gitlab,
 		{
 			name: Icon.gitlab,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/gitlab.svg',
-			default: gitlabSvg,
+
+			path: '../../assets/icon/gitlab.svg',
+			svg: gitlabSvg,
 		},
 	],
 	[
 		Icon.globe,
 		{
 			name: Icon.globe,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/globe.svg',
-			default: globeSvg,
+
+			path: '../../assets/icon/globe.svg',
+			svg: globeSvg,
 		},
 	],
 	[
 		Icon.grid,
 		{
 			name: Icon.grid,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/grid.svg',
-			default: gridSvg,
+
+			path: '../../assets/icon/grid.svg',
+			svg: gridSvg,
 		},
 	],
 	[
 		Icon.hard_drive,
 		{
 			name: Icon.hard_drive,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/harddrive.svg',
-			default: hardDriveSvg,
+
+			path: '../../assets/icon/harddrive.svg',
+			svg: hardDriveSvg,
 		},
 	],
 	[
 		Icon.hash,
 		{
 			name: Icon.hash,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/hash.svg',
-			default: hashSvg,
+
+			path: '../../assets/icon/hash.svg',
+			svg: hashSvg,
 		},
 	],
 	[
 		Icon.headphones,
 		{
 			name: Icon.headphones,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/headphones.svg',
-			default: headphonesSvg,
+
+			path: '../../assets/icon/headphones.svg',
+			svg: headphonesSvg,
 		},
 	],
 	[
 		Icon.heart,
 		{
 			name: Icon.heart,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/heart.svg',
-			default: heartSvg,
+
+			path: '../../assets/icon/heart.svg',
+			svg: heartSvg,
 		},
 	],
 	[
 		Icon.help_circle,
 		{
 			name: Icon.help_circle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/helpcircle.svg',
-			default: helpCircleSvg,
+
+			path: '../../assets/icon/helpcircle.svg',
+			svg: helpCircleSvg,
 		},
 	],
 	[
 		Icon.hexagon,
 		{
 			name: Icon.hexagon,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/hexagon.svg',
-			default: hexagonSvg,
+
+			path: '../../assets/icon/hexagon.svg',
+			svg: hexagonSvg,
 		},
 	],
 	[
 		Icon.home,
 		{
 			name: Icon.home,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/home.svg',
-			default: homeSvg,
+
+			path: '../../assets/icon/home.svg',
+			svg: homeSvg,
 		},
 	],
 	[
 		Icon.image,
 		{
 			name: Icon.image,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/image.svg',
-			default: imageSvg,
+
+			path: '../../assets/icon/image.svg',
+			svg: imageSvg,
 		},
 	],
 	[
 		Icon.inbox,
 		{
 			name: Icon.inbox,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/inbox.svg',
-			default: inboxSvg,
+
+			path: '../../assets/icon/inbox.svg',
+			svg: inboxSvg,
 		},
 	],
 	[
 		Icon.info,
 		{
 			name: Icon.info,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/info.svg',
-			default: infoSvg,
+
+			path: '../../assets/icon/info.svg',
+			svg: infoSvg,
 		},
 	],
 	[
 		Icon.instagram,
 		{
 			name: Icon.instagram,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/instagram.svg',
-			default: instagramSvg,
+
+			path: '../../assets/icon/instagram.svg',
+			svg: instagramSvg,
 		},
 	],
 	[
 		Icon.italic,
 		{
 			name: Icon.italic,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/italic.svg',
-			default: italicSvg,
+
+			path: '../../assets/icon/italic.svg',
+			svg: italicSvg,
 		},
 	],
 	[
 		Icon.key,
 		{
 			name: Icon.key,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/key.svg',
-			default: keySvg,
+
+			path: '../../assets/icon/key.svg',
+			svg: keySvg,
 		},
 	],
 	[
 		Icon.layers,
 		{
 			name: Icon.layers,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/layers.svg',
-			default: layersSvg,
+
+			path: '../../assets/icon/layers.svg',
+			svg: layersSvg,
 		},
 	],
 	[
 		Icon.layout,
 		{
 			name: Icon.layout,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/layout.svg',
-			default: layoutSvg,
+
+			path: '../../assets/icon/layout.svg',
+			svg: layoutSvg,
 		},
 	],
 	[
 		Icon.life_buoy,
 		{
 			name: Icon.life_buoy,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/lifebuoy.svg',
-			default: lifeBuoySvg,
+
+			path: '../../assets/icon/lifebuoy.svg',
+			svg: lifeBuoySvg,
 		},
 	],
 	[
 		Icon.link_2,
 		{
 			name: Icon.link_2,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/link2.svg',
-			default: link2Svg,
+
+			path: '../../assets/icon/link2.svg',
+			svg: link2Svg,
 		},
 	],
 	[
 		Icon.link,
 		{
 			name: Icon.link,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/link.svg',
-			default: linkSvg,
+
+			path: '../../assets/icon/link.svg',
+			svg: linkSvg,
 		},
 	],
 	[
 		Icon.linkedin,
 		{
 			name: Icon.linkedin,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/linkedin.svg',
-			default: linkedinSvg,
+
+			path: '../../assets/icon/linkedin.svg',
+			svg: linkedinSvg,
 		},
 	],
 	[
 		Icon.list,
 		{
 			name: Icon.list,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/list.svg',
-			default: listSvg,
+
+			path: '../../assets/icon/list.svg',
+			svg: listSvg,
 		},
 	],
 	[
 		Icon.loader,
 		{
 			name: Icon.loader,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/loader.svg',
-			default: loaderSvg,
+
+			path: '../../assets/icon/loader.svg',
+			svg: loaderSvg,
 		},
 	],
 	[
 		Icon.lock,
 		{
 			name: Icon.lock,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/lock.svg',
-			default: lockSvg,
+
+			path: '../../assets/icon/lock.svg',
+			svg: lockSvg,
 		},
 	],
 	[
 		Icon.log_in,
 		{
 			name: Icon.log_in,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/login.svg',
-			default: logInSvg,
+
+			path: '../../assets/icon/login.svg',
+			svg: logInSvg,
 		},
 	],
 	[
 		Icon.log_out,
 		{
 			name: Icon.log_out,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/logout.svg',
-			default: logOutSvg,
+
+			path: '../../assets/icon/logout.svg',
+			svg: logOutSvg,
 		},
 	],
 	[
 		Icon.mail,
 		{
 			name: Icon.mail,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/mail.svg',
-			default: mailSvg,
+
+			path: '../../assets/icon/mail.svg',
+			svg: mailSvg,
 		},
 	],
 	[
 		Icon.map_pin,
 		{
 			name: Icon.map_pin,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/mappin.svg',
-			default: mapPinSvg,
+
+			path: '../../assets/icon/mappin.svg',
+			svg: mapPinSvg,
 		},
 	],
 	[
 		Icon.map,
 		{
 			name: Icon.map,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/map.svg',
-			default: mapSvg,
+
+			path: '../../assets/icon/map.svg',
+			svg: mapSvg,
 		},
 	],
 	[
 		Icon.maximize_2,
 		{
 			name: Icon.maximize_2,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/maximize2.svg',
-			default: maximize2Svg,
+
+			path: '../../assets/icon/maximize2.svg',
+			svg: maximize2Svg,
 		},
 	],
 	[
 		Icon.maximize,
 		{
 			name: Icon.maximize,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/maximize.svg',
-			default: maximizeSvg,
+
+			path: '../../assets/icon/maximize.svg',
+			svg: maximizeSvg,
 		},
 	],
 	[
 		Icon.meh,
 		{
 			name: Icon.meh,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/meh.svg',
-			default: mehSvg,
+
+			path: '../../assets/icon/meh.svg',
+			svg: mehSvg,
 		},
 	],
 	[
 		Icon.menu,
 		{
 			name: Icon.menu,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/menu.svg',
-			default: menuSvg,
+
+			path: '../../assets/icon/menu.svg',
+			svg: menuSvg,
 		},
 	],
 	[
 		Icon.message_circle,
 		{
 			name: Icon.message_circle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/messagecircle.svg',
-			default: messageCircleSvg,
+
+			path: '../../assets/icon/messagecircle.svg',
+			svg: messageCircleSvg,
 		},
 	],
 	[
 		Icon.message_square,
 		{
 			name: Icon.message_square,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/messagesquare.svg',
-			default: messageSquareSvg,
+
+			path: '../../assets/icon/messagesquare.svg',
+			svg: messageSquareSvg,
 		},
 	],
 	[
 		Icon.mic_off,
 		{
 			name: Icon.mic_off,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/micoff.svg',
-			default: micOffSvg,
+
+			path: '../../assets/icon/micoff.svg',
+			svg: micOffSvg,
 		},
 	],
 	[
 		Icon.mic,
 		{
 			name: Icon.mic,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/mic.svg',
-			default: micSvg,
+
+			path: '../../assets/icon/mic.svg',
+			svg: micSvg,
 		},
 	],
 	[
 		Icon.minimize_2,
 		{
 			name: Icon.minimize_2,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/minimize2.svg',
-			default: minimize2Svg,
+
+			path: '../../assets/icon/minimize2.svg',
+			svg: minimize2Svg,
 		},
 	],
 	[
 		Icon.minimize,
 		{
 			name: Icon.minimize,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/minimize.svg',
-			default: minimizeSvg,
+
+			path: '../../assets/icon/minimize.svg',
+			svg: minimizeSvg,
 		},
 	],
 	[
 		Icon.minus_circle,
 		{
 			name: Icon.minus_circle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/minuscircle.svg',
-			default: minusCircleSvg,
+
+			path: '../../assets/icon/minuscircle.svg',
+			svg: minusCircleSvg,
 		},
 	],
 	[
 		Icon.minus_square,
 		{
 			name: Icon.minus_square,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/minussquare.svg',
-			default: minusSquareSvg,
+
+			path: '../../assets/icon/minussquare.svg',
+			svg: minusSquareSvg,
 		},
 	],
 	[
 		Icon.minus,
 		{
 			name: Icon.minus,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/minus.svg',
-			default: minusSvg,
+
+			path: '../../assets/icon/minus.svg',
+			svg: minusSvg,
 		},
 	],
 	[
 		Icon.monitor,
 		{
 			name: Icon.monitor,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/monitor.svg',
-			default: monitorSvg,
+
+			path: '../../assets/icon/monitor.svg',
+			svg: monitorSvg,
 		},
 	],
 	[
 		Icon.moon,
 		{
 			name: Icon.moon,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/moon.svg',
-			default: moonSvg,
+
+			path: '../../assets/icon/moon.svg',
+			svg: moonSvg,
 		},
 	],
 	[
 		Icon.more_horizontal,
 		{
 			name: Icon.more_horizontal,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/morehorizontal.svg',
-			default: moreHorizontalSvg,
+
+			path: '../../assets/icon/morehorizontal.svg',
+			svg: moreHorizontalSvg,
 		},
 	],
 	[
 		Icon.more_vertical,
 		{
 			name: Icon.more_vertical,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/morevertical.svg',
-			default: moreVerticalSvg,
+
+			path: '../../assets/icon/morevertical.svg',
+			svg: moreVerticalSvg,
 		},
 	],
 	[
 		Icon.mouse_pointer,
 		{
 			name: Icon.mouse_pointer,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/mousepointer.svg',
-			default: mousePointerSvg,
+
+			path: '../../assets/icon/mousepointer.svg',
+			svg: mousePointerSvg,
 		},
 	],
 	[
 		Icon.move,
 		{
 			name: Icon.move,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/move.svg',
-			default: moveSvg,
+
+			path: '../../assets/icon/move.svg',
+			svg: moveSvg,
 		},
 	],
 	[
 		Icon.music,
 		{
 			name: Icon.music,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/music.svg',
-			default: musicSvg,
+
+			path: '../../assets/icon/music.svg',
+			svg: musicSvg,
 		},
 	],
 	[
 		Icon.navigation_2,
 		{
 			name: Icon.navigation_2,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/navigation2.svg',
-			default: navigation2Svg,
+
+			path: '../../assets/icon/navigation2.svg',
+			svg: navigation2Svg,
 		},
 	],
 	[
 		Icon.navigation,
 		{
 			name: Icon.navigation,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/navigation.svg',
-			default: navigationSvg,
+
+			path: '../../assets/icon/navigation.svg',
+			svg: navigationSvg,
 		},
 	],
 	[
 		Icon.octagon,
 		{
 			name: Icon.octagon,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/octagon.svg',
-			default: octagonSvg,
+
+			path: '../../assets/icon/octagon.svg',
+			svg: octagonSvg,
 		},
 	],
 	[
 		Icon.package,
 		{
 			name: Icon.package,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/package.svg',
-			default: packageSvg,
+
+			path: '../../assets/icon/package.svg',
+			svg: packageSvg,
 		},
 	],
 	[
 		Icon.paperclip,
 		{
 			name: Icon.paperclip,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/paperclip.svg',
-			default: paperclipSvg,
+
+			path: '../../assets/icon/paperclip.svg',
+			svg: paperclipSvg,
 		},
 	],
 	[
 		Icon.pause_circle,
 		{
 			name: Icon.pause_circle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/pausecircle.svg',
-			default: pauseCircleSvg,
+
+			path: '../../assets/icon/pausecircle.svg',
+			svg: pauseCircleSvg,
 		},
 	],
 	[
 		Icon.pause,
 		{
 			name: Icon.pause,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/pause.svg',
-			default: pauseSvg,
+
+			path: '../../assets/icon/pause.svg',
+			svg: pauseSvg,
 		},
 	],
 	[
 		Icon.pen_tool,
 		{
 			name: Icon.pen_tool,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/pentool.svg',
-			default: penToolSvg,
+
+			path: '../../assets/icon/pentool.svg',
+			svg: penToolSvg,
 		},
 	],
 	[
 		Icon.percent,
 		{
 			name: Icon.percent,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/percent.svg',
-			default: percentSvg,
+
+			path: '../../assets/icon/percent.svg',
+			svg: percentSvg,
 		},
 	],
 	[
 		Icon.phone_call,
 		{
 			name: Icon.phone_call,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/phonecall.svg',
-			default: phoneCallSvg,
+
+			path: '../../assets/icon/phonecall.svg',
+			svg: phoneCallSvg,
 		},
 	],
 	[
 		Icon.phone_forwarded,
 		{
 			name: Icon.phone_forwarded,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/phoneforwarded.svg',
-			default: phoneForwardedSvg,
+
+			path: '../../assets/icon/phoneforwarded.svg',
+			svg: phoneForwardedSvg,
 		},
 	],
 	[
 		Icon.phone_incoming,
 		{
 			name: Icon.phone_incoming,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/phoneincoming.svg',
-			default: phoneIncomingSvg,
+
+			path: '../../assets/icon/phoneincoming.svg',
+			svg: phoneIncomingSvg,
 		},
 	],
 	[
 		Icon.phone_missed,
 		{
 			name: Icon.phone_missed,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/phonemissed.svg',
-			default: phoneMissedSvg,
+
+			path: '../../assets/icon/phonemissed.svg',
+			svg: phoneMissedSvg,
 		},
 	],
 	[
 		Icon.phone_off,
 		{
 			name: Icon.phone_off,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/phoneoff.svg',
-			default: phoneOffSvg,
+
+			path: '../../assets/icon/phoneoff.svg',
+			svg: phoneOffSvg,
 		},
 	],
 	[
 		Icon.phone_outgoing,
 		{
 			name: Icon.phone_outgoing,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/phoneoutgoing.svg',
-			default: phoneOutgoingSvg,
+
+			path: '../../assets/icon/phoneoutgoing.svg',
+			svg: phoneOutgoingSvg,
 		},
 	],
 	[
 		Icon.phone,
 		{
 			name: Icon.phone,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/phone.svg',
-			default: phoneSvg,
+
+			path: '../../assets/icon/phone.svg',
+			svg: phoneSvg,
 		},
 	],
 	[
 		Icon.pie_chart,
 		{
 			name: Icon.pie_chart,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/piechart.svg',
-			default: pieChartSvg,
+
+			path: '../../assets/icon/piechart.svg',
+			svg: pieChartSvg,
 		},
 	],
 	[
 		Icon.play_circle,
 		{
 			name: Icon.play_circle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/playcircle.svg',
-			default: playCircleSvg,
+
+			path: '../../assets/icon/playcircle.svg',
+			svg: playCircleSvg,
 		},
 	],
 	[
 		Icon.play,
 		{
 			name: Icon.play,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/play.svg',
-			default: playSvg,
+
+			path: '../../assets/icon/play.svg',
+			svg: playSvg,
 		},
 	],
 	[
 		Icon.plus_circle,
 		{
 			name: Icon.plus_circle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/pluscircle.svg',
-			default: plusCircleSvg,
+
+			path: '../../assets/icon/pluscircle.svg',
+			svg: plusCircleSvg,
 		},
 	],
 	[
 		Icon.plus_square,
 		{
 			name: Icon.plus_square,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/plussquare.svg',
-			default: plusSquareSvg,
+
+			path: '../../assets/icon/plussquare.svg',
+			svg: plusSquareSvg,
 		},
 	],
 	[
 		Icon.plus,
 		{
 			name: Icon.plus,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/plus.svg',
-			default: plusSvg,
+
+			path: '../../assets/icon/plus.svg',
+			svg: plusSvg,
 		},
 	],
 	[
 		Icon.pocket,
 		{
 			name: Icon.pocket,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/pocket.svg',
-			default: pocketSvg,
+
+			path: '../../assets/icon/pocket.svg',
+			svg: pocketSvg,
 		},
 	],
 	[
 		Icon.power,
 		{
 			name: Icon.power,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/power.svg',
-			default: powerSvg,
+
+			path: '../../assets/icon/power.svg',
+			svg: powerSvg,
 		},
 	],
 	[
 		Icon.printer,
 		{
 			name: Icon.printer,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/printer.svg',
-			default: printerSvg,
+
+			path: '../../assets/icon/printer.svg',
+			svg: printerSvg,
 		},
 	],
 	[
 		Icon.radio,
 		{
 			name: Icon.radio,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/radio.svg',
-			default: radioSvg,
+
+			path: '../../assets/icon/radio.svg',
+			svg: radioSvg,
 		},
 	],
 	[
 		Icon.refresh_ccw,
 		{
 			name: Icon.refresh_ccw,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/refreshccw.svg',
-			default: refreshCcwSvg,
+
+			path: '../../assets/icon/refreshccw.svg',
+			svg: refreshCcwSvg,
 		},
 	],
 	[
 		Icon.refresh_cw,
 		{
 			name: Icon.refresh_cw,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/refreshcw.svg',
-			default: refreshCwSvg,
+
+			path: '../../assets/icon/refreshcw.svg',
+			svg: refreshCwSvg,
 		},
 	],
 	[
 		Icon.repeat,
 		{
 			name: Icon.repeat,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/repeat.svg',
-			default: repeatSvg,
+
+			path: '../../assets/icon/repeat.svg',
+			svg: repeatSvg,
 		},
 	],
 	[
 		Icon.rewind,
 		{
 			name: Icon.rewind,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/rewind.svg',
-			default: rewindSvg,
+
+			path: '../../assets/icon/rewind.svg',
+			svg: rewindSvg,
 		},
 	],
 	[
 		Icon.rotate_ccw,
 		{
 			name: Icon.rotate_ccw,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/rotateccw.svg',
-			default: rotateCcwSvg,
+
+			path: '../../assets/icon/rotateccw.svg',
+			svg: rotateCcwSvg,
 		},
 	],
 	[
 		Icon.rotate_cw,
 		{
 			name: Icon.rotate_cw,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/rotatecw.svg',
-			default: rotateCwSvg,
+
+			path: '../../assets/icon/rotatecw.svg',
+			svg: rotateCwSvg,
 		},
 	],
 	[
 		Icon.rss,
 		{
 			name: Icon.rss,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/rss.svg',
-			default: rssSvg,
+
+			path: '../../assets/icon/rss.svg',
+			svg: rssSvg,
 		},
 	],
 	[
 		Icon.save,
 		{
 			name: Icon.save,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/save.svg',
-			default: saveSvg,
+
+			path: '../../assets/icon/save.svg',
+			svg: saveSvg,
 		},
 	],
 	[
 		Icon.scissors,
 		{
 			name: Icon.scissors,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/scissors.svg',
-			default: scissorsSvg,
+
+			path: '../../assets/icon/scissors.svg',
+			svg: scissorsSvg,
 		},
 	],
 	[
 		Icon.search,
 		{
 			name: Icon.search,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/search.svg',
-			default: searchSvg,
+
+			path: '../../assets/icon/search.svg',
+			svg: searchSvg,
 		},
 	],
 	[
 		Icon.send,
 		{
 			name: Icon.send,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/send.svg',
-			default: sendSvg,
+
+			path: '../../assets/icon/send.svg',
+			svg: sendSvg,
 		},
 	],
 	[
 		Icon.server,
 		{
 			name: Icon.server,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/server.svg',
-			default: serverSvg,
+
+			path: '../../assets/icon/server.svg',
+			svg: serverSvg,
 		},
 	],
 	[
 		Icon.settings,
 		{
 			name: Icon.settings,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/settings.svg',
-			default: settingsSvg,
+
+			path: '../../assets/icon/settings.svg',
+			svg: settingsSvg,
 		},
 	],
 	[
 		Icon.share_2,
 		{
 			name: Icon.share_2,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/share2.svg',
-			default: share2Svg,
+
+			path: '../../assets/icon/share2.svg',
+			svg: share2Svg,
 		},
 	],
 	[
 		Icon.share,
 		{
 			name: Icon.share,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/share.svg',
-			default: shareSvg,
+
+			path: '../../assets/icon/share.svg',
+			svg: shareSvg,
 		},
 	],
 	[
 		Icon.shield_off,
 		{
 			name: Icon.shield_off,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/shieldoff.svg',
-			default: shieldOffSvg,
+
+			path: '../../assets/icon/shieldoff.svg',
+			svg: shieldOffSvg,
 		},
 	],
 	[
 		Icon.shield,
 		{
 			name: Icon.shield,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/shield.svg',
-			default: shieldSvg,
+
+			path: '../../assets/icon/shield.svg',
+			svg: shieldSvg,
 		},
 	],
 	[
 		Icon.shopping_bag,
 		{
 			name: Icon.shopping_bag,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/shoppingbag.svg',
-			default: shoppingBagSvg,
+
+			path: '../../assets/icon/shoppingbag.svg',
+			svg: shoppingBagSvg,
 		},
 	],
 	[
 		Icon.shopping_cart,
 		{
 			name: Icon.shopping_cart,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/shoppingcart.svg',
-			default: shoppingCartSvg,
+
+			path: '../../assets/icon/shoppingcart.svg',
+			svg: shoppingCartSvg,
 		},
 	],
 	[
 		Icon.shuffle,
 		{
 			name: Icon.shuffle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/shuffle.svg',
-			default: shuffleSvg,
+
+			path: '../../assets/icon/shuffle.svg',
+			svg: shuffleSvg,
 		},
 	],
 	[
 		Icon.sidebar,
 		{
 			name: Icon.sidebar,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/sidebar.svg',
-			default: sidebarSvg,
+
+			path: '../../assets/icon/sidebar.svg',
+			svg: sidebarSvg,
 		},
 	],
 	[
 		Icon.skip_back,
 		{
 			name: Icon.skip_back,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/skipback.svg',
-			default: skipBackSvg,
+
+			path: '../../assets/icon/skipback.svg',
+			svg: skipBackSvg,
 		},
 	],
 	[
 		Icon.skip_forward,
 		{
 			name: Icon.skip_forward,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/skipforward.svg',
-			default: skipForwardSvg,
+
+			path: '../../assets/icon/skipforward.svg',
+			svg: skipForwardSvg,
 		},
 	],
 	[
 		Icon.slack,
 		{
 			name: Icon.slack,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/slack.svg',
-			default: slackSvg,
+
+			path: '../../assets/icon/slack.svg',
+			svg: slackSvg,
 		},
 	],
 	[
 		Icon.slash,
 		{
 			name: Icon.slash,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/slash.svg',
-			default: slashSvg,
+
+			path: '../../assets/icon/slash.svg',
+			svg: slashSvg,
 		},
 	],
 	[
 		Icon.sliders,
 		{
 			name: Icon.sliders,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/sliders.svg',
-			default: slidersSvg,
+
+			path: '../../assets/icon/sliders.svg',
+			svg: slidersSvg,
 		},
 	],
 	[
 		Icon.smartphone,
 		{
 			name: Icon.smartphone,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/smartphone.svg',
-			default: smartphoneSvg,
+
+			path: '../../assets/icon/smartphone.svg',
+			svg: smartphoneSvg,
 		},
 	],
 	[
 		Icon.smile,
 		{
 			name: Icon.smile,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/smile.svg',
-			default: smileSvg,
+
+			path: '../../assets/icon/smile.svg',
+			svg: smileSvg,
 		},
 	],
 	[
 		Icon.speaker,
 		{
 			name: Icon.speaker,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/speaker.svg',
-			default: speakerSvg,
+
+			path: '../../assets/icon/speaker.svg',
+			svg: speakerSvg,
 		},
 	],
 	[
 		Icon.square,
 		{
 			name: Icon.square,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/square.svg',
-			default: squareSvg,
+
+			path: '../../assets/icon/square.svg',
+			svg: squareSvg,
 		},
 	],
 	[
 		Icon.star,
 		{
 			name: Icon.star,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/star.svg',
-			default: starSvg,
+
+			path: '../../assets/icon/star.svg',
+			svg: starSvg,
 		},
 	],
 	[
 		Icon.stop_circle,
 		{
 			name: Icon.stop_circle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/stopcircle.svg',
-			default: stopCircleSvg,
+
+			path: '../../assets/icon/stopcircle.svg',
+			svg: stopCircleSvg,
 		},
 	],
 	[
 		Icon.sun,
 		{
 			name: Icon.sun,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/sun.svg',
-			default: sunSvg,
+
+			path: '../../assets/icon/sun.svg',
+			svg: sunSvg,
 		},
 	],
 	[
 		Icon.sunrise,
 		{
 			name: Icon.sunrise,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/sunrise.svg',
-			default: sunriseSvg,
+
+			path: '../../assets/icon/sunrise.svg',
+			svg: sunriseSvg,
 		},
 	],
 	[
 		Icon.sunset,
 		{
 			name: Icon.sunset,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/sunset.svg',
-			default: sunsetSvg,
+
+			path: '../../assets/icon/sunset.svg',
+			svg: sunsetSvg,
 		},
 	],
 	[
 		Icon.tablet,
 		{
 			name: Icon.tablet,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/tablet.svg',
-			default: tabletSvg,
+
+			path: '../../assets/icon/tablet.svg',
+			svg: tabletSvg,
 		},
 	],
 	[
 		Icon.tag,
 		{
 			name: Icon.tag,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/tag.svg',
-			default: tagSvg,
+
+			path: '../../assets/icon/tag.svg',
+			svg: tagSvg,
 		},
 	],
 	[
 		Icon.target,
 		{
 			name: Icon.target,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/target.svg',
-			default: targetSvg,
+
+			path: '../../assets/icon/target.svg',
+			svg: targetSvg,
 		},
 	],
 	[
 		Icon.terminal,
 		{
 			name: Icon.terminal,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/terminal.svg',
-			default: terminalSvg,
+
+			path: '../../assets/icon/terminal.svg',
+			svg: terminalSvg,
 		},
 	],
 	[
 		Icon.thermometer,
 		{
 			name: Icon.thermometer,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/thermometer.svg',
-			default: thermometerSvg,
+
+			path: '../../assets/icon/thermometer.svg',
+			svg: thermometerSvg,
 		},
 	],
 	[
 		Icon.thumbs_down,
 		{
 			name: Icon.thumbs_down,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/thumbsdown.svg',
-			default: thumbsDownSvg,
+
+			path: '../../assets/icon/thumbsdown.svg',
+			svg: thumbsDownSvg,
 		},
 	],
 	[
 		Icon.thumbs_up,
 		{
 			name: Icon.thumbs_up,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/thumbsup.svg',
-			default: thumbsUpSvg,
+
+			path: '../../assets/icon/thumbsup.svg',
+			svg: thumbsUpSvg,
 		},
 	],
 	[
 		Icon.toggle_left,
 		{
 			name: Icon.toggle_left,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/toggleleft.svg',
-			default: toggleLeftSvg,
+
+			path: '../../assets/icon/toggleleft.svg',
+			svg: toggleLeftSvg,
 		},
 	],
 	[
 		Icon.toggle_right,
 		{
 			name: Icon.toggle_right,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/toggleright.svg',
-			default: toggleRightSvg,
+
+			path: '../../assets/icon/toggleright.svg',
+			svg: toggleRightSvg,
 		},
 	],
 	[
 		Icon.tool,
 		{
 			name: Icon.tool,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/tool.svg',
-			default: toolSvg,
+
+			path: '../../assets/icon/tool.svg',
+			svg: toolSvg,
 		},
 	],
 	[
 		Icon.trash_2,
 		{
 			name: Icon.trash_2,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/trash2.svg',
-			default: trash2Svg,
+
+			path: '../../assets/icon/trash2.svg',
+			svg: trash2Svg,
 		},
 	],
 	[
 		Icon.trash,
 		{
 			name: Icon.trash,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/trash.svg',
-			default: trashSvg,
+
+			path: '../../assets/icon/trash.svg',
+			svg: trashSvg,
 		},
 	],
 	[
 		Icon.trello,
 		{
 			name: Icon.trello,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/trello.svg',
-			default: trelloSvg,
+
+			path: '../../assets/icon/trello.svg',
+			svg: trelloSvg,
 		},
 	],
 	[
 		Icon.trending_down,
 		{
 			name: Icon.trending_down,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/trendingdown.svg',
-			default: trendingDownSvg,
+
+			path: '../../assets/icon/trendingdown.svg',
+			svg: trendingDownSvg,
 		},
 	],
 	[
 		Icon.trending_up,
 		{
 			name: Icon.trending_up,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/trendingup.svg',
-			default: trendingUpSvg,
+
+			path: '../../assets/icon/trendingup.svg',
+			svg: trendingUpSvg,
 		},
 	],
 	[
 		Icon.triangle,
 		{
 			name: Icon.triangle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/triangle.svg',
-			default: triangleSvg,
+
+			path: '../../assets/icon/triangle.svg',
+			svg: triangleSvg,
 		},
 	],
 	[
 		Icon.truck,
 		{
 			name: Icon.truck,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/truck.svg',
-			default: truckSvg,
+
+			path: '../../assets/icon/truck.svg',
+			svg: truckSvg,
 		},
 	],
-	[
-		Icon.tv,
-		{ name: Icon.tv, size: DEFAULT_ICON_SIZE, svgPath: '../../assets/icon/tv.svg', default: tvSvg },
-	],
+	[Icon.tv, { name: Icon.tv, path: '../../assets/icon/tv.svg', svg: tvSvg }],
 	[
 		Icon.twitch,
 		{
 			name: Icon.twitch,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/twitch.svg',
-			default: twitchSvg,
+
+			path: '../../assets/icon/twitch.svg',
+			svg: twitchSvg,
 		},
 	],
 	[
 		Icon.twitter,
 		{
 			name: Icon.twitter,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/twitter.svg',
-			default: twitterSvg,
+
+			path: '../../assets/icon/twitter.svg',
+			svg: twitterSvg,
 		},
 	],
 	[
 		Icon.type,
 		{
 			name: Icon.type,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/type.svg',
-			default: typeSvg,
+
+			path: '../../assets/icon/type.svg',
+			svg: typeSvg,
 		},
 	],
 	[
 		Icon.umbrella,
 		{
 			name: Icon.umbrella,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/umbrella.svg',
-			default: umbrellaSvg,
+
+			path: '../../assets/icon/umbrella.svg',
+			svg: umbrellaSvg,
 		},
 	],
 	[
 		Icon.underline,
 		{
 			name: Icon.underline,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/underline.svg',
-			default: underlineSvg,
+
+			path: '../../assets/icon/underline.svg',
+			svg: underlineSvg,
 		},
 	],
 	[
 		Icon.unlock,
 		{
 			name: Icon.unlock,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/unlock.svg',
-			default: unlockSvg,
+
+			path: '../../assets/icon/unlock.svg',
+			svg: unlockSvg,
 		},
 	],
 	[
 		Icon.upload_cloud,
 		{
 			name: Icon.upload_cloud,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/uploadcloud.svg',
-			default: uploadCloudSvg,
+
+			path: '../../assets/icon/uploadcloud.svg',
+			svg: uploadCloudSvg,
 		},
 	],
 	[
 		Icon.upload,
 		{
 			name: Icon.upload,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/upload.svg',
-			default: uploadSvg,
+
+			path: '../../assets/icon/upload.svg',
+			svg: uploadSvg,
 		},
 	],
 	[
 		Icon.user_check,
 		{
 			name: Icon.user_check,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/usercheck.svg',
-			default: userCheckSvg,
+
+			path: '../../assets/icon/usercheck.svg',
+			svg: userCheckSvg,
 		},
 	],
 	[
 		Icon.user_minus,
 		{
 			name: Icon.user_minus,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/userminus.svg',
-			default: userMinusSvg,
+
+			path: '../../assets/icon/userminus.svg',
+			svg: userMinusSvg,
 		},
 	],
 	[
 		Icon.user_plus,
 		{
 			name: Icon.user_plus,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/userplus.svg',
-			default: userPlusSvg,
+
+			path: '../../assets/icon/userplus.svg',
+			svg: userPlusSvg,
 		},
 	],
 	[
 		Icon.user,
 		{
 			name: Icon.user,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/user.svg',
-			default: userSvg,
+
+			path: '../../assets/icon/user.svg',
+			svg: userSvg,
 		},
 	],
 	[
 		Icon.users,
 		{
 			name: Icon.users,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/users.svg',
-			default: usersSvg,
+
+			path: '../../assets/icon/users.svg',
+			svg: usersSvg,
 		},
 	],
 	[
 		Icon.video_off,
 		{
 			name: Icon.video_off,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/videooff.svg',
-			default: videoOffSvg,
+
+			path: '../../assets/icon/videooff.svg',
+			svg: videoOffSvg,
 		},
 	],
 	[
 		Icon.video,
 		{
 			name: Icon.video,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/video.svg',
-			default: videoSvg,
+
+			path: '../../assets/icon/video.svg',
+			svg: videoSvg,
 		},
 	],
 	[
 		Icon.voicemail,
 		{
 			name: Icon.voicemail,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/voicemail.svg',
-			default: voicemailSvg,
+
+			path: '../../assets/icon/voicemail.svg',
+			svg: voicemailSvg,
 		},
 	],
 	[
 		Icon.volume_1,
 		{
 			name: Icon.volume_1,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/volume1.svg',
-			default: volume1Svg,
+
+			path: '../../assets/icon/volume1.svg',
+			svg: volume1Svg,
 		},
 	],
 	[
 		Icon.volume_2,
 		{
 			name: Icon.volume_2,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/volume2.svg',
-			default: volume2Svg,
+
+			path: '../../assets/icon/volume2.svg',
+			svg: volume2Svg,
 		},
 	],
 	[
 		Icon.volume_x,
 		{
 			name: Icon.volume_x,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/volumex.svg',
-			default: volumeXSvg,
+
+			path: '../../assets/icon/volumex.svg',
+			svg: volumeXSvg,
 		},
 	],
 	[
 		Icon.volume,
 		{
 			name: Icon.volume,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/volume.svg',
-			default: volumeSvg,
+
+			path: '../../assets/icon/volume.svg',
+			svg: volumeSvg,
 		},
 	],
 	[
 		Icon.watch,
 		{
 			name: Icon.watch,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/watch.svg',
-			default: watchSvg,
+
+			path: '../../assets/icon/watch.svg',
+			svg: watchSvg,
 		},
 	],
 	[
 		Icon.wifi_off,
 		{
 			name: Icon.wifi_off,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/wifioff.svg',
-			default: wifiOffSvg,
+
+			path: '../../assets/icon/wifioff.svg',
+			svg: wifiOffSvg,
 		},
 	],
 	[
 		Icon.wifi,
 		{
 			name: Icon.wifi,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/wifi.svg',
-			default: wifiSvg,
+
+			path: '../../assets/icon/wifi.svg',
+			svg: wifiSvg,
 		},
 	],
 	[
 		Icon.wind,
 		{
 			name: Icon.wind,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/wind.svg',
-			default: windSvg,
+
+			path: '../../assets/icon/wind.svg',
+			svg: windSvg,
 		},
 	],
 	[
 		Icon.x_circle,
 		{
 			name: Icon.x_circle,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/xcircle.svg',
-			default: xCircleSvg,
+
+			path: '../../assets/icon/xcircle.svg',
+			svg: xCircleSvg,
 		},
 	],
 	[
 		Icon.x_octagon,
 		{
 			name: Icon.x_octagon,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/xoctagon.svg',
-			default: xOctagonSvg,
+
+			path: '../../assets/icon/xoctagon.svg',
+			svg: xOctagonSvg,
 		},
 	],
 	[
 		Icon.x_square,
 		{
 			name: Icon.x_square,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/xsquare.svg',
-			default: xSquareSvg,
+
+			path: '../../assets/icon/xsquare.svg',
+			svg: xSquareSvg,
 		},
 	],
-	[
-		Icon.x,
-		{ name: Icon.x, size: DEFAULT_ICON_SIZE, svgPath: '../../assets/icon/x.svg', default: xSvg },
-	],
+	[Icon.x, { name: Icon.x, path: '../../assets/icon/x.svg', svg: xSvg }],
 	[
 		Icon.youtube,
 		{
 			name: Icon.youtube,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/youtube.svg',
-			default: youtubeSvg,
+
+			path: '../../assets/icon/youtube.svg',
+			svg: youtubeSvg,
 		},
 	],
 	[
 		Icon.zap_off,
 		{
 			name: Icon.zap_off,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/zapoff.svg',
-			default: zapOffSvg,
+
+			path: '../../assets/icon/zapoff.svg',
+			svg: zapOffSvg,
 		},
 	],
 	[
 		Icon.zap,
 		{
 			name: Icon.zap,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/zap.svg',
-			default: zapSvg,
+
+			path: '../../assets/icon/zap.svg',
+			svg: zapSvg,
 		},
 	],
 	[
 		Icon.zoom_in,
 		{
 			name: Icon.zoom_in,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/zoomin.svg',
-			default: zoomInSvg,
+
+			path: '../../assets/icon/zoomin.svg',
+			svg: zoomInSvg,
 		},
 	],
 	[
 		Icon.zoom_out,
 		{
 			name: Icon.zoom_out,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '../../assets/icon/zoomout.svg',
-			default: zoomOutSvg,
+
+			path: '../../assets/icon/zoomout.svg',
+			svg: zoomOutSvg,
 		},
 	],
 	[
 		Icon.none,
 		{
 			name: Icon.none,
-			size: DEFAULT_ICON_SIZE,
-			svgPath: '',
-			default: '',
+
+			path: '',
+			svg: '',
 		},
 	],
 ]);
