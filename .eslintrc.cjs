@@ -1,5 +1,5 @@
 /* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
+require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
 	root: true,
@@ -21,6 +21,7 @@ module.exports = {
 		project: './tsconfig.json',
 		parser: '@typescript-eslint/parser',
 	},
+	plugins: ['prettier'],
 	rules: {
 		'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -44,4 +45,4 @@ module.exports = {
 		'node_modules/*',
 		'docs/*',
 	],
-}
+};

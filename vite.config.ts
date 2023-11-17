@@ -1,7 +1,7 @@
-import vue from '@vitejs/plugin-vue'
-import { fileURLToPath, URL } from 'node:url'
-import dts from 'vite-plugin-dts'
-import { defineConfig, type UserConfig } from 'vitest/config'
+import vue from '@vitejs/plugin-vue';
+import { fileURLToPath, URL } from 'node:url';
+import dts from 'vite-plugin-dts';
+import { defineConfig, type UserConfig } from 'vitest/config';
 
 /** https://vitejs.dev/config/ */
 const bambooLibConfig: UserConfig = defineConfig({
@@ -18,8 +18,8 @@ const bambooLibConfig: UserConfig = defineConfig({
 				'src/styles/animation.ts',
 			],
 			fileName: (format, entry) => {
-				if (entry === 'main') return `index.${format}.js`
-				return `${entry}.${format}.js`
+				if (entry === 'main') return `index.${format}.js`;
+				return `${entry}.${format}.js`;
 			},
 		},
 		rollupOptions: {
@@ -44,6 +44,6 @@ const bambooLibConfig: UserConfig = defineConfig({
 			'@utils': fileURLToPath(new URL('./utils', import.meta.url)),
 		},
 	},
-})
+});
 
-export default bambooLibConfig
+export default bambooLibConfig;

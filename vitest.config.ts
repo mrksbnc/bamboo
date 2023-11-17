@@ -1,5 +1,5 @@
-import { configDefaults, defineConfig, mergeConfig } from 'vitest/config'
-import viteConfig from './vite.config'
+import { configDefaults, defineConfig, mergeConfig } from 'vitest/config';
+import viteConfig from './vite.config';
 
 const bambooTestConfig = mergeConfig(
 	viteConfig,
@@ -12,6 +12,6 @@ const bambooTestConfig = mergeConfig(
 			exclude: [...configDefaults.exclude],
 		},
 	}),
-)
+);
 
-export default bambooTestConfig
+export default bambooTestConfig;

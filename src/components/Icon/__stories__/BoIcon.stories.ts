@@ -1,6 +1,6 @@
-import { BoIcon, Icon, IconSize } from '@/components/Icon'
-import type { Meta, StoryObj } from '@storybook/vue3'
-import { stringEnumFormatter } from '@utils/index'
+import { BoIcon, Icon, IconSize } from '@/components/Icon';
+import type { Meta, StoryObj } from '@storybook/vue3';
+import { stringEnumFormatter } from '@utils/index';
 
 const meta = {
 	title: 'Icon/bo-icon',
@@ -32,7 +32,7 @@ const meta = {
 					detail: stringEnumFormatter(IconSize, 'IconSize'),
 				},
 				defaultValue: {
-					summary: IconSize.M,
+					summary: IconSize.MD,
 				},
 			},
 			control: {
@@ -55,15 +55,15 @@ const meta = {
 			control: { type: 'color' },
 		},
 	},
-} satisfies Meta<typeof BoIcon>
+} satisfies Meta<typeof BoIcon>;
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Example: Story = {
 	args: {
 		name: Icon.activity,
-		size: IconSize.M,
+		size: IconSize.MD,
 	},
-}
+};

@@ -9,5 +9,5 @@ export const stringEnumFormatter = (
 					`  ${m} = "${stringEnum[m as keyof typeof stringEnum]}",`,
 			)
 			.join('\r\n') + '\r\n}'
-	}`
-}
+	}`;
+};
