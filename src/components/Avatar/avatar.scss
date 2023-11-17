@@ -11,7 +11,7 @@
 		justify-content: center;
 
 		&.square {
-			border-radius: 8px;
+			border-radius: 25%;
 		}
 
 		&.rounded {
@@ -61,13 +61,13 @@
 		border: 2px solid white;
 
 		&.bottom {
-			right: 1%;
-			bottom: 1%;
+			bottom: 0;
+			right: 0;
 		}
 
 		&.top {
-			top: 1%;
-			right: 1%;
+			top: 0;
+			right: 0;
 		}
 	}
 }
