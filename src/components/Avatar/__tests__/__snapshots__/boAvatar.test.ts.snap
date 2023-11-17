@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BoIcon > renders properly 1`] = `
+"<div data-v-7fcf0457=\\"\\" class=\\"bo-avatar__container\\"><img data-v-7fcf0457=\\"\\" alt=\\"Avatar\\" src=\\"/src/assets/img/avatar.png\\" class=\\"bo-avatar image rounded md\\">
+  <!--v-if-->
+  <!--v-if-->
+</div>"
+`;

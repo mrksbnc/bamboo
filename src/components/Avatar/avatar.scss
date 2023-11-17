@@ -1,0 +1,73 @@
+@import '@/styles/colors';
+
+.bo-avatar__container {
+	position: relative;
+	display: inline-block;
+
+	.bo-avatar {
+		display: flex;
+		align-items: center;
+		vertical-align: middle;
+		justify-content: center;
+
+		&.square {
+			border-radius: 8px;
+		}
+
+		&.rounded {
+			border-radius: 50%;
+		}
+
+		&.image {
+			object-fit: cover;
+			background-color: transparent;
+		}
+
+		&.initial {
+			object-fit: cover;
+		}
+
+		&.xs {
+			width: 36px;
+			height: 36px;
+		}
+
+		&.sm {
+			width: 40px;
+			height: 40px;
+		}
+
+		&.md {
+			width: 44px;
+			height: 44px;
+		}
+
+		&.lg {
+			width: 48px;
+			height: 48px;
+		}
+
+		&.xl {
+			width: 52px;
+			height: 52px;
+		}
+	}
+
+	.indicator {
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		border-radius: 100%;
+		border: 2px solid white;
+
+		&.bottom {
+			right: 1%;
+			bottom: 1%;
+		}
+
+		&.top {
+			top: 1%;
+			right: 1%;
+		}
+	}
+}
