@@ -1,7 +1,7 @@
-import './storybook.scss';
 import '@/styles/index.scss';
 import { themes } from '@storybook/theming';
 import type { Preview } from '@storybook/vue3';
+import './storybook.scss';
 
 const bambooPreview: Preview = {
 	parameters: {
@@ -14,9 +14,6 @@ const bambooPreview: Preview = {
 		},
 		docs: {
 			toc: true,
-			story: {
-				// height: '400px',
-			},
 		},
 		darkMode: {
 			stylePreview: true,
