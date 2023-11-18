@@ -1,1 +1,1 @@
-export type { OptionalCss } from './css';
+export type { CssStyle, OptionalCss } from './css';

@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import type { OptionalCss } from '@/types';
+import type { CssStyle, OptionalCss } from '@/types';
 import type { Icon } from '@/components/Icon';
 import { iconMap, IconSize } from '@/components/Icon';
 import {
@@ -39,10 +39,10 @@ const props = defineProps({
 const { name, size, color } = toRefs(props);
 
 const index = ref<number>(0);
-const id = ref<string>(`bo-icon-${index.value + 1}`);
 const icon = ref<{ default: string } | null>(null);
+const id = ref<string>(`bo-icon-${index.value + 1}`);
 
-const style = computed<Record<string, string>>(() => {
+const style = computed<CssStyle>(() => {
 	const i = iconMap.get(name.value) ?? null;
 	const defaultColor = 'var(--icon-color)';
 
@@ -83,11 +83,11 @@ const boIconClass = computed<OptionalCss>(() => {
 	return classes;
 });
 
-onBeforeMount(() => {
+onBeforeMount((): void => {
 	icon.value = iconMap.get(name.value) ?? null;
 });
 
-onUpdated(() => {
+onUpdated((): void => {
 	icon.value = iconMap.get(name.value) ?? null;
 });
 </script>
