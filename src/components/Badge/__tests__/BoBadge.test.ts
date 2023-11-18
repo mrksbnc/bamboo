@@ -1,4 +1,5 @@
 import {
+	BadgeForm,
 	BadgeSize,
 	BadgeType,
 	BadgeVariant,
@@ -54,5 +55,15 @@ describe('BoIcon', () => {
 			},
 		});
 		expect(wrapper.classes()).toContain('filled');
+	});
+
+	it('renders with correct form', () => {
+		const wrapper = mount(BoBadge, {
+			props: {
+				label: 'test',
+				form: BadgeForm.Pill,
+			},
+		});
+		expect(wrapper.classes()).toContain('pill');
 	});
 });
