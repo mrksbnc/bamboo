@@ -1,0 +1,150 @@
+.bo-badge {
+	font-weight: 600;
+	align-items: center;
+	display: inline-flex;
+	justify-content: center;
+
+	&.default {
+		&.filled {
+			color: var(--white);
+			background-color: var(--black);
+		}
+
+		&.outline {
+			color: var(--black);
+			background-color: transparent;
+			border: 1px solid var(--black);
+		}
+	}
+
+	&.info {
+		&.filled {
+			color: var(--white);
+			background-color: var(--blue-600);
+		}
+
+		&.outline {
+			color: var(--blue-600);
+			background-color: transparent;
+			border: 1px solid var(--blue-600);
+		}
+	}
+
+	&.tertiary {
+		&.filled {
+			color: var(--white);
+			background-color: var(--gray-600);
+		}
+
+		&.outline {
+			color: var(--gray-600);
+			background-color: transparent;
+			border: 1px solid var(--gray-600);
+		}
+	}
+
+	&.success {
+		&.filled {
+			color: var(--white);
+			background-color: var(--green-600);
+		}
+
+		&.outline {
+			color: var(--green-600);
+			background-color: transparent;
+			border: 1px solid var(--green-600);
+		}
+	}
+
+	&.warning {
+		&.filled {
+			color: var(--white);
+			background-color: var(--yellow-500);
+		}
+
+		&.outline {
+			color: var(--yellow-500);
+			background-color: transparent;
+			border: 1px solid var(--yellow-500);
+		}
+	}
+
+	&.danger {
+		&.filled {
+			color: var(--white);
+			background-color: var(--red-600);
+		}
+
+		&.outline {
+			color: var(--red-600);
+			background-color: transparent;
+			border: 1px solid var(--red-600);
+		}
+	}
+
+	&.square {
+		border-radius: 0;
+		padding: 5px 12px;
+		max-width: fit-content;
+	}
+
+	&.pill {
+		padding: 4px 12px;
+		border-radius: 16px;
+		max-width: fit-content;
+	}
+
+	&.circle {
+		padding: 5px;
+		border-radius: 50%;
+
+		&.xs {
+			width: 8px;
+		}
+
+		&.sm {
+			width: 12px;
+		}
+
+		&.md {
+			width: 16px;
+		}
+
+		&.lg {
+			width: 20px;
+		}
+
+		&.xl {
+			width: 24px;
+		}
+	}
+
+	&.xs {
+		height: 6px;
+		font-size: x-small;
+	}
+
+	&.sm {
+		height: 8px;
+		font-size: small;
+	}
+
+	&.md {
+		height: 12px;
+		font-size: medium;
+	}
+
+	&.lg {
+		height: 16px;
+		font-size: large;
+	}
+
+	&.xl {
+		height: 20px;
+		font-size: larger;
+	}
+
+	&.label {
+		text-overflow: clip;
+	}
+}
