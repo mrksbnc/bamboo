@@ -110,7 +110,7 @@ export const Example: Story = {
 	},
 };
 
-export const Types: Story = {
+export const Filled: Story = {
 	args: {},
 	render: () => ({
 		components: { BoBadge },
@@ -122,6 +122,23 @@ export const Types: Story = {
 			<BoBadge variant="success" size="sm" label="Label" />
 			<BoBadge variant="danger" size="sm" label="Label" />
 			<BoBadge variant="warning" size="sm" label="Label" />
+		</div>
+	`,
+	}),
+};
+
+export const Outline: Story = {
+	args: {},
+	render: () => ({
+		components: { BoBadge },
+		template: `
+		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+			<BoBadge variant="default" size="sm" label="Label" type="outline"/>
+			<BoBadge variant="info" size="sm" label="Label" type="outline"/>
+			<BoBadge variant="tertiary" size="sm" label="Label" type="outline"/>
+			<BoBadge variant="success" size="sm" label="Label" type="outline"/>
+			<BoBadge variant="danger" size="sm" label="Label" type="outline"/>
+			<BoBadge variant="warning" size="sm" label="Label" type="outline"/>
 		</div>
 	`,
 	}),
