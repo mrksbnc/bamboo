@@ -18,6 +18,10 @@
 			border-radius: 50%;
 		}
 
+		&.flat {
+			border-radius: 0px;
+		}
+
 		&.image {
 			object-fit: cover;
 			background-color: transparent;

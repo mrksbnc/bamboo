@@ -6,6 +6,7 @@ export enum AvatarType {
 export enum AvatarVariant {
 	Rounded = 'rounded',
 	Square = 'square',
+	Flat = 'flat',
 }
 
 export enum AvatarSize {

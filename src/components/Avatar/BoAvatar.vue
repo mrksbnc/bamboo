@@ -31,7 +31,7 @@ import {
 	AvatarIndicatorPosition,
 	type AvatarIndicatorProps,
 } from '@/components/Avatar';
-import type { OptionalCss } from '@/types';
+import type { CssStyle, OptionalCss } from '@/types';
 import type { AvatarInitialProps } from './types';
 
 const props = defineProps({
@@ -118,13 +118,13 @@ const showIndicator = computed<boolean>(() => {
 	return indicatorProps.value != null;
 });
 
-const indicatorStyle = computed<Record<string, string>>(() => {
+const indicatorStyle = computed<CssStyle>(() => {
 	return {
 		background: indicatorProps.value?.color ?? 'var(--black)',
 	};
 });
 
-const initialStyle = computed<Record<string, string>>(() => {
+const initialStyle = computed<CssStyle>(() => {
 	return {
 		'background-color':
 			initialProps.value?.backgroundColor ?? 'var(--gray-300)',
