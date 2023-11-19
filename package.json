@@ -36,24 +36,24 @@
 			"require": "./dist/index.cjs.js"
 		},
 		"./index.css": {
-			"import": "./dist/styles/index.css",
-			"require": "./dist/styles/index.css"
+			"import": "./dist/index.css",
+			"require": "./dist/index.css"
 		},
 		"./colors.css": {
-			"import": "./dist/styles/colors.css",
-			"require": "./dist/styles/colors.css"
+			"import": "./dist/colors.css",
+			"require": "./dist/colors.css"
 		},
 		"./animation.css": {
-			"import": "./dist/styles/animation.css",
-			"require": "./dist/styles/animation.css"
+			"import": "./dist/animation.css",
+			"require": "./dist/animation.css"
 		},
 		"./inter.css": {
-			"import": "./dist/styles/inter.css",
-			"require": "./dist/styles/inter.css"
+			"import": "./dist/inter.css",
+			"require": "./dist/inter.css"
 		},
 		"./assistant.css": {
-			"import": "./dist/styles/assistant.css",
-			"require": "./dist/styles/assistant.css"
+			"import": "./dist/assistant.css",
+			"require": "./dist/assistant.css"
 		}
 	},
 	"dependencies": {
