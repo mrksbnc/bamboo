@@ -6,5 +6,6 @@ export default create({
 	fontCode: 'monospace',
 	brandTitle: 'Bamboo Design System',
 	fontBase: '"Open Sans", sans-serif',
-	brandUrl: 'https://www.mrksbnc.github.io/bamboo/',
+	brandUrl:
+		'https://mrksbnc.github.io/bamboo/?path=/docs/docs-changelog--documentation',
 });
