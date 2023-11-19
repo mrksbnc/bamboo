@@ -10,7 +10,7 @@
 		"test": "vitest --run --update",
 		"build-only": "vite build",
 		"type-check": "vue-tsc --noEmit",
-		"lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+		"lint": "eslint . --ext .vue,.js,.cjs,.mjs,.ts --fix --ignore-path .gitignore",
 		"format": "prettier --write src/",
 		"patch": "npm version --no-git-tag-version patch",
 		"minor": "npm version --no-git-tag-version minor",
@@ -35,25 +35,25 @@
 			"import": "./dist/index.es.js",
 			"require": "./dist/index.cjs.js"
 		},
-		"./main.css": {
-			"import": "./dist/main.css",
-			"require": "./dist/main.css"
+		"./index.css": {
+			"import": "./dist/styles/index.css",
+			"require": "./dist/styles/index.css"
 		},
 		"./colors.css": {
-			"import": "./dist/colors.css",
-			"require": "./dist/colors.css"
+			"import": "./dist/styles/colors.css",
+			"require": "./dist/styles/colors.css"
 		},
 		"./animation.css": {
-			"import": "./dist/animation.css",
-			"require": "./dist/animation.css"
+			"import": "./dist/styles/animation.css",
+			"require": "./dist/styles/animation.css"
 		},
 		"./inter.css": {
-			"import": "./dist/inter.css",
-			"require": "./dist/inter.css"
+			"import": "./dist/styles/inter.css",
+			"require": "./dist/styles/inter.css"
 		},
 		"./assistant.css": {
-			"import": "./dist/assistant.css",
-			"require": "./dist/assistant.css"
+			"import": "./dist/styles/assistant.css",
+			"require": "./dist/styles/assistant.css"
 		}
 	},
 	"dependencies": {

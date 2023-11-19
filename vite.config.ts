@@ -2,11 +2,13 @@ import vue from '@vitejs/plugin-vue';
 import { fileURLToPath, URL } from 'node:url';
 import dts from 'vite-plugin-dts';
 import { defineConfig, type UserConfig } from 'vitest/config';
+import { version } from './package.json';
 
 /** https://vitejs.dev/config/ */
 const bambooLibConfig: UserConfig = defineConfig({
 	plugins: [vue(), dts()],
 	build: {
+		sourcemap: true,
 		minify: true,
 		cssCodeSplit: true,
 		lib: {
@@ -25,11 +27,24 @@ const bambooLibConfig: UserConfig = defineConfig({
 			},
 		},
 		rollupOptions: {
-			treeshake: true,
+			treeshake: {
+				preset: 'recommended',
+			},
 			external: ['vue'],
 			output: {
+				assetFileNames: (assetInfo) => {
+					if (assetInfo?.name?.endsWith('.css')) {
+						if (assetInfo.name === 'main.css') {
+							return 'styles/index.css';
+						} else {
+							return `styles/${assetInfo.name}`;
+						}
+					}
+					return `assets/${assetInfo.name}`;
+				},
 				exports: 'named',
 				globals: { vue: 'Vue' },
+				banner: '/* bamboo version ' + version + ' */',
 			},
 			input: {
 				main: fileURLToPath(new URL('./src/index.ts', import.meta.url)),

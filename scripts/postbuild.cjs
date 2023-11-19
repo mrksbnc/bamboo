@@ -15,13 +15,21 @@ const WORKING_DIRECTORY = path.join(__dirname, '../dist');
 
 const files_to_remove_on_root = [
 	'inter.es.js',
+	'inter.es.js.map',
 	'inter.cjs.js',
+	'inter.cjs.js.map',
 	'colors.es.js',
+	'colors.es.js.map',
 	'colors.cjs.js',
+	'colors.cjs.js.map',
 	'animation.es.js',
+	'animation.es.js.map',
 	'animation.cjs.js',
+	'animation.cjs.js.map',
 	'assistant.es.js',
+	'assistant.es.js.map',
 	'assistant.cjs.js',
+	'assistant.cjs.js.map',
 	'vite.config.d.ts',
 	'vitest.config.d.ts',
 ];
