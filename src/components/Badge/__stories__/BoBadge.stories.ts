@@ -170,13 +170,34 @@ export const Filled: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-			<BoBadge variant="default" size="sm" label="Label" />
-			<BoBadge variant="info" size="sm" label="Label" />
-			<BoBadge variant="tertiary" size="sm" label="Label" />
-			<BoBadge variant="success" size="sm" label="Label" />
-			<BoBadge variant="danger" size="sm" label="Label" />
-			<BoBadge variant="warning" size="sm" label="Label" />
+		<div style="display: flex; flex-direction: column; gap: 20px;">
+			Pill
+			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+				<BoBadge variant="default" size="sm" label="Label" type="filled"/>
+				<BoBadge variant="info" size="sm" label="Label" type="filled"/>
+				<BoBadge variant="tertiary" size="sm" label="Label" type="filled"/>
+				<BoBadge variant="success" size="sm" label="Label" type="filled"/>
+				<BoBadge variant="danger" size="sm" label="Label" type="filled"/>
+				<BoBadge variant="warning" size="sm" label="Label" type="filled"/>
+			</div>
+			Circle
+			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+				<BoBadge variant="default" size="sm" label="1" type="filled" form="circle"/>
+				<BoBadge variant="info" size="sm" label="2" type="filled" form="circle" />
+				<BoBadge variant="tertiary" size="sm" label="3" type="filled" form="circle"/>
+				<BoBadge variant="success" size="sm" label="4" type="filled" form="circle"/>
+				<BoBadge variant="danger" size="sm" label="5" type="filled" form="circle"/>
+				<BoBadge variant="warning" size="sm" label="6" type="filled" form="circle"/>
+			</div>
+			Square	
+			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+				<BoBadge variant="default" size="sm" label="1" type="filled" form="square"/>
+				<BoBadge variant="info" size="sm" label="2" type="filled" form="square" />
+				<BoBadge variant="tertiary" size="sm" label="3" type="filled" form="square"/>
+				<BoBadge variant="success" size="sm" label="4" type="filled" form="square"/>
+				<BoBadge variant="danger" size="sm" label="5" type="filled" form="square"/>
+				<BoBadge variant="warning" size="sm" label="6" type="filled" form="square"/>
+			</div>
 		</div>
 	`,
 	}),
@@ -187,13 +208,34 @@ export const Outline: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-			<BoBadge variant="default" size="sm" label="Label" type="outline"/>
-			<BoBadge variant="info" size="sm" label="Label" type="outline"/>
-			<BoBadge variant="tertiary" size="sm" label="Label" type="outline"/>
-			<BoBadge variant="success" size="sm" label="Label" type="outline"/>
-			<BoBadge variant="danger" size="sm" label="Label" type="outline"/>
-			<BoBadge variant="warning" size="sm" label="Label" type="outline"/>
+		<div style="display: flex; flex-direction: column; gap: 20px;">
+			Pill
+			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+				<BoBadge variant="default" size="sm" label="Label" type="outline"/>
+				<BoBadge variant="info" size="sm" label="Label" type="outline"/>
+				<BoBadge variant="tertiary" size="sm" label="Label" type="outline"/>
+				<BoBadge variant="success" size="sm" label="Label" type="outline"/>
+				<BoBadge variant="danger" size="sm" label="Label" type="outline"/>
+				<BoBadge variant="warning" size="sm" label="Label" type="outline"/>
+			</div>
+			Circle
+			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+				<BoBadge variant="default" size="sm" label="1" type="outline" form="circle"/>
+				<BoBadge variant="info" size="sm" label="2" type="outline" form="circle" />
+				<BoBadge variant="tertiary" size="sm" label="3" type="outline" form="circle"/>
+				<BoBadge variant="success" size="sm" label="4" type="outline" form="circle"/>
+				<BoBadge variant="danger" size="sm" label="5" type="outline" form="circle"/>
+				<BoBadge variant="warning" size="sm" label="6" type="outline" form="circle"/>
+			</div>
+			Square
+			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+				<BoBadge variant="default" size="sm" label="1" type="outline" form="square"/>
+				<BoBadge variant="info" size="sm" label="2" type="outline" form="square" />
+				<BoBadge variant="tertiary" size="sm" label="3" type="outline" form="square"/>
+				<BoBadge variant="success" size="sm" label="4" type="outline" form="square"/>
+				<BoBadge variant="danger" size="sm" label="5" type="outline" form="square"/>
+				<BoBadge variant="warning" size="sm" label="6" type="outline" form="square"/>
+			</div>
 		</div>
 	`,
 	}),
@@ -204,13 +246,32 @@ export const Sizes: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+		<div style="display: flex; flex-direction: column; gap: 20px;">
+			Pill
+			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
 			<BoBadge variant="default" size="xs" label="Label" />
 			<BoBadge variant="default" size="sm" label="Label" />
 			<BoBadge variant="default" size="md" label="Label" />
 			<BoBadge variant="default" size="lg" label="Label" />
 			<BoBadge variant="default" size="xl" label="Label" />
 		</div>
+		Circle
+		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+			<BoBadge variant="default" form="circle" size="xs" label="1" />
+			<BoBadge variant="default" form="circle" size="sm" label="2" />
+			<BoBadge variant="default" form="circle" size="md" label="3" />
+			<BoBadge variant="default" form="circle" size="lg" label="4" />
+			<BoBadge variant="default" form="circle" size="xl" label="5" />
+		</div>
+		Square
+		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+			<BoBadge variant="default" form="square" size="xs" label="1" />
+			<BoBadge variant="default" form="square" size="sm" label="2" />
+			<BoBadge variant="default" form="square" size="md" label="3" />
+			<BoBadge variant="default" form="square" size="lg" label="4" />
+			<BoBadge variant="default" form="square" size="xl" label="5" />
+		</div>
+	</div>
 	`,
 	}),
 };
