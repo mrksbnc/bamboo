@@ -36,8 +36,8 @@
 			"require": "./dist/index.cjs.js"
 		},
 		"./index.css": {
-			"import": "./dist/index.css",
-			"require": "./dist/index.css"
+			"import": "./dist/main.css",
+			"require": "./dist/main.css"
 		},
 		"./colors.css": {
 			"import": "./dist/colors.css",

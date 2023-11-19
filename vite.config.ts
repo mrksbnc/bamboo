@@ -2,7 +2,6 @@ import vue from '@vitejs/plugin-vue';
 import { fileURLToPath, URL } from 'node:url';
 import dts from 'vite-plugin-dts';
 import { defineConfig, type UserConfig } from 'vitest/config';
-import { version } from './package.json';
 
 /** https://vitejs.dev/config/ */
 const bambooLibConfig: UserConfig = defineConfig({
@@ -32,19 +31,8 @@ const bambooLibConfig: UserConfig = defineConfig({
 			},
 			external: ['vue'],
 			output: {
-				assetFileNames: (assetInfo) => {
-					if (assetInfo?.name?.endsWith('.css')) {
-						if (assetInfo.name === 'main.css') {
-							return 'index.css';
-						} else {
-							return `${assetInfo.name}`;
-						}
-					}
-					return `${assetInfo.name}`;
-				},
 				exports: 'named',
 				globals: { vue: 'Vue' },
-				banner: '/* bamboo version ' + version + ' */',
 			},
 			input: {
 				main: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
