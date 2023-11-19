@@ -92,5 +92,5 @@ onUpdated((): void => {
 </script>
 
 <style scoped lang="scss">
-@import url('./icon.scss');
+@import './icon.scss';
 </style>

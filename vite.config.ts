@@ -35,12 +35,12 @@ const bambooLibConfig: UserConfig = defineConfig({
 				assetFileNames: (assetInfo) => {
 					if (assetInfo?.name?.endsWith('.css')) {
 						if (assetInfo.name === 'main.css') {
-							return 'styles/index.css';
+							return 'index.css';
 						} else {
-							return `styles/${assetInfo.name}`;
+							return `${assetInfo.name}`;
 						}
 					}
-					return `assets/${assetInfo.name}`;
+					return `${assetInfo.name}`;
 				},
 				exports: 'named',
 				globals: { vue: 'Vue' },
