@@ -7,7 +7,6 @@ import { defineConfig, type UserConfig } from 'vitest/config';
 const bambooLibConfig: UserConfig = defineConfig({
 	plugins: [vue(), dts()],
 	build: {
-		sourcemap: true,
 		minify: true,
 		cssCodeSplit: true,
 		lib: {
@@ -26,9 +25,7 @@ const bambooLibConfig: UserConfig = defineConfig({
 			},
 		},
 		rollupOptions: {
-			treeshake: {
-				preset: 'recommended',
-			},
+			treeshake: true,
 			external: ['vue'],
 			output: {
 				exports: 'named',
