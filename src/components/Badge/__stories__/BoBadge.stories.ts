@@ -1,6 +1,13 @@
+import {
+	BadgeForm,
+	BadgeSize,
+	BadgeType,
+	BadgeVariant,
+	BoBadge,
+} from '@/components/Badge';
+import { BoIcon } from '@/components/Icon';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { stringEnumFormatter } from '@utils/storybook';
-import { BadgeForm, BadgeSize, BadgeType, BadgeVariant, BoBadge } from '..';
 
 const meta = {
 	title: 'Badge/bo-badge',
@@ -95,6 +102,54 @@ const meta = {
 				type: 'text',
 			},
 		},
+		prefix: {
+			description: 'The prefix slot of the badge',
+			table: {
+				category: 'slots',
+				subcategory: 'optional',
+				type: {
+					summary: 'string',
+				},
+				defaultValue: {
+					summary: undefined,
+				},
+			},
+			control: {
+				type: 'text',
+			},
+		},
+		body: {
+			description: 'The body slot of the badge',
+			table: {
+				category: 'slots',
+				subcategory: 'optional',
+				type: {
+					summary: 'string',
+				},
+				defaultValue: {
+					summary: undefined,
+				},
+			},
+			control: {
+				type: 'text',
+			},
+		},
+		suffix: {
+			description: 'The suffix slot of the badge',
+			table: {
+				category: 'slots',
+				subcategory: 'optional',
+				type: {
+					summary: 'string',
+				},
+				defaultValue: {
+					summary: undefined,
+				},
+			},
+			control: {
+				type: 'text',
+			},
+		},
 	},
 } satisfies Meta<typeof BoBadge>;
 
@@ -155,7 +210,60 @@ export const Sizes: Story = {
 			<BoBadge variant="default" size="md" label="Label" />
 			<BoBadge variant="default" size="lg" label="Label" />
 			<BoBadge variant="default" size="xl" label="Label" />
-			
+		</div>
+	`,
+	}),
+};
+
+export const Prefix: Story = {
+	args: {},
+	render: () => ({
+		components: { BoBadge, BoIcon },
+		template: `
+		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+			<BoBadge variant="default" size="md" label="Label">
+				<template #prefix>
+					<span style="margin-right: 5px; display: flex; align-items: center;">
+						<BoIcon name="alert-circle" color="white" size="xs"  />
+					</span>
+				</template>
+			</BoBadge>
+		</div>
+	`,
+	}),
+};
+
+export const Body: Story = {
+	args: {},
+	render: () => ({
+		components: { BoBadge, BoIcon },
+		template: `
+		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+			<BoBadge variant="default" size="md" label="Label">
+				<template #body>
+					<span style="display: flex; align-items: center;">
+						<BoIcon name="alert-circle" color="white" size="xs"  />
+					</span>
+				</template>
+			</BoBadge>
+		</div>
+	`,
+	}),
+};
+
+export const Suffix: Story = {
+	args: {},
+	render: () => ({
+		components: { BoBadge, BoIcon },
+		template: `
+		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+			<BoBadge variant="default" size="md" label="Label">
+				<template #suffix>
+					<span style="margin-left: 5px; display: flex; align-items: center;">
+						<BoIcon name="alert-circle" color="white" size="xs"  />
+					</span>
+				</template>
+			</BoBadge>
 		</div>
 	`,
 	}),
