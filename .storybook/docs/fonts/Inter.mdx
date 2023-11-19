@@ -1,0 +1,122 @@
+import { Meta, Typeset } from '@storybook/blocks';
+
+<Meta title="Typeset/Inter" />
+
+export const typography = {
+	type: {
+		primary: '"Inter" , sans-serif',
+	},
+	weight: {
+		'font-light': 300,
+		'font-regular': 400,
+		'font-medium': 500,
+		'font-semibold': 600,
+		'font-bold': 700,
+		'font-extrabold': 800,
+	},
+	size: {
+		'font-xxs': 8,
+		'font-xs': 10,
+		'font-sm': 12,
+		'font-md': 14,
+		'font-lg': 16,
+		'font-xl': 18,
+		'font-xxl': 20,
+	},
+};
+
+export const SampleText =
+	'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+
+# Typography
+
+**Font:** Inter
+
+**Font sizes:** 8(font-xxs), 10(font-xs), 12(font-sm), 14(font-md), 16(font-lg), 18(font-xl), 20(font-xxl)
+
+**Font weights:** 300(font-light), 400(font-regular), 500(font-medium), 600(font-semibold), 700(font-bold), 800(font-extrabold)
+
+### Light
+
+<Typeset
+	fontSizes={[
+		Number(typography.size['font-xxs']),
+		Number(typography.size['font-xs']),
+		Number(typography.size['font-sm']),
+		Number(typography.size['font-md']),
+		Number(typography.size['font-lg']),
+		Number(typography.size['font-xl']),
+		Number(typography.size['font-xxl']),
+	]}
+	fontWeight={typography.weight['font-light']}
+	sampleText={SampleText}
+	fontFamily={typography.type.primary}
+/>
+
+### Regular
+
+<Typeset
+	fontSizes={[
+		Number(typography.size['font-xxs']),
+		Number(typography.size['font-xs']),
+		Number(typography.size['font-sm']),
+		Number(typography.size['font-md']),
+		Number(typography.size['font-lg']),
+		Number(typography.size['font-xl']),
+		Number(typography.size['font-xxl']),
+	]}
+	fontWeight={typography.weight['font-regular']}
+	sampleText={SampleText}
+	fontFamily={typography.type.primary}
+/>
+
+### Medium
+
+<Typeset
+	fontSizes={[
+		Number(typography.size['font-xxs']),
+		Number(typography.size['font-xs']),
+		Number(typography.size['font-sm']),
+		Number(typography.size['font-md']),
+		Number(typography.size['font-lg']),
+		Number(typography.size['font-xl']),
+		Number(typography.size['font-xxl']),
+	]}
+	fontWeight={typography.weight['font-medium']}
+	sampleText={SampleText}
+	fontFamily={typography.type.primary}
+/>
+
+### SemiBold
+
+<Typeset
+	fontSizes={[
+		Number(typography.size['font-xxs']),
+		Number(typography.size['font-xs']),
+		Number(typography.size['font-sm']),
+		Number(typography.size['font-md']),
+		Number(typography.size['font-lg']),
+		Number(typography.size['font-xl']),
+		Number(typography.size['font-xxl']),
+	]}
+	fontWeight={typography.weight['font-semibold']}
+	sampleText={SampleText}
+	fontFamily={typography.type.primary}
+/>
+
+### Bold
+
+<Typeset
+	fontSizes={[
+		Number(typography.size['font-xxs']),
+		Number(typography.size['font-xs']),
+		Number(typography.size['font-sm']),
+		Number(typography.size['font-md']),
+		Number(typography.size['font-lg']),
+		Number(typography.size['font-xl']),
+		Number(typography.size['font-xxl']),
+	]}
+	fontWeight={typography.weight['font-bold']}
+	sampleText={SampleText}
+	fontFamily={typography.type.primary}
+/>
