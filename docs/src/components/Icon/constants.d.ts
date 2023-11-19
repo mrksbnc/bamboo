@@ -288,9 +288,9 @@ export declare const iconMap: Map<Icon, {
 export declare enum IconSize {
     XXS = "xxs",
     XS = "xs",
-    S = "s",
-    M = "m",
-    L = "l",
+    SM = "sm",
+    MD = "md",
+    LG = "lg",
     XL = "xl",
     XXL = "xxl"
 }
