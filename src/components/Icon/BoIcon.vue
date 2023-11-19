@@ -10,8 +10,7 @@
 
 <script setup lang="ts">
 import type { CssStyle, OptionalCss } from '@/types';
-import type { Icon } from '@/components/Icon';
-import { iconMap, IconSize } from '@/components/Icon';
+import { iconMap, IconSize, type Icon } from '@/components/Icon';
 import {
 	type PropType,
 	toRefs,
