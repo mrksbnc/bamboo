@@ -45,7 +45,7 @@ const utils_path = path.join(WORKING_DIRECTORY, 'utils');
 // Remove directories on roo
 if (fs.existsSync(utils_path)) {
 	process.stdout.write(
-		'\x1b[35m$ Removing directory: ' + utils_path + '\x1b[0m\n',
+		'\x1b[31m$ Deleting directory:\x1b[0m \x1b[41m' + utils_path + '\x1b[0m\n',
 	);
 	execSync(`rm -rf ${utils_path}`);
 }
