@@ -2,7 +2,7 @@
 
 Lightweight and flexible (hence the name) UI Library built with [Vite](https://vitejs.dev/) and [Vue 3](https://vuejs.org/). The documentation is created with [Storybook](https://storybook.js.org/).
 
-![Version](https://img.shields.io/github/package-json/v/mrksbnc/bamboo)
+[![npm version](https://badge.fury.io/js/@mrksbnc%2Fbamboo.svg)](https://badge.fury.io/js/@mrksbnc%2Fbamboo)
 
 ### Project setup
 
