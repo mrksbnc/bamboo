@@ -1,5 +1,12 @@
+@import '@/styles/typography.scss';
+
 .bo-badge {
-	font-weight: 600;
+	@extend .font-medium;
+
+	cursor: default;
+	user-select: none;
+	line-height: 1rem;
+	font-size: 0.75rem;
 	align-items: center;
 	display: inline-flex;
 	justify-content: center;
@@ -13,135 +20,130 @@
 		&.outline {
 			color: var(--black);
 			background-color: transparent;
-			border: 1px solid var(--black);
+			border: 0.063rem solid var(--black);
 		}
 	}
 
 	&.info {
 		&.filled {
-			color: var(--white);
-			background-color: var(--blue-600);
+			color: var(--blue-800);
+			background-color: var(--blue-100);
 		}
 
 		&.outline {
 			color: var(--blue-600);
 			background-color: transparent;
-			border: 1px solid var(--blue-600);
+			border: 0.063rem solid var(--blue-600);
 		}
 	}
 
 	&.tertiary {
 		&.filled {
-			color: var(--white);
-			background-color: var(--gray-600);
+			color: var(--gray-600);
+			background-color: var(--gray-100);
 		}
 
 		&.outline {
 			color: var(--gray-600);
 			background-color: transparent;
-			border: 1px solid var(--gray-600);
+			border: 0.063rem solid var(--gray-600);
 		}
 	}
 
 	&.success {
 		&.filled {
-			color: var(--white);
-			background-color: var(--green-600);
+			color: var(--green-600);
+			background-color: var(--green-100);
 		}
 
 		&.outline {
 			color: var(--green-600);
 			background-color: transparent;
-			border: 1px solid var(--green-600);
+			border: 0.063rem solid var(--green-600);
 		}
 	}
 
 	&.warning {
 		&.filled {
-			color: var(--white);
-			background-color: var(--yellow-500);
+			color: var(--yellow-600);
+			background-color: var(--yellow-100);
 		}
 
 		&.outline {
 			color: var(--yellow-500);
 			background-color: transparent;
-			border: 1px solid var(--yellow-500);
+			border: 0.063rem solid var(--yellow-500);
 		}
 	}
 
 	&.danger {
 		&.filled {
-			color: var(--white);
-			background-color: var(--red-600);
+			color: var(--red-600);
+			background-color: var(--red-100);
 		}
 
 		&.outline {
 			color: var(--red-600);
 			background-color: transparent;
-			border: 1px solid var(--red-600);
+			border: 0.063rem solid var(--red-600);
 		}
 	}
 
 	&.square {
 		border-radius: 0;
-		padding: 5px 12px;
 		max-width: fit-content;
+		padding: 0.25rem 0.625rem;
 	}
 
 	&.pill {
-		padding: 4px 12px;
-		border-radius: 16px;
+		border-radius: 0.25rem;
 		max-width: fit-content;
+		padding: 0.25rem 0.625rem;
 	}
 
 	&.circle {
-		padding: 5px;
+		padding: 0.313rem;
 		border-radius: 50%;
 
 		&.xs {
-			width: 6px;
+			width: 0.375rem;
 		}
 
 		&.sm {
-			width: 8px;
+			width: 0.5rem;
 		}
 
 		&.md {
-			width: 12px;
+			width: 0.75;
 		}
 
 		&.lg {
-			width: 16px;
+			width: 1rem;
 		}
 
 		&.xl {
-			width: 20px;
+			width: 1.25rem;
 		}
 	}
 
 	&.xs {
-		height: 6px;
-		font-size: x-small;
+		height: 0.375rem;
 	}
 
 	&.sm {
-		height: 8px;
-		font-size: small;
+		height: 0.5rem;
 	}
 
 	&.md {
-		height: 12px;
-		font-size: small;
+		height: 0.75;
 	}
 
 	&.lg {
-		height: 16px;
-		font-size: large;
+		height: 1rem;
 	}
 
 	&.xl {
-		height: 20px;
-		font-size: larger;
+		height: 1.25rem;
 	}
 
 	&.label {
