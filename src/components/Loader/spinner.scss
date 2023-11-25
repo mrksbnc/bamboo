@@ -1,0 +1,74 @@
+.bo-loading-spinner {
+	position: absolute;
+	border-radius: 50%;
+	border: 3px solid var(--gray-50);
+	animation: spin 2s linear infinite;
+	-webkit-animation: spin 2s linear infinite;
+
+	&.xs {
+		width: 12px;
+		height: 12px;
+	}
+
+	&.sm {
+		width: 16px;
+		height: 16px;
+	}
+
+	&.md {
+		width: 20px;
+		height: 20px;
+	}
+
+	&.lg {
+		width: 24px;
+		height: 24px;
+	}
+
+	&.xl {
+		width: 28px;
+		height: 28px;
+	}
+
+	&.default {
+		border-top: 3px solid var(--black);
+	}
+
+	&.info {
+		border-top: 3px solid var(--blue-500);
+	}
+
+	&.tertiary {
+		border-top: 3px solid var(--gray-500);
+	}
+
+	&.success {
+		border-top: 3px solid var(--green-500);
+	}
+
+	&.warning {
+		border-top: 3px solid var(--yellow-500);
+	}
+
+	&.danger {
+		border-top: 3px solid var(--red-500);
+	}
+}
+
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
