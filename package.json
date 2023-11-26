@@ -53,6 +53,14 @@
 		"./assistant.css": {
 			"import": "./dist/assistant.css",
 			"require": "./dist/assistant.css"
+		},
+		"./layout.css": {
+			"import": "./dist/layout.css",
+			"require": "./dist/layout.css"
+		},
+		"./typography.css": {
+			"import": "./dist/typography.css",
+			"require": "./dist/typography.css"
 		}
 	},
 	"dependencies": {
