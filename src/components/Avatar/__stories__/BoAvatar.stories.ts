@@ -58,7 +58,7 @@ const meta = {
 			options: Object.values(AvatarType),
 		},
 		variant: {
-			description: 'The variant of the avatar (rounded or square)',
+			description: 'The variant of the avatar (rounded, base or flat)',
 			table: {
 				category: 'props',
 				subcategory: 'optional',
@@ -163,30 +163,63 @@ export const Rounded: Story = {
 	}),
 };
 
-export const Square: Story = {
+export const Base: Story = {
 	args: {},
 	render: () => ({
 		components: { BoAvatar },
 		template: `
 		<div style="display: flex; flex-direction: row; gap: 10px;">
-			<BoAvatar variant="square" />
+			<BoAvatar variant="base" />
 			<BoAvatar
-				variant="square"
+				variant="base"
 				:indicator-props="{color:'var(--green-500)',position:'top'}"
 			/>
 			<BoAvatar
-				variant="square"
+				variant="base"
 				:indicator-props="{color:'var(--green-500)',position:'bottom'}"
 			/>
-			<BoAvatar variant="square" type="initial" initial="JK" />
+			<BoAvatar variant="base" type="initial" initial="JK" />
 			<BoAvatar
-				variant="square"
+				variant="base"
 				type="initial"
 				initial="JK"
 				:indicator-props="{color:'var(--green-500)',position:'top'}"
 			/>
 			<BoAvatar
-				variant="square"
+				variant="base"
+				type="initial"
+				initial="JK"
+				:indicator-props="{color:'var(--green-500)',position:'bottom'}"
+			/>
+		</div>
+	`,
+	}),
+};
+
+export const Flat: Story = {
+	args: {},
+	render: () => ({
+		components: { BoAvatar },
+		template: `
+		<div style="display: flex; flex-direction: row; gap: 10px;">
+			<BoAvatar variant="flat" />
+			<BoAvatar
+				variant="flat"
+				:indicator-props="{color:'var(--green-500)',position:'top'}"
+			/>
+			<BoAvatar
+				variant="flat"
+				:indicator-props="{color:'var(--green-500)',position:'bottom'}"
+			/>
+			<BoAvatar variant="flat" type="initial" initial="JK" />
+			<BoAvatar
+				variant="flat"
+				type="initial"
+				initial="JK"
+				:indicator-props="{color:'var(--green-500)',position:'top'}"
+			/>
+			<BoAvatar
+				variant="flat"
 				type="initial"
 				initial="JK"
 				:indicator-props="{color:'var(--green-500)',position:'bottom'}"
@@ -209,12 +242,19 @@ export const MultiSize: Story = {
 			<BoAvatar size="xl" />
 		</div>
 		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px; margin-top: 10px;">
-			<BoAvatar size="xs" variant="square"/>
-			<BoAvatar size="sm" variant="square"/>
-			<BoAvatar size="md" variant="square"/>
-			<BoAvatar size="lg" variant="square"/>
-			<BoAvatar size="xl" variant="square"/>
+			<BoAvatar size="xs" variant="base"/>
+			<BoAvatar size="sm" variant="base"/>
+			<BoAvatar size="md" variant="base"/>
+			<BoAvatar size="lg" variant="base"/>
+			<BoAvatar size="xl" variant="base"/>
 		</div>
+		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px; margin-top: 10px;">
+		<BoAvatar size="xs" variant="flat"/>
+		<BoAvatar size="sm" variant="flat"/>
+		<BoAvatar size="md" variant="flat"/>
+		<BoAvatar size="lg" variant="flat"/>
+		<BoAvatar size="xl" variant="flat"/>
+	</div>
 		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px; margin-top: 10px;">
 			<BoAvatar size="xs" variant="rounded" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--green-600)',fontColor:'var(--white)'}"/>
 			<BoAvatar size="sm" variant="rounded" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--green-600)',fontColor:'var(--white)'}"/>
@@ -223,12 +263,19 @@ export const MultiSize: Story = {
 			<BoAvatar size="xl" variant="rounded" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--green-600)',fontColor:'var(--white)'}"/>
 		</div>
 		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px; margin-top: 10px;">
-			<BoAvatar size="xs" variant="square" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
-			<BoAvatar size="sm" variant="square" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
-			<BoAvatar size="md" variant="square" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
-			<BoAvatar size="lg" variant="square" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
-			<BoAvatar size="xl" variant="square" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
+			<BoAvatar size="xs" variant="base" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
+			<BoAvatar size="sm" variant="base" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
+			<BoAvatar size="md" variant="base" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
+			<BoAvatar size="lg" variant="base" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
+			<BoAvatar size="xl" variant="base" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
 		</div>
+		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px; margin-top: 10px;">
+		<BoAvatar size="xs" variant="flat" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
+		<BoAvatar size="sm" variant="flat" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
+		<BoAvatar size="md" variant="flat" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
+		<BoAvatar size="lg" variant="flat" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
+		<BoAvatar size="xl" variant="flat" type="initial" initial="JK" :initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"/>
+	</div>
 	`,
 	}),
 };
@@ -254,9 +301,15 @@ export const InitialsWithColor: Story = {
 			<BoAvatar
 				initial="JK"
 				type="initial"
-				variant="square"
+				variant="base"
 				:initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"
 			/>
+			<BoAvatar
+			initial="JK"
+			type="initial"
+			variant="base"
+			:initial-props="{backgroundColor:'var(--red-600)',fontColor:'var(--white)'}"
+		/>
 		</div>
 		`,
 	}),

@@ -20,7 +20,6 @@ export enum BadgeType {
 }
 
 export enum BadgeSize {
-	XXS = 'xxs',
 	XS = 'xs',
 	SM = 'sm',
 	MD = 'md',

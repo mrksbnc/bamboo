@@ -8,7 +8,6 @@ export enum SpinnerVariant {
 }
 
 export enum SpinnerSize {
-	XXS = 'xxs',
 	XS = 'xs',
 	SM = 'sm',
 	MD = 'md',

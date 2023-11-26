@@ -11,7 +11,7 @@
 .bo-input {
 	&__container {
 		display: flex;
-		max-width: 350px;
+		max-width: 22rem;
 		flex-direction: column;
 	}
 
@@ -25,45 +25,45 @@
 	}
 
 	&__field-container {
-		padding: 6px 0;
 		position: relative;
+		padding: 0.375rem 0;
 
 		&__input {
 			width: 100%;
 			outline: none;
 			display: block;
-			border-radius: 6px;
 			color: var(--input-text-color);
-			border: 1px solid var(--input-border-color);
+			border-radius: 0.375rem; /** 6px */
 			background-color: var(--input-background-color);
+			border: 0.0625rem solid var(--input-border-color); /** 1px */
 
 			&.sm {
-				padding: 8px;
+				padding: 0.5rem; /** 8px */
 			}
 
 			&.md {
-				padding: 10px;
+				padding: 0.625rem; /** 10px */
 			}
 
 			&.lg {
-				padding: 16px;
+				padding: 1rem; /** 16px */
 			}
 
 			&:disabled {
 				color: var(--input-disabled-text-color);
 				background-color: var(--input-disabled-background-color);
-				border: 1px solid var(--input-disabled-border-color);
+				border: 0.0625rem solid var(--input-disabled-border-color); /** 1px */
 			}
 
 			&.default {
 				&:focus {
-					border: 1px solid var(--blue-600);
+					border: 0.0625rem solid var(--blue-600); /** 1px */
 					transition: all 0.2s ease-in-out;
 				}
 			}
 
 			&.error {
-				border: 1px solid var(--error-color);
+				border: 0.0625rem solid var(--error-color); /** 1px */
 			}
 		}
 
@@ -76,7 +76,7 @@
 				position: absolute;
 				top: 0;
 				bottom: 0;
-				right: 15px;
+				right: 1rem;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -89,7 +89,7 @@
 		align-items: center;
 
 		&__icon {
-			margin-right: 4px;
+			margin-right: 0.25rem; /** 4px */
 		}
 
 		&__msg {

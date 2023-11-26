@@ -32,7 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [ ] Create `bo-badge` component
 - [ ] Create `bo-button` component
 - [ ] Create `bo-icon-button` component
-- [ ] Create `bo-loading-spinner` component
+- [ ] Create `bo-spinner` component
 - [ ] Create `bo-progress-bar` component
 - [ ] Create `bo-card` component
 - [ ] Create `bo-avatar` component

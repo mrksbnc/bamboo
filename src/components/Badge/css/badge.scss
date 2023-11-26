@@ -22,7 +22,7 @@
 		&.outline {
 			color: var(--black);
 			background-color: transparent;
-			border: 1px solid var(--black);
+			border: 0.0625rem solid var(--black);
 		}
 	}
 
@@ -35,7 +35,7 @@
 		&.outline {
 			color: var(--blue-600);
 			background-color: transparent;
-			border: 1px solid var(--blue-600);
+			border: 0.0625rem solid var(--blue-600);
 		}
 	}
 
@@ -48,7 +48,7 @@
 		&.outline {
 			color: var(--gray-600);
 			background-color: transparent;
-			border: 1px solid var(--gray-600);
+			border: 0.0625rem solid var(--gray-600);
 		}
 	}
 
@@ -61,7 +61,7 @@
 		&.outline {
 			color: var(--green-600);
 			background-color: transparent;
-			border: 1px solid var(--green-600);
+			border: 0.0625rem solid var(--green-600);
 		}
 	}
 
@@ -74,7 +74,7 @@
 		&.outline {
 			color: var(--yellow-500);
 			background-color: transparent;
-			border: 1px solid var(--yellow-500);
+			border: 0.0625rem solid var(--yellow-500);
 		}
 	}
 
@@ -87,32 +87,32 @@
 		&.outline {
 			color: var(--red-600);
 			background-color: transparent;
-			border: 1px solid var(--red-600);
+			border: 0.0625rem solid var(--red-600);
 		}
 	}
 
 	&.flat {
 		border-radius: 0;
-		padding: 4px 8px;
 		max-width: fit-content;
+		padding: 0.25rem 0.5rem;
 	}
 
 	&.base {
-		padding: 4px 8px;
-		border-radius: 4px;
 		max-width: fit-content;
+		border-radius: 0.25rem;
+		padding: 0.25rem 0.5rem;
 	}
 
 	&.pill {
-		padding: 4px 8px;
-		border-radius: 50px;
 		align-items: center;
 		display: inline-flex;
 		max-width: fit-content;
+		border-radius: 3.125rem;
+		padding: 0.25rem 0.5rem;
 	}
 
 	&.circle {
-		padding: 5px;
+		padding: 0.3125rem;
 		border-radius: 50%;
 
 		.label {
@@ -121,77 +121,68 @@
 			text-overflow: ellipsis;
 		}
 
-		&.xxs {
-			@extend .width-xxs;
-		}
-
 		&.xs {
 			@extend .width-xs;
+			@extend .height-xs;
 		}
 
 		&.sm {
 			@extend .width-sm;
+			@extend .height-sm;
 		}
 
 		&.md {
 			@extend .width-md;
+			@extend .height-md;
 		}
 
 		&.lg {
 			@extend .width-lg;
+			@extend .height-lg;
 		}
 
 		&.xl {
 			@extend .width-xl;
+			@extend .height-xl;
 		}
 
 		&.xxl {
 			@extend .width-xxl;
+			@extend .height-xxl;
 		}
 
 		&.xxxl {
 			@extend .width-xxxl;
+			@extend .height-xxxl;
 		}
 	}
 
-	&.xxs {
-		@extend .font-xxs;
-		@extend .height-xxs;
-	}
-
 	&.xs {
-		@extend .font-xs;
-		@extend .height-xs;
+		@extend .font-xxs;
 	}
 
 	&.sm {
-		@extend .font-sm;
-		@extend .height-sm;
+		@extend .font-xs;
 	}
 
 	&.md {
-		@extend .font-md;
-		@extend .height-md;
+		@extend .font-sm;
 	}
 
 	&.lg {
 		@extend .font-lg;
-		@extend .height-lg;
 	}
 
 	&.xl {
 		@extend .font-xl;
-		@extend .height-xl;
 	}
 
 	&.xxl {
 		@extend .font-xxl;
-		@extend .height-xxl;
 	}
 
 	&.xxxl {
 		@extend .font-xxxl;
-		@extend .height-xxxl;
 	}
 
 	&.label {

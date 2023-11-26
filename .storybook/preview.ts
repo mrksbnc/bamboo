@@ -16,7 +16,7 @@ const bambooPreview: Preview = {
 		docs: {
 			toc: true,
 			story: {
-				height: '100px',
+				height: '6rem',
 			},
 		},
 		darkMode: {

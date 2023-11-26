@@ -851,7 +851,6 @@ export const iconMap = new Map([
 ]);
 
 export enum IconSize {
-	XXS = 'xxs',
 	XS = 'xs',
 	SM = 'sm',
 	MD = 'md',

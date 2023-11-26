@@ -1,8 +1,8 @@
-export { default as BoAvatar } from './BoAvatar.vue';
 export {
 	AvatarIndicatorPosition,
 	AvatarSize,
 	AvatarType,
 	AvatarVariant,
-} from './constants';
-export type { AvatarIndicatorProps, AvatarInitialProps } from './types';
+} from './ts/constants';
+export type { AvatarIndicatorProps, AvatarInitialProps } from './ts/types';
+export { default as BoAvatar } from './vue/BoAvatar.vue';

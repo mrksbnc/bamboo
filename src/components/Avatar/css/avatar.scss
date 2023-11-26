@@ -15,7 +15,7 @@
 			vertical-align: middle;
 			justify-content: center;
 
-			&.square {
+			&.base {
 				border-radius: 25%;
 			}
 
@@ -24,7 +24,7 @@
 			}
 
 			&.flat {
-				border-radius: 0px;
+				border-radius: 0;
 			}
 
 			&.image {
@@ -36,60 +36,53 @@
 				object-fit: cover;
 			}
 
-			&.xxs {
-				@extend .font-xxs;
-
-				height: 16px;
-				width: 16px;
-			}
-
 			&.xs {
 				@extend .font-xs;
 
-				height: 24px;
-				width: 24px;
+				height: 1.5rem;
+				width: 1.5rem;
 			}
 
 			&.sm {
 				@extend .font-sm;
 
-				height: 32px;
-				width: 32px;
+				height: 2rem;
+				width: 2rem;
 			}
 
 			&.md {
 				@extend .font-md;
 
-				height: 40px;
-				width: 40px;
+				height: 2.5rem;
+				width: 2.5rem;
 			}
 
 			&.lg {
 				@extend .font-lg;
 
-				height: 48px;
-				width: 48px;
+				height: 3rem;
+				width: 3rem;
 			}
 
 			&.xl {
 				@extend .font-xl;
 
-				height: 56px;
-				width: 56px;
+				height: 3.5rem;
+				width: 3.5rem;
 			}
 
 			&.xxl {
 				@extend .font-xxl;
 
-				height: 64px;
-				width: 64px;
+				height: 4rem;
+				width: 4rem;
 			}
 
 			&.xxxl {
 				@extend .font-xxxl;
 
-				height: 72px;
-				width: 72px;
+				height: 4.5rem;
+				width: 4.5rem;
 			}
 		}
 
@@ -99,7 +92,7 @@
 
 			position: absolute;
 			border-radius: 100%;
-			border: 2px solid var(--white);
+			border: 0.125rem solid var(--white);
 
 			&.bottom {
 				bottom: 0;

@@ -1,5 +1,5 @@
 <template>
-	<span :class="['bo-loading-spinner', css]"></span>
+	<span :class="['bo-spinner', css]"></span>
 </template>
 
 <script setup lang="ts">
@@ -45,9 +45,6 @@ const css = computed<OptionalCss>(() => {
 	}
 
 	switch (size.value) {
-		case SpinnerSize.XXS:
-			classes['xxs'] = true;
-			break;
 		case SpinnerSize.XS:
 			classes['xs'] = true;
 			break;
@@ -76,5 +73,5 @@ const css = computed<OptionalCss>(() => {
 </script>
 
 <style scoped lang="scss">
-@import './spinner.scss';
+@import '@/components/Loader/css/spinner.scss';
 </style>

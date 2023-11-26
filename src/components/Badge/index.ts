@@ -1,2 +1,2 @@
-export { default as BoBadge } from './BoBadge.vue';
-export { BadgeForm, BadgeSize, BadgeType, BadgeVariant } from './constants';
+export { BadgeForm, BadgeSize, BadgeType, BadgeVariant } from './ts/constants';
+export { default as BoBadge } from './vue/BoBadge.vue';

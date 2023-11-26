@@ -112,9 +112,6 @@ const cssClasses = computed<OptionalCss>(() => {
 	}
 
 	switch (size.value) {
-		case BadgeSize.XXS:
-			classes['xxs'] = true;
-			break;
 		case BadgeSize.XS:
 			classes['xs'] = true;
 			break;
@@ -143,5 +140,5 @@ const cssClasses = computed<OptionalCss>(() => {
 </script>
 
 <style scoped lang="scss">
-@import './badge.scss';
+@import '@/components/Badge/css/badge.scss';
 </style>

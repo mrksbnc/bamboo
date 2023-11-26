@@ -238,5 +238,5 @@ const togglePassword = (): void => {
 </script>
 
 <style scoped lang="scss">
-@import './input.scss';
+@import '@/components/Input/css/input.scss';
 </style>

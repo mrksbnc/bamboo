@@ -5,12 +5,11 @@ export enum AvatarType {
 
 export enum AvatarVariant {
 	Rounded = 'rounded',
-	Square = 'square',
+	Base = 'base',
 	Flat = 'flat',
 }
 
 export enum AvatarSize {
-	XXS = 'xxs',
 	XS = 'xs',
 	SM = 'sm',
 	MD = 'md',

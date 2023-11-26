@@ -20,11 +20,6 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 
-	&.xxs {
-		@extend .height-xxs;
-		@extend .width-xxs;
-	}
-
 	&.xs {
 		@extend .height-xs;
 		@extend .width-xs;

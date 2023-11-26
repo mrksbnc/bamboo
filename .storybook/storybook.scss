@@ -17,20 +17,20 @@
 
 	div {
 		:first-child {
-			margin-left: 2px;
+			margin-left: 0.125rem;
 		}
 
 		:last-child {
-			margin-right: 2px;
+			margin-right: 0.125rem;
 		}
 
 		&:not(:first-child):not(:last-child) {
-			margin: 0 2px;
+			margin: 0 0.125rem;
 		}
 	}
 
 	::before {
 		content: none;
-		border-radius: 8px;
+		border-radius: 0.5rem;
 	}
 }

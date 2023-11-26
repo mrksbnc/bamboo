@@ -30,9 +30,9 @@ import {
 	AvatarVariant,
 	AvatarIndicatorPosition,
 	type AvatarIndicatorProps,
+	type AvatarInitialProps,
 } from '@/components/Avatar';
 import type { CssStyle, OptionalCss } from '@/types';
-import type { AvatarInitialProps } from './types';
 
 const props = defineProps({
 	src: {
@@ -88,15 +88,15 @@ const avatarClasses = computed<OptionalCss>(() => {
 		case AvatarVariant.Rounded:
 			classes['rounded'] = true;
 			break;
-		case AvatarVariant.Square:
-			classes['square'] = true;
+		case AvatarVariant.Base:
+			classes['base'] = true;
+			break;
+		case AvatarVariant.Flat:
+			classes['flat'] = true;
 			break;
 	}
 
 	switch (size.value) {
-		case AvatarSize.XXS:
-			classes['xxs'] = true;
-			break;
 		case AvatarSize.XS:
 			classes['xs'] = true;
 			break;
@@ -161,5 +161,5 @@ const indicatorClasses = computed<OptionalCss>(() => {
 </script>
 
 <style scoped lang="scss">
-@import './avatar.scss';
+@import '@/components/Avatar/css/avatar.scss';
 </style>

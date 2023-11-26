@@ -56,9 +56,6 @@ const boIconClass = computed<OptionalCss>(() => {
 	const classes: OptionalCss = {};
 
 	switch (size.value) {
-		case IconSize.XXS:
-			classes['xxs'] = true;
-			break;
 		case IconSize.XS:
 			classes['xs'] = true;
 			break;
@@ -95,5 +92,5 @@ onUpdated((): void => {
 </script>
 
 <style scoped lang="scss">
-@import './icon.scss';
+@import '@/components/Icon/css/icon.scss';
 </style>
