@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { computed, toRefs, type PropType } from 'vue';
-import { SpinnerVariant, SpinnerSize } from '@/components/Loader';
+import { SpinnerVariant, LoaderSize } from '@/components/Loader';
 import type { OptionalCss } from '@/types';
 
 const props = defineProps({
@@ -13,8 +13,8 @@ const props = defineProps({
 		default: () => SpinnerVariant.Default,
 	},
 	size: {
-		type: String as PropType<SpinnerSize>,
-		default: () => SpinnerSize.MD,
+		type: String as PropType<LoaderSize>,
+		default: () => LoaderSize.MD,
 	},
 });
 
@@ -45,25 +45,25 @@ const css = computed<OptionalCss>(() => {
 	}
 
 	switch (size.value) {
-		case SpinnerSize.XS:
+		case LoaderSize.XS:
 			classes['xs'] = true;
 			break;
-		case SpinnerSize.SM:
+		case LoaderSize.SM:
 			classes['sm'] = true;
 			break;
-		case SpinnerSize.MD:
+		case LoaderSize.MD:
 			classes['md'] = true;
 			break;
-		case SpinnerSize.LG:
+		case LoaderSize.LG:
 			classes['lg'] = true;
 			break;
-		case SpinnerSize.XL:
+		case LoaderSize.XL:
 			classes['xl'] = true;
 			break;
-		case SpinnerSize.XXL:
+		case LoaderSize.XXL:
 			classes['xxl'] = true;
 			break;
-		case SpinnerSize.XXXL:
+		case LoaderSize.XXXL:
 			classes['xxxl'] = true;
 			break;
 	}

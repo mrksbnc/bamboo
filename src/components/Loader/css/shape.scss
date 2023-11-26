@@ -1,20 +1,112 @@
+@import '@/styles/layout.scss';
+@import '@/styles/typography.scss';
+
 .bo-shape {
-	width: 40px;
-	aspect-ratio: 1;
-	border-radius: 50%;
-	background: var(--red-600);
-	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-	animation: l1 2s infinite cubic-bezier(0.3, 1, 0, 1);
-}
-@keyframes l1 {
-	33% {
-		border-radius: 0;
-		background: var(--blue-600);
-		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	&__container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
-	66% {
-		border-radius: 0;
-		background: var(--yellow-600);
-		clip-path: polygon(50% 0, 50% 0, 100% 100%, 0 100%);
+
+	&.xs {
+		// &__loader {
+		// 	@extend %height-xs;
+		// 	@extend %width-xs;
+		// }
+
+		&__text {
+			@extend %font-xs;
+		}
+	}
+
+	&.sm {
+		&__loader {
+			@extend %height-sm;
+			@extend %width-sm;
+		}
+
+		&__text {
+			@extend %font-sm;
+		}
+	}
+
+	&.md {
+		&__loader {
+			@extend %height-md;
+			@extend %width-md;
+		}
+
+		&__text {
+			@extend %font-md;
+		}
+	}
+
+	&.lg {
+		&__loader {
+			@extend %height-lg;
+			@extend %width-lg;
+		}
+
+		&__text {
+			@extend %font-lg;
+		}
+	}
+
+	&.xl {
+		&__loader {
+			@extend %height-xl;
+			@extend %width-xl;
+		}
+
+		&__text {
+			@extend %font-xl;
+		}
+	}
+
+	&.xxl {
+		&__loader {
+			@extend %height-xxl;
+			@extend %width-xxl;
+		}
+
+		&__text {
+			@extend %font-xxl;
+		}
+	}
+
+	&.xxxl {
+		&__loader {
+			@extend %height-xxxl;
+			@extend %width-xxxl;
+		}
+
+		&__text {
+			@extend %font-xxxl;
+		}
+	}
+
+	&__loader {
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: var(--red-600);
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+		animation: l1 2s infinite cubic-bezier(0.3, 1, 0, 1);
+	}
+
+	@keyframes l1 {
+		33% {
+			border-radius: 0;
+			background: var(--blue-600);
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+		}
+		66% {
+			border-radius: 0;
+			background: var(--yellow-500);
+			clip-path: polygon(50% 0, 50% 0, 100% 100%, 0 100%);
+		}
+	}
+
+	&__text {
+		@extend %font-xs;
 	}
 }

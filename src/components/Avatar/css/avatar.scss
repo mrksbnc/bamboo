@@ -8,7 +8,7 @@
 		display: inline-block;
 
 		&__image {
-			@extend .font-mono;
+			@extend %font-mono;
 
 			display: flex;
 			align-items: center;
@@ -23,7 +23,7 @@
 				border-radius: 50%;
 			}
 
-			&.flat {
+			&%flat {
 				border-radius: 0;
 			}
 
@@ -37,49 +37,49 @@
 			}
 
 			&.xs {
-				@extend .font-xs;
+				@extend %font-xs;
 
 				height: 1.5rem;
 				width: 1.5rem;
 			}
 
 			&.sm {
-				@extend .font-sm;
+				@extend %font-sm;
 
 				height: 2rem;
 				width: 2rem;
 			}
 
 			&.md {
-				@extend .font-md;
+				@extend %font-md;
 
 				height: 2.5rem;
 				width: 2.5rem;
 			}
 
 			&.lg {
-				@extend .font-lg;
+				@extend %font-lg;
 
 				height: 3rem;
 				width: 3rem;
 			}
 
 			&.xl {
-				@extend .font-xl;
+				@extend %font-xl;
 
 				height: 3.5rem;
 				width: 3.5rem;
 			}
 
 			&.xxl {
-				@extend .font-xxl;
+				@extend %font-xxl;
 
 				height: 4rem;
 				width: 4rem;
 			}
 
 			&.xxxl {
-				@extend .font-xxxl;
+				@extend %font-xxxl;
 
 				height: 4.5rem;
 				width: 4.5rem;
@@ -87,8 +87,8 @@
 		}
 
 		&__indicator {
-			@extend .height-xs;
-			@extend .width-xs;
+			@extend %width-sm;
+			@extend %height-sm;
 
 			position: absolute;
 			border-radius: 100%;

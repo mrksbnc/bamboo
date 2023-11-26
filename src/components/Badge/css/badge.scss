@@ -2,9 +2,9 @@
 @import '@/styles/typography.scss';
 
 .bo-badge {
-	@extend .font-sm;
-	@extend .font-medium;
-	@extend .font-assistant;
+	@extend %font-sm;
+	@extend %font-medium;
+	@extend %font-assistant;
 
 	cursor: default;
 
@@ -122,67 +122,67 @@
 		}
 
 		&.xs {
-			@extend .width-xs;
-			@extend .height-xs;
+			@extend %width-xs;
+			@extend %height-xs;
 		}
 
 		&.sm {
-			@extend .width-sm;
-			@extend .height-sm;
+			@extend %width-sm;
+			@extend %height-sm;
 		}
 
 		&.md {
-			@extend .width-md;
-			@extend .height-md;
+			@extend %width-md;
+			@extend %height-md;
 		}
 
 		&.lg {
-			@extend .width-lg;
-			@extend .height-lg;
+			@extend %width-lg;
+			@extend %height-lg;
 		}
 
 		&.xl {
-			@extend .width-xl;
-			@extend .height-xl;
+			@extend %width-xl;
+			@extend %height-xl;
 		}
 
 		&.xxl {
-			@extend .width-xxl;
-			@extend .height-xxl;
+			@extend %width-xxl;
+			@extend %height-xxl;
 		}
 
 		&.xxxl {
-			@extend .width-xxxl;
-			@extend .height-xxxl;
+			@extend %width-xxxl;
+			@extend %height-xxxl;
 		}
 	}
 
 	&.xs {
-		@extend .font-xxs;
+		@extend %font-xxs;
 	}
 
 	&.sm {
-		@extend .font-xs;
+		@extend %font-xs;
 	}
 
 	&.md {
-		@extend .font-sm;
+		@extend %font-sm;
 	}
 
 	&.lg {
-		@extend .font-lg;
+		@extend %font-lg;
 	}
 
 	&.xl {
-		@extend .font-xl;
+		@extend %font-xl;
 	}
 
 	&.xxl {
-		@extend .font-xxl;
+		@extend %font-xxl;
 	}
 
 	&.xxxl {
-		@extend .font-xxxl;
+		@extend %font-xxxl;
 	}
 
 	&.label {

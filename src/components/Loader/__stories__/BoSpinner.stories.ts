@@ -1,4 +1,4 @@
-import { BoSpinner, SpinnerSize, SpinnerVariant } from '@/components/Loader';
+import { BoSpinner, LoaderSize, SpinnerVariant } from '@/components/Loader';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { stringEnumFormatter } from '@utils/index';
 
@@ -13,14 +13,14 @@ const meta = {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'SpinnerSize',
-					detail: stringEnumFormatter(SpinnerSize, 'SpinnerSize'),
+					summary: 'LoaderSize',
+					detail: stringEnumFormatter(LoaderSize, 'LoaderSize'),
 				},
 			},
 			control: {
 				type: 'select',
 			},
-			options: Object.values(SpinnerSize),
+			options: Object.values(LoaderSize),
 		},
 		variant: {
 			description: 'The variant of the spinner',

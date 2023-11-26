@@ -1,4 +1,4 @@
-import { BoSpinner, SpinnerSize, SpinnerVariant } from '@/components/Loader';
+import { BoSpinner, LoaderSize, SpinnerVariant } from '@/components/Loader';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 
@@ -6,7 +6,7 @@ describe('BoIcon', () => {
 	it('renders properly', () => {
 		const wrapper = mount(BoSpinner, {
 			props: {
-				size: SpinnerSize.MD,
+				size: LoaderSize.MD,
 				variant: SpinnerVariant.Info,
 			},
 		});

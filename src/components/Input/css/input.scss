@@ -16,9 +16,9 @@
 	}
 
 	&__label {
-		@extend .font-sm;
-		@extend .font-inter;
-		@extend .font-regular;
+		@extend %font-sm;
+		@extend %font-inter;
+		@extend %font-regular;
 
 		display: block;
 		color: var(--input-text-color);
@@ -93,17 +93,17 @@
 		}
 
 		&__msg {
-			@extend .font-sm;
-			@extend .font-regular;
+			@extend %font-sm;
+			@extend %font-regular;
 
 			color: var(--error-color);
 		}
 	}
 
 	&__description {
-		@extend .font-xs;
-		@extend .font-inter;
-		@extend .font-regular;
+		@extend %font-xs;
+		@extend %font-inter;
+		@extend %font-regular;
 
 		color: var(--input-text-color);
 	}

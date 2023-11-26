@@ -30,7 +30,7 @@
 					<BoSpinner
 						v-if="isLoading"
 						:variant="SpinnerVariant.Default"
-						:size="SpinnerSize.XS"
+						:size="LoaderSize.XS"
 					/>
 					<BoIcon
 						v-if="hasShowPasswordIcon && !isLoading"
@@ -73,7 +73,7 @@ import {
 } from '@/components/Input';
 import { Icon, BoIcon, IconSize } from '@/components/Icon';
 import type { OptionalCss } from '@/types';
-import { BoSpinner, SpinnerSize, SpinnerVariant } from '@/components/Loader';
+import { BoSpinner, LoaderSize, SpinnerVariant } from '@/components/Loader';
 import { BambooColor } from '@/constants';
 
 const emits = defineEmits<{

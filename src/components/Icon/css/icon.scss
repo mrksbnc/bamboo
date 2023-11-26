@@ -21,37 +21,37 @@
 	-ms-user-select: none;
 
 	&.xs {
-		@extend .height-xs;
-		@extend .width-xs;
+		@extend %height-xs;
+		@extend %width-xs;
 	}
 
 	&.sm {
-		@extend .height-sm;
-		@extend .width-sm;
+		@extend %height-sm;
+		@extend %width-sm;
 	}
 
 	&.md {
-		@extend .height-md;
-		@extend .width-md;
+		@extend %height-md;
+		@extend %width-md;
 	}
 
 	&.lg {
-		@extend .height-lg;
-		@extend .width-lg;
+		@extend %height-lg;
+		@extend %width-lg;
 	}
 
 	&.xl {
-		@extend .height-xl;
-		@extend .width-xl;
+		@extend %height-xl;
+		@extend %width-xl;
 	}
 
 	&.xxl {
-		@extend .height-xxl;
-		@extend .width-xxl;
+		@extend %height-xxl;
+		@extend %width-xxl;
 	}
 
 	&.xxxl {
-		@extend .height-xxxl;
-		@extend .width-xxxl;
+		@extend %height-xxxl;
+		@extend %width-xxxl;
 	}
 }

@@ -1,4 +1,4 @@
-.font-sans {
+%font-sans {
 	font-family:
 		ui-sans-serif,
 		system-ui,
@@ -15,83 +15,83 @@
 		'Segoe UI Symbol',
 		'Noto Color Emoji';
 }
-.font-serif {
+%font-serif {
 	font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
-.font-mono {
+%font-mono {
 	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		'Liberation Mono', 'Courier New', monospace;
 }
 
-.font-assistant {
+%font-assistant {
 	font-family: 'Assistant', sans-serif;
 }
 
-.font-inter {
+%font-inter {
 	font-family: 'Inter', sans-serif;
 }
 
-.font-xxs {
+%font-xxs {
 	font-size: 0.625rem; /* 0.0625rem */
 	line-height: 0.75rem; /* 12px */
 }
 
-.font-xs {
+%font-xs {
 	font-size: 0.75rem; /* 12px */
 	line-height: 1rem /* 1rem */;
 }
 
-.font-sm {
+%font-sm {
 	font-size: 0.875rem; /* 10.25rem */
 	line-height: 1.25rem; /* 20px */
 }
 
-.font-md {
+%font-md {
 	font-size: 1rem; /* 1rem */
 	line-height: 1.5rem; /* 20.25rem */
 }
 
-.font-lg {
+%font-lg {
 	font-size: 1.125rem; /* 10.5rem */
 	line-height: 1.75rem; /* 20.5rem */
 }
 
-.font-xl {
+%font-xl {
 	font-size: 1.25rem; /* 20px */
 	line-height: 1.75rem; /* 20.5rem */
 }
 
-.font-xxl {
+%font-xxl {
 	font-size: 1.5rem; /* 20.25rem */
 	line-height: 2rem; /* 32px */
 }
 
-.font-xxxl {
+%font-xxxl {
 	font-size: 1.875rem; /* 30px */
 	line-height: 2.25rem; /* 36px */
 }
 
-.font-light {
+%font-light {
 	font-weight: 300;
 }
 
-.font-regular {
+%font-regular {
 	font-weight: 400;
 }
 
-.font-medium {
+%font-medium {
 	font-weight: 500;
 }
 
-.font-semibold {
+%font-semibold {
 	font-weight: 600;
 }
 
-.font-bold {
+%font-bold {
 	font-weight: 700;
 }
 
-.font-extrabold {
+%font-extrabold {
 	font-weight: 800;
 }

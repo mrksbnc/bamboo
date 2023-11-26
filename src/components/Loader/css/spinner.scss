@@ -9,38 +9,38 @@
 	-webkit-animation: spin 2s linear infinite;
 
 	&.xs {
-		@extend .width-xs;
-		@extend .height-xs;
+		@extend %width-xs;
+		@extend %height-xs;
 	}
 
 	&.sm {
-		@extend .width-sm;
-		@extend .height-sm;
+		@extend %width-sm;
+		@extend %height-sm;
 	}
 
 	&.md {
-		@extend .width-md;
-		@extend .height-md;
+		@extend %width-md;
+		@extend %height-md;
 	}
 
 	&.lg {
-		@extend .width-lg;
-		@extend .height-lg;
+		@extend %width-lg;
+		@extend %height-lg;
 	}
 
 	&.xl {
-		@extend .width-xl;
-		@extend .height-xl;
+		@extend %width-xl;
+		@extend %height-xl;
 	}
 
 	&.xxl {
-		@extend .width-xxl;
-		@extend .height-xxl;
+		@extend %width-xxl;
+		@extend %height-xxl;
 	}
 
 	&.xxxl {
-		@extend .width-xxxl;
-		@extend .height-xxxl;
+		@extend %width-xxxl;
+		@extend %height-xxxl;
 	}
 
 	&.default {

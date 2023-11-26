@@ -7,7 +7,7 @@ export enum SpinnerVariant {
 	Danger = 'danger',
 }
 
-export enum SpinnerSize {
+export enum LoaderSize {
 	XS = 'xs',
 	SM = 'sm',
 	MD = 'md',
