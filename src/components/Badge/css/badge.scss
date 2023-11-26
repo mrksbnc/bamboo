@@ -122,38 +122,38 @@
 		}
 
 		&.xs {
-			@extend %width-xs;
-			@extend %height-xs;
+			width: 0.625rem;
+			height: 0.625rem;
 		}
 
 		&.sm {
-			@extend %width-sm;
-			@extend %height-sm;
+			width: 0.75rem;
+			height: 0.75rem;
 		}
 
 		&.md {
-			@extend %width-md;
-			@extend %height-md;
+			width: 1rem;
+			height: 1rem;
 		}
 
 		&.lg {
-			@extend %width-lg;
-			@extend %height-lg;
+			width: 1.25rem;
+			height: 1.25rem;
 		}
 
 		&.xl {
-			@extend %width-xl;
-			@extend %height-xl;
+			width: 1.5rem;
+			height: 1.5rem;
 		}
 
 		&.xxl {
-			@extend %width-xxl;
-			@extend %height-xxl;
+			width: 2rem;
+			height: 2rem;
 		}
 
 		&.xxxl {
-			@extend %width-xxxl;
-			@extend %height-xxxl;
+			width: 2.5rem;
+			height: 2.5rem;
 		}
 	}
 

@@ -12,14 +12,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Example: Story = {
-	args: {
-		text: undefined,
-	},
-};
-
-export const WithText: Story = {
-	args: {
-		text: 'Loading...',
-	},
-};
+export const Example: Story = {};
