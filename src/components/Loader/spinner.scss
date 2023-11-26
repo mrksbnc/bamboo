@@ -52,15 +52,15 @@
 	}
 
 	&.info {
-		border-top: 2px solid var(--blue-500);
+		border-top: 2px solid var(--blue-600);
 	}
 
 	&.tertiary {
-		border-top: 2px solid var(--gray-500);
+		border-top: 2px solid var(--gray-600);
 	}
 
 	&.success {
-		border-top: 2px solid var(--green-500);
+		border-top: 2px solid var(--green-600);
 	}
 
 	&.warning {
@@ -68,7 +68,7 @@
 	}
 
 	&.danger {
-		border-top: 2px solid var(--red-500);
+		border-top: 2px solid var(--red-600);
 	}
 }
 
