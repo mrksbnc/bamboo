@@ -1,12 +1,14 @@
+@import '@/styles/layout.scss';
 @import '@/styles/typography.scss';
 
 .bo-badge {
+	@extend .font-sm;
 	@extend .font-medium;
+	@extend .font-assistant;
 
 	cursor: default;
+
 	user-select: none;
-	line-height: 1rem;
-	font-size: 0.75rem;
 	align-items: center;
 	display: inline-flex;
 	justify-content: center;
@@ -20,130 +22,176 @@
 		&.outline {
 			color: var(--black);
 			background-color: transparent;
-			border: 0.063rem solid var(--black);
+			border: 1px solid var(--black);
 		}
 	}
 
 	&.info {
 		&.filled {
-			color: var(--blue-800);
-			background-color: var(--blue-100);
+			color: var(--white);
+			background-color: var(--blue-600);
 		}
 
 		&.outline {
 			color: var(--blue-600);
 			background-color: transparent;
-			border: 0.063rem solid var(--blue-600);
+			border: 1px solid var(--blue-600);
 		}
 	}
 
 	&.tertiary {
 		&.filled {
-			color: var(--gray-600);
-			background-color: var(--gray-100);
+			color: var(--white);
+			background-color: var(--gray-500);
 		}
 
 		&.outline {
 			color: var(--gray-600);
 			background-color: transparent;
-			border: 0.063rem solid var(--gray-600);
+			border: 1px solid var(--gray-600);
 		}
 	}
 
 	&.success {
 		&.filled {
-			color: var(--green-600);
-			background-color: var(--green-100);
+			color: var(--white);
+			background-color: var(--green-600);
 		}
 
 		&.outline {
 			color: var(--green-600);
 			background-color: transparent;
-			border: 0.063rem solid var(--green-600);
+			border: 1px solid var(--green-600);
 		}
 	}
 
 	&.warning {
 		&.filled {
-			color: var(--yellow-600);
-			background-color: var(--yellow-100);
+			color: var(--white);
+			background-color: var(--yellow-500);
 		}
 
 		&.outline {
 			color: var(--yellow-500);
 			background-color: transparent;
-			border: 0.063rem solid var(--yellow-500);
+			border: 1px solid var(--yellow-500);
 		}
 	}
 
 	&.danger {
 		&.filled {
-			color: var(--red-600);
-			background-color: var(--red-100);
+			color: var(--white);
+			background-color: var(--red-600);
 		}
 
 		&.outline {
 			color: var(--red-600);
 			background-color: transparent;
-			border: 0.063rem solid var(--red-600);
+			border: 1px solid var(--red-600);
 		}
 	}
 
-	&.square {
+	&.flat {
 		border-radius: 0;
+		padding: 4px 8px;
 		max-width: fit-content;
-		padding: 0.25rem 0.625rem;
+	}
+
+	&.base {
+		padding: 4px 8px;
+		border-radius: 4px;
+		max-width: fit-content;
 	}
 
 	&.pill {
-		border-radius: 0.25rem;
+		padding: 4px 8px;
+		border-radius: 50px;
+		align-items: center;
+		display: inline-flex;
 		max-width: fit-content;
-		padding: 0.25rem 0.625rem;
 	}
 
 	&.circle {
-		padding: 0.313rem;
+		padding: 5px;
 		border-radius: 50%;
 
+		.label {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		&.xxs {
+			@extend .width-xxs;
+		}
+
 		&.xs {
-			width: 0.375rem;
+			@extend .width-xs;
 		}
 
 		&.sm {
-			width: 0.5rem;
+			@extend .width-sm;
 		}
 
 		&.md {
-			width: 0.75;
+			@extend .width-md;
 		}
 
 		&.lg {
-			width: 1rem;
+			@extend .width-lg;
 		}
 
 		&.xl {
-			width: 1.25rem;
+			@extend .width-xl;
+		}
+
+		&.xxl {
+			@extend .width-xxl;
+		}
+
+		&.xxxl {
+			@extend .width-xxxl;
 		}
 	}
 
+	&.xxs {
+		@extend .font-xxs;
+		@extend .height-xxs;
+	}
+
 	&.xs {
-		height: 0.375rem;
+		@extend .font-xs;
+		@extend .height-xs;
 	}
 
 	&.sm {
-		height: 0.5rem;
+		@extend .font-sm;
+		@extend .height-sm;
 	}
 
 	&.md {
-		height: 0.75;
+		@extend .font-md;
+		@extend .height-md;
 	}
 
 	&.lg {
-		height: 1rem;
+		@extend .font-lg;
+		@extend .height-lg;
 	}
 
 	&.xl {
-		height: 1.25rem;
+		@extend .font-xl;
+		@extend .height-xl;
+	}
+
+	&.xxl {
+		@extend .font-xxl;
+		@extend .height-xxl;
+	}
+
+	&.xxxl {
+		@extend .font-xxxl;
+		@extend .height-xxxl;
 	}
 
 	&.label {

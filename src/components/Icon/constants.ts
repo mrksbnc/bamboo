@@ -851,18 +851,12 @@ export const iconMap = new Map([
 ]);
 
 export enum IconSize {
-	// 8px
 	XXS = 'xxs',
-	// 10px
 	XS = 'xs',
-	// 12px
 	SM = 'sm',
-	// 16px
 	MD = 'md',
-	// 20px
 	LG = 'lg',
-	// 24px
 	XL = 'xl',
-	// 32px
 	XXL = 'xxl',
+	XXXL = 'xxxl',
 }

@@ -8,7 +8,8 @@ export enum BadgeVariant {
 }
 
 export enum BadgeForm {
-	Square = 'square',
+	Flat = 'flat',
+	Base = 'base',
 	Pill = 'pill',
 	Circle = 'circle',
 }
@@ -19,9 +20,12 @@ export enum BadgeType {
 }
 
 export enum BadgeSize {
+	XXS = 'xxs',
 	XS = 'xs',
 	SM = 'sm',
 	MD = 'md',
 	LG = 'lg',
 	XL = 'xl',
+	XXL = 'xxl',
+	XXXL = 'xxxl',
 }

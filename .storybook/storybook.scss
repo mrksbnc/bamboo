@@ -1,5 +1,9 @@
 @import '@/styles/index.scss';
 
+* {
+	font-family: 'Assistant', sans-serif;
+}
+
 .__dark {
 	.docs-story {
 		background: rgba(51, 51, 51) !important;

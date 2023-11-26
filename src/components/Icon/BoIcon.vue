@@ -77,6 +77,9 @@ const boIconClass = computed<OptionalCss>(() => {
 		case IconSize.XXL:
 			classes['xxl'] = true;
 			break;
+		case IconSize.XXXL:
+			classes['xxxl'] = true;
+			break;
 	}
 
 	return classes;

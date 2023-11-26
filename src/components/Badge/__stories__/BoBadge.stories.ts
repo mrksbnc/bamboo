@@ -42,7 +42,7 @@ const meta = {
 					detail: stringEnumFormatter(BadgeForm, 'BadgeForm'),
 				},
 				defaultValue: {
-					summary: BadgeForm.Pill,
+					summary: BadgeForm.Base,
 				},
 			},
 			control: {
@@ -160,8 +160,9 @@ type Story = StoryObj<typeof meta>;
 export const Example: Story = {
 	args: {
 		variant: BadgeVariant.Default,
-		size: BadgeSize.SM,
+		size: BadgeSize.MD,
 		label: 'Label',
+		form: BadgeForm.Base,
 	},
 };
 
@@ -173,30 +174,39 @@ export const Filled: Story = {
 		<div style="display: flex; flex-direction: column; gap: 20px;">
 			Pill
 			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-				<BoBadge variant="default" size="sm" label="Label" type="filled"/>
-				<BoBadge variant="info" size="sm" label="Label" type="filled"/>
-				<BoBadge variant="tertiary" size="sm" label="Label" type="filled"/>
-				<BoBadge variant="success" size="sm" label="Label" type="filled"/>
-				<BoBadge variant="danger" size="sm" label="Label" type="filled"/>
-				<BoBadge variant="warning" size="sm" label="Label" type="filled"/>
+				<BoBadge variant="default" size="md" label="Label" type="filled"/>
+				<BoBadge variant="info" size="md" label="Label" type="filled"/>
+				<BoBadge variant="tertiary" size="md" label="Label" type="filled"/>
+				<BoBadge variant="success" size="md" label="Label" type="filled"/>
+				<BoBadge variant="danger" size="md" label="Label" type="filled"/>
+				<BoBadge variant="warning" size="md" label="Label" type="filled"/>
 			</div>
 			Circle
 			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-				<BoBadge variant="default" size="sm" label="1" type="filled" form="circle"/>
-				<BoBadge variant="info" size="sm" label="2" type="filled" form="circle" />
-				<BoBadge variant="tertiary" size="sm" label="3" type="filled" form="circle"/>
-				<BoBadge variant="success" size="sm" label="4" type="filled" form="circle"/>
-				<BoBadge variant="danger" size="sm" label="5" type="filled" form="circle"/>
-				<BoBadge variant="warning" size="sm" label="6" type="filled" form="circle"/>
+				<BoBadge variant="default" size="md" label="1" type="filled" form="circle"/>
+				<BoBadge variant="info" size="md" label="2" type="filled" form="circle" />
+				<BoBadge variant="tertiary" size="md" label="3" type="filled" form="circle"/>
+				<BoBadge variant="success" size="md" label="4" type="filled" form="circle"/>
+				<BoBadge variant="danger" size="md" label="5" type="filled" form="circle"/>
+				<BoBadge variant="warning" size="md" label="6" type="filled" form="circle"/>
 			</div>
-			Square	
+			Base	
 			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-				<BoBadge variant="default" size="sm" label="1" type="filled" form="square"/>
-				<BoBadge variant="info" size="sm" label="2" type="filled" form="square" />
-				<BoBadge variant="tertiary" size="sm" label="3" type="filled" form="square"/>
-				<BoBadge variant="success" size="sm" label="4" type="filled" form="square"/>
-				<BoBadge variant="danger" size="sm" label="5" type="filled" form="square"/>
-				<BoBadge variant="warning" size="sm" label="6" type="filled" form="square"/>
+				<BoBadge variant="default" size="md" label="1" type="filled" form="base"/>
+				<BoBadge variant="info" size="md" label="2" type="filled" form="base" />
+				<BoBadge variant="tertiary" size="md" label="3" type="filled" form="base"/>
+				<BoBadge variant="success" size="md" label="4" type="filled" form="base"/>
+				<BoBadge variant="danger" size="md" label="5" type="filled" form="base"/>
+				<BoBadge variant="warning" size="md" label="6" type="filled" form="base"/>
+			</div>
+			Flate	
+			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+				<BoBadge variant="default" size="md" label="1" type="filled" form="flat"/>
+				<BoBadge variant="info" size="md" label="2" type="filled" form="flat" />
+				<BoBadge variant="tertiary" size="md" label="3" type="filled" form="flat"/>
+				<BoBadge variant="success" size="md" label="4" type="filled" form="flat"/>
+				<BoBadge variant="danger" size="md" label="5" type="filled" form="flat"/>
+				<BoBadge variant="warning" size="md" label="6" type="filled" form="flat"/>
 			</div>
 		</div>
 	`,
@@ -211,32 +221,42 @@ export const Outline: Story = {
 		<div style="display: flex; flex-direction: column; gap: 20px;">
 			Pill
 			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-				<BoBadge variant="default" size="sm" label="Label" type="outline"/>
-				<BoBadge variant="info" size="sm" label="Label" type="outline"/>
-				<BoBadge variant="tertiary" size="sm" label="Label" type="outline"/>
-				<BoBadge variant="success" size="sm" label="Label" type="outline"/>
-				<BoBadge variant="danger" size="sm" label="Label" type="outline"/>
-				<BoBadge variant="warning" size="sm" label="Label" type="outline"/>
+				<BoBadge variant="default" size="md" label="Label" type="outline"/>
+				<BoBadge variant="info" size="md" label="Label" type="outline"/>
+				<BoBadge variant="tertiary" size="md" label="Label" type="outline"/>
+				<BoBadge variant="success" size="md" label="Label" type="outline"/>
+				<BoBadge variant="danger" size="md" label="Label" type="outline"/>
+				<BoBadge variant="warning" size="md" label="Label" type="outline"/>
 			</div>
 			Circle
 			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-				<BoBadge variant="default" size="sm" label="1" type="outline" form="circle"/>
-				<BoBadge variant="info" size="sm" label="2" type="outline" form="circle" />
-				<BoBadge variant="tertiary" size="sm" label="3" type="outline" form="circle"/>
-				<BoBadge variant="success" size="sm" label="4" type="outline" form="circle"/>
-				<BoBadge variant="danger" size="sm" label="5" type="outline" form="circle"/>
-				<BoBadge variant="warning" size="sm" label="6" type="outline" form="circle"/>
+				<BoBadge variant="default" size="md" label="1" type="outline" form="circle"/>
+				<BoBadge variant="info" size="md" label="2" type="outline" form="circle" />
+				<BoBadge variant="tertiary" size="md" label="3" type="outline" form="circle"/>
+				<BoBadge variant="success" size="md" label="4" type="outline" form="circle"/>
+				<BoBadge variant="danger" size="md" label="5" type="outline" form="circle"/>
+				<BoBadge variant="warning" size="md" label="6" type="outline" form="circle"/>
 			</div>
-			Square
+			Base	
 			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-				<BoBadge variant="default" size="sm" label="1" type="outline" form="square"/>
-				<BoBadge variant="info" size="sm" label="2" type="outline" form="square" />
-				<BoBadge variant="tertiary" size="sm" label="3" type="outline" form="square"/>
-				<BoBadge variant="success" size="sm" label="4" type="outline" form="square"/>
-				<BoBadge variant="danger" size="sm" label="5" type="outline" form="square"/>
-				<BoBadge variant="warning" size="sm" label="6" type="outline" form="square"/>
+				<BoBadge variant="default" size="md" label="1" type="outline" form="base"/>
+				<BoBadge variant="info" size="md" label="2" type="outline" form="base" />
+				<BoBadge variant="tertiary" size="md" label="3" type="outline" form="base"/>
+				<BoBadge variant="success" size="md" label="4" type="outline" form="base"/>
+				<BoBadge variant="danger" size="md" label="5" type="outline" form="base"/>
+				<BoBadge variant="warning" size="md" label="6" type="outline" form="base"/>
+			</div>
+			Flate	
+			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+				<BoBadge variant="default" size="md" label="1" type="outline" form="flat"/>
+				<BoBadge variant="info" size="md" label="2" type="outline" form="flat" />
+				<BoBadge variant="tertiary" size="md" label="3" type="outline" form="flat"/>
+				<BoBadge variant="success" size="md" label="4" type="outline" form="flat"/>
+				<BoBadge variant="danger" size="md" label="5" type="outline" form="flat"/>
+				<BoBadge variant="warning" size="md" label="6" type="outline" form="flat"/>
 			</div>
 		</div>
+
 	`,
 	}),
 };
@@ -250,7 +270,7 @@ export const Sizes: Story = {
 			Pill
 			<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
 			<BoBadge variant="default" size="xs" label="Label" />
-			<BoBadge variant="default" size="sm" label="Label" />
+			<BoBadge variant="default" size="md" label="Label" />
 			<BoBadge variant="default" size="md" label="Label" />
 			<BoBadge variant="default" size="lg" label="Label" />
 			<BoBadge variant="default" size="xl" label="Label" />
@@ -258,19 +278,27 @@ export const Sizes: Story = {
 		Circle
 		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
 			<BoBadge variant="default" form="circle" size="xs" label="1" />
-			<BoBadge variant="default" form="circle" size="sm" label="2" />
+			<BoBadge variant="default" form="circle" size="md" label="2" />
 			<BoBadge variant="default" form="circle" size="md" label="3" />
 			<BoBadge variant="default" form="circle" size="lg" label="4" />
 			<BoBadge variant="default" form="circle" size="xl" label="5" />
 		</div>
-		Square
+		Base
 		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-			<BoBadge variant="default" form="square" size="xs" label="1" />
-			<BoBadge variant="default" form="square" size="sm" label="2" />
-			<BoBadge variant="default" form="square" size="md" label="3" />
-			<BoBadge variant="default" form="square" size="lg" label="4" />
-			<BoBadge variant="default" form="square" size="xl" label="5" />
+			<BoBadge variant="default" form="base" size="xs" label="1" />
+			<BoBadge variant="default" form="base" size="md" label="2" />
+			<BoBadge variant="default" form="base" size="md" label="3" />
+			<BoBadge variant="default" form="base" size="lg" label="4" />
+			<BoBadge variant="default" form="base" size="xl" label="5" />
 		</div>
+		Flat
+		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+		<BoBadge variant="default" form="flat" size="xs" label="1" />
+		<BoBadge variant="default" form="flat" size="md" label="2" />
+		<BoBadge variant="default" form="flat" size="md" label="3" />
+		<BoBadge variant="default" form="flat" size="lg" label="4" />
+		<BoBadge variant="default" form="flat" size="xl" label="5" />
+	</div>
 	</div>
 	`,
 	}),

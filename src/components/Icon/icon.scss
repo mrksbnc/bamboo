@@ -1,4 +1,5 @@
 @import '@/styles/themes.scss';
+@import '@/styles/layout.scss';
 
 .bo-icon {
 	mask-size: contain;
@@ -20,37 +21,42 @@
 	-ms-user-select: none;
 
 	&.xxs {
-		height: 8px;
-		width: 8px;
+		@extend .height-xxs;
+		@extend .width-xxs;
 	}
 
 	&.xs {
-		height: 10px;
-		width: 10px;
+		@extend .height-xs;
+		@extend .width-xs;
 	}
 
 	&.sm {
-		width: 12px;
-		height: 12px;
+		@extend .height-sm;
+		@extend .width-sm;
 	}
 
 	&.md {
-		width: 16px;
-		height: 16px;
+		@extend .height-md;
+		@extend .width-md;
 	}
 
 	&.lg {
-		width: 20px;
-		height: 20px;
+		@extend .height-lg;
+		@extend .width-lg;
 	}
 
 	&.xl {
-		width: 24px;
-		height: 24px;
+		@extend .height-xl;
+		@extend .width-xl;
 	}
 
 	&.xxl {
-		width: 32px;
-		height: 32px;
+		@extend .height-xxl;
+		@extend .width-xxl;
+	}
+
+	&.xxxl {
+		@extend .height-xxxl;
+		@extend .width-xxxl;
 	}
 }

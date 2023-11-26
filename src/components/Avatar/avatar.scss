@@ -1,77 +1,115 @@
-@import '@/styles/colors';
+@import '@/styles/colors.scss';
+@import '@/styles/layout.scss';
+@import '@/styles/typography.scss';
 
-.bo-avatar__container {
-	position: relative;
-	display: inline-block;
+.bo-avatar {
+	&__container {
+		position: relative;
+		display: inline-block;
 
-	.bo-avatar {
-		display: flex;
-		align-items: center;
-		vertical-align: middle;
-		justify-content: center;
+		&__image {
+			@extend .font-mono;
 
-		&.square {
-			border-radius: 25%;
+			display: flex;
+			align-items: center;
+			vertical-align: middle;
+			justify-content: center;
+
+			&.square {
+				border-radius: 25%;
+			}
+
+			&.rounded {
+				border-radius: 50%;
+			}
+
+			&.flat {
+				border-radius: 0px;
+			}
+
+			&.image {
+				object-fit: cover;
+				background-color: transparent;
+			}
+
+			&.initial {
+				object-fit: cover;
+			}
+
+			&.xxs {
+				@extend .font-xxs;
+
+				height: 16px;
+				width: 16px;
+			}
+
+			&.xs {
+				@extend .font-xs;
+
+				height: 24px;
+				width: 24px;
+			}
+
+			&.sm {
+				@extend .font-sm;
+
+				height: 32px;
+				width: 32px;
+			}
+
+			&.md {
+				@extend .font-md;
+
+				height: 40px;
+				width: 40px;
+			}
+
+			&.lg {
+				@extend .font-lg;
+
+				height: 48px;
+				width: 48px;
+			}
+
+			&.xl {
+				@extend .font-xl;
+
+				height: 56px;
+				width: 56px;
+			}
+
+			&.xxl {
+				@extend .font-xxl;
+
+				height: 64px;
+				width: 64px;
+			}
+
+			&.xxxl {
+				@extend .font-xxxl;
+
+				height: 72px;
+				width: 72px;
+			}
 		}
 
-		&.rounded {
-			border-radius: 50%;
-		}
+		&__indicator {
+			@extend .height-xs;
+			@extend .width-xs;
 
-		&.flat {
-			border-radius: 0px;
-		}
+			position: absolute;
+			border-radius: 100%;
+			border: 2px solid var(--white);
 
-		&.image {
-			object-fit: cover;
-			background-color: transparent;
-		}
+			&.bottom {
+				bottom: 0;
+				right: 0;
+			}
 
-		&.initial {
-			object-fit: cover;
-		}
-
-		&.xs {
-			width: 36px;
-			height: 36px;
-		}
-
-		&.sm {
-			width: 40px;
-			height: 40px;
-		}
-
-		&.md {
-			width: 44px;
-			height: 44px;
-		}
-
-		&.lg {
-			width: 48px;
-			height: 48px;
-		}
-
-		&.xl {
-			width: 52px;
-			height: 52px;
-		}
-	}
-
-	.indicator {
-		width: 10px;
-		height: 10px;
-		position: absolute;
-		border-radius: 100%;
-		border: 2px solid white;
-
-		&.bottom {
-			bottom: 0;
-			right: 0;
-		}
-
-		&.top {
-			top: 0;
-			right: 0;
+			&.top {
+				top: 0;
+				right: 0;
+			}
 		}
 	}
 }

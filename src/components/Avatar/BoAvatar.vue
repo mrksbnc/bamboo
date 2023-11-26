@@ -4,19 +4,19 @@
 			v-if="type === AvatarType.Image"
 			alt="Avatar"
 			:src="avatarSrc"
-			:class="['bo-avatar', avatarClasses]"
+			:class="['bo-avatar__container__image', avatarClasses]"
 		/>
 		<div
 			v-if="type === AvatarType.Initial && initial !== null"
 			:style="initialStyle"
-			:class="['bo-avatar', avatarClasses]"
+			:class="['bo-avatar__container__image', avatarClasses]"
 		>
-			<span> {{ initial }} </span>
+			<span> {{ initial.toUpperCase() }} </span>
 		</div>
 		<span
 			v-if="showIndicator"
 			:style="indicatorStyle"
-			:class="['indicator', indicatorClasses]"
+			:class="['bo-avatar__container__indicator', indicatorClasses]"
 		/>
 	</div>
 </template>
@@ -94,6 +94,9 @@ const avatarClasses = computed<OptionalCss>(() => {
 	}
 
 	switch (size.value) {
+		case AvatarSize.XXS:
+			classes['xxs'] = true;
+			break;
 		case AvatarSize.XS:
 			classes['xs'] = true;
 			break;
@@ -108,6 +111,12 @@ const avatarClasses = computed<OptionalCss>(() => {
 			break;
 		case AvatarSize.XL:
 			classes['xl'] = true;
+			break;
+		case AvatarSize.XXL:
+			classes['xxl'] = true;
+			break;
+		case AvatarSize.XXXL:
+			classes['xxxl'] = true;
 			break;
 	}
 

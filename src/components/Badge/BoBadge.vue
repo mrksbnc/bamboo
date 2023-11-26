@@ -79,8 +79,11 @@ const cssClasses = computed<OptionalCss>(() => {
 	}
 
 	switch (form.value) {
-		case BadgeForm.Square:
-			classes['square'] = true;
+		case BadgeForm.Flat:
+			classes['flat'] = true;
+			break;
+		case BadgeForm.Base:
+			classes['base'] = true;
 			break;
 		case BadgeForm.Circle:
 			classes['circle'] = true;
@@ -109,6 +112,9 @@ const cssClasses = computed<OptionalCss>(() => {
 	}
 
 	switch (size.value) {
+		case BadgeSize.XXS:
+			classes['xxs'] = true;
+			break;
 		case BadgeSize.XS:
 			classes['xs'] = true;
 			break;
@@ -123,6 +129,12 @@ const cssClasses = computed<OptionalCss>(() => {
 			break;
 		case BadgeSize.XL:
 			classes['xl'] = true;
+			break;
+		case BadgeSize.XXL:
+			classes['xxl'] = true;
+			break;
+		case BadgeSize.XXXL:
+			classes['xxxl'] = true;
 			break;
 	}
 

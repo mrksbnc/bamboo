@@ -1,0 +1,103 @@
+@import '@/styles/layout.scss';
+@import '@/styles/typography.scss';
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+.bo-input {
+	&__container {
+		display: flex;
+		max-width: 350px;
+		flex-direction: column;
+	}
+
+	&__label {
+		@extend .font-sm;
+		@extend .font-inter;
+		@extend .font-regular;
+
+		display: block;
+		color: var(--input-label-color);
+	}
+
+	&__field-container {
+		margin: 6px 0;
+		position: relative;
+
+		&__input {
+			width: 100%;
+			outline: none;
+			display: block;
+			padding: 12px 8px;
+			border-radius: 6px;
+			color: var(--gray-600);
+			border: 1px solid var(--input-border-color);
+			background-color: var(--input-background-color);
+			box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+
+			&.sm {
+				@extend .height-sm;
+			}
+
+			&.md {
+				@extend .height-md;
+			}
+
+			.lg {
+				@extend .height-lg;
+			}
+
+			&.default {
+				:focus {
+					border: 1px solid var(--black);
+				}
+			}
+
+			&.error {
+				border: 1px solid var(--error-color);
+			}
+		}
+
+		&__icon-container {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-around;
+
+			&__icon {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				right: 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
+
+	&__error-container {
+		display: flex;
+		align-items: center;
+
+		&__icon {
+			margin-right: 4px;
+		}
+
+		&__msg {
+			@extend .font-sm;
+			@extend .font-regular;
+
+			color: var(--error-color);
+		}
+	}
+
+	&__description {
+		@extend .font-xs;
+		@extend .font-inter;
+		@extend .font-regular;
+
+		color: var(--input-label-color);
+	}
+}

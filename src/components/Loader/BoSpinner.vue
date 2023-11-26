@@ -45,6 +45,9 @@ const css = computed<OptionalCss>(() => {
 	}
 
 	switch (size.value) {
+		case SpinnerSize.XXS:
+			classes['xxs'] = true;
+			break;
 		case SpinnerSize.XS:
 			classes['xs'] = true;
 			break;
@@ -59,6 +62,12 @@ const css = computed<OptionalCss>(() => {
 			break;
 		case SpinnerSize.XL:
 			classes['xl'] = true;
+			break;
+		case SpinnerSize.XXL:
+			classes['xxl'] = true;
+			break;
+		case SpinnerSize.XXXL:
+			classes['xxxl'] = true;
 			break;
 	}
 

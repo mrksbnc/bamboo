@@ -5,6 +5,7 @@ import './storybook.scss';
 
 const bambooPreview: Preview = {
 	parameters: {
+		layout: 'padded',
 		actions: { argTypesRegex: '^on[A-Z].*' },
 		controls: {
 			matchers: {
@@ -14,6 +15,9 @@ const bambooPreview: Preview = {
 		},
 		docs: {
 			toc: true,
+			story: {
+				height: '100px',
+			},
 		},
 		darkMode: {
 			stylePreview: true,
