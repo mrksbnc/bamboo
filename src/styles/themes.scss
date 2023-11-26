@@ -7,15 +7,23 @@
 .__light {
 	--icon-color: var(--black);
 
-	--input-label-color: var(--gray-800);
+	--input-text-color: var(--gray-800);
 	--input-border-color: var(--gray-100);
 	--input-background-color: var(--gray-50);
+	--input-focus-border-color: var(--blue-600);
+	--input-disabled-text-color: var(--gray-500);
+	--input-disabled-border-color: var(--gray-100);
+	--input-disabled-background-color: var(--gray-100);
 }
 
 .__dark {
 	--icon-color: var(--white);
 
-	--input-label-color: var(--gray-300);
+	--input-text-color: var(--gray-300);
 	--input-border-color: var(--gray-800);
 	--input-background-color: var(--gray-800);
+	--input-focus-border-color: var(--blue-600);
+	--input-disabled-text-color: var(--gray-500);
+	--input-disabled-border-color: var(--gray-700);
+	--input-disabled-background-color: var(--gray-700);
 }

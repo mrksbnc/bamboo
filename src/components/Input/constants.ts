@@ -90,9 +90,23 @@ export enum InputSize {
 }
 
 export enum InputFieldEvent {
-	Focus = 'focus',
 	Blur = 'blur',
-	Input = 'input',
+	Focus = 'focus',
 	Change = 'change',
-	Clear = 'clear',
+	Input = 'update:modelValue',
 }
+
+export const validTextInputFieldTypes: HTMLInputType[] = [
+	HTMLInputType.Text,
+	HTMLInputType.Email,
+	HTMLInputType.Password,
+	HTMLInputType.Tel,
+	HTMLInputType.Url,
+	HTMLInputType.Search,
+	HTMLInputType.Number,
+	HTMLInputType.Date,
+	HTMLInputType.DatetimeLocal,
+	HTMLInputType.Month,
+	HTMLInputType.Time,
+	HTMLInputType.Week,
+];

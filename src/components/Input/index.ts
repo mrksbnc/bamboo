@@ -4,4 +4,5 @@ export {
 	HTMLInputType,
 	InputFieldEvent,
 	InputSize,
+	validTextInputFieldTypes,
 } from './constants';

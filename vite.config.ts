@@ -15,9 +15,10 @@ const bambooLibConfig: UserConfig = defineConfig({
 			entry: [
 				'src/index.ts',
 				'src/styles/colors.ts',
+				'src/styles/layout.ts',
 				'src/styles/animation.ts',
+				'src/styles/typography.ts',
 				'src/styles/fonts/inter.ts',
-				'src/styles/fonts/assistant.ts',
 			],
 			fileName: (format, entry) => {
 				if (entry === 'main') return `index.${format}.js`;
@@ -43,6 +44,10 @@ const bambooLibConfig: UserConfig = defineConfig({
 				assistant: fileURLToPath(
 					new URL('src/styles/fonts/assistant.ts', import.meta.url),
 				),
+				typography: fileURLToPath(
+					new URL('src/styles/typography.ts', import.meta.url),
+				),
+				layout: fileURLToPath(new URL('src/styles/layout.ts', import.meta.url)),
 			},
 		},
 	},

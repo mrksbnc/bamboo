@@ -3,6 +3,7 @@ import {
 	HTMLAutocompleteAttribute,
 	HTMLInputType,
 	InputSize,
+	validTextInputFieldTypes,
 } from '@/components/Input';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { stringEnumFormatter } from '@utils/index';
@@ -77,7 +78,7 @@ const meta = {
 			control: {
 				type: 'select',
 			},
-			options: Object.values(HTMLInputType),
+			options: validTextInputFieldTypes,
 		},
 		disabled: {
 			description: 'Whether the field is disabled or not',
@@ -208,17 +209,20 @@ const meta = {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'HTMLInputType',
-					detail: stringEnumFormatter(HTMLInputType, 'HTMLInputType'),
+					summary: 'HTMLAutocompleteAttribute',
+					detail: stringEnumFormatter(
+						HTMLAutocompleteAttribute,
+						'HTMLAutocompleteAttribute',
+					),
 				},
 			},
 			defaultValue: {
-				summary: undefined,
+				summary: HTMLAutocompleteAttribute.Off,
 			},
 			control: {
 				type: 'select',
 			},
-			options: Object.values(HTMLInputType),
+			options: Object.values(HTMLAutocompleteAttribute),
 		},
 		readonly: {
 			description: 'Whether the field is readonly',
@@ -237,20 +241,6 @@ const meta = {
 				type: 'boolean',
 			},
 		},
-		clearable: {
-			description: 'Whether the clear icon is shown',
-			table: {
-				category: 'props',
-				subcategory: 'optional',
-				type: {
-					summary: 'boolean',
-				},
-			},
-			defaultValue: {
-				summary: false,
-			},
-			type: 'boolean',
-		},
 	},
 } satisfies Meta<typeof BoInput>;
 
@@ -266,7 +256,6 @@ export const Example: Story = {
 		label: 'Label',
 		disabled: false,
 		readonly: false,
-		clearable: false,
 		isLoading: false,
 		size: InputSize.MD,
 		type: HTMLInputType.Text,

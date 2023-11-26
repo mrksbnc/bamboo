@@ -1,5 +1,7 @@
 @import '@/styles/layout.scss';
+@import '@/styles/themes.scss';
 @import '@/styles/typography.scss';
+
 *,
 *:before,
 *:after {
@@ -19,39 +21,44 @@
 		@extend .font-regular;
 
 		display: block;
-		color: var(--input-label-color);
+		color: var(--input-text-color);
 	}
 
 	&__field-container {
-		margin: 6px 0;
+		padding: 6px 0;
 		position: relative;
 
 		&__input {
 			width: 100%;
 			outline: none;
 			display: block;
-			padding: 12px 8px;
 			border-radius: 6px;
-			color: var(--gray-600);
+			color: var(--input-text-color);
 			border: 1px solid var(--input-border-color);
 			background-color: var(--input-background-color);
-			box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
 
 			&.sm {
-				@extend .height-sm;
+				padding: 8px;
 			}
 
 			&.md {
-				@extend .height-md;
+				padding: 10px;
 			}
 
-			.lg {
-				@extend .height-lg;
+			&.lg {
+				padding: 16px;
+			}
+
+			&:disabled {
+				color: var(--input-disabled-text-color);
+				background-color: var(--input-disabled-background-color);
+				border: 1px solid var(--input-disabled-border-color);
 			}
 
 			&.default {
-				:focus {
-					border: 1px solid var(--black);
+				&:focus {
+					border: 1px solid var(--blue-600);
+					transition: all 0.2s ease-in-out;
 				}
 			}
 
@@ -69,7 +76,7 @@
 				position: absolute;
 				top: 0;
 				bottom: 0;
-				right: 10px;
+				right: 15px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -98,6 +105,6 @@
 		@extend .font-inter;
 		@extend .font-regular;
 
-		color: var(--input-label-color);
+		color: var(--input-text-color);
 	}
 }

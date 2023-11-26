@@ -10,7 +10,6 @@
 		<div class="bo-input__field-container">
 			<input
 				v-bind="$attrs"
-				v-model="inputVal"
 				ref="boInputRef"
 				class="bo-input__field-container__input"
 				@blur="onBlur"
@@ -19,27 +18,25 @@
 				@change="onChange"
 				:id="id"
 				:type="inputType"
+				:value="modelValue"
 				:disabled="disabled"
 				:class="inputFieldCss"
 				:readonly="isReadonly"
 				:placeholder="placeholder"
 				:autocomplete="autocomplete"
 			/>
-			<div class="bo-input__field-container__icon-container">
-				<div
-					v-if="isLoading"
-					class="bo-input__field-container__icon-container__icon"
-				>
+			<div class="bo-input__field-container__suffix-container">
+				<div class="bo-input__field-container__icon-container__icon">
 					<BoSpinner
+						v-if="isLoading"
 						:variant="SpinnerVariant.Default"
 						:size="SpinnerSize.XS"
 					/>
-				</div>
-				<div
-					v-if="hasShowPasswordIcon"
-					@click="togglePassword"
-				>
-					<BoIcon :name="eyeIcon" />
+					<BoIcon
+						v-if="hasShowPasswordIcon && !isLoading"
+						@click="togglePassword"
+						:name="eyeIcon"
+					/>
 				</div>
 			</div>
 		</div>
@@ -72,7 +69,8 @@ import {
 	HTMLInputType,
 	InputFieldEvent,
 	InputSize,
-} from './constants';
+	validTextInputFieldTypes,
+} from '@/components/Input';
 import { Icon, BoIcon, IconSize } from '@/components/Icon';
 import type { OptionalCss } from '@/types';
 import { BoSpinner, SpinnerSize, SpinnerVariant } from '@/components/Loader';
@@ -80,8 +78,8 @@ import { BambooColor } from '@/constants';
 
 const emits = defineEmits<{
 	(event: InputFieldEvent.Focus): void;
-	(event: InputFieldEvent.Clear): void;
 	(event: InputFieldEvent.Blur, value: Event): void;
+	(event: InputFieldEvent.Input, value: string | null): void;
 	(event: InputFieldEvent.Change, value: string | null): void;
 }>();
 
@@ -101,6 +99,9 @@ const props = defineProps({
 	type: {
 		type: String as PropType<HTMLInputType>,
 		default: () => HTMLInputType.Text,
+		validator: (value: HTMLInputType): boolean => {
+			return validTextInputFieldTypes.includes(value);
+		},
 	},
 	disabled: {
 		type: Boolean,
@@ -138,10 +139,6 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-	clearable: {
-		type: Boolean,
-		default: true,
-	},
 });
 
 const {
@@ -161,7 +158,6 @@ const {
 } = toRefs(props);
 
 const showPassword = ref<boolean>(false);
-const inputVal = ref<string | null>(modelValue.value);
 const boInputRef = ref<HTMLInputElement | null>(null);
 
 const showErrorMsg = computed<boolean>(() => {
@@ -173,7 +169,9 @@ const isReadonly = computed<boolean>(() => {
 });
 
 const inputType = computed<HTMLInputType>(() => {
-	return showPassword.value ? HTMLInputType.Text : type?.value;
+	return showPassword.value && type.value === HTMLInputType.Password
+		? HTMLInputType.Text
+		: type.value;
 });
 
 const eyeIcon = computed<Icon.eye | Icon.eye_off>(() => {
@@ -209,8 +207,8 @@ const hasShowPasswordIcon = computed<boolean>(() => {
 		type.value === HTMLInputType.Password &&
 		!disabled.value &&
 		!isLoading.value &&
-		inputVal.value != null &&
-		inputVal.value !== ''
+		modelValue.value != null &&
+		modelValue.value !== ''
 	);
 });
 
@@ -223,11 +221,11 @@ const onFocus = (): void => {
 };
 
 const onInput = (): void => {
-	emits(InputFieldEvent.Change, inputVal.value);
+	emits(InputFieldEvent.Input, modelValue.value);
 };
 
 const onChange = (): void => {
-	emits(InputFieldEvent.Change, inputVal.value);
+	emits(InputFieldEvent.Change, modelValue.value);
 };
 
 const onBlur = (event: Event): void => {
