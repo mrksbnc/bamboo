@@ -1,5 +1,16 @@
 <template>
-	<span :class="['bo-spinner', css]"></span>
+	<div class="bo-spinner-container">
+		<span
+			class="bo-spinner"
+			:class="css"
+		/>
+		<div
+			class="bo-spinner__text"
+			v-if="text"
+		>
+			{{ text }}
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -15,6 +26,10 @@ const props = defineProps({
 	size: {
 		type: String as PropType<LoaderSize>,
 		default: () => LoaderSize.MD,
+	},
+	text: {
+		type: String,
+		required: false,
 	},
 });
 

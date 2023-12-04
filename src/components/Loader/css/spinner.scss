@@ -1,70 +1,83 @@
 @import '@/styles/layout.scss';
+@import '@/styles/typography.scss';
 
-.bo-spinner {
-	position: absolute;
-	border-radius: 50%;
-	animation: spin 2s linear infinite;
-	border: 0.1875rem solid transparent; /** 3px */
+.bo-spinner-container {
+	gap: 0.8rem;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
 
-	-webkit-animation: spin 2s linear infinite;
+	.bo-spinner {
+		border-radius: 50%;
+		animation: spin 2s linear infinite;
+		border: 0.1875rem solid transparent; /** 3px */
 
-	&.xs {
-		@extend %width-xs;
-		@extend %height-xs;
-	}
+		-webkit-animation: spin 2s linear infinite;
 
-	&.sm {
-		@extend %width-sm;
-		@extend %height-sm;
-	}
+		&.xs {
+			@extend %width-xs;
+			@extend %height-xs;
+		}
 
-	&.md {
-		@extend %width-md;
-		@extend %height-md;
-	}
+		&.sm {
+			@extend %width-sm;
+			@extend %height-sm;
+		}
 
-	&.lg {
-		@extend %width-lg;
-		@extend %height-lg;
-	}
+		&.md {
+			@extend %width-md;
+			@extend %height-md;
+		}
 
-	&.xl {
-		@extend %width-xl;
-		@extend %height-xl;
-	}
+		&.lg {
+			@extend %width-lg;
+			@extend %height-lg;
+		}
 
-	&.xxl {
-		@extend %width-xxl;
-		@extend %height-xxl;
-	}
+		&.xl {
+			@extend %width-xl;
+			@extend %height-xl;
+		}
 
-	&.xxxl {
-		@extend %width-xxxl;
-		@extend %height-xxxl;
-	}
+		&.xxl {
+			@extend %width-xxl;
+			@extend %height-xxl;
+		}
 
-	&.default {
-		border-top: 0.1875rem solid var(--black); /** 3px */
-	}
+		&.xxxl {
+			@extend %width-xxxl;
+			@extend %height-xxxl;
+		}
 
-	&.info {
-		border-top: 0.1875rem solid var(--blue-600); /** 3px */
-	}
+		&.default {
+			border-top: 0.1875rem solid var(--black); /** 3px */
+		}
 
-	&.tertiary {
-		border-top: 0.1875rem solid var(--gray-600); /** 3px */
-	}
+		&.info {
+			border-top: 0.1875rem solid var(--blue-600); /** 3px */
+		}
 
-	&.success {
-		border-top: 0.1875rem solid var(--green-600); /** 3px */
-	}
+		&.tertiary {
+			border-top: 0.1875rem solid var(--gray-600); /** 3px */
+		}
 
-	&.warning {
-		border-top: 0.1875rem solid var(--yellow-500); /** 3px */
-	}
+		&.success {
+			border-top: 0.1875rem solid var(--green-600); /** 3px */
+		}
 
-	&.danger {
-		border-top: 0.1875rem solid var(--red-600); /** 3px */
+		&.warning {
+			border-top: 0.1875rem solid var(--yellow-500); /** 3px */
+		}
+
+		&.danger {
+			border-top: 0.1875rem solid var(--red-600); /** 3px */
+		}
+
+		&__text {
+			@extend %font-sm;
+			color: var(--text-color);
+		}
 	}
 }
 

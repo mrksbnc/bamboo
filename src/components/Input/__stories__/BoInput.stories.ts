@@ -158,7 +158,7 @@ const meta = {
 				},
 			},
 			defaultValue: {
-				summary: false,
+				summary: undefined,
 			},
 			type: 'string',
 			control: {

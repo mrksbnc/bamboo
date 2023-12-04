@@ -278,7 +278,7 @@ export const Sizes: Story = {
 		Circle
 		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
 			<BoBadge variant="default" form="circle" size="xs" label="1" />
-			<BoBadge variant="default" form="circle" size="md" label="2" />
+			<BoBadge variant="default" form="circle" size="sm" label="2" />
 			<BoBadge variant="default" form="circle" size="md" label="3" />
 			<BoBadge variant="default" form="circle" size="lg" label="4" />
 			<BoBadge variant="default" form="circle" size="xl" label="5" />

@@ -46,8 +46,8 @@
 		>
 			<BoIcon
 				v-if="showErrorMsg"
-				:size="IconSize.SM"
-				:name="Icon.alert_circle"
+				:size="IconSize.MD"
+				:name="Icon.alert_triangle"
 				:color="BambooColor['red-600']"
 				class="bo-input__error-container__icon"
 			/>

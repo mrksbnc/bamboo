@@ -47,3 +47,9 @@ type Story = StoryObj<typeof meta>;
 export const Example: Story = {
 	args: {},
 };
+
+export const WithText: Story = {
+	args: {
+		text: 'Loading...',
+	},
+};
