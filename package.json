@@ -16,9 +16,9 @@
 		"major": "npm version --no-git-tag-version major",
 		"release": "npm run build && npm publish --access public",
 		"storybook": "storybook dev -p 6006 --no-open",
-		"build-storybook": "storybook build -o storybook-static",
+		"build-storybook": "storybook build -o docs",
 		"predeploy": "npm run build-storybook",
-		"deploy-storybook": "gh-pages -d storybook-static"
+		"deploy-storybook": "gh-pages -d docs"
 	},
 	"homepage": "http://mrksbnc.github.io/bamboo",
 	"repository": {
