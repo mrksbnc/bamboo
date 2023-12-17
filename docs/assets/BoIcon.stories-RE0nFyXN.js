@@ -1,6 +1,0 @@
-import{B as c,I as t,a as e}from"./BoIcon-U5t9lCoz.js";import{s as r}from"./storybook-j7faMZma.js";import"./vue.esm-bundler-ikl-1DwA.js";import"./iframe-BemyBnKR.js";import"../sb-preview/runtime.js";import"./_plugin-vue_export-helper-x3n3nnut.js";const d={title:"Icon/bo-icon",component:c,tags:["autodocs"],argTypes:{name:{description:"The name of the icon",table:{category:"props",subcategory:"required",type:{summary:"Icon",detail:r(t,"Icon")}},control:{type:"select"},options:Object.values(t)},size:{description:"The size of the icon",table:{category:"props",subcategory:"optional",type:{summary:"IconSize",detail:r(e,"IconSize")},defaultValue:{summary:e.MD}},control:{type:"select"},options:Object.values(e)},color:{description:"The color of the icon in `--var()` or in `hex` format",table:{category:"props",subcategory:"optional",type:{summary:"string"},defaultValue:{summary:null}},control:{type:"color"}}}},o={args:{name:t.airplay,size:e.MD}};var a,s,n;o.parameters={...o.parameters,docs:{...(a=o.parameters)==null?void 0:a.docs,source:{originalSource:`{
-  args: {
-    name: Icon.airplay,
-    size: IconSize.MD
-  }
-}`,...(n=(s=o.parameters)==null?void 0:s.docs)==null?void 0:n.source}}};const g=["Example"];export{o as Example,g as __namedExportsOrder,d as default};

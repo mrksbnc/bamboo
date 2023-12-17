@@ -1,8 +1,11 @@
-import{j as n}from"./jsx-runtime-8WJPaYAp.js";import{M as s,e as r}from"./index--B37fK0Q.js";import{u as i}from"./index-RNomFGQr.js";import"./iframe-BemyBnKR.js";import"../sb-preview/runtime.js";import"./chunk-ZGA76URP-Uk8hDnuP.js";import"./_commonjsHelpers-5-cIlDoe.js";import"./index-ogXoivrg.js";import"./index-OpicemMp.js";import"./index-PPLHz8o0.js";const a=`# Bamboo
-
-Lightweight and flexible (hence the name) UI Library built with [Vite](https://vitejs.dev/) and [Vue 3](https://vuejs.org/). The documentation is created with [Storybook](https://storybook.js.org/).
+import{j as n}from"./jsx-runtime-sCfTqFMV.js";import{M as s,e as r}from"./index-Qtt1_98o.js";import{u as i}from"./index-Vn4OvPbF.js";import"./iframe-I2_kvona.js";import"../sb-preview/runtime.js";import"./chunk-ZGA76URP-Uk8hDnuP.js";import"./_commonjsHelpers-5-cIlDoe.js";import"./index-ogXoivrg.js";import"./index-OpicemMp.js";import"./index-PPLHz8o0.js";const a=`# Bamboo
 
 [![npm version](https://badge.fury.io/js/@mrksbnc%2Fbamboo.svg)](https://badge.fury.io/js/@mrksbnc%2Fbamboo)
+[![Test](https://github.com/mrksbnc/bamboo/actions/workflows/test.yml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/test.yml)
+[![Storybook deployment](https://github.com/mrksbnc/bamboo/actions/workflows/deploy.yaml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/deploy.yaml)
+[![CodeQL](https://github.com/mrksbnc/bamboo/actions/workflows/codeql.yml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/codeql.yml)
+
+Lightweight and flexible (hence the name) UI Library built with [Vite](https://vitejs.dev/) and [Vue 3](https://vuejs.org/). The documentation is created with [Storybook](https://storybook.js.org/).
 
 ### Project setup
 
@@ -68,4 +71,4 @@ npm run lint
 
 [MIT](LICENSE)
 `;function e(t){return n.jsxs(n.Fragment,{children:[n.jsx(s,{title:"Docs/Get Started"}),`
-`,n.jsx(r,{children:a})]})}function y(t={}){const{wrapper:o}=Object.assign({},i(),t.components);return o?n.jsx(o,Object.assign({},t,{children:n.jsx(e,t)})):e()}export{y as default};
+`,n.jsx(r,{children:a})]})}function w(t={}){const{wrapper:o}=Object.assign({},i(),t.components);return o?n.jsx(o,Object.assign({},t,{children:n.jsx(e,t)})):e()}export{w as default};
