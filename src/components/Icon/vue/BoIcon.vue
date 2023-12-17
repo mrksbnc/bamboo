@@ -1,24 +1,29 @@
 <template>
 	<i
-		:id="id"
-		role="img"
-		:style="style"
-		:aria-label="name"
-		:class="['bo-icon', boIconClass]"
+		v-html="svg"
+		:class="css"
+		class="bo-icon"
+		aria-label="icon"
 	/>
 </template>
 
+<script lang="ts">
+export default defineComponent({
+	inheritAttrs: true,
+});
+</script>
+
 <script setup lang="ts">
-import type { CssStyle, OptionalCss } from '@/types';
-import { iconMap, IconSize, type Icon } from '@/components/Icon';
+import { icons, type Icon, IconSize } from '@/components/Icon';
 import {
-	type PropType,
-	toRefs,
-	computed,
-	onUpdated,
 	ref,
-	onBeforeMount,
+	toRefs,
+	watch,
+	type PropType,
+	defineComponent,
+	computed,
 } from 'vue';
+import type { OptionalCss } from '@/types';
 
 const props = defineProps({
 	name: {
@@ -29,30 +34,25 @@ const props = defineProps({
 		type: String as PropType<IconSize>,
 		default: () => IconSize.MD,
 	},
-	color: {
-		type: String,
-		default: () => null,
+});
+
+const { name, size } = toRefs(props);
+
+const svg = ref('');
+
+const iconMap = Object.keys(icons).reduce(
+	(acc, key) => {
+		const splitted = key.split('/');
+		const icon = splitted[splitted.length - 1].split('.')[0];
+
+		acc[icon] = icons[key];
+
+		return acc;
 	},
-});
+	{} as Record<string, () => Promise<string>>,
+);
 
-const { name, size, color } = toRefs(props);
-
-const index = ref<number>(0);
-const icon = ref<{ default: string } | null>(null);
-const id = ref<string>(`bo-icon-${index.value + 1}`);
-
-const style = computed<CssStyle>(() => {
-	const i = iconMap.get(name.value) ?? null;
-	const defaultColor = 'var(--icon-color)';
-
-	return {
-		maskImage: `url('${i?.default}')`,
-		webkitMaskImage: `url('${i?.default}')`,
-		'background-color': color.value ? color.value : defaultColor,
-	};
-});
-
-const boIconClass = computed<OptionalCss>(() => {
+const css = computed(() => {
 	const classes: OptionalCss = {};
 
 	switch (size.value) {
@@ -82,15 +82,21 @@ const boIconClass = computed<OptionalCss>(() => {
 	return classes;
 });
 
-onBeforeMount((): void => {
-	icon.value = iconMap.get(name.value) ?? null;
-});
-
-onUpdated((): void => {
-	icon.value = iconMap.get(name.value) ?? null;
-});
+watch(
+	() => name.value,
+	() => {
+		try {
+			iconMap[props.name]().then((val) => {
+				svg.value = val;
+			});
+		} catch (e) {
+			console.error(`Could not find icon of name ${props.name}`);
+		}
+	},
+	{ immediate: true },
+);
 </script>
 
-<style scoped lang="scss">
-@import '@/components/Icon/css/icon.scss';
+<style lang="scss" scoped>
+@import '../css/icon.scss';
 </style>
