@@ -1,10 +1,10 @@
-import { BoIcon, Icon, IconSize } from '@/components/Icon';
+import { BoFeatherIcon, Icon, IconSize } from '@/components/Icon';
 import { stringEnumFormatter } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
-	title: 'Icon/bo-icon',
-	component: BoIcon,
+	title: 'Icons/bo-feather-icon',
+	component: BoFeatherIcon,
 	tags: ['autodocs'],
 	argTypes: {
 		name: {
@@ -32,7 +32,7 @@ const meta = {
 					detail: stringEnumFormatter(IconSize, 'IconSize'),
 				},
 				defaultValue: {
-					summary: IconSize.MD,
+					summary: IconSize.md,
 				},
 			},
 			control: {
@@ -54,8 +54,26 @@ const meta = {
 			},
 			control: { type: 'color' },
 		},
+		strokeStyle: {
+			description: 'The stroke style of the icon',
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: 'IconStrokeStyle',
+					detail: stringEnumFormatter(IconSize, 'IconStrokeStyle'),
+				},
+				defaultValue: {
+					summary: IconSize.md,
+				},
+			},
+			control: {
+				type: 'select',
+			},
+			options: Object.values(IconSize),
+		},
 	},
-} satisfies Meta<typeof BoIcon>;
+} satisfies Meta<typeof BoFeatherIcon>;
 
 export default meta;
 
@@ -64,6 +82,6 @@ type Story = StoryObj<typeof meta>;
 export const Example: Story = {
 	args: {
 		name: Icon.activity,
-		size: IconSize.MD,
+		size: IconSize.md,
 	},
 };
