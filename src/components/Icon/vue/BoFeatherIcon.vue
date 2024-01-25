@@ -1,5 +1,5 @@
 <template>
-	<!-- NOTE: These icons are part of the feather icon set. -->
+	<!-- NOTE: These icons are part of the bo-feather-icon icon set. -->
 	<svg
 		v-if="name === Icon.activity"
 		xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +11,7 @@
 		:stroke="iconColor"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="bo-icon bo-icon--activity"
+		class="bo-feather-icon bo-feather-icon---activity"
 	>
 		<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
 	</svg>
@@ -22,11 +22,11 @@
 		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="bo-icon bo-icon--airplay"
+		class="bo-feather-icon bo-feather-icon---airplay"
 	>
 		<path
 			d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"
@@ -40,11 +40,11 @@
 		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-alert-circle"
+		class="bo-feather-icon bo-feather-icon--alert-circle"
 	>
 		<circle
 			cx="12"
@@ -71,11 +71,11 @@
 		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="bo-icon bo-icon--alert-octagon"
+		class="bo-feather-icon bo-feather-icon---alert-octagon"
 	>
 		<polygon
 			points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"
@@ -100,11 +100,11 @@
 		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="bo-icon bo-icon--alert-triangle"
+		class="bo-feather-icon bo-feather-icon---alert-triangle"
 	>
 		<path
 			d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
@@ -129,11 +129,11 @@
 		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="bo-icon bo-icon--align-center"
+		class="bo-feather-icon bo-feather-icon---align-center"
 	>
 		<line
 			x1="18"
@@ -167,11 +167,11 @@
 		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="bo-icon bo-icon--align-justify"
+		class="bo-feather-icon bo-feather-icon---align-justify"
 	>
 		<line
 			x1="21"
@@ -203,10 +203,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--align-left"
+		class="bo-feather-icon bo-feather-icon---align-left"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -241,10 +241,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--align-right"
+		class="bo-feather-icon bo-feather-icon---align-right"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -279,10 +279,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--anchor"
+		class="bo-feather-icon bo-feather-icon---anchor"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -305,10 +305,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--aperture"
+		class="bo-feather-icon bo-feather-icon---aperture"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -360,10 +360,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--archive"
+		class="bo-feather-icon bo-feather-icon---archive"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -387,10 +387,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--arrow-down-circle"
+		class="bo-feather-icon bo-feather-icon---arrow-down-circle"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -413,10 +413,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--arrow-down-left-circle"
+		class="bo-feather-icon bo-feather-icon---arrow-down-left-circle"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -434,10 +434,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon-arrow-down-right-circle"
+		class="bo-feather-icon bo-feather-icon--arrow-down-right-circle"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -455,10 +455,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="feather feather-arrow-down"
+		class="bo-feather-icon bo-feather-icon--arrow-down"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -476,10 +476,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--arrow-left-circle"
+		class="bo-feather-icon bo-feather-icon---arrow-left-circle"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -502,10 +502,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--arrow-left"
+		class="bo-feather-icon bo-feather-icon---arrow-left"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -517,10 +517,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--arrow-left-right-circle"
+		class="bo-feather-icon bo-feather-icon---arrow-left-right-circle"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -543,10 +543,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="feather feather-arrow-right"
+		class="bo-feather-icon bo-feather-icon--arrow-right"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -558,10 +558,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--arrow-up-circle"
+		class="bo-feather-icon bo-feather-icon---arrow-up-circle"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -584,10 +584,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="bo-icon bo-icon--arrow-up-left"
+		class="bo-feather-icon bo-feather-icon---arrow-up-left"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -605,10 +605,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="feather feather-arrow-up-right"
+		class="bo-feather-icon bo-feather-icon--arrow-up-right"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -626,10 +626,10 @@
 		xmlns="http://www.w3.org/2000/svg"
 		:width="iconSize"
 		:height="iconSize"
-		class="feather feather-arrow-up"
+		class="bo-feather-icon bo-feather-icon--arrow-up"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
+		:stroke="iconColor"
 		stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -645,15 +645,15 @@
 	<svg
 		v-else-if="name === Icon.at_sign"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-arrow-up"
+		class="bo-feather-icon bo-feather-icon--arrow-up"
 	>
 		<line
 			x1="12"
@@ -666,15 +666,15 @@
 	<svg
 		v-else-if="name === Icon.award"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-award"
+		class="bo-feather-icon bo-feather-icon--award"
 	>
 		<circle
 			cx="12"
@@ -686,15 +686,15 @@
 	<svg
 		v-else-if="name === Icon.bar_chart"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-bar-chart"
+		class="bo-feather-icon bo-feather-icon--bar-chart"
 	>
 		<line
 			x1="12"
@@ -718,15 +718,15 @@
 	<svg
 		v-else-if="name === Icon.bar_chart_2"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-bar-chart-2"
+		class="bo-feather-icon bo-feather-icon--bar-chart-2"
 	>
 		<line
 			x1="18"
@@ -750,15 +750,15 @@
 	<svg
 		v-else-if="name === Icon.battery_charging"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-battery-charging"
+		class="bo-feather-icon bo-feather-icon--battery-charging"
 	>
 		<path
 			d="M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.19M15 6h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.19"
@@ -774,15 +774,15 @@
 	<svg
 		v-else-if="name === Icon.battery"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-battery"
+		class="bo-feather-icon bo-feather-icon--battery"
 	>
 		<rect
 			x="1"
@@ -802,15 +802,15 @@
 	<svg
 		v-else-if="name === Icon.bell"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-bell"
+		class="bo-feather-icon bo-feather-icon--bell"
 	>
 		<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
 		<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
@@ -818,15 +818,15 @@
 	<svg
 		v-else-if="name === Icon.bell_off"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-bell-off"
+		class="bo-feather-icon bo-feather-icon--bell-off"
 	>
 		<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
 		<path d="M18.63 13A17.89 17.89 0 0 1 18 8"></path>
@@ -842,15 +842,15 @@
 	<svg
 		v-else-if="name === Icon.bluetooth"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-bluetooth"
+		class="bo-feather-icon bo-feather-icon--bluetooth"
 	>
 		<polyline
 			points="6.5 6.5 17.5 17.5 12 23 12 1 17.5 6.5 6.5 17.5"
@@ -859,15 +859,15 @@
 	<svg
 		v-else-if="name === Icon.bold"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-bold"
+		class="bo-feather-icon bo-feather-icon--bold"
 	>
 		<path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"></path>
 		<path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"></path>
@@ -875,15 +875,15 @@
 	<svg
 		v-else-if="name === Icon.book_open"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-book-open"
+		class="bo-feather-icon bo-feather-icon--book-open"
 	>
 		<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
 		<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
@@ -891,15 +891,15 @@
 	<svg
 		v-else-if="name === Icon.book"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-book"
+		class="bo-feather-icon bo-feather-icon--book"
 	>
 		<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
 		<path
@@ -909,30 +909,30 @@
 	<svg
 		v-else-if="name === Icon.bookmark"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-bookmark"
+		class="bo-feather-icon bo-feather-icon--bookmark"
 	>
 		<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
 	</svg>
 	<svg
 		v-else-if="name === Icon.box"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-box"
+		class="bo-feather-icon bo-feather-icon--box"
 	>
 		<path
 			d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
@@ -948,15 +948,15 @@
 	<svg
 		v-else-if="name === Icon.briefcase"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-briefcase"
+		class="bo-feather-icon bo-feather-icon--briefcase"
 	>
 		<rect
 			x="2"
@@ -971,15 +971,15 @@
 	<svg
 		v-else-if="name === Icon.calendar"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-calendar"
+		class="bo-feather-icon bo-feather-icon--calendar"
 	>
 		<rect
 			x="3"
@@ -1011,15 +1011,15 @@
 	<svg
 		v-else-if="name === Icon.camera_off"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-camera-off"
+		class="bo-feather-icon bo-feather-icon--camera-off"
 	>
 		<line
 			x1="1"
@@ -1034,15 +1034,15 @@
 	<svg
 		v-else-if="name === Icon.camera"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-camera"
+		class="bo-feather-icon bo-feather-icon--camera"
 	>
 		<path
 			d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
@@ -1056,15 +1056,15 @@
 	<svg
 		v-else-if="name === Icon.cast"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-cast"
+		class="bo-feather-icon bo-feather-icon--cast"
 	>
 		<path
 			d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"
@@ -1079,15 +1079,15 @@
 	<svg
 		v-else-if="name === Icon.check_circle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-check-circle"
+		class="bo-feather-icon bo-feather-icon--check-circle"
 	>
 		<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
 		<polyline points="22 4 12 14.01 9 11.01"></polyline>
@@ -1095,15 +1095,15 @@
 	<svg
 		v-else-if="name === Icon.check_square"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-check-square"
+		class="bo-feather-icon bo-feather-icon--check-square"
 	>
 		<polyline points="9 11 12 14 22 4"></polyline>
 		<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
@@ -1111,90 +1111,90 @@
 	<svg
 		v-else-if="name === Icon.check"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-check"
+		class="bo-feather-icon bo-feather-icon--check"
 	>
 		<polyline points="20 6 9 17 4 12"></polyline>
 	</svg>
 	<svg
 		v-else-if="name === Icon.chevron_down"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-chevron-down"
+		class="bo-feather-icon bo-feather-icon--chevron-down"
 	>
 		<polyline points="6 9 12 15 18 9"></polyline>
 	</svg>
 	<svg
 		v-else-if="name === Icon.chevron_left"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-chevron-left"
+		class="bo-feather-icon bo-feather-icon--chevron-left"
 	>
 		<polyline points="15 18 9 12 15 6"></polyline>
 	</svg>
 	<svg
 		v-else-if="name === Icon.chevron_right"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-chevron-right"
+		class="bo-feather-icon bo-feather-icon--chevron-right"
 	>
 		<polyline points="9 18 15 12 9 6"></polyline>
 	</svg>
 	<svg
 		v-else-if="name === Icon.chevron_up"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-chevron-up"
+		class="bo-feather-icon bo-feather-icon--chevron-up"
 	>
 		<polyline points="18 15 12 9 6 15"></polyline>
 	</svg>
 	<svg
 		v-else-if="name === Icon.chevrons_down"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-chevrons-down"
+		class="bo-feather-icon bo-feather-icon--chevrons-down"
 	>
 		<polyline points="7 13 12 18 17 13"></polyline>
 		<polyline points="7 6 12 11 17 6"></polyline>
@@ -1202,15 +1202,15 @@
 	<svg
 		v-else-if="name === Icon.chevrons_left"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-chevrons-left"
+		class="bo-feather-icon bo-feather-icon--chevrons-left"
 	>
 		<polyline points="11 17 6 12 11 7"></polyline>
 		<polyline points="18 17 13 12 18 7"></polyline>
@@ -1218,15 +1218,15 @@
 	<svg
 		v-else-if="name === Icon.chevrons_right"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-chevrons-right"
+		class="bo-feather-icon bo-feather-icon--chevrons-right"
 	>
 		<polyline points="13 17 18 12 13 7"></polyline>
 		<polyline points="6 17 11 12 6 7"></polyline>
@@ -1234,15 +1234,15 @@
 	<svg
 		v-else-if="name === Icon.chevrons_up"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-chevrons-up"
+		class="bo-feather-icon bo-feather-icon--chevrons-up"
 	>
 		<polyline points="17 11 12 6 7 11"></polyline>
 		<polyline points="17 18 12 13 7 18"></polyline>
@@ -1250,15 +1250,15 @@
 	<svg
 		v-else-if="name === Icon.chrome"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-chrome"
+		class="bo-feather-icon bo-feather-icon--chrome"
 	>
 		<circle
 			cx="12"
@@ -1292,15 +1292,15 @@
 	<svg
 		v-else-if="name === Icon.circle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-circle"
+		class="bo-feather-icon bo-feather-icon--circle"
 	>
 		<circle
 			cx="12"
@@ -1311,15 +1311,15 @@
 	<svg
 		v-else-if="name === Icon.clipboard"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-clipboard"
+		class="bo-feather-icon bo-feather-icon--clipboard"
 	>
 		<path
 			d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
@@ -1336,15 +1336,15 @@
 	<svg
 		v-else-if="name === Icon.clock"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-clock"
+		class="bo-feather-icon bo-feather-icon--clock"
 	>
 		<circle
 			cx="12"
@@ -1356,15 +1356,15 @@
 	<svg
 		v-else-if="name === Icon.cloud_drizzle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-cloud-drizzle"
+		class="bo-feather-icon bo-feather-icon--cloud-drizzle"
 	>
 		<line
 			x1="8"
@@ -1407,15 +1407,15 @@
 	<svg
 		v-else-if="name === Icon.cloud_lightning"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-cloud-lightning"
+		class="bo-feather-icon bo-feather-icon--cloud-lightning"
 	>
 		<path d="M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9"></path>
 		<polyline points="13 11 9 17 15 17 11 23"></polyline>
@@ -1423,15 +1423,15 @@
 	<svg
 		v-else-if="name === Icon.cloud_off"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-cloud-off"
+		class="bo-feather-icon bo-feather-icon--cloud-off"
 	>
 		<path
 			d="M22.61 16.95A5 5 0 0 0 18 10h-1.26a8 8 0 0 0-7.05-6M5 5a8 8 0 0 0 4 15h9a5 5 0 0 0 1.7-.3"
@@ -1446,15 +1446,15 @@
 	<svg
 		v-else-if="name === Icon.cloud_rain"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-cloud-rain"
+		class="bo-feather-icon bo-feather-icon--cloud-rain"
 	>
 		<line
 			x1="16"
@@ -1479,15 +1479,15 @@
 	<svg
 		v-else-if="name === Icon.cloud_snow"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-cloud-snow"
+		class="bo-feather-icon bo-feather-icon--cloud-snow"
 	>
 		<path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"></path>
 		<line
@@ -1530,15 +1530,15 @@
 	<svg
 		v-else-if="name === Icon.cloud"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-cloud-snow"
+		class="bo-feather-icon bo-feather-icon--cloud-snow"
 	>
 		<path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"></path>
 		<line
@@ -1581,15 +1581,15 @@
 	<svg
 		v-else-if="name === Icon.code"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-code"
+		class="bo-feather-icon bo-feather-icon--code"
 	>
 		<polyline points="16 18 22 12 16 6"></polyline>
 		<polyline points="8 6 2 12 8 18"></polyline>
@@ -1597,15 +1597,15 @@
 	<svg
 		v-else-if="name === Icon.codepen"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-codepen"
+		class="bo-feather-icon bo-feather-icon--codepen"
 	>
 		<polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
 		<line
@@ -1626,15 +1626,15 @@
 	<svg
 		v-else-if="name === Icon.codesandbox"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-codesandbox"
+		class="bo-feather-icon bo-feather-icon--codesandbox"
 	>
 		<path
 			d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
@@ -1653,15 +1653,15 @@
 	<svg
 		v-else-if="name === Icon.coffee"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-coffee"
+		class="bo-feather-icon bo-feather-icon--coffee"
 	>
 		<path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
 		<path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
@@ -1687,15 +1687,15 @@
 	<svg
 		v-else-if="name === Icon.columns"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-columns"
+		class="bo-feather-icon bo-feather-icon--columns"
 	>
 		<path
 			d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"
@@ -1704,15 +1704,15 @@
 	<svg
 		v-else-if="name === Icon.command"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-command"
+		class="bo-feather-icon bo-feather-icon--command"
 	>
 		<path
 			d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
@@ -1721,15 +1721,15 @@
 	<svg
 		v-else-if="name === Icon.compass"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-compass"
+		class="bo-feather-icon bo-feather-icon--compass"
 	>
 		<circle
 			cx="12"
@@ -1743,15 +1743,15 @@
 	<svg
 		v-else-if="name === Icon.copy"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-copy"
+		class="bo-feather-icon bo-feather-icon--copy"
 	>
 		<rect
 			x="9"
@@ -1766,15 +1766,15 @@
 	<svg
 		v-else-if="name === Icon.corner_down_left"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-corner-down-left"
+		class="bo-feather-icon bo-feather-icon--corner-down-left"
 	>
 		<polyline points="9 10 4 15 9 20"></polyline>
 		<path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
@@ -1782,15 +1782,15 @@
 	<svg
 		v-else-if="name === Icon.corner_down_right"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-corner-down-right"
+		class="bo-feather-icon bo-feather-icon--corner-down-right"
 	>
 		<polyline points="15 10 20 15 15 20"></polyline>
 		<path d="M4 4v7a4 4 0 0 0 4 4h12"></path>
@@ -1798,15 +1798,15 @@
 	<svg
 		v-else-if="name === Icon.corner_left_down"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-corner-left-down"
+		class="bo-feather-icon bo-feather-icon--corner-left-down"
 	>
 		<polyline points="14 15 9 20 4 15"></polyline>
 		<path d="M20 4h-7a4 4 0 0 0-4 4v12"></path>
@@ -1814,15 +1814,15 @@
 	<svg
 		v-else-if="name === Icon.corner_left_up"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-corner-left-up"
+		class="bo-feather-icon bo-feather-icon--corner-left-up"
 	>
 		<polyline points="14 9 9 4 4 9"></polyline>
 		<path d="M20 20h-7a4 4 0 0 1-4-4V4"></path>
@@ -1830,15 +1830,15 @@
 	<svg
 		v-else-if="name === Icon.corner_right_down"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-corner-right-down"
+		class="bo-feather-icon bo-feather-icon--corner-right-down"
 	>
 		<polyline points="10 15 15 20 20 15"></polyline>
 		<path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
@@ -1846,15 +1846,15 @@
 	<svg
 		v-else-if="name === Icon.corner_right_up"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-corner-right-up"
+		class="bo-feather-icon bo-feather-icon--corner-right-up"
 	>
 		<polyline points="10 9 15 4 20 9"></polyline>
 		<path d="M4 20h7a4 4 0 0 0 4-4V4"></path>
@@ -1862,15 +1862,15 @@
 	<svg
 		v-else-if="name === Icon.corner_up_left"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-corner-up-left"
+		class="bo-feather-icon bo-feather-icon--corner-up-left"
 	>
 		<polyline points="9 14 4 9 9 4"></polyline>
 		<path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
@@ -1878,15 +1878,15 @@
 	<svg
 		v-else-if="name === Icon.corner_up_right"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-corner-up-right"
+		class="bo-feather-icon bo-feather-icon--corner-up-right"
 	>
 		<polyline points="15 14 20 9 15 4"></polyline>
 		<path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>
@@ -1894,15 +1894,15 @@
 	<svg
 		v-else-if="name === Icon.cpu"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-cpu"
+		class="bo-feather-icon bo-feather-icon--cpu"
 	>
 		<rect
 			x="4"
@@ -1970,15 +1970,15 @@
 	<svg
 		v-else-if="name === Icon.credit_card"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-credit-card"
+		class="bo-feather-icon bo-feather-icon--credit-card"
 	>
 		<rect
 			x="1"
@@ -1998,15 +1998,15 @@
 	<svg
 		v-else-if="name === Icon.crop"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-crop"
+		class="bo-feather-icon bo-feather-icon--crop"
 	>
 		<path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"></path>
 		<path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"></path>
@@ -2014,15 +2014,15 @@
 	<svg
 		v-else-if="name === Icon.crosshair"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-crosshair"
+		class="bo-feather-icon bo-feather-icon--crosshair"
 	>
 		<circle
 			cx="12"
@@ -2057,15 +2057,15 @@
 	<svg
 		v-else-if="name === Icon.database"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-database"
+		class="bo-feather-icon bo-feather-icon--database"
 	>
 		<ellipse
 			cx="12"
@@ -2079,15 +2079,15 @@
 	<svg
 		v-else-if="name === Icon.delete"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-delete"
+		class="bo-feather-icon bo-feather-icon--delete"
 	>
 		<path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
 		<line
@@ -2106,15 +2106,15 @@
 	<svg
 		v-else-if="name === Icon.disc"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-disc"
+		class="bo-feather-icon bo-feather-icon--disc"
 	>
 		<circle
 			cx="12"
@@ -2130,15 +2130,15 @@
 	<svg
 		v-else-if="name === Icon.divide_circle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-divide-circle"
+		class="bo-feather-icon bo-feather-icon--divide-circle"
 	>
 		<line
 			x1="8"
@@ -2167,15 +2167,15 @@
 	<svg
 		v-else-if="name === Icon.divide_square"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-divide-square"
+		class="bo-feather-icon bo-feather-icon--divide-square"
 	>
 		<rect
 			x="3"
@@ -2207,15 +2207,15 @@
 	<svg
 		v-else-if="name === Icon.divide"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-divide"
+		class="bo-feather-icon bo-feather-icon--divide"
 	>
 		<circle
 			cx="12"
@@ -2237,15 +2237,15 @@
 	<svg
 		v-else-if="name === Icon.dollar_sign"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-dollar-sign"
+		class="bo-feather-icon bo-feather-icon--dollar-sign"
 	>
 		<line
 			x1="12"
@@ -2258,15 +2258,15 @@
 	<svg
 		v-else-if="name === Icon.download_cloud"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-download-cloud"
+		class="bo-feather-icon bo-feather-icon--download-cloud"
 	>
 		<polyline points="8 17 12 21 16 17"></polyline>
 		<line
@@ -2280,15 +2280,15 @@
 	<svg
 		v-else-if="name === Icon.download"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-download"
+		class="bo-feather-icon bo-feather-icon--download"
 	>
 		<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
 		<polyline points="7 10 12 15 17 10"></polyline>
@@ -2302,15 +2302,15 @@
 	<svg
 		v-else-if="name === Icon.dribbble"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-dribbble"
+		class="bo-feather-icon bo-feather-icon--dribbble"
 	>
 		<circle
 			cx="12"
@@ -2324,45 +2324,45 @@
 	<svg
 		v-else-if="name === Icon.droplet"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-droplet"
+		class="bo-feather-icon bo-feather-icon--droplet"
 	>
 		<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
 	</svg>
 	<svg
 		v-else-if="name === Icon.edit_2"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-edit-2"
+		class="bo-feather-icon bo-feather-icon--edit-2"
 	>
 		<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
 	</svg>
 	<svg
 		v-else-if="name === Icon.edit_3"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-edit-3"
+		class="bo-feather-icon bo-feather-icon--edit-3"
 	>
 		<path d="M12 20h9"></path>
 		<path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
@@ -2370,15 +2370,15 @@
 	<svg
 		v-else-if="name === Icon.edit"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-edit"
+		class="bo-feather-icon bo-feather-icon--edit"
 	>
 		<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
 		<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
@@ -2386,15 +2386,15 @@
 	<svg
 		v-else-if="name === Icon.external_link"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-external-link"
+		class="bo-feather-icon bo-feather-icon--external-link"
 	>
 		<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
 		<polyline points="15 3 21 3 21 9"></polyline>
@@ -2408,15 +2408,15 @@
 	<svg
 		v-else-if="name === Icon.eye_off"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-eye-off"
+		class="bo-feather-icon bo-feather-icon--eye-off"
 	>
 		<path
 			d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
@@ -2431,15 +2431,15 @@
 	<svg
 		v-else-if="name === Icon.eye"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-eye"
+		class="bo-feather-icon bo-feather-icon--eye"
 	>
 		<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
 		<circle
@@ -2451,15 +2451,15 @@
 	<svg
 		v-else-if="name === Icon.facebook"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-facebook"
+		class="bo-feather-icon bo-feather-icon--facebook"
 	>
 		<path
 			d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
@@ -2468,15 +2468,15 @@
 	<svg
 		v-else-if="name === Icon.fast_forward"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-fast-forward"
+		class="bo-feather-icon bo-feather-icon--fast-forward"
 	>
 		<polygon points="13 19 22 12 13 5 13 19"></polygon>
 		<polygon points="2 19 11 12 2 5 2 19"></polygon>
@@ -2484,15 +2484,15 @@
 	<svg
 		v-else-if="name === Icon.feather"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-feather"
+		class="bo-icon bo-feather-icon--feather"
 	>
 		<path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
 		<line
@@ -2511,15 +2511,15 @@
 	<svg
 		v-else-if="name === Icon.figma"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-figma"
+		class="bo-feather-icon bo-feather-icon--figma"
 	>
 		<path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"></path>
 		<path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"></path>
@@ -2530,15 +2530,15 @@
 	<svg
 		v-else-if="name === Icon.file_minus"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-file-minus"
+		class="bo-feather-icon bo-feather-icon--file-minus"
 	>
 		<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
 		<polyline points="14 2 14 8 20 8"></polyline>
@@ -2552,15 +2552,15 @@
 	<svg
 		v-else-if="name === Icon.file_plus"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-file-plus"
+		class="bo-feather-icon bo-feather-icon--file-plus"
 	>
 		<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
 		<polyline points="14 2 14 8 20 8"></polyline>
@@ -2580,15 +2580,15 @@
 	<svg
 		v-else-if="name === Icon.file_text"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-file-text"
+		class="bo-feather-icon bo-feather-icon--file-text"
 	>
 		<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
 		<polyline points="14 2 14 8 20 8"></polyline>
@@ -2609,15 +2609,15 @@
 	<svg
 		v-else-if="name === Icon.file"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-file"
+		class="bo-feather-icon bo-feather-icon--file"
 	>
 		<path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
 		<polyline points="13 2 13 9 20 9"></polyline>
@@ -2625,15 +2625,15 @@
 	<svg
 		v-else-if="name === Icon.film"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-film"
+		class="bo-feather-icon bo-feather-icon--film"
 	>
 		<rect
 			x="2"
@@ -2689,30 +2689,30 @@
 	<svg
 		v-else-if="name === Icon.filter"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-filter"
+		class="bo-feather-icon bo-feather-icon--filter"
 	>
 		<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
 	</svg>
 	<svg
 		v-else-if="name === Icon.flag"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-flag"
+		class="bo-feather-icon bo-feather-icon--flag"
 	>
 		<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
 		<line
@@ -2725,15 +2725,15 @@
 	<svg
 		v-else-if="name === Icon.folder_minus"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-folder-minus"
+		class="bo-feather-icon bo-feather-icon--folder-minus"
 	>
 		<path
 			d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
@@ -2748,15 +2748,15 @@
 	<svg
 		v-else-if="name === Icon.folder_plus"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-folder-plus"
+		class="bo-feather-icon bo-feather-icon--folder-plus"
 	>
 		<path
 			d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
@@ -2777,15 +2777,15 @@
 	<svg
 		v-else-if="name === Icon.folder"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-folder"
+		class="bo-feather-icon bo-feather-icon--folder"
 	>
 		<path
 			d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
@@ -2794,30 +2794,30 @@
 	<svg
 		v-else-if="name === Icon.framer"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-framer"
+		class="bo-feather-icon bo-feather-icon--framer"
 	>
 		<path d="M5 16V9h14V2H5l14 14h-7m-7 0l7 7v-7m-7 0h7"></path>
 	</svg>
 	<svg
 		v-else-if="name === Icon.frown"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-frown"
+		class="bo-feather-icon bo-feather-icon--frown"
 	>
 		<circle
 			cx="12"
@@ -2841,15 +2841,15 @@
 	<svg
 		v-else-if="name === Icon.gift"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-gift"
+		class="bo-feather-icon bo-feather-icon--gift"
 	>
 		<polyline points="20 12 20 22 4 22 4 12"></polyline>
 		<rect
@@ -2870,15 +2870,15 @@
 	<svg
 		v-else-if="name === Icon.git_branch"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-git-branch"
+		class="bo-feather-icon bo-feather-icon--git-branch"
 	>
 		<line
 			x1="6"
@@ -2901,15 +2901,15 @@
 	<svg
 		v-else-if="name === Icon.git_commit"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-git-commit"
+		class="bo-feather-icon bo-feather-icon--git-commit"
 	>
 		<circle
 			cx="12"
@@ -2932,15 +2932,15 @@
 	<svg
 		v-else-if="name === Icon.git_merge"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-git-merge"
+		class="bo-feather-icon bo-feather-icon--git-merge"
 	>
 		<circle
 			cx="18"
@@ -2957,15 +2957,15 @@
 	<svg
 		v-else-if="name === Icon.git_pull_request"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-git-pull-request"
+		class="bo-feather-icon bo-feather-icon--git-pull-request"
 	>
 		<circle
 			cx="18"
@@ -2988,15 +2988,15 @@
 	<svg
 		v-else-if="name === Icon.github"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-github"
+		class="bo-feather-icon bo-feather-icon--github"
 	>
 		<path
 			d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
@@ -3005,15 +3005,15 @@
 	<svg
 		v-else-if="name === Icon.gitlab"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-gitlab"
+		class="bo-feather-icon bo-feather-icon--gitlab"
 	>
 		<path
 			d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"
@@ -3022,15 +3022,15 @@
 	<svg
 		v-else-if="name === Icon.globe"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-globe"
+		class="bo-feather-icon bo-feather-icon--globe"
 	>
 		<circle
 			cx="12"
@@ -3050,15 +3050,15 @@
 	<svg
 		v-else-if="name === Icon.grid"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-grid"
+		class="bo-feather-icon bo-feather-icon--grid"
 	>
 		<rect
 			x="3"
@@ -3088,15 +3088,15 @@
 	<svg
 		v-else-if="name === Icon.hard_drive"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-hard-drive"
+		class="bo-feather-icon bo-feather-icon--hard-drive"
 	>
 		<line
 			x1="22"
@@ -3123,15 +3123,15 @@
 	<svg
 		v-else-if="name === Icon.hash"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-hash"
+		class="bo-feather-icon bo-feather-icon--hash"
 	>
 		<line
 			x1="4"
@@ -3161,15 +3161,15 @@
 	<svg
 		v-else-if="name === Icon.headphones"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-headphones"
+		class="bo-feather-icon bo-feather-icon--headphones"
 	>
 		<path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
 		<path
@@ -3179,15 +3179,15 @@
 	<svg
 		v-else-if="name === Icon.heart"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-heart"
+		class="bo-feather-icon bo-feather-icon--heart"
 	>
 		<path
 			d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
@@ -3196,15 +3196,15 @@
 	<svg
 		v-else-if="name === Icon.help_circle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-help-circle"
+		class="bo-feather-icon bo-feather-icon--help-circle"
 	>
 		<circle
 			cx="12"
@@ -3222,15 +3222,15 @@
 	<svg
 		v-else-if="name === Icon.hexagon"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-hexagon"
+		class="bo-feather-icon bo-feather-icon--hexagon"
 	>
 		<path
 			d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
@@ -3239,15 +3239,15 @@
 	<svg
 		v-else-if="name === Icon.home"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-home"
+		class="bo-feather-icon bo-feather-icon--home"
 	>
 		<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
 		<polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -3255,15 +3255,15 @@
 	<svg
 		v-else-if="name === Icon.image"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-image"
+		class="bo-feather-icon bo-feather-icon--image"
 	>
 		<rect
 			x="3"
@@ -3283,15 +3283,15 @@
 	<svg
 		v-else-if="name === Icon.inbox"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-inbox"
+		class="bo-feather-icon bo-feather-icon--inbox"
 	>
 		<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
 		<path
@@ -3301,15 +3301,15 @@
 	<svg
 		v-else-if="name === Icon.info"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-info"
+		class="bo-feather-icon bo-feather-icon--info"
 	>
 		<circle
 			cx="12"
@@ -3332,15 +3332,15 @@
 	<svg
 		v-else-if="name === Icon.instagram"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-instagram"
+		class="bo-feather-icon bo-feather-icon--instagram"
 	>
 		<rect
 			x="2"
@@ -3361,15 +3361,15 @@
 	<svg
 		v-else-if="name === Icon.italic"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-italic"
+		class="bo-feather-icon bo-feather-icon--italic"
 	>
 		<line
 			x1="19"
@@ -3393,15 +3393,15 @@
 	<svg
 		v-else-if="name === Icon.key"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-key"
+		class="bo-feather-icon bo-feather-icon--key"
 	>
 		<path
 			d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"
@@ -3410,15 +3410,15 @@
 	<svg
 		v-else-if="name === Icon.layers"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-layers"
+		class="bo-feather-icon bo-feather-icon--layers"
 	>
 		<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
 		<polyline points="2 17 12 22 22 17"></polyline>
@@ -3427,15 +3427,15 @@
 	<svg
 		v-else-if="name === Icon.layout"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-layout"
+		class="bo-feather-icon bo-feather-icon--layout"
 	>
 		<rect
 			x="3"
@@ -3461,15 +3461,15 @@
 	<svg
 		v-else-if="name === Icon.life_buoy"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-life-buoy"
+		class="bo-feather-icon bo-feather-icon--life-buoy"
 	>
 		<circle
 			cx="12"
@@ -3515,15 +3515,15 @@
 	<svg
 		v-else-if="name === Icon.link_2"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-link-2"
+		class="bo-feather-icon bo-feather-icon--link-2"
 	>
 		<path
 			d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"
@@ -3538,15 +3538,15 @@
 	<svg
 		v-else-if="name === Icon.link"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-link"
+		class="bo-feather-icon bo-feather-icon--link"
 	>
 		<path
 			d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
@@ -3558,15 +3558,15 @@
 	<svg
 		v-else-if="name === Icon.linkedin"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-linkedin"
+		class="bo-feather-icon bo-feather-icon--linkedin"
 	>
 		<path
 			d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
@@ -3586,15 +3586,15 @@
 	<svg
 		v-else-if="name === Icon.list"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-list"
+		class="bo-feather-icon bo-feather-icon--list"
 	>
 		<line
 			x1="8"
@@ -3636,15 +3636,15 @@
 	<svg
 		v-else-if="name === Icon.loader"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-loader"
+		class="bo-feather-icon bo-feather-icon--loader"
 	>
 		<line
 			x1="12"
@@ -3698,15 +3698,15 @@
 	<svg
 		v-else-if="name === Icon.lock"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-lock"
+		class="bo-feather-icon bo-feather-icon--lock"
 	>
 		<rect
 			x="3"
@@ -3721,15 +3721,15 @@
 	<svg
 		v-else-if="name === Icon.log_in"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-log-in"
+		class="bo-feather-icon bo-feather-icon--log-in"
 	>
 		<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
 		<polyline points="10 17 15 12 10 7"></polyline>
@@ -3743,15 +3743,15 @@
 	<svg
 		v-else-if="name === Icon.log_out"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-log-out"
+		class="bo-feather-icon bo-feather-icon--log-out"
 	>
 		<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
 		<polyline points="16 17 21 12 16 7"></polyline>
@@ -3765,15 +3765,15 @@
 	<svg
 		v-else-if="name === Icon.mail"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-mail"
+		class="bo-feather-icon bo-feather-icon--mail"
 	>
 		<path
 			d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
@@ -3783,15 +3783,15 @@
 	<svg
 		v-else-if="name === Icon.map_pin"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-map-pin"
+		class="bo-feather-icon bo-feather-icon--map-pin"
 	>
 		<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
 		<circle
@@ -3803,15 +3803,15 @@
 	<svg
 		v-else-if="name === Icon.map"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-map"
+		class="bo-feather-icon bo-feather-icon--map"
 	>
 		<polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
 		<line
@@ -3830,15 +3830,15 @@
 	<svg
 		v-else-if="name === Icon.maximize_2"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-maximize-2"
+		class="bo-feather-icon bo-feather-icon--maximize-2"
 	>
 		<polyline points="15 3 21 3 21 9"></polyline>
 		<polyline points="9 21 3 21 3 15"></polyline>
@@ -3858,15 +3858,15 @@
 	<svg
 		v-else-if="name === Icon.maximize"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-maximize"
+		class="bo-feather-icon bo-feather-icon--maximize"
 	>
 		<path
 			d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"
@@ -3875,15 +3875,15 @@
 	<svg
 		v-else-if="name === Icon.meh"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-meh"
+		class="bo-feather-icon bo-feather-icon--meh"
 	>
 		<circle
 			cx="12"
@@ -3912,15 +3912,15 @@
 	<svg
 		v-else-if="name === Icon.menu"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-menu"
+		class="bo-feather-icon bo-feather-icon--menu"
 	>
 		<line
 			x1="3"
@@ -3944,15 +3944,15 @@
 	<svg
 		v-else-if="name === Icon.message_circle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-message-circle"
+		class="bo-feather-icon bo-feather-icon--message-circle"
 	>
 		<path
 			d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
@@ -3961,15 +3961,15 @@
 	<svg
 		v-else-if="name === Icon.message_square"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-message-square"
+		class="bo-feather-icon bo-feather-icon--message-square"
 	>
 		<path
 			d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
@@ -3978,15 +3978,15 @@
 	<svg
 		v-else-if="name === Icon.mic_off"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-mic-off"
+		class="bo-feather-icon bo-feather-icon--mic-off"
 	>
 		<line
 			x1="1"
@@ -4012,15 +4012,15 @@
 	<svg
 		v-else-if="name === Icon.mic"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-mic"
+		class="bo-feather-icon bo-feather-icon--mic"
 	>
 		<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
 		<path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
@@ -4040,15 +4040,15 @@
 	<svg
 		v-else-if="name === Icon.minimize_2"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-minimize-2"
+		class="bo-feather-icon bo-feather-icon--minimize-2"
 	>
 		<polyline points="4 14 10 14 10 20"></polyline>
 		<polyline points="20 10 14 10 14 4"></polyline>
@@ -4068,15 +4068,15 @@
 	<svg
 		v-else-if="name === Icon.minimize"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-minimize"
+		class="bo-feather-icon bo-feather-icon--minimize"
 	>
 		<path
 			d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"
@@ -4085,15 +4085,15 @@
 	<svg
 		v-else-if="name === Icon.minus_circle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-minus-circle"
+		class="bo-feather-icon bo-feather-icon--minus-circle"
 	>
 		<circle
 			cx="12"
@@ -4110,15 +4110,15 @@
 	<svg
 		v-else-if="name === Icon.minus_square"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-minus-square"
+		class="bo-feather-icon bo-feather-icon--minus-square"
 	>
 		<rect
 			x="3"
@@ -4138,15 +4138,15 @@
 	<svg
 		v-else-if="name === Icon.minus"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-minus"
+		class="bo-feather-icon bo-feather-icon--minus"
 	>
 		<line
 			x1="5"
@@ -4158,15 +4158,15 @@
 	<svg
 		v-else-if="name === Icon.monitor"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-monitor"
+		class="bo-feather-icon bo-feather-icon--monitor"
 	>
 		<rect
 			x="2"
@@ -4192,30 +4192,30 @@
 	<svg
 		v-else-if="name === Icon.moon"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-moon"
+		class="bo-feather-icon bo-feather-icon--moon"
 	>
 		<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
 	</svg>
 	<svg
 		v-else-if="name === Icon.more_horizontal"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-more-horizontal"
+		class="bo-feather-icon bo-feather-icon--more-horizontal"
 	>
 		<circle
 			cx="12"
@@ -4236,15 +4236,15 @@
 	<svg
 		v-else-if="name === Icon.more_vertical"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-more-vertical"
+		class="bo-feather-icon bo-feather-icon--more-vertical"
 	>
 		<circle
 			cx="12"
@@ -4265,15 +4265,15 @@
 	<svg
 		v-else-if="name === Icon.mouse_pointer"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-mouse-pointer"
+		class="bo-feather-icon bo-feather-icon--mouse-pointer"
 	>
 		<path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path>
 		<path d="M13 13l6 6"></path>
@@ -4281,15 +4281,15 @@
 	<svg
 		v-else-if="name === Icon.move"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-move"
+		class="bo-feather-icon bo-feather-icon--move"
 	>
 		<polyline points="5 9 2 12 5 15"></polyline>
 		<polyline points="9 5 12 2 15 5"></polyline>
@@ -4311,15 +4311,15 @@
 	<svg
 		v-else-if="name === Icon.music"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-music"
+		class="bo-feather-icon bo-feather-icon--music"
 	>
 		<path d="M9 18V5l12-2v13"></path>
 		<circle
@@ -4336,45 +4336,45 @@
 	<svg
 		v-else-if="name === Icon.navigation_2"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-navigation-2"
+		class="bo-feather-icon bo-feather-icon--navigation-2"
 	>
 		<polygon points="12 2 19 21 12 17 5 21 12 2"></polygon>
 	</svg>
 	<svg
 		v-else-if="name === Icon.navigation"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-navigation"
+		class="bo-feather-icon bo-feather-icon--navigation"
 	>
 		<polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
 	</svg>
 	<svg
 		v-else-if="name === Icon.octagon"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-octagon"
+		class="bo-feather-icon bo-feather-icon--octagon"
 	>
 		<polygon
 			points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"
@@ -4383,15 +4383,15 @@
 	<svg
 		v-else-if="name === Icon.package"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-package"
+		class="bo-feather-icon bo-feather-icon--package"
 	>
 		<line
 			x1="16.5"
@@ -4413,15 +4413,15 @@
 	<svg
 		v-else-if="name === Icon.paperclip"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-paperclip"
+		class="bo-feather-icon bo-feather-icon--paperclip"
 	>
 		<path
 			d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
@@ -4430,15 +4430,15 @@
 	<svg
 		v-else-if="name === Icon.pause_circle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-pause-circle"
+		class="bo-feather-icon bo-feather-icon--pause-circle"
 	>
 		<circle
 			cx="12"
@@ -4461,15 +4461,15 @@
 	<svg
 		v-else-if="name === Icon.pause"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-pause"
+		class="bo-feather-icon bo-feather-icon--pause"
 	>
 		<rect
 			x="6"
@@ -4487,15 +4487,15 @@
 	<svg
 		v-else-if="name === Icon.pen_tool"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-pen-tool"
+		class="bo-feather-icon bo-feather-icon--pen-tool"
 	>
 		<path d="M12 19l7-7 3 3-7 7-3-3z"></path>
 		<path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
@@ -4509,15 +4509,15 @@
 	<svg
 		v-else-if="name === Icon.percent"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-percent"
+		class="bo-feather-icon bo-feather-icon--percent"
 	>
 		<line
 			x1="19"
@@ -4539,15 +4539,15 @@
 	<svg
 		v-else-if="name === Icon.phone_call"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-phone-call"
+		class="bo-feather-icon bo-feather-icon--phone-call"
 	>
 		<path
 			d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
@@ -4556,15 +4556,15 @@
 	<svg
 		v-else-if="name === Icon.phone_forwarded"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-phone-forwarded"
+		class="bo-feather-icon bo-feather-icon--phone-forwarded"
 	>
 		<polyline points="19 1 23 5 19 9"></polyline>
 		<line
@@ -4580,15 +4580,15 @@
 	<svg
 		v-else-if="name === Icon.phone_incoming"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-phone-incoming"
+		class="bo-feather-icon bo-feather-icon--phone-incoming"
 	>
 		<polyline points="16 2 16 8 22 8"></polyline>
 		<line
@@ -4604,15 +4604,15 @@
 	<svg
 		v-else-if="name === Icon.phone_missed"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-phone-missed"
+		class="bo-feather-icon bo-feather-icon--phone-missed"
 	>
 		<line
 			x1="23"
@@ -4633,15 +4633,15 @@
 	<svg
 		v-else-if="name === Icon.phone_off"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-phone-off"
+		class="bo-feather-icon bo-feather-icon--phone-off"
 	>
 		<path
 			d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"
@@ -4656,15 +4656,15 @@
 	<svg
 		v-else-if="name === Icon.phone_outgoing"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-phone-outgoing"
+		class="bo-feather-icon bo-feather-icon--phone-outgoing"
 	>
 		<polyline points="23 7 23 1 17 1"></polyline>
 		<line
@@ -4680,15 +4680,15 @@
 	<svg
 		v-else-if="name === Icon.phone"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-phone"
+		class="bo-feather-icon bo-feather-icon--phone"
 	>
 		<path
 			d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
@@ -4697,15 +4697,15 @@
 	<svg
 		v-else-if="name === Icon.pie_chart"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-pie-chart"
+		class="bo-feather-icon bo-feather-icon--pie-chart"
 	>
 		<path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
 		<path d="M22 12A10 10 0 0 0 12 2v10z"></path>
@@ -4713,15 +4713,15 @@
 	<svg
 		v-else-if="name === Icon.play_circle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-play-circle"
+		class="bo-feather-icon bo-feather-icon--play-circle"
 	>
 		<circle
 			cx="12"
@@ -4733,30 +4733,30 @@
 	<svg
 		v-else-if="name === Icon.play"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-play"
+		class="bo-feather-icon bo-feather-icon--play"
 	>
 		<polygon points="5 3 19 12 5 21 5 3"></polygon>
 	</svg>
 	<svg
 		v-else-if="name === Icon.plus_circle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-plus-circle"
+		class="bo-feather-icon bo-feather-icon--plus-circle"
 	>
 		<circle
 			cx="12"
@@ -4779,15 +4779,15 @@
 	<svg
 		v-else-if="name === Icon.plus_square"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-plus-square"
+		class="bo-feather-icon bo-feather-icon--plus-square"
 	>
 		<rect
 			x="3"
@@ -4813,15 +4813,15 @@
 	<svg
 		v-else-if="name === Icon.plus"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-plus"
+		class="bo-feather-icon bo-feather-icon--plus"
 	>
 		<line
 			x1="12"
@@ -4839,15 +4839,15 @@
 	<svg
 		v-else-if="name === Icon.pocket"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-pocket"
+		class="bo-feather-icon bo-feather-icon--pocket"
 	>
 		<path
 			d="M4 3h16a2 2 0 0 1 2 2v6a10 10 0 0 1-10 10A10 10 0 0 1 2 11V5a2 2 0 0 1 2-2z"
@@ -4857,15 +4857,15 @@
 	<svg
 		v-else-if="name === Icon.power"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-power"
+		class="bo-feather-icon bo-feather-icon--power"
 	>
 		<path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
 		<line
@@ -4878,15 +4878,15 @@
 	<svg
 		v-else-if="name === Icon.printer"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-printer"
+		class="bo-feather-icon bo-feather-icon--printer"
 	>
 		<polyline points="6 9 6 2 18 2 18 9"></polyline>
 		<path
@@ -4902,15 +4902,15 @@
 	<svg
 		v-else-if="name === Icon.radio"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-radio"
+		class="bo-feather-icon bo-feather-icon--radio"
 	>
 		<circle
 			cx="12"
@@ -4924,15 +4924,15 @@
 	<svg
 		v-else-if="name === Icon.refresh_ccw"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-refresh-ccw"
+		class="bo-feather-icon bo-feather-icon--refresh-ccw"
 	>
 		<polyline points="1 4 1 10 7 10"></polyline>
 		<polyline points="23 20 23 14 17 14"></polyline>
@@ -4943,15 +4943,15 @@
 	<svg
 		v-else-if="name === Icon.refresh_cw"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-refresh-cw"
+		class="bo-feather-icon bo-feather-icon--refresh-cw"
 	>
 		<polyline points="23 4 23 10 17 10"></polyline>
 		<polyline points="1 20 1 14 7 14"></polyline>
@@ -4962,15 +4962,15 @@
 	<svg
 		v-else-if="name === Icon.repeat"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-repeat"
+		class="bo-feather-icon bo-feather-icon--repeat"
 	>
 		<polyline points="17 1 21 5 17 9"></polyline>
 		<path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
@@ -4980,15 +4980,15 @@
 	<svg
 		v-else-if="name === Icon.rewind"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-rewind"
+		class="bo-feather-icon bo-feather-icon--rewind"
 	>
 		<polygon points="11 19 2 12 11 5 11 19"></polygon>
 		<polygon points="22 19 13 12 22 5 22 19"></polygon>
@@ -4996,15 +4996,15 @@
 	<svg
 		v-else-if="name === Icon.rotate_ccw"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-rotate-ccw"
+		class="bo-feather-icon bo-feather-icon--rotate-ccw"
 	>
 		<polyline points="1 4 1 10 7 10"></polyline>
 		<path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
@@ -5012,15 +5012,15 @@
 	<svg
 		v-else-if="name === Icon.rotate_cw"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-rotate-cw"
+		class="bo-feather-icon bo-feather-icon--rotate-cw"
 	>
 		<polyline points="23 4 23 10 17 10"></polyline>
 		<path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
@@ -5028,15 +5028,15 @@
 	<svg
 		v-else-if="name === Icon.rss"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-rss"
+		class="bo-feather-icon bo-feather-icon--rss"
 	>
 		<path d="M4 11a9 9 0 0 1 9 9"></path>
 		<path d="M4 4a16 16 0 0 1 16 16"></path>
@@ -5049,15 +5049,15 @@
 	<svg
 		v-else-if="name === Icon.save"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-save"
+		class="bo-feather-icon bo-feather-icon--save"
 	>
 		<path
 			d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
@@ -5068,15 +5068,15 @@
 	<svg
 		v-else-if="name === Icon.scissors"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-scissors"
+		class="bo-feather-icon bo-feather-icon--scissors"
 	>
 		<circle
 			cx="6"
@@ -5110,15 +5110,15 @@
 	<svg
 		v-else-if="name === Icon.search"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-search"
+		class="bo-feather-icon bo-feather-icon--search"
 	>
 		<circle
 			cx="11"
@@ -5135,15 +5135,15 @@
 	<svg
 		v-else-if="name === Icon.send"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-send"
+		class="bo-feather-icon bo-feather-icon--send"
 	>
 		<line
 			x1="22"
@@ -5156,15 +5156,15 @@
 	<svg
 		v-else-if="name === Icon.server"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-server"
+		class="bo-feather-icon bo-feather-icon--server"
 	>
 		<rect
 			x="2"
@@ -5198,15 +5198,15 @@
 	<svg
 		v-else-if="name === Icon.settings"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-settings"
+		class="bo-feather-icon bo-feather-icon--settings"
 	>
 		<circle
 			cx="12"
@@ -5220,15 +5220,15 @@
 	<svg
 		v-else-if="name === Icon.share_2"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-share-2"
+		class="bo-feather-icon bo-feather-icon--share-2"
 	>
 		<circle
 			cx="18"
@@ -5261,15 +5261,15 @@
 	<svg
 		v-else-if="name === Icon.share"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-share"
+		class="bo-feather-icon bo-feather-icon--share"
 	>
 		<path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
 		<polyline points="16 6 12 2 8 6"></polyline>
@@ -5283,15 +5283,15 @@
 	<svg
 		v-else-if="name === Icon.shield_off"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-shield-off"
+		class="bo-feather-icon bo-feather-icon--shield-off"
 	>
 		<path d="M19.69 14a6.9 6.9 0 0 0 .31-2V5l-8-3-3.16 1.18"></path>
 		<path d="M4.73 4.73L4 5v7c0 6 8 10 8 10a20.29 20.29 0 0 0 5.62-4.38"></path>
@@ -5305,30 +5305,30 @@
 	<svg
 		v-else-if="name === Icon.shield"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-shield"
+		class="bo-feather-icon bo-feather-icon--shield"
 	>
 		<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
 	</svg>
 	<svg
 		v-else-if="name === Icon.shopping_bag"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-shopping-bag"
+		class="bo-feather-icon bo-feather-icon--shopping-bag"
 	>
 		<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
 		<line
@@ -5342,15 +5342,15 @@
 	<svg
 		v-else-if="name === Icon.shopping_cart"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-shopping-cart"
+		class="bo-feather-icon bo-feather-icon--shopping-cart"
 	>
 		<circle
 			cx="9"
@@ -5369,15 +5369,15 @@
 	<svg
 		v-else-if="name === Icon.shuffle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-shuffle"
+		class="bo-feather-icon bo-feather-icon--shuffle"
 	>
 		<polyline points="16 3 21 3 21 8"></polyline>
 		<line
@@ -5403,15 +5403,15 @@
 	<svg
 		v-else-if="name === Icon.sidebar"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-sidebar"
+		class="bo-feather-icon bo-feather-icon--sidebar"
 	>
 		<rect
 			x="3"
@@ -5431,15 +5431,15 @@
 	<svg
 		v-else-if="name === Icon.skip_back"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-skip-back"
+		class="bo-feather-icon bo-feather-icon--skip-back"
 	>
 		<polygon points="19 20 9 12 19 4 19 20"></polygon>
 		<line
@@ -5452,15 +5452,15 @@
 	<svg
 		v-else-if="name === Icon.skip_forward"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-skip-forward"
+		class="bo-feather-icon bo-feather-icon--skip-forward"
 	>
 		<polygon points="5 4 15 12 5 20 5 4"></polygon>
 		<line
@@ -5473,15 +5473,15 @@
 	<svg
 		v-else-if="name === Icon.slack"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-slack"
+		class="bo-feather-icon bo-feather-icon--slack"
 	>
 		<path
 			d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"
@@ -5511,15 +5511,15 @@
 	<svg
 		v-else-if="name === Icon.slash"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-slash"
+		class="bo-feather-icon bo-feather-icon--slash"
 	>
 		<circle
 			cx="12"
@@ -5536,15 +5536,15 @@
 	<svg
 		v-else-if="name === Icon.sliders"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-sliders"
+		class="bo-feather-icon bo-feather-icon--sliders"
 	>
 		<line
 			x1="4"
@@ -5604,15 +5604,15 @@
 	<svg
 		v-else-if="name === Icon.smartphone"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-smartphone"
+		class="bo-feather-icon bo-feather-icon--smartphone"
 	>
 		<rect
 			x="5"
@@ -5632,15 +5632,15 @@
 	<svg
 		v-else-if="name === Icon.smile"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-smile"
+		class="bo-feather-icon bo-feather-icon--smile"
 	>
 		<circle
 			cx="12"
@@ -5664,15 +5664,15 @@
 	<svg
 		v-else-if="name === Icon.speaker"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-speaker"
+		class="bo-feather-icon bo-feather-icon--speaker"
 	>
 		<rect
 			x="4"
@@ -5697,15 +5697,15 @@
 	<svg
 		v-else-if="name === Icon.square"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-square"
+		class="bo-feather-icon bo-feather-icon--square"
 	>
 		<rect
 			x="3"
@@ -5719,15 +5719,15 @@
 	<svg
 		v-else-if="name === Icon.star"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-star"
+		class="bo-feather-icon bo-feather-icon--star"
 	>
 		<polygon
 			points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
@@ -5736,15 +5736,15 @@
 	<svg
 		v-else-if="name === Icon.stop_circle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-stop-circle"
+		class="bo-feather-icon bo-feather-icon--stop-circle"
 	>
 		<circle
 			cx="12"
@@ -5761,15 +5761,15 @@
 	<svg
 		v-else-if="name === Icon.sun"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-sun"
+		class="bo-feather-icon bo-feather-icon--sun"
 	>
 		<circle
 			cx="12"
@@ -5828,15 +5828,15 @@
 	<svg
 		v-else-if="name === Icon.sunrise"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-sunrise"
+		class="bo-feather-icon bo-feather-icon--sunrise"
 	>
 		<path d="M17 18a5 5 0 0 0-10 0"></path>
 		<line
@@ -5880,15 +5880,15 @@
 	<svg
 		v-else-if="name === Icon.sunset"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-sunset"
+		class="bo-feather-icon bo-feather-icon--sunset"
 	>
 		<path d="M17 18a5 5 0 0 0-10 0"></path>
 		<line
@@ -5932,15 +5932,15 @@
 	<svg
 		v-else-if="name === Icon.table"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-table"
+		class="bo-feather-icon bo-feather-icon--table"
 	>
 		<path
 			d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"
@@ -5949,15 +5949,15 @@
 	<svg
 		v-else-if="name === Icon.tablet"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-tablet"
+		class="bo-feather-icon bo-feather-icon--tablet"
 	>
 		<rect
 			x="4"
@@ -5977,15 +5977,15 @@
 	<svg
 		v-else-if="name === Icon.tag"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-tag"
+		class="bo-feather-icon bo-feather-icon--tag"
 	>
 		<path
 			d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"
@@ -6000,15 +6000,15 @@
 	<svg
 		v-else-if="name === Icon.target"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-target"
+		class="bo-feather-icon bo-feather-icon--target"
 	>
 		<circle
 			cx="12"
@@ -6029,15 +6029,15 @@
 	<svg
 		v-else-if="name === Icon.terminal"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-terminal"
+		class="bo-feather-icon bo-feather-icon--terminal"
 	>
 		<polyline points="4 17 10 11 4 5"></polyline>
 		<line
@@ -6050,30 +6050,30 @@
 	<svg
 		v-else-if="name === Icon.thermometer"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-thermometer"
+		class="bo-feather-icon bo-feather-icon--thermometer"
 	>
 		<path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
 	</svg>
 	<svg
 		v-else-if="name === Icon.thumbs_down"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-thumbs-down"
+		class="bo-feather-icon bo-feather-icon--thumbs-down"
 	>
 		<path
 			d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"
@@ -6082,15 +6082,15 @@
 	<svg
 		v-else-if="name === Icon.thumbs_up"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-thumbs-up"
+		class="bo-feather-icon bo-feather-icon--thumbs-up"
 	>
 		<path
 			d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"
@@ -6099,15 +6099,15 @@
 	<svg
 		v-else-if="name === Icon.toggle_left"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-toggle-left"
+		class="bo-feather-icon bo-feather-icon--toggle-left"
 	>
 		<rect
 			x="1"
@@ -6126,15 +6126,15 @@
 	<svg
 		v-else-if="name === Icon.toggle_right"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-toggle-right"
+		class="bo-feather-icon bo-feather-icon--toggle-right"
 	>
 		<rect
 			x="1"
@@ -6153,15 +6153,15 @@
 	<svg
 		v-else-if="name === Icon.tool"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-tool"
+		class="bo-feather-icon bo-feather-icon--tool"
 	>
 		<path
 			d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
@@ -6170,15 +6170,15 @@
 	<svg
 		v-else-if="name === Icon.trash_2"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-trash-2"
+		class="bo-feather-icon bo-feather-icon--trash-2"
 	>
 		<polyline points="3 6 5 6 21 6"></polyline>
 		<path
@@ -6200,15 +6200,15 @@
 	<svg
 		v-else-if="name === Icon.trash"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-trash"
+		class="bo-feather-icon bo-feather-icon--trash"
 	>
 		<polyline points="3 6 5 6 21 6"></polyline>
 		<path
@@ -6218,15 +6218,15 @@
 	<svg
 		v-else-if="name === Icon.trello"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-trello"
+		class="bo-feather-icon bo-feather-icon--trello"
 	>
 		<rect
 			x="3"
@@ -6252,15 +6252,15 @@
 	<svg
 		v-else-if="name === Icon.trending_down"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-trending-down"
+		class="bo-feather-icon bo-feather-icon--trending-down"
 	>
 		<polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
 		<polyline points="17 18 23 18 23 12"></polyline>
@@ -6268,15 +6268,15 @@
 	<svg
 		v-else-if="name === Icon.trending_up"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-trending-up"
+		class="bo-feather-icon bo-feather-icon--trending-up"
 	>
 		<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
 		<polyline points="17 6 23 6 23 12"></polyline>
@@ -6284,15 +6284,15 @@
 	<svg
 		v-else-if="name === Icon.triangle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-triangle"
+		class="bo-feather-icon bo-feather-icon--triangle"
 	>
 		<path
 			d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
@@ -6301,15 +6301,15 @@
 	<svg
 		v-else-if="name === Icon.truck"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-truck"
+		class="bo-feather-icon bo-feather-icon--truck"
 	>
 		<rect
 			x="1"
@@ -6332,15 +6332,15 @@
 	<svg
 		v-else-if="name === Icon.tv"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-tv"
+		class="bo-feather-icon bo-feather-icon--tv"
 	>
 		<rect
 			x="2"
@@ -6355,30 +6355,30 @@
 	<svg
 		v-else-if="name === Icon.twitch"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-twitch"
+		class="bo-feather-icon bo-feather-icon--twitch"
 	>
 		<path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"></path>
 	</svg>
 	<svg
 		v-else-if="name === Icon.twitter"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-twitter"
+		class="bo-feather-icon bo-feather-icon--twitter"
 	>
 		<path
 			d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
@@ -6387,15 +6387,15 @@
 	<svg
 		v-else-if="name === Icon.type"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-type"
+		class="bo-feather-icon bo-feather-icon--type"
 	>
 		<polyline points="4 7 4 4 20 4 20 7"></polyline>
 		<line
@@ -6414,30 +6414,30 @@
 	<svg
 		v-else-if="name === Icon.umbrella"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-umbrella"
+		class="bo-feather-icon bo-feather-icon--umbrella"
 	>
 		<path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"></path>
 	</svg>
 	<svg
 		v-else-if="name === Icon.underline"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-underline"
+		class="bo-feather-icon bo-feather-icon--underline"
 	>
 		<path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"></path>
 		<line
@@ -6450,15 +6450,15 @@
 	<svg
 		v-else-if="name === Icon.unlock"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-unlock"
+		class="bo-feather-icon bo-feather-icon--unlock"
 	>
 		<rect
 			x="3"
@@ -6473,15 +6473,15 @@
 	<svg
 		v-else-if="name === Icon.upload_cloud"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-upload-cloud"
+		class="bo-feather-icon bo-feather-icon--upload-cloud"
 	>
 		<polyline points="16 16 12 12 8 16"></polyline>
 		<line
@@ -6496,15 +6496,15 @@
 	<svg
 		v-else-if="name === Icon.upload"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-upload"
+		class="bo-feather-icon bo-feather-icon--upload"
 	>
 		<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
 		<polyline points="17 8 12 3 7 8"></polyline>
@@ -6518,15 +6518,15 @@
 	<svg
 		v-else-if="name === Icon.user_check"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-user-check"
+		class="bo-feather-icon bo-feather-icon--user-check"
 	>
 		<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 		<circle
@@ -6539,15 +6539,15 @@
 	<svg
 		v-else-if="name === Icon.user_minus"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-user-minus"
+		class="bo-feather-icon bo-feather-icon--user-minus"
 	>
 		<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 		<circle
@@ -6565,15 +6565,15 @@
 	<svg
 		v-else-if="name === Icon.user_plus"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-user-plus"
+		class="bo-feather-icon bo-feather-icon--user-plus"
 	>
 		<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 		<circle
@@ -6597,15 +6597,15 @@
 	<svg
 		v-else-if="name === Icon.user_x"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-user-x"
+		class="bo-feather-icon bo-feather-icon--user-x"
 	>
 		<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 		<circle
@@ -6629,15 +6629,15 @@
 	<svg
 		v-else-if="name === Icon.user"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-user"
+		class="bo-feather-icon bo-feather-icon--user"
 	>
 		<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
 		<circle
@@ -6649,15 +6649,15 @@
 	<svg
 		v-else-if="name === Icon.users"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-users"
+		class="bo-feather-icon bo-feather-icon--users"
 	>
 		<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
 		<circle
@@ -6671,15 +6671,15 @@
 	<svg
 		v-else-if="name === Icon.video_off"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-video-off"
+		class="bo-feather-icon bo-feather-icon--video-off"
 	>
 		<path
 			d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"
@@ -6694,15 +6694,15 @@
 	<svg
 		v-else-if="name === Icon.video"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-video"
+		class="bo-feather-icon bo-feather-icon--video"
 	>
 		<polygon points="23 7 16 12 23 17 23 7"></polygon>
 		<rect
@@ -6717,15 +6717,15 @@
 	<svg
 		v-else-if="name === Icon.voicemail"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-voicemail"
+		class="bo-feather-icon bo-feather-icon--voicemail"
 	>
 		<circle
 			cx="5.5"
@@ -6747,15 +6747,15 @@
 	<svg
 		v-else-if="name === Icon.volume_1"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-volume-1"
+		class="bo-feather-icon bo-feather-icon--volume-1"
 	>
 		<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
 		<path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -6763,15 +6763,15 @@
 	<svg
 		v-else-if="name === Icon.volume_2"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-volume-2"
+		class="bo-feather-icon bo-feather-icon--volume-2"
 	>
 		<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
 		<path
@@ -6781,15 +6781,15 @@
 	<svg
 		v-else-if="name === Icon.volume_x"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-volume-x"
+		class="bo-feather-icon bo-feather-icon--volume-x"
 	>
 		<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
 		<line
@@ -6808,30 +6808,30 @@
 	<svg
 		v-else-if="name === Icon.volume"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-volume"
+		class="bo-feather-icon bo-feather-icon--volume"
 	>
 		<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
 	</svg>
 	<svg
 		v-else-if="name === Icon.watch"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-watch"
+		class="bo-feather-icon bo-feather-icon--watch"
 	>
 		<circle
 			cx="12"
@@ -6846,15 +6846,15 @@
 	<svg
 		v-else-if="name === Icon.wifi_off"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-wifi-off"
+		class="bo-feather-icon bo-feather-icon--wifi-off"
 	>
 		<line
 			x1="1"
@@ -6877,15 +6877,15 @@
 	<svg
 		v-else-if="name === Icon.wifi"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-wifi"
+		class="bo-feather-icon bo-feather-icon--wifi"
 	>
 		<path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
 		<path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
@@ -6900,15 +6900,15 @@
 	<svg
 		v-else-if="name === Icon.wind"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-wind"
+		class="bo-feather-icon bo-feather-icon--wind"
 	>
 		<path
 			d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"
@@ -6917,15 +6917,15 @@
 	<svg
 		v-else-if="name === Icon.x_circle"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-x-circle"
+		class="bo-feather-icon bo-feather-icon--x-circle"
 	>
 		<circle
 			cx="12"
@@ -6948,15 +6948,15 @@
 	<svg
 		v-else-if="name === Icon.x_octagon"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-x-octagon"
+		class="bo-feather-icon bo-feather-icon--x-octagon"
 	>
 		<polygon
 			points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"
@@ -6977,15 +6977,15 @@
 	<svg
 		v-else-if="name === Icon.x_square"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-x-square"
+		class="bo-feather-icon bo-feather-icon--x-square"
 	>
 		<rect
 			x="3"
@@ -7011,15 +7011,15 @@
 	<svg
 		v-else-if="name === Icon.x"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-x"
+		class="bo-feather-icon bo-feather-icon--x"
 	>
 		<line
 			x1="18"
@@ -7037,15 +7037,15 @@
 	<svg
 		v-else-if="name === Icon.youtube"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-youtube"
+		class="bo-feather-icon bo-feather-icon--youtube"
 	>
 		<path
 			d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
@@ -7055,15 +7055,15 @@
 	<svg
 		v-else-if="name === Icon.zap_off"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-zap-off"
+		class="bo-feather-icon bo-feather-icon--zap-off"
 	>
 		<polyline points="12.41 6.75 13 2 10.57 4.92"></polyline>
 		<polyline points="18.57 12.91 21 10 15.66 10"></polyline>
@@ -7078,30 +7078,30 @@
 	<svg
 		v-else-if="name === Icon.zap"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-zap"
+		class="bo-feather-icon bo-feather-icon--zap"
 	>
 		<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
 	</svg>
 	<svg
 		v-else-if="name === Icon.zoom_in"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-zoom-in"
+		class="bo-feather-icon bo-feather-icon--zoom-in"
 	>
 		<circle
 			cx="11"
@@ -7130,15 +7130,15 @@
 	<svg
 		v-else-if="name === Icon.zoom_out"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		:width="iconSize"
+		:height="iconSize"
 		viewBox="0 0 24 24"
 		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
+		:stroke="iconColor"
+		:stroke-width="iconStrokeStyle"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="feather feather-zoom-out"
+		class="bo-feather-icon bo-feather-icon--zoom-out"
 	>
 		<circle
 			cx="11"
@@ -7161,7 +7161,7 @@
 </template>
 
 <script setup lang="ts">
-import { IconSize, IconStrokeStyle, type Icon } from '@/components/Icon';
+import { IconSize, IconStrokeStyle, Icon } from '@/components/Icon';
 import { type PropType, toRefs, computed } from 'vue';
 
 const props = defineProps({

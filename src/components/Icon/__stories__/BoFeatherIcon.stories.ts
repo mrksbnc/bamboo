@@ -1,4 +1,9 @@
-import { BoFeatherIcon, Icon, IconSize } from '@/components/Icon';
+import {
+	BoFeatherIcon,
+	Icon,
+	IconSize,
+	IconStrokeStyle,
+} from '@/components/Icon';
 import { stringEnumFormatter } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -61,16 +66,16 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'IconStrokeStyle',
-					detail: stringEnumFormatter(IconSize, 'IconStrokeStyle'),
+					detail: stringEnumFormatter(IconStrokeStyle, 'IconStrokeStyle'),
 				},
 				defaultValue: {
-					summary: IconSize.md,
+					summary: IconStrokeStyle.normal,
 				},
 			},
 			control: {
 				type: 'select',
 			},
-			options: Object.values(IconSize),
+			options: Object.values(IconStrokeStyle),
 		},
 	},
 } satisfies Meta<typeof BoFeatherIcon>;
