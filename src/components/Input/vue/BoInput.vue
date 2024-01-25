@@ -32,7 +32,7 @@
 						:variant="SpinnerVariant.Default"
 						:size="LoaderSize.XS"
 					/>
-					<BoIcon
+					<BoFeatherIcon
 						v-if="hasShowPasswordIcon && !isLoading"
 						@click="togglePassword"
 						:name="eyeIcon"
@@ -44,9 +44,9 @@
 			v-if="showErrorMsg || !isValid"
 			class="bo-input__error-container"
 		>
-			<BoIcon
+			<BoFeatherIcon
 				v-if="showErrorMsg"
-				:size="IconSize.MD"
+				:size="IconSize.md"
 				:name="Icon.alert_triangle"
 				:color="BambooColor['red-600']"
 				class="bo-input__error-container__icon"
@@ -71,7 +71,7 @@ import {
 	InputSize,
 	validTextInputFieldTypes,
 } from '@/components/Input';
-import { Icon, BoIcon, IconSize } from '@/components/Icon';
+import { Icon, BoFeatherIcon, IconSize } from '@/components/Icon';
 import type { OptionalCss } from '@/types';
 import { BoSpinner, LoaderSize, SpinnerVariant } from '@/components/Loader';
 import { BambooColor } from '@/constants';

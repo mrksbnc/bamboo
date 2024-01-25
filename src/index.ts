@@ -14,6 +14,6 @@ export {
 	BadgeVariant,
 	BoBadge,
 } from '@/components/Badge';
-export { BoIcon, Icon, IconSize } from '@/components/Icon';
+export { BoFeatherIcon, Icon, IconSize } from '@/components/Icon';
 export { BambooColor } from '@/constants';
 export type { OptionalCss } from '@/types';

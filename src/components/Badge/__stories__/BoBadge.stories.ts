@@ -5,7 +5,7 @@ import {
 	BadgeVariant,
 	BoBadge,
 } from '@/components/Badge';
-import { BoIcon } from '@/components/Icon';
+import { BoFeatherIcon } from '@/components/Icon';
 import { stringEnumFormatter } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -307,13 +307,13 @@ export const Sizes: Story = {
 export const Prefix: Story = {
 	args: {},
 	render: () => ({
-		components: { BoBadge, BoIcon },
+		components: { BoBadge, BoFeatherIcon },
 		template: `
 		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
 			<BoBadge variant="default" size="md" label="Label">
 				<template #prefix>
 					<span style="margin-right: 5px; display: flex; align-items: center;">
-						<BoIcon name="alert-circle" color="white" size="xs"  />
+						<BoFeatherIcon name="alert-circle" color="white" size="xs"  />
 					</span>
 				</template>
 			</BoBadge>
@@ -325,13 +325,13 @@ export const Prefix: Story = {
 export const Body: Story = {
 	args: {},
 	render: () => ({
-		components: { BoBadge, BoIcon },
+		components: { BoBadge, BoFeatherIcon },
 		template: `
 		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
 			<BoBadge variant="default" size="md" label="Label">
 				<template #body>
 					<span style="display: flex; align-items: center;">
-						<BoIcon name="alert-circle" color="white" size="xs"  />
+						<BoFeatherIcon name="alert-circle" color="white" size="xs"  />
 					</span>
 				</template>
 			</BoBadge>
@@ -343,13 +343,13 @@ export const Body: Story = {
 export const Suffix: Story = {
 	args: {},
 	render: () => ({
-		components: { BoBadge, BoIcon },
+		components: { BoBadge, BoFeatherIcon },
 		template: `
 		<div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
 			<BoBadge variant="default" size="md" label="Label">
 				<template #suffix>
 					<span style="margin-left: 5px; display: flex; align-items: center;">
-						<BoIcon name="alert-circle" color="white" size="xs"  />
+						<BoFeatherIcon name="alert-circle" color="white" size="xs"  />
 					</span>
 				</template>
 			</BoBadge>
