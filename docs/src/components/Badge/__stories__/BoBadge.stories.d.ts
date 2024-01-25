@@ -1,44 +1,44 @@
-import { BadgeForm, BadgeSize, BadgeType, BadgeVariant } from '../../../components/Badge';
+import { BadgeForm, BadgeSize, BadgeType, BadgeVariant } from '..';
 import type { StoryObj } from '@storybook/vue3';
 declare const meta: {
     title: string;
     component: {
-        new (...args: any[]): import('./vue/dist/vue.esm-bundler.js').CreateComponentPublicInstance<Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
+        new (...args: any[]): import('../../../../vue/dist/vue.esm-bundler.js').CreateComponentPublicInstance<Readonly<import('../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
             variant: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeVariant>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeVariant>;
                 default: () => BadgeVariant;
             };
             form: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeForm>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeForm>;
                 default: () => BadgeForm;
             };
             type: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeType>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeType>;
                 default: () => BadgeType;
             };
             size: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeSize>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeSize>;
                 default: () => BadgeSize;
             };
             label: {
                 type: StringConstructor;
                 required: false;
             };
-        }>>, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps & Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
+        }>>, {}, unknown, {}, {}, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, import('../../../../vue/dist/vue.esm-bundler.js').VNodeProps & import('../../../../vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('../../../../vue/dist/vue.esm-bundler.js').ComponentCustomProps & Readonly<import('../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
             variant: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeVariant>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeVariant>;
                 default: () => BadgeVariant;
             };
             form: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeForm>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeForm>;
                 default: () => BadgeForm;
             };
             type: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeType>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeType>;
                 default: () => BadgeType;
             };
             size: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeSize>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeSize>;
                 default: () => BadgeSize;
             };
             label: {
@@ -57,21 +57,21 @@ declare const meta: {
             C: {};
             M: {};
             Defaults: {};
-        }, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
+        }, Readonly<import('../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
             variant: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeVariant>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeVariant>;
                 default: () => BadgeVariant;
             };
             form: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeForm>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeForm>;
                 default: () => BadgeForm;
             };
             type: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeType>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeType>;
                 default: () => BadgeType;
             };
             size: {
-                type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeSize>;
+                type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeSize>;
                 default: () => BadgeSize;
             };
             label: {
@@ -87,33 +87,33 @@ declare const meta: {
         __isFragment?: undefined;
         __isTeleport?: undefined;
         __isSuspense?: undefined;
-    } & import('./vue/dist/vue.esm-bundler.js').ComponentOptionsBase<Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
+    } & import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsBase<Readonly<import('../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
         variant: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeVariant>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeVariant>;
             default: () => BadgeVariant;
         };
         form: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeForm>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeForm>;
             default: () => BadgeForm;
         };
         type: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeType>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeType>;
             default: () => BadgeType;
         };
         size: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<BadgeSize>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BadgeSize>;
             default: () => BadgeSize;
         };
         label: {
             type: StringConstructor;
             required: false;
         };
-    }>>, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, {
+    }>>, {}, unknown, {}, {}, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, {
         type: BadgeType;
         variant: BadgeVariant;
         size: BadgeSize;
         form: BadgeForm;
-    }, {}, string, {}> & import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps & (new () => {
+    }, {}, string, {}> & import('../../../../vue/dist/vue.esm-bundler.js').VNodeProps & import('../../../../vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('../../../../vue/dist/vue.esm-bundler.js').ComponentCustomProps & (new () => {
         $slots: {
             prefix?(_: {}): any;
             body?(_: {}): any;

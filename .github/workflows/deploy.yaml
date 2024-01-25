@@ -1,5 +1,3 @@
-name: Storybook deployment
-
 on:
   push:
     branches:
@@ -18,7 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: build-publish
-        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.0
+        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.2
         with:
           path: docs
+          install_command: npm ci
           build_command: npm run build-storybook

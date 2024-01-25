@@ -1,8 +1,8 @@
-import { AvatarSize, AvatarType, AvatarVariant } from '../../../components/Avatar';
+import { AvatarSize, AvatarType, AvatarVariant } from '..';
 import type { StoryObj } from '@storybook/vue3';
 declare const meta: {
     title: string;
-    component: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
+    component: import('../../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
         src: {
             type: StringConstructor;
             default: null;
@@ -12,26 +12,26 @@ declare const meta: {
             default: null;
         };
         type: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<AvatarType>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<AvatarType>;
             default: () => AvatarType;
         };
         variant: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<AvatarVariant>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<AvatarVariant>;
             default: () => AvatarVariant;
         };
         size: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<AvatarSize>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<AvatarSize>;
             default: () => AvatarSize;
         };
         indicatorProps: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<import('../../../components/Avatar').AvatarIndicatorProps>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<import('..').AvatarIndicatorProps>;
             default: () => null;
         };
         initialProps: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<import('../../../components/Avatar').AvatarInitialProps>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<import('..').AvatarInitialProps>;
             default: () => null;
         };
-    }, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
+    }, {}, unknown, {}, {}, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('../../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
         src: {
             type: StringConstructor;
             default: null;
@@ -41,23 +41,23 @@ declare const meta: {
             default: null;
         };
         type: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<AvatarType>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<AvatarType>;
             default: () => AvatarType;
         };
         variant: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<AvatarVariant>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<AvatarVariant>;
             default: () => AvatarVariant;
         };
         size: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<AvatarSize>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<AvatarSize>;
             default: () => AvatarSize;
         };
         indicatorProps: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<import('../../../components/Avatar').AvatarIndicatorProps>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<import('..').AvatarIndicatorProps>;
             default: () => null;
         };
         initialProps: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<import('../../../components/Avatar').AvatarInitialProps>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<import('..').AvatarInitialProps>;
             default: () => null;
         };
     }>>, {
@@ -66,8 +66,8 @@ declare const meta: {
         type: AvatarType;
         variant: AvatarVariant;
         size: AvatarSize;
-        indicatorProps: import('../../../components/Avatar').AvatarIndicatorProps;
-        initialProps: import('../../../components/Avatar').AvatarInitialProps;
+        indicatorProps: import('..').AvatarIndicatorProps;
+        initialProps: import('..').AvatarInitialProps;
     }, {}>;
     tags: string[];
     argTypes: {

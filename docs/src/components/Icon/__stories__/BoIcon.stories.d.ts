@@ -1,23 +1,23 @@
-import { Icon, IconSize } from '../../../components/Icon';
+import { Icon, IconSize } from '..';
 import type { StoryObj } from '@storybook/vue3';
 declare const meta: {
     title: string;
-    component: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
+    component: import('../../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
         name: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<Icon>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<Icon>;
             required: true;
         };
         size: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<IconSize>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<IconSize>;
             default: () => IconSize;
         };
-    }, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
+    }, {}, unknown, {}, {}, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('../../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
         name: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<Icon>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<Icon>;
             required: true;
         };
         size: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<IconSize>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<IconSize>;
             default: () => IconSize;
         };
     }>>, {

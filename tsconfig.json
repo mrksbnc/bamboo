@@ -10,16 +10,15 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"],
-			"@utils/*": ["./utils/*"]
-		}
+		},
 	},
 	"include": [
 		"env.d.ts",
 		"src/**/*.ts",
 		"src/**/*.vue",
-		"utils/**/*.ts",
+		"src/utils/**/*.ts",
 		"vite.config.*",
-		"vitest.config.*"
+		"vitest.config.*",
 	],
-	"exclude": ["node_modules", "dist", "docs"]
+	"exclude": ["node_modules", "dist", "docs"],
 }

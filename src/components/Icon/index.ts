@@ -1,2 +1,2 @@
-export { Icon, IconSize, icons } from './ts/constants';
-export { default as BoIcon } from './vue/BoIcon.vue';
+export { default as BoIcon } from './BoIcon.vue';
+export { Icon, IconSize, iconMap } from './constants';

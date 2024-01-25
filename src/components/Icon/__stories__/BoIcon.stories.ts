@@ -63,7 +63,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Example: Story = {
 	args: {
-		name: Icon.airplay,
+		name: Icon.activity,
 		size: IconSize.MD,
 	},
 };

@@ -1,8 +1,8 @@
-import { HTMLAutocompleteAttribute, HTMLInputType, InputSize } from '../../../components/Input';
+import { HTMLAutocompleteAttribute, HTMLInputType, InputSize } from '..';
 import type { StoryObj } from '@storybook/vue3';
 declare const meta: {
     title: string;
-    component: import('./vue/dist/vue.esm-bundler.js').DefineComponent<{
+    component: import('../../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
         id: {
             type: StringConstructor;
             default: () => string;
@@ -16,7 +16,7 @@ declare const meta: {
             required: true;
         };
         type: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<HTMLInputType>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<HTMLInputType>;
             default: () => HTMLInputType;
             validator: (value: HTMLInputType) => boolean;
         };
@@ -45,23 +45,23 @@ declare const meta: {
             default: boolean;
         };
         size: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<InputSize>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<InputSize>;
             default: () => InputSize;
         };
         autocomplete: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<HTMLAutocompleteAttribute>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<HTMLAutocompleteAttribute>;
             default: () => HTMLAutocompleteAttribute;
         };
         readonly: {
             type: BooleanConstructor;
             default: boolean;
         };
-    }, {}, unknown, {}, {}, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('./vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
+    }, {}, unknown, {}, {}, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
         focus: () => void;
         blur: (value: Event) => void;
         "update:modelValue": (value: string | null) => void;
         change: (value: string | null) => void;
-    }, string, import('./vue/dist/vue.esm-bundler.js').VNodeProps & import('./vue/dist/vue.esm-bundler.js').AllowedComponentProps & import('./vue/dist/vue.esm-bundler.js').ComponentCustomProps, Readonly<import('./vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
+    }, string, import('../../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
         id: {
             type: StringConstructor;
             default: () => string;
@@ -75,7 +75,7 @@ declare const meta: {
             required: true;
         };
         type: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<HTMLInputType>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<HTMLInputType>;
             default: () => HTMLInputType;
             validator: (value: HTMLInputType) => boolean;
         };
@@ -104,11 +104,11 @@ declare const meta: {
             default: boolean;
         };
         size: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<InputSize>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<InputSize>;
             default: () => InputSize;
         };
         autocomplete: {
-            type: import('./vue/dist/vue.esm-bundler.js').PropType<HTMLAutocompleteAttribute>;
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<HTMLAutocompleteAttribute>;
             default: () => HTMLAutocompleteAttribute;
         };
         readonly: {
