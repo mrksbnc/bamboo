@@ -30,12 +30,13 @@
 					<BoSpinner
 						v-if="isLoading"
 						:variant="SpinnerVariant.Default"
-						:size="LoaderSize.XS"
+						:size="LoaderSize.MD"
 					/>
 					<BoFeatherIcon
 						v-if="hasShowPasswordIcon && !isLoading"
 						@click="togglePassword"
 						:name="eyeIcon"
+						:size="IconSize.xs"
 					/>
 				</div>
 			</div>

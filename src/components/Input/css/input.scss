@@ -93,7 +93,8 @@
 		}
 
 		&__msg {
-			@extend %font-sm;
+			@extend %font-xs;
+			@extend %font-inter;
 			@extend %font-regular;
 
 			color: var(--error-color);
