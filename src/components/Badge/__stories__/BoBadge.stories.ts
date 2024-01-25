@@ -6,8 +6,8 @@ import {
 	BoBadge,
 } from '@/components/Badge';
 import { BoIcon } from '@/components/Icon';
+import { stringEnumFormatter } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { stringEnumFormatter } from '@utils/storybook';
 
 const meta = {
 	title: 'Badge/bo-badge',

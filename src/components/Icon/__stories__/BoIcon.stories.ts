@@ -1,6 +1,6 @@
 import { BoIcon, Icon, IconSize } from '@/components/Icon';
+import { stringEnumFormatter } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { stringEnumFormatter } from '@utils/index';
 
 const meta = {
 	title: 'Icon/bo-icon',

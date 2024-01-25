@@ -1,12 +1,11 @@
 import vue from '@vitejs/plugin-vue';
 import { fileURLToPath, URL } from 'node:url';
 import dts from 'vite-plugin-dts';
-import svgLoader from 'vite-svg-loader';
 import { defineConfig, type UserConfig } from 'vitest/config';
 
 /** https://vitejs.dev/config/ */
 const bambooLibConfig: UserConfig = defineConfig({
-	plugins: [vue(), dts(), svgLoader()],
+	plugins: [vue(), dts()],
 	build: {
 		minify: true,
 		cssCodeSplit: true,

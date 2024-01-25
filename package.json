@@ -58,13 +58,16 @@
 			"import": "./dist/layout.css",
 			"require": "./dist/layout.css"
 		},
+		"./theme.css": {
+			"import": "./dist/theme.css",
+			"require": "./dist/theme.css"
+		},
 		"./typography.css": {
 			"import": "./dist/typography.css",
 			"require": "./dist/typography.css"
 		}
 	},
 	"dependencies": {
-		"vite-svg-loader": "^5.1.0",
 		"vue": "^3.4.15"
 	},
 	"devDependencies": {

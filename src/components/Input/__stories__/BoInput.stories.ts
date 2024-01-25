@@ -5,8 +5,8 @@ import {
 	InputSize,
 	validTextInputFieldTypes,
 } from '@/components/Input';
+import { stringEnumFormatter } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { stringEnumFormatter } from '@utils/index';
 
 const meta = {
 	title: 'Input/bo-input',

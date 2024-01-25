@@ -1,6 +1,6 @@
 import { BoSpinner, LoaderSize, SpinnerVariant } from '@/components/Loader';
+import { stringEnumFormatter } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { stringEnumFormatter } from '@utils/index';
 
 const meta = {
 	title: 'Loader/bo-spinner',

@@ -4,8 +4,8 @@ import {
 	AvatarVariant,
 	BoAvatar,
 } from '@/components/Avatar';
+import { stringEnumFormatter } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { stringEnumFormatter } from '@utils/index';
 
 const meta = {
 	title: 'Avatar/bo-avatar',
