@@ -1,3 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`BoIcon > renders properly 1`] = `"<i data-v-25c2865e=\\"\\" id=\\"bo-icon-1\\" role=\\"img\\" style=\\"mask-image: url('/src/assets/icon/activity.svg'); webkit-mask-image: url('/src/assets/icon/activity.svg');\\" aria-label=\\"activity\\" class=\\"bo-icon md\\"></i>"`;

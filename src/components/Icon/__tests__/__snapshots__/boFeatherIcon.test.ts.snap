@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BoIcon > renders properly 1`] = `
+"<!-- NOTE: These icons are part of the bo-feather-icon icon set. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="var(--icon-color)" stroke-linecap="round" stroke-linejoin="round" class="bo-feather-icon bo-feather-icon---activity">
+  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+</svg>"
+`;

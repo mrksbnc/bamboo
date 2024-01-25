@@ -1,3 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`BoIcon > renders properly 1`] = `"<span data-v-0dc9c9ce=\\"\\" class=\\"bo-spinner info md\\"></span>"`;
+exports[`BoIcon > renders properly 1`] = `
+"<div data-v-1a4abdd4="" class="bo-spinner-container"><span data-v-1a4abdd4="" class="bo-spinner info md"></span>
+  <!--v-if-->
+</div>"
+`;

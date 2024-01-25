@@ -7175,7 +7175,7 @@ const props = defineProps({
 	},
 	color: {
 		type: String,
-		default: () => null,
+		default: () => 'var(--icon-color)',
 	},
 	strokeStyle: {
 		type: String as PropType<IconStrokeStyle>,

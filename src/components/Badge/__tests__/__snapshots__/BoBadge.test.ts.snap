@@ -1,9 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`BoIcon > renders properly 1`] = `
-"<div data-v-13a6fd5b=\\"\\" class=\\"bo-badge default pill filled sm\\">
+"<div data-v-dfbd0d07="" class="bo-badge default pill filled sm">
   <!--v-if-->
-  <!--v-if--><span data-v-13a6fd5b=\\"\\" class=\\"label\\">test</span>
+  <!--v-if--><span data-v-dfbd0d07="" class="label">test</span>
   <!--v-if-->
 </div>"
 `;
