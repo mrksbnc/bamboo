@@ -18,3 +18,6 @@ coverage
 !.vscode/extensions.json
 
 *storybook.log
+
+.env
+!.env.example
