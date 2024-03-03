@@ -1,4 +1,4 @@
-name: 'Deploy Storybook to GitHub Pages'
+name: Storybook deployment
 
 on:
   push:
@@ -18,8 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: build-publish
-        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.2
+        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.0
         with:
           path: docs
-          install_command: pnpm install
-          build_command: pnpm run build-storybook
+          build_command: npm run build-storybook
