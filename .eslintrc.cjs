@@ -44,5 +44,7 @@ module.exports = {
 		'dist/*',
 		'node_modules/*',
 		'docs/*',
+		'tailwind.config.js',
+		'postcss.config.js',
 	],
 };

@@ -1,6 +1,7 @@
 {
 	"extends": "@vue/tsconfig/tsconfig.dom.json",
 	"compilerOptions": {
+		"allowJs": true,
 		"target": "ESNext",
 		"module": "ESNext",
 		"alwaysStrict": true,
@@ -16,9 +17,9 @@
 		"env.d.ts",
 		"src/**/*.ts",
 		"src/**/*.vue",
-		"src/utils/**/*.ts",
 		"vite.config.*",
 		"vitest.config.*",
+		"tailwindcss.config.*",
 	],
 	"exclude": ["node_modules", "dist", "docs"],
 }

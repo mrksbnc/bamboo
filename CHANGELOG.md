@@ -24,8 +24,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [x] `CHANGELOG.md` file
 - [x] `LICENSE` file
 - [x] `README.md` file
-- [x] Storybook
-- [x] Configure eslint
+- [] Storybook
+- [] Configure eslint
 - [x] Configure prettier
 - [x] Configure vitest
 - [x] Configure vite for library build
@@ -36,7 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [ ] Create `bo-progress-bar` component
 - [ ] Create `bo-card` component
 - [ ] Create `bo-avatar` component
-- [x] Create `bo-icon` component
+- [] Create `bo-icon` component
 - [ ] Create `bo-input` component
 
 ### Fixed

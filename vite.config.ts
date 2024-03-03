@@ -34,20 +34,6 @@ const bambooLibConfig: UserConfig = defineConfig({
 			},
 			input: {
 				main: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-				colors: fileURLToPath(new URL('src/styles/colors.ts', import.meta.url)),
-				animation: fileURLToPath(
-					new URL('src/styles/animation.ts', import.meta.url),
-				),
-				inter: fileURLToPath(
-					new URL('src/styles/fonts/inter.ts', import.meta.url),
-				),
-				assistant: fileURLToPath(
-					new URL('src/styles/fonts/assistant.ts', import.meta.url),
-				),
-				typography: fileURLToPath(
-					new URL('src/styles/typography.ts', import.meta.url),
-				),
-				layout: fileURLToPath(new URL('src/styles/layout.ts', import.meta.url)),
 			},
 		},
 	},

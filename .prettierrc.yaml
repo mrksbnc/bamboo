@@ -1,0 +1,7 @@
+semi: true
+tabWidth: 2
+useTabs: true
+singleQuote: true
+trailingComma: all
+singleAttributePerLine: true
+plugins: [prettier-plugin-organize-imports]
