@@ -1,1 +1,2 @@
-export { BoSize } from './size';
+export { BoColor } from './bo_color';
+export { BoSize } from './bo_size';
