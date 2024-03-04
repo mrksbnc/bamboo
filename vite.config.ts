@@ -9,7 +9,7 @@ import { defineConfig, type UserConfig } from 'vitest/config';
  * @see https://vitejs.dev/config/
  *
  */
-const BAMBOO_LIB_USER_CONFIG: UserConfig = defineConfig({
+const bambooLibConfig: UserConfig = defineConfig({
 	plugins: [
 		vue(),
 		dts(),
@@ -49,4 +49,4 @@ const BAMBOO_LIB_USER_CONFIG: UserConfig = defineConfig({
 	},
 });
 
-export default BAMBOO_LIB_USER_CONFIG;
+export default bambooLibConfig;
