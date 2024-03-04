@@ -8,6 +8,10 @@ const bambooTestConfig = mergeConfig(
 			alias: {
 				'@/': new URL('./src/', import.meta.url).pathname,
 			},
+			coverage: {
+				provider: 'v8',
+				reporter: ['text', 'json-summary', 'json'],
+			},
 			environment: 'jsdom',
 			exclude: [...configDefaults.exclude],
 		},
