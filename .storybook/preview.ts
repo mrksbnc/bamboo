@@ -1,3 +1,5 @@
+import './storybook.scss';
+
 import '../src/index.css';
 
 import { withThemeByClassName } from '@storybook/addon-themes';
