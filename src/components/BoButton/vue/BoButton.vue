@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { computed, toRefs, type PropType } from 'vue';
 import { BoButtonType, BoButtonVariant, BoIcon, type Icon } from '@/components';
-import { BoSize } from '@/enums/size';
+import { BoSize } from '@/enums';
 import { TailwindUtils } from '@/utils';
 
 const props = defineProps({
