@@ -21,3 +21,6 @@ coverage
 
 .env
 !.env.example
+
+# Storybook build directory
+!static
