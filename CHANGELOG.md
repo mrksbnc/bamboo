@@ -30,7 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [x] Configure vitest
 - [x] Configure vite for library build
 - [ ] Create `bo-badge` component
-- [ ] Create `bo-button` component
+- [x] Create `bo-button` component
 - [ ] Create `bo-icon-button` component
 - [ ] Create `bo-spinner` component
 - [ ] Create `bo-progress-bar` component
