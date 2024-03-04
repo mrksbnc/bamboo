@@ -1,10 +1,11 @@
 import { BoButtonVariant } from '@/components';
 import { BoButton, BoButtonType } from '@/components/BoButton';
 import { BoSize } from '@/enums';
+import { stringEnumFormatter } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
-	title: 'Button/BoButton',
+	title: 'Button/bo-button',
 	component: BoButton,
 	tags: ['autodocs'],
 	argTypes: {
@@ -18,13 +19,16 @@ const meta = {
 			},
 		},
 		variant: {
-			type: 'string',
 			options: Object.values(BoButtonVariant),
 			description: 'The variant of the button',
 			control: { type: 'select' },
 			table: {
 				category: 'props',
 				subcategory: 'optional',
+				type: {
+					summary: 'BoButtonVariant',
+					detail: stringEnumFormatter(BoButtonVariant, 'BoButtonVariant'),
+				},
 			},
 			defaultValue: BoButtonVariant.primary,
 		},
@@ -36,6 +40,10 @@ const meta = {
 			table: {
 				category: 'props',
 				subcategory: 'optional',
+				type: {
+					summary: 'BoButtonType',
+					detail: stringEnumFormatter(BoButtonType, 'BoButtonType'),
+				},
 			},
 			defaultValue: BoButtonType.default,
 		},
@@ -57,6 +65,10 @@ const meta = {
 			table: {
 				category: 'props',
 				subcategory: 'optional',
+				type: {
+					summary: 'BoSize',
+					detail: stringEnumFormatter(BoSize, 'BoSize'),
+				},
 			},
 			defaultValue: BoSize.default,
 		},

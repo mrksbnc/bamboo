@@ -15,6 +15,7 @@
 			<BoIcon
 				v-if="prefixIcon"
 				:icon="prefixIcon"
+				:size="BoSize.default"
 			/>
 		</span>
 		<span class="bo-button__label">
@@ -24,6 +25,7 @@
 			<BoIcon
 				v-if="suffixIcon"
 				:icon="suffixIcon"
+				:size="BoSize.default"
 			/>
 		</span>
 	</button>
@@ -31,13 +33,9 @@
 
 <script setup lang="ts">
 import { computed, toRefs, type PropType } from 'vue';
-import {
-	BoButtonType,
-	BoButtonVariant,
-} from '@/components/BoButton/ts/bo_button';
+import { BoButtonType, BoButtonVariant, BoIcon, type Icon } from '@/components';
 import { BoSize } from '@/enums/size';
-import { BoIcon } from '@/components/BoIcon';
-import { TailwindUtils } from '@/utils/tailwind_utils';
+import { TailwindUtils } from '@/utils';
 
 const props = defineProps({
 	label: {
@@ -61,11 +59,11 @@ const props = defineProps({
 		default: BoSize.default,
 	},
 	prefixIcon: {
-		type: String,
+		type: String as PropType<Icon>,
 		default: null,
 	},
 	suffixIcon: {
-		type: String,
+		type: String as PropType<Icon>,
 		default: null,
 	},
 });
@@ -96,32 +94,56 @@ const textClasses = computed<string>(() => {
 	if (type.value === BoButtonType.outline) {
 		switch (variant.value) {
 			case BoButtonVariant.link:
-				classes = TailwindUtils.merge('text-blue-500 hover:text-blue-600');
+				classes = TailwindUtils.merge(
+					classes,
+					'text-blue-500 hover:text-blue-600',
+				);
 				break;
 			case BoButtonVariant.danger:
-				classes = TailwindUtils.merge('text-red-500 hover:text-white');
+				classes = TailwindUtils.merge(classes, 'text-red-500 hover:text-white');
 				break;
 			case BoButtonVariant.warning:
-				classes = TailwindUtils.merge('text-yellow-500 hover:text-white');
+				classes = TailwindUtils.merge(
+					classes,
+					'text-yellow-500 hover:text-white',
+				);
 				break;
 			case BoButtonVariant.success:
-				classes = TailwindUtils.merge('text-green-500 hover:text-white');
+				classes = TailwindUtils.merge(
+					classes,
+					'text-green-500 hover:text-white',
+				);
 				break;
 			case BoButtonVariant.dark:
-				classes = TailwindUtils.merge('text-gray-800 hover:text-white');
+				classes = TailwindUtils.merge(
+					classes,
+					'text-gray-800 hover:text-white',
+				);
 				break;
 			case BoButtonVariant.light:
-				classes = TailwindUtils.merge('text-gray-200 hover:text-white');
+				classes = TailwindUtils.merge(
+					classes,
+					'text-gray-200 hover:text-white',
+				);
 				break;
 			case BoButtonVariant.alternative:
-				classes = TailwindUtils.merge('text-gray-500 hover:text-white');
+				classes = TailwindUtils.merge(
+					classes,
+					'text-gray-500 hover:text-white',
+				);
 				break;
 			case BoButtonVariant.secondary:
-				classes = TailwindUtils.merge('text-gray-500 hover:text-white');
+				classes = TailwindUtils.merge(
+					classes,
+					'text-gray-500 hover:text-white',
+				);
 				break;
 			case BoButtonVariant.primary:
 			default:
-				classes = TailwindUtils.merge('text-blue-600 hover:text-white');
+				classes = TailwindUtils.merge(
+					classes,
+					'text-blue-600 hover:text-white',
+				);
 				break;
 		}
 	}
@@ -129,10 +151,13 @@ const textClasses = computed<string>(() => {
 	if (type.value === BoButtonType.pill || type.value === BoButtonType.default) {
 		switch (variant.value) {
 			case BoButtonVariant.link:
-				classes = TailwindUtils.merge('text-blue-500 hover:text-blue-600');
+				classes = TailwindUtils.merge(
+					classes,
+					'text-blue-500 hover:text-blue-600',
+				);
 				break;
 			case BoButtonVariant.secondary:
-				classes = TailwindUtils.merge('text-gray-600');
+				classes = TailwindUtils.merge(classes, 'text-gray-600');
 				break;
 			case BoButtonVariant.danger:
 			case BoButtonVariant.warning:
@@ -142,7 +167,7 @@ const textClasses = computed<string>(() => {
 			case BoButtonVariant.alternative:
 			case BoButtonVariant.primary:
 			default:
-				classes = TailwindUtils.merge('text-white');
+				classes = TailwindUtils.merge(classes, 'text-white');
 				break;
 		}
 	}
