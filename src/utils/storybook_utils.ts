@@ -13,7 +13,5 @@ export const stringEnumFormatter = (
 };
 
 export const arrayFormatter = (array: string[], name: string): string => {
-	return `array ${name} {\n${array
-		.map((m: string) => `  ${m},`)
-		.join('\r\n')}\r\n}`;
+	return `array ${name} {\n${array.map((m: string) => `  ${m},`).join('\r\n')}\r\n}`;
 };
