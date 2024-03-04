@@ -1,31 +1,14 @@
 import '../src/index.css';
 
-import {
-	withThemeByClassName,
-	withThemeByDataAttribute,
-} from '@storybook/addon-themes';
+import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/vue3';
-
-export const decorators = [
-	withThemeByClassName({
-		themes: {
-			light: 'light',
-			dark: 'dark',
-		},
-		defaultTheme: 'light',
-	}),
-	withThemeByDataAttribute({
-		themes: {
-			light: 'light',
-			dark: 'dark',
-		},
-		defaultTheme: 'light',
-		attributeName: 'data-mode',
-	}),
-];
 
 const preview: Preview = {
 	parameters: {
+		layout: 'padded',
+		docs: {
+			toc: true,
+		},
 		controls: {
 			matchers: {
 				color: /(background|color)$/i,
@@ -33,6 +16,15 @@ const preview: Preview = {
 			},
 		},
 	},
+	decorators: [
+		withThemeByClassName({
+			themes: {
+				light: 'light',
+				dark: 'dark',
+			},
+			defaultTheme: 'light',
+		}),
+	],
 };
 
 export default preview;
