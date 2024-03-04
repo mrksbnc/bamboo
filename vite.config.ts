@@ -1,25 +1,30 @@
 import vue from '@vitejs/plugin-vue';
 import { fileURLToPath, URL } from 'node:url';
+import viteCompression from 'vite-plugin-compression';
 import dts from 'vite-plugin-dts';
+import svgLoader from 'vite-svg-loader';
 import { defineConfig, type UserConfig } from 'vitest/config';
 
-/** https://vitejs.dev/config/ */
-const bambooLibConfig: UserConfig = defineConfig({
-	plugins: [vue(), dts()],
+/**
+ * @see https://vitejs.dev/config/
+ *
+ */
+const BAMBOO_LIB_USER_CONFIG: UserConfig = defineConfig({
+	plugins: [
+		vue(),
+		dts(),
+		svgLoader(),
+		viteCompression({ algorithm: 'gzip', ext: '.gz' }),
+		viteCompression({ algorithm: 'brotliCompress', ext: '.br' }),
+	],
 	build: {
 		minify: true,
+		emptyOutDir: true,
 		cssCodeSplit: true,
 		lib: {
 			name: 'bamboo',
 			formats: ['es', 'cjs'],
-			entry: [
-				'src/index.ts',
-				'src/styles/colors.ts',
-				'src/styles/layout.ts',
-				'src/styles/animation.ts',
-				'src/styles/typography.ts',
-				'src/styles/fonts/inter.ts',
-			],
+			entry: ['src/index.ts'],
 			fileName: (format, entry) => {
 				if (entry === 'main') return `index.${format}.js`;
 				return `${entry}.${format}.js`;
@@ -44,4 +49,4 @@ const bambooLibConfig: UserConfig = defineConfig({
 	},
 });
 
-export default bambooLibConfig;
+export default BAMBOO_LIB_USER_CONFIG;
