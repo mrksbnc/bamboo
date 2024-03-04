@@ -80,7 +80,7 @@ const classes = computed<string>(() => {
 			classes = TailwindUtils.merge(classes, 'size-6');
 			break;
 		case BoSize.extra_large:
-			classes = TailwindUtils.merge(classes, 'size-7');
+			classes = TailwindUtils.merge(classes, 'size-8');
 			break;
 		case BoSize.default:
 		default:
