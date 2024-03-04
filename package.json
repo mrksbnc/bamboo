@@ -4,7 +4,7 @@
 	"description": "Vue 3 UI library built with Vite and Storybook",
 	"scripts": {
 		"dev": "vite",
-		"build": "npm run type-check && npm run lint && vite optimize --force && vite build --mode production && node scripts/postbuild.cjs",
+		"build": "npm run type-check && npm run lint && vite optimize --force && vite build --mode production",
 		"preview": "vite preview",
 		"test": "vitest --run --update",
 		"build-only": "vite build",
