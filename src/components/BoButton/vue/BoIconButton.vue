@@ -110,6 +110,12 @@ const containerStyle = computed<string>(() => {
 		case BoIconButtonVariant.light:
 			colorClasses = 'bg-gray-100 hover:bg-gray-200 text-white';
 			break;
+		case BoIconButtonVariant.purple:
+			colorClasses = 'bg-purple-500 hover:bg-purple-600 text-white';
+			break;
+		case BoIconButtonVariant.teal:
+			colorClasses = 'bg-teal-500 hover:bg-teal-600 text-white';
+			break;
 		case BoIconButtonVariant.primary:
 		default:
 			colorClasses = 'bg-blue-500 hover:bg-blue-600 text-white';
@@ -128,11 +134,12 @@ const containerStyle = computed<string>(() => {
 const iconSize = computed<BoSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
+			return BoSize.extra_small;
 		case BoSize.small:
 			return BoSize.small;
+		case BoSize.large:
 		case BoSize.extra_large:
 			return BoSize.large;
-		case BoSize.large:
 		case BoSize.default:
 		default:
 			return BoSize.default;

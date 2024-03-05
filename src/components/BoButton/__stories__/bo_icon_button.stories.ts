@@ -89,11 +89,11 @@ export const Sizes: Story = {
 		components: { BoIconButton },
 		template: `
 			<div style="display: flex; align-items: center;">
-				<BoIconButton icon="${Icon.alert_triangle}" size="${BoSize.extra_small}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.alert_triangle}" size="${BoSize.small}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.alert_triangle}" size="${BoSize.default}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.alert_triangle}" size="${BoSize.large}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.alert_triangle}" size="${BoSize.extra_large}" />
+				<BoIconButton icon="${Icon.box}" size="${BoSize.extra_small}" variant="${BoIconButtonVariant.teal}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.small}" variant="${BoIconButtonVariant.teal}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.default}" variant="${BoIconButtonVariant.teal}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.large}" variant="${BoIconButtonVariant.teal}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.extra_large}" variant="${BoIconButtonVariant.teal}" />
 			</div>
 		`,
 	}),
@@ -104,14 +104,16 @@ export const Variants: Story = {
 		components: { BoIconButton },
 		template: `
 			<div style="display: flex; align-items: center;">
-				<BoIconButton icon="${Icon.alert_triangle}" variant="${BoIconButtonVariant.primary}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.alert_triangle}" variant="${BoIconButtonVariant.secondary}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.alert_triangle}" variant="${BoIconButtonVariant.alternative}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.alert_triangle}" variant="${BoIconButtonVariant.danger}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.alert_triangle}" variant="${BoIconButtonVariant.warning}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.alert_triangle}" variant="${BoIconButtonVariant.success}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.alert_triangle}" variant="${BoIconButtonVariant.dark}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.alert_triangle}" variant="${BoIconButtonVariant.light}" />
+				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.primary}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.secondary}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.alternative}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.danger}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.warning}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.success}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.dark}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.light}" style="margin: 5px;" />
+				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.purple}" style="margin: 5px;"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.teal}" />
 			</div>
 		`,
 	}),
