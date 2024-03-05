@@ -17,7 +17,7 @@ import { BoIcon, type Icon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
 import { TailwindUtils } from '@/utils';
 import { computed, toRefs, type PropType } from 'vue';
-import { BoIconButtonVariant } from '@/components/BoButton';
+import { BoButtonVariant } from '@/components/BoButton';
 
 const props = defineProps({
 	icon: {
@@ -33,8 +33,8 @@ const props = defineProps({
 		default: false,
 	},
 	variant: {
-		type: String as PropType<BoIconButtonVariant>,
-		default: BoIconButtonVariant.secondary,
+		type: String as PropType<BoButtonVariant>,
+		default: BoButtonVariant.secondary,
 	},
 });
 
@@ -89,34 +89,34 @@ const containerStyle = computed<string>(() => {
 	let colorClasses = '';
 
 	switch (variant.value) {
-		case BoIconButtonVariant.secondary:
+		case BoButtonVariant.secondary:
 			colorClasses = 'bg-neutral-50 hover:bg-neutral-100 text-gray-700';
 			break;
-		case BoIconButtonVariant.alternative:
+		case BoButtonVariant.alternative:
 			colorClasses = 'bg-gray-200 hover:bg-gray-300 text-gray-800';
 			break;
-		case BoIconButtonVariant.danger:
+		case BoButtonVariant.danger:
 			colorClasses = 'bg-red-500 hover:bg-red-600 text-white';
 			break;
-		case BoIconButtonVariant.success:
+		case BoButtonVariant.success:
 			colorClasses = 'bg-green-500 hover:bg-green-600 text-white';
 			break;
-		case BoIconButtonVariant.warning:
+		case BoButtonVariant.warning:
 			colorClasses = 'bg-yellow-500 hover:bg-yellow-600 text-white';
 			break;
-		case BoIconButtonVariant.dark:
+		case BoButtonVariant.dark:
 			colorClasses = 'bg-gray-800 hover:bg-gray-900 text-white';
 			break;
-		case BoIconButtonVariant.light:
+		case BoButtonVariant.light:
 			colorClasses = 'bg-gray-100 hover:bg-gray-200 text-white';
 			break;
-		case BoIconButtonVariant.purple:
+		case BoButtonVariant.purple:
 			colorClasses = 'bg-purple-500 hover:bg-purple-600 text-white';
 			break;
-		case BoIconButtonVariant.teal:
+		case BoButtonVariant.teal:
 			colorClasses = 'bg-teal-500 hover:bg-teal-600 text-white';
 			break;
-		case BoIconButtonVariant.primary:
+		case BoButtonVariant.primary:
 		default:
 			colorClasses = 'bg-blue-500 hover:bg-blue-600 text-white';
 			break;
