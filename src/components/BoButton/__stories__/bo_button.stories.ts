@@ -135,6 +135,7 @@ export const Variants = {
 		components: { BoButton },
 		template: `
 			<div>
+				<h1 style="margin: 20px 0;">Default</h1>
 				<BoButton label="Primary" variant="${BoButtonVariant.primary}" style="margin: 5px;"/>
 				<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" style="margin: 5px;"/>
 				<BoButton label="Alternative" variant="${BoButtonVariant.alternative}" style="margin: 5px;"/>
@@ -146,6 +147,7 @@ export const Variants = {
 				<BoButton label="Link" variant="${BoButtonVariant.link}" style="margin: 5px;"/>
 			</div>
 			<div>
+				<h1 style="margin: 20px 0;">Pill</h1>
 				<BoButton label="Primary" variant="${BoButtonVariant.primary}" type=${BoButtonType.pill} style="margin: 5px;"/>
 				<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" type=${BoButtonType.pill} style="margin: 5px;"/>
 				<BoButton label="Alternative" variant="${BoButtonVariant.alternative}" type=${BoButtonType.pill} style="margin: 5px;"/>
@@ -157,6 +159,7 @@ export const Variants = {
 				<BoButton label="Link" variant="${BoButtonVariant.link}" type=${BoButtonType.pill} style="margin: 5px;"/>
 			</div>
 			<div>
+				<h1 style="margin: 20px 0;">Outline</h1>
 				<BoButton label="Primary" variant="${BoButtonVariant.primary}" type=${BoButtonType.outline} style="margin: 5px;"/>
 				<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" type=${BoButtonType.outline} style="margin: 5px;"/>
 				<BoButton label="Alternative" variant="${BoButtonVariant.alternative}" type=${BoButtonType.outline} style="margin: 5px;"/>
