@@ -145,6 +145,8 @@ export const Variants = {
 				<BoButton label="Light" variant="${BoButtonVariant.light}" style="margin: 5px;"/>
 				<BoButton label="Dark" variant="${BoButtonVariant.dark}" style="margin: 5px;"/>
 				<BoButton label="Link" variant="${BoButtonVariant.link}" style="margin: 5px;"/>
+				<BoButton label="Purple" variant="${BoButtonVariant.purple}" style="margin: 5px;"/>
+				<BoButton label="Teal" variant="${BoButtonVariant.teal}" style="margin: 5px;"/>
 			</div>
 			<div>
 				<h1 style="margin: 20px 0;">Pill</h1>
@@ -157,6 +159,8 @@ export const Variants = {
 				<BoButton label="Light" variant="${BoButtonVariant.light}" type=${BoButtonType.pill} style="margin: 5px;"/>
 				<BoButton label="Dark" variant="${BoButtonVariant.dark}" type=${BoButtonType.pill} style="margin: 5px;"/>
 				<BoButton label="Link" variant="${BoButtonVariant.link}" type=${BoButtonType.pill} style="margin: 5px;"/>
+				<BoButton label="Purple" variant="${BoButtonVariant.purple}" type=${BoButtonType.pill} style="margin: 5px;"/>
+				<BoButton label="Teal" variant="${BoButtonVariant.teal}" type=${BoButtonType.pill} style="margin: 5px;"/>
 			</div>
 			<div>
 				<h1 style="margin: 20px 0;">Outline</h1>
@@ -169,6 +173,8 @@ export const Variants = {
 				<BoButton label="Light" variant="${BoButtonVariant.light}" type=${BoButtonType.outline} style="margin: 5px;"/>
 				<BoButton label="Dark" variant="${BoButtonVariant.dark}" type=${BoButtonType.outline} style="margin: 5px;"/>
 				<BoButton label="Link" variant="${BoButtonVariant.link}" type=${BoButtonType.outline} style="margin: 5px;"/>
+				<BoButton label="Purple" variant="${BoButtonVariant.purple}" type=${BoButtonType.outline} style="margin: 5px;"/>
+				<BoButton label="Teal" variant="${BoButtonVariant.teal}" type=${BoButtonType.outline} style="margin: 5px;"/>
 			</div>
 		`,
 	}),
