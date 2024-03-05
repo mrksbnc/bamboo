@@ -1,6 +1,6 @@
 import { BoButtonVariant } from '@/components';
 import { BoButton, BoButtonType } from '@/components/BoButton';
-import { BoSize } from '@/enums';
+import { BoSize } from '@/constants';
 import { stringEnumFormatter } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 

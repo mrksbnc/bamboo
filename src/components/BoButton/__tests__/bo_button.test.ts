@@ -1,4 +1,4 @@
-import { BoSize } from '@/enums';
+import { BoSize } from '@/constants';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, test } from 'vitest';
 import { BoButtonType, BoButtonVariant } from '../ts/bo_button';

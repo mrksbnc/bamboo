@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { computed, toRefs, type PropType } from 'vue';
 import { BoButtonType, BoButtonVariant, BoIcon, type Icon } from '@/components';
-import { BoSize } from '@/enums';
+import { BoSize } from '@/constants';
 import { TailwindUtils } from '@/utils';
 
 const props = defineProps({
@@ -176,23 +176,17 @@ const textClasses = computed<string>(() => {
 });
 
 const typeClasses = computed(() => {
-	let classes = '';
-
 	switch (type.value) {
 		case BoButtonType.pill:
-			classes = 'rounded-full';
-			break;
+			return 'rounded-full';
 		case BoButtonType.outline:
 		case BoButtonType.default:
 		default:
-			classes = 'rounded-lg';
-			break;
+			return 'rounded-lg';
 	}
-
-	return classes;
 });
 
-const sizeClasses = computed(() => {
+const sizeClasses = computed<string>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
 			return 'px-2 py-1';
@@ -208,7 +202,7 @@ const sizeClasses = computed(() => {
 	}
 });
 
-const colorClasses = computed(() => {
+const colorClasses = computed<string>(() => {
 	switch (type.value) {
 		case BoButtonType.outline:
 			switch (variant.value) {
@@ -260,6 +254,13 @@ const colorClasses = computed(() => {
 });
 
 const style = computed(() => {
-	return `${typeClasses.value} ${sizeClasses.value} ${colorClasses.value} ${disabledClasses} ${textClasses.value} ${textSizes.value}`;
+	return TailwindUtils.merge(
+		typeClasses.value,
+		sizeClasses.value,
+		colorClasses.value,
+		disabledClasses,
+		textClasses.value,
+		textSizes.value,
+	);
 });
 </script>
