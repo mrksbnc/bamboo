@@ -8,6 +8,8 @@ export enum BoButtonVariant {
 	light = 'light',
 	dark = 'dark',
 	link = 'link',
+	purple = 'purple',
+	teal = 'teal',
 }
 
 export enum BoButtonType {
@@ -25,4 +27,6 @@ export enum BoIconButtonVariant {
 	success = 'success',
 	light = 'light',
 	dark = 'dark',
+	purple = 'purple',
+	teal = 'teal',
 }
