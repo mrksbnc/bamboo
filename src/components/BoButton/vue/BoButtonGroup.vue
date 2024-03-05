@@ -27,7 +27,6 @@ import BoIcon from '@/components/BoIcon/vue/BoIcon.vue';
 <script setup lang="ts">
 import { BoIcon } from '@/components/BoIcon';
 import {
-	BoButtonVariant,
 	ButtonGroupEvent,
 	type BoButtonGroupItem,
 } from '@/components/BoButton';
