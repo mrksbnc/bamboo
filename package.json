@@ -19,13 +19,16 @@
 		"build-storybook": "storybook build -o static",
 		"chromatic": "npx chromatic"
 	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
 	"homepage": "http://mrksbnc.github.io/bamboo",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/mrksbnc/bamboo.git"
 	},
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com"
+	"bugs": {
+		"url": "https://github.com/mrksbnc/bamboo/issues"
 	},
 	"files": [
 		"dist/**/*"
@@ -97,8 +100,5 @@
 		"vite-svg-loader": "^5.1.0",
 		"vitest": "^1.2.1",
 		"vue-tsc": "^2.0.3"
-	},
-	"bugs": {
-		"url": "https://github.com/mrksbnc/bamboo/issues"
 	}
 }
