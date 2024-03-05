@@ -284,5 +284,6 @@ export enum Icon {
 }
 
 export const icons = import.meta.glob('@/assets/icons/**/*.svg', {
-	as: 'raw',
+	query: '?raw',
+	import: 'default',
 });
