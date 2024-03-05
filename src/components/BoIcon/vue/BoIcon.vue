@@ -17,7 +17,7 @@ export default defineComponent({
 
 <script setup lang="ts">
 import { icons, type Icon } from '@/components/BoIcon';
-import { BoSize } from '@/enums';
+import { BoSize } from '@/constants';
 import { TailwindUtils } from '@/utils/tailwind_utils';
 import {
 	ref,
@@ -105,3 +105,4 @@ watch(
 	{ immediate: true },
 );
 </script>
+@/constants

@@ -1,5 +1,5 @@
 import { BoIcon, Icon } from '@/components/BoIcon';
-import { BoSize } from '@/enums';
+import { BoSize } from '@/constants';
 import { stringEnumFormatter } from '@/utils/index';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -42,7 +42,7 @@ const meta = {
 			options: Object.values(BoSize),
 		},
 		color: {
-			description: 'The color of the icon in `--var()` or in `hex` format',
+			description: 'The color of the icon in `hex` format',
 			table: {
 				category: 'props',
 				subcategory: 'optional',
