@@ -9,6 +9,7 @@ const config: StorybookConfig = {
 		'@storybook/addon-interactions',
 		'@storybook/addon-themes',
 		'@storybook/theming',
+		'@storybook/addon-coverage',
 	],
 	framework: {
 		name: '@storybook/vue3-vite',
