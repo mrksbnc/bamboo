@@ -7,7 +7,8 @@ export declare enum BoButtonVariant {
     success = "success",
     light = "light",
     dark = "dark",
-    link = "link"
+    purple = "purple",
+    teal = "teal"
 }
 export declare enum BoButtonType {
     default = "default",

@@ -1,1 +1,0 @@
-export { BoSize } from './size';
