@@ -24,9 +24,16 @@
 		"type": "git",
 		"url": "git+https://github.com/mrksbnc/bamboo.git"
 	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
 	"files": [
 		"dist/**/*"
 	],
+	"engines": {
+		"node": ">=20.9.0",
+		"npm": ">=10.1.0"
+	},
 	"main": "./dist/index.umd.js",
 	"module": "./dist/index.es.js",
 	"types": "./dist/index.d.ts",
