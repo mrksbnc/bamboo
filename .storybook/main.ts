@@ -17,5 +17,10 @@ const config: StorybookConfig = {
 	docs: {
 		autodocs: 'tag',
 	},
+	core: {
+		disableTelemetry: true,
+		enableCrashReports: false,
+		crossOriginIsolated: true,
+	},
 };
 export default config;
