@@ -92,11 +92,8 @@ const containerStyle = computed<string>(() => {
 		case BoButtonVariant.secondary:
 			colorClasses = 'bg-neutral-50 hover:bg-neutral-100 text-gray-700';
 			break;
-		case BoButtonVariant.alternative:
-			colorClasses = 'bg-gray-200 hover:bg-gray-300 text-gray-800';
-			break;
 		case BoButtonVariant.danger:
-			colorClasses = 'bg-red-500 hover:bg-red-600 text-white';
+			colorClasses = 'bg-red-600 hover:bg-red-700 text-white';
 			break;
 		case BoButtonVariant.success:
 			colorClasses = 'bg-green-500 hover:bg-green-600 text-white';
@@ -107,9 +104,6 @@ const containerStyle = computed<string>(() => {
 		case BoButtonVariant.dark:
 			colorClasses = 'bg-gray-800 hover:bg-gray-900 text-white';
 			break;
-		case BoButtonVariant.light:
-			colorClasses = 'bg-gray-100 hover:bg-gray-200 text-white';
-			break;
 		case BoButtonVariant.purple:
 			colorClasses = 'bg-purple-500 hover:bg-purple-600 text-white';
 			break;
@@ -118,7 +112,7 @@ const containerStyle = computed<string>(() => {
 			break;
 		case BoButtonVariant.primary:
 		default:
-			colorClasses = 'bg-blue-500 hover:bg-blue-600 text-white';
+			colorClasses = 'bg-blue-700 hover:bg-blue-800 text-white';
 			break;
 	}
 

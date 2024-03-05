@@ -103,12 +103,10 @@ export const Variants: Story = {
 			<div style="display: flex; align-items: center;">
 				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.primary}" class="m-1"/>
 				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.secondary}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.alternative}" class="m-1"/>
 				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.danger}" class="m-1"/>
 				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.warning}" class="m-1"/>
 				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.success}" class="m-1"/>
 				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.dark}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.light}" class="m-1" />
 				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.purple}" class="m-1"/>
 				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.teal}" />
 			</div>
