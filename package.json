@@ -57,6 +57,7 @@
 		"@chromatic-com/storybook": "^1.2.2",
 		"@rushstack/eslint-patch": "^1.7.1",
 		"@storybook/addon-coverage": "^1.0.1",
+		"@storybook/addon-docs": "^8.0.0-rc.2",
 		"@storybook/addon-essentials": "8.0.0-rc.1",
 		"@storybook/addon-interactions": "8.0.0-rc.1",
 		"@storybook/addon-links": "8.0.0-rc.1",
