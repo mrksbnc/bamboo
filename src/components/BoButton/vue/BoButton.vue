@@ -5,11 +5,11 @@
 		:class="[
 			style,
 			`bo-button--${variant}`,
-			'focus:outline-none  transition-all duration-200 ease-in-out',
 			variant === BoButtonVariant.link
 				? ''
 				: 'shadow-md focus:ring-1 focus:ring-opacity-50',
 		]"
+		class="focus:outline-none transition-all duration-200 ease-in-out flex items-center justify-center space-x-2"
 	>
 		<span class="bo-button__prefix">
 			<BoIcon
