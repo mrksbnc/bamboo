@@ -15,3 +15,14 @@ export enum BoButtonType {
 	pill = 'pill',
 	outline = 'outline',
 }
+
+export enum BoIconButtonVariant {
+	primary = 'primary',
+	secondary = 'secondary',
+	alternative = 'alternative',
+	danger = 'danger',
+	warning = 'warning',
+	success = 'success',
+	light = 'light',
+	dark = 'dark',
+}
