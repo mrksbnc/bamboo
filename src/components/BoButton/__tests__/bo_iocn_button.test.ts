@@ -2,7 +2,7 @@ import { Icon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, test } from 'vitest';
-import { BoIconButtonVariant } from '../ts/bo_button';
+import { BoButtonVariant } from '../ts/bo_button';
 import BoIconButton from '../vue/BoIconButton.vue';
 
 let wrapper: ReturnType<typeof mount>;
@@ -13,7 +13,7 @@ beforeEach(() => {
 			icon: Icon.activity,
 			size: BoSize.default,
 			disabled: false,
-			variant: BoIconButtonVariant.primary,
+			variant: BoButtonVariant.primary,
 		},
 	});
 });
