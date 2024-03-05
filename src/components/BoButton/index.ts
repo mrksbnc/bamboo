@@ -1,6 +1,7 @@
 export {
 	BoButtonType,
 	BoButtonVariant,
+	BoIconButtonType,
 } from '@/components/BoButton/ts/bo_button';
 export { ButtonGroupEvent } from '@/components/BoButton/ts/events';
 export type { BoButtonGroupItem } from '@/components/BoButton/ts/types';
