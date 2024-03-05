@@ -11,9 +11,11 @@
 		]"
 		class="focus:outline-none transition-all duration-200 ease-in-out flex items-center justify-center space-x-2"
 	>
-		<span class="bo-button__prefix">
+		<span
+			class="bo-button__prefix"
+			v-if="prefixIcon"
+		>
 			<BoIcon
-				v-if="prefixIcon"
 				:icon="prefixIcon"
 				:size="BoSize.default"
 			/>
@@ -21,9 +23,11 @@
 		<span class="bo-button__label">
 			{{ label }}
 		</span>
-		<span class="bo-button__suffix">
+		<span
+			class="bo-button__suffix"
+			v-if="suffixIcon"
+		>
 			<BoIcon
-				v-if="suffixIcon"
 				:icon="suffixIcon"
 				:size="BoSize.default"
 			/>
