@@ -2,7 +2,7 @@
 	<button
 		type="button"
 		:disabled="disabled"
-		:class="containerStyle"
+		:class="[containerStyle, typeClass]"
 		class="flex justify-center items-center"
 	>
 		<BoIcon
@@ -17,7 +17,7 @@ import { BoIcon, type Icon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
 import { TailwindUtils } from '@/utils';
 import { computed, toRefs, type PropType } from 'vue';
-import { BoButtonVariant } from '@/components/BoButton';
+import { BoButtonVariant, BoIconButtonType } from '@/components/BoButton';
 
 const props = defineProps({
 	icon: {
@@ -36,14 +36,28 @@ const props = defineProps({
 		type: String as PropType<BoButtonVariant>,
 		default: BoButtonVariant.secondary,
 	},
+	type: {
+		type: String as PropType<BoIconButtonType>,
+		default: BoIconButtonType.default,
+	},
 });
 
-const { icon, size, disabled, variant } = toRefs(props);
+const { icon, size, disabled, variant, type } = toRefs(props);
 
 const disabledClasses: string =
 	'disabled:opacity-50 disabled:cursor-not-allowed';
 const defaultClasses: string =
-	'flex items-center justify-center transition-opacity duration-200 cursor-pointer rounded-lg shadow-md';
+	'flex items-center justify-center transition-opacity duration-200 cursor-pointer shadow-md';
+
+const typeClass = computed<string>(() => {
+	switch (type.value) {
+		case BoIconButtonType.round:
+			return 'rounded-full';
+		case BoIconButtonType.default:
+		default:
+			return 'rounded-lg';
+	}
+});
 
 const containerStyle = computed<string>(() => {
 	let sizeClasses = '';
@@ -117,11 +131,11 @@ const containerStyle = computed<string>(() => {
 	}
 
 	return TailwindUtils.merge(
-		colorClasses,
+		defaultClasses,
+		disabledClasses,
 		paddingClasses,
 		sizeClasses,
-		disabledClasses,
-		defaultClasses,
+		colorClasses,
 	);
 });
 

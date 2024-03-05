@@ -14,3 +14,8 @@ export enum BoButtonType {
 	pill = 'pill',
 	outline = 'outline',
 }
+
+export enum BoIconButtonType {
+	default = 'default',
+	round = 'round',
+}
