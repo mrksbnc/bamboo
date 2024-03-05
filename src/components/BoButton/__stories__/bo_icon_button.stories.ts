@@ -1,4 +1,4 @@
-import { BoIconButton, BoIconButtonVariant } from '@/components/BoButton';
+import { BoButtonVariant, BoIconButton } from '@/components/BoButton';
 import { Icon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
 import { stringEnumFormatter } from '@/utils';
@@ -53,21 +53,18 @@ const meta = {
 			defaultValue: false,
 		},
 		variant: {
-			options: Object.values(BoIconButtonVariant),
+			options: Object.values(BoButtonVariant),
 			description: 'The variant of the button',
 			control: { type: 'select' },
 			table: {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoIconButtonVariant',
-					detail: stringEnumFormatter(
-						BoIconButtonVariant,
-						'BoIconButtonVariant',
-					),
+					summary: 'BoButtonVariant',
+					detail: stringEnumFormatter(BoButtonVariant, 'BoButtonVariant'),
 				},
 			},
-			defaultValue: BoIconButtonVariant.primary,
+			defaultValue: BoButtonVariant.primary,
 		},
 	},
 	args: {
@@ -89,11 +86,11 @@ export const Sizes: Story = {
 		components: { BoIconButton },
 		template: `
 			<div style="display: flex; align-items: center;">
-				<BoIconButton icon="${Icon.box}" size="${BoSize.extra_small}" variant="${BoIconButtonVariant.teal}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" size="${BoSize.small}" variant="${BoIconButtonVariant.teal}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" size="${BoSize.default}" variant="${BoIconButtonVariant.teal}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" size="${BoSize.large}" variant="${BoIconButtonVariant.teal}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" size="${BoSize.extra_large}" variant="${BoIconButtonVariant.teal}" />
+				<BoIconButton icon="${Icon.box}" size="${BoSize.extra_small}" variant="${BoButtonVariant.teal}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.small}" variant="${BoButtonVariant.teal}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.default}" variant="${BoButtonVariant.teal}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.large}" variant="${BoButtonVariant.teal}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.extra_large}" variant="${BoButtonVariant.teal}" />
 			</div>
 		`,
 	}),
@@ -104,16 +101,16 @@ export const Variants: Story = {
 		components: { BoIconButton },
 		template: `
 			<div style="display: flex; align-items: center;">
-				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.primary}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.secondary}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.alternative}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.danger}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.warning}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.success}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.dark}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.light}" style="margin: 5px;" />
-				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.purple}" style="margin: 5px;"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoIconButtonVariant.teal}" />
+				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.primary}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.secondary}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.alternative}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.danger}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.warning}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.success}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.dark}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.light}" class="m-1" />
+				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.purple}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.teal}" />
 			</div>
 		`,
 	}),
