@@ -23,5 +23,13 @@ const config: StorybookConfig = {
 		enableCrashReports: false,
 		crossOriginIsolated: true,
 	},
+	build: {
+		test: {
+			disabledAddons: [
+				'@storybook/addon-docs',
+				'@storybook/addon-essentials/docs',
+			],
+		},
+	},
 };
 export default config;
