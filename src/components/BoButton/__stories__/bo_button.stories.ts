@@ -1,4 +1,4 @@
-import { BoButtonVariant } from '@/components';
+import { BoButtonVariant, Icon } from '@/components';
 import { BoButton, BoButtonType } from '@/components/BoButton';
 import { BoSize } from '@/constants';
 import { stringEnumFormatter } from '@/utils';
@@ -115,11 +115,11 @@ export const Example: Story = {
 	},
 };
 
-export const Sizes = {
+export const Sizes: Story = {
 	render: () => ({
 		components: { BoButton },
 		template: `
-			<div>
+			<div class="items-center flex">
 				<BoButton label="Extra small" size="${BoSize.extra_small}" style="margin: 5px;"/>
 				<BoButton label="Small" size="${BoSize.small}" style="margin: 5px;"/>
 				<BoButton label="Default" size="${BoSize.default}" style="margin: 5px;"/>
@@ -130,12 +130,12 @@ export const Sizes = {
 	}),
 };
 
-export const Variants = {
+export const Variants: Story = {
 	render: () => ({
 		components: { BoButton },
 		template: `
-			<div>
-				<h1 style="margin: 20px 0;">Default</h1>
+			<h1 style="margin: 20px 0;">Default</h1>
+			<div class="flex flex-1">
 				<BoButton label="Primary" variant="${BoButtonVariant.primary}" style="margin: 5px;"/>
 				<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" style="margin: 5px;"/>
 				<BoButton label="Alternative" variant="${BoButtonVariant.alternative}" style="margin: 5px;"/>
@@ -148,8 +148,8 @@ export const Variants = {
 				<BoButton label="Purple" variant="${BoButtonVariant.purple}" style="margin: 5px;"/>
 				<BoButton label="Teal" variant="${BoButtonVariant.teal}" style="margin: 5px;"/>
 			</div>
-			<div>
-				<h1 style="margin: 20px 0;">Pill</h1>
+			<h1 style="margin: 20px 0;">Pill</h1>
+			<div class="flex flex-1">
 				<BoButton label="Primary" variant="${BoButtonVariant.primary}" type=${BoButtonType.pill} style="margin: 5px;"/>
 				<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" type=${BoButtonType.pill} style="margin: 5px;"/>
 				<BoButton label="Alternative" variant="${BoButtonVariant.alternative}" type=${BoButtonType.pill} style="margin: 5px;"/>
@@ -162,8 +162,8 @@ export const Variants = {
 				<BoButton label="Purple" variant="${BoButtonVariant.purple}" type=${BoButtonType.pill} style="margin: 5px;"/>
 				<BoButton label="Teal" variant="${BoButtonVariant.teal}" type=${BoButtonType.pill} style="margin: 5px;"/>
 			</div>
-			<div>
-				<h1 style="margin: 20px 0;">Outline</h1>
+			<h1 style="margin: 20px 0;">Outline</h1>
+			<div class="flex flex-1">
 				<BoButton label="Primary" variant="${BoButtonVariant.primary}" type=${BoButtonType.outline} style="margin: 5px;"/>
 				<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" type=${BoButtonType.outline} style="margin: 5px;"/>
 				<BoButton label="Alternative" variant="${BoButtonVariant.alternative}" type=${BoButtonType.outline} style="margin: 5px;"/>
@@ -178,4 +178,18 @@ export const Variants = {
 			</div>
 		`,
 	}),
+};
+
+export const WithPrefixIcon: Story = {
+	args: {
+		prefixIcon: Icon.alert_circle,
+		label: 'Label',
+	},
+};
+
+export const WithSuffixIcon: Story = {
+	args: {
+		suffixIcon: Icon.alert_circle,
+		label: 'Label',
+	},
 };
