@@ -1,4 +1,6 @@
 export {
+	BoButtonGroupSize,
+	BoButtonGroupVariant,
 	BoButtonType,
 	BoButtonVariant,
 	BoIconButtonType,
