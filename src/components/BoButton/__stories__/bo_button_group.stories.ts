@@ -1,4 +1,4 @@
-import { BoButtonGroupVariant } from '@/components';
+import { BoButtonGroupVariant, Icon } from '@/components';
 import {
 	BoButtonGroup,
 	BoButtonGroupSize,
@@ -136,4 +136,54 @@ export const Sizes: Story = {
 			</div>
 		`,
 	}),
+};
+
+export const WithPrefixIcons: Story = {
+	args: {
+		variant: BoButtonGroupVariant.default,
+		size: BoButtonGroupSize.default,
+		disabled: false,
+		items: [
+			{
+				id: '1',
+				label: 'Label 1',
+				prefixIcon: Icon.alert_circle,
+			},
+			{
+				id: '2',
+				label: 'Label 2',
+				prefixIcon: Icon.alert_triangle,
+			},
+			{
+				id: '3',
+				label: 'Label 3',
+				prefixIcon: Icon.alert_octagon,
+			},
+		],
+	},
+};
+
+export const WithSuffixIcons: Story = {
+	args: {
+		variant: BoButtonGroupVariant.default,
+		size: BoButtonGroupSize.default,
+		disabled: false,
+		items: [
+			{
+				id: '1',
+				label: 'Label 1',
+				suffixIcon: Icon.alert_circle,
+			},
+			{
+				id: '2',
+				label: 'Label 2',
+				suffixIcon: Icon.alert_triangle,
+			},
+			{
+				id: '3',
+				label: 'Label 3',
+				suffixIcon: Icon.alert_octagon,
+			},
+		],
+	},
 };

@@ -8,19 +8,22 @@ import BoIcon from '@/components/BoIcon/vue/BoIcon.vue';
 			v-for="(item, index) in items"
 			:key="item.id"
 			type="button"
+			role="button"
 			:disabled="disabled"
 			:class="buttonGroupClasses"
-			class="inline-flex items-center first:border last:border border-t border-b first:rounded-s-lg last:rounded-e-lg shadow-md"
-			@click="handleSelect(index)"
+			class="inline-flex items-center first:border last:border border-t border-b first:rounded-s-lg last:rounded-e-lg shadow-md space-x-2"
+			@click="handleSelect(index, item)"
 		>
 			<BoIcon
 				v-if="item.prefixIcon"
 				:icon="item.prefixIcon"
+				:size="iconSize"
 			/>
 			<span>{{ item.label }}</span>
 			<BoIcon
 				v-if="item.suffixIcon"
 				:icon="item.suffixIcon"
+				:size="iconSize"
 			/>
 		</button>
 	</div>
@@ -34,22 +37,21 @@ import {
 	ButtonGroupEvent,
 	type BoButtonGroupItem,
 } from '@/components/BoButton';
-import { computed, nextTick, ref, toRefs, type PropType } from 'vue';
+import { computed, toRefs, type PropType } from 'vue';
 import { BoSize } from '@/constants';
 import { TailwindUtils } from '@/utils';
 
 const emits = defineEmits<{
-	(e: ButtonGroupEvent.SELECT, index: number): void;
+	(
+		e: ButtonGroupEvent.SELECT,
+		payload: { index: number; item: BoButtonGroupItem },
+	): void;
 }>();
 
 const props = defineProps({
 	items: {
 		type: Array as PropType<BoButtonGroupItem[]>,
 		required: true,
-	},
-	defaultSelected: {
-		type: Number,
-		default: null,
 	},
 	disabled: {
 		type: Boolean,
@@ -65,9 +67,7 @@ const props = defineProps({
 	},
 });
 
-const { items, defaultSelected, disabled, size, variant } = toRefs(props);
-
-const activeItem = ref<number | null>(defaultSelected.value);
+const { items, disabled, size, variant } = toRefs(props);
 
 const buttonGroupClasses = computed<string>(() => {
 	let classes = '';
@@ -191,10 +191,19 @@ const buttonGroupClasses = computed<string>(() => {
 	return classes;
 });
 
-const handleSelect = (index: number): void => {
-	nextTick(() => {
-		activeItem.value = index;
-		emits(ButtonGroupEvent.SELECT, index);
-	});
+const iconSize = computed<BoSize>(() => {
+	switch (size.value) {
+		case BoButtonGroupSize.small:
+			return BoSize.small;
+		case BoButtonGroupSize.large:
+			return BoSize.large;
+		case BoButtonGroupSize.default:
+		default:
+			return BoSize.default;
+	}
+});
+
+const handleSelect = (index: number, item: BoButtonGroupItem): void => {
+	emits(ButtonGroupEvent.SELECT, { index, item });
 };
 </script>
