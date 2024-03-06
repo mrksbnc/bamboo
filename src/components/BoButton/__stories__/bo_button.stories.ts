@@ -115,6 +115,12 @@ export const Example: Story = {
 	},
 };
 
+export const Disabled: Story = {
+	args: {
+		disabled: true,
+	},
+};
+
 export const Sizes: Story = {
 	render: () => ({
 		components: { BoButton },
