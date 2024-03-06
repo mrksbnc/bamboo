@@ -3,7 +3,7 @@
 		type="button"
 		:disabled="disabled"
 		:class="[style, `bo-button--${variant} bo-button--${type}`]"
-		class="flex items-center content-center justify-center space-x-2 shadow-md focus:ring-1 focus:ring-opacity-50 focus:outline-none transition-all duration-200 ease-in-out"
+		class="flex items-center content-center justify-center space-x-2 shadow-sd focus:ring-1 focus:ring-opacity-50 focus:outline-none transition-all duration-200 ease-in-out"
 	>
 		<span
 			class="bo-button__prefix"
@@ -224,7 +224,7 @@ const colorClasses = computed<string>(() => {
 				case BoButtonVariant.dark:
 					return 'bg-gray-800 hover:bg-gray-700 focus:ring-gray-800';
 				case BoButtonVariant.secondary:
-					return 'bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-200';
+					return 'bg-gray-200 hover:bg-gray-300 focus:ring-gray-200';
 				case BoButtonVariant.purple:
 					return 'bg-purple-500 hover:bg-purple-600 focus:ring-purple-500';
 				case BoButtonVariant.teal:
