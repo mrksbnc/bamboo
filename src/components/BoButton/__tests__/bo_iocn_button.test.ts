@@ -1,9 +1,8 @@
+import { BoButtonVariant, BoIconButton } from '@/components/BoButton';
 import { Icon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, test } from 'vitest';
-import { BoButtonVariant } from '../ts/bo_button';
-import BoIconButton from '../vue/BoIconButton.vue';
 
 let wrapper: ReturnType<typeof mount>;
 
