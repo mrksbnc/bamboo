@@ -84,8 +84,8 @@ const meta = {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoSize',
-					detail: StorybookUtils.stringEnumFormatter(Icon, 'BoSize'),
+					summary: 'Icon',
+					detail: StorybookUtils.stringEnumFormatter(Icon, 'Icon'),
 				},
 			},
 			options: Object.values(Icon),
@@ -99,8 +99,8 @@ const meta = {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoSize',
-					detail: StorybookUtils.stringEnumFormatter(Icon, 'BoSize'),
+					summary: 'Icon',
+					detail: StorybookUtils.stringEnumFormatter(Icon, 'Icon'),
 				},
 			},
 			options: Object.values(Icon),
