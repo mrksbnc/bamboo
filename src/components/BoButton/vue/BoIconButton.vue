@@ -15,10 +15,10 @@
 
 <script setup lang="ts">
 import { BoIcon, type Icon } from '@/components/BoIcon';
-import { BoSize } from '@/constants';
+import { BoSize, BoVariant } from '@/constants';
 import { TailwindUtils } from '@/utils';
 import { computed, toRefs, type PropType } from 'vue';
-import { BoButtonVariant, BoIconButtonType } from '@/components/BoButton';
+import { BoIconButtonType } from '@/components/BoButton';
 
 const props = defineProps({
 	icon: {
@@ -34,8 +34,8 @@ const props = defineProps({
 		default: false,
 	},
 	variant: {
-		type: String as PropType<BoButtonVariant>,
-		default: BoButtonVariant.secondary,
+		type: String as PropType<BoVariant>,
+		default: BoVariant.secondary,
 	},
 	type: {
 		type: String as PropType<BoIconButtonType>,
@@ -104,28 +104,28 @@ const containerStyle = computed<string>(() => {
 	let colorClasses = '';
 
 	switch (variant.value) {
-		case BoButtonVariant.secondary:
+		case BoVariant.secondary:
 			colorClasses = 'bg-neutral-50 hover:bg-neutral-100 text-gray-700';
 			break;
-		case BoButtonVariant.danger:
+		case BoVariant.danger:
 			colorClasses = 'bg-red-600 hover:bg-red-700 text-white';
 			break;
-		case BoButtonVariant.success:
+		case BoVariant.success:
 			colorClasses = 'bg-green-500 hover:bg-green-600 text-white';
 			break;
-		case BoButtonVariant.warning:
+		case BoVariant.warning:
 			colorClasses = 'bg-yellow-500 hover:bg-yellow-600 text-white';
 			break;
-		case BoButtonVariant.dark:
+		case BoVariant.dark:
 			colorClasses = 'bg-gray-800 hover:bg-gray-900 text-white';
 			break;
-		case BoButtonVariant.purple:
+		case BoVariant.purple:
 			colorClasses = 'bg-purple-500 hover:bg-purple-600 text-white';
 			break;
-		case BoButtonVariant.teal:
+		case BoVariant.teal:
 			colorClasses = 'bg-teal-500 hover:bg-teal-600 text-white';
 			break;
-		case BoButtonVariant.primary:
+		case BoVariant.primary:
 		default:
 			colorClasses = 'bg-blue-700 hover:bg-blue-800 text-white';
 			break;
