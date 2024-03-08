@@ -103,6 +103,9 @@ export const Sizes: Story = {
 			</div>
 		`,
 	}),
+	args: {
+		label: 'Badge',
+	},
 };
 
 export const Variants: Story = {
@@ -144,6 +147,9 @@ export const Variants: Story = {
 			</div>
 		`,
 	}),
+	args: {
+		label: 'Badge',
+	},
 };
 
 export const WithPrefixIcon: Story = {
