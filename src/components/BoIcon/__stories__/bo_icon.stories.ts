@@ -1,6 +1,6 @@
 import { BoIcon, Icon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
-import { stringEnumFormatter } from '@/utils/index';
+import { StorybookUtils } from '@/utils/index';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
@@ -15,7 +15,7 @@ const meta = {
 				subcategory: 'required',
 				type: {
 					summary: 'Icon',
-					detail: stringEnumFormatter(Icon, 'Icon'),
+					detail: StorybookUtils.stringEnumFormatter(Icon, 'Icon'),
 				},
 			},
 			control: {
@@ -30,7 +30,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoSize',
-					detail: stringEnumFormatter(BoSize, 'BoSize'),
+					detail: StorybookUtils.stringEnumFormatter(BoSize, 'BoSize'),
 				},
 				defaultValue: {
 					summary: BoSize.default,

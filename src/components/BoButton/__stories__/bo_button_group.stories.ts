@@ -4,7 +4,7 @@ import {
 	BoButtonGroupSize,
 	type BoButtonGroupItem,
 } from '@/components/BoButton';
-import { stringEnumFormatter } from '@/utils';
+import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 const items: BoButtonGroupItem[] = [
@@ -46,7 +46,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoButtonGroupVariant',
-					detail: stringEnumFormatter(
+					detail: StorybookUtils.stringEnumFormatter(
 						BoButtonGroupVariant,
 						'BoButtonGroupVariant',
 					),
@@ -74,7 +74,10 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoButtonGroupSize',
-					detail: stringEnumFormatter(BoButtonGroupSize, 'BoButtonGroupSize'),
+					detail: StorybookUtils.stringEnumFormatter(
+						BoButtonGroupSize,
+						'BoButtonGroupSize',
+					),
 				},
 			},
 			defaultValue: BoButtonGroupSize.default,

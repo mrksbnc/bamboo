@@ -1,7 +1,7 @@
 import { BoButtonVariant, Icon } from '@/components';
 import { BoButton, BoButtonType } from '@/components/BoButton';
 import { BoSize } from '@/constants';
-import { stringEnumFormatter } from '@/utils';
+import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
@@ -27,7 +27,10 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoButtonVariant',
-					detail: stringEnumFormatter(BoButtonVariant, 'BoButtonVariant'),
+					detail: StorybookUtils.stringEnumFormatter(
+						BoButtonVariant,
+						'BoButtonVariant',
+					),
 				},
 			},
 			defaultValue: BoButtonVariant.primary,
@@ -42,7 +45,10 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoButtonType',
-					detail: stringEnumFormatter(BoButtonType, 'BoButtonType'),
+					detail: StorybookUtils.stringEnumFormatter(
+						BoButtonType,
+						'BoButtonType',
+					),
 				},
 			},
 			defaultValue: BoButtonType.default,
@@ -67,7 +73,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoSize',
-					detail: stringEnumFormatter(BoSize, 'BoSize'),
+					detail: StorybookUtils.stringEnumFormatter(BoSize, 'BoSize'),
 				},
 			},
 			defaultValue: BoSize.default,
