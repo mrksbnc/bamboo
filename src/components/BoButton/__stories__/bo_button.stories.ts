@@ -83,7 +83,12 @@ const meta = {
 			table: {
 				category: 'props',
 				subcategory: 'optional',
+				type: {
+					summary: 'BoSize',
+					detail: StorybookUtils.stringEnumFormatter(Icon, 'BoSize'),
+				},
 			},
+			options: Object.values(Icon),
 		},
 		suffixIcon: {
 			type: 'string',
@@ -93,7 +98,12 @@ const meta = {
 			table: {
 				category: 'props',
 				subcategory: 'optional',
+				type: {
+					summary: 'BoSize',
+					detail: StorybookUtils.stringEnumFormatter(Icon, 'BoSize'),
+				},
 			},
+			options: Object.values(Icon),
 		},
 	},
 	args: {

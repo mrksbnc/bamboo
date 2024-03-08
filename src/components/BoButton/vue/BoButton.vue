@@ -132,6 +132,7 @@ const textClasses = computed<string>(() => {
 				);
 				break;
 			case BoVariant.primary:
+			case BoVariant.default:
 			default:
 				classes = TailwindUtils.merge(
 					classes,
