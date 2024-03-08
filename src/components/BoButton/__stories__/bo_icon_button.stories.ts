@@ -1,10 +1,6 @@
-import {
-	BoButtonVariant,
-	BoIconButton,
-	BoIconButtonType,
-} from '@/components/BoButton';
+import { BoIconButton, BoIconButtonType } from '@/components/BoButton';
 import { Icon } from '@/components/BoIcon';
-import { BoSize } from '@/constants';
+import { BoSize, BoVariant } from '@/constants';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -57,21 +53,18 @@ const meta = {
 			defaultValue: false,
 		},
 		variant: {
-			options: Object.values(BoButtonVariant),
+			options: Object.values(BoVariant),
 			description: 'The variant of the button',
 			control: { type: 'select' },
 			table: {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoButtonVariant',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoButtonVariant,
-						'BoButtonVariant',
-					),
+					summary: 'BoVariant',
+					detail: StorybookUtils.stringEnumFormatter(BoVariant, 'BoVariant'),
 				},
 			},
-			defaultValue: BoButtonVariant.primary,
+			defaultValue: BoVariant.primary,
 		},
 		type: {
 			options: Object.values(BoIconButtonType),
@@ -116,11 +109,11 @@ export const Sizes: Story = {
 		components: { BoIconButton },
 		template: `
 			<div style="display: flex; align-items: center;">
-				<BoIconButton icon="${Icon.box}" size="${BoSize.extra_small}" variant="${BoButtonVariant.teal}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" size="${BoSize.small}" variant="${BoButtonVariant.teal}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" size="${BoSize.default}" variant="${BoButtonVariant.teal}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" size="${BoSize.large}" variant="${BoButtonVariant.teal}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" size="${BoSize.extra_large}" variant="${BoButtonVariant.teal}" />
+				<BoIconButton icon="${Icon.box}" size="${BoSize.extra_small}" variant="${BoVariant.teal}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.small}" variant="${BoVariant.teal}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.default}" variant="${BoVariant.teal}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.large}" variant="${BoVariant.teal}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" size="${BoSize.extra_large}" variant="${BoVariant.teal}" />
 			</div>
 		`,
 	}),
@@ -132,25 +125,25 @@ export const Variants: Story = {
 		template: `
 			<h1 class="my-2 dark:text-white">Default</h1>
 			<div style="display: flex; align-items: center;">
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.primary}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.secondary}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.danger}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.warning}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.success}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.dark}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.purple}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.teal}" />
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.primary}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.secondary}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.danger}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.warning}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.success}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.dark}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.purple}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.teal}" />
 			</div>
 			<h1 class="my-2 dark:text-white">Round</h1>
 			<div style="display: flex; align-items: center;">
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.primary}" type="${BoIconButtonType.round}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.secondary}" type="${BoIconButtonType.round}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.danger}" type="${BoIconButtonType.round}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.warning}" type="${BoIconButtonType.round}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.success}" type="${BoIconButtonType.round}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.dark}" type="${BoIconButtonType.round}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.purple}" type="${BoIconButtonType.round}" class="m-1"/>
-				<BoIconButton icon="${Icon.box}" variant="${BoButtonVariant.teal}" type="${BoIconButtonType.round}" />
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.primary}" type="${BoIconButtonType.round}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.secondary}" type="${BoIconButtonType.round}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.danger}" type="${BoIconButtonType.round}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.warning}" type="${BoIconButtonType.round}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.success}" type="${BoIconButtonType.round}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.dark}" type="${BoIconButtonType.round}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.purple}" type="${BoIconButtonType.round}" class="m-1"/>
+				<BoIconButton icon="${Icon.box}" variant="${BoVariant.teal}" type="${BoIconButtonType.round}" />
 			</div>
 		`,
 	}),
