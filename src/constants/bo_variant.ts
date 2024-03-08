@@ -1,4 +1,5 @@
 export enum BoVariant {
+	default = 'default',
 	primary = 'primary',
 	secondary = 'secondary',
 	danger = 'danger',

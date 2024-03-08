@@ -18,7 +18,6 @@ export default defineComponent({
 <script setup lang="ts">
 import { icons, type Icon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
-import { TailwindUtils } from '@/utils/tailwind_utils';
 import {
 	ref,
 	toRefs,
@@ -67,28 +66,19 @@ const style = computed<StyleValue>(() => {
 });
 
 const classes = computed<string>(() => {
-	let classes = '';
-
 	switch (size.value) {
 		case BoSize.extra_small:
-			classes = TailwindUtils.merge(classes, 'size-2');
-			break;
+			return 'size-2';
 		case BoSize.small:
-			classes = TailwindUtils.merge(classes, 'size-3');
-			break;
+			return 'size-3';
 		case BoSize.large:
-			classes = TailwindUtils.merge(classes, 'size-6');
-			break;
+			return 'size-6';
 		case BoSize.extra_large:
-			classes = TailwindUtils.merge(classes, 'size-8');
-			break;
+			return 'size-8';
 		case BoSize.default:
 		default:
-			classes = TailwindUtils.merge(classes, 'size-4');
-			break;
+			return 'size-4';
 	}
-
-	return classes;
 });
 
 watch(
