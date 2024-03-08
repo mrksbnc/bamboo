@@ -26,7 +26,6 @@ describe('BoBadge', () => {
 	});
 
 	it('should render the correct variant', () => {
-		const variant = 'success';
 		const wrapper = mount(BoBadge, {
 			props: {
 				label: 'Badge',
@@ -34,6 +33,6 @@ describe('BoBadge', () => {
 			},
 		});
 
-		expect(wrapper.classes()).toContain(`bo-badge--${variant}`);
+		expect(wrapper.classes()).toContain('bg-green-600');
 	});
 });
