@@ -5,7 +5,7 @@ import {
 } from '@/components/BoButton';
 import { Icon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
-import { stringEnumFormatter } from '@/utils';
+import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
@@ -20,7 +20,7 @@ const meta = {
 				subcategory: 'required',
 				type: {
 					summary: 'Icon',
-					detail: stringEnumFormatter(Icon, 'Icon'),
+					detail: StorybookUtils.stringEnumFormatter(Icon, 'Icon'),
 				},
 			},
 			control: {
@@ -35,7 +35,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoSize',
-					detail: stringEnumFormatter(BoSize, 'BoSize'),
+					detail: StorybookUtils.stringEnumFormatter(BoSize, 'BoSize'),
 				},
 				defaultValue: {
 					summary: BoSize.default,
@@ -65,7 +65,10 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoButtonVariant',
-					detail: stringEnumFormatter(BoButtonVariant, 'BoButtonVariant'),
+					detail: StorybookUtils.stringEnumFormatter(
+						BoButtonVariant,
+						'BoButtonVariant',
+					),
 				},
 			},
 			defaultValue: BoButtonVariant.primary,
@@ -79,7 +82,10 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoIconButtonType',
-					detail: stringEnumFormatter(BoIconButtonType, 'BoIconButtonType'),
+					detail: StorybookUtils.stringEnumFormatter(
+						BoIconButtonType,
+						'BoIconButtonType',
+					),
 				},
 			},
 			defaultValue: BoIconButtonType.default,
