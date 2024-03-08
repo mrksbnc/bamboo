@@ -1,4 +1,4 @@
-import { BoButtonVariant, BoIconButton } from '..';
+import { BoButtonVariant, BoIconButton, BoIconButtonType } from '..';
 import { Icon } from '../../BoIcon';
 import { BoSize } from '../../../constants';
 import type { StoryObj } from '@storybook/vue3';
@@ -21,6 +21,10 @@ declare const meta: {
             type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BoButtonVariant>;
             default: BoButtonVariant;
         };
+        type: {
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BoIconButtonType>;
+            default: BoIconButtonType;
+        };
     }, {}, unknown, {}, {}, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('../../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
         icon: {
             type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<Icon>;
@@ -38,7 +42,12 @@ declare const meta: {
             type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BoButtonVariant>;
             default: BoButtonVariant;
         };
+        type: {
+            type: import('../../../../vue/dist/vue.esm-bundler.js').PropType<BoIconButtonType>;
+            default: BoIconButtonType;
+        };
     }>>, {
+        type: BoIconButtonType;
         size: BoSize;
         disabled: boolean;
         variant: BoButtonVariant;
@@ -106,6 +115,22 @@ declare const meta: {
             };
             defaultValue: BoButtonVariant;
         };
+        type: {
+            options: BoIconButtonType[];
+            description: string;
+            control: {
+                type: string;
+            };
+            table: {
+                category: string;
+                subcategory: string;
+                type: {
+                    summary: string;
+                    detail: string;
+                };
+            };
+            defaultValue: BoIconButtonType;
+        };
     };
     args: {
         icon: Icon.airplay;
@@ -114,5 +139,6 @@ declare const meta: {
 export default meta;
 type Story = StoryObj<typeof BoIconButton>;
 export declare const Example: Story;
+export declare const Disabled: Story;
 export declare const Sizes: Story;
 export declare const Variants: Story;

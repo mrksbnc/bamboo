@@ -181,6 +181,7 @@ declare const meta: {
 export default meta;
 type Story = StoryObj<typeof meta>;
 export declare const Example: Story;
+export declare const Disabled: Story;
 export declare const Sizes: Story;
 export declare const Variants: Story;
 export declare const WithPrefixIcon: Story;

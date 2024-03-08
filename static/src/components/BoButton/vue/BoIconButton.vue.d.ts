@@ -1,7 +1,7 @@
 import { type Icon } from '../../BoIcon';
 import { BoSize } from '../../../constants';
 import { type PropType } from '../../../../vue/dist/vue.esm-bundler.js';
-import { BoButtonVariant } from '..';
+import { BoButtonVariant, BoIconButtonType } from '..';
 declare const _default: import('../../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
     icon: {
         type: PropType<Icon>;
@@ -18,6 +18,10 @@ declare const _default: import('../../../../vue/dist/vue.esm-bundler.js').Define
     variant: {
         type: PropType<BoButtonVariant>;
         default: BoButtonVariant;
+    };
+    type: {
+        type: PropType<BoIconButtonType>;
+        default: BoIconButtonType;
     };
 }, {}, unknown, {}, {}, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {}, string, import('../../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
     icon: {
@@ -36,7 +40,12 @@ declare const _default: import('../../../../vue/dist/vue.esm-bundler.js').Define
         type: PropType<BoButtonVariant>;
         default: BoButtonVariant;
     };
+    type: {
+        type: PropType<BoIconButtonType>;
+        default: BoIconButtonType;
+    };
 }>>, {
+    type: BoIconButtonType;
     size: BoSize;
     disabled: boolean;
     variant: BoButtonVariant;
