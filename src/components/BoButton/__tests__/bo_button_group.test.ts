@@ -4,6 +4,21 @@ import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 
 describe('BoButtonGroup', () => {
+	it('should match the snapshot', () => {
+		const items = [
+			{ id: 1, label: 'Button 1' },
+			{ id: 2, label: 'Button 2' },
+			{ id: 3, label: 'Button 3' },
+		];
+		const wrapper = mount(BoButtonGroup, {
+			props: {
+				items,
+			},
+		});
+
+		expect(wrapper.html()).toMatchSnapshot();
+	});
+
 	it('renders the correct number of buttons', () => {
 		const items = [
 			{ id: 1, label: 'Button 1' },
