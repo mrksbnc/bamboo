@@ -1,11 +1,12 @@
 <template>
 	<button
 		type="button"
+		role="button"
 		:disabled="disabled"
 		:class="[containerStyle, typeClass]"
 		class="flex justify-center items-center"
 	>
-		<BoIcon
+		<bo-icon
 			:icon="icon"
 			:size="iconSize"
 		/>

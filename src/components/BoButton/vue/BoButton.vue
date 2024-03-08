@@ -1,6 +1,7 @@
 <template>
 	<button
 		type="button"
+		role="button"
 		:disabled="disabled"
 		:class="[style, `bo-button--${variant} bo-button--${type}`]"
 		class="flex items-center content-center justify-center space-x-2 shadow-sd focus:ring-1 focus:ring-opacity-50 focus:outline-none transition-all duration-200 ease-in-out"
@@ -9,7 +10,7 @@
 			class="bo-button__prefix"
 			v-if="prefixIcon"
 		>
-			<BoIcon
+			<bo-icon
 				:icon="prefixIcon"
 				:size="BoSize.default"
 			/>
@@ -21,7 +22,7 @@
 			class="bo-button__suffix"
 			v-if="suffixIcon"
 		>
-			<BoIcon
+			<bo-icon
 				:icon="suffixIcon"
 				:size="BoSize.default"
 			/>
