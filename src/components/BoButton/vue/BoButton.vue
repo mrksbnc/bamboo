@@ -4,7 +4,7 @@
 		role="button"
 		:disabled="disabled"
 		:class="[style, `bo-button--${variant} bo-button--${type}`]"
-		class="flex items-center content-center justify-center space-x-2 shadow-sd focus:ring-1 focus:ring-opacity-50 focus:outline-none transition-all duration-200 ease-in-out"
+		class="shadow-sd flex content-center items-center justify-center space-x-2 transition-all duration-200 ease-in-out focus:outline-none focus:ring-1 focus:ring-opacity-50"
 	>
 		<span
 			class="bo-button__prefix"
