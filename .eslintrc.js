@@ -45,5 +45,6 @@ module.exports = {
 		'node_modules/*',
 		'docs/*',
 		'static/*	',
+		'test-project/*',
 	],
 };

@@ -1,6 +1,6 @@
 {
 	"name": "@mrksbnc/bamboo",
-	"version": "0.0.1",
+	"version": "0.0.1-test.1",
 	"description": "Vue 3 UI library built with Vite and Storybook",
 	"scripts": {
 		"dev": "vite",
@@ -19,9 +19,6 @@
 		"build-storybook": "storybook build -o static",
 		"chromatic": "npx chromatic"
 	},
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com"
-	},
 	"homepage": "http://mrksbnc.github.io/bamboo",
 	"repository": {
 		"type": "git",
@@ -37,9 +34,14 @@
 		"node": ">=20.9.0",
 		"npm": ">=10.1.0"
 	},
-	"main": "./dist/index.umd.js",
+	"publishConfig": {
+		"tag": "latest",
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"main": "./dist/index.cjs.js",
 	"module": "./dist/index.es.js",
-	"types": "./dist/index.d.ts",
+	"types": "./dist/src/index.d.ts",
 	"exports": {
 		".": {
 			"import": "./dist/index.es.js",
@@ -88,8 +90,9 @@
 		"jsdom": "^24.0.0",
 		"postcss": "^8.4.35",
 		"postcss-nesting": "^12.0.4",
-		"prettier": "^3.2.4",
+		"prettier": "^3.2.5",
 		"prettier-plugin-organize-imports": "^3.2.4",
+		"prettier-plugin-tailwindcss": "^0.5.12",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"remark-gfm": "^4.0.0",
