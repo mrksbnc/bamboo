@@ -1,6 +1,6 @@
-import { BoBadge, BoBadgeType } from '@/components/BoBadge';
+import { BoBadge, BoBadgeSize, BoBadgeType } from '@/components/BoBadge';
 import { Icon } from '@/components/BoIcon';
-import { BoSize, BoVariant } from '@/constants';
+import { BoVariant } from '@/constants';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -35,48 +35,70 @@ const meta = {
 		},
 		size: {
 			type: 'string',
-			options: Object.values(BoSize),
+			options: Object.values(BoBadgeSize),
 			description: 'The variant of the button',
 			control: { type: 'select' },
 			table: {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoSize',
-					detail: StorybookUtils.stringEnumFormatter(BoSize, 'BoSize'),
+					summary: 'BoBadgeSize',
+					detail: StorybookUtils.stringEnumFormatter(
+						BoBadgeSize,
+						'BoBadgeSize',
+					),
 				},
 			},
-			defaultValue: BoSize.default,
+			defaultValue: BoBadgeSize.default,
 		},
-		prefixIcon: {
+		type: {
 			type: 'string',
-			description: 'The icon to be displayed before the label',
+			options: Object.values(BoBadgeType),
+			description: 'The variant of the button',
 			control: { type: 'select' },
-			defaultValue: null,
 			table: {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'Icon',
-					detail: StorybookUtils.stringEnumFormatter(Icon, 'Icon'),
+					summary: 'BoBadgeType',
+					detail: StorybookUtils.stringEnumFormatter(
+						BoBadgeType,
+						'BoBadgeType',
+					),
 				},
 			},
-			options: Object.values(Icon),
+			defaultValue: BoBadgeSize.default,
 		},
-		suffixIcon: {
-			type: 'string',
-			description: 'The icon to be displayed after the label',
-			control: { type: 'select' },
-			defaultValue: null,
+		icon: {
+			description: 'The icon object for the badge',
 			table: {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'Icon',
-					detail: StorybookUtils.stringEnumFormatter(Icon, 'Icon'),
+					summary: 'BoBadgeIcon',
+					detail: `{
+						iconOnly?: boolean;
+						icon?: Icon;
+						prefix?: Icon;
+						suffix?: Icon;
+					}`,
 				},
 			},
-			options: Object.values(Icon),
+			control: {
+				type: 'text',
+			},
+		},
+	},
+	args: {
+		label: 'Badge',
+		variant: BoVariant.default,
+		size: BoBadgeSize.default,
+		type: BoBadgeType.default,
+		icon: {
+			iconOnly: false,
+			icon: Icon.check,
+			prefix: undefined,
+			suffix: undefined,
 		},
 	},
 } satisfies Meta<typeof BoBadge>;
@@ -95,11 +117,8 @@ export const Sizes: Story = {
 		components: { BoBadge },
 		template: `
 			<div class="items-center flex">
-				<BoBadge label="Extra small" size="${BoSize.extra_small}" class="m-1"/>
-				<BoBadge label="Small" size="${BoSize.small}" class="m-1"/>
-				<BoBadge label="Default" size="${BoSize.default}" class="m-1"/>
-				<BoBadge label="Large" size="${BoSize.large}" class="m-1"/>
-				<BoBadge label="Extra large" size="${BoSize.extra_large}" />
+				<BoBadge label="Default" size="${BoBadgeSize.default}" class="m-1"/>
+				<BoBadge label="Large" size="${BoBadgeSize.large}" class="m-1"/>
 			</div>
 		`,
 	}),
@@ -155,13 +174,38 @@ export const Variants: Story = {
 export const WithPrefixIcon: Story = {
 	args: {
 		label: 'Badge',
-		prefixIcon: Icon.check,
+		icon: {
+			prefix: Icon.check,
+		},
 	},
 };
 
 export const WithSuffixIcon: Story = {
 	args: {
 		label: 'Badge',
-		suffixIcon: Icon.check,
+		icon: {
+			suffix: Icon.check,
+		},
+	},
+};
+
+export const IconOnly: Story = {
+	args: {
+		label: 'Badge',
+		icon: {
+			iconOnly: true,
+			icon: Icon.check,
+		},
+	},
+};
+
+export const IconOnlyCircle: Story = {
+	args: {
+		label: 'Badge',
+		icon: {
+			circle: true,
+			iconOnly: true,
+			icon: Icon.check,
+		},
 	},
 };
