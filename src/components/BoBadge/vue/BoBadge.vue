@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="bo-badge inline-flex space-x-1 shadow-md cursor-default select-none"
+		class="bo-badge inline-flex cursor-default select-none space-x-1 shadow-md"
 		:class="[`badge-${variant}`, styleClasses]"
 	>
 		<bo-icon
@@ -12,7 +12,7 @@
 		<div>
 			<span
 				v-if="showLabel"
-				class="bo-badge__label font-medium truncate"
+				class="bo-badge__label truncate font-medium"
 			>
 				{{ label }}
 			</span>
