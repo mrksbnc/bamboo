@@ -14,13 +14,13 @@ import BoIcon from '@/components/BoIcon/vue/BoIcon.vue';
 			class="inline-flex items-center first:border last:border border-t border-b first:rounded-s-lg last:rounded-e-lg shadow-md space-x-2"
 			@click="handleSelect(index, item)"
 		>
-			<BoIcon
+			<bo-icon
 				v-if="item.prefixIcon"
 				:icon="item.prefixIcon"
 				:size="iconSize"
 			/>
 			<span>{{ item.label }}</span>
-			<BoIcon
+			<bo-icon
 				v-if="item.suffixIcon"
 				:icon="item.suffixIcon"
 				:size="iconSize"

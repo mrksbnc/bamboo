@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`BoIconButton > should match snapshot 1`] = `
-"<button type="button" class="flex items-center justify-center transition-opacity duration-200 cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed p-1 w-10 h-10 bg-blue-700 hover:bg-blue-800 text-white rounded-lg flex justify-center items-center">
+"<button type="button" role="button" class="flex items-center justify-center transition-opacity duration-200 cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed p-1 w-10 h-10 bg-blue-700 hover:bg-blue-800 text-white rounded-lg flex justify-center items-center">
   <div style="color: currentColor;" class="bo-icon size-4" aria-label="icon" type="image/svg+xml"></div>
 </button>"
 `;

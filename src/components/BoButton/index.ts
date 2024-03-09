@@ -2,7 +2,6 @@ export {
 	BoButtonGroupSize,
 	BoButtonGroupVariant,
 	BoButtonType,
-	BoButtonVariant,
 	BoIconButtonType,
 } from '@/components/BoButton/ts/bo_button';
 export { ButtonGroupEvent } from '@/components/BoButton/ts/events';

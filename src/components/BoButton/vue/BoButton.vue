@@ -1,6 +1,7 @@
 <template>
 	<button
 		type="button"
+		role="button"
 		:disabled="disabled"
 		:class="[style, `bo-button--${variant} bo-button--${type}`]"
 		class="flex items-center content-center justify-center space-x-2 shadow-sd focus:ring-1 focus:ring-opacity-50 focus:outline-none transition-all duration-200 ease-in-out"
@@ -9,7 +10,7 @@
 			class="bo-button__prefix"
 			v-if="prefixIcon"
 		>
-			<BoIcon
+			<bo-icon
 				:icon="prefixIcon"
 				:size="BoSize.default"
 			/>
@@ -21,7 +22,7 @@
 			class="bo-button__suffix"
 			v-if="suffixIcon"
 		>
-			<BoIcon
+			<bo-icon
 				:icon="suffixIcon"
 				:size="BoSize.default"
 			/>
@@ -31,8 +32,8 @@
 
 <script setup lang="ts">
 import { computed, toRefs, type PropType } from 'vue';
-import { BoButtonType, BoButtonVariant, BoIcon, type Icon } from '@/components';
-import { BoSize } from '@/constants';
+import { BoButtonType, BoIcon, type Icon } from '@/components';
+import { BoSize, BoVariant } from '@/constants';
 import { TailwindUtils } from '@/utils';
 
 const props = defineProps({
@@ -41,8 +42,8 @@ const props = defineProps({
 		required: true,
 	},
 	variant: {
-		type: String as PropType<BoButtonVariant>,
-		default: BoButtonVariant.primary,
+		type: String as PropType<BoVariant>,
+		default: BoVariant.primary,
 	},
 	type: {
 		type: String as PropType<BoButtonType>,
@@ -91,46 +92,47 @@ const textClasses = computed<string>(() => {
 
 	if (type.value === BoButtonType.outline) {
 		switch (variant.value) {
-			case BoButtonVariant.danger:
+			case BoVariant.danger:
 				classes = TailwindUtils.merge(classes, 'text-red-600 hover:text-white');
 				break;
-			case BoButtonVariant.warning:
+			case BoVariant.warning:
 				classes = TailwindUtils.merge(
 					classes,
 					'text-yellow-500 hover:text-white',
 				);
 				break;
-			case BoButtonVariant.success:
+			case BoVariant.success:
 				classes = TailwindUtils.merge(
 					classes,
 					'text-green-500 hover:text-white',
 				);
 				break;
-			case BoButtonVariant.dark:
+			case BoVariant.dark:
 				classes = TailwindUtils.merge(
 					classes,
 					'text-gray-500 hover:text-white dark:hover:text-white',
 				);
 				break;
-			case BoButtonVariant.purple:
+			case BoVariant.purple:
 				classes = TailwindUtils.merge(
 					classes,
 					'text-purple-500 hover:text-white',
 				);
 				break;
-			case BoButtonVariant.teal:
+			case BoVariant.teal:
 				classes = TailwindUtils.merge(
 					classes,
 					'text-teal-500 hover:text-white',
 				);
 				break;
-			case BoButtonVariant.secondary:
+			case BoVariant.secondary:
 				classes = TailwindUtils.merge(
 					classes,
 					'text-gray-700 hover:text-white dark:text-gray-300 dark:hover:text-white',
 				);
 				break;
-			case BoButtonVariant.primary:
+			case BoVariant.primary:
+			case BoVariant.default:
 			default:
 				classes = TailwindUtils.merge(
 					classes,
@@ -142,16 +144,16 @@ const textClasses = computed<string>(() => {
 
 	if (type.value === BoButtonType.pill || type.value === BoButtonType.default) {
 		switch (variant.value) {
-			case BoButtonVariant.secondary:
+			case BoVariant.secondary:
 				classes = TailwindUtils.merge(classes, 'text-gray-600');
 				break;
-			case BoButtonVariant.danger:
-			case BoButtonVariant.warning:
-			case BoButtonVariant.success:
-			case BoButtonVariant.dark:
-			case BoButtonVariant.purple:
-			case BoButtonVariant.teal:
-			case BoButtonVariant.primary:
+			case BoVariant.danger:
+			case BoVariant.warning:
+			case BoVariant.success:
+			case BoVariant.dark:
+			case BoVariant.purple:
+			case BoVariant.teal:
+			case BoVariant.primary:
 			default:
 				classes = TailwindUtils.merge(classes, 'text-white');
 				break;
@@ -193,21 +195,21 @@ const colorClasses = computed<string>(() => {
 	switch (type.value) {
 		case BoButtonType.outline:
 			switch (variant.value) {
-				case BoButtonVariant.danger:
+				case BoVariant.danger:
 					return 'border border-red-600 hover:bg-red-600 focus:ring-red-600';
-				case BoButtonVariant.warning:
+				case BoVariant.warning:
 					return 'border border-yellow-500 hover:bg-yellow-600 focus:ring-yellow-500';
-				case BoButtonVariant.success:
+				case BoVariant.success:
 					return 'border border-green-500 hover:bg-green-600 focus:ring-green-500';
-				case BoButtonVariant.dark:
+				case BoVariant.dark:
 					return 'border border-gray-800 hover:bg-gray-700 focus:ring-gray-800';
-				case BoButtonVariant.purple:
+				case BoVariant.purple:
 					return 'border border-purple-500 hover:bg-purple-600 focus:ring-purple-500';
-				case BoButtonVariant.teal:
+				case BoVariant.teal:
 					return 'border border-teal-500 hover:bg-teal-600 focus:ring-teal-500';
-				case BoButtonVariant.secondary:
+				case BoVariant.secondary:
 					return 'border border-gray-500 hover:bg-gray-600 focus:ring-gray-500';
-				case BoButtonVariant.primary:
+				case BoVariant.primary:
 				default:
 					return 'border border-blue-700 hover:bg-blue-800 focus:ring-blue-700';
 			}
@@ -215,21 +217,21 @@ const colorClasses = computed<string>(() => {
 		case BoButtonType.default:
 		default:
 			switch (variant.value) {
-				case BoButtonVariant.danger:
+				case BoVariant.danger:
 					return 'bg-red-600 hover:bg-red-700 focus:ring-red-600';
-				case BoButtonVariant.warning:
+				case BoVariant.warning:
 					return 'bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-500';
-				case BoButtonVariant.success:
+				case BoVariant.success:
 					return 'bg-green-600 hover:bg-green-700 focus:ring-green-600';
-				case BoButtonVariant.dark:
+				case BoVariant.dark:
 					return 'bg-gray-800 hover:bg-gray-700 focus:ring-gray-800';
-				case BoButtonVariant.secondary:
+				case BoVariant.secondary:
 					return 'bg-gray-200 hover:bg-gray-300 focus:ring-gray-200';
-				case BoButtonVariant.purple:
+				case BoVariant.purple:
 					return 'bg-purple-500 hover:bg-purple-600 focus:ring-purple-500';
-				case BoButtonVariant.teal:
+				case BoVariant.teal:
 					return 'bg-teal-500 hover:bg-teal-600 focus:ring-teal-500';
-				case BoButtonVariant.primary:
+				case BoVariant.primary:
 				default:
 					return 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-700';
 			}
