@@ -1,6 +1,6 @@
 import { Icon } from '@/components';
-import { BoButton, BoButtonType } from '@/components/BoButton';
-import { BoSize, BoVariant } from '@/constants';
+import { BoButton, BoButtonType, BoButtonVariant } from '@/components/BoButton';
+import { BoSize } from '@/constants';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -19,18 +19,21 @@ const meta = {
 			},
 		},
 		variant: {
-			options: Object.values(BoVariant),
+			options: Object.values(BoButtonVariant),
 			description: 'The variant of the button',
 			control: { type: 'select' },
 			table: {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoVariant',
-					detail: StorybookUtils.stringEnumFormatter(BoVariant, 'BoVariant'),
+					summary: 'BoButtonVariant',
+					detail: StorybookUtils.stringEnumFormatter(
+						BoButtonVariant,
+						'BoButtonVariant',
+					),
 				},
 			},
-			defaultValue: BoVariant.primary,
+			defaultValue: BoButtonVariant.primary,
 		},
 		type: {
 			type: 'string',
@@ -107,7 +110,7 @@ const meta = {
 		},
 	},
 	args: {
-		variant: BoVariant.primary,
+		variant: BoButtonVariant.primary,
 		label: 'Label',
 		size: BoSize.default,
 		disabled: false,
@@ -120,7 +123,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Example: Story = {
 	args: {
-		variant: BoVariant.primary,
+		variant: BoButtonVariant.primary,
 		label: 'Label',
 		size: BoSize.default,
 		disabled: false,
@@ -155,36 +158,36 @@ export const Variants: Story = {
 		template: `
 			<h1 class="my-2 dark:text-white">Default</h1>
 			<div class="flex flex-1">
-				<BoButton label="Primary" variant="${BoVariant.primary}" class="m-1"/>
-				<BoButton label="Secondary" variant="${BoVariant.secondary}" class="m-1"/>
-				<BoButton label="Danger" variant="${BoVariant.danger}" class="m-1"/>
-				<BoButton label="Warning" variant="${BoVariant.warning}" class="m-1"/>
-				<BoButton label="Success" variant="${BoVariant.success}" class="m-1"/>
-				<BoButton label="Dark" variant="${BoVariant.dark}" class="m-1"/>
-				<BoButton label="Purple" variant="${BoVariant.purple}" class="m-1"/>
-				<BoButton label="Teal" variant="${BoVariant.teal}" class="m-1"/>
+				<BoButton label="Primary" variant="${BoButtonVariant.primary}" class="m-1"/>
+				<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" class="m-1"/>
+				<BoButton label="Danger" variant="${BoButtonVariant.danger}" class="m-1"/>
+				<BoButton label="Warning" variant="${BoButtonVariant.warning}" class="m-1"/>
+				<BoButton label="Success" variant="${BoButtonVariant.success}" class="m-1"/>
+				<BoButton label="Dark" variant="${BoButtonVariant.dark}" class="m-1"/>
+				<BoButton label="Purple" variant="${BoButtonVariant.purple}" class="m-1"/>
+				<BoButton label="Teal" variant="${BoButtonVariant.teal}" class="m-1"/>
 			</div>
 			<h1 class="my-2 dark:text-white">Pill</h1>
 			<div class="flex flex-1">
-				<BoButton label="Primary" variant="${BoVariant.primary}" type=${BoButtonType.pill} class="m-1"/>
-				<BoButton label="Secondary" variant="${BoVariant.secondary}" type=${BoButtonType.pill} class="m-1"/>
-				<BoButton label="Danger" variant="${BoVariant.danger}" type=${BoButtonType.pill} class="m-1"/>
-				<BoButton label="Warning" variant="${BoVariant.warning}" type=${BoButtonType.pill} class="m-1"/>
-				<BoButton label="Success" variant="${BoVariant.success}" type=${BoButtonType.pill} class="m-1"/>
-				<BoButton label="Dark" variant="${BoVariant.dark}" type=${BoButtonType.pill} class="m-1"/>
-				<BoButton label="Purple" variant="${BoVariant.purple}" type=${BoButtonType.pill} class="m-1"/>
-				<BoButton label="Teal" variant="${BoVariant.teal}" type=${BoButtonType.pill} class="m-1"/>
+				<BoButton label="Primary" variant="${BoButtonVariant.primary}" type=${BoButtonType.pill} class="m-1"/>
+				<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" type=${BoButtonType.pill} class="m-1"/>
+				<BoButton label="Danger" variant="${BoButtonVariant.danger}" type=${BoButtonType.pill} class="m-1"/>
+				<BoButton label="Warning" variant="${BoButtonVariant.warning}" type=${BoButtonType.pill} class="m-1"/>
+				<BoButton label="Success" variant="${BoButtonVariant.success}" type=${BoButtonType.pill} class="m-1"/>
+				<BoButton label="Dark" variant="${BoButtonVariant.dark}" type=${BoButtonType.pill} class="m-1"/>
+				<BoButton label="Purple" variant="${BoButtonVariant.purple}" type=${BoButtonType.pill} class="m-1"/>
+				<BoButton label="Teal" variant="${BoButtonVariant.teal}" type=${BoButtonType.pill} class="m-1"/>
 			</div>
 			<h1 class="my-2 dark:text-white">Outline</h1>
 			<div class="flex flex-1">
-				<BoButton label="Primary" variant="${BoVariant.primary}" type=${BoButtonType.outline} class="m-1"/>
-				<BoButton label="Secondary" variant="${BoVariant.secondary}" type=${BoButtonType.outline} class="m-1"/>
-				<BoButton label="Danger" variant="${BoVariant.danger}" type=${BoButtonType.outline} class="m-1"/>
-				<BoButton label="Warning" variant="${BoVariant.warning}" type=${BoButtonType.outline} class="m-1"/>
-				<BoButton label="Success" variant="${BoVariant.success}" type=${BoButtonType.outline} class="m-1"/>
-				<BoButton label="Dark" variant="${BoVariant.dark}" type=${BoButtonType.outline} class="m-1"/>
-				<BoButton label="Purple" variant="${BoVariant.purple}" type=${BoButtonType.outline} class="m-1"/>
-				<BoButton label="Teal" variant="${BoVariant.teal}" type=${BoButtonType.outline} class="m-1"/>
+				<BoButton label="Primary" variant="${BoButtonVariant.primary}" type=${BoButtonType.outline} class="m-1"/>
+				<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" type=${BoButtonType.outline} class="m-1"/>
+				<BoButton label="Danger" variant="${BoButtonVariant.danger}" type=${BoButtonType.outline} class="m-1"/>
+				<BoButton label="Warning" variant="${BoButtonVariant.warning}" type=${BoButtonType.outline} class="m-1"/>
+				<BoButton label="Success" variant="${BoButtonVariant.success}" type=${BoButtonType.outline} class="m-1"/>
+				<BoButton label="Dark" variant="${BoButtonVariant.dark}" type=${BoButtonType.outline} class="m-1"/>
+				<BoButton label="Purple" variant="${BoButtonVariant.purple}" type=${BoButtonType.outline} class="m-1"/>
+				<BoButton label="Teal" variant="${BoButtonVariant.teal}" type=${BoButtonType.outline} class="m-1"/>
 			</div>
 		`,
 	}),

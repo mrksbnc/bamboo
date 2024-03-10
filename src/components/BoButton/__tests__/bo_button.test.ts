@@ -1,5 +1,5 @@
-import { BoButton, BoButtonType } from '@/components/BoButton';
-import { BoSize, BoVariant } from '@/constants';
+import { BoButton, BoButtonType, BoButtonVariant } from '@/components/BoButton';
+import { BoSize } from '@/constants';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, test } from 'vitest';
 
@@ -12,7 +12,7 @@ beforeEach(() => {
 			size: BoSize.default,
 			disabled: false,
 			type: BoButtonType.default,
-			variant: BoVariant.primary,
+			variant: BoButtonVariant.primary,
 		},
 	});
 });

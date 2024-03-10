@@ -1,3 +1,25 @@
+export enum BoButtonVariant {
+	primary = 'primary',
+	secondary = 'secondary',
+	danger = 'danger',
+	warning = 'warning',
+	success = 'success',
+	dark = 'dark',
+	purple = 'purple',
+	teal = 'teal',
+}
+
+export enum BoButtonShadow {
+	blue = 'blue',
+	gray = 'gray',
+	red = 'red',
+	yellow = 'yellow',
+	green = 'green',
+	black = 'black',
+	purple = 'purple',
+	teal = 'teal',
+}
+
 export enum BoButtonType {
 	default = 'default',
 	pill = 'pill',

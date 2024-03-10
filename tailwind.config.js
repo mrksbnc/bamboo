@@ -5,5 +5,5 @@ module.exports = {
 	theme: {
 		extend: {},
 	},
-	plugins: [['postcss-import', {}], 'tailwindcss', ['postcss-preset-env', {}]],
+	plugins: [],
 };
