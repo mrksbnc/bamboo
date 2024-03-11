@@ -1,5 +1,5 @@
-import { Icon } from '@/components';
 import { BoButton, BoButtonType, BoButtonVariant } from '@/components/BoButton';
+import { Icon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';

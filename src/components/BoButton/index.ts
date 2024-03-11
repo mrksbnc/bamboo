@@ -1,11 +1,16 @@
 /**
- * @description module export for the BoButton component and its members
  * @module BoButton
- * @since v.0.0.1
+ * @since 0.0.1
+ *
+ * @description module export for the BoButton component and its members
  */
 export {
 	BoButtonType,
 	BoButtonVariant,
 	useBoButtonStyle,
 } from '@/components/BoButton/bo_button';
+export type {
+	BoButtonClassMap,
+	UseBoButtonCompoableArgs,
+} from '@/components/BoButton/bo_button.types';
 export { default as BoButton } from '@/components/BoButton/bo_button.vue';
