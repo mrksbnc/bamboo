@@ -10,7 +10,7 @@ export { ButtonGroupEvent } from '@/components/BoButton/ts/events';
 export type {
 	BoButtonClassMap,
 	BoButtonGroupItem,
-	BoButtonProps,
+	UseBoButtonCompoableArgs,
 } from '@/components/BoButton/ts/types';
 export { useBoButtonStyle } from '@/components/BoButton/ts/use_bo_button_style';
 export { default as BoButton } from '@/components/BoButton/vue/BoButton.vue';

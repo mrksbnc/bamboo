@@ -12,10 +12,10 @@ import type { BoButtonType, BoButtonVariant } from './constants';
  * @property active - The tailwind classes for the button when its in the
  * active state
  */
-export declare type BoButtonClassMap<T extends string> = {
+export declare type BoButtonClassMap<T extends string> = Readonly<{
 	default: Record<T, string>;
 	active?: Record<T, string>;
-};
+}>;
 /**
  * @description Argument definition for the `useBoButton` composable
  */

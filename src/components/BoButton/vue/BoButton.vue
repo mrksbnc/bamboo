@@ -11,22 +11,27 @@
 		>
 			<bo-icon
 				v-if="!$slots.prefix"
-				:icon="prefixIcon"
+				role="img"
 				:size="iconSize"
+				:icon="prefixIcon"
 			/>
 			<slot name="prefix"></slot>
 		</span>
-		<span class="bo-button__label mx-1 font-medium shadow-none">
+		<p
+			role="text"
+			class="bo-button__label mx-1 font-medium shadow-none"
+		>
 			{{ label }}
-		</span>
+		</p>
 		<span
 			class="bo-button__suffix"
 			v-if="suffixIcon || $slots.suffix"
 		>
 			<bo-icon
 				v-if="!$slots.suffix"
-				:icon="suffixIcon"
+				role="img"
 				:size="iconSize"
+				:icon="suffixIcon"
 			/>
 			<slot name="suffix"></slot>
 		</span>
@@ -35,11 +40,13 @@
 
 <script setup lang="ts">
 import { computed, toRefs, type PropType } from 'vue';
-import { BoButtonType } from '@/components/BoButton';
 import { BoIcon, type Icon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
-
-import { useBoButtonStyle, BoButtonVariant } from '@/components/BoButton';
+import {
+	useBoButtonStyle,
+	BoButtonVariant,
+	BoButtonType,
+} from '@/components/BoButton';
 
 const props = defineProps({
 	label: {

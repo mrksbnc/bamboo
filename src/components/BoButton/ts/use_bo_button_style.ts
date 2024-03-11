@@ -3,11 +3,12 @@ import {
 	BoButtonVariant,
 	type BoButtonClassMap,
 	type BoButtonShadow,
+	type UseBoButtonCompoableArgs,
 } from '@/components/BoButton';
 import { BoSize } from '@/constants';
+import type { CssClassMap } from '@/types';
 import { TailwindUtils } from '@/utils';
 import { computed } from 'vue';
-import type { UseBoButtonCompoableArgs } from './types';
 /**
  * @description Default tailwind classes for the transition of the button component
  */
@@ -27,7 +28,7 @@ const BO_BUTTON_DISABLED_CLASSES =
  * @description Default tailwind classes for the button component
  * in case the button type is `default` or `pill`
  */
-const BO_BUTTON_DEFAULT_CLASSES: Readonly<BoButtonClassMap<BoButtonVariant>> =
+const BO_BUTTON_DEFAULT_CLASSES: BoButtonClassMap<BoButtonVariant> =
 	Object.freeze({
 		default: {
 			primary: 'text-white dark:text-white bg-blue-700 dark:bg-blue-600',
@@ -36,7 +37,7 @@ const BO_BUTTON_DEFAULT_CLASSES: Readonly<BoButtonClassMap<BoButtonVariant>> =
 			success: 'text-white dark:text-white bg-green-600 dark:bg-green-500',
 			warning: 'text-white dark:text-white bg-yellow-600 dark:bg-yellow-500',
 			danger: 'text-white dark:text-white bg-red-600 dark:bg-red-500',
-			dark: 'text-white dark:text-gray-500 bg-gray-600 dark:bg-gray-500',
+			dark: 'text-white dark:text-white bg-gray-600 dark:bg-gray-500',
 			purple: 'text-white dark:text-white bg-purple-600 dark:bg-purple-500',
 			teal: 'text-white dark:text-white bg-teal-600 dark:bg-teal-500',
 		},
@@ -44,7 +45,7 @@ const BO_BUTTON_DEFAULT_CLASSES: Readonly<BoButtonClassMap<BoButtonVariant>> =
 			primary:
 				'hover:text-white dark:hover:text-white hover:bg-blue-800 dark:hover:bg-blue-700',
 			secondary:
-				'hover:text-white dark:hover:text-white hover:bg-gray-300 dark:hover:bg-gray-200',
+				'hover:text-gray-800 dark:hover:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-200',
 			success:
 				'hover:text-white dark:hover:text-white hover:bg-green-700 dark:hover:bg-green-600',
 			warning:
@@ -61,13 +62,13 @@ const BO_BUTTON_DEFAULT_CLASSES: Readonly<BoButtonClassMap<BoButtonVariant>> =
  * @description Default tailwind classes for the button component
  * in case the button type is `outline`
  */
-const BO_BUTTON_OUTLINE_CLASSES: Readonly<BoButtonClassMap<BoButtonVariant>> =
+const BO_BUTTON_OUTLINE_CLASSES: BoButtonClassMap<BoButtonVariant> =
 	Object.freeze({
 		default: {
 			primary:
 				'border border-blue-700 dark:border-blue-600 text-blue-700 dark:text-blue-600 bg-transparent',
 			secondary:
-				'border border-gray-200 dark:border-gray-100 text-gray-200 dark:text-gray-100 bg-transparent',
+				'border border-gray-700 dark:border-gray-600 text-gray-700 dark:text-gray-600 bg-transparent',
 			success:
 				'border border-green-600 dark:border-green-500 text-green-600 dark:text-green-500 bg-transparent',
 			warning:
@@ -83,7 +84,7 @@ const BO_BUTTON_OUTLINE_CLASSES: Readonly<BoButtonClassMap<BoButtonVariant>> =
 			primary:
 				'hover:text-white dark:hover:text-white hover:bg-blue-700 dark:hover:bg-blue-600',
 			secondary:
-				'hover:text-white dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-100',
+				'hover:text-white dark:hover:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:border-gray-500 dark:hover:border-gray-500',
 			success:
 				'hover:text-white dark:hover:text-white hover:bg-green-600 dark:hover:bg-green-500',
 			warning:
@@ -97,32 +98,30 @@ const BO_BUTTON_OUTLINE_CLASSES: Readonly<BoButtonClassMap<BoButtonVariant>> =
 		},
 	});
 
-const BO_BUTTON_BORDER_RADIUS_CLASSES: Readonly<Record<BoButtonType, string>> =
+const BO_BUTTON_BORDER_RADIUS_CLASSES: CssClassMap<BoButtonType> =
 	Object.freeze({
 		pill: 'rounded-full',
 		default: 'rounded-lg',
 		outline: 'rounded-lg',
 	});
 
-const BO_BUTTON_PADDING_CLASSES: Readonly<Record<BoSize, string>> =
-	Object.freeze({
-		extra_small: 'px-2 py-1',
-		small: 'px-2 py-1.5',
-		default: 'px-3 py-2',
-		large: 'px-4 py-3',
-		extra_large: 'px-5 py-4',
-	});
+const BO_BUTTON_PADDING_CLASSES: CssClassMap<BoSize> = Object.freeze({
+	extra_small: 'px-2 py-1',
+	small: 'px-2 py-1.5',
+	default: 'px-3 py-2',
+	large: 'px-4 py-3',
+	extra_large: 'px-5 py-4',
+});
 
-const BO_BUTTON_TEXT_SIZE_CLASSES: Readonly<Record<BoSize, string>> =
-	Object.freeze({
-		extra_small: 'text-xs',
-		small: 'text-xs',
-		default: 'text-sm',
-		large: 'text-base',
-		extra_large: 'text-lg',
-	});
+const BO_BUTTON_TEXT_SIZE_CLASSES: CssClassMap<BoSize> = Object.freeze({
+	extra_small: 'text-xs',
+	small: 'text-xs',
+	default: 'text-sm',
+	large: 'text-base',
+	extra_large: 'text-lg',
+});
 
-const BO_BUTTON_SHADOW_CLASSES: Record<BoButtonShadow, string> = {
+const BO_BUTTON_SHADOW_CLASSES: CssClassMap<BoButtonShadow> = Object.freeze({
 	blue: 'shadow-sm shadow-blue-500/50 dark:shadow-sm dark:shadow-blue-800/80',
 	gray: 'shadow-sm shadow-gray-500/50 dark:shadow-sm dark:shadow-gray-800/80',
 	red: 'shadow-sm shadow-red-500/50 dark:shadow-sm dark:shadow-red-800/80',
@@ -135,7 +134,7 @@ const BO_BUTTON_SHADOW_CLASSES: Record<BoButtonShadow, string> = {
 	purple:
 		'shadow-sm shadow-purple-500/50 dark:shadow-sm dark:shadow-purple-800/80',
 	teal: 'shadow-sm shadow-teal-500/50 dark:shadow-sm dark:shadow-teal-800/80',
-};
+});
 
 export const useBoButtonStyle = (
 	props: UseBoButtonCompoableArgs,
@@ -177,7 +176,6 @@ export const useBoButtonStyle = (
 		}
 		return isOutline.value
 			? TailwindUtils.merge(
-					shadow,
 					BO_BUTTON_FLEX_CLASSES,
 					BO_BUTTON_DISABLED_CLASSES,
 					BO_BUTTON_TRANSITION_CLASSES,
