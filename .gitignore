@@ -10,17 +10,18 @@ dist
 coverage
 *.local
 
-/cypress/videos/
-/cypress/screenshots/
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 
-*storybook.log
 
+
+# Environment variables
 .env
 !.env.example
 
-# Storybook build directory
-!static
+# Storybook
+static
+*storybook.log
+
