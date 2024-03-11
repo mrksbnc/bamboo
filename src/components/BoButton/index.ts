@@ -1,18 +1,18 @@
-export { useBoButtonStyle } from '@/components/BoButton/ts/bo_button';
+export {
+	BoButtonType,
+	BoButtonVariant,
+	useBoButtonStyle,
+} from '@/components/BoButton/bo_button';
+export { default as BoButton } from '@/components/BoButton/bo_button.vue';
 export {
 	BoButtonGroupSize,
 	BoButtonGroupVariant,
-	BoButtonShadow,
-	BoButtonType,
-	BoButtonVariant,
-	BoIconButtonType,
-} from '@/components/BoButton/ts/constants';
-export { ButtonGroupEvent } from '@/components/BoButton/ts/events';
+	ButtonGroupEvent,
+} from '@/components/BoButton/bo_button_group';
+export { default as BoButtonGroup } from '@/components/BoButton/bo_button_group.vue';
+export { default as BoIconButton } from '@/components/BoButton/bo_icon_button.vue';
 export type {
 	BoButtonClassMap,
 	BoButtonGroupItem,
 	UseBoButtonCompoableArgs,
-} from '@/components/BoButton/ts/types';
-export { default as BoButton } from '@/components/BoButton/vue/BoButton.vue';
-export { default as BoButtonGroup } from '@/components/BoButton/vue/BoButtonGroup.vue';
-export { default as BoIconButton } from '@/components/BoButton/vue/BoIconButton.vue';
+} from '@/components/BoButton/types';

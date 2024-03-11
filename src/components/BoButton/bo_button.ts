@@ -1,12 +1,27 @@
 import {
-	BoButtonType,
-	BoButtonVariant,
 	type BoButtonClassMap,
 	type UseBoButtonCompoableArgs,
 } from '@/components/BoButton';
 import { BoSize } from '@/constants';
 import { TailwindUtils } from '@/utils';
 import { computed } from 'vue';
+
+export enum BoButtonType {
+	default = 'default',
+	pill = 'pill',
+	outline = 'outline',
+}
+
+export enum BoButtonVariant {
+	primary = 'primary',
+	secondary = 'secondary',
+	success = 'success',
+	warning = 'warning',
+	danger = 'danger',
+	dark = 'dark',
+	purple = 'purple',
+	teal = 'teal',
+}
 
 const BO_BUTTON_TRANSITION_CLASSES =
 	/*tw*/ 'transition-all duration-200 ease-in-out' as const;

@@ -1,7 +1,18 @@
-/**
- * @description Events emitted by the `BoButtonGroup` component
- * @readonly
- */
+export enum BoButtonGroupSize {
+	small = 'small',
+	default = 'default',
+	large = 'large',
+}
+
+export enum BoButtonGroupVariant {
+	default = 'default',
+	dark = 'dark',
+	info = 'info',
+	success = 'success',
+	warning = 'warning',
+	danger = 'danger',
+}
+
 export enum ButtonGroupEvent {
 	/**
 	 * @event select

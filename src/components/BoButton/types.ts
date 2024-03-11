@@ -1,7 +1,7 @@
 import type { Icon } from '@/components/BoIcon';
 import type { BoSize } from '@/constants';
 import type { Ref } from 'vue';
-import type { BoButtonType, BoButtonVariant } from './constants';
+import type { BoButtonType, BoButtonVariant } from './bo_button';
 /**
  * @description Type definition for the Record used to define the
  * tailwind classes for the button component
