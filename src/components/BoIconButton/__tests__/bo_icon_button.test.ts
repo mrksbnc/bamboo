@@ -1,5 +1,5 @@
-import { BoIconButton } from '@/components/BoButton';
 import { Icon } from '@/components/BoIcon';
+import { BoIconButton } from '@/components/BoIconButton';
 import { BoSize, BoVariant } from '@/constants';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, test } from 'vitest';

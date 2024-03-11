@@ -1,5 +1,8 @@
-import { BoButtonGroupSize, BoButtonGroupVariant } from '@/components/BoButton';
-import BoButtonGroup from '@/components/BoButton/vue/BoButtonGroup.vue';
+import {
+	BoButtonGroup,
+	BoButtonGroupSize,
+	BoButtonGroupVariant,
+} from '@/components/BoButtonGroup';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 
