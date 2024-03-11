@@ -1,13 +1,13 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`BoButtonGroup > should match the snapshot 1`] = `
-"<div role="group" class="inline-flex flex-row"><button type="button" role="button" class="text-sm px-4 py-2 cursor-pointer text-gray-700 border-gray-300 bg-white hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 focus:bg-gray-100 focus:dark:bg-gray-700 inline-flex items-center first:border last:border border-t border-b first:rounded-s-lg last:rounded-e-lg shadow-md space-x-2">
+"<div role="group" class="inline-flex flex-row"><button type="button" role="button" class="text-sm px-4 py-2 cursor-pointer text-gray-700 border-gray-300 bg-white hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 focus:bg-gray-100 focus:dark:bg-gray-700 inline-flex items-center space-x-2 border-b border-t shadow-md first:rounded-s-lg first:border last:rounded-e-lg last:border">
     <!--v-if--><span>Button 1</span>
     <!--v-if-->
-  </button><button type="button" role="button" class="text-sm px-4 py-2 cursor-pointer text-gray-700 border-gray-300 bg-white hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 focus:bg-gray-100 focus:dark:bg-gray-700 inline-flex items-center first:border last:border border-t border-b first:rounded-s-lg last:rounded-e-lg shadow-md space-x-2">
+  </button><button type="button" role="button" class="text-sm px-4 py-2 cursor-pointer text-gray-700 border-gray-300 bg-white hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 focus:bg-gray-100 focus:dark:bg-gray-700 inline-flex items-center space-x-2 border-b border-t shadow-md first:rounded-s-lg first:border last:rounded-e-lg last:border">
     <!--v-if--><span>Button 2</span>
     <!--v-if-->
-  </button><button type="button" role="button" class="text-sm px-4 py-2 cursor-pointer text-gray-700 border-gray-300 bg-white hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 focus:bg-gray-100 focus:dark:bg-gray-700 inline-flex items-center first:border last:border border-t border-b first:rounded-s-lg last:rounded-e-lg shadow-md space-x-2">
+  </button><button type="button" role="button" class="text-sm px-4 py-2 cursor-pointer text-gray-700 border-gray-300 bg-white hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 focus:bg-gray-100 focus:dark:bg-gray-700 inline-flex items-center space-x-2 border-b border-t shadow-md first:rounded-s-lg first:border last:rounded-e-lg last:border">
     <!--v-if--><span>Button 3</span>
     <!--v-if-->
   </button></div>"
