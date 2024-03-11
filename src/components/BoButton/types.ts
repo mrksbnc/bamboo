@@ -28,11 +28,3 @@ export declare type UseBoButtonCompoableArgs = {
 	prefixIcon: Ref<Icon | null | undefined>;
 	suffixIcon: Ref<Icon | null | undefined>;
 };
-
-export declare type BoButtonGroupItem = {
-	id: string | number;
-	label: string;
-	disabled?: boolean;
-	prefixIcon?: Icon;
-	suffixIcon?: Icon;
-};
