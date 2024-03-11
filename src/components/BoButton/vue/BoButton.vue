@@ -9,31 +9,37 @@
 			class="bo-button__prefix"
 			v-if="prefixIcon || $slots.prefix"
 		>
-			<bo-icon
-				v-if="!$slots.prefix"
-				role="img"
-				:size="iconSize"
-				:icon="prefixIcon"
-			/>
-			<slot name="prefix"></slot>
+			<div v-if="!$slots.prefix">
+				<bo-icon
+					role="img"
+					:size="iconSize"
+					:icon="prefixIcon"
+				/>
+			</div>
+			<div v-else>
+				<slot name="prefix"></slot>
+			</div>
 		</span>
-		<p
+		<span
 			role="text"
-			class="bo-button__label mx-1 font-medium shadow-none"
+			class="bo-button__label font-medium shadow-none"
 		>
 			{{ label }}
-		</p>
+		</span>
 		<span
 			class="bo-button__suffix"
 			v-if="suffixIcon || $slots.suffix"
 		>
-			<bo-icon
-				v-if="!$slots.suffix"
-				role="img"
-				:size="iconSize"
-				:icon="suffixIcon"
-			/>
-			<slot name="suffix"></slot>
+			<div v-if="!$slots.suffix">
+				<bo-icon
+					role="img"
+					:size="iconSize"
+					:icon="suffixIcon"
+				/>
+			</div>
+			<div v-else>
+				<slot name="suffix"></slot>
+			</div>
 		</span>
 	</button>
 </template>

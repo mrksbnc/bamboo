@@ -1,3 +1,4 @@
+export { useBoButtonStyle } from '@/components/BoButton/ts/bo_button';
 export {
 	BoButtonGroupSize,
 	BoButtonGroupVariant,
@@ -12,7 +13,6 @@ export type {
 	BoButtonGroupItem,
 	UseBoButtonCompoableArgs,
 } from '@/components/BoButton/ts/types';
-export { useBoButtonStyle } from '@/components/BoButton/ts/use_bo_button_style';
 export { default as BoButton } from '@/components/BoButton/vue/BoButton.vue';
 export { default as BoButtonGroup } from '@/components/BoButton/vue/BoButtonGroup.vue';
 export { default as BoIconButton } from '@/components/BoButton/vue/BoIconButton.vue';
