@@ -102,13 +102,13 @@ const BO_BUTTON_OUTLINE_CLASSES: BoButtonClassMap<BoButtonVariant> =
 		},
 	});
 
-enum BoButtonBorderRadius {
+enum BoButtonBorderRadiusClasses {
 	pill = /*tw*/ 'rounded-full',
 	default = /*tw*/ 'rounded-lg',
 	outline = /*tw*/ 'rounded-lg',
 }
 
-enum BoButtonPadding {
+enum BoButtonPaddingClasses {
 	extra_small = /*tw*/ 'px-2 py-1',
 	small = /*tw*/ 'px-2 py-1.5',
 	default = /*tw*/ 'px-3 py-2',
@@ -116,7 +116,7 @@ enum BoButtonPadding {
 	extra_large = /*tw*/ 'px-5 py-4',
 }
 
-enum BoButtonTextSize {
+enum BoButtonTextSizeClasses {
 	extra_small = /*tw*/ 'text-xs',
 	small = /*tw*/ 'text-xs',
 	default = /*tw*/ 'text-sm',
@@ -124,7 +124,7 @@ enum BoButtonTextSize {
 	extra_large = /*tw*/ 'text-lg',
 }
 
-enum BoButtonShadow {
+enum BoButtonShadowClasses {
 	blue = /*tw*/ 'shadow-sm shadow-blue-500/50 dark:shadow-sm dark:shadow-blue-800/80',
 	gray = /*tw*/ 'shadow-sm shadow-gray-500/50 dark:shadow-sm dark:shadow-gray-800/80',
 	red = /*tw*/ 'shadow-sm shadow-red-500/50 dark:shadow-sm dark:shadow-red-800/80',
@@ -149,28 +149,28 @@ export const useBoButtonStyle = (
 
 		switch (variant) {
 			case BoButtonVariant.primary:
-				shadow = BoButtonShadow.blue;
+				shadow = BoButtonShadowClasses.blue;
 				break;
 			case BoButtonVariant.secondary:
-				shadow = BoButtonShadow.gray;
+				shadow = BoButtonShadowClasses.gray;
 				break;
 			case BoButtonVariant.success:
-				shadow = BoButtonShadow.green;
+				shadow = BoButtonShadowClasses.green;
 				break;
 			case BoButtonVariant.warning:
-				shadow = BoButtonShadow.yellow;
+				shadow = BoButtonShadowClasses.yellow;
 				break;
 			case BoButtonVariant.danger:
-				shadow = BoButtonShadow.red;
+				shadow = BoButtonShadowClasses.red;
 				break;
 			case BoButtonVariant.dark:
-				shadow = BoButtonShadow.black;
+				shadow = BoButtonShadowClasses.black;
 				break;
 			case BoButtonVariant.purple:
-				shadow = BoButtonShadow.purple;
+				shadow = BoButtonShadowClasses.purple;
 				break;
 			case BoButtonVariant.teal:
-				shadow = BoButtonShadow.teal;
+				shadow = BoButtonShadowClasses.teal;
 				break;
 		}
 
@@ -197,36 +197,36 @@ export const useBoButtonStyle = (
 	});
 
 	const borderRadius = computed<string>(() => {
-		return BoButtonBorderRadius[type];
+		return BoButtonBorderRadiusClasses[type];
 	});
 
 	const buttonAndContentSize = computed<string>(() => {
 		switch (size) {
 			case BoSize.extra_small:
 				return TailwindUtils.merge(
-					BoButtonPadding.extra_small,
-					BoButtonTextSize.extra_small,
+					BoButtonPaddingClasses.extra_small,
+					BoButtonTextSizeClasses.extra_small,
 				);
 			case BoSize.small:
 				return TailwindUtils.merge(
-					BoButtonPadding.small,
-					BoButtonTextSize.small,
+					BoButtonPaddingClasses.small,
+					BoButtonTextSizeClasses.small,
 				);
 			case BoSize.large:
 				return TailwindUtils.merge(
-					BoButtonPadding.large,
-					BoButtonTextSize.large,
+					BoButtonPaddingClasses.large,
+					BoButtonTextSizeClasses.large,
 				);
 			case BoSize.extra_large:
 				return TailwindUtils.merge(
-					BoButtonPadding.extra_large,
-					BoButtonTextSize.extra_large,
+					BoButtonPaddingClasses.extra_large,
+					BoButtonTextSizeClasses.extra_large,
 				);
 			case BoSize.default:
 			default:
 				return TailwindUtils.merge(
-					BoButtonPadding.default,
-					BoButtonTextSize.default,
+					BoButtonPaddingClasses.default,
+					BoButtonTextSizeClasses.default,
 				);
 		}
 	});
