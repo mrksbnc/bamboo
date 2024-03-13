@@ -3,15 +3,14 @@ import type { StorybookConfig } from '@storybook/vue3-vite';
 const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	addons: [
-        '@storybook/addon-links',
-        '@storybook/addon-essentials',
-        '@chromatic-com/storybook',
-        '@storybook/addon-interactions',
-        '@storybook/addon-themes',
-        '@storybook/theming',
-        '@storybook/addon-coverage',
-        '@storybook/addon-mdx-gfm'
-    ],
+		'@storybook/addon-links',
+		'@storybook/addon-essentials',
+		'@chromatic-com/storybook',
+		'@storybook/addon-interactions',
+		'@storybook/addon-themes',
+		'@storybook/theming',
+		'@storybook/addon-coverage',
+	],
 	framework: {
 		name: '@storybook/vue3-vite',
 		options: {},
