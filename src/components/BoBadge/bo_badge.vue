@@ -44,9 +44,9 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/BoIcon';
+import { BoIcon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
-import { computed, toRef, toRefs, type PropType } from 'vue';
+import { computed, toRefs, type PropType } from 'vue';
 import {
 	BoBadgeType,
 	BoBadgeSize,
@@ -54,7 +54,6 @@ import {
 	useBoBadgeStyle,
 	BoBadgeVariant,
 } from '@/components/BoBadge';
-import { StringUtils } from '@/utils/string_utils';
 
 const props = defineProps({
 	label: {
@@ -63,18 +62,18 @@ const props = defineProps({
 	},
 	variant: {
 		type: String as PropType<BoBadgeVariant>,
-		default: BoBadgeVariant.blue,
+		default: () => BoBadgeVariant.blue,
 	},
 	size: {
 		type: String as PropType<BoBadgeSize>,
-		default: BoBadgeSize.default,
+		default: () => BoBadgeSize.default,
 	},
 	type: {
 		type: String as PropType<BoBadgeType>,
-		default: BoBadgeType.default,
+		default: () => BoBadgeType.default,
 	},
 	icon: {
-		type: Object as PropType<BoBadgeIcon>,
+		type: Object as PropType<BoBadgeIcon | null>,
 		default: null,
 	},
 });
@@ -91,14 +90,6 @@ const iconOnly = computed<boolean>(
 
 const iconProps = computed<BoBadgeIcon>(
 	() => useBoBadgeStyle(toRefs(props)).iconProps,
-);
-
-const isCircle = computed<boolean>(
-	() => useBoBadgeStyle(toRefs(props)).isCircle,
-);
-
-const hasLabel = computed<boolean>(
-	() => useBoBadgeStyle(toRefs(props)).hasLabel,
 );
 
 const showLabel = computed<boolean>(

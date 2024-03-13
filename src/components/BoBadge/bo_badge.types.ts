@@ -19,7 +19,7 @@ export declare type UseBoBadgeComposableArgs = {
 	variant: Ref<BoBadgeVariant>;
 	size: Ref<BoBadgeSize>;
 	type: Ref<BoBadgeType>;
-	icon: Ref<BoBadgeIcon>;
+	icon: Ref<BoBadgeIcon> | Ref<null>;
 };
 
 export declare type UseBoBadgeComposableReturn = {

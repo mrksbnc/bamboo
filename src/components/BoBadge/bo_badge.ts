@@ -1,5 +1,4 @@
 import type {
-	BoBadgeIcon,
 	UseBoBadgeComposableArgs,
 	UseBoBadgeComposableReturn,
 } from '@/components/BoBadge';
@@ -31,20 +30,20 @@ export enum BoBadgeSize {
 }
 
 enum BoBadgeBorderRadiusClasses {
-	default = 'rounded',
-	rounded = 'rounded-full',
+	default = /*tw*/ 'rounded',
+	rounded = /*tw*/ 'rounded-full',
 }
 
 enum BoBadgePaddingClasses {
-	default = 'px-2 py-1',
-	large = 'px-3 py-1.5',
-	circle_default = 'size-6',
-	circle_large = 'size-8',
+	default = /*tw*/ 'px-2 py-1',
+	large = /*tw*/ 'px-3 py-1.5',
+	circle_default = /*tw*/ 'size-6',
+	circle_large = /*tw*/ 'size-8',
 }
 
 enum BoBadgeTextClasses {
-	default = 'text-xs font-medium',
-	large = 'text-sm font-medium',
+	default = /*tw*/ 'text-xs font-medium',
+	large = /*tw*/ 'text-sm font-medium',
 }
 
 const BO_BADGE_DEFAULT_CLASSES =
@@ -100,10 +99,15 @@ export const useBoBadgeStyle = (
 	const variant = props.variant.value ?? BoBadgeVariant.blue;
 	const type = props.type.value ?? BoBadgeType.default;
 	const size = props.size.value ?? BoBadgeSize.default;
-	const icon = props.icon.value;
+	const icon = props.icon.value ?? {
+		icon: Icon.none,
+		circle: false,
+		prefix: false,
+		suffix: false,
+	};
 
 	const isCircle = computed<boolean>(() => {
-		return props.icon.value.circle ?? false;
+		return props.icon.value?.circle ?? false;
 	});
 
 	const hasLabel = computed<boolean>(() => {
@@ -115,7 +119,13 @@ export const useBoBadgeStyle = (
 	});
 
 	const iconOnly = computed<boolean>(() => {
-		return isCircle.value && !hasLabel.value;
+		return (
+			isCircle.value ||
+			(!hasLabel.value &&
+				icon.icon !== Icon.none &&
+				!icon.prefix &&
+				!icon.suffix)
+		);
 	});
 
 	const hasPrefixIcon = computed<boolean>(() => {
@@ -128,9 +138,10 @@ export const useBoBadgeStyle = (
 
 	const classes = computed<string>(() => {
 		const variantClasses = BO_BADGE_VARIANT_CLASSES[type][variant] ?? '';
-		const borderRadiusClasses = icon.circle
-			? BoBadgeBorderRadiusClasses.rounded
-			: BoBadgeBorderRadiusClasses.rounded;
+		const borderRadiusClasses =
+			icon.circle || type === BoBadgeType.pill
+				? BoBadgeBorderRadiusClasses.rounded
+				: BoBadgeBorderRadiusClasses.default;
 
 		const isCircle = icon.circle ?? false;
 
@@ -160,15 +171,6 @@ export const useBoBadgeStyle = (
 		return BoSize.default;
 	});
 
-	const iconProps = computed<Required<BoBadgeIcon>>(() => {
-		return {
-			icon: props.icon.value?.icon ?? Icon.none,
-			prefix: props.icon.value?.prefix ?? false,
-			suffix: props.icon.value?.suffix ?? false,
-			circle: props.icon.value?.circle ?? false,
-		};
-	});
-
 	return {
 		isCircle: isCircle.value,
 		hasLabel: hasLabel.value,
@@ -178,6 +180,6 @@ export const useBoBadgeStyle = (
 		hasSuffixIcon: hasSuffixIcon.value,
 		classes: classes.value,
 		iconSize: iconSize.value,
-		iconProps: iconProps.value,
+		iconProps: icon,
 	};
 };

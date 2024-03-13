@@ -92,7 +92,7 @@ const meta = {
 				},
 			},
 			control: {
-				type: 'text',
+				type: 'object',
 			},
 		},
 	},
@@ -196,7 +196,7 @@ export const IconOnly: Story = {
 			icon: Icon.check,
 			prefix: false,
 			suffix: false,
-			circle: true,
+			circle: false,
 		},
 	},
 };
