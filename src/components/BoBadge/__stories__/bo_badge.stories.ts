@@ -1,6 +1,10 @@
-import { BoBadge, BoBadgeSize, BoBadgeType } from '@/components/BoBadge';
+import {
+	BoBadge,
+	BoBadgeSize,
+	BoBadgeType,
+	BoBadgeVariant,
+} from '@/components/BoBadge';
 import { Icon } from '@/components/BoIcon';
-import { BoVariant } from '@/constants';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -20,18 +24,21 @@ const meta = {
 			},
 		},
 		variant: {
-			options: Object.values(BoVariant),
+			options: Object.values(BoBadgeVariant),
 			description: 'The variant of the button',
 			control: { type: 'select' },
 			table: {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoVariant',
-					detail: StorybookUtils.stringEnumFormatter(BoVariant, 'BoVariant'),
+					summary: 'BoBadgeVariant',
+					detail: StorybookUtils.stringEnumFormatter(
+						BoBadgeVariant,
+						'BoBadgeVariant',
+					),
 				},
 			},
-			defaultValue: BoVariant.default,
+			defaultValue: BoBadgeVariant.blue,
 		},
 		size: {
 			type: 'string',
@@ -89,18 +96,6 @@ const meta = {
 			},
 		},
 	},
-	args: {
-		label: 'Badge',
-		variant: BoVariant.default,
-		size: BoBadgeSize.default,
-		type: BoBadgeType.default,
-		icon: {
-			iconOnly: false,
-			icon: Icon.check,
-			prefix: undefined,
-			suffix: undefined,
-		},
-	},
 } satisfies Meta<typeof BoBadge>;
 
 export default meta;
@@ -133,36 +128,36 @@ export const Variants: Story = {
 		template: `
 			<h1 class="my-2 dark:text-white">Default</h1>
 			<div class="flex flex-1">
-				<BoBadge label="Primary" variant="${BoVariant.primary}" class="m-1"/>
-				<BoBadge label="Secondary" variant="${BoVariant.secondary}" class="m-1"/>
-				<BoBadge label="Danger" variant="${BoVariant.danger}" class="m-1"/>
-				<BoBadge label="Warning" variant="${BoVariant.warning}" class="m-1"/>
-				<BoBadge label="Success" variant="${BoVariant.success}" class="m-1"/>
-				<BoBadge label="Dark" variant="${BoVariant.dark}" class="m-1"/>
-				<BoBadge label="Purple" variant="${BoVariant.purple}" class="m-1"/>
-				<BoBadge label="Teal" variant="${BoVariant.teal}" class="m-1"/>
+				<BoBadge label="Primary" variant="${BoBadgeVariant.blue}" class="m-1"/>
+				<BoBadge label="Secondary" variant="${BoBadgeVariant.gray}" class="m-1"/>
+				<BoBadge label="Danger" variant="${BoBadgeVariant.red}" class="m-1"/>
+				<BoBadge label="Warning" variant="${BoBadgeVariant.yellow}" class="m-1"/>
+				<BoBadge label="Success" variant="${BoBadgeVariant.green}" class="m-1"/>
+				<BoBadge label="Dark" variant="${BoBadgeVariant.black}" class="m-1"/>
+				<BoBadge label="Purple" variant="${BoBadgeVariant.purple}" class="m-1"/>
+				<BoBadge label="Teal" variant="${BoBadgeVariant.teal}" class="m-1"/>
 			</div>
 			<h1 class="my-2 dark:text-white">Pill</h1>
 			<div class="flex flex-1">
-				<BoBadge label="Primary" variant="${BoVariant.primary}" type=${BoBadgeType.pill} class="m-1"/>
-				<BoBadge label="Secondary" variant="${BoVariant.secondary}" type=${BoBadgeType.pill} class="m-1"/>
-				<BoBadge label="Danger" variant="${BoVariant.danger}" type=${BoBadgeType.pill} class="m-1"/>
-				<BoBadge label="Warning" variant="${BoVariant.warning}" type=${BoBadgeType.pill} class="m-1"/>
-				<BoBadge label="Success" variant="${BoVariant.success}" type=${BoBadgeType.pill} class="m-1"/>
-				<BoBadge label="Dark" variant="${BoVariant.dark}" type=${BoBadgeType.pill} class="m-1"/>
-				<BoBadge label="Purple" variant="${BoVariant.purple}" type=${BoBadgeType.pill} class="m-1"/>
-				<BoBadge label="Teal" variant="${BoVariant.teal}" type=${BoBadgeType.pill} class="m-1"/>
+				<BoBadge label="Primary" variant="${BoBadgeVariant.blue}" type=${BoBadgeType.pill} class="m-1"/>
+				<BoBadge label="Secondary" variant="${BoBadgeVariant.gray}" type=${BoBadgeType.pill} class="m-1"/>
+				<BoBadge label="Danger" variant="${BoBadgeVariant.red}" type=${BoBadgeType.pill} class="m-1"/>
+				<BoBadge label="Warning" variant="${BoBadgeVariant.yellow}" type=${BoBadgeType.pill} class="m-1"/>
+				<BoBadge label="Success" variant="${BoBadgeVariant.green}" type=${BoBadgeType.pill} class="m-1"/>
+				<BoBadge label="Dark" variant="${BoBadgeVariant.black}" type=${BoBadgeType.pill} class="m-1"/>
+				<BoBadge label="Purple" variant="${BoBadgeVariant.purple}" type=${BoBadgeType.pill} class="m-1"/>
+				<BoBadge label="Teal" variant="${BoBadgeVariant.teal}" type=${BoBadgeType.pill} class="m-1"/>
 			</div>
 			<h1 class="my-2 dark:text-white">Outline</h1>
 			<div class="flex flex-1">
-				<BoBadge label="Primary" variant="${BoVariant.primary}" type=${BoBadgeType.outline} class="m-1"/>
-				<BoBadge label="Secondary" variant="${BoVariant.secondary}" type=${BoBadgeType.outline} class="m-1"/>
-				<BoBadge label="Danger" variant="${BoVariant.danger}" type=${BoBadgeType.outline} class="m-1"/>
-				<BoBadge label="Warning" variant="${BoVariant.warning}" type=${BoBadgeType.outline} class="m-1"/>
-				<BoBadge label="Success" variant="${BoVariant.success}" type=${BoBadgeType.outline} class="m-1"/>
-				<BoBadge label="Dark" variant="${BoVariant.dark}" type=${BoBadgeType.outline} class="m-1"/>
-				<BoBadge label="Purple" variant="${BoVariant.purple}" type=${BoBadgeType.outline} class="m-1"/>
-				<BoBadge label="Teal" variant="${BoVariant.teal}" type=${BoBadgeType.outline} class="m-1"/>
+				<BoBadge label="Primary" variant="${BoBadgeVariant.blue}" type=${BoBadgeType.outline} class="m-1"/>
+				<BoBadge label="Secondary" variant="${BoBadgeVariant.gray}" type=${BoBadgeType.outline} class="m-1"/>
+				<BoBadge label="Danger" variant="${BoBadgeVariant.red}" type=${BoBadgeType.outline} class="m-1"/>
+				<BoBadge label="Warning" variant="${BoBadgeVariant.yellow}" type=${BoBadgeType.outline} class="m-1"/>
+				<BoBadge label="Success" variant="${BoBadgeVariant.green}" type=${BoBadgeType.outline} class="m-1"/>
+				<BoBadge label="Dark" variant="${BoBadgeVariant.black}" type=${BoBadgeType.outline} class="m-1"/>
+				<BoBadge label="Purple" variant="${BoBadgeVariant.purple}" type=${BoBadgeType.outline} class="m-1"/>
+				<BoBadge label="Teal" variant="${BoBadgeVariant.teal}" type=${BoBadgeType.outline} class="m-1"/>
 			</div>
 		`,
 	}),
@@ -175,7 +170,10 @@ export const WithPrefixIcon: Story = {
 	args: {
 		label: 'Badge',
 		icon: {
-			prefix: Icon.check,
+			icon: Icon.check,
+			prefix: true,
+			suffix: false,
+			circle: false,
 		},
 	},
 };
@@ -184,28 +182,33 @@ export const WithSuffixIcon: Story = {
 	args: {
 		label: 'Badge',
 		icon: {
-			suffix: Icon.check,
+			icon: Icon.check,
+			suffix: true,
+			prefix: false,
+			circle: false,
 		},
 	},
 };
 
 export const IconOnly: Story = {
 	args: {
-		label: 'Badge',
 		icon: {
-			iconOnly: true,
 			icon: Icon.check,
+			prefix: false,
+			suffix: false,
+			circle: true,
 		},
 	},
 };
 
 export const IconOnlyCircle: Story = {
 	args: {
-		label: 'Badge',
+		label: undefined,
 		icon: {
 			circle: true,
-			iconOnly: true,
 			icon: Icon.check,
+			prefix: false,
+			suffix: false,
 		},
 	},
 };
