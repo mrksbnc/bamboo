@@ -1,11 +1,12 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`BoBadge > should match the snapshot 1`] = `
-"<div class="bo-badge inline-flex cursor-default select-none space-x-1 shadow-md badge-default rounded-md me-2 px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-600">
-  <!--v-if-->
-  <div><span class="bo-badge__label truncate font-medium">Badge</span>
+"<div class="bo-badge badge-blue inline-flex items-center justify-center font-medium space-x-1 bg-blue-700 dark:bg-blue-600 text-white dark:text-white rounded px-2 py-1 text-xs">
+  <div class="bo-badge__prefix-slot"></div>
+  <div>
+    <p class="bo-badge__label">Badge</p>
     <!--v-if-->
   </div>
-  <!--v-if-->
+  <div></div>
 </div>"
 `;
