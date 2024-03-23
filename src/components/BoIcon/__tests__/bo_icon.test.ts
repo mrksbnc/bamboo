@@ -1,8 +1,7 @@
 import { BoSize } from '@/constants';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, test } from 'vitest';
-import { Icon } from '../ts/bo_icon';
-import BoIcon from '../vue/BoIcon.vue';
+import { BoIcon, Icon } from '..';
 
 let wrapper: ReturnType<typeof mount>;
 

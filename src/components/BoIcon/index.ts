@@ -1,2 +1,6 @@
-export { Icon, icons } from '@/components/BoIcon/ts/bo_icon';
-export { default as BoIcon } from '@/components/BoIcon/vue/BoIcon.vue';
+export { Icon, icons, useIcon } from '@/components/BoIcon/bo_icon';
+export type {
+	UseBoIconComposableArgs,
+	UseBoIconComposableReturn,
+} from '@/components/BoIcon/bo_icon.types';
+export { default as BoIcon } from '@/components/BoIcon/bo_icon.vue';
