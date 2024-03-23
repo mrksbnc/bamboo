@@ -1,4 +1,3 @@
-import BoIcon from '@/components/BoIcon/vue/BoIcon.vue';
 <template>
 	<div
 		role="group"
