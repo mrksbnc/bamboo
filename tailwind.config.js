@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
 	darkMode: 'class',
 	content: ['./src/**/*.{vue,ts}'],
 	theme: {
 		extend: {},
 	},
-	plugins: [['postcss-import', {}], 'tailwindcss', ['postcss-preset-env', {}]],
+	plugins: [],
 };

@@ -1,3 +1,10 @@
+import type {
+	UseBoIconComposableArgs,
+	UseBoIconComposableReturn,
+} from '@/components/BoIcon';
+import { BoSize } from '@/constants';
+import { computed } from 'vue';
+
 export enum Icon {
 	activity = 'activity',
 	airplay = 'airplay',
@@ -287,3 +294,57 @@ export const icons = import.meta.glob('@/assets/icons/**/*.svg', {
 	query: '?raw',
 	import: 'default',
 }) as Record<string, () => Promise<string>>;
+
+export const useIcon = (
+	props: UseBoIconComposableArgs,
+): UseBoIconComposableReturn => {
+	const iconMap = Object.keys(icons).reduce(
+		(acc, key) => {
+			const splitted = key.split('/');
+			const icon = splitted[splitted.length - 1].split('.')[0];
+
+			acc[icon] = icons[key];
+
+			return acc;
+		},
+		{} as Record<string, () => Promise<string>>,
+	);
+
+	const iconSizeClass = computed<string>(() => {
+		switch (props.size.value) {
+			case BoSize.extra_small:
+				return 'size-2';
+			case BoSize.small:
+				return 'size-3';
+			case BoSize.large:
+				return 'size-6';
+			case BoSize.extra_large:
+				return 'size-8';
+			case BoSize.default:
+			default:
+				return 'size-4';
+		}
+	});
+
+	const iconStyle = computed(() => {
+		return {
+			color: props.color.value ?? 'currentColor',
+		};
+	});
+
+	const getIconSvg = async (icon: Icon): Promise<string> => {
+		try {
+			return await iconMap[icon]();
+		} catch (e) {
+			console.error(`Could not find icon of name ${icon}`);
+			return await iconMap[Icon.none]();
+		}
+	};
+
+	return {
+		iconMap,
+		style: iconStyle.value,
+		classes: iconSizeClass.value,
+		getIconSvg,
+	};
+};

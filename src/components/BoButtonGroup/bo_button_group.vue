@@ -1,4 +1,3 @@
-import BoIcon from '@/components/BoIcon/vue/BoIcon.vue';
 <template>
 	<div
 		role="group"
@@ -36,7 +35,7 @@ import {
 	BoButtonGroupVariant,
 	ButtonGroupEvent,
 	type BoButtonGroupItem,
-} from '@/components/BoButton';
+} from '@/components/BoButtonGroup';
 import { computed, toRefs, type PropType } from 'vue';
 import { BoSize } from '@/constants';
 import { TailwindUtils } from '@/utils';

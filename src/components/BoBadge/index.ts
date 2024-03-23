@@ -1,6 +1,12 @@
 export {
 	BoBadgeSize,
 	BoBadgeType,
-	type BoBadgeIcon,
-} from '@/components/BoBadge/ts/bo_badge';
-export { default as BoBadge } from '@/components/BoBadge/vue/BoBadge.vue';
+	BoBadgeVariant,
+	useBoBadgeStyle,
+} from '@/components/BoBadge/bo_badge';
+export type {
+	BoBadgeIcon,
+	UseBoBadgeComposableArgs,
+	UseBoBadgeComposableReturn,
+} from '@/components/BoBadge/bo_badge.types';
+export { default as BoBadge } from '@/components/BoBadge/bo_badge.vue';

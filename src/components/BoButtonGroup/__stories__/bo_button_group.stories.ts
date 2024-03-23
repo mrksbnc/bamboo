@@ -1,9 +1,10 @@
-import { BoButtonGroupVariant, Icon } from '@/components';
 import {
 	BoButtonGroup,
 	BoButtonGroupSize,
+	BoButtonGroupVariant,
 	type BoButtonGroupItem,
-} from '@/components/BoButton';
+} from '@/components/BoButtonGroup';
+import { Icon } from '@/components/BoIcon';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 

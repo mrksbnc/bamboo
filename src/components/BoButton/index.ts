@@ -1,11 +1,16 @@
+/**
+ * @module BoButton
+ * @since 0.0.1
+ *
+ * @description module export for the BoButton component and its members
+ */
 export {
-	BoButtonGroupSize,
-	BoButtonGroupVariant,
 	BoButtonType,
-	BoIconButtonType,
-} from '@/components/BoButton/ts/bo_button';
-export { ButtonGroupEvent } from '@/components/BoButton/ts/events';
-export type { BoButtonGroupItem } from '@/components/BoButton/ts/types';
-export { default as BoButton } from '@/components/BoButton/vue/BoButton.vue';
-export { default as BoButtonGroup } from '@/components/BoButton/vue/BoButtonGroup.vue';
-export { default as BoIconButton } from '@/components/BoButton/vue/BoIconButton.vue';
+	BoButtonVariant,
+	useBoButtonStyle,
+} from '@/components/BoButton/bo_button';
+export type {
+	BoButtonClassMap,
+	UseBoButtonCompoableArgs,
+} from '@/components/BoButton/bo_button.types';
+export { default as BoButton } from '@/components/BoButton/bo_button.vue';

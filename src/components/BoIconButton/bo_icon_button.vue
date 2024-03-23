@@ -18,7 +18,7 @@ import { BoIcon, type Icon } from '@/components/BoIcon';
 import { BoSize, BoVariant } from '@/constants';
 import { TailwindUtils } from '@/utils';
 import { computed, toRefs, type PropType } from 'vue';
-import { BoIconButtonType } from '@/components/BoButton';
+import { BoIconButtonType } from '@/components/BoIconButton';
 
 const props = defineProps({
 	icon: {
