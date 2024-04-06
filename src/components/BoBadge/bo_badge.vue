@@ -51,7 +51,7 @@ import {
 	BoBadgeType,
 	BoBadgeSize,
 	type BoBadgeIcon,
-	useBoBadgeStyle,
+	useBoBadge,
 	BoBadgeVariant,
 } from '@/components/BoBadge';
 
@@ -78,29 +78,23 @@ const props = defineProps({
 	},
 });
 
-const classes = computed<string>(() => useBoBadgeStyle(toRefs(props)).classes);
+const classes = computed<string>(() => useBoBadge(toRefs(props)).classes);
 
-const iconSize = computed<BoSize>(
-	() => useBoBadgeStyle(toRefs(props)).iconSize,
-);
+const iconSize = computed<BoSize>(() => useBoBadge(toRefs(props)).iconSize);
 
-const iconOnly = computed<boolean>(
-	() => useBoBadgeStyle(toRefs(props)).iconOnly,
-);
+const iconOnly = computed<boolean>(() => useBoBadge(toRefs(props)).iconOnly);
 
 const iconProps = computed<BoBadgeIcon>(
-	() => useBoBadgeStyle(toRefs(props)).iconProps,
+	() => useBoBadge(toRefs(props)).iconProps,
 );
 
-const showLabel = computed<boolean>(
-	() => useBoBadgeStyle(toRefs(props)).showLabel,
-);
+const showLabel = computed<boolean>(() => useBoBadge(toRefs(props)).showLabel);
 
 const hasPrefixIcon = computed<boolean>(
-	() => useBoBadgeStyle(toRefs(props)).hasPrefixIcon,
+	() => useBoBadge(toRefs(props)).hasPrefixIcon,
 );
 
 const hasSuffixIcon = computed<boolean>(
-	() => useBoBadgeStyle(toRefs(props)).hasSuffixIcon,
+	() => useBoBadge(toRefs(props)).hasSuffixIcon,
 );
 </script>

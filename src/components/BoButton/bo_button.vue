@@ -49,7 +49,7 @@ import { computed, toRefs, type PropType } from 'vue';
 import { BoIcon, type Icon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
 import {
-	useBoButtonStyle,
+	useBoButton,
 	BoButtonVariant,
 	BoButtonType,
 } from '@/components/BoButton';
@@ -85,6 +85,6 @@ const props = defineProps({
 	},
 });
 
-const classes = computed(() => useBoButtonStyle(toRefs(props)).classes);
-const iconSize = computed(() => useBoButtonStyle(toRefs(props)).iconSize);
+const classes = computed(() => useBoButton(toRefs(props)).classes);
+const iconSize = computed(() => useBoButton(toRefs(props)).iconSize);
 </script>

@@ -7,7 +7,7 @@
 export {
 	BoButtonType,
 	BoButtonVariant,
-	useBoButtonStyle,
+	useBoButton,
 } from '@/components/BoButton/bo_button';
 export type {
 	BoButtonClassMap,

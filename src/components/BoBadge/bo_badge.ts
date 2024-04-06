@@ -93,7 +93,7 @@ const BO_BADGE_VARIANT_CLASSES: Record<
 	},
 });
 
-export const useBoBadgeStyle = (
+export const useBoBadge = (
 	props: UseBoBadgeComposableArgs,
 ): UseBoBadgeComposableReturn => {
 	const variant = props.variant.value ?? BoBadgeVariant.blue;

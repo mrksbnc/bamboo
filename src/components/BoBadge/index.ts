@@ -2,7 +2,7 @@ export {
 	BoBadgeSize,
 	BoBadgeType,
 	BoBadgeVariant,
-	useBoBadgeStyle,
+	useBoBadge,
 } from '@/components/BoBadge/bo_badge';
 export type {
 	BoBadgeIcon,

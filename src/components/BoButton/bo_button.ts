@@ -135,7 +135,7 @@ enum BoButtonShadowClasses {
 	teal = /*tw*/ 'shadow-sm shadow-teal-500/50 dark:shadow-sm dark:shadow-teal-800/80',
 }
 
-export const useBoButtonStyle = (
+export const useBoButton = (
 	props: UseBoButtonCompoableArgs,
 ): { classes: string; iconSize: BoSize } => {
 	const variant = props.variant.value;
