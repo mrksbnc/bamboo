@@ -1,0 +1,36 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import * as BadgeStories from './bo_badge.stories';
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+A badge is a small status descriptor for UI elements. It's typically used to communicate a numerical value or a status.
+
+## Props
+
+- `value` (required): the value to display in the badge
+
+<hr />
+
+- `variant`: the variant of the badge. Can be one of `blue`, `gray`, `green`, `red`, `yellow`, `black`, `purple`, `teal`. Default is `blue`.
+
+<hr />
+
+- `size`: the size of the badge. Can be one of `default` or `large`. Default is `default`.
+
+<hr />
+
+- `type`: the type of the badge. Can be one of `default`, `pill`, `outline`. Default is `default`.
+  - `default`: a filled badge
+  - `pill`: a filled badge with fully rounded corners
+  - `outline`: an outlined badge with no fill just a border
+
+<hr />
+
+- `icon`: an object used to determine the icon and it's position to display
+  in the badge. The object should have the following properties:
+  - `icon`: the icon to display in the badge
+  - `circle`: a boolean to determine if the icon should be displayed in a circle. This can be applied only if the value is not displayed. Default is `false`.
+  - `prefix`: a boolean to determine if the icon should be displayed before the value. Default is `false`.
+  - `suffix`: a boolean to determine if the icon should be displayed after the value. Default is `false`.

@@ -111,7 +111,7 @@ export const useBoBadge = (
 	});
 
 	const hasLabel = computed<boolean>(() => {
-		return props.label.value != null;
+		return props.value.value != null;
 	});
 
 	const showLabel = computed<boolean>(() => {

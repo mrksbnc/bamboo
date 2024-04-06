@@ -21,7 +21,7 @@
 				v-if="showLabel"
 				class="bo-badge__label"
 			>
-				{{ label }}
+				{{ value }}
 			</p>
 			<div v-if="iconOnly">
 				<bo-icon
@@ -56,7 +56,7 @@ import {
 } from '@/components/BoBadge';
 
 const props = defineProps({
-	label: {
+	value: {
 		type: String,
 		default: null,
 	},

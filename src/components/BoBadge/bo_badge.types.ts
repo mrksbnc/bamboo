@@ -15,7 +15,7 @@ export declare type BoBadgeIcon = {
 };
 
 export declare type UseBoBadgeComposableArgs = {
-	label: Ref<string>;
+	value: Ref<string>;
 	variant: Ref<BoBadgeVariant>;
 	size: Ref<BoBadgeSize>;
 	type: Ref<BoBadgeType>;
