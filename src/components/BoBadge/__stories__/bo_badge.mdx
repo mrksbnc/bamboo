@@ -1,4 +1,4 @@
-import { Canvas, Meta } from '@storybook/blocks';
+import { Canvas, Meta, Controls } from '@storybook/blocks';
 import * as BadgeStories from './bo_badge.stories';
 
 <Meta of={BadgeStories} />
@@ -34,3 +34,6 @@ A badge is a small status descriptor for UI elements. It's typically used to com
   - `circle`: a boolean to determine if the icon should be displayed in a circle. This can be applied only if the value is not displayed. Default is `false`.
   - `prefix`: a boolean to determine if the icon should be displayed before the value. Default is `false`.
   - `suffix`: a boolean to determine if the icon should be displayed after the value. Default is `false`.
+
+<Canvas of={BadgeStories.Default} />
+<Controls />
