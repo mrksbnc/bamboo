@@ -6,5 +6,4 @@ export default create({
 	fontCode: 'monospace',
 	brandTitle: 'Bamboo UI Lib',
 	fontBase: '"Open Sans", sans-serif',
-	brandUrl: 'http://localhost:6006/?path=/docs/bamboo--docs',
 });

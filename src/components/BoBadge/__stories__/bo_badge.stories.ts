@@ -95,6 +95,29 @@ const meta = {
 				type: 'object',
 			},
 		},
+		prefix: {
+			description: 'The prefix slot for the badge',
+			table: {
+				category: 'slots',
+				type: {
+					summary: 'VNode',
+				},
+			},
+			control: {
+				type: 'text',
+			},
+			defaultValue: undefined,
+		},
+		suffix: {
+			description: 'The suffix slot for the badge',
+			table: {
+				category: 'slots',
+				type: {
+					summary: 'VNode',
+				},
+			},
+			defaultValue: undefined,
+		},
 	},
 } satisfies Meta<typeof BoBadge>;
 
