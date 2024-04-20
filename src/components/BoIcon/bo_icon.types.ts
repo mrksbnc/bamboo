@@ -9,8 +9,11 @@ export declare type UseBoIconComposableArgs = {
 };
 
 export declare type UseBoIconComposableReturn = {
-	classes: string;
-	style: StyleValue;
 	iconMap: Record<string, () => Promise<string>>;
 	getIconSvg: (icon: Icon) => Promise<string>;
+};
+
+export declare type UseBoIconStyleComposableReturn = {
+	classes: string;
+	style: StyleValue;
 };

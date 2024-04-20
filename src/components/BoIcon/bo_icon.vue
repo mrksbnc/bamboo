@@ -27,6 +27,7 @@ import {
 	computed,
 	type StyleValue,
 } from 'vue';
+import { useIconStyle } from './bo_icon';
 
 const props = defineProps({
 	icon: {
@@ -48,16 +49,15 @@ const { icon } = toRefs(props);
 const svg = ref('');
 
 const style = computed<StyleValue>(() => {
-	return useIcon(toRefs(props)).style;
+	return useIconStyle(toRefs(props)).style;
 });
 
 const classes = computed<string>(() => {
-	return useIcon(toRefs(props)).classes;
+	return useIconStyle(toRefs(props)).classes;
 });
 
 watch(
 	() => icon.value,
-	/** It should be optimized */
 	async () => {
 		svg.value = await useIcon(toRefs(props)).getIconSvg(icon.value);
 	},

@@ -1,6 +1,7 @@
 import type {
 	UseBoIconComposableArgs,
 	UseBoIconComposableReturn,
+	UseBoIconStyleComposableReturn,
 } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
 import { computed } from 'vue';
@@ -310,6 +311,24 @@ export const useIcon = (
 		{} as Record<string, () => Promise<string>>,
 	);
 
+	const getIconSvg = async (icon: Icon): Promise<string> => {
+		try {
+			return await iconMap[icon]();
+		} catch (e) {
+			console.error(`Could not find icon of name ${icon}`);
+			return await iconMap[Icon.none]();
+		}
+	};
+
+	return {
+		iconMap,
+		getIconSvg,
+	};
+};
+
+export const useIconStyle = (
+	props: UseBoIconComposableArgs,
+): UseBoIconStyleComposableReturn => {
 	const iconSizeClass = computed<string>(() => {
 		switch (props.size.value) {
 			case BoSize.extra_small:
@@ -332,19 +351,8 @@ export const useIcon = (
 		};
 	});
 
-	const getIconSvg = async (icon: Icon): Promise<string> => {
-		try {
-			return await iconMap[icon]();
-		} catch (e) {
-			console.error(`Could not find icon of name ${icon}`);
-			return await iconMap[Icon.none]();
-		}
-	};
-
 	return {
-		iconMap,
 		style: iconStyle.value,
 		classes: iconSizeClass.value,
-		getIconSvg,
 	};
 };
