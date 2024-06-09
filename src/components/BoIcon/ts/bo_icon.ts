@@ -306,7 +306,7 @@ export const useIcon = (): UseBoIconComposableReturn => {
 
 			return acc;
 		},
-		{} as Record<string, () => Promise<string>>,
+		{} as Record<string, () => Promise<string>>
 	);
 
 	const getIconSvg = async (icon: Icon): Promise<string> => {
@@ -325,7 +325,7 @@ export const useIcon = (): UseBoIconComposableReturn => {
 };
 
 export const useIconStyle = (
-	props: UseBoIconComposableArgs,
+	props: UseBoIconComposableArgs
 ): UseBoIconStyleComposableReturn => {
 	const iconSizeClass = computed<string>(() => {
 		switch (props.size.value) {

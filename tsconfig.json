@@ -13,12 +13,6 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": [
-		"env.d.ts",
-		"src/**/*.ts",
-		"src/**/*.vue",
-		"*.config.*",
-		".eslintrc.cjs"
-	],
+	"include": ["env.d.ts", "src/**/*.ts", "src/**/*.vue", "*.config.*"],
 	"exclude": ["node_modules", "dist", "docs"]
 }
