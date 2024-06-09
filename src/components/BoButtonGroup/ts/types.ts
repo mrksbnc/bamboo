@@ -1,4 +1,4 @@
-import type { Icon } from '../BoIcon';
+import type { Icon } from '../../BoIcon';
 
 export declare type BoButtonGroupItem = {
 	id: string | number;
