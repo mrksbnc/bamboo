@@ -296,9 +296,7 @@ export const icons = import.meta.glob('@/assets/icons/**/*.svg', {
 	import: 'default',
 }) as Record<string, () => Promise<string>>;
 
-export const useIcon = (
-	props: UseBoIconComposableArgs,
-): UseBoIconComposableReturn => {
+export const useIcon = (): UseBoIconComposableReturn => {
 	const iconMap = Object.keys(icons).reduce(
 		(acc, key) => {
 			const splitted = key.split('/');

@@ -9,5 +9,5 @@ export {
 	BoButtonGroupVariant,
 	ButtonGroupEvent,
 } from './ts/bo_button_group';
-export { default as BoButtonGroup } from './vue/bo_button_group.vue';
 export type { BoButtonGroupItem } from './ts/types';
+export { default as BoButtonGroup } from './vue/bo_button_group.vue';

@@ -45,7 +45,7 @@
 
 <script setup lang="ts">
 import { BoIcon } from '@/components/BoIcon';
-import { BoSize } from '@/constants';
+import type { BoSize } from '@/constants';
 import { computed, toRefs, type PropType } from 'vue';
 import {
 	BoBadgeType,

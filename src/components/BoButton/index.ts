@@ -4,11 +4,7 @@
  *
  * @description module export for the BoButton component and its members
  */
-export {
-	BoButtonType,
-	BoButtonVariant,
-	useBoButton,
-} from './ts/bo_button';
+export { BoButtonType, BoButtonVariant, useBoButton } from './ts/bo_button';
 export type {
 	BoButtonClassMap,
 	UseBoButtonCompoableArgs,

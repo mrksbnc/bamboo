@@ -16,7 +16,8 @@ export default defineComponent({
 </script>
 
 <script setup lang="ts">
-import { useIcon, Icon } from '@/components/BoIcon';
+import type { Icon } from '@/components/BoIcon';
+import { useIcon } from '@/components/BoIcon';
 import { BoSize } from '@/constants';
 import {
 	ref,

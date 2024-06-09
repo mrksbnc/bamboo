@@ -36,10 +36,12 @@ module.exports = {
 		'@typescript-eslint/no-unused-vars': 1,
 		'@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'error',
 		'@typescript-eslint/consistent-type-imports': 'error',
+		'@typescript-eslint/no-duplicate-enum-values': 'off',
 	},
 	ignorePatterns: [
 		'*.snap',
 		'*.js',
+		'*.cjs',
 		'scripts/*',
 		'dist/*',
 		'node_modules/*',

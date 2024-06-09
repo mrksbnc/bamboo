@@ -67,6 +67,9 @@ export const Default: Story = {
 
 export const Sizes: Story = {
 	render: (args) => ({
+		setup() {
+			return { args };
+		},
 		components: { BoIcon },
 		template: `
 			<div style="display: flex; align-items: center;">
