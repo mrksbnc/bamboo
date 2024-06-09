@@ -27,7 +27,7 @@ import {
 	computed,
 	type StyleValue,
 } from 'vue';
-import { useIconStyle } from './bo_icon';
+import { useIconStyle } from '../ts/bo_icon';
 
 const props = defineProps({
 	icon: {

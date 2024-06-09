@@ -1,0 +1,35 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as IconStories from './bo_icon.stories';
+
+<Meta of={IconStories} />
+
+# Icon
+
+An icon is a small visual representation of an object or action. It's typically used to represent a button, a menu, or a status.
+
+## Props
+
+- `icon`: the name of the icon
+
+<hr />
+
+- `size`: the size of the icon
+
+<hr />
+
+- `color`: the color of the icon in `hex` format
+
+<Canvas of={IconStories.Default} />
+<Controls />
+
+## Sizes
+
+The icon can be displayed in different sizes. The default size is `default`, and the other sizes are `small`, `large`, and `extra_large`.
+
+<Canvas of={IconStories.Sizes} />
+
+## Colors
+
+The icon can be displayed in different colors. The default color is `currentColor`, and the other colors are `black`, `white`, `red`, `green`, and `blue`.
+
+<Canvas of={IconStories.Colors} />
