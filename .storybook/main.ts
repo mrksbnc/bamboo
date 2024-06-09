@@ -10,15 +10,12 @@ const config: StorybookConfig = {
         '@storybook/addon-themes',
         '@storybook/theming',
         '@storybook/addon-coverage',
-        '@storybook/addon-mdx-gfm'
     ],
 	framework: {
 		name: '@storybook/vue3-vite',
 		options: {},
 	},
-	docs: {
-		autodocs: 'tag',
-	},
+	docs: {},
 	core: {
 		disableTelemetry: true,
 		enableCrashReports: false,

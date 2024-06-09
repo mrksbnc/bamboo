@@ -6,7 +6,7 @@ import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/vue3';
 
 const preview: Preview = {
-	parameters: {
+    parameters: {
 		layout: 'padded',
 		docs: {
 			toc: true,
@@ -25,7 +25,7 @@ const preview: Preview = {
 			],
 		},
 	},
-	decorators: [
+  decorators: [
 		withThemeByClassName({
 			themes: {
 				light: 'light',
