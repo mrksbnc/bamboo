@@ -47,7 +47,7 @@ enum BoBadgeTextClasses {
 }
 
 const BO_BADGE_DEFAULT_CLASSES =
-	/*tw*/ 'inline-flex items-center justify-center font-medium space-x-1';
+	/*tw*/ 'inline-flex items-center justify-center font-medium gap-1';
 
 const BO_BADGE_VARIANT_CLASSES: Record<
 	BoBadgeType,

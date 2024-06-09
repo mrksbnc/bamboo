@@ -11,7 +11,6 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 const meta = {
 	title: 'Badge/bo-badge',
 	component: BoBadge,
-	// tags: ['autodocs'],
 	argTypes: {
 		value: {
 			description: 'The value of the badge',
