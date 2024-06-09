@@ -1,12 +1,18 @@
+/**
+ * @module BoBadge
+ * @since 0.0.1
+ *
+ * @description module export for the BoBadge component and its members
+ */
 export {
 	BoBadgeSize,
 	BoBadgeType,
 	BoBadgeVariant,
 	useBoBadge,
-} from '@/components/BoBadge/ts/bo_badge';
+} from './ts/bo_badge';
 export type {
 	BoBadgeIcon,
 	UseBoBadgeComposableArgs,
 	UseBoBadgeComposableReturn,
-} from '@/components/BoBadge/ts/bo_badge.types';
-export { default as BoBadge } from '@/components/BoBadge/vue/bo_badge.vue';
+} from './ts/bo_badge.types';
+export { default as BoBadge } from './vue/bo_badge.vue';

@@ -8,9 +8,9 @@ export {
 	BoButtonType,
 	BoButtonVariant,
 	useBoButton,
-} from '@/components/BoButton/ts/bo_button';
+} from './ts/bo_button';
 export type {
 	BoButtonClassMap,
 	UseBoButtonCompoableArgs,
-} from '@/components/BoButton/ts/bo_button.types';
-export { default as BoButton } from '@/components/BoButton/vue/bo_button.vue';
+} from './ts/bo_button.types';
+export { default as BoButton } from './vue/bo_button.vue';
