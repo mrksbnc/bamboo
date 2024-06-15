@@ -1,12 +1,13 @@
 <template>
+	<!-- eslint-disable vue/no-v-html -->
 	<div
-		v-html="svg"
+		type="image/svg+xml"
 		:style="style"
 		class="bo-icon"
 		:class="classes"
 		aria-label="icon"
-		type="image/svg+xml"
-	/>
+		v-html="svg"
+	></div>
 </template>
 
 <script lang="ts">
