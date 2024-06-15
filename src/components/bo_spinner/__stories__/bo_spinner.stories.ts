@@ -64,7 +64,7 @@ export const Sizes: Story = {
 	render: () => ({
 		components: { BoSpinner },
 		template: `
-			<div class="flex flex-row gap-2">
+			<div class="flex flex-col gap-4 dark:bg-gray-800 p-2">
 				<BoSpinner size="${BoSize.extra_small}" variant="${BoSpinnerVariant.primary}" class="m-1"/>
 				<BoSpinner size="${BoSize.small}" variant="${BoSpinnerVariant.primary}" class="m-1"/>
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.primary}" class="m-1"/>
@@ -83,8 +83,7 @@ export const Variants: Story = {
 	render: () => ({
 		components: { BoSpinner },
 		template: `
-			<h1 class="my-2 ">Default</h1>
-			<div class="flex flex-1">
+			<div class="flex flex-col gap-4 dark:bg-gray-800 p-2">
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.primary}" class="m-1"/>
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.secondary}" class="m-1"/>
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.danger}" class="m-1"/>
@@ -93,6 +92,47 @@ export const Variants: Story = {
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.dark}" class="m-1"/>				
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.purple}" class="m-1"/>
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.teal}" class="m-1"/>
+			</div>
+		`,
+	}),
+	args: {
+		size: BoSize.default,
+		variant: BoSpinnerVariant.primary,
+	},
+};
+
+export const WithLoaderText: Story = {
+	render: () => ({
+		components: { BoSpinner },
+		template: `
+		<div class="flex flex-col gap-4 dark:bg-gray-800 p-2">
+				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.primary}" loaderText="Loading..." class="m-1"/>
+				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.secondary}" loaderText="Loading..." class="m-1"/>
+				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.danger}" loaderText="Loading..." class="m-1"/>
+				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.warning}" loaderText="Loading..." class="m-1"/>
+				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.success}" loaderText="Loading..." class="m-1"/>
+				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.dark}" loaderText="Loading..." class="m-1"/>				
+				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.purple}" loaderText="Loading..." class="m-1"/>
+				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.teal}" loaderText="Loading..." class="m-1"/>
+			</div>
+		`,
+	}),
+	args: {
+		size: BoSize.default,
+		variant: BoSpinnerVariant.primary,
+	},
+};
+
+export const SizesWithLoaderText: Story = {
+	render: () => ({
+		components: { BoSpinner },
+		template: `
+			<div class="flex flex-col gap-4 dark:bg-gray-800 p-2">
+				<BoSpinner size="${BoSize.extra_small}" variant="${BoSpinnerVariant.primary}" loaderText="Loading..." class="m-1"/>
+				<BoSpinner size="${BoSize.small}" variant="${BoSpinnerVariant.primary}" loaderText="Loading..." class="m-1"/>
+				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.primary}" loaderText="Loading..." class="m-1"/>
+				<BoSpinner size="${BoSize.large}" variant="${BoSpinnerVariant.primary}" loaderText="Loading..." class="m-1"/>
+				<BoSpinner size="${BoSize.extra_large}" variant="${BoSpinnerVariant.primary}" loaderText="Loading..." class="m-1"/>
 			</div>
 		`,
 	}),
