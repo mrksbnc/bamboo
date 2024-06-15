@@ -7,7 +7,6 @@ import { defineConfig, type UserConfig } from 'vitest/config';
 
 /**
  * @see https://vitejs.dev/config/
- *
  */
 const bambooLibConfig: UserConfig = defineConfig({
 	plugins: [
@@ -20,6 +19,7 @@ const bambooLibConfig: UserConfig = defineConfig({
 	build: {
 		minify: true,
 		emptyOutDir: true,
+		cssMinify: true,
 		cssCodeSplit: true,
 		lib: {
 			name: 'bamboo',
