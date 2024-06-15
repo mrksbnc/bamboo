@@ -1,9 +1,6 @@
 # Bamboo
 
 [![npm version](https://badge.fury.io/js/@mrksbnc%2Fbamboo.svg)](https://badge.fury.io/js/@mrksbnc%2Fbamboo)
-[![Test](https://github.com/mrksbnc/bamboo/actions/workflows/test.yaml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/test.yaml)
-[![Storybook deployment](https://github.com/mrksbnc/bamboo/actions/workflows/deploy.yaml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/deploy.yaml)
-[![CodeQL](https://github.com/mrksbnc/bamboo/actions/workflows/codeql.yaml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/codeql.yaml)
 
 Lightweight and flexible (hence the name) UI Library built with [Vite](https://vitejs.dev/) and [Vue 3](https://vuejs.org/). The documentation is created with [Storybook](https://storybook.js.org/).
 
