@@ -32,7 +32,7 @@ import {
 	BoButtonType,
 	BoButtonVariant,
 } from './bo_button';
-import { computed, toRef, toRefs, type PropType } from 'vue';
+import { computed, toRefs, type PropType } from 'vue';
 import { BoSize } from '@/global';
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { TailwindUtils } from '@/utils';
