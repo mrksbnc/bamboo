@@ -33,8 +33,8 @@ const meta = {
 						'BoButtonVariant',
 					),
 				},
-				options: Object.values(BoButtonVariant),
 			},
+			options: Object.values(BoButtonVariant),
 			defaultValue: BoButtonVariant.primary,
 		},
 		type: {
