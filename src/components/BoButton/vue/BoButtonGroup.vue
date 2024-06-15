@@ -11,7 +11,7 @@ import BoIcon from '@/components/BoIcon/vue/BoIcon.vue';
 			role="button"
 			:disabled="disabled"
 			:class="buttonGroupClasses"
-			class="inline-flex items-center first:border last:border border-t border-b first:rounded-s-lg last:rounded-e-lg shadow-md space-x-2"
+			class="inline-flex items-center space-x-2 border-b border-t shadow-md first:rounded-s-lg first:border last:rounded-e-lg last:border"
 			@click="handleSelect(index, item)"
 		>
 			<bo-icon
