@@ -13,6 +13,7 @@ export enum BoButtonVariant {
 	dark = 'dark',
 	purple = 'purple',
 	teal = 'teal',
+	link = 'link',
 }
 
 export enum BoButtonBorderRadiusClasses {
@@ -46,6 +47,7 @@ export enum BoButtonShadowClasses {
 	dark = /*tw*/ 'shadow-sm shadow-black-500/50 dark:shadow-sm dark:shadow-black-800/80',
 	purple = /*tw*/ 'shadow-sm shadow-purple-500/50 dark:shadow-sm dark:shadow-purple-800/80',
 	teal = /*tw*/ 'shadow-sm shadow-teal-500/50 dark:shadow-sm dark:shadow-teal-800/80',
+	link = /*tw*/ 'shadow-none',
 }
 
 export enum BoButtonFilledColorClasses {
@@ -57,6 +59,7 @@ export enum BoButtonFilledColorClasses {
 	dark = /*tw*/ 'bg-black hover:bg-black/50 focus:ring-black text-white',
 	purple = /*tw*/ 'bg-purple-600 hover:bg-purple-700 focus:ring-purple-600 text-white',
 	teal = /*tw*/ 'bg-teal-600 hover:bg-teal-700 focus:ring-teal-600 text-white',
+	link = /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-600 hover:text-blue-700 focus:ring-blue-600',
 }
 
 export enum BoButtonOutlineColorClasses {
@@ -68,4 +71,5 @@ export enum BoButtonOutlineColorClasses {
 	dark = /*tw*/ 'border border-black hover:bg-black focus:ring-black text-black hover:text-white',
 	purple = /*tw*/ 'border border-purple-600 hover:bg-purple-600 focus:ring-purple-600 text-purple-600 hover:text-white',
 	teal = /*tw*/ 'border border-teal-600 hover:bg-teal-600 focus:ring-teal-600 text-teal-600 hover:text-white',
+	link = /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-600 hover:text-blue-700 focus:ring-blue-600',
 }
