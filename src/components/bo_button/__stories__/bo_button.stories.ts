@@ -13,7 +13,6 @@ const meta = {
 	component: BoButton,
 	argTypes: {
 		label: {
-			type: 'string',
 			description: 'The label of the button',
 			control: { type: 'text' },
 			table: {
@@ -22,7 +21,6 @@ const meta = {
 			},
 		},
 		variant: {
-			options: Object.values(BoButtonVariant),
 			description: 'The variant of the button',
 			control: { type: 'select' },
 			table: {
@@ -35,6 +33,7 @@ const meta = {
 						'BoButtonVariant',
 					),
 				},
+				options: Object.values(BoButtonVariant),
 			},
 			defaultValue: BoButtonVariant.primary,
 		},
@@ -149,6 +148,22 @@ export const Sizes: Story = {
 	},
 };
 
+export const Types: Story = {
+	render: () => ({
+		components: { BoButton },
+		template: `
+			<div class="items-center flex">
+				<BoButton label="Default" type="${BoButtonType.default}" class="m-1" />
+				<BoButton label="Pill" type="${BoButtonType.pill}" class="m-1" />
+				<BoButton label="Outline" type="${BoButtonType.outline}" class="m-1" />
+			</div>
+		`,
+	}),
+	args: {
+		label: 'Label',
+	},
+};
+
 export const Variants: Story = {
 	render: () => ({
 		components: { BoButton },
@@ -203,6 +218,14 @@ export const WithPrefixIcon: Story = {
 export const WithSuffixIcon: Story = {
 	args: {
 		label: 'Label',
+		suffixIcon: Icon.alert_circle,
+	},
+};
+
+export const WithPrefixAndSuffixIcon: Story = {
+	args: {
+		label: 'Label',
+		prefixIcon: Icon.alert_circle,
 		suffixIcon: Icon.alert_circle,
 	},
 };
