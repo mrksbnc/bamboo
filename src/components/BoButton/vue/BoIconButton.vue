@@ -4,7 +4,7 @@
 		role="button"
 		:disabled="disabled"
 		:class="[containerStyle, typeClass]"
-		class="flex justify-center items-center"
+		class="flex items-center justify-center"
 	>
 		<bo-icon
 			:icon="icon"

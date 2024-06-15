@@ -3,22 +3,17 @@ require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
 	root: true,
-	env: {
-		es6: true,
-		browser: true,
-	},
 	extends: [
 		'plugin:vue/vue3-essential',
-		'plugin:@typescript-eslint/recommended',
 		'eslint:recommended',
-		'@vue/typescript/recommended',
+		'@vue/eslint-config-typescript',
+		'@vue/eslint-config-prettier/skip-formatting',
 		'plugin:storybook/recommended',
-		'plugin:prettier/recommended',
 	],
 	parserOptions: {
 		ecmaVersion: 'latest',
-		tsconfigRootDir: __dirname,
 		project: './tsconfig.json',
+		tsconfigRootDir: __dirname,
 		parser: '@typescript-eslint/parser',
 	},
 	plugins: ['prettier'],
@@ -40,6 +35,7 @@ module.exports = {
 	ignorePatterns: [
 		'*.snap',
 		'*.js',
+		'*.cjs',
 		'scripts/*',
 		'dist/*',
 		'node_modules/*',
