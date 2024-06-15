@@ -1,5 +1,8 @@
 <template>
-	<div role="status">
+	<div
+		role="status"
+		class="flex flex-row items-center gap-4"
+	>
 		<svg
 			aria-hidden="true"
 			:class="classes"
@@ -16,7 +19,11 @@
 				fill="currentFill"
 			/>
 		</svg>
-		<span v-if="loaderText.length > 0">{{ loaderText }}</span>
+		<span
+			v-if="displayLoaderText"
+			:class="loaderTextClasses"
+			>{{ loaderText }}</span
+		>
 	</div>
 </template>
 
@@ -29,6 +36,7 @@ import {
 	BoSpinnerVariantClasses,
 } from './bo_spinner';
 import { TailwindUtils } from '@/utils';
+import { StringUtils } from '@/utils/string_utils';
 
 const props = defineProps({
 	size: {
@@ -45,10 +53,32 @@ const props = defineProps({
 	},
 });
 
-const { size, variant } = toRefs(props);
+const { size, variant, loaderText } = toRefs(props);
+
+const displayLoaderText = computed<boolean>(() => {
+	return !StringUtils.isEmpty(loaderText.value);
+});
+
+const loaderTextClasses = computed<string>(() => {
+	const defaultClasses = /*tw*/ 'text-gray-400 dark:text-gray-200';
+
+	switch (size.value) {
+		case BoSize.extra_small:
+			return TailwindUtils.merge(defaultClasses, 'text-[0.5rem]');
+		case BoSize.small:
+			return TailwindUtils.merge(defaultClasses, 'text-[0.75rem]');
+		case BoSize.large:
+			return TailwindUtils.merge(defaultClasses, 'text-[1rem]');
+		case BoSize.extra_large:
+			return TailwindUtils.merge(defaultClasses, 'text-[1.2rem]');
+		case BoSize.default:
+		default:
+			return TailwindUtils.merge(defaultClasses, 'text-[0.85rem]');
+	}
+});
 
 const classes = computed<string>(() => {
-	const defaultClasses = 'inline animate-spin';
+	const defaultClasses = /*tw*/ 'flex flex-row animate-spin items-center';
 
 	return TailwindUtils.merge(
 		defaultClasses,
