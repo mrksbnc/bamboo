@@ -23,10 +23,10 @@ export enum BoButtonBorderRadiusClasses {
 
 export enum BoButtonPaddingClasses {
 	extra_small = /*tw*/ 'px-2 py-1',
-	small = /*tw*/ 'px-2 py-1.5',
-	default = /*tw*/ 'px-2.5 py-2',
-	large = /*tw*/ 'px-3 py-2.5',
-	extra_large = /*tw*/ 'px-3.5 py-3',
+	small = /*tw*/ 'px-2.5 py-1.5',
+	default = /*tw*/ 'px-3 py-2',
+	large = /*tw*/ 'px-3.5 py-2.5',
+	extra_large = /*tw*/ 'px-4 py-3',
 }
 
 export enum BoButtonTextSizeClasses {
@@ -54,7 +54,7 @@ export enum BoButtonFilledColorClasses {
 	danger = /*tw*/ 'bg-red-600 hover:bg-red-700 focus:ring-red-600 text-white',
 	warning = /*tw*/ 'bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-600 text-white',
 	success = /*tw*/ 'bg-green-600 hover:bg-green-700 focus:ring-green-600 text-white',
-	dark = /*tw*/ 'bg-black hover:bg-black/50 focus:ring-black',
+	dark = /*tw*/ 'bg-black hover:bg-black/50 focus:ring-black text-white',
 	purple = /*tw*/ 'bg-purple-600 hover:bg-purple-700 focus:ring-purple-600 text-white',
 	teal = /*tw*/ 'bg-teal-600 hover:bg-teal-700 focus:ring-teal-600 text-white',
 }

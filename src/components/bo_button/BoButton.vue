@@ -31,7 +31,7 @@ import {
 	BoButtonTextSizeClasses,
 	BoButtonType,
 	BoButtonVariant,
-} from './bo_button.constants';
+} from './bo_button';
 import { computed, toRef, toRefs, type PropType } from 'vue';
 import { BoSize } from '@/global';
 import { BoIcon, Icon } from '@/components/bo_icon';
@@ -84,7 +84,7 @@ const {
 } = toRefs(props);
 
 const defaultClasses = computed(() => {
-	return /*tw*/ 'flex gap-1 items-center justify-center transition-opacity duration-200 cursor-pointer shadow-md text-white';
+	return /*tw*/ 'flex gap-1 items-center justify-center transition-opacity duration-200 cursor-pointer shadow-md';
 });
 
 const disabledClasses = computed(() => {
