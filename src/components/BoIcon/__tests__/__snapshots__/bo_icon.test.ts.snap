@@ -1,3 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`BoIcon > should match snapshot 1`] = `"<div style="color: rgb(0, 0, 0);" class="bo-icon size-4" aria-label="icon" type="image/svg+xml"></div>"`;
