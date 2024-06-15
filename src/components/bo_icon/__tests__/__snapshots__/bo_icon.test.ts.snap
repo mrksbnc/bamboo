@@ -1,3 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`bo_icon.vue > should match snapshot 1`] = `"<div style="color: rgb(18, 52, 86);" class="bo-icon size-4" aria-label="icon" type="image/svg+xml"></div>"`;
+exports[`bo_icon.vue > should match snapshot 1`] = `
+"<!-- eslint-disable vue/no-v-html -->
+<div type="image/svg+xml" style="color: rgb(18, 52, 86);" class="bo-icon size-4" aria-label="icon"></div>"
+`;

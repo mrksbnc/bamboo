@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`bo_button.vue > should match snapshot 1`] = `
+"<button type="button" role="button" class="bg-blue-600 hover:bg-blue-700 focus:ring-blue-600 text-white shadow-sm shadow-blue-500/50 dark:shadow-sm dark:shadow-blue-800/80 px-3 py-1.5 flex gap-1 items-center justify-center transition-opacity duration-200 cursor-pointer shadow-md disabled:cursor-not-allowed disabled:opacity-50 text-sm rounded-lg">
+  <!--v-if--><span class="bo-button__label">Label</span>
+  <!--v-if-->
+</button>"
+`;
