@@ -1,0 +1,31 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as BoButtonStories from './bo_button.stories';
+
+<Meta
+	title="Button/bo-button"
+	component={BoButtonStories.BoButton}
+/>
+
+# bo-button
+
+The `bo-button` component is a button component that can be used in various ways.
+
+## Props
+
+- `label` - The label of the button
+- `variant` - The variant of the button
+- `type` - The type of the button
+- `disabled` - Whether the button is disabled
+- `size` - The size of the button
+- `icons` - The icons to be displayed
+
+## Examples
+
+<Canvas>
+	<Controls>
+		<BoButtonStories.Example />
+		<BoButtonStories.Disabled />
+		<BoButtonStories.Sizes />
+		<BoButtonStories.Variants />
+	</Controls>
+</Canvas>
