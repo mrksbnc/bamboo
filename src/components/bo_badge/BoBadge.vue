@@ -76,6 +76,9 @@ const props = defineProps({
 const { label, type, size, variant, shape, prefixIcon, suffixIcon } =
 	toRefs(props);
 
+const defaultClasses: string =
+	/*tw*/ 'inline-flex gap-2 items-center justify-center select-none';
+
 const rederLabel = computed<boolean>(() => {
 	return !StringUtils.isEmpty(label.value);
 });
@@ -112,7 +115,7 @@ const heightClasses = computed<string>(() => {
 
 const classes = computed<string>(() => {
 	return TailwindUtils.merge(
-		/*tw*/ 'inline-flex gap-2 items-center justify-center',
+		defaultClasses,
 		colorClasses.value,
 		shadowClasses.value,
 		heightClasses.value,

@@ -25,9 +25,12 @@
 				:icon="prefixIcon"
 				:size="size"
 			/>
-			<span class="bo-button__label">
-				{{ label }}
-			</span>
+			<bo-text
+				class="bo-button__label"
+				:text="label"
+				:size="buttonTextSize"
+				:weight="BoFontWeight.medium"
+			/>
 			<bo-icon
 				v-if="suffixIcon !== Icon.none"
 				:icon="suffixIcon"
@@ -56,6 +59,7 @@ import { BoSize } from '@/global';
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { TailwindUtils } from '@/utils';
 import { BoSpinner, BoSpinnerVariant } from '@/components/bo_spinner';
+import { BoFontSize, BoText, BoFontWeight } from '@/components/bo_text';
 
 const props = defineProps({
 	label: {
@@ -203,5 +207,17 @@ const classes = computed<string>(() => {
 		fontSizeClasses.value,
 		borderRadiusClasses.value,
 	);
+});
+
+const buttonTextSize = computed<BoFontSize>(() => {
+	switch (size.value) {
+		case BoSize.small:
+			return BoFontSize.caption;
+		case BoSize.default:
+		default:
+			return BoFontSize.default;
+		case BoSize.large:
+			return BoFontSize.h6;
+	}
 });
 </script>
