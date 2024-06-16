@@ -25,9 +25,7 @@ import {
 	type BoSpinnerVariant,
 	BoSpinnerVariantClasses,
 } from './bo_spinner';
-import { TailwindUtils } from '@/utils';
-import { StringUtils } from '@/utils/string_utils';
-import {} from '@/global';
+import { TailwindUtils, StringUtils } from '@/utils';
 
 const props = defineProps({
 	size: {
