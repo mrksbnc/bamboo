@@ -9,7 +9,12 @@ import * as BoIconStories from './bo_icon.stories';
 # bo-icon
 
 An icon is a graphical representation of an object or action. The `bo-icon` component is a component that can be used to display icons in various ways.
-This library uses the [Feather Icons](https://feathericons.com/) collection of icons.
+
+## Basic usage
+
+```html
+<bo-icon :icon="Icon.alert_circle" />
+```
 
 ## Props
 
@@ -45,3 +50,7 @@ The `color` prop can take the values of the `BoColor` enum or any other color va
 ## List of all icons
 
 <Canvas of={BoIconStories.AllIcons} />
+
+## Vendor
+
+This library uses the [Feather Icons](https://feathericons.com/) collection of icons.

@@ -126,7 +126,7 @@ export const Sizes: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-			<div class="flex flex-row gap-2 dark:bg-gray-800 p-2">
+			<div class="flex flex-row">
 				<BoBadge label="Small" size="${BoSize.small}" class="m-1"/>
 				<BoBadge label="Default" size="${BoSize.default}" class="m-1"/>
 				<BoBadge label="Large" size="${BoSize.large}" class="m-1"/>
