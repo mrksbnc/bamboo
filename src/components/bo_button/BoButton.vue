@@ -108,14 +108,16 @@ const {
 	suffixIcon,
 } = toRefs(props);
 
-const contentContainerClasses = /*tw*/ 'flex gap-2 items-center justify-center';
+const contentContainerClasses: string =
+	/*tw*/ 'flex gap-2 items-center justify-center';
 
-const defaultClasses =
+const defaultClasses: string =
 	/*tw*/ 'flex gap-2 items-center justify-center transition-opacity duration-200 cursor-pointer';
-const disabledClasses =
+
+const disabledClasses: string =
 	/*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50';
 
-const loaderVariant = computed(() => {
+const loaderVariant = computed<BoSpinnerVariant>(() => {
 	switch (type.value) {
 		case BoButtonType.outline:
 			switch (variant.value) {
@@ -177,15 +179,15 @@ const colorClasses = computed<string>(() => {
 	}
 });
 
-const paddingClasses = computed(() => {
+const paddingClasses = computed<string>(() => {
 	return BoButtonPaddingClasses[size.value];
 });
 
-const heightClasses = computed(() => {
+const heightClasses = computed<string>(() => {
 	return BoButtonHeightClasses[size.value];
 });
 
-const borderRadiusClasses = computed(() => {
+const borderRadiusClasses = computed<string>(() => {
 	return BoButtonBorderRadiusClasses[type.value];
 });
 
