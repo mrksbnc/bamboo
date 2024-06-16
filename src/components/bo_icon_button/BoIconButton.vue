@@ -42,7 +42,7 @@ import {
 	BoIconButtonStyle,
 	BoIconButtonVariant,
 	BoIconButtonOutlineColorClasses,
-	BoIconButtonPaddingClasses,
+	BoIconButtonSizeClasses,
 } from './bo_icon_button';
 
 const props = defineProps({
@@ -97,7 +97,7 @@ const variantClasses = computed<string>(() => {
 });
 
 const paddingClasses = computed<string>(() => {
-	return BoIconButtonPaddingClasses[size.value];
+	return BoIconButtonSizeClasses[size.value];
 });
 
 const borderRadiusClasses = computed<string>(() => {
