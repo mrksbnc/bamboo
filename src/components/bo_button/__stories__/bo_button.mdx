@@ -13,12 +13,20 @@ A button is a control that allows the user to perform an action. The `bo-button`
 ## Props
 
 - `label` - The label of the button (required)
-- `variant` - The variant of the button (optional) (default: `primary`)
-- `type` - The type of the button (optional) (default: `default`)
-- `disabled` - Whether the button is disabled (optional) (default: `false`)
-- `size` - The size of the button (optional) (default: `default`)
+- `variant` - The variant of the button (optional)
+  - default: `BoButtonVariant.primary`
+- `type` - The type of the button (optional)
+  - default: `BoButtonType.default`
+- `disabled` - Whether the button is disabled (optional)
+  - default: `false`
+- `size` - The size of the button (optional)
+  - default: `BoSize.default`
 - `prefixIcon` - The icon to be displayed before the label (optional)
+  - default: `Icon.none`
 - `suffixIcon` - The icon to be displayed after the label (optional)
+  - default: `Icon.none`
+
+## Examples
 
 <Canvas of={BoButtonStories.Example} />
 <Controls of={BoButtonStories.Example} />
@@ -77,10 +85,14 @@ The `prefixIcon` prop can be used to display an icon before the label of the but
 
 The `suffixIcon` prop can be used to display an icon after the label of the button. The `suffixIcon` prop should be a string that represents the name of the icon you want to display.
 
-<Canvas of={BoButtonStories.Disabled} />
+<Canvas of={BoButtonStories.WithSuffixIcon} />
 
 ## With prefix and suffix icon
 
 The `prefixIcon` and `suffixIcon` props can be used together to display an icon before and after the label of the button. The `prefixIcon` prop should be a string that represents the name of the icon you want to display, and the `suffixIcon` prop should be a string that represents the name of the icon you want to display.
 
 <Canvas of={BoButtonStories.WithPrefixAndSuffixIcon} />
+
+## Icon only button
+
+The default button does not support icon only variants. For this purpose, you can use [BoIconButton](../../bo_icon_button/__storybook__/bo_icon_button.mdx) component.
