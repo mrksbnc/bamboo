@@ -142,7 +142,7 @@ export const Variants: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-			<div class="flex flex-row dark:bg-gray-800 p-2">
+			<div class="flex flex-row">
 				<BoBadge label="Primary" variant="${BoBadgeVariant.primary}" class="m-1"/>
 				<BoBadge label="Secondary" variant="${BoBadgeVariant.secondary}" class="m-1"/>
 				<BoBadge label="Danger" variant="${BoBadgeVariant.danger}" class="m-1"/>
@@ -163,7 +163,7 @@ export const Shapes: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-			<div class="flex flex-row dark:bg-gray-800 p-2">
+			<div class="flex flex-row">
 				<BoBadge label="Default" shape="${BoBadgeShape.default}" class="m-1"/>
 				<BoBadge label="Pill" shape="${BoBadgeShape.pill}" class="m-1"/>
 				<BoBadge label="Flat" shape="${BoBadgeShape.flat}" class="m-1"/>
@@ -179,7 +179,7 @@ export const Types: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-			<div class="flex flex-row dark:bg-gray-800 p-2">
+			<div class="flex flex-row">
 				<BoBadge label="Default" type="${BoBadgeType.default}" class="m-1"/>
 				<BoBadge label="Outline" type="${BoBadgeType.outline}" class="m-1"/>
 			</div>
@@ -194,7 +194,7 @@ export const Icons: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-			<div class="flex flex-row dark:bg-gray-800 p-2">
+			<div class="flex flex-row">
 				<BoBadge label="Default" prefixIcon="${Icon.alert_circle}" class="m-1"/>
 				<BoBadge label="Outline" suffixIcon="${Icon.alert_circle}" class="m-1"/>
 			</div>
@@ -209,7 +209,7 @@ export const IconOnly: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-			<div class="flex flex-row dark:bg-gray-800 p-2">
+			<div class="flex flex-row">
 				<BoBadge prefixIcon="${Icon.alert_circle}" class="m-1"/>
 			</div>
 		`,

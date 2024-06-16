@@ -184,7 +184,7 @@ export const Variants: Story = {
 		components: { BoButton },
 		template: `
 			<div class="flex flex-col gap-4 w-full h-full dark:bg-gray-700 p-2 rounded-lg">
-				<h1 class="my-2 dark:text-white">Default</h1>
+				<h1 class="my-2">Default</h1>
 				<div class="flex flex-1">
 					<BoButton label="Primary" variant="${BoButtonVariant.primary}" class="m-1" />
 					<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" class="m-1" />
@@ -195,7 +195,7 @@ export const Variants: Story = {
 					<BoButton label="Purple" variant="${BoButtonVariant.purple}" class="m-1" />
 					<BoButton label="Teal" variant="${BoButtonVariant.teal}" class="m-1" />
 				</div>
-				<h1 class="my-2 dark:text-white">Pill</h1>
+				<h1 class="my-2">Pill</h1>
 				<div class="flex flex-1">
 					<BoButton label="Primary" variant="${BoButtonVariant.primary}" type="${BoButtonType.pill}" class="m-1" />	
 					<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" type="${BoButtonType.pill}" class="m-1" />	
@@ -206,7 +206,7 @@ export const Variants: Story = {
 					<BoButton label="Purple" variant="${BoButtonVariant.purple}" type="${BoButtonType.pill}" class="m-1" />	
 					<BoButton label="Teal" variant="${BoButtonVariant.teal}" type="${BoButtonType.pill}" class="m-1" />	
 				</div>
-				<h1 class="my-2 dark:text-white">Outline</h1>
+				<h1 class="my-2">Outline</h1>
 				<div class="flex flex-1">	
 					<BoButton label="Primary" variant="${BoButtonVariant.primary}" type="${BoButtonType.outline}" class="m-1" />	
 					<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" type="${BoButtonType.outline}" class="m-1" />	
