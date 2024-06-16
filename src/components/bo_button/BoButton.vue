@@ -25,6 +25,7 @@
 import {
 	BoButtonBorderRadiusClasses,
 	BoButtonFilledColorClasses,
+	BoButtonHeightClasses,
 	BoButtonOutlineColorClasses,
 	BoButtonPaddingClasses,
 	BoButtonShadowClasses,
@@ -84,7 +85,7 @@ const {
 } = toRefs(props);
 
 const defaultClasses = computed(() => {
-	return /*tw*/ 'flex gap-1 items-center justify-center transition-opacity duration-200 cursor-pointer shadow-md';
+	return /*tw*/ 'flex gap-2 items-center justify-center transition-opacity duration-200 cursor-pointer';
 });
 
 const disabledClasses = computed(() => {
@@ -106,6 +107,10 @@ const paddingClasses = computed(() => {
 	return BoButtonPaddingClasses[size.value];
 });
 
+const heightClasses = computed(() => {
+	return BoButtonHeightClasses[size.value];
+});
+
 const borderRadiusClasses = computed(() => {
 	return BoButtonBorderRadiusClasses[type.value];
 });
@@ -122,6 +127,7 @@ const classes = computed<string>(() => {
 	return TailwindUtils.merge(
 		colorClasses.value,
 		shadowClasses.value,
+		heightClasses.value,
 		paddingClasses.value,
 		defaultClasses.value,
 		disabledClasses.value,
@@ -132,14 +138,14 @@ const classes = computed<string>(() => {
 
 const iconSize = computed<BoSize>(() => {
 	switch (size.value) {
-		case BoSize.large:
-		case BoSize.extra_large:
-			return BoSize.default;
 		case BoSize.extra_small:
 		case BoSize.small:
+			return BoSize.small;
+		case BoSize.large:
+		case BoSize.extra_large:
 		case BoSize.default:
 		default:
-			return BoSize.small;
+			return BoSize.default;
 	}
 });
 </script>
