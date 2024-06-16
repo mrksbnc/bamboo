@@ -28,10 +28,10 @@ export enum BoIconButtonShape {
 	circle = 'circle',
 }
 
-export enum BoIconButtonPaddingClasses {
-	small = /*tw*/ 'p-2',
-	default = /*tw*/ 'p-3',
-	large = /*tw*/ 'p-4',
+export enum BoIconButtonSizeClasses {
+	small = /*tw*/ 'h-6 w-6',
+	default = /*tw*/ 'h-8 w-8',
+	large = /*tw*/ 'h-10 w-10',
 }
 
 export enum BoIconButtonBorderRadiusClasses {

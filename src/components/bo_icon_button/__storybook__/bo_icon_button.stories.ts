@@ -323,7 +323,7 @@ export const Links: Story = {
 			<div class="flex flex-row gap-2">
 				<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2 dark:border-gray-700">
 					<BoIconButton :icon="icon" :variant="variant" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">{{ variant }} {{ shape }}</span>
+					<span class="text-small text-gray-500 font-medium">{{ variant }}</span>
 				</span>
 			</div>
 		`,

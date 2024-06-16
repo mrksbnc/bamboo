@@ -5,12 +5,12 @@ module.exports = {
 	theme: {
 		extend: {
 			width: {
-				small: '10px',
+				small: '12px',
 				default: '14px',
 				large: '18px',
 			},
 			height: {
-				small: '10px',
+				small: '12px',
 				default: '14px',
 				large: '18px',
 			},
@@ -20,7 +20,7 @@ module.exports = {
 				large: '18px',
 			},
 			lineHeight: {
-				small: '12px',
+				small: '14px',
 				default: '16px',
 				large: '20px',
 			},

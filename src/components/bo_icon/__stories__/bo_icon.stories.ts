@@ -109,6 +109,7 @@ export const Colors: Story = {
 				<span v-for="color in colors" :key="color" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<BoIcon :icon="icon" :color="color" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">{{ color }}</span>
+				</span>
 			</div>
 		`,
 	}),

@@ -289,7 +289,7 @@ export const icons = import.meta.glob('@/assets/icons/**/*.svg', {
 }) as Record<string, () => Promise<string>>;
 
 export enum IconSizeClasses {
-	small = /*tw*/ 'w-small h-small',
-	default = /*tw*/ 'w-default h-default',
-	large = /*tw*/ 'w-large h-large',
+	small = /*tw*/ 'w-2.5 h-2.5',
+	default = /*tw*/ 'w-3.5 h-3.5',
+	large = /*tw*/ 'w-5 h-5',
 }

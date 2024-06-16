@@ -3,9 +3,9 @@ export {
 	BoIconButtonBorderRadiusClasses,
 	BoIconButtonColorClasses,
 	BoIconButtonOutlineColorClasses,
-	BoIconButtonPaddingClasses,
 	BoIconButtonShadowClasses,
 	BoIconButtonShape,
+	BoIconButtonSizeClasses,
 	BoIconButtonStyle,
 	BoIconButtonVariant,
 } from './bo_icon_button';
