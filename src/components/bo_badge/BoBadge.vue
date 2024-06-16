@@ -9,12 +9,12 @@
 				:size="size"
 			/>
 		</span>
-		<span
+		<bo-text
 			v-if="rederLabel"
-			class="bo-badge__label"
-		>
-			{{ label }}
-		</span>
+			:text="label"
+			:size="fontSize"
+			:weight="BoFontWeight.medium"
+		/>
 		<span v-if="suffixIcon !== Icon.none">
 			<bo-icon
 				:icon="suffixIcon"
@@ -41,6 +41,7 @@ import {
 import { Icon, BoIcon } from '@/components/bo_icon';
 import { TailwindUtils, StringUtils } from '@/utils';
 import { BoSize } from '@/global';
+import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
 
 const props = defineProps({
 	label: {
@@ -123,5 +124,17 @@ const classes = computed<string>(() => {
 		fontSizeClasses.value,
 		borderRadiusClasses.value,
 	);
+});
+
+const fontSize = computed<BoFontSize>(() => {
+	switch (size.value) {
+		case BoSize.small:
+			return BoFontSize.caption;
+		case BoSize.default:
+		default:
+			return BoFontSize.default;
+		case BoSize.large:
+			return BoFontSize.h6;
+	}
 });
 </script>
