@@ -61,7 +61,7 @@
 		"@storybook/addon-coverage": "^1.0.1",
 		"@storybook/addon-docs": "^8.0.0-rc.3",
 		"@storybook/addon-essentials": "8.0.0-rc.3",
-		"@storybook/addon-interactions": "8.0.0-rc.3",
+		"@storybook/addon-interactions": "8.1.9",
 		"@storybook/addon-links": "8.0.0-rc.3",
 		"@storybook/addon-mdx-gfm": "^8.0.0-rc.3",
 		"@storybook/addon-themes": "^8.0.0-rc.3",
