@@ -64,7 +64,7 @@ export const Sizes: Story = {
 	render: () => ({
 		components: { BoSpinner },
 		template: `
-			<div class="flex flex-col gap-4 dark:bg-gray-800 p-2">
+			<div class="flex gap-2">
 				<BoSpinner size="${BoSize.small}" variant="${BoSpinnerVariant.primary}" class="m-1"/>
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.primary}" class="m-1"/>
 				<BoSpinner size="${BoSize.large}" variant="${BoSpinnerVariant.primary}" class="m-1"/>
@@ -81,7 +81,7 @@ export const Variants: Story = {
 	render: () => ({
 		components: { BoSpinner },
 		template: `
-			<div class="flex flex-row gap-4 dark:bg-gray-800 p-2">
+			<div class="flex flex-row gap-4">
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.primary}" class="m-1"/>
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.secondary}" class="m-1"/>
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.danger}" class="m-1"/>
@@ -103,7 +103,7 @@ export const WithLoaderText: Story = {
 	render: () => ({
 		components: { BoSpinner },
 		template: `
-		<div class="flex flex-col gap-4 dark:bg-gray-800 p-2">
+		<div class="flex flex-col gap-4">
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.primary}" loaderText="Loading..." class="m-1"/>
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.secondary}" loaderText="Loading..." class="m-1"/>
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.danger}" loaderText="Loading..." class="m-1"/>
@@ -125,7 +125,7 @@ export const SizesWithLoaderText: Story = {
 	render: () => ({
 		components: { BoSpinner },
 		template: `
-			<div class="flex flex-col gap-4 dark:bg-gray-800 p-2">
+			<div class="flex flex-col gap-4">
 				<BoSpinner size="${BoSize.small}" variant="${BoSpinnerVariant.primary}" loaderText="Loading..." class="m-1"/>
 				<BoSpinner size="${BoSize.default}" variant="${BoSpinnerVariant.primary}" loaderText="Loading..." class="m-1"/>
 				<BoSpinner size="${BoSize.large}" variant="${BoSpinnerVariant.primary}" loaderText="Loading..." class="m-1"/>

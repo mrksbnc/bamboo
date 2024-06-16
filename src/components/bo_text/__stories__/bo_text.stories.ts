@@ -79,7 +79,7 @@ export const Sizes: Story = {
 			return { sizes, ...args };
 		},
 		template: `
-			<div class="flex flex-col gap-4 dark:bg-gray-800 p-2">
+			<div class="flex flex-col gap-4">
 				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<BoText :text="text" :size="size[0]" class="m-1"/>
 					<span class="text-overline text-gray-500 font-medium">{{ size[0] }} - {{ size[1] }}</span>
@@ -106,7 +106,7 @@ export const Weights: Story = {
 			return { weights, ...args };
 		},
 		template: `
-			<div class="flex flex-col gap-4 dark:bg-gray-800 p-2">
+			<div class="flex flex-col gap-4">
 				<span v-for="weight in weights" :key="weight" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<BoText :text="text" :weight="weight[0]" class="m-1"/>
 					<span class="text-overline text-gray-500 font-medium">{{ weight[0] }} - {{ weight[1] }}</span>
