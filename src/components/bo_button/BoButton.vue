@@ -10,7 +10,7 @@
 			class="bo-button__loader"
 		>
 			<bo-spinner
-				:size="iconSize"
+				:size="size"
 				:variant="loaderVariant"
 				:loader-text="loaderText"
 			/>
@@ -23,7 +23,7 @@
 			<bo-icon
 				v-if="prefixIcon !== Icon.none"
 				:icon="prefixIcon"
-				:size="iconSize"
+				:size="size"
 			/>
 			<span class="bo-button__label">
 				{{ label }}
@@ -31,7 +31,7 @@
 			<bo-icon
 				v-if="suffixIcon !== Icon.none"
 				:icon="suffixIcon"
-				:size="iconSize"
+				:size="size"
 			/>
 		</div>
 	</button>
@@ -121,26 +121,19 @@ const loaderVariant = computed<BoSpinnerVariant>(() => {
 	switch (type.value) {
 		case BoButtonType.outline:
 			switch (variant.value) {
-				case BoButtonVariant.primary:
-					return BoSpinnerVariant.primary;
-				case BoButtonVariant.secondary:
-					return BoSpinnerVariant.secondary;
-				case BoButtonVariant.danger:
-					return BoSpinnerVariant.danger;
-				case BoButtonVariant.warning:
-					return BoSpinnerVariant.warning;
-				case BoButtonVariant.success:
-					return BoSpinnerVariant.success;
-				case BoButtonVariant.dark:
-					return BoSpinnerVariant.dark;
-				case BoButtonVariant.purple:
-					return BoSpinnerVariant.purple;
-				case BoButtonVariant.teal:
-					return BoSpinnerVariant.teal;
 				case BoButtonVariant.link:
-					return BoSpinnerVariant.white;
+					return BoSpinnerVariant.primary;
+				case BoButtonVariant.primary:
+				case BoButtonVariant.secondary:
+				case BoButtonVariant.danger:
+				case BoButtonVariant.warning:
+				case BoButtonVariant.success:
+				case BoButtonVariant.dark:
+				case BoButtonVariant.purple:
+				case BoButtonVariant.teal:
+					return BoSpinnerVariant[variant.value];
 				default:
-					return BoSpinnerVariant.white;
+					return BoSpinnerVariant.primary;
 			}
 		case BoButtonType.default:
 		case BoButtonType.pill:
@@ -210,16 +203,5 @@ const classes = computed<string>(() => {
 		fontSizeClasses.value,
 		borderRadiusClasses.value,
 	);
-});
-
-const iconSize = computed<BoSize>(() => {
-	switch (size.value) {
-		case BoSize.small:
-			return BoSize.small;
-		case BoSize.default:
-		case BoSize.large:
-		default:
-			return BoSize.default;
-	}
 });
 </script>
