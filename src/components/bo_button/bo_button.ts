@@ -23,19 +23,27 @@ export enum BoButtonBorderRadiusClasses {
 }
 
 export enum BoButtonPaddingClasses {
-	extra_small = /*tw*/ 'px-2 py-0.5',
-	small = /*tw*/ 'px-2.5 py-1',
-	default = /*tw*/ 'px-3 py-1.5',
-	large = /*tw*/ 'px-3.5 py-2',
-	extra_large = /*tw*/ 'px-4 py-2.5',
+	extra_small = /*tw*/ 'px-2',
+	small = /*tw*/ 'px-2.5',
+	default = /*tw*/ 'px-3',
+	large = /*tw*/ 'px-3.5',
+	extra_large = /*tw*/ 'px-4',
 }
 
 export enum BoButtonTextSizeClasses {
 	extra_small = /*tw*/ 'text-xs',
-	small = /*tw*/ 'text-xs',
-	default = /*tw*/ 'text-sm',
-	large = /*tw*/ 'text-base',
-	extra_large = /*tw*/ 'text-lg',
+	small = /*tw*/ 'text-sm',
+	default = /*tw*/ 'text-base',
+	large = /*tw*/ 'text-lg',
+	extra_large = /*tw*/ 'text-xl',
+}
+
+export enum BoButtonHeightClasses {
+	extra_small = /*tw*/ 'h-5',
+	small = /*tw*/ 'h-6',
+	default = /*tw*/ 'h-8',
+	large = /*tw*/ 'h-10',
+	extra_large = /*tw*/ 'h-12',
 }
 
 export enum BoButtonShadowClasses {
