@@ -1,3 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`BoBadge > should match the snapshot 1`] = `"<span class="bo-badge flex max-w-fit justify-center items-center content-center space-x-1 rounded-lg shadow-md cursor-default select-none badge-default px-2.5 py-1 text-base bg-gray-100 text-gray-600"><!--v-if--><p class="bo-badge__label font-medium">Badge</p><!--v-if--></span>"`;

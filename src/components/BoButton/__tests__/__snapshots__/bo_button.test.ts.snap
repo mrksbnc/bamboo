@@ -1,8 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`BoButton > should match snapshot 1`] = `
-"<button type="button" role="button" class="rounded-lg px-3 py-2 bg-blue-700 hover:bg-blue-800 focus:ring-blue-700 disabled:cursor-not-allowed disabled:opacity-50 text-white font-medium text-sm bo-button--primary bo-button--default flex items-center content-center justify-center space-x-2 shadow-sd focus:ring-1 focus:ring-opacity-50 focus:outline-none transition-all duration-200 ease-in-out">
-  <!--v-if--><span class="bo-button__label">Label</span>
-  <!--v-if-->
-</button>"
-`;

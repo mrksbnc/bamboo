@@ -1,0 +1,102 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as BoButtonStories from './bo_button.stories';
+
+<Meta
+	title="Components/bo-button"
+	component={BoButtonStories.BoButton}
+/>
+
+# bo-button
+
+A button is a control that allows the user to perform an action.
+
+## Basic usage
+
+```html
+<bo-button :label="Hello World!" />
+```
+
+## Props
+
+- `label` - The label of the button (required)
+- `variant` - The variant of the button (optional)
+  - default: `BoButtonVariant.primary`
+- `type` - The type of the button (optional)
+  - default: `BoButtonType.default`
+- `disabled` - Whether the button is disabled (optional)
+  - default: `false`
+- `size` - The size of the button (optional)
+  - default: `BoSize.default`
+- `prefixIcon` - The icon to be displayed before the label (optional)
+  - default: `Icon.none`
+- `suffixIcon` - The icon to be displayed after the label (optional)
+  - default: `Icon.none`
+
+## Examples
+
+<Canvas of={BoButtonStories.Example} />
+<Controls of={BoButtonStories.Example} />
+
+## Button variants
+
+To change the color of the component, you can use the predifened `BoButtonVariant` enum. The `BoButtonVariant` enum includes the following variants:
+
+- `primary`
+- `secondary`
+- `danger`
+- `warning`
+- `success`
+- `dark`
+- `purple`
+- `teal`
+
+<Canvas of={BoButtonStories.Variants} />
+
+## Button types
+
+To differentiate between the different types of buttons, the `bo-button` component also has a `type` prop that you can use. The `type` prop can take the values
+of the `BoButtonType` enum, which includes the following types:
+
+- `default`
+- `pill`
+- `outline`
+
+<Canvas of={BoButtonStories.Types} />
+
+## Button sizes
+
+As with any other component in the project the `bo-button` component also uses the `BoSize` enum to define the size of the button. The `BoSize` enum includes the following sizes:
+
+- `small`
+- `default`
+- `large`
+
+<Canvas of={BoButtonStories.Sizes} />
+
+## Disabled
+
+The `disabled` prop can be used to disable the button. When the button is disabled, it will not respond to user interactions and will appear in a disabled state.
+
+<Canvas of={BoButtonStories.Disabled} />
+
+## With prefix icon
+
+The `prefixIcon` prop can be used to display an icon before the label of the button. The `prefixIcon` prop should be a string that represents the name of the icon you want to display.
+
+<Canvas of={BoButtonStories.WithPrefixIcon} />
+
+## With suffix icon
+
+The `suffixIcon` prop can be used to display an icon after the label of the button. The `suffixIcon` prop should be a string that represents the name of the icon you want to display.
+
+<Canvas of={BoButtonStories.WithSuffixIcon} />
+
+## With prefix and suffix icon
+
+The `prefixIcon` and `suffixIcon` props can be used together to display an icon before and after the label of the button. The `prefixIcon` prop should be a string that represents the name of the icon you want to display, and the `suffixIcon` prop should be a string that represents the name of the icon you want to display.
+
+<Canvas of={BoButtonStories.WithPrefixAndSuffixIcon} />
+
+## Icon only button
+
+The default button does not support icon only variants. For this purpose, you can use [BoIconButton](../../bo_icon_button/__storybook__/bo_icon_button.mdx) component.
