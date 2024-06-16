@@ -6,7 +6,7 @@
 		<span v-if="prefixIcon !== Icon.none">
 			<bo-icon
 				:icon="prefixIcon"
-				:size="iconSize"
+				:size="size"
 			/>
 		</span>
 		<span
@@ -18,7 +18,7 @@
 		<span v-if="suffixIcon !== Icon.none">
 			<bo-icon
 				:icon="suffixIcon"
-				:size="iconSize"
+				:size="size"
 			/>
 		</span>
 	</span>
@@ -120,16 +120,5 @@ const classes = computed<string>(() => {
 		fontSizeClasses.value,
 		borderRadiusClasses.value,
 	);
-});
-
-const iconSize = computed<BoSize>(() => {
-	switch (size.value) {
-		case BoSize.small:
-			return BoSize.small;
-		case BoSize.default:
-		case BoSize.large:
-		default:
-			return BoSize.default;
-	}
 });
 </script>

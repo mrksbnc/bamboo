@@ -37,16 +37,13 @@ const meta = {
 		size: {
 			description: 'The size of the badge',
 			control: { type: 'select' },
-			options: Object.values(BoBadgeVariant),
+			options: Object.values(BoSize),
 			table: {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoBadgeVariant',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoBadgeVariant,
-						'BoBadgeVariant',
-					),
+					summary: 'BoSize',
+					detail: StorybookUtils.stringEnumFormatter(BoSize, 'BoSize'),
 				},
 			},
 			defaultValue: BoBadgeVariant.primary,
