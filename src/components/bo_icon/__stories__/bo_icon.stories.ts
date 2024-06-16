@@ -1,5 +1,5 @@
 import { BoIcon, Icon } from '@/components/bo_icon';
-import { BoSize } from '@/global';
+import { BoColor, BoSize } from '@/global';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -66,15 +66,19 @@ export const Example: Story = {
 };
 
 export const Sizes: Story = {
-	render: () => ({
+	render: (args) => ({
 		components: { BoIcon },
+		setup() {
+			const sizes = Object.values(BoSize);
+			return { sizes, ...args };
+		},
 		template: `
 			<div class="flex flex-row gap-2">
-				<BoIcon icon="activity" size="${BoSize.extra_small}" class="m-1"/>
-				<BoIcon icon="activity" size="${BoSize.small}" class="m-1"/>
-				<BoIcon icon="activity" size="${BoSize.default}" class="m-1"/>
-				<BoIcon icon="activity" size="${BoSize.large}" class="m-1"/>
-				<BoIcon icon="activity" size="${BoSize.extra_large}" />
+				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<BoIcon :icon="icon" :size="size" class="m-1"/>
+					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
+					
+				</span>
 			</div>
 		`,
 	}),
@@ -84,15 +88,48 @@ export const Sizes: Story = {
 };
 
 export const Colors: Story = {
-	render: () => ({
+	render: (args) => ({
 		components: { BoIcon },
+		setup() {
+			const colors = [];
+
+			const getRandomColor = (): BoColor => {
+				const colors = Object.values(BoColor);
+				return colors[Math.floor(Math.random() * colors.length)];
+			};
+
+			for (let i = 0; i < 10; i++) {
+				colors.push(getRandomColor());
+			}
+
+			return { colors, ...args };
+		},
 		template: `
 			<div class="flex flex-row gap-2">
-				<BoIcon icon="activity" color="#000000" class="m-1"/>
-				<BoIcon icon="activity" color="#234323" class="m-1"/>
-				<BoIcon icon="activity" color="#ff0000" class="m-1"/>
-				<BoIcon icon="activity" color="#00ff00" class="m-1"/>
-				<BoIcon icon="activity" color="#0000ff" class="m-1"/>
+				<span v-for="color in colors" :key="color" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<BoIcon :icon="icon" :color="color" class="m-1"/>
+					<span class="text-small text-gray-500 font-medium">{{ color }}</span>
+			</div>
+		`,
+	}),
+	args: {
+		icon: Icon.activity,
+	},
+};
+
+export const AllIcons: Story = {
+	render: () => ({
+		components: { BoIcon },
+		setup() {
+			const icons = Object.values(Icon);
+			return { icons, Icon };
+		},
+		template: `
+			<div class="grid grid-cols-6 gap-2"> 
+				<span v-for="icon in icons" :key="icon" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<BoIcon :icon="icon" size="${BoSize.large}" class="m-1"/>
+						<span class="text-small text-gray-500 font-medium">{{ icon }}</span>
+					</span>
 			</div>
 		`,
 	}),
