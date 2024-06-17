@@ -116,7 +116,7 @@ const contentContainerClasses: string =
 	/*tw*/ 'flex gap-2 items-center justify-center';
 
 const defaultClasses: string =
-	/*tw*/ 'flex gap-2 items-center justify-center transition-opacity duration-200 cursor-pointer';
+	/*tw*/ 'flex gap-2 items-center justify-center content-center transition-opacity duration-200 cursor-pointer';
 
 const disabledClasses: string =
 	/*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50';
