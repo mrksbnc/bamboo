@@ -4,4 +4,4 @@ export {
 	BoSpinnerTextSizeClasses,
 	BoSpinnerVariantClasses,
 } from './bo_spinner';
-export type { BoSpinnerComponentProps } from './bo_spinner.type';
+export type { BoSpinnerComponentProps } from './bo_spinner.types';

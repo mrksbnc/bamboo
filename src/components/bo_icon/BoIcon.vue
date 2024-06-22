@@ -27,7 +27,7 @@ import {
 	computed,
 	type StyleValue,
 } from 'vue';
-import type { BoIconComponentProps } from './bo_icon.type';
+import type { BoIconComponentProps } from './bo_icon.types';
 
 const props = withDefaults(defineProps<BoIconComponentProps>(), {
 	size: () => BoSize.default,

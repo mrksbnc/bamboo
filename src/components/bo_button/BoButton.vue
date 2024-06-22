@@ -55,7 +55,7 @@ import { BoIcon, Icon } from '@/components/bo_icon';
 import { TailwindUtils } from '@/utils';
 import { BoSpinner } from '@/components/bo_spinner';
 import { BoFontSize, BoText, BoFontWeight } from '@/components/bo_text';
-import type { BoButtonComponentProps } from './bo_button.type';
+import type { BoButtonComponentProps } from './bo_button.types';
 import {
 	BoButtonColorClasses,
 	BoButtonLinkColorClasses,

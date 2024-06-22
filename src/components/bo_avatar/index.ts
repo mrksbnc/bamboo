@@ -4,4 +4,4 @@ export type {
 	AvatarComponentProps,
 	AvatarImageArgs,
 	AvatarTextArgs,
-} from './bo_avatar.type';
+} from './bo_avatar.types';

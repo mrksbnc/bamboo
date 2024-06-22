@@ -6,4 +6,4 @@ export {
 	BoButtonTextSizeClasses,
 	BoButtonType,
 } from './bo_button';
-export type { BoButtonComponentProps } from './bo_button.type';
+export type { BoButtonComponentProps } from './bo_button.types';

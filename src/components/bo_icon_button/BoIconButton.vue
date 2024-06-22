@@ -40,7 +40,7 @@ import {
 	BoIconButtonType,
 	BoIconButtonSizeClasses,
 } from './bo_icon_button';
-import type { BoIconButtonComponentProps } from './bo_icon_button.type';
+import type { BoIconButtonComponentProps } from './bo_icon_button.types';
 import {
 	BoButtonColorClasses,
 	BoButtonLinkColorClasses,

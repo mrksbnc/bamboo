@@ -43,7 +43,7 @@ import { Icon, BoIcon } from '@/components/bo_icon';
 import { TailwindUtils, StringUtils } from '@/utils';
 import { BoSize, BoVariant } from '@/global';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
-import type { BoBadgeComponentProps } from './bo_badge.type';
+import type { BoBadgeComponentProps } from './bo_badge.types';
 
 const props = withDefaults(defineProps<BoBadgeComponentProps>(), {
 	label: '',
