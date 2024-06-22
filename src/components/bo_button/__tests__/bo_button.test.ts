@@ -1,13 +1,12 @@
 import { Icon } from '@/components/bo_icon';
-import { BoSize } from '@/global';
+import { BoSize, BoVariant } from '@/global';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, test } from 'vitest';
 import {
 	BoButton,
 	BoButtonBorderRadiusClasses,
-	BoButtonFilledColorClasses,
+	BoButtonLightFilledColorClasses,
 	BoButtonType,
-	BoButtonVariant,
 } from '..';
 
 let wrapper: ReturnType<typeof mount>;
@@ -16,7 +15,7 @@ beforeEach(() => {
 	wrapper = mount(BoButton, {
 		props: {
 			label: 'Label',
-			variant: BoButtonVariant.primary,
+			variant: BoVariant.primary,
 			type: BoButtonType.default,
 			disabled: false,
 			size: BoSize.default,
@@ -62,7 +61,7 @@ describe('bo_button.vue', () => {
 	});
 
 	test('should be able to change the variant', async () => {
-		await wrapper.setProps({ variant: BoButtonVariant.secondary });
+		await wrapper.setProps({ variant: BoVariant.secondary });
 		expect(wrapper.find('bg-gray-600')).toBeTruthy();
 		expect(wrapper.find('rounded-lg')).toBeTruthy();
 	});
@@ -94,7 +93,9 @@ describe('bo_button.vue', () => {
 	});
 
 	test('should be able to change the fill color', async () => {
-		await wrapper.setProps({ fillColor: BoButtonFilledColorClasses.primary });
+		await wrapper.setProps({
+			fillColor: BoButtonLightFilledColorClasses.primary,
+		});
 		expect(wrapper.classes().join(' ')).includes(
 			'bg-blue-600 hover:bg-blue-700 focus:ring-blue-600 text-white',
 		);

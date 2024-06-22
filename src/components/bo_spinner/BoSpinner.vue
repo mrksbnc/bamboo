@@ -18,34 +18,25 @@
 </template>
 
 <script setup lang="ts">
-import { BoSize } from '@/global';
-import { computed, toRefs, type PropType } from 'vue';
+import { BoSize, BoVariant } from '@/global';
+import { computed, toRefs } from 'vue';
 import {
 	BoSpinnerSizeClasses,
-	type BoSpinnerVariant,
+	BoSpinnerTextSizeClasses,
 	BoSpinnerVariantClasses,
 } from './bo_spinner';
 import { TailwindUtils, StringUtils } from '@/utils';
+import type { BoSpinnerComponentProps } from './bo_spinner.types';
 
-const props = defineProps({
-	size: {
-		type: String as PropType<BoSize>,
-		default: () => BoSize.default,
-	},
-	variant: {
-		type: String as PropType<BoSpinnerVariant>,
-		default: () => BoSpinnerVariantClasses.primary,
-	},
-	loaderText: {
-		type: String,
-		default: '',
-	},
+const props = withDefaults(defineProps<BoSpinnerComponentProps>(), {
+	size: () => BoSize.default,
+	variant: () => BoVariant.primary,
 });
 
 const { size, variant, loaderText } = toRefs(props);
 
 const displayLoaderText = computed<boolean>(() => {
-	return !StringUtils.isEmpty(loaderText.value);
+	return loaderText.value != null && !StringUtils.isEmpty(loaderText.value);
 });
 
 const loaderTextClasses = computed<string>(() => {
@@ -55,18 +46,18 @@ const loaderTextClasses = computed<string>(() => {
 		case BoSize.small:
 			return TailwindUtils.merge(
 				defaultClasses,
-				/*tw*/ 'text-small leading-small',
+				BoSpinnerTextSizeClasses.small,
 			);
 		case BoSize.large:
 			return TailwindUtils.merge(
 				defaultClasses,
-				/*tw*/ 'text-large leading-large',
+				BoSpinnerTextSizeClasses.large,
 			);
 		case BoSize.default:
 		default:
 			return TailwindUtils.merge(
 				defaultClasses,
-				/*tw*/ 'text-default leading-default',
+				BoSpinnerTextSizeClasses.default,
 			);
 	}
 });

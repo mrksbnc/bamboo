@@ -6,6 +6,6 @@ export {
 	BoIconButtonShadowClasses,
 	BoIconButtonShape,
 	BoIconButtonSizeClasses,
-	BoIconButtonStyle,
-	BoIconButtonVariant,
+	BoIconButtonType,
 } from './bo_icon_button';
+export type { BoIconButtonComponentProps } from './bo_icon_button.types';

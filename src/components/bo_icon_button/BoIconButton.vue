@@ -29,68 +29,48 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs, type PropType } from 'vue';
-import { BoSize } from '@/global';
-import { BoIcon, type Icon } from '@/components/bo_icon';
-import { BoSpinner, BoSpinnerVariant } from '@/components/bo_spinner';
+import { computed, toRefs } from 'vue';
+import { BoSize, BoVariant } from '@/global';
+import { BoIcon } from '@/components/bo_icon';
+import { BoSpinner } from '@/components/bo_spinner';
 import { TailwindUtils } from '@/utils';
 import {
 	BoIconButtonBorderRadiusClasses,
 	BoIconButtonColorClasses,
 	BoIconButtonShadowClasses,
 	BoIconButtonShape,
-	BoIconButtonStyle,
-	BoIconButtonVariant,
+	BoIconButtonType,
 	BoIconButtonOutlineColorClasses,
 	BoIconButtonSizeClasses,
+	BoIconButtonLinkTypeClasses,
 } from './bo_icon_button';
+import type { BoIconButtonComponentProps } from './bo_icon_button.types';
 
-const props = defineProps({
-	icon: {
-		type: String as PropType<Icon>,
-		required: true,
-	},
-	size: {
-		type: String as PropType<BoSize>,
-		default: () => BoSize.default,
-	},
-	variant: {
-		type: String as PropType<BoIconButtonVariant>,
-		default: () => BoIconButtonVariant.primary,
-	},
-	shape: {
-		type: String as PropType<BoIconButtonShape>,
-		default: () => BoIconButtonShape.default,
-	},
-	style: {
-		type: String as PropType<BoIconButtonStyle>,
-		default: () => BoIconButtonStyle.default,
-	},
-	disabled: {
-		type: Boolean,
-		default: false,
-	},
-	isLoading: {
-		type: Boolean,
-		default: false,
-	},
+const props = withDefaults(defineProps<BoIconButtonComponentProps>(), {
+	disabled: false,
+	isLoading: false,
+	size: () => BoSize.default,
+	variant: () => BoVariant.primary,
+	type: () => BoIconButtonType.default,
+	shape: () => BoIconButtonShape.default,
 });
 
-const { icon, size, variant, shape, style, disabled, isLoading } =
-	toRefs(props);
+const { icon, size, variant, shape, type, disabled, isLoading } = toRefs(props);
 
 const containerClasses: string = /*tw*/ 'flex items-center justify-center';
 
 const defaultClasses: string = /*tw*/ 'inline-flex items-center justify-center';
 
 const disabledClasses: string =
-	/*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50';
+	/*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50 :disabled:shadow-none';
 
 const variantClasses = computed<string>(() => {
-	switch (style.value) {
-		case BoIconButtonStyle.outline:
+	switch (type.value) {
+		case BoIconButtonType.outline:
 			return BoIconButtonOutlineColorClasses[variant.value];
-		case BoIconButtonStyle.default:
+		case BoIconButtonType.link:
+			return BoIconButtonLinkTypeClasses[variant.value];
+		case BoIconButtonType.default:
 		default:
 			return BoIconButtonColorClasses[variant.value];
 	}
@@ -105,6 +85,10 @@ const borderRadiusClasses = computed<string>(() => {
 });
 
 const shadowClasses = computed<string>(() => {
+	if (type.value === BoIconButtonType.link) {
+		return /*tw*/ 'shadow-none';
+	}
+
 	return BoIconButtonShadowClasses[variant.value];
 });
 
@@ -119,20 +103,15 @@ const classes = computed<string>(() => {
 	);
 });
 
-const loaderVariant = computed<BoSpinnerVariant>(() => {
-	switch (variant.value) {
-		case BoIconButtonVariant.primary:
-		case BoIconButtonVariant.danger:
-		case BoIconButtonVariant.warning:
-		case BoIconButtonVariant.success:
-		case BoIconButtonVariant.dark:
-		case BoIconButtonVariant.purple:
-		case BoIconButtonVariant.teal:
-			return BoSpinnerVariant.white;
-		case BoIconButtonVariant.secondary:
-			return BoSpinnerVariant.secondary;
+const loaderVariant = computed<BoVariant>(() => {
+	switch (type.value) {
+		case BoIconButtonType.outline:
+		case BoIconButtonType.link:
+			return variant.value;
+		case BoIconButtonType.default:
+			return BoVariant.light;
 		default:
-			return BoSpinnerVariant.primary;
+			return BoVariant.primary;
 	}
 });
 </script>

@@ -9,5 +9,5 @@ export {
 	BoBadgeSizeClasses,
 	BoBadgeTextSizeClasses,
 	BoBadgeType,
-	BoBadgeVariant,
 } from './bo_badge';
+export type { BoBadgeComponentProps } from './bo_badge.types';

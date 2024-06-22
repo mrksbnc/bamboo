@@ -1,15 +1,3 @@
-export enum BoSpinnerVariant {
-	primary = 'primary',
-	secondary = 'secondary',
-	danger = 'danger',
-	warning = 'warning',
-	success = 'success',
-	dark = 'dark',
-	purple = 'purple',
-	teal = 'teal',
-	white = 'white',
-}
-
 export enum BoSpinnerSizeClasses {
 	small = /*tw*/ 'w-3 h-3',
 	default = /*tw*/ 'w-4 h-4',
@@ -17,13 +5,20 @@ export enum BoSpinnerSizeClasses {
 }
 
 export enum BoSpinnerVariantClasses {
-	primary = /*tw*/ 'text-blue-800',
-	secondary = /*tw*/ 'text-gray-800',
-	danger = /*tw*/ 'text-red-800',
-	warning = /*tw*/ 'text-yellow-800',
-	success = /*tw*/ 'text-green-800',
+	primary = /*tw*/ 'text-blue-600',
+	secondary = /*tw*/ 'text-gray-600',
+	danger = /*tw*/ 'text-red-600',
+	warning = /*tw*/ 'text-yellow-600',
+	success = /*tw*/ 'text-green-600',
 	dark = /*tw*/ 'text-black',
-	purple = /*tw*/ 'text-purple-800',
-	teal = /*tw*/ 'text-teal-800',
+	light = /*tw*/ 'text-neutral-100',
+	purple = /*tw*/ 'text-purple-600',
+	teal = /*tw*/ 'text-teal-600',
 	white = /*tw*/ 'text-white',
+}
+
+export enum BoSpinnerTextSizeClasses {
+	small = /*tw*/ 'text-small leading-small',
+	default = /*tw*/ 'text-default leading-default',
+	large = /*tw*/ 'text-large leading-large',
 }

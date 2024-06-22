@@ -1,6 +1,6 @@
-import { BoBadge, BoBadgeType, BoBadgeVariant } from '@/components/bo_badge';
+import { BoBadge, BoBadgeType } from '@/components/bo_badge';
 import { Icon } from '@/components/bo_icon';
-import { BoSize } from '@/global';
+import { BoSize, BoVariant } from '@/global';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { BoBadgeShape } from '../bo_badge';
@@ -46,7 +46,7 @@ const meta = {
 					detail: StorybookUtils.stringEnumFormatter(BoSize, 'BoSize'),
 				},
 			},
-			defaultValue: BoBadgeVariant.primary,
+			defaultValue: BoVariant.primary,
 		},
 		shape: {
 			description: 'The shape of the badge',
@@ -68,19 +68,16 @@ const meta = {
 		variant: {
 			description: 'The variant of the badge',
 			control: { type: 'select' },
-			options: Object.values(BoBadgeVariant),
+			options: Object.values(BoVariant),
 			table: {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoBadgeVariant',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoBadgeVariant,
-						'BoBadgeVariant',
-					),
+					summary: 'BoVariant',
+					detail: StorybookUtils.stringEnumFormatter(BoVariant, 'BoVariant'),
 				},
 			},
-			defaultValue: BoBadgeVariant.primary,
+			defaultValue: BoVariant.primary,
 		},
 		prefixIcon: {
 			description: 'The icon to be displayed before the label',
@@ -141,16 +138,13 @@ export const Sizes: Story = {
 export const Variants: Story = {
 	render: () => ({
 		components: { BoBadge },
+		setup() {
+			const variants = Object.values(BoVariant);
+			return { variants, BoVariant };
+		},
 		template: `
 			<div class="flex flex-row">
-				<BoBadge label="Primary" variant="${BoBadgeVariant.primary}" class="m-1"/>
-				<BoBadge label="Secondary" variant="${BoBadgeVariant.secondary}" class="m-1"/>
-				<BoBadge label="Danger" variant="${BoBadgeVariant.danger}" class="m-1"/>
-				<BoBadge label="Warning" variant="${BoBadgeVariant.warning}" class="m-1"/>
-				<BoBadge label="Success" variant="${BoBadgeVariant.success}" class="m-1"/>
-				<BoBadge label="Dark" variant="${BoBadgeVariant.dark}" class="m-1"/>
-				<BoBadge label="Purple" variant="${BoBadgeVariant.purple}" class="m-1"/>
-				<BoBadge label="Teal" variant="${BoBadgeVariant.teal}" class="m-1"/>
+				<BoBadge v-for="variant in variants" :label="variant" :variant="variant" class="m-1"/>
 			</div>
 		`,
 	}),
@@ -162,11 +156,18 @@ export const Variants: Story = {
 export const Shapes: Story = {
 	render: () => ({
 		components: { BoBadge },
+		setup() {
+			const shapes = Object.values(BoBadgeShape);
+			const icon = Icon.alert_circle;
+			return { shapes, BoBadgeShape, icon };
+		},
 		template: `
-			<div class="flex flex-row">
-				<BoBadge label="Default" shape="${BoBadgeShape.default}" class="m-1"/>
-				<BoBadge label="Pill" shape="${BoBadgeShape.pill}" class="m-1"/>
-				<BoBadge label="Flat" shape="${BoBadgeShape.flat}" class="m-1"/>
+			<div class="flex flex-row gap-2">
+				<span v-for="shape in shapes" :key="shape" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<BoBadge v-if="shape !== BoBadgeShape.circle" :label="shape" :shape="shape" class="m-1"/>
+					<BoBadge v-else :prefix-icon="icon" :shape="shape" class="m-1"/>
+					<span class="text-small text-gray-500 font-medium">{{ shape }}</span>
+				</span>
 			</div>
 		`,
 	}),

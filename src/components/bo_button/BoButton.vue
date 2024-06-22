@@ -30,6 +30,7 @@
 				:text="label"
 				:size="buttonTextSize"
 				:weight="BoFontWeight.medium"
+				:class="buttonTextClasses"
 			/>
 			<bo-icon
 				v-if="suffixIcon !== Icon.none"
@@ -43,62 +44,35 @@
 <script setup lang="ts">
 import {
 	BoButtonBorderRadiusClasses,
-	BoButtonFilledColorClasses,
-	BoButtonFilledDarkColorClasses,
+	BoButtonLightFilledColorClasses,
 	BoButtonHeightClasses,
-	BoButtonOutlineColorClasses,
-	BoButtonOutlineDarkColorClasses,
+	BoButtonLightLinkTypeClasses,
+	BoButtonLightOutlineColorClasses,
 	BoButtonPaddingClasses,
-	BoButtonShadowClasses,
+	BoButtonLightShadowClasses,
 	BoButtonTextSizeClasses,
 	BoButtonType,
-	BoButtonVariant,
+	BoButtonDarkOutlineColorClasses,
+	BoButtonDarkLinkTypeClasses,
+	BoButtonDarkFilledColorClasses,
+	BoButtonDarkShadowClasses,
 } from './bo_button';
-import { computed, toRefs, type PropType } from 'vue';
-import { BoSize } from '@/global';
+import { computed, toRefs } from 'vue';
+import { BoSize, BoVariant } from '@/global';
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { TailwindUtils } from '@/utils';
-import { BoSpinner, BoSpinnerVariant } from '@/components/bo_spinner';
+import { BoSpinner } from '@/components/bo_spinner';
 import { BoFontSize, BoText, BoFontWeight } from '@/components/bo_text';
+import type { BoButtonComponentProps } from './bo_button.types';
 
-const props = defineProps({
-	label: {
-		type: String,
-		required: true,
-	},
-	variant: {
-		type: String as PropType<BoButtonVariant>,
-		default: () => BoButtonVariant.primary,
-	},
-	type: {
-		type: String as PropType<BoButtonType>,
-		default: () => BoButtonType.default,
-	},
-	disabled: {
-		type: Boolean,
-		default: false,
-	},
-
-	isLoading: {
-		type: Boolean,
-		default: false,
-	},
-	loaderText: {
-		type: String,
-		default: '',
-	},
-	size: {
-		type: String as PropType<BoSize>,
-		default: () => BoSize.default,
-	},
-	prefixIcon: {
-		type: String as PropType<Icon>,
-		default: Icon.none,
-	},
-	suffixIcon: {
-		type: String as PropType<Icon>,
-		default: Icon.none,
-	},
+const props = withDefaults(defineProps<BoButtonComponentProps>(), {
+	disabled: false,
+	isLoading: false,
+	size: () => BoSize.default,
+	prefixIcon: () => Icon.none,
+	suffixIcon: () => Icon.none,
+	type: () => BoButtonType.default,
+	variant: () => BoVariant.primary,
 });
 
 const {
@@ -121,41 +95,17 @@ const defaultClasses: string =
 const disabledClasses: string =
 	/*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50';
 
-const loaderVariant = computed<BoSpinnerVariant>(() => {
+const buttonTextClasses: string = /*tw*/ 'cursor-pointer';
+
+const loaderVariant = computed<BoVariant>(() => {
 	switch (type.value) {
 		case BoButtonType.outline:
-			switch (variant.value) {
-				case BoButtonVariant.link:
-					return BoSpinnerVariant.primary;
-				case BoButtonVariant.primary:
-				case BoButtonVariant.secondary:
-				case BoButtonVariant.danger:
-				case BoButtonVariant.warning:
-				case BoButtonVariant.success:
-				case BoButtonVariant.dark:
-				case BoButtonVariant.purple:
-				case BoButtonVariant.teal:
-					return BoSpinnerVariant[variant.value];
-				default:
-					return BoSpinnerVariant.primary;
-			}
+		case BoButtonType.link:
+			return variant.value;
 		case BoButtonType.default:
 		case BoButtonType.pill:
 		default:
-			switch (variant.value) {
-				case BoButtonVariant.link:
-					return BoSpinnerVariant.primary;
-				case BoButtonVariant.primary:
-				case BoButtonVariant.secondary:
-				case BoButtonVariant.danger:
-				case BoButtonVariant.warning:
-				case BoButtonVariant.success:
-				case BoButtonVariant.dark:
-				case BoButtonVariant.purple:
-				case BoButtonVariant.teal:
-				default:
-					return BoSpinnerVariant.white;
-			}
+			return BoVariant.light;
 	}
 });
 
@@ -163,15 +113,20 @@ const colorClasses = computed<string>(() => {
 	switch (type.value) {
 		case BoButtonType.outline:
 			return TailwindUtils.merge(
-				BoButtonOutlineColorClasses[variant.value],
-				BoButtonOutlineDarkColorClasses[variant.value],
+				BoButtonLightOutlineColorClasses[variant.value],
+				BoButtonDarkOutlineColorClasses[variant.value],
+			);
+		case BoButtonType.link:
+			return TailwindUtils.merge(
+				BoButtonLightLinkTypeClasses[variant.value],
+				BoButtonDarkLinkTypeClasses[variant.value],
 			);
 		case BoButtonType.default:
 		case BoButtonType.pill:
 		default:
 			return TailwindUtils.merge(
-				BoButtonFilledColorClasses[variant.value],
-				BoButtonFilledDarkColorClasses[variant.value],
+				BoButtonLightFilledColorClasses[variant.value],
+				BoButtonDarkFilledColorClasses[variant.value],
 			);
 	}
 });
@@ -189,7 +144,14 @@ const borderRadiusClasses = computed<string>(() => {
 });
 
 const shadowClasses = computed<string>(() => {
-	return BoButtonShadowClasses[variant.value];
+	if (type.value === BoButtonType.link) {
+		return /*tw*/ 'shadow-none';
+	}
+
+	return TailwindUtils.merge(
+		BoButtonLightShadowClasses[variant.value],
+		BoButtonDarkShadowClasses[variant.value],
+	);
 });
 
 const fontSizeClasses = computed<string>(() => {

@@ -2,10 +2,9 @@ import { Icon } from '@/components/bo_icon';
 import {
 	BoIconButton,
 	BoIconButtonShape,
-	BoIconButtonStyle,
-	BoIconButtonVariant,
+	BoIconButtonType,
 } from '@/components/bo_icon_button';
-import { BoSize } from '@/global';
+import { BoSize, BoVariant } from '@/global';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -45,15 +44,12 @@ const meta = {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoIconButtonVariant',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoIconButtonVariant,
-						'BoIconButtonVariant',
-					),
+					summary: 'BoVariant',
+					detail: StorybookUtils.stringEnumFormatter(BoVariant, 'BoVariant'),
 				},
 			},
 			control: { type: 'select' },
-			options: Object.values(BoIconButtonVariant),
+			options: Object.values(BoVariant),
 		},
 		shape: {
 			description: 'The shape of the icon',
@@ -71,21 +67,21 @@ const meta = {
 			control: { type: 'select' },
 			options: Object.values(BoIconButtonShape),
 		},
-		style: {
+		type: {
 			description: 'The style of the icon',
 			table: {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoIconButtonStyle',
+					summary: 'BoIconButtonType',
 					detail: StorybookUtils.stringEnumFormatter(
-						BoIconButtonStyle,
-						'BoIconButtonStyle',
+						BoIconButtonType,
+						'BoIconButtonType',
 					),
 				},
 			},
 			control: { type: 'select' },
-			options: Object.values(BoIconButtonStyle),
+			options: Object.values(BoIconButtonType),
 		},
 		disabled: {
 			type: 'boolean',
@@ -115,9 +111,9 @@ export const Example: Story = {
 	args: {
 		icon: Icon.activity,
 		size: BoSize.default,
-		variant: BoIconButtonVariant.primary,
+		variant: BoVariant.primary,
 		shape: BoIconButtonShape.default,
-		style: BoIconButtonStyle.default,
+		style: BoIconButtonType.default,
 		disabled: false,
 		isLoading: false,
 	},
@@ -135,7 +131,6 @@ export const Sizes: Story = {
 				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<BoIconButton :icon="icon" :size="size" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
-					
 				</span>
 			</div>
 		`,
@@ -149,16 +144,33 @@ export const Variants: Story = {
 	render: (args) => ({
 		components: { BoIconButton },
 		setup() {
-			const variants = Object.values(BoIconButtonVariant);
-			return { variants, ...args };
+			const variants = Object.values(BoVariant);
+			return { variants, ...args, BoIconButtonType };
 		},
 		template: `
-			<div class="grid grid-cols-8 gap-2">
-				<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoIconButton :icon="icon" :variant="variant" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">{{ variant }}</span>
-					
-				</span>
+			<div class="flex flex-col gap-4">	
+				<h1>Default</h1>
+				<div class="flex flex-row gap-2">
+					<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+						<BoIconButton :icon="icon" :variant="variant" class="m-1"/>
+						<span class="text-small text-gray-500 font-medium">{{ variant }}</span>	
+					</span>
+				</div>
+				<h1>Outline</h1>
+				<div class="flex flex-row gap-2">
+					<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+						<BoIconButton :icon="icon" :variant="variant" :type="BoIconButtonType.outline" class="m-1"/>
+						<span class="text-small text-gray-500 font-medium">{{ variant }}</span>	
+					</span>
+				</div>
+				<h1>Link</h1>
+				<div class="flex flex-row gap-2">
+					<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+						<BoIconButton :icon="icon" :variant="variant" :type="BoIconButtonType.link" class="m-1"/>
+						<span class="text-small text-gray-500 font-medium">{{ variant }}</span>	
+					</span>
+				</div>
+
 			</div>
 		`,
 	}),
@@ -179,7 +191,6 @@ export const Shapes: Story = {
 				<span v-for="shape in shapes" :key="shape" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<BoIconButton :icon="icon" :shape="shape" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">{{ shape }}</span>
-					
 				</span>
 			</div>
 		`,
@@ -189,16 +200,16 @@ export const Shapes: Story = {
 	},
 };
 
-export const Styles: Story = {
+export const Types: Story = {
 	render: (args) => ({
 		components: { BoIconButton },
 		setup() {
-			const styles = Object.values(BoIconButtonStyle);
-			return { styles, ...args };
+			const types = Object.values(BoIconButtonType);
+			return { types, ...args };
 		},
 		template: `
 			<div class="flex flex-row gap-2">
-				<span v-for="style in styles" :key="style" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+				<span v-for="style in types" :key="style" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<BoIconButton :icon="icon" :style="style" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">{{ style }}</span>
 					
@@ -260,7 +271,7 @@ export const AllVariantAndShapes: Story = {
 	render: (args) => ({
 		components: { BoIconButton },
 		setup() {
-			const variants = Object.values(BoIconButtonVariant);
+			const variants = Object.values(BoVariant);
 			const shapes = Object.values(BoIconButtonShape);
 			return { variants, shapes, ...args };
 		},
@@ -299,31 +310,6 @@ export const AllVariantAndShapes: Story = {
 						<BoIconButton :icon="icon" :variant="variant" :shape="shape" :disabled="true" class="m-1"/>
 						<span class="text-small text-gray-500 font-medium">{{ variant }} {{ shape }}</span>
 					</span>
-				</span>
-			</div>
-		`,
-	}),
-	args: {
-		icon: Icon.activity,
-	},
-};
-
-export const Links: Story = {
-	render: (args) => ({
-		components: { BoIconButton },
-		setup() {
-			const variants = Object.values(BoIconButtonVariant).filter((v) =>
-				v.includes('link'),
-			);
-
-			return { variants, ...args };
-		},
-		template: `
-			<h3 class="my-4">Links</h3>
-			<div class="flex flex-row gap-2">
-				<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2 dark:border-gray-700">
-					<BoIconButton :icon="icon" :variant="variant" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">{{ variant }}</span>
 				</span>
 			</div>
 		`,
