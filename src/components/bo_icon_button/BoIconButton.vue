@@ -121,7 +121,12 @@ const loaderVariant = computed<BoVariant>(() => {
 		case BoIconButtonType.link:
 			return variant.value;
 		case BoIconButtonType.default:
-			return BoVariant.light;
+			switch (variant.value) {
+				case BoVariant.secondary:
+					return BoVariant.secondary;
+				default:
+					return BoVariant.light;
+			}
 		default:
 			return BoVariant.primary;
 	}
