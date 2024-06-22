@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<BoTextComponentProps>(), {
 const { text, size, weight } = toRefs(props);
 
 const defaultClasses: string =
-	/*tw*/ 'inline-flex gap-2 items-center justify-center select-none max-w-full truncate';
+	/*tw*/ 'inline-flex gap-2 items-center justify-center select-none max-w-full truncate font-sans';
 
 const fontSizeClasses = computed<string>(() => {
 	return BoFontSizeClasses[size.value];
