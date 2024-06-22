@@ -55,7 +55,6 @@ import {
 	BoButtonDarkOutlineColorClasses,
 	BoButtonDarkLinkTypeClasses,
 	BoButtonDarkFilledColorClasses,
-	BoButtonDarkShadowClasses,
 } from './bo_button';
 import { computed, toRefs } from 'vue';
 import { BoSize, BoVariant } from '@/global';
@@ -148,10 +147,7 @@ const shadowClasses = computed<string>(() => {
 		return /*tw*/ 'shadow-none';
 	}
 
-	return TailwindUtils.merge(
-		BoButtonLightShadowClasses[variant.value],
-		BoButtonDarkShadowClasses[variant.value],
-	);
+	return BoButtonLightShadowClasses[variant.value];
 });
 
 const fontSizeClasses = computed<string>(() => {

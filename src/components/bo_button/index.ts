@@ -1,8 +1,12 @@
 export { default as BoButton } from './BoButton.vue';
 export {
 	BoButtonBorderRadiusClasses,
+	BoButtonDarkFilledColorClasses,
+	BoButtonDarkLinkTypeClasses,
+	BoButtonDarkOutlineColorClasses,
 	BoButtonHeightClasses,
 	BoButtonLightFilledColorClasses,
+	BoButtonLightLinkTypeClasses,
 	BoButtonLightOutlineColorClasses,
 	BoButtonLightShadowClasses,
 	BoButtonPaddingClasses,

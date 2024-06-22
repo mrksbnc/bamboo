@@ -1,9 +1,13 @@
 export { default as BoIconButton } from './BoIconButton.vue';
 export {
 	BoIconButtonBorderRadiusClasses,
-	BoIconButtonColorClasses,
-	BoIconButtonOutlineColorClasses,
-	BoIconButtonShadowClasses,
+	BoIconButtonDarkColorClasses,
+	BoIconButtonDarkLinkColorClasses,
+	BoIconButtonDarkOutlineColorClasses,
+	BoIconButtonLightColorClasses,
+	BoIconButtonLightLinkColorClasses,
+	BoIconButtonLightOutlineColorClasses,
+	BoIconButtonLightShadowClasses,
 	BoIconButtonShape,
 	BoIconButtonSizeClasses,
 	BoIconButtonType,
