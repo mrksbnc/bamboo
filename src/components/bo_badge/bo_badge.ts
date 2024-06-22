@@ -10,30 +10,6 @@ export enum BoBadgeShape {
 	circle = 'circle',
 }
 
-export enum BoBadgeFilledColorClasses {
-	primary = /*tw*/ 'bg-blue-600  focus:ring-blue-600 text-white',
-	secondary = /*tw*/ 'bg-gray-600 focus:ring-gray-600 text-white',
-	danger = /*tw*/ 'bg-red-600  focus:ring-red-600 text-white',
-	warning = /*tw*/ 'bg-yellow-600  focus:ring-yellow-600 text-white',
-	success = /*tw*/ 'bg-green-600  focus:ring-green-600 text-white',
-	dark = /*tw*/ 'bg-black focus:ring-black text-white',
-	light = /*tw*/ 'bg-neutral-100 focus:ring-neutral-300 text-neutral-900',
-	purple = /*tw*/ 'bg-purple-600  focus:ring-purple-600 text-white',
-	teal = /*tw*/ 'bg-teal-600  focus:ring-teal-600 text-white',
-}
-
-export enum BoBadgeOutlineColorClasses {
-	primary = /*tw*/ 'border border-blue-600  focus:ring-blue-600 text-blue-600',
-	secondary = /*tw*/ 'border border-gray-600  focus:ring-gray-600 text-gray-600',
-	danger = /*tw*/ 'border border-red-600  focus:ring-red-600 text-red-600',
-	warning = /*tw*/ 'border border-yellow-600  focus:ring-yellow-600 text-yellow-600',
-	success = /*tw*/ 'border border-green-600  focus:ring-green-600 text-green-600',
-	dark = /*tw*/ 'border border-black focus:ring-black text-black',
-	light = /*tw*/ 'border border-neutral-300 focus:ring-neutral-300 text-neutral-900',
-	purple = /*tw*/ 'border border-purple-600  focus:ring-purple-600 text-purple-600',
-	teal = /*tw*/ 'border border-teal-600  focus:ring-teal-600 text-teal-600',
-}
-
 export enum BoBadgeBorderRadiusClasses {
 	pill = /*tw*/ 'rounded-full',
 	default = /*tw*/ 'rounded-lg',
@@ -69,6 +45,30 @@ export enum BoBadgeCircleSizeClasses {
 	small = /*tw*/ 'h-4 w-4',
 	default = /*tw*/ 'h-6 w-6',
 	large = /*tw*/ 'h-8 w-8',
+}
+
+export enum BoBadgeFilledColorClasses {
+	primary = /*tw*/ 'bg-blue-600  focus:ring-blue-600 text-white',
+	secondary = /*tw*/ 'bg-gray-600 focus:ring-gray-600 text-white',
+	danger = /*tw*/ 'bg-red-600  focus:ring-red-600 text-white',
+	warning = /*tw*/ 'bg-yellow-600  focus:ring-yellow-600 text-white',
+	success = /*tw*/ 'bg-green-600  focus:ring-green-600 text-white',
+	dark = /*tw*/ 'bg-black focus:ring-black text-white',
+	light = /*tw*/ 'bg-neutral-100 focus:ring-neutral-300 text-neutral-900',
+	purple = /*tw*/ 'bg-purple-600  focus:ring-purple-600 text-white',
+	teal = /*tw*/ 'bg-teal-600  focus:ring-teal-600 text-white',
+}
+
+export enum BoBadgeOutlineColorClasses {
+	primary = /*tw*/ 'border border-blue-600  focus:ring-blue-600 text-blue-600',
+	secondary = /*tw*/ 'border border-gray-600  focus:ring-gray-600 text-gray-600',
+	danger = /*tw*/ 'border border-red-600  focus:ring-red-600 text-red-600',
+	warning = /*tw*/ 'border border-yellow-600  focus:ring-yellow-600 text-yellow-600',
+	success = /*tw*/ 'border border-green-600  focus:ring-green-600 text-green-600',
+	dark = /*tw*/ 'border border-black focus:ring-black text-black',
+	light = /*tw*/ 'border border-neutral-300 focus:ring-neutral-300 text-neutral-900',
+	purple = /*tw*/ 'border border-purple-600  focus:ring-purple-600 text-purple-600',
+	teal = /*tw*/ 'border border-teal-600  focus:ring-teal-600 text-teal-600',
 }
 
 export enum BoBadgeShadowClasses {

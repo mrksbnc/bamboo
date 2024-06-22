@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { ref, onBeforeMount, toRefs } from 'vue';
-import type { AvatarComponentProps } from './bo_avatar.types';
+import type { AvatarComponentProps } from './bo_avatar.type';
 import { BoSize } from '@/global';
 
 const props = withDefaults(defineProps<AvatarComponentProps>(), {

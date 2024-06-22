@@ -44,17 +44,10 @@
 <script setup lang="ts">
 import {
 	BoButtonBorderRadiusClasses,
-	BoButtonLightFilledColorClasses,
 	BoButtonHeightClasses,
-	BoButtonLightLinkTypeClasses,
-	BoButtonLightOutlineColorClasses,
 	BoButtonPaddingClasses,
-	BoButtonLightShadowClasses,
 	BoButtonTextSizeClasses,
 	BoButtonType,
-	BoButtonDarkOutlineColorClasses,
-	BoButtonDarkLinkTypeClasses,
-	BoButtonDarkFilledColorClasses,
 } from './bo_button';
 import { computed, toRefs } from 'vue';
 import { BoSize, BoVariant } from '@/global';
@@ -62,7 +55,12 @@ import { BoIcon, Icon } from '@/components/bo_icon';
 import { TailwindUtils } from '@/utils';
 import { BoSpinner } from '@/components/bo_spinner';
 import { BoFontSize, BoText, BoFontWeight } from '@/components/bo_text';
-import type { BoButtonComponentProps } from './bo_button.types';
+import type { BoButtonComponentProps } from './bo_button.type';
+import {
+	BoButtonColorClasses,
+	BoButtonLinkColorClasses,
+	BoButtonOutlineColorClasses,
+} from '@/shared';
 
 const props = withDefaults(defineProps<BoButtonComponentProps>(), {
 	disabled: false,
@@ -111,22 +109,13 @@ const loaderVariant = computed<BoVariant>(() => {
 const colorClasses = computed<string>(() => {
 	switch (type.value) {
 		case BoButtonType.outline:
-			return TailwindUtils.merge(
-				BoButtonLightOutlineColorClasses[variant.value],
-				BoButtonDarkOutlineColorClasses[variant.value],
-			);
+			return BoButtonOutlineColorClasses[variant.value];
 		case BoButtonType.link:
-			return TailwindUtils.merge(
-				BoButtonLightLinkTypeClasses[variant.value],
-				BoButtonDarkLinkTypeClasses[variant.value],
-			);
+			return BoButtonLinkColorClasses[variant.value];
 		case BoButtonType.default:
 		case BoButtonType.pill:
 		default:
-			return TailwindUtils.merge(
-				BoButtonLightFilledColorClasses[variant.value],
-				BoButtonDarkFilledColorClasses[variant.value],
-			);
+			return BoButtonColorClasses[variant.value];
 	}
 });
 
@@ -147,7 +136,7 @@ const shadowClasses = computed<string>(() => {
 		return /*tw*/ 'shadow-none';
 	}
 
-	return BoButtonLightShadowClasses[variant.value];
+	return /*tw*/ 'shadow-sm';
 });
 
 const fontSizeClasses = computed<string>(() => {

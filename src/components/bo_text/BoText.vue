@@ -17,7 +17,7 @@ import {
 	BoTextFontWeightClasses,
 } from './bo_text';
 import { TailwindUtils } from '@/utils';
-import type { BoTextComponentProps } from './bo_text.types';
+import type { BoTextComponentProps } from './bo_text.type';
 
 const props = withDefaults(defineProps<BoTextComponentProps>(), {
 	size: () => BoFontSize.default,

@@ -5,4 +5,4 @@ export {
 	BoFontWeight,
 	BoTextFontWeightClasses,
 } from './bo_text';
-export type { BoTextComponentProps } from './bo_text.types';
+export type { BoTextComponentProps } from './bo_text.type';

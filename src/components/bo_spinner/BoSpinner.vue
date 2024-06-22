@@ -26,7 +26,7 @@ import {
 	BoSpinnerVariantClasses,
 } from './bo_spinner';
 import { TailwindUtils, StringUtils } from '@/utils';
-import type { BoSpinnerComponentProps } from './bo_spinner.types';
+import type { BoSpinnerComponentProps } from './bo_spinner.type';
 
 const props = withDefaults(defineProps<BoSpinnerComponentProps>(), {
 	size: () => BoSize.default,

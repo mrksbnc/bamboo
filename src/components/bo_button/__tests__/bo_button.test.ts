@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, test } from 'vitest';
 import {
 	BoButton,
 	BoButtonBorderRadiusClasses,
-	BoButtonLightFilledColorClasses,
+	BoButtonColorClasses,
 	BoButtonType,
 } from '..';
 
@@ -94,7 +94,7 @@ describe('bo_button.vue', () => {
 
 	test('should be able to change the fill color', async () => {
 		await wrapper.setProps({
-			fillColor: BoButtonLightFilledColorClasses.primary,
+			fillColor: BoButtonColorClasses.primary,
 		});
 		expect(wrapper.classes().join(' ')).includes(
 			'bg-blue-600 hover:bg-blue-700 focus:ring-blue-600 text-white',

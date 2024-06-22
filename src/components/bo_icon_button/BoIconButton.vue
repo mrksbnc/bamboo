@@ -36,18 +36,16 @@ import { BoSpinner } from '@/components/bo_spinner';
 import { TailwindUtils } from '@/utils';
 import {
 	BoIconButtonBorderRadiusClasses,
-	BoIconButtonLightColorClasses,
-	BoIconButtonLightShadowClasses,
 	BoIconButtonShape,
 	BoIconButtonType,
-	BoIconButtonLightOutlineColorClasses,
 	BoIconButtonSizeClasses,
-	BoIconButtonLightLinkColorClasses,
-	BoIconButtonDarkOutlineColorClasses,
-	BoIconButtonDarkLinkColorClasses,
-	BoIconButtonDarkColorClasses,
 } from './bo_icon_button';
-import type { BoIconButtonComponentProps } from './bo_icon_button.types';
+import type { BoIconButtonComponentProps } from './bo_icon_button.type';
+import {
+	BoButtonColorClasses,
+	BoButtonLinkColorClasses,
+	BoButtonOutlineColorClasses,
+} from '@/shared';
 
 const props = withDefaults(defineProps<BoIconButtonComponentProps>(), {
 	disabled: false,
@@ -70,21 +68,12 @@ const disabledClasses: string =
 const variantClasses = computed<string>(() => {
 	switch (type.value) {
 		case BoIconButtonType.outline:
-			return TailwindUtils.merge(
-				BoIconButtonLightOutlineColorClasses[variant.value],
-				BoIconButtonDarkOutlineColorClasses[variant.value],
-			);
+			return BoButtonOutlineColorClasses[variant.value];
 		case BoIconButtonType.link:
-			return TailwindUtils.merge(
-				BoIconButtonLightLinkColorClasses[variant.value],
-				BoIconButtonDarkLinkColorClasses[variant.value],
-			);
+			return BoButtonLinkColorClasses[variant.value];
 		case BoIconButtonType.default:
 		default:
-			return TailwindUtils.merge(
-				BoIconButtonLightColorClasses[variant.value],
-				BoIconButtonDarkColorClasses[variant.value],
-			);
+			return BoButtonColorClasses[variant.value];
 	}
 });
 
@@ -101,7 +90,7 @@ const shadowClasses = computed<string>(() => {
 		return /*tw*/ 'shadow-none';
 	}
 
-	return BoIconButtonLightShadowClasses[variant.value];
+	return /*tw*/ 'shadow-sm';
 });
 
 const classes = computed<string>(() => {
