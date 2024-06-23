@@ -48,37 +48,25 @@ export enum BoBadgeCircleSizeClasses {
 }
 
 export enum BoBadgeFilledColorClasses {
-	primary = /*tw*/ 'bg-blue-600  focus:ring-blue-600 text-white',
-	secondary = /*tw*/ 'bg-gray-600 focus:ring-gray-600 text-white',
-	danger = /*tw*/ 'bg-red-600  focus:ring-red-600 text-white',
-	warning = /*tw*/ 'bg-yellow-600  focus:ring-yellow-600 text-white',
-	success = /*tw*/ 'bg-green-600  focus:ring-green-600 text-white',
-	dark = /*tw*/ 'bg-black focus:ring-black text-white',
-	light = /*tw*/ 'bg-neutral-100 focus:ring-neutral-300 text-neutral-900',
+	primary = /*tw*/ 'bg-primary  focus:ring-primary text-white',
+	secondary = /*tw*/ 'bg-secondary  focus:ring-secondary text-neutral-600',
+	danger = /*tw*/ 'bg-danger  focus:ring-danger text-white',
+	warning = /*tw*/ 'bg-warning  focus:ring-warning text-white',
+	success = /*tw*/ 'bg-success  focus:ring-success text-white',
+	dark = /*tw*/ 'bg-dark  focus:ring-dark text-white',
+	light = /*tw*/ 'bg-light  focus:ring-light text-blue-500',
 	purple = /*tw*/ 'bg-purple-600  focus:ring-purple-600 text-white',
 	teal = /*tw*/ 'bg-teal-600  focus:ring-teal-600 text-white',
 }
 
 export enum BoBadgeOutlineColorClasses {
-	primary = /*tw*/ 'border border-blue-600  focus:ring-blue-600 text-blue-600',
-	secondary = /*tw*/ 'border border-gray-600  focus:ring-gray-600 text-gray-600',
-	danger = /*tw*/ 'border border-red-600  focus:ring-red-600 text-red-600',
-	warning = /*tw*/ 'border border-yellow-600  focus:ring-yellow-600 text-yellow-600',
-	success = /*tw*/ 'border border-green-600  focus:ring-green-600 text-green-600',
-	dark = /*tw*/ 'border border-black focus:ring-black text-black',
-	light = /*tw*/ 'border border-neutral-300 focus:ring-neutral-300 text-neutral-900',
-	purple = /*tw*/ 'border border-purple-600  focus:ring-purple-600 text-purple-600',
-	teal = /*tw*/ 'border border-teal-600  focus:ring-teal-600 text-teal-600',
-}
-
-export enum BoBadgeShadowClasses {
-	primary = /*tw*/ 'shadow-sm shadow-blue-600/10 dark:shadow-sm dark:shadow-blue-800/80',
-	secondary = /*tw*/ 'shadow-sm shadow-gray-600/10 dark:shadow-sm dark:shadow-gray-800/80',
-	danger = /*tw*/ 'shadow-sm shadow-red-600/10 dark:shadow-sm dark:shadow-red-800/80',
-	warning = /*tw*/ 'shadow-sm shadow-yellow-600/10 dark:shadow-sm dark:shadow-yellow-800/80',
-	success = /*tw*/ 'shadow-sm shadow-green-600/10 dark:shadow-sm dark:shadow-green-800/80',
-	dark = /*tw*/ 'shadow-sm shadow-black-600/10 dark:shadow-sm dark:shadow-black-800/80',
-	light = /*tw*/ 'shadow-sm shadow-neutral-900/10 dark:shadow-sm dark:shadow-neutral-900/80',
-	purple = /*tw*/ 'shadow-sm shadow-purple-600/10 dark:shadow-sm dark:shadow-purple-800/80',
-	teal = /*tw*/ 'shadow-sm shadow-teal-600/10 dark:shadow-sm dark:shadow-teal-800/80',
+	primary = /*tw*/ 'border border-primary  focus:ring-primary text-primary',
+	secondary = /*tw*/ 'border border-secondary  focus:ring-secondary text-secondary',
+	danger = /*tw*/ 'border border-danger  focus:ring-danger text-danger',
+	warning = /*tw*/ 'border border-warning  focus:ring-warning text-warning',
+	success = /*tw*/ 'border border-success  focus:ring-success text-success',
+	dark = /*tw*/ 'border border-dark  focus:ring-dark text-dark',
+	light = /*tw*/ 'border border-light  focus:ring-light text-blue-500',
+	purple = /*tw*/ 'border border-purple  focus:ring-purple text-purple',
+	teal = /*tw*/ 'border border-teal  focus:ring-teal text-teal',
 }

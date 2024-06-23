@@ -1,4 +1,7 @@
-import type { BoVariant } from '@/global';
+export enum BoAvatarType {
+	image = 'image',
+	text = 'text',
+}
 
 export type AvatarImageArgs = {
 	src: string;
@@ -6,14 +9,14 @@ export type AvatarImageArgs = {
 };
 
 export type AvatarTextArgs = {
-	initial: string;
+	value: string;
 	alt?: string;
 	backgroundColor?: string;
 };
 
 export type AvatarComponentProps = {
 	size?: string;
+	type: BoAvatarType;
 	text?: AvatarTextArgs;
 	image?: AvatarImageArgs;
-	variant?: BoVariant;
 };

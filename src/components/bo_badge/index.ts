@@ -4,7 +4,6 @@ export {
 	BoBadgeFilledColorClasses,
 	BoBadgeOutlineColorClasses,
 	BoBadgePaddingClasses,
-	BoBadgeShadowClasses,
 	BoBadgeShape,
 	BoBadgeSizeClasses,
 	BoBadgeTextSizeClasses,

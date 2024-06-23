@@ -33,7 +33,6 @@ import {
 	BoBadgeFilledColorClasses,
 	BoBadgeOutlineColorClasses,
 	BoBadgePaddingClasses,
-	BoBadgeShadowClasses,
 	BoBadgeShape,
 	BoBadgeSizeClasses,
 	BoBadgeTextSizeClasses,
@@ -88,7 +87,7 @@ const borderRadiusClasses = computed<string>(() => {
 });
 
 const shadowClasses = computed<string>(() => {
-	return BoBadgeShadowClasses[variant.value];
+	return /*tw*/ 'shadow-sm';
 });
 
 const fontSizeClasses = computed<string>(() => {
