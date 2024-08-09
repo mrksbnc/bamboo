@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: 'class',
@@ -13,6 +15,9 @@ module.exports = {
 				small: '12px',
 				default: '14px',
 				large: '18px',
+			},
+			fontFamily: {
+				sans: ['Inter var', ...defaultTheme.fontFamily.sans],
 			},
 			fontSize: {
 				overline: '10px',
@@ -37,6 +42,15 @@ module.exports = {
 				h3: '56px',
 				h2: '64px',
 				h1: '96px',
+			},
+			colors: {
+				primary: '#2563eb',
+				secondary: '#f5f5f5',
+				danger: '#dc2626',
+				warning: '#ca8a04',
+				success: '#16a34a',
+				dark: '#000000',
+				light: '#ffffff',
 			},
 		},
 	},

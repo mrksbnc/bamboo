@@ -17,31 +17,21 @@ export default defineComponent({
 </script>
 
 <script setup lang="ts">
-import { IconSizeClasses, icons, type Icon } from './bo_icon';
+import { IconSizeClasses, icons } from './bo_icon';
 import { BoSize } from '@/global';
 import {
 	ref,
 	toRefs,
 	watch,
-	type PropType,
 	defineComponent,
 	computed,
 	type StyleValue,
 } from 'vue';
+import type { BoIconComponentProps } from './bo_icon.types';
 
-const props = defineProps({
-	icon: {
-		type: String as PropType<Icon>,
-		required: true,
-	},
-	size: {
-		type: String as PropType<BoSize>,
-		default: () => BoSize.default,
-	},
-	color: {
-		type: String,
-		default: () => 'currentColor',
-	},
+const props = withDefaults(defineProps<BoIconComponentProps>(), {
+	size: () => BoSize.default,
+	color: () => 'currentColor',
 });
 
 const { icon, size, color } = toRefs(props);

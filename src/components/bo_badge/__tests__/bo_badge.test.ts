@@ -1,7 +1,7 @@
-import { BoSize } from '@/global';
+import { BoSize, BoVariant } from '@/global';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, test } from 'vitest';
-import { BoBadge, BoBadgeType, BoBadgeVariant } from '..';
+import { BoBadge, BoBadgeType } from '..';
 
 let wrapper: ReturnType<typeof mount>;
 
@@ -9,7 +9,7 @@ beforeEach(() => {
 	wrapper = mount(BoBadge, {
 		props: {
 			label: 'Label',
-			variant: BoBadgeVariant.primary,
+			variant: BoVariant.primary,
 			type: BoBadgeType.default,
 		},
 	});
@@ -47,7 +47,7 @@ describe('bo_badge.vue', () => {
 	});
 
 	test('should be able to change the variant', async () => {
-		await wrapper.setProps({ variant: BoBadgeVariant.secondary });
+		await wrapper.setProps({ variant: BoVariant.secondary });
 		expect(wrapper.find('bg-gray-600')).toBeTruthy();
 		expect(wrapper.find('rounded-lg')).toBeTruthy();
 	});

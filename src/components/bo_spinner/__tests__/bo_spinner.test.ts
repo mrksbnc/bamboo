@@ -1,7 +1,7 @@
-import { BoSize } from '@/global';
+import { BoSize, BoVariant } from '@/global';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, test } from 'vitest';
-import { BoSpinner, BoSpinnerVariant } from '..';
+import { BoSpinner } from '..';
 
 let wrapper: ReturnType<typeof mount>;
 
@@ -9,7 +9,7 @@ beforeEach(() => {
 	wrapper = mount(BoSpinner, {
 		props: {
 			size: BoSize.default,
-			variant: BoSpinnerVariant.primary,
+			variant: BoVariant.primary,
 		},
 	});
 });
@@ -40,7 +40,7 @@ describe('bo_spinner.vue', () => {
 	});
 
 	test('should be able to change the variant', async () => {
-		await wrapper.setProps({ variant: BoSpinnerVariant.secondary });
+		await wrapper.setProps({ variant: BoVariant.secondary });
 		expect(wrapper.find('fill-gray-600')).toBeTruthy();
 		expect(wrapper.find('text-gray-200')).toBeTruthy();
 	});
