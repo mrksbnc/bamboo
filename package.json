@@ -89,7 +89,7 @@
 		"eslint-plugin-vue": "^9.20.1",
 		"gh-pages": "^6.1.1",
 		"globals": "^15.4.0",
-		"jsdom": "^24.0.0",
+		"jsdom": "^25.0.0",
 		"postcss": "^8.4.35",
 		"postcss-nesting": "^12.1.5",
 		"prettier": "^3.2.5",
