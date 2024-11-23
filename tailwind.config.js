@@ -1,4 +1,13 @@
-/** @type {import('tailwindcss').Config} */
+/* eslint-disable no-undef */
+
+/**
+ * @description
+ * This file is used to configure the Tailwind CSS framework.
+ *
+ * @see https://tailwindcss.com/docs/configuration
+ *
+ * @type {import('tailwindcss').Config}
+ */
 module.exports = {
 	darkMode: 'class',
 	content: ['./src/**/*.{vue,ts}'],

@@ -16,8 +16,8 @@ import {
 	BoFontSize,
 	BoFontWeight,
 	BoTextWhiteSpace,
-} from './bo_text.constants';
-import type { BoTextProps } from './bo_text.types';
+} from './bo_text.constant';
+import type { BoTextProps } from './bo_text.type';
 
 const props = withDefaults(defineProps<BoTextProps>(), {
 	size: BoFontSize.default,

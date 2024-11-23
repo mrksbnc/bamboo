@@ -1,3 +1,11 @@
+export enum BoIconSize {
+	extra_small = 'extra-small',
+	small = 'small',
+	default = 'default',
+	large = 'large',
+	extra_large = 'extra-large',
+}
+
 export enum Icon {
 	activity = 'activity',
 	airplay = 'airplay',
@@ -287,9 +295,3 @@ export const icons = import.meta.glob('@/assets/icons/**/*.svg', {
 	query: '?raw',
 	import: 'default',
 }) as Record<string, () => Promise<string>>;
-
-export enum IconSizeClasses {
-	small = /*tw*/ 'w-2.5 h-2.5',
-	default = /*tw*/ 'w-3.5 h-3.5',
-	large = /*tw*/ 'w-5 h-5',
-}

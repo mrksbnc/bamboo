@@ -1,7 +1,8 @@
 import { BoIcon, Icon } from '@/components/bo_icon';
-import { BoColor, BoSize } from '@/global';
+import { BoColor } from '@/data';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
+import { BoIconSize } from '../bo_icon.constant';
 
 const meta = {
 	title: 'Components/bo-icon',
@@ -28,17 +29,17 @@ const meta = {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoSize',
-					detail: StorybookUtils.stringEnumFormatter(BoSize, 'BoSize'),
+					summary: 'BoIconSize',
+					detail: StorybookUtils.stringEnumFormatter(BoIconSize, 'BoIconSize'),
 				},
 				defaultValue: {
-					summary: BoSize.default,
+					summary: BoIconSize.default,
 				},
 			},
 			control: {
 				type: 'select',
 			},
-			options: Object.values(BoSize),
+			options: Object.values(BoIconSize),
 		},
 		color: {
 			description: 'The color of the icon in `hex` format',
@@ -61,7 +62,7 @@ type Story = StoryObj<typeof meta>;
 export const Example: Story = {
 	args: {
 		icon: Icon.airplay,
-		size: BoSize.default,
+		size: BoIconSize.default,
 	},
 };
 
@@ -69,7 +70,7 @@ export const Sizes: Story = {
 	render: (args) => ({
 		components: { BoIcon },
 		setup() {
-			const sizes = Object.values(BoSize);
+			const sizes = Object.values(BoIconSize);
 			return { sizes, ...args };
 		},
 		template: `
@@ -128,7 +129,7 @@ export const AllIcons: Story = {
 		template: `
 			<div class="grid grid-cols-6 gap-2"> 
 				<span v-for="icon in icons" :key="icon" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoIcon :icon="icon" size="${BoSize.large}" class="m-1"/>
+					<BoIcon :icon="icon" size="${BoIconSize.large}" class="m-1"/>
 						<span class="text-small text-gray-500 font-medium">{{ icon }}</span>
 					</span>
 			</div>

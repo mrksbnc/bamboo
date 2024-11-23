@@ -3,7 +3,7 @@ import type {
 	BoFontSize,
 	BoFontWeight,
 	BoTextWhiteSpace,
-} from './bo_text.constants';
+} from './bo_text.constant';
 
 export type BoTextProps = {
 	text: string;
