@@ -19,11 +19,16 @@ A label is a small piece of text that is used to display information.
 ## Props
 
 - `text` - The text to be displayed (required)
-  - default: `''`
 - `size` - The size of the text (optional)
   - default: `BoFontSize.default`
 - `weight` - The weight of the text (optional)
   - default: `BoFontWeight.regular`
+- `fontFamily` - The font family of the text (optional)
+  - default: `BoFontFamily.inter`
+- `whiteSpace` - The white space of the text (optional)
+  - default: `BoTextWhiteSpace.nowrap`
+- `cssClass` - The CSS class to be applied to the text (optional)
+  - default: `undefined`
 
 ## Examples
 
@@ -84,3 +89,31 @@ The `whiteSpace` prop can be used to change the white space of the text. The `wh
 - `break-spaces`
 
 <Canvas of={BoTextStories.WhiteSpace} />
+
+## Colors
+
+The `color` prop can be used to change the color of the text. The `color` prop should be a member of the `BoTextColor` enum.
+
+- `inherit`
+- `current` (default)
+- `success`
+- `warning`
+- `danger`
+- `disabled`
+- `info`
+
+<Canvas of={BoTextStories.Colors} />
+
+## Custom color
+
+The `customColor` prop can be used to change the custom color of the text.
+The `customColor` prop should be a string that represents the color in `hex` format.
+
+<Canvas of={BoTextStories.CustomColor} />
+
+## Clickable
+
+To encapsulate the text in a clickable element, the `clickable` prop can be used.
+This will add a `cursor-pointer` class to the text.
+
+<Canvas of={BoTextStories.Clickable} />

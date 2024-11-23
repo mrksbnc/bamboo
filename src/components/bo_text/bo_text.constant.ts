@@ -91,3 +91,13 @@ export enum BoTextWhiteSpace {
 	pre_wrap = 'pre-wrap',
 	break_spaces = 'break-spaces',
 }
+
+export enum BoTextColor {
+	inherit = 'inherit',
+	current = 'currentColor',
+	success = 'success',
+	warning = 'warning',
+	danger = 'danger',
+	disabled = 'disabled',
+	info = 'info',
+}

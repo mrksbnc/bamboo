@@ -3,8 +3,10 @@ import {
 	BoFontSize,
 	BoFontWeight,
 	BoText,
+	BoTextColor,
 	BoTextWhiteSpace,
 } from '@/components/bo_text';
+import { BoColor } from '@/data';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -93,6 +95,40 @@ const meta = {
 				},
 			},
 			defaultValue: BoTextWhiteSpace.nowrap,
+		},
+		color: {
+			description: 'The color of the text',
+			control: { type: 'select' },
+			options: Object.values(BoTextColor),
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: 'BoTextColor',
+					detail: StorybookUtils.stringEnumFormatter(
+						BoTextColor,
+						'BoTextColor',
+					),
+				},
+			},
+			defaultValue: BoTextColor.current,
+		},
+		customColor: {
+			description: 'The custom color of the text',
+			control: { type: 'color' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+			},
+		},
+		clickable: {
+			description: 'Whether the text is clickable',
+			control: { type: 'boolean' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+			},
+			defaultValue: false,
 		},
 	},
 } satisfies Meta<typeof BoText>;
@@ -224,5 +260,71 @@ export const WhiteSpace: Story = {
 	}),
 	args: {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+	},
+};
+
+export const Colors: Story = {
+	render: (args) => ({
+		components: { BoText },
+		setup() {
+			const colors = [
+				[BoTextColor.current, 'current'],
+				[BoTextColor.inherit, 'inherit'],
+				[BoTextColor.success, 'success'],
+				[BoTextColor.warning, 'warning'],
+				[BoTextColor.danger, 'danger'],
+				[BoTextColor.disabled, 'disabled'],
+				[BoTextColor.info, 'info'],
+			];
+
+			return { colors, ...args };
+		},
+		template: `
+			<div class="flex flex-col gap-4">
+				<span v-for="color in colors" :key="color" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<BoText :text="text" :color="color[0]" class="m-1"/>
+					<span class="text-overline text-gray-500 font-medium text-small">{{ color[0] }} - {{ color[1] }}</span>
+				</span>
+			</div>
+		`,
+	}),
+	args: {
+		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+	},
+};
+
+export const CustomColor: Story = {
+	render: (args) => ({
+		components: { BoText },
+		setup() {
+			return { ...args };
+		},
+		template: `
+			<div class="flex flex-col gap-4">
+				<BoText :text="text" :custom-color="customColor" class="m-1"/>
+			</div>
+		`,
+	}),
+	args: {
+		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		customColor: BoColor.purple_400,
+	},
+};
+
+export const Clickable: Story = {
+	render: (args) => ({
+		components: { BoText },
+		setup() {
+			return { ...args };
+		},
+		template: `
+			<div class="flex flex-col gap-4">
+				<BoText :text="text" :clickable="clickable" class="m-1"/>
+			</div>
+		`,
+	}),
+	args: {
+		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		clickable: true,
 	},
 };

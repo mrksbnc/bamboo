@@ -17,6 +17,7 @@ export default defineComponent({
 </script>
 
 <script setup lang="ts">
+import { BoSize } from '@/data/bo_size.constant';
 import { StringUtils } from '@/utils';
 import {
 	computed,
@@ -26,11 +27,11 @@ import {
 	watch,
 	type StyleValue,
 } from 'vue';
-import { BoIconSize, Icon, icons } from './bo_icon.constant';
+import { Icon, icons } from './bo_icon.constant';
 import type { BoIconProps } from './bo_icon.type';
 
 const props = withDefaults(defineProps<BoIconProps>(), {
-	size: () => BoIconSize.default,
+	size: () => BoSize.default,
 	color: () => 'currentColor',
 });
 
@@ -75,15 +76,15 @@ const style = computed<StyleValue>(() => {
 
 const tailwindCssSizeClasses = computed<string>(() => {
 	switch (size.value) {
-		case BoIconSize.extra_small:
+		case BoSize.extra_small:
 			return 'w-[8px] h-[8px]';
-		case BoIconSize.small:
+		case BoSize.small:
 			return 'w-[12px] h-[12px]';
-		case BoIconSize.large:
+		case BoSize.large:
 			return 'w-[18px] h-[18px]';
-		case BoIconSize.extra_large:
+		case BoSize.extra_large:
 			return 'w-[24px] h-[24px]';
-		case BoIconSize.default:
+		case BoSize.default:
 		default:
 			return 'w-[16px] h-[16px]';
 	}

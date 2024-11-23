@@ -1,35 +1,51 @@
 <template>
 	<span
-		class="bo-text"
 		aria-label="text"
 		:class="classes"
+		:style="containerStyle"
 	>
 		{{ text }}
 	</span>
 </template>
 
 <script setup lang="ts">
-import { TailwindUtils } from '@/utils';
-import { computed, toRefs } from 'vue';
+import { StringUtils, TailwindUtils } from '@/utils';
+import { computed, toRefs, type StyleValue } from 'vue';
 import {
 	BoFontFamily,
 	BoFontSize,
 	BoFontWeight,
+	BoTextColor,
 	BoTextWhiteSpace,
 } from './bo_text.constant';
 import type { BoTextProps } from './bo_text.type';
 
 const props = withDefaults(defineProps<BoTextProps>(), {
 	size: BoFontSize.default,
+	color: BoTextColor.current,
 	weight: BoFontWeight.regular,
 	fontFamily: BoFontFamily.inter,
 	whiteSpace: BoTextWhiteSpace.nowrap,
 });
 
-const { text, size, weight, fontFamily, whiteSpace, cssClass } = toRefs(props);
+const {
+	text,
+	size,
+	weight,
+	fontFamily,
+	whiteSpace,
+	cssClass,
+	color,
+	customColor,
+	clickable,
+} = toRefs(props);
 
 const defaultClasses: string =
-	/*tw*/ 'bo-text inline-flex items-center justify-center cursor-default shrink-0 overflow-auto';
+	/*tw*/ 'bo-text inline-flex items-center justify-center shrink-0 overflow-auto';
+
+const tailwindCssCursorClasses = computed<string>(() => {
+	return clickable.value ? /*tw*/ 'cursor-pointer' : /*tw*/ 'cursor-default';
+});
 
 const tailwindCssSizeClasses = computed<string>(() => {
 	switch (size.value) {
@@ -110,14 +126,46 @@ const tailwindCssWhiteSpaceClasses = computed<string>(() => {
 	}
 });
 
+const tailwindCssColorClasses = computed<string>(() => {
+	switch (color.value) {
+		case BoTextColor.inherit:
+			return /*tw*/ 'text-inherit';
+		case BoTextColor.success:
+			return /*tw*/ 'text-green-600';
+		case BoTextColor.warning:
+			return /*tw*/ 'text-yellow-600';
+		case BoTextColor.danger:
+			return /*tw*/ 'text-red-600';
+		case BoTextColor.disabled:
+			return /*tw*/ 'text-gray-400';
+		case BoTextColor.info:
+			return /*tw*/ 'text-blue-600';
+		case BoTextColor.current:
+		default:
+			return /*tw*/ 'text-current';
+	}
+});
+
 const classes = computed<string>(() => {
 	return TailwindUtils.merge(
 		cssClass.value,
 		defaultClasses,
 		tailwindCssSizeClasses.value,
+		tailwindCssColorClasses.value,
+		tailwindCssCursorClasses.value,
 		tailwindCssWeightClasses.value,
 		tailwindCssFontFamilyClasses.value,
 		tailwindCssWhiteSpaceClasses.value,
 	);
+});
+
+const containerStyle = computed<StyleValue>(() => {
+	if (!StringUtils.isEmpty(customColor.value ?? '')) {
+		return {
+			color: customColor.value,
+		};
+	}
+
+	return {};
 });
 </script>
