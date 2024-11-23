@@ -8,7 +8,6 @@ import type {
 export type BoTextProps = {
 	text: string;
 	size?: BoFontSize;
-	maxLines?: number;
 	weight?: BoFontWeight;
 	fontFamily?: BoFontFamily;
 	whiteSpace?: BoTextWhiteSpace;

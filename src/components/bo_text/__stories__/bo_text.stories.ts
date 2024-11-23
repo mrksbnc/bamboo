@@ -51,6 +51,49 @@ const meta = {
 			},
 			defaultValue: BoFontWeight.regular,
 		},
+		cssClass: {
+			description: 'The CSS class to be applied to the text',
+			control: { type: 'text' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+			},
+			defaultValue: '',
+		},
+		fontFamily: {
+			description: 'The font family of the text',
+			control: { type: 'select' },
+			options: Object.values(BoFontFamily),
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: 'BoFontFamily',
+					detail: StorybookUtils.stringEnumFormatter(
+						BoFontFamily,
+						'BoFontFamily',
+					),
+				},
+			},
+			defaultValue: BoFontFamily.inter,
+		},
+		whiteSpace: {
+			description: 'The white space of the text',
+			control: { type: 'select' },
+			options: Object.values(BoTextWhiteSpace),
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: 'BoTextWhiteSpace',
+					detail: StorybookUtils.stringEnumFormatter(
+						BoTextWhiteSpace,
+						'BoTextWhiteSpace',
+					),
+				},
+			},
+			defaultValue: BoTextWhiteSpace.nowrap,
+		},
 	},
 } satisfies Meta<typeof BoText>;
 
