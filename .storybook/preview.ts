@@ -1,6 +1,5 @@
-import './storybook.scss';
-
 import '../src/index.css';
+import './storybook.scss';
 
 import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/vue3';

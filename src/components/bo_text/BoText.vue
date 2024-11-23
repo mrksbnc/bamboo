@@ -9,48 +9,115 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs, type PropType } from 'vue';
-import {
-	BoFontSize,
-	BoFontSizeClasses,
-	BoFontWeight,
-	BoTextFontWeightClasses,
-} from './bo_text';
 import { TailwindUtils } from '@/utils';
+import { computed, toRefs } from 'vue';
+import {
+	BoFontFamily,
+	BoFontSize,
+	BoFontWeight,
+	BoTextWhiteSpace,
+} from './bo_text.constants';
+import type { BoTextProps } from './bo_text.types';
 
-const props = defineProps({
-	text: {
-		type: String as PropType<string>,
-		required: true,
-	},
-	size: {
-		type: String as PropType<BoFontSize>,
-		default: () => BoFontSize.default,
-	},
-	weight: {
-		type: String as PropType<BoFontWeight>,
-		default: () => BoFontWeight.regular,
-	},
+const props = withDefaults(defineProps<BoTextProps>(), {
+	size: BoFontSize.default,
+	weight: BoFontWeight.regular,
+	fontFamily: BoFontFamily.inter,
+	whiteSpace: BoTextWhiteSpace.nowrap,
 });
 
-const { text, size, weight } = toRefs(props);
+const { text, size, weight, fontFamily, whiteSpace, cssClass } = toRefs(props);
 
 const defaultClasses: string =
-	/*tw*/ 'inline-flex gap-2 items-center justify-center select-none max-w-full truncate';
+	/*tw*/ 'bo-text inline-flex items-center justify-center cursor-default shrink-0 overflow-auto';
 
-const fontSizeClasses = computed<string>(() => {
-	return BoFontSizeClasses[size.value];
+const tailwindCssSizeClasses = computed<string>(() => {
+	switch (size.value) {
+		case BoFontSize.extra_small:
+			return /*tw*/ 'text-extra-small leading-extra-small';
+		case BoFontSize.small:
+			return /*tw*/ 'text-small leading-small';
+		case BoFontSize.body:
+			return /*tw*/ 'text-body leading-body';
+		case BoFontSize.title:
+			return /*tw*/ 'text-title leading-title';
+		case BoFontSize.h6:
+			return /*tw*/ 'text-h6 leading-h6';
+		case BoFontSize.h5:
+			return /*tw*/ 'text-h5 leading-h5';
+		case BoFontSize.h4:
+			return /*tw*/ 'text-h4 leading-h4';
+		case BoFontSize.h3:
+			return /*tw*/ 'text-h3 leading-h3';
+		case BoFontSize.h2:
+			return /*tw*/ 'text-h2 leading-h2';
+		case BoFontSize.h1:
+			return /*tw*/ 'text-h1 leading-h1';
+		case BoFontSize.default:
+		default:
+			return /*tw*/ 'text-default leading-default';
+	}
 });
 
-const fontWeightClasses = computed<string>(() => {
-	return BoTextFontWeightClasses[weight.value];
+const tailwindCssWeightClasses = computed<string>(() => {
+	switch (weight.value) {
+		case BoFontWeight.light:
+			return /*tw*/ 'font-light';
+		case BoFontWeight.medium:
+			return /*tw*/ 'font-medium';
+		case BoFontWeight.semibold:
+			return /*tw*/ 'font-semibold';
+		case BoFontWeight.bold:
+			return /*tw*/ 'font-bold';
+		case BoFontWeight.regular:
+		default:
+			return /*tw*/ 'font-normal';
+	}
+});
+
+const tailwindCssFontFamilyClasses = computed<string>(() => {
+	switch (fontFamily.value) {
+		case BoFontFamily.inter:
+			return /*tw*/ 'font-inter';
+		case BoFontFamily.graphik:
+			return /*tw*/ 'font-graphik';
+		case BoFontFamily.sans:
+			return /*tw*/ 'font-sans';
+		case BoFontFamily.mono:
+			return /*tw*/ 'font-mono';
+		case BoFontFamily.serif:
+			return /*tw*/ 'font-serif';
+		default:
+			return /*tw*/ 'font-inter';
+	}
+});
+
+const tailwindCssWhiteSpaceClasses = computed<string>(() => {
+	switch (whiteSpace.value) {
+		case BoTextWhiteSpace.nowrap:
+			return /*tw*/ 'truncate';
+		case BoTextWhiteSpace.pre:
+			return /*tw*/ 'whitespace-pre text-clip';
+		case BoTextWhiteSpace.pre_line:
+			return /*tw*/ 'whitespace-pre-line text-clip';
+		case BoTextWhiteSpace.pre_wrap:
+			return /*tw*/ 'whitespace-pre-wrap text-clip';
+		case BoTextWhiteSpace.break_spaces:
+			return /*tw*/ 'break-spaces text-clip';
+		case BoTextWhiteSpace.normal:
+		default:
+			return /*tw*/ 'whitespace-normal text-clip';
+	}
 });
 
 const classes = computed<string>(() => {
 	return TailwindUtils.merge(
+		cssClass.value,
 		defaultClasses,
-		fontSizeClasses.value,
-		fontWeightClasses.value,
+		tailwindCssSizeClasses.value,
+		tailwindCssWeightClasses.value,
+		tailwindCssFontFamilyClasses.value,
+		tailwindCssWhiteSpaceClasses.value,
 	);
 });
 </script>

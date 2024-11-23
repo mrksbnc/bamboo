@@ -3,12 +3,12 @@ import { fileURLToPath, URL } from 'node:url';
 import viteCompression from 'vite-plugin-compression';
 import dts from 'vite-plugin-dts';
 import svgLoader from 'vite-svg-loader';
-import { defineConfig, type UserConfig } from 'vitest/config';
+import { defineConfig, type ViteUserConfig } from 'vitest/config';
 
 /**
  * @see https://vitejs.dev/config/
  */
-const bambooLibConfig: UserConfig = defineConfig({
+const bambooLibConfig: ViteUserConfig = defineConfig({
 	plugins: [
 		vue(),
 		dts(),

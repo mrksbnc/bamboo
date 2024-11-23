@@ -28,12 +28,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [x] Configure eslint
 - [x] Configure prettier
 - [x] Configure vitest
-- [x] Configure vite for library build
-- [x] Create `bo-badge` component
-- [x] Create `bo-button` component
-- [x] Create `bo-icon-button` component
-- [x] Create `bo-spinner` component
-- [x] Create `bo-icon` component
+- [] Create `bo-badge` component
+- [] Create `bo-button` component
+- [] Create `bo-icon-button` component
+- [] Create `bo-spinner` component
+- [] Create `bo-icon` component
 - [ ] Create `bo-progress-bar` component
 - [ ] Create `bo-card` component
 - [ ] Create `bo-avatar` component
