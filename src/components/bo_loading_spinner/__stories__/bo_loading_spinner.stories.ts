@@ -1,3 +1,4 @@
+import { BoColor } from '@/data';
 import { BoSize } from '@/data/bo_size.constant';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
@@ -47,6 +48,14 @@ const meta = {
 			},
 			defaultValue: '',
 		},
+		customColor: {
+			description: 'The custom color of the text',
+			control: { type: 'color' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+			},
+		},
 	},
 } satisfies Meta<typeof BoLoadingSpinner>;
 
@@ -70,7 +79,7 @@ export const Variants: Story = {
 		template: `
 			<div class="flex flex-row gap-4">
                 <span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-                    <BoLoadingSpinner :size="size" :variant="variant" class="m-1"/>
+                    <BoLoadingSpinner :size="size" :variant="variant"/>
                     <span class="text-small text-gray-500 font-medium">{{ variant }}</span>
                 </span>
 			</div>
@@ -92,7 +101,7 @@ export const Sizes: Story = {
 		template: `
 			<div class="flex gap-2">
                 <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-                    <BoLoadingSpinner :size="size" class="m-1"/>
+                    <BoLoadingSpinner :size="size"/>
                     <span class="text-small text-gray-500 font-medium">{{ size }}</span>
                 </span>
 			</div>
@@ -112,7 +121,7 @@ export const WithLoaderText: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoLoadingSpinner :size="size" :variant="variant" :loader-text="loaderText" class="m-1"/>
+                <BoLoadingSpinner :size="size" :variant="variant" :loader-text="loaderText"/>
             </div>
 		`,
 	}),
@@ -120,5 +129,24 @@ export const WithLoaderText: Story = {
 		size: BoSize.default,
 		variant: BoLoadingSpinnerVariant.primary,
 		loaderText: 'Loading...',
+	},
+};
+
+export const CustomColor: Story = {
+	render: (args) => ({
+		components: { BoLoadingSpinner },
+		setup() {
+			return { ...args };
+		},
+		template: `
+            <div class="flex flex-col gap-4">
+                <BoLoadingSpinner :size="size" :variant="variant" :custom-color="customColor"/>
+            </div>
+		`,
+	}),
+	args: {
+		size: BoSize.default,
+		variant: BoLoadingSpinnerVariant.primary,
+		customColor: BoColor.purple_400,
 	},
 };
