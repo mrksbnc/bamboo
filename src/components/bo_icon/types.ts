@@ -1,4 +1,4 @@
-import type { BoIconSize, Icon } from './bo_icon.constant';
+import type { BoIconSize, Icon } from './constant';
 
 export type BoIconProps = {
 	icon: Icon;

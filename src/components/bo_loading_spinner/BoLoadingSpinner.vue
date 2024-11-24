@@ -1,7 +1,10 @@
 <template>
 	<div
 		role="status"
-		class="flex flex-row items-center gap-4"
+		:class="[
+			defaultContainerClasses,
+			textPosition === 'side' ? 'flex-row' : 'flex-col',
+		]"
 	>
 		<div
 			role="status"
@@ -24,17 +27,21 @@
 <script setup lang="ts">
 import { BoFontFamily, BoText, BoTextColor } from '@/components/bo_text';
 import { BoSize } from '@/data/bo_size.constant';
-import { BoLoaderVariant } from '@/data/loader.constant';
+import { BoLoaderTextPosition, BoLoaderVariant } from '@/data/loader.constant';
 import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs, type StyleValue } from 'vue';
-import type { BoLoadingSpinnerProps } from './bo_loading_spinner.type';
+import type { BoLoadingSpinnerProps } from './types';
 
 const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 	size: () => BoSize.default,
 	variant: () => BoLoaderVariant.primary,
+	textPosition: () => BoLoaderTextPosition.bottom,
 });
 
 const { size, variant, loaderText, customColor } = toRefs(props);
+
+const defaultContainerClasses =
+	/*tw*/ 'flex h-full w-full content-center items-center justify-center gap-2';
 
 const defaultClasses =
 	/*tw*/ 'inline-block animate-spin rounded-full border-[2px] border-current border-t-transparent';

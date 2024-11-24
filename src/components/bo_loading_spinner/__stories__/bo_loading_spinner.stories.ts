@@ -3,7 +3,7 @@ import { BoSize } from '@/data/bo_size.constant';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
-import { BoLoaderVariant } from '@/data/loader.constant';
+import { BoLoaderTextPosition, BoLoaderVariant } from '@/data/loader.constant';
 import BoLoadingSpinner from '../BoLoadingSpinner.vue';
 
 const meta = {
@@ -56,6 +56,23 @@ const meta = {
 				category: 'props',
 				subcategory: 'optional',
 			},
+		},
+		textPosition: {
+			description: 'The position of the text',
+			control: { type: 'select' },
+			options: Object.values(BoLoaderTextPosition),
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: 'BoLoaderTextPosition',
+					detail: StorybookUtils.stringEnumFormatter(
+						BoLoaderTextPosition,
+						'BoLoaderTextPosition',
+					),
+				},
+			},
+			defaultValue: BoLoaderTextPosition.bottom,
 		},
 	},
 } satisfies Meta<typeof BoLoadingSpinner>;
@@ -149,5 +166,25 @@ export const CustomColor: Story = {
 		size: BoSize.default,
 		variant: BoLoaderVariant.primary,
 		customColor: BoColor.purple_400,
+	},
+};
+
+export const TextPosition: Story = {
+	render: (args) => ({
+		components: { BoLoadingSpinner },
+		setup() {
+			return { ...args };
+		},
+		template: `
+            <div class="flex flex-col gap-4">
+                <BoLoadingSpinner :size="size" :variant="variant" :loader-text="loaderText" :text-position="textPosition"/>
+            </div>
+		`,
+	}),
+	args: {
+		size: BoSize.default,
+		variant: BoLoaderVariant.primary,
+		loaderText: 'Loading...',
+		textPosition: BoLoaderTextPosition.side,
 	},
 };

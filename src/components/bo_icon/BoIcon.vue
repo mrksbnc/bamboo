@@ -27,8 +27,8 @@ import {
 	watch,
 	type StyleValue,
 } from 'vue';
-import { Icon, icons } from './bo_icon.constant';
-import type { BoIconProps } from './bo_icon.type';
+import { Icon, icons } from './constant';
+import type { BoIconProps } from './types';
 
 const props = withDefaults(defineProps<BoIconProps>(), {
 	size: () => BoSize.default,

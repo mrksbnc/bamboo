@@ -7,3 +7,8 @@ export enum BoLoaderVariant {
 	dark = 'dark',
 	white = 'white',
 }
+
+export enum BoLoaderTextPosition {
+	side = 'side',
+	bottom = 'bottom',
+}

@@ -16,7 +16,7 @@
 		</span>
 		<span
 			v-else-if="type === BoAvatarType.initials && initialsData != null"
-			class="bo-avatar__initials"
+			class="bo-avatar__initials flex items-center justify-center"
 		>
 			<BoText
 				:text="initialsData.initials"

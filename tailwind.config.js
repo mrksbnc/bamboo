@@ -65,7 +65,7 @@ module.exports = {
 				h1: '96px',
 			},
 			lineHeight: {
-				'extra-small': '12px',
+				'extra-small': '10px',
 				small: '14px',
 				default: '16px',
 				body: '18px',

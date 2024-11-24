@@ -3,8 +3,8 @@
 		aria-label="text"
 		:class="classes"
 		:style="containerStyle"
+		v-text="text"
 	>
-		{{ text }}
 	</span>
 </template>
 
@@ -17,8 +17,8 @@ import {
 	BoFontWeight,
 	BoTextColor,
 	BoTextWhiteSpace,
-} from './bo_text.constant';
-import type { BoTextProps } from './bo_text.type';
+} from './constants';
+import type { BoTextProps } from './types';
 
 const props = withDefaults(defineProps<BoTextProps>(), {
 	size: BoFontSize.default,

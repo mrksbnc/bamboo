@@ -1,18 +1,31 @@
 <template>
 	<div
 		role="status"
-		class="flex flex-row items-center gap-4"
+		aria-label="loader"
+		:class="[defaultClasses, textPosition === 'side' ? 'flex-row' : 'flex-col']"
 	>
 		<span
-			:style="customColorStyle"
+			:class="[loaderTailwindCssSizeClasses, 'relative flex']"
 			role="status"
-			:class="classes"
-			aria-label="loader"
-		></span>
-
+		>
+			<span
+				role="status"
+				:style="customColorStyle"
+				:class="[tailwindCssVariantClasses, defaultOuterPulseAbsoluteClasses]"
+			></span>
+			<span
+				role="status"
+				:class="[
+					loaderTailwindCssSizeClasses,
+					tailwindCssShiftedVariantClasses,
+					defaultInnerPulseRelativeClasses,
+				]"
+				:style="customColorStyle"
+			></span>
+		</span>
 		<span v-if="displayLoaderText">
 			<BoText
-				role="status"
+				role="text"
 				aria-label="label"
 				:text="loaderText ?? ''"
 				:color="BoTextColor.disabled"
@@ -25,20 +38,27 @@
 <script setup lang="ts">
 import { BoFontFamily, BoText, BoTextColor } from '@/components/bo_text';
 import { BoSize } from '@/data/bo_size.constant';
-import { BoLoaderVariant } from '@/data/loader.constant';
-import { StringUtils, TailwindUtils } from '@/utils';
+import { BoLoaderTextPosition, BoLoaderVariant } from '@/data/loader.constant';
+import { StringUtils } from '@/utils';
 import { computed, toRefs, type StyleValue } from 'vue';
-import type { BoLoadingPulseProps } from './bo_loading_pulse.type';
+import type { BoLoadingPulseProps } from './types';
 
 const props = withDefaults(defineProps<BoLoadingPulseProps>(), {
 	size: () => BoSize.default,
 	variant: () => BoLoaderVariant.primary,
+	textPosition: () => BoLoaderTextPosition.bottom,
 });
 
 const { size, variant, loaderText, customColor } = toRefs(props);
 
 const defaultClasses =
-	/*tw*/ 'inline-flex h-full w-full animate-ping rounded-full opacity-75';
+	/*tw*/ 'flex h-full w-full content-center items-center justify-center gap-2';
+
+const defaultOuterPulseAbsoluteClasses =
+	/*tw*/ 'absolute inline-flex h-full w-full animate-ping rounded-full opacity-75';
+
+const defaultInnerPulseRelativeClasses =
+	/*tw*/ 'relative inline-flex rounded-full';
 
 const displayLoaderText = computed<boolean>(() => {
 	return !StringUtils.isEmpty(loaderText.value ?? '');
@@ -47,16 +67,16 @@ const displayLoaderText = computed<boolean>(() => {
 const loaderTailwindCssSizeClasses = computed<string>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return /*tw*/ 'h-2 w-2';
+			return /*tw*/ 'size-2';
 		case BoSize.small:
-			return /*tw*/ 'h-3 w-3';
+			return /*tw*/ 'size-3';
 		case BoSize.large:
-			return /*tw*/ 'h-5 w-5';
+			return /*tw*/ 'size-5';
 		case BoSize.extra_large:
-			return /*tw*/ 'h-7 w-7';
+			return /*tw*/ 'size-7';
 		case BoSize.default:
 		default:
-			return /*tw*/ 'h-4 w-4';
+			return /*tw*/ 'size-4';
 	}
 });
 
@@ -94,11 +114,23 @@ const tailwindCssVariantClasses = computed<string>(() => {
 	}
 });
 
-const classes = computed<string>(() => {
-	return TailwindUtils.merge(
-		defaultClasses,
-		loaderTailwindCssSizeClasses.value,
-		tailwindCssVariantClasses.value,
-	);
+const tailwindCssShiftedVariantClasses = computed<string>(() => {
+	switch (variant.value) {
+		case BoLoaderVariant.secondary:
+			return /*tw*/ 'bg-gray-500';
+		case BoLoaderVariant.danger:
+			return /*tw*/ 'bg-red-500';
+		case BoLoaderVariant.warning:
+			return /*tw*/ 'bg-yellow-500';
+		case BoLoaderVariant.success:
+			return /*tw*/ 'bg-green-500';
+		case BoLoaderVariant.dark:
+			return /*tw*/ 'bg-black';
+		case BoLoaderVariant.white:
+			return /*tw*/ 'bg-white';
+		case BoLoaderVariant.primary:
+		default:
+			return /*tw*/ 'bg-blue-500';
+	}
 });
 </script>
