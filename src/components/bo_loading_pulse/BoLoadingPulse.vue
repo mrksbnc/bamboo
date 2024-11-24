@@ -3,17 +3,18 @@
 		role="status"
 		class="flex flex-row items-center gap-4"
 	>
-		<div
+		<span
+			:style="customColorStyle"
 			role="status"
 			:class="classes"
 			aria-label="loader"
-			:style="customColorStyle"
-		></div>
+		></span>
+
 		<span v-if="displayLoaderText">
 			<BoText
 				role="status"
-				:text="loaderText ?? ''"
 				aria-label="label"
+				:text="loaderText ?? ''"
 				:color="BoTextColor.disabled"
 				:font-family="BoFontFamily.graphik"
 			/>
@@ -27,9 +28,9 @@ import { BoSize } from '@/data/bo_size.constant';
 import { BoLoaderVariant } from '@/data/loader.constant';
 import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs, type StyleValue } from 'vue';
-import type { BoLoadingSpinnerProps } from './bo_loading_spinner.type';
+import type { BoLoadingPulseProps } from './bo_loading_pulse.type';
 
-const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
+const props = withDefaults(defineProps<BoLoadingPulseProps>(), {
 	size: () => BoSize.default,
 	variant: () => BoLoaderVariant.primary,
 });
@@ -37,7 +38,7 @@ const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 const { size, variant, loaderText, customColor } = toRefs(props);
 
 const defaultClasses =
-	/*tw*/ 'inline-block animate-spin rounded-full border-[2px] border-current border-t-transparent';
+	/*tw*/ 'inline-flex h-full w-full animate-ping rounded-full opacity-75';
 
 const displayLoaderText = computed<boolean>(() => {
 	return !StringUtils.isEmpty(loaderText.value ?? '');
@@ -46,23 +47,23 @@ const displayLoaderText = computed<boolean>(() => {
 const loaderTailwindCssSizeClasses = computed<string>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return /*tw*/ 'w-2 h-2';
+			return /*tw*/ 'h-2 w-2';
 		case BoSize.small:
-			return /*tw*/ 'w-3 h-3';
-		case BoSize.extra_large:
-			return /*tw*/ 'w-7 h-7';
+			return /*tw*/ 'h-3 w-3';
 		case BoSize.large:
-			return /*tw*/ 'w-5 h-5';
+			return /*tw*/ 'h-5 w-5';
+		case BoSize.extra_large:
+			return /*tw*/ 'h-7 w-7';
 		case BoSize.default:
 		default:
-			return /*tw*/ 'w-4 h-4';
+			return /*tw*/ 'h-4 w-4';
 	}
 });
 
 const customColorStyle = computed<StyleValue>(() => {
 	if (!StringUtils.isEmpty(customColor.value ?? '')) {
 		return {
-			color: customColor.value,
+			backgroundColor: customColor.value,
 		};
 	}
 
@@ -76,20 +77,20 @@ const tailwindCssVariantClasses = computed<string>(() => {
 
 	switch (variant.value) {
 		case BoLoaderVariant.secondary:
-			return /*tw*/ 'text-gray-600';
+			return /*tw*/ 'bg-gray-600';
 		case BoLoaderVariant.danger:
-			return /*tw*/ 'text-red-600';
+			return /*tw*/ 'bg-red-600';
 		case BoLoaderVariant.warning:
-			return /*tw*/ 'text-yellow-600';
+			return /*tw*/ 'bg-yellow-600';
 		case BoLoaderVariant.success:
-			return /*tw*/ 'text-green-600';
+			return /*tw*/ 'bg-green-600';
 		case BoLoaderVariant.dark:
-			return /*tw*/ 'text-black';
+			return /*tw*/ 'bg-black';
 		case BoLoaderVariant.white:
-			return /*tw*/ 'text-white';
+			return /*tw*/ 'bg-white';
 		case BoLoaderVariant.primary:
 		default:
-			return /*tw*/ 'text-blue-600';
+			return /*tw*/ 'bg-blue-600';
 	}
 });
 

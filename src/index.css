@@ -1,6 +1,6 @@
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
+@tailwind components;
 
 @layer base {
 	/* Inter */
@@ -21,7 +21,6 @@
 	}
 
 	/* static fonts */
-
 	@font-face {
 		font-family: 'Inter';
 		font-style: normal;

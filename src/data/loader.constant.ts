@@ -1,4 +1,4 @@
-export enum BoLoadingSpinnerVariant {
+export enum BoLoaderVariant {
 	primary = 'primary',
 	secondary = 'secondary',
 	danger = 'danger',

@@ -1,14 +1,13 @@
 import { BoColor } from '@/data';
 import { BoSize } from '@/data/bo_size.constant';
+import { BoLoaderVariant } from '@/data/loader.constant';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
-
-import { BoLoaderVariant } from '@/data/loader.constant';
-import BoLoadingSpinner from '../BoLoadingSpinner.vue';
+import BoLoadingPulse from '../BoLoadingPulse.vue';
 
 const meta = {
-	title: 'Components/bo-loading-spinner',
-	component: BoLoadingSpinner,
+	title: 'Components/bo-loading-pulse',
+	component: BoLoadingPulse,
 	argTypes: {
 		size: {
 			description: 'The size of the spinner',
@@ -58,7 +57,7 @@ const meta = {
 			},
 		},
 	},
-} satisfies Meta<typeof BoLoadingSpinner>;
+} satisfies Meta<typeof BoLoadingPulse>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -72,7 +71,7 @@ export const Example: Story = {
 
 export const Variants: Story = {
 	render: (args) => ({
-		components: { BoLoadingSpinner },
+		components: { BoLoadingPulse },
 		setup() {
 			const variants = Object.values(BoLoaderVariant);
 			return { variants, ...args };
@@ -80,7 +79,7 @@ export const Variants: Story = {
 		template: `
 			<div class="flex flex-row gap-4">
                 <span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-                    <BoLoadingSpinner :size="size" :variant="variant"/>
+                    <BoLoadingPulse :size="size" :variant="variant"/>
                     <span class="text-small text-gray-500 font-medium">{{ variant }}</span>
                 </span>
 			</div>
@@ -94,7 +93,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
 	render: (args) => ({
-		components: { BoLoadingSpinner },
+		components: { BoLoadingPulse },
 		setup() {
 			const sizes = Object.values(BoSize);
 			return { sizes, ...args };
@@ -102,7 +101,7 @@ export const Sizes: Story = {
 		template: `
 			<div class="flex gap-2">
                 <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-                    <BoLoadingSpinner :size="size"/>
+                    <BoLoadingPulse :size="size"/> 
                     <span class="text-small text-gray-500 font-medium">{{ size }}</span>
                 </span>
 			</div>
@@ -114,34 +113,15 @@ export const Sizes: Story = {
 	},
 };
 
-export const WithLoaderText: Story = {
-	render: (args) => ({
-		components: { BoLoadingSpinner },
-		setup() {
-			return { ...args };
-		},
-		template: `
-            <div class="flex flex-col gap-4">
-                <BoLoadingSpinner :size="size" :variant="variant" :loader-text="loaderText"/>
-            </div>
-		`,
-	}),
-	args: {
-		size: BoSize.default,
-		variant: BoLoaderVariant.primary,
-		loaderText: 'Loading...',
-	},
-};
-
 export const CustomColor: Story = {
 	render: (args) => ({
-		components: { BoLoadingSpinner },
+		components: { BoLoadingPulse },
 		setup() {
 			return { ...args };
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoLoadingSpinner :size="size" :variant="variant" :custom-color="customColor"/>
+                <BoLoadingPulse :size="size" :variant="variant" :custom-color="customColor"/>
             </div>
 		`,
 	}),
@@ -149,5 +129,24 @@ export const CustomColor: Story = {
 		size: BoSize.default,
 		variant: BoLoaderVariant.primary,
 		customColor: BoColor.purple_400,
+	},
+};
+
+export const WithLoaderText: Story = {
+	render: (args) => ({
+		components: { BoLoadingPulse },
+		setup() {
+			return { ...args };
+		},
+		template: `
+            <div class="flex flex-col gap-4">
+                <BoLoadingPulse :size="size" :variant="variant" :loader-text="loaderText"/>
+            </div>
+		`,
+	}),
+	args: {
+		size: BoSize.default,
+		variant: BoLoaderVariant.primary,
+		loaderText: 'Loading...',
 	},
 };
