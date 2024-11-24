@@ -181,9 +181,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+function generateRandomId(): string {
+	return Symbol(
+		Math.random().toString(36).substring(2, 15) + Date.now(),
+	).toString();
+}
+
 export const Example: Story = {
 	args: {
-		modelValue: '',
+		modelValue: 'Hello world!',
 		label: 'Name',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		size: BoInputSize.default,
@@ -200,13 +206,13 @@ export const Sizes: Story = {
 		components: { BoInput },
 		setup() {
 			const sizes = Object.values(BoInputSize);
-			return { sizes, ...args };
+			return { sizes, ...args, generateRandomId };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
-				<span v-for="size in sizes" :key="size" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2">
-					<BoInput :modelValue="value" :label="label" :description="description" :size="size"/>
-					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
+				<span v-for="size in sizes" :key="generateRandomId()" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
+					<BoInput :modelValue="modelValue" :label="label" :description="description" :size="size"/>
+					<span class="text-small text-gray-500 font-medium text-center">{{ size }}</span>
 				</span>
 			</div>
 		`,
@@ -218,17 +224,57 @@ export const Sizes: Story = {
 	},
 };
 
+export const Disabled: Story = {
+	render: (args) => ({
+		components: { BoInput },
+		setup() {
+			return { ...args };
+		},
+		template: `
+            <div class="flex flex-col gap-4">
+                <BoInput :modelValue="modelValue" :label="label" :description="description" :disabled="disabled"/>
+            </div>
+		`,
+	}),
+	args: {
+		modelValue: 'Hello world!',
+		label: 'Name',
+		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		disabled: true,
+	},
+};
+
+export const Readonly: Story = {
+	render: (args) => ({
+		components: { BoInput },
+		setup() {
+			return { ...args };
+		},
+		template: `
+            <div class="flex flex-col gap-4">
+                <BoInput :modelValue="modelValue" :label="label" :description="description" :readonly="readonly"/>
+            </div>
+		`,
+	}),
+	args: {
+		modelValue: 'Hello world!',
+		label: 'Name',
+		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		readonly: true,
+	},
+};
+
 export const States: Story = {
 	render: (args) => ({
 		components: { BoInput },
 		setup() {
 			const states = Object.values(BoInputState);
-			return { states, ...args };
+			return { states, ...args, generateRandomId };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
-				<span v-for="state in states" :key="state" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2">
-					<BoInput :modelValue="value" :label="label" :description="description" :state="state"/>
+				<span v-for="state in states" :key="generateRandomId" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2">
+					<BoInput :modelValue="modelValue" :label="label" :description="description" :state="state"/>
 					<span class="text-small text-gray-500 font-medium">{{ state }}</span>
 				</span>
 			</div>
@@ -249,7 +295,7 @@ export const Loading: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoInput :modelValue="value" :label="label" :description="description" :isLoading="isLoading"/>
+                <BoInput :modelValue="modelValue" :label="label" :description="description" :isLoading="isLoading"/>
             </div>
 		`,
 	}),
@@ -269,7 +315,7 @@ export const Required: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoInput :modelValue="value" :label="label" :description="description" :state="state" :required="required"/>
+                <BoInput :modelValue="modelValue" :label="label" :description="description" :state="state" :required="required"/>
             </div>
 		`,
 	}),
@@ -290,7 +336,7 @@ export const Error: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoInput :modelValue="value" :label="label" :description="description" :state="state" :error-message="errorMessage"/>
+                <BoInput :modelValue="modelValue" :label="label" :description="description" :state="state" :error-message="errorMessage"/>
             </div>
 		`,
 	}),
@@ -308,22 +354,23 @@ export const Icons: Story = {
 		components: { BoInput },
 		setup() {
 			const sizes = Object.values(BoInputSize);
-			return { sizes, ...args };
+
+			return { sizes, ...args, generateRandomId };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
 				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2">
-					<BoInput :modelValue="value" :label="label" :description="description" :prefix-icon="prefixIcon"/>
+					<BoInput :modelValue="modelValue" :label="label" :description="description" :prefix-icon="prefixIcon"/>
 					<span class="text-small text-gray-500 font-medium">default</span>
 				</span>
-				<span v-for="size in sizes" :key="size" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2">
-					<BoInput :modelValue="value" :label="label" :description="description" :size="size" :prefix-icon="prefixIcon" :isLoading="isLoading"/>
+				<span v-for="size in sizes" :key="generateRandomId" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
+					<BoInput :modelValue="modelValue" :label="label" :description="description" :size="size" :prefix-icon="prefixIcon" :isLoading="isLoading"/>
 					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
 				</span>
 			</div>
 			<div class="flex flex-col gap-4 mt-4">
-				<span v-for="size in sizes" :key="size" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2">
-					<BoInput :modelValue="value" :label="label" :description="description" :size="size" :suffix-icon="prefixIcon" :suffix-icon="suffixIcon" :isLoading="isLoading"/>
+				<span v-for="size in sizes" :key="generateRandomId" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
+					<BoInput :modelValue="modelValue" :label="label" :description="description" :size="size" :suffix-icon="prefixIcon" :suffix-icon="suffixIcon" :isLoading="isLoading"/>
 					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
 				</span>
 			</div>

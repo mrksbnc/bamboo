@@ -21,7 +21,7 @@
 				:weight="BoFontWeight.medium"
 			/>
 		</span>
-		<span class="bo-input__container relative flex items-center">
+		<span :class="inputContainer">
 			<span
 				v-if="prefixIcon != null"
 				:class="defaultPrefixIconContainerClasses"
@@ -74,7 +74,7 @@
 		</span>
 		<span
 			v-if="hasError"
-			class="bo-input__error-message flex items-center gap-1"
+			:class="errorContainerClasses"
 		>
 			<bo-icon
 				:icon="Icon.alert_triangle"
@@ -144,10 +144,10 @@ const defaultContainerClasses =
 	/*tw*/ 'bo-input flex flex-col gap-1 bg-transparent';
 
 const defaultInputClasses =
-	/*tw*/ 'bo-input__input rounded-lg border border-gray-400 text-gray-900 text-small bg-gray-50 outline-none';
+	/*tw*/ 'bo-input__input rounded-lg border border-gray-300 text-gray-900 text-small bg-gray-50 outline-none';
 
 const defaultInputDisabledClasses =
-	/*tw*/ 'disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-300';
+	/*tw*/ 'disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-300';
 
 const defaultFocusClasses = /*tw*/ 'focus:ring-blue-600 focus:border-blue-600';
 
@@ -172,6 +172,11 @@ const defaultSuffixIconContainerClasses =
 
 const defaultLoadingContainerClasses =
 	/*tw*/ 'bo-input__loading-container absolute right-[10px] top-1/2 flex -translate-y-1/2 items-center justify-center';
+
+const inputContainer = /*tw*/ 'bo-input__container relative flex items-center';
+
+const errorContainerClasses =
+	/*tw*/ 'bo-input__error-message flex items-center gap-1';
 
 const inputState = ref<BoInputState>(state.value);
 
