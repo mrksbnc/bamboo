@@ -1,3 +1,3 @@
 export * from './components';
-export * from './global';
+export * from './data';
 export * from './utils';

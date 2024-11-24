@@ -1,5 +1,6 @@
 import { BoIcon, Icon } from '@/components/bo_icon';
-import { BoColor, BoSize } from '@/global';
+import { BoColor } from '@/data';
+import { BoSize } from '@/data/bo_size.constant';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
