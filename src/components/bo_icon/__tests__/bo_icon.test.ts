@@ -1,5 +1,6 @@
 import { BoIcon, Icon } from '@/components/bo_icon';
-import { BoSize } from '@/global';
+import { BoSize } from '@/data/bo_size.constant';
+
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, test } from 'vitest';
 
