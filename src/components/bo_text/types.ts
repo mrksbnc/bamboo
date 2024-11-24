@@ -7,6 +7,7 @@ import type {
 } from './constants';
 
 export type BoTextProps = {
+	id?: string;
 	text: string;
 	size?: BoFontSize;
 	weight?: BoFontWeight;

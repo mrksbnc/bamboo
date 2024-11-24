@@ -93,6 +93,7 @@ export enum BoTextWhiteSpace {
 }
 
 export enum BoTextColor {
+	default = 'default',
 	inherit = 'inherit',
 	current = 'currentColor',
 	success = 'success',

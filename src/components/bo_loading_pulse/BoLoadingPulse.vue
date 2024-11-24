@@ -1,7 +1,6 @@
 <template>
 	<div
 		role="status"
-		aria-label="loader"
 		:class="[defaultClasses, textPosition === 'side' ? 'flex-row' : 'flex-col']"
 	>
 		<span
@@ -26,7 +25,6 @@
 		<span v-if="displayLoaderText">
 			<bo-text
 				role="text"
-				aria-label="label"
 				:text="loaderText ?? ''"
 				:color="BoTextColor.disabled"
 				:font-family="BoFontFamily.graphik"

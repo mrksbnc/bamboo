@@ -1,14 +1,15 @@
 <template>
 	<span
-		aria-label="text"
 		v-text="text"
 		:class="classes"
 		:style="containerStyle"
+		:id="id ?? IdentityUtils.generateRandomIdWithPrefix('bo-text')"
 	></span>
 </template>
 
 <script setup lang="ts">
 import { StringUtils, TailwindUtils } from '@/utils';
+import { IdentityUtils } from '@/utils/identity_utils';
 import { computed, toRefs, type StyleValue } from 'vue';
 import {
 	BoFontFamily,
@@ -20,11 +21,11 @@ import {
 import type { BoTextProps } from './types';
 
 const props = withDefaults(defineProps<BoTextProps>(), {
-	size: BoFontSize.default,
-	color: BoTextColor.current,
-	weight: BoFontWeight.regular,
-	fontFamily: BoFontFamily.inter,
-	whiteSpace: BoTextWhiteSpace.nowrap,
+	size: () => BoFontSize.default,
+	color: () => BoTextColor.current,
+	weight: () => BoFontWeight.regular,
+	fontFamily: () => BoFontFamily.inter,
+	whiteSpace: () => BoTextWhiteSpace.nowrap,
 });
 
 const {
@@ -127,6 +128,8 @@ const tailwindCssWhiteSpaceClasses = computed<string>(() => {
 
 const tailwindCssColorClasses = computed<string>(() => {
 	switch (color.value) {
+		case BoTextColor.default:
+			return /*tw*/ 'text-gray-900';
 		case BoTextColor.inherit:
 			return /*tw*/ 'text-inherit';
 		case BoTextColor.success:

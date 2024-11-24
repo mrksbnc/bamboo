@@ -4,7 +4,6 @@
 		type="image/svg+xml"
 		:style="style"
 		class="bo-icon"
-		aria-label="icon"
 		:class="tailwindCssSizeClasses"
 		v-html="svg"
 	></div>

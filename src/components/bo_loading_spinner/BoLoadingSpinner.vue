@@ -9,14 +9,12 @@
 		<div
 			role="status"
 			:class="classes"
-			aria-label="loader"
 			:style="customColorStyle"
 		></div>
 		<span v-if="displayLoaderText">
 			<bo-text
 				role="status"
 				:text="loaderText ?? ''"
-				aria-label="label"
 				:color="BoTextColor.disabled"
 				:font-family="BoFontFamily.graphik"
 			/>
