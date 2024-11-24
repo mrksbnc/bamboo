@@ -4,6 +4,8 @@
 		aria-label="button"
 		:class="buttonClasses"
 		:disabled="disabled || isLoading"
+		:aria-disabled="disabled || isLoading"
+		:aria-readonly="isLoading || disabled"
 	>
 		<span
 			:class="[
