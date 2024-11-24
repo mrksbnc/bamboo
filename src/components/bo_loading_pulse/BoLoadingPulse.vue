@@ -24,7 +24,7 @@
 			></span>
 		</span>
 		<span v-if="displayLoaderText">
-			<BoText
+			<bo-text
 				role="text"
 				aria-label="label"
 				:text="loaderText ?? ''"

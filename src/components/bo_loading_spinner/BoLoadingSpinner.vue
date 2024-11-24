@@ -13,7 +13,7 @@
 			:style="customColorStyle"
 		></div>
 		<span v-if="displayLoaderText">
-			<BoText
+			<bo-text
 				role="status"
 				:text="loaderText ?? ''"
 				aria-label="label"

@@ -12,7 +12,7 @@ export class TailwindUtils {
 	 * merge('bg-blue-500', null, 'text-white', 'rounded-lg'); // bg-blue-500 text-white rounded-lg
 	 *
 	 * @param classes - The classes to be merged.
-	 * @returns The merged classes.
+	 * @returns The merged classes as a string.
 	 */
 	static merge(...classes: (string | null | undefined)[]): string {
 		return Array.from(

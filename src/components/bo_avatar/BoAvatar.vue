@@ -18,7 +18,7 @@
 			v-else-if="type === BoAvatarType.initials && initialsData != null"
 			class="bo-avatar__initials flex items-center justify-center"
 		>
-			<BoText
+			<bo-text
 				:text="initialsData.initials"
 				:custom-color="fontColorHex"
 				:size="labelSize"

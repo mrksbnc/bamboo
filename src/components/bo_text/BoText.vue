@@ -1,11 +1,10 @@
 <template>
 	<span
 		aria-label="text"
+		v-text="text"
 		:class="classes"
 		:style="containerStyle"
-		v-text="text"
-	>
-	</span>
+	></span>
 </template>
 
 <script setup lang="ts">
