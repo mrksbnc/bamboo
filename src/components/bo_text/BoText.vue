@@ -55,6 +55,8 @@ const tailwindCssSizeClasses = computed<string>(() => {
 			return /*tw*/ 'text-small leading-small';
 		case BoFontSize.body:
 			return /*tw*/ 'text-body leading-body';
+		case BoFontSize.modal_title:
+			return /*tw*/ 'text-modal-title leading-modal-title';
 		case BoFontSize.title:
 			return /*tw*/ 'text-title leading-title';
 		case BoFontSize.h6:

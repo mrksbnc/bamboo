@@ -153,6 +153,7 @@ export const Sizes: Story = {
 				[BoFontSize.small, '12px'],
 				[BoFontSize.default, '14px'],
 				[BoFontSize.body, '16px'],
+				[BoFontSize.modal_title, '24px'],
 				[BoFontSize.title, '32px'],
 				[BoFontSize.h6, '40px'],
 				[BoFontSize.h5, '48px'],

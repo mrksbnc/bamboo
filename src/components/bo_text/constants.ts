@@ -33,6 +33,12 @@ export enum BoFontSize {
 	body = 'body',
 	/**
 	 * @description
+	 * - font-size: 24px;
+	 * - line-height: 28px;
+	 */
+	modal_title = 'modal_title',
+	/**
+	 * @description
 	 * - font-size: 32px;
 	 * - line-height: 34px;
 	 */

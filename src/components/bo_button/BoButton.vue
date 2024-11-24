@@ -115,7 +115,7 @@ const tailwindcssVariantClasses = computed<string>(() => {
 				case BoButtonVariant.primary:
 					return /*tw*/ 'border border-blue-600 hover:bg-blue-600 focus:ring-blue-600 text-blue-600 hover:text-white';
 				case BoButtonVariant.secondary:
-					return /*tw*/ 'border border-gray-600 hover:bg-gray-600 focus:ring-gray-600 text-gray-600 hover:text-white';
+					return /*tw*/ 'border border-gray-600 hover:bg-gray-400 focus:ring-gray-400 text-gray-400 hover:text-white';
 				case BoButtonVariant.danger:
 					return /*tw*/ 'border border-red-600 hover:bg-red-600 focus:ring-red-600 text-red-600 hover:text-white';
 				case BoButtonVariant.warning:
@@ -136,7 +136,7 @@ const tailwindcssVariantClasses = computed<string>(() => {
 				case BoButtonVariant.primary:
 					return /*tw*/ 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-600 text-white';
 				case BoButtonVariant.secondary:
-					return /*tw*/ 'bg-gray-600 hover:bg-gray-700 focus:ring-gray-600 text-white';
+					return /*tw*/ 'bg-gray-400 hover:bg-gray-700 focus:ring-gray-400 text-white';
 				case BoButtonVariant.danger:
 					return /*tw*/ 'bg-red-600 hover:bg-red-700 focus:ring-red-600 text-white';
 				case BoButtonVariant.warning:
