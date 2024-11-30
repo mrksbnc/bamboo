@@ -14,7 +14,7 @@
 			<!-- Modal content -->
 			<div
 				:class="[
-					'relative flex flex-col overflow-y-auto overflow-x-hidden rounded-lg border border-gray-200 bg-white p-8 shadow dark:border-gray-600 dark:bg-gray-700',
+					'relative flex flex-col gap-3 overflow-y-auto overflow-x-hidden rounded-lg border border-gray-200 bg-white p-8 shadow dark:border-gray-600 dark:bg-gray-700',
 				]"
 			>
 				<!-- Modal header -->
@@ -23,7 +23,6 @@
 						<div class="bo-slot-modal__header-slot w-full">
 							<slot name="header" />
 						</div>
-						<bo-divider v-if="borderedHeader" />
 					</span>
 					<span
 						v-if="showCloseButton"
@@ -39,17 +38,25 @@
 							:icon="Icon.x"
 							:size="BoSize.default"
 							:color="hover ? BoColor.red_600 : BoColor.gray_500"
+							class="absolute right-5 top-5"
 						/>
 					</span>
 				</div>
 				<!-- Modal body -->
 				<div class="bo-slot-modal__body-slot w-full">
+					<bo-divider
+						v-if="borderedHeader"
+						:variant="BoDividerVariant.secondary"
+					/>
 					<slot name="body" />
 				</div>
 				<!-- Modal footer -->
 				<div :class="footerContainerClasses">
 					<span class="bo-slot-modal__footer-slot w-full">
-						<bo-divider v-if="borderedFooter" />
+						<bo-divider
+							v-if="borderedFooter"
+							:variant="BoDividerVariant.secondary"
+						/>
 						<slot name="footer" />
 					</span>
 				</div>
@@ -59,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import { BoDivider } from '@/components/bo_divider';
+import { BoDivider, BoDividerVariant } from '@/components/bo_divider';
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoColor } from '@/data';
 import { BoSize } from '@/data/bo_size.constant';

@@ -96,7 +96,7 @@ import {
 } from '@/components/bo_text';
 import { HtmlButtonType } from '@/global/html_button';
 import { KeyboardUtils } from '@/utils';
-import { computed, defineProps, toRefs, withDefaults } from 'vue';
+import { computed, toRefs } from 'vue';
 import { BoSlotModal } from '.';
 import { BoAlertModalAlignment, BoAlertModalVariant } from './constants';
 import type { BoAlertModalProps } from './types';

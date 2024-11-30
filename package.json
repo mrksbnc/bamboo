@@ -1,6 +1,6 @@
 {
 	"name": "@mrksbnc/bamboo",
-	"version": "0.0.1-rc.1",
+	"version": "0.1.0",
 	"type": "module",
 	"description": "Vue 3 UI library built with Vite and Storybook",
 	"scripts": {
@@ -32,8 +32,8 @@
 		"dist/**/*"
 	],
 	"engines": {
-		"node": ">=20.9.0",
-		"npm": ">=10.1.0"
+		"node": ">=22.11.0",
+		"npm": ">=10.9.0"
 	},
 	"publishConfig": {
 		"tag": "latest",

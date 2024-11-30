@@ -22,7 +22,7 @@ const tailwindCssColorClasses = computed<string>(() => {
 		case BoDividerVariant.primary:
 			return /*tw*/ 'border-blue-600';
 		case BoDividerVariant.secondary:
-			return /*tw*/ 'border-gray-300';
+			return /*tw*/ 'border-gray-200';
 		case BoDividerVariant.danger:
 			return /*tw*/ 'border-red-600';
 		case BoDividerVariant.warning:

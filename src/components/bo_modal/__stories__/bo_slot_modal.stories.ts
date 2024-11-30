@@ -112,7 +112,7 @@ export const Example: Story = {
 			return { args, BoFontSize, BoTextColor, BoFontWeight };
 		},
 		template: `
-			<BoSlotModal :bordered-header="true" :bordered-footer="true">
+			<BoSlotModal>
 				<template #header>
 					<span class="flex gap-2">
 						<bo-text text="Modal title" :size="BoFontSize.title" :weight="BoFontWeight.semibold" class="text-center" />
