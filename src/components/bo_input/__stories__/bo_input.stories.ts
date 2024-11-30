@@ -224,7 +224,7 @@ export const Sizes: Story = {
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="size in sizes" :key="generateRandomId()" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
-					<BoInput :modelValue="modelValue" :label="label" :description="description" :size="size"/>
+					<BoInput v-model="modelValue" :label="label" :description="description" :size="size"/>
 					<span class="text-small text-gray-500 font-medium text-center">{{ size }}</span>
 				</span>
 			</div>
@@ -245,7 +245,7 @@ export const Disabled: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoInput :modelValue="modelValue" :label="label" :description="description" :disabled="disabled"/>
+                <BoInput v-model="modelValue" :label="label" :description="description" :disabled="disabled"/>
             </div>
 		`,
 	}),
@@ -265,7 +265,7 @@ export const Readonly: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoInput :modelValue="modelValue" :label="label" :description="description" :readonly="readonly"/>
+                <BoInput v-model="modelValue" :label="label" :description="description" :readonly="readonly"/>
             </div>
 		`,
 	}),
@@ -287,7 +287,7 @@ export const States: Story = {
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="state in states" :key="generateRandomId" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2">
-					<BoInput :modelValue="modelValue" :label="label" :description="description" :state="state"/>
+					<BoInput v-model="modelValue" :label="label" :description="description" :state="state"/>
 					<span class="text-small text-gray-500 font-medium">{{ state }}</span>
 				</span>
 			</div>
@@ -308,7 +308,7 @@ export const Loading: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoInput :modelValue="modelValue" :label="label" :description="description" :isLoading="isLoading"/>
+                <BoInput v-model="modelValue" :label="label" :description="description" :isLoading="isLoading"/>
             </div>
 		`,
 	}),
@@ -353,7 +353,7 @@ export const Required: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoInput :modelValue="modelValue" :label="label" :description="description" :state="state" :required="required"/>
+                <BoInput v-model="modelValue" :label="label" :description="description" :state="state" :required="required"/>
             </div>
 		`,
 	}),
@@ -374,7 +374,7 @@ export const Error: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoInput :modelValue="modelValue" :label="label" :description="description" :state="state" :error-message="errorMessage"/>
+                <BoInput v-model="modelValue" :label="label" :description="description" :state="state" :error-message="errorMessage"/>
             </div>
 		`,
 	}),
@@ -398,18 +398,17 @@ export const Icons: Story = {
 		template: `
 			<div class="flex flex-col gap-4">
 				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2">
-					<BoInput :modelValue="modelValue" :label="label" :description="description" :prefix-icon="prefixIcon"/>
+					<BoInput v-model="modelValue" :label="label" :description="description" :prefix-icon="prefixIcon"/>
 					<span class="text-small text-gray-500 font-medium">default</span>
 				</span>
-				<span v-for="size in sizes" :key="generateRandomId" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
-					<BoInput :modelValue="modelValue" :label="label" :description="description" :size="size" :prefix-icon="prefixIcon" :isLoading="isLoading"/>
-					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
+				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
+					<BoInput v-model="modelValue" :label="label" :description="description" :suffix-icon="prefixIcon"/>
 				</span>
-			</div>
-			<div class="flex flex-col gap-4 mt-4">
-				<span v-for="size in sizes" :key="generateRandomId" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
-					<BoInput :modelValue="modelValue" :label="label" :description="description" :size="size" :suffix-icon="prefixIcon" :suffix-icon="suffixIcon" :isLoading="isLoading"/>
-					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
+				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
+					<BoInput v-model="modelValue" :label="label" :description="description" :prefix-icon="prefixIcon" :isLoading="isLoading"/>
+				</span>
+				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
+					<BoInput v-model="modelValue" :label="label" :description="description" :suffix-icon="prefixIcon" :suffix-icon="suffixIcon" :isLoading="isLoading"/>
 				</span>
 			</div>
 		`,

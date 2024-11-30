@@ -42,30 +42,32 @@
 				:disabled="disabled || isLoading"
 				@input="updateValue"
 			/>
-			<span
-				v-if="suffixIcon != null"
-				:class="defaultSuffixIconContainerClasses"
-			>
-				<bo-icon
-					:size="size"
-					:icon="suffixIcon"
-					:color="BoColor.gray_500"
-			/></span>
-			<span
-				v-if="isLoading"
-				:class="loadingContainerClasses"
-			>
-				<bo-loading-spinner
-					v-if="loaderVariant === 'spinner'"
-					:variant="BoLoaderVariant.secondary"
-					:size="BoSize.small"
-				/>
-				<bo-loading-pulse
-					v-else
-					:variant="BoLoaderVariant.secondary"
-					:size="BoSize.extra_small"
-				/>
-			</span>
+			<div class="flex flex-row-reverse">
+				<span
+					v-if="suffixIcon != null"
+					:class="defaultSuffixIconContainerClasses"
+				>
+					<bo-icon
+						:size="size"
+						:icon="suffixIcon"
+						:color="BoColor.gray_500"
+				/></span>
+				<span
+					v-if="isLoading"
+					:class="loadingContainerClasses"
+				>
+					<bo-loading-spinner
+						v-if="loaderVariant === 'spinner'"
+						:variant="BoLoaderVariant.secondary"
+						:size="BoSize.small"
+					/>
+					<bo-loading-pulse
+						v-else
+						:variant="BoLoaderVariant.secondary"
+						:size="BoSize.extra_small"
+					/>
+				</span>
+			</div>
 		</span>
 		<span
 			v-if="description != null"
