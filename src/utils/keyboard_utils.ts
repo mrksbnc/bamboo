@@ -1,15 +1,5 @@
-let instance: KeyboardUtils | null = null;
-
 export class KeyboardUtils {
-	static get instance(): KeyboardUtils {
-		if (instance == null) {
-			instance = new KeyboardUtils();
-		}
-
-		return instance;
-	}
-
-	trapTabKey(e: KeyboardEvent, id: string): void {
+	static trapTabKey(e: KeyboardEvent, id: string): void {
 		const isTab = e.key === 'Tab' || e.keyCode === 9;
 
 		if (isTab) {
@@ -45,7 +35,7 @@ export class KeyboardUtils {
 		}
 	}
 
-	registerEnterKeyHandler(e: KeyboardEvent, handler: () => void): void {
+	static registerEnterKeyHandler(e: KeyboardEvent, handler: () => void): void {
 		e.preventDefault();
 
 		const isEnter = e.key === 'Enter' || e.keyCode === 13;

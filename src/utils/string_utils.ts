@@ -5,9 +5,6 @@ export class StringUtils {
 	 *
 	 * @example
 	 * capitalize('hello world'); // Hello world
-	 *
-	 * @param str - The string to be capitalized.
-	 * @returns The capitalized string.
 	 */
 	static capitalize(str: string): string {
 		return str.charAt(0).toUpperCase() + str.slice(1);
@@ -18,9 +15,6 @@ export class StringUtils {
 	 *
 	 * @example
 	 * console.log(camelCaseToTitleCase('helloWorld')); // Hello World
-	 *
-	 * @param str - The string to be converted.
-	 * @returns The converted string.
 	 */
 	static camelCaseToTitleCase(str: string): string {
 		return str.replace(/([A-Z])/g, ' $1').replace(/^./, (s) => s.toUpperCase());
@@ -33,9 +27,6 @@ export class StringUtils {
 	 * isEmptyStr(''); // true
 	 * isEmptyStr('hello world'); // false
 	 * isEmptyStr(null); // true
-	 *
-	 * @param str - The string to be checked.
-	 * @returns A boolean value indicating the result of the check.
 	 */
 	static isEmptyStr(str: unknown): boolean {
 		return (typeof str === 'string' && str.trim().length === 0) || str == null;

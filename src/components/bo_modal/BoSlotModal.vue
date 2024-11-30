@@ -149,6 +149,6 @@ function handleKeyDown(e: KeyboardEvent): void {
 		onModalCloseEvent();
 	}
 
-	KeyboardUtils.instance.trapTabKey(e, 'modal');
+	KeyboardUtils.trapTabKey(e, 'modal');
 }
 </script>

@@ -4,6 +4,7 @@ import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import { BoLoaderTextPosition, BoLoaderVariant } from '@/data/loader.constant';
+import { IdentityUtils } from '@/utils/identity_utils';
 import BoLoadingSpinner from '../BoLoadingSpinner.vue';
 
 const meta = {
@@ -135,6 +136,7 @@ export const WithLoaderText: Story = {
 	render: (args) => ({
 		components: { BoLoadingSpinner },
 		setup() {
+			console.log(IdentityUtils.generateRandomId());
 			return { ...args };
 		},
 		template: `

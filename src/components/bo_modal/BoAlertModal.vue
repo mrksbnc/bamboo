@@ -8,10 +8,7 @@
 		class="bo-alert-modal"
 		@update:show="cancelButtonProps.onCLick"
 		@keydown="
-			KeyboardUtils.instance.registerEnterKeyHandler(
-				$event,
-				confirmButtonProps.onCLick,
-			)
+			KeyboardUtils.registerEnterKeyHandler($event, confirmButtonProps.onCLick)
 		"
 	>
 		<template #header>
