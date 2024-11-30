@@ -1,9 +1,9 @@
+import { BoLoadingPulse } from '@/components/bo_loading_pulse';
 import { BoColor } from '@/data';
 import { BoSize } from '@/data/bo_size.constant';
 import { BoLoaderTextPosition, BoLoaderVariant } from '@/data/loader.constant';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import BoLoadingPulse from '../BoLoadingPulse.vue';
 
 const meta = {
 	title: 'Components/bo-loading-pulse',

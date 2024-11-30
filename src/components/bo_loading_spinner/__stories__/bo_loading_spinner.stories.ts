@@ -1,11 +1,10 @@
+import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
 import { BoColor } from '@/data';
 import { BoSize } from '@/data/bo_size.constant';
-import { StorybookUtils } from '@/utils';
-import type { Meta, StoryObj } from '@storybook/vue3';
-
 import { BoLoaderTextPosition, BoLoaderVariant } from '@/data/loader.constant';
+import { StorybookUtils } from '@/utils';
 import { IdentityUtils } from '@/utils/identity_utils';
-import BoLoadingSpinner from '../BoLoadingSpinner.vue';
+import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
 	title: 'Components/bo-loading-spinner',

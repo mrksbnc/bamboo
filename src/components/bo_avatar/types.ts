@@ -1,8 +1,4 @@
-import type {
-	BoAvatarShape,
-	BoAvatarSize,
-	BoAvatarType,
-} from './bo_avatar.contant';
+import type { BoAvatarShape, BoAvatarSize, BoAvatarType } from './constants';
 
 export type BoAvatarImageProps = {
 	src: string;

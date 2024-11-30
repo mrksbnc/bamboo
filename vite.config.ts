@@ -1,4 +1,5 @@
 import vue from '@vitejs/plugin-vue';
+import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 import viteCompression from 'vite-plugin-compression';
 import dts from 'vite-plugin-dts';
@@ -9,6 +10,7 @@ import { defineConfig, type ViteUserConfig } from 'vitest/config';
  * @see https://vitejs.dev/config/
  */
 const bambooLibConfig: ViteUserConfig = defineConfig({
+	appType: 'custom',
 	plugins: [
 		vue(),
 		dts(),
@@ -16,6 +18,9 @@ const bambooLibConfig: ViteUserConfig = defineConfig({
 		viteCompression({ algorithm: 'gzip', ext: '.gz' }),
 		viteCompression({ algorithm: 'brotliCompress', ext: '.br' }),
 	],
+	optimizeDeps: {
+		include: ['vue'],
+	},
 	build: {
 		minify: true,
 		emptyOutDir: true,
@@ -23,12 +28,7 @@ const bambooLibConfig: ViteUserConfig = defineConfig({
 		cssCodeSplit: true,
 		lib: {
 			name: 'bamboo',
-			formats: ['es', 'cjs'],
-			entry: ['src/index.ts'],
-			fileName: (format, entry) => {
-				if (entry === 'main') return `index.${format}.js`;
-				return `${entry}.${format}.js`;
-			},
+			entry: resolve(__dirname, 'src/index.ts'),
 		},
 		rollupOptions: {
 			treeshake: true,

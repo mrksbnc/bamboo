@@ -42,8 +42,8 @@
 import { BoFontSize, BoText } from '@/components/bo_text';
 import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs, type StyleValue } from 'vue';
-import { BoAvatarShape, BoAvatarSize, BoAvatarType } from './bo_avatar.contant';
-import type { BoAvatarProps } from './bo_avatar.type';
+import { BoAvatarShape, BoAvatarSize, BoAvatarType } from './constants';
+import type { BoAvatarProps } from './types';
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
 	type: () => BoAvatarType.initials,

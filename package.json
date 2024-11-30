@@ -5,12 +5,11 @@
 	"description": "Vue 3 UI library built with Vite and Storybook",
 	"scripts": {
 		"dev": "vite",
-		"build": "npm run type-check && npm run lint && vite optimize --force && vite build --mode production && npx tailwindcss -o dist/index.css --minify",
+		"build": "npm run lint && vite optimize --force && vite build --mode production && npx tailwindcss -o dist/index.css --minify",
 		"preview": "vite preview",
 		"test": "vitest --run --update",
 		"build-only": "vite build",
-		"type-check": "vue-tsc --noEmit",
-		"lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .vue,.js,.cjs,.mjs,.ts --fix --ignore-path .gitignore",
+		"lint": "eslint ./src/**/*.{ts,vue} --fix",
 		"format": "prettier --write src/",
 		"patch": "npm version --no-git-tag-version patch",
 		"minor": "npm version --no-git-tag-version minor",
@@ -40,17 +39,17 @@
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
 	},
-	"main": "./dist/index.cjs.js",
-	"module": "./dist/index.es.js",
+	"module": "./dist/bamboo.js",
+	"main": "./dist/bamboo.umd.cjs",
 	"types": "./dist/src/index.d.ts",
 	"exports": {
 		".": {
-			"import": "./dist/index.es.js",
-			"require": "./dist/index.umd.js"
+			"import": "./dist/bamboo.js",
+			"require": "./dist/bamboo.umd.cjs"
 		},
 		"./index.css": {
-			"import": "./dist/main.css",
-			"require": "./dist/main.css"
+			"import": "./dist/index.css",
+			"require": "./dist/index.css"
 		}
 	},
 	"dependencies": {

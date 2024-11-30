@@ -1,11 +1,11 @@
-import { StorybookUtils } from '@/utils';
-import type { Meta, StoryObj } from '@storybook/vue3';
-import BoAvatar from '../BoAvatar.vue';
 import {
+	BoAvatar,
 	BoAvatarShape,
 	BoAvatarSize,
 	BoAvatarType,
-} from '../bo_avatar.contant';
+} from '@/components/bo_avatar';
+import { StorybookUtils } from '@/utils';
+import type { Meta, StoryObj } from '@storybook/vue3';
 import ImageAvatar from './img_avatar.png';
 
 const meta = {

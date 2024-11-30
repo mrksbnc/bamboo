@@ -1,8 +1,8 @@
 import { BoButton } from '@/components/bo_button';
+import { BoSlotModal } from '@/components/bo_modal';
 import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/bo_text';
 import BoText from '@/components/bo_text/BoText.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import BoSlotModal from '../BoSlotModal.vue';
 
 const meta = {
 	title: 'Components/bo-slot-modal',

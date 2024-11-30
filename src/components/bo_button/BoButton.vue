@@ -50,13 +50,12 @@
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
-import { BoFontSize, BoFontWeight } from '@/components/bo_text';
+import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
 import { BoSize } from '@/data/bo_size.constant';
 import { BoLoaderVariant } from '@/data/loader.constant';
 import { HtmlButtonType } from '@/global/html_button';
 import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs } from 'vue';
-import BoText from '../bo_text/BoText.vue';
 import { BoButtonShape, BoButtonVariant } from './constants';
 import type { BoButtonProps } from './types';
 

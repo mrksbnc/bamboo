@@ -1,8 +1,11 @@
 import { BoButtonVariant } from '@/components/bo_button';
+import {
+	BoAlertModal,
+	BoAlertModalAlignment,
+	BoAlertModalVariant,
+} from '@/components/bo_modal';
 import { HtmlButtonType } from '@/global/html_button';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import BoAlertModal from '../BoAlertModal.vue';
-import { BoAlertModalAlignment, BoAlertModalVariant } from '../constants';
 
 const meta = {
 	title: 'Components/bo-alert-modal',

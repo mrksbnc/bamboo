@@ -27,7 +27,7 @@
 				:class="defaultPrefixIconContainerClasses"
 			>
 				<bo-icon
-					:size="size"
+					:size="iconSize"
 					:icon="prefixIcon"
 					:color="BoColor.gray_500"
 			/></span>
@@ -48,7 +48,7 @@
 					:class="defaultSuffixIconContainerClasses"
 				>
 					<bo-icon
-						:size="size"
+						:size="iconSize"
 						:icon="suffixIcon"
 						:color="BoColor.gray_500"
 				/></span>
@@ -287,6 +287,16 @@ const inputClasses = computed<string>(() => {
 		defaultInputClasses,
 		inputSizeClasses.value,
 	);
+});
+
+const iconSize = computed<BoSize>(() => {
+	switch (size.value) {
+		case BoInputSize.small:
+			return BoSize.small;
+		case BoInputSize.default:
+		default:
+			return BoSize.default;
+	}
 });
 
 function updateValue(e: Event): void {
