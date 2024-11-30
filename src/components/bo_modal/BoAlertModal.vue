@@ -1,11 +1,18 @@
 <template>
 	<bo-slot-modal
+		tabindex="-1"
 		:show-close-button="showCloseButton"
 		:bordered-header="false"
 		:bordered-footer="false"
 		:width-in-px="420"
 		class="bo-alert-modal"
 		@update:show="cancelButtonProps.onCLick"
+		@keydown="
+			KeyboardUtils.instance.registerEnterKeyHandler(
+				$event,
+				confirmButtonProps.onCLick,
+			)
+		"
 	>
 		<template #header>
 			<div :class="['flex gap-2', headerAlignment]">
@@ -60,11 +67,13 @@
 				<bo-button
 					v-if="showCancelButton"
 					tabindex="1"
+					class="w-full"
 					v-bind="cancelButtonProps.props"
 					@click="cancelButtonProps.onCLick"
 				/>
 				<bo-button
 					tabindex="2"
+					class="w-full"
 					v-bind="confirmButtonProps.props"
 					@click="confirmButtonProps.onCLick"
 				/>
@@ -89,6 +98,7 @@ import {
 	BoTextWhiteSpace,
 } from '@/components/bo_text';
 import { HtmlButtonType } from '@/global/html_button';
+import { KeyboardUtils } from '@/utils';
 import { computed, defineProps, toRefs, withDefaults } from 'vue';
 import { BoSlotModal } from '.';
 import { BoAlertModalAlignment, BoAlertModalVariant } from './constants';

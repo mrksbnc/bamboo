@@ -136,7 +136,7 @@ export const Sizes: Story = {
 		template: `
 			<div class="flex flex-row gap-1">
                 <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2 m-1">
-                    <BoBadge :label="label" :size="size"/>
+                    <bo-badge :label="label" :size="size"/>
                     <span class="text-small text-gray-500 font-medium">{{ size }}</span>
                 </span>
 			</div>
@@ -157,13 +157,13 @@ export const SizesWithIcons: Story = {
 		template: `
 			<div class="flex flex-row gap-1">
                 <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2 m-1">
-                    <BoBadge :label="label" :size="size" :prefix-icon="prefixIcon"/>
+                    <bo-badge :label="label" :size="size" :prefix-icon="prefixIcon"/>
                     <span class="text-small text-gray-500 font-medium">{{ size }}</span>
                 </span>
 			</div>
             <div class="flex flex-row gap-1">
                 <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2 m-1">
-                    <BoBadge :label="label" :size="size" :suffix-icon="suffixIcon"/>
+                    <bo-badge :label="label" :size="size" :suffix-icon="suffixIcon"/>
                     <span class="text-small text-gray-500 font-medium">{{ size }}</span>
                 </span>
 			</div>
@@ -181,12 +181,12 @@ export const Variants: Story = {
 		components: { BoBadge },
 		template: `
 			<div class="flex flex-row gap-1">
-				<BoBadge label="Primary" variant="${BoBadgeVariant.primary}"/>
-				<BoBadge label="Secondary" variant="${BoBadgeVariant.secondary}"/>
-				<BoBadge label="Danger" variant="${BoBadgeVariant.danger}"/>
-				<BoBadge label="Warning" variant="${BoBadgeVariant.warning}"/>
-				<BoBadge label="Success" variant="${BoBadgeVariant.success}"/>
-				<BoBadge label="Dark" variant="${BoBadgeVariant.dark}"/>
+				<bo-badge label="Primary" variant="${BoBadgeVariant.primary}"/>
+				<bo-badge label="Secondary" variant="${BoBadgeVariant.secondary}"/>
+				<bo-badge label="Danger" variant="${BoBadgeVariant.danger}"/>
+				<bo-badge label="Warning" variant="${BoBadgeVariant.warning}"/>
+				<bo-badge label="Success" variant="${BoBadgeVariant.success}"/>
+				<bo-badge label="Dark" variant="${BoBadgeVariant.dark}"/>
 			</div>
 		`,
 	}),
@@ -200,10 +200,10 @@ export const Shapes: Story = {
 		components: { BoBadge },
 		template: `
 			<div class="flex flex-row gap-1">
-				<BoBadge label="Default" shape="${BoBadgeShape.default}"/>
-				<BoBadge label="Pill" shape="${BoBadgeShape.pill}"/>
-				<BoBadge label="Flat" shape="${BoBadgeShape.flat}"/>
-				<BoBadge prefixIcon="${Icon.alert_circle}" shape="${BoBadgeShape.circle}"/>
+				<bo-badge label="Default" shape="${BoBadgeShape.default}"/>
+				<bo-badge label="Pill" shape="${BoBadgeShape.pill}"/>
+				<bo-badge label="Flat" shape="${BoBadgeShape.flat}"/>
+				<bo-badge prefixIcon="${Icon.alert_circle}" shape="${BoBadgeShape.circle}"/>
 			</div>
 		`,
 	}),
@@ -217,8 +217,8 @@ export const Types: Story = {
 		components: { BoBadge },
 		template: `
 			<div class="flex flex-row gap-1">
-				<BoBadge label="Default" type="${BoBadgeType.default}"/>
-				<BoBadge label="Outline" type="${BoBadgeType.outline}"/>
+				<bo-badge label="Default" type="${BoBadgeType.default}"/>
+				<bo-badge label="Outline" type="${BoBadgeType.outline}"/>
 			</div>
 		`,
 	}),
@@ -232,8 +232,8 @@ export const Icons: Story = {
 		components: { BoBadge },
 		template: `
 			<div class="flex flex-row gap-1">
-				<BoBadge label="Default" prefixIcon="${Icon.alert_circle}"/>
-				<BoBadge label="Outline" suffixIcon="${Icon.alert_circle}" type="${BoBadgeType.outline}"/>
+				<bo-badge label="Default" prefixIcon="${Icon.alert_circle}"/>
+				<bo-badge label="Outline" suffixIcon="${Icon.alert_circle}" type="${BoBadgeType.outline}"/>
 			</div>
 		`,
 	}),
@@ -250,8 +250,8 @@ export const IconOnly: Story = {
 		},
 		template: `
 			<div class="flex flex-row gap-1">
-				<BoBadge :prefix-icon="prefixIcon" :type="type"/>
-				<BoBadge :prefix-icon="prefixIcon" :type="type" :size="size" shape="${BoBadgeShape.circle}"/>
+				<bo-badge :prefix-icon="prefixIcon" :type="type"/>
+				<bo-badge :prefix-icon="prefixIcon" :type="type" :size="size" shape="${BoBadgeShape.circle}"/>
 			</div>
 		`,
 	}),

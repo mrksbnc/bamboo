@@ -20,7 +20,7 @@ export const Example: Story = {
 			return { args };
 		},
 		template: `
-			<BoAlertModal v-bind="args" />
+			<bo-alert-modal v-bind="args" />
 		`,
 	}),
 	args: {
@@ -45,7 +45,7 @@ export const WithCancelButton: Story = {
 			return { args };
 		},
 		template: `
-			<BoAlertModal v-bind="args" />
+			<bo-alert-modal v-bind="args" />
 		`,
 	}),
 	args: {
@@ -83,7 +83,7 @@ export const WithCloseButton: Story = {
 			return { args };
 		},
 		template: `
-			<BoAlertModal v-bind="args" />
+			<bo-alert-modal v-bind="args" />
 		`,
 	}),
 	args: {
@@ -110,7 +110,7 @@ export const Success: Story = {
 		setup() {
 			return { args };
 		},
-		template: `<BoAlertModal v-bind="args" />`,
+		template: `<bo-alert-modal v-bind="args" />`,
 	}),
 	args: {
 		title: 'Success',
@@ -137,7 +137,7 @@ export const Warning: Story = {
 			return { args };
 		},
 		template: `
-			<BoAlertModal v-bind="args" />
+			<bo-alert-modal v-bind="args" />
 		`,
 	}),
 	args: {
@@ -165,7 +165,7 @@ export const Error: Story = {
 			return { args };
 		},
 		template: `
-			<BoAlertModal v-bind="args" />
+			<bo-alert-modal v-bind="args" />
 		`,
 	}),
 	args: {
@@ -193,7 +193,7 @@ export const InfoCentered: Story = {
 			return { args };
 		},
 		template: `
-			<BoAlertModal v-bind="args" />
+			<bo-alert-modal v-bind="args" />
 		`,
 	}),
 	args: {
@@ -222,7 +222,7 @@ export const WarningCentered: Story = {
 			return { args };
 		},
 		template: `
-			<BoAlertModal v-bind="args" />
+			<bo-alert-modal v-bind="args" />
 		`,
 	}),
 	args: {
@@ -251,7 +251,7 @@ export const ErrorCentered: Story = {
 			return { args };
 		},
 		template: `
-			<BoAlertModal v-bind="args" />
+			<bo-alert-modal v-bind="args" />
 		`,
 	}),
 	args: {
@@ -280,7 +280,7 @@ export const SuccessCentered: Story = {
 			return { args };
 		},
 		template: `
-			<BoAlertModal v-bind="args" />
+			<bo-alert-modal v-bind="args" />
 		`,
 	}),
 	args: {
@@ -309,7 +309,7 @@ export const WithoutIcon: Story = {
 			return { args };
 		},
 		template: `
-			<BoAlertModal v-bind="args" />
+			<bo-alert-modal v-bind="args" />
 		`,
 	}),
 	args: {

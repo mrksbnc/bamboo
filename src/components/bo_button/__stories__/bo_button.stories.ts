@@ -5,6 +5,7 @@ import {
 } from '@/components/bo_button';
 import { Icon } from '@/components/bo_icon';
 import { BoSize } from '@/data/bo_size.constant';
+import { HtmlButtonType } from '@/global';
 import { StorybookUtils } from '@/utils';
 import type { StoryObj } from '@storybook/vue3';
 
@@ -119,7 +120,7 @@ export const Example: Story = {
 	args: {
 		label: 'Label',
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 		size: BoSize.default,
 	},
 };
@@ -129,7 +130,7 @@ export const Disabled: Story = {
 		label: 'Label',
 		disabled: true,
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 		size: BoSize.default,
 	},
 };
@@ -139,7 +140,7 @@ export const isLoading: Story = {
 		label: 'Label',
 		isLoading: true,
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 		size: BoSize.default,
 	},
 };
@@ -154,7 +155,7 @@ export const Sizes: Story = {
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoButton :label="label" :variant="variant" :type="type" :size="size" class="m-1"/>
+					<bo-button :label="label" :variant="variant" :type="type" :size="size" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
 				</span>
 			</div>
@@ -163,7 +164,7 @@ export const Sizes: Story = {
 	args: {
 		label: 'Label',
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 	},
 };
 
@@ -177,7 +178,7 @@ export const Shapes: Story = {
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="shape in shapes" :key="shape" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoButton :label="label" :variant="variant" :shape="shape" :type="type" class="m-1"/>
+					<bo-button :label="label" :variant="variant" :shape="shape" :type="type" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">{{ shape }}</span>
 				</span>
 			</div>
@@ -186,7 +187,7 @@ export const Shapes: Story = {
 	args: {
 		label: 'Label',
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 	},
 };
 
@@ -200,7 +201,7 @@ export const Variants: Story = {
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoButton :label="label" :variant="variant" :type="type" class="m-1"/>
+					<bo-button :label="label" :variant="variant" :type="type" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">{{ variant }}</span>
 				</span>
 			</div>
@@ -209,7 +210,7 @@ export const Variants: Story = {
 	args: {
 		label: 'Label',
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 	},
 };
 
@@ -225,7 +226,7 @@ export const ShapesAndVariants: Story = {
 			<div class="flex gap-4">
 				<span v-for="shape in shapes" :key="shape" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-						<BoButton :label="label" :variant="variant" :shape="shape" :type="type" class="m-1"/>
+						<bo-button :label="label" :variant="variant" :shape="shape" :type="type" class="m-1"/>
 						<span class="text-small text-gray-500 font-medium">{{ variant }} {{ shape }}</span>
 					</span>
 				</span>
@@ -235,7 +236,7 @@ export const ShapesAndVariants: Story = {
 	args: {
 		label: 'Label',
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 	},
 };
 
@@ -248,7 +249,7 @@ export const WithPrefixIcon: Story = {
 		template: `
 			<div class="flex flex-col gap-4 w">
 				<span class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoButton :label="label" :prefix-icon="prefixIcon" :type="type" class="m-1"/>
+					<bo-button :label="label" :prefix-icon="prefixIcon" :type="type" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">prefix-icon</span>
 				</span>
 			</div>
@@ -258,7 +259,7 @@ export const WithPrefixIcon: Story = {
 		label: 'Label',
 		prefixIcon: Icon.alert_circle,
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 	},
 };
 
@@ -271,7 +272,7 @@ export const WithSuffixIcon: Story = {
 		template: `
 			<div class="flex flex-col gap-4 w">
 				<span class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoButton :label="label" :suffix-icon="suffixIcon" :type="type" class="m-1"/>
+					<bo-button :label="label" :suffix-icon="suffixIcon" :type="type" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">suffix-icon</span>
 				</span>
 			</div>
@@ -281,7 +282,7 @@ export const WithSuffixIcon: Story = {
 		label: 'Label',
 		suffixIcon: Icon.alert_circle,
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 	},
 };
 
@@ -294,7 +295,7 @@ export const IconOnlyButton: Story = {
 		template: `
 			<div class="flex flex-col gap-4 w">
 				<span class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoButton :prefix-icon="prefixIcon" :type="type" class="m-1"/>
+					<bo-button :prefix-icon="prefixIcon" :type="type" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">prefix-icon</span>
 				</span>
 			</div>
@@ -303,7 +304,7 @@ export const IconOnlyButton: Story = {
 	args: {
 		prefixIcon: Icon.alert_circle,
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 	},
 };
 
@@ -317,7 +318,7 @@ export const IconOnlySizes: Story = {
 		template: `
 			<div class="flex flex-row gap-4">
 				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoButton :prefix-icon="prefixIcon" :size="size" :type="type" class="m-1"/>
+					<bo-button :prefix-icon="prefixIcon" :size="size" :type="type" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
 				</span>
 			</div>
@@ -326,7 +327,7 @@ export const IconOnlySizes: Story = {
 	args: {
 		prefixIcon: Icon.alert_circle,
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 	},
 };
 
@@ -340,7 +341,7 @@ export const IconOnlyVariants: Story = {
 		template: `
 			<div class="flex flex-row gap-4">
 				<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoButton :prefix-icon="prefixIcon" :variant="variant" :type="type" class="m-1"/>
+					<bo-button :prefix-icon="prefixIcon" :variant="variant" :type="type" class="m-1"/>
 					<span class="text-small text-gray-500 font-medium">{{ variant }}</span>
 				</span>
 			</div>
@@ -349,6 +350,6 @@ export const IconOnlyVariants: Story = {
 	args: {
 		prefixIcon: Icon.alert_circle,
 		variant: BoButtonVariant.primary,
-		type: 'button',
+		type: HtmlButtonType.button,
 	},
 };

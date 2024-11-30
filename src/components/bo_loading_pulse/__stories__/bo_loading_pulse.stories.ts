@@ -96,7 +96,7 @@ export const Variants: Story = {
 		template: `
 			<div class="flex flex-row gap-4">
                 <span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-                    <BoLoadingPulse :size="size" :variant="variant"/>
+                    <bo-loading-pulse :size="size" :variant="variant"/>
                     <span class="text-small text-gray-500 font-medium">{{ variant }}</span>
                 </span>
 			</div>
@@ -118,7 +118,7 @@ export const Sizes: Story = {
 		template: `
 			<div class="flex gap-2">
                 <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-                    <BoLoadingPulse :size="size"/> 
+                    <bo-loading-pulse :size="size"/> 
                     <span class="text-small text-gray-500 font-medium">{{ size }}</span>
                 </span>
 			</div>
@@ -138,7 +138,7 @@ export const CustomColor: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoLoadingPulse :size="size" :variant="variant" :custom-color="customColor"/>
+                <bo-loading-pulse :size="size" :variant="variant" :custom-color="customColor"/>
             </div>
 		`,
 	}),
@@ -157,7 +157,7 @@ export const WithLoaderText: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoLoadingPulse :size="size" :variant="variant" :loader-text="loaderText"/>
+                <bo-loading-pulse :size="size" :variant="variant" :loader-text="loaderText"/>
             </div>
 		`,
 	}),
@@ -176,7 +176,7 @@ export const TextPosition: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoLoadingPulse :size="size" :variant="variant" :loader-text="loaderText" :text-position="textPosition"/>
+                <bo-loading-pulse :size="size" :variant="variant" :loader-text="loaderText" :text-position="textPosition"/>
             </div>
 		`,
 	}),

@@ -112,7 +112,7 @@ export const Example: Story = {
 			return { args, BoFontSize, BoTextColor, BoFontWeight };
 		},
 		template: `
-			<BoSlotModal >
+			<BoSlotModal :bordered-header="true" :bordered-footer="true">
 				<template #header>
 					<span class="flex gap-2">
 						<bo-text text="Modal title" :size="BoFontSize.title" :weight="BoFontWeight.semibold" class="text-center" />
@@ -123,7 +123,7 @@ export const Example: Story = {
 					<img class="pt-4 w-full h-96 object-cover" src="https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
 				</template>
 				<template #footer>
-					<bo-button label="Submit" class="w-full" />
+					<bo-button label="Submit" class="w-full" tabindex="1" type="submit" />
 				</template>
 			</BoSlotModal>
 		`,
@@ -155,6 +155,36 @@ export const WithoutCloseButton: Story = {
 	}),
 	args: {
 		showCloseButton: false,
+	},
+};
+
+export const BorderedSlots: Story = {
+	render: (args) => ({
+		components: { BoSlotModal, BoButton, BoText },
+
+		setup() {
+			return { args, BoFontSize, BoTextColor, BoFontWeight };
+		},
+		template: `
+			<BoSlotModal v-bind="args">
+				<template #header>
+					<span class="flex gap-2">
+						<bo-text text="Modal title" :size="BoFontSize.title" :weight="BoFontWeight.semibold" class="text-center" />
+					</span>
+				</template>
+				<template #body>
+					<bo-text text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." :color="BoTextColor.disabled" />
+				</template>
+				<template #footer>
+					<bo-button label="Submit" class="w-full" />
+				</template>
+			</BoSlotModal>
+		`,
+	}),
+	args: {
+		showCloseButton: false,
+		borderedHeader: true,
+		borderedFooter: true,
 	},
 };
 
@@ -194,7 +224,7 @@ export const CustomWidthPercent: Story = {
 			return { args, BoFontSize, BoTextColor, BoFontWeight };
 		},
 		template: `
-			<BoSlotModal :width-in-percent="20">
+			<BoSlotModal :width-in-percent="args.widthInPercent">
 				<template #header>
 					<span class="flex gap-2">
 						<bo-text text="Modal title" :size="BoFontSize.title" :weight="BoFontWeight.semibold" class="text-center" />
@@ -210,7 +240,7 @@ export const CustomWidthPercent: Story = {
 		`,
 	}),
 	args: {
-		widthInPercent: 30,
+		widthInPercent: 50,
 	},
 };
 

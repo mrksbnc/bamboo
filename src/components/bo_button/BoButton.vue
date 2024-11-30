@@ -12,21 +12,21 @@
 				tailwindcssContentPaddingClasses,
 			]"
 		>
-			<BoIcon
+			<bo-icon
 				v-if="prefixIcon !== Icon.none && prefixIcon != null"
 				:icon="iconOnlyIcon"
 				:size="size"
 				class="bo-button__prefix-icon"
 			/>
-			<BoText
+			<bo-text
 				v-if="label != null && !iconOnlyButton"
 				:text="label"
 				:clickable="true"
 				:weight="BoFontWeight.medium"
 				:size="tailwindcssContentSize"
-				class="bo-button__label"
+				class="bo-button__label min-w-fit"
 			/>
-			<BoIcon
+			<bo-icon
 				v-if="
 					suffixIcon !== Icon.none &&
 					suffixIcon != null &&
@@ -37,7 +37,7 @@
 				:size="size"
 				class="bo-button__suffix-icon"
 			/>
-			<BoLoadingSpinner
+			<bo-loading-spinner
 				v-if="isLoading"
 				:size="loaderSize"
 				:variant="loaderVariant"
@@ -74,7 +74,7 @@ const { label, type, variant, size, prefixIcon, suffixIcon, shape } =
 	toRefs(props);
 
 const defaultClasses: string =
-	/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer w-full';
+	/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer';
 
 const disabledClasses: string =
 	/*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none';

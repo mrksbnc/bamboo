@@ -138,7 +138,7 @@ export const Image: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoAvatar :type="type" :image-data="imageData"/>
+                <bo-avatar :type="type" :image-data="imageData"/>
              </div>
 		`,
 	}),
@@ -159,7 +159,7 @@ export const Initials: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-				<BoAvatar :type="type" :initials-data="initialsData"/>
+				<bo-avatar :type="type" :initials-data="initialsData"/>
 			</div>
 		`,
 	}),
@@ -181,7 +181,7 @@ export const Sizes: Story = {
 		template: `
 			<div class="flex gap-4"> 
 				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoAvatar :type="type" :initials-data="initialsData" :size="size"/>
+					<bo-avatar :type="type" :initials-data="initialsData" :size="size"/>
 					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
 				</span>
 			</div>
@@ -205,7 +205,7 @@ export const Shapes: Story = {
 		template: `
 			<div class="flex gap-4"> 
 				<span v-for="shape in shapes" :key="shape" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoAvatar :type="type" :initials-data="initialsData" :shape="shape"/>
+					<bo-avatar :type="type" :initials-data="initialsData" :shape="shape"/>
 					<span class="text-small text-gray-500 font-medium">{{ shape }}</span>
 				</span>
 			</div>
@@ -227,7 +227,7 @@ export const Clickable: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-				<BoAvatar :type="type" :initials-data="initialsData" :clickable="clickable"/>
+				<bo-avatar :type="type" :initials-data="initialsData" :clickable="clickable"/>
 			</div>
 		`,
 	}),
@@ -248,7 +248,7 @@ export const WithDefaultImage: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-                <BoAvatar :with-default-image="withDefaultImage"/>
+                <bo-avatar :with-default-image="withDefaultImage"/>
              </div>
 		`,
 	}),

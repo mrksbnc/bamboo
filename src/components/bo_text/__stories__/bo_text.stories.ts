@@ -170,7 +170,7 @@ export const Sizes: Story = {
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="(size, index) in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoText :text="text" :size="size" class="m-1"/>
+					<bo-text :text="text" :size="size" class="m-1"/>
 					<span class="text-overline text-small text-gray-500 font-medium">{{ sizeStr[index] }} - {{ sizeNames[index] }}</span>
 				</span>
 			</div>
@@ -198,7 +198,7 @@ export const Weights: Story = {
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="weight in weights" :key="weight" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoText :text="text" :weight="weight[0]" class="m-1"/>
+					<bo-text :text="text" :weight="weight[0]" class="m-1"/>
 					<span class="text-overline text-gray-500 font-medium text-small">{{ weight[0] }} - {{ weight[1] }}</span>
 				</span>
 			</div>
@@ -226,7 +226,7 @@ export const FontFamilies: Story = {
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="fontFamily in fontFamilies" :key="fontFamily" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoText :text="text" :fontFamily="fontFamily[0]" class="m-1"/>
+					<bo-text :text="text" :fontFamily="fontFamily[0]" class="m-1"/>
 					<span class="text-overline text-gray-500 font-medium text-small">{{ fontFamily[0] }} - {{ fontFamily[1] }}</span>
 				</span>
 			</div>
@@ -255,7 +255,7 @@ export const WhiteSpace: Story = {
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="whiteSpace in whiteSpaces" :key="whiteSpace" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoText :text="text" :whiteSpace="whiteSpace[0]" class="m-1 w-[150px]"/> 
+					<bo-text :text="text" :whiteSpace="whiteSpace[0]" class="m-1 w-[150px]"/> 
 					<span class="text-overline text-gray-500 font-medium text-small">{{ whiteSpace[0] }} - {{ whiteSpace[1] }}</span>
 				</span>
 			</div>
@@ -285,7 +285,7 @@ export const Colors: Story = {
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="color in colors" :key="color" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoText :text="text" :color="color[0]" class="m-1"/>
+					<bo-text :text="text" :color="color[0]" class="m-1"/>
 					<span class="text-overline text-gray-500 font-medium text-small">{{ color[0] }} - {{ color[1] }}</span>
 				</span>
 			</div>
@@ -304,7 +304,7 @@ export const CustomColor: Story = {
 		},
 		template: `
 			<div class="flex flex-col gap-4">
-				<BoText :text="text" :custom-color="customColor" class="m-1"/>
+				<bo-text :text="text" :custom-color="customColor" class="m-1"/>
 			</div>
 		`,
 	}),
@@ -322,7 +322,7 @@ export const Clickable: Story = {
 		},
 		template: `
 			<div class="flex flex-col gap-4">
-				<BoText :text="text" :clickable="clickable" class="m-1"/>
+				<bo-text :text="text" :clickable="clickable" class="m-1"/>
 			</div>
 		`,
 	}),
