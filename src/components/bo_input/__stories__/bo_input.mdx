@@ -97,6 +97,15 @@ The `isLoading` prop can be used to show a loading spinner. When the spinner is 
 
 <Canvas of={BoInputStories.Loading} />
 
+## Loader variant
+
+The `loaderVariant` prop can be used to change the loader variant. The `loaderVariant` prop should be a string that represents the variant of the loader. The available values for the `loaderVariant` prop are:
+
+- `spinner`
+- `pulse`
+
+<Canvas of={BoInputStories.WithLoaderVariantSpinner} />
+
 ## Required
 
 The `state` prop can be used to make the input required. When the input is required, the `errorMessage` prop should be provided.

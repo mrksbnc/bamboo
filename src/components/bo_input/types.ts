@@ -18,4 +18,5 @@ export type BoInputProps = {
 	prefixIcon?: Icon | null;
 	suffixIcon?: Icon | null;
 	errorMessage?: string | null;
+	loaderVariant?: 'spinner' | 'pulse';
 };

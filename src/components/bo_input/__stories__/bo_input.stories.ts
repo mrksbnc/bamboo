@@ -175,6 +175,19 @@ const meta = {
 			},
 			options: Object.values(Icon),
 		},
+		loaderVariant: {
+			description: 'The variant of the loader',
+			control: { type: 'select' },
+			options: ['spinner', 'pulse'],
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: 'string',
+				},
+			},
+			defaultValue: 'pulse',
+		},
 	},
 } satisfies Meta<typeof BoInput>;
 
@@ -304,6 +317,31 @@ export const Loading: Story = {
 		label: 'Name',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		isLoading: true,
+	},
+};
+
+export const WithLoaderVariantSpinner: Story = {
+	render: (args) => ({
+		components: { BoInput },
+		setup() {
+			return { args };
+		},
+		template: `
+            <div class="flex flex-col gap-4">
+				<div class="flex flex-col gap-4">
+                	<BoInput v-bind="args" loader-variant="spinner"/> 
+            	</div>
+				<div class="flex flex-col gap-4">
+                	<BoInput v-bind="args" loader-variant="pulse"/>
+            	</div>
+			</div>
+		`,
+	}),
+	args: {
+		modelValue: '',
+		label: 'Name',
+		isLoading: true,
+		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
 };
 

@@ -56,8 +56,14 @@
 				:class="loadingContainerClasses"
 			>
 				<bo-loading-spinner
-					:variant="BoLoaderVariant.dark"
+					v-if="loaderVariant === 'spinner'"
+					:variant="BoLoaderVariant.secondary"
 					:size="BoSize.small"
+				/>
+				<bo-loading-pulse
+					v-else
+					:variant="BoLoaderVariant.secondary"
+					:size="BoSize.extra_small"
 				/>
 			</span>
 		</span>
@@ -93,6 +99,7 @@
 
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo_icon';
+import { BoLoadingPulse } from '@/components/bo_loading_pulse';
 import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
 import {
 	BoFontFamily,
@@ -118,6 +125,7 @@ const props = withDefaults(defineProps<BoInputProps>(), {
 	description: '',
 	prefixIcon: null,
 	suffixIcon: null,
+	loaderVariant: 'pulse',
 	state: () => BoInputState.none,
 	size: () => BoInputSize.default,
 });
@@ -144,10 +152,10 @@ const defaultContainerClasses =
 	/*tw*/ 'bo-input flex flex-col gap-1 bg-transparent';
 
 const defaultInputClasses =
-	/*tw*/ 'bo-input__input rounded-lg border border-gray-300 text-gray-900 text-small bg-gray-50 outline-none';
+	/*tw*/ 'bo-input__input rounded-lg border border-gray-300 text-gray-900 text-small bg-white outline-none';
 
 const defaultInputDisabledClasses =
-	/*tw*/ 'disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-300';
+	/*tw*/ 'disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-300';
 
 const defaultFocusClasses = /*tw*/ 'focus:ring-blue-600 focus:border-blue-600';
 
