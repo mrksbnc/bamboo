@@ -306,6 +306,7 @@ function updateValue(e: Event): void {
 	const target = e.target as HTMLInputElement;
 	let value = target.value;
 
+	// TODO: optimize this
 	if (type.value === HtmlInputType.number) {
 		const chars = value.split('');
 
