@@ -5,5 +5,5 @@ export default create({
 	brandTarget: '_self',
 	fontCode: 'monospace',
 	brandTitle: 'Bamboo',
-	brandUrl: 'http://localhost:6006/?path=/docs/bamboo--docs',
+	brandUrl: 'https://mrksbnc.github.io/bamboo/',
 });
