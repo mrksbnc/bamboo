@@ -1,13 +1,30 @@
 import { Icon } from '@/components/bo_icon';
 import { BoInput, BoInputSize, BoInputState } from '@/components/bo_input';
+import { HtmlInputType } from '@/global';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import type { InputTypeHTMLAttribute } from 'vue';
 
 const meta = {
 	title: 'Components/bo-input',
 	component: BoInput,
 	argTypes: {
+		id: {
+			description: 'The id of the input',
+			control: { type: 'text' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+			},
+		},
+		required: {
+			description: 'Whether the input is required',
+			control: { type: 'boolean' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+			},
+			defaultValue: false,
+		},
 		modelValue: {
 			description: 'The value of the input',
 			control: { type: 'text' },
@@ -24,41 +41,22 @@ const meta = {
 				subcategory: 'optional',
 			},
 		},
-		description: {
-			description: 'The description of the input',
-			control: { type: 'text' },
-			table: {
-				category: 'props',
-				subcategory: 'optional',
-			},
-		},
 		type: {
 			description: 'The type of the input',
 			control: { type: 'select' },
 			options: [
-				'button',
-				'checkbox',
-				'color',
-				'date',
-				'datetime-local',
-				'email',
-				'file',
-				'hidden',
-				'image',
-				'month',
-				'number',
-				'password',
-				'radio',
-				'range',
-				'reset',
-				'search',
-				'submit',
-				'tel',
-				'text',
-				'time',
-				'url',
-				'week',
-			] as InputTypeHTMLAttribute[],
+				HtmlInputType.tel,
+				HtmlInputType.url,
+				HtmlInputType.date,
+				HtmlInputType.time,
+				HtmlInputType.week,
+				HtmlInputType.text,
+				HtmlInputType.month,
+				HtmlInputType.email,
+				HtmlInputType.number,
+				HtmlInputType.password,
+				HtmlInputType.datetime_local,
+			],
 			table: {
 				category: 'props',
 				subcategory: 'optional',
@@ -67,6 +65,14 @@ const meta = {
 				},
 			},
 			defaultValue: 'text',
+		},
+		description: {
+			description: 'The description of the input',
+			control: { type: 'text' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+			},
 		},
 		size: {
 			description: 'The size of the input',

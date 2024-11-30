@@ -32,11 +32,12 @@
 					:color="BoColor.gray_500"
 			/></span>
 			<input
+				ref="inputRef"
 				v-bind="$attrs"
 				:type="type"
 				:value="modelValue"
-				:id="computedInputId"
 				:readonly="readonly"
+				:id="computedInputId"
 				:class="inputClasses"
 				:placeholder="placeholder"
 				:disabled="disabled || isLoading"
@@ -113,6 +114,7 @@ import {
 import { BoColor } from '@/data';
 import { BoSize } from '@/data/bo_size.constant';
 import { BoLoaderVariant } from '@/data/loader.constant';
+import { HtmlInputType } from '@/global';
 import { TailwindUtils } from '@/utils';
 import { IdentityUtils } from '@/utils/identity_utils';
 import { computed, ref, toRefs, watch } from 'vue';
@@ -122,12 +124,12 @@ import type { BoInputProps } from './types';
 const emit = defineEmits(['update:modelValue']);
 
 const props = withDefaults(defineProps<BoInputProps>(), {
-	type: 'text',
 	placeholder: '',
 	description: '',
 	prefixIcon: null,
 	suffixIcon: null,
 	loaderVariant: 'pulse',
+	type: () => HtmlInputType.text,
 	state: () => BoInputState.none,
 	size: () => BoInputSize.default,
 });
@@ -189,6 +191,7 @@ const errorContainerClasses =
 	/*tw*/ 'bo-input__error-message flex items-center gap-1';
 
 const inputState = ref<BoInputState>(state.value);
+const inputRef = ref<HTMLInputElement | null>(null);
 
 const computedInputId = computed<string>(() => {
 	return id.value ?? IdentityUtils.generateRandomIdWithPrefix('bo-input');
@@ -301,7 +304,29 @@ const iconSize = computed<BoSize>(() => {
 
 function updateValue(e: Event): void {
 	const target = e.target as HTMLInputElement;
-	const value = target.value;
+	let value = target.value;
+
+	if (type.value === HtmlInputType.number) {
+		const chars = value.split('');
+
+		const result = chars
+			.map((c) => {
+				const int = parseInt(c);
+
+				if (isNaN(int)) {
+					return '';
+				}
+
+				return int;
+			})
+			.join('');
+
+		if (inputRef.value != null) {
+			inputRef.value.value = result;
+		}
+
+		value = result;
+	}
 
 	emit('update:modelValue', value);
 }
@@ -328,3 +353,18 @@ watch(
 	},
 );
 </script>
+
+<style scoped lang="scss">
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+	appearance: textfield;
+	-moz-appearance: textfield;
+}
+</style>
