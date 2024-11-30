@@ -182,7 +182,7 @@ const classes = computed<string>(() => {
 });
 
 const containerStyle = computed<StyleValue>(() => {
-	if (!StringUtils.isEmpty(customColor.value ?? '')) {
+	if (!StringUtils.isEmptyStr(customColor.value ?? '')) {
 		return {
 			color: customColor.value,
 		};

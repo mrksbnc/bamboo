@@ -61,9 +61,9 @@ const iconMap = Object.keys(icons).reduce(
 const isSvgReadyToRender = computed<boolean>(() => {
 	return (
 		svg.value !== Icon.none &&
-		!StringUtils.isEmpty(svg.value) &&
+		!StringUtils.isEmptyStr(svg.value) &&
 		icon.value !== Icon.none &&
-		!StringUtils.isEmpty(icon.value)
+		!StringUtils.isEmptyStr(icon.value)
 	);
 });
 

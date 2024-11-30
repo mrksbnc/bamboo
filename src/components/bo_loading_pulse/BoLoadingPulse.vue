@@ -59,7 +59,7 @@ const defaultInnerPulseRelativeClasses =
 	/*tw*/ 'relative inline-flex rounded-full';
 
 const displayLoaderText = computed<boolean>(() => {
-	return !StringUtils.isEmpty(loaderText.value ?? '');
+	return !StringUtils.isEmptyStr(loaderText.value ?? '');
 });
 
 const loaderTailwindCssSizeClasses = computed<string>(() => {
@@ -79,7 +79,7 @@ const loaderTailwindCssSizeClasses = computed<string>(() => {
 });
 
 const customColorStyle = computed<StyleValue>(() => {
-	if (!StringUtils.isEmpty(customColor.value ?? '')) {
+	if (!StringUtils.isEmptyStr(customColor.value ?? '')) {
 		return {
 			backgroundColor: customColor.value,
 		};
@@ -89,7 +89,7 @@ const customColorStyle = computed<StyleValue>(() => {
 });
 
 const tailwindCssVariantClasses = computed<string>(() => {
-	if (!StringUtils.isEmpty(customColor.value ?? '')) {
+	if (!StringUtils.isEmptyStr(customColor.value ?? '')) {
 		return '';
 	}
 

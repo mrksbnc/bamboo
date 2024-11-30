@@ -30,17 +30,14 @@ export class StringUtils {
 	 * This method checks if a string is empty, null, or undefined.
 	 *
 	 * @example
-	 * isEmpty(''); // true
-	 * isEmpty('hello world'); // false
-	 * isEmpty(null); // true
+	 * isEmptyStr(''); // true
+	 * isEmptyStr('hello world'); // false
+	 * isEmptyStr(null); // true
 	 *
 	 * @param str - The string to be checked.
 	 * @returns A boolean value indicating the result of the check.
 	 */
-	static isEmpty(str: string): boolean {
-		return (
-			str == null ||
-			(typeof str === 'string' && str.length === 0 && str.trim().length === 0)
-		);
+	static isEmptyStr(str: unknown): boolean {
+		return (typeof str === 'string' && str.trim().length === 0) || str == null;
 	}
 }

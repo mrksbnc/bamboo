@@ -96,7 +96,7 @@ const labelSize = computed<BoFontSize>(() => {
 });
 
 const containerStyle = computed<StyleValue>(() => {
-	if (!StringUtils.isEmpty(colorHex.value ?? '')) {
+	if (!StringUtils.isEmptyStr(colorHex.value ?? '')) {
 		return {
 			backgroundColor: colorHex.value,
 		};

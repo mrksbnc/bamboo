@@ -148,28 +148,30 @@ export const Sizes: Story = {
 	render: (args) => ({
 		components: { BoText },
 		setup() {
-			const sizes = [
-				[BoFontSize.extra_small, '10px'],
-				[BoFontSize.small, '12px'],
-				[BoFontSize.default, '14px'],
-				[BoFontSize.body, '16px'],
-				[BoFontSize.modal_title, '24px'],
-				[BoFontSize.title, '32px'],
-				[BoFontSize.h6, '40px'],
-				[BoFontSize.h5, '48px'],
-				[BoFontSize.h4, '56px'],
-				[BoFontSize.h3, '64px'],
-				[BoFontSize.h2, '72px'],
-				[BoFontSize.h1, '96px'],
+			const sizes = Object.values(BoFontSize);
+			const sizeNames = Object.keys(BoFontSize);
+			const sizeStr = [
+				'10px - 0.625rem',
+				'12px - 0.75rem',
+				'14px - 0.875rem',
+				'16px - 1rem',
+				'24px - 1.5rem',
+				'32px - 2rem',
+				'40px - 2.5rem',
+				'48px - 3rem',
+				'56px - 3.5rem',
+				'64px - 4rem',
+				'72px - 4.5rem',
+				'96px - 6rem',
 			];
 
-			return { sizes, ...args };
+			return { sizes, sizeStr, sizeNames, ...args };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
-				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<BoText :text="text" :size="size[0]" class="m-1"/>
-					<span class="text-overline text-small text-gray-500 font-medium">{{ size[0] }} - {{ size[1] }}</span>
+				<span v-for="(size, index) in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<BoText :text="text" :size="size" class="m-1"/>
+					<span class="text-overline text-small text-gray-500 font-medium">{{ sizeStr[index] }} - {{ sizeNames[index] }}</span>
 				</span>
 			</div>
 		`,

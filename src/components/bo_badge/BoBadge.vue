@@ -49,7 +49,7 @@ const defaultClasses: string =
 	/*tw*/ 'flex items-center justify-center select-none font-bold font-graphik gap-2 w-fit';
 
 const iconOnly = computed<boolean>(() => {
-	return prefixIcon.value != null && StringUtils.isEmpty(label.value ?? '');
+	return prefixIcon.value != null && StringUtils.isEmptyStr(label.value ?? '');
 });
 
 const preficOrIconOnlySrc = computed<Icon>(() => {
@@ -65,7 +65,7 @@ const isCircle = computed<boolean>(() => {
 });
 
 const rederLabel = computed<boolean>(() => {
-	return !StringUtils.isEmpty(label.value ?? '') && !iconOnly.value;
+	return !StringUtils.isEmptyStr(label.value ?? '') && !iconOnly.value;
 });
 
 const tailwindcssShapeClasses = computed<string>(() => {

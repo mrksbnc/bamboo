@@ -108,7 +108,7 @@ const modalWidth = computed<BoSlotModalWithConstruct>(() => {
 	}
 
 	if (
-		widthAsTailwindClass.value == null &&
+		(widthAsTailwindClass.value == null || widthAsTailwindClass.value === '') &&
 		widthInPx.value == null &&
 		widthInPercent.value == null
 	) {

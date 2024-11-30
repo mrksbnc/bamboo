@@ -81,8 +81,8 @@ const disabledClasses: string =
 
 const iconOnlyButton = computed<boolean>(() => {
 	return (
-		!StringUtils.isEmpty(prefixIcon.value ?? '') &&
-		StringUtils.isEmpty(label.value ?? '')
+		!StringUtils.isEmptyStr(prefixIcon.value ?? '') &&
+		StringUtils.isEmptyStr(label.value ?? '')
 	);
 });
 

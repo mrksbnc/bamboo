@@ -129,3 +129,115 @@ export const Example: Story = {
 		`,
 	}),
 };
+
+export const WithoutCloseButton: Story = {
+	render: (args) => ({
+		components: { BoSlotModal, BoButton, BoText },
+
+		setup() {
+			return { args, BoFontSize, BoTextColor, BoFontWeight };
+		},
+		template: `
+			<BoSlotModal :show-close-button="false">
+				<template #header>
+					<span class="flex gap-2">
+						<bo-text text="Modal title" :size="BoFontSize.title" :weight="BoFontWeight.semibold" class="text-center" />
+					</span>
+				</template>
+				<template #body>
+					<bo-text text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." :color="BoTextColor.disabled" />
+				</template>
+				<template #footer>
+					<bo-button label="Submit" class="w-full" />
+				</template>
+			</BoSlotModal>
+		`,
+	}),
+	args: {
+		showCloseButton: false,
+	},
+};
+
+export const CustomWidthPx: Story = {
+	render: (args) => ({
+		components: { BoSlotModal, BoButton, BoText },
+
+		setup() {
+			return { args, BoFontSize, BoTextColor, BoFontWeight };
+		},
+		template: `
+			<BoSlotModal :width-in-px="420">
+				<template #header>
+					<span class="flex gap-2">
+						<bo-text text="Modal title" :size="BoFontSize.title" :weight="BoFontWeight.semibold" class="text-center" />
+					</span>
+				</template>
+				<template #body>
+					<bo-text text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." :color="BoTextColor.disabled" />
+				</template>
+				<template #footer>
+					<bo-button label="Submit" class="w-full" />
+				</template>
+			</BoSlotModal>
+		`,
+	}),
+	args: {
+		widthInPx: 200,
+	},
+};
+
+export const CustomWidthPercent: Story = {
+	render: (args) => ({
+		components: { BoSlotModal, BoButton, BoText },
+
+		setup() {
+			return { args, BoFontSize, BoTextColor, BoFontWeight };
+		},
+		template: `
+			<BoSlotModal :width-in-percent="20">
+				<template #header>
+					<span class="flex gap-2">
+						<bo-text text="Modal title" :size="BoFontSize.title" :weight="BoFontWeight.semibold" class="text-center" />
+					</span>
+				</template>
+				<template #body>
+					<bo-text text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." :color="BoTextColor.disabled" />
+				</template>
+				<template #footer>
+					<bo-button label="Submit" class="w-full" />
+				</template>
+			</BoSlotModal>
+		`,
+	}),
+	args: {
+		widthInPercent: 30,
+	},
+};
+
+export const CustomWidthAsTailwindClass: Story = {
+	render: (args) => ({
+		components: { BoSlotModal, BoButton, BoText },
+
+		setup() {
+			return { args, BoFontSize, BoTextColor, BoFontWeight };
+		},
+		template: `
+			<BoSlotModal v-bind="args">
+				<template #header>
+					<span class="flex gap-2">
+						<bo-text text="Modal title" :size="BoFontSize.title" :weight="BoFontWeight.semibold" class="text-center" />
+					</span>
+				</template>
+				<template #body>
+					<bo-text text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." :color="BoTextColor.disabled" />
+				</template>
+				<template #footer>
+					<bo-button label="Submit" class="w-full" />
+				</template>
+			</BoSlotModal>
+		`,
+	}),
+	args: {
+		widthAsTailwindClass: /*tw*/ 'w-6/12',
+	},
+};
