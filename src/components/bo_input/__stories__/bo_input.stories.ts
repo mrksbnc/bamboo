@@ -402,13 +402,48 @@ export const Icons: Story = {
 					<span class="text-small text-gray-500 font-medium">default</span>
 				</span>
 				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
-					<bo-input v-model="modelValue" :label="label" :description="description" :suffix-icon="prefixIcon"/>
+					<bo-input v-model="modelValue" :label="label" :description="description" :suffix-icon="suffixIcon"/>
 				</span>
+			</div>
+		`,
+	}),
+	args: {
+		modelValue: '',
+		label: 'Name',
+		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		prefixIcon: Icon.alert_circle,
+		suffixIcon: Icon.alert_circle,
+		isLoading: true,
+	},
+};
+
+export const IconsWithLoader: Story = {
+	render: (args) => ({
+		components: { BoInput },
+		setup() {
+			const sizes = Object.values(BoInputSize);
+
+			return { sizes, ...args, generateRandomId };
+		},
+		template: `
+			<div class="flex flex-col gap-4">
 				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
 					<bo-input v-model="modelValue" :label="label" :description="description" :prefix-icon="prefixIcon" :isLoading="isLoading"/>
+					<span class="text-small text-gray-500 font-medium">default</span>
 				</span>
 				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
-					<bo-input v-model="modelValue" :label="label" :description="description" :suffix-icon="prefixIcon" :suffix-icon="suffixIcon" :isLoading="isLoading"/>
+					<bo-input v-model="modelValue" :label="label" :description="description" :suffix-icon="suffixIcon" :isLoading="isLoading"/>
+					<span class="text-small text-gray-500 font-medium">default</span>
+				</span>
+			</div>
+			<div class="flex flex-col gap-4">
+				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
+					<bo-input v-model="modelValue" :label="label" :description="description" :prefix-icon="prefixIcon" :isLoading="isLoading" loader-variant="spinner"/>
+					<span class="text-small text-gray-500 font-medium">default</span>
+				</span>
+				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
+					<bo-input v-model="modelValue" :label="label" :description="description" :suffix-icon="suffixIcon" :isLoading="isLoading" loader-variant="spinner"/>
+					<span class="text-small text-gray-500 font-medium">default</span>
 				</span>
 			</div>
 		`,
