@@ -15,6 +15,7 @@ import {
 	BoFontFamily,
 	BoFontSize,
 	BoFontWeight,
+	BoTextAlign,
 	BoTextColor,
 	BoTextWhiteSpace,
 } from './constants';
@@ -24,8 +25,9 @@ const props = withDefaults(defineProps<BoTextProps>(), {
 	size: () => BoFontSize.default,
 	color: () => BoTextColor.current,
 	weight: () => BoFontWeight.regular,
+	textAlign: () => BoTextAlign.justify,
 	fontFamily: () => BoFontFamily.inter,
-	whiteSpace: () => BoTextWhiteSpace.nowrap,
+	whiteSpace: () => BoTextWhiteSpace.normal,
 });
 
 const {
@@ -38,10 +40,11 @@ const {
 	color,
 	customColor,
 	clickable,
+	textAlign,
 } = toRefs(props);
 
 const defaultClasses: string =
-	/*tw*/ 'bo-text inline-flex items-center justify-center shrink-0 overflow-auto';
+	/*tw*/ 'bo-text inline-flex items-center justify-center overflow-hidden';
 
 const tailwindCssCursorClasses = computed<string>(() => {
 	return clickable.value ? /*tw*/ 'cursor-pointer' : /*tw*/ 'cursor-default';
@@ -150,6 +153,20 @@ const tailwindCssColorClasses = computed<string>(() => {
 	}
 });
 
+const tailwindcssTextAlignClasses = computed<string>(() => {
+	switch (textAlign.value) {
+		case BoTextAlign.left:
+			return /*tw*/ 'text-left';
+		case BoTextAlign.center:
+			return /*tw*/ 'text-center';
+		case BoTextAlign.right:
+			return /*tw*/ 'text-right';
+		case BoTextAlign.justify:
+		default:
+			return /*tw*/ 'text-justify';
+	}
+});
+
 const classes = computed<string>(() => {
 	return TailwindUtils.merge(
 		cssClass.value,
@@ -158,6 +175,7 @@ const classes = computed<string>(() => {
 		tailwindCssColorClasses.value,
 		tailwindCssCursorClasses.value,
 		tailwindCssWeightClasses.value,
+		tailwindcssTextAlignClasses.value,
 		tailwindCssFontFamilyClasses.value,
 		tailwindCssWhiteSpaceClasses.value,
 	);

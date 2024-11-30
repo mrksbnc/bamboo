@@ -108,3 +108,10 @@ export enum BoTextColor {
 	disabled = 'disabled',
 	info = 'info',
 }
+
+export enum BoTextAlign {
+	left = 'left',
+	center = 'center',
+	right = 'right',
+	justify = 'justify',
+}

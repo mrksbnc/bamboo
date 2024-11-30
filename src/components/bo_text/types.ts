@@ -2,6 +2,7 @@ import type {
 	BoFontFamily,
 	BoFontSize,
 	BoFontWeight,
+	BoTextAlign,
 	BoTextColor,
 	BoTextWhiteSpace,
 } from './constants';
@@ -17,4 +18,5 @@ export type BoTextProps = {
 	customColor?: string;
 	cssClass?: string;
 	clickable?: boolean;
+	textAlign?: BoTextAlign;
 };

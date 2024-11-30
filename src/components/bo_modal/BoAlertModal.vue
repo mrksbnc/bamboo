@@ -1,68 +1,144 @@
 <template>
-	<div
-		class="relative z-10"
-		aria-labelledby="modal-title"
-		role="dialog"
-		aria-modal="true"
+	<bo-slot-modal
+		:show-close-button="showCloseButton"
+		:bordered-header="false"
+		:bordered-footer="false"
+		:width-in-px="420"
+		class="bo-alert-modal"
+		@update:show="cancelButtonProps.onCLick"
 	>
-		<div
-			class="fixed inset-0 bg-gray-500/75 transition-opacity"
-			aria-hidden="true"
-		></div>
-
-		<div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-			<div
-				class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
-			>
-				<div
-					class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+		<template #header>
+			<div :class="['flex gap-2', headerAlignment]">
+				<span
+					v-if="withIcon"
+					class="flex flex-col items-center"
 				>
-					<div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-						<div class="sm:flex sm:items-start">
-							<div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-								<bo-text
-									text="Deactivate account"
-									:weight="BoFontWeight.medium"
-									:size="BoFontSize.modal_title"
-								/>
-								<div class="mt-2">
-									<bo-text
-										text="Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone."
-										:size="BoFontSize.small"
-										:color="BoTextColor.disabled"
-										:white-space="BoTextWhiteSpace.break_spaces"
-									/>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="gap-1 bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
-					>
-						<bo-button
-							type="submit"
-							label="Deactivate"
-							:variant="BoButtonVariant.danger"
-						/>
-						<bo-button
-							type="reset"
-							label="Cancel"
-							:variant="BoButtonVariant.secondary"
-						/>
-					</div>
-				</div>
+					<warning-svg
+						v-if="variant === BoAlertModalVariant.warning"
+						class="h-10 w-10 fill-yellow-500"
+					/>
+					<success-svg
+						v-else-if="variant === BoAlertModalVariant.success"
+						class="h-10 w-10 fill-green-600"
+					/>
+					<error-svg
+						v-else-if="variant === BoAlertModalVariant.error"
+						class="h-10 w-10 fill-red-600"
+					/>
+					<info-svg
+						v-else
+						class="h-10 w-10 fill-blue-600"
+					/>
+				</span>
+				<span class="flex flex-col items-center">
+					<bo-text
+						:text="title"
+						:size="BoFontSize.title"
+						:weight="BoFontWeight.semibold"
+						:font-family="BoFontFamily.inter"
+					/>
+				</span>
 			</div>
-		</div>
-	</div>
+		</template>
+		<template #body>
+			<div class="flex flex-col gap-2 pt-4">
+				<bo-text
+					:text="content"
+					:size="BoFontSize.small"
+					:color="BoTextColor.disabled"
+					:white-space="BoTextWhiteSpace.break_spaces"
+					:text-align="
+						alignment === BoAlertModalAlignment.centered
+							? BoTextAlign.center
+							: BoTextAlign.justify
+					"
+				/>
+			</div>
+		</template>
+		<template #footer>
+			<div class="flex w-full justify-between gap-2 pt-4">
+				<bo-button
+					v-if="showCancelButton"
+					tabindex="1"
+					v-bind="cancelButtonProps.props"
+					@click="cancelButtonProps.onCLick"
+				/>
+				<bo-button
+					tabindex="2"
+					v-bind="confirmButtonProps.props"
+					@click="confirmButtonProps.onCLick"
+				/>
+			</div>
+		</template>
+	</bo-slot-modal>
 </template>
 
 <script setup lang="ts">
-import { BoButton, BoButtonVariant } from '../bo_button';
+import ErrorSvg from '@/assets/svg/error.svg?component';
+import InfoSvg from '@/assets/svg/info.svg?component';
+import SuccessSvg from '@/assets/svg/success.svg?component';
+import WarningSvg from '@/assets/svg/warning.svg?component';
+import { BoButton, BoButtonVariant } from '@/components/bo_button';
 import {
+	BoFontFamily,
 	BoFontSize,
 	BoFontWeight,
 	BoText,
+	BoTextAlign,
 	BoTextColor,
 	BoTextWhiteSpace,
-} from '../bo_text';
+} from '@/components/bo_text';
+import { HtmlButtonType } from '@/global/html_button';
+import { computed, defineProps, toRefs, withDefaults } from 'vue';
+import { BoSlotModal } from '.';
+import { BoAlertModalAlignment, BoAlertModalVariant } from './constants';
+import type { BoAlertModalProps } from './types';
+
+const props = withDefaults(defineProps<BoAlertModalProps>(), {
+	title: '',
+	content: '',
+	withIcon: true,
+	confirmButtonProps: () => ({
+		props: {
+			label: '',
+			variant: BoButtonVariant.primary,
+			type: HtmlButtonType.submit,
+		},
+		onCLick: () => {},
+	}),
+	cancelButtonProps: () => ({
+		props: {
+			label: '',
+			variant: BoButtonVariant.secondary,
+			type: HtmlButtonType.reset,
+		},
+		onCLick: () => {},
+	}),
+	variant: () => BoAlertModalVariant.info,
+	alignment: () => BoAlertModalAlignment.default,
+	confirmButtonVariant: () => BoButtonVariant.primary,
+	cancelButtonVariant: () => BoButtonVariant.secondary,
+});
+
+const {
+	title,
+	content,
+	withIcon,
+	showCloseButton,
+	showCancelButton,
+	cancelButtonProps,
+	confirmButtonProps,
+	variant,
+	alignment,
+} = toRefs(props);
+
+const headerAlignment = computed<string>(() => {
+	switch (alignment.value) {
+		case BoAlertModalAlignment.centered:
+			return /* tw*/ 'flex-col items-center';
+		case BoAlertModalAlignment.default:
+		default:
+			return /* tw*/ 'items-center';
+	}
+});
 </script>
