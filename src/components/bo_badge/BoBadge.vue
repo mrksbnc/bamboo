@@ -7,6 +7,7 @@
 			<bo-icon
 				:size="boBadgeIconSize"
 				:icon="preficOrIconOnlySrc"
+				class="bo-badge__prefix-icon"
 			/>
 		</span>
 		<bo-text
@@ -14,11 +15,13 @@
 			:text="label"
 			:size="badgeFontSize"
 			:weight="BoFontWeight.medium"
+			class="bo-badge__label"
 		/>
 		<span v-if="suffixIcon !== Icon.none && !iconOnly && !isCircle">
 			<bo-icon
 				:icon="suffixIcon"
 				:size="boBadgeIconSize"
+				class="bo-badge__suffix-icon"
 			/>
 		</span>
 	</span>
@@ -68,7 +71,7 @@ const rederLabel = computed<boolean>(() => {
 	return !StringUtils.isEmptyStr(label.value ?? '') && !iconOnly.value;
 });
 
-const tailwindcssShapeClasses = computed<string>(() => {
+const boBadgeShapeClasses = computed<string>(() => {
 	switch (shape.value) {
 		case BoBadgeShape.pill:
 		case BoBadgeShape.circle:
@@ -79,7 +82,7 @@ const tailwindcssShapeClasses = computed<string>(() => {
 	}
 });
 
-const tailwindcssVariantClasses = computed<string>(() => {
+const boBadgeVariantClasses = computed<string>(() => {
 	switch (type.value) {
 		case BoBadgeType.outline:
 			switch (variant.value) {
@@ -117,7 +120,7 @@ const tailwindcssVariantClasses = computed<string>(() => {
 	}
 });
 
-const tailwindcssBadgePaddingClasses = computed<string>(() => {
+const boBadgeBadgePaddingClasses = computed<string>(() => {
 	if (isCircle.value) {
 		switch (size.value) {
 			case BoSize.extra_small:
@@ -152,9 +155,9 @@ const tailwindcssBadgePaddingClasses = computed<string>(() => {
 const classes = computed<string>(() => {
 	return TailwindUtils.merge(
 		defaultClasses,
-		tailwindcssShapeClasses.value,
-		tailwindcssVariantClasses.value,
-		tailwindcssBadgePaddingClasses.value,
+		boBadgeShapeClasses.value,
+		boBadgeVariantClasses.value,
+		boBadgeBadgePaddingClasses.value,
 	);
 });
 

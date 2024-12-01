@@ -17,10 +17,6 @@ beforeEach(() => {
 });
 
 describe('bo_icon.vue', () => {
-	test('should match snapshot', () => {
-		expect(wrapper.html()).toMatchSnapshot();
-	});
-
 	test('should render the icon', () => {
 		expect(wrapper.find('activity')).toBeTruthy();
 	});

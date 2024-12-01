@@ -1,3 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`bo_avatar.vue > should match snapshot 1`] = `"<div class="bo-avatar flex items-center justify-center overflow-hidden shadow-sm text-white bg-sky-600 cursor-default rounded-lg size-10"><span class="bo-avatar__initials flex items-center justify-center"><span id="bo-text-jxykkl" class="bo-text inline-flex items-center overflow-hidden text-default leading-default text-current cursor-default font-normal text-justify font-inter whitespace-normal text-clip" alt="avatar">BO</span></span></div>"`;

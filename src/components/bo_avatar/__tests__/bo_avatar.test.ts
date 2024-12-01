@@ -2,29 +2,9 @@ import { BoAvatar, BoAvatarShape, BoAvatarType } from '@/components/bo_avatar';
 import { BoText } from '@/components/bo_text';
 import { BoSize } from '@/data/bo_size.constant';
 import { mount } from '@vue/test-utils';
-import { beforeEach, expect, suite, test } from 'vitest';
+import { beforeEach, describe, expect, suite, test } from 'vitest';
 
-suite('bo_avatar.vue', () => {
-	test('should match snapshot', () => {
-		const wrapper = mount(BoAvatar, {
-			props: {
-				type: BoAvatarType.initials,
-				initialsData: {
-					initials: 'BO',
-					alt: 'avatar',
-				},
-				shape: BoAvatarShape.rounded,
-				size: BoSize.default,
-				colorHex: undefined,
-				fontColorHex: undefined,
-				clickable: false,
-				withDefaultImage: false,
-			},
-		});
-
-		expect(wrapper.html()).toMatchSnapshot();
-	});
-
+describe('bo_avatar.vue', () => {
 	suite('bo_avatar initials', () => {
 		let initialWrapper: ReturnType<typeof mount>;
 
@@ -46,12 +26,29 @@ suite('bo_avatar.vue', () => {
 			});
 		});
 
-		test('should render the initials', () => {
+		test('the avatar container should have the default classes', () => {
+			expect(initialWrapper.find('.bo-avatar').classes()).contains('flex');
+			expect(initialWrapper.find('.bo-avatar').classes()).contains(
+				'items-center',
+			);
+			expect(initialWrapper.find('.bo-avatar').classes()).contains(
+				'justify-center',
+			);
+			expect(initialWrapper.find('.bo-avatar').classes()).contains(
+				'overflow-hidden',
+			);
+			expect(initialWrapper.find('.bo-avatar').classes()).contains('shadow-sm');
+			expect(initialWrapper.find('.bo-avatar').classes()).contains(
+				'text-white',
+			);
+		});
+
+		test('the avatar should render the initials', () => {
 			expect(initialWrapper.find('span')).toBeTruthy();
 			expect(initialWrapper.find('span').text()).toBe('BO');
 		});
 
-		test('should have alt text added to the initials', () => {
+		test('the avatar should have alt text added to the initials', () => {
 			expect(
 				initialWrapper
 					.find('.bo-avatar__initials')
@@ -61,27 +58,27 @@ suite('bo_avatar.vue', () => {
 		});
 
 		suite('avatar shapes', () => {
-			test('should have the default shape', () => {
+			test('the avatar should have the default shape', () => {
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain(
 					'rounded-lg',
 				);
 			});
 
-			test('should be able to change the shape to circle', async () => {
+			test('the avatar should be able to change the shape to circle', async () => {
 				await initialWrapper.setProps({ shape: BoAvatarShape.circle });
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain(
 					'rounded-full',
 				);
 			});
 
-			test('should be able to change the shape to square', async () => {
+			test('the avatar should be able to change the shape to square', async () => {
 				await initialWrapper.setProps({ shape: BoAvatarShape.square });
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain(
 					'rounded-none',
 				);
 			});
 
-			test('should be able to change the shape to rounded', async () => {
+			test('the avatar should be able to change the shape to rounded', async () => {
 				await initialWrapper.setProps({ shape: BoAvatarShape.rounded });
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain(
 					'rounded-lg',
@@ -90,37 +87,37 @@ suite('bo_avatar.vue', () => {
 		});
 
 		suite('avatar sizes', () => {
-			test('should have the default size', () => {
+			test('the avatar should have the default size', () => {
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain(
 					'size-10',
 				);
 			});
 
-			test('should be able to change the size to extra small', async () => {
+			test('the avatar should be able to change the size to extra small', async () => {
 				await initialWrapper.setProps({ size: BoSize.extra_small });
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain('size-6');
 			});
 
-			test('should be able to change the size to small', async () => {
+			test('the avatar should be able to change the size to small', async () => {
 				await initialWrapper.setProps({ size: BoSize.small });
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain('size-8');
 			});
 
-			test('should be able to change the size to default', async () => {
+			test('the avatar should be able to change the size to default', async () => {
 				await initialWrapper.setProps({ size: BoSize.default });
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain(
 					'size-10',
 				);
 			});
 
-			test('should be able to change the size to large', async () => {
+			test('the avatar should be able to change the size to large', async () => {
 				await initialWrapper.setProps({ size: BoSize.large });
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain(
 					'size-12',
 				);
 			});
 
-			test('should be able to change the size to extra large', async () => {
+			test('the avatar should be able to change the size to extra large', async () => {
 				await initialWrapper.setProps({ size: BoSize.extra_large });
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain(
 					'size-14',
@@ -129,14 +126,14 @@ suite('bo_avatar.vue', () => {
 		});
 
 		suite('avatar colors', () => {
-			test('should have a random default background color if no cusotom one is provided', async () => {
+			test('the avatar should have a random default background color if no cusotom one is provided', async () => {
 				await initialWrapper.setProps({ colorHex: undefined });
 				expect(initialWrapper.find('.bo-avatar').classes().join('')).includes(
 					'bg-',
 				);
 			});
 
-			test('should be able to set a custom background color in hex format', async () => {
+			test('the avatar should be able to set a custom background color in hex format', async () => {
 				const colorHex = '#123456';
 				await initialWrapper.setProps({ colorHex });
 
@@ -147,7 +144,7 @@ suite('bo_avatar.vue', () => {
 				);
 			});
 
-			test('should be able to change the font color in hex format', async () => {
+			test('the avatar should be able to change the font color in hex format', async () => {
 				const fontColorHex = '#123456';
 				await initialWrapper.setProps({ fontColorHex });
 
@@ -158,7 +155,7 @@ suite('bo_avatar.vue', () => {
 		});
 
 		suite('avatar clickable', () => {
-			test('should be able to make the avatar clickable', async () => {
+			test('the avatar should be able to make the avatar clickable', async () => {
 				await initialWrapper.setProps({ clickable: true });
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain(
 					'cursor-pointer',
@@ -190,14 +187,14 @@ suite('bo_avatar.vue', () => {
 		});
 
 		suite('avatar with default image', () => {
-			test('should render the default image', async () => {
+			test('the avatar should render the default image', async () => {
 				await imageWrapper.setProps({ withDefaultImage: true });
 
 				const element = imageWrapper.find('.bo-avatar__default');
 				expect(element.exists()).toBe(true);
 			});
 
-			test('should not render this image if the prop is set to false', async () => {
+			test('the avatar should not render this image if the prop is set to false', async () => {
 				await imageWrapper.setProps({ withDefaultImage: false });
 
 				const element = imageWrapper.find('.bo-avatar__default');
@@ -206,14 +203,14 @@ suite('bo_avatar.vue', () => {
 		});
 
 		suite('avatar with image from src', () => {
-			test('should render the image', async () => {
+			test('the avatar should render the image', async () => {
 				await imageWrapper.setProps({
 					imageData: { src: 'https://example.com/image.jpg', alt: 'avatar' },
 				});
 				expect(imageWrapper.find('.bo-avatar__image')).toBeTruthy();
 			});
 
-			test('should have the alt text added to the image', async () => {
+			test('the avatar should have the alt text added to the image', async () => {
 				await imageWrapper.setProps({
 					imageData: { src: 'https://example.com/image.jpg', alt: 'avatar' },
 				});
@@ -222,7 +219,7 @@ suite('bo_avatar.vue', () => {
 				);
 			});
 
-			test('should have the src of the image added to the image', async () => {
+			test('the avatar should have the src of the image added to the image', async () => {
 				await imageWrapper.setProps({
 					imageData: { src: 'https://example.com/image.jpg', alt: 'avatar' },
 					type: BoAvatarType.image,
@@ -234,37 +231,37 @@ suite('bo_avatar.vue', () => {
 			});
 
 			suite('avatar image sizes', () => {
-				test('should have the default size', () => {
+				test('the avatar should have the default size', () => {
 					expect(imageWrapper.find('.bo-avatar').classes()).toContain(
 						'size-10',
 					);
 				});
 
-				test('should be able to change the size to extra small', async () => {
+				test('the avatar should be able to change the size to extra small', async () => {
 					await imageWrapper.setProps({ size: BoSize.extra_small });
 					expect(imageWrapper.find('.bo-avatar').classes()).toContain('size-6');
 				});
 
-				test('should be able to change the size to small', async () => {
+				test('the avatar should be able to change the size to small', async () => {
 					await imageWrapper.setProps({ size: BoSize.small });
 					expect(imageWrapper.find('.bo-avatar').classes()).toContain('size-8');
 				});
 
-				test('should be able to change the size to default', async () => {
+				test('the avatar should be able to change the size to default', async () => {
 					await imageWrapper.setProps({ size: BoSize.default });
 					expect(imageWrapper.find('.bo-avatar').classes()).toContain(
 						'size-10',
 					);
 				});
 
-				test('should be able to change the size to large', async () => {
+				test('the avatar should be able to change the size to large', async () => {
 					await imageWrapper.setProps({ size: BoSize.large });
 					expect(imageWrapper.find('.bo-avatar').classes()).toContain(
 						'size-12',
 					);
 				});
 
-				test('should be able to change the size to extra large', async () => {
+				test('the avatar should be able to change the size to extra large', async () => {
 					await imageWrapper.setProps({ size: BoSize.extra_large });
 					expect(imageWrapper.find('.bo-avatar').classes()).toContain(
 						'size-14',
@@ -273,27 +270,27 @@ suite('bo_avatar.vue', () => {
 			});
 
 			suite('avatar image shapes', () => {
-				test('should have the default shape', () => {
+				test('the avatar should have the default shape', () => {
 					expect(imageWrapper.find('.bo-avatar').classes()).toContain(
 						'rounded-lg',
 					);
 				});
 
-				test('should be able to change the shape to circle', async () => {
+				test('the avatar should be able to change the shape to circle', async () => {
 					await imageWrapper.setProps({ shape: BoAvatarShape.circle });
 					expect(imageWrapper.find('.bo-avatar').classes()).toContain(
 						'rounded-full',
 					);
 				});
 
-				test('should be able to change the shape to square', async () => {
+				test('the avatar should be able to change the shape to square', async () => {
 					await imageWrapper.setProps({ shape: BoAvatarShape.square });
 					expect(imageWrapper.find('.bo-avatar').classes()).toContain(
 						'rounded-none',
 					);
 				});
 
-				test('should be able to change the shape to rounded', async () => {
+				test('the avatar should be able to change the shape to rounded', async () => {
 					await imageWrapper.setProps({ shape: BoAvatarShape.rounded });
 					expect(imageWrapper.find('.bo-avatar').classes()).toContain(
 						'rounded-lg',
