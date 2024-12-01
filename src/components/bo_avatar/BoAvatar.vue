@@ -19,6 +19,7 @@
 			class="bo-avatar__initials flex items-center justify-center"
 		>
 			<bo-text
+				alt="avatar"
 				:text="initialsData.initials"
 				:custom-color="fontColorHex"
 				:size="labelSize"
@@ -40,14 +41,15 @@
 
 <script setup lang="ts">
 import { BoFontSize, BoText } from '@/components/bo_text';
+import { BoSize } from '@/data/bo_size.constant';
 import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs, type StyleValue } from 'vue';
-import { BoAvatarShape, BoAvatarSize, BoAvatarType } from './constants';
+import { BoAvatarShape, BoAvatarType } from './constants';
 import type { BoAvatarProps } from './types';
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
 	type: () => BoAvatarType.initials,
-	size: () => BoAvatarSize.default,
+	size: () => BoSize.default,
 	shape: () => BoAvatarShape.rounded,
 });
 
@@ -81,15 +83,15 @@ const showDefaultAvatar = computed<boolean>(() => {
 
 const labelSize = computed<BoFontSize>(() => {
 	switch (size.value) {
-		case BoAvatarSize.extra_small:
+		case BoSize.extra_small:
 			return BoFontSize.extra_small;
-		case BoAvatarSize.small:
+		case BoSize.small:
 			return BoFontSize.small;
-		case BoAvatarSize.large:
+		case BoSize.large:
 			return BoFontSize.default;
-		case BoAvatarSize.extra_large:
+		case BoSize.extra_large:
 			return BoFontSize.body;
-		case BoAvatarSize.default:
+		case BoSize.default:
 		default:
 			return BoFontSize.default;
 	}
@@ -105,23 +107,23 @@ const containerStyle = computed<StyleValue>(() => {
 	return {};
 });
 
-const tailwindCssSizeClasses = computed<string>(() => {
+const avatarSizeClasses = computed<string>(() => {
 	switch (size.value) {
-		case BoAvatarSize.extra_small:
+		case BoSize.extra_small:
 			return /*tw*/ 'size-6';
-		case BoAvatarSize.small:
+		case BoSize.small:
 			return /*tw*/ 'size-8';
-		case BoAvatarSize.large:
+		case BoSize.large:
 			return /*tw*/ 'size-12';
-		case BoAvatarSize.extra_large:
+		case BoSize.extra_large:
 			return /*tw*/ 'size-14';
-		case BoAvatarSize.default:
+		case BoSize.default:
 		default:
 			return /*tw*/ 'size-10';
 	}
 });
 
-const tailwindCssShapeClasses = computed<string>(() => {
+const avatarShapeClasses = computed<string>(() => {
 	switch (shape.value) {
 		case BoAvatarShape.circle:
 			return /*tw*/ 'rounded-full';
@@ -134,7 +136,7 @@ const tailwindCssShapeClasses = computed<string>(() => {
 	}
 });
 
-const tailwindCssContainerDefaultClasses = computed<string>(() => {
+const avatarContainerDefaultClasses = computed<string>(() => {
 	const colors = [
 		/*tw*/ 'bg-blue-600',
 		/*tw*/ 'bg-green-600',
@@ -165,9 +167,9 @@ const tailwindCssContainerDefaultClasses = computed<string>(() => {
 
 const containerClasses = computed<string>(() => {
 	return TailwindUtils.merge(
-		tailwindCssContainerDefaultClasses.value,
-		tailwindCssShapeClasses.value,
-		tailwindCssSizeClasses.value,
+		avatarContainerDefaultClasses.value,
+		avatarShapeClasses.value,
+		avatarSizeClasses.value,
 	);
 });
 </script>

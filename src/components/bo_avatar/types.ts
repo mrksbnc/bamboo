@@ -1,4 +1,5 @@
-import type { BoAvatarShape, BoAvatarSize, BoAvatarType } from './constants';
+import type { BoSize } from '@/data/bo_size.constant';
+import type { BoAvatarShape, BoAvatarType } from './constants';
 
 export type BoAvatarImageProps = {
 	src: string;
@@ -15,7 +16,7 @@ export type BoAvatarProps = {
 	initialsData?: BoAvatarInitialsProps;
 	type?: BoAvatarType;
 	shape?: BoAvatarShape;
-	size?: BoAvatarSize;
+	size?: BoSize;
 	colorHex?: string;
 	fontColorHex?: string;
 	clickable?: boolean;

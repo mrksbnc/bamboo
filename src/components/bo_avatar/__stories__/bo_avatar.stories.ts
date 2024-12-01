@@ -1,12 +1,7 @@
-import {
-	BoAvatar,
-	BoAvatarShape,
-	BoAvatarSize,
-	BoAvatarType,
-} from '@/components/bo_avatar';
+import { BoAvatar, BoAvatarShape, BoAvatarType } from '@/components/bo_avatar';
+import { BoSize } from '@/data/bo_size.constant';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import ImageAvatar from './img_avatar.png';
 
 const meta = {
 	title: 'Components/bo-avatar',
@@ -48,19 +43,16 @@ const meta = {
 		size: {
 			description: 'The size of the avatar',
 			control: { type: 'select' },
-			options: Object.values(BoAvatarSize),
+			options: Object.values(BoSize),
 			table: {
 				category: 'props',
 				subcategory: 'optional',
 				type: {
-					summary: 'BoAvatarSize',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoAvatarSize,
-						'BoAvatarSize',
-					),
+					summary: 'BoSize',
+					detail: StorybookUtils.stringEnumFormatter(BoSize, 'BoSize'),
 				},
 			},
-			defaultValue: BoAvatarSize.default,
+			defaultValue: BoSize.default,
 		},
 		shape: {
 			description: 'The shape of the avatar',
@@ -145,7 +137,7 @@ export const Image: Story = {
 	args: {
 		type: BoAvatarType.image,
 		imageData: {
-			src: ImageAvatar,
+			src: new URL('./img_avatar.png', import.meta.url).href,
 			alt: 'avatar',
 		},
 	},
@@ -175,7 +167,7 @@ export const Sizes: Story = {
 	render: (args) => ({
 		components: { BoAvatar },
 		setup() {
-			const sizes = Object.values(BoAvatarSize);
+			const sizes = Object.values(BoSize);
 			return { sizes, ...args };
 		},
 		template: `
