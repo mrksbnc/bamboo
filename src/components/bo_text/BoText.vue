@@ -1,8 +1,8 @@
 <template>
 	<span
+		:id="id ?? IdentityUtils.generateRandomIdWithPrefix('bo-text')"
 		:class="classes"
 		:style="containerStyle"
-		:id="id ?? IdentityUtils.generateRandomIdWithPrefix('bo-text')"
 	>
 		{{ text }}
 	</span>

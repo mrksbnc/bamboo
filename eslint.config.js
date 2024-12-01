@@ -1,28 +1,36 @@
-import pluginJs from '@eslint/js';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import pluginVue from 'eslint-plugin-vue';
+import eslint from '@eslint/js';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintPluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import typescriptEslint from 'typescript-eslint';
 
 /**
  * Bamboo root Vue.js ESLint configuration.
- *
- * @type {import('eslint').Linter.Config[]}
  */
-const config = [
-	{ files: ['**/*.{js,mjs,cjs,ts,vue}'] },
-	{ languageOptions: { globals: globals.browser } },
-	pluginJs.configs.recommended,
-	...tseslint.configs.recommended,
-	...pluginVue.configs['flat/essential'],
+const config = typescriptEslint.config(
 	{
-		files: ['**/*.vue'],
-		languageOptions: { parserOptions: { parser: tseslint.parser } },
+		ignores: ['*.d.ts', '**/coverage', '**/dist', '*.config.js', '*.config.ts'],
 	},
 	{
-		ignores: ['*.config.cjs'],
+		extends: [
+			eslint.configs.recommended,
+			...typescriptEslint.configs.recommended,
+			...eslintPluginVue.configs['flat/recommended'],
+		],
+		files: ['**/*.{ts,vue}'],
+		languageOptions: {
+			ecmaVersion: 'latest',
+			sourceType: 'module',
+			globals: globals.browser,
+			parserOptions: {
+				parser: typescriptEslint.parser,
+			},
+		},
+		rules: {
+			// your rules
+		},
 	},
-	eslintPluginPrettierRecommended,
-];
+	eslintConfigPrettier,
+);
 
 export default config;

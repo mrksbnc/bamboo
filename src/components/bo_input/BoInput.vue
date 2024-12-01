@@ -32,12 +32,12 @@
 					:color="BoColor.gray_500"
 			/></span>
 			<input
-				ref="inputRef"
 				v-bind="$attrs"
+				:id="computedInputId"
+				ref="inputRef"
 				:type="type"
 				:value="modelValue"
 				:readonly="readonly"
-				:id="computedInputId"
 				:class="inputClasses"
 				:placeholder="placeholder"
 				:disabled="disabled || isLoading"
