@@ -15,6 +15,7 @@ beforeEach(() => {
 	wrapper = mount(BoBadge, {
 		props: {
 			label: 'Label',
+			icon: Icon.none,
 			variant: BoBadgeVariant.primary,
 			type: BoBadgeType.default,
 		},
@@ -132,10 +133,9 @@ describe('bo_badge.vue', () => {
 	});
 
 	suite('badge icons', () => {
-		test('the badge should not have any default icon', async () => {
-			await wrapper.setProps({ prefixIcon: null });
-			await wrapper.setProps({ suffixIcon: null });
-			expect(wrapper.findComponent(BoIcon).isVisible()).toBeFalsy();
+		test('the badge should not have any default icon', () => {
+			const icon = wrapper.findComponent(BoIcon);
+			expect(icon.exists()).toBe(false);
 		});
 
 		test('the badge should be able to display a prefix icon', async () => {
