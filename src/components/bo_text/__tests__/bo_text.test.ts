@@ -310,17 +310,14 @@ describe('bo_text.vue', () => {
 		});
 	});
 
-	suite(
-		'the container should have custom styles in case of a custom color prop was set',
-		() => {
-			test('the container should have the correct custom color style', async () => {
-				await wrapper.setProps({ customColor: 'red' });
+	suite('custom color style', () => {
+		test('the container should have the correct custom color style', async () => {
+			await wrapper.setProps({ customColor: 'red' });
 
-				const element = wrapper.find('#test-id');
+			const element = wrapper.find('#test-id');
 
-				const style = element.attributes('style');
-				expect(style).toBe('color: red;');
-			});
-		},
-	);
+			const style = element.attributes('style');
+			expect(style).toBe('color: red;');
+		});
+	});
 });

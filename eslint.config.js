@@ -9,7 +9,16 @@ import typescriptEslint from 'typescript-eslint';
  */
 const config = typescriptEslint.config(
 	{
-		ignores: ['*.d.ts', '**/coverage', '**/dist', '*.config.js', '*.config.ts'],
+		ignores: [
+			'*.d.ts',
+			'**/coverage',
+			'**/dist',
+			'*.config.js',
+			'*.config.ts',
+			'*.workspace.js',
+			'*.workspace.ts',
+			'*.setup.ts',
+		],
 	},
 	{
 		extends: [
