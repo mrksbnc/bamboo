@@ -191,7 +191,7 @@ export const WidthInPx: Story = {
 			<bo-card
 				title="Title"
 				description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi."
-				width-in-px="300"
+				:width-in-px="300"
 			/>
 		`,
 	}),
@@ -204,7 +204,7 @@ export const WidthInPercent: Story = {
 			<bo-card
 				title="Title"
 				description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi."
-				width-in-percent="50"
+				:width-in-percent="50"
 			/>
 		`,
 	}),

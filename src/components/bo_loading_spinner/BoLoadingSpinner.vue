@@ -42,7 +42,7 @@ const defaultContainerClasses =
 	/*tw*/ 'flex h-full w-full content-center items-center justify-center gap-2';
 
 const defaultClasses =
-	/*tw*/ 'inline-block animate-spin rounded-full border-[2px] border-current border-t-transparent';
+	/*tw*/ 'inline-flex animate-spin rounded-full border-[2px] border-current border-t-transparent';
 
 const displayLoaderText = computed<boolean>(() => {
 	return !StringUtils.isEmptyStr(loaderText.value ?? '');

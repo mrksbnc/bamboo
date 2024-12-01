@@ -9,11 +9,16 @@
 		<span
 			:class="[
 				'bo-button__content inline-flex items-center justify-center gap-2',
-				tailwindcssContentPaddingClasses,
+				buttonContentPaddingClasses,
 			]"
 		>
 			<bo-icon
-				v-if="prefixIcon !== Icon.none && prefixIcon != null"
+				v-if="
+					prefixIcon !== Icon.none &&
+					prefixIcon != null &&
+					iconOnlyButton &&
+					!isLoading
+				"
 				:icon="iconOnlyIcon"
 				:size="size"
 				class="bo-button__prefix-icon"
@@ -23,7 +28,7 @@
 				:text="label"
 				:clickable="true"
 				:weight="BoFontWeight.medium"
-				:size="tailwindcssContentSize"
+				:size="buttonContentSize"
 				class="bo-button__label min-w-fit"
 			/>
 			<bo-icon
@@ -97,7 +102,7 @@ const iconOnlyIcon = computed<Icon>(() => {
 	return Icon.none;
 });
 
-const tailwindcssShapeClasses = computed<string>(() => {
+const buttonShapeClasses = computed<string>(() => {
 	switch (shape.value) {
 		case BoButtonShape.pill:
 			return /*tw*/ 'rounded-full';
@@ -108,7 +113,7 @@ const tailwindcssShapeClasses = computed<string>(() => {
 	}
 });
 
-const tailwindcssVariantClasses = computed<string>(() => {
+const buttonVariantClasses = computed<string>(() => {
 	switch (shape.value) {
 		case BoButtonShape.outline:
 			switch (variant.value) {
@@ -173,7 +178,7 @@ const tailwindcssVariantClasses = computed<string>(() => {
 	}
 });
 
-const tailwindCssVariantShadowClasses = computed<string>(() => {
+const buttonVariantShadowClasses = computed<string>(() => {
 	switch (variant.value) {
 		case BoButtonVariant.primary:
 			return /*tw*/ 'shadow-sm shadow-blue-500/50 dark:shadow-sm dark:shadow-blue-800/80';
@@ -203,13 +208,13 @@ const buttonClasses = computed<string>(() => {
 	return TailwindUtils.merge(
 		defaultClasses,
 		disabledClasses,
-		tailwindcssShapeClasses.value,
-		tailwindcssVariantClasses.value,
-		tailwindCssVariantShadowClasses.value,
+		buttonShapeClasses.value,
+		buttonVariantClasses.value,
+		buttonVariantShadowClasses.value,
 	);
 });
 
-const tailwindcssContentSize = computed<BoFontSize>(() => {
+const buttonContentSize = computed<BoFontSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
 			return BoFontSize.extra_small;
@@ -223,7 +228,7 @@ const tailwindcssContentSize = computed<BoFontSize>(() => {
 	}
 });
 
-const tailwindcssContentPaddingClasses = computed<string>(() => {
+const buttonContentPaddingClasses = computed<string>(() => {
 	switch (iconOnlyButton.value) {
 		case true:
 			switch (size.value) {
@@ -301,9 +306,10 @@ const loaderSize = computed<BoSize>(() => {
 			return BoSize.default;
 		case BoSize.extra_small:
 		case BoSize.small:
+			return BoSize.small;
 		case BoSize.default:
 		default:
-			return BoSize.small;
+			return BoSize.default;
 	}
 });
 </script>

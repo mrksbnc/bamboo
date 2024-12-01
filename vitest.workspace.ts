@@ -9,7 +9,13 @@ export default defineWorkspace([
 		extends: 'vite.config.ts',
 		plugins: [
 			// See options at: https://storybook.js.org/docs/writing-tests/vitest-plugin#storybooktest
-			storybookTest({ configDir: '.storybook' }),
+			storybookTest({
+				configDir: '.storybook',
+				tags: {
+					include: ['test'],
+					exclude: ['experimental'],
+				},
+			}),
 			storybookVuePlugin(),
 		],
 		test: {

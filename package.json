@@ -30,7 +30,7 @@
 	"scripts": {
 		"build": "npm run type-check && npm run lint && vite optimize --force && vite build --mode production && npm run build:tailwind",
 		"build:tailwind": "npx tailwindcss -o dist/index.css --minify",
-		"build:storybook": "storybook build -o static",
+		"build-storybook": "storybook build -o static",
 		"chromatic": "npx chromatic --exit-zero-on-changes",
 		"format": "prettier --write src/",
 		"lint": "eslint ./src/**/*.{ts,vue} --fix",

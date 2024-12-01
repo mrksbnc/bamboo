@@ -3,7 +3,6 @@ import { BoColor } from '@/data';
 import { BoSize } from '@/data/bo_size.constant';
 import { BoLoaderTextPosition, BoLoaderVariant } from '@/data/loader.constant';
 import { StorybookUtils } from '@/utils';
-import { IdentityUtils } from '@/utils/identity_utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
@@ -135,7 +134,6 @@ export const WithLoaderText: Story = {
 	render: (args) => ({
 		components: { BoLoadingSpinner },
 		setup() {
-			console.log(IdentityUtils.generateRandomId());
 			return { ...args };
 		},
 		template: `

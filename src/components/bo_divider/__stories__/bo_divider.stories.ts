@@ -74,7 +74,7 @@ export const Variants: Story = {
 		components: { BoDivider },
 		setup() {
 			const variants = Object.values(BoDividerVariant);
-			return { variants, ...args };
+			return { variants, args };
 		},
 		template: `
 			<div class="flex flex-col gap-4 bg-white p-4">

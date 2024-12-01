@@ -251,7 +251,7 @@ export const IconOnly: Story = {
 		template: `
 			<div class="flex flex-row gap-1">
 				<bo-badge :prefix-icon="prefixIcon" :type="type"/>
-				<bo-badge :prefix-icon="prefixIcon" :type="type" :size="size" shape="${BoBadgeShape.circle}"/>
+				<bo-badge :prefix-icon="prefixIcon" :type="type" shape="${BoBadgeShape.circle}"/>
 			</div>
 		`,
 	}),
