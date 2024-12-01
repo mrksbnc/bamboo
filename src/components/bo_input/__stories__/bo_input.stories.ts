@@ -217,6 +217,7 @@ export const Example: Story = {
 		isLoading: false,
 		readonly: false,
 		placeholder: 'Enter your name',
+		type: HtmlInputType.text,
 	},
 };
 

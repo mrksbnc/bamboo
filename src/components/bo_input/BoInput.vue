@@ -41,7 +41,7 @@
 				:class="inputClasses"
 				:placeholder="placeholder"
 				:disabled="disabled || isLoading"
-				@input="updateValue"
+				@input="onInput"
 			/>
 			<div class="flex flex-row-reverse">
 				<span
@@ -302,34 +302,16 @@ const iconSize = computed<BoSize>(() => {
 	}
 });
 
-function updateValue(e: Event): void {
+function onInput(e: Event): void {
 	const target = e.target as HTMLInputElement;
-	let value = target.value;
 
-	// TODO: optimize this
 	if (type.value === HtmlInputType.number) {
-		const chars = value.split('');
-
-		const result = chars
-			.map((c) => {
-				const int = parseInt(c);
-
-				if (isNaN(int)) {
-					return '';
-				}
-
-				return int;
-			})
-			.join('');
-
 		if (inputRef.value != null) {
-			inputRef.value.value = result;
+			inputRef.value.value = target.value.replace(/[^\d].+/, '');
 		}
-
-		value = result;
 	}
 
-	emit('update:modelValue', value);
+	emit('update:modelValue', target.value);
 }
 
 watch(

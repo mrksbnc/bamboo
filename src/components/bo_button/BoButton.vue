@@ -200,7 +200,7 @@ const buttonVariantShadowClasses = computed<string>(() => {
 		case BoButtonVariant.link_dark:
 			return /*tw*/ 'shadow-none';
 		default:
-			return /*tw*/ 'shadow-sm shadow-blue-500/50 dark:shadow-sm dark:shadow-blue-800/80';
+			return /*tw*/ 'shadow-sm';
 	}
 });
 
@@ -265,8 +265,6 @@ const loaderVariant = computed<BoLoaderVariant>(() => {
 	switch (shape.value) {
 		case BoButtonShape.outline:
 			switch (variant.value) {
-				case BoButtonVariant.primary:
-					return BoLoaderVariant.primary;
 				case BoButtonVariant.secondary:
 					return BoLoaderVariant.secondary;
 				case BoButtonVariant.danger:
@@ -277,7 +275,7 @@ const loaderVariant = computed<BoLoaderVariant>(() => {
 					return BoLoaderVariant.success;
 				case BoButtonVariant.dark:
 					return BoLoaderVariant.dark;
-				case BoButtonVariant.link:
+				case BoButtonVariant.primary:
 				default:
 					return BoLoaderVariant.primary;
 			}
@@ -301,13 +299,12 @@ const loaderVariant = computed<BoLoaderVariant>(() => {
 
 const loaderSize = computed<BoSize>(() => {
 	switch (size.value) {
-		case BoSize.large:
-		case BoSize.extra_large:
-			return BoSize.default;
 		case BoSize.extra_small:
 		case BoSize.small:
 			return BoSize.small;
 		case BoSize.default:
+		case BoSize.large:
+		case BoSize.extra_large:
 		default:
 			return BoSize.default;
 	}
