@@ -3,7 +3,7 @@
 		:style="slotCardWidth.style"
 		:class="[
 			cardContainerClasses,
-			'bo-card rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800',
+			'bo-card rounded-lg border border-gray-300 bg-white shadow dark:border-gray-700 dark:bg-gray-800',
 		]"
 	>
 		<div
