@@ -60,10 +60,14 @@ const iconMap = Object.keys(icons).reduce(
  * taking up space in the DOM.
  */
 const isSvgReadyToRender = computed<boolean>(() => {
+	// Note(Bence): This is a workaround for the fact that the `Icon.none` enum
+	// cannot be used as a string in the below code because `eslint` will complain
+	const noneIconStr = String(Icon.none);
+
 	return (
-		svg.value !== Icon.none &&
+		svg.value !== noneIconStr &&
 		!StringUtils.isEmptyStr(svg.value) &&
-		icon.value !== Icon.none &&
+		icon.value != Icon.none &&
 		!StringUtils.isEmptyStr(icon.value)
 	);
 });
@@ -90,15 +94,15 @@ const tailwindCssSizeClasses = computed<string>(() => {
 	}
 });
 
-const load = async (): Promise<void> => {
+async function load(): Promise<void> {
 	try {
-		iconMap[icon.value]().then((val) => {
+		await iconMap[icon.value]().then((val) => {
 			svg.value = val;
 		});
 	} catch (e) {
 		console.error(`Could not find icon of name ${icon.value}`);
 	}
-};
+}
 
 watch(icon, () => load(), { immediate: true });
 </script>
