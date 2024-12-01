@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 /**
  * @description
  * This file is used to configure the Tailwind CSS framework.

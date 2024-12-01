@@ -45,7 +45,7 @@ This will build the components and generate the static files in the `dist` folde
 To build the Storybook documentation for production, run the following command:
 
 ```bash
-npm run build-storybook
+npm run build:storybook
 ```
 
 This will build the Storybook documentation and generate the static files in the `static` folder.

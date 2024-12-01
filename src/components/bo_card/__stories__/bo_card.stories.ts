@@ -166,7 +166,7 @@ export const NoPadding: Story = {
 							<img
 								src="https://cataas.com/cat"
 								alt="cat"
-								class="w-full h-full"
+								class="w-full h-full rounded-l-lg"
 							/>
 						</div>
 						<div class="flex gap-2 items-center pr-4">
