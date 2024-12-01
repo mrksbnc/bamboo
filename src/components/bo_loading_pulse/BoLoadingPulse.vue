@@ -26,7 +26,7 @@
 			<bo-text
 				role="text"
 				:text="loaderText ?? ''"
-				:color="BoTextColor.disabled"
+				:color="BoTextColor.secondary"
 				:font-family="BoFontFamily.graphik"
 			/>
 		</span>

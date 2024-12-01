@@ -271,8 +271,10 @@ export const Colors: Story = {
 		components: { BoText },
 		setup() {
 			const colors = [
+				[BoTextColor.default, 'default'],
 				[BoTextColor.current, 'current'],
 				[BoTextColor.inherit, 'inherit'],
+				[BoTextColor.secondary, 'secondary'],
 				[BoTextColor.success, 'success'],
 				[BoTextColor.warning, 'warning'],
 				[BoTextColor.danger, 'danger'],

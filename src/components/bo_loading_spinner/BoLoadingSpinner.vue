@@ -15,7 +15,7 @@
 			<bo-text
 				role="status"
 				:text="loaderText ?? ''"
-				:color="BoTextColor.disabled"
+				:color="BoTextColor.secondary"
 				:font-family="BoFontFamily.graphik"
 			/>
 		</span>

@@ -29,7 +29,7 @@
 				:text="description"
 				:clickable="clickable"
 				:size="BoFontSize.small"
-				:color="BoTextColor.disabled"
+				:color="BoTextColor.secondary"
 				:font-family="BoFontFamily.inter"
 			/>
 		</div>

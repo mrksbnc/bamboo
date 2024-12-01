@@ -144,6 +144,8 @@ const tailwindCssColorClasses = computed<string>(() => {
 			return /*tw*/ 'text-yellow-600';
 		case BoTextColor.danger:
 			return /*tw*/ 'text-red-600';
+		case BoTextColor.secondary:
+			return /*tw*/ 'text-gray-500';
 		case BoTextColor.disabled:
 			return /*tw*/ 'text-gray-400';
 		case BoTextColor.info:

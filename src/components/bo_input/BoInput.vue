@@ -77,12 +77,12 @@
 			<bo-text
 				:text="description"
 				:size="BoFontSize.small"
-				:custom-color="BoColor.gray_500"
+				:color="BoTextColor.secondary"
 				:font-family="BoFontFamily.inter"
 			/>
 		</span>
 		<span
-			v-if="hasError"
+			v-if="hasError && errorMessage != null"
 			:class="errorContainerClasses"
 		>
 			<bo-icon
@@ -91,7 +91,7 @@
 				:size="BoSize.small"
 			/>
 			<bo-text
-				text="This is an error"
+				:text="errorMessage"
 				:size="BoFontSize.small"
 				:color="BoTextColor.danger"
 				:font-family="BoFontFamily.inter"

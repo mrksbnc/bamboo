@@ -49,7 +49,7 @@
 				<bo-text
 					:text="content"
 					:size="BoFontSize.small"
-					:color="BoTextColor.disabled"
+					:color="BoTextColor.secondary"
 					:white-space="BoTextWhiteSpace.break_spaces"
 					:text-align="
 						alignment === BoAlertModalAlignment.centered
