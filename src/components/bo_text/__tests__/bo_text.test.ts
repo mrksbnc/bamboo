@@ -3,6 +3,7 @@ import {
 	BoFontSize,
 	BoFontWeight,
 	BoText,
+	BoTextAlign,
 	BoTextColor,
 	BoTextWhiteSpace,
 } from '@/components/bo_text';
@@ -194,8 +195,7 @@ describe('bo_text.vue', () => {
 
 		test('the text should have the correct nowrap white space classes', async () => {
 			await wrapper.setProps({ whiteSpace: BoTextWhiteSpace.nowrap });
-			expect(wrapper.find('#test-id').classes()).toContain('whitespace-nowrap');
-			expect(wrapper.find('#test-id').classes()).toContain('text-clip');
+			expect(wrapper.find('#test-id').classes()).toContain('truncate');
 		});
 
 		test('the text should have the correct normal white space classes', async () => {
@@ -235,12 +235,12 @@ describe('bo_text.vue', () => {
 
 	suite('text-color', () => {
 		test('the text should have the correct default color classes without text color', () => {
-			expect(wrapper.find('#test-id').classes()).toContain('text-current');
+			expect(wrapper.find('#test-id').classes()).toContain('text-default');
 		});
 
 		test('the text should have the correct default color classes with text color', async () => {
 			await wrapper.setProps({ color: BoTextColor.default });
-			expect(wrapper.find('#test-id').classes()).toContain('text-current');
+			expect(wrapper.find('#test-id').classes()).toContain('text-default');
 		});
 
 		test('the text should have the correct current color classes', async () => {
@@ -283,4 +283,44 @@ describe('bo_text.vue', () => {
 			expect(wrapper.find('#test-id').classes()).toContain('text-blue-600');
 		});
 	});
+
+	suite('text-align', () => {
+		test('the text should have the correct default text align classes', () => {
+			expect(wrapper.find('#test-id').classes()).toContain('text-justify');
+		});
+
+		test('the text should have the correct left text align classes', async () => {
+			await wrapper.setProps({ textAlign: BoTextAlign.left });
+			expect(wrapper.find('#test-id').classes()).toContain('text-left');
+		});
+
+		test('the text should have the correct center text align classes', async () => {
+			await wrapper.setProps({ textAlign: BoTextAlign.center });
+			expect(wrapper.find('#test-id').classes()).toContain('text-center');
+		});
+
+		test('the text should have the correct right text align classes', async () => {
+			await wrapper.setProps({ textAlign: BoTextAlign.right });
+			expect(wrapper.find('#test-id').classes()).toContain('text-right');
+		});
+
+		test('the text should have the correct justify text align classes', async () => {
+			await wrapper.setProps({ textAlign: BoTextAlign.justify });
+			expect(wrapper.find('#test-id').classes()).toContain('text-justify');
+		});
+	});
+
+	suite(
+		'the container should have custom styles in case of a custom color prop was set',
+		() => {
+			test('the container should have the correct custom color style', async () => {
+				await wrapper.setProps({ customColor: 'red' });
+
+				const element = wrapper.find('#test-id');
+
+				const style = element.attributes('style');
+				expect(style).toBe('color: red;');
+			});
+		},
+	);
 });
