@@ -1,10 +1,11 @@
 <template>
 	<span
-		v-text="text"
 		:class="classes"
 		:style="containerStyle"
 		:id="id ?? IdentityUtils.generateRandomIdWithPrefix('bo-text')"
-	></span>
+	>
+		{{ text }}
+	</span>
 </template>
 
 <script setup lang="ts">
@@ -44,7 +45,7 @@ const {
 } = toRefs(props);
 
 const defaultClasses: string =
-	/*tw*/ 'bo-text inline-flex items-center justify-center overflow-hidden';
+	/*tw*/ 'bo-text inline-flex items-center overflow-hidden';
 
 const tailwindCssCursorClasses = computed<string>(() => {
 	return clickable.value ? /*tw*/ 'cursor-pointer' : /*tw*/ 'cursor-default';
