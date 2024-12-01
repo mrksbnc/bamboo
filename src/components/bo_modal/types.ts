@@ -29,7 +29,7 @@ export type BoSlotModalProps = {
 	widthAsTailwindClass?: string;
 };
 
-export type BoSlotModalWithConstruct = {
+export type BoSlotModalStyleConstruct = {
 	style: StyleValue;
 	class: string;
 };

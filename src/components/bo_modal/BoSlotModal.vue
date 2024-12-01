@@ -70,10 +70,10 @@ import { BoDivider, BoDividerVariant } from '@/components/bo_divider';
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoColor } from '@/data';
 import { BoSize } from '@/data/bo_size.constant';
+import type { StyleConstruct } from '@/types';
 import { KeyboardUtils, TailwindUtils } from '@/utils';
 import { computed, ref, toRefs } from 'vue';
-
-import type { BoSlotModalProps, BoSlotModalWithConstruct } from './types';
+import type { BoSlotModalProps } from './types';
 
 const emits = defineEmits<{
 	(e: 'update:show', payload: boolean): void;
@@ -85,7 +85,7 @@ const props = withDefaults(defineProps<BoSlotModalProps>(), {
 
 const {
 	showCloseButton,
-
+	borderedHeader,
 	borderedFooter,
 	widthAsTailwindClass,
 	widthInPercent,
@@ -94,8 +94,8 @@ const {
 
 const hover = ref(false);
 
-const modalWidth = computed<BoSlotModalWithConstruct>(() => {
-	const construct: BoSlotModalWithConstruct = {
+const modalWidth = computed<StyleConstruct>(() => {
+	const construct: StyleConstruct = {
 		style: {},
 		class: /*tw*/ '',
 	};
