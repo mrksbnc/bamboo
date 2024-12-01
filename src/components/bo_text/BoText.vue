@@ -44,14 +44,13 @@ const {
 	textAlign,
 } = toRefs(props);
 
-const defaultClasses: string =
-	/*tw*/ 'bo-text inline-flex items-center overflow-hidden';
+const defaultClasses = /*tw*/ 'bo-text inline-flex items-center shrink';
 
-const tailwindCssCursorClasses = computed<string>(() => {
+const textCursorClasses = computed<string>(() => {
 	return clickable.value ? /*tw*/ 'cursor-pointer' : /*tw*/ 'cursor-default';
 });
 
-const tailwindCssSizeClasses = computed<string>(() => {
+const textSizeClasses = computed<string>(() => {
 	switch (size.value) {
 		case BoFontSize.extra_small:
 			return /*tw*/ 'text-extra-small leading-extra-small';
@@ -81,7 +80,7 @@ const tailwindCssSizeClasses = computed<string>(() => {
 	}
 });
 
-const tailwindCssWeightClasses = computed<string>(() => {
+const textWeightClasses = computed<string>(() => {
 	switch (weight.value) {
 		case BoFontWeight.light:
 			return /*tw*/ 'font-light';
@@ -97,7 +96,7 @@ const tailwindCssWeightClasses = computed<string>(() => {
 	}
 });
 
-const tailwindCssFontFamilyClasses = computed<string>(() => {
+const textFontFamilyClasses = computed<string>(() => {
 	switch (fontFamily.value) {
 		case BoFontFamily.inter:
 			return /*tw*/ 'font-inter';
@@ -114,7 +113,7 @@ const tailwindCssFontFamilyClasses = computed<string>(() => {
 	}
 });
 
-const tailwindCssWhiteSpaceClasses = computed<string>(() => {
+const textWhiteSpaceClasses = computed<string>(() => {
 	switch (whiteSpace.value) {
 		case BoTextWhiteSpace.nowrap:
 			return /*tw*/ 'truncate';
@@ -132,7 +131,7 @@ const tailwindCssWhiteSpaceClasses = computed<string>(() => {
 	}
 });
 
-const tailwindCssColorClasses = computed<string>(() => {
+const textColorClasses = computed<string>(() => {
 	switch (color.value) {
 		case BoTextColor.default:
 			return /*tw*/ 'text-gray-900';
@@ -156,7 +155,7 @@ const tailwindCssColorClasses = computed<string>(() => {
 	}
 });
 
-const tailwindcssTextAlignClasses = computed<string>(() => {
+const textTextAlignClasses = computed<string>(() => {
 	switch (textAlign.value) {
 		case BoTextAlign.left:
 			return /*tw*/ 'text-left';
@@ -174,13 +173,13 @@ const classes = computed<string>(() => {
 	return TailwindUtils.merge(
 		cssClass.value,
 		defaultClasses,
-		tailwindCssSizeClasses.value,
-		tailwindCssColorClasses.value,
-		tailwindCssCursorClasses.value,
-		tailwindCssWeightClasses.value,
-		tailwindcssTextAlignClasses.value,
-		tailwindCssFontFamilyClasses.value,
-		tailwindCssWhiteSpaceClasses.value,
+		textSizeClasses.value,
+		textColorClasses.value,
+		textCursorClasses.value,
+		textWeightClasses.value,
+		textTextAlignClasses.value,
+		textFontFamilyClasses.value,
+		textWhiteSpaceClasses.value,
 	);
 });
 

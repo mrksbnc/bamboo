@@ -17,7 +17,10 @@ export class StringUtils {
 	 * console.log(camelCaseToTitleCase('helloWorld')); // Hello World
 	 */
 	static camelCaseToTitleCase(str: string): string {
-		return str.replace(/([A-Z])/g, ' $1').replace(/^./, (s) => s.toUpperCase());
+		return str
+			.replace(/([A-Z])/g, ' $1')
+			.replace(/^./, (s) => s.toUpperCase())
+			.trim();
 	}
 	/**
 	 * @description
