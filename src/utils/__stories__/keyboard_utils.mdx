@@ -1,0 +1,60 @@
+import { Meta, Story } from '@storybook/blocks';
+import { KeyboardUtils } from '@/utils';
+
+<Meta title="Utils/KeyboardUtils" />
+
+# KeyboardUtils
+
+The `KeyboardUtils` class is a utility class that provides a collection of
+`static` methods to support keyboard related interactions.
+
+## Methods
+
+## trapTabKey
+
+```ts
+trapTabKey(e: KeyboardEvent, id: string): void
+```
+
+The `trapTabKey` method is used to trap the tab key within an element with the specified id.
+
+- Parameters:
+
+  - `e`: The `KeyboardEvent` object.
+  - `id`: The id of the element where the tab key should be trapped.
+
+- Returns: `void`
+
+```html
+<div
+	id="my-element"
+	@keydown="KeyboardUtils.trapTabKey($event, 'my-element')"
+>
+	<!-- Tab key will be trapped in this element -->
+</div>
+```
+
+## registerEnterKeyHandler
+
+```ts
+registerEnterKeyHandler(e: KeyboardEvent, handler: () => void): void
+```
+
+The `registerEnterKeyHandler` method is used to trigger a handler when the enter key is pressed
+without the need to implement the required checks manually.
+
+- Parameters:
+
+  - `e`: The `KeyboardEvent` object.
+  - `handler`: The handler function that will be called when the enter key is pressed.
+
+- Returns: `void`
+
+```html
+<div
+	id="my-element"
+	@keydown="KeyboardUtils.registerEnterKeyHandler($event, myHandler)"
+>
+	<!-- Enter key will call the handler function when pressed -->
+</div>
+```
