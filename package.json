@@ -93,7 +93,7 @@
 		"postcss": "^8.4.35",
 		"postcss-nesting": "^12.1.5",
 		"prettier": "^3.2.5",
-		"prettier-plugin-organize-imports": "^3.2.4",
+		"prettier-plugin-organize-imports": "^4.1.0",
 		"prettier-plugin-tailwindcss": "^0.6.4",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
