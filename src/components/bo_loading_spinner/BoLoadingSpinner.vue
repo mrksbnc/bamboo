@@ -7,13 +7,14 @@
 		]"
 	>
 		<div
-			role="status"
 			:class="classes"
 			:style="customColorStyle"
 		></div>
-		<span v-if="displayLoaderText">
+		<span
+			v-if="displayLoaderText"
+			class="bo-loading-spinner__text"
+		>
 			<bo-text
-				role="status"
 				:text="loaderText ?? ''"
 				:color="BoTextColor.secondary"
 				:font-family="BoFontFamily.graphik"
@@ -39,10 +40,10 @@ const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 const { size, variant, loaderText, customColor } = toRefs(props);
 
 const defaultContainerClasses =
-	/*tw*/ 'flex h-full w-full content-center items-center justify-center gap-2';
+	/*tw*/ 'bo-loading-spinner__container flex h-full w-full content-center items-center justify-center gap-2';
 
 const defaultClasses =
-	/*tw*/ 'inline-flex animate-spin rounded-full border-[2px] border-current border-t-transparent';
+	/*tw*/ 'bo-loading-spinner__animation inline-flex animate-spin rounded-full border-[2px] border-current border-t-transparent';
 
 const displayLoaderText = computed<boolean>(() => {
 	return !StringUtils.isEmptyStr(loaderText.value ?? '');
@@ -54,10 +55,10 @@ const loaderTailwindCssSizeClasses = computed<string>(() => {
 			return /*tw*/ 'w-2 h-2';
 		case BoSize.small:
 			return /*tw*/ 'w-3 h-3';
-		case BoSize.extra_large:
-			return /*tw*/ 'w-7 h-7';
 		case BoSize.large:
 			return /*tw*/ 'w-5 h-5';
+		case BoSize.extra_large:
+			return /*tw*/ 'w-7 h-7';
 		case BoSize.default:
 		default:
 			return /*tw*/ 'w-4 h-4';

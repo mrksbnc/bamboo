@@ -4,25 +4,29 @@
 		:class="[defaultClasses, textPosition === 'side' ? 'flex-row' : 'flex-col']"
 	>
 		<span
-			:class="[loaderTailwindCssSizeClasses, 'relative flex']"
-			role="status"
+			:class="[
+				'bo-loading-pulse__inner-pulse-relative',
+				loaderSizeClasses,
+				'relative flex',
+			]"
 		>
 			<span
-				role="status"
 				:style="customColorStyle"
-				:class="[tailwindCssVariantClasses, defaultOuterPulseAbsoluteClasses]"
+				:class="[loaderPulseVariantClasses, defaultOuterPulseAbsoluteClasses]"
 			></span>
 			<span
-				role="status"
 				:class="[
-					loaderTailwindCssSizeClasses,
-					tailwindCssShiftedVariantClasses,
+					loaderSizeClasses,
+					shiftedPulseLoaderVariantClasses,
 					defaultInnerPulseRelativeClasses,
 				]"
 				:style="customColorStyle"
 			></span>
 		</span>
-		<span v-if="displayLoaderText">
+		<span
+			v-if="displayLoaderText"
+			class="bo-loading-pulse__text"
+		>
 			<bo-text
 				role="text"
 				:text="loaderText ?? ''"
@@ -50,19 +54,19 @@ const props = withDefaults(defineProps<BoLoadingPulseProps>(), {
 const { size, variant, loaderText, customColor } = toRefs(props);
 
 const defaultClasses =
-	/*tw*/ 'flex h-full w-full content-center items-center justify-center gap-2';
+	/*tw*/ 'bo-loading-pulse__container flex h-full w-full content-center items-center justify-center gap-2';
 
 const defaultOuterPulseAbsoluteClasses =
-	/*tw*/ 'absolute inline-flex h-full w-full animate-ping rounded-full opacity-75';
+	/*tw*/ 'bo-loading-pulse__outer-pulse-absolute absolute inline-flex h-full w-full animate-ping rounded-full opacity-75';
 
 const defaultInnerPulseRelativeClasses =
-	/*tw*/ 'relative inline-flex rounded-full';
+	/*tw*/ 'bo-loading-pulse__inner-pulse-relative relative inline-flex rounded-full';
 
 const displayLoaderText = computed<boolean>(() => {
 	return !StringUtils.isEmptyStr(loaderText.value ?? '');
 });
 
-const loaderTailwindCssSizeClasses = computed<string>(() => {
+const loaderSizeClasses = computed<string>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
 			return /*tw*/ 'size-2';
@@ -88,7 +92,7 @@ const customColorStyle = computed<StyleValue>(() => {
 	return {};
 });
 
-const tailwindCssVariantClasses = computed<string>(() => {
+const loaderPulseVariantClasses = computed<string>(() => {
 	if (!StringUtils.isEmptyStr(customColor.value ?? '')) {
 		return '';
 	}
@@ -112,7 +116,7 @@ const tailwindCssVariantClasses = computed<string>(() => {
 	}
 });
 
-const tailwindCssShiftedVariantClasses = computed<string>(() => {
+const shiftedPulseLoaderVariantClasses = computed<string>(() => {
 	switch (variant.value) {
 		case BoLoaderVariant.secondary:
 			return /*tw*/ 'bg-gray-500';

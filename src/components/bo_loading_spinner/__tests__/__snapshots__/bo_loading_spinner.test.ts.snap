@@ -1,8 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`bo_loading_spinner.vue > should match snapshot 1`] = `
-"<div role="status" class="flex h-full w-full content-center items-center justify-center gap-2 flex-col">
-  <div role="status" class="inline-flex animate-spin rounded-full border-[2px] border-current border-t-transparent w-4 h-4 text-blue-600"></div>
-  <!--v-if-->
-</div>"
-`;
