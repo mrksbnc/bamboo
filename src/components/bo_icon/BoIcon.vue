@@ -1,11 +1,11 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
-	<!-- eslint-disable vue/no-v-html -->
 	<div
+		v-if="isSvgReadyToRender"
 		type="image/svg+xml"
 		:style="style"
 		class="bo-icon"
-		:class="classes"
-		aria-label="icon"
+		:class="tailwindCssSizeClasses"
 		v-html="svg"
 	></div>
 </template>
@@ -17,37 +17,33 @@ export default defineComponent({
 </script>
 
 <script setup lang="ts">
-import { IconSizeClasses, icons, type Icon } from './bo_icon';
-import { BoSize } from '@/global';
+import { BoSize } from '@/data/bo_size.constant';
+import { StringUtils } from '@/utils';
 import {
+	computed,
+	defineComponent,
 	ref,
 	toRefs,
 	watch,
-	type PropType,
-	defineComponent,
-	computed,
 	type StyleValue,
 } from 'vue';
+import { Icon, icons } from './constant';
+import type { BoIconProps } from './types';
 
-const props = defineProps({
-	icon: {
-		type: String as PropType<Icon>,
-		required: true,
-	},
-	size: {
-		type: String as PropType<BoSize>,
-		default: () => BoSize.default,
-	},
-	color: {
-		type: String,
-		default: () => 'currentColor',
-	},
+const props = withDefaults(defineProps<BoIconProps>(), {
+	size: () => BoSize.default,
+	color: () => 'currentColor',
 });
 
 const { icon, size, color } = toRefs(props);
 
 const svg = ref('');
-
+/**
+ * @description This is a map of all the icons that are available in the library.
+ *
+ * - The key is the name of the icon and the value is the actual SVG.
+ * - The name of the icon is the name of the file without the extension.
+ */
 const iconMap = Object.keys(icons).reduce(
 	(acc, key) => {
 		const splitted = key.split('/');
@@ -59,6 +55,22 @@ const iconMap = Object.keys(icons).reduce(
 	},
 	{} as Record<string, () => Promise<string>>,
 );
+/**
+ * @description This prevents the Icon component from rendering an empty icon and
+ * taking up space in the DOM.
+ */
+const isSvgReadyToRender = computed<boolean>(() => {
+	// Note(Bence): This is a workaround for the fact that the `Icon.none` enum
+	// cannot be used as a string in the below code because `eslint` will complain
+	const noneIconStr = String(Icon.none);
+
+	return (
+		svg.value !== noneIconStr &&
+		!StringUtils.isEmptyStr(svg.value) &&
+		icon.value != Icon.none &&
+		!StringUtils.isEmptyStr(icon.value)
+	);
+});
 
 const style = computed<StyleValue>(() => {
 	return {
@@ -66,19 +78,31 @@ const style = computed<StyleValue>(() => {
 	};
 });
 
-const classes = computed<string>(() => {
-	return IconSizeClasses[size.value];
+const tailwindCssSizeClasses = computed<string>(() => {
+	switch (size.value) {
+		case BoSize.extra_small:
+			return 'w-[8px] h-[8px]';
+		case BoSize.small:
+			return 'w-[12px] h-[12px]';
+		case BoSize.large:
+			return 'w-[18px] h-[18px]';
+		case BoSize.extra_large:
+			return 'w-[24px] h-[24px]';
+		case BoSize.default:
+		default:
+			return 'w-[16px] h-[16px]';
+	}
 });
 
-const load = async (): Promise<void> => {
+async function load(): Promise<void> {
 	try {
-		iconMap[icon.value]().then((val) => {
+		await iconMap[icon.value]().then((val) => {
 			svg.value = val;
 		});
 	} catch (e) {
 		console.error(`Could not find icon of name ${icon.value}`);
 	}
-};
+}
 
 watch(icon, () => load(), { immediate: true });
 </script>

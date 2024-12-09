@@ -19,11 +19,16 @@ A label is a small piece of text that is used to display information.
 ## Props
 
 - `text` - The text to be displayed (required)
-  - default: `''`
 - `size` - The size of the text (optional)
   - default: `BoFontSize.default`
 - `weight` - The weight of the text (optional)
   - default: `BoFontWeight.regular`
+- `fontFamily` - The font family of the text (optional)
+  - default: `BoFontFamily.inter`
+- `whiteSpace` - The white space of the text (optional)
+  - default: `BoTextWhiteSpace.nowrap`
+- `cssClass` - The CSS class to be applied to the text (optional)
+  - default: `undefined`
 
 ## Examples
 
@@ -34,10 +39,12 @@ A label is a small piece of text that is used to display information.
 
 The `size` prop can be used to change the size of the text. The `size` prop should be a member of the `BoFontSize` enum.
 
-- `overline`
-- `caption`
+- `extra_small`
+- `small`
 - `default`
 - `body`
+- `modal_title`
+- `title`
 - `h6`
 - `h5`
 - `h4`
@@ -54,6 +61,60 @@ The `weight` prop can be used to change the weight of the text. The `weight` pro
 - `light`
 - `regular`
 - `medium`
+- `semibold`
 - `bold`
 
 <Canvas of={BoTextStories.Weights} />
+
+## Font family
+
+The `fontFamily` prop can be used to change the font family of the text. The `fontFamily` prop should be a member of the `BoFontFamily` enum.
+
+- `inter`
+- `graphik`
+- `sans`
+- `mono`
+- `serif`
+
+<Canvas of={BoTextStories.FontFamilies} />
+
+# White space
+
+The `whiteSpace` prop can be used to change the white space of the text. The `whiteSpace` prop should be a member of the `BoTextWhiteSpace` enum.
+
+- `normal`
+- `nowrap`
+- `pre`
+- `pre-line`
+- `pre-wrap`
+- `break-spaces`
+
+<Canvas of={BoTextStories.WhiteSpace} />
+
+## Colors
+
+The `color` prop can be used to change the color of the text. The `color` prop should be a member of the `BoTextColor` enum.
+
+- `inherit`
+- `current` (default)
+- `success`
+- `warning`
+- `danger`
+- `disabled`
+- `info`
+
+<Canvas of={BoTextStories.Colors} />
+
+## Custom color
+
+The `customColor` prop can be used to change the custom color of the text.
+The `customColor` prop should be a string that represents the color in `hex` format.
+
+<Canvas of={BoTextStories.CustomColor} />
+
+## Clickable
+
+To encapsulate the text in a clickable element, the `clickable` prop can be used.
+This will add a `cursor-pointer` class to the text.
+
+<Canvas of={BoTextStories.Clickable} />

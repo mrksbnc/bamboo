@@ -1,9 +1,13 @@
-import { BoBadge, BoBadgeType, BoBadgeVariant } from '@/components/bo_badge';
+import {
+	BoBadge,
+	BoBadgeShape,
+	BoBadgeType,
+	BoBadgeVariant,
+} from '@/components/bo_badge';
 import { Icon } from '@/components/bo_icon';
-import { BoSize } from '@/global';
+import { BoSize } from '@/data/bo_size.constant';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { BoBadgeShape } from '../bo_badge';
 
 const meta = {
 	title: 'Components/bo-badge',
@@ -46,7 +50,7 @@ const meta = {
 					detail: StorybookUtils.stringEnumFormatter(BoSize, 'BoSize'),
 				},
 			},
-			defaultValue: BoBadgeVariant.primary,
+			defaultValue: BoSize.default,
 		},
 		shape: {
 			description: 'The shape of the badge',
@@ -123,13 +127,18 @@ export const Example: Story = {
 };
 
 export const Sizes: Story = {
-	render: () => ({
+	render: (args) => ({
 		components: { BoBadge },
+		setup() {
+			const sizes = Object.values(BoSize);
+			return { sizes, ...args };
+		},
 		template: `
-			<div class="flex flex-row">
-				<BoBadge label="Small" size="${BoSize.small}" class="m-1"/>
-				<BoBadge label="Default" size="${BoSize.default}" class="m-1"/>
-				<BoBadge label="Large" size="${BoSize.large}" class="m-1"/>
+			<div class="flex flex-row gap-1">
+                <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2 m-1">
+                    <bo-badge :label="label" :size="size"/>
+                    <span class="text-small text-gray-500 font-medium">{{ size }}</span>
+                </span>
 			</div>
 		`,
 	}),
@@ -138,19 +147,46 @@ export const Sizes: Story = {
 	},
 };
 
+export const SizesWithIcons: Story = {
+	render: (args) => ({
+		components: { BoBadge },
+		setup() {
+			const sizes = Object.values(BoSize);
+			return { sizes, ...args };
+		},
+		template: `
+			<div class="flex flex-row gap-1">
+                <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2 m-1">
+                    <bo-badge :label="label" :size="size" :prefix-icon="prefixIcon"/>
+                    <span class="text-small text-gray-500 font-medium">{{ size }}</span>
+                </span>
+			</div>
+            <div class="flex flex-row gap-1">
+                <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2 m-1">
+                    <bo-badge :label="label" :size="size" :suffix-icon="suffixIcon"/>
+                    <span class="text-small text-gray-500 font-medium">{{ size }}</span>
+                </span>
+			</div>
+		`,
+	}),
+	args: {
+		label: 'Badge',
+		prefixIcon: Icon.alert_circle,
+		suffixIcon: Icon.alert_circle,
+	},
+};
+
 export const Variants: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-			<div class="flex flex-row">
-				<BoBadge label="Primary" variant="${BoBadgeVariant.primary}" class="m-1"/>
-				<BoBadge label="Secondary" variant="${BoBadgeVariant.secondary}" class="m-1"/>
-				<BoBadge label="Danger" variant="${BoBadgeVariant.danger}" class="m-1"/>
-				<BoBadge label="Warning" variant="${BoBadgeVariant.warning}" class="m-1"/>
-				<BoBadge label="Success" variant="${BoBadgeVariant.success}" class="m-1"/>
-				<BoBadge label="Dark" variant="${BoBadgeVariant.dark}" class="m-1"/>
-				<BoBadge label="Purple" variant="${BoBadgeVariant.purple}" class="m-1"/>
-				<BoBadge label="Teal" variant="${BoBadgeVariant.teal}" class="m-1"/>
+			<div class="flex flex-row gap-1">
+				<bo-badge label="Primary" variant="${BoBadgeVariant.primary}"/>
+				<bo-badge label="Secondary" variant="${BoBadgeVariant.secondary}"/>
+				<bo-badge label="Danger" variant="${BoBadgeVariant.danger}"/>
+				<bo-badge label="Warning" variant="${BoBadgeVariant.warning}"/>
+				<bo-badge label="Success" variant="${BoBadgeVariant.success}"/>
+				<bo-badge label="Dark" variant="${BoBadgeVariant.dark}"/>
 			</div>
 		`,
 	}),
@@ -163,10 +199,11 @@ export const Shapes: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-			<div class="flex flex-row">
-				<BoBadge label="Default" shape="${BoBadgeShape.default}" class="m-1"/>
-				<BoBadge label="Pill" shape="${BoBadgeShape.pill}" class="m-1"/>
-				<BoBadge label="Flat" shape="${BoBadgeShape.flat}" class="m-1"/>
+			<div class="flex flex-row gap-1">
+				<bo-badge label="Default" shape="${BoBadgeShape.default}"/>
+				<bo-badge label="Pill" shape="${BoBadgeShape.pill}"/>
+				<bo-badge label="Flat" shape="${BoBadgeShape.flat}"/>
+				<bo-badge prefixIcon="${Icon.alert_circle}" shape="${BoBadgeShape.circle}"/>
 			</div>
 		`,
 	}),
@@ -179,9 +216,9 @@ export const Types: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-			<div class="flex flex-row">
-				<BoBadge label="Default" type="${BoBadgeType.default}" class="m-1"/>
-				<BoBadge label="Outline" type="${BoBadgeType.outline}" class="m-1"/>
+			<div class="flex flex-row gap-1">
+				<bo-badge label="Default" type="${BoBadgeType.default}"/>
+				<bo-badge label="Outline" type="${BoBadgeType.outline}"/>
 			</div>
 		`,
 	}),
@@ -194,9 +231,9 @@ export const Icons: Story = {
 	render: () => ({
 		components: { BoBadge },
 		template: `
-			<div class="flex flex-row">
-				<BoBadge label="Default" prefixIcon="${Icon.alert_circle}" class="m-1"/>
-				<BoBadge label="Outline" suffixIcon="${Icon.alert_circle}" class="m-1"/>
+			<div class="flex flex-row gap-1">
+				<bo-badge label="Default" prefixIcon="${Icon.alert_circle}"/>
+				<bo-badge label="Outline" suffixIcon="${Icon.alert_circle}" type="${BoBadgeType.outline}"/>
 			</div>
 		`,
 	}),
@@ -206,13 +243,20 @@ export const Icons: Story = {
 };
 
 export const IconOnly: Story = {
-	render: () => ({
+	render: (args) => ({
 		components: { BoBadge },
+		setup() {
+			return { ...args };
+		},
 		template: `
-			<div class="flex flex-row">
-				<BoBadge prefixIcon="${Icon.alert_circle}" class="m-1"/>
+			<div class="flex flex-row gap-1">
+				<bo-badge :prefix-icon="prefixIcon" :type="type"/>
+				<bo-badge :prefix-icon="prefixIcon" :type="type" shape="${BoBadgeShape.circle}"/>
 			</div>
 		`,
 	}),
-	args: {},
+	args: {
+		prefixIcon: Icon.alert_circle,
+		type: BoBadgeType.default,
+	},
 };
