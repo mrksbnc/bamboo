@@ -45,7 +45,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",
     "@eslint/js": "^9.17.0",
-    "@storybook/addon-coverage": "^1.0.4",
+    "@storybook/addon-coverage": "^1.0.5",
     "@storybook/addon-docs": "^8.4.7",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-links": "^8.4.7",
@@ -64,7 +64,7 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitest/browser": "^2.1.8",
     "@vitest/coverage-v8": "^2.1.8",
-    "@vue/eslint-config-typescript": "^14.1.4",
+    "@vue/eslint-config-typescript": "^14.2.0",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
     "autoprefixer": "^10.4.20",
@@ -89,13 +89,13 @@
     "storybook": "^8.4.7",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.7.2",
-    "typescript-eslint": "^8.18.1",
-    "vite": "^6.0.5",
+    "typescript-eslint": "^8.18.2",
+    "vite": "^6.0.6",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-dts": "^4.4.0",
     "vite-svg-loader": "^5.1.0",
     "vitest": "^2.1.8",
-    "vue-tsc": "^2.1.10"
+    "vue-tsc": "^2.2.0"
   },
   "engines": {
     "node": ">=22.11.0",
