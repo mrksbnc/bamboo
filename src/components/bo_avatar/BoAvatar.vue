@@ -24,6 +24,7 @@
 				:custom-color="fontColorHex"
 				:size="labelSize"
 				:clickable="clickable"
+				:weight="BoFontWeight.medium"
 			/>
 		</span>
 		<span
@@ -40,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { BoFontSize, BoText } from '@/components/bo_text';
+import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
 import { BoSize } from '@/data/bo_size.constant';
 import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs, type StyleValue } from 'vue';
@@ -84,16 +85,16 @@ const showDefaultAvatar = computed<boolean>(() => {
 const labelSize = computed<BoFontSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return BoFontSize.extra_small;
+			return BoFontSize.xs;
 		case BoSize.small:
-			return BoFontSize.small;
+			return BoFontSize.sm;
 		case BoSize.large:
-			return BoFontSize.default;
+			return BoFontSize.lg;
 		case BoSize.extra_large:
-			return BoFontSize.body;
+			return BoFontSize.xl;
 		case BoSize.default:
 		default:
-			return BoFontSize.default;
+			return BoFontSize.base;
 	}
 });
 

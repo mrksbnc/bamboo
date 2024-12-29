@@ -121,34 +121,35 @@ const boBadgeVariantClasses = computed<string>(() => {
 });
 
 const boBadgeBadgePaddingClasses = computed<string>(() => {
-	if (isCircle.value) {
-		switch (size.value) {
-			case BoSize.extra_small:
-				return /*tw*/ 'h-[24px] w-[24px]';
-			case BoSize.small:
-				return /*tw*/ 'h-[30px] w-[30px]';
-			case BoSize.default:
-			default:
-				return /*tw*/ 'h-[36px] w-[36px]';
-			case BoSize.large:
-				return /*tw*/ 'h-[42px] w-[42px]';
-			case BoSize.extra_large:
-				return /*tw*/ 'h-[48px] w-[48px]';
-		}
-	} else {
-		switch (size.value) {
-			case BoSize.extra_small:
-				return /*tw*/ 'h-[24px] px-2';
-			case BoSize.small:
-				return /*tw*/ 'h-[30px] px-2.5';
-			case BoSize.default:
-			default:
-				return /*tw*/ 'h-[36px] px-4';
-			case BoSize.large:
-				return /*tw*/ 'h-[42px] px-6';
-			case BoSize.extra_large:
-				return /*tw*/ 'h-[48px] px-8';
-		}
+	switch (isCircle.value) {
+		case true:
+			switch (size.value) {
+				case BoSize.extra_small:
+					return /*tw*/ 'h-[24px] w-[24px]';
+				case BoSize.small:
+					return /*tw*/ 'h-[30px] w-[30px]';
+				case BoSize.default:
+				default:
+					return /*tw*/ 'h-[36px] w-[36px]';
+				case BoSize.large:
+					return /*tw*/ 'h-[42px] w-[42px]';
+				case BoSize.extra_large:
+					return /*tw*/ 'h-[48px] w-[48px]';
+			}
+		default:
+			switch (size.value) {
+				case BoSize.extra_small:
+					return /*tw*/ 'h-[24px] px-2';
+				case BoSize.small:
+					return /*tw*/ 'h-[30px] px-2.5';
+				case BoSize.default:
+				default:
+					return /*tw*/ 'h-[36px] px-4';
+				case BoSize.large:
+					return /*tw*/ 'h-[42px] px-6';
+				case BoSize.extra_large:
+					return /*tw*/ 'h-[48px] px-8';
+			}
 	}
 });
 

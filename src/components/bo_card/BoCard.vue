@@ -21,14 +21,14 @@
 				:text="title"
 				:clickable="clickable"
 				:color="BoTextColor.current"
-				:size="BoFontSize.modal_title"
+				:size="BoFontSize['2xl']"
 				:font-family="BoFontFamily.inter"
 			/>
 			<bo-text
 				v-if="description != null"
 				:text="description"
 				:clickable="clickable"
-				:size="BoFontSize.small"
+				:size="BoFontSize.base"
 				:color="BoTextColor.secondary"
 				:font-family="BoFontFamily.inter"
 			/>
