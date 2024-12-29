@@ -52,16 +52,16 @@ const displayLoaderText = computed<boolean>(() => {
 const loaderTailwindCssSizeClasses = computed<string>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return /*tw*/ 'w-2 h-2';
+			return /*tw*/ 'size-[12px]';
 		case BoSize.small:
-			return /*tw*/ 'w-3 h-3';
+			return /*tw*/ 'size-[14px]';
 		case BoSize.large:
-			return /*tw*/ 'w-5 h-5';
+			return /*tw*/ 'size-[18px]';
 		case BoSize.extra_large:
-			return /*tw*/ 'w-7 h-7';
+			return /*tw*/ 'size-[20px]';
 		case BoSize.default:
 		default:
-			return /*tw*/ 'w-4 h-4';
+			return /*tw*/ 'size-[16px]';
 	}
 });
 

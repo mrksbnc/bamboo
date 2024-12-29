@@ -82,6 +82,36 @@ const meta = {
 			},
 			defaultValue: BoSize.default,
 		},
+		shape: {
+			description: 'The shape of the button',
+			control: { type: 'select' },
+			options: Object.values(BoButtonShape),
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: 'BoButtonShape',
+					detail: StorybookUtils.stringEnumFormatter(
+						BoButtonShape,
+						'BoButtonShape',
+					),
+				},
+			},
+		},
+		loaderType: {
+			description: 'The type of the loader',
+			control: { type: 'select' },
+			options: ['spinner', 'pulse'],
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: 'string',
+					detail: 'The type of the loader (spinner or pulse)',
+				},
+			},
+			defaultValue: 'spinner',
+		},
 		prefixIcon: {
 			description: 'The icon to be displayed before the label',
 			control: { type: 'text' },
@@ -109,6 +139,15 @@ const meta = {
 				},
 			},
 			options: Object.values(Icon),
+		},
+		linkVariantWithShadow: {
+			description: 'Whether the button should have a shadow when it is a link',
+			control: { type: 'boolean' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+			},
+			defaultValue: false,
 		},
 	},
 };
@@ -350,6 +389,28 @@ export const IconOnlyVariants: Story = {
 	args: {
 		prefixIcon: Icon.alert_circle,
 		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
+	},
+};
+
+export const LinkVariantWithShadow: Story = {
+	render: (args) => ({
+		components: { BoButton },
+		setup() {
+			return { ...args };
+		},
+		template: `
+			<div class="flex flex-col gap-4">
+				<span class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<bo-button :label="label" :variant="variant" :link-variant-with-shadow="linkVariantWithShadow" :type="type" class="m-1"/>
+				</span>
+			</div>
+		`,
+	}),
+	args: {
+		label: 'Label',
+		linkVariantWithShadow: true,
+		variant: BoButtonVariant.link,
 		type: HtmlButtonType.button,
 	},
 };

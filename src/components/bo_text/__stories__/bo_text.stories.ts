@@ -3,6 +3,7 @@ import {
 	BoFontSize,
 	BoFontWeight,
 	BoText,
+	BoTextAlign,
 	BoTextColor,
 	BoTextWhiteSpace,
 } from '@/components/bo_text';
@@ -14,6 +15,14 @@ const meta = {
 	title: 'Components/bo-text',
 	component: BoText,
 	argTypes: {
+		id: {
+			description: 'The id of the text',
+			control: { type: 'text' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+			},
+		},
 		text: {
 			description: 'The text to be displayed',
 			control: { type: 'text' },
@@ -21,6 +30,23 @@ const meta = {
 				category: 'props',
 				subcategory: 'required',
 			},
+		},
+		textAlign: {
+			description: 'The text align of the text',
+			control: { type: 'select' },
+			options: Object.values(BoTextAlign),
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: 'BoTextAlign',
+					detail: StorybookUtils.stringEnumFormatter(
+						BoTextAlign,
+						'BoTextAlign',
+					),
+				},
+			},
+			defaultValue: BoTextAlign.left,
 		},
 		size: {
 			description: 'The size of the text',
@@ -34,7 +60,7 @@ const meta = {
 					detail: StorybookUtils.stringEnumFormatter(BoFontSize, 'BoFontSize'),
 				},
 			},
-			defaultValue: BoFontSize.default,
+			defaultValue: BoFontSize.base,
 		},
 		weight: {
 			description: 'The weight of the text',
@@ -139,7 +165,7 @@ type Story = StoryObj<typeof meta>;
 export const Example: Story = {
 	args: {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-		size: BoFontSize.default,
+		size: BoFontSize.base,
 		weight: BoFontWeight.regular,
 	},
 };
@@ -151,18 +177,17 @@ export const Sizes: Story = {
 			const sizes = Object.values(BoFontSize);
 			const sizeNames = Object.keys(BoFontSize);
 			const sizeStr = [
-				'10px - 0.625rem',
 				'12px - 0.75rem',
-				'14px - 0.875rem',
-				'16px - 1rem',
-				'24px - 1.5rem',
-				'32px - 2rem',
-				'40px - 2.5rem',
-				'48px - 3rem',
-				'56px - 3.5rem',
-				'64px - 4rem',
-				'72px - 4.5rem',
-				'96px - 6rem',
+				'14px - 0.875rem (1rem)',
+				'16px - 1rem (1.25rem)',
+				'18px - 1.125rem (1.375rem)',
+				'20px - 1.25rem (1.5rem)',
+				'24px - 1.5rem (1.75rem)',
+				'30px - 1.875rem (2.25rem)',
+				'36px - 2.25rem (2.625rem)',
+				'48px - 3rem (3.5rem)',
+				'60px - 3.75rem (4.25rem)',
+				'72px - 4.5rem (5rem)',
 			];
 
 			return { sizes, sizeStr, sizeNames, ...args };

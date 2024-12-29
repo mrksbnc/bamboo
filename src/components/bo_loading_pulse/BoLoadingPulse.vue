@@ -69,16 +69,16 @@ const displayLoaderText = computed<boolean>(() => {
 const loaderSizeClasses = computed<string>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return /*tw*/ 'size-2';
+			return /*tw*/ 'size-[12px]';
 		case BoSize.small:
-			return /*tw*/ 'size-3';
+			return /*tw*/ 'size-[14px]';
 		case BoSize.large:
-			return /*tw*/ 'size-5';
+			return /*tw*/ 'size-[18px]';
 		case BoSize.extra_large:
-			return /*tw*/ 'size-7';
+			return /*tw*/ 'size-[20px]';
 		case BoSize.default:
 		default:
-			return /*tw*/ 'size-4';
+			return /*tw*/ 'size-[16px]';
 	}
 });
 

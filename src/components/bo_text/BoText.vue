@@ -23,7 +23,7 @@ import {
 import type { BoTextProps } from './types';
 
 const props = withDefaults(defineProps<BoTextProps>(), {
-	size: () => BoFontSize.default,
+	size: () => BoFontSize.base,
 	color: () => BoTextColor.current,
 	weight: () => BoFontWeight.regular,
 	textAlign: () => BoTextAlign.justify,
@@ -52,31 +52,29 @@ const textCursorClasses = computed<string>(() => {
 
 const textSizeClasses = computed<string>(() => {
 	switch (size.value) {
-		case BoFontSize.extra_small:
-			return /*tw*/ 'text-extra-small leading-extra-small';
-		case BoFontSize.small:
-			return /*tw*/ 'text-small leading-small';
-		case BoFontSize.body:
-			return /*tw*/ 'text-body leading-body';
-		case BoFontSize.modal_title:
-			return /*tw*/ 'text-modal-title leading-modal-title';
-		case BoFontSize.title:
-			return /*tw*/ 'text-title leading-title';
-		case BoFontSize.h6:
-			return /*tw*/ 'text-h6 leading-h6';
-		case BoFontSize.h5:
-			return /*tw*/ 'text-h5 leading-h5';
-		case BoFontSize.h4:
-			return /*tw*/ 'text-h4 leading-h4';
-		case BoFontSize.h3:
-			return /*tw*/ 'text-h3 leading-h3';
-		case BoFontSize.h2:
-			return /*tw*/ 'text-h2 leading-h2';
-		case BoFontSize.h1:
-			return /*tw*/ 'text-h1 leading-h1';
-		case BoFontSize.default:
+		case BoFontSize.xs:
+			return /*tw*/ 'text-bo-xs leading-bo-xs';
+		case BoFontSize.sm:
+			return /*tw*/ 'text-bo-sm leading-bo-sm';
+		case BoFontSize.lg:
+			return /*tw*/ 'text-bo-lg leading-bo-lg';
+		case BoFontSize.xl:
+			return /*tw*/ 'text-bo-xl leading-bo-xl';
+		case BoFontSize['2xl']:
+			return /*tw*/ 'text-bo-2xl leading-bo-2xl';
+		case BoFontSize['3xl']:
+			return /*tw*/ 'text-bo-3xl leading-bo-3xl';
+		case BoFontSize['4xl']:
+			return /*tw*/ 'text-bo-4xl leading-bo-4xl';
+		case BoFontSize['5xl']:
+			return /*tw*/ 'text-bo-5xl leading-bo-5xl';
+		case BoFontSize['6xl']:
+			return /*tw*/ 'text-bo-6xl leading-bo-6xl';
+		case BoFontSize['7xl']:
+			return /*tw*/ 'text-bo-7xl leading-bo-7xl';
+		case BoFontSize.base:
 		default:
-			return /*tw*/ 'text-default leading-default';
+			return /*tw*/ 'text-bo-base leading-bo-base';
 	}
 });
 

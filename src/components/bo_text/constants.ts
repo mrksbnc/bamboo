@@ -9,76 +9,70 @@ export enum BoFontWeight {
 export enum BoFontSize {
 	/**
 	 * @description
-	 * - font-size: 10px;
-	 * - line-height: 12px;
+	 * - font-size: 12px (0.75rem);
+	 * - line-height: 20px (1.25rem);
 	 */
-	extra_small = 'extra-small',
+	xs = 'extra-small',
 	/**
 	 * @description
-	 * - font-size: 12px;
-	 * - line-height: 14px;
+	 * - font-size: 14px (0.875rem);
+	 * - line-height: 20px (1.25rem);
 	 */
-	small = 'small',
+	sm = 'small',
 	/**
 	 * @description
-	 * - font-size: 14px;
-	 * - line-height: 16px;
+	 * - font-size: 16px (1rem);
+	 * - line-height: 24px (1.5rem);
 	 */
-	default = 'default',
+	base = 'base',
 	/**
 	 * @description
-	 * - font-size: 16px;
-	 * - line-height: 20px;
+	 * - font-size: 18px (1.125rem);
+	 * - line-height: 24px (1.5rem);
 	 */
-	body = 'body',
+	lg = 'large',
 	/**
 	 * @description
-	 * - font-size: 24px;
-	 * - line-height: 28px;
+	 * - font-size: 20px (1.25rem);
+	 * - line-height: 24px (1.5rem);
 	 */
-	modal_title = 'modal_title',
+	xl = 'extra-large',
 	/**
 	 * @description
-	 * - font-size: 32px;
-	 * - line-height: 34px;
+	 * - font-size: 24px (1.5rem);
+	 * - line-height: 32px (2rem);
 	 */
-	title = 'title',
+	'2xl' = '2xl',
 	/**
 	 * @description
-	 * - font-size: 40px;
-	 * - line-height: 42px;
+	 * - font-size: 30px (1.875rem);
+	 * - line-height: 40px (2.5rem);
 	 */
-	h6 = 'h6',
+	'3xl' = '3xl',
 	/**
 	 * @description
-	 * - font-size: 48px;
-	 * - line-height: 50px;
+	 * - font-size: 36px (2.25rem);
+	 * - line-height: 48px (3rem);
 	 */
-	h5 = 'h5',
+	'4xl' = '4xl',
 	/**
 	 * @description
-	 * - font-size: 56px;
-	 * - line-height: 58px;
+	 * - font-size: 48px (3rem);
+	 * - line-height: 64px (4rem);
 	 */
-	h4 = 'h4',
+	'5xl' = '5xl',
 	/**
 	 * @description
-	 * - font-size: 64px;
-	 * - line-height: 66px;
+	 * - font-size: 60px (3.75rem);
+	 * - line-height: 80px (5rem);
 	 */
-	h3 = 'h3',
+	'6xl' = '6xl',
 	/**
 	 * @description
-	 * - font-size: 72px;
-	 * - line-height: 74px;
+	 * - font-size: 72px (4.5rem);
+	 * - line-height: 96px (6rem);
 	 */
-	h2 = 'h2',
-	/**
-	 * @description
-	 * - font-size: 96px;
-	 * - line-height: 98px;
-	 */
-	h1 = 'h1',
+	'7xl' = '7xl',
 }
 
 export enum BoFontFamily {

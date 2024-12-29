@@ -81,16 +81,16 @@ const style = computed<StyleValue>(() => {
 const tailwindCssSizeClasses = computed<string>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return 'w-[8px] h-[8px]';
+			return 'size-[12px]';
 		case BoSize.small:
-			return 'w-[12px] h-[12px]';
-		case BoSize.large:
-			return 'w-[18px] h-[18px]';
-		case BoSize.extra_large:
-			return 'w-[24px] h-[24px]';
+			return 'size-[14px]';
 		case BoSize.default:
 		default:
-			return 'w-[16px] h-[16px]';
+			return 'size-[16px]';
+		case BoSize.large:
+			return 'size-[20px]';
+		case BoSize.extra_large:
+			return 'size-[24px]';
 	}
 });
 

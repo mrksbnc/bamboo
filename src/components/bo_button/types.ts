@@ -10,8 +10,8 @@ export type BoButtonProps = {
 	type?: HtmlButtonType;
 	disabled?: boolean;
 	isLoading?: boolean;
-	loaderText?: string;
 	size?: BoSize;
 	prefixIcon?: Icon;
 	suffixIcon?: Icon;
+	linkVariantWithShadow?: boolean;
 };

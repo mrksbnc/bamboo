@@ -17,7 +17,7 @@ beforeEach(() => {
 		props: {
 			id: 'test-id',
 			text: 'Hello World!',
-			size: BoFontSize.default,
+			size: BoFontSize.base,
 			weight: BoFontWeight.regular,
 			fontFamily: BoFontFamily.inter,
 			whiteSpace: BoTextWhiteSpace.normal,
@@ -38,79 +38,70 @@ describe('bo_text.vue', () => {
 	});
 
 	suite('text sizes', () => {
-		test('the text should have the correct default size classes', () => {
-			expect(wrapper.find('#test-id').classes()).toContain('text-default');
-			expect(wrapper.find('#test-id').classes()).toContain('leading-default');
-		});
-
 		test('the text should have the correct extra small size classes', async () => {
-			await wrapper.setProps({ size: BoFontSize.extra_small });
-			expect(wrapper.find('#test-id').classes()).toContain('text-extra-small');
-			expect(wrapper.find('#test-id').classes()).toContain(
-				'leading-extra-small',
-			);
+			await wrapper.setProps({ size: BoFontSize.xs });
+			expect(wrapper.find('#test-id').classes()).toContain('text-bo-xs');
+			expect(wrapper.find('#test-id').classes()).toContain('leading-bo-xs');
 		});
 
 		test('the text should have the correct small size classes', async () => {
-			await wrapper.setProps({ size: BoFontSize.small });
-			expect(wrapper.find('#test-id').classes()).toContain('text-small');
-			expect(wrapper.find('#test-id').classes()).toContain('leading-small');
+			await wrapper.setProps({ size: BoFontSize.sm });
+			expect(wrapper.find('#test-id').classes()).toContain('text-bo-sm');
+			expect(wrapper.find('#test-id').classes()).toContain('leading-bo-sm');
 		});
 
-		test('the text should have the correct body size classes', async () => {
-			await wrapper.setProps({ size: BoFontSize.body });
-			expect(wrapper.find('#test-id').classes()).toContain('text-body');
-			expect(wrapper.find('#test-id').classes()).toContain('leading-body');
+		test('the text should have the correct base size classes', async () => {
+			await wrapper.setProps({ size: BoFontSize.base });
+			expect(wrapper.find('#test-id').classes()).toContain('text-bo-base');
+			expect(wrapper.find('#test-id').classes()).toContain('leading-bo-base');
 		});
 
-		test('the text should have the correct modal title size classes', async () => {
-			await wrapper.setProps({ size: BoFontSize.modal_title });
-			expect(wrapper.find('#test-id').classes()).toContain('text-modal-title');
-			expect(wrapper.find('#test-id').classes()).toContain(
-				'leading-modal-title',
-			);
+		test('the text should have the correct large size classes', async () => {
+			await wrapper.setProps({ size: BoFontSize.lg });
+			expect(wrapper.find('#test-id').classes()).toContain('text-bo-lg');
+			expect(wrapper.find('#test-id').classes()).toContain('leading-bo-lg');
 		});
 
-		test('the text should have the correct title size classes', async () => {
-			await wrapper.setProps({ size: BoFontSize.title });
-			expect(wrapper.find('#test-id').classes()).toContain('text-title');
-			expect(wrapper.find('#test-id').classes()).toContain('leading-title');
+		test('the text should have the correct extra large size classes', async () => {
+			await wrapper.setProps({ size: BoFontSize.xl });
+			expect(wrapper.find('#test-id').classes()).toContain('text-bo-xl');
+			expect(wrapper.find('#test-id').classes()).toContain('leading-bo-xl');
 		});
 
-		test('the text should have the correct h6 size classes', async () => {
-			await wrapper.setProps({ size: BoFontSize.h6 });
-			expect(wrapper.find('#test-id').classes()).toContain('text-h6');
-			expect(wrapper.find('#test-id').classes()).toContain('leading-h6');
+		test('the text should have the correct 2xl size classes', async () => {
+			await wrapper.setProps({ size: BoFontSize['2xl'] });
+			expect(wrapper.find('#test-id').classes()).toContain('text-bo-2xl');
+			expect(wrapper.find('#test-id').classes()).toContain('leading-bo-2xl');
 		});
 
-		test('the text should have the correct h5 size classes', async () => {
-			await wrapper.setProps({ size: BoFontSize.h5 });
-			expect(wrapper.find('#test-id').classes()).toContain('text-h5');
-			expect(wrapper.find('#test-id').classes()).toContain('leading-h5');
+		test('the text should have the correct 3xl size classes', async () => {
+			await wrapper.setProps({ size: BoFontSize['3xl'] });
+			expect(wrapper.find('#test-id').classes()).toContain('text-bo-3xl');
+			expect(wrapper.find('#test-id').classes()).toContain('leading-bo-3xl');
 		});
 
-		test('the text should have the correct h4 size classes', async () => {
-			await wrapper.setProps({ size: BoFontSize.h4 });
-			expect(wrapper.find('#test-id').classes()).toContain('text-h4');
-			expect(wrapper.find('#test-id').classes()).toContain('leading-h4');
+		test('the text should have the correct 4xl size classes', async () => {
+			await wrapper.setProps({ size: BoFontSize['4xl'] });
+			expect(wrapper.find('#test-id').classes()).toContain('text-bo-4xl');
+			expect(wrapper.find('#test-id').classes()).toContain('leading-bo-4xl');
 		});
 
-		test('the text should have the correct h3 size classes', async () => {
-			await wrapper.setProps({ size: BoFontSize.h3 });
-			expect(wrapper.find('#test-id').classes()).toContain('text-h3');
-			expect(wrapper.find('#test-id').classes()).toContain('leading-h3');
+		test('the text should have the correct 5xl size classes', async () => {
+			await wrapper.setProps({ size: BoFontSize['5xl'] });
+			expect(wrapper.find('#test-id').classes()).toContain('text-bo-5xl');
+			expect(wrapper.find('#test-id').classes()).toContain('leading-bo-5xl');
 		});
 
-		test('the text should have the correct h2 size classes', async () => {
-			await wrapper.setProps({ size: BoFontSize.h2 });
-			expect(wrapper.find('#test-id').classes()).toContain('text-h2');
-			expect(wrapper.find('#test-id').classes()).toContain('leading-h2');
+		test('the text should have the correct 6xl size classes', async () => {
+			await wrapper.setProps({ size: BoFontSize['6xl'] });
+			expect(wrapper.find('#test-id').classes()).toContain('text-bo-6xl');
+			expect(wrapper.find('#test-id').classes()).toContain('leading-bo-6xl');
 		});
 
-		test('the text should have the correct h1 size classes', async () => {
-			await wrapper.setProps({ size: BoFontSize.h1 });
-			expect(wrapper.find('#test-id').classes()).toContain('text-h1');
-			expect(wrapper.find('#test-id').classes()).toContain('leading-h1');
+		test('the text should have the correct 7xl size classes', async () => {
+			await wrapper.setProps({ size: BoFontSize['7xl'] });
+			expect(wrapper.find('#test-id').classes()).toContain('text-bo-7xl');
+			expect(wrapper.find('#test-id').classes()).toContain('leading-bo-7xl');
 		});
 	});
 
@@ -235,12 +226,12 @@ describe('bo_text.vue', () => {
 
 	suite('text-color', () => {
 		test('the text should have the correct default color classes without text color', () => {
-			expect(wrapper.find('#test-id').classes()).toContain('text-default');
+			expect(wrapper.find('#test-id').classes()).toContain('text-current');
 		});
 
 		test('the text should have the correct default color classes with text color', async () => {
 			await wrapper.setProps({ color: BoTextColor.default });
-			expect(wrapper.find('#test-id').classes()).toContain('text-default');
+			expect(wrapper.find('#test-id').classes()).toContain('text-gray-900');
 		});
 
 		test('the text should have the correct current color classes', async () => {

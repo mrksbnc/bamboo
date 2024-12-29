@@ -10,13 +10,13 @@
 			<bo-text
 				:text="label"
 				:for="computedInputId"
-				:size="BoFontSize.small"
+				:size="BoFontSize.sm"
 				:font-family="BoFontFamily.inter"
 			/>
 			<bo-text
 				v-if="required"
 				text="Required *"
-				:size="BoFontSize.extra_small"
+				:size="BoFontSize.xs"
 				:color="BoTextColor.danger"
 				:weight="BoFontWeight.medium"
 			/>
@@ -76,7 +76,7 @@
 		>
 			<bo-text
 				:text="description"
-				:size="BoFontSize.small"
+				:size="BoFontSize.xs"
 				:color="BoTextColor.secondary"
 				:font-family="BoFontFamily.inter"
 			/>
@@ -92,7 +92,7 @@
 			/>
 			<bo-text
 				:text="errorMessage"
-				:size="BoFontSize.small"
+				:size="BoFontSize.xs"
 				:color="BoTextColor.danger"
 				:font-family="BoFontFamily.inter"
 			/>
@@ -216,24 +216,24 @@ const inputSizeClasses = computed<string>(() => {
 	if (prefixIcon.value != null && suffixIcon.value != null) {
 		switch (size.value) {
 			case BoInputSize.small:
-				return /*tw*/ 'flex w-full py-2 px-6 text-small';
+				return /*tw*/ 'flex w-full h-[32px] text-bo-sm';
 			case BoInputSize.default:
 			default:
-				return /*tw*/ 'flex w-full py-2.5 px-8 text-default';
+				return /*tw*/ 'flex w-full h-[40px] px-8 text-bo-base';
 			case BoInputSize.large:
-				return /*tw*/ 'flex w-full py-4 px-8 text-body';
+				return /*tw*/ 'flex w-full px-8 text-bo-xl';
 		}
 	}
 
 	if (prefixIcon.value != null) {
 		switch (size.value) {
 			case BoInputSize.small:
-				return /*tw*/ 'flex w-full py-2 pl-6 pr-4 text-small';
+				return /*tw*/ 'flex w-full h-[32px] pl-6 pr-4 text-bo-sm';
 			case BoInputSize.default:
 			default:
-				return /*tw*/ 'flex w-full py-2 pl-8 pr-4 text-default';
+				return /*tw*/ 'flex w-full h-[40px] pl-8 pr-4 text-bo-base';
 			case BoInputSize.large:
-				return /*tw*/ 'flex w-full py-3 pl-8 pr-4 text-body';
+				return /*tw*/ 'flex w-full h-[48px] pl-8 pr-4 text-bo-xl';
 		}
 	}
 
@@ -241,28 +241,28 @@ const inputSizeClasses = computed<string>(() => {
 		switch (size.value) {
 			case BoInputSize.small:
 				return isLoading.value
-					? /*tw*/ 'flex w-full py-2 pl-4 pr-6 text-small'
-					: /*tw*/ 'flex w-full py-2 pl-4 pr-14 text-small';
+					? /*tw*/ 'flex w-full h-[32px] pl-4 pr-6 text-bo-sm'
+					: /*tw*/ 'flex w-full h-[32px] pl-4 pr-14 text-bo-sm';
 			case BoInputSize.default:
 			default:
 				return isLoading.value
-					? /*tw*/ 'flex w-full py-2 pl-4 pr-8 text-default'
-					: /*tw*/ 'flex w-full py-2 pl-4 pr-14 text-default';
+					? /*tw*/ 'flex w-full h-[40px] pl-4 pr-8 text-bo-base'
+					: /*tw*/ 'flex w-full h-[40px] pl-4 pr-14 text-bo-base';
 			case BoInputSize.large:
 				return isLoading.value
-					? /*tw*/ 'flex w-full py-3 pl-4 pr-8 text-body'
-					: /*tw*/ 'flex w-full py-3 pl-4 pr-14 text-body';
+					? /*tw*/ 'flex w-full h-[48px] pl-4 pr-8 text-bo-xl'
+					: /*tw*/ 'flex w-full h-[48px] pl-4 pr-14 text-bo-xl';
 		}
 	}
 
 	switch (size.value) {
 		case BoInputSize.small:
-			return /*tw*/ 'flex w-full py-2 px-3 text-small';
+			return /*tw*/ 'flex w-full h-[32px] px-3 text-bo-sm';
 		case BoInputSize.default:
 		default:
-			return /*tw*/ 'flex w-full py-2.5 px-3 text-default';
+			return /*tw*/ 'flex w-full h-[40px] px-3 text-bo-base';
 		case BoInputSize.large:
-			return /*tw*/ 'flex w-full py-4 px-3 text-body';
+			return /*tw*/ 'flex w-full h-[48px] px-3 text-bo-xl';
 	}
 });
 

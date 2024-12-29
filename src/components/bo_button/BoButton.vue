@@ -9,22 +9,17 @@
 		<span
 			:class="[
 				'bo-button__content inline-flex items-center justify-center gap-2',
-				buttonContentPaddingClasses,
+				buttonSizeClasses,
 			]"
 		>
 			<bo-icon
-				v-if="
-					prefixIcon !== Icon.none &&
-					prefixIcon != null &&
-					iconOnlyButton &&
-					!isLoading
-				"
+				v-if="prefixIcon !== Icon.none || iconOnlyButton"
 				:icon="iconOnlyIcon"
 				:size="size"
 				class="bo-button__prefix-icon"
 			/>
 			<bo-text
-				v-if="label != null && !iconOnlyButton"
+				v-if="!!label && !iconOnlyButton"
 				:text="label"
 				:clickable="true"
 				:weight="BoFontWeight.medium"
@@ -46,7 +41,6 @@
 				v-if="isLoading"
 				:size="loaderSize"
 				:variant="loaderVariant"
-				:loader-text="loaderText"
 			/>
 		</span>
 	</button>
@@ -69,13 +63,24 @@ const props = withDefaults(defineProps<BoButtonProps>(), {
 	size: () => BoSize.default,
 	prefixIcon: () => Icon.none,
 	suffixIcon: () => Icon.none,
+	linkVariantWithShadow: false,
 	type: () => HtmlButtonType.button,
 	shape: () => BoButtonShape.default,
 	variant: () => BoButtonVariant.primary,
 });
 
-const { label, type, variant, size, prefixIcon, suffixIcon, shape } =
-	toRefs(props);
+const {
+	label,
+	type,
+	variant,
+	size,
+	prefixIcon,
+	suffixIcon,
+	shape,
+	linkVariantWithShadow,
+	disabled,
+	isLoading,
+} = toRefs(props);
 
 const defaultClasses: string =
 	/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer';
@@ -85,8 +90,10 @@ const disabledClasses: string =
 
 const iconOnlyButton = computed<boolean>(() => {
 	return (
-		!StringUtils.isEmptyStr(prefixIcon.value ?? '') &&
-		StringUtils.isEmptyStr(label.value ?? '')
+		StringUtils.isEmptyStr(label.value ?? '') &&
+		prefixIcon.value !== null &&
+		prefixIcon.value !== undefined &&
+		prefixIcon.value !== Icon.none
 	);
 });
 
@@ -181,26 +188,32 @@ const buttonVariantClasses = computed<string>(() => {
 const buttonVariantShadowClasses = computed<string>(() => {
 	switch (variant.value) {
 		case BoButtonVariant.primary:
-			return /*tw*/ 'shadow-sm shadow-blue-500/50 dark:shadow-sm dark:shadow-blue-800/80';
+			return /*tw*/ 'shadow-md shadow-blue-500/50 dark:shadow-blue-800/80';
 		case BoButtonVariant.secondary:
-			return /*tw*/ 'shadow-sm shadow-gray-500/50 dark:shadow-sm dark:shadow-gray-800/80';
+			return /*tw*/ 'shadow-md shadow-gray-500/50 dark:shadow-gray-800/80';
 		case BoButtonVariant.danger:
-			return /*tw*/ 'shadow-sm shadow-red-500/50 dark:shadow-sm dark:shadow-red-800/80';
+			return /*tw*/ 'shadow-md shadow-red-500/50 dark:shadow-red-800/80';
 		case BoButtonVariant.warning:
-			return /*tw*/ 'shadow-sm shadow-yellow-500/50 dark:shadow-sm dark:shadow-yellow-800/80';
+			return /*tw*/ 'shadow-md shadow-yellow-500/50 dark:shadow-yellow-800/80';
 		case BoButtonVariant.success:
-			return /*tw*/ 'shadow-sm shadow-green-500/50 dark:shadow-sm dark:shadow-green-800/80';
+			return /*tw*/ 'shadow-md shadow-green-500/50 dark:shadow-green-800/80';
 		case BoButtonVariant.dark:
-			return /*tw*/ 'shadow-sm shadow-black-500/50 dark:shadow-sm dark:shadow-black-800/80';
+			return /*tw*/ 'shadow-md shadow-black-500/50 dark:shadow-black-800/80';
 		case BoButtonVariant.link:
 		case BoButtonVariant.link_secondary:
 		case BoButtonVariant.link_danger:
 		case BoButtonVariant.link_warning:
 		case BoButtonVariant.link_success:
 		case BoButtonVariant.link_dark:
-			return /*tw*/ 'shadow-none';
+			switch (linkVariantWithShadow.value) {
+				case false:
+					return /*tw*/ 'shadow-none';
+				case true:
+				default:
+					return /*tw*/ 'shadow-md';
+			}
 		default:
-			return /*tw*/ 'shadow-sm';
+			return /*tw*/ 'shadow-md';
 	}
 });
 
@@ -217,46 +230,48 @@ const buttonClasses = computed<string>(() => {
 const buttonContentSize = computed<BoFontSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return BoFontSize.extra_small;
-		case BoSize.large:
-		case BoSize.extra_large:
-			return BoFontSize.body;
+			return BoFontSize.xs;
 		case BoSize.small:
+			return BoFontSize.sm;
+		case BoSize.large:
+			return BoFontSize.lg;
+		case BoSize.extra_large:
+			return BoFontSize.xl;
 		case BoSize.default:
 		default:
-			return BoFontSize.small;
+			return BoFontSize.base;
 	}
 });
 
-const buttonContentPaddingClasses = computed<string>(() => {
+const buttonSizeClasses = computed<string>(() => {
 	switch (iconOnlyButton.value) {
 		case true:
 			switch (size.value) {
 				case BoSize.extra_small:
-					return /*tw*/ 'p-1.5';
+					return /*tw*/ 'size-[24px]';
 				case BoSize.small:
-					return /*tw*/ 'p-2.5';
+					return /*tw*/ 'size-[30px]';
 				case BoSize.default:
 				default:
-					return /*tw*/ 'p-2.5';
+					return /*tw*/ 'size-[36px]';
 				case BoSize.large:
-					return /*tw*/ 'p-3';
+					return /*tw*/ 'size-[42px]';
 				case BoSize.extra_large:
-					return /*tw*/ 'p-3.5';
+					return /*tw*/ 'size-[48px]';
 			}
 		default:
 			switch (size.value) {
 				case BoSize.extra_small:
-					return /*tw*/ 'px-2.5 py-1.5';
+					return /*tw*/ 'h-[24px] px-2';
 				case BoSize.small:
-					return /*tw*/ 'px-3 py-2.5';
+					return /*tw*/ 'h-[30px] px-2.5';
 				case BoSize.default:
 				default:
-					return /*tw*/ 'px-3.5 py-2.5';
+					return /*tw*/ 'h-[36px] px-4';
 				case BoSize.large:
-					return /*tw*/ 'px-4 py-3';
+					return /*tw*/ 'h-[42px] px-6';
 				case BoSize.extra_large:
-					return /*tw*/ 'px-5 py-3.5';
+					return /*tw*/ 'h-[48px] px-8';
 			}
 	}
 });

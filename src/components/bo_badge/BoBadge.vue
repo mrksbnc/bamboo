@@ -124,30 +124,30 @@ const boBadgeBadgePaddingClasses = computed<string>(() => {
 	if (isCircle.value) {
 		switch (size.value) {
 			case BoSize.extra_small:
-				return /*tw*/ 'p-1';
+				return /*tw*/ 'h-[24px] w-[24px]';
 			case BoSize.small:
-				return /*tw*/ 'p-1.5';
+				return /*tw*/ 'h-[30px] w-[30px]';
 			case BoSize.default:
 			default:
-				return /*tw*/ 'p-2';
+				return /*tw*/ 'h-[36px] w-[36px]';
 			case BoSize.large:
-				return /*tw*/ 'p-3';
+				return /*tw*/ 'h-[42px] w-[42px]';
 			case BoSize.extra_large:
-				return /*tw*/ 'p-4';
+				return /*tw*/ 'h-[48px] w-[48px]';
 		}
 	} else {
 		switch (size.value) {
 			case BoSize.extra_small:
-				return /*tw*/ 'px-1.5 py-1';
+				return /*tw*/ 'h-[24px] px-2';
 			case BoSize.small:
-				return /*tw*/ 'px-2 py-1';
+				return /*tw*/ 'h-[30px] px-2.5';
 			case BoSize.default:
 			default:
-				return /*tw*/ 'px-3 py-1.5';
+				return /*tw*/ 'h-[36px] px-4';
 			case BoSize.large:
-				return /*tw*/ 'px-4 py-2';
+				return /*tw*/ 'h-[42px] px-6';
 			case BoSize.extra_large:
-				return /*tw*/ 'px-5 py-2.5';
+				return /*tw*/ 'h-[48px] px-8';
 		}
 	}
 });
@@ -164,15 +164,16 @@ const classes = computed<string>(() => {
 const badgeFontSize = computed<BoFontSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return BoFontSize.extra_small;
+			return BoFontSize.xs;
 		case BoSize.small:
+			return BoFontSize.sm;
 		case BoSize.default:
 		default:
-			return BoFontSize.small;
+			return BoFontSize.base;
 		case BoSize.large:
-			return BoFontSize.default;
+			return BoFontSize.lg;
 		case BoSize.extra_large:
-			return BoFontSize.body;
+			return BoFontSize.xl;
 	}
 });
 

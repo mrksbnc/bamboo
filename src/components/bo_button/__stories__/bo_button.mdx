@@ -30,10 +30,10 @@ A button is a control that allows the user to perform an action.
   - default: `false`
 - `isLoading` - Whether the button is loading (optional)
   - default: `false`
-- `loaderText` - The text to be displayed in the loader (optional)
-  - default: `''`
 - `size` - The size of the button (optional)
   - default: `BoSize.default`
+- `linkVariantWithShadow` - Whether the button should have a shadow when it is a link (optional)
+  - default: `false`
 - `prefixIcon` - The icon to be displayed before the label (optional)
   - default: `Icon.none`
   - either `label` or `prefixIcon` or `suffixIcon` must be provided
@@ -124,3 +124,10 @@ to match the icon correctly.
 ## Icon only button variants
 
 <Canvas of={BoButtonStories.IconOnlyVariants} />
+
+## Link variant with shadow
+
+To create a link button with a shadow, you can use the `linkVariantWithShadow` prop.
+This will add a shadow to the button when it is a link.
+
+<Canvas of={BoButtonStories.LinkVariantWithShadow} />
