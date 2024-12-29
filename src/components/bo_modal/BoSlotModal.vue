@@ -1,8 +1,8 @@
 <template>
 	<div
 		id="modal"
+		tabindex="0"
 		role="dialog"
-		tabindex="-1"
 		aria-modal="true"
 		class="fixed left-0 right-0 top-0 z-50 flex h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden bg-black/50 transition-opacity md:inset-0"
 		@keydown="handleKeyDown"
@@ -117,9 +117,9 @@ const modalWidth = computed<StyleConstruct>(() => {
 	}
 
 	if (
-		(widthAsTailwindClass.value == null || widthAsTailwindClass.value === '') &&
-		widthInPx.value == null &&
-		widthInPercent.value == null
+		(!widthAsTailwindClass.value || widthAsTailwindClass.value === '') &&
+		!widthInPx.value &&
+		!widthInPercent.value
 	) {
 		construct.class = /*tw*/ 'w-full max-w-3xl ';
 	}

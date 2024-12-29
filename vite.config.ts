@@ -5,7 +5,6 @@ import viteCompression from 'vite-plugin-compression';
 import dts from 'vite-plugin-dts';
 import svgLoader from 'vite-svg-loader';
 import { defineConfig, type ViteUserConfig } from 'vitest/config';
-
 /**
  * @see https://vitejs.dev/config/
  */

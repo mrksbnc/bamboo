@@ -3,33 +3,37 @@ export class KeyboardUtils {
 		const isTab = e.key === 'Tab' || e.keyCode === 9;
 
 		if (isTab) {
-			const focusable: NodeListOf<Element> | null =
-				document
-					?.querySelector(`#${id}`)
-					?.querySelectorAll('input,button,select,textarea') ?? null;
+			const focusable: NodeListOf<Element> | undefined = document
+				?.querySelector(`#${id}`)
+				?.querySelectorAll('[tabindex]');
 
-			if (focusable === null) {
+			if (!focusable?.length) {
 				return;
 			}
 
-			if (focusable.length) {
-				const shift = e.shiftKey;
-				const first = focusable[0];
-				const last = focusable[focusable.length - 1];
+			const sorted = [...focusable].sort((a, b) => {
+				return (
+					parseInt(a.getAttribute('tabindex') ?? '0') -
+					parseInt(b.getAttribute('tabindex') ?? '0')
+				);
+			});
 
-				const firstHtmlElement = first as HTMLElement;
-				const lastHtmlElement = last as HTMLElement;
+			const shift = e.shiftKey;
+			const first = sorted[0];
+			const last = sorted[sorted.length - 1];
 
-				if (shift) {
-					if (e.target === first) {
-						lastHtmlElement.focus();
-						e.preventDefault();
-					}
-				} else {
-					if (e.target === last) {
-						firstHtmlElement.focus();
-						e.preventDefault();
-					}
+			const firstHtmlElement = first as HTMLElement;
+			const lastHtmlElement = last as HTMLElement;
+
+			if (shift) {
+				if (e.target === first) {
+					lastHtmlElement.focus();
+					e.preventDefault();
+				}
+			} else {
+				if (e.target === last) {
+					firstHtmlElement.focus();
+					e.preventDefault();
 				}
 			}
 		}

@@ -32,6 +32,6 @@ export class StringUtils {
 	 * isEmptyStr(null); // true
 	 */
 	static isEmptyStr(str: unknown): boolean {
-		return (typeof str === 'string' && str.trim().length === 0) || str == null;
+		return (typeof str === 'string' && str.trim().length === 0) || !str;
 	}
 }

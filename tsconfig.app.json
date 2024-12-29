@@ -23,7 +23,7 @@
 		"noUncheckedSideEffectImports": true,
 
 		/* Types */
-		"types": ["vite/client", "vitest/globals"],
+		"types": ["vite/client", "vitest/globals", "vite-svg-loader"],
 
 		/* Project */
 		"baseUrl": ".",

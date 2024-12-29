@@ -271,3 +271,36 @@ export const CustomWidthAsTailwindClass: Story = {
 		widthAsTailwindClass: /*tw*/ 'w-6/12',
 	},
 };
+
+export const TabIndexTest: Story = {
+	render: (args) => ({
+		components: { BoSlotModal, BoButton, BoText },
+
+		setup() {
+			return { args, BoFontSize, BoTextColor, BoFontWeight };
+		},
+		template: `
+				<BoSlotModal v-bind="args">
+					<template #header>
+						<span class="flex gap-2">
+							<bo-text text="Modal title" :size="BoFontSize.title" :weight="BoFontWeight.semibold" class="text-center" />
+						</span>
+					</template>
+					<template #body>
+						<bo-text text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." :color="BoTextColor.secondary" />
+					</template>
+					<template #footer>
+						<div class="flex gap-2">
+							<bo-button label="Cancel" class="w-full" type="reset" tabindex="1" variant="secondary" />
+							<bo-button label="Test" class="w-full" type="submit" tabindex="3" variant="warning" />
+							<bo-button label="Test 2" class="w-full" type="submit" tabindex="4" variant="success" />
+							<bo-button label="Submit" class="w-full" type="submit" tabindex="2" />
+						</div>
+					</template>
+				</BoSlotModal>
+			`,
+	}),
+	args: {
+		showCloseButton: false,
+	},
+};

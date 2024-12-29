@@ -75,8 +75,8 @@ const showDefaultAvatar = computed<boolean>(() => {
 	}
 
 	return (
-		imageData.value == null &&
-		initialsData.value == null &&
+		!imageData.value &&
+		!initialsData.value &&
 		type.value === BoAvatarType.unknown
 	);
 });

@@ -93,9 +93,9 @@ const slotCardWidth = computed<StyleConstruct>(() => {
 	}
 
 	if (
-		(widthAsTailwindClass.value == null || widthAsTailwindClass.value === '') &&
-		widthInPx.value == null &&
-		widthInPercent.value == null
+		(!widthAsTailwindClass.value || widthAsTailwindClass.value === '') &&
+		!widthInPx.value &&
+		!widthInPercent.value
 	) {
 		construct.class = /*tw*/ 'w-fit max-w-md';
 	}
