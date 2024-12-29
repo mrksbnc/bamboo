@@ -6,11 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## main (Unreleased)
 
-## [1.0.0-stable.2024.1] - 2024-xx-xx
+## [1.0.0-stable.2025.1] - 2025-xx-xx
 
 | Action          | Value      |
 | --------------- | ---------- |
-| Release date    | 2024-xx-xx |
+| Release date    | 2025-xx-xx |
 | Release type    | major      |
 | Breaking change | No         |
 | Deprecations    | No         |
