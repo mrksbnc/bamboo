@@ -1,14 +1,13 @@
 import vue from '@vitejs/plugin-vue';
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
 import viteCompression from 'vite-plugin-compression';
 import dts from 'vite-plugin-dts';
 import svgLoader from 'vite-svg-loader';
-import { defineConfig, type ViteUserConfig } from 'vitest/config';
-/**
- * @see https://vitejs.dev/config/
- */
-const bambooLibConfig: ViteUserConfig = defineConfig({
+
+// https://vite.dev/config/
+export default defineConfig({
 	appType: 'custom',
 	plugins: [
 		vue(),
@@ -47,5 +46,3 @@ const bambooLibConfig: ViteUserConfig = defineConfig({
 		},
 	},
 });
-
-export default bambooLibConfig;
