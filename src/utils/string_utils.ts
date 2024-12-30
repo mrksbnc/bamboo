@@ -38,4 +38,16 @@ export class StringUtils {
 			str === undefined
 		);
 	}
+	/**
+	 * @description
+	 * This method returns an empty string if the input is empty or null, otherwise it returns the input as a string.
+	 *
+	 * @example
+	 * safeString(''); // ''
+	 * safeString('hello world'); // 'hello world'
+	 * safeString(null); // ''
+	 */
+	static safeString(str: unknown): string {
+		return StringUtils.isEmptyStr(str) ? '' : String(str);
+	}
 }

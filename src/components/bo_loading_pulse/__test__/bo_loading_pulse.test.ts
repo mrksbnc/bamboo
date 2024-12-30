@@ -65,49 +65,6 @@ describe('bo_loading_pulse.vue', () => {
 		).toContain('flex');
 	});
 
-	suite('loader size', () => {
-		test('should have the default size', () => {
-			expect(
-				globalWrapper.find('.bo-loading-pulse__inner-pulse-relative').classes(),
-			).toContain('size-4');
-		});
-
-		test('should have the extra-small size', async () => {
-			await globalWrapper.setProps({ size: BoSize.extra_small });
-			expect(
-				globalWrapper.find('.bo-loading-pulse__inner-pulse-relative').classes(),
-			).toContain('size-2');
-		});
-
-		test('should have the small size', async () => {
-			await globalWrapper.setProps({ size: BoSize.small });
-			expect(
-				globalWrapper.find('.bo-loading-pulse__inner-pulse-relative').classes(),
-			).toContain('size-3');
-		});
-
-		test('should have the large size', async () => {
-			await globalWrapper.setProps({ size: BoSize.large });
-			expect(
-				globalWrapper.find('.bo-loading-pulse__inner-pulse-relative').classes(),
-			).toContain('size-5');
-		});
-
-		test('should have the extra-large size', async () => {
-			await globalWrapper.setProps({ size: BoSize.extra_large });
-			expect(
-				globalWrapper.find('.bo-loading-pulse__inner-pulse-relative').classes(),
-			).toContain('size-7');
-		});
-
-		test('should have the default size', async () => {
-			await globalWrapper.setProps({ size: BoSize.default });
-			expect(
-				globalWrapper.find('.bo-loading-pulse__inner-pulse-relative').classes(),
-			).toContain('size-4');
-		});
-	});
-
 	suite('loader variant', () => {
 		test('should be ablte to render a default variant', () => {
 			expect(

@@ -90,7 +90,7 @@ const disabledClasses: string =
 
 const iconOnlyButton = computed<boolean>(() => {
 	return (
-		StringUtils.isEmptyStr(label.value ?? '') &&
+		StringUtils.isEmptyStr(label.value) &&
 		prefixIcon.value !== null &&
 		prefixIcon.value !== undefined &&
 		prefixIcon.value !== Icon.none
@@ -187,18 +187,6 @@ const buttonVariantClasses = computed<string>(() => {
 
 const buttonVariantShadowClasses = computed<string>(() => {
 	switch (variant.value) {
-		case BoButtonVariant.primary:
-			return /*tw*/ 'shadow-md shadow-blue-500/50 dark:shadow-blue-800/80';
-		case BoButtonVariant.secondary:
-			return /*tw*/ 'shadow-md shadow-gray-500/50 dark:shadow-gray-800/80';
-		case BoButtonVariant.danger:
-			return /*tw*/ 'shadow-md shadow-red-500/50 dark:shadow-red-800/80';
-		case BoButtonVariant.warning:
-			return /*tw*/ 'shadow-md shadow-yellow-500/50 dark:shadow-yellow-800/80';
-		case BoButtonVariant.success:
-			return /*tw*/ 'shadow-md shadow-green-500/50 dark:shadow-green-800/80';
-		case BoButtonVariant.dark:
-			return /*tw*/ 'shadow-md shadow-black-500/50 dark:shadow-black-800/80';
 		case BoButtonVariant.link:
 		case BoButtonVariant.link_secondary:
 		case BoButtonVariant.link_danger:
@@ -212,6 +200,12 @@ const buttonVariantShadowClasses = computed<string>(() => {
 				default:
 					return /*tw*/ 'shadow-md';
 			}
+		case BoButtonVariant.primary:
+		case BoButtonVariant.secondary:
+		case BoButtonVariant.danger:
+		case BoButtonVariant.warning:
+		case BoButtonVariant.success:
+		case BoButtonVariant.dark:
 		default:
 			return /*tw*/ 'shadow-md';
 	}
@@ -248,30 +242,30 @@ const buttonSizeClasses = computed<string>(() => {
 		case true:
 			switch (size.value) {
 				case BoSize.extra_small:
-					return /*tw*/ 'size-[24px]';
+					return /*tw*/ 'w-[24px] h-[24px]';
 				case BoSize.small:
-					return /*tw*/ 'size-[30px]';
+					return /*tw*/ 'w-[32px] h-[32px]';
 				case BoSize.default:
 				default:
-					return /*tw*/ 'size-[36px]';
+					return /*tw*/ 'w-[40px] h-[40px]';
 				case BoSize.large:
-					return /*tw*/ 'size-[42px]';
+					return /*tw*/ 'w-[48px] h-[48px]';
 				case BoSize.extra_large:
-					return /*tw*/ 'size-[48px]';
+					return /*tw*/ 'w-[56px] h-[56px]';
 			}
 		default:
 			switch (size.value) {
 				case BoSize.extra_small:
-					return /*tw*/ 'h-[24px] px-2';
+					return /*tw*/ 'h-[24px] px-[8px]';
 				case BoSize.small:
-					return /*tw*/ 'h-[30px] px-2.5';
+					return /*tw*/ 'h-[32px] px-[16px]';
 				case BoSize.default:
 				default:
-					return /*tw*/ 'h-[36px] px-4';
+					return /*tw*/ 'h-[40px] px-[24px]';
 				case BoSize.large:
-					return /*tw*/ 'h-[42px] px-6';
+					return /*tw*/ 'h-[48px] px-[32px]';
 				case BoSize.extra_large:
-					return /*tw*/ 'h-[48px] px-8';
+					return /*tw*/ 'h-[56px] px-[40px]';
 			}
 	}
 });

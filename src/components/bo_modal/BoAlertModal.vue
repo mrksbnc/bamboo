@@ -37,7 +37,7 @@
 				<span class="flex flex-col items-center">
 					<bo-text
 						:text="title"
-						:size="BoFontSize.title"
+						:size="BoFontSize['3xl']"
 						:weight="BoFontWeight.semibold"
 						:font-family="BoFontFamily.inter"
 					/>
@@ -48,7 +48,7 @@
 			<div class="flex flex-col gap-2 pt-4">
 				<bo-text
 					:text="content"
-					:size="BoFontSize.small"
+					:size="BoFontSize.sm"
 					:color="BoTextColor.secondary"
 					:white-space="BoTextWhiteSpace.break_spaces"
 					:text-align="

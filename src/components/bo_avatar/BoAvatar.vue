@@ -99,7 +99,7 @@ const labelSize = computed<BoFontSize>(() => {
 });
 
 const containerStyle = computed<StyleValue>(() => {
-	if (!StringUtils.isEmptyStr(colorHex.value ?? '')) {
+	if (!StringUtils.isEmptyStr(colorHex.value)) {
 		return {
 			backgroundColor: colorHex.value,
 		};
@@ -111,16 +111,16 @@ const containerStyle = computed<StyleValue>(() => {
 const avatarSizeClasses = computed<string>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return /*tw*/ 'size-6';
+			return /*tw*/ 'h-[24px] w-[24px]';
 		case BoSize.small:
-			return /*tw*/ 'size-8';
-		case BoSize.large:
-			return /*tw*/ 'size-12';
-		case BoSize.extra_large:
-			return /*tw*/ 'size-14';
+			return /*tw*/ 'h-[32px] w-[32px]';
 		case BoSize.default:
 		default:
-			return /*tw*/ 'size-10';
+			return /*tw*/ 'h-[42px] w-[42px]';
+		case BoSize.large:
+			return /*tw*/ 'h-[50px] w-[50px]';
+		case BoSize.extra_large:
+			return /*tw*/ 'h-[60px] w-[60px]';
 	}
 });
 

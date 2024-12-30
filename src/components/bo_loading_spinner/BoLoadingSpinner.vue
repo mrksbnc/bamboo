@@ -15,9 +15,9 @@
 			class="bo-loading-spinner__text"
 		>
 			<bo-text
-				:text="loaderText ?? ''"
 				:color="BoTextColor.secondary"
 				:font-family="BoFontFamily.graphik"
+				:text="StringUtils.safeString(loaderText)"
 			/>
 		</span>
 	</div>
@@ -46,27 +46,27 @@ const defaultClasses =
 	/*tw*/ 'bo-loading-spinner__animation inline-flex animate-spin rounded-full border-[2px] border-current border-t-transparent';
 
 const displayLoaderText = computed<boolean>(() => {
-	return !StringUtils.isEmptyStr(loaderText.value ?? '');
+	return !StringUtils.isEmptyStr(loaderText.value);
 });
 
 const loaderTailwindCssSizeClasses = computed<string>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return /*tw*/ 'size-[12px]';
+			return /*tw*/ 'size-[8px]';
 		case BoSize.small:
-			return /*tw*/ 'size-[14px]';
-		case BoSize.large:
-			return /*tw*/ 'size-[18px]';
-		case BoSize.extra_large:
-			return /*tw*/ 'size-[20px]';
+			return /*tw*/ 'size-[12px]';
 		case BoSize.default:
 		default:
 			return /*tw*/ 'size-[16px]';
+		case BoSize.large:
+			return /*tw*/ 'size-[20px]';
+		case BoSize.extra_large:
+			return /*tw*/ 'size-[24px]';
 	}
 });
 
 const customColorStyle = computed<StyleValue>(() => {
-	if (!StringUtils.isEmptyStr(customColor.value ?? '')) {
+	if (!StringUtils.isEmptyStr(customColor.value)) {
 		return {
 			color: customColor.value,
 		};
@@ -76,7 +76,7 @@ const customColorStyle = computed<StyleValue>(() => {
 });
 
 const tailwindCssVariantClasses = computed<string>(() => {
-	if (!StringUtils.isEmptyStr(customColor.value ?? '')) {
+	if (!StringUtils.isEmptyStr(customColor.value)) {
 		return '';
 	}
 

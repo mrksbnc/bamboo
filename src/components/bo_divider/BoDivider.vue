@@ -32,7 +32,7 @@ const tailwindCssColorClasses = computed<string>(() => {
 		case BoDividerVariant.dark:
 			return /*tw*/ 'border-black';
 		default:
-			return /*tw*/ 'border-gray-200';
+			return /*tw*/ 'border-gray-300';
 	}
 });
 

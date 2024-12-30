@@ -246,12 +246,18 @@ export const IconOnly: Story = {
 	render: (args) => ({
 		components: { BoBadge },
 		setup() {
-			return { ...args };
+			const sizes = Object.values(BoSize);
+
+			return { ...args, sizes };
 		},
 		template: `
-			<div class="flex flex-row gap-1">
-				<bo-badge :prefix-icon="prefixIcon" :type="type"/>
-				<bo-badge :prefix-icon="prefixIcon" :type="type" shape="${BoBadgeShape.circle}"/>
+			<div class="flex flex-row gap-2">
+				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<span class="flex flex-row gap-2">
+						<bo-badge :prefix-icon="prefixIcon" :type="type" :size="size"/>
+						<bo-badge :prefix-icon="prefixIcon" :type="type" :size="size" shape="${BoBadgeShape.circle}"/>
+					</span>
+				</span>
 			</div>
 		`,
 	}),

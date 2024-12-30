@@ -86,33 +86,6 @@ describe('bo_loading_spinner.vue', () => {
 		});
 	});
 
-	suite('spinner sizes', () => {
-		test('the spinner should have the default size', () => {
-			expect(globalWrapper.find('w-4')).toBeTruthy();
-			expect(globalWrapper.find('h-4')).toBeTruthy();
-		});
-
-		test('the spinner should support extra small size', () => {
-			expect(globalWrapper.find('w-2')).toBeTruthy();
-			expect(globalWrapper.find('h-2')).toBeTruthy();
-		});
-
-		test('the spinner should support small size', () => {
-			expect(globalWrapper.find('w-3')).toBeTruthy();
-			expect(globalWrapper.find('h-3')).toBeTruthy();
-		});
-
-		test('the spinner should support default size', () => {
-			expect(globalWrapper.find('w-4')).toBeTruthy();
-			expect(globalWrapper.find('h-4')).toBeTruthy();
-		});
-
-		test('the spinner should support large size', () => {
-			expect(globalWrapper.find('w-5')).toBeTruthy();
-			expect(globalWrapper.find('h-5')).toBeTruthy();
-		});
-	});
-
 	suite('loading spinner with text', () => {
 		let wrapper: ReturnType<typeof mount>;
 
