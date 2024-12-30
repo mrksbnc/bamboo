@@ -60,8 +60,6 @@ const iconMap = Object.keys(icons).reduce(
  * taking up space in the DOM.
  */
 const isSvgReadyToRender = computed<boolean>(() => {
-	// Note(Bence): This is a workaround for the fact that the `Icon.none` enum
-	// cannot be used as a string in the below code because `eslint` will complain
 	const noneIconStr = String(Icon.none);
 
 	return (

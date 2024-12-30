@@ -142,10 +142,10 @@ const {
 const headerAlignment = computed<string>(() => {
 	switch (alignment.value) {
 		case BoAlertModalAlignment.centered:
-			return /* tw*/ 'flex-col items-center';
+			return /*tw*/ 'flex-col items-center';
 		case BoAlertModalAlignment.default:
 		default:
-			return /* tw*/ 'items-center';
+			return /*tw*/ 'items-center';
 	}
 });
 </script>

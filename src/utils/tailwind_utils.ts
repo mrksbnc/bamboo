@@ -15,9 +15,9 @@ export class TailwindUtils {
 		return Array.from(
 			new Set([
 				...classes
-					.filter(Boolean)
+					.filter((f) => f !== null && f !== undefined)
 					.map((c) => {
-						return c?.split(' ');
+						return c.split(' ');
 					})
 					.flat(),
 			]),
