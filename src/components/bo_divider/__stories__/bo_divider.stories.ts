@@ -2,10 +2,10 @@ import {
 	BoDivider,
 	BoDividerType,
 	BoDividerVariant,
-} from '@/components/bo_divider';
-import BoText from '@/components/bo_text/BoText.vue';
-import { StorybookUtils } from '@/utils';
-import type { Meta, StoryObj } from '@storybook/vue3';
+} from '@/components/bo_divider'
+import BoText from '@/components/bo_text/BoText.vue'
+import { StorybookUtils } from '@/utils'
+import type { Meta, StoryObj } from '@storybook/vue3'
 
 const meta = {
 	title: 'Components/bo-divider',
@@ -46,16 +46,16 @@ const meta = {
 			defaultValue: BoDividerType.default,
 		},
 	},
-} satisfies Meta<typeof BoDivider>;
+} satisfies Meta<typeof BoDivider>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
 	render: (args) => ({
 		components: { BoDivider },
 		setup() {
-			return { args };
+			return { args }
 		},
 		template: `
 			<div class="flex flex-col gap-4 bg-white p-4">
@@ -67,14 +67,14 @@ export const Example: Story = {
 		variant: BoDividerVariant.primary,
 		type: BoDividerType.default,
 	},
-};
+}
 
 export const Variants: Story = {
 	render: (args) => ({
 		components: { BoDivider },
 		setup() {
-			const variants = Object.values(BoDividerVariant);
-			return { variants, args };
+			const variants = Object.values(BoDividerVariant)
+			return { variants, args }
 		},
 		template: `
 			<div class="flex flex-col gap-4 bg-white p-4">
@@ -99,14 +99,14 @@ export const Variants: Story = {
 		variant: BoDividerVariant.primary,
 		type: BoDividerType.default,
 	},
-};
+}
 
 export const Types: Story = {
 	render: (args) => ({
 		components: { BoDivider, BoText },
 		setup() {
-			const types = Object.values(BoDividerType);
-			return { types, ...args };
+			const types = Object.values(BoDividerType)
+			return { types, ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4 bg-white p-4">
@@ -118,4 +118,4 @@ export const Types: Story = {
 		`,
 	}),
 	args: {},
-};
+}

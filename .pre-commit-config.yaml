@@ -4,20 +4,20 @@ repos:
       - id: lint
         name: Lint
         language: system
-        entry: npm run lint
+        entry: pnpm run lint:oxlint
         stages: [pre-commit]
         pass_filenames: false
 
       - id: type-check
         name: Type Check
         language: system
-        entry: npm run type-check
+        entry: pnpm run type-check
         stages: [pre-commit]
         pass_filenames: false
 
       - id: test
         name: Test
         language: system
-        entry: npm run type-check
+        entry: pnpm run type-check
         stages: [pre-commit]
         pass_filenames: false

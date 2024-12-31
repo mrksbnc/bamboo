@@ -30,3 +30,8 @@ coverage
 *.tsbuildinfo
 
 *storybook.log
+
+dist
+coverage
+static
+test

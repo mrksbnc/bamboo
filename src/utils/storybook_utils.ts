@@ -15,7 +15,7 @@ export class StorybookUtils {
 						`  ${m} = "${stringEnum[m as keyof typeof stringEnum]}",`,
 				)
 				.join('\r\n') + '\r\n}'
-		}`;
+		}`
 	}
 	/**
 	 * @description
@@ -23,6 +23,6 @@ export class StorybookUtils {
 	 * a readable format.
 	 */
 	static arrayFormatter(array: string[], name: string): string {
-		return `array ${name} {\n${array.map((m: string) => `  ${m},`).join('\r\n')}\r\n}`;
+		return `array ${name} {\n${array.map((m: string) => `  ${m},`).join('\r\n')}\r\n}`
 	}
 }

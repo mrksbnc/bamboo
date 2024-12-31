@@ -1,9 +1,9 @@
-import { Canvas, Meta, Controls } from '@storybook/blocks';
-import * as BoTextStories from './bo_text.stories';
+import { Canvas, Meta, Controls } from '@storybook/blocks'
+import * as BoTextStories from './bo_text.stories'
 
 <Meta
-	title="Components/bo-text"
-	component={BoTextStories.BoText}
+  title="Components/bo-text"
+  component={BoTextStories.BoText}
 />
 
 # bo-text
@@ -24,7 +24,7 @@ A label is a small piece of text that is used to display information.
 - `weight` - The weight of the text (optional)
   - default: `BoFontWeight.regular`
 - `fontFamily` - The font family of the text (optional)
-  - default: `BoFontFamily.inter`
+  - default: `BoFontFamily.sans`
 - `whiteSpace` - The white space of the text (optional)
   - default: `BoTextWhiteSpace.nowrap`
 - `cssClass` - The CSS class to be applied to the text (optional)
@@ -39,17 +39,19 @@ A label is a small piece of text that is used to display information.
 
 The `size` prop can be used to change the size of the text. The `size` prop should be a member of the `BoFontSize` enum.
 
-- `bo-xs`
-- `bo-sm`
-- `bo-base`
-- `bo-lg`
-- `bo-xl`
-- `bo-2xl`
-- `bo-3xl`
-- `bo-4xl`
-- `bo-5xl`
-- `bo-6xl`
-- `bo-7xl`
+- `xs`
+- `sm`
+- `base`
+- `lg`
+- `xl`
+- `2xl`
+- `3xl`
+- `4xl`
+- `5xl`
+- `6xl`
+- `7xl`
+- `8xl`
+- `9xl`
 
 <Canvas of={BoTextStories.Sizes} />
 
@@ -69,8 +71,6 @@ The `weight` prop can be used to change the weight of the text. The `weight` pro
 
 The `fontFamily` prop can be used to change the font family of the text. The `fontFamily` prop should be a member of the `BoFontFamily` enum.
 
-- `inter`
-- `graphik`
 - `sans`
 - `mono`
 - `serif`

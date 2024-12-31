@@ -1,13 +1,26 @@
 {
-  "name": "lib",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@mrksbnc/bamboo",
+  "version": "0.0.0-beta.5",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/bamboo.js",
+      "require": "./dist/bamboo.umd.cjs"
+    },
+    "./lib.css": {
+      "import": "./dist/lib.min.css",
+      "require": "./dist/lib.min.css"
+    }
+  },
+  "main": "./dist/bamboo.umd.cjs",
+  "module": "./dist/bamboo.js",
+  "types": "./dist/bamboo.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "test:unit": "vitest",
+    "chromatic": "npx chromatic --exit-zero-on-changes",
+    "test": "vitest --update --coverage --silent=false",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
@@ -15,7 +28,15 @@
     "lint": "run-s lint:*",
     "format": "prettier --write src/",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build": "NODE_ENV=production run-p type-check \"build-only {@}\" && pnpm build:css:min",
+    "build:storybook": "storybook build -o static",
+    "build:css:min": "NPM_ENV=production npx postcss src/lib.css  > dist/lib.min.css",
+    "build:css": "NPM_ENV=development npx postcss src/lib.css  > dist/lib.css"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   },
   "dependencies": {
     "vue": "^3.5.13"
@@ -33,32 +54,36 @@
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.10.2",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@vitest/coverage-v8": "2.1.8",
     "@vitest/eslint-plugin": "1.1.20",
     "@vue/eslint-config-prettier": "^10.1.0",
-    "@vue/eslint-config-typescript": "^14.1.3",
+    "@vue/eslint-config-typescript": "^14.2.0",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
+    "autoprefixer": "^10.4.20",
     "chromatic": "^11.20.2",
-    "eslint": "^9.14.0",
-    "eslint-plugin-oxlint": "^0.11.0",
+    "eslint": "^9.17.0",
+    "eslint-plugin-oxlint": "^0.11.1",
     "eslint-plugin-storybook": "^0.11.1",
-    "eslint-plugin-vue": "^9.30.0",
+    "eslint-plugin-vue": "^9.32.0",
     "jsdom": "^25.0.1",
-    "npm-run-all2": "^7.0.1",
-    "oxlint": "^0.11.0",
-    "prettier": "^3.3.3",
+    "npm-run-all2": "^7.0.2",
+    "oxlint": "^0.11.1",
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^10.1.3",
+    "prettier": "^3.4.2",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "storybook": "^8.4.7",
+    "tailwindcss": "^3.4.17",
     "typescript": "~5.6.3",
-    "vite": "^6.0.5",
+    "vite": "^6.0.6",
     "vite-plugin-dts": "^4.4.0",
     "vite-plugin-vue-devtools": "^7.6.8",
     "vite-svg-loader": "^5.1.0",
     "vitest": "^2.1.8",
-    "vue-tsc": "^2.1.10"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
+    "vue-tsc": "^2.2.0"
   }
 }

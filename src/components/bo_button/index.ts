@@ -1,3 +1,3 @@
-export { default as BoButton } from './BoButton.vue';
-export * from './constants';
-export * from './types';
+export { default as BoButton } from './BoButton.vue'
+export * from './constants'
+export * from './types'

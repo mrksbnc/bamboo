@@ -3,7 +3,7 @@
 		:style="slotCardWidth.style"
 		:class="[
 			cardContainerClasses,
-			'bo-card rounded-lg border border-gray-300 bg-white shadow dark:border-gray-700 dark:bg-gray-800',
+			'bo-card rounded-lg border border-gray-300 bg-white shadow',
 		]"
 	>
 		<div
@@ -22,7 +22,7 @@
 				:clickable="clickable"
 				:color="BoTextColor.current"
 				:size="BoFontSize['2xl']"
-				:font-family="BoFontFamily.inter"
+				:font-family="BoFontFamily.sans"
 			/>
 			<bo-text
 				v-if="description != null"
@@ -30,7 +30,7 @@
 				:clickable="clickable"
 				:size="BoFontSize.base"
 				:color="BoTextColor.secondary"
-				:font-family="BoFontFamily.inter"
+				:font-family="BoFontFamily.sans"
 			/>
 		</div>
 	</div>
@@ -42,11 +42,11 @@ import {
 	BoFontSize,
 	BoText,
 	BoTextColor,
-} from '@/components/bo_text';
-import type { StyleConstruct } from '@/types';
-import { TailwindUtils } from '@/utils';
-import { computed, toRefs } from 'vue';
-import type { BoCardProps } from './types';
+} from '@/components/bo_text'
+import type { StyleConstruct } from '@/types'
+import { TailwindUtils } from '@/utils'
+import { computed, toRefs } from 'vue'
+import type { BoCardProps } from './types'
 
 const props = withDefaults(defineProps<BoCardProps>(), {
 	padding: () => ({
@@ -55,7 +55,7 @@ const props = withDefaults(defineProps<BoCardProps>(), {
 		bottom: true,
 		left: true,
 	}),
-});
+})
 
 const {
 	padding,
@@ -65,31 +65,31 @@ const {
 	widthInPx,
 	title,
 	description,
-} = toRefs(props);
+} = toRefs(props)
 
 const contentClasses =
-	/*tw*/ 'bo-card__content overflow-y-auto overflow-x-hidden';
+	/*tw*/ 'bo-card__content overflow-y-auto overflow-x-hidden'
 
 const slotCardWidth = computed<StyleConstruct>(() => {
 	const construct: StyleConstruct = {
 		style: {},
 		class: /*tw*/ '',
-	};
+	}
 
 	if (widthInPercent.value != null) {
 		construct.style = {
 			width: `${widthInPercent.value}%`,
-		};
+		}
 	}
 
 	if (widthInPx.value != null) {
 		construct.style = {
 			width: `${widthInPx.value}px`,
-		};
+		}
 	}
 
 	if (widthAsTailwindClass.value != null) {
-		construct.class = widthAsTailwindClass.value;
+		construct.class = widthAsTailwindClass.value
 	}
 
 	if (
@@ -97,17 +97,15 @@ const slotCardWidth = computed<StyleConstruct>(() => {
 		!widthInPx.value &&
 		!widthInPercent.value
 	) {
-		construct.class = /*tw*/ 'w-fit max-w-md';
+		construct.class = /*tw*/ 'w-fit max-w-md'
 	}
 
-	return construct;
-});
+	return construct
+})
 
 const cardContainerCursorClasses = computed<string>(() => {
-	return clickable.value
-		? 'cursor-pointer hover:bg-gray-100'
-		: 'cursor-default';
-});
+	return clickable.value ? 'cursor-pointer hover:bg-gray-100' : 'cursor-default'
+})
 
 const cardContainerPaddingClasses = computed<string>(() => {
 	return TailwindUtils.merge(
@@ -115,8 +113,8 @@ const cardContainerPaddingClasses = computed<string>(() => {
 		padding.value.right ? 'pr-4' : 'pr-0',
 		padding.value.bottom ? 'pb-4' : 'pb-0',
 		padding.value.left ? 'pl-4' : 'pl-0',
-	);
-});
+	)
+})
 
 const cardContainerClasses = computed<string>(() => {
 	return TailwindUtils.merge(
@@ -124,6 +122,6 @@ const cardContainerClasses = computed<string>(() => {
 		slotCardWidth.value.class,
 		cardContainerCursorClasses.value,
 		cardContainerPaddingClasses.value,
-	);
-});
+	)
+})
 </script>

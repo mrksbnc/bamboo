@@ -1,9 +1,9 @@
-import { Canvas, Meta, Controls } from '@storybook/blocks';
-import * as BoAlertModalStories from './bo_alert_modal.stories';
+import { Canvas, Meta, Controls } from '@storybook/blocks'
+import * as BoAlertModalStories from './bo_alert_modal.stories'
 
 <Meta
-	title="Components/bo-alert-modal"
-	component={BoAlertModalStories.BoAlertModal}
+  title="Components/bo-alert-modal"
+  component={BoAlertModalStories.BoAlertModal}
 />
 
 # bo-alert-modal
@@ -17,13 +17,13 @@ The component to use is called `bo-alert-modal`.
 
 ```html
 <bo-alert-modal
-	:title="title"
-	:content="content"
-	:confirm-button-label="confirmButtonLabel"
-	:confirm-button-variant="confirmButtonVariant"
-	:cancel-button-label="cancelButtonLabel"
-	:cancel-button-variant="cancelButtonVariant"
-	@update:show="onCancel"
+  :title="title"
+  :content="content"
+  :confirm-button-label="confirmButtonLabel"
+  :confirm-button-variant="confirmButtonVariant"
+  :cancel-button-label="cancelButtonLabel"
+  :cancel-button-variant="cancelButtonVariant"
+  @update:show="onCancel"
 />
 ```
 

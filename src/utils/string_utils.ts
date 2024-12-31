@@ -7,20 +7,20 @@ export class StringUtils {
 	 * capitalize('hello world'); // Hello world
 	 */
 	static capitalize(str: string): string {
-		return str.charAt(0).toUpperCase() + str.slice(1);
+		return str.charAt(0).toUpperCase() + str.slice(1)
 	}
 	/**
 	 * @description
 	 * This method converts a string to title case.
 	 *
 	 * @example
-	 * console.log(camelCaseToTitleCase('helloWorld')); // Hello World
+	 * camelCaseToTitleCase('helloWorld'); // Hello World
 	 */
 	static camelCaseToTitleCase(str: string): string {
 		return str
 			.replace(/([A-Z])/g, ' $1')
 			.replace(/^./, (s) => s.toUpperCase())
-			.trim();
+			.trim()
 	}
 	/**
 	 * @description
@@ -36,7 +36,7 @@ export class StringUtils {
 			(typeof str === 'string' && str.trim().length === 0) ||
 			str === null ||
 			str === undefined
-		);
+		)
 	}
 	/**
 	 * @description
@@ -48,6 +48,6 @@ export class StringUtils {
 	 * safeString(null); // ''
 	 */
 	static safeString(str: unknown): string {
-		return StringUtils.isEmptyStr(str) ? '' : String(str);
+		return StringUtils.isEmptyStr(str) ? '' : String(str)
 	}
 }

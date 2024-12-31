@@ -1,8 +1,8 @@
-import { BoButton } from '@/components/bo_button';
-import { BoSlotModal } from '@/components/bo_modal';
-import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/bo_text';
-import BoText from '@/components/bo_text/BoText.vue';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import { BoButton } from '@/components/bo_button'
+import { BoSlotModal } from '@/components/bo_modal'
+import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/bo_text'
+import BoText from '@/components/bo_text/BoText.vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 
 const meta = {
 	title: 'Components/bo-slot-modal',
@@ -99,17 +99,17 @@ const meta = {
 			defaultValue: '',
 		},
 	},
-} satisfies Meta<typeof BoSlotModal>;
+} satisfies Meta<typeof BoSlotModal>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
 	render: (args) => ({
 		components: { BoSlotModal, BoButton, BoText },
 
 		setup() {
-			return { args, BoFontSize, BoTextColor, BoFontWeight };
+			return { args, BoFontSize, BoTextColor, BoFontWeight }
 		},
 		template: `
 			<BoSlotModal>
@@ -128,14 +128,14 @@ export const Example: Story = {
 			</BoSlotModal>
 		`,
 	}),
-};
+}
 
 export const WithoutCloseButton: Story = {
 	render: (args) => ({
 		components: { BoSlotModal, BoButton, BoText },
 
 		setup() {
-			return { args, BoFontSize, BoTextColor, BoFontWeight };
+			return { args, BoFontSize, BoTextColor, BoFontWeight }
 		},
 		template: `
 			<BoSlotModal :show-close-button="false">
@@ -156,14 +156,14 @@ export const WithoutCloseButton: Story = {
 	args: {
 		showCloseButton: false,
 	},
-};
+}
 
 export const BorderedSlots: Story = {
 	render: (args) => ({
 		components: { BoSlotModal, BoButton, BoText },
 
 		setup() {
-			return { args, BoFontSize, BoTextColor, BoFontWeight };
+			return { args, BoFontSize, BoTextColor, BoFontWeight }
 		},
 		template: `
 			<BoSlotModal v-bind="args">
@@ -186,14 +186,14 @@ export const BorderedSlots: Story = {
 		borderedHeader: true,
 		borderedFooter: true,
 	},
-};
+}
 
 export const CustomWidthPx: Story = {
 	render: (args) => ({
 		components: { BoSlotModal, BoButton, BoText },
 
 		setup() {
-			return { args, BoFontSize, BoTextColor, BoFontWeight };
+			return { args, BoFontSize, BoTextColor, BoFontWeight }
 		},
 		template: `
 			<BoSlotModal :width-in-px="420">
@@ -214,14 +214,14 @@ export const CustomWidthPx: Story = {
 	args: {
 		widthInPx: 200,
 	},
-};
+}
 
 export const CustomWidthPercent: Story = {
 	render: (args) => ({
 		components: { BoSlotModal, BoButton, BoText },
 
 		setup() {
-			return { args, BoFontSize, BoTextColor, BoFontWeight };
+			return { args, BoFontSize, BoTextColor, BoFontWeight }
 		},
 		template: `
 			<BoSlotModal :width-in-percent="args.widthInPercent">
@@ -242,14 +242,14 @@ export const CustomWidthPercent: Story = {
 	args: {
 		widthInPercent: 50,
 	},
-};
+}
 
 export const CustomWidthAsTailwindClass: Story = {
 	render: (args) => ({
 		components: { BoSlotModal, BoButton, BoText },
 
 		setup() {
-			return { args, BoFontSize, BoTextColor, BoFontWeight };
+			return { args, BoFontSize, BoTextColor, BoFontWeight }
 		},
 		template: `
 			<BoSlotModal v-bind="args">
@@ -270,14 +270,14 @@ export const CustomWidthAsTailwindClass: Story = {
 	args: {
 		widthAsTailwindClass: /*tw*/ 'w-6/12',
 	},
-};
+}
 
 export const TabIndexTest: Story = {
 	render: (args) => ({
 		components: { BoSlotModal, BoButton, BoText },
 
 		setup() {
-			return { args, BoFontSize, BoTextColor, BoFontWeight };
+			return { args, BoFontSize, BoTextColor, BoFontWeight }
 		},
 		template: `
 				<BoSlotModal v-bind="args">
@@ -303,4 +303,4 @@ export const TabIndexTest: Story = {
 	args: {
 		showCloseButton: false,
 	},
-};
+}

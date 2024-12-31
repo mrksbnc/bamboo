@@ -1,7 +1,7 @@
-import { BoAvatar, BoAvatarShape, BoAvatarType } from '@/components/bo_avatar';
-import { BoSize } from '@/data/bo_size.constant';
-import { StorybookUtils } from '@/utils';
-import type { Meta, StoryObj } from '@storybook/vue3';
+import { BoAvatar, BoAvatarShape, BoAvatarType } from '@/components/bo_avatar'
+import { BoSize } from '@/data/bo_size.constant'
+import { StorybookUtils } from '@/utils'
+import type { Meta, StoryObj } from '@storybook/vue3'
 
 const meta = {
 	title: 'Components/bo-avatar',
@@ -108,10 +108,10 @@ const meta = {
 			defaultValue: false,
 		},
 	},
-} satisfies Meta<typeof BoAvatar>;
+} satisfies Meta<typeof BoAvatar>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
 	args: {
@@ -120,13 +120,13 @@ export const Example: Story = {
 			initials: 'BO',
 		},
 	},
-};
+}
 
 export const Image: Story = {
 	render: (args) => ({
 		components: { BoAvatar },
 		setup() {
-			return { ...args };
+			return { ...args }
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -141,13 +141,13 @@ export const Image: Story = {
 			alt: 'avatar',
 		},
 	},
-};
+}
 
 export const Initials: Story = {
 	render: (args) => ({
 		components: { BoAvatar },
 		setup() {
-			return { ...args };
+			return { ...args }
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -161,14 +161,14 @@ export const Initials: Story = {
 			initials: 'BO',
 		},
 	},
-};
+}
 
 export const Sizes: Story = {
 	render: (args) => ({
 		components: { BoAvatar },
 		setup() {
-			const sizes = Object.values(BoSize);
-			return { sizes, ...args };
+			const sizes = Object.values(BoSize)
+			return { sizes, ...args }
 		},
 		template: `
 			<div class="flex gap-4"> 
@@ -185,14 +185,14 @@ export const Sizes: Story = {
 			initials: 'BO',
 		},
 	},
-};
+}
 
 export const Shapes: Story = {
 	render: (args) => ({
 		components: { BoAvatar },
 		setup() {
-			const shapes = Object.values(BoAvatarShape);
-			return { shapes, ...args };
+			const shapes = Object.values(BoAvatarShape)
+			return { shapes, ...args }
 		},
 		template: `
 			<div class="flex gap-4"> 
@@ -209,13 +209,13 @@ export const Shapes: Story = {
 			initials: 'BO',
 		},
 	},
-};
+}
 
 export const Clickable: Story = {
 	render: (args) => ({
 		components: { BoAvatar },
 		setup() {
-			return { ...args };
+			return { ...args }
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -230,13 +230,13 @@ export const Clickable: Story = {
 		},
 		clickable: true,
 	},
-};
+}
 
 export const WithDefaultImage: Story = {
 	render: (args) => ({
 		components: { BoAvatar },
 		setup() {
-			return { ...args };
+			return { ...args }
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -247,4 +247,4 @@ export const WithDefaultImage: Story = {
 	args: {
 		withDefaultImage: true,
 	},
-};
+}

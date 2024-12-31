@@ -103,7 +103,7 @@ const meta = {
 					),
 				},
 			},
-			defaultValue: BoFontFamily.inter,
+			defaultValue: BoFontFamily.sans,
 		},
 		whiteSpace: {
 			description: 'The white space of the text',
@@ -239,8 +239,6 @@ export const FontFamilies: Story = {
 		components: { BoText },
 		setup() {
 			const fontFamilies = [
-				[BoFontFamily.inter, 'Inter'],
-				[BoFontFamily.graphik, 'Graphik'],
 				[BoFontFamily.sans, 'Sans'],
 				[BoFontFamily.mono, 'Mono'],
 				[BoFontFamily.serif, 'Serif'],

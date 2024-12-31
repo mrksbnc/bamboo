@@ -1,6 +1,6 @@
-import type { BoDividerType, BoDividerVariant } from './constants';
+import type { BoDividerType, BoDividerVariant } from './constants'
 
 export type BoDividerProps = {
-	variant?: BoDividerVariant;
-	type?: BoDividerType;
-};
+	variant?: BoDividerVariant
+	type?: BoDividerType
+}

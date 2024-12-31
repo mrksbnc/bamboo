@@ -1,9 +1,9 @@
-import { Canvas, Meta, Controls } from '@storybook/blocks';
-import * as BoSlotModalStories from './bo_slot_modal.stories';
+import { Canvas, Meta, Controls } from '@storybook/blocks'
+import * as BoSlotModalStories from './bo_slot_modal.stories'
 
 <Meta
-	title="Components/bo-slot-modal"
-	component={BoSlotModalStories.BoSlotModal}
+  title="Components/bo-slot-modal"
+  component={BoSlotModalStories.BoSlotModal}
 />
 
 # bo-slot-modal
@@ -17,14 +17,14 @@ The component to use is called `bo-slot-modal`.
 
 ```html
 <bo-slot-modal
-	:show-close-button="false"
-	:bordered-footer="false"
-	:bordered-header="false"
-	@update:show=""
+  :show-close-button="false"
+  :bordered-footer="false"
+  :bordered-header="false"
+  @update:show=""
 >
-	<template #header> // </template>
-	<template #body> // </template>
-	<template #footer> // </template>
+  <template #header> // </template>
+  <template #body> // </template>
+  <template #footer> // </template>
 </bo-slot-modal>
 ```
 

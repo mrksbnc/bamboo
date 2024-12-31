@@ -6,14 +6,12 @@
 		:aria-disabled="disabled || isLoading"
 		:aria-readonly="isLoading || disabled"
 	>
-		<span
-			class="bo-button__content inline-flex items-center justify-center gap-2"
-		>
+		<span class="bo-button__content inline-flex items-center justify-center">
 			<bo-icon
 				v-if="prefixIcon !== Icon.none || iconOnlyButton"
 				:icon="iconOnlyIcon"
 				:size="size"
-				class="bo-button__prefix-icon"
+				class="bo-button__prefix-icon mr-1.5"
 			/>
 			<bo-text
 				v-if="!!label && !iconOnlyButton"
@@ -32,28 +30,29 @@
 				"
 				:icon="suffixIcon"
 				:size="size"
-				class="bo-button__suffix-icon"
+				class="bo-button__suffix-icon ml-1.5"
 			/>
 			<bo-loading-spinner
 				v-if="isLoading"
 				:size="loaderSize"
 				:variant="loaderVariant"
+				class="ml-2"
 			/>
 		</span>
 	</button>
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo_icon';
-import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
-import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
-import { BoSize } from '@/data/bo_size.constant';
-import { BoLoaderVariant } from '@/data/loader.constant';
-import { HtmlButtonType } from '@/global/html_button';
-import { StringUtils, TailwindUtils } from '@/utils';
-import { computed, toRefs } from 'vue';
-import { BoButtonShape, BoButtonVariant } from './constants';
-import type { BoButtonProps } from './types';
+import { BoIcon, Icon } from '@/components/bo_icon'
+import { BoLoadingSpinner } from '@/components/bo_loading_spinner'
+import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text'
+import { BoSize } from '@/data/bo_size.constant'
+import { BoLoaderVariant } from '@/data/loader.constant'
+import { HtmlButtonType } from '@/global/html_button'
+import { StringUtils, TailwindUtils } from '@/utils'
+import { computed, toRefs } from 'vue'
+import { BoButtonShape, BoButtonVariant } from './constants'
+import type { BoButtonProps } from './types'
 
 const props = withDefaults(defineProps<BoButtonProps>(), {
 	loaderType: 'spinner',
@@ -64,7 +63,7 @@ const props = withDefaults(defineProps<BoButtonProps>(), {
 	type: () => HtmlButtonType.button,
 	shape: () => BoButtonShape.default,
 	variant: () => BoButtonVariant.primary,
-});
+})
 
 const {
 	label,
@@ -77,13 +76,13 @@ const {
 	linkVariantWithShadow,
 	disabled,
 	isLoading,
-} = toRefs(props);
+} = toRefs(props)
 
 const defaultClasses: string =
-	/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer';
+	/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer'
 
 const disabledClasses: string =
-	/*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none';
+	/*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none'
 
 const iconOnlyButton = computed<boolean>(() => {
 	return (
@@ -91,96 +90,100 @@ const iconOnlyButton = computed<boolean>(() => {
 		prefixIcon.value !== null &&
 		prefixIcon.value !== undefined &&
 		prefixIcon.value !== Icon.none
-	);
-});
+	)
+})
 
 const iconOnlyIcon = computed<Icon>(() => {
 	if (iconOnlyButton.value) {
-		return prefixIcon.value ?? suffixIcon.value ?? Icon.none;
+		return prefixIcon.value ?? suffixIcon.value ?? Icon.none
 	}
 
 	if (prefixIcon.value != null) {
-		return prefixIcon.value;
+		return prefixIcon.value
 	}
 
-	return Icon.none;
-});
+	return Icon.none
+})
 
 const buttonShapeClasses = computed<string>(() => {
 	switch (shape.value) {
 		case BoButtonShape.pill:
-			return /*tw*/ 'rounded-full';
+			return /*tw*/ 'rounded-full'
 		case BoButtonShape.outline:
 		case BoButtonShape.default:
 		default:
-			return /*tw*/ 'rounded-lg';
+			if (size.value === BoSize.extra_small) {
+				return /*tw*/ 'rounded-md'
+			} else {
+				return /*tw*/ 'rounded-lg'
+			}
 	}
-});
+})
 
 const buttonVariantClasses = computed<string>(() => {
 	switch (shape.value) {
 		case BoButtonShape.outline:
 			switch (variant.value) {
 				case BoButtonVariant.primary:
-					return /*tw*/ 'border border-blue-600 hover:bg-blue-600 focus:ring-blue-600 text-blue-600 hover:text-white';
+					return /*tw*/ 'border border-blue-500 hover:bg-blue-700 focus:ring-transparent text-blue-500 hover:text-white'
 				case BoButtonVariant.secondary:
-					return /*tw*/ 'border border-gray-600 hover:bg-gray-400 focus:ring-gray-400 text-gray-400 hover:text-white';
+					return /*tw*/ 'border border-gray-600 hover:bg-gray-400 focus:ring-transparent text-gray-400 hover:text-white'
 				case BoButtonVariant.danger:
-					return /*tw*/ 'border border-red-600 hover:bg-red-600 focus:ring-red-600 text-red-600 hover:text-white';
+					return /*tw*/ 'border border-red-600 hover:bg-red-600 focus:ring-transparent text-red-600 hover:text-white'
 				case BoButtonVariant.warning:
-					return /*tw*/ 'border border-yellow-500 hover:bg-yellow-500 focus:ring-yellow-500 text-yellow-500 hover:text-white';
+					return /*tw*/ 'border border-yellow-500 hover:bg-yellow-500 focus:ring-transparent text-yellow-500 hover:text-white'
 				case BoButtonVariant.success:
-					return /*tw*/ 'border border-green-600 hover:bg-green-600 focus:ring-green-600 text-green-600 hover:text-white';
+					return /*tw*/ 'border border-green-600 hover:bg-green-600 focus:ring-transparent text-green-600 hover:text-white'
 				case BoButtonVariant.dark:
-					return /*tw*/ 'border border-black hover:bg-black focus:ring-black text-black hover:text-white';
+					return /*tw*/ 'border border-black hover:bg-black focus:ring-transparent text-black hover:text-white'
 				case BoButtonVariant.link:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-600 hover:text-blue-700';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-500 hover:text-blue-700'
 				case BoButtonVariant.link_secondary:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-600 hover:text-blue-700';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-500 hover:text-blue-700'
 				case BoButtonVariant.link_danger:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 hover:text-red-700';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 hover:text-red-700'
 				case BoButtonVariant.link_warning:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 hover:text-yellow-700';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 hover:text-yellow-700'
 				case BoButtonVariant.link_success:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 hover:text-green-700';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 hover:text-green-700'
 				case BoButtonVariant.link_dark:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black hover:text-black/50';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black hover:text-black/50'
 				default:
-					return /*tw*/ 'border border-blue-600 hover:bg-blue-600 focus:ring-blue-600 text-blue-600 hover:text-white';
+					return /*tw*/ 'border border-blue-600 hover:bg-blue-400 focus:ring-transparent text-blue-600 hover:text-white'
 			}
 		case BoButtonShape.pill:
 		case BoButtonShape.default:
 		default:
 			switch (variant.value) {
 				case BoButtonVariant.primary:
-					return /*tw*/ 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-600 text-white';
+					return /*tw*/ 'bg-blue-600 hover:bg-blue-700 focus:ring-transparent text-white'
 				case BoButtonVariant.secondary:
-					return /*tw*/ 'bg-gray-400 hover:bg-gray-700 focus:ring-gray-400 text-white';
+					return /*tw*/ 'bg-gray-400 hover:bg-gray-700 focus:ring-transparent text-white'
 				case BoButtonVariant.danger:
-					return /*tw*/ 'bg-red-600 hover:bg-red-700 focus:ring-red-600 text-white';
+					return /*tw*/ 'bg-red-600 hover:bg-red-700 focus:ring-transparent text-white'
 				case BoButtonVariant.warning:
-					return /*tw*/ 'bg-yellow-500 hover:bg-yellow-700 focus:ring-yellow-500 text-white';
+					return /*tw*/ 'bg-yellow-500 hover:bg-yellow-700 focus:ring-transparent text-white'
 				case BoButtonVariant.success:
-					return /*tw*/ 'bg-green-600 hover:bg-green-700 focus:ring-green-600 text-white';
+					return /*tw*/ 'bg-green-600 hover:bg-green-700 focus:ring-transparent text-white'
 				case BoButtonVariant.dark:
-					return /*tw*/ 'bg-black hover:bg-black/50 focus:ring-black text-white';
+					return /*tw*/ 'bg-black hover:bg-black/50 focus:ring-transparent text-white'
 				case BoButtonVariant.link:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-600 hover:text-blue-700';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-500 hover:text-blue-700'
 				case BoButtonVariant.link_secondary:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-gray-600 hover:text-gray-700';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-gray-600 hover:text-gray-700'
 				case BoButtonVariant.link_danger:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 hover:text-red-700';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 hover:text-red-700'
 				case BoButtonVariant.link_warning:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 hover:text-yellow-700';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 hover:text-yellow-700'
 				case BoButtonVariant.link_success:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 hover:text-green-700';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 hover:text-green-700'
 				case BoButtonVariant.link_dark:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black hover:text-black/50';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black hover:text-black/50'
 				default:
-					return /*tw*/ 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-600 text-white';
+					return /*tw*/ 'bg-blue-600 hover:bg-blue-700 focus:ring-transparent text-white'
 			}
 	}
-});
+})
 
 const buttonVariantShadowClasses = computed<string>(() => {
 	switch (variant.value) {
@@ -192,10 +195,10 @@ const buttonVariantShadowClasses = computed<string>(() => {
 		case BoButtonVariant.link_dark:
 			switch (linkVariantWithShadow.value) {
 				case false:
-					return /*tw*/ 'shadow-none';
+					return /*tw*/ 'shadow-none'
 				case true:
 				default:
-					return /*tw*/ 'shadow-md';
+					return /*tw*/ 'shadow-md'
 			}
 		case BoButtonVariant.primary:
 		case BoButtonVariant.secondary:
@@ -204,9 +207,9 @@ const buttonVariantShadowClasses = computed<string>(() => {
 		case BoButtonVariant.success:
 		case BoButtonVariant.dark:
 		default:
-			return /*tw*/ 'shadow-md';
+			return /*tw*/ 'shadow-lg inset-shadow-sm inset-shadow-white/20'
 	}
-});
+})
 
 const buttonClasses = computed<string>(() => {
 	return TailwindUtils.merge(
@@ -216,82 +219,82 @@ const buttonClasses = computed<string>(() => {
 		buttonShapeClasses.value,
 		buttonVariantClasses.value,
 		buttonVariantShadowClasses.value,
-	);
-});
+	)
+})
 
 const buttonFontSize = computed<BoFontSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return BoFontSize.xs;
+			return BoFontSize.xs
 		case BoSize.small:
-			return BoFontSize.sm;
+			return BoFontSize.sm
 		case BoSize.large:
-			return BoFontSize.lg;
+			return BoFontSize.lg
 		case BoSize.extra_large:
-			return BoFontSize.xl;
+			return BoFontSize.xl
 		case BoSize.default:
 		default:
-			return BoFontSize.base;
+			return BoFontSize.base
 	}
-});
+})
 
 const buttonSizeClasses = computed<string>(() => {
 	switch (iconOnlyButton.value) {
 		case true:
 			switch (size.value) {
 				case BoSize.extra_small:
-					return /*tw*/ 'w-[24px] h-[24px]';
+					return /*tw*/ 'w-[16px] h-[16px]'
 				case BoSize.small:
-					return /*tw*/ 'w-[32px] h-[32px]';
+					return /*tw*/ 'w-[24px] h-[24px]'
 				case BoSize.default:
 				default:
-					return /*tw*/ 'w-[40px] h-[40px]';
+					return /*tw*/ 'w-[32px] h-[32px]'
 				case BoSize.large:
-					return /*tw*/ 'w-[48px] h-[48px]';
+					return /*tw*/ 'w-[40px] h-[40px]'
 				case BoSize.extra_large:
-					return /*tw*/ 'w-[56px] h-[56px]';
+					return /*tw*/ 'w-[48px] h-[48px]'
 			}
 		default:
 			switch (size.value) {
 				case BoSize.extra_small:
-					return /*tw*/ 'h-[24px] px-[8px]';
+					return /*tw*/ 'h-[16px] px-[4px]'
 				case BoSize.small:
-					return /*tw*/ 'h-[32px] px-[16px]';
+					return /*tw*/ 'h-[24px] px-[8px]'
 				case BoSize.default:
 				default:
-					return /*tw*/ 'h-[40px] px-[24px]';
+					return /*tw*/ 'h-[32px] px-[12px]'
 				case BoSize.large:
-					return /*tw*/ 'h-[48px] px-[32px]';
+					return /*tw*/ 'h-[40px] px-[16px]'
 				case BoSize.extra_large:
-					return /*tw*/ 'h-[56px] px-[40px]';
+					return /*tw*/ 'h-[48px] px-[20px]'
 			}
 	}
-});
+})
 
 const loaderVariant = computed<BoLoaderVariant>(() => {
 	switch (shape.value) {
 		case BoButtonShape.outline:
 			switch (variant.value) {
 				case BoButtonVariant.secondary:
-					return BoLoaderVariant.secondary;
+					return BoLoaderVariant.secondary
 				case BoButtonVariant.danger:
-					return BoLoaderVariant.danger;
+					return BoLoaderVariant.danger
 				case BoButtonVariant.warning:
-					return BoLoaderVariant.warning;
+					return BoLoaderVariant.warning
 				case BoButtonVariant.success:
-					return BoLoaderVariant.success;
+					return BoLoaderVariant.success
 				case BoButtonVariant.dark:
-					return BoLoaderVariant.dark;
+					return BoLoaderVariant.dark
 				case BoButtonVariant.primary:
 				default:
-					return BoLoaderVariant.primary;
+					return BoLoaderVariant.primary
 			}
 		case BoButtonShape.default:
 		case BoButtonShape.pill:
 		default:
 			switch (variant.value) {
 				case BoButtonVariant.link:
-					return BoLoaderVariant.primary;
+					return BoLoaderVariant.primary
 				case BoButtonVariant.primary:
 				case BoButtonVariant.secondary:
 				case BoButtonVariant.danger:
@@ -299,21 +302,21 @@ const loaderVariant = computed<BoLoaderVariant>(() => {
 				case BoButtonVariant.success:
 				case BoButtonVariant.dark:
 				default:
-					return BoLoaderVariant.white;
+					return BoLoaderVariant.white
 			}
 	}
-});
+})
 
 const loaderSize = computed<BoSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
 		case BoSize.small:
-			return BoSize.small;
+			return BoSize.extra_small
 		case BoSize.default:
 		case BoSize.large:
 		case BoSize.extra_large:
 		default:
-			return BoSize.default;
+			return BoSize.default
 	}
-});
+})
 </script>

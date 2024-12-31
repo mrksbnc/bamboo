@@ -3,11 +3,11 @@ import {
 	BoBadgeShape,
 	BoBadgeType,
 	BoBadgeVariant,
-} from '@/components/bo_badge';
-import { Icon } from '@/components/bo_icon';
-import { BoSize } from '@/data/bo_size.constant';
-import { StorybookUtils } from '@/utils';
-import type { Meta, StoryObj } from '@storybook/vue3';
+} from '@/components/bo_badge'
+import { Icon } from '@/components/bo_icon'
+import { BoSize } from '@/data/bo_size.constant'
+import { StorybookUtils } from '@/utils'
+import type { Meta, StoryObj } from '@storybook/vue3'
 
 const meta = {
 	title: 'Components/bo-badge',
@@ -115,23 +115,23 @@ const meta = {
 			options: Object.values(Icon),
 		},
 	},
-} satisfies Meta<typeof BoBadge>;
+} satisfies Meta<typeof BoBadge>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
 	args: {
 		label: 'Badge',
 	},
-};
+}
 
 export const Sizes: Story = {
 	render: (args) => ({
 		components: { BoBadge },
 		setup() {
-			const sizes = Object.values(BoSize);
-			return { sizes, ...args };
+			const sizes = Object.values(BoSize)
+			return { sizes, ...args }
 		},
 		template: `
 			<div class="flex flex-row gap-1">
@@ -145,14 +145,14 @@ export const Sizes: Story = {
 	args: {
 		label: 'Badge',
 	},
-};
+}
 
 export const SizesWithIcons: Story = {
 	render: (args) => ({
 		components: { BoBadge },
 		setup() {
-			const sizes = Object.values(BoSize);
-			return { sizes, ...args };
+			const sizes = Object.values(BoSize)
+			return { sizes, ...args }
 		},
 		template: `
 			<div class="flex flex-row gap-1">
@@ -174,7 +174,7 @@ export const SizesWithIcons: Story = {
 		prefixIcon: Icon.alert_circle,
 		suffixIcon: Icon.alert_circle,
 	},
-};
+}
 
 export const Variants: Story = {
 	render: () => ({
@@ -193,7 +193,7 @@ export const Variants: Story = {
 	args: {
 		label: 'Badge',
 	},
-};
+}
 
 export const Shapes: Story = {
 	render: () => ({
@@ -210,7 +210,7 @@ export const Shapes: Story = {
 	args: {
 		label: 'Badge',
 	},
-};
+}
 
 export const Types: Story = {
 	render: () => ({
@@ -225,7 +225,7 @@ export const Types: Story = {
 	args: {
 		label: 'Badge',
 	},
-};
+}
 
 export const Icons: Story = {
 	render: () => ({
@@ -240,15 +240,15 @@ export const Icons: Story = {
 	args: {
 		label: 'Badge',
 	},
-};
+}
 
 export const IconOnly: Story = {
 	render: (args) => ({
 		components: { BoBadge },
 		setup() {
-			const sizes = Object.values(BoSize);
+			const sizes = Object.values(BoSize)
 
-			return { ...args, sizes };
+			return { ...args, sizes }
 		},
 		template: `
 			<div class="flex flex-row gap-2">
@@ -265,4 +265,4 @@ export const IconOnly: Story = {
 		prefixIcon: Icon.alert_circle,
 		type: BoBadgeType.default,
 	},
-};
+}

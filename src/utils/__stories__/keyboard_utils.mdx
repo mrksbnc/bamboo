@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/blocks';
-import { KeyboardUtils } from '@/utils';
+import { Meta, Story } from '@storybook/blocks'
+import { KeyboardUtils } from '@/utils'
 
 <Meta title="Utils/KeyboardUtils" />
 
@@ -27,10 +27,10 @@ The `trapTabKey` method is used to trap the tab key within an element with the s
 
 ```html
 <div
-	id="my-element"
-	@keydown="KeyboardUtils.trapTabKey($event, 'my-element')"
+  id="my-element"
+  @keydown="KeyboardUtils.trapTabKey($event, 'my-element')"
 >
-	<!-- Tab key will be trapped in this element -->
+  <!-- Tab key will be trapped in this element -->
 </div>
 ```
 
@@ -52,9 +52,9 @@ without the need to implement the required checks manually.
 
 ```html
 <div
-	id="my-element"
-	@keydown="KeyboardUtils.registerEnterKeyHandler($event, myHandler)"
+  id="my-element"
+  @keydown="KeyboardUtils.registerEnterKeyHandler($event, myHandler)"
 >
-	<!-- Enter key will call the handler function when pressed -->
+  <!-- Enter key will call the handler function when pressed -->
 </div>
 ```

@@ -2,12 +2,12 @@ import {
 	BoButton,
 	BoButtonShape,
 	BoButtonVariant,
-} from '@/components/bo_button';
-import { Icon } from '@/components/bo_icon';
-import { BoSize } from '@/data/bo_size.constant';
-import { HtmlButtonType } from '@/global';
-import { StorybookUtils } from '@/utils';
-import type { StoryObj } from '@storybook/vue3';
+} from '@/components/bo_button'
+import { Icon } from '@/components/bo_icon'
+import { BoSize } from '@/data/bo_size.constant'
+import { HtmlButtonType } from '@/global'
+import { StorybookUtils } from '@/utils'
+import type { StoryObj } from '@storybook/vue3'
 
 const meta = {
 	title: 'Components/bo-button',
@@ -150,10 +150,10 @@ const meta = {
 			defaultValue: false,
 		},
 	},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
 	args: {
@@ -162,7 +162,7 @@ export const Example: Story = {
 		type: HtmlButtonType.button,
 		size: BoSize.default,
 	},
-};
+}
 
 export const Disabled: Story = {
 	args: {
@@ -172,7 +172,7 @@ export const Disabled: Story = {
 		type: HtmlButtonType.button,
 		size: BoSize.default,
 	},
-};
+}
 
 export const isLoading: Story = {
 	args: {
@@ -182,14 +182,14 @@ export const isLoading: Story = {
 		type: HtmlButtonType.button,
 		size: BoSize.default,
 	},
-};
+}
 
 export const Sizes: Story = {
 	render: (args) => ({
 		components: { BoButton },
 		setup() {
-			const sizes = Object.values(BoSize);
-			return { sizes, ...args };
+			const sizes = Object.values(BoSize)
+			return { sizes, ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -205,14 +205,14 @@ export const Sizes: Story = {
 		variant: BoButtonVariant.primary,
 		type: HtmlButtonType.button,
 	},
-};
+}
 
 export const Shapes: Story = {
 	render: (args) => ({
 		components: { BoButton },
 		setup() {
-			const shapes = Object.values(BoButtonShape);
-			return { shapes, ...args };
+			const shapes = Object.values(BoButtonShape)
+			return { shapes, ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -228,14 +228,14 @@ export const Shapes: Story = {
 		variant: BoButtonVariant.primary,
 		type: HtmlButtonType.button,
 	},
-};
+}
 
 export const Variants: Story = {
 	render: (args) => ({
 		components: { BoButton },
 		setup() {
-			const variants = Object.values(BoButtonVariant);
-			return { variants, ...args };
+			const variants = Object.values(BoButtonVariant)
+			return { variants, ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -251,15 +251,15 @@ export const Variants: Story = {
 		variant: BoButtonVariant.primary,
 		type: HtmlButtonType.button,
 	},
-};
+}
 
 export const ShapesAndVariants: Story = {
 	render: (args) => ({
 		components: { BoButton },
 		setup() {
-			const shapes = Object.values(BoButtonShape);
-			const variants = Object.values(BoButtonVariant);
-			return { shapes, variants, ...args };
+			const shapes = Object.values(BoButtonShape)
+			const variants = Object.values(BoButtonVariant)
+			return { shapes, variants, ...args }
 		},
 		template: `
 			<div class="flex gap-4">
@@ -277,13 +277,13 @@ export const ShapesAndVariants: Story = {
 		variant: BoButtonVariant.primary,
 		type: HtmlButtonType.button,
 	},
-};
+}
 
 export const WithPrefixIcon: Story = {
 	render: (args) => ({
 		components: { BoButton },
 		setup() {
-			return { ...args };
+			return { ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4 w">
@@ -300,13 +300,13 @@ export const WithPrefixIcon: Story = {
 		variant: BoButtonVariant.primary,
 		type: HtmlButtonType.button,
 	},
-};
+}
 
 export const WithSuffixIcon: Story = {
 	render: (args) => ({
 		components: { BoButton },
 		setup() {
-			return { ...args };
+			return { ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4 w">
@@ -323,13 +323,13 @@ export const WithSuffixIcon: Story = {
 		variant: BoButtonVariant.primary,
 		type: HtmlButtonType.button,
 	},
-};
+}
 
 export const IconOnlyButton: Story = {
 	render: (args) => ({
 		components: { BoButton },
 		setup() {
-			return { ...args };
+			return { ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4 w">
@@ -345,14 +345,14 @@ export const IconOnlyButton: Story = {
 		variant: BoButtonVariant.primary,
 		type: HtmlButtonType.button,
 	},
-};
+}
 
 export const IconOnlySizes: Story = {
 	render: (args) => ({
 		components: { BoButton },
 		setup() {
-			const sizes = Object.values(BoSize);
-			return { sizes, ...args };
+			const sizes = Object.values(BoSize)
+			return { sizes, ...args }
 		},
 		template: `
 			<div class="flex flex-row gap-4">
@@ -368,14 +368,14 @@ export const IconOnlySizes: Story = {
 		variant: BoButtonVariant.primary,
 		type: HtmlButtonType.button,
 	},
-};
+}
 
 export const IconOnlyVariants: Story = {
 	render: (args) => ({
 		components: { BoButton },
 		setup() {
-			const variants = Object.values(BoButtonVariant);
-			return { variants, ...args };
+			const variants = Object.values(BoButtonVariant)
+			return { variants, ...args }
 		},
 		template: `
 			<div class="flex flex-row gap-4">
@@ -391,13 +391,13 @@ export const IconOnlyVariants: Story = {
 		variant: BoButtonVariant.primary,
 		type: HtmlButtonType.button,
 	},
-};
+}
 
 export const LinkVariantWithShadow: Story = {
 	render: (args) => ({
 		components: { BoButton },
 		setup() {
-			return { ...args };
+			return { ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -413,4 +413,4 @@ export const LinkVariantWithShadow: Story = {
 		variant: BoButtonVariant.link,
 		type: HtmlButtonType.button,
 	},
-};
+}
