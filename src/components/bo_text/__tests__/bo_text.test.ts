@@ -220,7 +220,7 @@ describe('bo_text.vue', () => {
 
 		test('the text should have the correct default color classes with text color', async () => {
 			await wrapper.setProps({ color: BoTextColor.default })
-			expect(wrapper.find('#test-id').classes()).toContain('text-gray-900')
+			expect(wrapper.find('#test-id').classes()).toContain('text-neutral-900')
 		})
 
 		test('the text should have the correct current color classes', async () => {
@@ -250,12 +250,12 @@ describe('bo_text.vue', () => {
 
 		test('the text should have the correct secondary color classes', async () => {
 			await wrapper.setProps({ color: BoTextColor.secondary })
-			expect(wrapper.find('#test-id').classes()).toContain('text-gray-500')
+			expect(wrapper.find('#test-id').classes()).toContain('text-neutral-500')
 		})
 
 		test('the text should have the correct disabled color classes', async () => {
 			await wrapper.setProps({ color: BoTextColor.disabled })
-			expect(wrapper.find('#test-id').classes()).toContain('text-gray-400')
+			expect(wrapper.find('#test-id').classes()).toContain('text-neutral-400')
 		})
 
 		test('the text should have the correct info color classes', async () => {
