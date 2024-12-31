@@ -88,7 +88,7 @@
 		"remark-gfm": "^4.0.0",
 		"sass": "^1.83.0",
 		"storybook": "^8.4.7",
-		"tailwindcss": "4.0.0-beta.8",
+		"tailwindcss": "^3.4.17",
 		"typescript": "~5.7.2",
 		"typescript-eslint": "^8.18.2",
 		"vite": "^6.0.5",

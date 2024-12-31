@@ -46,11 +46,11 @@ const {
 
 const defaultClasses = /*tw*/ 'bo-text inline-flex items-center shrink';
 
-const textCursorClasses = computed<string>(() => {
+const cursor = computed<string>(() => {
 	return clickable.value ? /*tw*/ 'cursor-pointer' : /*tw*/ 'cursor-default';
 });
 
-const textSizeClasses = computed<string>(() => {
+const fontSize = computed<string>(() => {
 	switch (size.value) {
 		case BoFontSize.xs:
 			return /*tw*/ 'text-bo-xs leading-bo-xs';
@@ -78,7 +78,7 @@ const textSizeClasses = computed<string>(() => {
 	}
 });
 
-const textWeightClasses = computed<string>(() => {
+const fontWeight = computed<string>(() => {
 	switch (weight.value) {
 		case BoFontWeight.light:
 			return /*tw*/ 'font-light';
@@ -94,7 +94,7 @@ const textWeightClasses = computed<string>(() => {
 	}
 });
 
-const textFontFamilyClasses = computed<string>(() => {
+const textFontFamily = computed<string>(() => {
 	switch (fontFamily.value) {
 		case BoFontFamily.inter:
 			return /*tw*/ 'font-inter';
@@ -129,7 +129,7 @@ const textWhiteSpaceClasses = computed<string>(() => {
 	}
 });
 
-const textColorClasses = computed<string>(() => {
+const fontColor = computed<string>(() => {
 	switch (color.value) {
 		case BoTextColor.default:
 			return /*tw*/ 'text-gray-900';
@@ -153,7 +153,7 @@ const textColorClasses = computed<string>(() => {
 	}
 });
 
-const textTextAlignClasses = computed<string>(() => {
+const textAlignment = computed<string>(() => {
 	switch (textAlign.value) {
 		case BoTextAlign.left:
 			return /*tw*/ 'text-left';
@@ -168,15 +168,29 @@ const textTextAlignClasses = computed<string>(() => {
 });
 
 const classes = computed<string>(() => {
+	console.log(
+		TailwindUtils.merge(
+			cssClass.value,
+			defaultClasses,
+			fontSize.value,
+			fontColor.value,
+			cursor.value,
+			fontWeight.value,
+			textAlignment.value,
+			textFontFamily.value,
+			textWhiteSpaceClasses.value,
+		),
+	);
+
 	return TailwindUtils.merge(
 		cssClass.value,
 		defaultClasses,
-		textSizeClasses.value,
-		textColorClasses.value,
-		textCursorClasses.value,
-		textWeightClasses.value,
-		textTextAlignClasses.value,
-		textFontFamilyClasses.value,
+		fontSize.value,
+		fontColor.value,
+		cursor.value,
+		fontWeight.value,
+		textAlignment.value,
+		textFontFamily.value,
 		textWhiteSpaceClasses.value,
 	);
 });

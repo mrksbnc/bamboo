@@ -1,5 +1,4 @@
 import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
-import { storybookVuePlugin } from '@storybook/vue3-vite/vite-plugin';
 import { defineWorkspace } from 'vitest/config';
 
 // More info at: https://storybook.js.org/docs/writing-tests/vitest-plugin
@@ -16,7 +15,6 @@ export default defineWorkspace([
 					exclude: ['experimental'],
 				},
 			}),
-			storybookVuePlugin(),
 		],
 		test: {
 			name: 'storybook',

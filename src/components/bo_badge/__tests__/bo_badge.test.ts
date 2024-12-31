@@ -35,7 +35,7 @@ describe('bo_badge.vue', () => {
 		expect(wrapper.find('.bo-badge').classes()).contains('font-bold');
 		expect(wrapper.find('.bo-badge').classes()).contains('font-graphik');
 		expect(wrapper.find('.bo-badge').classes()).contains('gap-2');
-		expect(wrapper.find('.bo-badge').classes()).contains('w-fit');
+		expect(wrapper.find('.bo-badge').classes()).contains('max-w-fit');
 	});
 
 	test('the badge should render the label', () => {

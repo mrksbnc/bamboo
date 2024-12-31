@@ -7,10 +7,7 @@
 		:aria-readonly="isLoading || disabled"
 	>
 		<span
-			:class="[
-				'bo-button__content inline-flex items-center justify-center gap-2',
-				buttonSizeClasses,
-			]"
+			class="bo-button__content inline-flex items-center justify-center gap-2"
 		>
 			<bo-icon
 				v-if="prefixIcon !== Icon.none || iconOnlyButton"
@@ -23,8 +20,8 @@
 				:text="label"
 				:clickable="true"
 				:weight="BoFontWeight.medium"
-				:size="buttonContentSize"
-				class="bo-button__label min-w-fit"
+				:size="buttonFontSize"
+				class="bo-button__label"
 			/>
 			<bo-icon
 				v-if="
@@ -137,17 +134,17 @@ const buttonVariantClasses = computed<string>(() => {
 				case BoButtonVariant.dark:
 					return /*tw*/ 'border border-black hover:bg-black focus:ring-black text-black hover:text-white';
 				case BoButtonVariant.link:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-600 hover:text-blue-700 focus:ring-blue-600';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-600 hover:text-blue-700';
 				case BoButtonVariant.link_secondary:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-600 hover:text-blue-700 focus:ring-blue-600';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-600 hover:text-blue-700';
 				case BoButtonVariant.link_danger:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 hover:text-red-700 focus:ring-red-600';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 hover:text-red-700';
 				case BoButtonVariant.link_warning:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 hover:text-yellow-700 focus:ring-yellow-500';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 hover:text-yellow-700';
 				case BoButtonVariant.link_success:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 hover:text-green-700 focus:ring-green-600';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 hover:text-green-700';
 				case BoButtonVariant.link_dark:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black hover:text-black/50 focus:ring-black';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black hover:text-black/50';
 				default:
 					return /*tw*/ 'border border-blue-600 hover:bg-blue-600 focus:ring-blue-600 text-blue-600 hover:text-white';
 			}
@@ -168,17 +165,17 @@ const buttonVariantClasses = computed<string>(() => {
 				case BoButtonVariant.dark:
 					return /*tw*/ 'bg-black hover:bg-black/50 focus:ring-black text-white';
 				case BoButtonVariant.link:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-600 hover:text-blue-700 focus:ring-blue-600';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-600 hover:text-blue-700';
 				case BoButtonVariant.link_secondary:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-gray-600 hover:text-gray-700 focus:ring-gray-600';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-gray-600 hover:text-gray-700';
 				case BoButtonVariant.link_danger:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 hover:text-red-700 focus:ring-red-600';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 hover:text-red-700';
 				case BoButtonVariant.link_warning:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 hover:text-yellow-700 focus:ring-yellow-500';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 hover:text-yellow-700';
 				case BoButtonVariant.link_success:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 hover:text-green-700 focus:ring-green-600';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 hover:text-green-700';
 				case BoButtonVariant.link_dark:
-					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black hover:text-black/50 focus:ring-black';
+					return /*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black hover:text-black/50';
 				default:
 					return /*tw*/ 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-600 text-white';
 			}
@@ -215,13 +212,14 @@ const buttonClasses = computed<string>(() => {
 	return TailwindUtils.merge(
 		defaultClasses,
 		disabledClasses,
+		buttonSizeClasses.value,
 		buttonShapeClasses.value,
 		buttonVariantClasses.value,
 		buttonVariantShadowClasses.value,
 	);
 });
 
-const buttonContentSize = computed<BoFontSize>(() => {
+const buttonFontSize = computed<BoFontSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
 			return BoFontSize.xs;
