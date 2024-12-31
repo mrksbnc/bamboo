@@ -1,0 +1,41 @@
+{
+	"compilerOptions": {
+		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+		"target": "ES2020",
+		"module": "ESNext",
+		"skipLibCheck": true,
+		"lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+		/* Bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"isolatedModules": true,
+		"moduleDetection": "force",
+		"noEmit": true,
+		"jsx": "preserve",
+
+		/* Linting */
+		"strict": true,
+		"alwaysStrict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedSideEffectImports": true,
+
+		/* Types */
+		"types": ["vite/client", "vitest/globals", "vite-svg-loader"],
+
+		/* Project */
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.tsx",
+		"src/**/*.vue",
+		".storybook/**/*.ts"
+	],
+	"exclude": ["node_modules", "dist", "docs"]
+}

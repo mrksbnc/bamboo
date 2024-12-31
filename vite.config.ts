@@ -1,43 +1,27 @@
-import vue from '@vitejs/plugin-vue';
-import { resolve } from 'node:path';
-import { fileURLToPath, URL } from 'node:url';
-import { defineConfig } from 'vite';
-import viteCompression from 'vite-plugin-compression';
-import dts from 'vite-plugin-dts';
-import svgLoader from 'vite-svg-loader';
+import { fileURLToPath, URL } from 'node:url'
+
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueDevTools from 'vite-plugin-vue-devtools'
+import dts from 'vite-plugin-dts'
+import svgLoader from 'vite-svg-loader'
 
 // https://vite.dev/config/
 export default defineConfig({
-	appType: 'custom',
 	plugins: [
 		vue(),
-		dts(),
+		dts({
+			rollupTypes: true,
+			tsconfigPath: './tsconfig.app.json',
+		}),
 		svgLoader(),
-		viteCompression({ algorithm: 'gzip', ext: '.gz' }),
-		viteCompression({ algorithm: 'brotliCompress', ext: '.br' }),
+		vueDevTools(),
 	],
-	optimizeDeps: {
-		include: ['vue'],
-	},
 	build: {
-		minify: true,
-		emptyOutDir: true,
-		cssMinify: true,
-		cssCodeSplit: true,
 		lib: {
+			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 			name: 'bamboo',
-			entry: resolve(__dirname, 'src/index.ts'),
-		},
-		rollupOptions: {
-			treeshake: true,
-			external: ['vue'],
-			output: {
-				exports: 'named',
-				globals: { vue: 'Vue' },
-			},
-			input: {
-				main: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-			},
+			fileName: 'bamboo',
 		},
 	},
 	resolve: {
@@ -45,4 +29,4 @@ export default defineConfig({
 			'@': fileURLToPath(new URL('./src', import.meta.url)),
 		},
 	},
-});
+})

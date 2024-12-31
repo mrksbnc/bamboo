@@ -1,21 +1,14 @@
-import { configDefaults, defineConfig, mergeConfig } from 'vitest/config';
-import viteConfig from './vite.config';
+import { fileURLToPath } from 'node:url'
+import { mergeConfig, defineConfig, configDefaults } from 'vitest/config'
+import viteConfig from './vite.config'
 
-const bambooTestConfig = mergeConfig(
+export default mergeConfig(
 	viteConfig,
 	defineConfig({
 		test: {
-			alias: {
-				'@/': new URL('./src/', import.meta.url).pathname,
-			},
-			coverage: {
-				provider: 'v8',
-				reporter: ['text', 'json-summary', 'json'],
-			},
 			environment: 'jsdom',
-			exclude: [...configDefaults.exclude],
+			exclude: [...configDefaults.exclude, 'e2e/**'],
+			root: fileURLToPath(new URL('./', import.meta.url)),
 		},
 	}),
-);
-
-export default bambooTestConfig;
+)

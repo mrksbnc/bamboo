@@ -1,0 +1,25 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Node & OS
+node_modules
+.DS_Store
+dist
+coverage
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Environment variables
+.env
+!.env.example
+
+# Storybook
+!static
+*storybook.log

@@ -1,10 +1,6 @@
 {
-	"tabWidth": 2,
-	"semi": true,
-	"useTabs": true,
-	"printWidth": 80,
-	"singleQuote": true,
-	"trailingComma": "all",
-	"singleAttributePerLine": true,
-	"plugins": ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"]
+  "$schema": "https://json.schemastore.org/prettierrc",
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 80
 }

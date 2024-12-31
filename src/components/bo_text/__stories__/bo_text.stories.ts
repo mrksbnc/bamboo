@@ -6,10 +6,10 @@ import {
 	BoTextAlign,
 	BoTextColor,
 	BoTextWhiteSpace,
-} from '@/components/bo_text';
-import { BoColor } from '@/data';
-import { StorybookUtils } from '@/utils';
-import type { Meta, StoryObj } from '@storybook/vue3';
+} from '@/components/bo_text'
+import { BoColor } from '@/data'
+import { StorybookUtils } from '@/utils'
+import type { Meta, StoryObj } from '@storybook/vue3'
 
 const meta = {
 	title: 'Components/bo-text',
@@ -157,10 +157,10 @@ const meta = {
 			defaultValue: false,
 		},
 	},
-} satisfies Meta<typeof BoText>;
+} satisfies Meta<typeof BoText>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
 	args: {
@@ -168,14 +168,14 @@ export const Example: Story = {
 		size: BoFontSize.base,
 		weight: BoFontWeight.regular,
 	},
-};
+}
 
 export const Sizes: Story = {
 	render: (args) => ({
 		components: { BoText },
 		setup() {
-			const sizes = Object.values(BoFontSize);
-			const sizeNames = Object.keys(BoFontSize);
+			const sizes = Object.values(BoFontSize)
+			const sizeNames = Object.keys(BoFontSize)
 			const sizeStr = [
 				'12px - 0.75rem',
 				'14px - 0.875rem (1rem)',
@@ -188,9 +188,9 @@ export const Sizes: Story = {
 				'48px - 3rem (3.5rem)',
 				'60px - 3.75rem (4.25rem)',
 				'72px - 4.5rem (5rem)',
-			];
+			]
 
-			return { sizes, sizeStr, sizeNames, ...args };
+			return { sizes, sizeStr, sizeNames, ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -204,7 +204,7 @@ export const Sizes: Story = {
 	args: {
 		text: 'Lorem ipsum',
 	},
-};
+}
 
 export const Weights: Story = {
 	render: (args) => ({
@@ -216,9 +216,9 @@ export const Weights: Story = {
 				[BoFontWeight.medium, 'medium'],
 				[BoFontWeight.semibold, 'semibold'],
 				[BoFontWeight.bold, 'bold'],
-			];
+			]
 
-			return { weights, ...args };
+			return { weights, ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -232,7 +232,7 @@ export const Weights: Story = {
 	args: {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
-};
+}
 
 export const FontFamilies: Story = {
 	render: (args) => ({
@@ -244,9 +244,9 @@ export const FontFamilies: Story = {
 				[BoFontFamily.sans, 'Sans'],
 				[BoFontFamily.mono, 'Mono'],
 				[BoFontFamily.serif, 'Serif'],
-			];
+			]
 
-			return { fontFamilies, ...args };
+			return { fontFamilies, ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -260,7 +260,7 @@ export const FontFamilies: Story = {
 	args: {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
-};
+}
 
 export const WhiteSpace: Story = {
 	render: (args) => ({
@@ -273,14 +273,14 @@ export const WhiteSpace: Story = {
 				[BoTextWhiteSpace.pre_line, 'pre-line'],
 				[BoTextWhiteSpace.pre_wrap, 'pre-wrap'],
 				[BoTextWhiteSpace.break_spaces, 'break-spaces'],
-			];
+			]
 
-			return { whiteSpaces, ...args };
+			return { whiteSpaces, ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="whiteSpace in whiteSpaces" :key="whiteSpace" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<bo-text :text="text" :whiteSpace="whiteSpace[0]" class="m-1 w-[150px]"/> 
+					<bo-text :text="text" :whiteSpace="whiteSpace[0]" class="m-1 w-[150px]"/>
 					<span class="text-overline text-gray-500 font-medium text-small">{{ whiteSpace[0] }} - {{ whiteSpace[1] }}</span>
 				</span>
 			</div>
@@ -289,7 +289,7 @@ export const WhiteSpace: Story = {
 	args: {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
-};
+}
 
 export const Colors: Story = {
 	render: (args) => ({
@@ -305,9 +305,9 @@ export const Colors: Story = {
 				[BoTextColor.danger, 'danger'],
 				[BoTextColor.disabled, 'disabled'],
 				[BoTextColor.info, 'info'],
-			];
+			]
 
-			return { colors, ...args };
+			return { colors, ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -321,13 +321,13 @@ export const Colors: Story = {
 	args: {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
-};
+}
 
 export const CustomColor: Story = {
 	render: (args) => ({
 		components: { BoText },
 		setup() {
-			return { ...args };
+			return { ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -339,13 +339,13 @@ export const CustomColor: Story = {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		customColor: BoColor.purple_400,
 	},
-};
+}
 
 export const Clickable: Story = {
 	render: (args) => ({
 		components: { BoText },
 		setup() {
-			return { ...args };
+			return { ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -357,4 +357,4 @@ export const Clickable: Story = {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		clickable: true,
 	},
-};
+}

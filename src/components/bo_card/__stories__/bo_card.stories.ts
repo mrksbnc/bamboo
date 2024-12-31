@@ -1,12 +1,12 @@
-import { BoBadge, BoBadgeVariant } from '@/components/bo_badge';
-import { BoCard } from '@/components/bo_card';
+import { BoBadge, BoBadgeVariant } from '@/components/bo_badge'
+import { BoCard } from '@/components/bo_card'
 import {
 	BoFontFamily,
 	BoFontSize,
 	BoText,
 	BoTextColor,
-} from '@/components/bo_text';
-import type { Meta, StoryObj } from '@storybook/vue3';
+} from '@/components/bo_text'
+import type { Meta, StoryObj } from '@storybook/vue3'
 
 const meta = {
 	title: 'Components/bo-card',
@@ -83,10 +83,10 @@ const meta = {
 			},
 		},
 	},
-} satisfies Meta<typeof BoCard>;
+} satisfies Meta<typeof BoCard>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
 	render: () => ({
@@ -126,7 +126,7 @@ export const Example: Story = {
 			</bo-card>
 		`,
 	}),
-};
+}
 
 export const TitleAndDescription: Story = {
 	render: () => ({
@@ -138,7 +138,7 @@ export const TitleAndDescription: Story = {
 			/>
 		`,
 	}),
-};
+}
 
 export const Clickable: Story = {
 	render: () => ({
@@ -151,7 +151,7 @@ export const Clickable: Story = {
 			/>
 		`,
 	}),
-};
+}
 
 export const NoPadding: Story = {
 	render: () => ({
@@ -172,7 +172,7 @@ export const NoPadding: Story = {
 						<div class="flex gap-2 items-center pr-4">
 							<bo-text
 								text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi."
-								size="${BoFontSize.small}"
+								size="${BoFontSize.sm}"
 								color="${BoTextColor.secondary}"
 								font-family="${BoFontFamily.inter}"
 							/>
@@ -182,7 +182,7 @@ export const NoPadding: Story = {
 			</bo-card>
 		`,
 	}),
-};
+}
 
 export const WidthInPx: Story = {
 	render: () => ({
@@ -195,7 +195,7 @@ export const WidthInPx: Story = {
 			/>
 		`,
 	}),
-};
+}
 
 export const WidthInPercent: Story = {
 	render: () => ({
@@ -208,7 +208,7 @@ export const WidthInPercent: Story = {
 			/>
 		`,
 	}),
-};
+}
 
 export const WidthAsTailwindClass: Story = {
 	render: () => ({
@@ -221,4 +221,4 @@ export const WidthAsTailwindClass: Story = {
 			/>
 		`,
 	}),
-};
+}

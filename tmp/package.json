@@ -1,0 +1,109 @@
+{
+	"name": "@mrksbnc/bamboo",
+	"version": "0.1.0",
+	"description": "Vue 3 UI library built with Vite and Storybook",
+	"homepage": "http://mrksbnc.github.io/bamboo",
+	"bugs": {
+		"url": "https://github.com/mrksbnc/bamboo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mrksbnc/bamboo.git"
+	},
+	"type": "module",
+	"exports": {
+		".": {
+			"import": "./dist/bamboo.js",
+			"require": "./dist/bamboo.umd.cjs"
+		},
+		"./index.css": {
+			"import": "./dist/index.css",
+			"require": "./dist/index.css"
+		}
+	},
+	"main": "./dist/bamboo.umd.cjs",
+	"module": "./dist/bamboo.js",
+	"types": "./dist/src/index.d.ts",
+	"files": [
+		"dist/**/*"
+	],
+	"scripts": {
+		"build": "pnpm run type-check && pnpm run lint && vite optimize --force && vite build --mode production && pnpm run build:tailwind",
+		"build:tailwind": "npx tailwindcss -o dist/index.css --minify",
+		"build-storybook": "storybook build -o static",
+		"chromatic": "npx chromatic --exit-zero-on-changes",
+		"format": "prettier --write .",
+		"lint": "eslint ./src/**/*.{ts,vue} --fix",
+		"release": "pnpm run build && pnpm publish --access public",
+		"storybook": "storybook dev -p 6006 --no-open",
+		"test": "vitest --update --coverage --silent=false",
+		"type-check": "vue-tsc --noEmit"
+	},
+	"dependencies": {
+		"vue": "^3.5.13"
+	},
+	"devDependencies": {
+		"@chromatic-com/storybook": "^3.2.3",
+		"@eslint/js": "^9.17.0",
+		"@storybook/addon-coverage": "^1.0.5",
+		"@storybook/addon-docs": "^8.4.7",
+		"@storybook/addon-essentials": "^8.4.7",
+		"@storybook/addon-links": "^8.4.7",
+		"@storybook/addon-mdx-gfm": "^8.4.7",
+		"@storybook/addon-themes": "^8.4.7",
+		"@storybook/blocks": "^8.4.7",
+		"@storybook/experimental-addon-test": "^8.4.7",
+		"@storybook/manager-api": "^8.4.7",
+		"@storybook/test": "^8.4.7",
+		"@storybook/theming": "^8.4.7",
+		"@storybook/vue3": "^8.4.7",
+		"@storybook/vue3-vite": "^8.4.7",
+		"@tailwindcss/vite": "4.0.0-beta.8",
+		"@tsconfig/node20": "^20.1.4",
+		"@types/jsdom": "^21.1.7",
+		"@types/node": "^22.10.2",
+		"@vitejs/plugin-vue": "^5.2.1",
+		"@vitest/browser": "^2.1.8",
+		"@vitest/coverage-v8": "^2.1.8",
+		"@vue/eslint-config-typescript": "^14.2.0",
+		"@vue/test-utils": "^2.4.6",
+		"@vue/tsconfig": "^0.7.0",
+		"autoprefixer": "^10.4.20",
+		"chromatic": "^11.20.2",
+		"eslint": "^9.17.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.2.1",
+		"eslint-plugin-storybook": "^0.11.1",
+		"eslint-plugin-vue": "^9.32.0",
+		"gh-pages": "^6.2.0",
+		"globals": "^15.14.0",
+		"jsdom": "^25.0.1",
+		"playwright": "^1.49.1",
+		"postcss": "^8.4.49",
+		"prettier": "^3.4.2",
+		"prettier-plugin-organize-imports": "^4.1.0",
+		"prettier-plugin-tailwindcss": "^0.6.9",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"remark-gfm": "^4.0.0",
+		"sass": "^1.83.0",
+		"storybook": "^8.4.7",
+		"tailwindcss": "^3.4.17",
+		"typescript": "~5.7.2",
+		"typescript-eslint": "^8.18.2",
+		"vite": "^6.0.5",
+		"vite-plugin-compression": "^0.5.1",
+		"vite-plugin-dts": "^4.4.0",
+		"vite-svg-loader": "^5.1.0",
+		"vitest": "^2.1.8",
+		"vue-tsc": "^2.2.0"
+	},
+	"engines": {
+		"node": ">=22.11.0"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/",
+		"tag": "latest"
+	}
+}
