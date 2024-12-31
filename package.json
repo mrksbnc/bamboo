@@ -14,7 +14,7 @@
   },
   "main": "./dist/bamboo.umd.cjs",
   "module": "./dist/bamboo.js",
-  "types": "./dist/bamboo.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist/**/*"
   ],
