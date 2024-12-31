@@ -216,24 +216,24 @@ const inputSizeClasses = computed<string>(() => {
 	if (prefixIcon.value != null && suffixIcon.value != null) {
 		switch (size.value) {
 			case BoInputSize.small:
-				return /*tw*/ 'flex w-full h-[32px] text-bo-sm'
+				return /*tw*/ 'flex w-full min-h-[24px] text-xs'
 			case BoInputSize.default:
 			default:
-				return /*tw*/ 'flex w-full h-[40px] px-8 text-bo-base'
+				return /*tw*/ 'flex w-full h-[32px] px-8 text-base'
 			case BoInputSize.large:
-				return /*tw*/ 'flex w-full px-8 text-bo-xl'
+				return /*tw*/ 'flex w-full h-[40px] px-8 text-xl'
 		}
 	}
 
 	if (prefixIcon.value != null) {
 		switch (size.value) {
 			case BoInputSize.small:
-				return /*tw*/ 'flex w-full h-[32px] pl-6 pr-4 text-bo-sm'
+				return /*tw*/ 'flex w-full h-[24px] pl-6 pr-4 text-xs'
 			case BoInputSize.default:
 			default:
-				return /*tw*/ 'flex w-full h-[40px] pl-8 pr-4 text-bo-base'
+				return /*tw*/ 'flex w-full h-[32px] pl-8 pr-4 text-sm'
 			case BoInputSize.large:
-				return /*tw*/ 'flex w-full h-[48px] pl-8 pr-4 text-bo-xl'
+				return /*tw*/ 'flex w-full h-[40px] pl-8 pr-4 text-base'
 		}
 	}
 
@@ -241,28 +241,28 @@ const inputSizeClasses = computed<string>(() => {
 		switch (size.value) {
 			case BoInputSize.small:
 				return isLoading.value
-					? /*tw*/ 'flex w-full h-[32px] pl-4 pr-6 text-bo-sm'
-					: /*tw*/ 'flex w-full h-[32px] pl-4 pr-14 text-bo-sm'
+					? /*tw*/ 'flex w-full h-[24px] pl-4 pr-6 text-xs'
+					: /*tw*/ 'flex w-full h-[24px] pl-4 pr-14 text-xs'
 			case BoInputSize.default:
 			default:
 				return isLoading.value
-					? /*tw*/ 'flex w-full h-[40px] pl-4 pr-8 text-bo-base'
-					: /*tw*/ 'flex w-full h-[40px] pl-4 pr-14 text-bo-base'
+					? /*tw*/ 'flex w-full h-[32px] pl-4 pr-8 text-sm'
+					: /*tw*/ 'flex w-full h-[32px] pl-4 pr-14 text-sm'
 			case BoInputSize.large:
 				return isLoading.value
-					? /*tw*/ 'flex w-full h-[48px] pl-4 pr-8 text-bo-xl'
-					: /*tw*/ 'flex w-full h-[48px] pl-4 pr-14 text-bo-xl'
+					? /*tw*/ 'flex w-full h-[40px] pl-4 pr-8 text-base'
+					: /*tw*/ 'flex w-full h-[40px] pl-4 pr-14 text-base'
 		}
 	}
 
 	switch (size.value) {
 		case BoInputSize.small:
-			return /*tw*/ 'flex w-full h-[32px] px-3 text-bo-sm'
+			return /*tw*/ 'flex w-full h-[24px] px-3 text-xs'
 		case BoInputSize.default:
 		default:
-			return /*tw*/ 'flex w-full h-[40px] px-3 text-bo-base'
+			return /*tw*/ 'flex w-full h-[32px] px-3 text-sm'
 		case BoInputSize.large:
-			return /*tw*/ 'flex w-full h-[48px] px-3 text-bo-xl'
+			return /*tw*/ 'flex w-full h-[40px] px-3 text-base'
 	}
 })
 

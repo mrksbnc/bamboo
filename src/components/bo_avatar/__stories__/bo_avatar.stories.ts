@@ -171,10 +171,10 @@ export const Sizes: Story = {
 			return { sizes, ...args }
 		},
 		template: `
-			<div class="flex gap-4"> 
+			<div class="flex gap-4">
 				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-avatar :type="type" :initials-data="initialsData" :size="size"/>
-					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
+					<span class="text-sm text-gray-500 font-medium">{{ size }}</span>
 				</span>
 			</div>
 		`,
@@ -195,10 +195,10 @@ export const Shapes: Story = {
 			return { shapes, ...args }
 		},
 		template: `
-			<div class="flex gap-4"> 
+			<div class="flex gap-4">
 				<span v-for="shape in shapes" :key="shape" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-avatar :type="type" :initials-data="initialsData" :shape="shape"/>
-					<span class="text-small text-gray-500 font-medium">{{ shape }}</span>
+					<span class="text-sm text-gray-500 font-medium">{{ shape }}</span>
 				</span>
 			</div>
 		`,

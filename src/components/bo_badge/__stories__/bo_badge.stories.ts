@@ -137,7 +137,7 @@ export const Sizes: Story = {
 			<div class="flex flex-row gap-1">
                 <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2 m-1">
                     <bo-badge :label="label" :size="size"/>
-                    <span class="text-small text-gray-500 font-medium">{{ size }}</span>
+                    <span class="text-sm text-gray-500 font-medium">{{ size }}</span>
                 </span>
 			</div>
 		`,
@@ -158,13 +158,13 @@ export const SizesWithIcons: Story = {
 			<div class="flex flex-row gap-1">
                 <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2 m-1">
                     <bo-badge :label="label" :size="size" :prefix-icon="prefixIcon"/>
-                    <span class="text-small text-gray-500 font-medium">{{ size }}</span>
+                    <span class="text-sm text-gray-500 font-medium">{{ size }}</span>
                 </span>
 			</div>
             <div class="flex flex-row gap-1">
                 <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2 m-1">
                     <bo-badge :label="label" :size="size" :suffix-icon="suffixIcon"/>
-                    <span class="text-small text-gray-500 font-medium">{{ size }}</span>
+                    <span class="text-sm text-gray-500 font-medium">{{ size }}</span>
                 </span>
 			</div>
 		`,

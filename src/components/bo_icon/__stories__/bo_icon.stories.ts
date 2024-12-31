@@ -77,8 +77,8 @@ export const Sizes: Story = {
 			<div class="flex flex-row gap-2">
 				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-icon :icon="icon" :size="size" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
-					
+					<span class="text-sm text-gray-500 font-medium">{{ size }}</span>
+
 				</span>
 			</div>
 		`,
@@ -109,7 +109,7 @@ export const Colors: Story = {
 			<div class="flex flex-row gap-2">
 				<span v-for="color in colors" :key="color" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-icon :icon="icon" :color="color" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">{{ color }}</span>
+					<span class="text-sm text-gray-500 font-medium">{{ color }}</span>
 				</span>
 			</div>
 		`,
@@ -127,10 +127,10 @@ export const AllIcons: Story = {
 			return { icons, Icon }
 		},
 		template: `
-			<div class="grid grid-cols-6 gap-2"> 
+			<div class="grid grid-cols-6 gap-2">
 				<span v-for="icon in icons" :key="icon" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-icon :icon="icon" size="${BoSize.large}" class="m-1"/>
-						<span class="text-small text-gray-500 font-medium">{{ icon }}</span>
+						<span class="text-sm text-gray-500 font-medium">{{ icon }}</span>
 					</span>
 			</div>
 		`,

@@ -176,27 +176,14 @@ export const Sizes: Story = {
 		setup() {
 			const sizes = Object.values(BoFontSize)
 			const sizeNames = Object.keys(BoFontSize)
-			const sizeStr = [
-				'12px - 0.75rem',
-				'14px - 0.875rem (1rem)',
-				'16px - 1rem (1.25rem)',
-				'18px - 1.125rem (1.375rem)',
-				'20px - 1.25rem (1.5rem)',
-				'24px - 1.5rem (1.75rem)',
-				'30px - 1.875rem (2.25rem)',
-				'36px - 2.25rem (2.625rem)',
-				'48px - 3rem (3.5rem)',
-				'60px - 3.75rem (4.25rem)',
-				'72px - 4.5rem (5rem)',
-			]
 
-			return { sizes, sizeStr, sizeNames, ...args }
+			return { sizes, sizeNames, ...args }
 		},
 		template: `
 			<div class="flex flex-col gap-4">
 				<span v-for="(size, index) in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-text :text="text" :size="size" class="m-1"/>
-					<span class="text-overline text-small text-gray-500 font-medium">{{ sizeStr[index] }} - {{ sizeNames[index] }}</span>
+					<span class="text-overline text-xs text-gray-500 font-medium">{{ sizeNames[index] }}</span>
 				</span>
 			</div>
 		`,
@@ -224,7 +211,7 @@ export const Weights: Story = {
 			<div class="flex flex-col gap-4">
 				<span v-for="weight in weights" :key="weight" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-text :text="text" :weight="weight[0]" class="m-1"/>
-					<span class="text-overline text-gray-500 font-medium text-small">{{ weight[0] }} - {{ weight[1] }}</span>
+					<span class="text-overline text-xs text-gray-500 font-medium text-small">{{ weight[0] }} - {{ weight[1] }}</span>
 				</span>
 			</div>
 		`,
@@ -250,7 +237,7 @@ export const FontFamilies: Story = {
 			<div class="flex flex-col gap-4">
 				<span v-for="fontFamily in fontFamilies" :key="fontFamily" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-text :text="text" :fontFamily="fontFamily[0]" class="m-1"/>
-					<span class="text-overline text-gray-500 font-medium text-small">{{ fontFamily[0] }} - {{ fontFamily[1] }}</span>
+					<span class="text-overline text-xs text-gray-500 font-medium text-small">{{ fontFamily[0] }} - {{ fontFamily[1] }}</span>
 				</span>
 			</div>
 		`,
@@ -279,7 +266,7 @@ export const WhiteSpace: Story = {
 			<div class="flex flex-col gap-4">
 				<span v-for="whiteSpace in whiteSpaces" :key="whiteSpace" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-text :text="text" :whiteSpace="whiteSpace[0]" class="m-1 w-[150px]"/>
-					<span class="text-overline text-gray-500 font-medium text-small">{{ whiteSpace[0] }} - {{ whiteSpace[1] }}</span>
+					<span class="text-overline text-xs text-gray-500 font-medium text-small">{{ whiteSpace[0] }} - {{ whiteSpace[1] }}</span>
 				</span>
 			</div>
 		`,
@@ -311,7 +298,7 @@ export const Colors: Story = {
 			<div class="flex flex-col gap-4">
 				<span v-for="color in colors" :key="color" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-text :text="text" :color="color[0]" class="m-1"/>
-					<span class="text-overline text-gray-500 font-medium text-small">{{ color[0] }} - {{ color[1] }}</span>
+					<span class="text-overline text-xs text-gray-500 font-medium text-small">{{ color[0] }} - {{ color[1] }}</span>
 				</span>
 			</div>
 		`,

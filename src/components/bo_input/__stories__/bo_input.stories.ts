@@ -232,7 +232,7 @@ export const Sizes: Story = {
 			<div class="flex flex-col gap-4">
 				<span v-for="size in sizes" :key="generateRandomId()" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
 					<bo-input v-model="modelValue" :label="label" :description="description" :size="size"/>
-					<span class="text-small text-gray-500 font-medium text-center">{{ size }}</span>
+					<span class="text-sm text-gray-500 font-medium text-center">{{ size }}</span>
 				</span>
 			</div>
 		`,
@@ -295,7 +295,7 @@ export const States: Story = {
 			<div class="flex flex-col gap-4">
 				<span v-for="state in states" :key="generateRandomId" class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-input v-model="modelValue" :label="label" :description="description" :state="state"/>
-					<span class="text-small text-gray-500 font-medium">{{ state }}</span>
+					<span class="text-sm text-gray-500 font-medium">{{ state }}</span>
 				</span>
 			</div>
 		`,
@@ -336,7 +336,7 @@ export const WithLoaderVariantSpinner: Story = {
 		template: `
             <div class="flex flex-col gap-4">
 				<div class="flex flex-col gap-4">
-                	<bo-input v-bind="args" loader-variant="spinner"/> 
+                	<bo-input v-bind="args" loader-variant="spinner"/>
             	</div>
 				<div class="flex flex-col gap-4">
                 	<bo-input v-bind="args" loader-variant="pulse"/>
@@ -406,7 +406,7 @@ export const Icons: Story = {
 			<div class="flex flex-col gap-4">
 				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-input v-model="modelValue" :label="label" :description="description" :prefix-icon="prefixIcon"/>
-					<span class="text-small text-gray-500 font-medium">default</span>
+					<span class="text-sm text-gray-500 font-medium">default</span>
 				</span>
 				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
 					<bo-input v-model="modelValue" :label="label" :description="description" :suffix-icon="suffixIcon"/>
@@ -436,21 +436,21 @@ export const IconsWithLoader: Story = {
 			<div class="flex flex-col gap-4">
 				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
 					<bo-input v-model="modelValue" :label="label" :description="description" :prefix-icon="prefixIcon" :isLoading="isLoading"/>
-					<span class="text-small text-gray-500 font-medium">default</span>
+					<span class="text-sm text-gray-500 font-medium">default</span>
 				</span>
 				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
 					<bo-input v-model="modelValue" :label="label" :description="description" :suffix-icon="suffixIcon" :isLoading="isLoading"/>
-					<span class="text-small text-gray-500 font-medium">default</span>
+					<span class="text-sm text-gray-500 font-medium">default</span>
 				</span>
 			</div>
 			<div class="flex flex-col gap-4">
 				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
 					<bo-input v-model="modelValue" :label="label" :description="description" :prefix-icon="prefixIcon" :isLoading="isLoading" loader-variant="spinner"/>
-					<span class="text-small text-gray-500 font-medium">default</span>
+					<span class="text-sm text-gray-500 font-medium">default</span>
 				</span>
 				<span class="flex flex-col gap-2 border border-gray-300 rounded-lg p-2 w-full">
 					<bo-input v-model="modelValue" :label="label" :description="description" :suffix-icon="suffixIcon" :isLoading="isLoading" loader-variant="spinner"/>
-					<span class="text-small text-gray-500 font-medium">default</span>
+					<span class="text-sm text-gray-500 font-medium">default</span>
 				</span>
 			</div>
 		`,

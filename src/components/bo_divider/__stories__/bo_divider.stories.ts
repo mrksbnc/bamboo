@@ -79,19 +79,19 @@ export const Variants: Story = {
 		template: `
 			<div class="flex flex-col gap-4 bg-white p-4">
 				<bo-divider v-bind="args" />
-                <span class="text-small text-gray-500 font-medium">default</span>
-                
+                <span class="text-sm text-gray-500 font-medium">default</span>
+
 				<bo-divider v-bind="args" :variant="variants[1]" />
-                <span class="text-small text-gray-500 font-medium">{{ variants[1] }}</span>
-				
+                <span class="text-sm text-gray-500 font-medium">{{ variants[1] }}</span>
+
                 <bo-divider v-bind="args" :variant="variants[2]" />
-				<span class="text-small text-gray-500 font-medium">{{ variants[2] }}</span>
+				<span class="text-sm text-gray-500 font-medium">{{ variants[2] }}</span>
 
                 <bo-divider v-bind="args" :variant="variants[3]" />
-                <span class="text-small text-gray-500 font-medium">{{ variants[3] }}</span>
-				
+                <span class="text-sm text-gray-500 font-medium">{{ variants[3] }}</span>
+
                 <bo-divider v-bind="args" :variant="variants[4]" />
-                <span class="text-small text-gray-500 font-medium">{{ variants[4] }}</span>
+                <span class="text-sm text-gray-500 font-medium">{{ variants[4] }}</span>
 			</div>
 		`,
 	}),
@@ -112,7 +112,7 @@ export const Types: Story = {
 			<div class="flex flex-col gap-4 bg-white p-4">
                 <span v-for="type in types" :key="type">
 				    <bo-divider :type="type" />
-                    <span class="text-small text-gray-500 font-medium">{{ type }}</span>
+                    <span class="text-sm text-gray-500 font-medium">{{ type }}</span>
                 </span>
 			</div>
 		`,

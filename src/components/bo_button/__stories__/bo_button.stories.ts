@@ -195,7 +195,7 @@ export const Sizes: Story = {
 			<div class="flex flex-col gap-4">
 				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-button :label="label" :variant="variant" :type="type" :size="size" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
+					<span class="text-sm text-gray-500 font-medium">{{ size }}</span>
 				</span>
 			</div>
 		`,
@@ -218,7 +218,7 @@ export const Shapes: Story = {
 			<div class="flex flex-col gap-4">
 				<span v-for="shape in shapes" :key="shape" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-button :label="label" :variant="variant" :shape="shape" :type="type" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">{{ shape }}</span>
+					<span class="text-sm text-gray-500 font-medium">{{ shape }}</span>
 				</span>
 			</div>
 		`,
@@ -241,7 +241,7 @@ export const Variants: Story = {
 			<div class="flex flex-col gap-4">
 				<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-button :label="label" :variant="variant" :type="type" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">{{ variant }}</span>
+					<span class="text-sm text-gray-500 font-medium">{{ variant }}</span>
 				</span>
 			</div>
 		`,
@@ -266,7 +266,7 @@ export const ShapesAndVariants: Story = {
 				<span v-for="shape in shapes" :key="shape" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 						<bo-button :label="label" :variant="variant" :shape="shape" :type="type" class="m-1"/>
-						<span class="text-small text-gray-500 font-medium">{{ variant }} {{ shape }}</span>
+						<span class="text-sm text-gray-500 font-medium">{{ variant }} {{ shape }}</span>
 					</span>
 				</span>
 			</div>
@@ -289,7 +289,7 @@ export const WithPrefixIcon: Story = {
 			<div class="flex flex-col gap-4 w">
 				<span class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-button :label="label" :prefix-icon="prefixIcon" :type="type" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">prefix-icon</span>
+					<span class="text-sm text-gray-500 font-medium">prefix-icon</span>
 				</span>
 			</div>
 		`,
@@ -312,7 +312,7 @@ export const WithSuffixIcon: Story = {
 			<div class="flex flex-col gap-4 w">
 				<span class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-button :label="label" :suffix-icon="suffixIcon" :type="type" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">suffix-icon</span>
+					<span class="text-sm text-gray-500 font-medium">suffix-icon</span>
 				</span>
 			</div>
 		`,
@@ -335,7 +335,7 @@ export const IconOnlyButton: Story = {
 			<div class="flex flex-col gap-4 w">
 				<span class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-button :prefix-icon="prefixIcon" :type="type" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">prefix-icon</span>
+					<span class="text-sm text-gray-500 font-medium">prefix-icon</span>
 				</span>
 			</div>
 		`,
@@ -358,7 +358,7 @@ export const IconOnlySizes: Story = {
 			<div class="flex flex-row gap-4">
 				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-button :prefix-icon="prefixIcon" :size="size" :type="type" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">{{ size }}</span>
+					<span class="text-sm text-gray-500 font-medium">{{ size }}</span>
 				</span>
 			</div>
 		`,
@@ -381,7 +381,7 @@ export const IconOnlyVariants: Story = {
 			<div class="flex flex-row gap-4">
 				<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
 					<bo-button :prefix-icon="prefixIcon" :variant="variant" :type="type" class="m-1"/>
-					<span class="text-small text-gray-500 font-medium">{{ variant }}</span>
+					<span class="text-sm text-gray-500 font-medium">{{ variant }}</span>
 				</span>
 			</div>
 		`,

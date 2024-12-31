@@ -97,7 +97,7 @@ export const Variants: Story = {
 			<div class="flex flex-row gap-4">
                 <span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
                     <bo-loading-spinner :size="size" :variant="variant"/>
-                    <span class="text-small text-gray-500 font-medium">{{ variant }}</span>
+                    <span class="text-sm text-gray-500 font-medium">{{ variant }}</span>
                 </span>
 			</div>
 		`,
@@ -119,7 +119,7 @@ export const Sizes: Story = {
 			<div class="flex gap-2">
                 <span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
                     <bo-loading-spinner :size="size"/>
-                    <span class="text-small text-gray-500 font-medium">{{ size }}</span>
+                    <span class="text-sm text-gray-500 font-medium">{{ size }}</span>
                 </span>
 			</div>
 		`,
