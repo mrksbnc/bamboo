@@ -132,7 +132,7 @@ describe('bo_button.vue', () => {
 		test('primary button should have the correct color | background | focus classes', () => {
 			expect(wrapper.classes()).toContain('bg-blue-600')
 			expect(wrapper.classes()).toContain('hover:bg-blue-700')
-			expect(wrapper.classes()).toContain('focus:ring-blue-600')
+			expect(wrapper.classes()).toContain('focus:ring-transparent')
 			expect(wrapper.classes()).toContain('text-white')
 		})
 
@@ -140,7 +140,7 @@ describe('bo_button.vue', () => {
 			await wrapper.setProps({ variant: BoButtonVariant.secondary })
 			expect(wrapper.classes()).toContain('bg-gray-400')
 			expect(wrapper.classes()).toContain('hover:bg-gray-700')
-			expect(wrapper.classes()).toContain('focus:ring-gray-400')
+			expect(wrapper.classes()).toContain('focus:ring-transparent')
 			expect(wrapper.classes()).toContain('text-white')
 		})
 
@@ -148,7 +148,7 @@ describe('bo_button.vue', () => {
 			await wrapper.setProps({ variant: BoButtonVariant.danger })
 			expect(wrapper.classes()).toContain('bg-red-600')
 			expect(wrapper.classes()).toContain('hover:bg-red-700')
-			expect(wrapper.classes()).toContain('focus:ring-red-600')
+			expect(wrapper.classes()).toContain('focus:ring-transparent')
 			expect(wrapper.classes()).toContain('text-white')
 		})
 
@@ -156,7 +156,7 @@ describe('bo_button.vue', () => {
 			await wrapper.setProps({ variant: BoButtonVariant.warning })
 			expect(wrapper.classes()).toContain('bg-yellow-500')
 			expect(wrapper.classes()).toContain('hover:bg-yellow-700')
-			expect(wrapper.classes()).toContain('focus:ring-yellow-500')
+			expect(wrapper.classes()).toContain('focus:ring-transparent')
 			expect(wrapper.classes()).toContain('text-white')
 		})
 
@@ -164,7 +164,7 @@ describe('bo_button.vue', () => {
 			await wrapper.setProps({ variant: BoButtonVariant.success })
 			expect(wrapper.classes()).toContain('bg-green-600')
 			expect(wrapper.classes()).toContain('hover:bg-green-700')
-			expect(wrapper.classes()).toContain('focus:ring-green-600')
+			expect(wrapper.classes()).toContain('focus:ring-transparent')
 			expect(wrapper.classes()).toContain('text-white')
 		})
 
@@ -172,7 +172,7 @@ describe('bo_button.vue', () => {
 			await wrapper.setProps({ variant: BoButtonVariant.dark })
 			expect(wrapper.classes()).toContain('bg-black')
 			expect(wrapper.classes()).toContain('hover:bg-black/50')
-			expect(wrapper.classes()).toContain('focus:ring-black')
+			expect(wrapper.classes()).toContain('focus:ring-transparent')
 			expect(wrapper.classes()).toContain('text-white')
 		})
 
@@ -181,7 +181,7 @@ describe('bo_button.vue', () => {
 			expect(wrapper.classes()).toContain('bg-transparent')
 			expect(wrapper.classes()).toContain('hover:bg-transparent')
 			expect(wrapper.classes()).toContain('focus:ring-transparent')
-			expect(wrapper.classes()).toContain('text-blue-600')
+			expect(wrapper.classes()).toContain('text-blue-500')
 			expect(wrapper.classes()).toContain('hover:text-blue-700')
 			expect(wrapper.classes()).toContain('focus:ring-transparent')
 		})
@@ -253,38 +253,43 @@ describe('bo_button.vue', () => {
 		})
 
 		test('the button should have the correct default size classes', () => {
-			expect(wrapper.classes()).toContain('h-[40px]')
-			expect(wrapper.classes()).toContain('px-[24px]')
+			expect(wrapper.classes()).toContain('h-[32px]')
+			expect(wrapper.classes()).toContain('px-[12px]')
 		})
 
 		test('the button should have the correct size classes if a the size is extra small', async () => {
 			await wrapper.setProps({ size: BoSize.extra_small })
-			expect(wrapper.classes()).toContain('h-[24px]')
-			expect(wrapper.classes()).toContain('px-[8px]')
+
+			expect(wrapper.classes()).toContain('h-[16px]')
+			expect(wrapper.classes()).toContain('px-[4px]')
 		})
 
 		test('the button should have the correct size classes if a the size is small', async () => {
 			await wrapper.setProps({ size: BoSize.small })
-			expect(wrapper.classes()).toContain('h-[32px]')
-			expect(wrapper.classes()).toContain('px-[16px]')
+
+			expect(wrapper.classes()).toContain('h-[24px]')
+			expect(wrapper.classes()).toContain('px-[8px]')
 		})
 
 		test('the button should have the correct size classes if a the size is default', async () => {
 			await wrapper.setProps({ size: BoSize.default })
-			expect(wrapper.classes()).toContain('h-[40px]')
-			expect(wrapper.classes()).toContain('px-[24px]')
+
+			expect(wrapper.classes()).toContain('h-[32px]')
+			expect(wrapper.classes()).toContain('px-[12px]')
 		})
 
 		test('the button should have the correct size classes if a the size is large', async () => {
 			await wrapper.setProps({ size: BoSize.large })
-			expect(wrapper.classes()).toContain('h-[48px]')
-			expect(wrapper.classes()).toContain('px-[32px]')
+
+			expect(wrapper.classes()).toContain('h-[40px]')
+			expect(wrapper.classes()).toContain('px-[16px]')
 		})
 
 		test('the button should have the correct size classes if a the size is extra large', async () => {
 			await wrapper.setProps({ size: BoSize.extra_large })
-			expect(wrapper.classes()).toContain('h-[56px]')
-			expect(wrapper.classes()).toContain('px-[40px]')
+
+			expect(wrapper.classes()).toContain('h-[48px]')
+			expect(wrapper.classes()).toContain('px-[20px]')
 		})
 	})
 
@@ -335,11 +340,11 @@ describe('bo_button.vue', () => {
 		})
 
 		test('default button should have the correct shadow classes', () => {
-			expect(wrapper.classes()).toContain('shadow-md')
+			expect(wrapper.classes()).toContain('shadow-lg')
 		})
 
 		test('the button should have the correct shadow classes', () => {
-			expect(wrapper.classes()).toContain('shadow-md')
+			expect(wrapper.classes()).toContain('shadow-lg')
 		})
 
 		test('by default the link types buttton should not have a shadow', async () => {
@@ -349,7 +354,7 @@ describe('bo_button.vue', () => {
 
 		test('if the prop is set to true the link types buttton should have a shadow', async () => {
 			await wrapper.setProps({ linkVariantWithShadow: true })
-			expect(wrapper.classes()).toContain('shadow-md')
+			expect(wrapper.classes()).toContain('shadow-lg')
 		})
 	})
 
@@ -503,7 +508,7 @@ describe('bo_button.vue', () => {
 		test('the button should have the correct loader size if a different size is provided', async () => {
 			await wrapper.setProps({ size: BoSize.small })
 			const loader = wrapper.findComponent(BoLoadingSpinner)
-			expect(loader.props('size')).toBe(BoSize.small)
+			expect(loader.props('size')).toBe(BoSize.extra_small)
 		})
 
 		test('the button should be able to render a large loader', async () => {
