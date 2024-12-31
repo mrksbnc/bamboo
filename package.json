@@ -1,6 +1,6 @@
 {
   "name": "@mrksbnc/bamboo",
-  "version": "0.0.0-beta.5",
+  "version": "0.0.0-beta.6",
   "type": "module",
   "exports": {
     ".": {
@@ -28,10 +28,10 @@
     "lint": "run-s lint:*",
     "format": "prettier --write src/",
     "storybook": "storybook dev -p 6006",
-    "build": "NODE_ENV=production run-p type-check \"build-only {@}\" && npm build:css:min",
+    "build": "NODE_ENV=production run-p type-check \"build-only {@}\" && npm run build:css:min",
     "build:storybook": "storybook build -o static",
-    "build:css:min": "NPM_ENV=production npx postcss src/lib.css  > dist/lib.min.css",
-    "build:css": "NPM_ENV=development npx postcss src/lib.css  > dist/lib.css"
+    "build:css:min": "NPM_ENV=production npx postcss src/lib.css > dist/lib.min.css",
+    "build:css": "NPM_ENV=development npx postcss src/lib.css > dist/lib.css"
   },
   "eslintConfig": {
     "extends": [
