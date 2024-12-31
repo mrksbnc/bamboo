@@ -28,7 +28,7 @@ describe('bo_loading_spinner.vue', () => {
 		expect(globalWrapper.classes()).toContain('content-center')
 		expect(globalWrapper.classes()).toContain('items-center')
 		expect(globalWrapper.classes()).toContain('justify-center')
-		expect(globalWrapper.classes()).toContain('gap-2')
+		expect(globalWrapper.classes()).toContain('gap-1')
 	})
 
 	test('the spinner animation should have the default classes', () => {
