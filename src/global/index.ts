@@ -1,2 +1,2 @@
-export { BoColor } from './bo_color';
-export { BoSize } from './bo_size';
+export * from './html_button'
+export * from './html_input'

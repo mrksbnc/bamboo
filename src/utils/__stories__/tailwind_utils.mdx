@@ -1,0 +1,37 @@
+import { Meta, Story } from '@storybook/blocks'
+import { TailwindUtils } from '@/utils'
+
+<Meta title="Utils/TailwindUtils" />
+
+# TailwindUtils
+
+The `TailwindUtils` class is a utility class that provides a collection of
+`static` methods to make working with Tailwind CSS easier.
+
+## Methods
+
+## merge
+
+```ts
+merge(...classes: (string | null | undefined)[]): string
+```
+
+The `merge` method is used to merge multiple classes into a single `string` that can later
+be applied to an element.
+If any of the argument values equals to `null` or `undefined` the corresponding argument will be ignored.
+
+- Example:
+
+```ts
+TailwindUtils.merge('bg-blue-500', 'text-white', 'rounded-lg') // bg-blue-500 text-white rounded-lg
+```
+
+- Parameters:
+
+  - `classes`: An array of classes to be merged.
+
+- Returns: The merged classes as a `string`.
+
+```ts
+TailwindUtils.merge('bg-blue-500', null, 'text-white', 'rounded-lg') // bg-blue-500 text-white rounded-lg
+```

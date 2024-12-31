@@ -1,17 +1,10 @@
 repos:
   - repo: local
     hooks:
-      - id: build-check
-        name: Build
-        language: system
-        entry: npm run build
-        stages: [pre-commit]
-        pass_filenames: false
-
       - id: lint
         name: Lint
         language: system
-        entry: npm run lint
+        entry: npm run lint:oxlint
         stages: [pre-commit]
         pass_filenames: false
 

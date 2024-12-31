@@ -1,84 +1,105 @@
 <template>
-	<!-- eslint-disable vue/no-v-html -->
-	<div
-		type="image/svg+xml"
+	<component
+		v-if="isSvgReadyToRender"
+		:is="svg"
 		:style="style"
 		class="bo-icon"
-		:class="classes"
-		aria-label="icon"
-		v-html="svg"
-	></div>
+		type="image/svg+xml"
+		:class="tailwindCssSizeClasses"
+	/>
 </template>
 
 <script lang="ts">
 export default defineComponent({
 	inheritAttrs: true,
-});
+})
 </script>
 
 <script setup lang="ts">
-import { IconSizeClasses, icons, type Icon } from './bo_icon';
-import { BoSize } from '@/global';
+import { BoSize } from '@/data/bo_size.constant'
+import { StringUtils } from '@/utils'
 import {
+	computed,
+	defineComponent,
 	ref,
 	toRefs,
 	watch,
-	type PropType,
-	defineComponent,
-	computed,
 	type StyleValue,
-} from 'vue';
+} from 'vue'
+import { Icon, icons } from './constant'
+import type { BoIconProps } from './types'
 
-const props = defineProps({
-	icon: {
-		type: String as PropType<Icon>,
-		required: true,
-	},
-	size: {
-		type: String as PropType<BoSize>,
-		default: () => BoSize.default,
-	},
-	color: {
-		type: String,
-		default: () => 'currentColor',
-	},
-});
+const props = withDefaults(defineProps<BoIconProps>(), {
+	size: () => BoSize.default,
+	color: () => 'currentColor',
+})
 
-const { icon, size, color } = toRefs(props);
+const { icon, size, color } = toRefs(props)
 
-const svg = ref('');
-
+const svg = ref('')
+/**
+ * @description This is a map of all the icons that are available in the library.
+ *
+ * - The key is the name of the icon and the value is the actual SVG.
+ * - The name of the icon is the name of the file without the extension.
+ */
 const iconMap = Object.keys(icons).reduce(
 	(acc, key) => {
-		const splitted = key.split('/');
-		const icon = splitted[splitted.length - 1].split('.')[0];
+		const splitted = key.split('/')
+		const icon = splitted[splitted.length - 1].split('.')[0]
 
-		acc[icon] = icons[key];
+		acc[icon] = icons[key]
 
-		return acc;
+		return acc
 	},
 	{} as Record<string, () => Promise<string>>,
-);
+)
+/**
+ * @description This prevents the Icon component from rendering an empty icon and
+ * taking up space in the DOM.
+ */
+const isSvgReadyToRender = computed<boolean>(() => {
+	const noneIconStr = String(Icon.none)
+
+	return (
+		svg.value !== noneIconStr &&
+		!StringUtils.isEmptyStr(svg.value) &&
+		icon.value != Icon.none &&
+		!StringUtils.isEmptyStr(icon.value)
+	)
+})
 
 const style = computed<StyleValue>(() => {
 	return {
 		color: color.value,
-	};
-});
-
-const classes = computed<string>(() => {
-	return IconSizeClasses[size.value];
-});
-
-const load = async (): Promise<void> => {
-	try {
-		iconMap[icon.value]().then((val) => {
-			svg.value = val;
-		});
-	} catch (e) {
-		console.error(`Could not find icon of name ${icon.value}`);
 	}
-};
+})
 
-watch(icon, () => load(), { immediate: true });
+const tailwindCssSizeClasses = computed<string>(() => {
+	switch (size.value) {
+		case BoSize.extra_small:
+			return 'size-[12px]'
+		case BoSize.small:
+			return 'size-[14px]'
+		case BoSize.default:
+		default:
+			return 'size-[16px]'
+		case BoSize.large:
+			return 'size-[20px]'
+		case BoSize.extra_large:
+			return 'size-[24px]'
+	}
+})
+
+async function load(): Promise<void> {
+	try {
+		await iconMap[icon.value]().then((val) => {
+			svg.value = val
+		})
+	} catch (e) {
+		console.error(`Could not find icon of name ${icon.value}`)
+	}
+}
+
+watch(icon, () => load(), { immediate: true })
 </script>

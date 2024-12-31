@@ -3,138 +3,189 @@
 		class="bo-badge"
 		:class="classes"
 	>
-		<span v-if="prefixIcon !== Icon.none">
+		<span v-if="prefixIcon !== Icon.none || iconOnly || isCircle">
 			<bo-icon
-				:icon="prefixIcon"
-				:size="size"
+				:size="boBadgeIconSize"
+				:icon="preficOrIconOnlySrc"
+				class="bo-badge__prefix-icon"
 			/>
 		</span>
 		<bo-text
-			v-if="rederLabel"
+			v-if="rederLabel && label != null && !iconOnly && !isCircle"
 			:text="label"
-			:size="fontSize"
+			:size="badgeFontSize"
 			:weight="BoFontWeight.medium"
+			class="bo-badge__label"
 		/>
-		<span v-if="suffixIcon !== Icon.none">
+		<span v-if="suffixIcon !== Icon.none && !iconOnly && !isCircle">
 			<bo-icon
 				:icon="suffixIcon"
-				:size="size"
+				:size="boBadgeIconSize"
+				class="bo-badge__suffix-icon"
 			/>
 		</span>
 	</span>
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs, type PropType } from 'vue';
-import {
-	BoBadgeBorderRadiusClasses,
-	BoBadgeFilledColorClasses,
-	BoBadgeOutlineColorClasses,
-	BoBadgePaddingClasses,
-	BoBadgeShadowClasses,
-	BoBadgeShape,
-	BoBadgeSizeClasses,
-	BoBadgeTextSizeClasses,
-	BoBadgeType,
-	BoBadgeVariant,
-} from './bo_badge';
-import { Icon, BoIcon } from '@/components/bo_icon';
-import { TailwindUtils, StringUtils } from '@/utils';
-import { BoSize } from '@/global';
-import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
+import { BoIcon, Icon } from '@/components/bo_icon'
+import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text'
+import { BoSize } from '@/data/bo_size.constant'
+import { StringUtils, TailwindUtils } from '@/utils'
+import { computed, toRefs } from 'vue'
+import { BoBadgeShape, BoBadgeType, BoBadgeVariant } from './constants'
+import type { BoBadgeProps } from './types'
 
-const props = defineProps({
-	label: {
-		type: String,
-		default: '',
-	},
-	type: {
-		type: String as PropType<BoBadgeType>,
-		default: () => BoBadgeType.default,
-	},
-	size: {
-		type: String as PropType<BoSize>,
-		default: () => BoSize.default,
-	},
-	shape: {
-		type: String as PropType<BoBadgeShape>,
-		default: () => BoBadgeShape.default,
-	},
-	variant: {
-		type: String as PropType<BoBadgeVariant>,
-		default: () => BoBadgeVariant.primary,
-	},
-	prefixIcon: {
-		type: String as PropType<Icon>,
-		default: () => Icon.none,
-	},
-	suffixIcon: {
-		type: String as PropType<Icon>,
-		default: () => Icon.none,
-	},
-});
+const props = withDefaults(defineProps<BoBadgeProps>(), {
+	type: () => BoBadgeType.default,
+	size: () => BoSize.default,
+	shape: () => BoBadgeShape.default,
+	variant: () => BoBadgeVariant.primary,
+	prefixIcon: () => Icon.none,
+	suffixIcon: () => Icon.none,
+})
 
 const { label, type, size, variant, shape, prefixIcon, suffixIcon } =
-	toRefs(props);
+	toRefs(props)
 
 const defaultClasses: string =
-	/*tw*/ 'inline-flex gap-2 items-center justify-center select-none';
+	/*tw*/ 'flex items-center justify-center select-none font-bold font-graphik gap-1.5'
+
+const iconOnly = computed<boolean>(() => {
+	return prefixIcon.value != null && StringUtils.isEmptyStr(label.value)
+})
+
+const preficOrIconOnlySrc = computed<Icon>(() => {
+	if (iconOnly.value) {
+		return prefixIcon.value ?? suffixIcon.value ?? Icon.none
+	}
+
+	return prefixIcon.value ?? Icon.none
+})
+
+const isCircle = computed<boolean>(() => {
+	return shape.value === BoBadgeShape.circle && iconOnly.value
+})
 
 const rederLabel = computed<boolean>(() => {
-	return !StringUtils.isEmpty(label.value);
-});
+	return !StringUtils.isEmptyStr(label.value) && !iconOnly.value
+})
 
-const colorClasses = computed<string>(() => {
+const boBadgeShapeClasses = computed<string>(() => {
+	switch (shape.value) {
+		case BoBadgeShape.pill:
+		case BoBadgeShape.circle:
+			return /*tw*/ 'rounded-full'
+		case BoBadgeShape.default:
+		default:
+			return /*tw*/ 'rounded-md'
+	}
+})
+
+const boBadgeVariantClasses = computed<string>(() => {
 	switch (type.value) {
 		case BoBadgeType.outline:
-			return TailwindUtils.merge(BoBadgeOutlineColorClasses[variant.value]);
+			switch (variant.value) {
+				case BoBadgeVariant.primary:
+				default:
+					return /*tw*/ 'border border-blue-600  focus:ring-blue-600 text-blue-600'
+				case BoBadgeVariant.secondary:
+					return /*tw*/ 'border border-gray-600 focus:ring-gray-600 text-gray-600 '
+				case BoBadgeVariant.danger:
+					return /*tw*/ 'border border-red-600 focus:ring-red-600 text-red-600 '
+				case BoBadgeVariant.warning:
+					return /*tw*/ 'border border-yellow-600 focus:ring-yellow-600 text-yellow-600 '
+				case BoBadgeVariant.success:
+					return /*tw*/ 'border border-green-600 focus:ring-green-600 text-green-600 '
+				case BoBadgeVariant.dark:
+					return /*tw*/ 'border border-black focus:ring-black text-black '
+			}
 		case BoBadgeType.default:
 		default:
-			return TailwindUtils.merge(BoBadgeFilledColorClasses[variant.value]);
+			switch (variant.value) {
+				case BoBadgeVariant.primary:
+				default:
+					return /*tw*/ 'bg-blue-600 focus:ring-blue-600 text-white'
+				case BoBadgeVariant.secondary:
+					return /*tw*/ 'bg-gray-600 focus:ring-gray-600 text-white'
+				case BoBadgeVariant.danger:
+					return /*tw*/ 'bg-red-600 focus:ring-red-600 text-white'
+				case BoBadgeVariant.warning:
+					return /*tw*/ 'bg-yellow-600 focus:ring-yellow-600 text-white'
+				case BoBadgeVariant.success:
+					return /*tw*/ 'bg-green-600 focus:ring-green-600 text-white'
+				case BoBadgeVariant.dark:
+					return /*tw*/ 'bg-black focus:ring-black text-white'
+			}
 	}
-});
+})
 
-const paddingClasses = computed<string>(() => {
-	return BoBadgePaddingClasses[size.value];
-});
-
-const borderRadiusClasses = computed<string>(() => {
-	return BoBadgeBorderRadiusClasses[shape.value];
-});
-
-const shadowClasses = computed<string>(() => {
-	return BoBadgeShadowClasses[variant.value];
-});
-
-const fontSizeClasses = computed<string>(() => {
-	return BoBadgeTextSizeClasses[size.value];
-});
-
-const heightClasses = computed<string>(() => {
-	return BoBadgeSizeClasses[size.value];
-});
+const boBadgeSizeClasses = computed<string>(() => {
+	switch (isCircle.value) {
+		case true:
+			switch (size.value) {
+				case BoSize.extra_small:
+					return /*tw*/ 'w-[16px] h-[16px]'
+				case BoSize.small:
+					return /*tw*/ 'w-[18px] h-[18px]'
+				case BoSize.default:
+				default:
+					return /*tw*/ 'w-[20px] h-[20px]'
+				case BoSize.large:
+					return /*tw*/ 'w-[24px] h-[24px]'
+				case BoSize.extra_large:
+					return /*tw*/ 'w-[32px] h-[32px]'
+			}
+		default:
+			switch (size.value) {
+				case BoSize.extra_small:
+					return /*tw*/ 'h-[16px] px-1.5 max-w-fit'
+				case BoSize.small:
+					return /*tw*/ 'h-[18px] px-1.5 max-w-fit'
+				case BoSize.default:
+				default:
+					return /*tw*/ 'h-[20px] px-1.5 max-w-fit'
+				case BoSize.large:
+					return /*tw*/ 'h-[24px] px-2 max-w-fit'
+				case BoSize.extra_large:
+					return /*tw*/ 'h-[32px] px-3 max-w-fit'
+			}
+	}
+})
 
 const classes = computed<string>(() => {
 	return TailwindUtils.merge(
 		defaultClasses,
-		colorClasses.value,
-		shadowClasses.value,
-		heightClasses.value,
-		paddingClasses.value,
-		fontSizeClasses.value,
-		borderRadiusClasses.value,
-	);
-});
+		boBadgeSizeClasses.value,
+		boBadgeShapeClasses.value,
+		boBadgeVariantClasses.value,
+	)
+})
 
-const fontSize = computed<BoFontSize>(() => {
+const badgeFontSize = computed<BoFontSize>(() => {
 	switch (size.value) {
+		case BoSize.extra_small:
 		case BoSize.small:
-			return BoFontSize.caption;
 		case BoSize.default:
 		default:
-			return BoFontSize.default;
+			return BoFontSize.xs
 		case BoSize.large:
-			return BoFontSize.h6;
+		case BoSize.extra_large:
+			return BoFontSize.base
 	}
-});
+})
+
+const boBadgeIconSize = computed<BoSize>(() => {
+	switch (size.value) {
+		case BoSize.extra_small:
+		case BoSize.small:
+			return BoSize.extra_small
+		case BoSize.default:
+		default:
+			return BoSize.small
+		case BoSize.large:
+		case BoSize.extra_large:
+			return BoSize.default
+	}
+})
 </script>
