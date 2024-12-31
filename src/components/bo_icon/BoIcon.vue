@@ -1,13 +1,12 @@
-<!-- eslint-disable vue/no-v-html -->
 <template>
-	<div
+	<component
 		v-if="isSvgReadyToRender"
-		type="image/svg+xml"
+		:is="svg"
 		:style="style"
 		class="bo-icon"
+		type="image/svg+xml"
 		:class="tailwindCssSizeClasses"
-		v-html="svg"
-	></div>
+	/>
 </template>
 
 <script lang="ts">
