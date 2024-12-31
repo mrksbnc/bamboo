@@ -10,7 +10,6 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		dts({
-			rollupTypes: true,
 			tsconfigPath: './tsconfig.app.json',
 		}),
 		svgLoader(),
@@ -18,9 +17,8 @@ export default defineConfig({
 	],
 	build: {
 		lib: {
-			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 			name: 'bamboo',
-			fileName: 'bamboo',
+			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 		},
 	},
 	resolve: {
