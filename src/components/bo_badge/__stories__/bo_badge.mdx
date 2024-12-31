@@ -1,14 +1,14 @@
-import { Canvas, Meta, Controls } from '@storybook/blocks';
-import * as BoBadgeStories from './bo_badge.stories';
+import { Canvas, Meta, Controls } from '@storybook/blocks'
+import * as BoBadgeStories from './bo_badge.stories.ts'
 
 <Meta
-	title="Components/bo-badge"
-	component={BoBadgeStories.BoBadge}
+  title="Components/bo-badge"
+  component={BoBadgeStories.BoBadge}
 />
 
 # bo-badge
 
-A badge is a small label that is attached to an object or action.
+A badge is a small label that is attached to an object or action. The `bo-badge` component is a component that can be used to display a badge in various ways.
 
 ## Basic usage
 
@@ -20,31 +20,32 @@ A badge is a small label that is attached to an object or action.
 
 - `label` - The label of the badge (optional)
   - default: `''`
+  - either `label` or `prefixIcon` must be provided
 - `type` - The type of the badge (optional)
   - default: `BoBadgeType.default`
-- `size` - The size of the badge (optional)
+- `size` - The size of the badge member of the `BoSize` enum (optional)
   - default: `BoSize.default`
-- `shape` - The shape of the badge (optional)
+- `shape` - The shape of the badge member of the `BoBadgeShape` enum (optional)
   - default: `BoBadgeShape.default`
-- `variant` - The variant of the badge (optional)
+- `variant` - The variant of the badge member of the `BoBadgeVariant` enum (optional)
   - default: `BoBadgeVariant.primary`
 - `prefixIcon` - The icon to be displayed before the label (optional)
   - default: `Icon.none`
+  - either `label` or `prefixIcon` must be provided
 - `suffixIcon` - The icon to be displayed after the label (optional)
   - default: `Icon.none`
+
+## Example
 
 <Canvas of={BoBadgeStories.Example} />
 <Controls of={BoBadgeStories.Example} />
 
-## Sizes
+## Icons
 
-The `size` prop can be used to change the size of the badge. The `size` prop should be a member of the `BoSize` enum.
+The `prefixIcon` and `suffixIcon` props can be used to display an icon before and after the label of the badge.
+Both of these props should be a member of the `Icon` enum.
 
-- `small`
-- `default`
-- `large`
-
-<Canvas of={BoBadgeStories.Sizes} />
+<Canvas of={BoBadgeStories.Icons} />
 
 ## Variants
 
@@ -56,10 +57,30 @@ To change the color of the component, you can use the predifened `BoBadgeVariant
 - `warning`
 - `success`
 - `dark`
-- `purple`
-- `teal`
 
 <Canvas of={BoBadgeStories.Variants} />
+
+## Icon only
+
+The `prefixIcon` prop can be used to display an icon only badge. In this case do not use the `label` prop
+
+<Canvas of={BoBadgeStories.IconOnly} />
+
+## Sizes
+
+The `size` prop can be used to change the size of the badge. The `size` prop should be a member of the `BoSize` enum.
+
+- `extra-small`
+- `small`
+- `default`
+- `large`
+- `extra-large`
+
+<Canvas of={BoBadgeStories.Sizes} />
+
+### Sizes with icons
+
+<Canvas of={BoBadgeStories.SizesWithIcons} />
 
 ## Shapes
 
@@ -68,6 +89,7 @@ The `shape` prop can be used to change the shape of the badge. The `shape` prop 
 - `default`
 - `pill`
 - `flat`
+- `circle`
 
 <Canvas of={BoBadgeStories.Shapes} />
 
@@ -79,17 +101,3 @@ The `type` prop can be used to change the type of the badge. The `type` prop sho
 - `outline`
 
 <Canvas of={BoBadgeStories.Types} />
-
-## Icons
-
-The `prefixIcon` and `suffixIcon` props can be used to display an icon before and after the label of the badge.
-Both of these props should be a member of the `Icon` enum.
-
-<Canvas of={BoBadgeStories.Icons} />
-
-## Icon only
-
-The `prefixIcon` or `suffixIcon` prop can be used to display an icon only badge. In this case do not use the `label` prop
-and set one of the before mentioned props to the desired icon.
-
-<Canvas of={BoBadgeStories.IconOnly} />

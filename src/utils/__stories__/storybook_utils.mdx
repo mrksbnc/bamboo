@@ -1,0 +1,65 @@
+import { Meta, Story } from '@storybook/blocks'
+import { StorybookUtils } from '@/utils'
+
+<Meta title="Utils/StorybookUtils" />
+
+# StorybookUtils
+
+The `StorybookUtils` class is a utility class that provides a collection of
+`static` methods to make Storybook related tasks easier.
+
+## Methods
+
+## stringEnumFormatter
+
+```ts
+stringEnumFormatter(stringEnum: { [key: string]: string }, name: string): string
+```
+
+The `stringEnumFormatter` method is used to generate a string representation of an enum in
+a readable format.
+
+- Parameters:
+
+  - `stringEnum`: The enum to be formatted.
+  - `name`: The name of the enum.
+
+- Returns: The formatted `string`.
+
+```ts
+StorybookUtils.stringEnumFormatter(BoColor, 'BoColor')
+/*
+ * enum BoColor {
+ *   inherit = 'inherit',
+ *   current = 'currentColor',
+ *   transparent = 'transparent',
+ *   black = '#000',
+ *   ...
+ * }
+ */
+```
+
+## arrayFormatter
+
+```ts
+arrayFormatter(array: string[], name: string): string
+```
+
+The `arrayFormatter` method is used to generate a string representation of an array in
+a readable format.
+
+- Parameters:
+
+  - `array`: The array to be formatted.
+  - `name`: The name of the array.
+
+- Returns: The formatted `string`.
+
+```ts
+StorybookUtils.arrayFormatter(['hello', 'world'], 'array');
+/*
+ * array [
+ *   'hello',
+ *   'world',
+ * ]
+```

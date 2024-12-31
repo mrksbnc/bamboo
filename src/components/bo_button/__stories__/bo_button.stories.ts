@@ -1,12 +1,13 @@
 import {
 	BoButton,
-	BoButtonType,
+	BoButtonShape,
 	BoButtonVariant,
-} from '@/components/bo_button';
-import { Icon } from '@/components/bo_icon';
-import { BoSize } from '@/global';
-import { StorybookUtils } from '@/utils';
-import type { Meta, StoryObj } from '@storybook/vue3';
+} from '@/components/bo_button'
+import { Icon } from '@/components/bo_icon'
+import { BoSize } from '@/data/bo_size.constant'
+import { HtmlButtonType } from '@/global'
+import { StorybookUtils } from '@/utils'
+import type { StoryObj } from '@storybook/vue3'
 
 const meta = {
 	title: 'Components/bo-button',
@@ -37,26 +38,7 @@ const meta = {
 			options: Object.values(BoButtonVariant),
 			defaultValue: BoButtonVariant.primary,
 		},
-		type: {
-			type: 'string',
-			options: Object.values(BoButtonType),
-			description: 'The variant of the button',
-			control: { type: 'select' },
-			table: {
-				category: 'props',
-				subcategory: 'optional',
-				type: {
-					summary: 'BoButtonType',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoButtonType,
-						'BoButtonType',
-					),
-				},
-			},
-			defaultValue: BoButtonType.default,
-		},
 		disabled: {
-			type: 'boolean',
 			description: 'Whether the button is disabled',
 			control: { type: 'boolean' },
 			table: {
@@ -64,6 +46,27 @@ const meta = {
 				subcategory: 'optional',
 			},
 			defaultValue: false,
+		},
+		isLoading: {
+			description: 'Whether the button is loading',
+			control: { type: 'boolean' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+			},
+		},
+		type: {
+			description: 'The type of the button (button, submit, reset)',
+			control: { type: 'select' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+				type: {
+					summary: 'string',
+				},
+			},
+			options: ['button', 'submit', 'reset'],
+			defaultValue: 'button',
 		},
 		size: {
 			description: 'The variant of the button',
@@ -79,22 +82,35 @@ const meta = {
 			},
 			defaultValue: BoSize.default,
 		},
-		isLoading: {
-			description: 'Whether the button is loading',
-			control: { type: 'boolean' },
+		shape: {
+			description: 'The shape of the button',
+			control: { type: 'select' },
+			options: Object.values(BoButtonShape),
 			table: {
 				category: 'props',
 				subcategory: 'optional',
+				type: {
+					summary: 'BoButtonShape',
+					detail: StorybookUtils.stringEnumFormatter(
+						BoButtonShape,
+						'BoButtonShape',
+					),
+				},
 			},
 		},
-		loaderText: {
-			description: 'The text to be displayed in the loader',
-			control: { type: 'text' },
+		loaderType: {
+			description: 'The type of the loader',
+			control: { type: 'select' },
+			options: ['spinner', 'pulse'],
 			table: {
 				category: 'props',
 				subcategory: 'optional',
+				type: {
+					summary: 'string',
+					detail: 'The type of the loader (spinner or pulse)',
+				},
 			},
-			defaultValue: '',
+			defaultValue: 'spinner',
 		},
 		prefixIcon: {
 			description: 'The icon to be displayed before the label',
@@ -124,125 +140,277 @@ const meta = {
 			},
 			options: Object.values(Icon),
 		},
+		linkVariantWithShadow: {
+			description: 'Whether the button should have a shadow when it is a link',
+			control: { type: 'boolean' },
+			table: {
+				category: 'props',
+				subcategory: 'optional',
+			},
+			defaultValue: false,
+		},
 	},
-} satisfies Meta<typeof BoButton>;
+}
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
 	args: {
 		label: 'Label',
 		variant: BoButtonVariant.primary,
-		type: BoButtonType.default,
-		disabled: false,
+		type: HtmlButtonType.button,
 		size: BoSize.default,
 	},
-};
+}
 
 export const Disabled: Story = {
 	args: {
 		label: 'Label',
 		disabled: true,
+		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
+		size: BoSize.default,
 	},
-};
+}
+
+export const isLoading: Story = {
+	args: {
+		label: 'Label',
+		isLoading: true,
+		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
+		size: BoSize.default,
+	},
+}
 
 export const Sizes: Story = {
-	render: () => ({
+	render: (args) => ({
 		components: { BoButton },
+		setup() {
+			const sizes = Object.values(BoSize)
+			return { sizes, ...args }
+		},
 		template: `
-			<div class="items-center flex">
-				<BoButton label="Small" size="${BoSize.small}" class="m-1" />
-				<BoButton label="Default" size="${BoSize.default}" class="m-1" />
-				<BoButton label="Large" size="${BoSize.large}" class="m-1" />
+			<div class="flex flex-col gap-4">
+				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<bo-button :label="label" :variant="variant" :type="type" :size="size" class="m-1"/>
+					<span class="text-sm text-gray-500 font-medium">{{ size }}</span>
+				</span>
 			</div>
 		`,
 	}),
 	args: {
 		label: 'Label',
+		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
 	},
-};
+}
 
-export const Types: Story = {
-	render: () => ({
+export const Shapes: Story = {
+	render: (args) => ({
 		components: { BoButton },
+		setup() {
+			const shapes = Object.values(BoButtonShape)
+			return { shapes, ...args }
+		},
 		template: `
-			<div class="items-center flex">
-				<BoButton label="Default" type="${BoButtonType.default}" class="m-1" />
-				<BoButton label="Pill" type="${BoButtonType.pill}" class="m-1" />
-				<BoButton label="Outline" type="${BoButtonType.outline}" class="m-1" />
+			<div class="flex flex-col gap-4">
+				<span v-for="shape in shapes" :key="shape" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<bo-button :label="label" :variant="variant" :shape="shape" :type="type" class="m-1"/>
+					<span class="text-sm text-gray-500 font-medium">{{ shape }}</span>
+				</span>
 			</div>
 		`,
 	}),
 	args: {
 		label: 'Label',
+		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
 	},
-};
+}
 
 export const Variants: Story = {
-	render: () => ({
+	render: (args) => ({
 		components: { BoButton },
+		setup() {
+			const variants = Object.values(BoButtonVariant)
+			return { variants, ...args }
+		},
 		template: `
-			<div class="flex flex-col gap-4 w-full h-full dark:bg-gray-700 p-2 rounded-lg">
-				<h1 class="my-2">Default</h1>
-				<div class="flex flex-1">
-					<BoButton label="Primary" variant="${BoButtonVariant.primary}" class="m-1" />
-					<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" class="m-1" />
-					<BoButton label="Danger" variant="${BoButtonVariant.danger}" class="m-1" />
-					<BoButton label="Warning" variant="${BoButtonVariant.warning}" class="m-1" />
-					<BoButton label="Success" variant="${BoButtonVariant.success}" class="m-1" />
-					<BoButton label="Dark" variant="${BoButtonVariant.dark}" class="m-1" />
-					<BoButton label="Purple" variant="${BoButtonVariant.purple}" class="m-1" />
-					<BoButton label="Teal" variant="${BoButtonVariant.teal}" class="m-1" />
-				</div>
-				<h1 class="my-2">Pill</h1>
-				<div class="flex flex-1">
-					<BoButton label="Primary" variant="${BoButtonVariant.primary}" type="${BoButtonType.pill}" class="m-1" />	
-					<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" type="${BoButtonType.pill}" class="m-1" />	
-					<BoButton label="Danger" variant="${BoButtonVariant.danger}" type="${BoButtonType.pill}" class="m-1" />	
-					<BoButton label="Warning" variant="${BoButtonVariant.warning}" type="${BoButtonType.pill}" class="m-1" />	
-					<BoButton label="Success" variant="${BoButtonVariant.success}" type="${BoButtonType.pill}" class="m-1" />	
-					<BoButton label="Dark" variant="${BoButtonVariant.dark}" type="${BoButtonType.pill}" class="m-1" />	
-					<BoButton label="Purple" variant="${BoButtonVariant.purple}" type="${BoButtonType.pill}" class="m-1" />	
-					<BoButton label="Teal" variant="${BoButtonVariant.teal}" type="${BoButtonType.pill}" class="m-1" />	
-				</div>
-				<h1 class="my-2">Outline</h1>
-				<div class="flex flex-1">	
-					<BoButton label="Primary" variant="${BoButtonVariant.primary}" type="${BoButtonType.outline}" class="m-1" />	
-					<BoButton label="Secondary" variant="${BoButtonVariant.secondary}" type="${BoButtonType.outline}" class="m-1" />	
-					<BoButton label="Danger" variant="${BoButtonVariant.danger}" type="${BoButtonType.outline}" class="m-1" />	
-					<BoButton label="Warning" variant="${BoButtonVariant.warning}" type="${BoButtonType.outline}" class="m-1" />	
-					<BoButton label="Success" variant="${BoButtonVariant.success}" type="${BoButtonType.outline}" class="m-1" />	
-					<BoButton label="Dark" variant="${BoButtonVariant.dark}" type="${BoButtonType.outline}" class="m-1" />	
-					<BoButton label="Purple" variant="${BoButtonVariant.purple}" type="${BoButtonType.outline}" class="m-1" />	
-					<BoButton label="Teal" variant="${BoButtonVariant.teal}" type="${BoButtonType.outline}" class="m-1" />	
-				</div>
+			<div class="flex flex-col gap-4">
+				<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<bo-button :label="label" :variant="variant" :type="type" class="m-1"/>
+					<span class="text-sm text-gray-500 font-medium">{{ variant }}</span>
+				</span>
 			</div>
 		`,
 	}),
 	args: {
 		label: 'Label',
+		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
 	},
-};
+}
+
+export const ShapesAndVariants: Story = {
+	render: (args) => ({
+		components: { BoButton },
+		setup() {
+			const shapes = Object.values(BoButtonShape)
+			const variants = Object.values(BoButtonVariant)
+			return { shapes, variants, ...args }
+		},
+		template: `
+			<div class="flex gap-4">
+				<span v-for="shape in shapes" :key="shape" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+						<bo-button :label="label" :variant="variant" :shape="shape" :type="type" class="m-1"/>
+						<span class="text-sm text-gray-500 font-medium">{{ variant }} {{ shape }}</span>
+					</span>
+				</span>
+			</div>
+		`,
+	}),
+	args: {
+		label: 'Label',
+		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
+	},
+}
 
 export const WithPrefixIcon: Story = {
+	render: (args) => ({
+		components: { BoButton },
+		setup() {
+			return { ...args }
+		},
+		template: `
+			<div class="flex flex-col gap-4 w">
+				<span class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<bo-button :label="label" :prefix-icon="prefixIcon" :type="type" class="m-1"/>
+					<span class="text-sm text-gray-500 font-medium">prefix-icon</span>
+				</span>
+			</div>
+		`,
+	}),
 	args: {
 		label: 'Label',
 		prefixIcon: Icon.alert_circle,
+		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
 	},
-};
+}
 
 export const WithSuffixIcon: Story = {
+	render: (args) => ({
+		components: { BoButton },
+		setup() {
+			return { ...args }
+		},
+		template: `
+			<div class="flex flex-col gap-4 w">
+				<span class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<bo-button :label="label" :suffix-icon="suffixIcon" :type="type" class="m-1"/>
+					<span class="text-sm text-gray-500 font-medium">suffix-icon</span>
+				</span>
+			</div>
+		`,
+	}),
 	args: {
 		label: 'Label',
 		suffixIcon: Icon.alert_circle,
+		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
 	},
-};
+}
 
-export const WithPrefixAndSuffixIcon: Story = {
+export const IconOnlyButton: Story = {
+	render: (args) => ({
+		components: { BoButton },
+		setup() {
+			return { ...args }
+		},
+		template: `
+			<div class="flex flex-col gap-4 w">
+				<span class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<bo-button :prefix-icon="prefixIcon" :type="type" class="m-1"/>
+					<span class="text-sm text-gray-500 font-medium">prefix-icon</span>
+				</span>
+			</div>
+		`,
+	}),
+	args: {
+		prefixIcon: Icon.alert_circle,
+		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
+	},
+}
+
+export const IconOnlySizes: Story = {
+	render: (args) => ({
+		components: { BoButton },
+		setup() {
+			const sizes = Object.values(BoSize)
+			return { sizes, ...args }
+		},
+		template: `
+			<div class="flex flex-row gap-4">
+				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<bo-button :prefix-icon="prefixIcon" :size="size" :type="type" class="m-1"/>
+					<span class="text-sm text-gray-500 font-medium">{{ size }}</span>
+				</span>
+			</div>
+		`,
+	}),
+	args: {
+		prefixIcon: Icon.alert_circle,
+		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
+	},
+}
+
+export const IconOnlyVariants: Story = {
+	render: (args) => ({
+		components: { BoButton },
+		setup() {
+			const variants = Object.values(BoButtonVariant)
+			return { variants, ...args }
+		},
+		template: `
+			<div class="flex flex-row gap-4">
+				<span v-for="variant in variants" :key="variant" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<bo-button :prefix-icon="prefixIcon" :variant="variant" :type="type" class="m-1"/>
+					<span class="text-sm text-gray-500 font-medium">{{ variant }}</span>
+				</span>
+			</div>
+		`,
+	}),
+	args: {
+		prefixIcon: Icon.alert_circle,
+		variant: BoButtonVariant.primary,
+		type: HtmlButtonType.button,
+	},
+}
+
+export const LinkVariantWithShadow: Story = {
+	render: (args) => ({
+		components: { BoButton },
+		setup() {
+			return { ...args }
+		},
+		template: `
+			<div class="flex flex-col gap-4">
+				<span class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
+					<bo-button :label="label" :variant="variant" :link-variant-with-shadow="linkVariantWithShadow" :type="type" class="m-1"/>
+				</span>
+			</div>
+		`,
+	}),
 	args: {
 		label: 'Label',
-		prefixIcon: Icon.alert_circle,
-		suffixIcon: Icon.alert_circle,
+		linkVariantWithShadow: true,
+		variant: BoButtonVariant.link,
+		type: HtmlButtonType.button,
 	},
-};
+}

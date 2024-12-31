@@ -1,0 +1,43 @@
+import { Meta, Story } from '@storybook/blocks'
+import { IdentityUtils } from '@/utils'
+
+<Meta title="Utils/IdentityUtils" />
+
+# IdentityUtils
+
+The `IdentityUtils` class is a utility class that provides a collection of
+`static` methods to make identity management easier.
+
+## Methods
+
+## generateRandomId
+
+```ts
+generateRandomId(): string
+```
+
+The `generateRandomId` method is used to generate a new random identity.
+
+- Returns: A random id as a `string`.
+
+```ts
+IdentityUtils.instance.generateRandomId() // "lqjxigk"
+```
+
+## generateRandomIdWithPrefix
+
+```ts
+generateRandomIdWithPrefix(prefix: string): string
+```
+
+The `generateRandomIdWithPrefix` method is used to generate a new random identity with the specified prefix.
+
+- Parameters:
+
+  - `prefix`: The prefix to be added to the random id.
+
+- Returns: A random id with the specified prefix as a `string`.
+
+```ts
+IdentityUtils.instance.generateRandomIdWithPrefix('my-prefix') // "my-prefix-lqjxigk"
+```

@@ -1,13 +1,3 @@
-export { default as BoBadge } from './BoBadge.vue';
-export {
-	BoBadgeBorderRadiusClasses,
-	BoBadgeFilledColorClasses,
-	BoBadgeOutlineColorClasses,
-	BoBadgePaddingClasses,
-	BoBadgeShadowClasses,
-	BoBadgeShape,
-	BoBadgeSizeClasses,
-	BoBadgeTextSizeClasses,
-	BoBadgeType,
-	BoBadgeVariant,
-} from './bo_badge';
+export { default as BoBadge } from './BoBadge.vue'
+export * from './constants'
+export * from './types'

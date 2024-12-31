@@ -2,11 +2,15 @@
 logs
 *.log
 npm-debug.log*
-pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+npm-debug.log*
+lerna-debug.log*
 
 node_modules
 .DS_Store
 dist
+dist-ssr
 coverage
 *.local
 
@@ -16,12 +20,18 @@ coverage
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-!.vscode/settings.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*.tsbuildinfo
 
 *storybook.log
 
-.env
-!.env.example
-
-# Storybook build directory
-!static
+dist
+coverage
+static
+test
