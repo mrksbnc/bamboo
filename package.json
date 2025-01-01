@@ -27,7 +27,7 @@
     "lint:eslint": "eslint . --fix",
     "lint": "run-s lint:*",
     "format": "prettier --write src/",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --no-open",
     "build": "NODE_ENV=production run-p type-check \"build-only {@}\" && npm run build:css:min",
     "build:storybook": "storybook build -o static",
     "build:css:min": "NPM_ENV=production npx postcss src/lib.css > dist/lib.min.css",
