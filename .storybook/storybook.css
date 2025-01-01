@@ -1,0 +1,24 @@
+.css-1njl3fa {
+  border: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+
+  div {
+    :first-child {
+      margin-left: 0.125rem;
+    }
+
+    :last-child {
+      margin-right: 0.125rem;
+    }
+
+    &:not(:first-child):not(:last-child) {
+      margin: 0 0.125rem;
+    }
+  }
+
+  ::before {
+    content: none;
+    border-radius: 0.5rem;
+  }
+}
