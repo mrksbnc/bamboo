@@ -1,9 +1,0 @@
-{
-  "$schema": "https://www.chromatic.com/config-file.schema.json",
-  "zip": true,
-  "onlyChanged": true,
-  "projectId": "Project:64d94a837fda91d800320b66",
-  "autoAcceptChanges": "main",
-  "exitOnceUploaded": true,
-  "buildScriptName": "build:storybook"
-}

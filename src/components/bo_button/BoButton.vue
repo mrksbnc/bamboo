@@ -54,24 +54,13 @@ const props = withDefaults(defineProps<BoButtonProps>(), {
 	size: () => BoSize.default,
 	prefixIcon: () => Icon.none,
 	suffixIcon: () => Icon.none,
-	linkVariantWithShadow: false,
 	type: () => HtmlButtonType.button,
 	shape: () => BoButtonShape.default,
 	variant: () => BoButtonVariant.primary,
 })
 
-const {
-	label,
-	type,
-	variant,
-	size,
-	prefixIcon,
-	suffixIcon,
-	shape,
-	linkVariantWithShadow,
-	disabled,
-	isLoading,
-} = toRefs(props)
+const { label, type, variant, size, prefixIcon, suffixIcon, shape, disabled, isLoading } =
+	toRefs(props)
 
 const defaultClasses: string =
 	/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer w-fit'
@@ -188,13 +177,7 @@ const buttonVariantShadowClasses = computed<string>(() => {
 		case BoButtonVariant.link_warning:
 		case BoButtonVariant.link_success:
 		case BoButtonVariant.link_dark:
-			switch (linkVariantWithShadow.value) {
-				case false:
-					return /*tw*/ 'shadow-none'
-				case true:
-				default:
-					return /*tw*/ 'shadow-md'
-			}
+			return /*tw*/ 'shadow-none'
 		case BoButtonVariant.primary:
 		case BoButtonVariant.secondary:
 		case BoButtonVariant.danger:
