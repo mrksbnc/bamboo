@@ -2,6 +2,9 @@
 import { BoButton } from '@/components/bo_button'
 import BoButtonVariantsExample from './examples/BoButtonVariantsExample.vue'
 import BoButtonShapesExample from './examples/BoButtonShapesExample.vue'
+import BoButtonSizeExample from './examples/BoButtonSizeExample.vue'
+import BoButtonIconVariants from './examples/BoButtonIconVariants.vue'
+import BoButtonIconOnlyVariant from './examples/BoButtonIconOnlyVariant.vue'
 </script>
 
 # Button
@@ -29,17 +32,15 @@ The component to use is called `bo-button`.
 | `prefixIcon`            | `Icon`            | `Icon.none`               |
 | `suffixIcon`            | `Icon`            | `Icon.none`               |
 
+::: warning Note
+To make the button work properly, either the `label` or the `prefixIcon` prop must be provided.
+:::
+
 ::: tip Icon only button
 To create an icon only button, you can use the `prefixIcon` prop without the `label` prop.
 If the label is not provided, the padding and the general size of the button will be aligned
 to match the icon correctly.
 :::
-
-::: warning Note
-To make the button work properly, either the `label` or the `prefixIcon` prop must be provided.
-:::
-
-## Examples
 
 ## Disabled
 
@@ -98,40 +99,21 @@ The `size` prop can be used to change the size of the button. The `size` prop sh
 - `large`
 - `extra-large`
 
-<div class="flex gap-4">
-	
-</div>
+<bo-button-size-example />
 
 ## Button types
 
 To change the type of the component, you can use the predifened `type` prop. The `type` prop should be a string that represents the type of the button. The `type` prop can take the values of the `button`, `submit`, and `reset`.
 
-## Button sizes with icons
+## With icon
 
 The `prefixIcon` and `suffixIcon` props can be used to display an icon before and after the label of the button.
 Both of these props should be a member of the `Icon` enum.
 
-<div class="flex flex-row gap-4 w">
-	<bo-button label="Default" prefixIcon="alert-circle" />
-	<bo-button label="Outline" suffixIcon="alert-circle"  />
-</div>
+<bo-button-icon-variants />
 
-## Icon only button
+## Icon only
 
-To create an icon only button, you can use the `prefixIcon` prop without the `label` prop.
-If the label is not provided, the padding and the general size of the button will be aligned
-to match the icon correctly.
+To create an icon only button, you can use the `prefixIcon` prop without the `label`. If the label is not provided, the padding and the general size of the button will be aligned
 
-<div class="flex flex-row gap-4 w">
-	<bo-button prefixIcon="alert-circle" />
-</div>
-
-## Icon only button sizes
-
-<div class="flex gap-4">
-	<bo-button prefixIcon="alert-circle" size="extra-small" />
-	<bo-button prefixIcon="alert-circle" size="small" />
-	<bo-button prefixIcon="alert-circle" size="default" />
-	<bo-button prefixIcon="alert-circle" size="large" />
-	<bo-button prefixIcon="alert-circle" size="extra-large" />
-</div>
+<bo-button-icon-only-variant />

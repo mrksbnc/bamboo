@@ -1,12 +1,13 @@
 <template>
-	<component
-		v-if="isSvgReadyToRender"
-		:is="svg"
+	<!-- eslint-disable vue/no-v-html -->
+	<div
+		v-html="svg"
 		:style="style"
 		class="bo-icon"
+		aria-label="icon"
 		type="image/svg+xml"
 		:class="tailwindCssSizeClasses"
-	/>
+	></div>
 </template>
 
 <script lang="ts">
@@ -18,14 +19,7 @@ export default defineComponent({
 <script setup lang="ts">
 import { BoSize } from '@/data/bo_size.constant'
 import { StringUtils } from '@/utils'
-import {
-	computed,
-	defineComponent,
-	ref,
-	toRefs,
-	watch,
-	type StyleValue,
-} from 'vue'
+import { computed, defineComponent, ref, toRefs, watch, type StyleValue } from 'vue'
 import { Icon, icons } from './constant'
 import type { BoIconProps } from './types'
 
@@ -37,6 +31,7 @@ const props = withDefaults(defineProps<BoIconProps>(), {
 const { icon, size, color } = toRefs(props)
 
 const svg = ref('')
+
 /**
  * @description This is a map of all the icons that are available in the library.
  *
@@ -47,20 +42,18 @@ const iconMap = Object.keys(icons).reduce(
 	(acc, key) => {
 		const splitted = key.split('/')
 		const icon = splitted[splitted.length - 1].split('.')[0]
-
 		acc[icon] = icons[key]
-
 		return acc
 	},
 	{} as Record<string, () => Promise<string>>,
 )
+
 /**
  * @description This prevents the Icon component from rendering an empty icon and
  * taking up space in the DOM.
  */
 const isSvgReadyToRender = computed<boolean>(() => {
 	const noneIconStr = String(Icon.none)
-
 	return (
 		svg.value !== noneIconStr &&
 		!StringUtils.isEmptyStr(svg.value) &&

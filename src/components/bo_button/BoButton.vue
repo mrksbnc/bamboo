@@ -17,7 +17,7 @@
 				v-if="!!label && !iconOnlyButton"
 				:text="label"
 				:clickable="true"
-				:weight="BoFontWeight.medium"
+				:weight="BoFontWeight.semibold"
 				:size="buttonFontSize"
 				class="bo-button__label"
 			/>
@@ -226,8 +226,9 @@ const buttonFontSize = computed<BoFontSize>(() => {
 		default:
 			return BoFontSize.sm
 		case BoSize.large:
-		case BoSize.extra_large:
 			return BoFontSize.base
+		case BoSize.extra_large:
+			return BoFontSize.lg
 	}
 })
 
