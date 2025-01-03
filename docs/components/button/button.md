@@ -1,6 +1,7 @@
 <script setup>
 import { BoButton } from '@/components/bo_button'
 import BoButtonVariantsExample from './examples/BoButtonVariantsExample.vue'
+import BoButtonShapesExample from './examples/BoButtonShapesExample.vue'
 </script>
 
 # Button
@@ -75,7 +76,7 @@ The available values for the `BoButtonVariant` enum are:
 - `link_success`
 - `link_dark`
 
-<BoButtonVariantsExample />
+<bo-button-variants-example />
 
 ## Button shapes
 
@@ -85,11 +86,7 @@ To change the shape of the component, you can use the predifened `BoButtonShape`
 - `pill`
 - `outline`
 
-<div class="flex flex-row gap-4 w">
-	<bo-button label="Default" shape="default" />
-	<bo-button label="Pill" shape="pill" />
-	<bo-button label="Outline" shape="outline" />
-</div>
+<bo-button-shapes-example />
 
 ## Button sizes
 

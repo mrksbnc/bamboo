@@ -54,19 +54,10 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 	shape: () => BoAvatarShape.rounded,
 })
 
-const {
-	clickable,
-	imageData,
-	initialsData,
-	type,
-	shape,
-	size,
-	colorHex,
-	withDefaultImage,
-} = toRefs(props)
+const { clickable, imageData, initialsData, type, shape, size, colorHex, withDefaultImage } =
+	toRefs(props)
 
-const defaultAvatarSvg = new URL('../../assets/img/avatar.png', import.meta.url)
-	.href
+const defaultAvatarSvg = new URL('../../assets/img/avatar.png', import.meta.url).href
 
 const imgClasses = /*tw*/ 'h-full w-full'
 
@@ -75,11 +66,7 @@ const showDefaultAvatar = computed<boolean>(() => {
 		return true
 	}
 
-	return (
-		!imageData.value &&
-		!initialsData.value &&
-		type.value === BoAvatarType.unknown
-	)
+	return !imageData.value && !initialsData.value && type.value === BoAvatarType.unknown
 })
 
 const labelSize = computed<BoFontSize>(() => {
@@ -157,12 +144,8 @@ const avatarContainerDefaultClasses = computed<string>(() => {
 
 	return TailwindUtils.merge(
 		/*tw*/ 'flex items-center justify-center overflow-hidden shadow-sm text-white',
-		withDefaultImage.value || type.value === BoAvatarType.image
-			? /*tw*/ 'bg-transparent'
-			: bg,
-		clickable.value
-			? /*tw*/ 'cursor-pointer hover:bg-opacity-80'
-			: /*tw*/ 'cursor-default',
+		withDefaultImage.value || type.value === BoAvatarType.image ? /*tw*/ 'bg-transparent' : bg,
+		clickable.value ? /*tw*/ 'cursor-pointer hover:bg-opacity-80' : /*tw*/ 'cursor-default',
 	)
 })
 

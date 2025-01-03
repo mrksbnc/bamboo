@@ -2,18 +2,20 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
+title: Bamboo
+
 hero:
   name: Bamboo
-  text: Lightweight and flexible component library built with Vue and Tailwind CSS
+  text: UI library built with Vue and Tailwind CSS
   actions:
     - theme: brand
       text: Get started
-      link: /get-started
+      link: /pages/get-started
     - theme: alt
       text: View it on GitHub
       link: https://github.com/mrksbnc/bamboo
   image:
-    src: /bamboo-logo.svg
+    src: /assets/logo.webp
     alt: Bamboo
 
 features:
