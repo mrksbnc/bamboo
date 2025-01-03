@@ -1,5 +1,4 @@
 export enum BoInputSize {
-	small = 'small',
 	default = 'default',
 	large = 'large',
 }
