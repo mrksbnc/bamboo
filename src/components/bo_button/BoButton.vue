@@ -6,9 +6,7 @@
 		:aria-disabled="disabled || isLoading"
 		:aria-readonly="isLoading || disabled"
 	>
-		<span
-			class="bo-button__content inline-flex items-center justify-center gap-1"
-		>
+		<span class="bo-button__content inline-flex items-center justify-center gap-1">
 			<bo-icon
 				v-if="prefixIcon !== Icon.none || iconOnlyButton"
 				:icon="iconOnlyIcon"
@@ -24,12 +22,7 @@
 				class="bo-button__label"
 			/>
 			<bo-icon
-				v-if="
-					suffixIcon !== Icon.none &&
-					suffixIcon != null &&
-					!isLoading &&
-					!iconOnlyButton
-				"
+				v-if="suffixIcon !== Icon.none && suffixIcon != null && !isLoading && !iconOnlyButton"
 				:icon="suffixIcon"
 				:size="size"
 				class="bo-button__suffix-icon"
@@ -81,7 +74,7 @@ const {
 } = toRefs(props)
 
 const defaultClasses: string =
-	/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer'
+	/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer w-fit'
 
 const disabledClasses: string =
 	/*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none'
