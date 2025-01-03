@@ -13,5 +13,4 @@ export type BoButtonProps = {
 	size?: BoSize
 	prefixIcon?: Icon
 	suffixIcon?: Icon
-	linkVariantWithShadow?: boolean
 }

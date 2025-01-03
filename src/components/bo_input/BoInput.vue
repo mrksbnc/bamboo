@@ -27,8 +27,8 @@
 				:class="defaultPrefixIconContainerClasses"
 			>
 				<bo-icon
-					:size="iconSize"
 					:icon="prefixIcon"
+					:size="BoSize.default"
 					:color="BoColor.gray_500"
 			/></span>
 			<input
@@ -45,12 +45,12 @@
 			/>
 			<div class="flex flex-row-reverse">
 				<span
-					v-if="suffixIcon != null"
+					v-if="suffixIcon != null && !isLoading"
 					:class="defaultSuffixIconContainerClasses"
 				>
 					<bo-icon
-						:size="iconSize"
 						:icon="suffixIcon"
+						:size="BoSize.default"
 						:color="BoColor.gray_500"
 				/></span>
 				<span
@@ -202,67 +202,65 @@ const hasError = computed<boolean>(() => {
 })
 
 const loadingContainerClasses = computed<string>(() => {
-	return TailwindUtils.merge(
-		isLoading.value
-			? suffixIcon.value != null
-				? 'right-[35px]'
-				: 'right-[14px]'
-			: '',
-		defaultLoadingContainerClasses,
-	)
+	return TailwindUtils.merge('right-[14px]', defaultLoadingContainerClasses)
 })
 
-const inputSizeClasses = computed<string>(() => {
-	if (prefixIcon.value != null && suffixIcon.value != null) {
+const inputPaddingClasses = computed<string>(() => {
+	const bothIconsSet =
+		prefixIcon.value !== null &&
+		prefixIcon.value !== undefined &&
+		prefixIcon.value !== Icon.none &&
+		suffixIcon.value !== null &&
+		suffixIcon.value !== undefined &&
+		suffixIcon.value !== Icon.none
+
+	const prefixIconSet =
+		prefixIcon.value != null && prefixIcon.value !== Icon.none
+	const suffixIconSet =
+		suffixIcon.value != null && suffixIcon.value !== Icon.none
+
+	if (bothIconsSet) {
 		switch (size.value) {
-			case BoInputSize.small:
-				return /*tw*/ 'flex w-full min-h-[24px] text-xs'
 			case BoInputSize.default:
 			default:
-				return /*tw*/ 'flex w-full h-[32px] px-8 text-base'
+				return /*tw*/ 'px-8 py-[9px]'
 			case BoInputSize.large:
-				return /*tw*/ 'flex w-full h-[40px] px-8 text-xl'
+				return /*tw*/ 'px-8 py-3'
 		}
-	}
-
-	if (prefixIcon.value != null) {
+	} else if (prefixIconSet) {
 		switch (size.value) {
-			case BoInputSize.small:
-				return /*tw*/ 'flex w-full h-[24px] pl-6 pr-4 text-xs'
 			case BoInputSize.default:
 			default:
-				return /*tw*/ 'flex w-full h-[32px] pl-8 pr-4 text-sm'
+				return /*tw*/ 'pl-8 pr-4 py-[9px]'
 			case BoInputSize.large:
-				return /*tw*/ 'flex w-full h-[40px] pl-8 pr-4 text-base'
+				return /*tw*/ 'pl-8 pr-4 py-3'
 		}
-	}
-
-	if (suffixIcon.value != null) {
+	} else if (suffixIconSet) {
 		switch (size.value) {
-			case BoInputSize.small:
-				return isLoading.value
-					? /*tw*/ 'flex w-full h-[24px] pl-4 pr-6 text-xs'
-					: /*tw*/ 'flex w-full h-[24px] pl-4 pr-14 text-xs'
 			case BoInputSize.default:
 			default:
-				return isLoading.value
-					? /*tw*/ 'flex w-full h-[32px] pl-4 pr-8 text-sm'
-					: /*tw*/ 'flex w-full h-[32px] pl-4 pr-14 text-sm'
+				return /*tw*/ 'pl-4 pr-8 py-[9px]'
 			case BoInputSize.large:
-				return isLoading.value
-					? /*tw*/ 'flex w-full h-[40px] pl-4 pr-8 text-base'
-					: /*tw*/ 'flex w-full h-[40px] pl-4 pr-14 text-base'
+				return /*tw*/ 'pl-4 pr-8 py-3'
+		}
+	} else {
+		switch (size.value) {
+			case BoInputSize.default:
+			default:
+				return /*tw*/ 'pl-4 pr-4 py-[9px]'
+			case BoInputSize.large:
+				return /*tw*/ 'pl-4 pr-4 py-3'
 		}
 	}
+})
 
+const inputFontSize = computed<string>(() => {
 	switch (size.value) {
-		case BoInputSize.small:
-			return /*tw*/ 'flex w-full h-[24px] px-3 text-xs'
 		case BoInputSize.default:
 		default:
-			return /*tw*/ 'flex w-full h-[32px] px-3 text-sm'
+			return /*tw*/ 'text-sm'
 		case BoInputSize.large:
-			return /*tw*/ 'flex w-full h-[40px] px-3 text-base'
+			return /*tw*/ 'text-base'
 	}
 })
 
@@ -284,22 +282,14 @@ const inputClasses = computed<string>(() => {
 	}
 
 	return TailwindUtils.merge(
+		'flex w-full',
 		classes,
 		focusClasses,
 		disabledClasses,
 		defaultInputClasses,
-		inputSizeClasses.value,
+		inputFontSize.value,
+		inputPaddingClasses.value,
 	)
-})
-
-const iconSize = computed<BoSize>(() => {
-	switch (size.value) {
-		case BoInputSize.small:
-			return BoSize.small
-		case BoInputSize.default:
-		default:
-			return BoSize.default
-	}
 })
 
 function onInput(e: Event): void {

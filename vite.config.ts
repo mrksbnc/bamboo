@@ -16,6 +16,8 @@ export default defineConfig({
 		vueDevTools(),
 	],
 	build: {
+		cssCodeSplit: true,
+		target: 'esnext',
 		lib: {
 			name: 'bamboo',
 			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
@@ -25,5 +27,6 @@ export default defineConfig({
 		alias: {
 			'@': fileURLToPath(new URL('./src', import.meta.url)),
 		},
+		dedupe: ['vue'],
 	},
 })

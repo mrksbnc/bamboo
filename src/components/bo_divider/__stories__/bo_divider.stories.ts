@@ -1,8 +1,4 @@
-import {
-	BoDivider,
-	BoDividerType,
-	BoDividerVariant,
-} from '@/components/bo_divider'
+import { BoDivider, BoDividerType, BoDividerVariant } from '@/components/bo_divider'
 import BoText from '@/components/bo_text/BoText.vue'
 import { StorybookUtils } from '@/utils'
 import type { Meta, StoryObj } from '@storybook/vue3'
@@ -20,10 +16,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoDividerVariant',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoDividerVariant,
-						'BoDividerVariant',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoDividerVariant, 'BoDividerVariant'),
 				},
 			},
 			defaultValue: BoDividerVariant.primary,
@@ -37,10 +30,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoDividerType',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoDividerType,
-						'BoDividerType',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoDividerType, 'BoDividerType'),
 				},
 			},
 			defaultValue: BoDividerType.default,
@@ -59,7 +49,7 @@ export const Example: Story = {
 		},
 		template: `
 			<div class="flex flex-col gap-4 bg-white p-4">
-                <bo-divider v-bind="args" />
+				<bo-divider v-bind="args" />
 			</div>
 		`,
 	}),
@@ -79,19 +69,19 @@ export const Variants: Story = {
 		template: `
 			<div class="flex flex-col gap-4 bg-white p-4">
 				<bo-divider v-bind="args" />
-                <span class="text-sm text-gray-500 font-medium">default</span>
+				<span class="text-sm text-gray-500 font-medium">default</span>
 
 				<bo-divider v-bind="args" :variant="variants[1]" />
-                <span class="text-sm text-gray-500 font-medium">{{ variants[1] }}</span>
+				<span class="text-sm text-gray-500 font-medium">{{ variants[1] }}</span>
 
-                <bo-divider v-bind="args" :variant="variants[2]" />
+				<bo-divider v-bind="args" :variant="variants[2]" />
 				<span class="text-sm text-gray-500 font-medium">{{ variants[2] }}</span>
 
-                <bo-divider v-bind="args" :variant="variants[3]" />
-                <span class="text-sm text-gray-500 font-medium">{{ variants[3] }}</span>
+				<bo-divider v-bind="args" :variant="variants[3]" />
+				<span class="text-sm text-gray-500 font-medium">{{ variants[3] }}</span>
 
-                <bo-divider v-bind="args" :variant="variants[4]" />
-                <span class="text-sm text-gray-500 font-medium">{{ variants[4] }}</span>
+				<bo-divider v-bind="args" :variant="variants[4]" />
+				<span class="text-sm text-gray-500 font-medium">{{ variants[4] }}</span>
 			</div>
 		`,
 	}),
@@ -110,10 +100,10 @@ export const Types: Story = {
 		},
 		template: `
 			<div class="flex flex-col gap-4 bg-white p-4">
-                <span v-for="type in types" :key="type">
-				    <bo-divider :type="type" />
-                    <span class="text-sm text-gray-500 font-medium">{{ type }}</span>
-                </span>
+				<span v-for="type in types" :key="type">
+					<bo-divider :type="type" />
+					<span class="text-sm text-gray-500 font-medium">{{ type }}</span>
+				</span>
 			</div>
 		`,
 	}),

@@ -1,8 +1,0 @@
-{
-  "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
-  "projectFolder": ".",
-  "mainEntryPointFilePath": "<projectFolder>/dist/bamboo.d.ts",
-  "bundledPackages": [],
-  "newlineKind": "lf",
-  "enumMemberOrder": "preserve"
-}

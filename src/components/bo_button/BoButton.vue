@@ -6,31 +6,26 @@
 		:aria-disabled="disabled || isLoading"
 		:aria-readonly="isLoading || disabled"
 	>
-		<span class="bo-button__content inline-flex items-center justify-center">
+		<span class="bo-button__content inline-flex items-center justify-center gap-1">
 			<bo-icon
 				v-if="prefixIcon !== Icon.none || iconOnlyButton"
 				:icon="iconOnlyIcon"
 				:size="size"
-				class="bo-button__prefix-icon mr-1.5"
+				class="bo-button__prefix-icon"
 			/>
 			<bo-text
 				v-if="!!label && !iconOnlyButton"
 				:text="label"
 				:clickable="true"
-				:weight="BoFontWeight.medium"
+				:weight="BoFontWeight.semibold"
 				:size="buttonFontSize"
 				class="bo-button__label"
 			/>
 			<bo-icon
-				v-if="
-					suffixIcon !== Icon.none &&
-					suffixIcon != null &&
-					!isLoading &&
-					!iconOnlyButton
-				"
+				v-if="suffixIcon !== Icon.none && suffixIcon != null && !isLoading && !iconOnlyButton"
 				:icon="suffixIcon"
 				:size="size"
-				class="bo-button__suffix-icon ml-1.5"
+				class="bo-button__suffix-icon"
 			/>
 			<bo-loading-spinner
 				v-if="isLoading"
@@ -59,27 +54,16 @@ const props = withDefaults(defineProps<BoButtonProps>(), {
 	size: () => BoSize.default,
 	prefixIcon: () => Icon.none,
 	suffixIcon: () => Icon.none,
-	linkVariantWithShadow: false,
 	type: () => HtmlButtonType.button,
 	shape: () => BoButtonShape.default,
 	variant: () => BoButtonVariant.primary,
 })
 
-const {
-	label,
-	type,
-	variant,
-	size,
-	prefixIcon,
-	suffixIcon,
-	shape,
-	linkVariantWithShadow,
-	disabled,
-	isLoading,
-} = toRefs(props)
+const { label, type, variant, size, prefixIcon, suffixIcon, shape, disabled, isLoading } =
+	toRefs(props)
 
 const defaultClasses: string =
-	/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer'
+	/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer w-fit'
 
 const disabledClasses: string =
 	/*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none'
@@ -193,13 +177,7 @@ const buttonVariantShadowClasses = computed<string>(() => {
 		case BoButtonVariant.link_warning:
 		case BoButtonVariant.link_success:
 		case BoButtonVariant.link_dark:
-			switch (linkVariantWithShadow.value) {
-				case false:
-					return /*tw*/ 'shadow-none'
-				case true:
-				default:
-					return /*tw*/ 'shadow-md'
-			}
+			return /*tw*/ 'shadow-none'
 		case BoButtonVariant.primary:
 		case BoButtonVariant.secondary:
 		case BoButtonVariant.danger:
@@ -227,14 +205,13 @@ const buttonFontSize = computed<BoFontSize>(() => {
 		case BoSize.extra_small:
 			return BoFontSize.xs
 		case BoSize.small:
-			return BoFontSize.sm
-		case BoSize.large:
-			return BoFontSize.lg
-		case BoSize.extra_large:
-			return BoFontSize.xl
 		case BoSize.default:
 		default:
+			return BoFontSize.sm
+		case BoSize.large:
 			return BoFontSize.base
+		case BoSize.extra_large:
+			return BoFontSize.lg
 	}
 })
 
@@ -243,30 +220,30 @@ const buttonSizeClasses = computed<string>(() => {
 		case true:
 			switch (size.value) {
 				case BoSize.extra_small:
-					return /*tw*/ 'w-[16px] h-[16px]'
+					return /*tw*/ 'p-[6px]'
 				case BoSize.small:
-					return /*tw*/ 'w-[24px] h-[24px]'
+					return /*tw*/ 'p-[8px]'
 				case BoSize.default:
 				default:
-					return /*tw*/ 'w-[32px] h-[32px]'
+					return /*tw*/ 'p-[10px]'
 				case BoSize.large:
-					return /*tw*/ 'w-[40px] h-[40px]'
+					return /*tw*/ 'p-[12px]'
 				case BoSize.extra_large:
-					return /*tw*/ 'w-[48px] h-[48px]'
+					return /*tw*/ 'p-[14px]'
 			}
 		default:
 			switch (size.value) {
 				case BoSize.extra_small:
-					return /*tw*/ 'h-[16px] px-[4px]'
+					return /*tw*/ 'px-[8px] py-[6px]'
 				case BoSize.small:
-					return /*tw*/ 'h-[24px] px-[8px]'
+					return /*tw*/ 'px-[12px] py-[8px]'
 				case BoSize.default:
 				default:
-					return /*tw*/ 'h-[32px] px-[12px]'
+					return /*tw*/ 'px-[16px] py-[10px]'
 				case BoSize.large:
-					return /*tw*/ 'h-[40px] px-[16px]'
+					return /*tw*/ 'px-[20px] py-[12px]'
 				case BoSize.extra_large:
-					return /*tw*/ 'h-[48px] px-[20px]'
+					return /*tw*/ 'px-[24px] py-[14px]'
 			}
 	}
 })

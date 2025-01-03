@@ -1,8 +1,4 @@
-import {
-	BoButton,
-	BoButtonShape,
-	BoButtonVariant,
-} from '@/components/bo_button'
+import { BoButton, BoButtonShape, BoButtonVariant } from '@/components/bo_button'
 import { Icon } from '@/components/bo_icon'
 import BoIcon from '@/components/bo_icon/BoIcon.vue'
 import BoLoadingSpinner from '@/components/bo_loading_spinner/BoLoadingSpinner.vue'
@@ -350,11 +346,6 @@ describe('bo_button.vue', () => {
 		test('by default the link types buttton should not have a shadow', async () => {
 			await wrapper.setProps({ variant: BoButtonVariant.link })
 			expect(wrapper.classes()).toContain('shadow-none')
-		})
-
-		test('if the prop is set to true the link types buttton should have a shadow', async () => {
-			await wrapper.setProps({ linkVariantWithShadow: true })
-			expect(wrapper.classes()).toContain('shadow-lg')
 		})
 	})
 
