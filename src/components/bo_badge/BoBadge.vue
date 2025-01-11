@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
-import { BoSize } from '@/shared/bo_size.constant';
+import { BoSize } from '@/shared/bo_size';
 import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs } from 'vue';
 import { BoBadgeShape, BoBadgeType, BoBadgeVariant, type BoBadgeProps } from './bo_badge';

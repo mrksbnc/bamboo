@@ -1,7 +1,7 @@
 import { BoLoadingPulse } from '@/components/bo_loading_pulse';
 import { BoColor } from '@/shared';
-import { BoSize } from '@/shared/bo_size.constant';
-import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/loader.constant';
+import { BoSize } from '@/shared/bo_size';
+import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo_loader';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 

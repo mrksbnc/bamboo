@@ -60,7 +60,7 @@
 import { BoDivider, BoDividerVariant } from '@/components/bo_divider';
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoColor } from '@/shared';
-import { BoSize } from '@/shared/bo_size.constant';
+import { BoSize } from '@/shared/bo_size';
 import type { StyleConstruct } from '@/types';
 import { KeyboardUtils, TailwindUtils } from '@/utils';
 import { computed, ref, toRefs } from 'vue';

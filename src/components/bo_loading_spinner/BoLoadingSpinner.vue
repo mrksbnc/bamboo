@@ -16,8 +16,8 @@
 
 <script setup lang="ts">
 import { BoFontFamily, BoText, BoTextColor } from '@/components/bo_text';
-import { BoSize } from '@/shared/bo_size.constant';
-import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/loader.constant';
+import { BoSize } from '@/shared/bo_size';
+import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo_loader';
 import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs, type StyleValue } from 'vue';
 import type { BoLoadingSpinnerProps } from './types';

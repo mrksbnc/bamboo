@@ -41,9 +41,9 @@
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
-import { BoSize } from '@/shared/bo_size.constant';
-import { BoLoaderVariant } from '@/shared/loader.constant';
-import { HtmlButtonType } from '@/global/html_button';
+import { BoSize } from '@/shared/bo_size';
+import { BoLoaderVariant } from '@/shared/bo_loader';
+import { HtmlButtonType } from '@/shared/html_button';
 import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs } from 'vue';
 import { BoButtonShape, BoButtonVariant, type BoButtonProps } from './bo_button';

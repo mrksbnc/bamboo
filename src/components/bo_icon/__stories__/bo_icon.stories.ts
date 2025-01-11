@@ -1,6 +1,6 @@
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoColor } from '@/shared';
-import { BoSize } from '@/shared/bo_size.constant';
+import { BoSize } from '@/shared/bo_size';
 import { StorybookUtils } from '@/utils';
 import type { Meta, StoryObj } from '@storybook/vue3';
 

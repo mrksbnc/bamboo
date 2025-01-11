@@ -17,7 +17,7 @@ export default defineComponent({
 </script>
 
 <script setup lang="ts">
-import { BoSize } from '@/shared/bo_size.constant';
+import { BoSize } from '@/shared/bo_size';
 import { StringUtils } from '@/utils';
 import { computed, defineComponent, ref, toRefs, watch, type StyleValue } from 'vue';
 import { Icon, icons } from './constant';

@@ -1,26 +1,22 @@
-import { BoButtonVariant } from '@/components/bo_button'
-import {
-	BoAlertModal,
-	BoAlertModalAlignment,
-	BoAlertModalVariant,
-} from '@/components/bo_modal'
-import { HtmlButtonType } from '@/global/html_button'
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { BoButtonVariant } from '@/components/bo_button';
+import { BoAlertModal, BoAlertModalAlignment, BoAlertModalVariant } from '@/components/bo_modal';
+import { HtmlButtonType } from '@/shared/html_button';
+import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
 	title: 'Components/bo-alert-modal',
 	component: BoAlertModal,
 	argTypes: {},
-} satisfies Meta<typeof BoAlertModal>
+} satisfies Meta<typeof BoAlertModal>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Example: Story = {
 	render: (args) => ({
 		components: { BoAlertModal },
 		setup: () => {
-			return { args }
+			return { args };
 		},
 		template: `
 			<bo-alert-modal v-bind="args" />
@@ -35,17 +31,17 @@ export const Example: Story = {
 				label: 'Ok',
 			},
 			onCLick: () => {
-				alert('confirm clicked')
+				alert('confirm clicked');
 			},
 		},
 	},
-}
+};
 
 export const WithCancelButton: Story = {
 	render: (args) => ({
 		components: { BoAlertModal },
 		setup() {
-			return { args }
+			return { args };
 		},
 		template: `
 			<bo-alert-modal v-bind="args" />
@@ -62,7 +58,7 @@ export const WithCancelButton: Story = {
 				type: HtmlButtonType.reset,
 			},
 			onCLick: () => {
-				alert('cancel clicked')
+				alert('cancel clicked');
 			},
 		},
 		showCancelButton: true,
@@ -73,17 +69,17 @@ export const WithCancelButton: Story = {
 				type: HtmlButtonType.submit,
 			},
 			onCLick: () => {
-				alert('confirm clicked')
+				alert('confirm clicked');
 			},
 		},
 	},
-}
+};
 
 export const WithCloseButton: Story = {
 	render: (args) => ({
 		components: { BoAlertModal },
 		setup() {
-			return { args }
+			return { args };
 		},
 		template: `
 			<bo-alert-modal v-bind="args" />
@@ -101,17 +97,17 @@ export const WithCloseButton: Story = {
 				type: HtmlButtonType.submit,
 			},
 			onCLick: () => {
-				alert('confirm clicked')
+				alert('confirm clicked');
 			},
 		},
 	},
-}
+};
 
 export const Success: Story = {
 	render: (args) => ({
 		components: { BoAlertModal },
 		setup() {
-			return { args }
+			return { args };
 		},
 		template: `<bo-alert-modal v-bind="args" />`,
 	}),
@@ -127,17 +123,17 @@ export const Success: Story = {
 				type: HtmlButtonType.submit,
 			},
 			onCLick: () => {
-				alert('confirm clicked')
+				alert('confirm clicked');
 			},
 		},
 	},
-}
+};
 
 export const Warning: Story = {
 	render: (args) => ({
 		components: { BoAlertModal },
 		setup() {
-			return { args }
+			return { args };
 		},
 		template: `
 			<bo-alert-modal v-bind="args" />
@@ -155,17 +151,17 @@ export const Warning: Story = {
 				type: HtmlButtonType.submit,
 			},
 			onCLick: () => {
-				alert('confirm clicked')
+				alert('confirm clicked');
 			},
 		},
 	},
-}
+};
 
 export const Error: Story = {
 	render: (args) => ({
 		components: { BoAlertModal },
 		setup() {
-			return { args }
+			return { args };
 		},
 		template: `
 			<bo-alert-modal v-bind="args" />
@@ -183,17 +179,17 @@ export const Error: Story = {
 				type: HtmlButtonType.submit,
 			},
 			onCLick: () => {
-				alert('confirm clicked')
+				alert('confirm clicked');
 			},
 		},
 	},
-}
+};
 
 export const InfoCentered: Story = {
 	render: (args) => ({
 		components: { BoAlertModal },
 		setup() {
-			return { args }
+			return { args };
 		},
 		template: `
 			<bo-alert-modal v-bind="args" />
@@ -212,17 +208,17 @@ export const InfoCentered: Story = {
 				type: HtmlButtonType.submit,
 			},
 			onCLick: () => {
-				alert('confirm clicked')
+				alert('confirm clicked');
 			},
 		},
 	},
-}
+};
 
 export const WarningCentered: Story = {
 	render: (args) => ({
 		components: { BoAlertModal },
 		setup() {
-			return { args }
+			return { args };
 		},
 		template: `
 			<bo-alert-modal v-bind="args" />
@@ -241,17 +237,17 @@ export const WarningCentered: Story = {
 				type: HtmlButtonType.submit,
 			},
 			onCLick: () => {
-				alert('confirm clicked')
+				alert('confirm clicked');
 			},
 		},
 	},
-}
+};
 
 export const ErrorCentered: Story = {
 	render: (args) => ({
 		components: { BoAlertModal },
 		setup() {
-			return { args }
+			return { args };
 		},
 		template: `
 			<bo-alert-modal v-bind="args" />
@@ -270,17 +266,17 @@ export const ErrorCentered: Story = {
 				type: HtmlButtonType.submit,
 			},
 			onCLick: () => {
-				alert('confirm clicked')
+				alert('confirm clicked');
 			},
 		},
 	},
-}
+};
 
 export const SuccessCentered: Story = {
 	render: (args) => ({
 		components: { BoAlertModal },
 		setup() {
-			return { args }
+			return { args };
 		},
 		template: `
 			<bo-alert-modal v-bind="args" />
@@ -299,17 +295,17 @@ export const SuccessCentered: Story = {
 				type: HtmlButtonType.submit,
 			},
 			onCLick: () => {
-				alert('confirm clicked')
+				alert('confirm clicked');
 			},
 		},
 	},
-}
+};
 
 export const WithoutIcon: Story = {
 	render: (args) => ({
 		components: { BoAlertModal },
 		setup() {
-			return { args }
+			return { args };
 		},
 		template: `
 			<bo-alert-modal v-bind="args" />
@@ -327,8 +323,8 @@ export const WithoutIcon: Story = {
 				type: HtmlButtonType.submit,
 			},
 			onCLick: () => {
-				alert('confirm clicked')
+				alert('confirm clicked');
 			},
 		},
 	},
-}
+};

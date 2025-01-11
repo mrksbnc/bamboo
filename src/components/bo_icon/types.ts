@@ -1,4 +1,4 @@
-import type { BoSize } from '@/shared/bo_size.constant';
+import type { BoSize } from '@/shared/bo_size';
 import type { Icon } from './constant';
 
 export type BoIconProps = {

@@ -1,4 +1,4 @@
-import type { BoSize } from '@/shared/bo_size.constant';
+import type { BoSize } from '@/shared/bo_size';
 
 export enum BoAvatarShape {
 	circle = 'circle',
