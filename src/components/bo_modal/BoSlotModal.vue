@@ -41,13 +41,13 @@
 				</div>
 				<!-- Modal body -->
 				<div class="bo-slot-modal__body-slot w-full">
-					<bo-divider v-if="borderedHeader" :variant="BoDividerVariant.secondary" />
+					<bo-divider v-if="borderedHeader" />
 					<slot name="body" />
 				</div>
 				<!-- Modal footer -->
 				<div :class="footerContainerClasses">
 					<span class="bo-slot-modal__footer-slot w-full">
-						<bo-divider v-if="borderedFooter" :variant="BoDividerVariant.secondary" />
+						<bo-divider v-if="borderedFooter" />
 						<slot name="footer" />
 					</span>
 				</div>

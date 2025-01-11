@@ -1,3 +1,2 @@
-export { default as BoDivider } from './BoDivider.vue'
-export * from './constants'
-export * from './types'
+export { default as BoDivider } from './BoDivider.vue';
+export * from './bo_divider';

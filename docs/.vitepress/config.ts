@@ -22,6 +22,7 @@ function getComponents() {
 		{ text: 'Badge', link: '/components/badge/badge' },
 		{ text: 'Button', link: '/components/button/button' },
 		{ text: 'Card', link: '/components/card/card' },
+		{ text: 'Divider', link: '/components/divider/divider' },
 	];
 }
 

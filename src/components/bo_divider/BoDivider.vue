@@ -1,58 +1,64 @@
 <template>
-	<hr :class="dividerClasses" />
+	<span :id="dividerId" :class="dividerClasses" :style="color.style" />
 </template>
 
 <script setup lang="ts">
-import { TailwindUtils } from '@/utils'
-import { computed, toRefs } from 'vue'
-import { BoDividerType, BoDividerVariant } from './constants'
-import type { BoDividerProps } from './types'
+import { IdentityUtils, TailwindUtils } from '@/utils';
+import { computed, toRefs } from 'vue';
+import { type BoDividerProps, BoDividerVariant } from './bo_divider';
+import type { StyleConstruct } from '@/types';
 
 const props = withDefaults(defineProps<BoDividerProps>(), {
-	variant: () => BoDividerVariant.primary,
-	type: () => BoDividerType.default,
-})
+	variant: () => BoDividerVariant.default,
+});
 
-const { variant, type } = toRefs(props)
+const { id, variant, colorHex, tailwindColor } = toRefs(props);
 
-const defaultDividerClasses = /*tw*/ 'my-2 w-full'
+const defaultDividerClasses = /*tw*/ 'bo_divider my-2 w-full';
 
-const tailwindCssColorClasses = computed<string>(() => {
-	switch (variant.value) {
-		case BoDividerVariant.primary:
-			return /*tw*/ 'border-blue-600'
-		case BoDividerVariant.secondary:
-			return /*tw*/ 'border-gray-200'
-		case BoDividerVariant.danger:
-			return /*tw*/ 'border-red-600'
-		case BoDividerVariant.warning:
-			return /*tw*/ 'border-yellow-600'
-		case BoDividerVariant.success:
-			return /*tw*/ 'border-green-600'
-		case BoDividerVariant.dark:
-			return /*tw*/ 'border-black'
-		default:
-			return /*tw*/ 'border-gray-300'
-	}
-})
+const dividerId = computed<string>(() => {
+	return id.value ?? IdentityUtils.generateRandomIdWithPrefix('bo-divider');
+});
 
 const tailwindCssTypeClasses = computed<string>(() => {
-	switch (type.value) {
-		case BoDividerType.dotted:
-			return /*tw*/ 'border-t border-dotted'
-		case BoDividerType.dashed:
-			return /*tw*/ 'border-t border-dashed'
-		case BoDividerType.default:
+	switch (variant.value) {
+		case BoDividerVariant.dotted:
+			return /*tw*/ 'border-t border-dotted';
+		case BoDividerVariant.dashed:
+			return /*tw*/ 'border-t border-dashed';
+		case BoDividerVariant.default:
 		default:
-			return /*tw*/ 'border-t'
+			return /*tw*/ 'border-t';
 	}
-})
+});
+
+const color = computed<StyleConstruct>(() => {
+	const styles: StyleConstruct = {
+		class: '',
+		style: {},
+	};
+
+	if (colorHex.value !== undefined && tailwindColor.value === undefined) {
+		styles.style = {
+			borderColor: colorHex.value,
+		};
+		return styles;
+	}
+
+	if (tailwindColor.value !== undefined) {
+		styles.class = tailwindColor.value;
+		return styles;
+	}
+
+	styles.class = 'border-gray-300';
+	return styles;
+});
 
 const dividerClasses = computed<string>(() => {
 	return TailwindUtils.merge(
 		defaultDividerClasses,
-		tailwindCssColorClasses.value,
 		tailwindCssTypeClasses.value,
-	)
-})
+		color.value.class,
+	);
+});
 </script>

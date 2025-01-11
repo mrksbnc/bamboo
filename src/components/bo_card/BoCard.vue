@@ -1,7 +1,7 @@
 <template>
 	<div
 		:style="slotCardWidth.style"
-		:class="[cardContainerClasses, 'bo-card rounded-lg border border-gray-300 bg-white shadow']"
+		:class="[cardContainerClasses, 'bo-card rounded-lg border border-gray-300 bg-white shadow-lg']"
 	>
 		<div v-if="$slots['content'] != null" :class="contentClasses">
 			<slot name="content"></slot>
@@ -33,7 +33,7 @@ import { BoFontFamily, BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/c
 import type { StyleConstruct } from '@/types';
 import { TailwindUtils } from '@/utils';
 import { computed, toRefs } from 'vue';
-import type { BoCardProps } from './types';
+import type { BoCardProps } from './bo_card';
 
 const props = withDefaults(defineProps<BoCardProps>(), {
 	padding: () => ({
