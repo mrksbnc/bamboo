@@ -1,6 +1,14 @@
 {
   "extends": "./tsconfig.app.json",
-  "include": ["src/**/__tests__/*", "env.d.ts"],
+  "include": [
+    "src/**/__tests__/*",
+    "env.d.ts",
+    "tests/components/bo_avatar.test.ts",
+    "tests/components/bo_badge.test.ts",
+    "tests/components/bo_icon.test.ts",
+    "tests/components/bo_loading_spinner.test.ts",
+    "tests/components/bo_text.test.ts"
+  ],
   "exclude": [],
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",

@@ -1,5 +1,5 @@
 import { describe, expect, suite, test } from 'vitest'
-import { StringUtils } from '../string_utils'
+import { StringUtils } from '../../src/utils/string_utils'
 
 describe('StringUtils', () => {
 	suite('capitalize', () => {

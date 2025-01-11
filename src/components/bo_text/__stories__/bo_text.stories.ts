@@ -6,10 +6,10 @@ import {
 	BoTextAlign,
 	BoTextColor,
 	BoTextWhiteSpace,
-} from '@/components/bo_text'
-import { BoColor } from '@/data'
-import { StorybookUtils } from '@/utils'
-import type { Meta, StoryObj } from '@storybook/vue3'
+} from '@/components/bo_text';
+import { BoColor } from '@/shared';
+import { StorybookUtils } from '@/utils';
+import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
 	title: 'Components/bo-text',
@@ -40,10 +40,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoTextAlign',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoTextAlign,
-						'BoTextAlign',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoTextAlign, 'BoTextAlign'),
 				},
 			},
 			defaultValue: BoTextAlign.left,
@@ -71,10 +68,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoFontWeight',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoFontWeight,
-						'BoFontWeight',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoFontWeight, 'BoFontWeight'),
 				},
 			},
 			defaultValue: BoFontWeight.regular,
@@ -97,10 +91,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoFontFamily',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoFontFamily,
-						'BoFontFamily',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoFontFamily, 'BoFontFamily'),
 				},
 			},
 			defaultValue: BoFontFamily.sans,
@@ -114,10 +105,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoTextWhiteSpace',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoTextWhiteSpace,
-						'BoTextWhiteSpace',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoTextWhiteSpace, 'BoTextWhiteSpace'),
 				},
 			},
 			defaultValue: BoTextWhiteSpace.nowrap,
@@ -131,10 +119,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoTextColor',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoTextColor,
-						'BoTextColor',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoTextColor, 'BoTextColor'),
 				},
 			},
 			defaultValue: BoTextColor.current,
@@ -157,10 +142,10 @@ const meta = {
 			defaultValue: false,
 		},
 	},
-} satisfies Meta<typeof BoText>
+} satisfies Meta<typeof BoText>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Example: Story = {
 	args: {
@@ -168,16 +153,16 @@ export const Example: Story = {
 		size: BoFontSize.base,
 		weight: BoFontWeight.regular,
 	},
-}
+};
 
 export const Sizes: Story = {
 	render: (args) => ({
 		components: { BoText },
 		setup() {
-			const sizes = Object.values(BoFontSize)
-			const sizeNames = Object.keys(BoFontSize)
+			const sizes = Object.values(BoFontSize);
+			const sizeNames = Object.keys(BoFontSize);
 
-			return { sizes, sizeNames, ...args }
+			return { sizes, sizeNames, ...args };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -191,7 +176,7 @@ export const Sizes: Story = {
 	args: {
 		text: 'Lorem ipsum',
 	},
-}
+};
 
 export const Weights: Story = {
 	render: (args) => ({
@@ -203,9 +188,9 @@ export const Weights: Story = {
 				[BoFontWeight.medium, 'medium'],
 				[BoFontWeight.semibold, 'semibold'],
 				[BoFontWeight.bold, 'bold'],
-			]
+			];
 
-			return { weights, ...args }
+			return { weights, ...args };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -219,7 +204,7 @@ export const Weights: Story = {
 	args: {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
-}
+};
 
 export const FontFamilies: Story = {
 	render: (args) => ({
@@ -229,9 +214,9 @@ export const FontFamilies: Story = {
 				[BoFontFamily.sans, 'Sans'],
 				[BoFontFamily.mono, 'Mono'],
 				[BoFontFamily.serif, 'Serif'],
-			]
+			];
 
-			return { fontFamilies, ...args }
+			return { fontFamilies, ...args };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -245,7 +230,7 @@ export const FontFamilies: Story = {
 	args: {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
-}
+};
 
 export const WhiteSpace: Story = {
 	render: (args) => ({
@@ -258,9 +243,9 @@ export const WhiteSpace: Story = {
 				[BoTextWhiteSpace.pre_line, 'pre-line'],
 				[BoTextWhiteSpace.pre_wrap, 'pre-wrap'],
 				[BoTextWhiteSpace.break_spaces, 'break-spaces'],
-			]
+			];
 
-			return { whiteSpaces, ...args }
+			return { whiteSpaces, ...args };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -274,7 +259,7 @@ export const WhiteSpace: Story = {
 	args: {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
-}
+};
 
 export const Colors: Story = {
 	render: (args) => ({
@@ -290,9 +275,9 @@ export const Colors: Story = {
 				[BoTextColor.danger, 'danger'],
 				[BoTextColor.disabled, 'disabled'],
 				[BoTextColor.info, 'info'],
-			]
+			];
 
-			return { colors, ...args }
+			return { colors, ...args };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -306,13 +291,13 @@ export const Colors: Story = {
 	args: {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
-}
+};
 
 export const CustomColor: Story = {
 	render: (args) => ({
 		components: { BoText },
 		setup() {
-			return { ...args }
+			return { ...args };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -324,13 +309,13 @@ export const CustomColor: Story = {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		customColor: BoColor.purple_400,
 	},
-}
+};
 
 export const Clickable: Story = {
 	render: (args) => ({
 		components: { BoText },
 		setup() {
-			return { ...args }
+			return { ...args };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -342,4 +327,4 @@ export const Clickable: Story = {
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		clickable: true,
 	},
-}
+};

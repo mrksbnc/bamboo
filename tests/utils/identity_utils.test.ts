@@ -1,5 +1,5 @@
 import { describe, expect, suite, test } from 'vitest'
-import { IdentityUtils } from '../identity_utils'
+import { IdentityUtils } from '../../src/utils/identity_utils'
 
 describe('IdentityUtils', () => {
 	suite('generateRandomId', () => {

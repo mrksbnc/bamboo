@@ -1,5 +1,5 @@
 import { describe, expect, suite, test } from 'vitest'
-import { TailwindUtils } from '../tailwind_utils'
+import { TailwindUtils } from '../../src/utils/tailwind_utils'
 
 describe('TailwindUtils', () => {
 	suite('merge', () => {

@@ -27,6 +27,6 @@ export default defineConfig({
 		alias: {
 			'@': fileURLToPath(new URL('./src', import.meta.url)),
 		},
-		dedupe: ['vue'],
+		external: ['vue'],
 	},
 })

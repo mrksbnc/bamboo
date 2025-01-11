@@ -1,9 +1,9 @@
-import { BoLoadingPulse } from '@/components/bo_loading_pulse'
-import { BoColor } from '@/data'
-import { BoSize } from '@/data/bo_size.constant'
-import { BoLoaderTextPosition, BoLoaderVariant } from '@/data/loader.constant'
-import { StorybookUtils } from '@/utils'
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { BoLoadingPulse } from '@/components/bo_loading_pulse';
+import { BoColor } from '@/shared';
+import { BoSize } from '@/shared/bo_size.constant';
+import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/loader.constant';
+import { StorybookUtils } from '@/utils';
+import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
 	title: 'Components/bo-loading-pulse',
@@ -32,10 +32,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoLoaderVariant',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoLoaderVariant,
-						'BoLoaderVariant',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoLoaderVariant, 'BoLoaderVariant'),
 				},
 			},
 		},
@@ -65,33 +62,30 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoLoaderTextPosition',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoLoaderTextPosition,
-						'BoLoaderTextPosition',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoLoaderTextPosition, 'BoLoaderTextPosition'),
 				},
 			},
 			defaultValue: BoLoaderTextPosition.bottom,
 		},
 	},
-} satisfies Meta<typeof BoLoadingPulse>
+} satisfies Meta<typeof BoLoadingPulse>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Example: Story = {
 	args: {
 		size: BoSize.default,
 		variant: BoLoaderVariant.primary,
 	},
-}
+};
 
 export const Variants: Story = {
 	render: (args) => ({
 		components: { BoLoadingPulse },
 		setup() {
-			const variants = Object.values(BoLoaderVariant)
-			return { variants, ...args }
+			const variants = Object.values(BoLoaderVariant);
+			return { variants, ...args };
 		},
 		template: `
 			<div class="flex flex-row gap-4">
@@ -106,14 +100,14 @@ export const Variants: Story = {
 		size: BoSize.default,
 		variant: BoLoaderVariant.primary,
 	},
-}
+};
 
 export const Sizes: Story = {
 	render: (args) => ({
 		components: { BoLoadingPulse },
 		setup() {
-			const sizes = Object.values(BoSize)
-			return { sizes, ...args }
+			const sizes = Object.values(BoSize);
+			return { sizes, ...args };
 		},
 		template: `
 			<div class="flex gap-2">
@@ -128,13 +122,13 @@ export const Sizes: Story = {
 		size: BoSize.default,
 		variant: BoLoaderVariant.primary,
 	},
-}
+};
 
 export const CustomColor: Story = {
 	render: (args) => ({
 		components: { BoLoadingPulse },
 		setup() {
-			return { ...args }
+			return { ...args };
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -147,13 +141,13 @@ export const CustomColor: Story = {
 		variant: BoLoaderVariant.primary,
 		customColor: BoColor.purple_400,
 	},
-}
+};
 
 export const WithLoaderText: Story = {
 	render: (args) => ({
 		components: { BoLoadingPulse },
 		setup() {
-			return { ...args }
+			return { ...args };
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -166,13 +160,13 @@ export const WithLoaderText: Story = {
 		variant: BoLoaderVariant.primary,
 		loaderText: 'Loading...',
 	},
-}
+};
 
 export const TextPosition: Story = {
 	render: (args) => ({
 		components: { BoLoadingPulse },
 		setup() {
-			return { ...args }
+			return { ...args };
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -186,4 +180,4 @@ export const TextPosition: Story = {
 		loaderText: 'Loading...',
 		textPosition: BoLoaderTextPosition.side,
 	},
-}
+};

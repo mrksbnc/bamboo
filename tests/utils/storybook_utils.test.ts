@@ -1,13 +1,10 @@
 import { describe, expect, suite, test } from 'vitest'
-import { StorybookUtils } from '../storybook_utils'
+import { StorybookUtils } from '../../src/utils/storybook_utils'
 
 const control = (stringEnum: { [key: string]: string }, name: string) => {
 	return `enum ${name} {\n${
 		Object.keys(stringEnum)
-			.map(
-				(m: string) =>
-					`  ${m} = "${stringEnum[m as keyof typeof stringEnum]}",`,
-			)
+			.map((m: string) => `  ${m} = "${stringEnum[m as keyof typeof stringEnum]}",`)
 			.join('\r\n') + '\r\n}'
 	}`
 }
@@ -23,10 +20,7 @@ describe('StorybookUtils', () => {
 				hello: 'Hello',
 				world: 'World',
 			}
-			const formattedEnum = StorybookUtils.stringEnumFormatter(
-				enumObj,
-				'string',
-			)
+			const formattedEnum = StorybookUtils.stringEnumFormatter(enumObj, 'string')
 
 			const compareValue = control(enumObj, 'string')
 

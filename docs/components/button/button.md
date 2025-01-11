@@ -21,20 +21,20 @@ A button is a control that allows the user to perform an action. The library sup
 
 ## Props
 
-| Prop name    | Type              | Default value             |
-| ------------ | ----------------- | ------------------------- |
-| `label`      | `string`          | `undefined`               |
-| `variant`    | `BoButtonVariant` | `BoButtonVariant.primary` |
-| `shape`      | `BoButtonShape`   | `BoButtonShape.default`   |
-| `type`       | `HtmlButtonType`  | `button`                  |
-| `disabled`   | `boolean`         | `false`                   |
-| `isLoading`  | `boolean`         | `false`                   |
-| `size`       | `BoSize`          | `BoSize.default`          |
-| `prefixIcon` | `Icon`            | `Icon.none`               |
-| `suffixIcon` | `Icon`            | `Icon.none`               |
+| Prop name     | Type              | Default value             |
+| ------------- | ----------------- | ------------------------- |
+| `label`       | `string`          | `undefined`               |
+| `variant`     | `BoButtonVariant` | `BoButtonVariant.primary` |
+| `shape`       | `BoButtonShape`   | `BoButtonShape.default`   |
+| `type`        | `HtmlButtonType`  | `button`                  |
+| `disabled`    | `boolean`         | `false`                   |
+| `is-loading`  | `boolean`         | `false`                   |
+| `size`        | `BoSize`          | `BoSize.default`          |
+| `prefix-icon` | `Icon`            | `Icon.none`               |
+| `suffix-icon` | `Icon`            | `Icon.none`               |
 
 ::: warning Note
-Though non of the props are required, either the `label` or the `prefixIcon` prop must be provided.
+Though non of the props are required, either the `label` or the `prefix-icon` prop must be provided.
 :::
 
 ## Disabled
@@ -53,9 +53,9 @@ To disable the button, set the `disabled` prop to `true`. When the button is dis
 
 ## Loading
 
-To represent a loading state, change the value of the `isLoading` prop. When the button is loading, it will be disabled and will not respond to user interactions.
+To represent a loading state, change the value of the `is-loading` prop. When the button is loading, it will be disabled and will not respond to user interactions.
 
-<bo-button label="Loading" :isLoading="true" />
+<bo-button label="Loading" :is-loading="true" />
 
 ## Button variants
 
@@ -142,8 +142,8 @@ Both of these props should be a member of the `Icon` enum.
 ### Example
 
 ```vue
-<bo-button label="Button" :prefix-icon="Icon.alert_circle" />
-<bo-button label="Button" :suffix-icon="Icon.alert_circle" />
+<bo-button label="Button" :prefix-icon="Icon.bell" />
+<bo-button label="Button" :suffix-icon="Icon.bell" />
 ```
 
 ## Icon only

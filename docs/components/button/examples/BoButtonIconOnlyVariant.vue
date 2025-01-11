@@ -34,8 +34,8 @@
 </template>
 
 <script setup lang="ts">
-import { BoButton, BoButtonVariant } from '@/components/bo_button'
-import { Icon } from '@/components/bo_icon'
+import { BoButton, BoButtonVariant } from '@/components/bo_button';
+import { Icon } from '@/components/bo_icon';
 
-import { BoSize } from '@/data/bo_size.constant'
+import { BoSize } from '@/shared';
 </script>

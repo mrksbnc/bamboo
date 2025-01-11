@@ -1,3 +1,19 @@
+import type { HtmlButtonType } from '@/global';
+import type { BoSize } from '@/shared';
+import type { Icon } from '@/components/bo_icon';
+
+export type BoButtonProps = {
+	label?: string;
+	variant?: BoButtonVariant;
+	shape?: BoButtonShape;
+	type?: HtmlButtonType;
+	disabled?: boolean;
+	isLoading?: boolean;
+	size?: BoSize;
+	prefixIcon?: Icon;
+	suffixIcon?: Icon;
+};
+
 export enum BoButtonVariant {
 	primary = 'primary',
 	secondary = 'secondary',

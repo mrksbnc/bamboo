@@ -1,7 +1,7 @@
 <script setup>
 import { BoAvatar, BoAvatarType, BoAvatarShape } from '@/components/bo_avatar';
 import BoAvatarCustomImage from './examples/BoAvatarCustomImage.vue'
-import {BoSize} from '@/data/bo_size.constant'
+import {BoSize} from '@/shared'
 </script>
 
 # bo-avatar

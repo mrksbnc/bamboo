@@ -1,8 +1,8 @@
-import { BoIcon, Icon } from '@/components/bo_icon'
-import { BoColor } from '@/data'
-import { BoSize } from '@/data/bo_size.constant'
-import { StorybookUtils } from '@/utils'
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { BoIcon, Icon } from '@/components/bo_icon';
+import { BoColor } from '@/shared';
+import { BoSize } from '@/shared/bo_size.constant';
+import { StorybookUtils } from '@/utils';
+import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
 	title: 'Components/bo-icon',
@@ -53,25 +53,25 @@ const meta = {
 			control: { type: 'color' },
 		},
 	},
-} satisfies Meta<typeof BoIcon>
+} satisfies Meta<typeof BoIcon>;
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Example: Story = {
 	args: {
 		icon: Icon.airplay,
 		size: BoSize.default,
 	},
-}
+};
 
 export const Sizes: Story = {
 	render: (args) => ({
 		components: { BoIcon },
 		setup() {
-			const sizes = Object.values(BoSize)
-			return { sizes, ...args }
+			const sizes = Object.values(BoSize);
+			return { sizes, ...args };
 		},
 		template: `
 			<div class="flex flex-row gap-2">
@@ -86,24 +86,24 @@ export const Sizes: Story = {
 	args: {
 		icon: Icon.activity,
 	},
-}
+};
 
 export const Colors: Story = {
 	render: (args) => ({
 		components: { BoIcon },
 		setup() {
-			const colors = []
+			const colors = [];
 
 			const getRandomColor = (): BoColor => {
-				const colors = Object.values(BoColor)
-				return colors[Math.floor(Math.random() * colors.length)]
-			}
+				const colors = Object.values(BoColor);
+				return colors[Math.floor(Math.random() * colors.length)];
+			};
 
 			for (let i = 0; i < 10; i++) {
-				colors.push(getRandomColor())
+				colors.push(getRandomColor());
 			}
 
-			return { colors, ...args }
+			return { colors, ...args };
 		},
 		template: `
 			<div class="flex flex-row gap-2">
@@ -117,14 +117,14 @@ export const Colors: Story = {
 	args: {
 		icon: Icon.activity,
 	},
-}
+};
 
 export const AllIcons: Story = {
 	render: () => ({
 		components: { BoIcon },
 		setup() {
-			const icons = Object.values(Icon)
-			return { icons, Icon }
+			const icons = Object.values(Icon);
+			return { icons, Icon };
 		},
 		template: `
 			<div class="grid grid-cols-6 gap-2">
@@ -138,4 +138,4 @@ export const AllIcons: Story = {
 	args: {
 		icon: Icon.activity,
 	},
-}
+};

@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from 'vitepress';
 
 function buildSidebar() {
 	return [
@@ -13,14 +13,16 @@ function buildSidebar() {
 			text: 'Components',
 			items: [...getComponents()],
 		},
-	]
+	];
 }
 
 function getComponents() {
 	return [
 		{ text: 'Avatar', link: '/components/avatar/avatar' },
+		{ text: 'Badge', link: '/components/badge/badge' },
 		{ text: 'Button', link: '/components/button/button' },
-	]
+		{ text: 'Card', link: '/components/card/card' },
+	];
 }
 
 // https://vitepress.dev/reference/site-config
@@ -44,7 +46,7 @@ export default defineConfig({
 		footer: {
 			message:
 				'Released under the <a href="https://github.com/mrksbnc/bamboo/blob/main/LICENSE">MIT License</a>.',
-			copyright: `Copyright © 2025-present <a href="https://github.com/mrksbnc">Bence Markus</a>`,
+			copyright: `Bence Markus`,
 		},
 	},
-})
+});

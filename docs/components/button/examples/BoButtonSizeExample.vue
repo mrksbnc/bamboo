@@ -32,9 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import { BoButton } from '@/components/bo_button'
-import { BoSize } from '@/data/bo_size.constant'
-import { StringUtils } from '@/utils'
+import { BoButton } from '@/components/bo_button';
+import { BoSize } from '@/shared';
+import { StringUtils } from '@/utils';
 
-const sizes = Object.values(BoSize)
+const sizes = Object.values(BoSize);
 </script>
