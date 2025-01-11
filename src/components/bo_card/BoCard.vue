@@ -15,6 +15,7 @@
 				:size="BoFontSize['2xl']"
 				:font-family="BoFontFamily.sans"
 				:weight="BoFontWeight.semibold"
+				class="bo-card__title"
 			/>
 			<bo-text
 				v-if="description != null"
@@ -23,6 +24,7 @@
 				:size="BoFontSize.sm"
 				:color="BoTextColor.secondary"
 				:font-family="BoFontFamily.sans"
+				class="bo-card__description"
 			/>
 		</div>
 	</div>

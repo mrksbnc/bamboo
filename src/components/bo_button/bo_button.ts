@@ -1,4 +1,4 @@
-import type { HtmlButtonType } from '@/global';
+import type { HtmlButtonType } from '@/shared';
 import type { BoSize } from '@/shared';
 import type { Icon } from '@/components/bo_icon';
 

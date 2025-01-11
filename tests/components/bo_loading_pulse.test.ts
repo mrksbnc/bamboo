@@ -1,7 +1,6 @@
 import { BoLoadingPulse } from '@/components/bo_loading_pulse';
 import { BoText } from '@/components/bo_text';
-import { BoSize } from '@/shared';
-import { BoLoaderTextPosition, BoLoaderVariant } from '@/data/loader.constant';
+import { BoSize, BoLoaderTextPosition, BoLoaderVariant } from '@/shared';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, suite, test } from 'vitest';
 

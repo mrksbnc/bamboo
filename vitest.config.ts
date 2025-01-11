@@ -1,6 +1,6 @@
-import { fileURLToPath } from 'node:url'
-import { configDefaults, defineConfig, mergeConfig } from 'vitest/config'
-import viteConfig from './vite.config'
+import { fileURLToPath } from 'node:url';
+import { configDefaults, defineConfig, mergeConfig } from 'vitest/config';
+import viteConfig from './vite.config';
 
 const bambooTestConfig = mergeConfig(
 	viteConfig,
@@ -15,6 +15,6 @@ const bambooTestConfig = mergeConfig(
 			root: fileURLToPath(new URL('./', import.meta.url)),
 		},
 	}),
-)
+);
 
-export default bambooTestConfig
+export default bambooTestConfig;

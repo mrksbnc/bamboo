@@ -23,8 +23,6 @@ describe('bo_badge.vue', () => {
 	});
 
 	test('the badge container should have the default classes', () => {
-		console.log(wrapper.find('.bo-badge').classes());
-
 		expect(wrapper.find('.bo-badge').classes()).contains('flex');
 		expect(wrapper.find('.bo-badge').classes()).contains('items-center');
 		expect(wrapper.find('.bo-badge').classes()).contains('justify-center');

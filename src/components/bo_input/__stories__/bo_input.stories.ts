@@ -1,8 +1,8 @@
-import { Icon } from '@/components/bo_icon'
-import { BoInput, BoInputSize, BoInputState } from '@/components/bo_input'
-import { HtmlInputType } from '@/global'
-import { StorybookUtils } from '@/utils'
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { Icon } from '@/components/bo_icon';
+import { BoInput, BoInputSize, BoInputState } from '@/components/bo_input';
+import { HtmlInputType } from '@/shared';
+import { StorybookUtils } from '@/utils';
+import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta = {
 	title: 'Components/bo-input',
@@ -83,10 +83,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoInputSize',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoInputSize,
-						'BoInputSize',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoInputSize, 'BoInputSize'),
 				},
 			},
 			defaultValue: BoInputSize.default,
@@ -100,10 +97,7 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoInputState',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoInputState,
-						'BoInputState',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoInputState, 'BoInputState'),
 				},
 			},
 			defaultValue: BoInputState.none,
@@ -195,15 +189,13 @@ const meta = {
 			defaultValue: 'pulse',
 		},
 	},
-} satisfies Meta<typeof BoInput>
+} satisfies Meta<typeof BoInput>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 function generateRandomId(): string {
-	return Symbol(
-		Math.random().toString(36).substring(2, 15) + Date.now(),
-	).toString()
+	return Symbol(Math.random().toString(36).substring(2, 15) + Date.now()).toString();
 }
 
 export const Example: Story = {
@@ -219,14 +211,14 @@ export const Example: Story = {
 		placeholder: 'Enter your name',
 		type: HtmlInputType.text,
 	},
-}
+};
 
 export const Sizes: Story = {
 	render: (args) => ({
 		components: { BoInput },
 		setup() {
-			const sizes = Object.values(BoInputSize)
-			return { sizes, ...args, generateRandomId }
+			const sizes = Object.values(BoInputSize);
+			return { sizes, ...args, generateRandomId };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -242,13 +234,13 @@ export const Sizes: Story = {
 		label: 'Name',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
-}
+};
 
 export const Disabled: Story = {
 	render: (args) => ({
 		components: { BoInput },
 		setup() {
-			return { ...args }
+			return { ...args };
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -262,13 +254,13 @@ export const Disabled: Story = {
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		disabled: true,
 	},
-}
+};
 
 export const Readonly: Story = {
 	render: (args) => ({
 		components: { BoInput },
 		setup() {
-			return { ...args }
+			return { ...args };
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -282,14 +274,14 @@ export const Readonly: Story = {
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		readonly: true,
 	},
-}
+};
 
 export const States: Story = {
 	render: (args) => ({
 		components: { BoInput },
 		setup() {
-			const states = Object.values(BoInputState)
-			return { states, ...args, generateRandomId }
+			const states = Object.values(BoInputState);
+			return { states, ...args, generateRandomId };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -305,13 +297,13 @@ export const States: Story = {
 		label: 'Name',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
-}
+};
 
 export const Loading: Story = {
 	render: (args) => ({
 		components: { BoInput },
 		setup() {
-			return { ...args }
+			return { ...args };
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -325,13 +317,13 @@ export const Loading: Story = {
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		isLoading: true,
 	},
-}
+};
 
 export const WithLoaderVariantSpinner: Story = {
 	render: (args) => ({
 		components: { BoInput },
 		setup() {
-			return { args }
+			return { args };
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -350,13 +342,13 @@ export const WithLoaderVariantSpinner: Story = {
 		isLoading: true,
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	},
-}
+};
 
 export const Required: Story = {
 	render: (args) => ({
 		components: { BoInput },
 		setup() {
-			return { ...args }
+			return { ...args };
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -371,13 +363,13 @@ export const Required: Story = {
 		state: BoInputState.invalid,
 		required: true,
 	},
-}
+};
 
 export const Error: Story = {
 	render: (args) => ({
 		components: { BoInput },
 		setup() {
-			return { ...args }
+			return { ...args };
 		},
 		template: `
             <div class="flex flex-col gap-4">
@@ -392,15 +384,15 @@ export const Error: Story = {
 		state: BoInputState.invalid,
 		errorMessage: 'This field is required',
 	},
-}
+};
 
 export const Icons: Story = {
 	render: (args) => ({
 		components: { BoInput },
 		setup() {
-			const sizes = Object.values(BoInputSize)
+			const sizes = Object.values(BoInputSize);
 
-			return { sizes, ...args, generateRandomId }
+			return { sizes, ...args, generateRandomId };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -422,15 +414,15 @@ export const Icons: Story = {
 		suffixIcon: Icon.alert_circle,
 		isLoading: true,
 	},
-}
+};
 
 export const IconsWithLoader: Story = {
 	render: (args) => ({
 		components: { BoInput },
 		setup() {
-			const sizes = Object.values(BoInputSize)
+			const sizes = Object.values(BoInputSize);
 
-			return { sizes, ...args, generateRandomId }
+			return { sizes, ...args, generateRandomId };
 		},
 		template: `
 			<div class="flex flex-col gap-4">
@@ -463,4 +455,4 @@ export const IconsWithLoader: Story = {
 		suffixIcon: Icon.alert_circle,
 		isLoading: true,
 	},
-}
+};

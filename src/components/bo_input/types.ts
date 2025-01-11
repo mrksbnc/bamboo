@@ -1,12 +1,12 @@
-import type { Icon } from '@/components/bo_icon'
-import type { HtmlInputType } from '@/global'
-import type { BoInputSize, BoInputState } from './constants'
+import type { Icon } from '@/components/bo_icon';
+import type { HtmlInputType } from '@/shared';
+import type { BoInputSize, BoInputState } from './constants';
 
 export type BoInputProps = {
-	modelValue?: string
-	id?: string
-	label?: string
-	description?: string
+	modelValue?: string;
+	id?: string;
+	label?: string;
+	description?: string;
 	type?:
 		| HtmlInputType.text
 		| HtmlInputType.number
@@ -18,16 +18,16 @@ export type BoInputProps = {
 		| HtmlInputType.time
 		| HtmlInputType.week
 		| HtmlInputType.month
-		| HtmlInputType.datetime_local
-	size?: BoInputSize
-	state?: BoInputState
-	disabled?: boolean
-	isLoading?: boolean
-	placeholder?: string
-	required?: boolean
-	readonly?: boolean
-	prefixIcon?: Icon | null
-	suffixIcon?: Icon | null
-	errorMessage?: string | null
-	loaderVariant?: 'spinner' | 'pulse'
-}
+		| HtmlInputType.datetime_local;
+	size?: BoInputSize;
+	state?: BoInputState;
+	disabled?: boolean;
+	isLoading?: boolean;
+	placeholder?: string;
+	required?: boolean;
+	readonly?: boolean;
+	prefixIcon?: Icon | null;
+	suffixIcon?: Icon | null;
+	errorMessage?: string | null;
+	loaderVariant?: 'spinner' | 'pulse';
+};

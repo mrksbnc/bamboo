@@ -1,7 +1,6 @@
 import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
 import BoText from '@/components/bo_text/BoText.vue';
-import { BoSize } from '@/shared';
-import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared';
+import { BoSize, BoLoaderTextPosition, BoLoaderVariant } from '@/shared';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, suite, test } from 'vitest';
 

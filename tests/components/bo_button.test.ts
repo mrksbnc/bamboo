@@ -5,7 +5,7 @@ import BoLoadingSpinner from '@/components/bo_loading_spinner/BoLoadingSpinner.v
 import { BoText } from '@/components/bo_text';
 import { BoSize } from '@/shared';
 import { BoLoaderVariant } from '@/shared';
-import { HtmlButtonType } from '@/global';
+import { HtmlButtonType } from '@/shared';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, suite, test } from 'vitest';
 
@@ -255,8 +255,6 @@ describe('bo_button.vue', () => {
 
 		test('the button should have the correct padding classes if a the size is extra small', async () => {
 			await wrapper.setProps({ size: BoSize.extra_small });
-
-			console.log(wrapper.classes());
 
 			expect(wrapper.classes()).toContain('py-[6px]');
 			expect(wrapper.classes()).toContain('px-[8px]');

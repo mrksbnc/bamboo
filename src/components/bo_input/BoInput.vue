@@ -77,7 +77,7 @@ import { BoFontFamily, BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/c
 import { BoColor } from '@/shared';
 import { BoSize } from '@/shared/bo_size';
 import { BoLoaderVariant } from '@/shared/bo_loader';
-import { HtmlInputType } from '@/global';
+import { HtmlInputType } from '@/shared';
 import { TailwindUtils } from '@/utils';
 import { IdentityUtils } from '@/utils/identity_utils';
 import { computed, ref, toRefs, watch } from 'vue';
