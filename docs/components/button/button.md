@@ -7,15 +7,17 @@ import BoButtonIconVariants from './examples/BoButtonIconVariants.vue'
 import BoButtonIconOnlyVariant from './examples/BoButtonIconOnlyVariant.vue'
 </script>
 
-# Button
+# bo-button
 
 A button is a control that allows the user to perform an action. The library supports different variants, shapes and types of buttons.
 
+<bo-button label="Button" />
+
 ## Basic usage
 
-The component to use is called `bo-button`.
-
+```vue
 <bo-button label="Button" />
+```
 
 ## Props
 
@@ -32,18 +34,12 @@ The component to use is called `bo-button`.
 | `suffixIcon` | `Icon`            | `Icon.none`               |
 
 ::: warning Note
-To make the button work properly, either the `label` or the `prefixIcon` prop must be provided.
-:::
-
-::: tip Icon only button
-To create an icon only button, you can use the `prefixIcon` prop without the `label` prop.
-If the label is not provided, the padding and the general size of the button will be aligned
-to match the icon correctly.
+Though non of the props are required, either the `label` or the `prefixIcon` prop must be provided.
 :::
 
 ## Disabled
 
-The `disabled` prop can be used to disable the button. When the button is disabled, it will not respond to user interactions and will appear in a disabled state.
+To disable the button, set the `disabled` prop to `true`. When the button is disabled, it will not respond to user interactions and will appear in a disabled state.
 
 ### Example
 
@@ -57,15 +53,9 @@ The `disabled` prop can be used to disable the button. When the button is disabl
 
 ## Loading
 
-The `isLoading` prop can be used to show a loading spinner. When the spinner is shown, the button will be disabled and will not respond to user interactions.
+To represent a loading state, change the value of the `isLoading` prop. When the button is loading, it will be disabled and will not respond to user interactions.
 
 <bo-button label="Loading" :isLoading="true" />
-
-### Example
-
-```vue
-<bo-button label="Loading" :isLoading="true" />
-```
 
 ## Button variants
 

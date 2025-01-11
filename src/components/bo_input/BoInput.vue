@@ -104,13 +104,7 @@
 import { BoIcon, Icon } from '@/components/bo_icon'
 import { BoLoadingPulse } from '@/components/bo_loading_pulse'
 import { BoLoadingSpinner } from '@/components/bo_loading_spinner'
-import {
-	BoFontFamily,
-	BoFontSize,
-	BoFontWeight,
-	BoText,
-	BoTextColor,
-} from '@/components/bo_text'
+import { BoFontFamily, BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text'
 import { BoColor } from '@/data'
 import { BoSize } from '@/data/bo_size.constant'
 import { BoLoaderVariant } from '@/data/loader.constant'
@@ -152,8 +146,7 @@ const {
 	type,
 } = toRefs(props)
 
-const defaultContainerClasses =
-	/*tw*/ 'bo-input flex flex-col gap-1 bg-transparent'
+const defaultContainerClasses = /*tw*/ 'bo-input flex flex-col gap-1 bg-transparent'
 
 const defaultInputClasses =
 	/*tw*/ 'bo-input__input rounded-lg border border-gray-300 text-gray-900 text-small bg-white outline-none'
@@ -163,18 +156,15 @@ const defaultInputDisabledClasses =
 
 const defaultFocusClasses = /*tw*/ 'focus:ring-blue-600 focus:border-blue-600'
 
-const errorInputClasses =
-	/*tw*/ 'bo-input__input rounded-lg border border-red-600'
+const errorInputClasses = /*tw*/ 'bo-input__input rounded-lg border border-red-600'
 
 const errorFocusClasses = /*tw*/ 'focus:ring-red-600 focus:border-red-600 '
 
-const validInputClasses =
-	/*tw*/ 'bo-input__input rounded-lg border border-green-600'
+const validInputClasses = /*tw*/ 'bo-input__input rounded-lg border border-green-600'
 
 const validFocusClasses = /*tw*/ 'focus:ring-green-600 focus:border-green-600'
 
-const labelContainerClasses =
-	/*tw*/ 'bo-input__label-container flex items-center gap-1'
+const labelContainerClasses = /*tw*/ 'bo-input__label-container flex items-center gap-1'
 
 const defaultPrefixIconContainerClasses =
 	/*tw*/ 'bo-input__prefix-container absolute left-[10px] top-1/2 flex -translate-y-1/2 items-center justify-center'
@@ -187,8 +177,7 @@ const defaultLoadingContainerClasses =
 
 const inputContainer = /*tw*/ 'bo-input__container relative flex items-center'
 
-const errorContainerClasses =
-	/*tw*/ 'bo-input__error-message flex items-center gap-1'
+const errorContainerClasses = /*tw*/ 'bo-input__error-message flex items-center gap-1'
 
 const inputState = ref<BoInputState>(state.value)
 const inputRef = ref<HTMLInputElement | null>(null)
@@ -214,10 +203,8 @@ const inputPaddingClasses = computed<string>(() => {
 		suffixIcon.value !== undefined &&
 		suffixIcon.value !== Icon.none
 
-	const prefixIconSet =
-		prefixIcon.value != null && prefixIcon.value !== Icon.none
-	const suffixIconSet =
-		suffixIcon.value != null && suffixIcon.value !== Icon.none
+	const prefixIconSet = prefixIcon.value != null && prefixIcon.value !== Icon.none
+	const suffixIconSet = suffixIcon.value != null && suffixIcon.value !== Icon.none
 
 	if (bothIconsSet) {
 		switch (size.value) {

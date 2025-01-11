@@ -16,5 +16,4 @@ export enum BoAvatarVariant {
 export enum BoAvatarType {
 	image = 'image',
 	initials = 'initials',
-	unknown = 'unknown',
 }

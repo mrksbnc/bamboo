@@ -17,7 +17,10 @@ function buildSidebar() {
 }
 
 function getComponents() {
-	return [{ text: 'Button', link: '/components/button/button' }]
+	return [
+		{ text: 'Avatar', link: '/components/avatar/avatar' },
+		{ text: 'Button', link: '/components/button/button' },
+	]
 }
 
 // https://vitepress.dev/reference/site-config
@@ -39,7 +42,8 @@ export default defineConfig({
 		sidebar: buildSidebar(),
 		socialLinks: [{ icon: 'github', link: 'https://github.com/mrksbnc/bamboo' }],
 		footer: {
-			message: 'Released under the MIT License.',
+			message:
+				'Released under the <a href="https://github.com/mrksbnc/bamboo/blob/main/LICENSE">MIT License</a>.',
 			copyright: `Copyright © 2025-present <a href="https://github.com/mrksbnc">Bence Markus</a>`,
 		},
 	},

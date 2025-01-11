@@ -29,6 +29,7 @@ const props = withDefaults(defineProps<BoTextProps>(), {
 	fontFamily: () => BoFontFamily.sans,
 	textAlign: () => BoTextAlign.justify,
 	whiteSpace: () => BoTextWhiteSpace.normal,
+	selectable: () => false,
 })
 
 const {
@@ -42,6 +43,7 @@ const {
 	customColor,
 	clickable,
 	textAlign,
+	selectable,
 } = toRefs(props)
 
 const defaultClasses = /*tw*/ 'bo-text inline-flex items-center shrink'
@@ -177,6 +179,7 @@ const classes = computed<string>(() => {
 		textAlignment.value,
 		textFontFamily.value,
 		textWhiteSpaceClasses.value,
+		selectable.value ? /*tw*/ 'select-auto' : /*tw*/ 'select-none',
 	)
 })
 

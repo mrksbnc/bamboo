@@ -1,19 +1,14 @@
 import type { BoSize } from '@/data/bo_size.constant'
 import type { BoAvatarShape, BoAvatarType } from './constants'
 
-export type BoAvatarImageProps = {
-	src: string
+export type BoAvatarData = {
 	alt?: string
-}
-
-export type BoAvatarInitialsProps = {
-	initials: string
-	alt?: string
+	src?: string
+	label?: string
 }
 
 export type BoAvatarProps = {
-	imageData?: BoAvatarImageProps
-	initialsData?: BoAvatarInitialsProps
+	data: BoAvatarData
 	type?: BoAvatarType
 	shape?: BoAvatarShape
 	size?: BoSize

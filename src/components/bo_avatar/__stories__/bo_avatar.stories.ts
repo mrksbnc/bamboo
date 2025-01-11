@@ -7,16 +7,8 @@ const meta = {
 	title: 'Components/bo-avatar',
 	component: BoAvatar,
 	argTypes: {
-		initialsData: {
+		data: {
 			description: 'The data for the avatar with a property for the initials',
-			control: { type: 'object' },
-			table: {
-				category: 'props',
-				subcategory: 'optional',
-			},
-		},
-		imageData: {
-			description: 'The data for the avatar with a property for the image',
 			control: { type: 'object' },
 			table: {
 				category: 'props',
@@ -32,13 +24,9 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoAvatarType',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoAvatarType,
-						'BoAvatarType',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoAvatarType, 'BoAvatarType'),
 				},
 			},
-			defaultValue: BoAvatarType.unknown,
 		},
 		size: {
 			description: 'The size of the avatar',
@@ -63,17 +51,13 @@ const meta = {
 				subcategory: 'optional',
 				type: {
 					summary: 'BoAvatarShape',
-					detail: StorybookUtils.stringEnumFormatter(
-						BoAvatarShape,
-						'BoAvatarShape',
-					),
+					detail: StorybookUtils.stringEnumFormatter(BoAvatarShape, 'BoAvatarShape'),
 				},
 			},
 			defaultValue: BoAvatarShape.rounded,
 		},
 		colorHex: {
-			description:
-				'A hex color string used to set the background color of the avatar',
+			description: 'A hex color string used to set the background color of the avatar',
 			control: { type: 'color' },
 			table: {
 				category: 'props',
@@ -81,8 +65,7 @@ const meta = {
 			},
 		},
 		fontColorHex: {
-			description:
-				'The color of the font in hex format if it requires a customisation',
+			description: 'The color of the font in hex format if it requires a customisation',
 			control: { type: 'color' },
 			table: {
 				category: 'props',
@@ -116,8 +99,8 @@ type Story = StoryObj<typeof meta>
 export const Example: Story = {
 	args: {
 		type: BoAvatarType.initials,
-		initialsData: {
-			initials: 'BO',
+		data: {
+			label: 'BO',
 		},
 	},
 }
@@ -136,7 +119,7 @@ export const Image: Story = {
 	}),
 	args: {
 		type: BoAvatarType.image,
-		imageData: {
+		data: {
 			src: new URL('./img_avatar.png', import.meta.url).href,
 			alt: 'avatar',
 		},
@@ -151,14 +134,14 @@ export const Initials: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-				<bo-avatar :type="type" :initials-data="initialsData"/>
+				<bo-avatar :type="type" :initials-data="data"/>
 			</div>
 		`,
 	}),
 	args: {
 		type: BoAvatarType.initials,
-		initialsData: {
-			initials: 'BO',
+		data: {
+			label: 'BO',
 		},
 	},
 }
@@ -173,7 +156,7 @@ export const Sizes: Story = {
 		template: `
 			<div class="flex gap-4">
 				<span v-for="size in sizes" :key="size" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<bo-avatar :type="type" :initials-data="initialsData" :size="size"/>
+					<bo-avatar :type="type" :initials-data="data" :size="size"/>
 					<span class="text-sm text-gray-500 font-medium">{{ size }}</span>
 				</span>
 			</div>
@@ -181,8 +164,8 @@ export const Sizes: Story = {
 	}),
 	args: {
 		type: BoAvatarType.initials,
-		initialsData: {
-			initials: 'BO',
+		data: {
+			label: 'BO',
 		},
 	},
 }
@@ -197,7 +180,7 @@ export const Shapes: Story = {
 		template: `
 			<div class="flex gap-4">
 				<span v-for="shape in shapes" :key="shape" class="flex flex-col justify-center items-center gap-2 border border-gray-300 rounded-lg p-2">
-					<bo-avatar :type="type" :initials-data="initialsData" :shape="shape"/>
+					<bo-avatar :type="type" :initials-data="data" :shape="shape"/>
 					<span class="text-sm text-gray-500 font-medium">{{ shape }}</span>
 				</span>
 			</div>
@@ -205,8 +188,8 @@ export const Shapes: Story = {
 	}),
 	args: {
 		type: BoAvatarType.initials,
-		initialsData: {
-			initials: 'BO',
+		data: {
+			label: 'BO',
 		},
 	},
 }
@@ -219,14 +202,14 @@ export const Clickable: Story = {
 		},
 		template: `
             <div class="flex flex-col gap-4">
-				<bo-avatar :type="type" :initials-data="initialsData" :clickable="clickable"/>
+				<bo-avatar :type="type" :initials-data="data" :clickable="clickable"/>
 			</div>
 		`,
 	}),
 	args: {
 		type: BoAvatarType.initials,
-		initialsData: {
-			initials: 'BO',
+		data: {
+			label: 'BO',
 		},
 		clickable: true,
 	},
@@ -245,6 +228,7 @@ export const WithDefaultImage: Story = {
 		`,
 	}),
 	args: {
+		data: {},
 		withDefaultImage: true,
 	},
 }

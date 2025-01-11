@@ -15,25 +15,25 @@
 			/>
 		</span>
 		<span
-			v-else-if="type === BoAvatarType.initials && initialsData != null"
+			v-else-if="type === BoAvatarType.initials && !StringUtils.isEmptyStr(data.label)"
 			class="bo-avatar__initials flex items-center justify-center"
 		>
 			<bo-text
 				alt="avatar"
-				:text="initialsData.initials"
-				:custom-color="fontColorHex"
 				:size="labelSize"
 				:clickable="clickable"
+				:custom-color="fontColorHex"
 				:weight="BoFontWeight.medium"
+				:text="StringUtils.safeString(data.label)"
 			/>
 		</span>
 		<span
-			v-else-if="type === BoAvatarType.image && imageData != null"
+			v-else-if="type === BoAvatarType.image && data.src !== undefined"
 			class="bo-avatar__unknown"
 		>
 			<img
-				:src="imageData.src"
-				:alt="imageData.alt ?? 'avatar'"
+				:src="data.src"
+				:alt="data.alt ?? 'avatar'"
 				:class="['bo-avatar__image', imgClasses]"
 			/>
 		</span>
@@ -54,8 +54,7 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 	shape: () => BoAvatarShape.rounded,
 })
 
-const { clickable, imageData, initialsData, type, shape, size, colorHex, withDefaultImage } =
-	toRefs(props)
+const { clickable, data, type, shape, size, colorHex, withDefaultImage } = toRefs(props)
 
 const defaultAvatarSvg = new URL('../../assets/img/avatar.png', import.meta.url).href
 
@@ -66,7 +65,7 @@ const showDefaultAvatar = computed<boolean>(() => {
 		return true
 	}
 
-	return !imageData.value && !initialsData.value && type.value === BoAvatarType.unknown
+	return data.value.src === undefined && StringUtils.isEmptyStr(data.value.label)
 })
 
 const labelSize = computed<BoFontSize>(() => {

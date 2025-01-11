@@ -19,4 +19,5 @@ export type BoTextProps = {
 	cssClass?: string
 	clickable?: boolean
 	textAlign?: BoTextAlign
+	selectable?: boolean
 }
