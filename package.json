@@ -54,7 +54,7 @@
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.10.5",
     "@vitejs/plugin-vue": "^5.2.1",
-    "@vitest/coverage-v8": "2.1.8",
+    "@vitest/coverage-v8": "2.1.9",
     "@vitest/eslint-plugin": "1.1.22",
     "@vue/eslint-config-prettier": "^10.1.0",
     "@vue/eslint-config-typescript": "^14.2.0",
@@ -83,7 +83,7 @@
     "vite-plugin-dts": "^4.4.0",
     "vite-plugin-vue-devtools": "^7.6.8",
     "vite-svg-loader": "^5.1.0",
-    "vitest": "^2.1.8",
+    "vitest": "^2.1.9",
     "vue-tsc": "^2.2.0"
   }
 }
