@@ -15,7 +15,7 @@ describe('bo_card.vue', () => {
 			expect(wrapper.find('.bo-card__container').classes()).toContain('border');
 			expect(wrapper.find('.bo-card__container').classes()).toContain('border-gray-300');
 			expect(wrapper.find('.bo-card__container').classes()).toContain('bg-white');
-			expect(wrapper.find('.bo-card__container').classes()).toContain('shadow-lg');
+			expect(wrapper.find('.bo-card__container').classes()).toContain('shadow-md');
 
 			expect(wrapper.find('.bo-card__content').classes()).toContain('overflow-y-auto');
 			expect(wrapper.find('.bo-card__content').classes()).toContain('overflow-x-hidden');

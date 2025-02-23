@@ -30,31 +30,24 @@ $ pnpm add @mrksbnc/bamboo
 
 ```js
 // main.js or main.ts
+import { createApp } from 'vue';
+import App from './App.vue';
 
-import '@mrksbnc/bamboo/lib.css'
+import '@mrksbnc/bamboo/lib.css';
 
-import { createApp } from 'vue'
-import App from './App.vue'
-
-createApp(App).mount('#app')
-```
-
-or in your `main.css` file
-
-```css
-@import '@mrksbnc/bamboo/lib.css';
+createApp(App).mount('#app');
 ```
 
 3. Start using the components in your files.
 
-```vue
+```js
 // your-component.vue
 
 <template>
-  <bo-button label="Button" />
+	<bo-button label="Button" />
 </template>
 
 <script setup lang="ts">
-import { BoButton } from '@mrksbnc/bamboo'
+import { BoButton } from '@mrksbnc/bamboo';
 </script>
 ```

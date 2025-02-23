@@ -80,7 +80,7 @@ import { BoFontFamily, BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/c
 import { BoColor } from '@/shared';
 import { BoSize } from '@/shared/bo_size';
 import { BoLoaderVariant } from '@/shared/bo_loader';
-import { TailwindUtils } from '@/utils';
+import { StringUtils, TailwindUtils } from '@/utils';
 import { IdentityUtils } from '@/utils/identity_utils';
 import { computed, ref, toRefs, watch } from 'vue';
 import { BoInputSize, BoInputState } from './constants';
@@ -163,7 +163,7 @@ const computedInputId = computed<string>(() => {
 });
 
 const hasError = computed<boolean>(() => {
-	return errorMessage.value != null;
+	return !StringUtils.isEmptyStr(errorMessage.value);
 });
 
 const loadingContainerClasses = computed<string>(() => {
@@ -179,8 +179,8 @@ const inputPaddingClasses = computed<string>(() => {
 		suffixIcon.value !== undefined &&
 		suffixIcon.value !== Icon.none;
 
-	const prefixIconSet = prefixIcon.value != null && prefixIcon.value !== Icon.none;
-	const suffixIconSet = suffixIcon.value != null && suffixIcon.value !== Icon.none;
+	const prefixIconSet = prefixIcon.value && prefixIcon.value !== Icon.none;
+	const suffixIconSet = suffixIcon.value && suffixIcon.value !== Icon.none;
 
 	if (bothIconsSet) {
 		switch (size.value) {
@@ -253,7 +253,7 @@ function onInput(e: Event): void {
 	const target = e.target as HTMLInputElement;
 
 	if (attributes?.value?.type === 'tel' || attributes?.value?.type === 'number') {
-		if (inputRef.value != null) {
+		if (inputRef.value) {
 			inputRef.value.value = target.value.replace(/[^\d].+/, '');
 		}
 	}

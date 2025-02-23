@@ -1,14 +1,14 @@
 <template>
 	<div
 		:style="slotCardWidth.style"
-		:class="[cardContainerClasses, 'bo-card rounded-lg border border-gray-300 bg-white shadow-lg']"
+		:class="[cardContainerClasses, 'bo-card rounded-lg border border-gray-300 bg-white shadow-md']"
 	>
-		<div v-if="$slots['content'] != null" :class="contentClasses">
+		<div v-if="$slots['content']" :class="contentClasses">
 			<slot name="content"></slot>
 		</div>
 		<div v-else :class="[contentClasses, 'flex flex-col gap-2']">
 			<bo-text
-				v-if="title != null"
+				v-if="title"
 				:text="title"
 				:clickable="clickable"
 				:color="BoTextColor.current"
@@ -18,7 +18,7 @@
 				class="bo-card__title"
 			/>
 			<bo-text
-				v-if="description != null"
+				v-if="description"
 				:text="description"
 				:clickable="clickable"
 				:size="BoFontSize.sm"
@@ -57,19 +57,19 @@ const slotCardWidth = computed<StyleConstruct>(() => {
 		class: /*tw*/ '',
 	};
 
-	if (widthInPercent.value != null) {
+	if (widthInPercent.value) {
 		construct.style = {
 			width: `${widthInPercent.value}%`,
 		};
 	}
 
-	if (widthInPx.value != null) {
+	if (widthInPx.value) {
 		construct.style = {
 			width: `${widthInPx.value}px`,
 		};
 	}
 
-	if (widthAsTailwindClass.value != null) {
+	if (widthAsTailwindClass.value) {
 		construct.class = widthAsTailwindClass.value;
 	}
 

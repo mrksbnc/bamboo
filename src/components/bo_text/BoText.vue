@@ -1,11 +1,11 @@
 <template>
-	<span
+	<div
 		:id="id ?? IdentityUtils.generateRandomIdWithPrefix('bo-text')"
 		:class="classes"
 		:style="containerStyle"
 	>
 		{{ text }}
-	</span>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -46,7 +46,7 @@ const {
 	selectable,
 } = toRefs(props);
 
-const defaultClasses = /*tw*/ 'bo-text inline-flex items-center shrink';
+const defaultClasses = /*tw*/ 'bo-text inline-flex flex-wrap shrink';
 
 const cursor = computed<string>(() => {
 	return clickable.value ? /*tw*/ 'cursor-pointer' : /*tw*/ 'cursor-default';

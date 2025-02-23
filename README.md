@@ -21,18 +21,18 @@ npm install @mrksbnc/bamboo
 After this you need to import the `css` file in your `main.js` or `main.ts` file.
 
 ```js
-import '@mrksbnc/bamboo/lib.css'
+import '@mrksbnc/bamboo/lib.css';
 ```
 
 After this you can use the components in your `components`.
 
 ```js
 <script setup lang="ts">
-import { BoButton } from '@mrksbnc/bamboo'
+import { BoButton } from '@mrksbnc/bamboo';
 </script>
 
 <template>
-  <bo-button label="Button" />
+	<bo-button label="Button" />
 </template>
 ```
 

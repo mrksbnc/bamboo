@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import { BoDivider, BoDividerVariant } from '@/components/bo_divider';
+import { BoDivider } from '@/components/bo_divider';
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoColor } from '@/shared';
 import { BoSize } from '@/shared/bo_size';
@@ -91,19 +91,19 @@ const modalWidth = computed<StyleConstruct>(() => {
 		class: /*tw*/ '',
 	};
 
-	if (widthInPercent.value != null) {
+	if (widthInPercent.value) {
 		construct.style = {
 			width: `${widthInPercent.value}%`,
 		};
 	}
 
-	if (widthInPx.value != null) {
+	if (widthInPx.value) {
 		construct.style = {
 			width: `${widthInPx.value}px`,
 		};
 	}
 
-	if (widthAsTailwindClass.value != null) {
+	if (widthAsTailwindClass.value) {
 		construct.class = widthAsTailwindClass.value;
 	}
 

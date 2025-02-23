@@ -12,7 +12,7 @@ An avatar is a small image that represents a user or entity.
 
 ## Basic usage
 
-```vue
+```js
 <bo-avatar :initials-data="{ initials: 'B' }" />
 ```
 
@@ -39,15 +39,26 @@ The available values for the `type` prop are:
 - `initials`
 
 <div class="flex gap-2">
-    <bo-avatar-custom-image />
-    <bo-avatar :type="BoAvatarType.initials" :data="{ label: 'B' }" />
+  <bo-avatar-custom-image />
+  <bo-avatar :type="BoAvatarType.initials" :data="{ label: 'B' }" />
+  <bo-avatar :data="{}" :type="BoAvatarType.image" />
 </div>
 
 :::info Default avatar image
 If the prop `type` is set to image but no `src` is provided, the avatar will use a fallback image.
 :::
 
-<bo-avatar :data="{}" :type="BoAvatarType.image" />
+::: details Toggle code
+
+```js
+<div class="flex gap-2">
+  <bo-avatar :type="BoAvatarType.image" :data="{ label: 'B' }" />
+  <bo-avatar :type="BoAvatarType.initials" :data="{ label: 'B' }" />
+  <bo-avatar :data="{}" :type="BoAvatarType.image" />
+</div>
+```
+
+:::
 
 ## Avatar shapes
 
@@ -56,14 +67,35 @@ The `shape` prop can be used to change the shape of the avatar.
 The available values for the `shape` prop are:
 
 - `circle`
-- `square`
+- `flat`
 - `rounded`
+- `outline_circle`
+- `outline_rounded`
+- `outline_flat`
 
 <div class="flex gap-2">
-    <bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'B' }" />
-    <bo-avatar :shape="BoAvatarShape.square" :data="{ label: 'B' }" />
-    <bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'B' }" />
+  <bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'B' }" />
+  <bo-avatar :shape="BoAvatarShape.flat" :data="{ label: 'B' }" />
+  <bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'B' }" />
+  <bo-avatar :shape="BoAvatarShape.outline_circle" :data="{ label: 'B' }" />
+  <bo-avatar :shape="BoAvatarShape.outline_rounded" :data="{ label: 'B' }" />
+  <bo-avatar :shape="BoAvatarShape.outline_flat" :data="{ label: 'B' }" />
 </div>
+
+::: details Toggle code
+
+```js
+<div class="flex gap-2">
+  <bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'B' }" />
+  <bo-avatar :shape="BoAvatarShape.square" :data="{ label: 'B' }" />
+  <bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'B' }" />
+  <bo-avatar :shape="BoAvatarShape.outline_circle" :data="{ label: 'B' }" />
+  <bo-avatar :shape="BoAvatarShape.outline_rounded" :data="{ label: 'B' }" />
+  <bo-avatar :shape="BoAvatarShape.outline_flat" :data="{ label: 'B' }" />
+</div>
+```
+
+:::
 
 ## Avatar sizes
 
@@ -78,12 +110,26 @@ The available values for the `size` prop are:
 - `extra-large`
 
 <div class="flex gap-2">
-    <bo-avatar :size="BoSize.extra_small" :data="{ label: 'B' }" />
-    <bo-avatar :size="BoSize.small" :data="{ label: 'B' }" />
-    <bo-avatar :size="BoSize.default" :data="{ label: 'B' }" />
-    <bo-avatar :size="BoSize.large" :data="{ label: 'B' }" />
-    <bo-avatar :size="BoSize.extra_large" :data="{ label: 'B' }" />
+  <bo-avatar :size="BoSize.extra_small" :data="{ label: 'B' }" />
+  <bo-avatar :size="BoSize.small" :data="{ label: 'B' }" />
+  <bo-avatar :size="BoSize.default" :data="{ label: 'B' }" />
+  <bo-avatar :size="BoSize.large" :data="{ label: 'B' }" />
+  <bo-avatar :size="BoSize.extra_large" :data="{ label: 'B' }" />
 </div>
+
+::: details Toggle code
+
+```js
+<div class="flex gap-2">
+  <bo-avatar :size="BoSize.extra_small" :data="{ label: 'B' }" />
+  <bo-avatar :size="BoSize.small" :data="{ label: 'B' }" />
+  <bo-avatar :size="BoSize.default" :data="{ label: 'B' }" />
+  <bo-avatar :size="BoSize.large" :data="{ label: 'B' }" />
+  <bo-avatar :size="BoSize.extra_large" :data="{ label: 'B' }" />
+</div>
+```
+
+:::
 
 ## Custom colors
 
@@ -92,18 +138,40 @@ In most cases you will want to use these together as the background color of the
 randomly by default.
 
 <div class="flex gap-2">
-    <bo-avatar :color-hex="'#41b883'" :font-color-hex="'#ffffff'" :data="{ label: 'B' }" />
-    <bo-avatar :color-hex="'#000000'" :font-color-hex="'#ffffff'" :data="{ label: 'B' }" />
-    <bo-avatar :color-hex="'#231252'" :font-color-hex="'yellow'" :data="{ label: 'B' }" />
+  <bo-avatar :color-hex="'#41b883'" :font-color-hex="'#ffffff'" :data="{ label: 'B' }" />
+  <bo-avatar :color-hex="'#000000'" :font-color-hex="'#ffffff'" :data="{ label: 'B' }" />
+  <bo-avatar :color-hex="'#231252'" :font-color-hex="'yellow'" :data="{ label: 'B' }" />
 </div>
+
+::: details Toggle code
+
+```js
+<div class="flex gap-2">
+  <bo-avatar :color-hex="'#41b883'" :font-color-hex="'#ffffff'" :data="{ label: 'B' }" />
+  <bo-avatar :color-hex="'#000000'" :font-color-hex="'#ffffff'" :data="{ label: 'B' }" />
+  <bo-avatar :color-hex="'#231252'" :font-color-hex="'yellow'" :data="{ label: 'B' }" />
+</div>
+```
+
+:::
 
 ## Clickable
 
-To visually indicate that the avatar is clickable, you can use the `clickable` prop. This will set the cursor to pointer and in case of an initials avatar, it will add a `bacckground` hover effect.
+To visually indicate that the avatar is clickable, you can use the `clickable` prop. This will set the cursor to pointer and in case of an initials avatar, it will add a `background` hover effect.
 
 <div class="flex gap-2">
-    <bo-avatar :clickable="true" :data="{ label: 'B' }" />
+  <bo-avatar :clickable="true" :data="{ label: 'B' }" />
 </div>
+
+::: details Toggle code
+
+```js
+<div class="flex gap-2">
+  <bo-avatar :clickable="true" :data="{ label: 'B' }" />
+</div>
+```
+
+:::
 
 ## With default image
 
@@ -111,5 +179,17 @@ If you for any reason need a default image avatar, with the help of the `with-de
 force the avatar to use the default image.
 
 <div class="flex gap-2">
-    <bo-avatar :with-default-image="true" />
+  <bo-avatar :with-default-image="true" :data="{ label: undefined }"/>
+  <bo-avatar :with-default-image="true" :data="{ label: undefined }" :shape="BoAvatarShape.circle"/>
 </div>
+
+::: details Toggle code
+
+```js
+<div class="flex gap-2">
+  <bo-avatar :with-default-image="true" :data="{ label: undefined }"/>
+  <bo-avatar :with-default-image="true" :data="{ label: undefined }" :shape="BoAvatarShape.circle"/>
+</div>
+```
+
+:::

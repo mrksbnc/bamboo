@@ -10,7 +10,7 @@ An icon is a graphical representation of an object or action.
 
 The component to use is called `bo-icon`.
 
-```vue
+```js
 <bo-icon icon="activity" />
 ```
 

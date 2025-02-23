@@ -4,7 +4,7 @@
 			<bo-icon :size="boBadgeIconSize" :icon="prefixOrIconOnlySrc" class="bo-badge__prefix-icon" />
 		</span>
 		<bo-text
-			v-if="renderLabel && label != null && !iconOnly && !isCircle"
+			v-if="renderLabel && label && !iconOnly && !isCircle"
 			:text="label"
 			:size="badgeFontSize"
 			:weight="BoFontWeight.semibold"
@@ -48,19 +48,29 @@ const containerClasses = {
 
 const variantClasses = {
 	[BoBadgeType.default]: {
-		[BoBadgeVariant.primary]: /*tw*/ 'bg-blue-100 text-blue-800 border border-blue-200',
-		[BoBadgeVariant.secondary]: /*tw*/ 'bg-gray-100 text-gray-800 border border-gray-200',
-		[BoBadgeVariant.danger]: /*tw*/ 'bg-red-100 text-red-800 border border-red-200',
-		[BoBadgeVariant.warning]: /*tw*/ 'bg-yellow-100 text-yellow-800 border border-yellow-200',
-		[BoBadgeVariant.success]: /*tw*/ 'bg-green-100 text-green-800 border border-green-200',
-		[BoBadgeVariant.dark]: /*tw*/ 'bg-black text-white border border-black',
+		[BoBadgeVariant.primary]:
+			/*tw*/ 'bg-blue-100 text-blue-800 border border-blue-200 dark:bg-blue-700 dark:text-white dark:border-blue-800',
+		[BoBadgeVariant.secondary]:
+			/*tw*/ 'bg-neutral-100 text-neutral-800 border border-neutral-200 dark:bg-neutral-700 dark:text-white dark:border-neutral-800',
+		[BoBadgeVariant.danger]:
+			/*tw*/ 'bg-red-100 text-red-800 border border-red-200 dark:bg-red-700 dark:text-white dark:border-red-800',
+		[BoBadgeVariant.warning]:
+			/*tw*/ 'bg-yellow-100 text-yellow-800 border border-yellow-200 dark:bg-yellow-500 dark:text-white dark:border-yellow-600',
+		[BoBadgeVariant.success]:
+			/*tw*/ 'bg-green-100 text-green-800 border border-green-200 dark:bg-green-700 dark:text-white dark:border-green-800',
+		[BoBadgeVariant.light]:
+			/*tw*/ 'bg-white text-black border border-neutral-300 dark:bg-white dark:text-black dark:border-neutral-300',
+		[BoBadgeVariant.dark]:
+			/*tw*/ 'bg-black text-white border border-black dark:bg-black dark:text-white dark:border-black',
 	},
 	[BoBadgeType.outline]: {
 		[BoBadgeVariant.primary]: /*tw*/ 'border border-blue-600 text-blue-600',
-		[BoBadgeVariant.secondary]: /*tw*/ 'border border-gray-600 text-gray-600',
+		[BoBadgeVariant.secondary]:
+			/*tw*/ 'border border-neutral-600 text-neutral-600 dark:border-neutral-400 dark:text-neutral-400',
 		[BoBadgeVariant.danger]: /*tw*/ 'border border-red-600 text-red-600',
 		[BoBadgeVariant.warning]: /*tw*/ 'border border-yellow-600 text-yellow-600',
 		[BoBadgeVariant.success]: /*tw*/ 'border border-green-600 text-green-600',
+		[BoBadgeVariant.light]: /*tw*/ 'border border-neutral-400 text-neutral-400',
 		[BoBadgeVariant.dark]: /*tw*/ 'border border-black text-black',
 	},
 };

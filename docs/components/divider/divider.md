@@ -12,7 +12,7 @@ A divider is a thin line that groups content in a list or separates sections.
 
 The component to use is called `bo-divider`.
 
-```vue
+```js
 <bo-divider />
 ```
 
@@ -41,7 +41,7 @@ The available values for the `variant` prop are:
     <bo-divider :variant="BoDividerVariant.dashed" />
 </div>
 
-```vue
+```js
 <bo-divider variant="default" />
 ```
 
@@ -62,7 +62,7 @@ To change the color of the divider, you can use the `color-hex` prop.
     <bo-divider :color-hex="'#000000'" />
 </div>
 
-```vue
+```js
 <bo-divider :color-hex="'#41b883'" />
 <bo-divider :color-hex="'#ff0000'" />
 <bo-divider :color-hex="'#000000'" />
@@ -78,7 +78,7 @@ To change the color of the divider, you can also use the `tailwind-color` prop. 
     <bo-divider :tailwind-color="'border-black'" />
 </div>
 
-```vue
+```js
 <bo-divider :tailwind-color="'border-blue-600'" />
 <bo-divider :tailwind-color="'border-red-600'" />
 <bo-divider :tailwind-color="'border-black'" />

@@ -7,6 +7,7 @@ export enum BoBadgeVariant {
 	danger = 'danger',
 	warning = 'warning',
 	success = 'success',
+	light = 'light',
 	dark = 'dark',
 }
 

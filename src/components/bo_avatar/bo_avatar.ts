@@ -2,8 +2,11 @@ import type { BoSize } from '@/shared/bo_size';
 
 export enum BoAvatarShape {
 	circle = 'circle',
-	square = 'square',
+	flat = 'flat',
 	rounded = 'rounded',
+	outline_flat = 'outline_flat',
+	outline_rounded = 'outline_rounded',
+	outline_circle = 'outline_circle',
 }
 
 export enum BoAvatarVariant {

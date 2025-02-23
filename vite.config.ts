@@ -1,9 +1,10 @@
-import vue from '@vitejs/plugin-vue'
-import { fileURLToPath, URL } from 'node:url'
-import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
-import vueDevTools from 'vite-plugin-vue-devtools'
-import svgLoader from 'vite-svg-loader'
+import vue from '@vitejs/plugin-vue';
+import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
+import vueDevTools from 'vite-plugin-vue-devtools';
+import svgLoader from 'vite-svg-loader';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -14,6 +15,7 @@ export default defineConfig({
 		}),
 		svgLoader(),
 		vueDevTools(),
+		tailwindcss(),
 	],
 	build: {
 		cssCodeSplit: true,
@@ -29,4 +31,4 @@ export default defineConfig({
 		},
 		external: ['vue'],
 	},
-})
+});

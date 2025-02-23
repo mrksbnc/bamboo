@@ -7,6 +7,7 @@ export type BoButtonProps = {
 	label?: string;
 	variant?: BoButtonVariant;
 	shape?: BoButtonShape;
+	loaderType?: 'spinner' | 'pulse';
 	isLoading?: boolean;
 	size?: BoSize;
 	useSlot?: boolean;
@@ -24,6 +25,7 @@ export type BoButtonProps = {
 	name?: string;
 	type?: 'submit' | 'reset' | 'button';
 	value?: string | ReadonlyArray<string> | number;
+	fullWidth?: boolean;
 };
 
 export enum BoButtonVariant {
@@ -32,12 +34,14 @@ export enum BoButtonVariant {
 	danger = 'danger',
 	warning = 'warning',
 	success = 'success',
+	light = 'light',
 	dark = 'dark',
 	link = 'link',
 	link_secondary = 'link_secondary',
 	link_danger = 'link_danger',
 	link_warning = 'link_warning',
 	link_success = 'link_success',
+	link_light = 'link_light',
 	link_dark = 'link_dark',
 }
 

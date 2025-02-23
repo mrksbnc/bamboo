@@ -14,7 +14,7 @@ A card is a container that holds related content and actions with a predifined s
 
 The component to use is called `bo-card`.
 
-```vue
+```js
 <bo-card title="Title" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
 ```
 
@@ -53,7 +53,7 @@ In case you just need a container but you want to display fully customized conte
     </template>
 </bo-card>
 
-```vue
+```js
 <bo-card>
     <template #content>
         <div class="flex flex-col gap-2">
@@ -85,7 +85,7 @@ In case you want to use fixed width, you can use the `width-in-px` prop.
 
 <bo-card title="Title" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit." :width-in-px="500" />
 
-```vue
+```js
 <bo-card
 	title="Title"
 	description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -101,7 +101,7 @@ In case you want to use a percentage width, you can use the `width-in-percent` p
     <bo-card title="Title" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit." :width-in-percent="100" />
 </div>
 
-```vue
+```js
 <bo-card
 	title="Title"
 	description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -115,7 +115,7 @@ As the library uses Tailwind CSS, you can use the `width-as-tailwind-class` prop
 
 <bo-card title="Title" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit." width-as-tailwind-class="w-full" />
 
-```vue
+```js
 <bo-card
 	title="Title"
 	description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."

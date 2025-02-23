@@ -1,7 +1,7 @@
 <template>
-	<div class="bo-avatar" :style="containerStyle" :class="containerClasses">
+	<div :class="avatarContainerClasses" :style="containerStyle">
 		<span v-if="showDefaultAvatar" class="bo-avatar__default">
-			<img :src="defaultAvatarSvg" alt="avatar" :class="['bo-avatar__image', imgClasses]" />
+			<img :src="defaultAvatarSvg" alt="avatar" :class="['bo-avatar__image', imageClasses.size]" />
 		</span>
 		<span
 			v-else-if="type === BoAvatarType.initials && !StringUtils.isEmptyStr(data.label)"
@@ -20,7 +20,11 @@
 			v-else-if="type === BoAvatarType.image && data.src !== undefined"
 			class="bo-avatar__unknown"
 		>
-			<img :src="data.src" :alt="data.alt ?? 'avatar'" :class="['bo-avatar__image', imgClasses]" />
+			<img
+				:src="data.src"
+				:alt="data.alt ?? 'avatar'"
+				:class="['bo-avatar__image', imageClasses.size]"
+			/>
 		</span>
 	</div>
 </template>
@@ -33,16 +37,74 @@ import { computed, toRefs, type StyleValue } from 'vue';
 import { BoAvatarShape, BoAvatarType, type BoAvatarProps } from './bo_avatar';
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
-	type: () => BoAvatarType.initials,
+	data: () => {
+		return {
+			alt: undefined,
+			src: undefined,
+			label: undefined,
+		};
+	},
+	withDefaultImage: false,
 	size: () => BoSize.default,
+	type: () => BoAvatarType.initials,
 	shape: () => BoAvatarShape.rounded,
 });
 
 const { clickable, data, type, shape, size, colorHex, withDefaultImage } = toRefs(props);
 
-const defaultAvatarSvg = new URL('../../assets/img/avatar.png', import.meta.url).href;
+const defaultAvatarSvg = new URL('../../assets/img/avatar.jpg', import.meta.url).href;
 
-const imgClasses = /*tw*/ 'h-full w-full';
+const containerClasses = {
+	default: /*tw*/ 'bo-avatar inline-flex items-center justify-center overflow-hidden shadow-sm ',
+};
+
+const imageClasses = {
+	size: 'h-full w-full',
+};
+
+const cursorClasses = {
+	default: 'cursor-default',
+	clickable: 'cursor-pointer hover:bg-opacity-80',
+};
+
+const avatarSizeClasses = {
+	[BoSize.extra_small]: /*tw*/ 'size-8',
+	[BoSize.small]: /*tw*/ 'size-9',
+	[BoSize.default]: /*tw*/ 'size-10',
+	[BoSize.large]: /*tw*/ 'size-11',
+	[BoSize.extra_large]: /*tw*/ 'size-12',
+};
+
+const avatarShapeClasses = {
+	[BoAvatarShape.circle]: /*tw*/ 'rounded-full',
+	[BoAvatarShape.rounded]: /*tw*/ 'rounded-lg',
+	[BoAvatarShape.flat]: /*tw*/ 'rounded-none',
+	[BoAvatarShape.outline_circle]: /*tw*/ 'rounded-full',
+	[BoAvatarShape.outline_rounded]: /*tw*/ 'rounded-lg',
+	[BoAvatarShape.outline_flat]: /*tw*/ 'rounded-none',
+};
+
+const bgConstruct = computed<string>(() => {
+	return withDefaultImage.value || type.value === BoAvatarType.image
+		? /*tw*/ 'bg-transparent'
+		: shape.value === BoAvatarShape.outline_circle ||
+			  shape.value === BoAvatarShape.outline_rounded ||
+			  shape.value === BoAvatarShape.outline_flat
+			? generateRandomOutlineColor()
+			: generateRandomColor();
+});
+
+const cursorClassConstruct = computed<string>(() => {
+	return clickable.value ? cursorClasses.clickable : cursorClasses.default;
+});
+
+const avatarContainerDefaultClasses = computed<string>(() => {
+	return TailwindUtils.merge(
+		bgConstruct.value,
+		containerClasses.default,
+		cursorClassConstruct.value,
+	);
+});
 
 const showDefaultAvatar = computed<boolean>(() => {
 	if (withDefaultImage.value) {
@@ -78,36 +140,15 @@ const containerStyle = computed<StyleValue>(() => {
 	return {};
 });
 
-const avatarSizeClasses = computed<string>(() => {
-	switch (size.value) {
-		case BoSize.extra_small:
-			return /*tw*/ 'h-[24px] w-[24px]';
-		case BoSize.small:
-			return /*tw*/ 'h-[32px] w-[32px]';
-		case BoSize.default:
-		default:
-			return /*tw*/ 'h-[42px] w-[42px]';
-		case BoSize.large:
-			return /*tw*/ 'h-[50px] w-[50px]';
-		case BoSize.extra_large:
-			return /*tw*/ 'h-[60px] w-[60px]';
-	}
+const avatarContainerClasses = computed<string>(() => {
+	return TailwindUtils.merge(
+		avatarSizeClasses[size.value],
+		avatarShapeClasses[shape.value],
+		avatarContainerDefaultClasses.value,
+	);
 });
 
-const avatarShapeClasses = computed<string>(() => {
-	switch (shape.value) {
-		case BoAvatarShape.circle:
-			return /*tw*/ 'rounded-full';
-		case BoAvatarShape.rounded:
-			return /*tw*/ 'rounded-lg';
-		case BoAvatarShape.square:
-			return /*tw*/ 'rounded-none';
-		default:
-			return /*tw*/ 'rounded-full';
-	}
-});
-
-const avatarContainerDefaultClasses = computed<string>(() => {
+function generateRandomColor(): string {
 	const colors = [
 		/*tw*/ 'bg-blue-600',
 		/*tw*/ 'bg-green-600',
@@ -123,20 +164,25 @@ const avatarContainerDefaultClasses = computed<string>(() => {
 		/*tw*/ 'bg-violet-600',
 	];
 
-	const bg = colors[Math.floor(Math.random() * colors.length)];
+	return `${colors[Math.floor(Math.random() * colors.length)]} text-white`;
+}
 
-	return TailwindUtils.merge(
-		/*tw*/ 'flex items-center justify-center overflow-hidden shadow-sm text-white',
-		withDefaultImage.value || type.value === BoAvatarType.image ? /*tw*/ 'bg-transparent' : bg,
-		clickable.value ? /*tw*/ 'cursor-pointer hover:bg-opacity-80' : /*tw*/ 'cursor-default',
-	);
-});
+function generateRandomOutlineColor(): string {
+	const colors = [
+		/*tw*/ 'border border-blue-600 text-blue-600',
+		/*tw*/ 'border border-green-600 text-green-600',
+		/*tw*/ 'border border-red-600 text-red-600',
+		/*tw*/ 'border border-yellow-600 text-yellow-600',
+		/*tw*/ 'border border-purple-600 text-purple-600',
+		/*tw*/ 'border border-pink-600 text-pink-600',
+		/*tw*/ 'border border-teal-600 text-teal-600',
+		/*tw*/ 'border border-orange-600 text-orange-600',
+		/*tw*/ 'border border-cyan-600 text-cyan-600',
+		/*tw*/ 'border border-sky-600 text-sky-600',
+		/*tw*/ 'border border-indigo-600 text-indigo-600',
+		/*tw*/ 'border border-violet-600 text-violet-600',
+	];
 
-const containerClasses = computed<string>(() => {
-	return TailwindUtils.merge(
-		avatarContainerDefaultClasses.value,
-		avatarShapeClasses.value,
-		avatarSizeClasses.value,
-	);
-});
+	return colors[Math.floor(Math.random() * colors.length)];
+}
 </script>
