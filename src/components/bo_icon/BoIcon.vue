@@ -52,20 +52,16 @@ const style = computed<StyleValue>(() => {
 	};
 });
 
+const sizeClasses = {
+	[BoSize.extra_small]: /*tw*/ 'size-[12px]',
+	[BoSize.small]: /*tw*/ 'size-[14px]',
+	[BoSize.default]: /*tw*/ 'size-[16px]',
+	[BoSize.large]: /*tw*/ 'size-[20px]',
+	[BoSize.extra_large]: /*tw*/ 'size-[24px]',
+};
+
 const tailwindCssSizeClasses = computed<string>(() => {
-	switch (size.value) {
-		case BoSize.extra_small:
-			return 'size-[12px]';
-		case BoSize.small:
-			return 'size-[14px]';
-		case BoSize.default:
-		default:
-			return 'size-[16px]';
-		case BoSize.large:
-			return 'size-[20px]';
-		case BoSize.extra_large:
-			return 'size-[24px]';
-	}
+	return sizeClasses[size.value];
 });
 
 async function load(): Promise<void> {
