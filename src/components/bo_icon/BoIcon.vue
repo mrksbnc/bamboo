@@ -1,5 +1,4 @@
 <template>
-	<!-- eslint-disable vue/no-v-html -->
 	<div
 		v-html="svg"
 		:style="style"
@@ -47,20 +46,6 @@ const iconMap = Object.keys(icons).reduce(
 	},
 	{} as Record<string, () => Promise<string>>,
 );
-
-/**
- * @description This prevents the Icon component from rendering an empty icon and
- * taking up space in the DOM.
- */
-const isSvgReadyToRender = computed<boolean>(() => {
-	const noneIconStr = String(Icon.none);
-	return (
-		svg.value !== noneIconStr &&
-		!StringUtils.isEmptyStr(svg.value) &&
-		icon.value != Icon.none &&
-		!StringUtils.isEmptyStr(icon.value)
-	);
-});
 
 const style = computed<StyleValue>(() => {
 	return {

@@ -1,6 +1,6 @@
 <template>
-	<div :class="defaultContainerClasses" class="relative">
-		<span v-if="label != null" :class="labelContainerClasses">
+	<div :class="containerClasses.default" class="relative">
+		<span v-if="label" :class="textClasses.label">
 			<bo-text
 				:text="label"
 				:for="computedInputId"
@@ -8,31 +8,34 @@
 				:font-family="BoFontFamily.sans"
 			/>
 			<bo-text
-				v-if="required"
+				v-if="attributes.required"
 				text="Required *"
 				:size="BoFontSize.xs"
 				:color="BoTextColor.danger"
 				:weight="BoFontWeight.medium"
 			/>
 		</span>
-		<span :class="inputContainer">
-			<span v-if="prefixIcon != null" :class="defaultPrefixIconContainerClasses">
+		<span :class="containerClasses.input">
+			<span v-if="prefixIcon && prefixIcon != Icon.none" :class="containerClasses.icon.prefix">
 				<bo-icon :icon="prefixIcon" :size="BoSize.default" :color="BoColor.gray_500"
 			/></span>
 			<input
-				v-bind="$attrs"
+				v-bind="attributes"
 				:id="computedInputId"
 				ref="inputRef"
-				:type="type"
 				:value="modelValue"
-				:readonly="readonly"
-				:class="inputClasses"
-				:placeholder="placeholder"
-				:disabled="disabled || isLoading"
+				:class="classConstruct"
+				:type="attributes.type"
+				:readonly="attributes.readonly"
+				:placeholder="attributes.placeholder"
+				:disabled="attributes.disabled || isLoading"
 				@input="onInput"
 			/>
 			<div class="flex flex-row-reverse">
-				<span v-if="suffixIcon != null && !isLoading" :class="defaultSuffixIconContainerClasses">
+				<span
+					v-if="suffixIcon && suffixIcon != Icon.none && !isLoading"
+					:class="containerClasses.icon.suffix"
+				>
 					<bo-icon :icon="suffixIcon" :size="BoSize.default" :color="BoColor.gray_500"
 				/></span>
 				<span v-if="isLoading" :class="loadingContainerClasses">
@@ -49,7 +52,7 @@
 				</span>
 			</div>
 		</span>
-		<span v-if="description != null" class="bo-input__description">
+		<span v-if="description" class="bo-input__description">
 			<bo-text
 				:text="description"
 				:size="BoFontSize.xs"
@@ -57,7 +60,7 @@
 				:font-family="BoFontFamily.sans"
 			/>
 		</span>
-		<span v-if="hasError && errorMessage != null" :class="errorContainerClasses">
+		<span v-if="hasError && errorMessage" :class="containerClasses.error">
 			<bo-icon :icon="Icon.alert_triangle" :color="BoColor.red_600" :size="BoSize.small" />
 			<bo-text
 				:text="errorMessage"
@@ -77,7 +80,6 @@ import { BoFontFamily, BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/c
 import { BoColor } from '@/shared';
 import { BoSize } from '@/shared/bo_size';
 import { BoLoaderVariant } from '@/shared/bo_loader';
-import { HtmlInputType } from '@/shared';
 import { TailwindUtils } from '@/utils';
 import { IdentityUtils } from '@/utils/identity_utils';
 import { computed, ref, toRefs, watch } from 'vue';
@@ -87,14 +89,20 @@ import type { BoInputProps } from './types';
 const emit = defineEmits(['update:modelValue']);
 
 const props = withDefaults(defineProps<BoInputProps>(), {
-	placeholder: '',
-	description: '',
-	prefixIcon: null,
-	suffixIcon: null,
+	prefixIcon: Icon.none,
+	suffixIcon: Icon.none,
 	loaderVariant: 'pulse',
-	type: () => HtmlInputType.text,
 	state: () => BoInputState.none,
 	size: () => BoInputSize.default,
+	attributes: () => {
+		return {
+			type: 'text',
+			placeholder: '',
+			disabled: false,
+			required: false,
+			readonly: false,
+		};
+	},
 });
 
 const {
@@ -102,51 +110,50 @@ const {
 	modelValue,
 	label,
 	description,
-	disabled,
 	isLoading,
 	size,
-	readonly,
-	placeholder,
 	prefixIcon,
 	suffixIcon,
-	required,
 	errorMessage,
 	state,
-	type,
+	attributes,
 } = toRefs(props);
 
-const defaultContainerClasses = /*tw*/ 'bo-input flex flex-col gap-1 bg-transparent';
+const containerClasses = {
+	default: /*tw*/ 'bo-input flex flex-col gap-1 bg-transparent',
+	loading:
+		/*tw*/ 'bo-input__loading-container absolute right-[10px] top-1/2 flex -translate-y-1/2 items-center justify-center',
+	error: /*tw*/ 'bo-input__error-container flex items-center gap-1',
+	input: /*tw*/ 'bo-input__container relative flex items-center',
+	icon: {
+		prefix:
+			/*tw*/ 'bo-input__prefix-container absolute left-[10px] top-1/2 flex -translate-y-1/2 items-center justify-center',
+		suffix:
+			/*tw*/ 'bo-input__suffix-container absolute right-[10px] top-1/2 flex -translate-y-1/2 items-center justify-center',
+	},
+};
 
-const defaultInputClasses =
-	/*tw*/ 'bo-input__input rounded-lg border border-gray-300 text-gray-900 text-small bg-white outline-none';
+const focusClasses = {
+	default: /*tw*/ 'focus:ring-blue-600 focus:border-blue-600',
+	error: /*tw*/ 'focus:ring-red-600 focus:border-red-600',
+	valid: /*tw*/ 'focus:ring-green-600 focus:border-green-600',
+};
 
-const defaultInputDisabledClasses =
-	/*tw*/ 'disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-300';
+const inputClasses = {
+	default:
+		/*tw*/ 'bo-input__input rounded-lg border border-gray-300 text-gray-900 text-small bg-white outline-none',
+	error: /*tw*/ 'bo-input__input rounded-lg border border-red-600',
+	valid: /*tw*/ 'bo-input__input rounded-lg border border-green-600',
+};
 
-const defaultFocusClasses = /*tw*/ 'focus:ring-blue-600 focus:border-blue-600';
+const stateClasses = {
+	disabled:
+		/*tw*/ 'disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-300',
+};
 
-const errorInputClasses = /*tw*/ 'bo-input__input rounded-lg border border-red-600';
-
-const errorFocusClasses = /*tw*/ 'focus:ring-red-600 focus:border-red-600 ';
-
-const validInputClasses = /*tw*/ 'bo-input__input rounded-lg border border-green-600';
-
-const validFocusClasses = /*tw*/ 'focus:ring-green-600 focus:border-green-600';
-
-const labelContainerClasses = /*tw*/ 'bo-input__label-container flex items-center gap-1';
-
-const defaultPrefixIconContainerClasses =
-	/*tw*/ 'bo-input__prefix-container absolute left-[10px] top-1/2 flex -translate-y-1/2 items-center justify-center';
-
-const defaultSuffixIconContainerClasses =
-	/*tw*/ 'bo-input__suffix-container absolute right-[10px] top-1/2 flex -translate-y-1/2 items-center justify-center';
-
-const defaultLoadingContainerClasses =
-	/*tw*/ 'bo-input__loading-container absolute right-[10px] top-1/2 flex -translate-y-1/2 items-center justify-center';
-
-const inputContainer = /*tw*/ 'bo-input__container relative flex items-center';
-
-const errorContainerClasses = /*tw*/ 'bo-input__error-message flex items-center gap-1';
+const textClasses = {
+	label: /*tw*/ 'bo-input__label-container flex items-center gap-1',
+};
 
 const inputState = ref<BoInputState>(state.value);
 const inputRef = ref<HTMLInputElement | null>(null);
@@ -160,7 +167,7 @@ const hasError = computed<boolean>(() => {
 });
 
 const loadingContainerClasses = computed<string>(() => {
-	return TailwindUtils.merge('right-[14px]', defaultLoadingContainerClasses);
+	return TailwindUtils.merge('right-[14px]', containerClasses.loading);
 });
 
 const inputPaddingClasses = computed<string>(() => {
@@ -220,30 +227,24 @@ const inputFontSize = computed<string>(() => {
 	}
 });
 
-const inputClasses = computed<string>(() => {
-	let disabledClasses = '';
-	let classes = defaultInputClasses;
-	let focusClasses = defaultFocusClasses;
-
-	if (inputState.value === BoInputState.none) {
-		disabledClasses = defaultInputDisabledClasses;
-	}
+const classConstruct = computed<string>(() => {
+	let classes = inputClasses.default;
+	let focus = focusClasses.default;
 
 	if (inputState.value === BoInputState.invalid) {
-		classes = errorInputClasses;
-		focusClasses = errorFocusClasses;
+		classes = inputClasses.error;
+		focus = focusClasses.error;
 	} else if (state.value === BoInputState.valid) {
-		classes = validInputClasses;
-		focusClasses = validFocusClasses;
+		classes = inputClasses.valid;
+		focus = focusClasses.valid;
 	}
 
 	return TailwindUtils.merge(
 		'flex w-full',
+		focus,
 		classes,
-		focusClasses,
-		disabledClasses,
-		defaultInputClasses,
 		inputFontSize.value,
+		stateClasses.disabled,
 		inputPaddingClasses.value,
 	);
 });
@@ -251,7 +252,7 @@ const inputClasses = computed<string>(() => {
 function onInput(e: Event): void {
 	const target = e.target as HTMLInputElement;
 
-	if (type.value === HtmlInputType.number) {
+	if (attributes?.value?.type === 'tel' || attributes?.value?.type === 'number') {
 		if (inputRef.value != null) {
 			inputRef.value.value = target.value.replace(/[^\d].+/, '');
 		}
@@ -272,7 +273,7 @@ watch(
 );
 
 watch(
-	() => required.value,
+	() => attributes.value?.required,
 	(val) => {
 		if (val) {
 			state.value = BoInputState.invalid;

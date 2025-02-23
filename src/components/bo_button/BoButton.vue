@@ -1,12 +1,18 @@
 <template>
 	<button
+		v-bind="props"
 		:type="type"
 		:class="buttonClasses"
+		aria-roledescription="button"
 		:disabled="disabled || isLoading"
 		:aria-disabled="disabled || isLoading"
 		:aria-readonly="isLoading || disabled"
 	>
-		<span class="bo-button__content inline-flex items-center justify-center gap-1">
+		<div
+			v-if="$slots.default !== undefined && useSlot"
+			class="bo-button__slot-container inline-flex items-center justify-center gap-1"
+		></div>
+		<span v-else class="bo-button__content inline-flex items-center justify-center gap-1">
 			<bo-icon
 				v-if="prefixIcon !== Icon.none || iconOnlyButton"
 				:icon="iconOnlyIcon"
@@ -43,17 +49,21 @@ import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
 import { BoSize } from '@/shared/bo_size';
 import { BoLoaderVariant } from '@/shared/bo_loader';
-import { HtmlButtonType } from '@/shared/html_button';
-import { StringUtils, TailwindUtils } from '@/utils';
+import { IdentityUtils, StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs } from 'vue';
 import { BoButtonShape, BoButtonVariant, type BoButtonProps } from './bo_button';
 
+const slots = defineSlots<{
+	default(props: Record<string, unknown>): void;
+}>();
+
 const props = withDefaults(defineProps<BoButtonProps>(), {
+	id: IdentityUtils.generateRandomIdWithPrefix('bo-button'),
+	type: 'button',
 	loaderType: 'spinner',
 	size: () => BoSize.default,
 	prefixIcon: () => Icon.none,
 	suffixIcon: () => Icon.none,
-	type: () => HtmlButtonType.button,
 	shape: () => BoButtonShape.default,
 	variant: () => BoButtonVariant.primary,
 });

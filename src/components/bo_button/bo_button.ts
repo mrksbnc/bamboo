@@ -1,17 +1,29 @@
-import type { HtmlButtonType } from '@/shared';
 import type { BoSize } from '@/shared';
 import type { Icon } from '@/components/bo_icon';
+import type { ButtonHTMLAttributes, HTMLAttributes } from 'vue';
+import type { Booleanish } from '@/types/boolean';
 
 export type BoButtonProps = {
 	label?: string;
 	variant?: BoButtonVariant;
 	shape?: BoButtonShape;
-	type?: HtmlButtonType;
-	disabled?: boolean;
 	isLoading?: boolean;
 	size?: BoSize;
+	useSlot?: boolean;
 	prefixIcon?: Icon;
 	suffixIcon?: Icon;
+	// ButtonHTMLAttributes
+	autofocus?: Booleanish;
+	disabled?: Booleanish;
+	form?: string;
+	formaction?: string;
+	formenctype?: string;
+	formmethod?: string;
+	formnovalidate?: Booleanish;
+	formtarget?: string;
+	name?: string;
+	type?: 'submit' | 'reset' | 'button';
+	value?: string | ReadonlyArray<string> | number;
 };
 
 export enum BoButtonVariant {

@@ -23,6 +23,7 @@ function getComponents() {
 		{ text: 'Button', link: '/components/button/button' },
 		{ text: 'Card', link: '/components/card/card' },
 		{ text: 'Divider', link: '/components/divider/divider' },
+		{ text: 'Icon', link: '/components/icon/icon' },
 	];
 }
 
