@@ -51,11 +51,9 @@ If the prop `type` is set to image but no `src` is provided, the avatar will use
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-avatar :type="BoAvatarType.image" :data="{ label: 'B' }" />
-  <bo-avatar :type="BoAvatarType.initials" :data="{ label: 'B' }" />
-  <bo-avatar :data="{}" :type="BoAvatarType.image" />
-</div>
+<bo-avatar :type="BoAvatarType.image" :data="{ label: 'B' }" />
+<bo-avatar :type="BoAvatarType.initials" :data="{ label: 'B' }" />
+<bo-avatar :data="{}" :type="BoAvatarType.image" />
 ```
 
 :::
@@ -85,14 +83,12 @@ The available values for the `shape` prop are:
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'B' }" />
-  <bo-avatar :shape="BoAvatarShape.square" :data="{ label: 'B' }" />
-  <bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'B' }" />
-  <bo-avatar :shape="BoAvatarShape.outline_circle" :data="{ label: 'B' }" />
-  <bo-avatar :shape="BoAvatarShape.outline_rounded" :data="{ label: 'B' }" />
-  <bo-avatar :shape="BoAvatarShape.outline_flat" :data="{ label: 'B' }" />
-</div>
+<bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'B' }" />
+<bo-avatar :shape="BoAvatarShape.square" :data="{ label: 'B' }" />
+<bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'B' }" />
+<bo-avatar :shape="BoAvatarShape.outline_circle" :data="{ label: 'B' }" />
+<bo-avatar :shape="BoAvatarShape.outline_rounded" :data="{ label: 'B' }" />
+<bo-avatar :shape="BoAvatarShape.outline_flat" :data="{ label: 'B' }" />
 ```
 
 :::
@@ -120,13 +116,11 @@ The available values for the `size` prop are:
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-avatar :size="BoSize.extra_small" :data="{ label: 'B' }" />
-  <bo-avatar :size="BoSize.small" :data="{ label: 'B' }" />
-  <bo-avatar :size="BoSize.default" :data="{ label: 'B' }" />
-  <bo-avatar :size="BoSize.large" :data="{ label: 'B' }" />
-  <bo-avatar :size="BoSize.extra_large" :data="{ label: 'B' }" />
-</div>
+<bo-avatar :size="BoSize.extra_small" :data="{ label: 'B' }" />
+<bo-avatar :size="BoSize.small" :data="{ label: 'B' }" />
+<bo-avatar :size="BoSize.default" :data="{ label: 'B' }" />
+<bo-avatar :size="BoSize.large" :data="{ label: 'B' }" />
+<bo-avatar :size="BoSize.extra_large" :data="{ label: 'B' }" />
 ```
 
 :::
@@ -146,11 +140,9 @@ randomly by default.
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-avatar :color-hex="'#41b883'" :font-color-hex="'#ffffff'" :data="{ label: 'B' }" />
-  <bo-avatar :color-hex="'#000000'" :font-color-hex="'#ffffff'" :data="{ label: 'B' }" />
-  <bo-avatar :color-hex="'#231252'" :font-color-hex="'yellow'" :data="{ label: 'B' }" />
-</div>
+<bo-avatar :color-hex="'#41b883'" :font-color-hex="'#ffffff'" :data="{ label: 'B' }" />
+<bo-avatar :color-hex="'#000000'" :font-color-hex="'#ffffff'" :data="{ label: 'B' }" />
+<bo-avatar :color-hex="'#231252'" :font-color-hex="'yellow'" :data="{ label: 'B' }" />
 ```
 
 :::
@@ -166,9 +158,7 @@ To visually indicate that the avatar is clickable, you can use the `clickable` p
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-avatar :clickable="true" :data="{ label: 'B' }" />
-</div>
+<bo-avatar :clickable="true" :data="{ label: 'B' }" />
 ```
 
 :::
@@ -186,10 +176,8 @@ force the avatar to use the default image.
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-avatar :with-default-image="true" :data="{ label: undefined }"/>
-  <bo-avatar :with-default-image="true" :data="{ label: undefined }" :shape="BoAvatarShape.circle"/>
-</div>
+<bo-avatar :with-default-image="true" :data="{ label: undefined }"/>
+<bo-avatar :with-default-image="true" :data="{ label: undefined }" :shape="BoAvatarShape.circle"/>
 ```
 
 :::

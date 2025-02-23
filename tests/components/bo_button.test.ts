@@ -207,70 +207,6 @@ describe('bo_button.vue', () => {
 			expect(wrapper.classes()).contains('border-black');
 			expect(wrapper.classes()).contains('dark:border-black');
 		});
-
-		test('link button should have the correct color | background | focus classes', async () => {
-			await wrapper.setProps({ variant: BoButtonVariant.link });
-			expect(wrapper.classes()).contains('bg-transparent');
-			expect(wrapper.classes()).contains('hover:bg-transparent');
-			expect(wrapper.classes()).contains('focus:ring-transparent');
-			expect(wrapper.classes()).contains('text-blue-700');
-			expect(wrapper.classes()).contains('dark:text-blue-600');
-		});
-
-		test('link-secondary button should have the correct color | background | focus classes', async () => {
-			await wrapper.setProps({ variant: BoButtonVariant.link_secondary });
-			expect(wrapper.classes()).contains('bg-transparent');
-			expect(wrapper.classes()).contains('hover:bg-transparent');
-			expect(wrapper.classes()).contains('focus:ring-transparent');
-			expect(wrapper.classes()).contains('text-neutral-700');
-			expect(wrapper.classes()).contains('dark:text-neutral-400');
-			expect(wrapper.classes()).contains('hover:opacity-80');
-		});
-
-		test('link-danger button should have the correct color | background | focus classes', async () => {
-			await wrapper.setProps({ variant: BoButtonVariant.link_danger });
-			expect(wrapper.classes()).contains('bg-transparent');
-			expect(wrapper.classes()).contains('hover:bg-transparent');
-			expect(wrapper.classes()).contains('focus:ring-transparent');
-			expect(wrapper.classes()).contains('text-red-600');
-			expect(wrapper.classes()).contains('hover:opacity-80');
-		});
-
-		test('link-warning button should have the correct color | background | focus classes', async () => {
-			await wrapper.setProps({ variant: BoButtonVariant.link_warning });
-			expect(wrapper.classes()).contains('bg-transparent');
-			expect(wrapper.classes()).contains('hover:bg-transparent');
-			expect(wrapper.classes()).contains('focus:ring-transparent');
-			expect(wrapper.classes()).contains('text-yellow-500');
-			expect(wrapper.classes()).contains('hover:opacity-80');
-		});
-
-		test('link-success button should have the correct color | background | focus classes', async () => {
-			await wrapper.setProps({ variant: BoButtonVariant.link_success });
-			expect(wrapper.classes()).contains('bg-transparent');
-			expect(wrapper.classes()).contains('hover:bg-transparent');
-			expect(wrapper.classes()).contains('focus:ring-transparent');
-			expect(wrapper.classes()).contains('text-green-600');
-			expect(wrapper.classes()).contains('hover:opacity-80');
-		});
-
-		test('link-light button should have the correct color | background | focus classes', async () => {
-			await wrapper.setProps({ variant: BoButtonVariant.link_light });
-			expect(wrapper.classes()).contains('bg-transparent');
-			expect(wrapper.classes()).contains('hover:bg-transparent');
-			expect(wrapper.classes()).contains('focus:ring-transparent');
-			expect(wrapper.classes()).contains('text-neutral-500');
-			expect(wrapper.classes()).contains('hover:opacity-80');
-		});
-
-		test('link-dark button should have the correct color | background | focus classes', async () => {
-			await wrapper.setProps({ variant: BoButtonVariant.link_dark });
-			expect(wrapper.classes()).contains('bg-transparent');
-			expect(wrapper.classes()).contains('hover:bg-transparent');
-			expect(wrapper.classes()).contains('focus:ring-transparent');
-			expect(wrapper.classes()).contains('text-black');
-			expect(wrapper.classes()).contains('hover:opacity-80');
-		});
 	});
 
 	suite('button size & padding', () => {
@@ -468,24 +404,24 @@ describe('bo_button.vue', () => {
 
 		suite('The link button should not have a shadow', () => {
 			test('by default the link types button should not have a shadow', async () => {
-				await wrapper.setProps({ variant: BoButtonVariant.link });
+				await wrapper.setProps({ shape: BoButtonShape.link });
 				expect(wrapper.classes()).contains('shadow-none');
 			});
 
 			test('the link types button should not have a shadow if the link variant is set', async () => {
-				await wrapper.setProps({ variant: BoButtonVariant.link_light });
+				await wrapper.setProps({ variant: BoButtonVariant.primary, shape: BoButtonShape.link });
 				expect(wrapper.classes()).contains('shadow-none');
-				await wrapper.setProps({ variant: BoButtonVariant.link_dark });
+				await wrapper.setProps({ variant: BoButtonVariant.secondary, shape: BoButtonShape.link });
 				expect(wrapper.classes()).contains('shadow-none');
-				await wrapper.setProps({ variant: BoButtonVariant.link_secondary });
+				await wrapper.setProps({ variant: BoButtonVariant.danger, shape: BoButtonShape.link });
 				expect(wrapper.classes()).contains('shadow-none');
-				await wrapper.setProps({ variant: BoButtonVariant.link_danger });
+				await wrapper.setProps({ variant: BoButtonVariant.warning, shape: BoButtonShape.link });
 				expect(wrapper.classes()).contains('shadow-none');
-				await wrapper.setProps({ variant: BoButtonVariant.link_warning });
+				await wrapper.setProps({ variant: BoButtonVariant.success, shape: BoButtonShape.link });
 				expect(wrapper.classes()).contains('shadow-none');
-				await wrapper.setProps({ variant: BoButtonVariant.link_success });
+				await wrapper.setProps({ variant: BoButtonVariant.dark, shape: BoButtonShape.link });
 				expect(wrapper.classes()).contains('shadow-none');
-				await wrapper.setProps({ variant: BoButtonVariant.link });
+				await wrapper.setProps({ variant: BoButtonVariant.light, shape: BoButtonShape.link });
 				expect(wrapper.classes()).contains('shadow-none');
 			});
 		});

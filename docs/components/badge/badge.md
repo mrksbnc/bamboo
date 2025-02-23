@@ -98,6 +98,15 @@ The `type` prop should be a member of the `BoBadgeType` enum.
   <bo-badge label="Outline" :type="BoBadgeType.outline" />
 </div>
 
+::: details Toggle code
+
+```js
+<bo-badge label="Default" :type="BoBadgeType.default" />
+<bo-badge label="Outline" :type="BoBadgeType.outline" />
+```
+
+:::
+
 ## Sizes
 
 To change the size of the component, use the `size` prop.
@@ -117,6 +126,18 @@ The prop value should be a member of the `BoSize` enum.
   <bo-badge label="Extra large" :size="BoSize.extra_large" />
 </div>
 
+::: details Toggle code
+
+```js
+<bo-badge label="Extra small" :size="BoSize.extra_small" />
+<bo-badge label="Small" :size="BoSize.small" />
+<bo-badge label="Default" :size="BoSize.default" />
+<bo-badge label="Large" :size="BoSize.large" />
+<bo-badge label="Extra large" :size="BoSize.extra_large" />
+```
+
+:::
+
 ## With icon
 
 The `prefix-icon` and `suffix-icon` props can be used to display an icon before and after the label of the badge.
@@ -127,6 +148,15 @@ Both of these props should be a member of the `Icon` enum.
   <bo-badge label="Badge" :suffix-icon="Icon.alert_circle" />
 </div>
 
+::: details Toggle code
+
+```js
+<bo-badge label="Badge" :prefix-icon="Icon.alert_circle" />
+<bo-badge label="Badge" :suffix-icon="Icon.alert_circle" />
+```
+
+:::
+
 ## Icon only
 
 To create an icon only badge, you can use the `prefix-icon` prop without the `label`.
@@ -135,6 +165,15 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
   <bo-badge :prefix-icon="Icon.alert_circle" />
   <bo-badge :prefix-icon="Icon.alert_circle" :shape="BoBadgeShape.circle" />
 </div>
+
+::: details Toggle code
+
+```js
+<bo-badge :prefix-icon="Icon.alert_circle" />
+<bo-badge :prefix-icon="Icon.alert_circle" :shape="BoBadgeShape.circle" />
+```
+
+:::
 
 ## All available variants, types and shapes
 
@@ -153,15 +192,13 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2 mt-2">
-	<bo-badge label="Badge" variant="primary" />
-	<bo-badge label="Badge" variant="secondary" />
-	<bo-badge label="Badge" variant="danger" />
-	<bo-badge label="Badge" variant="warning" />
-	<bo-badge label="Badge" variant="success" />
-	<bo-badge label="Badge" variant="light" />
-	<bo-badge label="Badge" variant="dark" />
-</div>
+<bo-badge label="Badge" variant="primary" />
+<bo-badge label="Badge" variant="secondary" />
+<bo-badge label="Badge" variant="danger" />
+<bo-badge label="Badge" variant="warning" />
+<bo-badge label="Badge" variant="success" />
+<bo-badge label="Badge" variant="light" />
+<bo-badge label="Badge" variant="dark" />
 ```
 
 :::
@@ -181,16 +218,14 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2 mt-2">
-  <bo-badge label="Badge" :type="BoBadgeType.outline" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="primary" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="secondary" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="danger" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="warning" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="success" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="light" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="dark" />
-</div>
+<bo-badge label="Badge" :type="BoBadgeType.outline" />
+<bo-badge label="Badge" :type="BoBadgeType.outline" variant="primary" />
+<bo-badge label="Badge" :type="BoBadgeType.outline" variant="secondary" />
+<bo-badge label="Badge" :type="BoBadgeType.outline" variant="danger" />
+<bo-badge label="Badge" :type="BoBadgeType.outline" variant="warning" />
+<bo-badge label="Badge" :type="BoBadgeType.outline" variant="success" />
+<bo-badge label="Badge" :type="BoBadgeType.outline" variant="light" />
+<bo-badge label="Badge" :type="BoBadgeType.outline" variant="dark" />
 ```
 
 :::
@@ -212,15 +247,13 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2 mt-2">
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" />
-</div>
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" />
 ```
 
 :::
@@ -240,15 +273,13 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2 mt-2">
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
-</div>
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
 ```
 
 :::
@@ -270,15 +301,13 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2 mt-2">
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" />
-</div>
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" />
 ```
 
 :::
@@ -298,15 +327,13 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2 mt-2">
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
-</div>
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
+<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
 ```
 
 :::
@@ -326,15 +353,13 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2 mt-2">
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.pill" />
-</div>
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.pill" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.pill" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.pill" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.pill" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.pill" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.pill" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.pill" />
 ```
 
 :::
@@ -354,15 +379,13 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2 mt-2">
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.flat" />
-</div>
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.flat" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.flat" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.flat" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.flat" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.flat" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.flat" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.flat" />
 ```
 
 :::
@@ -382,15 +405,13 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2 mt-2">
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.circle" />
-</div>
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.circle" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.circle" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.circle" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.circle" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.circle" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.circle" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.circle" />
 ```
 
 :::
@@ -410,15 +431,13 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2 mt-2">
-    <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
-    <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
-    <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
-    <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
-    <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
-    <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
-    <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
-  </div>
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
 ```
 
 :::

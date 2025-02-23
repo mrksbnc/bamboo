@@ -136,7 +136,7 @@ In some cases you may want to make the button take up the full width of the cont
 
 ```js
 <div class="flex gap-2">
-  <bo-button label="Button" full-width />
+	<bo-button label="Button" full-width />
 </div>
 ```
 
@@ -155,12 +155,6 @@ Available values for the `variant` prop are:
 - `success`
 - `light`
 - `dark`
-- `link`
-- `link_secondary`
-- `link_danger`
-- `link_warning`
-- `link_success`
-- `link_dark`
 
 <div class="flex gap-2">
   <bo-button label="Primary" :variant="BoButtonVariant.primary" />
@@ -172,13 +166,13 @@ Available values for the `variant` prop are:
   <bo-button label="Dark" :variant="BoButtonVariant.dark" />
 </div>
 <div class="flex gap-2 mt-4">
-  <bo-button label="Link" :variant="BoButtonVariant.link" />
-  <bo-button label="Link secondary" :variant="BoButtonVariant.link_secondary" />
-  <bo-button label="Link danger" :variant="BoButtonVariant.link_danger" />
-  <bo-button label="Link warning" :variant="BoButtonVariant.link_warning" />
-  <bo-button label="Link success" :variant="BoButtonVariant.link_success" />
-  <bo-button label="Link light" :variant="BoButtonVariant.link_light" />
-  <bo-button label="Link dark" :variant="BoButtonVariant.link_dark" />
+  <bo-button label="Button" :variant="BoButtonVariant.primary" :shape="BoButtonShape.link" />
+  <bo-button label="Button" :variant="BoButtonVariant.secondary" :shape="BoButtonShape.link"/>
+  <bo-button label="Button" :variant="BoButtonVariant.danger" :shape="BoButtonShape.link"/>
+  <bo-button label="Button" :variant="BoButtonVariant.warning" :shape="BoButtonShape.link"/>
+  <bo-button label="Button" :variant="BoButtonVariant.success" :shape="BoButtonShape.link"/>
+  <bo-button label="Button" :variant="BoButtonVariant.light" :shape="BoButtonShape.link"/>
+  <bo-button label="Button" :variant="BoButtonVariant.dark" :shape="BoButtonShape.link"/>
 </div>
 
 ::: details Toggle code
@@ -192,7 +186,6 @@ Available values for the `variant` prop are:
   <bo-button label="Success" :variant="BoButtonVariant.success" />
   <bo-button label="Light" :variant="BoButtonVariant.light" />
   <bo-button label="Dark" :variant="BoButtonVariant.dark" />
-
   {/* Link variants */}
   <bo-button label="Link" :variant="BoButtonVariant.link" />
   <bo-button label="Link secondary" :variant="BoButtonVariant.link_secondary" />
@@ -225,11 +218,9 @@ Available values for the `shape` prop are:
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-button label="Default" :shape="BoButtonShape.default" />
-  <bo-button label="Pill" :shape="BoButtonShape.pill" />
-  <bo-button label="Outline" :shape="BoButtonShape.outline" />
-</div>
+<bo-button label="Default" :shape="BoButtonShape.default" />
+<bo-button label="Pill" :shape="BoButtonShape.pill" />
+<bo-button label="Outline" :shape="BoButtonShape.outline" />
 ```
 
 :::
@@ -246,10 +237,8 @@ To display an icon before or after the label of the button, use the `prefix-icon
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-button label="Button" :prefix-icon="Icon.user" />
-  <bo-button label="Button" :suffix-icon="Icon.user" />
-</div>
+<bo-button label="Button" :prefix-icon="Icon.user" />
+<bo-button label="Button" :suffix-icon="Icon.user" />
 ```
 
 :::
@@ -268,11 +257,9 @@ Note that in case both the `prefix-icon` and `suffix-icon` props are provided, o
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-button :prefix-icon="Icon.user" />
-  <bo-button :prefix-icon="Icon.user" :shape="BoButtonShape.pill" />
-  <bo-button :prefix-icon="Icon.user" :shape="BoButtonShape.outline" />
-</div>
+<bo-button :prefix-icon="Icon.user" />
+<bo-button :prefix-icon="Icon.user" :shape="BoButtonShape.pill" />
+<bo-button :prefix-icon="Icon.user" :shape="BoButtonShape.outline" />
 ```
 
 :::
@@ -286,7 +273,7 @@ To render content not supported by the default props of the button, you can use 
 ::: details Toggle code
 
 ```js
-<bo-button label="Button">
+<bo-button>
   <template #content>
     <bo-icon :icon="Icon.user" />
   </template>
@@ -295,7 +282,7 @@ To render content not supported by the default props of the button, you can use 
 
 :::
 
-## All variants, shapes and types
+## All variants & shapes
 
 ### Default
 
@@ -312,15 +299,13 @@ To render content not supported by the default props of the button, you can use 
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-button label="Button" :variant="BoButtonVariant.primary" />
-  <bo-button label="Button" :variant="BoButtonVariant.secondary" />
-  <bo-button label="Button" :variant="BoButtonVariant.danger" />
-  <bo-button label="Button" :variant="BoButtonVariant.warning" />
-  <bo-button label="Button" :variant="BoButtonVariant.success" />
-  <bo-button label="Button" :variant="BoButtonVariant.light" />
-  <bo-button label="Button" :variant="BoButtonVariant.dark" />
-</div>
+<bo-button label="Button" :variant="BoButtonVariant.primary" />
+<bo-button label="Button" :variant="BoButtonVariant.secondary" />
+<bo-button label="Button" :variant="BoButtonVariant.danger" />
+<bo-button label="Button" :variant="BoButtonVariant.warning" />
+<bo-button label="Button" :variant="BoButtonVariant.success" />
+<bo-button label="Button" :variant="BoButtonVariant.light" />
+<bo-button label="Button" :variant="BoButtonVariant.dark" />
 ```
 
 :::
@@ -340,15 +325,14 @@ To render content not supported by the default props of the button, you can use 
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.primary" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.secondary" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.danger" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.warning" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.success" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.light" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.dark" />
-</div>
+
+<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.primary" />
+<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.secondary" />
+<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.danger" />
+<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.warning" />
+<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.success" />
+<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.light" />
+<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.dark" />
 ```
 
 :::
@@ -368,15 +352,13 @@ To render content not supported by the default props of the button, you can use 
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.primary" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.secondary" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.danger" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.warning" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.success" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.light" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.dark" />
-</div>
+<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.primary" />
+<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.secondary" />
+<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.danger" />
+<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.warning" />
+<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.success" />
+<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.light" />
+<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.dark" />
 ```
 
 :::
@@ -384,27 +366,25 @@ To render content not supported by the default props of the button, you can use 
 ### Link
 
 <div class="flex gap-2 mt-4">
-  <bo-button label="Button" :variant="BoButtonVariant.link" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_secondary" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_danger" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_warning" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_success" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_light" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_dark" />
+  <bo-button label="Button" :variant="BoButtonVariant.primary" :shape="BoButtonShape.link" />
+  <bo-button label="Button" :variant="BoButtonVariant.secondary" :shape="BoButtonShape.link"/>
+  <bo-button label="Button" :variant="BoButtonVariant.danger" :shape="BoButtonShape.link"/>
+  <bo-button label="Button" :variant="BoButtonVariant.warning" :shape="BoButtonShape.link"/>
+  <bo-button label="Button" :variant="BoButtonVariant.success" :shape="BoButtonShape.link"/>
+  <bo-button label="Button" :variant="BoButtonVariant.light" :shape="BoButtonShape.link"/>
+  <bo-button label="Button" :variant="BoButtonVariant.dark" :shape="BoButtonShape.link"/>
 </div>
 
 ::: details Toggle code
 
 ```js
-<div class="flex gap-2">
-  <bo-button label="Button" :variant="BoButtonVariant.link" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_secondary" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_danger" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_warning" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_success" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_light" />
-  <bo-button label="Button" :variant="BoButtonVariant.link_dark" />
-</div>
+<bo-button label="Button" :variant="BoButtonVariant.primary" :shape="BoButtonShape.link" />
+<bo-button label="Button" :variant="BoButtonVariant.secondary" :shape="BoButtonShape.link"/>
+<bo-button label="Button" :variant="BoButtonVariant.danger" :shape="BoButtonShape.link"/>
+<bo-button label="Button" :variant="BoButtonVariant.warning" :shape="BoButtonShape.link"/>
+<bo-button label="Button" :variant="BoButtonVariant.success" :shape="BoButtonShape.link"/>
+<bo-button label="Button" :variant="BoButtonVariant.light" :shape="BoButtonShape.link"/>
+<bo-button label="Button" :variant="BoButtonVariant.dark" :shape="BoButtonShape.link"/>
 ```
 
 :::

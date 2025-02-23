@@ -99,6 +99,7 @@ const widthClasses = {
 
 const shapeClasses = {
 	[BoButtonShape.pill]: /*tw*/ 'rounded-full',
+	[BoButtonShape.link]: /*tw*/ 'rounded-none',
 	[BoButtonShape.default]: /*tw*/ 'rounded-lg',
 	[BoButtonShape.outline]: /*tw*/ 'rounded-lg',
 };
@@ -143,33 +144,33 @@ const outlineButtonClasses = {
 };
 
 const linkButtonClasses = {
-	[BoButtonVariant.link]:
+	[BoButtonVariant.primary]:
 		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-700 dark:text-blue-600 hover:opacity-80',
-	[BoButtonVariant.link_secondary]:
+	[BoButtonVariant.secondary]:
 		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-neutral-700 dark:text-neutral-400 hover:opacity-80',
-	[BoButtonVariant.link_danger]:
+	[BoButtonVariant.danger]:
 		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 hover:opacity-80',
-	[BoButtonVariant.link_warning]:
+	[BoButtonVariant.warning]:
 		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 hover:opacity-80',
-	[BoButtonVariant.link_success]:
+	[BoButtonVariant.success]:
 		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 hover:opacity-80',
-	[BoButtonVariant.link_light]:
+	[BoButtonVariant.light]:
 		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-neutral-500 dark:text-neutral-50 hover:opacity-80',
-	[BoButtonVariant.link_dark]:
+	[BoButtonVariant.dark]:
 		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black hover:opacity-80',
 };
 
 const variantClasses = {
 	[BoButtonShape.default]: {
 		...filledButtonClasses,
-		...linkButtonClasses,
 	},
 	[BoButtonShape.pill]: {
 		...filledButtonClasses,
-		...linkButtonClasses,
 	},
 	[BoButtonShape.outline]: {
 		...outlineButtonClasses,
+	},
+	[BoButtonShape.link]: {
 		...linkButtonClasses,
 	},
 };
@@ -210,15 +211,7 @@ const iconOnlyIcon = computed<Icon>(() => {
 });
 
 const variantShadowClasses = computed<string>(() => {
-	if (
-		variant.value === BoButtonVariant.link ||
-		variant.value === BoButtonVariant.link_secondary ||
-		variant.value === BoButtonVariant.link_danger ||
-		variant.value === BoButtonVariant.link_warning ||
-		variant.value === BoButtonVariant.link_success ||
-		variant.value === BoButtonVariant.link_light ||
-		variant.value === BoButtonVariant.link_dark
-	) {
+	if (shape.value === BoButtonShape.link) {
 		return shadowClasses.link;
 	}
 
@@ -250,7 +243,7 @@ const buttonFontSize = computed<BoFontSize>(() => {
 });
 
 const loaderVariant = computed<BoLoaderVariant>(() => {
-	if (shape.value === BoButtonShape.outline) {
+	if (shape.value === BoButtonShape.outline || shape.value === BoButtonShape.link) {
 		switch (variant.value) {
 			case BoButtonVariant.secondary:
 				return BoLoaderVariant.secondary;
@@ -269,8 +262,6 @@ const loaderVariant = computed<BoLoaderVariant>(() => {
 	}
 
 	switch (variant.value) {
-		case BoButtonVariant.link:
-			return BoLoaderVariant.primary;
 		case BoButtonVariant.primary:
 		case BoButtonVariant.secondary:
 		case BoButtonVariant.danger:

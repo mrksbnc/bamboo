@@ -89,7 +89,7 @@ describe('bo_badge.vue', () => {
 			test('the badge should support default size related classes', async () => {
 				await testWrapper.setProps({ size: BoSize.extra_large });
 				expect(testWrapper.classes()).contains('px-3.5');
-				expect(testWrapper.classes()).contains('py-2.5');
+				expect(testWrapper.classes()).contains('py-2');
 			});
 		});
 
@@ -220,10 +220,10 @@ describe('bo_badge.vue', () => {
 
 			test('the badge should support secondary variant', async () => {
 				await testWrapper.setProps({ variant: BoBadgeVariant.secondary });
-				expect(testWrapper.classes()).contains('bg-gray-100');
-				expect(testWrapper.classes()).contains('text-gray-800');
+				expect(testWrapper.classes()).contains('bg-neutral-100');
+				expect(testWrapper.classes()).contains('text-neutral-800');
 				expect(testWrapper.classes()).contains('border');
-				expect(testWrapper.classes()).contains('border-gray-200');
+				expect(testWrapper.classes()).contains('border-neutral-200');
 			});
 
 			test('the badge should support danger variant', async () => {
@@ -285,8 +285,8 @@ describe('bo_badge.vue', () => {
 			test('the badge should support secondary variant', async () => {
 				await testWrapper.setProps({ variant: BoBadgeVariant.secondary });
 				expect(testWrapper.classes()).contains('border');
-				expect(testWrapper.classes()).contains('border-gray-600');
-				expect(testWrapper.classes()).contains('text-gray-600');
+				expect(testWrapper.classes()).contains('border-neutral-600');
+				expect(testWrapper.classes()).contains('text-neutral-600');
 			});
 
 			test('the badge should support danger variant', async () => {
