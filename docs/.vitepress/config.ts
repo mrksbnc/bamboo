@@ -4,10 +4,7 @@ function buildSidebar() {
 	return [
 		{
 			text: 'Bamboo',
-			items: [
-				{ text: 'Home', link: '/' },
-				{ text: 'Get Started', link: '/pages/get-started' },
-			],
+			items: [{ text: 'Get Started', link: '/pages/get-started' }],
 		},
 		{
 			text: 'Components',
@@ -48,7 +45,7 @@ export default defineConfig({
 		footer: {
 			message:
 				'Released under the <a href="https://github.com/mrksbnc/bamboo/blob/main/LICENSE">MIT License</a>.',
-			copyright: `Bence Markus`,
+			copyright: 'Bence Markus',
 		},
 	},
 });

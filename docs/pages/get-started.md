@@ -13,15 +13,15 @@ You need to have `node` and `npm` installed on your machine as a prerequisite. Y
 ::: code-group
 
 ```sh [npm]
-$ npm add @mrksbnc/bamboo
+$ npm i @mrksbnc/bamboo
 ```
 
 ```sh [yarn]
-$ yarn add @mrksbnc/bamboo
+$ yarn i @mrksbnc/bamboo
 ```
 
 ```sh [pnpm]
-$ pnpm add @mrksbnc/bamboo
+$ pnpm i @mrksbnc/bamboo
 ```
 
 :::
