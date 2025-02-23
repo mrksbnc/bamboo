@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/blocks'
-import { IdentityUtils } from '@/utils'
+import { Meta, Story } from '@storybook/blocks';
+import { IdentityUtils } from '@/utils';
 
 <Meta title="Utils/IdentityUtils" />
 
@@ -21,7 +21,7 @@ The `generateRandomId` method is used to generate a new random identity.
 - Returns: A random id as a `string`.
 
 ```ts
-IdentityUtils.instance.generateRandomId() // "lqjxigk"
+IdentityUtils.instance.generateRandomId(); // "lqjxigk"
 ```
 
 ## generateRandomIdWithPrefix
@@ -39,5 +39,5 @@ The `generateRandomIdWithPrefix` method is used to generate a new random identit
 - Returns: A random id with the specified prefix as a `string`.
 
 ```ts
-IdentityUtils.instance.generateRandomIdWithPrefix('my-prefix') // "my-prefix-lqjxigk"
+IdentityUtils.instance.generateRandomIdWithPrefix('my-prefix'); // "my-prefix-lqjxigk"
 ```

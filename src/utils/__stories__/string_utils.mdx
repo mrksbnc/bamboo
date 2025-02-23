@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/blocks'
-import { StringUtils } from '@/utils'
+import { Meta, Story } from '@storybook/blocks';
+import { StringUtils } from '@/utils';
 
 <Meta title="Utils/StringUtils" />
 
@@ -25,7 +25,7 @@ The `capitalize` method is used to capitalize the first letter of a string.
 - Returns: The capitalized `string`.
 
 ```ts
-StringUtils.capitalize('hello world') // Hello world
+StringUtils.capitalize('hello world'); // Hello world
 ```
 
 ## camelCaseToTitleCase
@@ -43,7 +43,7 @@ The `camelCaseToTitleCase` method is used to convert a string from camel case to
 - Returns: The converted `string`.
 
 ```ts
-StringUtils.camelCaseToTitleCase('helloWorld') // Hello World
+StringUtils.camelCaseToTitleCase('helloWorld'); // Hello World
 ```
 
 ## isEmptyStr
@@ -61,7 +61,7 @@ The `isEmptyStr` method is used to check if a `string` is `empty`, `null`, or `u
   - Returns: A `boolean` value indicating the result of the check.
 
 ```ts
-StringUtils.isEmptyStr('') // true
-StringUtils.isEmptyStr('hello world') // false
-StringUtils.isEmptyStr(null) // true
+StringUtils.isEmptyStr(''); // true
+StringUtils.isEmptyStr('hello world'); // false
+StringUtils.isEmptyStr(null); // true
 ```

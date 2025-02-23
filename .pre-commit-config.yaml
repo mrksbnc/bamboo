@@ -21,3 +21,10 @@ repos:
         entry: npm run type-check
         stages: [pre-commit]
         pass_filenames: false
+
+      - id: format
+        name: Format
+        language: system
+        entry: npm run format
+        stages: [pre-commit]
+        pass_filenames: false

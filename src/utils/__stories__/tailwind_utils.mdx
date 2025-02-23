@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/blocks'
-import { TailwindUtils } from '@/utils'
+import { Meta, Story } from '@storybook/blocks';
+import { TailwindUtils } from '@/utils';
 
 <Meta title="Utils/TailwindUtils" />
 
@@ -23,7 +23,7 @@ If any of the argument values equals to `null` or `undefined` the corresponding 
 - Example:
 
 ```ts
-TailwindUtils.merge('bg-blue-500', 'text-white', 'rounded-lg') // bg-blue-500 text-white rounded-lg
+TailwindUtils.merge('bg-blue-500', 'text-white', 'rounded-lg'); // bg-blue-500 text-white rounded-lg
 ```
 
 - Parameters:
@@ -33,5 +33,5 @@ TailwindUtils.merge('bg-blue-500', 'text-white', 'rounded-lg') // bg-blue-500 te
 - Returns: The merged classes as a `string`.
 
 ```ts
-TailwindUtils.merge('bg-blue-500', null, 'text-white', 'rounded-lg') // bg-blue-500 text-white rounded-lg
+TailwindUtils.merge('bg-blue-500', null, 'text-white', 'rounded-lg'); // bg-blue-500 text-white rounded-lg
 ```

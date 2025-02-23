@@ -8,7 +8,7 @@ export class IdentityUtils {
 		return Math.random()
 			.toString(36)
 			.replace(/[^a-z]+/g, '')
-			.slice(0, 10)
+			.slice(0, 10);
 	}
 	/**
 	 * @description Generated a new random id with the specified prefix.
@@ -17,6 +17,6 @@ export class IdentityUtils {
 	 * @returns A random id with the specified prefix.
 	 */
 	static generateRandomIdWithPrefix(prefix: string): string {
-		return [prefix, IdentityUtils.generateRandomId()].join('-')
+		return [prefix, IdentityUtils.generateRandomId()].join('-');
 	}
 }

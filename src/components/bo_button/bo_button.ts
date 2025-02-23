@@ -1,6 +1,5 @@
 import type { BoSize } from '@/shared';
 import type { Icon } from '@/components/bo_icon';
-import type { ButtonHTMLAttributes, HTMLAttributes } from 'vue';
 import type { Booleanish } from '@/types/boolean';
 
 export type BoButtonProps = {
