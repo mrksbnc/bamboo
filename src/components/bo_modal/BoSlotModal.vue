@@ -7,7 +7,10 @@
 		class="fixed top-0 right-0 left-0 z-50 flex h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-x-hidden overflow-y-auto bg-black/50 transition-opacity md:inset-0"
 		@keydown="handleKeyDown"
 	>
-		<div :style="modalWidth.style" :class="[modalWidth.class, 'relative max-h-4/6 p-4 transition']">
+		<div
+			:style="modalWidth.style"
+			:class="[modalWidth.class, 'relative max-h-4/6 p-4 transition']"
+		>
 			<!-- Modal content -->
 			<div
 				:class="[

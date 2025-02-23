@@ -39,14 +39,13 @@ export enum BoTextWhiteSpace {
 
 export enum BoTextColor {
 	default = 'default',
+	primary = 'primary',
 	secondary = 'secondary',
 	inherit = 'inherit',
 	current = 'currentColor',
 	success = 'success',
 	warning = 'warning',
 	danger = 'danger',
-	disabled = 'disabled',
-	info = 'info',
 }
 
 export enum BoTextAlign {

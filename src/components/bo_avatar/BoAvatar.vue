@@ -1,7 +1,17 @@
 <template>
-	<div :class="avatarContainerClasses" :style="containerStyle">
-		<span v-if="showDefaultAvatar" class="bo-avatar__default">
-			<img :src="defaultAvatarSvg" alt="avatar" :class="['bo-avatar__image', imageClasses.size]" />
+	<div
+		:class="avatarContainerClasses"
+		:style="containerStyle"
+	>
+		<span
+			v-if="showDefaultAvatar"
+			class="bo-avatar__default"
+		>
+			<img
+				:src="defaultAvatarSvg"
+				alt="avatar"
+				:class="['bo-avatar__image', imageClasses.size]"
+			/>
 		</span>
 		<span
 			v-else-if="type === BoAvatarType.initials && !StringUtils.isEmptyStr(data.label)"

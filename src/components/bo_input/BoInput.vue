@@ -1,6 +1,12 @@
 <template>
-	<div :class="containerClasses.default" class="relative">
-		<span v-if="label" :class="textClasses.label">
+	<div
+		:class="containerClasses.default"
+		class="relative"
+	>
+		<span
+			v-if="label"
+			:class="textClasses.label"
+		>
 			<bo-text
 				:text="label"
 				:for="computedInputId"
@@ -16,8 +22,14 @@
 			/>
 		</span>
 		<span :class="containerClasses.input">
-			<span v-if="prefixIcon && prefixIcon != Icon.none" :class="containerClasses.icon.prefix">
-				<bo-icon :icon="prefixIcon" :size="BoSize.default" :color="BoColor.gray_500"
+			<span
+				v-if="prefixIcon && prefixIcon != Icon.none"
+				:class="containerClasses.icon.prefix"
+			>
+				<bo-icon
+					:icon="prefixIcon"
+					:size="BoSize.default"
+					:color="BoColor.gray_500"
 			/></span>
 			<input
 				v-bind="attributes"
@@ -36,9 +48,15 @@
 					v-if="suffixIcon && suffixIcon != Icon.none && !isLoading"
 					:class="containerClasses.icon.suffix"
 				>
-					<bo-icon :icon="suffixIcon" :size="BoSize.default" :color="BoColor.gray_500"
+					<bo-icon
+						:icon="suffixIcon"
+						:size="BoSize.default"
+						:color="BoColor.gray_500"
 				/></span>
-				<span v-if="isLoading" :class="loadingContainerClasses">
+				<span
+					v-if="isLoading"
+					:class="loadingContainerClasses"
+				>
 					<bo-loading-spinner
 						v-if="loaderVariant === 'spinner'"
 						:variant="BoLoaderVariant.secondary"
@@ -52,7 +70,10 @@
 				</span>
 			</div>
 		</span>
-		<span v-if="description" class="bo-input__description">
+		<span
+			v-if="description"
+			class="bo-input__description"
+		>
 			<bo-text
 				:text="description"
 				:size="BoFontSize.xs"
@@ -60,8 +81,15 @@
 				:font-family="BoFontFamily.sans"
 			/>
 		</span>
-		<span v-if="hasError && errorMessage" :class="containerClasses.error">
-			<bo-icon :icon="Icon.alert_triangle" :color="BoColor.red_600" :size="BoSize.small" />
+		<span
+			v-if="hasError && errorMessage"
+			:class="containerClasses.error"
+		>
+			<bo-icon
+				:icon="Icon.alert_triangle"
+				:color="BoColor.red_600"
+				:size="BoSize.small"
+			/>
 			<bo-text
 				:text="errorMessage"
 				:size="BoFontSize.xs"

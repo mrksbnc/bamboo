@@ -1,5 +1,8 @@
 <template>
-	<div role="status" :class="[defaultClasses, textPosition === 'side' ? 'flex-row' : 'flex-col']">
+	<div
+		role="status"
+		:class="[defaultClasses, textPosition === 'side' ? 'flex-row' : 'flex-col']"
+	>
 		<span :class="['bo-loading-pulse__inner-pulse-relative', loaderSizeClasses, 'relative flex']">
 			<span
 				:style="customColorStyle"
@@ -14,7 +17,10 @@
 				:style="customColorStyle"
 			></span>
 		</span>
-		<span v-if="displayLoaderText" class="bo-loading-pulse__text">
+		<span
+			v-if="displayLoaderText"
+			class="bo-loading-pulse__text"
+		>
 			<bo-text
 				role="text"
 				:color="BoTextColor.secondary"

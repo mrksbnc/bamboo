@@ -133,21 +133,19 @@ const textWhiteSpaceClasses = computed<string>(() => {
 const fontColor = computed<string>(() => {
 	switch (color.value) {
 		case BoTextColor.default:
-			return /*tw*/ 'text-neutral-900';
+			return /*tw*/ 'text-neutral-900 dark:text-neutral-100';
 		case BoTextColor.inherit:
 			return /*tw*/ 'text-inherit';
-		case BoTextColor.success:
-			return /*tw*/ 'text-green-600';
-		case BoTextColor.warning:
-			return /*tw*/ 'text-yellow-600';
-		case BoTextColor.danger:
-			return /*tw*/ 'text-red-600';
+		case BoTextColor.primary:
+			return /*tw*/ 'text-blue-600 dark:text-blue-500';
 		case BoTextColor.secondary:
-			return /*tw*/ 'text-neutral-500';
-		case BoTextColor.disabled:
-			return /*tw*/ 'text-neutral-400';
-		case BoTextColor.info:
-			return /*tw*/ 'text-blue-600';
+			return /*tw*/ 'text-neutral-600 dark:text-neutral-300';
+		case BoTextColor.success:
+			return /*tw*/ 'text-green-600 dark:text-green-500';
+		case BoTextColor.warning:
+			return /*tw*/ 'text-yellow-600 dark:text-yellow-500';
+		case BoTextColor.danger:
+			return /*tw*/ 'text-red-600 dark:text-red-500';
 		case BoTextColor.current:
 		default:
 			return /*tw*/ 'text-current';

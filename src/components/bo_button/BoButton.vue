@@ -1,12 +1,19 @@
 <template>
-	<button v-bind="props" :disabled="disabled || isLoading" :class="buttonClasses">
+	<button
+		v-bind="props"
+		:disabled="disabled || isLoading"
+		:class="buttonClasses"
+	>
 		<div
 			v-if="useSlot"
 			class="bo-button__slot-container inline-flex items-center justify-center gap-1"
 		>
 			<slot name="content" />
 		</div>
-		<span v-else class="bo-button__content inline-flex items-center justify-center gap-1">
+		<span
+			v-else
+			class="bo-button__content inline-flex items-center justify-center gap-1"
+		>
 			<bo-icon
 				v-if="prefixIcon !== Icon.none || iconOnlyButton"
 				:icon="iconOnlyIcon"

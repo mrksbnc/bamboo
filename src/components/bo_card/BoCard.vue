@@ -1,108 +1,32 @@
 <template>
 	<div
-		:style="slotCardWidth.style"
-		:class="[cardContainerClasses, 'bo-card rounded-lg border border-gray-300 bg-white shadow-md']"
+		class="relative p-3 flex flex-col my-6 bg-white dark:bg-gray-800 shadow-sm border border-slate-200 dark:border-neutral-800 rounded-lg max-w-sm"
 	>
-		<div v-if="$slots['content']" :class="contentClasses">
-			<slot name="content"></slot>
+		<div
+			v-if="slots.header"
+			class="relative"
+		>
+			<slot name="header" />
 		</div>
-		<div v-else :class="[contentClasses, 'flex flex-col gap-2']">
-			<bo-text
-				v-if="title"
-				:text="title"
-				:clickable="clickable"
-				:color="BoTextColor.current"
-				:size="BoFontSize['2xl']"
-				:font-family="BoFontFamily.sans"
-				:weight="BoFontWeight.semibold"
-				class="bo-card__title"
-			/>
-			<bo-text
-				v-if="description"
-				:text="description"
-				:clickable="clickable"
-				:size="BoFontSize.sm"
-				:color="BoTextColor.secondary"
-				:font-family="BoFontFamily.sans"
-				class="bo-card__description"
-			/>
+		<div
+			v-if="slots.content"
+			class="pt-0 mt-2"
+		>
+			<slot name="content" />
+		</div>
+		<div
+			v-if="slots.actions"
+			class="pt-0 mt-2"
+		>
+			<slot name="actions" />
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { BoFontFamily, BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text';
-import type { StyleConstruct } from '@/types';
-import { TailwindUtils } from '@/utils';
-import { computed, toRefs } from 'vue';
-import type { BoCardProps } from './bo_card';
-
-const props = withDefaults(defineProps<BoCardProps>(), {
-	padding: () => ({
-		top: true,
-		right: true,
-		bottom: true,
-		left: true,
-	}),
-});
-
-const { padding, clickable, widthAsTailwindClass, widthInPercent, widthInPx, title, description } =
-	toRefs(props);
-
-const contentClasses = /*tw*/ 'bo-card__content overflow-y-auto overflow-x-hidden';
-
-const slotCardWidth = computed<StyleConstruct>(() => {
-	const construct: StyleConstruct = {
-		style: {},
-		class: /*tw*/ '',
-	};
-
-	if (widthInPercent.value) {
-		construct.style = {
-			width: `${widthInPercent.value}%`,
-		};
-	}
-
-	if (widthInPx.value) {
-		construct.style = {
-			width: `${widthInPx.value}px`,
-		};
-	}
-
-	if (widthAsTailwindClass.value) {
-		construct.class = widthAsTailwindClass.value;
-	}
-
-	if (
-		(!widthAsTailwindClass.value || widthAsTailwindClass.value === '') &&
-		!widthInPx.value &&
-		!widthInPercent.value
-	) {
-		construct.class = /*tw*/ 'w-fit max-w-md';
-	}
-
-	return construct;
-});
-
-const cardContainerCursorClasses = computed<string>(() => {
-	return clickable.value ? 'cursor-pointer hover:bg-gray-100' : 'cursor-default';
-});
-
-const cardContainerPaddingClasses = computed<string>(() => {
-	return TailwindUtils.merge(
-		padding.value.top ? 'pt-4' : 'pt-0',
-		padding.value.right ? 'pr-4' : 'pr-0',
-		padding.value.bottom ? 'pb-4' : 'pb-0',
-		padding.value.left ? 'pl-4' : 'pl-0',
-	);
-});
-
-const cardContainerClasses = computed<string>(() => {
-	return TailwindUtils.merge(
-		'bo-card__container',
-		slotCardWidth.value.class,
-		cardContainerCursorClasses.value,
-		cardContainerPaddingClasses.value,
-	);
-});
+const slots = defineSlots<{
+	header(props: Record<string, unknown>): void;
+	content(props: Record<string, unknown>): void;
+	actions(props: Record<string, unknown>): void;
+}>();
 </script>

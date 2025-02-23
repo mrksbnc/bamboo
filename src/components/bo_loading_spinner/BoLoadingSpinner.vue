@@ -3,8 +3,14 @@
 		role="status"
 		:class="[defaultContainerClasses, textPosition === 'side' ? 'flex-row' : 'flex-col']"
 	>
-		<div :class="classes" :style="customColorStyle"></div>
-		<span v-if="displayLoaderText" class="bo-loading-spinner__text">
+		<div
+			:class="classes"
+			:style="customColorStyle"
+		></div>
+		<span
+			v-if="displayLoaderText"
+			class="bo-loading-spinner__text"
+		>
 			<bo-text
 				:color="BoTextColor.secondary"
 				:font-family="BoFontFamily.sans"

@@ -1,7 +1,11 @@
 <template>
 	<span :class="classes">
 		<span v-if="prefixIcon !== Icon.none || iconOnly || isCircle">
-			<bo-icon :size="boBadgeIconSize" :icon="prefixOrIconOnlySrc" class="bo-badge__prefix-icon" />
+			<bo-icon
+				:size="boBadgeIconSize"
+				:icon="prefixOrIconOnlySrc"
+				class="bo-badge__prefix-icon"
+			/>
 		</span>
 		<bo-text
 			v-if="renderLabel && label && !iconOnly && !isCircle"
@@ -11,7 +15,11 @@
 			class="bo-badge__label"
 		/>
 		<span v-if="suffixIcon !== Icon.none && !iconOnly && !isCircle">
-			<bo-icon :icon="suffixIcon" :size="boBadgeIconSize" class="bo-badge__suffix-icon" />
+			<bo-icon
+				:icon="suffixIcon"
+				:size="boBadgeIconSize"
+				class="bo-badge__suffix-icon"
+			/>
 		</span>
 	</span>
 </template>

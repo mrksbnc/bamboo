@@ -248,13 +248,8 @@ describe('bo_text.vue', () => {
 			expect(wrapper.find('#test-id').classes()).toContain('text-neutral-500');
 		});
 
-		test('the text should have the correct disabled color classes', async () => {
-			await wrapper.setProps({ color: BoTextColor.disabled });
-			expect(wrapper.find('#test-id').classes()).toContain('text-neutral-400');
-		});
-
 		test('the text should have the correct info color classes', async () => {
-			await wrapper.setProps({ color: BoTextColor.info });
+			await wrapper.setProps({ color: BoTextColor.primary });
 			expect(wrapper.find('#test-id').classes()).toContain('text-blue-600');
 		});
 	});

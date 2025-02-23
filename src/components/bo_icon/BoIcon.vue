@@ -18,8 +18,7 @@ export default defineComponent({
 <script setup lang="ts">
 import { BoSize } from '@/shared/bo_size';
 import { computed, defineComponent, ref, toRefs, watch, type StyleValue } from 'vue';
-import { icons } from './constant';
-import type { BoIconProps } from './types';
+import { icons, type BoIconProps } from './bo_icon';
 
 const props = withDefaults(defineProps<BoIconProps>(), {
 	size: () => BoSize.default,
@@ -34,7 +33,7 @@ const svg = ref('');
  * @description This is a map of all the icons that are available in the library.
  *
  * - The key is the name of the icon and the value is the actual SVG.
- * - The name of the icon is the name of the file without the extension.
+ * - A promise which resolves to the SVG string
  */
 const iconMap = Object.keys(icons).reduce(
 	(acc, key) => {
@@ -53,11 +52,11 @@ const style = computed<StyleValue>(() => {
 });
 
 const sizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'size-[12px]',
-	[BoSize.small]: /*tw*/ 'size-[14px]',
-	[BoSize.default]: /*tw*/ 'size-[16px]',
-	[BoSize.large]: /*tw*/ 'size-[20px]',
-	[BoSize.extra_large]: /*tw*/ 'size-[24px]',
+	[BoSize.extra_small]: /*tw*/ 'size-3',
+	[BoSize.small]: /*tw*/ 'size-3.5',
+	[BoSize.default]: /*tw*/ 'size-4',
+	[BoSize.large]: /*tw*/ 'size-5',
+	[BoSize.extra_large]: /*tw*/ 'size-6',
 };
 
 const tailwindCssSizeClasses = computed<string>(() => {

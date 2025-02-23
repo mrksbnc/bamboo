@@ -1,5 +1,9 @@
 <template>
-	<span :id="dividerId" :class="dividerClasses" :style="color.style" />
+	<span
+		:id="dividerId"
+		:class="dividerClasses"
+		:style="color.style"
+	/>
 </template>
 
 <script setup lang="ts">

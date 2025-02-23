@@ -11,7 +11,10 @@
 	>
 		<template #header>
 			<div :class="['flex gap-2', headerAlignment]">
-				<span v-if="withIcon" class="flex flex-col items-center">
+				<span
+					v-if="withIcon"
+					class="flex flex-col items-center"
+				>
 					<warning-svg
 						v-if="variant === BoAlertModalVariant.warning"
 						class="h-10 w-10 fill-yellow-500"
@@ -24,7 +27,10 @@
 						v-else-if="variant === BoAlertModalVariant.error"
 						class="h-10 w-10 fill-red-600"
 					/>
-					<info-svg v-else class="h-10 w-10 fill-blue-600" />
+					<info-svg
+						v-else
+						class="h-10 w-10 fill-blue-600"
+					/>
 				</span>
 				<span class="flex flex-col items-center">
 					<bo-text

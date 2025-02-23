@@ -1,3 +1,5 @@
+import type { BoSize } from '@/shared/bo_size';
+
 export enum Icon {
 	activity = 'activity',
 	airplay = 'airplay',
@@ -287,3 +289,9 @@ export const icons = import.meta.glob('@/assets/icons/**/*.svg', {
 	query: '?raw',
 	import: 'default',
 }) as Record<string, () => Promise<string>>;
+
+export type BoIconProps = {
+	icon: Icon;
+	size?: BoSize;
+	color?: string;
+};
