@@ -28,3 +28,10 @@ repos:
         entry: npm run format
         stages: [pre-commit]
         pass_filenames: false
+
+      - id: build
+        name: Build
+        language: system
+        entry: npm run build
+        stages: [pre-commit]
+        pass_filenames: false
