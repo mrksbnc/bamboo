@@ -23,11 +23,11 @@ describe('bo_badge.vue', () => {
 	});
 
 	test('the badge container should have the default classes', () => {
-		expect(wrapper.find('.bo-badge').classes()).contains('flex');
+		expect(wrapper.find('.bo-badge').classes()).contains('inline-flex');
 		expect(wrapper.find('.bo-badge').classes()).contains('items-center');
 		expect(wrapper.find('.bo-badge').classes()).contains('justify-center');
 		expect(wrapper.find('.bo-badge').classes()).contains('select-none');
-		expect(wrapper.find('.bo-badge').classes()).contains('max-w-fit');
+		expect(wrapper.find('.bo-badge').classes()).contains('max-h-fit');
 	});
 
 	test('the badge should render the label', () => {
