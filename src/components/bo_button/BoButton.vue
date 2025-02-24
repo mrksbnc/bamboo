@@ -78,6 +78,7 @@ const props = withDefaults(defineProps<BoButtonProps>(), {
 	suffixIcon: () => Icon.none,
 	shape: () => BoButtonShape.default,
 	variant: () => BoButtonVariant.primary,
+	fullWidth: false,
 });
 
 const {

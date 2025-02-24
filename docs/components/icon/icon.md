@@ -68,17 +68,17 @@ Available sizes are:
 To change the color of the icon, you can use the `color` prop. This accepts any valid `hex` value.
 
 <div class="flex gap-2">
-  <bo-icon :icon="Icon.activity" :color="'#41b883'" />
-  <bo-icon :icon="Icon.activity" :color="'#ff0000'" />
-  <bo-icon :icon="Icon.activity" :color="'#000000'" />
+  <bo-icon :icon="Icon.activity" color="#41b883" />
+  <bo-icon :icon="Icon.activity" color="#ff0000" />
+  <bo-icon :icon="Icon.activity" color="#777777" />
 </div>
 
 ::: details Toggle code
 
 ```js
-<bo-icon :icon="Icon.activity" :color="'#41b883'" />
-<bo-icon :icon="Icon.activity" :color="'#ff0000'" />
-<bo-icon :icon="Icon.activity" :color="'#000000'" />
+<bo-icon :icon="Icon.activity" color="#41b883" />
+<bo-icon :icon="Icon.activity" color="#ff0000" />
+<bo-icon :icon="Icon.activity" color="#777777" />
 ```
 
 :::

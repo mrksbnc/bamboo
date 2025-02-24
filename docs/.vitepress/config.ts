@@ -20,6 +20,7 @@ function getComponents() {
 		{ text: 'Button', link: '/components/button/button' },
 		{ text: 'Card', link: '/components/card/card' },
 		{ text: 'Divider', link: '/components/divider/divider' },
+		{ text: 'Dropdown', link: '/components/dropdown/dropdown' },
 		{ text: 'Icon', link: '/components/icon/icon' },
 	];
 }

@@ -57,15 +57,15 @@ There are two ways to change the color of the divider.
 To change the color of the divider, you can use the `color-hex` prop.
 
 <div class="flex flex-col gap-2">
-    <bo-divider :color-hex="'#41b883'" />
-    <bo-divider :color-hex="'#ff0000'" />
-    <bo-divider :color-hex="'#000000'" />
+    <bo-divider color-hex="#777777" />
+    <bo-divider color-hex="#ff0000" />
+    <bo-divider color-hex="#41b883" />
 </div>
 
 ```js
 <bo-divider :color-hex="'#41b883'" />
 <bo-divider :color-hex="'#ff0000'" />
-<bo-divider :color-hex="'#000000'" />
+<bo-divider :color-hex="'#41b883'" />
 ```
 
 ### Color by tailwind
@@ -73,13 +73,13 @@ To change the color of the divider, you can use the `color-hex` prop.
 To change the color of the divider, you can also use the `tailwind-color` prop. This accepts any valid border color from the [Tailwind CSS documentation](https://tailwindcss.com/docs/border-color).
 
 <div class="flex flex-col gap-2">
-    <bo-divider :tailwind-color="'border-blue-600'" />
-    <bo-divider :tailwind-color="'border-red-600'" />
-    <bo-divider :tailwind-color="'border-black'" />
+    <bo-divider tailwind-color="border-blue-600" />
+    <bo-divider tailwind-color="border-red-600" />
+    <bo-divider tailwind-color="border-gray-300" />
 </div>
 
 ```js
-<bo-divider :tailwind-color="'border-blue-600'" />
-<bo-divider :tailwind-color="'border-red-600'" />
-<bo-divider :tailwind-color="'border-black'" />
+<bo-divider tailwind-color="border-blue-600" />
+<bo-divider tailwind-color="border-red-600" />
+<bo-divider tailwind-color="border-gray-300" />
 ```

@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<BoDividerProps>(), {
 
 const { id, variant, colorHex, tailwindColor } = toRefs(props);
 
-const defaultDividerClasses = /*tw*/ 'bo-divider my-2 w-full';
+const defaultDividerClasses = /*tw*/ 'bo-divider my-3 w-full';
 
 const dividerId = computed<string>(() => {
 	return id.value ?? IdentityUtils.generateRandomIdWithPrefix('bo-divider');

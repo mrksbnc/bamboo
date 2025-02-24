@@ -12,18 +12,9 @@ export type BoButtonProps = {
 	useSlot?: boolean;
 	prefixIcon?: Icon;
 	suffixIcon?: Icon;
-	// ButtonHTMLAttributes
 	autofocus?: Booleanish;
 	disabled?: Booleanish;
-	form?: string;
-	formaction?: string;
-	formenctype?: string;
-	formmethod?: string;
-	formnovalidate?: Booleanish;
-	formtarget?: string;
-	name?: string;
 	type?: 'submit' | 'reset' | 'button';
-	value?: string | ReadonlyArray<string> | number;
 	fullWidth?: boolean;
 };
 
