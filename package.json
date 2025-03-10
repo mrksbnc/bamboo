@@ -83,7 +83,7 @@
     "vite-plugin-dts": "^4.4.0",
     "vite-plugin-vue-devtools": "^7.6.8",
     "vite-svg-loader": "^5.1.0",
-    "vitest": "^2.1.9",
+    "vitest": "^3.0.8",
     "vue-tsc": "^2.2.0"
   }
 }
