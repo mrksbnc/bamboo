@@ -62,7 +62,7 @@
     "@vue/tsconfig": "^0.7.0",
     "autoprefixer": "^10.4.20",
     "eslint-plugin-storybook": "^0.11.2",
-    "chromatic": "^11.25.2",
+    "chromatic": "^11.27.0",
     "eslint": "^9.21.0",
     "eslint-plugin-oxlint": "^0.15.5",
     "eslint-plugin-vue": "^9.32.0",
