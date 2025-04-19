@@ -39,10 +39,10 @@ describe('bo_badge.vue', () => {
 	suite('badge types', () => {
 		test('the badge should have the default type', async () => {
 			await wrapper.setProps({ type: BoBadgeType.default })
-			expect(wrapper.classes()).contains('bg-blue-100')
-			expect(wrapper.classes()).contains('text-blue-700')
+			expect(wrapper.classes()).contains('bg-blue-600')
+			expect(wrapper.classes()).contains('text-white')
 			expect(wrapper.classes()).contains('border')
-			expect(wrapper.classes()).contains('border-blue-200')
+			expect(wrapper.classes()).contains('border-blue-700')
 		})
 
 		test('the badge should support outline type', async () => {
@@ -208,58 +208,58 @@ describe('bo_badge.vue', () => {
 			})
 
 			test('the badge should have the default variant', async () => {
-				expect(testWrapper.classes()).contains('bg-blue-100')
-				expect(testWrapper.classes()).contains('text-blue-700')
+				expect(testWrapper.classes()).contains('bg-blue-600')
+				expect(testWrapper.classes()).contains('text-white')
 				expect(testWrapper.classes()).contains('border')
-				expect(testWrapper.classes()).contains('border-blue-200')
+				expect(testWrapper.classes()).contains('border-blue-700')
 			})
 
 			test('the badge should support primary variant', async () => {
 				await testWrapper.setProps({ variant: BoBadgeVariant.primary })
-				expect(testWrapper.classes()).contains('bg-blue-100')
-				expect(testWrapper.classes()).contains('text-blue-700')
+				expect(testWrapper.classes()).contains('bg-blue-600')
+				expect(testWrapper.classes()).contains('text-white')
 				expect(testWrapper.classes()).contains('border')
-				expect(testWrapper.classes()).contains('border-blue-200')
+				expect(testWrapper.classes()).contains('border-blue-700')
 			})
 
 			test('the badge should support secondary variant', async () => {
 				await testWrapper.setProps({ variant: BoBadgeVariant.secondary })
-				expect(testWrapper.classes()).contains('bg-neutral-50')
-				expect(testWrapper.classes()).contains('text-neutral-700')
+				expect(testWrapper.classes()).contains('bg-neutral-600')
+				expect(testWrapper.classes()).contains('text-white')
 				expect(testWrapper.classes()).contains('border')
-				expect(testWrapper.classes()).contains('border-neutral-200')
+				expect(testWrapper.classes()).contains('border-neutral-700')
 			})
 
 			test('the badge should support danger variant', async () => {
 				await testWrapper.setProps({ variant: BoBadgeVariant.danger })
-				expect(testWrapper.classes()).contains('bg-red-50')
-				expect(testWrapper.classes()).contains('text-red-700')
+				expect(testWrapper.classes()).contains('bg-red-600')
+				expect(testWrapper.classes()).contains('text-white')
 				expect(testWrapper.classes()).contains('border')
-				expect(testWrapper.classes()).contains('border-red-200')
+				expect(testWrapper.classes()).contains('border-red-700')
 			})
 
 			test('the badge should support warning variant', async () => {
 				await testWrapper.setProps({ variant: BoBadgeVariant.warning })
-				expect(testWrapper.classes()).contains('bg-yellow-50')
-				expect(testWrapper.classes()).contains('text-yellow-700')
+				expect(testWrapper.classes()).contains('bg-yellow-600')
+				expect(testWrapper.classes()).contains('text-white')
 				expect(testWrapper.classes()).contains('border')
-				expect(testWrapper.classes()).contains('border-yellow-200')
+				expect(testWrapper.classes()).contains('border-yellow-700')
 			})
 
 			test('the badge should support success variant', async () => {
 				await testWrapper.setProps({ variant: BoBadgeVariant.success })
-				expect(testWrapper.classes()).contains('bg-green-50')
-				expect(testWrapper.classes()).contains('text-green-700')
+				expect(testWrapper.classes()).contains('bg-green-600')
+				expect(testWrapper.classes()).contains('text-white')
 				expect(testWrapper.classes()).contains('border')
-				expect(testWrapper.classes()).contains('border-green-200')
+				expect(testWrapper.classes()).contains('border-green-700')
 			})
 
 			test('the badge should support dark variant', async () => {
 				await testWrapper.setProps({ variant: BoBadgeVariant.dark })
-				expect(testWrapper.classes()).contains('bg-neutral-700')
+				expect(testWrapper.classes()).contains('bg-neutral-800')
 				expect(testWrapper.classes()).contains('text-white')
 				expect(testWrapper.classes()).contains('border')
-				expect(testWrapper.classes()).contains('border-neutral-700')
+				expect(testWrapper.classes()).contains('border-neutral-900')
 			})
 		})
 
