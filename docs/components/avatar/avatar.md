@@ -1,5 +1,5 @@
 <script setup>
-import { BoAvatar, BoAvatarType, BoAvatarShape } from '@/components/bo_avatar';
+import { BoAvatar, BoAvatarType, BoAvatarShape, BoAvatarVariant } from '@/components/bo_avatar';
 import BoAvatarCustomImage from './examples/BoAvatarCustomImage.vue'
 import {BoSize} from '@/shared'
 </script>
@@ -21,16 +21,17 @@ An avatar is a visual representation of a user or entity. Use avatars to help us
 
 ### Props
 
-| Prop name          | Type            | Default                 | Description                               |
-| ------------------ | --------------- | ----------------------- | ----------------------------------------- |
-| `data`             | `BoAvatarData`  | `{}`                    | The data for the avatar (required)        |
-| `type`             | `BoAvatarType`  | `BoAvatarType.initials` | The type of avatar (image or initials)    |
-| `shape`            | `BoAvatarShape` | `BoAvatarShape.rounded` | The shape of the avatar                   |
-| `size`             | `BoSize`        | `BoSize.default`        | The size of the avatar                    |
-| `colorHex`         | `string`        | `undefined`             | Custom background color (hex code)        |
-| `fontColorHex`     | `string`        | `undefined`             | Custom text color (hex code)              |
-| `clickable`        | `boolean`       | `false`                 | Whether the avatar is clickable           |
-| `withDefaultImage` | `boolean`       | `false`                 | Force the avatar to use the default image |
+| Prop name          | Type              | Default                   | Description                               |
+| ------------------ | ----------------- | ------------------------- | ----------------------------------------- |
+| `data`             | `BoAvatarData`    | `{}`                      | The data for the avatar (required)        |
+| `type`             | `BoAvatarType`    | `BoAvatarType.initials`   | The type of avatar (image or initials)    |
+| `shape`            | `BoAvatarShape`   | `BoAvatarShape.rounded`   | The shape of the avatar                   |
+| `variant`          | `BoAvatarVariant` | `BoAvatarVariant.primary` | The color variant of the avatar           |
+| `size`             | `BoSize`          | `BoSize.default`          | The size of the avatar                    |
+| `colorHex`         | `string`          | `undefined`               | Custom background color (hex code)        |
+| `fontColorHex`     | `string`          | `undefined`               | Custom text color (hex code)              |
+| `clickable`        | `boolean`         | `false`                   | Whether the avatar is clickable           |
+| `withDefaultImage` | `boolean`         | `false`                   | Force the avatar to use the default image |
 
 ### Types
 
@@ -54,6 +55,15 @@ export enum BoAvatarShape {
   outline_rounded = 'outline_rounded', // Rounded corners with border
   outline_circle = 'outline_circle', // Circle with border
 }
+
+export enum BoAvatarVariant {
+  primary = 'primary',
+  secondary = 'secondary',
+  danger = 'danger',
+  warning = 'warning',
+  success = 'success',
+  dark = 'dark',
+}
 ```
 
 ## Avatar Shapes
@@ -61,9 +71,19 @@ export enum BoAvatarShape {
 Use different avatar shapes with initials or images.
 
 <div class="flex gap-4 items-center">
-  <bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'B' }" />
-  <bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'JD' }" />
-  <bo-avatar :type="BoAvatarType.image" :data="{ src: 'https://avatar.iran.liara.run/public', alt: 'User profile' }" />
+<bo-avatar
+  :shape="BoAvatarShape.circle"
+  :data="{ label: 'B' }"
+/>
+<bo-avatar
+  :shape="BoAvatarShape.rounded"
+  :data="{ label: 'JD' }"
+/>
+<bo-avatar
+  :shape="BoAvatarShape.circle"
+  :type="BoAvatarType.image"
+  :data="{ src: 'https://avatar.iran.liara.run/public/boy', alt: 'User profile' }"
+/>
 </div>
 
 ```html
@@ -76,33 +96,9 @@ Use different avatar shapes with initials or images.
   :data="{ label: 'JD' }"
 />
 <bo-avatar
+  :shape="BoAvatarShape.circle"
   :type="BoAvatarType.image"
   :data="{ src: 'path/to/image.jpg', alt: 'User profile' }"
-/>
-```
-
-## Bordered Avatars
-
-Use the outline shape variants to create avatars with borders.
-
-<div class="flex gap-4 items-center">
-  <bo-avatar :shape="BoAvatarShape.outline_circle" :data="{ label: 'B' }" />
-  <bo-avatar :shape="BoAvatarShape.outline_rounded" :data="{ label: 'JD' }" />
-  <bo-avatar :shape="BoAvatarShape.outline_flat" :data="{ label: 'ML' }" />
-</div>
-
-```html
-<bo-avatar
-  :shape="BoAvatarShape.outline_circle"
-  :data="{ label: 'B' }"
-/>
-<bo-avatar
-  :shape="BoAvatarShape.outline_rounded"
-  :data="{ label: 'JD' }"
-/>
-<bo-avatar
-  :shape="BoAvatarShape.outline_flat"
-  :data="{ label: 'ML' }"
 />
 ```
 
@@ -152,29 +148,25 @@ Use initials as a placeholder when no image is available.
 
 ## Custom Colors
 
-Customize both the background and text colors of avatars using the `color-hex` and `font-color-hex` props.
+You can customize avatar colors by directly applying Tailwind classes using the `class` prop.
 
 <div class="flex gap-4 items-center">
-
-  <bo-avatar :color-hex="'#41b883'" :font-color-hex="'#ffffff'" :data="{ label: 'VJ' }" />
-  <bo-avatar :color-hex="'#000000'" :font-color-hex="'#ffffff'" :data="{ label: 'UI' }" />
-  <bo-avatar :color-hex="'#3b82f6'" :font-color-hex="'#ffffff'" :data="{ label: 'BO' }" />
+  <bo-avatar class="bg-emerald-500 dark:bg-emerald-600" :data="{ label: 'VJ' }" />
+  <bo-avatar class="bg-slate-800 dark:bg-slate-900 text-white" :data="{ label: 'UI' }" />
+  <bo-avatar class="bg-indigo-500 dark:bg-indigo-600 text-white" :data="{ label: 'BO' }" />
 </div>
 
 ```html
 <bo-avatar
-  :color-hex="'#41b883'"
-  :font-color-hex="'#ffffff'"
+  class="bg-emerald-500 dark:bg-emerald-600"
   :data="{ label: 'VJ' }"
 />
 <bo-avatar
-  :color-hex="'#000000'"
-  :font-color-hex="'#ffffff'"
+  class="bg-slate-800 text-white dark:bg-slate-900"
   :data="{ label: 'UI' }"
 />
 <bo-avatar
-  :color-hex="'#3b82f6'"
-  :font-color-hex="'#ffffff'"
+  class="bg-indigo-500 text-white dark:bg-indigo-600"
   :data="{ label: 'BO' }"
 />
 ```
@@ -185,7 +177,7 @@ Make avatars interactive by using the `clickable` prop which adds a hover effect
 
 <div class="flex gap-4 items-center">
   <bo-avatar :clickable="true" :data="{ label: 'JD' }" />
-  <bo-avatar :clickable="true" :type="BoAvatarType.image" :data="{ src: 'https://avatar.iran.liara.run/public/boy', alt: 'User profile' }" />
+  <bo-avatar :clickable="true" :type="BoAvatarType.image" :data="{ src: 'https://avatar.iran.liara.run/public/boy', alt: 'User profile' }" :shape="BoAvatarShape.circle" />
 </div>
 
 ```html
@@ -234,3 +226,111 @@ Choose from multiple sizes using the `size` prop.
   :data="{ label: 'XL' }"
 />
 ```
+
+## Avatar Variants
+
+Avatars support different color variants to match your application's design system. These variants align with the button component colors.
+
+<div class="flex gap-4 items-center">
+  <bo-avatar
+    :data="{ label: 'P' }"
+    :variant="BoAvatarVariant.primary"
+  />
+  <bo-avatar
+    :data="{ label: 'S' }"
+    :variant="BoAvatarVariant.secondary"
+  />
+  <bo-avatar
+    :data="{ label: 'D' }"
+    :variant="BoAvatarVariant.danger"
+  />
+  <bo-avatar
+    :data="{ label: 'W' }"
+    :variant="BoAvatarVariant.warning"
+  />
+  <bo-avatar
+    :data="{ label: 'S' }"
+    :variant="BoAvatarVariant.success"
+  />
+  <bo-avatar
+    :data="{ label: 'D' }"
+    :variant="BoAvatarVariant.dark"
+  />
+</div>
+
+```html
+<bo-avatar
+  :data="{ label: 'P' }"
+  :variant="BoAvatarVariant.primary"
+/>
+<bo-avatar
+  :data="{ label: 'S' }"
+  :variant="BoAvatarVariant.secondary"
+/>
+<bo-avatar
+  :data="{ label: 'D' }"
+  :variant="BoAvatarVariant.danger"
+/>
+<bo-avatar
+  :data="{ label: 'W' }"
+  :variant="BoAvatarVariant.warning"
+/>
+<bo-avatar
+  :data="{ label: 'S' }"
+  :variant="BoAvatarVariant.success"
+/>
+<bo-avatar
+  :data="{ label: 'D' }"
+  :variant="BoAvatarVariant.dark"
+/>
+```
+
+## Outline Variants
+
+Avatars also support outline variants for a more subtle appearance.
+
+<div class="flex gap-4 items-center">
+  <bo-avatar
+    :data="{ label: 'P' }"
+    :variant="BoAvatarVariant.primary"
+    :shape="BoAvatarShape.outline_circle"
+  />
+  <bo-avatar
+    :data="{ label: 'S' }"
+    :variant="BoAvatarVariant.secondary"
+    :shape="BoAvatarShape.outline_circle"
+  />
+  <bo-avatar
+    :data="{ label: 'D' }"
+    :variant="BoAvatarVariant.danger"
+    :shape="BoAvatarShape.outline_circle"
+  />
+</div>
+
+```html
+<bo-avatar
+  :data="{ label: 'P' }"
+  :variant="BoAvatarVariant.primary"
+  :shape="BoAvatarShape.outline_circle"
+/>
+<bo-avatar
+  :data="{ label: 'S' }"
+  :variant="BoAvatarVariant.secondary"
+  :shape="BoAvatarShape.outline_circle"
+/>
+<bo-avatar
+  :data="{ label: 'D' }"
+  :variant="BoAvatarVariant.danger"
+  :shape="BoAvatarShape.outline_circle"
+/>
+```
+
+## All Avatar Variations
+
+For a comprehensive view of all avatar variants, sizes, and shapes, see the example below:
+
+<script>
+import AvatarVariants from './examples/AvatarVariants.vue'
+</script>
+
+<AvatarVariants />
