@@ -80,20 +80,20 @@ const tailwindCssVariantClasses = computed<string>(() => {
 
 	switch (variant.value) {
 		case BoLoaderVariant.secondary:
-			return /*tw*/ 'text-gray-600'
+			return /*tw*/ 'text-gray-600 dark:text-gray-400'
 		case BoLoaderVariant.danger:
-			return /*tw*/ 'text-red-600'
+			return /*tw*/ 'text-red-600 dark:text-red-500'
 		case BoLoaderVariant.warning:
-			return /*tw*/ 'text-yellow-600'
+			return /*tw*/ 'text-yellow-600 dark:text-yellow-500'
 		case BoLoaderVariant.success:
-			return /*tw*/ 'text-green-600'
+			return /*tw*/ 'text-green-600 dark:text-green-500'
 		case BoLoaderVariant.dark:
-			return /*tw*/ 'text-black'
+			return /*tw*/ 'text-black dark:text-white'
 		case BoLoaderVariant.white:
-			return /*tw*/ 'text-white'
+			return /*tw*/ 'text-white dark:text-gray-300'
 		case BoLoaderVariant.primary:
 		default:
-			return /*tw*/ 'text-blue-600'
+			return /*tw*/ 'text-blue-600 dark:text-blue-500'
 	}
 })
 

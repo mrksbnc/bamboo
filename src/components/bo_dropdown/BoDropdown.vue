@@ -1,26 +1,30 @@
 <template>
-	<BoButton
-		:id="id"
-		:variant="toggleVariant"
-		:label="activeOption.label"
-		:prefix-icon="defaultOption.icon"
-		data-dropdown-toggle="dropdown"
-		@click="onDropdownClick"
-	></BoButton>
+	<slot name="toggle">
+		<bo-button
+			:id="id"
+			:variant="toggleVariant"
+			:label="activeOption.label"
+			:prefix-icon="defaultOption.icon"
+			data-dropdown-toggle="dropdown"
+			@click="onDropdownClick"
+		/>
+	</slot>
 	<div
 		v-if="isDropdownOpen"
 		id="dropdown"
-		class="absolute z-10 mt-2 w-44 divide-y divide-gray-100 rounded-lg border border-neutral-100 bg-white shadow dark:border-gray-800 dark:bg-gray-700"
+		class="absolute z-10 mt-2 w-44 divide-y divide-gray-100 rounded-lg border border-neutral-100 bg-white shadow dark:divide-gray-700 dark:border-gray-800 dark:bg-gray-700"
 	>
 		<div class="p-1">
-			<component
-				:is="component"
-				v-for="option in options"
-				:key="option.label"
-				:icon="option.icon"
-				:label="option.label"
-				@click="onOptionClick(option)"
-			/>
+			<slot name="items">
+				<component
+					:is="component"
+					v-for="option in options"
+					:key="option.label"
+					:icon="option.icon"
+					:label="option.label"
+					@click="onOptionClick(option)"
+				/>
+			</slot>
 		</div>
 	</div>
 </template>
@@ -32,6 +36,11 @@ import { IdentityUtils } from '@/utils'
 import { ref, shallowRef, toRefs } from 'vue'
 import type { BaseDropdownOption, BoDropdownProps } from './bo_dropdown'
 import BoDefaultDropdownItem from './options/BoDefaultDropdownItem.vue'
+
+defineSlots<{
+	toggle(): unknown
+	items(): unknown
+}>()
 
 const props = withDefaults(defineProps<BoDropdownProps>(), {
 	id: () => IdentityUtils.generateRandomIdWithPrefix('bo-dropdown'),

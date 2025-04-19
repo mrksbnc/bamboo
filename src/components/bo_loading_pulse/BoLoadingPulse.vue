@@ -93,40 +93,40 @@ const loaderPulseVariantClasses = computed<string>(() => {
 
 	switch (variant.value) {
 		case BoLoaderVariant.secondary:
-			return /*tw*/ 'bg-gray-600'
+			return /*tw*/ 'bg-gray-600 dark:bg-gray-400'
 		case BoLoaderVariant.danger:
-			return /*tw*/ 'bg-red-600'
+			return /*tw*/ 'bg-red-600 dark:bg-red-500'
 		case BoLoaderVariant.warning:
-			return /*tw*/ 'bg-yellow-600'
+			return /*tw*/ 'bg-yellow-600 dark:bg-yellow-500'
 		case BoLoaderVariant.success:
-			return /*tw*/ 'bg-green-600'
+			return /*tw*/ 'bg-green-600 dark:bg-green-500'
 		case BoLoaderVariant.dark:
-			return /*tw*/ 'bg-black'
+			return /*tw*/ 'bg-black dark:bg-white'
 		case BoLoaderVariant.white:
-			return /*tw*/ 'bg-white'
+			return /*tw*/ 'bg-white dark:bg-gray-300'
 		case BoLoaderVariant.primary:
 		default:
-			return /*tw*/ 'bg-blue-600'
+			return /*tw*/ 'bg-blue-600 dark:bg-blue-500'
 	}
 })
 
 const shiftedPulseLoaderVariantClasses = computed<string>(() => {
 	switch (variant.value) {
 		case BoLoaderVariant.secondary:
-			return /*tw*/ 'bg-gray-500'
+			return /*tw*/ 'bg-gray-500 dark:bg-gray-300'
 		case BoLoaderVariant.danger:
-			return /*tw*/ 'bg-red-500'
+			return /*tw*/ 'bg-red-500 dark:bg-red-400'
 		case BoLoaderVariant.warning:
-			return /*tw*/ 'bg-yellow-500'
+			return /*tw*/ 'bg-yellow-500 dark:bg-yellow-400'
 		case BoLoaderVariant.success:
-			return /*tw*/ 'bg-green-500'
+			return /*tw*/ 'bg-green-500 dark:bg-green-400'
 		case BoLoaderVariant.dark:
-			return /*tw*/ 'bg-black'
+			return /*tw*/ 'bg-black dark:bg-white'
 		case BoLoaderVariant.white:
-			return /*tw*/ 'bg-white'
+			return /*tw*/ 'bg-white dark:bg-gray-300'
 		case BoLoaderVariant.primary:
 		default:
-			return /*tw*/ 'bg-blue-500'
+			return /*tw*/ 'bg-blue-500 dark:bg-blue-400'
 	}
 })
 </script>

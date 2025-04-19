@@ -7,13 +7,15 @@
 				class="bo-badge__prefix-icon"
 			/>
 		</span>
-		<bo-text
-			v-if="renderLabel && label && !iconOnly && !isCircle"
-			:text="label"
-			:size="badgeFontSize"
-			:weight="BoFontWeight.semibold"
-			class="bo-badge__label"
-		/>
+		<slot name="default">
+			<bo-text
+				v-if="renderLabel && label && !iconOnly && !isCircle"
+				:text="label"
+				:size="badgeFontSize"
+				:weight="BoFontWeight.semibold"
+				class="bo-badge__label"
+			/>
+		</slot>
 		<span v-if="suffixIcon !== Icon.none && !iconOnly && !isCircle">
 			<bo-icon
 				:icon="suffixIcon"
@@ -31,6 +33,10 @@ import { BoSize } from '@/shared/bo_size'
 import { StringUtils, TailwindUtils } from '@/utils'
 import { computed, toRefs } from 'vue'
 import { BoBadgeShape, BoBadgeType, BoBadgeVariant, type BoBadgeProps } from './bo_badge'
+
+defineSlots<{
+	default?: unknown
+}>()
 
 const props = withDefaults(defineProps<BoBadgeProps>(), {
 	type: () => BoBadgeType.default,

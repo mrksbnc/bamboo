@@ -5,6 +5,7 @@
 		<bo-icon
 			v-if="icon !== Icon.none"
 			:icon="icon"
+			:class="'text-gray-600 dark:text-gray-400'"
 		/>
 		<bo-text
 			:text="label"

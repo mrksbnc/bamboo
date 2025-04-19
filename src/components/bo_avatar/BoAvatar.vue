@@ -60,7 +60,8 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 	shape: () => BoAvatarShape.rounded,
 })
 
-const { clickable, data, type, shape, size, colorHex, withDefaultImage } = toRefs(props)
+const { clickable, data, type, shape, size, colorHex, withDefaultImage, fontColorHex } =
+	toRefs(props)
 
 const defaultAvatarSvg = new URL('@/assets/img/avatar.jpg', import.meta.url).href
 

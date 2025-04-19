@@ -26,6 +26,7 @@
 				{{ description }}
 			</p>
 			<slot name="content"></slot>
+			<slot name="actions"></slot>
 		</div>
 	</div>
 </template>
@@ -34,6 +35,11 @@
 import { IdentityUtils } from '@/utils'
 import { computed, ref } from 'vue'
 import type { BoCardProps } from './bo_card'
+
+defineSlots<{
+	content: (props: Record<string, unknown>) => void
+	header: (props: Record<string, unknown>) => void
+}>()
 
 const props = withDefaults(defineProps<BoCardProps>(), {
 	padding: () => ({
