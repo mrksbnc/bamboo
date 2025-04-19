@@ -5,7 +5,7 @@ import BoLoadingPulse from '@/components/bo_loading_pulse/BoLoadingPulse.vue'
 import BoLoadingSpinner from '@/components/bo_loading_spinner/BoLoadingSpinner.vue'
 import { BoText } from '@/components/bo_text'
 import { BoLoaderVariant, BoSize, HtmlButtonType } from '@/shared'
-import { findByRole, hasAriaAttribute, isAccessibleToScreenReaders } from '@/tests/setup'
+import { hasAriaAttribute } from '@/tests/setup'
 import { mount } from '@vue/test-utils'
 import { beforeEach, describe, expect, suite, test } from 'vitest'
 
@@ -649,7 +649,7 @@ describe('bo_button.vue', () => {
 
 			// Find all icon elements within the button
 			const iconElements = iconWrapper.findAllComponents(BoIcon)
-			iconElements.forEach(icon => {
+			iconElements.forEach((icon) => {
 				// Verify each icon has aria-hidden="true"
 				expect(hasAriaAttribute(icon.element, 'aria-hidden', 'true')).toBe(true)
 			})
@@ -665,7 +665,7 @@ describe('bo_button.vue', () => {
 
 		test('button should have focus visible styles', () => {
 			// Check that the button has the focus-visible classes
-			expect(globalWrapper.classes().some(cls => cls.includes('focus-visible'))).toBe(true)
+			expect(globalWrapper.classes().some((cls) => cls.includes('focus-visible'))).toBe(true)
 		})
 	})
 })

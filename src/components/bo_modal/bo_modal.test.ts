@@ -4,7 +4,7 @@ import { mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { BoModalSize, BoPaddingSize } from './bo_modal'
 
-// Mock KeyboardUtils methods
+// Mock KeyboardUtils and AccessibilityUtils methods
 vi.mock('@/utils', () => ({
 	KeyboardUtils: {
 		trapTabKey: vi.fn(),
@@ -12,6 +12,10 @@ vi.mock('@/utils', () => ({
 			if (e.key === 'Escape') handler()
 		}),
 		getFocusableElements: vi.fn().mockReturnValue([]),
+	},
+	AccessibilityUtils: {
+		generateAccessibleId: vi.fn().mockImplementation((prefix) => `${prefix}-mock-id`),
+		announceToScreenReader: vi.fn(),
 	},
 }))
 
@@ -59,8 +63,8 @@ describe('BoModal.vue', () => {
 			},
 		})
 
-		expect(wrapper.find('h3').exists()).toBe(true)
-		expect(wrapper.find('h3').text()).toBe('Modal Title')
+		expect(wrapper.find('h2').exists()).toBe(true)
+		expect(wrapper.find('h2').text()).toBe('Modal Title')
 		expect(wrapper.find('p').exists()).toBe(true)
 		expect(wrapper.find('p').text()).toBe('Modal Subtitle')
 	})
@@ -176,12 +180,14 @@ describe('BoModal.vue', () => {
 		const modal = wrapper.find('[role="dialog"]')
 		expect(modal.exists()).toBe(true)
 		expect(modal.attributes('aria-modal')).toBe('true')
-		expect(modal.attributes('aria-labelledby')).toBe('modal-title')
-		expect(modal.attributes('aria-describedby')).toBe('modal-subtitle')
+		expect(modal.attributes('aria-labelledby')).toBeDefined()
+		expect(modal.attributes('aria-describedby')).toBeDefined()
 
 		// Check the title and subtitle elements have proper IDs
-		expect(wrapper.find('#modal-title').exists()).toBe(true)
-		expect(wrapper.find('#modal-subtitle').exists()).toBe(true)
+		const titleId = modal.attributes('aria-labelledby')
+		const subtitleId = modal.attributes('aria-describedby')
+		expect(wrapper.find(`#${titleId}`).exists()).toBe(true)
+		expect(wrapper.find(`#${subtitleId}`).exists()).toBe(true)
 	})
 
 	test('should handle Tab key to trap focus within modal', async () => {

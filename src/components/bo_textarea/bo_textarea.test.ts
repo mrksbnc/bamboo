@@ -38,7 +38,10 @@ describe('BoTextarea', () => {
 				modelValue: '',
 			},
 		})
-		expect(wrapper.find('label span').text()).toBe('*')
+		const requiredAsterisk = wrapper.find('label span.text-red-500')
+		expect(requiredAsterisk.exists()).toBe(true)
+		expect(requiredAsterisk.attributes('aria-hidden')).toBe('true')
+		expect(requiredAsterisk.text()).toContain('*')
 	})
 
 	it('updates modelValue on input', async () => {
@@ -77,12 +80,12 @@ describe('BoTextarea', () => {
 
 	it('applies different sizes correctly', () => {
 		const sizes = [
-			{ size: BoTextareaSize.small, expectedClass: 'p-2 text-xs' },
-			{ size: BoTextareaSize.default, expectedClass: 'p-3 text-xs' },
-			{ size: BoTextareaSize.large, expectedClass: 'p-4 text-sm' },
+			{ size: BoTextareaSize.small, expectedClasses: ['px-3', 'py-1.5', 'text-xs'] },
+			{ size: BoTextareaSize.default, expectedClasses: ['px-3', 'py-2', 'text-sm'] },
+			{ size: BoTextareaSize.large, expectedClasses: ['px-4', 'py-3', 'text-base'] },
 		]
 
-		sizes.forEach(({ size, expectedClass }) => {
+		sizes.forEach(({ size, expectedClasses }) => {
 			const wrapper = mount(BoTextarea, {
 				props: {
 					size,
@@ -90,7 +93,11 @@ describe('BoTextarea', () => {
 				},
 			})
 			const textarea = wrapper.find('textarea')
-			expect(textarea.classes().join(' ')).toContain(expectedClass.split(' ')[0])
+			const classes = textarea.classes().join(' ')
+
+			expectedClasses.forEach((expectedClass) => {
+				expect(classes).toContain(expectedClass)
+			})
 		})
 	})
 
@@ -229,6 +236,7 @@ describe('BoTextarea', () => {
 		const wrapper = mount(BoTextarea, {
 			props: {
 				modelValue: '',
+				resize: BoTextareaResize.none,
 			},
 		})
 		const textarea = wrapper.find('textarea')
@@ -243,7 +251,7 @@ describe('BoTextarea', () => {
 			},
 		})
 		const textarea = wrapper.find('textarea')
-		expect(textarea.attributes('style')).toContain(`resize: ${BoTextareaResize.vertical}`)
+		expect(textarea.attributes('style')).toContain('resize: vertical')
 	})
 
 	it('applies wrap attribute correctly when specified', () => {

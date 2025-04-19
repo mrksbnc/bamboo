@@ -91,10 +91,10 @@ describe('BoInput.vue', () => {
 
 		test('clear button has proper accessibility attributes', async () => {
 			await globalWrapper.setProps({ clearable: true, modelValue: 'Test Value' })
-			const clearButton = globalWrapper.find('.cursor-pointer')
+			const clearButton = globalWrapper.find('button[aria-label="Clear input"]')
 
-			expect(clearButton.attributes('role')).toBe('button')
-			expect(clearButton.attributes('tabindex')).toBe('0')
+			expect(clearButton.exists()).toBe(true)
+			expect(clearButton.attributes('type')).toBe('button')
 			expect(clearButton.attributes('aria-label')).toBe('Clear input')
 		})
 	})
@@ -229,19 +229,19 @@ describe('BoInput.vue', () => {
 	suite('Clearable Input', () => {
 		test('does not show clear button when input is empty', async () => {
 			await globalWrapper.setProps({ clearable: true, modelValue: '' })
-			const clearButton = globalWrapper.find('.cursor-pointer')
+			const clearButton = globalWrapper.find('button[aria-label="Clear input"]')
 			expect(clearButton.exists()).toBe(false)
 		})
 
 		test('shows clear button when input has value', async () => {
 			await globalWrapper.setProps({ clearable: true, modelValue: 'Test Value' })
-			const clearButton = globalWrapper.find('.cursor-pointer')
+			const clearButton = globalWrapper.find('button[aria-label="Clear input"]')
 			expect(clearButton.exists()).toBe(true)
 		})
 
 		test('clears the input when clear button is clicked', async () => {
 			await globalWrapper.setProps({ clearable: true, modelValue: 'Test Value' })
-			const clearButton = globalWrapper.find('.cursor-pointer')
+			const clearButton = globalWrapper.find('button[aria-label="Clear input"]')
 			await clearButton.trigger('click')
 
 			expect(globalWrapper.emitted('clear')).toBeTruthy()
@@ -255,7 +255,7 @@ describe('BoInput.vue', () => {
 			await globalWrapper.setProps({ required: true })
 			const requiredMark = globalWrapper.find('.text-red-500')
 			expect(requiredMark.exists()).toBe(true)
-			expect(requiredMark.text()).toBe('*')
+			expect(requiredMark.text()).toContain('*')
 		})
 	})
 

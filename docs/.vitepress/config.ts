@@ -7,12 +7,13 @@ function buildSidebar() {
 			items: [
 				{ text: 'Get Started', link: '/pages/get-started' },
 				{ text: 'Accessibility', link: '/pages/accessibility' },
+				{ text: 'Testing & QA', link: '/pages/testing' },
 			],
 		},
 		{
 			text: 'Theming',
 			items: [
-				{ text: 'Overview', link: '/components/theming/index' },
+				{ text: 'Overview', link: '/components/theming/' },
 				{ text: 'Dark Mode', link: '/components/theming/dark-mode' },
 				{ text: 'Sizing', link: '/components/theming/sizing' },
 			],
@@ -52,6 +53,8 @@ function getComponents() {
 export default defineConfig({
 	title: 'Bamboo',
 	description: 'UI library built with Vue and Tailwind CSS',
+	base: '/',
+	cleanUrls: true,
 	head: [
 		['link', { rel: 'icon', type: 'image/svg', href: '/assets/logo.webp' }],
 		[

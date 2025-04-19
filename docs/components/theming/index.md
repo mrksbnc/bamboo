@@ -18,15 +18,6 @@ To start using the Bamboo theming features:
 1. Explore the [Dark Mode documentation](./dark-mode.md) to understand how to implement theme switching
 2. Check the [Component Sizing documentation](./sizing.md)
 
-## Default Theme
-
-Bamboo components use a default theme out of the box that follows modern design principles with a clean, minimal aesthetic:
-
-- Subtle shadows and depth
-- Neutral color palette with accent colors for emphasis
-- Comfortable spacing and proportions
-- Smooth transitions and interactions
-
 ## Customization Points
 
 While Bamboo components look great with default styling, there are multiple ways to customize the appearance:

@@ -3,26 +3,23 @@
 		v-html="svg"
 		:style="style"
 		class="bo-icon"
-		aria-label="icon"
-		type="image/svg+xml"
 		:class="tailwindCssSizeClasses"
+		:role="decorative ? 'presentation' : 'img'"
+		:aria-hidden="decorative ? 'true' : undefined"
+		:aria-label="!decorative && title ? title : undefined"
 	></div>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-	inheritAttrs: true,
-})
-</script>
-
 <script setup lang="ts">
 import { BoSize } from '@/shared/bo_size'
-import { computed, defineComponent, ref, toRefs, watch, type StyleValue } from 'vue'
+import { computed, ref, toRefs, watch, type StyleValue } from 'vue'
 import { icons, type BoIconProps } from './bo_icon'
 
 const props = withDefaults(defineProps<BoIconProps>(), {
 	size: () => BoSize.default,
 	color: () => 'currentColor',
+	decorative: true,
+	title: undefined,
 })
 
 const { icon, size, color } = toRefs(props)
@@ -66,7 +63,15 @@ const tailwindCssSizeClasses = computed<string>(() => {
 async function load(): Promise<void> {
 	try {
 		await iconMap[icon.value]().then((val) => {
-			svg.value = val
+			// If not decorative and has a title, insert title tag into the SVG
+			if (!props.decorative && props.title) {
+				// Simple regex to insert a title tag after the svg tag opens
+				const titleInsertPoint = val.indexOf('>') + 1
+				const titleTag = `<title>${props.title}</title>`
+				svg.value = val.slice(0, titleInsertPoint) + titleTag + val.slice(titleInsertPoint)
+			} else {
+				svg.value = val
+			}
 		})
 	} catch (e) {
 		console.error(`Could not find icon of name ${icon.value}`)
@@ -74,4 +79,12 @@ async function load(): Promise<void> {
 }
 
 watch(icon, () => load(), { immediate: true })
+watch(
+	() => props.title,
+	() => load(),
+)
+watch(
+	() => props.decorative,
+	() => load(),
+)
 </script>

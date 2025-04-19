@@ -6,7 +6,7 @@
 		:aria-disabled="disabled || isLoading ? 'true' : 'false'"
 		:aria-busy="isLoading ? 'true' : 'false'"
 		:aria-pressed="pressed ? 'true' : 'false'"
-		:aria-label="ariaLabel || (label ? undefined : iconOnlyButton ? 'Button with icon' : undefined)"
+		:aria-label="ariaLabel ?? (label ? undefined : iconOnlyButton ? 'Button with icon' : undefined)"
 	>
 		<div
 			v-if="useSlot"
@@ -77,27 +77,19 @@ const slots = defineSlots<{
 	content(props: Record<string, unknown>): void
 }>()
 
-const props = withDefaults(
-	defineProps<
-		BoButtonProps & {
-			pressed?: boolean
-			ariaLabel?: string
-		}
-	>(),
-	{
-		id: IdentityUtils.generateRandomIdWithPrefix('bo-button'),
-		type: 'button',
-		loaderType: 'spinner',
-		size: () => BoSize.default,
-		prefixIcon: () => Icon.none,
-		suffixIcon: () => Icon.none,
-		shape: () => BoButtonShape.default,
-		variant: () => BoButtonVariant.primary,
-		fullWidth: false,
-		pressed: false,
-		ariaLabel: undefined,
-	},
-)
+const props = withDefaults(defineProps<BoButtonProps>(), {
+	id: IdentityUtils.generateRandomIdWithPrefix('bo-button'),
+	type: 'button',
+	loaderType: 'spinner',
+	size: () => BoSize.default,
+	prefixIcon: () => Icon.none,
+	suffixIcon: () => Icon.none,
+	shape: () => BoButtonShape.default,
+	variant: () => BoButtonVariant.primary,
+	fullWidth: false,
+	pressed: false,
+	ariaLabel: undefined,
+})
 
 const {
 	label,

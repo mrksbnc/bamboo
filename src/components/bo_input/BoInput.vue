@@ -9,6 +9,7 @@
 			<span
 				v-if="required"
 				class="text-red-500"
+				aria-hidden="true"
 				>*<span class="sr-only">(required)</span></span
 			>
 		</label>
@@ -44,23 +45,19 @@
 				@blur="$emit('blur')"
 				@input="$emit('input', $event)"
 			/>
-			<div
+			<button
 				v-if="clearable && modelValue"
-				class="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
-				@click="clearInput"
-				role="button"
-				tabindex="0"
+				type="button"
+				class="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
 				aria-label="Clear input"
-				@keydown.enter.prevent="clearInput"
-				@keydown.space.prevent="clearInput"
+				@click="handleClear"
 			>
 				<bo-icon
 					:icon="Icon.x"
 					:size="BoSize.small"
-					class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
 					aria-hidden="true"
 				/>
-			</div>
+			</button>
 			<div
 				v-else-if="suffixIcon"
 				class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
@@ -102,6 +99,7 @@
 			:id="errorId"
 			class="mt-1 flex items-center gap-1 text-sm text-red-600 dark:text-red-500"
 			role="alert"
+			aria-live="assertive"
 		>
 			<bo-icon
 				:icon="Icon.alert_circle"
@@ -118,7 +116,7 @@ import { BoIcon, Icon } from '@/components/bo_icon'
 import { BoSize } from '@/shared'
 import { AccessibilityUtils, StringUtils, TailwindUtils } from '@/utils'
 import { IdentityUtils } from '@/utils/identity_utils'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import {
 	BoInputLoaderVariant,
 	BoInputSize,
@@ -226,10 +224,37 @@ const inputClass = computed<string>(() => {
 	return classes
 })
 
-function clearInput(): void {
+function handleClear() {
 	modelValue.value = ''
 	emit('clear')
-	// Announce to screen readers that the input has been cleared
-	AccessibilityUtils.announceToScreenReader('Input cleared')
 }
+
+// Add a watcher for state changes to announce errors to screen readers
+watch(
+	() => props.state,
+	(newState, oldState) => {
+		if (
+			newState === BoInputState.invalid &&
+			props.errorMessage &&
+			oldState !== BoInputState.invalid
+		) {
+			// Announce error message to screen readers when state becomes invalid
+			AccessibilityUtils.announceToScreenReader(props.errorMessage, 'assertive')
+		} else if (newState === BoInputState.valid && oldState === BoInputState.invalid) {
+			// Announce when field becomes valid after being invalid
+			AccessibilityUtils.announceToScreenReader('Field is now valid', 'polite')
+		}
+	},
+)
+
+// Add a watcher for error message changes
+watch(
+	() => props.errorMessage,
+	(newMessage, oldMessage) => {
+		if (newMessage && props.state === BoInputState.invalid && newMessage !== oldMessage) {
+			// Announce new error messages
+			AccessibilityUtils.announceToScreenReader(newMessage, 'assertive')
+		}
+	},
+)
 </script>

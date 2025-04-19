@@ -20,6 +20,7 @@
   ],
   "scripts": {
     "test": "vitest --update --coverage --silent=false",
+    "test:report": "vitest --update --coverage --silent=false && node scripts/generate-test-report.js",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
