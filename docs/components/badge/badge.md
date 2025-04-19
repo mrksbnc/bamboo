@@ -8,16 +8,7 @@
 
 A badge component is a complementary element that can be used standalone or with other components to display a label or status.
 
-## Basic Example
-
-```html
-<bo-badge label="Badge" />
-```
-
-<hr class="border-gray-200 dark:border-gray-700" />
-<div class="flex gap-2">
-  <bo-badge label="Badge" />
-</div>
+## Component API
 
 ### Props
 
@@ -35,7 +26,7 @@ A badge component is a complementary element that can be used standalone or with
 Though none of the props are required, either the `label`, `prefix-icon`, or the `suffix-icon` prop must be provided.
 :::
 
-### Types
+### Enums
 
 ```ts
 export enum BoBadgeVariant {
@@ -49,9 +40,8 @@ export enum BoBadgeVariant {
 }
 
 export enum BoBadgeType {
-  default = 'default',
-  outline = 'outline',
-  filled = 'filled',
+  default = 'default', // Solid colored background with white text
+  outline = 'outline', // Transparent background with colored border and text
 }
 
 export enum BoBadgeShape {
@@ -62,14 +52,32 @@ export enum BoBadgeShape {
 }
 ```
 
-## Badge Types
+### Slots
 
-Badges come in three types: default, outline, and filled.
+| Slot      | Description                                    |
+| --------- | ---------------------------------------------- |
+| `default` | Custom content instead of using the label prop |
+
+## Basic Usage
+
+```html
+<bo-badge label="Badge" />
+```
+
+<hr class="border-gray-200 dark:border-gray-700" />
+<div class="flex gap-2">
+  <bo-badge label="Badge" />
+</div>
+
+## Examples
+
+### Badge Types
+
+Badges come in two types: default (solid) and outline.
 
 <div class="flex gap-2 mt-2">
   <bo-badge label="Default" :type="BoBadgeType.default" />
   <bo-badge label="Outline" :type="BoBadgeType.outline" />
-  <bo-badge label="Filled" :type="BoBadgeType.filled" />
 </div>
 
 ```html
@@ -81,13 +89,9 @@ Badges come in three types: default, outline, and filled.
   label="Outline"
   :type="BoBadgeType.outline"
 />
-<bo-badge
-  label="Filled"
-  :type="BoBadgeType.filled"
-/>
 ```
 
-## Badge Variants
+### Badge Variants
 
 Change the color of the badge using the predefined variants.
 
@@ -132,7 +136,7 @@ Change the color of the badge using the predefined variants.
 />
 ```
 
-## Badge Shapes
+### Badge Shapes
 
 Change the border radius of the badge using different shapes.
 
@@ -173,7 +177,7 @@ To create a circle badge, set the `shape` to `circle` and provide only an icon.
 
 :::
 
-## Badge Sizes
+### Badge Sizes
 
 Choose from multiple sizes using the `size` prop.
 
@@ -208,7 +212,7 @@ Choose from multiple sizes using the `size` prop.
 />
 ```
 
-## With Icons
+### With Icons
 
 Add icons before or after the badge label.
 
@@ -228,7 +232,7 @@ Add icons before or after the badge label.
 />
 ```
 
-## Icon Only Badges
+### Icon Only Badges
 
 Create badges with only icons.
 
@@ -245,54 +249,68 @@ Create badges with only icons.
 />
 ```
 
-## Filled Badge Examples
+### Style Combinations
 
-The new filled badge style mimics button appearance but in a more compact form.
+Here are examples of different badge combinations with variants and icons.
 
 <div class="flex flex-wrap gap-2 mt-2">
-  <bo-badge label="Primary" :type="BoBadgeType.filled" :variant="BoBadgeVariant.primary" />
-  <bo-badge label="Secondary" :type="BoBadgeType.filled" :variant="BoBadgeVariant.secondary" />
-  <bo-badge label="Danger" :type="BoBadgeType.filled" :variant="BoBadgeVariant.danger" />
-  <bo-badge label="Warning" :type="BoBadgeType.filled" :variant="BoBadgeVariant.warning" />
-  <bo-badge label="Success" :type="BoBadgeType.filled" :variant="BoBadgeVariant.success" />
-  <bo-badge label="Light" :type="BoBadgeType.filled" :variant="BoBadgeVariant.light" />
-  <bo-badge label="Dark" :type="BoBadgeType.filled" :variant="BoBadgeVariant.dark" />
+  <bo-badge label="Primary" :variant="BoBadgeVariant.primary" />
+  <bo-badge label="Secondary" :variant="BoBadgeVariant.secondary" />
+  <bo-badge label="Danger" :variant="BoBadgeVariant.danger" />
+  <bo-badge label="Warning" :variant="BoBadgeVariant.warning" />
+  <bo-badge label="Success" :variant="BoBadgeVariant.success" />
+  <bo-badge label="Light" :variant="BoBadgeVariant.light" />
+  <bo-badge label="Dark" :variant="BoBadgeVariant.dark" />
 </div>
 
 ```html
 <bo-badge
   label="Primary"
-  :type="BoBadgeType.filled"
   :variant="BoBadgeVariant.primary"
 />
 <bo-badge
   label="Secondary"
-  :type="BoBadgeType.filled"
   :variant="BoBadgeVariant.secondary"
 />
-<!-- And so on for other variants -->
+<bo-badge
+  label="Danger"
+  :variant="BoBadgeVariant.danger"
+/>
+<bo-badge
+  label="Warning"
+  :variant="BoBadgeVariant.warning"
+/>
+<bo-badge
+  label="Success"
+  :variant="BoBadgeVariant.success"
+/>
+<bo-badge
+  label="Light"
+  :variant="BoBadgeVariant.light"
+/>
+<bo-badge
+  label="Dark"
+  :variant="BoBadgeVariant.dark"
+/>
 ```
 
-### Filled Badge with Icons
+### Badges with Icons
 
-Combine filled badges with icons for more visual impact.
+Combine badges with icons for more visual impact.
 
 <div class="flex gap-2 mt-2">
   <bo-badge 
     label="New" 
-    :type="BoBadgeType.filled" 
     :variant="BoBadgeVariant.success" 
     :prefix-icon="Icon.plus" 
   />
   <bo-badge 
     label="Warning" 
-    :type="BoBadgeType.filled" 
     :variant="BoBadgeVariant.warning" 
     :prefix-icon="Icon.alert_triangle" 
   />
   <bo-badge 
     label="Error" 
-    :type="BoBadgeType.filled" 
     :variant="BoBadgeVariant.danger" 
     :prefix-icon="Icon.x" 
   />
@@ -301,19 +319,16 @@ Combine filled badges with icons for more visual impact.
 ```html
 <bo-badge
   label="New"
-  :type="BoBadgeType.filled"
   :variant="BoBadgeVariant.success"
   :prefix-icon="Icon.plus"
 />
 <bo-badge
   label="Warning"
-  :type="BoBadgeType.filled"
   :variant="BoBadgeVariant.warning"
   :prefix-icon="Icon.alert_triangle"
 />
 <bo-badge
   label="Error"
-  :type="BoBadgeType.filled"
   :variant="BoBadgeVariant.danger"
   :prefix-icon="Icon.x"
 />

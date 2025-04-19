@@ -8,15 +8,17 @@
 			:style="customColorStyle"
 		></div>
 		<span
-			v-if="displayLoaderText"
+			v-if="displayLoaderText || $slots.default"
 			class="bo-loading-spinner__text"
 		>
-			<bo-text
-				:color="BoTextColor.secondary"
-				:font-family="BoFontFamily.sans"
-				:size="BoFontSize.sm"
-				:text="StringUtils.safeString(loaderText)"
-			/>
+			<slot>
+				<bo-text
+					:size="BoFontSize.xs"
+					:color="BoTextColor.secondary"
+					:font-family="BoFontFamily.sans"
+					:text="StringUtils.safeString(loaderText)"
+				/>
+			</slot>
 		</span>
 	</div>
 </template>
@@ -28,6 +30,10 @@ import { BoSize } from '@/shared/bo_size'
 import { StringUtils, TailwindUtils } from '@/utils'
 import { computed, toRefs, type StyleValue } from 'vue'
 import type { BoLoadingSpinnerProps } from './types'
+
+defineSlots<{
+	default?: () => unknown
+}>()
 
 const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 	size: () => BoSize.default,

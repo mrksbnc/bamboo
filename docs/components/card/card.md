@@ -7,42 +7,45 @@ import DefaultSlotExample from './examples/DefaultSlotExample.vue'
 
 A card is a container that holds related content and actions with a predifined style.
 
-## Basic usage
+## Component API
 
-The component to use is called `bo-card`.
+### Slots
 
-### Example
+| Slot name | Description                     |
+| --------- | ------------------------------- |
+| `header`  | Card header content area        |
+| `content` | Main card content area          |
+| `actions` | Card footer with action buttons |
 
-```js
-<bo-card>
-  <template #header>
-    //
-  </template>
-  <template #content>
-    //
-  </template>
-  <template #actions>
-    //
-  </template>
-</bo-card>
+## Basic Usage
 
+```vue
+<template>
+  <bo-card>
+    <template #header>
+      <div>Header content</div>
+    </template>
+    <template #content>
+      <div>Main content</div>
+    </template>
+    <template #actions>
+      <div>Action buttons</div>
+    </template>
+  </bo-card>
+</template>
+
+<script setup>
+import { BoCard } from '@/components/bo_card'
+</script>
 ```
 
-## Slots
+## Examples
 
-To render you content, you can use the following slots.
-
-| Slot name |
-| --------- |
-| `header`  |
-| `content` |
-| `actions` |
+### Default Card Example
 
 <DefaultSlotExample />
 
-::: details Toggle code
-
-```js
+```vue
 <bo-card>
   <template #header>
     <div class="flex flex-row gap-2 items-center text-neutral-900">
@@ -66,5 +69,3 @@ To render you content, you can use the following slots.
   </template>
 </bo-card>
 ```
-
-:::

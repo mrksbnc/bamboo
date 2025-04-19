@@ -27,6 +27,9 @@ beforeEach(() => {
 		},
 		slots: {
 			default: '<div>Modal Content</div>',
+			header: '<div>Header Content</div>',
+			description: '<div>Description Content</div>',
+			footer: '<div>Footer Content</div>',
 		},
 	})
 })

@@ -10,8 +10,10 @@ A loading pulse is an animated indicator that shows a pulsing animation to repre
 
 ## Basic Example
 
-<div class="flex gap-4 items-center">
-  <bo-loading-pulse />
+<div class="flex items-center gap-2">
+  <div class="p-2">
+<bo-loading-pulse />
+  </div>
 </div>
 
 ```html
@@ -52,11 +54,21 @@ export enum BoLoaderTextPosition {
 Choose from multiple sizes using the `size` prop.
 
 <div class="flex items-center gap-4">
-  <bo-loading-pulse :size="BoSize.extra_small" />
-  <bo-loading-pulse :size="BoSize.small" />
-  <bo-loading-pulse :size="BoSize.default" />
-  <bo-loading-pulse :size="BoSize.large" />
-  <bo-loading-pulse :size="BoSize.extra_large" />
+  <div class="p-2">
+    <bo-loading-pulse :size="BoSize.extra_small" />
+  </div>
+  <div class="p-2">
+    <bo-loading-pulse :size="BoSize.small" />
+  </div>
+  <div class="p-2">
+    <bo-loading-pulse :size="BoSize.default" />
+  </div>
+  <div class="p-2">
+    <bo-loading-pulse :size="BoSize.large" />
+  </div>
+  <div class="p-2">
+    <bo-loading-pulse :size="BoSize.extra_large" />
+  </div>
 </div>
 
 ```html
@@ -72,13 +84,22 @@ Choose from multiple sizes using the `size` prop.
 Use different colors by setting the `variant` prop.
 
 <div class="flex items-center gap-4">
-  <bo-loading-pulse :variant="BoLoaderVariant.primary" />
-  <bo-loading-pulse :variant="BoLoaderVariant.secondary" />
-  <bo-loading-pulse :variant="BoLoaderVariant.success" />
-  <bo-loading-pulse :variant="BoLoaderVariant.danger" />
-  <bo-loading-pulse :variant="BoLoaderVariant.warning" />
-  <bo-loading-pulse :variant="BoLoaderVariant.dark" />
-  <div class="bg-gray-800 p-2">
+  <div class="p-2">
+    <bo-loading-pulse :variant="BoLoaderVariant.primary" />
+  </div>
+  <div class="p-2">
+    <bo-loading-pulse :variant="BoLoaderVariant.secondary" />
+  </div>
+  <div class="p-2">
+    <bo-loading-pulse :variant="BoLoaderVariant.success" />
+  </div>
+  <div class="p-2">
+    <bo-loading-pulse :variant="BoLoaderVariant.danger" />
+  </div>
+  <div class="p-2">
+    <bo-loading-pulse :variant="BoLoaderVariant.warning" />
+  </div>
+  <div class="p-2">
     <bo-loading-pulse :variant="BoLoaderVariant.white" />
   </div>
 </div>
@@ -98,9 +119,15 @@ Use different colors by setting the `variant` prop.
 Apply a custom color using the `custom-color` prop.
 
 <div class="flex items-center gap-4">
-  <bo-loading-pulse custom-color="#8B5CF6" />
-  <bo-loading-pulse custom-color="#F59E0B" />
-  <bo-loading-pulse custom-color="#EC4899" />
+  <div class="p-2">
+    <bo-loading-pulse custom-color="#8B5CF6" />
+  </div>
+  <div class="p-2">
+    <bo-loading-pulse custom-color="#F59E0B" />
+  </div>
+  <div class="p-2">
+    <bo-loading-pulse custom-color="#EC4899" />
+  </div>
 </div>
 
 ```html
@@ -113,12 +140,17 @@ Apply a custom color using the `custom-color` prop.
 
 Add descriptive text using the `loader-text` prop.
 
-<div class="flex flex-col gap-4">
-  <bo-loading-pulse loader-text="Loading..." />
-  <bo-loading-pulse 
-    loader-text="Processing data" 
-    :text-position="BoLoaderTextPosition.side" 
-  />
+<div class="flex flex-col gap-2">
+  <div class="p-2">
+    <bo-loading-pulse loader-text="Loading..." />
+  </div>
+  <hr class="border-gray-200 dark:border-gray-700" />
+  <div class="p-2">
+    <bo-loading-pulse 
+      loader-text="Processing data" 
+      :text-position="BoLoaderTextPosition.side" 
+    />
+  </div>
 </div>
 
 ```html

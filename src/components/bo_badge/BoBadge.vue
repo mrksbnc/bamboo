@@ -63,51 +63,35 @@ const containerClasses = {
 const variantClasses = {
 	[BoBadgeType.default]: {
 		[BoBadgeVariant.primary]:
-			/*tw*/ 'bg-blue-100 text-blue-700 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-200 dark:border-blue-700/50',
+			/*tw*/ 'bg-blue-600 text-white border border-blue-700 dark:bg-blue-700 dark:text-white',
 		[BoBadgeVariant.secondary]:
-			/*tw*/ 'bg-neutral-50 text-neutral-700 border border-neutral-200 dark:bg-neutral-700/30 dark:text-neutral-200 dark:border-neutral-700/50',
+			/*tw*/ 'bg-neutral-600 text-white border border-neutral-700 dark:bg-neutral-700 dark:text-white',
 		[BoBadgeVariant.danger]:
-			/*tw*/ 'bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/30 dark:text-red-200 dark:border-red-700/50',
+			/*tw*/ 'bg-red-600 text-white border border-red-700 dark:bg-red-700 dark:text-white',
 		[BoBadgeVariant.warning]:
-			/*tw*/ 'bg-yellow-50 text-yellow-700 border border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-200 dark:border-yellow-700/50',
+			/*tw*/ 'bg-yellow-600 text-white border border-yellow-700 dark:bg-yellow-600 dark:text-white',
 		[BoBadgeVariant.success]:
-			/*tw*/ 'bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-200 dark:border-green-700/50',
-		[BoBadgeVariant.light]:
-			/*tw*/ 'bg-white text-neutral-700 border border-neutral-200 dark:bg-neutral-700 dark:text-neutral-200 dark:border-neutral-700',
-		[BoBadgeVariant.dark]:
-			/*tw*/ 'bg-neutral-700 text-white border border-neutral-700 dark:bg-black dark:text-white dark:border-neutral-700',
-	},
-	[BoBadgeType.outline]: {
-		[BoBadgeVariant.primary]:
-			/*tw*/ 'border border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-400',
-		[BoBadgeVariant.secondary]:
-			/*tw*/ 'border border-neutral-600 text-neutral-600 dark:border-neutral-400 dark:text-neutral-400',
-		[BoBadgeVariant.danger]:
-			/*tw*/ 'border border-red-600 text-red-600 dark:border-red-500 dark:text-red-400',
-		[BoBadgeVariant.warning]:
-			/*tw*/ 'border border-yellow-600 text-yellow-600 dark:border-yellow-500 dark:text-yellow-400',
-		[BoBadgeVariant.success]:
-			/*tw*/ 'border border-green-600 text-green-600 dark:border-green-500 dark:text-green-400',
-		[BoBadgeVariant.light]:
-			/*tw*/ 'border border-neutral-400 text-neutral-400 dark:border-neutral-400 dark:text-neutral-300',
-		[BoBadgeVariant.dark]:
-			/*tw*/ 'border border-black text-black dark:border-white dark:text-white',
-	},
-	[BoBadgeType.filled]: {
-		[BoBadgeVariant.primary]:
-			/*tw*/ 'bg-blue-600 text-white border border-blue-700 dark:bg-blue-700  dark:text-white',
-		[BoBadgeVariant.secondary]:
-			/*tw*/ 'bg-neutral-600 text-white border border-neutral-700 dark:bg-neutral-700  dark:text-white',
-		[BoBadgeVariant.danger]:
-			/*tw*/ 'bg-red-600 text-white border border-red-700 dark:bg-red-700  dark:text-white',
-		[BoBadgeVariant.warning]:
-			/*tw*/ 'bg-yellow-500 text-white border border-yellow-600 dark:bg-yellow-600  dark:text-white',
-		[BoBadgeVariant.success]:
-			/*tw*/ 'bg-green-600 text-white border border-green-700 dark:bg-green-700  dark:text-white',
+			/*tw*/ 'bg-green-600 text-white border border-green-700 dark:bg-green-700 dark:text-white',
 		[BoBadgeVariant.light]:
 			/*tw*/ 'bg-neutral-100 text-neutral-800 border border-neutral-200 dark:bg-neutral-200 dark:border-neutral-300 dark:text-neutral-800',
 		[BoBadgeVariant.dark]:
-			/*tw*/ 'bg-neutral-800 text-white border border-neutral-900 dark:bg-black  dark:text-white',
+			/*tw*/ 'bg-neutral-800 text-white border border-neutral-900 dark:bg-black dark:text-white',
+	},
+	[BoBadgeType.outline]: {
+		[BoBadgeVariant.primary]:
+			/*tw*/ 'bg-transparent border border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-400',
+		[BoBadgeVariant.secondary]:
+			/*tw*/ 'bg-transparent border border-neutral-600 text-neutral-600 dark:border-neutral-400 dark:text-neutral-400',
+		[BoBadgeVariant.danger]:
+			/*tw*/ 'bg-transparent border border-red-600 text-red-600 dark:border-red-500 dark:text-red-400',
+		[BoBadgeVariant.warning]:
+			/*tw*/ 'bg-transparent border border-yellow-600 text-yellow-600 dark:border-yellow-500 dark:text-yellow-400',
+		[BoBadgeVariant.success]:
+			/*tw*/ 'bg-transparent border border-green-600 text-green-600 dark:border-green-500 dark:text-green-400',
+		[BoBadgeVariant.light]:
+			/*tw*/ 'bg-transparent border border-neutral-400 text-neutral-400 dark:border-neutral-400 dark:text-neutral-300',
+		[BoBadgeVariant.dark]:
+			/*tw*/ 'bg-transparent border border-black text-black dark:border-white dark:text-white',
 	},
 }
 

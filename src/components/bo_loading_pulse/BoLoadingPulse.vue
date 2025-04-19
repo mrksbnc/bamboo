@@ -18,15 +18,17 @@
 			></span>
 		</span>
 		<span
-			v-if="displayLoaderText"
+			v-if="displayLoaderText || $slots.default"
 			class="bo-loading-pulse__text"
 		>
-			<bo-text
-				role="text"
-				:color="BoTextColor.secondary"
-				:font-family="BoFontFamily.sans"
-				:text="StringUtils.safeString(loaderText)"
-			/>
+			<slot>
+				<bo-text
+					role="text"
+					:color="BoTextColor.secondary"
+					:font-family="BoFontFamily.sans"
+					:text="StringUtils.safeString(loaderText)"
+				/>
+			</slot>
 		</span>
 	</div>
 </template>
@@ -38,6 +40,10 @@ import { BoSize } from '@/shared/bo_size'
 import { StringUtils } from '@/utils'
 import { computed, toRefs, type StyleValue } from 'vue'
 import type { BoLoadingPulseProps } from './types'
+
+defineSlots<{
+	default?: () => unknown
+}>()
 
 const props = withDefaults(defineProps<BoLoadingPulseProps>(), {
 	size: () => BoSize.default,

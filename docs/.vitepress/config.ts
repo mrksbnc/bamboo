@@ -25,8 +25,14 @@ function buildSidebar() {
 		{
 			text: 'Utilities',
 			items: [
-				{ text: 'All Utilities', link: '/pages/utilities' },
-				{ text: 'Accessibility Utils', link: '/pages/accessibility' },
+				{ text: 'Overview', link: '/pages/utilities' },
+				{ text: 'Accessibility Utils', link: '/pages/utilities/accessibility-utils' },
+				{ text: 'Identity Utils', link: '/pages/utilities/identity-utils' },
+				{ text: 'Keyboard Utils', link: '/pages/utilities/keyboard-utils' },
+				{ text: 'LocalStorage Utils', link: '/pages/utilities/local-storage-utils' },
+				{ text: 'String Utils', link: '/pages/utilities/string-utils' },
+				{ text: 'Tailwind Utils', link: '/pages/utilities/tailwind-utils' },
+				{ text: 'Theme Utils', link: '/pages/utilities/theme-utils' },
 			],
 		},
 	]

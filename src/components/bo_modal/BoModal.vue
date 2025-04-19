@@ -20,14 +20,27 @@
 			<div
 				class="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-700"
 			>
-				<BoText
-					v-if="title"
-					:id="modalTitleId"
-					:text="title"
-					:size="BoFontSize.xl"
-					:weight="BoFontWeight.semibold"
-					color="default"
-				/>
+				<div class="flex flex-col gap-2">
+					<slot name="header">
+						<bo-text
+							v-if="title"
+							:id="modalTitleId"
+							:text="title"
+							:size="BoFontSize.xl"
+							:weight="BoFontWeight.semibold"
+							:color="BoTextColor.default"
+						/>
+					</slot>
+					<slot name="description">
+						<bo-text
+							v-if="description"
+							:id="modalDescriptionId"
+							:text="description"
+							class="mb-4"
+							:color="BoTextColor.secondary"
+						/>
+					</slot>
+				</div>
 				<button
 					v-if="showClose"
 					type="button"
@@ -42,14 +55,7 @@
 
 			<!-- Content -->
 			<div class="p-4">
-				<BoText
-					v-if="description"
-					:id="modalDescriptionId"
-					:text="description"
-					class="mb-4"
-					color="secondary"
-				/>
-				<slot name="content"></slot>
+				<slot></slot>
 			</div>
 
 			<!-- Footer -->
@@ -60,7 +66,7 @@
 
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo_icon'
-import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text'
+import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text'
 import { AccessibilityUtils, KeyboardUtils } from '@/utils'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import type { BoModalProps } from './bo_modal'
@@ -69,9 +75,11 @@ const props = withDefaults(defineProps<BoModalProps>(), {
 	showClose: true,
 })
 
-const slots = defineSlots<{
-	content?: (props: Record<string, unknown>) => void
-	footer?: (props: Record<string, unknown>) => void
+defineSlots<{
+	header?: () => unknown
+	description?: () => unknown
+	default?: () => unknown
+	footer?: () => unknown
 }>()
 
 const emit = defineEmits<{

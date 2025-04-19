@@ -37,8 +37,9 @@ import { computed, ref } from 'vue'
 import type { BoCardProps } from './bo_card'
 
 defineSlots<{
-	content: (props: Record<string, unknown>) => void
-	header: (props: Record<string, unknown>) => void
+	header?: (props: Record<string, unknown>) => void
+	content?: (props: Record<string, unknown>) => void
+	actions?: (props: Record<string, unknown>) => void
 }>()
 
 const props = withDefaults(defineProps<BoCardProps>(), {

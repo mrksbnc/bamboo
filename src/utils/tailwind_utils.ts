@@ -4,6 +4,10 @@ export class TailwindUtils {
 	 * directly be applied to an element.
 	 */
 	static merge(...classes: (string | null | undefined)[]): string {
+		if (classes.length === 0) {
+			return ''
+		}
+
 		return Array.from(
 			new Set(
 				classes

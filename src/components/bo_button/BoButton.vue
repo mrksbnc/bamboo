@@ -16,7 +16,7 @@
 		</div>
 		<span
 			v-else
-			class="bo-button__content inline-flex items-center justify-center gap-1"
+			class="bo-button__content inline-flex items-center justify-center gap-2"
 		>
 			<bo-icon
 				v-if="prefixIcon !== Icon.none || iconOnlyButton"
