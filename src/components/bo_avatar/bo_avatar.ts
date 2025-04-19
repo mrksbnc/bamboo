@@ -23,6 +23,21 @@ export enum BoAvatarType {
 	initials = 'initials',
 }
 
+export enum BoAvatarIndicatorPosition {
+	topLeft = 'top-left',
+	topRight = 'top-right',
+	bottomLeft = 'bottom-left',
+	bottomRight = 'bottom-right',
+}
+
+export enum BoAvatarIndicatorStatus {
+	online = 'online',
+	offline = 'offline',
+	busy = 'busy',
+	away = 'away',
+	none = 'none',
+}
+
 export type BoAvatarData = {
 	alt?: string
 	src?: string
@@ -39,4 +54,7 @@ export type BoAvatarProps = {
 	clickable?: boolean
 	withDefaultImage?: boolean
 	variant?: BoAvatarVariant
+	withIndicator?: boolean
+	indicatorStatus?: BoAvatarIndicatorStatus
+	indicatorPosition?: BoAvatarIndicatorPosition
 }

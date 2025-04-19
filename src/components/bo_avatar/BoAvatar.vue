@@ -37,6 +37,12 @@
 				class="h-full w-full object-cover"
 			/>
 		</span>
+
+		<!-- Status Indicator -->
+		<span
+			v-if="withIndicator && indicatorStatus !== BoAvatarIndicatorStatus.none"
+			:class="indicatorClasses"
+		></span>
 	</div>
 </template>
 
@@ -45,7 +51,14 @@ import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text'
 import { BoSize } from '@/shared'
 import { StringUtils, TailwindUtils } from '@/utils'
 import { computed, toRefs, type StyleValue } from 'vue'
-import { BoAvatarShape, BoAvatarType, BoAvatarVariant, type BoAvatarProps } from './bo_avatar'
+import {
+	BoAvatarIndicatorPosition,
+	BoAvatarIndicatorStatus,
+	BoAvatarShape,
+	BoAvatarType,
+	BoAvatarVariant,
+	type BoAvatarProps,
+} from './bo_avatar'
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
 	data: () => {
@@ -60,10 +73,25 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 	type: () => BoAvatarType.initials,
 	shape: () => BoAvatarShape.rounded,
 	variant: () => BoAvatarVariant.primary,
+	withIndicator: false,
+	indicatorStatus: () => BoAvatarIndicatorStatus.none,
+	indicatorPosition: () => BoAvatarIndicatorPosition.bottomRight,
 })
 
-const { clickable, data, type, shape, size, colorHex, withDefaultImage, fontColorHex, variant } =
-	toRefs(props)
+const {
+	clickable,
+	data,
+	type,
+	shape,
+	size,
+	colorHex,
+	withDefaultImage,
+	fontColorHex,
+	variant,
+	withIndicator,
+	indicatorStatus,
+	indicatorPosition,
+} = toRefs(props)
 
 const defaultAvatarSrc = new URL('@/assets/img/avatar.jpg', import.meta.url).href
 
@@ -91,6 +119,32 @@ const avatarShapeClasses = {
 	[BoAvatarShape.outline_circle]: /*tw*/ 'rounded-full',
 	[BoAvatarShape.outline_rounded]: /*tw*/ 'rounded-md',
 	[BoAvatarShape.outline_flat]: /*tw*/ 'rounded-none',
+}
+
+// Indicator status colors
+const indicatorStatusClasses = {
+	[BoAvatarIndicatorStatus.online]: /*tw*/ 'bg-green-500',
+	[BoAvatarIndicatorStatus.offline]: /*tw*/ 'bg-gray-400',
+	[BoAvatarIndicatorStatus.busy]: /*tw*/ 'bg-red-500',
+	[BoAvatarIndicatorStatus.away]: /*tw*/ 'bg-yellow-500',
+	[BoAvatarIndicatorStatus.none]: '',
+}
+
+// Indicator position classes
+const indicatorPositionClasses = {
+	[BoAvatarIndicatorPosition.topLeft]: /*tw*/ 'top-0 left-0',
+	[BoAvatarIndicatorPosition.topRight]: /*tw*/ 'top-0 right-0',
+	[BoAvatarIndicatorPosition.bottomLeft]: /*tw*/ 'bottom-0 left-0',
+	[BoAvatarIndicatorPosition.bottomRight]: /*tw*/ 'bottom-0 right-0',
+}
+
+// Indicator size based on avatar size
+const indicatorSizeClasses = {
+	[BoSize.extra_small]: /*tw*/ 'w-1.5 h-1.5',
+	[BoSize.small]: /*tw*/ 'w-2 h-2',
+	[BoSize.default]: /*tw*/ 'w-2.5 h-2.5',
+	[BoSize.large]: /*tw*/ 'w-3.5 h-3.5',
+	[BoSize.extra_large]: /*tw*/ 'w-5 h-5',
 }
 
 const variantColors = {
@@ -177,6 +231,19 @@ const textColorClass = computed<string>(() => {
 	}
 
 	return 'text-gray-600 dark:text-gray-300'
+})
+
+const indicatorClasses = computed<string>(() => {
+	if (!withIndicator.value || indicatorStatus.value === BoAvatarIndicatorStatus.none) {
+		return ''
+	}
+
+	return TailwindUtils.merge(
+		'absolute rounded-full border-2 border-white',
+		indicatorStatusClasses[indicatorStatus.value],
+		indicatorPositionClasses[indicatorPosition.value],
+		indicatorSizeClasses[size.value],
+	)
 })
 
 const cursorClassConstruct = computed<string>(() => {

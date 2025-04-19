@@ -1,10 +1,9 @@
 <script setup>
-import { BoAvatar, BoAvatarType, BoAvatarShape, BoAvatarVariant } from '@/components/bo_avatar';
-import BoAvatarCustomImage from './examples/BoAvatarCustomImage.vue'
-import {BoSize} from '@/shared'
+import { BoAvatar, BoAvatarType, BoAvatarShape, BoAvatarVariant, BoAvatarIndicatorStatus, BoAvatarIndicatorPosition } from '@/components/bo_avatar';
+import { BoSize } from '@/shared'
 </script>
 
-# Tailwind CSS Avatar - Bamboo UI
+# bo-avatar
 
 An avatar is a visual representation of a user or entity. Use avatars to help users quickly identify people or brands.
 
@@ -21,17 +20,20 @@ An avatar is a visual representation of a user or entity. Use avatars to help us
 
 ### Props
 
-| Prop name          | Type              | Default                   | Description                               |
-| ------------------ | ----------------- | ------------------------- | ----------------------------------------- |
-| `data`             | `BoAvatarData`    | `{}`                      | The data for the avatar (required)        |
-| `type`             | `BoAvatarType`    | `BoAvatarType.initials`   | The type of avatar (image or initials)    |
-| `shape`            | `BoAvatarShape`   | `BoAvatarShape.rounded`   | The shape of the avatar                   |
-| `variant`          | `BoAvatarVariant` | `BoAvatarVariant.primary` | The color variant of the avatar           |
-| `size`             | `BoSize`          | `BoSize.default`          | The size of the avatar                    |
-| `colorHex`         | `string`          | `undefined`               | Custom background color (hex code)        |
-| `fontColorHex`     | `string`          | `undefined`               | Custom text color (hex code)              |
-| `clickable`        | `boolean`         | `false`                   | Whether the avatar is clickable           |
-| `withDefaultImage` | `boolean`         | `false`                   | Force the avatar to use the default image |
+| Prop name           | Type                        | Default                                 | Description                               |
+| ------------------- | --------------------------- | --------------------------------------- | ----------------------------------------- |
+| `data`              | `BoAvatarData`              | `{}`                                    | The data for the avatar (required)        |
+| `type`              | `BoAvatarType`              | `BoAvatarType.initials`                 | The type of avatar (image or initials)    |
+| `shape`             | `BoAvatarShape`             | `BoAvatarShape.rounded`                 | The shape of the avatar                   |
+| `variant`           | `BoAvatarVariant`           | `BoAvatarVariant.primary`               | The color variant of the avatar           |
+| `size`              | `BoSize`                    | `BoSize.default`                        | The size of the avatar                    |
+| `colorHex`          | `string`                    | `undefined`                             | Custom background color (hex code)        |
+| `fontColorHex`      | `string`                    | `undefined`                             | Custom text color (hex code)              |
+| `clickable`         | `boolean`                   | `false`                                 | Whether the avatar is clickable           |
+| `withDefaultImage`  | `boolean`                   | `false`                                 | Force the avatar to use the default image |
+| `withIndicator`     | `boolean`                   | `false`                                 | Display status indicator                  |
+| `indicatorStatus`   | `BoAvatarIndicatorStatus`   | `BoAvatarIndicatorStatus.none`          | Status of the indicator                   |
+| `indicatorPosition` | `BoAvatarIndicatorPosition` | `BoAvatarIndicatorPosition.bottomRight` | Position of the indicator                 |
 
 ### Types
 
@@ -325,12 +327,94 @@ Avatars also support outline variants for a more subtle appearance.
 />
 ```
 
-## All Avatar Variations
+## Status Indicator
 
-For a comprehensive view of all avatar variants, sizes, and shapes, see the example below:
+Avatars can display status indicators (online, offline, busy, away) in different positions.
 
-<script>
-import AvatarVariants from './examples/AvatarVariants.vue'
-</script>
+<div class="flex gap-4 items-center">
+  <bo-avatar :data="{ label: 'O' }" with-indicator :indicator-status="BoAvatarIndicatorStatus.online" />
+  <bo-avatar :data="{ label: 'F' }" with-indicator :indicator-status="BoAvatarIndicatorStatus.offline" />
+  <bo-avatar :data="{ label: 'B' }" with-indicator :indicator-status="BoAvatarIndicatorStatus.busy" />
+  <bo-avatar :data="{ label: 'A' }" with-indicator :indicator-status="BoAvatarIndicatorStatus.away" />
+</div>
 
-<AvatarVariants />
+```html
+<bo-avatar
+  :data="{ label: 'O' }"
+  with-indicator
+  :indicator-status="BoAvatarIndicatorStatus.online"
+/>
+<bo-avatar
+  :data="{ label: 'F' }"
+  with-indicator
+  :indicator-status="BoAvatarIndicatorStatus.offline"
+/>
+<bo-avatar
+  :data="{ label: 'B' }"
+  with-indicator
+  :indicator-status="BoAvatarIndicatorStatus.busy"
+/>
+<bo-avatar
+  :data="{ label: 'A' }"
+  with-indicator
+  :indicator-status="BoAvatarIndicatorStatus.away"
+/>
+```
+
+## Indicator Positions
+
+You can control the position of the status indicator with the `indicatorPosition` prop.
+
+<div class="flex gap-4 items-center">
+  <bo-avatar 
+    :data="{ label: 'T' }" 
+    with-indicator 
+    :indicator-status="BoAvatarIndicatorStatus.online"
+    :indicator-position="BoAvatarIndicatorPosition.topLeft" 
+  />
+  <bo-avatar 
+    :data="{ label: 'T' }" 
+    with-indicator 
+    :indicator-status="BoAvatarIndicatorStatus.online"
+    :indicator-position="BoAvatarIndicatorPosition.topRight" 
+  />
+  <bo-avatar 
+    :data="{ label: 'B' }" 
+    with-indicator 
+    :indicator-status="BoAvatarIndicatorStatus.online"
+    :indicator-position="BoAvatarIndicatorPosition.bottomLeft" 
+  />
+  <bo-avatar 
+    :data="{ label: 'B' }" 
+    with-indicator 
+    :indicator-status="BoAvatarIndicatorStatus.online"
+    :indicator-position="BoAvatarIndicatorPosition.bottomRight" 
+  />
+</div>
+
+```html
+<bo-avatar
+  :data="{ label: 'T' }"
+  with-indicator
+  :indicator-status="BoAvatarIndicatorStatus.online"
+  :indicator-position="BoAvatarIndicatorPosition.topLeft"
+/>
+<bo-avatar
+  :data="{ label: 'T' }"
+  with-indicator
+  :indicator-status="BoAvatarIndicatorStatus.online"
+  :indicator-position="BoAvatarIndicatorPosition.topRight"
+/>
+<bo-avatar
+  :data="{ label: 'B' }"
+  with-indicator
+  :indicator-status="BoAvatarIndicatorStatus.online"
+  :indicator-position="BoAvatarIndicatorPosition.bottomLeft"
+/>
+<bo-avatar
+  :data="{ label: 'B' }"
+  with-indicator
+  :indicator-status="BoAvatarIndicatorStatus.online"
+  :indicator-position="BoAvatarIndicatorPosition.bottomRight"
+/>
+```

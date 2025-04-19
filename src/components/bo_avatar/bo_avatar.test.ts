@@ -1,4 +1,10 @@
-import { BoAvatar, BoAvatarShape, BoAvatarType } from '@/components/bo_avatar'
+import {
+	BoAvatar,
+	BoAvatarIndicatorPosition,
+	BoAvatarIndicatorStatus,
+	BoAvatarShape,
+	BoAvatarType,
+} from '@/components/bo_avatar'
 import { BoText } from '@/components/bo_text'
 import { BoSize } from '@/shared'
 import { mount } from '@vue/test-utils'
@@ -153,6 +159,120 @@ describe('bo_avatar.vue', () => {
 			test('in case the avatar is not clickable, it should have the default cursor', async () => {
 				await initialWrapper.setProps({ clickable: false })
 				expect(initialWrapper.find('.bo-avatar').classes()).toContain('cursor-default')
+			})
+		})
+
+		suite('avatar indicator', () => {
+			test('the avatar should not display an indicator by default', () => {
+				expect(initialWrapper.find('.absolute.rounded-full').exists()).toBe(false)
+			})
+
+			test('the avatar should display an indicator when withIndicator is true', async () => {
+				await initialWrapper.setProps({
+					withIndicator: true,
+					indicatorStatus: BoAvatarIndicatorStatus.online,
+				})
+
+				expect(initialWrapper.find('.absolute.rounded-full').exists()).toBe(true)
+			})
+
+			test('the indicator should have the online status class', async () => {
+				await initialWrapper.setProps({
+					withIndicator: true,
+					indicatorStatus: BoAvatarIndicatorStatus.online,
+				})
+
+				const indicator = initialWrapper.find('.absolute.rounded-full')
+				expect(indicator.classes()).toContain('bg-green-500')
+			})
+
+			test('the indicator should have the offline status class', async () => {
+				await initialWrapper.setProps({
+					withIndicator: true,
+					indicatorStatus: BoAvatarIndicatorStatus.offline,
+				})
+
+				const indicator = initialWrapper.find('.absolute.rounded-full')
+				expect(indicator.classes()).toContain('bg-gray-400')
+			})
+
+			test('the indicator should have the busy status class', async () => {
+				await initialWrapper.setProps({
+					withIndicator: true,
+					indicatorStatus: BoAvatarIndicatorStatus.busy,
+				})
+
+				const indicator = initialWrapper.find('.absolute.rounded-full')
+				expect(indicator.classes()).toContain('bg-red-500')
+			})
+
+			test('the indicator should have the away status class', async () => {
+				await initialWrapper.setProps({
+					withIndicator: true,
+					indicatorStatus: BoAvatarIndicatorStatus.away,
+				})
+
+				const indicator = initialWrapper.find('.absolute.rounded-full')
+				expect(indicator.classes()).toContain('bg-yellow-500')
+			})
+
+			test('the indicator should be positioned at the bottom right by default', async () => {
+				await initialWrapper.setProps({
+					withIndicator: true,
+					indicatorStatus: BoAvatarIndicatorStatus.online,
+				})
+
+				const indicator = initialWrapper.find('.absolute.rounded-full')
+				expect(indicator.classes()).toContain('bottom-0')
+				expect(indicator.classes()).toContain('right-0')
+			})
+
+			test('the indicator should change position to top left', async () => {
+				await initialWrapper.setProps({
+					withIndicator: true,
+					indicatorStatus: BoAvatarIndicatorStatus.online,
+					indicatorPosition: BoAvatarIndicatorPosition.topLeft,
+				})
+
+				const indicator = initialWrapper.find('.absolute.rounded-full')
+				expect(indicator.classes()).toContain('top-0')
+				expect(indicator.classes()).toContain('left-0')
+			})
+
+			test('the indicator should change position to top right', async () => {
+				await initialWrapper.setProps({
+					withIndicator: true,
+					indicatorStatus: BoAvatarIndicatorStatus.online,
+					indicatorPosition: BoAvatarIndicatorPosition.topRight,
+				})
+
+				const indicator = initialWrapper.find('.absolute.rounded-full')
+				expect(indicator.classes()).toContain('top-0')
+				expect(indicator.classes()).toContain('right-0')
+			})
+
+			test('the indicator should change position to bottom left', async () => {
+				await initialWrapper.setProps({
+					withIndicator: true,
+					indicatorStatus: BoAvatarIndicatorStatus.online,
+					indicatorPosition: BoAvatarIndicatorPosition.bottomLeft,
+				})
+
+				const indicator = initialWrapper.find('.absolute.rounded-full')
+				expect(indicator.classes()).toContain('bottom-0')
+				expect(indicator.classes()).toContain('left-0')
+			})
+
+			test('the indicator size should change based on avatar size', async () => {
+				await initialWrapper.setProps({
+					withIndicator: true,
+					indicatorStatus: BoAvatarIndicatorStatus.online,
+					size: BoSize.small,
+				})
+
+				const indicator = initialWrapper.find('.absolute.rounded-full')
+				expect(indicator.classes()).toContain('w-2')
+				expect(indicator.classes()).toContain('h-2')
 			})
 		})
 	})

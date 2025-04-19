@@ -4,7 +4,7 @@ import { BoSize } from '@/shared';
 import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo_loader';
 </script>
 
-# Tailwind CSS Loading Pulse - Bamboo UI
+# bo-loading-pulse
 
 A loading pulse is an animated indicator that shows a pulsing animation to represent loading states. Use loading pulses to provide subtle visual feedback during asynchronous operations.
 
