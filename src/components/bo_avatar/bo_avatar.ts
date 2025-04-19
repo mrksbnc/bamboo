@@ -38,4 +38,5 @@ export type BoAvatarProps = {
 	fontColorHex?: string
 	clickable?: boolean
 	withDefaultImage?: boolean
+	variant?: BoAvatarVariant
 }

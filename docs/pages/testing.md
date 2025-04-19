@@ -6,12 +6,6 @@ title: Testing & Quality Assurance
 
 Bamboo emphasizes quality and reliability through comprehensive testing. All components and utilities are thoroughly tested to ensure consistent behavior and accessibility compliance.
 
-## Test Coverage
-
-<img src="/reports/test-coverage-badge.svg" alt="Test Coverage Badge">
-
-Bamboo maintains high test coverage to ensure that components work as expected. You can view the detailed test report [here](/reports/).
-
 ## Testing Technologies
 
 Bamboo uses several technologies to ensure high quality:
