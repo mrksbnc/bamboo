@@ -1,64 +1,53 @@
 <template>
-	<div class="input-wrapper">
+	<div class="textarea-wrapper">
 		<label
 			v-if="label"
-			:for="inputId"
+			:for="textareaId"
 			class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 		>
 			{{ label }}
 		</label>
-		<div
-			class="relative"
-			:class="{ flex: prefixIcon || suffixIcon }"
-		>
-			<div
-				v-if="prefixIcon"
-				class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
-			>
-				<bo-icon
-					:icon="prefixIcon"
-					class="h-5 w-5 text-gray-500 dark:text-gray-400"
-				/>
-			</div>
-			<input
-				:id="inputId"
+		<div class="relative">
+			<textarea
+				:id="textareaId"
 				v-model="modelValue"
-				:type="type"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:readonly="readonly"
 				:required="required"
 				:name="name"
-				:class="inputClass"
+				:rows="rows"
+				:cols="cols"
+				:maxlength="maxlength"
+				:minlength="minlength"
+				:wrap="wrap"
+				:class="textareaClass"
+				:style="resizeStyle"
 				@focus="$emit('focus')"
 				@blur="$emit('blur')"
 				@input="$emit('input', $event)"
-			/>
-			<bo-icon
-				v-if="clearable && modelValue"
-				:icon="Icon.x"
-				:size="BoSize.small"
-				@click="clearInput"
-				class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-			/>
+			></textarea>
 			<div
-				v-if="suffixIcon && !clearable"
-				class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
+				v-if="clearable && modelValue"
+				class="absolute top-2 right-2 cursor-pointer"
+				@click="clearTextarea"
 			>
 				<bo-icon
-					:icon="suffixIcon"
-					class="text-gray-500 dark:text-gray-400"
+					:icon="Icon.x"
+					:size="BoSize.small"
+					class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
 				/>
 			</div>
 		</div>
 		<span
 			v-if="description && StringUtils.isEmptyStr(errorMessage)"
-			class="text-sm text-gray-500 dark:text-gray-400"
+			class="mt-1 text-sm text-gray-500 dark:text-gray-400"
 		>
 			{{ description }}
 		</span>
+
 		<span
-			v-if="errorMessage && state === BoInputState.invalid"
+			v-if="errorMessage && state === BoTextareaState.invalid"
 			class="mt-1 flex items-center gap-1 text-sm text-red-600 dark:text-red-500"
 		>
 			<bo-icon :icon="Icon.alert_circle" />
@@ -68,53 +57,55 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo_icon'
 import { BoSize } from '@/shared'
 import { StringUtils, TailwindUtils } from '@/utils'
 import { IdentityUtils } from '@/utils/identity_utils'
 import { computed, defineModel } from 'vue'
-import { BoInputSize, BoInputState, BoInputType, BoInputVariant } from './constants'
-import type { BoInputProps } from './types'
+import { BoIcon, Icon } from '../bo_icon'
+import { BoTextareaSize, BoTextareaState, BoTextareaVariant } from './constants'
+import type { BoTextareaProps } from './types'
 
-// Define emits
 const emit = defineEmits(['update:modelValue', 'input', 'focus', 'blur', 'clear'])
 
-const props = withDefaults(defineProps<BoInputProps>(), {
-	type: BoInputType.text,
+const props = withDefaults(defineProps<BoTextareaProps>(), {
 	placeholder: '',
 	disabled: false,
 	readonly: false,
 	required: false,
-	state: BoInputState.none,
-	size: BoInputSize.default,
-	variant: BoInputVariant.default,
+	state: BoTextareaState.none,
+	size: BoTextareaSize.default,
+	variant: BoTextareaVariant.default,
 	clearable: false,
+	rows: 3,
+	resize: 'none',
 	prefixIcon: null,
 	suffixIcon: null,
 })
 
 const modelValue = defineModel<string>('modelValue', { required: true })
 
-const inputId = computed<string>(
-	() => props.id ?? IdentityUtils.generateRandomIdWithPrefix('input'),
-)
+const textareaId = computed(() => props.id ?? IdentityUtils.generateRandomIdWithPrefix('textarea'))
 
-const inputClass = computed<string>(() => {
-	const baseClasses = 'block w-full focus:outline-none focus:ring-1 transition-colors'
+const resizeStyle = computed(() => {
+	return {
+		resize: props.resize,
+	}
+})
+
+const textareaClass = computed(() => {
+	const baseClasses = 'block w-full focus:outline-none focus:ring-1 transition-colors leading-tight'
 
 	const sizeClasses = {
-		[BoInputSize.small]: 'p-2 text-xs',
-		[BoInputSize.default]: 'p-2.5 text-sm',
-		[BoInputSize.large]: 'p-4 text-base',
+		[BoTextareaSize.small]: 'p-2 text-xs',
+		[BoTextareaSize.default]: 'p-3 text-xs',
+		[BoTextareaSize.large]: 'p-4 text-sm',
 	}
 
 	const variantClasses = {
-		[BoInputVariant.default]:
+		[BoTextareaVariant.default]:
 			'border border-[1px] border-gray-300 rounded-lg bg-transparent text-gray-900 focus:ring-blue-500/20 focus:border-blue-500 dark:border-gray-600 dark:text-white',
-		[BoInputVariant.filled]:
+		[BoTextareaVariant.filled]:
 			'border border-[1px] border-transparent rounded-lg bg-gray-100 text-gray-900 focus:ring-blue-500/20 focus:border-blue-500 dark:bg-gray-800 dark:text-white',
-		[BoInputVariant.underline]:
-			'border-0 border-b-[1px] border-gray-300 rounded-none bg-transparent px-0 focus:ring-0 focus:outline-none text-gray-900 focus:border-blue-500 dark:border-gray-600 dark:text-white',
 	}
 
 	let classes = TailwindUtils.merge(
@@ -123,11 +114,7 @@ const inputClass = computed<string>(() => {
 		variantClasses[props.variant],
 	)
 
-	if (props.prefixIcon) {
-		classes = TailwindUtils.merge(classes, 'pl-10')
-	}
-
-	if ((props.suffixIcon && !props.clearable) || (props.clearable && props.modelValue)) {
+	if (props.clearable && props.modelValue) {
 		classes = TailwindUtils.merge(classes, 'pr-10')
 	}
 
@@ -140,12 +127,12 @@ const inputClass = computed<string>(() => {
 		classes = TailwindUtils.merge(classes, 'text-gray-500 placeholder-gray-400')
 	}
 
-	if (props.state === BoInputState.invalid) {
+	if (props.state === BoTextareaState.invalid) {
 		classes = TailwindUtils.merge(
 			classes,
 			'border-red-500 bg-red-50 text-red-900 placeholder-red-700 focus:border-red-500 focus:ring-red-500',
 		)
-	} else if (props.state === BoInputState.valid) {
+	} else if (props.state === BoTextareaState.valid) {
 		classes = TailwindUtils.merge(
 			classes,
 			'border-green-500 bg-green-50 text-green-900 placeholder-green-700 focus:border-green-500 focus:ring-green-500',
@@ -155,7 +142,7 @@ const inputClass = computed<string>(() => {
 	return classes
 })
 
-function clearInput(): void {
+const clearTextarea = () => {
 	modelValue.value = ''
 	emit('clear')
 }

@@ -5,33 +5,33 @@ repos:
         name: Lint
         language: system
         entry: npm run lint:oxlint
-        stages: [pre-commit]
+        stages: [pre-push]
         pass_filenames: false
 
       - id: type-check
         name: Type Check
         language: system
         entry: npm run type-check
-        stages: [pre-commit]
+        stages: [pre-push]
         pass_filenames: false
 
       - id: test
         name: Test
         language: system
         entry: npm run type-check
-        stages: [pre-commit]
+        stages: [pre-push]
         pass_filenames: false
 
       - id: format
         name: Format
         language: system
         entry: npm run format
-        stages: [pre-commit]
+        stages: [pre-push]
         pass_filenames: false
 
       - id: build
         name: Build
         language: system
         entry: npm run build
-        stages: [pre-commit]
+        stages: [pre-push]
         pass_filenames: false

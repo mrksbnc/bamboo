@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress';
+import { defineConfig } from 'vitepress'
 
 function buildSidebar() {
 	return [
@@ -18,7 +18,7 @@ function buildSidebar() {
 			text: 'Components',
 			items: [...getComponents()],
 		},
-	];
+	]
 }
 
 function getComponents() {
@@ -34,7 +34,8 @@ function getComponents() {
 		{ text: 'Loading Pulse', link: '/components/loading-pulse/loading-pulse' },
 		{ text: 'Loading Spinner', link: '/components/loading-spinner/loading-spinner' },
 		{ text: 'Modal', link: '/components/modal/modal' },
-	];
+		{ text: 'Textarea', link: '/components/textarea/textarea' },
+	]
 }
 
 // https://vitepress.dev/reference/site-config
@@ -61,4 +62,4 @@ export default defineConfig({
 			copyright: 'Bence Markus',
 		},
 	},
-});
+})
