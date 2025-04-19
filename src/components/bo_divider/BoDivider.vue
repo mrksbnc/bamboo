@@ -54,7 +54,7 @@ const color = computed<StyleConstruct>(() => {
 		return styles;
 	}
 
-	styles.class = 'border-gray-300';
+	styles.class = 'border-gray-300 dark:border-gray-600';
 	return styles;
 });
 

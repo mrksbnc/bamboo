@@ -45,31 +45,31 @@ const { label, type, size, variant, shape, prefixIcon, suffixIcon } = toRefs(pro
 
 const containerClasses = {
 	[BoBadgeShape.default]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-md shadow-md dark:shadow-gray-800',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-md shadow-sm',
 	[BoBadgeShape.circle]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-md dark:shadow-gray-800',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-sm',
 	[BoBadgeShape.pill]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-md dark:shadow-gray-800',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-sm',
 	[BoBadgeShape.flat]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-none shadow-md dark:shadow-gray-800',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-none shadow-sm',
 };
 
 const variantClasses = {
 	[BoBadgeType.default]: {
 		[BoBadgeVariant.primary]:
-			/*tw*/ 'bg-blue-50 text-blue-800 border border-blue-500 dark:bg-blue-700 dark:text-white dark:border-blue-800',
+			/*tw*/ 'bg-blue-50 text-blue-800 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-200 dark:border-blue-800/50',
 		[BoBadgeVariant.secondary]:
-			/*tw*/ 'bg-neutral-50 text-neutral-800 border border-neutral-500 dark:bg-neutral-700 dark:text-white dark:border-neutral-800',
+			/*tw*/ 'bg-neutral-50 text-neutral-800 border border-neutral-200 dark:bg-neutral-800/30 dark:text-neutral-200 dark:border-neutral-700/50',
 		[BoBadgeVariant.danger]:
-			/*tw*/ 'bg-red-50 text-red-800 border border-red-500 dark:bg-red-700 dark:text-white dark:border-red-800',
+			/*tw*/ 'bg-red-50 text-red-800 border border-red-200 dark:bg-red-900/30 dark:text-red-200 dark:border-red-800/50',
 		[BoBadgeVariant.warning]:
-			/*tw*/ 'bg-yellow-50 text-yellow-800 border border-yellow-500 dark:bg-yellow-500 dark:text-white dark:border-yellow-600',
+			/*tw*/ 'bg-yellow-50 text-yellow-800 border border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-200 dark:border-yellow-800/50',
 		[BoBadgeVariant.success]:
-			/*tw*/ 'bg-green-50 text-green-800 border border-green-500 dark:bg-green-700 dark:text-white dark:border-green-800',
+			/*tw*/ 'bg-green-50 text-green-800 border border-green-200 dark:bg-green-900/30 dark:text-green-200 dark:border-green-800/50',
 		[BoBadgeVariant.light]:
-			/*tw*/ 'bg-white text-black border border-neutral-300 dark:bg-white dark:text-black dark:border-neutral-300',
+			/*tw*/ 'bg-white text-neutral-800 border border-neutral-200 dark:bg-neutral-800 dark:text-neutral-200 dark:border-neutral-700',
 		[BoBadgeVariant.dark]:
-			/*tw*/ 'bg-black text-white border border-black dark:bg-black dark:text-white dark:border-black',
+			/*tw*/ 'bg-neutral-800 text-white border border-neutral-700 dark:bg-black dark:text-white dark:border-neutral-800',
 	},
 	[BoBadgeType.outline]: {
 		[BoBadgeVariant.primary]:
@@ -83,9 +83,25 @@ const variantClasses = {
 		[BoBadgeVariant.success]:
 			/*tw*/ 'border border-green-600 text-green-600 dark:border-green-500 dark:text-green-400',
 		[BoBadgeVariant.light]:
-			/*tw*/ 'border border-neutral-400 text-neutral-400 dark:border-neutral-300 dark:text-neutral-300',
+			/*tw*/ 'border border-neutral-400 text-neutral-400 dark:border-neutral-400 dark:text-neutral-300',
 		[BoBadgeVariant.dark]:
-			/*tw*/ 'border border-black text-black dark:border-white dark:text-white',
+			/*tw*/ 'border border-neutral-800 text-neutral-800 dark:border-white dark:text-white',
+	},
+	[BoBadgeType.filled]: {
+		[BoBadgeVariant.primary]:
+			/*tw*/ 'bg-blue-600 text-white border border-blue-700 dark:bg-blue-700 dark:border-blue-800 dark:text-white',
+		[BoBadgeVariant.secondary]:
+			/*tw*/ 'bg-neutral-600 text-white border border-neutral-700 dark:bg-neutral-700 dark:border-neutral-800 dark:text-white',
+		[BoBadgeVariant.danger]:
+			/*tw*/ 'bg-red-600 text-white border border-red-700 dark:bg-red-700 dark:border-red-800 dark:text-white',
+		[BoBadgeVariant.warning]:
+			/*tw*/ 'bg-yellow-500 text-white border border-yellow-600 dark:bg-yellow-600 dark:border-yellow-700 dark:text-white',
+		[BoBadgeVariant.success]:
+			/*tw*/ 'bg-green-600 text-white border border-green-700 dark:bg-green-700 dark:border-green-800 dark:text-white',
+		[BoBadgeVariant.light]:
+			/*tw*/ 'bg-neutral-100 text-neutral-800 border border-neutral-200 dark:bg-neutral-200 dark:border-neutral-300 dark:text-neutral-800',
+		[BoBadgeVariant.dark]:
+			/*tw*/ 'bg-neutral-800 text-white border border-neutral-900 dark:bg-black dark:border-neutral-800 dark:text-white',
 	},
 };
 

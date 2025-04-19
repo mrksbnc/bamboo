@@ -14,7 +14,7 @@
 			<!-- Modal content -->
 			<div
 				:class="[
-					'relative flex flex-col gap-3 overflow-x-hidden overflow-y-auto rounded-lg border border-gray-200 bg-white p-8 shadow',
+					'relative flex flex-col gap-3 overflow-x-hidden overflow-y-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow dark:shadow-gray-900',
 				]"
 			>
 				<!-- Modal header -->

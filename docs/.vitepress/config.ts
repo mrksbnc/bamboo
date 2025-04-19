@@ -30,6 +30,10 @@ function getComponents() {
 		{ text: 'Divider', link: '/components/divider/divider' },
 		{ text: 'Dropdown', link: '/components/dropdown/dropdown' },
 		{ text: 'Icon', link: '/components/icon/icon' },
+		{ text: 'Input', link: '/components/input/input' },
+		{ text: 'Loading Pulse', link: '/components/loading-pulse/loading-pulse' },
+		{ text: 'Loading Spinner', link: '/components/loading-spinner/loading-spinner' },
+		{ text: 'Modal', link: '/components/modal/modal' },
 	];
 }
 

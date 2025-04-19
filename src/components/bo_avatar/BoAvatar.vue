@@ -79,11 +79,11 @@ const cursorClasses = {
 };
 
 const avatarSizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'size-5', // 20px
-	[BoSize.small]: /*tw*/ 'size-7', // 28px
-	[BoSize.default]: /*tw*/ 'size-9', // 36px
-	[BoSize.large]: /*tw*/ 'size-11', // 44px
-	[BoSize.extra_large]: /*tw*/ 'size-14', // 56px
+	[BoSize.extra_small]: /*tw*/ 'size-6',
+	[BoSize.small]: /*tw*/ 'size-8',
+	[BoSize.default]: /*tw*/ 'size-10',
+	[BoSize.large]: /*tw*/ 'size-16',
+	[BoSize.extra_large]: /*tw*/ 'size-24',
 };
 
 const avatarShapeClasses = {

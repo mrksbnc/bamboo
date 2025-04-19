@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="relative p-3 flex flex-col my-6 bg-white dark:bg-gray-800 shadow-sm border border-slate-200 dark:border-neutral-800 rounded-lg max-w-sm"
+		class="relative p-5 flex flex-col my-6 bg-white dark:bg-gray-800 shadow-sm border border-slate-200 dark:border-neutral-800 rounded-lg max-w-sm"
 	>
 		<div
 			v-if="slots.header"

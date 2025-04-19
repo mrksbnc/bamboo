@@ -184,19 +184,19 @@ const variantClasses = {
 };
 
 const sizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'px-2.5 py-1',
-	[BoSize.small]: /*tw*/ 'px-3 py-1.5',
-	[BoSize.default]: /*tw*/ 'px-3.5 py-2',
+	[BoSize.extra_small]: /*tw*/ 'px-2 py-1',
+	[BoSize.small]: /*tw*/ 'px-3 py-2',
+	[BoSize.default]: /*tw*/ 'px-5 py-2.5',
 	[BoSize.large]: /*tw*/ 'px-5 py-3',
-	[BoSize.extra_large]: /*tw*/ 'px-6 py-4',
+	[BoSize.extra_large]: /*tw*/ 'px-6 py-3.5',
 };
 
 const iconOnlySizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'p-1.5',
+	[BoSize.extra_small]: /*tw*/ 'p-1',
 	[BoSize.small]: /*tw*/ 'p-2',
 	[BoSize.default]: /*tw*/ 'p-2.5',
-	[BoSize.large]: /*tw*/ 'p-3.5',
-	[BoSize.extra_large]: /*tw*/ 'p-4',
+	[BoSize.large]: /*tw*/ 'p-3',
+	[BoSize.extra_large]: /*tw*/ 'p-3.5',
 };
 
 const widthConstruct = computed<string>(() => {

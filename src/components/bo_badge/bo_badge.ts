@@ -14,6 +14,7 @@ export enum BoBadgeVariant {
 export enum BoBadgeType {
 	default = 'default',
 	outline = 'outline',
+	filled = 'filled',
 }
 
 export enum BoBadgeShape {

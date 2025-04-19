@@ -169,14 +169,14 @@ const focusClasses = {
 
 const inputClasses = {
 	default:
-		/*tw*/ 'bo-input__input rounded-lg border border-gray-300 text-gray-900 text-small bg-white outline-none',
-	error: /*tw*/ 'bo-input__input rounded-lg border border-red-600',
-	valid: /*tw*/ 'bo-input__input rounded-lg border border-green-600',
+		/*tw*/ 'bo-input__input rounded-lg border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-small bg-white dark:bg-gray-700 outline-none',
+	error: /*tw*/ 'bo-input__input rounded-lg border border-red-600 dark:border-red-500',
+	valid: /*tw*/ 'bo-input__input rounded-lg border border-green-600 dark:border-green-500',
 };
 
 const stateClasses = {
 	disabled:
-		/*tw*/ 'disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-300',
+		/*tw*/ 'disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-300 dark:disabled:bg-gray-800 dark:disabled:text-gray-500 dark:disabled:border-gray-700',
 };
 
 const textClasses = {
@@ -214,7 +214,7 @@ const inputPaddingClasses = computed<string>(() => {
 		switch (size.value) {
 			case BoInputSize.default:
 			default:
-				return /*tw*/ 'px-8 py-[9px]';
+				return /*tw*/ 'px-8 py-2.5';
 			case BoInputSize.large:
 				return /*tw*/ 'px-8 py-3';
 		}
@@ -222,7 +222,7 @@ const inputPaddingClasses = computed<string>(() => {
 		switch (size.value) {
 			case BoInputSize.default:
 			default:
-				return /*tw*/ 'pl-8 pr-4 py-[9px]';
+				return /*tw*/ 'pl-8 pr-4 py-2.5';
 			case BoInputSize.large:
 				return /*tw*/ 'pl-8 pr-4 py-3';
 		}
@@ -230,7 +230,7 @@ const inputPaddingClasses = computed<string>(() => {
 		switch (size.value) {
 			case BoInputSize.default:
 			default:
-				return /*tw*/ 'pl-4 pr-8 py-[9px]';
+				return /*tw*/ 'pl-4 pr-8 py-2.5';
 			case BoInputSize.large:
 				return /*tw*/ 'pl-4 pr-8 py-3';
 		}
@@ -238,7 +238,7 @@ const inputPaddingClasses = computed<string>(() => {
 		switch (size.value) {
 			case BoInputSize.default:
 			default:
-				return /*tw*/ 'pl-4 pr-4 py-[9px]';
+				return /*tw*/ 'pl-4 pr-4 py-2.5';
 			case BoInputSize.large:
 				return /*tw*/ 'pl-4 pr-4 py-3';
 		}

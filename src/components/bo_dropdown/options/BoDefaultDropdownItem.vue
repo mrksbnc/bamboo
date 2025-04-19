@@ -1,6 +1,6 @@
 <template>
 	<span
-		class="flex gap-2 items-center hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white p-2 cursor-pointer rounded-md"
+		class="flex gap-2 items-center hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white px-4 py-2 cursor-pointer"
 	>
 		<bo-icon
 			v-if="icon !== Icon.none"

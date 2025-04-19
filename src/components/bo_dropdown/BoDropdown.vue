@@ -10,7 +10,7 @@
 	<div
 		v-if="isDropdownOpen"
 		id="dropdown"
-		class="absolute z-10 bg-white border border-neutral-100 dark:border-gray-800 divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 mt-2"
+		class="absolute z-10 bg-white border border-neutral-100 dark:border-gray-800 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2"
 	>
 		<div class="p-1">
 			<component
