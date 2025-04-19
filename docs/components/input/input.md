@@ -316,3 +316,96 @@ The BoInput component uses Vue 3.4's new `defineModel` macro for two-way data bi
   />
 </template>
 ```
+
+## Clearable Input
+
+When the `clearable` prop is set to `true`, a clear button appears on the right side of the input when it has a value. Clicking this button clears the input and emits a `clear` event.
+
+```vue
+<template>
+  <bo-input
+    v-model="text"
+    label="Clearable Input"
+    clearable
+    placeholder="Enter text to see the clear button"
+  />
+</template>
+```
+
+<div class="flex flex-col gap-2">
+    <bo-input clearable label="Clearable Input" placeholder="Enter text to see the clear button" />
+</div>
+
+## Accessibility
+
+The `BoInput` component has been built with accessibility in mind, following WCAG 2.1 AA standards:
+
+### Labeling and Descriptions
+
+- Every input has an associated `<label>` element, either visible or screen-reader only
+- Required fields are marked with an asterisk (\*) that includes an invisible "(required)" text for screen readers
+- Descriptions and error messages are properly associated with inputs using `aria-describedby`
+- When inputs have errors, `aria-invalid="true"` is added to communicate the invalid state
+
+### Keyboard Interaction
+
+- The clear button (when enabled) is fully keyboard accessible with proper focus management
+- The button can be activated using <kbd>Enter</kbd> or <kbd>Space</kbd> keys
+- Tab order follows a logical sequence through the form elements
+
+### State Communication
+
+- Disabled inputs use both the HTML `disabled` attribute and `aria-disabled="true"`
+- Readonly inputs include the `readonly` HTML attribute and `aria-readonly="true"`
+- Error messages are marked with `role="alert"` to ensure they're announced by screen readers
+- Loading state is properly communicated to assistive technology
+
+### Icon Usage
+
+- All decorative icons (like prefix and suffix icons) have `aria-hidden="true"`
+- The clear button includes a proper `aria-label` for screen reader users
+- Action-oriented icons that require interaction are fully accessible with proper labels
+
+### Example: Accessible Form Input
+
+```vue
+<template>
+  <bo-input
+    v-model="email"
+    label="Email Address"
+    type="email"
+    required
+    description="We'll never share your email with anyone else"
+    placeholder="name@example.com"
+    :state="emailState"
+    :error-message="emailError"
+    aria-required="true"
+  />
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+
+const email = ref('')
+const emailError = ref('')
+const emailState = computed(() => {
+  if (!email.value) {
+    emailError.value = 'Email is required'
+    return 'invalid'
+  }
+  if (!email.value.includes('@')) {
+    emailError.value = 'Please enter a valid email address'
+    return 'invalid'
+  }
+  return 'valid'
+})
+</script>
+```
+
+### Screen Reader Announcements
+
+The input uses live announcements for important state changes:
+
+- When the clear button is pressed, a "Input cleared" message is announced
+- Error messages are announced when they appear
+- Status changes are communicated through ARIA live regions

@@ -145,3 +145,83 @@ The priority order is: custom width options (pixels, percent, tailwind) > size c
 <!-- Using Tailwind class -->
 <bo-modal widthAsTailwindClass="w-3/4" />
 ```
+
+## Accessibility
+
+The modal component is designed with accessibility in mind, following WCAG 2.1 AA standards:
+
+### Keyboard Navigation
+
+- When the modal opens, focus is automatically moved to the first focusable element inside the modal
+- Tab navigation is trapped within the modal using JavaScript, preventing users from interacting with page content behind the modal
+- The <kbd>Escape</kbd> key can be used to close the modal
+- When the modal closes, focus is returned to the element that triggered it (if `returnFocus` is set to true)
+
+### Screen Reader Support
+
+- The modal has `role="dialog"` and `aria-modal="true"` to properly identify it to screen readers
+- The modal is announced to screen readers when opened and closed
+- The modal's title is linked to the content using `aria-labelledby`
+- The modal's subtitle (if present) is linked to the content using `aria-describedby`
+- The close button includes both visible text and an `aria-label`
+
+### Additional Features
+
+- Background scrolling is prevented when the modal is open to avoid confusion
+- The dialog uses semantic HTML structure with proper heading elements
+- The close button has sufficient contrast and is large enough for easy interaction
+
+### Properties for Accessibility
+
+| Prop          | Type      | Default | Description                                                 |
+| ------------- | --------- | ------- | ----------------------------------------------------------- |
+| `returnFocus` | `boolean` | `true`  | Whether focus should return to the trigger element on close |
+| `closable`    | `boolean` | `true`  | Whether the modal can be closed with the Escape key         |
+
+### Example with Full Accessibility Features
+
+```vue
+<template>
+  <button
+    @click="openModal"
+    aria-haspopup="dialog"
+  >
+    Open Accessible Modal
+  </button>
+
+  <bo-modal
+    v-if="isOpen"
+    title="Accessible Dialog"
+    subtitle="This dialog follows WCAG 2.1 AA standards"
+    :returnFocus="true"
+    :closable="true"
+    @close="closeModal"
+  >
+    <template #content>
+      <p>This modal demonstrates accessible features including:</p>
+      <ul>
+        <li>Focus management</li>
+        <li>Keyboard navigation</li>
+        <li>Proper ARIA attributes</li>
+        <li>Screen reader announcements</li>
+      </ul>
+    </template>
+    <template #footer>
+      <button @click="closeModal">Close Dialog</button>
+    </template>
+  </bo-modal>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const isOpen = ref(false)
+
+function openModal() {
+  isOpen.value = true
+}
+
+function closeModal() {
+  isOpen.value = false
+}
+</script>
+```

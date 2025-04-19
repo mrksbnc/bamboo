@@ -10,6 +10,7 @@ export type BoCardProps = {
 	title?: string
 	description?: string
 	clickable?: boolean
+	disabled?: boolean
 	widthInPx?: number
 	widthInPercent?: number
 	widthAsTailwindClass?: string

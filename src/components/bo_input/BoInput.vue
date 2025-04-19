@@ -1,15 +1,15 @@
 <template>
-	<div class="input-wrapper">
+	<div class="input-wrapper w-full">
 		<label
 			v-if="label"
 			:for="inputId"
-			class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+			class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
 		>
 			{{ label }}
 			<span
 				v-if="required"
 				class="text-red-500"
-				>*</span
+				>*<span class="sr-only">(required)</span></span
 			>
 		</label>
 		<div
@@ -19,6 +19,7 @@
 			<div
 				v-if="prefixIcon"
 				class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+				aria-hidden="true"
 			>
 				<bo-icon
 					:icon="prefixIcon"
@@ -35,6 +36,10 @@
 				:required="required"
 				:name="name"
 				:class="inputClass"
+				:aria-describedby="getAriaDescribedBy"
+				:aria-invalid="state === BoInputState.invalid ? 'true' : 'false'"
+				:aria-disabled="disabled ? 'true' : 'false'"
+				:aria-readonly="readonly ? 'true' : 'false'"
 				@focus="$emit('focus')"
 				@blur="$emit('blur')"
 				@input="$emit('input', $event)"
@@ -43,16 +48,23 @@
 				v-if="clearable && modelValue"
 				class="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
 				@click="clearInput"
+				role="button"
+				tabindex="0"
+				aria-label="Clear input"
+				@keydown.enter.prevent="clearInput"
+				@keydown.space.prevent="clearInput"
 			>
 				<bo-icon
 					:icon="Icon.x"
 					:size="BoSize.small"
 					class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+					aria-hidden="true"
 				/>
 			</div>
 			<div
 				v-else-if="suffixIcon"
 				class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
+				aria-hidden="true"
 			>
 				<bo-icon
 					:icon="suffixIcon"
@@ -62,6 +74,7 @@
 			<div
 				v-if="isLoading"
 				class="loading-indicator absolute inset-y-0 right-0 flex items-center pr-3"
+				aria-hidden="true"
 			>
 				<span
 					v-if="loaderVariant === BoInputLoaderVariant.spinner"
@@ -79,15 +92,22 @@
 		</div>
 		<span
 			v-if="description && StringUtils.isEmptyStr(errorMessage)"
-			class="text-sm text-gray-500 dark:text-gray-400"
+			:id="descriptionId"
+			class="mt-1 text-sm text-gray-500 dark:text-gray-400"
 		>
 			{{ description }}
 		</span>
 		<span
 			v-if="errorMessage && state === BoInputState.invalid"
+			:id="errorId"
 			class="mt-1 flex items-center gap-1 text-sm text-red-600 dark:text-red-500"
+			role="alert"
 		>
-			<bo-icon :icon="Icon.alert_circle" />
+			<bo-icon
+				:icon="Icon.alert_circle"
+				:size="BoSize.small"
+				aria-hidden="true"
+			/>
 			{{ errorMessage }}
 		</span>
 	</div>
@@ -96,9 +116,9 @@
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo_icon'
 import { BoSize } from '@/shared'
-import { StringUtils, TailwindUtils } from '@/utils'
+import { AccessibilityUtils, StringUtils, TailwindUtils } from '@/utils'
 import { IdentityUtils } from '@/utils/identity_utils'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import {
 	BoInputLoaderVariant,
 	BoInputSize,
@@ -131,22 +151,38 @@ const inputId = computed<string>(
 	() => props.id ?? IdentityUtils.generateRandomIdWithPrefix('input'),
 )
 
+const descriptionId = ref(AccessibilityUtils.generateAccessibleId('input-desc'))
+const errorId = ref(AccessibilityUtils.generateAccessibleId('input-error'))
+
+// Compute aria-describedby based on presence of description or error
+const getAriaDescribedBy = computed(() => {
+	const ids = []
+	if (props.description && StringUtils.isEmptyStr(props.errorMessage)) {
+		ids.push(descriptionId.value)
+	}
+	if (props.errorMessage && props.state === BoInputState.invalid) {
+		ids.push(errorId.value)
+	}
+	return ids.length > 0 ? ids.join(' ') : undefined
+})
+
 const inputClass = computed<string>(() => {
-	const baseClasses = 'block w-full focus:outline-none focus:ring-1 transition-colors'
+	const baseClasses =
+		'block w-full focus:outline-none focus:ring-2 focus:ring-offset-0 transition-colors'
 
 	const sizeClasses = {
-		[BoInputSize.small]: 'p-2 text-xs',
-		[BoInputSize.default]: 'p-2.5 text-sm',
-		[BoInputSize.large]: 'p-4 text-base',
+		[BoInputSize.small]: 'px-3 py-1.5 text-xs',
+		[BoInputSize.default]: 'px-3 py-2 text-sm',
+		[BoInputSize.large]: 'px-4 py-3 text-base',
 	}
 
 	const variantClasses = {
 		[BoInputVariant.default]:
-			'border border-[1px] border-gray-300 rounded-lg bg-transparent text-gray-900 focus:ring-blue-500/20 focus:border-blue-500 dark:border-gray-600 dark:text-white',
+			'border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-blue-500/30 focus:border-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:ring-blue-500/40 dark:focus:border-blue-500',
 		[BoInputVariant.filled]:
-			'border border-[1px] border-transparent rounded-lg bg-gray-100 text-gray-900 focus:ring-blue-500/20 focus:border-blue-500 dark:bg-gray-800 dark:text-white',
+			'border border-transparent rounded-md bg-gray-100 text-gray-900 focus:ring-blue-500/30 focus:border-blue-500 dark:bg-gray-800 dark:text-white dark:focus:ring-blue-500/40 dark:focus:border-blue-500',
 		[BoInputVariant.underline]:
-			'border-0 border-b-[1px] border-gray-300 rounded-none bg-transparent px-0 focus:ring-0 focus:outline-none text-gray-900 focus:border-blue-500 dark:border-gray-600 dark:text-white',
+			'border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 focus:ring-0 focus:ring-offset-0 text-gray-900 focus:border-blue-500 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 outline-none',
 	}
 
 	let classes = TailwindUtils.merge(
@@ -166,21 +202,24 @@ const inputClass = computed<string>(() => {
 	if (props.disabled) {
 		classes = TailwindUtils.merge(
 			classes,
-			'cursor-not-allowed bg-gray-100 text-gray-500 placeholder-gray-400',
+			'cursor-not-allowed bg-gray-100 text-gray-500 placeholder-gray-400 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-500',
 		)
 	} else if (props.readonly) {
-		classes = TailwindUtils.merge(classes, 'text-gray-500 placeholder-gray-400')
+		classes = TailwindUtils.merge(
+			classes,
+			'text-gray-500 placeholder-gray-400 dark:text-gray-400 dark:placeholder-gray-500',
+		)
 	}
 
 	if (props.state === BoInputState.invalid) {
 		classes = TailwindUtils.merge(
 			classes,
-			'border-red-500 bg-red-50 text-red-900 placeholder-red-700 focus:border-red-500 focus:ring-red-500',
+			'border-red-500 focus:ring-red-500/30 focus:border-red-500 text-red-900 placeholder-red-400 dark:border-red-500 dark:focus:border-red-500',
 		)
 	} else if (props.state === BoInputState.valid) {
 		classes = TailwindUtils.merge(
 			classes,
-			'border-green-500 bg-green-50 text-green-900 placeholder-green-700 focus:border-green-500 focus:ring-green-500',
+			'border-green-500 focus:ring-green-500/30 focus:border-green-500 text-green-900 placeholder-green-400 dark:border-green-500 dark:focus:border-green-500',
 		)
 	}
 
@@ -190,5 +229,7 @@ const inputClass = computed<string>(() => {
 function clearInput(): void {
 	modelValue.value = ''
 	emit('clear')
+	// Announce to screen readers that the input has been cleared
+	AccessibilityUtils.announceToScreenReader('Input cleared')
 }
 </script>

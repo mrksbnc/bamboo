@@ -5,6 +5,7 @@ import BoLoadingPulse from '@/components/bo_loading_pulse/BoLoadingPulse.vue'
 import BoLoadingSpinner from '@/components/bo_loading_spinner/BoLoadingSpinner.vue'
 import { BoText } from '@/components/bo_text'
 import { BoLoaderVariant, BoSize, HtmlButtonType } from '@/shared'
+import { findByRole, hasAriaAttribute, isAccessibleToScreenReaders } from '@/tests/setup'
 import { mount } from '@vue/test-utils'
 import { beforeEach, describe, expect, suite, test } from 'vitest'
 
@@ -597,6 +598,74 @@ describe('bo_button.vue', () => {
 			await wrapper.setProps({ size: BoSize.large })
 			const loader = wrapper.findComponent(BoLoadingSpinner)
 			expect(loader.props('size')).toBe(BoSize.default)
+		})
+	})
+
+	suite('accessibility features', () => {
+		test('button should have appropriate aria-disabled attribute when disabled', async () => {
+			await globalWrapper.setProps({ disabled: true })
+			expect(hasAriaAttribute(globalWrapper.element, 'aria-disabled', 'true')).toBe(true)
+
+			await globalWrapper.setProps({ disabled: false })
+			expect(hasAriaAttribute(globalWrapper.element, 'aria-disabled', 'false')).toBe(true)
+		})
+
+		test('button should have appropriate aria-busy attribute when loading', async () => {
+			await globalWrapper.setProps({ isLoading: true })
+			expect(hasAriaAttribute(globalWrapper.element, 'aria-busy', 'true')).toBe(true)
+
+			await globalWrapper.setProps({ isLoading: false })
+			expect(hasAriaAttribute(globalWrapper.element, 'aria-busy', 'false')).toBe(true)
+		})
+
+		test('icon-only button should have an aria-label', async () => {
+			const wrapper = mount(BoButton, {
+				props: {
+					prefixIcon: Icon.activity,
+					size: BoSize.default,
+					type: HtmlButtonType.button,
+					variant: BoButtonVariant.primary,
+				},
+			})
+
+			// Verify that icon-only buttons get a default aria-label
+			expect(hasAriaAttribute(wrapper.element, 'aria-label', 'Button with icon')).toBe(true)
+
+			// Verify that custom aria-label overrides the default
+			await wrapper.setProps({ ariaLabel: 'Custom action' })
+			expect(hasAriaAttribute(wrapper.element, 'aria-label', 'Custom action')).toBe(true)
+		})
+
+		test('decorative icons should be hidden from screen readers', () => {
+			const iconWrapper = mount(BoButton, {
+				props: {
+					label: 'Test Button',
+					prefixIcon: Icon.activity,
+					size: BoSize.default,
+					type: HtmlButtonType.button,
+					variant: BoButtonVariant.primary,
+				},
+			})
+
+			// Find all icon elements within the button
+			const iconElements = iconWrapper.findAllComponents(BoIcon)
+			iconElements.forEach(icon => {
+				// Verify each icon has aria-hidden="true"
+				expect(hasAriaAttribute(icon.element, 'aria-hidden', 'true')).toBe(true)
+			})
+		})
+
+		test('toggle button should have appropriate aria-pressed attribute', async () => {
+			await globalWrapper.setProps({ pressed: true })
+			expect(hasAriaAttribute(globalWrapper.element, 'aria-pressed', 'true')).toBe(true)
+
+			await globalWrapper.setProps({ pressed: false })
+			expect(hasAriaAttribute(globalWrapper.element, 'aria-pressed', 'false')).toBe(true)
+		})
+
+		test('button should have focus visible styles', () => {
+			// Check that the button has the focus-visible classes
+			expect(globalWrapper.classes().some(cls => cls.includes('focus-visible'))).toBe(true)
 		})
 	})
 })

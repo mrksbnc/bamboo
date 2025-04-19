@@ -19,27 +19,29 @@ A button is a control that allows the user to perform an action. The library sup
 
 ## Props
 
-| Prop name        | Type              | Default value             | Description                                                        |
-| ---------------- | ----------------- | ------------------------- | ------------------------------------------------------------------ |
-| `label`          | `string`          | `undefined`               | The label of the button.                                           |
-| `variant`        | `BoButtonVariant` | `BoButtonVariant.primary` | The variant of the button.                                         |
-| `shape`          | `BoButtonShape`   | `BoButtonShape.default`   | The shape of the button.                                           |
-| `type`           | `HtmlButtonType`  | `button`                  | The type of the button.                                            |
-| `disabled`       | `boolean`         | `false`                   | Whether the button is disabled.                                    |
-| `is-loading`     | `boolean`         | `false`                   | Whether the button is loading.                                     |
-| `size`           | `BoSize`          | `BoSize.default`          | The size of the button.                                            |
-| `prefix-icon`    | `Icon`            | `Icon.none`               | The prefix icon of the button.                                     |
-| `suffix-icon`    | `Icon`            | `Icon.none`               | The suffix icon of the button.                                     |
-| `autofocus`      | `boolean`         | `false`                   | Whether the button should be focused when the page loads.          |
-| `form`           | `string`          | `undefined`               | The form of the button.                                            |
-| `formaction`     | `string`          | `undefined`               | The form action of the button.                                     |
-| `formenctype`    | `string`          | `undefined`               | The form enctype of the button.                                    |
-| `formmethod`     | `string`          | `undefined`               | The form method of the button.                                     |
-| `formnovalidate` | `boolean`         | `false`                   | Whether the form should be validated.                              |
-| `formtarget`     | `string`          | `undefined`               | The form target of the button.                                     |
-| `name`           | `string`          | `undefined`               | The name of the button.                                            |
-| `value`          | `string`          | `undefined`               | The value of the button.                                           |
-| `full-width`     | `boolean`         | `false`                   | Whether the button should take up the full width of the container. |
+| Prop name        | Type              | Default value             | Description                                                               |
+| ---------------- | ----------------- | ------------------------- | ------------------------------------------------------------------------- |
+| `label`          | `string`          | `undefined`               | The label of the button.                                                  |
+| `variant`        | `BoButtonVariant` | `BoButtonVariant.primary` | The variant of the button.                                                |
+| `shape`          | `BoButtonShape`   | `BoButtonShape.default`   | The shape of the button.                                                  |
+| `type`           | `HtmlButtonType`  | `button`                  | The type of the button.                                                   |
+| `disabled`       | `boolean`         | `false`                   | Whether the button is disabled.                                           |
+| `is-loading`     | `boolean`         | `false`                   | Whether the button is loading.                                            |
+| `size`           | `BoSize`          | `BoSize.default`          | The size of the button.                                                   |
+| `prefix-icon`    | `Icon`            | `Icon.none`               | The prefix icon of the button.                                            |
+| `suffix-icon`    | `Icon`            | `Icon.none`               | The suffix icon of the button.                                            |
+| `autofocus`      | `boolean`         | `false`                   | Whether the button should be focused when the page loads.                 |
+| `form`           | `string`          | `undefined`               | The form of the button.                                                   |
+| `formaction`     | `string`          | `undefined`               | The form action of the button.                                            |
+| `formenctype`    | `string`          | `undefined`               | The form enctype of the button.                                           |
+| `formmethod`     | `string`          | `undefined`               | The form method of the button.                                            |
+| `formnovalidate` | `boolean`         | `false`                   | Whether the form should be validated.                                     |
+| `formtarget`     | `string`          | `undefined`               | The form target of the button.                                            |
+| `name`           | `string`          | `undefined`               | The name of the button.                                                   |
+| `value`          | `string`          | `undefined`               | The value of the button.                                                  |
+| `full-width`     | `boolean`         | `false`                   | Whether the button should take up the full width of the container.        |
+| `pressed`        | `boolean`         | `false`                   | For toggle buttons, indicates whether the button is pressed.              |
+| `aria-label`     | `string`          | `undefined`               | Custom accessible name for the button (especially for icon-only buttons). |
 
 ::: warning NOTE
 Though non of the props are required, either the `label` or the `prefix-icon` prop must be provided.
@@ -283,3 +285,69 @@ In dark mode:
 - Focus and hover states remain clear and accessible
 
 Dark mode transitions are applied automatically when the `dark` class is present on the root HTML element. No additional configuration is needed.
+
+## Accessibility
+
+The `bo-button` component has been designed with accessibility in mind, following WCAG 2.1 AA standards:
+
+### Keyboard Navigation
+
+- The button is fully keyboard accessible and can be activated using the <kbd>Enter</kbd> or <kbd>Space</kbd> key
+- Visual focus indicators are provided when the button receives keyboard focus
+
+### Screen Reader Support
+
+- For buttons with text, the label is read by screen readers
+- Icon-only buttons automatically receive an `aria-label` to ensure they have an accessible name
+- The `aria-label` prop can be used to provide a custom accessible name
+- Decorative icons have `aria-hidden="true"` to prevent redundant announcements
+
+### State Communication
+
+- Disabled state is communicated using both the HTML `disabled` attribute and `aria-disabled="true"`
+- Loading state is indicated with `aria-busy="true"` for screen readers
+- Toggle buttons use `aria-pressed` to communicate their state
+
+### Example: Toggle Button
+
+<div class="flex gap-2">
+  <bo-button 
+    label="Toggle Feature" 
+    :pressed="true" 
+    :variant="BoButtonVariant.primary" 
+  />
+</div>
+
+::: details Toggle code
+
+```js
+<bo-button
+  label="Toggle Feature"
+  :pressed="true"
+  :variant="BoButtonVariant.primary"
+/>
+```
+
+:::
+
+### Example: Icon-Only Button with Custom Accessible Name
+
+<div class="flex gap-2">
+  <bo-button 
+    :prefix-icon="Icon.user" 
+    aria-label="User profile" 
+    :variant="BoButtonVariant.primary" 
+  />
+</div>
+
+::: details Toggle code
+
+```js
+<bo-button
+  :prefix-icon="Icon.user"
+  aria-label="User profile"
+  :variant="BoButtonVariant.primary"
+/>
+```
+
+:::

@@ -16,6 +16,19 @@ export type BoButtonProps = {
 	disabled?: Booleanish
 	type?: 'submit' | 'reset' | 'button'
 	fullWidth?: boolean
+	/**
+	 * For toggle buttons, indicates whether the button is in a pressed state
+	 */
+	pressed?: boolean
+	/**
+	 * Custom accessible name for the button, especially important for icon-only buttons
+	 * @see https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html
+	 */
+	ariaLabel?: string
+	/**
+	 * Unique ID for the button, used for accessibility and testing
+	 */
+	id?: string
 }
 
 export enum BoButtonVariant {

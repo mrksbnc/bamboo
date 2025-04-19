@@ -3,6 +3,10 @@
 		v-bind="props"
 		:disabled="disabled || isLoading"
 		:class="buttonClasses"
+		:aria-disabled="disabled || isLoading ? 'true' : 'false'"
+		:aria-busy="isLoading ? 'true' : 'false'"
+		:aria-pressed="pressed ? 'true' : 'false'"
+		:aria-label="ariaLabel || (label ? undefined : iconOnlyButton ? 'Button with icon' : undefined)"
 	>
 		<div
 			v-if="useSlot"
@@ -19,6 +23,7 @@
 				:icon="iconOnlyIcon"
 				:size="size"
 				class="bo-button__prefix-icon"
+				aria-hidden="true"
 			/>
 			<span
 				v-if="!!label && !iconOnlyButton"
@@ -37,18 +42,21 @@
 				:icon="suffixIcon"
 				:size="size"
 				class="bo-button__suffix-icon"
+				aria-hidden="true"
 			/>
 			<bo-loading-spinner
 				v-if="isLoading && loaderType === 'spinner'"
 				:size="loaderSize"
 				:variant="loaderVariant"
 				class="ml-2"
+				aria-hidden="true"
 			/>
 			<bo-loading-pulse
 				v-if="isLoading && loaderType === 'pulse'"
 				:size="loaderSize"
 				:variant="loaderVariant"
 				class="ml-2"
+				aria-hidden="true"
 			/>
 		</span>
 	</button>
@@ -69,17 +77,27 @@ const slots = defineSlots<{
 	content(props: Record<string, unknown>): void
 }>()
 
-const props = withDefaults(defineProps<BoButtonProps>(), {
-	id: IdentityUtils.generateRandomIdWithPrefix('bo-button'),
-	type: 'button',
-	loaderType: 'spinner',
-	size: () => BoSize.default,
-	prefixIcon: () => Icon.none,
-	suffixIcon: () => Icon.none,
-	shape: () => BoButtonShape.default,
-	variant: () => BoButtonVariant.primary,
-	fullWidth: false,
-})
+const props = withDefaults(
+	defineProps<
+		BoButtonProps & {
+			pressed?: boolean
+			ariaLabel?: string
+		}
+	>(),
+	{
+		id: IdentityUtils.generateRandomIdWithPrefix('bo-button'),
+		type: 'button',
+		loaderType: 'spinner',
+		size: () => BoSize.default,
+		prefixIcon: () => Icon.none,
+		suffixIcon: () => Icon.none,
+		shape: () => BoButtonShape.default,
+		variant: () => BoButtonVariant.primary,
+		fullWidth: false,
+		pressed: false,
+		ariaLabel: undefined,
+	},
+)
 
 const {
 	label,
@@ -96,7 +114,7 @@ const {
 
 const defaultButtonClasses = {
 	default:
-		/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer max-h-fit font-semibold',
+		/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer max-h-fit font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500',
 	disabled: /*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none',
 }
 

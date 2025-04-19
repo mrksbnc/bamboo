@@ -1,9 +1,29 @@
 import { BoModal } from '@/components/bo_modal'
+import { KeyboardUtils } from '@/utils'
 import { mount } from '@vue/test-utils'
-import { describe, expect, test } from 'vitest'
-import { BoModalSize } from './bo_modal'
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
+import { BoModalSize, BoPaddingSize } from './bo_modal'
+
+// Mock KeyboardUtils methods
+vi.mock('@/utils', () => ({
+	KeyboardUtils: {
+		trapTabKey: vi.fn(),
+		registerEscapeKeyHandler: vi.fn((e, handler) => {
+			if (e.key === 'Escape') handler()
+		}),
+		getFocusableElements: vi.fn().mockReturnValue([]),
+	},
+}))
 
 describe('BoModal.vue', () => {
+	beforeEach(() => {
+		vi.clearAllMocks()
+	})
+
+	afterEach(() => {
+		vi.clearAllMocks()
+	})
+
 	test('should render the modal', () => {
 		const wrapper = mount(BoModal)
 
@@ -62,6 +82,25 @@ describe('BoModal.vue', () => {
 			})
 
 			expect(wrapper.find(`.${className}`).exists()).toBe(true)
+		})
+	})
+
+	test('should apply correct padding class', () => {
+		const paddings = [
+			{ padding: BoPaddingSize.SM, class: 'p-3' },
+			{ padding: BoPaddingSize.MD, class: 'p-5' },
+			{ padding: BoPaddingSize.LG, class: 'p-6' },
+			{ padding: BoPaddingSize.XL, class: 'p-8' },
+		]
+
+		paddings.forEach(({ padding, class: className }) => {
+			const wrapper = mount(BoModal, {
+				props: {
+					padding,
+				},
+			})
+
+			expect(wrapper.find('.relative').classes()).toContain(className)
 		})
 	})
 
@@ -124,5 +163,49 @@ describe('BoModal.vue', () => {
 
 		expect(wrapper.find('.footer-button').exists()).toBe(true)
 		expect(wrapper.find('.footer-button').text()).toBe('Close')
+	})
+
+	test('should have proper ARIA attributes for accessibility', () => {
+		const wrapper = mount(BoModal, {
+			props: {
+				title: 'Accessible Modal',
+				subtitle: 'This modal is accessible',
+			},
+		})
+
+		const modal = wrapper.find('[role="dialog"]')
+		expect(modal.exists()).toBe(true)
+		expect(modal.attributes('aria-modal')).toBe('true')
+		expect(modal.attributes('aria-labelledby')).toBe('modal-title')
+		expect(modal.attributes('aria-describedby')).toBe('modal-subtitle')
+
+		// Check the title and subtitle elements have proper IDs
+		expect(wrapper.find('#modal-title').exists()).toBe(true)
+		expect(wrapper.find('#modal-subtitle').exists()).toBe(true)
+	})
+
+	test('should handle Tab key to trap focus within modal', async () => {
+		const wrapper = mount(BoModal)
+
+		// Simulate Tab key press
+		await wrapper.trigger('keydown', { key: 'Tab' })
+
+		// Verify trapTabKey was called
+		expect(KeyboardUtils.trapTabKey).toHaveBeenCalled()
+	})
+
+	test('should close modal when Escape key is pressed', async () => {
+		const wrapper = mount(BoModal, {
+			props: {
+				closable: true,
+			},
+		})
+
+		// Simulate a document keydown event
+		const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape' })
+		document.dispatchEvent(escapeEvent)
+
+		// Verify the close event was emitted
+		expect(wrapper.emitted('close')).toBeTruthy()
 	})
 })

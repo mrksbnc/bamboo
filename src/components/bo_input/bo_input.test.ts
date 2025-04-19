@@ -43,14 +43,69 @@ describe('BoInput.vue', () => {
 		expect(globalWrapper.emitted('update:modelValue')![0]).toEqual(['New Value'])
 	})
 
+	suite('Accessibility Features', () => {
+		test('input wrapper has full width class', () => {
+			expect(globalWrapper.find('.input-wrapper').classes()).toContain('w-full')
+		})
+
+		test('required asterisk has aria-hidden', async () => {
+			await globalWrapper.setProps({ required: true })
+			const requiredAsterisk = globalWrapper.find('.text-red-500')
+			expect(requiredAsterisk.attributes('aria-hidden')).toBe('true')
+		})
+
+		test('adds aria-describedby attribute when description is provided', async () => {
+			await globalWrapper.setProps({ description: 'This is a description' })
+			const input = globalWrapper.find('input')
+			const descriptionId = input.attributes('aria-describedby')
+			expect(descriptionId).toBeDefined()
+
+			const description = globalWrapper.find(`#${descriptionId}`)
+			expect(description.exists()).toBe(true)
+			expect(description.text()).toBe('This is a description')
+		})
+
+		test('adds aria-invalid attribute when in invalid state', async () => {
+			await globalWrapper.setProps({
+				state: BoInputState.invalid,
+				errorMessage: 'This field is invalid',
+			})
+			const input = globalWrapper.find('input')
+			expect(input.attributes('aria-invalid')).toBe('true')
+		})
+
+		test('error message has role="alert"', async () => {
+			await globalWrapper.setProps({
+				state: BoInputState.invalid,
+				errorMessage: 'This field is invalid',
+			})
+			const errorMessage = globalWrapper.find('.text-red-600')
+			expect(errorMessage.attributes('role')).toBe('alert')
+		})
+
+		test('icons have aria-hidden attribute', async () => {
+			await globalWrapper.setProps({ prefixIcon: Icon.user })
+			const iconContainer = globalWrapper.find('.pointer-events-none')
+			expect(iconContainer.attributes('aria-hidden')).toBe('true')
+		})
+
+		test('clear button has proper accessibility attributes', async () => {
+			await globalWrapper.setProps({ clearable: true, modelValue: 'Test Value' })
+			const clearButton = globalWrapper.find('.cursor-pointer')
+
+			expect(clearButton.attributes('role')).toBe('button')
+			expect(clearButton.attributes('tabindex')).toBe('0')
+			expect(clearButton.attributes('aria-label')).toBe('Clear input')
+		})
+	})
+
 	suite('Input Variants', () => {
 		test('default variant applies the correct classes', () => {
 			const input = globalWrapper.find('input')
 			expect(input.classes()).toContain('border')
-			expect(input.classes()).toContain('border-[1px]')
 			expect(input.classes()).toContain('border-gray-300')
-			expect(input.classes()).toContain('rounded-lg')
-			expect(input.classes()).toContain('bg-transparent')
+			expect(input.classes()).toContain('rounded-md')
+			expect(input.classes()).toContain('focus:ring-2')
 		})
 
 		test('filled variant applies the correct classes', async () => {
@@ -64,10 +119,9 @@ describe('BoInput.vue', () => {
 			await globalWrapper.setProps({ variant: BoInputVariant.underline })
 			const input = globalWrapper.find('input')
 			expect(input.classes()).toContain('border-0')
-			expect(input.classes()).toContain('border-b-[1px]')
+			expect(input.classes()).toContain('border-b-2')
 			expect(input.classes()).toContain('rounded-none')
 			expect(input.classes()).toContain('focus:ring-0')
-			expect(input.classes()).toContain('focus:outline-none')
 			expect(input.classes()).toContain('px-0')
 		})
 	})
@@ -76,21 +130,24 @@ describe('BoInput.vue', () => {
 		test('small size applies the correct classes', async () => {
 			await globalWrapper.setProps({ size: BoInputSize.small })
 			const input = globalWrapper.find('input')
-			expect(input.classes()).toContain('p-2')
+			expect(input.classes()).toContain('px-3')
+			expect(input.classes()).toContain('py-1.5')
 			expect(input.classes()).toContain('text-xs')
 		})
 
 		test('default size applies the correct classes', async () => {
 			await globalWrapper.setProps({ size: BoInputSize.default })
 			const input = globalWrapper.find('input')
-			expect(input.classes()).toContain('p-2.5')
+			expect(input.classes()).toContain('px-3')
+			expect(input.classes()).toContain('py-2')
 			expect(input.classes()).toContain('text-sm')
 		})
 
 		test('large size applies the correct classes', async () => {
 			await globalWrapper.setProps({ size: BoInputSize.large })
 			const input = globalWrapper.find('input')
-			expect(input.classes()).toContain('p-4')
+			expect(input.classes()).toContain('px-4')
+			expect(input.classes()).toContain('py-3')
 			expect(input.classes()).toContain('text-base')
 		})
 	})
@@ -100,8 +157,10 @@ describe('BoInput.vue', () => {
 			await globalWrapper.setProps({ state: BoInputState.valid })
 			const input = globalWrapper.find('input')
 			expect(input.classes()).toContain('border-green-500')
-			expect(input.classes()).toContain('bg-green-50')
+			expect(input.classes()).toContain('focus:ring-green-500/30')
+			expect(input.classes()).toContain('focus:border-green-500')
 			expect(input.classes()).toContain('text-green-900')
+			expect(input.classes()).toContain('placeholder-green-400')
 		})
 
 		test('invalid state applies the correct classes', async () => {
@@ -111,8 +170,10 @@ describe('BoInput.vue', () => {
 			})
 			const input = globalWrapper.find('input')
 			expect(input.classes()).toContain('border-red-500')
-			expect(input.classes()).toContain('bg-red-50')
+			expect(input.classes()).toContain('focus:ring-red-500/30')
+			expect(input.classes()).toContain('focus:border-red-500')
 			expect(input.classes()).toContain('text-red-900')
+			expect(input.classes()).toContain('placeholder-red-400')
 
 			// Check that error message is displayed
 			const errorMessage = globalWrapper.find('.text-red-600')

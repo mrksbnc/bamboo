@@ -4,7 +4,10 @@ function buildSidebar() {
 	return [
 		{
 			text: 'Bamboo',
-			items: [{ text: 'Get Started', link: '/pages/get-started' }],
+			items: [
+				{ text: 'Get Started', link: '/pages/get-started' },
+				{ text: 'Accessibility', link: '/pages/accessibility' },
+			],
 		},
 		{
 			text: 'Theming',
@@ -17,6 +20,13 @@ function buildSidebar() {
 		{
 			text: 'Components',
 			items: [...getComponents()],
+		},
+		{
+			text: 'Utilities',
+			items: [
+				{ text: 'All Utilities', link: '/pages/utilities' },
+				{ text: 'Accessibility Utils', link: '/pages/accessibility' },
+			],
 		},
 	]
 }
