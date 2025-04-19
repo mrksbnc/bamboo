@@ -225,29 +225,29 @@ describe('bo_button.vue', () => {
 		});
 
 		test('the button should have the correct default padding classes', () => {
-			expect(wrapper.classes()).contains('px-4');
-			expect(wrapper.classes()).contains('py-2.5');
+			expect(wrapper.classes()).contains('px-3.5');
+			expect(wrapper.classes()).contains('py-2');
 		});
 
 		test('the button should have the correct padding classes if a the size is extra small', async () => {
 			await wrapper.setProps({ size: BoSize.extra_small });
 
-			expect(wrapper.classes()).contains('py-1.5');
-			expect(wrapper.classes()).contains('px-3');
+			expect(wrapper.classes()).contains('py-1');
+			expect(wrapper.classes()).contains('px-2.5');
 		});
 
 		test('the button should have the correct padding classes if a the size is small', async () => {
 			await wrapper.setProps({ size: BoSize.small });
 
-			expect(wrapper.classes()).contains('py-2');
+			expect(wrapper.classes()).contains('py-1.5');
 			expect(wrapper.classes()).contains('px-3');
 		});
 
 		test('the button should have the correct padding classes if a the size is default', async () => {
 			await wrapper.setProps({ size: BoSize.default });
 
-			expect(wrapper.classes()).contains('px-4');
-			expect(wrapper.classes()).contains('py-2.5');
+			expect(wrapper.classes()).contains('px-3.5');
+			expect(wrapper.classes()).contains('py-2');
 		});
 
 		test('the button should have the correct size classes if a the size is large', async () => {
@@ -281,17 +281,17 @@ describe('bo_button.vue', () => {
 
 			test('the button should have the correct padding classes if a the size is extra small', async () => {
 				await wrapper.setProps({ size: BoSize.extra_small });
-				expect(wrapper.classes()).contains('p-2');
+				expect(wrapper.classes()).contains('p-1.5');
 			});
 
 			test('the button should have the correct padding classes if a the size is small', async () => {
 				await wrapper.setProps({ size: BoSize.small });
-				expect(wrapper.classes()).contains('p-2.5');
+				expect(wrapper.classes()).contains('p-2');
 			});
 
 			test('the button should have the correct padding classes if a the size is default', async () => {
 				await wrapper.setProps({ size: BoSize.default });
-				expect(wrapper.classes()).contains('p-3');
+				expect(wrapper.classes()).contains('p-2.5');
 			});
 
 			test('the button should have the correct padding classes if a the size is large', async () => {

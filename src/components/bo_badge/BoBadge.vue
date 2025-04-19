@@ -45,72 +45,47 @@ const { label, type, size, variant, shape, prefixIcon, suffixIcon } = toRefs(pro
 
 const containerClasses = {
 	[BoBadgeShape.default]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-md shadow-md',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-md shadow-md dark:shadow-gray-800',
 	[BoBadgeShape.circle]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-md',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-md dark:shadow-gray-800',
 	[BoBadgeShape.pill]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-md',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-md dark:shadow-gray-800',
 	[BoBadgeShape.flat]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-none shadow-md',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-none shadow-md dark:shadow-gray-800',
 };
 
 const variantClasses = {
 	[BoBadgeType.default]: {
 		[BoBadgeVariant.primary]:
-			/*tw*/ 'bg-blue-100 text-blue-800 border border-blue-200 dark:bg-blue-700 dark:text-white dark:border-blue-800',
+			/*tw*/ 'bg-blue-50 text-blue-800 border border-blue-500 dark:bg-blue-700 dark:text-white dark:border-blue-800',
 		[BoBadgeVariant.secondary]:
-			/*tw*/ 'bg-neutral-100 text-neutral-800 border border-neutral-200 dark:bg-neutral-700 dark:text-white dark:border-neutral-800',
+			/*tw*/ 'bg-neutral-50 text-neutral-800 border border-neutral-500 dark:bg-neutral-700 dark:text-white dark:border-neutral-800',
 		[BoBadgeVariant.danger]:
-			/*tw*/ 'bg-red-100 text-red-800 border border-red-200 dark:bg-red-700 dark:text-white dark:border-red-800',
+			/*tw*/ 'bg-red-50 text-red-800 border border-red-500 dark:bg-red-700 dark:text-white dark:border-red-800',
 		[BoBadgeVariant.warning]:
-			/*tw*/ 'bg-yellow-100 text-yellow-800 border border-yellow-200 dark:bg-yellow-500 dark:text-white dark:border-yellow-600',
+			/*tw*/ 'bg-yellow-50 text-yellow-800 border border-yellow-500 dark:bg-yellow-500 dark:text-white dark:border-yellow-600',
 		[BoBadgeVariant.success]:
-			/*tw*/ 'bg-green-100 text-green-800 border border-green-200 dark:bg-green-700 dark:text-white dark:border-green-800',
+			/*tw*/ 'bg-green-50 text-green-800 border border-green-500 dark:bg-green-700 dark:text-white dark:border-green-800',
 		[BoBadgeVariant.light]:
 			/*tw*/ 'bg-white text-black border border-neutral-300 dark:bg-white dark:text-black dark:border-neutral-300',
 		[BoBadgeVariant.dark]:
 			/*tw*/ 'bg-black text-white border border-black dark:bg-black dark:text-white dark:border-black',
 	},
 	[BoBadgeType.outline]: {
-		[BoBadgeVariant.primary]: /*tw*/ 'border border-blue-600 text-blue-600',
+		[BoBadgeVariant.primary]:
+			/*tw*/ 'border border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-400',
 		[BoBadgeVariant.secondary]:
 			/*tw*/ 'border border-neutral-600 text-neutral-600 dark:border-neutral-400 dark:text-neutral-400',
-		[BoBadgeVariant.danger]: /*tw*/ 'border border-red-600 text-red-600',
-		[BoBadgeVariant.warning]: /*tw*/ 'border border-yellow-600 text-yellow-600',
-		[BoBadgeVariant.success]: /*tw*/ 'border border-green-600 text-green-600',
-		[BoBadgeVariant.light]: /*tw*/ 'border border-neutral-400 text-neutral-400',
-		[BoBadgeVariant.dark]: /*tw*/ 'border border-black text-black',
-	},
-};
-
-const sizeClasses = {
-	[BoBadgeShape.default]: {
-		[BoSize.extra_small]: /*tw*/ 'px-1.5 py-0',
-		[BoSize.small]: /*tw*/ 'px-2 py-0.5',
-		[BoSize.default]: /*tw*/ 'px-2.5 py-1',
-		[BoSize.large]: /*tw*/ 'px-3 py-1.5',
-		[BoSize.extra_large]: /*tw*/ 'px-3.5 py-2',
-	},
-	[BoBadgeShape.pill]: {
-		[BoSize.extra_small]: /*tw*/ 'px-1.5 py-0',
-		[BoSize.small]: /*tw*/ 'px-2 py-0.5',
-		[BoSize.default]: /*tw*/ 'px-2.5 py-1',
-		[BoSize.large]: /*tw*/ 'px-3 py-1.5',
-		[BoSize.extra_large]: /*tw*/ 'px-3.5 py-2',
-	},
-	[BoBadgeShape.flat]: {
-		[BoSize.extra_small]: /*tw*/ 'px-1.5 py-0',
-		[BoSize.small]: /*tw*/ 'px-2 py-0.5',
-		[BoSize.default]: /*tw*/ 'px-2.5 py-1',
-		[BoSize.large]: /*tw*/ 'px-3 py-1.5',
-		[BoSize.extra_large]: /*tw*/ 'px-3.5 py-2',
-	},
-	[BoBadgeShape.circle]: {
-		[BoSize.extra_small]: /*tw*/ 'p-0',
-		[BoSize.small]: /*tw*/ 'p-0.5',
-		[BoSize.default]: /*tw*/ 'p-1',
-		[BoSize.large]: /*tw*/ 'p-1.5',
-		[BoSize.extra_large]: /*tw*/ 'p-2.5',
+		[BoBadgeVariant.danger]:
+			/*tw*/ 'border border-red-600 text-red-600 dark:border-red-500 dark:text-red-400',
+		[BoBadgeVariant.warning]:
+			/*tw*/ 'border border-yellow-600 text-yellow-600 dark:border-yellow-500 dark:text-yellow-400',
+		[BoBadgeVariant.success]:
+			/*tw*/ 'border border-green-600 text-green-600 dark:border-green-500 dark:text-green-400',
+		[BoBadgeVariant.light]:
+			/*tw*/ 'border border-neutral-400 text-neutral-400 dark:border-neutral-300 dark:text-neutral-300',
+		[BoBadgeVariant.dark]:
+			/*tw*/ 'border border-black text-black dark:border-white dark:text-white',
 	},
 };
 
@@ -142,7 +117,37 @@ const boBadgeVariantClasses = computed<string>(() => {
 });
 
 const boBadgeSizeClasses = computed<string>(() => {
-	return sizeClasses[shape.value][size.value];
+	if (shape.value === BoBadgeShape.circle) {
+		switch (size.value) {
+			case BoSize.extra_small:
+				return /*tw*/ 'p-0';
+			case BoSize.small:
+				return /*tw*/ 'p-0.5';
+			case BoSize.default:
+				return /*tw*/ 'p-0.75';
+			case BoSize.large:
+				return /*tw*/ 'p-1.25';
+			case BoSize.extra_large:
+				return /*tw*/ 'p-2';
+			default:
+				return /*tw*/ 'p-0.75';
+		}
+	}
+
+	switch (size.value) {
+		case BoSize.extra_small:
+			return /*tw*/ 'px-1 py-0';
+		case BoSize.small:
+			return /*tw*/ 'px-1.5 py-0.5';
+		case BoSize.default:
+			return /*tw*/ 'px-2 py-0.75';
+		case BoSize.large:
+			return /*tw*/ 'px-2.5 py-1';
+		case BoSize.extra_large:
+			return /*tw*/ 'px-3 py-1.5';
+		default:
+			return /*tw*/ 'px-2 py-0.75';
+	}
 });
 
 const classes = computed<string>(() => {
@@ -167,6 +172,7 @@ const badgeFontSize = computed<BoFontSize>(() => {
 			return BoFontSize.lg;
 	}
 });
+
 const boBadgeIconSize = computed<BoSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:

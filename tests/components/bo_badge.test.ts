@@ -64,32 +64,32 @@ describe('bo_badge.vue', () => {
 
 			test('the badge should support extra small size related classes', async () => {
 				await testWrapper.setProps({ size: BoSize.extra_small });
-				expect(testWrapper.classes()).contains('px-1.5');
+				expect(testWrapper.classes()).contains('px-1');
 				expect(testWrapper.classes()).contains('py-0');
 			});
 
 			test('the badge should support small size related classes', async () => {
 				await testWrapper.setProps({ size: BoSize.small });
-				expect(testWrapper.classes()).contains('px-2');
+				expect(testWrapper.classes()).contains('px-1.5');
 				expect(testWrapper.classes()).contains('py-0.5');
 			});
 
 			test('the badge should have the default size related classes', async () => {
 				await testWrapper.setProps({ size: BoSize.default });
-				expect(testWrapper.classes()).contains('px-2.5');
-				expect(testWrapper.classes()).contains('py-1');
+				expect(testWrapper.classes()).contains('px-2');
+				expect(testWrapper.classes()).contains('py-0.75');
 			});
 
 			test('the badge should support large size related classes', async () => {
 				await testWrapper.setProps({ size: BoSize.large });
-				expect(testWrapper.classes()).contains('px-3');
-				expect(testWrapper.classes()).contains('py-1.5');
+				expect(testWrapper.classes()).contains('px-2.5');
+				expect(testWrapper.classes()).contains('py-1');
 			});
 
-			test('the badge should support default size related classes', async () => {
+			test('the badge should support extra large size related classes', async () => {
 				await testWrapper.setProps({ size: BoSize.extra_large });
-				expect(testWrapper.classes()).contains('px-3.5');
-				expect(testWrapper.classes()).contains('py-2');
+				expect(testWrapper.classes()).contains('px-3');
+				expect(testWrapper.classes()).contains('py-1.5');
 			});
 		});
 
@@ -105,32 +105,32 @@ describe('bo_badge.vue', () => {
 
 				test('extra small size classes', async () => {
 					await testWrapper.setProps({ size: BoSize.extra_small });
-					expect(testWrapper.classes()).contains('px-1.5');
+					expect(testWrapper.classes()).contains('px-1');
 					expect(testWrapper.classes()).contains('py-0');
 				});
 
 				test('small size classes', async () => {
 					await testWrapper.setProps({ size: BoSize.small });
-					expect(testWrapper.classes()).contains('px-2');
+					expect(testWrapper.classes()).contains('px-1.5');
 					expect(testWrapper.classes()).contains('py-0.5');
 				});
 
 				test('default size classes', async () => {
 					await testWrapper.setProps({ size: BoSize.default });
-					expect(testWrapper.classes()).contains('px-2.5');
-					expect(testWrapper.classes()).contains('py-1');
+					expect(testWrapper.classes()).contains('px-2');
+					expect(testWrapper.classes()).contains('py-0.75');
 				});
 
 				test('large size classes', async () => {
 					await testWrapper.setProps({ size: BoSize.large });
-					expect(testWrapper.classes()).contains('px-3');
-					expect(testWrapper.classes()).contains('py-1.5');
+					expect(testWrapper.classes()).contains('px-2.5');
+					expect(testWrapper.classes()).contains('py-1');
 				});
 
 				test('extra large size classes', async () => {
 					await testWrapper.setProps({ size: BoSize.extra_large });
-					expect(testWrapper.classes()).contains('px-3.5');
-					expect(testWrapper.classes()).contains('py-2');
+					expect(testWrapper.classes()).contains('px-3');
+					expect(testWrapper.classes()).contains('py-1.5');
 				});
 			});
 
@@ -156,17 +156,17 @@ describe('bo_badge.vue', () => {
 
 				test('the badge should have the default size related classes', async () => {
 					await testWrapper.setProps({ size: BoSize.default });
-					expect(testWrapper.classes()).contains('p-1');
+					expect(testWrapper.classes()).contains('p-0.75');
 				});
 
 				test('the badge should support large size related classes', async () => {
 					await testWrapper.setProps({ size: BoSize.large });
-					expect(testWrapper.classes()).contains('p-1.5');
+					expect(testWrapper.classes()).contains('p-1.25');
 				});
 
-				test('the badge should support default size related classes', async () => {
+				test('the badge should support extra large size related classes', async () => {
 					await testWrapper.setProps({ size: BoSize.extra_large });
-					expect(testWrapper.classes()).contains('p-2.5');
+					expect(testWrapper.classes()).contains('p-2');
 				});
 			});
 		});

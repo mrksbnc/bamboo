@@ -69,19 +69,69 @@ To change the color of the icon, you can use the `color` prop. This accepts any 
 
 <div class="flex gap-2">
   <bo-icon :icon="Icon.activity" color="#41b883" />
-  <bo-icon :icon="Icon.activity" color="#ff0000" />
-  <bo-icon :icon="Icon.activity" color="#777777" />
+  <bo-icon :icon="Icon.activity" color="#231252" />
+  <bo-icon :icon="Icon.activity" color="#bb1221" />
 </div>
 
 ::: details Toggle code
 
 ```js
 <bo-icon :icon="Icon.activity" color="#41b883" />
-<bo-icon :icon="Icon.activity" color="#ff0000" />
-<bo-icon :icon="Icon.activity" color="#777777" />
+<bo-icon :icon="Icon.activity" color="#231252" />
+<bo-icon :icon="Icon.activity" color="#bb1221" />
 ```
 
 :::
+
+## Dark Mode Support
+
+Icons in Bamboo automatically adapt to dark mode. By default, icons inherit their color from the parent element's text color, which allows them to automatically adjust when the theme changes.
+
+<div class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-md">
+  <span class="text-black dark:text-white">
+    <bo-icon :icon="Icon.activity" />
+  </span>
+  <span class="text-blue-600 dark:text-blue-400">
+    <bo-icon :icon="Icon.bell" />
+  </span>
+  <span class="text-red-600 dark:text-red-400">
+    <bo-icon :icon="Icon.alert_circle" />
+  </span>
+  <span class="text-green-600 dark:text-green-400">
+    <bo-icon :icon="Icon.check_circle" />
+  </span>
+</div>
+
+If you need more control over the icon color in dark mode, you can:
+
+1. Wrap the icon in an element with the appropriate dark mode text color classes:
+
+```html
+<span class="text-gray-700 dark:text-gray-300">
+	<bo-icon :icon="Icon.activity" />
+</span>
+```
+
+2. Use CSS variables for dynamic colors:
+
+```html
+<bo-icon
+	:icon="Icon.activity"
+	color="var(--icon-color)"
+/>
+
+<style>
+	:root {
+		--icon-color: #333;
+	}
+
+	.dark {
+		--icon-color: #eee;
+	}
+</style>
+```
+
+This approach ensures icons always remain visible and properly contrasted in both light and dark themes.
 
 ## All available icons
 
@@ -96,7 +146,7 @@ To change the color of the icon, you can use the `color` prop. This accepts any 
   </span>
   <span class="p-2 flex flex-col gap-2 items-center border rounded-lg"> 
     <bo-icon :icon="Icon.alert_circle" />
-    <label class="text-sm">alert_circle</label>
+    <label class="text-sm">alert_circle</label>    
   </span>
   <span class="p-2 flex flex-col gap-2 items-center border rounded-lg"> 
     <bo-icon :icon="Icon.alert_octagon" />

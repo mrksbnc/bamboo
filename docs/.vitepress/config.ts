@@ -7,6 +7,14 @@ function buildSidebar() {
 			items: [{ text: 'Get Started', link: '/pages/get-started' }],
 		},
 		{
+			text: 'Theming',
+			items: [
+				{ text: 'Overview', link: '/components/theming/index' },
+				{ text: 'Dark Mode', link: '/components/theming/dark-mode' },
+				{ text: 'Sizing', link: '/components/theming/sizing' },
+			],
+		},
+		{
 			text: 'Components',
 			items: [...getComponents()],
 		},

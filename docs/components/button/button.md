@@ -102,7 +102,7 @@ Available values for the `size` prop are:
 - `large`
 - `extra-large`
 
-<div class="flex gap-2">
+<div class="flex items-center gap-2">
   <bo-button label="Extra small" :size="BoSize.extra_small" />
   <bo-button label="Small" :size="BoSize.small" />
   <bo-button label="Default" :size="BoSize.default" />
@@ -136,7 +136,10 @@ In some cases you may want to make the button take up the full width of the cont
 
 ```js
 <div class="flex gap-2">
-	<bo-button label="Button" full-width />
+	<bo-button
+		label="Button"
+		full-width
+	/>
 </div>
 ```
 
@@ -250,141 +253,104 @@ Note that in case both the `prefix-icon` and `suffix-icon` props are provided, o
 
 <div class="flex gap-2">
   <bo-button :prefix-icon="Icon.user" />
-  <bo-button :prefix-icon="Icon.user" :shape="BoButtonShape.outline" />
-  <bo-button :prefix-icon="Icon.user" :shape="BoButtonShape.pill" />
 </div>
 
 ::: details Toggle code
 
 ```js
 <bo-button :prefix-icon="Icon.user" />
-<bo-button :prefix-icon="Icon.user" :shape="BoButtonShape.pill" />
-<bo-button :prefix-icon="Icon.user" :shape="BoButtonShape.outline" />
 ```
 
 :::
 
-## Slots
+## Dark mode support
 
-To render content not supported by the default props of the button, you can use the `content` slot.
+The button component automatically adjusts its appearance in dark mode. All variants and styles are carefully designed to maintain proper contrast and visibility in dark themes.
 
-<SlotButton />
-
-::: details Toggle code
-
-```js
-<bo-button>
-  <template #content>
-    <bo-icon :icon="Icon.user" />
-  </template>
-</bo-button>
-```
-
-:::
-
-## All variants & shapes
-
-### Default
-
-<div class="flex gap-2 mt-4">
-  <bo-button label="Button" :variant="BoButtonVariant.primary" />
-  <bo-button label="Button" :variant="BoButtonVariant.secondary" />
-  <bo-button label="Button" :variant="BoButtonVariant.danger" />
-  <bo-button label="Button" :variant="BoButtonVariant.warning" />
-  <bo-button label="Button" :variant="BoButtonVariant.success" />
-  <bo-button label="Button" :variant="BoButtonVariant.light" />
-  <bo-button label="Button" :variant="BoButtonVariant.dark" />
+<div class="flex flex-wrap gap-2 p-4 bg-white dark:bg-gray-800 rounded-md">
+  <bo-button label="Primary" :variant="BoButtonVariant.primary" />
+  <bo-button label="Secondary" :variant="BoButtonVariant.secondary" />
+  <bo-button label="Outline" :shape="BoButtonShape.outline" />
+  <bo-button label="Link" :shape="BoButtonShape.link" />
+  <bo-button :prefix-icon="Icon.user" />
 </div>
 
-::: details Toggle code
+In dark mode:
 
-```js
-<bo-button label="Button" :variant="BoButtonVariant.primary" />
-<bo-button label="Button" :variant="BoButtonVariant.secondary" />
-<bo-button label="Button" :variant="BoButtonVariant.danger" />
-<bo-button label="Button" :variant="BoButtonVariant.warning" />
-<bo-button label="Button" :variant="BoButtonVariant.success" />
-<bo-button label="Button" :variant="BoButtonVariant.light" />
-<bo-button label="Button" :variant="BoButtonVariant.dark" />
-```
+- Background colors use darker variants
+- Text colors adjust for better contrast
+- Border colors are modified for visibility
+- Focus and hover states remain clear and accessible
 
-:::
+Dark mode transitions are applied automatically when the `dark` class is present on the root HTML element. No additional configuration is needed.
 
-### Outline
+## Complete Button Combinations
 
-<div class="flex gap-2 mt-4">
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.primary" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.secondary" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.danger" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.warning" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.success" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.light" />
-  <bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.dark" />
+Here are examples of various button combinations with different variants, shapes, sizes, and icons:
+
+### Default Shape Buttons with Variants
+
+<div class="flex flex-wrap gap-2 mt-2">
+  <bo-button label="Primary" :variant="BoButtonVariant.primary" />
+  <bo-button label="Secondary" :variant="BoButtonVariant.secondary" />
+  <bo-button label="Danger" :variant="BoButtonVariant.danger" />
+  <bo-button label="Warning" :variant="BoButtonVariant.warning" />
+  <bo-button label="Success" :variant="BoButtonVariant.success" />
+  <bo-button label="Light" :variant="BoButtonVariant.light" />
+  <bo-button label="Dark" :variant="BoButtonVariant.dark" />
 </div>
 
-::: details Toggle code
+### Button Sizes with Icons
 
-```js
-
-<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.primary" />
-<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.secondary" />
-<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.danger" />
-<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.warning" />
-<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.success" />
-<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.light" />
-<bo-button label="Button" :shape="BoButtonShape.outline" :variant="BoButtonVariant.dark" />
-```
-
-:::
-
-### Pill
-
-<div class="flex gap-2 mt-4">
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.primary" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.secondary" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.danger" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.warning" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.success" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.light" />
-  <bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.dark" />
+<div class="flex flex-wrap gap-2 mt-2 items-center">
+  <bo-button label="Extra Small" :size="BoSize.extra_small" :prefix-icon="Icon.user" />
+  <bo-button label="Small" :size="BoSize.small" :prefix-icon="Icon.user" />
+  <bo-button label="Default" :prefix-icon="Icon.user" />
+  <bo-button label="Large" :size="BoSize.large" :prefix-icon="Icon.user" />
+  <bo-button label="Extra Large" :size="BoSize.extra_large" :prefix-icon="Icon.user" />
 </div>
 
-::: details Toggle code
+### Icon-only Buttons with Different Shapes
 
-```js
-<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.primary" />
-<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.secondary" />
-<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.danger" />
-<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.warning" />
-<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.success" />
-<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.light" />
-<bo-button label="Button" :shape="BoButtonShape.pill" :variant="BoButtonVariant.dark" />
-```
-
-:::
-
-### Link
-
-<div class="flex gap-2 mt-4">
-  <bo-button label="Button" :variant="BoButtonVariant.primary" :shape="BoButtonShape.link" />
-  <bo-button label="Button" :variant="BoButtonVariant.secondary" :shape="BoButtonShape.link"/>
-  <bo-button label="Button" :variant="BoButtonVariant.danger" :shape="BoButtonShape.link"/>
-  <bo-button label="Button" :variant="BoButtonVariant.warning" :shape="BoButtonShape.link"/>
-  <bo-button label="Button" :variant="BoButtonVariant.success" :shape="BoButtonShape.link"/>
-  <bo-button label="Button" :variant="BoButtonVariant.light" :shape="BoButtonShape.link"/>
-  <bo-button label="Button" :variant="BoButtonVariant.dark" :shape="BoButtonShape.link"/>
+<div class="flex flex-wrap gap-2 mt-2 items-center">
+  <bo-button :prefix-icon="Icon.settings" />
+  <bo-button :prefix-icon="Icon.settings" :shape="BoButtonShape.pill" />
+  <bo-button :prefix-icon="Icon.settings" :shape="BoButtonShape.outline" />
+  <bo-button :prefix-icon="Icon.settings" :shape="BoButtonShape.link" />
 </div>
 
-::: details Toggle code
+### Buttons with Different Shapes
 
-```js
-<bo-button label="Button" :variant="BoButtonVariant.primary" :shape="BoButtonShape.link" />
-<bo-button label="Button" :variant="BoButtonVariant.secondary" :shape="BoButtonShape.link"/>
-<bo-button label="Button" :variant="BoButtonVariant.danger" :shape="BoButtonShape.link"/>
-<bo-button label="Button" :variant="BoButtonVariant.warning" :shape="BoButtonShape.link"/>
-<bo-button label="Button" :variant="BoButtonVariant.success" :shape="BoButtonShape.link"/>
-<bo-button label="Button" :variant="BoButtonVariant.light" :shape="BoButtonShape.link"/>
-<bo-button label="Button" :variant="BoButtonVariant.dark" :shape="BoButtonShape.link"/>
-```
+<div class="flex flex-wrap gap-2 mt-2">
+  <bo-button label="Default" :shape="BoButtonShape.default" />
+  <bo-button label="Pill" :shape="BoButtonShape.pill" />
+  <bo-button label="Outline" :shape="BoButtonShape.outline" />
+  <bo-button label="Link" :shape="BoButtonShape.link" />
+</div>
 
-:::
+### Button Variants with Different Shapes
+
+<div class="flex flex-wrap gap-2 mt-2">
+  <bo-button label="Primary Outline" :variant="BoButtonVariant.primary" :shape="BoButtonShape.outline" />
+  <bo-button label="Danger Pill" :variant="BoButtonVariant.danger" :shape="BoButtonShape.pill" />
+  <bo-button label="Success Link" :variant="BoButtonVariant.success" :shape="BoButtonShape.link" />
+  <bo-button label="Warning Default" :variant="BoButtonVariant.warning" />
+</div>
+
+### Loading Buttons
+
+<div class="flex flex-wrap gap-2 mt-2">
+  <bo-button label="Loading Default" :is-loading="true" />
+  <bo-button label="Loading Outline" :is-loading="true" :shape="BoButtonShape.outline" />
+  <bo-button label="Loading Pulse" :is-loading="true" loader-type="pulse" />
+  <bo-button :prefix-icon="Icon.refresh" :is-loading="true" />
+</div>
+
+### Disabled Buttons
+
+<div class="flex flex-wrap gap-2 mt-2">
+  <bo-button label="Disabled Default" :disabled="true" />
+  <bo-button label="Disabled Outline" :disabled="true" :shape="BoButtonShape.outline" />
+  <bo-button label="Disabled Pill" :disabled="true" :shape="BoButtonShape.pill" />
+  <bo-button label="Disabled Link" :disabled="true" :shape="BoButtonShape.link" />
+</div>

@@ -24,9 +24,11 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
+
 const slots = defineSlots<{
-	header(props: Record<string, unknown>): void;
-	content(props: Record<string, unknown>): void;
-	actions(props: Record<string, unknown>): void;
+	header?: (props: Record<string, unknown>) => void;
+	content?: (props: Record<string, unknown>) => void;
+	actions?: (props: Record<string, unknown>) => void;
 }>();
 </script>

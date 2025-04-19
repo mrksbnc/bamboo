@@ -6,7 +6,7 @@
 
 # bo-badge
 
-A badge component is a complementary that can be be used standalone or with other components to display a label or status.
+A badge component is a complementary element that can be used standalone or with other components to display a label or status.
 
 <bo-badge label="Badge" />
 
@@ -29,7 +29,7 @@ A badge component is a complementary that can be be used standalone or with othe
 | `suffix-icon` | `Icon`           | `Icon.none`              |
 
 :::warning Note
-Though non of the props are required, either the `label`,`prefix-icon` or the `suffix-icon` prop must be provided.
+Though none of the props are required, either the `label`, `prefix-icon`, or the `suffix-icon` prop must be provided.
 :::
 
 ## Variants
@@ -41,9 +41,10 @@ To change the color of the component, you can use the predefined `BoBadgeVariant
 - `danger`
 - `warning`
 - `success`
+- `light`
 - `dark`
 
-<div class="flex gap-2 mt-2">
+<div class="flex flex-wrap gap-2 mt-2">
   <bo-badge label="Primary" :variant="BoBadgeVariant.primary" />
   <bo-badge label="Secondary" :variant="BoBadgeVariant.secondary" />
   <bo-badge label="Danger" :variant="BoBadgeVariant.danger" />
@@ -53,37 +54,19 @@ To change the color of the component, you can use the predefined `BoBadgeVariant
   <bo-badge label="Dark" :variant="BoBadgeVariant.dark" />
 </div>
 
-## Shapes
-
-To change the border radius of the component change the `shape` prop.
-The `shape` prop should be a member of the `BoBadgeShape` enum.
-
-- `default`
-- `pill`
-- `flat`
-- `circle`
-
-<div class="flex gap-2 mt-2">
-  <bo-badge label="Default" :shape="BoBadgeShape.default" />
-  <bo-badge label="Pill" :shape="BoBadgeShape.pill" />
-  <bo-badge label="Flat" :shape="BoBadgeShape.flat" />
-</div>
+::: details Toggle code
 
 ```js
-<bo-badge label="Default" :shape="BoBadgeShape.default" />
-<bo-badge label="Pill" :shape="BoBadgeShape.pill" />
-<bo-badge label="Flat" :shape="BoBadgeShape.flat" />
+<bo-badge label="Primary" :variant="BoBadgeVariant.primary" />
+<bo-badge label="Secondary" :variant="BoBadgeVariant.secondary" />
+<bo-badge label="Danger" :variant="BoBadgeVariant.danger" />
+<bo-badge label="Warning" :variant="BoBadgeVariant.warning" />
+<bo-badge label="Success" :variant="BoBadgeVariant.success" />
+<bo-badge label="Light" :variant="BoBadgeVariant.light" />
+<bo-badge label="Dark" :variant="BoBadgeVariant.dark" />
 ```
 
-:::tip Tip: circle badge
-To create a circle badge set set the `shape` to `circle` and the `prefix-icon` prop.
-
-<b>The `circle` shape is not available with the `label` prop set.</b>
 :::
-
-```js
-<bo-badge :shape="BoBadgeShape.circle" :prefix-icon="Icon.alert_circle" />
-```
 
 ## Types
 
@@ -107,6 +90,46 @@ The `type` prop should be a member of the `BoBadgeType` enum.
 
 :::
 
+## Shapes
+
+To change the border radius of the component, use the `shape` prop.
+The `shape` prop should be a member of the `BoBadgeShape` enum.
+
+- `default`
+- `pill`
+- `flat`
+- `circle`
+
+<div class="flex gap-2 mt-2">
+  <bo-badge label="Default" :shape="BoBadgeShape.default" />
+  <bo-badge label="Pill" :shape="BoBadgeShape.pill" />
+  <bo-badge label="Flat" :shape="BoBadgeShape.flat" />
+</div>
+
+::: details Toggle code
+
+```js
+<bo-badge label="Default" :shape="BoBadgeShape.default" />
+<bo-badge label="Pill" :shape="BoBadgeShape.pill" />
+<bo-badge label="Flat" :shape="BoBadgeShape.flat" />
+```
+
+:::
+
+:::tip Tip: circle badge
+To create a circle badge, set the `shape` to `circle` and provide the `prefix-icon` prop.
+
+<b>The `circle` shape is not available with the `label` prop set.</b>
+:::
+
+<div class="flex gap-2 mt-2">
+  <bo-badge :shape="BoBadgeShape.circle" :prefix-icon="Icon.alert_circle" />
+</div>
+
+```js
+<bo-badge :shape="BoBadgeShape.circle" :prefix-icon="Icon.alert_circle" />
+```
+
 ## Sizes
 
 To change the size of the component, use the `size` prop.
@@ -118,7 +141,7 @@ The prop value should be a member of the `BoSize` enum.
 - `large`
 - `extra-large`
 
-<div class="flex gap-2 mt-2">
+<div class="flex gap-2 items-center mt-2">
   <bo-badge label="Extra small" :size="BoSize.extra_small" />
   <bo-badge label="Small" :size="BoSize.small" />
   <bo-badge label="Default" :size="BoSize.default" />
@@ -144,22 +167,22 @@ The `prefix-icon` and `suffix-icon` props can be used to display an icon before 
 Both of these props should be a member of the `Icon` enum.
 
 <div class="flex gap-2 mt-2">
-  <bo-badge label="Badge" :prefix-icon="Icon.alert_circle" />
-  <bo-badge label="Badge" :suffix-icon="Icon.alert_circle" />
+  <bo-badge label="Prefix" :prefix-icon="Icon.activity" />
+  <bo-badge label="Suffix" :suffix-icon="Icon.activity" />
 </div>
 
 ::: details Toggle code
 
 ```js
-<bo-badge label="Badge" :prefix-icon="Icon.alert_circle" />
-<bo-badge label="Badge" :suffix-icon="Icon.alert_circle" />
+<bo-badge label="Prefix" :prefix-icon="Icon.activity" />
+<bo-badge label="Suffix" :suffix-icon="Icon.activity" />
 ```
 
 :::
 
 ## Icon only
 
-To create an icon only badge, you can use the `prefix-icon` prop without the `label`.
+To create an icon-only badge, you can use the `prefix-icon` prop without the `label`.
 
 <div class="flex gap-2 mt-2">
   <bo-badge :prefix-icon="Icon.alert_circle" />
@@ -175,269 +198,100 @@ To create an icon only badge, you can use the `prefix-icon` prop without the `la
 
 :::
 
-## All available variants, types and shapes
+## Complete Badge Combinations
 
-### Default
+Here are examples of various badge combinations with different types, shapes, sizes, and variants:
 
-<div class="flex gap-2 mt-2">
-  <bo-badge label="Badge" variant="primary" />
-  <bo-badge label="Badge" variant="secondary" />
-  <bo-badge label="Badge" variant="danger" />
-  <bo-badge label="Badge" variant="warning" />
-  <bo-badge label="Badge" variant="success" />
-  <bo-badge label="Badge" variant="light" />
-  <bo-badge label="Badge" variant="dark" />
+### Default Type Badges
+
+<div class="flex flex-wrap gap-2 mt-2">
+  <bo-badge label="Default Primary" :variant="BoBadgeVariant.primary" />
+  <bo-badge label="Small Success" :size="BoSize.small" :variant="BoBadgeVariant.success" />
+  <bo-badge label="Large Danger" :size="BoSize.large" :variant="BoBadgeVariant.danger" />
+  <bo-badge label="Pill Warning" :shape="BoBadgeShape.pill" :variant="BoBadgeVariant.warning" />
+  <bo-badge label="With Icon" :prefix-icon="Icon.check" :variant="BoBadgeVariant.primary" />
 </div>
 
 ::: details Toggle code
 
 ```js
-<bo-badge label="Badge" variant="primary" />
-<bo-badge label="Badge" variant="secondary" />
-<bo-badge label="Badge" variant="danger" />
-<bo-badge label="Badge" variant="warning" />
-<bo-badge label="Badge" variant="success" />
-<bo-badge label="Badge" variant="light" />
-<bo-badge label="Badge" variant="dark" />
+<bo-badge label="Default Primary" :variant="BoBadgeVariant.primary" />
+<bo-badge label="Small Success" :size="BoSize.small" :variant="BoBadgeVariant.success" />
+<bo-badge label="Large Danger" :size="BoSize.large" :variant="BoBadgeVariant.danger" />
+<bo-badge label="Pill Warning" :shape="BoBadgeShape.pill" :variant="BoBadgeVariant.warning" />
+<bo-badge label="With Icon" :prefix-icon="Icon.check" :variant="BoBadgeVariant.primary" />
 ```
 
 :::
 
-### Outline
+### Outline Type Badges
 
-<div class="flex gap-2 mt-2">
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="primary" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="secondary" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="danger" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="warning" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="success" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="light" />
-  <bo-badge label="Badge" :type="BoBadgeType.outline" variant="dark" />
+<div class="flex flex-wrap gap-2 mt-2">
+  <bo-badge label="Outline Primary" :type="BoBadgeType.outline" :variant="BoBadgeVariant.primary" />
+  <bo-badge label="Small Success" :type="BoBadgeType.outline" :size="BoSize.small" :variant="BoBadgeVariant.success" />
+  <bo-badge label="Large Danger" :type="BoBadgeType.outline" :size="BoSize.large" :variant="BoBadgeVariant.danger" />
+  <bo-badge label="Pill Warning" :type="BoBadgeType.outline" :shape="BoBadgeShape.pill" :variant="BoBadgeVariant.warning" />
+  <bo-badge label="With Icon" :type="BoBadgeType.outline" :prefix-icon="Icon.check" :variant="BoBadgeVariant.primary" />
 </div>
 
 ::: details Toggle code
 
 ```js
-<bo-badge label="Badge" :type="BoBadgeType.outline" />
-<bo-badge label="Badge" :type="BoBadgeType.outline" variant="primary" />
-<bo-badge label="Badge" :type="BoBadgeType.outline" variant="secondary" />
-<bo-badge label="Badge" :type="BoBadgeType.outline" variant="danger" />
-<bo-badge label="Badge" :type="BoBadgeType.outline" variant="warning" />
-<bo-badge label="Badge" :type="BoBadgeType.outline" variant="success" />
-<bo-badge label="Badge" :type="BoBadgeType.outline" variant="light" />
-<bo-badge label="Badge" :type="BoBadgeType.outline" variant="dark" />
+<bo-badge label="Outline Primary" :type="BoBadgeType.outline" :variant="BoBadgeVariant.primary" />
+<bo-badge label="Small Success" :type="BoBadgeType.outline" :size="BoSize.small" :variant="BoBadgeVariant.success" />
+<bo-badge label="Large Danger" :type="BoBadgeType.outline" :size="BoSize.large" :variant="BoBadgeVariant.danger" />
+<bo-badge label="Pill Warning" :type="BoBadgeType.outline" :shape="BoBadgeShape.pill" :variant="BoBadgeVariant.warning" />
+<bo-badge label="With Icon" :type="BoBadgeType.outline" :prefix-icon="Icon.check" :variant="BoBadgeVariant.primary" />
 ```
 
 :::
 
-## With Prefix Icon
+### Icon-only Badges
 
-### Default
-
-<div class="flex gap-2 mt-2">
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" />
+<div class="flex flex-wrap gap-2 mt-2">
+  <bo-badge :prefix-icon="Icon.check" :variant="BoBadgeVariant.primary" />
+  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" />
+  <bo-badge :prefix-icon="Icon.info" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.pill" />
+  <bo-badge :prefix-icon="Icon.check" :variant="BoBadgeVariant.success" :size="BoSize.large" />
+  <bo-badge :prefix-icon="Icon.bell" :type="BoBadgeType.outline" :variant="BoBadgeVariant.warning" />
+  <bo-badge :prefix-icon="Icon.activity" :shape="BoBadgeShape.circle" :variant="BoBadgeVariant.primary" />
+  <bo-badge :prefix-icon="Icon.alert_triangle" :shape="BoBadgeShape.circle" :variant="BoBadgeVariant.danger" />
+  <bo-badge :prefix-icon="Icon.check" :shape="BoBadgeShape.circle" :variant="BoBadgeVariant.success" />
 </div>
 
 ::: details Toggle code
 
 ```js
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" />
+<bo-badge :prefix-icon="Icon.check" :variant="BoBadgeVariant.primary" />
+<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" />
+<bo-badge :prefix-icon="Icon.info" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.pill" />
+<bo-badge :prefix-icon="Icon.check" :variant="BoBadgeVariant.success" :size="BoSize.large" />
+<bo-badge :prefix-icon="Icon.bell" :type="BoBadgeType.outline" :variant="BoBadgeVariant.warning" />
+<bo-badge :prefix-icon="Icon.activity" :shape="BoBadgeShape.circle" :variant="BoBadgeVariant.primary" />
+<bo-badge :prefix-icon="Icon.alert_triangle" :shape="BoBadgeShape.circle" :variant="BoBadgeVariant.danger" />
+<bo-badge :prefix-icon="Icon.check" :shape="BoBadgeShape.circle" :variant="BoBadgeVariant.success" />
 ```
 
 :::
 
-### Outline
+## Dark Mode Support
 
-<div class="flex gap-2 mt-2">
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
+The badge component fully supports dark mode with carefully designed color combinations that ensure readability and visual harmony in both light and dark environments.
+
+<div class="flex flex-wrap gap-2 p-4 mt-2 bg-white dark:bg-gray-800 rounded-md">
+  <bo-badge label="Primary" :variant="BoBadgeVariant.primary" />
+  <bo-badge label="Secondary" :variant="BoBadgeVariant.secondary" />
+  <bo-badge label="Outline" :type="BoBadgeType.outline" :variant="BoBadgeVariant.primary" />
+  <bo-badge :prefix-icon="Icon.activity" :shape="BoBadgeShape.circle" />
+  <bo-badge label="With Icon" :prefix-icon="Icon.check" />
 </div>
 
-::: details Toggle code
+In dark mode:
 
-```js
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
-```
+- Background colors are automatically adjusted for proper contrast
+- Text colors shift to ensure readability on darker backgrounds
+- Border colors are modified for clear boundaries
+- Shadow effects are calibrated for dark themes
+- Icon colors adapt to maintain visibility
 
-:::
-
-## With Suffix Icon
-
-### Default
-
-<div class="flex gap-2 mt-2">
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" />
-</div>
-
-::: details Toggle code
-
-```js
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" />
-```
-
-:::
-
-### Outline
-
-<div class="flex gap-2 mt-2">
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
-  <bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
-</div>
-
-::: details Toggle code
-
-```js
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
-<bo-badge :suffix-icon="Icon.alert_circle" label="Badge" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
-```
-
-:::
-
-## Icon only pill
-
-<div class="flex gap-2 mt-2">
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.pill" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.pill" />
-</div>
-
-::: details Toggle code
-
-```js
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.pill" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.pill" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.pill" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.pill" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.pill" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.pill" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.pill" />
-```
-
-:::
-
-## Icon only flat
-
-<div class="flex gap-2 mt-2">
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.flat" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.flat" />
-</div>
-
-::: details Toggle code
-
-```js
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.flat" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.flat" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.flat" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.flat" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.flat" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.flat" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.flat" />
-```
-
-:::
-
-## Icon only circle
-
-<div class="flex gap-2 mt-2">
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.circle" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.circle" />
-</div>
-
-::: details Toggle code
-
-```js
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :shape="BoBadgeShape.circle" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :shape="BoBadgeShape.circle" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :shape="BoBadgeShape.circle" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :shape="BoBadgeShape.circle" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :shape="BoBadgeShape.circle" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :shape="BoBadgeShape.circle" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :shape="BoBadgeShape.circle" />
-```
-
-:::
-
-## Icon only outline
-
-<div class="flex gap-2 mt-2">
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
-  <bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
-</div>
-
-::: details Toggle code
-
-```js
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.primary" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.secondary" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.danger" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.warning" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.success" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.light" :type="BoBadgeType.outline" />
-<bo-badge :prefix-icon="Icon.alert_circle" :variant="BoBadgeVariant.dark" :type="BoBadgeType.outline" />
-```
-
-:::
+This automatic theming happens when the `dark` class is present on the HTML root element, with no additional configuration required.

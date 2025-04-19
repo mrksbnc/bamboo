@@ -136,36 +136,36 @@ const filledButtonClasses = {
 
 const outlineButtonClasses = {
 	[BoButtonVariant.primary]:
-		/*tw*/ 'border border-blue-600 hover:bg-blue-700 focus:ring-transparent text-blue-600 hover:text-white',
+		/*tw*/ 'border border-blue-600 hover:bg-blue-700 focus:ring-transparent text-blue-600 hover:text-white dark:border-blue-500 dark:text-blue-500',
 	[BoButtonVariant.secondary]:
 		/*tw*/ 'border border-gray-500 dark:border-neutral-300 hover:bg-gray-500 focus:ring-transparent text-gray-500 dark:text-neutral-300 hover:text-white',
 	[BoButtonVariant.danger]:
-		/*tw*/ 'border border-red-600 hover:bg-red-600 focus:ring-transparent text-red-600 hover:text-white',
+		/*tw*/ 'border border-red-600 hover:bg-red-600 focus:ring-transparent text-red-600 hover:text-white dark:border-red-500 dark:text-red-500',
 	[BoButtonVariant.warning]:
-		/*tw*/ 'border border-yellow-500 hover:bg-yellow-500 focus:ring-transparent text-yellow-500 hover:text-white',
+		/*tw*/ 'border border-yellow-500 hover:bg-yellow-500 focus:ring-transparent text-yellow-500 hover:text-white dark:border-yellow-400 dark:text-yellow-400',
 	[BoButtonVariant.success]:
-		/*tw*/ 'border border-green-600 hover:bg-green-600 focus:ring-transparent text-green-600 hover:text-white',
+		/*tw*/ 'border border-green-600 hover:bg-green-600 focus:ring-transparent text-green-600 hover:text-white dark:border-green-500 dark:text-green-500',
 	[BoButtonVariant.light]:
-		/*tw*/ 'border border-neutral-50 hover:bg-white focus:ring-transparent text-neutral-50 hover:border-neutral-500 hover:text-neutral-900',
+		/*tw*/ 'border border-neutral-50 hover:bg-white focus:ring-transparent text-neutral-50 hover:border-neutral-500 hover:text-neutral-900 dark:border-neutral-200 dark:text-neutral-200',
 	[BoButtonVariant.dark]:
-		/*tw*/ 'border border-black hover:bg-black focus:ring-transparent text-black hover:text-white',
+		/*tw*/ 'border border-black hover:bg-black focus:ring-transparent text-black hover:text-white dark:border-neutral-700 dark:text-neutral-300',
 };
 
 const linkButtonClasses = {
 	[BoButtonVariant.primary]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-700 dark:text-blue-600 hover:opacity-80',
+		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-700 dark:text-blue-500 hover:opacity-80',
 	[BoButtonVariant.secondary]:
 		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-neutral-700 dark:text-neutral-400 hover:opacity-80',
 	[BoButtonVariant.danger]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 hover:opacity-80',
+		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 dark:text-red-500 hover:opacity-80',
 	[BoButtonVariant.warning]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 hover:opacity-80',
+		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 dark:text-yellow-400 hover:opacity-80',
 	[BoButtonVariant.success]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 hover:opacity-80',
+		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 dark:text-green-500 hover:opacity-80',
 	[BoButtonVariant.light]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-neutral-500 dark:text-neutral-50 hover:opacity-80',
+		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-neutral-500 dark:text-neutral-200 hover:opacity-80',
 	[BoButtonVariant.dark]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black hover:opacity-80',
+		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black dark:text-neutral-300 hover:opacity-80',
 };
 
 const variantClasses = {
@@ -184,17 +184,17 @@ const variantClasses = {
 };
 
 const sizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'px-3 py-1.5',
-	[BoSize.small]: /*tw*/ 'px-3 py-2',
-	[BoSize.default]: /*tw*/ 'px-4 py-2.5',
+	[BoSize.extra_small]: /*tw*/ 'px-2.5 py-1',
+	[BoSize.small]: /*tw*/ 'px-3 py-1.5',
+	[BoSize.default]: /*tw*/ 'px-3.5 py-2',
 	[BoSize.large]: /*tw*/ 'px-5 py-3',
 	[BoSize.extra_large]: /*tw*/ 'px-6 py-4',
 };
 
 const iconOnlySizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'p-2',
-	[BoSize.small]: /*tw*/ 'p-2.5',
-	[BoSize.default]: /*tw*/ 'p-3',
+	[BoSize.extra_small]: /*tw*/ 'p-1.5',
+	[BoSize.small]: /*tw*/ 'p-2',
+	[BoSize.default]: /*tw*/ 'p-2.5',
 	[BoSize.large]: /*tw*/ 'p-3.5',
 	[BoSize.extra_large]: /*tw*/ 'p-4',
 };
