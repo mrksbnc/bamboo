@@ -85,7 +85,7 @@ The modal component provides the following slots:
     Open Modal
   </button>
   
-  <BoModal 
+  <bo-modal 
     v-if="showModal" 
     title="Example Modal" 
     subtitle="This is a simple example of the modal component"
@@ -111,7 +111,7 @@ The modal component provides the following slots:
         Confirm
       </button>
     </template>
-  </BoModal>
+  </bo-modal>
 </div>
 
 ## Width Options

@@ -11,8 +11,10 @@ Bamboo provides several utility classes to help with common tasks in your applic
 - [AccessibilityUtils](#accessibilityutils)
 - [IdentityUtils](#identityutils)
 - [KeyboardUtils](#keyboardutils)
+- [LocalStorageUtils](#localstorageutils)
 - [StringUtils](#stringutils)
 - [TailwindUtils](#tailwindutils)
+- [ThemeUtils](#themeutils)
 
 ## AccessibilityUtils
 
@@ -169,6 +171,135 @@ element.addEventListener('keydown', (e) => {
 })
 ```
 
+## LocalStorageUtils
+
+The `LocalStorageUtils` class provides utilities for interacting with the browser's localStorage API safely and with error handling.
+
+### getItem
+
+Gets an item from localStorage.
+
+```typescript
+import { LocalStorageUtils } from '@mrksbnc/bamboo'
+
+const value = LocalStorageUtils.getItem('my-key')
+```
+
+#### Parameters
+
+- `key`: `string` - The key to retrieve from localStorage
+- **Returns**: `string | null` - The value for the given key, or null if it doesn't exist
+
+### setItem
+
+Sets an item in localStorage.
+
+```typescript
+import { LocalStorageUtils } from '@mrksbnc/bamboo'
+
+const success = LocalStorageUtils.setItem('my-key', 'my-value')
+if (success) {
+  console.log('Item was stored successfully')
+}
+```
+
+#### Parameters
+
+- `key`: `string` - The key to set in localStorage
+- `value`: `string` - The value to set
+- **Returns**: `boolean` - True if successful, false otherwise
+
+### removeItem
+
+Removes an item from localStorage.
+
+```typescript
+import { LocalStorageUtils } from '@mrksbnc/bamboo'
+
+const success = LocalStorageUtils.removeItem('my-key')
+```
+
+#### Parameters
+
+- `key`: `string` - The key to remove from localStorage
+- **Returns**: `boolean` - True if successful, false otherwise
+
+### clear
+
+Clears all items from localStorage.
+
+```typescript
+import { LocalStorageUtils } from '@mrksbnc/bamboo'
+
+const success = LocalStorageUtils.clear()
+```
+
+#### Returns
+
+- `boolean` - True if successful, false otherwise
+
+### isAvailable
+
+Checks if localStorage is available in the current environment.
+
+```typescript
+import { LocalStorageUtils } from '@mrksbnc/bamboo'
+
+if (LocalStorageUtils.isAvailable()) {
+  // Safe to use localStorage
+} else {
+  // Fallback to alternative storage method
+}
+```
+
+#### Returns
+
+- `boolean` - True if localStorage is available, false otherwise
+
+### getJSON
+
+Gets an item from localStorage and parses it as JSON.
+
+```typescript
+import { LocalStorageUtils } from '@mrksbnc/bamboo'
+
+interface User {
+  name: string
+  age: number
+}
+
+const user = LocalStorageUtils.getJSON<User>('user')
+if (user) {
+  console.log(user.name, user.age)
+}
+```
+
+#### Parameters
+
+- `key`: `string` - The key to retrieve from localStorage
+- **Returns**: `T | null` - The parsed JSON value, or null if it doesn't exist or can't be parsed
+
+### setJSON
+
+Sets an item in localStorage after stringifying it as JSON.
+
+```typescript
+import { LocalStorageUtils } from '@mrksbnc/bamboo'
+
+const user = {
+  name: 'John',
+  age: 30,
+}
+
+const success = LocalStorageUtils.setJSON('user', user)
+```
+
+#### Parameters
+
+- `key`: `string` - The key to set in localStorage
+- `value`: `T` - The value to stringify and set
+- **Returns**: `boolean` - True if successful, false otherwise
+
 ## StringUtils
 
 The `StringUtils` class provides utilities for string manipulation.
@@ -202,4 +333,112 @@ const classes = TailwindUtils.merge(
   'bg-blue-500', // Duplicate
 )
 // Result: "bg-blue-500 text-white p-4"
+```
+
+## ThemeUtils
+
+The `ThemeUtils` class provides utilities for handling theme management, including light, dark, and system themes.
+
+### Theme Enum
+
+```typescript
+enum Theme {
+  LIGHT = 'light',
+  DARK = 'dark',
+  SYSTEM = 'system',
+}
+```
+
+### getCurrentTheme
+
+Gets the current theme from local storage or defaults to system.
+
+```typescript
+import { ThemeUtils, Theme } from '@mrksbnc/bamboo'
+
+const currentTheme = ThemeUtils.getCurrentTheme()
+if (currentTheme === Theme.DARK) {
+  console.log('Dark theme is active')
+}
+```
+
+#### Returns
+
+- `Theme` - The current theme (LIGHT, DARK, or SYSTEM)
+
+### setTheme
+
+Sets a theme to local storage and applies it.
+
+```typescript
+import { ThemeUtils, Theme } from '@mrksbnc/bamboo'
+
+// Set to dark theme
+ThemeUtils.setTheme(Theme.DARK)
+
+// Set to light theme
+ThemeUtils.setTheme(Theme.LIGHT)
+
+// Use system preference
+ThemeUtils.setTheme(Theme.SYSTEM)
+```
+
+#### Parameters
+
+- `theme`: `Theme` - The theme to set (LIGHT, DARK, or SYSTEM)
+
+### applyTheme
+
+Applies the theme to the document.
+
+```typescript
+import { ThemeUtils, Theme } from '@mrksbnc/bamboo'
+
+// Apply dark theme
+ThemeUtils.applyTheme(Theme.DARK)
+```
+
+#### Parameters
+
+- `theme`: `Theme` - The theme to apply (LIGHT, DARK, or SYSTEM)
+
+### isSystemDarkMode
+
+Checks if the system prefers dark mode.
+
+```typescript
+import { ThemeUtils } from '@mrksbnc/bamboo'
+
+if (ThemeUtils.isSystemDarkMode()) {
+  console.log('System prefers dark mode')
+}
+```
+
+#### Returns
+
+- `boolean` - True if the system prefers dark mode, false otherwise
+
+### initTheme
+
+Initializes theme based on stored preference or system preference.
+
+```typescript
+import { ThemeUtils } from '@mrksbnc/bamboo'
+
+// Call during app initialization
+ThemeUtils.initTheme()
+```
+
+### toggleTheme
+
+Toggles between light and dark themes.
+
+```typescript
+import { ThemeUtils } from '@mrksbnc/bamboo'
+
+// Toggle between light and dark
+const toggleButton = document.getElementById('theme-toggle')
+toggleButton.addEventListener('click', () => {
+  ThemeUtils.toggleTheme()
+})
 ```

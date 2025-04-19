@@ -45,6 +45,7 @@ function getComponents() {
 		{ text: 'Loading Pulse', link: '/components/loading-pulse/loading-pulse' },
 		{ text: 'Loading Spinner', link: '/components/loading-spinner/loading-spinner' },
 		{ text: 'Modal', link: '/components/modal/modal' },
+		{ text: 'Text', link: '/components/text/text' },
 		{ text: 'Textarea', link: '/components/textarea/textarea' },
 	]
 }

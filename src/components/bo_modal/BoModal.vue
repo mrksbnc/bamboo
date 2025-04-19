@@ -19,37 +19,7 @@
 			:style="computedStyle"
 			role="document"
 		>
-			<!-- Close button -->
-			<button
-				v-if="showClose"
-				type="button"
-				class="absolute top-3 right-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 focus:outline-none dark:hover:bg-gray-700 dark:hover:text-white"
-				@click="$emit('close')"
-				aria-label="Close modal"
-			>
-				<span class="sr-only">Close</span>
-				<svg
-					class="h-4 w-4"
-					aria-hidden="true"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 14 14"
-				>
-					<path
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-					/>
-				</svg>
-			</button>
-
-			<!-- Title and subtitle -->
-			<div
-				v-if="title || subtitle"
-				class="mb-6"
-			>
+			<div v-if="title || subtitle">
 				<h2
 					v-if="title"
 					:id="modalTitleId"
@@ -65,8 +35,18 @@
 					{{ subtitle }}
 				</p>
 			</div>
+			<!-- Close button -->
+			<button
+				v-if="showClose"
+				type="button"
+				class="absolute top-2 right-2 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 focus:outline-none dark:hover:bg-gray-700 dark:hover:text-white"
+				@click="$emit('close')"
+				aria-label="Close modal"
+			>
+				<span class="sr-only">Close</span>
+				<bo-icon :icon="Icon.x" />
+			</button>
 
-			<!-- Header slot -->
 			<div
 				v-if="slots.header"
 				class="mb-6"
@@ -94,6 +74,7 @@
 </template>
 
 <script setup lang="ts">
+import { BoIcon, Icon } from '@/components/bo_icon'
 import { AccessibilityUtils, KeyboardUtils } from '@/utils'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import type { BoModalProps } from './bo_modal'
@@ -123,59 +104,12 @@ const slots = defineSlots<{
 	footer?: (props: Record<string, unknown>) => void
 }>()
 
-// Generate unique IDs for ARIA attributes
 const modalTitleId = ref(AccessibilityUtils.generateAccessibleId('modal-title'))
 const modalSubtitleId = ref(AccessibilityUtils.generateAccessibleId('modal-subtitle'))
 
-// Store a reference to the previously focused element
 let previousActiveElement: HTMLElement | null = null
 
-// Reference to the modal element
 const modalRef = ref<HTMLElement | null>(null)
-
-onMounted(() => {
-	// Save the previously focused element
-	previousActiveElement = document.activeElement as HTMLElement | null
-
-	// When the modal opens, announce it to screen readers
-	AccessibilityUtils.announceToScreenReader('Dialog opened', 'assertive')
-
-	// When the modal mounts, focus it
-	nextTick(() => {
-		if (modalRef.value) {
-			// Focus the first focusable element within the modal
-			const focusableElements = KeyboardUtils['getFocusableElements'](modalRef.value)
-			if (focusableElements.length > 0) {
-				focusableElements[0].focus()
-			} else {
-				// If no focusable elements, focus the modal itself
-				modalRef.value.focus()
-			}
-		}
-	})
-
-	// Add the escape key handler to the document
-	document.addEventListener('keydown', handleEscapeKey)
-
-	// Add event listener to prevent background scrolling
-	document.body.style.overflow = 'hidden'
-})
-
-onBeforeUnmount(() => {
-	// Remove the escape key handler when the component is unmounted
-	document.removeEventListener('keydown', handleEscapeKey)
-
-	// Return focus to the previously focused element if available
-	if (previousActiveElement && props.returnFocus) {
-		previousActiveElement.focus()
-	}
-
-	// Restore scrolling when modal closes
-	document.body.style.overflow = ''
-
-	// Announce that the dialog is closed
-	AccessibilityUtils.announceToScreenReader('Dialog closed', 'assertive')
-})
 
 const handleKeyDown = (e: KeyboardEvent) => {
 	if (modalRef.value) {
@@ -221,7 +155,7 @@ const paddingClass = computed<string>(() => {
 	}
 })
 
-const computedStyle = computed<Record<string, string>>(() => {
+const computedStyle = computed<Record<string, string> | undefined>(() => {
 	if (props.widthInPx) {
 		return { width: `${props.widthInPx}px` }
 	}
@@ -230,6 +164,37 @@ const computedStyle = computed<Record<string, string>>(() => {
 		return { width: `${props.widthInPercent}%` }
 	}
 
-	return {}
+	return undefined
+})
+
+onMounted(() => {
+	previousActiveElement = document.activeElement as HTMLElement | null
+
+	AccessibilityUtils.announceToScreenReader('Dialog opened', 'assertive')
+
+	nextTick(() => {
+		if (modalRef.value) {
+			const focusableElements = KeyboardUtils['getFocusableElements'](modalRef.value)
+			if (focusableElements.length > 0) {
+				focusableElements[0].focus()
+			} else {
+				modalRef.value.focus()
+			}
+		}
+	})
+
+	document.addEventListener('keydown', handleEscapeKey)
+	document.body.style.overflow = 'hidden'
+})
+
+onBeforeUnmount(() => {
+	document.removeEventListener('keydown', handleEscapeKey)
+
+	if (previousActiveElement && props.returnFocus) {
+		previousActiveElement.focus()
+	}
+
+	document.body.style.overflow = ''
+	AccessibilityUtils.announceToScreenReader('Dialog closed', 'assertive')
 })
 </script>

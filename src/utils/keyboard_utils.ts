@@ -1,12 +1,12 @@
 import type { Nullable } from '@/types'
 export class KeyboardUtils {
-	public static registerEnterKeyHandler(e: KeyboardEvent, handler: () => void): void {
+	static registerEnterKeyHandler(e: KeyboardEvent, handler: () => void): void {
 		if (e.key === 'Enter') {
 			handler()
 		}
 	}
 
-	public static registerEscapeKeyHandler(e: KeyboardEvent, handler: () => void): void {
+	static registerEscapeKeyHandler(e: KeyboardEvent, handler: () => void): void {
 		// Support both standard 'Escape' and older 'Esc' key values
 		if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
 			e.preventDefault()
@@ -66,11 +66,7 @@ export class KeyboardUtils {
 		)
 	}
 
-	public static trapTabKey(
-		e: KeyboardEvent,
-		container: Nullable<HTMLElement>,
-		returnFocus = false,
-	): void {
+	static trapTabKey(e: KeyboardEvent, container: Nullable<HTMLElement>, returnFocus = false): void {
 		// Only process tab key presses
 		if (e.key !== 'Tab' && e.keyCode !== 9) return
 

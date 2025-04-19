@@ -7,7 +7,7 @@ export class AccessibilityUtils {
 	 * @param message - The message to announce
 	 * @param priority - The priority level (polite, assertive)
 	 */
-	public static announceToScreenReader(
+	static announceToScreenReader(
 		message: string,
 		priority: 'polite' | 'assertive' = 'polite',
 	): void {
@@ -32,7 +32,7 @@ export class AccessibilityUtils {
 	 * Checks if an element is hidden from screen readers
 	 * @param element - Element to check
 	 */
-	public static isHiddenFromScreenReaders(element: HTMLElement): boolean {
+	static isHiddenFromScreenReaders(element: HTMLElement): boolean {
 		return (
 			(element.hasAttribute('aria-hidden') && element.getAttribute('aria-hidden') === 'true') ||
 			getComputedStyle(element).display === 'none' ||
@@ -45,7 +45,7 @@ export class AccessibilityUtils {
 	 * @param targetId - The ID of the element to skip to
 	 * @param text - The text to display for the skip link
 	 */
-	public static addSkipLink(targetId: string, text = 'Skip to main content'): void {
+	static addSkipLink(targetId: string, text = 'Skip to main content'): void {
 		const skipLink = document.createElement('a')
 		skipLink.href = `#${targetId}`
 		skipLink.className = 'skip-link'
@@ -79,7 +79,7 @@ export class AccessibilityUtils {
 	 * Generate unique IDs for labeling elements
 	 * @param prefix - The prefix for the ID
 	 */
-	public static generateAccessibleId(prefix: string): string {
+	static generateAccessibleId(prefix: string): string {
 		return `${prefix}-${Math.random().toString(36).substring(2, 9)}`
 	}
 }

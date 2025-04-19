@@ -6,6 +6,16 @@
  * since JSDOM doesn't fully implement these behaviors.
  * It also adds helpers for testing accessibility features.
  */
+import LocalStorageMock from './local-storage-mock'
+
+// Create localStorage mock instance and export it for direct access in tests
+export const localStorageMock = new LocalStorageMock()
+
+// Set up localStorage mock
+Object.defineProperty(window, 'localStorage', {
+	value: localStorageMock,
+	writable: false,
+})
 
 // Track the current active element
 let mockActiveElement: Element | null = null
