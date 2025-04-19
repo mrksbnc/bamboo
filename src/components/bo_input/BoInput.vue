@@ -176,7 +176,7 @@ const inputClass = computed<string>(() => {
 
 	const variantClasses = {
 		[BoInputVariant.default]:
-			'border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-blue-500/30 focus:border-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:ring-blue-500/40 dark:focus:border-blue-500',
+			'border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-blue-500/30 focus:border-blue-500 dark:border-gray-600 dark:bg-transparent dark:text-white dark:focus:ring-blue-500/40 dark:focus:border-blue-500',
 		[BoInputVariant.filled]:
 			'border border-transparent rounded-md bg-gray-100 text-gray-900 focus:ring-blue-500/30 focus:border-blue-500 dark:bg-gray-800 dark:text-white dark:focus:ring-blue-500/40 dark:focus:border-blue-500',
 		[BoInputVariant.underline]:
@@ -200,7 +200,7 @@ const inputClass = computed<string>(() => {
 	if (props.disabled) {
 		classes = TailwindUtils.merge(
 			classes,
-			'cursor-not-allowed bg-gray-100 text-gray-500 placeholder-gray-400 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-500',
+			'cursor-not-allowed bg-gray-100 text-gray-500 placeholder-gray-400 dark:bg-transparent dark:text-gray-400 dark:placeholder-gray-500',
 		)
 	} else if (props.readonly) {
 		classes = TailwindUtils.merge(

@@ -19,29 +19,31 @@ A button is a control that allows the user to perform an action. The library sup
 
 ## Props
 
-| Prop name        | Type              | Default value             | Description                                                               |
-| ---------------- | ----------------- | ------------------------- | ------------------------------------------------------------------------- |
-| `label`          | `string`          | `undefined`               | The label of the button.                                                  |
-| `variant`        | `BoButtonVariant` | `BoButtonVariant.primary` | The variant of the button.                                                |
-| `shape`          | `BoButtonShape`   | `BoButtonShape.default`   | The shape of the button.                                                  |
-| `type`           | `HtmlButtonType`  | `button`                  | The type of the button.                                                   |
-| `disabled`       | `boolean`         | `false`                   | Whether the button is disabled.                                           |
-| `is-loading`     | `boolean`         | `false`                   | Whether the button is loading.                                            |
-| `size`           | `BoSize`          | `BoSize.default`          | The size of the button.                                                   |
-| `prefix-icon`    | `Icon`            | `Icon.none`               | The prefix icon of the button.                                            |
-| `suffix-icon`    | `Icon`            | `Icon.none`               | The suffix icon of the button.                                            |
-| `autofocus`      | `boolean`         | `false`                   | Whether the button should be focused when the page loads.                 |
-| `form`           | `string`          | `undefined`               | The form of the button.                                                   |
-| `formaction`     | `string`          | `undefined`               | The form action of the button.                                            |
-| `formenctype`    | `string`          | `undefined`               | The form enctype of the button.                                           |
-| `formmethod`     | `string`          | `undefined`               | The form method of the button.                                            |
-| `formnovalidate` | `boolean`         | `false`                   | Whether the form should be validated.                                     |
-| `formtarget`     | `string`          | `undefined`               | The form target of the button.                                            |
-| `name`           | `string`          | `undefined`               | The name of the button.                                                   |
-| `value`          | `string`          | `undefined`               | The value of the button.                                                  |
-| `full-width`     | `boolean`         | `false`                   | Whether the button should take up the full width of the container.        |
-| `pressed`        | `boolean`         | `false`                   | For toggle buttons, indicates whether the button is pressed.              |
-| `aria-label`     | `string`          | `undefined`               | Custom accessible name for the button (especially for icon-only buttons). |
+| Prop name        | Type                              | Default value             | Description                                                               |
+| ---------------- | --------------------------------- | ------------------------- | ------------------------------------------------------------------------- |
+| `label`          | `string`                          | `undefined`               | The label of the button.                                                  |
+| `variant`        | `BoButtonVariant`                 | `BoButtonVariant.primary` | The variant of the button.                                                |
+| `shape`          | `BoButtonShape`                   | `BoButtonShape.default`   | The shape of the button.                                                  |
+| `type`           | `'submit' \| 'reset' \| 'button'` | `'button'`                | The type of the button.                                                   |
+| `disabled`       | `boolean`                         | `false`                   | Whether the button is disabled.                                           |
+| `is-loading`     | `boolean`                         | `false`                   | Whether the button is loading.                                            |
+| `size`           | `BoSize`                          | `BoSize.default`          | The size of the button.                                                   |
+| `prefix-icon`    | `Icon`                            | `Icon.none`               | The prefix icon of the button.                                            |
+| `suffix-icon`    | `Icon`                            | `Icon.none`               | The suffix icon of the button.                                            |
+| `use-slot`       | `boolean`                         | `false`                   | Whether to use the content slot for custom content.                       |
+| `autofocus`      | `boolean`                         | `false`                   | Whether the button should be focused when the page loads.                 |
+| `form`           | `string`                          | `undefined`               | The form of the button.                                                   |
+| `formaction`     | `string`                          | `undefined`               | The form action of the button.                                            |
+| `formenctype`    | `string`                          | `undefined`               | The form enctype of the button.                                           |
+| `formmethod`     | `string`                          | `undefined`               | The form method of the button.                                            |
+| `formnovalidate` | `boolean`                         | `false`                   | Whether the form should be validated.                                     |
+| `formtarget`     | `string`                          | `undefined`               | The form target of the button.                                            |
+| `name`           | `string`                          | `undefined`               | The name of the button.                                                   |
+| `value`          | `string`                          | `undefined`               | The value of the button.                                                  |
+| `full-width`     | `boolean`                         | `false`                   | Whether the button should take up the full width of the container.        |
+| `pressed`        | `boolean`                         | `false`                   | For toggle buttons, indicates whether the button is pressed.              |
+| `aria-label`     | `string`                          | `undefined`               | Custom accessible name for the button (especially for icon-only buttons). |
+| `id`             | `string`                          | `undefined`               | Unique ID for the button, used for accessibility and testing.             |
 
 ::: warning NOTE
 Though non of the props are required, either the `label` or the `prefix-icon` prop must be provided.
@@ -54,7 +56,7 @@ Though non of the props are required, either the `label` or the `prefix-icon` pr
 | `content` | slot for custom content in the button body |
 
 ::: warning Note
-Note: To enable the `content` slot, you must set the `use-slot` prop.
+To enable the `content` slot, you must set the `use-slot` prop to `true`.
 :::
 
 ## Disabled state

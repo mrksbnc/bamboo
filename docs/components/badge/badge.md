@@ -4,13 +4,21 @@
   import { BoSize } from '@/shared';
 </script>
 
-# Tailwind CSS Badge - Bamboo UI
+# bo-badge
 
 A badge component is a complementary element that can be used standalone or with other components to display a label or status.
 
-## Component API
+## Basic usage
 
-### Props
+```html
+<bo-badge label="Badge" />
+```
+
+<div class="flex gap-2">
+  <bo-badge label="Badge" />
+</div>
+
+## Props
 
 | Prop name     | Type             | Default value            | Description                      |
 | ------------- | ---------------- | ------------------------ | -------------------------------- |
@@ -22,11 +30,17 @@ A badge component is a complementary element that can be used standalone or with
 | `prefix-icon` | `Icon`           | `Icon.none`              | Icon to display before the label |
 | `suffix-icon` | `Icon`           | `Icon.none`              | Icon to display after the label  |
 
-:::warning Note
+::: warning Note
 Though none of the props are required, either the `label`, `prefix-icon`, or the `suffix-icon` prop must be provided.
 :::
 
-### Enums
+## Slots
+
+| Slot      | Description                                    |
+| --------- | ---------------------------------------------- |
+| `default` | Custom content instead of using the label prop |
+
+## Types
 
 ```ts
 export enum BoBadgeVariant {
@@ -51,23 +65,6 @@ export enum BoBadgeShape {
   circle = 'circle',
 }
 ```
-
-### Slots
-
-| Slot      | Description                                    |
-| --------- | ---------------------------------------------- |
-| `default` | Custom content instead of using the label prop |
-
-## Basic Usage
-
-```html
-<bo-badge label="Badge" />
-```
-
-<hr class="border-gray-200 dark:border-gray-700" />
-<div class="flex gap-2">
-  <bo-badge label="Badge" />
-</div>
 
 ## Examples
 

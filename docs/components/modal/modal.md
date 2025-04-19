@@ -17,26 +17,30 @@ A modal component that displays content in a layer that sits on top of the page.
 
 The component to use is called `bo-modal`. Since the modal component doesn't manage its own visibility, you need to control it from the parent component.
 
-### Example
-
-```js
+```vue
 <script setup>
-import { ref } from 'vue';
-const showModal = ref(false);
+import { ref } from 'vue'
+const showModal = ref(false)
 </script>
 
 <template>
   <button @click="showModal = true">Open Modal</button>
 
-  <bo-modal v-if="showModal" @close="showModal = false" title="Important Information">
+  <bo-modal
+    v-if="showModal"
+    @close="showModal = false"
+    title="Important Information"
+  >
     <p>This is the modal content.</p>
 
     <template #footer>
-      <div class="flex items-center justify-end space-x-2 border-t border-gray-200 p-4 dark:border-gray-700">
-        <button class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-          Accept
-        </button>
-        <button class="rounded border border-gray-300 bg-white px-4 py-2 text-gray-800 hover:bg-gray-100">
+      <div
+        class="flex items-center justify-end space-x-2 border-t border-gray-200 p-4 dark:border-gray-700"
+      >
+        <button class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">Accept</button>
+        <button
+          class="rounded border border-gray-300 bg-white px-4 py-2 text-gray-800 hover:bg-gray-100"
+        >
           Cancel
         </button>
       </div>
@@ -47,8 +51,6 @@ const showModal = ref(false);
 
 ## Props
 
-The modal component accepts the following props:
-
 | Prop          | Type                  | Default | Description                              |
 | ------------- | --------------------- | ------- | ---------------------------------------- |
 | `id`          | `string`              | -       | Optional ID for the modal                |
@@ -56,16 +58,6 @@ The modal component accepts the following props:
 | `description` | `string`              | -       | Description to display below the title   |
 | `showClose`   | `boolean`             | `true`  | Whether to show the close button         |
 | `width`       | `BoModalWidthOptions` | -       | Object containing width options          |
-
-## Width Options
-
-The `width` prop accepts an object with the following properties:
-
-| Property   | Type     | Description                              |
-| ---------- | -------- | ---------------------------------------- |
-| `px`       | `number` | Width of the modal in pixels             |
-| `percent`  | `number` | Width of the modal in percentage         |
-| `tailwind` | `string` | Tailwind class for width (e.g., 'w-1/2') |
 
 ## Events
 
@@ -75,14 +67,24 @@ The `width` prop accepts an object with the following properties:
 
 ## Slots
 
-The modal component provides the following slots:
+| Slot name     | Description                                        |
+| ------------- | -------------------------------------------------- |
+| `default`     | The main content area of the modal                 |
+| `header`      | Optional header area for custom header content     |
+| `description` | Optional area for custom description content       |
+| `footer`      | Optional footer area, typically for action buttons |
 
-| Slot name | Description                                        |
-| --------- | -------------------------------------------------- |
-| content   | The main content area of the modal                 |
-| footer    | Optional footer area, typically for action buttons |
+## Types
 
-## Basic Example
+```ts
+export interface BoModalWidthOptions {
+  px?: number
+  percent?: number
+  tailwind?: string
+}
+```
+
+## Examples
 
 <BasicModalExample />
 
@@ -123,7 +125,7 @@ The modal component provides the following slots:
   </bo-modal>
 </div>
 
-## Width Options
+### Width Options
 
 The modal component provides multiple ways to set the width:
 
@@ -138,18 +140,18 @@ The modal component provides multiple ways to set the width:
 <bo-modal :width="{ tailwind: 'w-3/4' }" />
 ```
 
-## Accessibility
+### Accessibility
 
 The modal component is designed with accessibility in mind, following WCAG 2.1 AA standards:
 
-### Keyboard Navigation
+#### Keyboard Navigation
 
 - When the modal opens, focus is automatically moved to the first focusable element inside the modal
 - Tab navigation is trapped within the modal using JavaScript, preventing users from interacting with page content behind the modal
 - The <kbd>Escape</kbd> key can be used to close the modal
 - When the modal closes, focus is returned to the element that triggered it
 
-### Screen Reader Support
+#### Screen Reader Support
 
 - The modal has `role="dialog"` and `aria-modal="true"` to properly identify it to screen readers
 - The modal is announced to screen readers when opened and closed
