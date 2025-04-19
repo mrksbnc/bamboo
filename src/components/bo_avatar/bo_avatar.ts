@@ -1,4 +1,4 @@
-import type { BoSize } from '@/shared/bo_size';
+import type { BoSize } from '@/shared/bo_size'
 
 export enum BoAvatarShape {
 	circle = 'circle',
@@ -24,18 +24,18 @@ export enum BoAvatarType {
 }
 
 export type BoAvatarData = {
-	alt?: string;
-	src?: string;
-	label?: string;
-};
+	alt?: string
+	src?: string
+	label?: string
+}
 
 export type BoAvatarProps = {
-	data: BoAvatarData;
-	type?: BoAvatarType;
-	shape?: BoAvatarShape;
-	size?: BoSize;
-	colorHex?: string;
-	fontColorHex?: string;
-	clickable?: boolean;
-	withDefaultImage?: boolean;
-};
+	data: BoAvatarData
+	type?: BoAvatarType
+	shape?: BoAvatarShape
+	size?: BoSize
+	colorHex?: string
+	fontColorHex?: string
+	clickable?: boolean
+	withDefaultImage?: boolean
+}

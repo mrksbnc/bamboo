@@ -25,12 +25,12 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo_icon';
-import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
-import { BoSize } from '@/shared/bo_size';
-import { StringUtils, TailwindUtils } from '@/utils';
-import { computed, toRefs } from 'vue';
-import { BoBadgeShape, BoBadgeType, BoBadgeVariant, type BoBadgeProps } from './bo_badge';
+import { BoIcon, Icon } from '@/components/bo_icon'
+import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text'
+import { BoSize } from '@/shared/bo_size'
+import { StringUtils, TailwindUtils } from '@/utils'
+import { computed, toRefs } from 'vue'
+import { BoBadgeShape, BoBadgeType, BoBadgeVariant, type BoBadgeProps } from './bo_badge'
 
 const props = withDefaults(defineProps<BoBadgeProps>(), {
 	type: () => BoBadgeType.default,
@@ -39,9 +39,9 @@ const props = withDefaults(defineProps<BoBadgeProps>(), {
 	variant: () => BoBadgeVariant.primary,
 	prefixIcon: () => Icon.none,
 	suffixIcon: () => Icon.none,
-});
+})
 
-const { label, type, size, variant, shape, prefixIcon, suffixIcon } = toRefs(props);
+const { label, type, size, variant, shape, prefixIcon, suffixIcon } = toRefs(props)
 
 const containerClasses = {
 	[BoBadgeShape.default]:
@@ -52,7 +52,7 @@ const containerClasses = {
 		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-sm',
 	[BoBadgeShape.flat]:
 		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-none shadow-sm',
-};
+}
 
 const variantClasses = {
 	[BoBadgeType.default]: {
@@ -103,68 +103,68 @@ const variantClasses = {
 		[BoBadgeVariant.dark]:
 			/*tw*/ 'bg-neutral-800 text-white border border-neutral-900 dark:bg-black dark:border-neutral-800 dark:text-white',
 	},
-};
+}
 
 const iconOnly = computed<boolean>(() => {
 	return (
 		(prefixIcon.value !== Icon.none || suffixIcon.value !== Icon.none) &&
 		StringUtils.isEmptyStr(label.value)
-	);
-});
+	)
+})
 
 const prefixOrIconOnlySrc = computed<Icon>(() => {
 	if (iconOnly.value) {
-		return prefixIcon.value ?? suffixIcon.value ?? Icon.none;
+		return prefixIcon.value ?? suffixIcon.value ?? Icon.none
 	}
 
-	return prefixIcon.value ?? Icon.none;
-});
+	return prefixIcon.value ?? Icon.none
+})
 
 const isCircle = computed<boolean>(() => {
-	return shape.value === BoBadgeShape.circle && iconOnly.value;
-});
+	return shape.value === BoBadgeShape.circle && iconOnly.value
+})
 
 const renderLabel = computed<boolean>(() => {
-	return !StringUtils.isEmptyStr(label.value) && !iconOnly.value;
-});
+	return !StringUtils.isEmptyStr(label.value) && !iconOnly.value
+})
 
 const boBadgeVariantClasses = computed<string>(() => {
-	return variantClasses[type.value][variant.value];
-});
+	return variantClasses[type.value][variant.value]
+})
 
 const boBadgeSizeClasses = computed<string>(() => {
 	if (shape.value === BoBadgeShape.circle) {
 		switch (size.value) {
 			case BoSize.extra_small:
-				return /*tw*/ 'p-0';
+				return /*tw*/ 'p-0'
 			case BoSize.small:
-				return /*tw*/ 'p-0.5';
+				return /*tw*/ 'p-0.5'
 			case BoSize.default:
-				return /*tw*/ 'p-0.75';
+				return /*tw*/ 'p-0.75'
 			case BoSize.large:
-				return /*tw*/ 'p-1.25';
+				return /*tw*/ 'p-1.25'
 			case BoSize.extra_large:
-				return /*tw*/ 'p-2';
+				return /*tw*/ 'p-2'
 			default:
-				return /*tw*/ 'p-0.75';
+				return /*tw*/ 'p-0.75'
 		}
 	}
 
 	switch (size.value) {
 		case BoSize.extra_small:
-			return /*tw*/ 'px-1 py-0';
+			return /*tw*/ 'px-1 py-0'
 		case BoSize.small:
-			return /*tw*/ 'px-1.5 py-0.5';
+			return /*tw*/ 'px-1.5 py-0.5'
 		case BoSize.default:
-			return /*tw*/ 'px-2 py-0.75';
+			return /*tw*/ 'px-2 py-0.75'
 		case BoSize.large:
-			return /*tw*/ 'px-2.5 py-1';
+			return /*tw*/ 'px-2.5 py-1'
 		case BoSize.extra_large:
-			return /*tw*/ 'px-3 py-1.5';
+			return /*tw*/ 'px-3 py-1.5'
 		default:
-			return /*tw*/ 'px-2 py-0.75';
+			return /*tw*/ 'px-2 py-0.75'
 	}
-});
+})
 
 const classes = computed<string>(() => {
 	return TailwindUtils.merge(
@@ -172,8 +172,8 @@ const classes = computed<string>(() => {
 		boBadgeSizeClasses.value,
 		boBadgeVariantClasses.value,
 		containerClasses[shape.value],
-	);
-});
+	)
+})
 
 const badgeFontSize = computed<BoFontSize>(() => {
 	switch (size.value) {
@@ -181,25 +181,25 @@ const badgeFontSize = computed<BoFontSize>(() => {
 		case BoSize.small:
 		case BoSize.default:
 		default:
-			return BoFontSize.xs;
+			return BoFontSize.xs
 		case BoSize.large:
-			return BoFontSize.base;
+			return BoFontSize.base
 		case BoSize.extra_large:
-			return BoFontSize.lg;
+			return BoFontSize.lg
 	}
-});
+})
 
 const boBadgeIconSize = computed<BoSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
 		case BoSize.small:
-			return BoSize.small;
+			return BoSize.small
 		case BoSize.default:
 		default:
-			return BoSize.default;
+			return BoSize.default
 		case BoSize.large:
 		case BoSize.extra_large:
-			return BoSize.large;
+			return BoSize.large
 	}
-});
+})
 </script>

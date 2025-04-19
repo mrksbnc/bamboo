@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="relative p-5 flex flex-col my-6 bg-white dark:bg-gray-800 shadow-sm border border-slate-200 dark:border-neutral-800 rounded-lg max-w-sm"
+		class="relative my-6 flex max-w-sm flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-gray-800"
 	>
 		<div
 			v-if="slots.header"
@@ -10,13 +10,13 @@
 		</div>
 		<div
 			v-if="slots.content"
-			class="pt-0 mt-2"
+			class="mt-2 pt-0"
 		>
 			<slot name="content" />
 		</div>
 		<div
 			v-if="slots.actions"
-			class="pt-0 mt-2"
+			class="mt-2 pt-0"
 		>
 			<slot name="actions" />
 		</div>
@@ -24,11 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-
 const slots = defineSlots<{
-	header?: (props: Record<string, unknown>) => void;
-	content?: (props: Record<string, unknown>) => void;
-	actions?: (props: Record<string, unknown>) => void;
-}>();
+	header?: (props: Record<string, unknown>) => void
+	content?: (props: Record<string, unknown>) => void
+	actions?: (props: Record<string, unknown>) => void
+}>()
 </script>

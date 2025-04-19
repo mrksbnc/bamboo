@@ -40,11 +40,11 @@
 </template>
 
 <script setup lang="ts">
-import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
-import { BoSize } from '@/shared';
-import { StringUtils, TailwindUtils } from '@/utils';
-import { computed, toRefs, type StyleValue } from 'vue';
-import { BoAvatarShape, BoAvatarType, type BoAvatarProps } from './bo_avatar';
+import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text'
+import { BoSize } from '@/shared'
+import { StringUtils, TailwindUtils } from '@/utils'
+import { computed, toRefs, type StyleValue } from 'vue'
+import { BoAvatarShape, BoAvatarType, type BoAvatarProps } from './bo_avatar'
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
 	data: () => {
@@ -52,31 +52,31 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 			alt: undefined,
 			src: undefined,
 			label: undefined,
-		};
+		}
 	},
 	withDefaultImage: false,
 	size: () => BoSize.default,
 	type: () => BoAvatarType.initials,
 	shape: () => BoAvatarShape.rounded,
-});
+})
 
-const { clickable, data, type, shape, size, colorHex, withDefaultImage } = toRefs(props);
+const { clickable, data, type, shape, size, colorHex, withDefaultImage } = toRefs(props)
 
-const defaultAvatarSvg = new URL('@/assets/img/avatar.jpg', import.meta.url).href;
+const defaultAvatarSvg = new URL('@/assets/img/avatar.jpg', import.meta.url).href
 
 const containerClasses = {
 	default:
 		/*tw*/ 'bo-avatar inline-flex items-center justify-center overflow-hidden shadow-sm dark:shadow-gray-800',
-};
+}
 
 const imageClasses = {
 	size: 'h-full w-full',
-};
+}
 
 const cursorClasses = {
 	default: 'cursor-default',
 	clickable: 'cursor-pointer hover:bg-opacity-80',
-};
+}
 
 const avatarSizeClasses = {
 	[BoSize.extra_small]: /*tw*/ 'size-6',
@@ -84,7 +84,7 @@ const avatarSizeClasses = {
 	[BoSize.default]: /*tw*/ 'size-10',
 	[BoSize.large]: /*tw*/ 'size-16',
 	[BoSize.extra_large]: /*tw*/ 'size-24',
-};
+}
 
 const avatarShapeClasses = {
 	[BoAvatarShape.circle]: /*tw*/ 'rounded-full',
@@ -93,7 +93,7 @@ const avatarShapeClasses = {
 	[BoAvatarShape.outline_circle]: /*tw*/ 'rounded-full',
 	[BoAvatarShape.outline_rounded]: /*tw*/ 'rounded-lg',
 	[BoAvatarShape.outline_flat]: /*tw*/ 'rounded-none',
-};
+}
 
 const bgConstruct = computed<string>(() => {
 	return withDefaultImage.value || type.value === BoAvatarType.image
@@ -102,62 +102,62 @@ const bgConstruct = computed<string>(() => {
 			  shape.value === BoAvatarShape.outline_rounded ||
 			  shape.value === BoAvatarShape.outline_flat
 			? generateRandomOutlineColor()
-			: generateRandomColor();
-});
+			: generateRandomColor()
+})
 
 const cursorClassConstruct = computed<string>(() => {
-	return clickable.value ? cursorClasses.clickable : cursorClasses.default;
-});
+	return clickable.value ? cursorClasses.clickable : cursorClasses.default
+})
 
 const avatarContainerDefaultClasses = computed<string>(() => {
 	return TailwindUtils.merge(
 		bgConstruct.value,
 		containerClasses.default,
 		cursorClassConstruct.value,
-	);
-});
+	)
+})
 
 const showDefaultAvatar = computed<boolean>(() => {
 	if (withDefaultImage.value) {
-		return true;
+		return true
 	}
 
-	return data.value.src === undefined && StringUtils.isEmptyStr(data.value.label);
-});
+	return data.value.src === undefined && StringUtils.isEmptyStr(data.value.label)
+})
 
 const labelSize = computed<BoFontSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return BoFontSize.xs;
+			return BoFontSize.xs
 		case BoSize.small:
-			return BoFontSize.sm;
+			return BoFontSize.sm
 		case BoSize.large:
-			return BoFontSize.lg;
+			return BoFontSize.lg
 		case BoSize.extra_large:
-			return BoFontSize.xl;
+			return BoFontSize.xl
 		case BoSize.default:
 		default:
-			return BoFontSize.base;
+			return BoFontSize.base
 	}
-});
+})
 
 const containerStyle = computed<StyleValue>(() => {
 	if (!StringUtils.isEmptyStr(colorHex.value)) {
 		return {
 			backgroundColor: colorHex.value,
-		};
+		}
 	}
 
-	return {};
-});
+	return {}
+})
 
 const avatarContainerClasses = computed<string>(() => {
 	return TailwindUtils.merge(
 		avatarSizeClasses[size.value],
 		avatarShapeClasses[shape.value],
 		avatarContainerDefaultClasses.value,
-	);
-});
+	)
+})
 
 function generateRandomColor(): string {
 	const colors = [
@@ -173,9 +173,9 @@ function generateRandomColor(): string {
 		/*tw*/ 'bg-sky-600 dark:bg-sky-700',
 		/*tw*/ 'bg-indigo-600 dark:bg-indigo-700',
 		/*tw*/ 'bg-violet-600 dark:bg-violet-700',
-	];
+	]
 
-	return `${colors[Math.floor(Math.random() * colors.length)]} text-white`;
+	return `${colors[Math.floor(Math.random() * colors.length)]} text-white`
 }
 
 function generateRandomOutlineColor(): string {
@@ -192,8 +192,8 @@ function generateRandomOutlineColor(): string {
 		/*tw*/ 'border border-sky-600 text-sky-600 dark:border-sky-500 dark:text-sky-400',
 		/*tw*/ 'border border-indigo-600 text-indigo-600 dark:border-indigo-500 dark:text-indigo-400',
 		/*tw*/ 'border border-violet-600 text-violet-600 dark:border-violet-500 dark:text-violet-400',
-	];
+	]
 
-	return colors[Math.floor(Math.random() * colors.length)];
+	return colors[Math.floor(Math.random() * colors.length)]
 }
 </script>

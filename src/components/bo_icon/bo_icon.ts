@@ -1,4 +1,4 @@
-import type { BoSize } from '@/shared/bo_size';
+import type { BoSize } from '@/shared/bo_size'
 
 export enum Icon {
 	activity = 'activity',
@@ -288,10 +288,10 @@ export enum Icon {
 export const icons = import.meta.glob('@/assets/icons/**/*.svg', {
 	query: '?raw',
 	import: 'default',
-}) as Record<string, () => Promise<string>>;
+}) as Record<string, () => Promise<string>>
 
 export type BoIconProps = {
-	icon: Icon;
-	size?: BoSize;
-	color?: string;
-};
+	icon: Icon
+	size?: BoSize
+	color?: string
+}

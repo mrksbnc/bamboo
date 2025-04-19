@@ -14,7 +14,7 @@
 			<!-- Modal content -->
 			<div
 				:class="[
-					'relative flex flex-col gap-3 overflow-x-hidden overflow-y-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow dark:shadow-gray-900',
+					'relative flex flex-col gap-3 overflow-x-hidden overflow-y-auto rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 dark:shadow-gray-900',
 				]"
 			>
 				<!-- Modal header -->
@@ -60,22 +60,22 @@
 </template>
 
 <script setup lang="ts">
-import { BoDivider } from '@/components/bo_divider';
-import { BoIcon, Icon } from '@/components/bo_icon';
-import { BoColor } from '@/shared';
-import { BoSize } from '@/shared/bo_size';
-import type { StyleConstruct } from '@/types';
-import { KeyboardUtils, TailwindUtils } from '@/utils';
-import { computed, ref, toRefs } from 'vue';
-import type { BoSlotModalProps } from './types';
+import { BoDivider } from '@/components/bo_divider'
+import { BoIcon, Icon } from '@/components/bo_icon'
+import { BoColor } from '@/shared'
+import { BoSize } from '@/shared/bo_size'
+import type { StyleConstruct } from '@/types'
+import { KeyboardUtils, TailwindUtils } from '@/utils'
+import { computed, ref, toRefs } from 'vue'
+import type { BoSlotModalProps } from './types'
 
 const emits = defineEmits<{
-	(e: 'update:show', payload: boolean): void;
-}>();
+	(e: 'update:show', payload: boolean): void
+}>()
 
 const props = withDefaults(defineProps<BoSlotModalProps>(), {
 	showCloseButton: true,
-});
+})
 
 const {
 	showCloseButton,
@@ -84,30 +84,30 @@ const {
 	widthAsTailwindClass,
 	widthInPercent,
 	widthInPx,
-} = toRefs(props);
+} = toRefs(props)
 
-const hover = ref(false);
+const hover = ref(false)
 
 const modalWidth = computed<StyleConstruct>(() => {
 	const construct: StyleConstruct = {
 		style: {},
 		class: /*tw*/ '',
-	};
+	}
 
 	if (widthInPercent.value) {
 		construct.style = {
 			width: `${widthInPercent.value}%`,
-		};
+		}
 	}
 
 	if (widthInPx.value) {
 		construct.style = {
 			width: `${widthInPx.value}px`,
-		};
+		}
 	}
 
 	if (widthAsTailwindClass.value) {
-		construct.class = widthAsTailwindClass.value;
+		construct.class = widthAsTailwindClass.value
 	}
 
 	if (
@@ -115,41 +115,41 @@ const modalWidth = computed<StyleConstruct>(() => {
 		!widthInPx.value &&
 		!widthInPercent.value
 	) {
-		construct.class = /*tw*/ 'w-full max-w-3xl ';
+		construct.class = /*tw*/ 'w-full max-w-3xl '
 	}
 
-	return construct;
-});
+	return construct
+})
 
 const headerContainerClasses = computed<string>(() => {
-	let classes = /*tw*/ 'flex w-full rounded-t';
+	let classes = /*tw*/ 'flex w-full rounded-t'
 
 	if (showCloseButton.value) {
-		classes = TailwindUtils.merge(classes, /*tw*/ 'justify-between');
+		classes = TailwindUtils.merge(classes, /*tw*/ 'justify-between')
 	} else {
-		classes = TailwindUtils.merge(classes, /*tw*/ 'justify-start');
+		classes = TailwindUtils.merge(classes, /*tw*/ 'justify-start')
 	}
 
-	return classes;
-});
+	return classes
+})
 
 const footerContainerClasses = computed<string>(() => {
-	const classes = /*tw*/ 'inline-flex w-full flex-wrap';
+	const classes = /*tw*/ 'inline-flex w-full flex-wrap'
 
-	return classes;
-});
+	return classes
+})
 
 function onModalCloseEvent(): void {
-	emits('update:show', false);
+	emits('update:show', false)
 }
 
 function handleKeyDown(e: KeyboardEvent): void {
-	const isEscape = e.key === 'Escape' || e.keyCode === 27;
+	const isEscape = e.key === 'Escape' || e.keyCode === 27
 
 	if (isEscape) {
-		onModalCloseEvent();
+		onModalCloseEvent()
 	}
 
-	KeyboardUtils.trapTabKey(e, 'modal');
+	KeyboardUtils.trapTabKey(e, 'modal')
 }
 </script>

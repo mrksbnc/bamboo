@@ -1,313 +1,166 @@
 <template>
-	<div
-		:class="containerClasses.default"
-		class="relative"
-	>
-		<span
+	<div class="input-wrapper">
+		<label
 			v-if="label"
-			:class="textClasses.label"
+			:for="inputId"
+			class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 		>
-			<bo-text
-				:text="label"
-				:for="computedInputId"
-				:size="BoFontSize.sm"
-				:font-family="BoFontFamily.sans"
-			/>
-			<bo-text
-				v-if="attributes.required"
-				text="Required *"
-				:size="BoFontSize.xs"
-				:color="BoTextColor.danger"
-				:weight="BoFontWeight.medium"
-			/>
-		</span>
-		<span :class="containerClasses.input">
+			{{ label }}
 			<span
-				v-if="prefixIcon && prefixIcon != Icon.none"
-				:class="containerClasses.icon.prefix"
+				v-if="required"
+				class="ml-1 text-red-500"
+			>
+				*
+			</span>
+		</label>
+		<div
+			class="relative"
+			:class="{ flex: prefixIcon || suffixIcon }"
+		>
+			<div
+				v-if="prefixIcon"
+				class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
 			>
 				<bo-icon
 					:icon="prefixIcon"
-					:size="BoSize.default"
-					:color="BoColor.gray_500"
-			/></span>
-			<input
-				v-bind="attributes"
-				:id="computedInputId"
-				ref="inputRef"
-				:value="modelValue"
-				:class="classConstruct"
-				:type="attributes.type"
-				:readonly="attributes.readonly"
-				:placeholder="attributes.placeholder"
-				:disabled="attributes.disabled || isLoading"
-				@input="onInput"
-			/>
-			<div class="flex flex-row-reverse">
-				<span
-					v-if="suffixIcon && suffixIcon != Icon.none && !isLoading"
-					:class="containerClasses.icon.suffix"
-				>
-					<bo-icon
-						:icon="suffixIcon"
-						:size="BoSize.default"
-						:color="BoColor.gray_500"
-				/></span>
-				<span
-					v-if="isLoading"
-					:class="loadingContainerClasses"
-				>
-					<bo-loading-spinner
-						v-if="loaderVariant === 'spinner'"
-						:variant="BoLoaderVariant.secondary"
-						:size="BoSize.small"
-					/>
-					<bo-loading-pulse
-						v-else
-						:variant="BoLoaderVariant.secondary"
-						:size="BoSize.extra_small"
-					/>
-				</span>
+					class="h-5 w-5 text-gray-500 dark:text-gray-400"
+				/>
 			</div>
-		</span>
-		<span
-			v-if="description"
-			class="bo-input__description"
-		>
-			<bo-text
-				:text="description"
-				:size="BoFontSize.xs"
-				:color="BoTextColor.secondary"
-				:font-family="BoFontFamily.sans"
+			<input
+				:id="inputId"
+				v-model="modelValue"
+				:type="type"
+				:placeholder="placeholder"
+				:disabled="disabled"
+				:readonly="readonly"
+				:required="required"
+				:name="name"
+				:class="inputClass"
+				@focus="$emit('focus')"
+				@blur="$emit('blur')"
+				@input="$emit('input', $event)"
 			/>
-		</span>
-		<span
-			v-if="hasError && errorMessage"
-			:class="containerClasses.error"
-		>
 			<bo-icon
-				:icon="Icon.alert_triangle"
-				:color="BoColor.red_600"
-				:size="BoSize.small"
+				v-if="clearable && modelValue"
+				:icon="Icon.x"
+				@click="clearInput"
+				class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
 			/>
-			<bo-text
-				:text="errorMessage"
-				:size="BoFontSize.xs"
-				:color="BoTextColor.danger"
-				:font-family="BoFontFamily.sans"
-			/>
+			<div
+				v-if="suffixIcon && !clearable"
+				class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
+			>
+				<bo-icon
+					:icon="suffixIcon"
+					class="h-5 w-5 text-gray-500 dark:text-gray-400"
+				/>
+			</div>
+		</div>
+		<span
+			v-if="description && StringUtils.isEmptyStr(errorMessage)"
+			class="text-sm text-gray-500 dark:text-gray-400"
+		>
+			{{ description }}
+		</span>
+
+		<span
+			v-if="errorMessage && state === BoInputState.invalid"
+			class="mt-1 flex items-center gap-1 text-sm text-red-600 dark:text-red-500"
+		>
+			<bo-icon :icon="Icon.alert_circle" />
+			{{ errorMessage }}
 		</span>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo_icon';
-import { BoLoadingPulse } from '@/components/bo_loading_pulse';
-import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
-import { BoFontFamily, BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text';
-import { BoColor } from '@/shared';
-import { BoSize } from '@/shared/bo_size';
-import { BoLoaderVariant } from '@/shared/bo_loader';
-import { StringUtils, TailwindUtils } from '@/utils';
-import { IdentityUtils } from '@/utils/identity_utils';
-import { computed, ref, toRefs, watch } from 'vue';
-import { BoInputSize, BoInputState } from './constants';
-import type { BoInputProps } from './types';
+import { StringUtils, TailwindUtils } from '@/utils'
+import { IdentityUtils } from '@/utils/identity_utils'
+import { computed, defineModel } from 'vue'
+import { BoIcon, Icon } from '../bo_icon'
+import { BoInputSize, BoInputState, BoInputType, BoInputVariant } from './constants'
+import type { BoInputProps } from './types'
 
-const emit = defineEmits(['update:modelValue']);
+// Define emits
+const emit = defineEmits(['update:modelValue', 'input', 'focus', 'blur', 'clear'])
 
 const props = withDefaults(defineProps<BoInputProps>(), {
-	prefixIcon: Icon.none,
-	suffixIcon: Icon.none,
-	loaderVariant: 'pulse',
-	state: () => BoInputState.none,
-	size: () => BoInputSize.default,
-	attributes: () => {
-		return {
-			type: 'text',
-			placeholder: '',
-			disabled: false,
-			required: false,
-			readonly: false,
-		};
-	},
-});
+	modelValue: '',
+	type: BoInputType.text,
+	placeholder: '',
+	disabled: false,
+	readonly: false,
+	required: false,
+	state: BoInputState.none,
+	size: BoInputSize.default,
+	variant: BoInputVariant.default,
+	clearable: false,
+	prefixIcon: null,
+	suffixIcon: null,
+})
 
-const {
-	id,
-	modelValue,
-	label,
-	description,
-	isLoading,
-	size,
-	prefixIcon,
-	suffixIcon,
-	errorMessage,
-	state,
-	attributes,
-} = toRefs(props);
+const modelValue = defineModel()
 
-const containerClasses = {
-	default: /*tw*/ 'bo-input flex flex-col gap-1 bg-transparent',
-	loading:
-		/*tw*/ 'bo-input__loading-container absolute right-[10px] top-1/2 flex -translate-y-1/2 items-center justify-center',
-	error: /*tw*/ 'bo-input__error-container flex items-center gap-1',
-	input: /*tw*/ 'bo-input__container relative flex items-center',
-	icon: {
-		prefix:
-			/*tw*/ 'bo-input__prefix-container absolute left-[10px] top-1/2 flex -translate-y-1/2 items-center justify-center',
-		suffix:
-			/*tw*/ 'bo-input__suffix-container absolute right-[10px] top-1/2 flex -translate-y-1/2 items-center justify-center',
-	},
-};
+const inputId = computed(() => props.id ?? IdentityUtils.generateRandomIdWithPrefix('input'))
 
-const focusClasses = {
-	default: /*tw*/ 'focus:ring-blue-600 focus:border-blue-600',
-	error: /*tw*/ 'focus:ring-red-600 focus:border-red-600',
-	valid: /*tw*/ 'focus:ring-green-600 focus:border-green-600',
-};
+const inputClass = computed(() => {
+	const baseClasses = 'block w-full focus:outline-none focus:ring-1 transition-colors'
 
-const inputClasses = {
-	default:
-		/*tw*/ 'bo-input__input rounded-lg border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-small bg-white dark:bg-gray-700 outline-none',
-	error: /*tw*/ 'bo-input__input rounded-lg border border-red-600 dark:border-red-500',
-	valid: /*tw*/ 'bo-input__input rounded-lg border border-green-600 dark:border-green-500',
-};
-
-const stateClasses = {
-	disabled:
-		/*tw*/ 'disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-300 dark:disabled:bg-gray-800 dark:disabled:text-gray-500 dark:disabled:border-gray-700',
-};
-
-const textClasses = {
-	label: /*tw*/ 'bo-input__label-container flex items-center gap-1',
-};
-
-const inputState = ref<BoInputState>(state.value);
-const inputRef = ref<HTMLInputElement | null>(null);
-
-const computedInputId = computed<string>(() => {
-	return id.value ?? IdentityUtils.generateRandomIdWithPrefix('bo-input');
-});
-
-const hasError = computed<boolean>(() => {
-	return !StringUtils.isEmptyStr(errorMessage.value);
-});
-
-const loadingContainerClasses = computed<string>(() => {
-	return TailwindUtils.merge('right-[14px]', containerClasses.loading);
-});
-
-const inputPaddingClasses = computed<string>(() => {
-	const bothIconsSet =
-		prefixIcon.value !== null &&
-		prefixIcon.value !== undefined &&
-		prefixIcon.value !== Icon.none &&
-		suffixIcon.value !== null &&
-		suffixIcon.value !== undefined &&
-		suffixIcon.value !== Icon.none;
-
-	const prefixIconSet = prefixIcon.value && prefixIcon.value !== Icon.none;
-	const suffixIconSet = suffixIcon.value && suffixIcon.value !== Icon.none;
-
-	if (bothIconsSet) {
-		switch (size.value) {
-			case BoInputSize.default:
-			default:
-				return /*tw*/ 'px-8 py-2.5';
-			case BoInputSize.large:
-				return /*tw*/ 'px-8 py-3';
-		}
-	} else if (prefixIconSet) {
-		switch (size.value) {
-			case BoInputSize.default:
-			default:
-				return /*tw*/ 'pl-8 pr-4 py-2.5';
-			case BoInputSize.large:
-				return /*tw*/ 'pl-8 pr-4 py-3';
-		}
-	} else if (suffixIconSet) {
-		switch (size.value) {
-			case BoInputSize.default:
-			default:
-				return /*tw*/ 'pl-4 pr-8 py-2.5';
-			case BoInputSize.large:
-				return /*tw*/ 'pl-4 pr-8 py-3';
-		}
-	} else {
-		switch (size.value) {
-			case BoInputSize.default:
-			default:
-				return /*tw*/ 'pl-4 pr-4 py-2.5';
-			case BoInputSize.large:
-				return /*tw*/ 'pl-4 pr-4 py-3';
-		}
-	}
-});
-
-const inputFontSize = computed<string>(() => {
-	switch (size.value) {
-		case BoInputSize.default:
-		default:
-			return /*tw*/ 'text-sm';
-		case BoInputSize.large:
-			return /*tw*/ 'text-base';
-	}
-});
-
-const classConstruct = computed<string>(() => {
-	let classes = inputClasses.default;
-	let focus = focusClasses.default;
-
-	if (inputState.value === BoInputState.invalid) {
-		classes = inputClasses.error;
-		focus = focusClasses.error;
-	} else if (state.value === BoInputState.valid) {
-		classes = inputClasses.valid;
-		focus = focusClasses.valid;
+	const sizeClasses = {
+		[BoInputSize.small]: 'p-2 text-xs',
+		[BoInputSize.default]: 'p-2.5 text-sm',
+		[BoInputSize.large]: 'p-4 text-base',
 	}
 
-	return TailwindUtils.merge(
-		'flex w-full',
-		focus,
-		classes,
-		inputFontSize.value,
-		stateClasses.disabled,
-		inputPaddingClasses.value,
-	);
-});
-
-function onInput(e: Event): void {
-	const target = e.target as HTMLInputElement;
-
-	if (attributes?.value?.type === 'tel' || attributes?.value?.type === 'number') {
-		if (inputRef.value) {
-			inputRef.value.value = target.value.replace(/[^\d].+/, '');
-		}
+	const variantClasses = {
+		[BoInputVariant.default]:
+			'border border-[1px] border-gray-300 rounded-lg bg-transparent text-gray-900 focus:ring-blue-500/20 focus:border-blue-500 dark:border-gray-600 dark:text-white',
+		[BoInputVariant.filled]:
+			'border border-[1px] border-transparent rounded-lg bg-gray-100 text-gray-900 focus:ring-blue-500/20 focus:border-blue-500 dark:bg-gray-800 dark:text-white',
+		[BoInputVariant.underline]:
+			'border-0 border-b-[1px] border-gray-300 rounded-none bg-transparent px-0 focus:ring-0 focus:outline-none text-gray-900 focus:border-blue-500 dark:border-gray-600 dark:text-white',
 	}
 
-	emit('update:modelValue', target.value);
+	let classes = TailwindUtils.merge(
+		baseClasses,
+		sizeClasses[props.size],
+		variantClasses[props.variant],
+	)
+
+	if (props.prefixIcon) {
+		classes = TailwindUtils.merge(classes, 'pl-10')
+	}
+
+	if ((props.suffixIcon && !props.clearable) || (props.clearable && props.modelValue)) {
+		classes = TailwindUtils.merge(classes, 'pr-10')
+	}
+
+	if (props.disabled) {
+		classes = TailwindUtils.merge(
+			classes,
+			'cursor-not-allowed bg-gray-100 text-gray-500 placeholder-gray-400',
+		)
+	} else if (props.readonly) {
+		classes = TailwindUtils.merge(classes, 'text-gray-500 placeholder-gray-400')
+	}
+
+	if (props.state === BoInputState.invalid) {
+		classes = TailwindUtils.merge(
+			classes,
+			'border-red-500 bg-red-50 text-red-900 placeholder-red-700 focus:border-red-500 focus:ring-red-500',
+		)
+	} else if (props.state === BoInputState.valid) {
+		classes = TailwindUtils.merge(
+			classes,
+			'border-green-500 bg-green-50 text-green-900 placeholder-green-700 focus:border-green-500 focus:ring-green-500',
+		)
+	}
+
+	return classes
+})
+
+const clearInput = () => {
+	modelValue.value = ''
+	emit('clear')
 }
-
-watch(
-	() => hasError.value,
-	(val) => {
-		if (val) {
-			state.value = BoInputState.invalid;
-		} else {
-			state.value = BoInputState.none;
-		}
-	},
-);
-
-watch(
-	() => attributes.value?.required,
-	(val) => {
-		if (val) {
-			state.value = BoInputState.invalid;
-		} else {
-			state.value = BoInputState.none;
-		}
-	},
-);
 </script>

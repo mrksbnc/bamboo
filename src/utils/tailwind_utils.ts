@@ -9,10 +9,10 @@ export class TailwindUtils {
 				classes
 					.filter((f) => f !== null && f !== undefined)
 					.map((c) => {
-						return c.split(' ');
+						return c.split(' ')
 					})
 					.flat(),
 			),
-		).join(' ');
+		).join(' ')
 	}
 }
