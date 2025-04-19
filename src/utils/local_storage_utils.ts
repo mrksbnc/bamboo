@@ -12,12 +12,6 @@ export class LocalStorageUtils {
 		}
 	}
 
-	/**
-	 * Sets an item in localStorage
-	 * @param key The key to set in localStorage
-	 * @param value The value to set
-	 * @returns True if successful, false otherwise
-	 */
 	static setItem(key: string, value: string): boolean {
 		if (typeof window === 'undefined') {
 			return false
@@ -46,10 +40,6 @@ export class LocalStorageUtils {
 		}
 	}
 
-	/**
-	 * Clears all items from localStorage
-	 * @returns True if successful, false otherwise
-	 */
 	static clear(): boolean {
 		if (typeof window === 'undefined') return false
 
@@ -62,10 +52,6 @@ export class LocalStorageUtils {
 		}
 	}
 
-	/**
-	 * Checks if localStorage is available in the current environment
-	 * @returns True if localStorage is available, false otherwise
-	 */
 	static isAvailable(): boolean {
 		if (typeof window === 'undefined') return false
 
@@ -80,11 +66,6 @@ export class LocalStorageUtils {
 		}
 	}
 
-	/**
-	 * Gets an item from localStorage and parses it as JSON
-	 * @param key The key to retrieve from localStorage
-	 * @returns The parsed JSON value, or null if it doesn't exist or can't be parsed
-	 */
 	static getJSON<T>(key: string): T | null {
 		const value = this.getItem(key)
 
@@ -98,12 +79,6 @@ export class LocalStorageUtils {
 		}
 	}
 
-	/**
-	 * Sets an item in localStorage after stringifying it as JSON
-	 * @param key The key to set in localStorage
-	 * @param value The value to stringify and set
-	 * @returns True if successful, false otherwise
-	 */
 	static setJSON<T>(key: string, value: T): boolean {
 		try {
 			const stringValue = JSON.stringify(value)

@@ -3,12 +3,9 @@ import { localStorageMock } from '../tests/setup'
 import { LocalStorageUtils } from './local_storage_utils'
 
 describe('LocalStorageUtils', () => {
-	// Reset localStorage before each test
 	beforeEach(() => {
-		// Reset localStorage mock
 		localStorageMock.reset()
 
-		// Clear console.error mock
 		vi.clearAllMocks()
 		vi.spyOn(console, 'error').mockImplementation(() => {})
 	})
@@ -24,7 +21,6 @@ describe('LocalStorageUtils', () => {
 		})
 
 		it('should handle errors and return null', () => {
-			// Simulate localStorage error
 			localStorageMock.simulateError = true
 
 			expect(LocalStorageUtils.getItem('test-key')).toBe(null)
@@ -41,7 +37,6 @@ describe('LocalStorageUtils', () => {
 		})
 
 		it('should handle errors and return false', () => {
-			// Simulate localStorage error
 			localStorageMock.simulateError = true
 
 			const result = LocalStorageUtils.setItem('test-key', 'test-value')
@@ -62,7 +57,6 @@ describe('LocalStorageUtils', () => {
 		})
 
 		it('should handle errors and return false', () => {
-			// Simulate localStorage error
 			localStorageMock.simulateError = true
 
 			const result = LocalStorageUtils.removeItem('test-key')
@@ -84,7 +78,6 @@ describe('LocalStorageUtils', () => {
 		})
 
 		it('should handle errors and return false', () => {
-			// Simulate localStorage error
 			localStorageMock.simulateError = true
 
 			const result = LocalStorageUtils.clear()
@@ -100,7 +93,6 @@ describe('LocalStorageUtils', () => {
 		})
 
 		it('should return false if localStorage throws an error', () => {
-			// Simulate localStorage error
 			localStorageMock.simulateError = true
 
 			expect(LocalStorageUtils.isAvailable()).toBe(false)
@@ -143,7 +135,6 @@ describe('LocalStorageUtils', () => {
 		})
 
 		it('should handle stringify errors and return false', () => {
-			// Create a circular reference to cause JSON.stringify to throw
 			const circular: Record<string, unknown> = {}
 			circular.self = circular
 

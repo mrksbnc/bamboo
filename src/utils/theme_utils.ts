@@ -37,7 +37,6 @@ export class ThemeUtils {
 		document.documentElement.classList.remove(Theme.LIGHT, Theme.DARK)
 		document.documentElement.classList.add(isDark ? Theme.DARK : Theme.LIGHT)
 
-		// Optional: Update meta theme-color
 		const metaThemeColor = document.querySelector('meta[name="theme-color"]')
 		if (metaThemeColor) {
 			metaThemeColor.setAttribute('content', isDark ? '#1a1a1a' : '#ffffff')

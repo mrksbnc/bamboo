@@ -1,27 +1,13 @@
-export enum BoModalSize {
-	SM = 'sm',
-	MD = 'md',
-	LG = 'lg',
-	XL = 'xl',
-	XXL = '2xl',
+export interface BoModalWidthOptions {
+	px?: number
+	percent?: number
+	tailwind?: string
 }
 
-export enum BoPaddingSize {
-	SM = 'sm',
-	MD = 'md',
-	LG = 'lg',
-	XL = 'xl',
-}
-
-export type BoModalProps = {
-	size?: BoModalSize
-	padding?: BoPaddingSize
-	closable?: boolean
+export interface BoModalProps {
+	id?: string
 	title?: string
-	subtitle?: string
+	description?: string
 	showClose?: boolean
-	widthInPx?: number
-	widthInPercent?: number
-	widthAsTailwindClass?: string
-	returnFocus?: boolean
+	width?: BoModalWidthOptions
 }

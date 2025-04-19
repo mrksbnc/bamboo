@@ -1,11 +1,7 @@
-/**
- * Utility functions for improving accessibility in line with WCAG 2.1 AA standards
- */
 export class AccessibilityUtils {
 	/**
-	 * Announce messages to screen readers using an ARIA live region
-	 * @param message - The message to announce
-	 * @param priority - The priority level (polite, assertive)
+	 * Announce messages to screen readers using an ARIA live region. The
+	 * available priority levels are 'polite' and 'assertive'.
 	 */
 	static announceToScreenReader(
 		message: string,
@@ -28,10 +24,6 @@ export class AccessibilityUtils {
 		liveRegion.textContent = message
 	}
 
-	/**
-	 * Checks if an element is hidden from screen readers
-	 * @param element - Element to check
-	 */
 	static isHiddenFromScreenReaders(element: HTMLElement): boolean {
 		return (
 			(element.hasAttribute('aria-hidden') && element.getAttribute('aria-hidden') === 'true') ||
@@ -40,11 +32,6 @@ export class AccessibilityUtils {
 		)
 	}
 
-	/**
-	 * Add skip link for keyboard users to bypass navigation
-	 * @param targetId - The ID of the element to skip to
-	 * @param text - The text to display for the skip link
-	 */
 	static addSkipLink(targetId: string, text = 'Skip to main content'): void {
 		const skipLink = document.createElement('a')
 		skipLink.href = `#${targetId}`
@@ -75,10 +62,6 @@ export class AccessibilityUtils {
 		document.body.insertBefore(skipLink, document.body.firstChild)
 	}
 
-	/**
-	 * Generate unique IDs for labeling elements
-	 * @param prefix - The prefix for the ID
-	 */
 	static generateAccessibleId(prefix: string): string {
 		return `${prefix}-${Math.random().toString(36).substring(2, 9)}`
 	}

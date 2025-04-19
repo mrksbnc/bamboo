@@ -1,217 +1,115 @@
 import { BoModal } from '@/components/bo_modal'
-import { KeyboardUtils } from '@/utils'
+import { AccessibilityUtils } from '@/utils'
 import { mount } from '@vue/test-utils'
-import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
-import { BoModalSize, BoPaddingSize } from './bo_modal'
+import { beforeEach, describe, expect, suite, test, vi } from 'vitest'
 
-// Mock KeyboardUtils and AccessibilityUtils methods
+let wrapper: ReturnType<typeof mount>
+
+// Mock AccessibilityUtils
 vi.mock('@/utils', () => ({
+	AccessibilityUtils: {
+		generateAccessibleId: vi.fn().mockReturnValue('mock-id'),
+		announceToScreenReader: vi.fn(),
+	},
 	KeyboardUtils: {
 		trapTabKey: vi.fn(),
-		registerEscapeKeyHandler: vi.fn((e, handler) => {
-			if (e.key === 'Escape') handler()
-		}),
+		registerEscapeKeyHandler: vi.fn(),
 		getFocusableElements: vi.fn().mockReturnValue([]),
-	},
-	AccessibilityUtils: {
-		generateAccessibleId: vi.fn().mockImplementation((prefix) => `${prefix}-mock-id`),
-		announceToScreenReader: vi.fn(),
 	},
 }))
 
+beforeEach(() => {
+	wrapper = mount(BoModal, {
+		props: {
+			title: 'Test Modal Title',
+			description: 'Test modal description',
+			showClose: true,
+		},
+		slots: {
+			default: '<div>Modal Content</div>',
+		},
+	})
+})
+
 describe('BoModal.vue', () => {
-	beforeEach(() => {
-		vi.clearAllMocks()
+	test('renders properly', () => {
+		expect(wrapper.exists()).toBe(true)
+		expect(wrapper.find('h2').text()).toBe('Test Modal Title')
+		expect(wrapper.find('p').text()).toBe('Test modal description')
+		expect(wrapper.find('.space-y-4').text()).toContain('Modal Content')
 	})
 
-	afterEach(() => {
-		vi.clearAllMocks()
-	})
+	test('close button emits close event when clicked', async () => {
+		const closeButton = wrapper.find('button[aria-label="Close modal"]')
+		expect(closeButton.exists()).toBe(true)
 
-	test('should render the modal', () => {
-		const wrapper = mount(BoModal)
-
-		expect(wrapper.find('.fixed').exists()).toBe(true)
-	})
-
-	test('should emit close when close button is clicked', async () => {
-		const wrapper = mount(BoModal, {
-			props: {
-				showClose: true,
-			},
-		})
-
-		await wrapper.find('button').trigger('click')
+		await closeButton.trigger('click')
 		expect(wrapper.emitted('close')).toBeTruthy()
+		expect(wrapper.emitted('close')?.length).toBe(1)
 	})
 
-	test('should not render close button when showClose is false', () => {
-		const wrapper = mount(BoModal, {
-			props: {
-				showClose: false,
-			},
+	test('does not show close button when showClose is false', async () => {
+		await wrapper.setProps({ showClose: false })
+		const closeButton = wrapper.find('button[aria-label="Close modal"]')
+		expect(closeButton.exists()).toBe(false)
+	})
+
+	suite('Accessibility Features', () => {
+		test('has correct ARIA attributes', () => {
+			const modal = wrapper.find('[role="dialog"]')
+			expect(modal.attributes('aria-modal')).toBe('true')
+			expect(modal.attributes('aria-labelledby')).toBeTruthy()
+			expect(modal.attributes('aria-describedby')).toBeTruthy()
 		})
 
-		expect(wrapper.find('button').exists()).toBe(false)
-	})
-
-	test('should display title and subtitle when provided', () => {
-		const wrapper = mount(BoModal, {
-			props: {
-				title: 'Modal Title',
-				subtitle: 'Modal Subtitle',
-			},
+		test('close button has proper accessibility attributes', () => {
+			const closeButton = wrapper.find('button[aria-label="Close modal"]')
+			expect(closeButton.exists()).toBe(true)
+			expect(closeButton.attributes('aria-label')).toBe('Close modal')
+			expect(closeButton.find('.sr-only').text()).toBe('Close')
 		})
-
-		expect(wrapper.find('h2').exists()).toBe(true)
-		expect(wrapper.find('h2').text()).toBe('Modal Title')
-		expect(wrapper.find('p').exists()).toBe(true)
-		expect(wrapper.find('p').text()).toBe('Modal Subtitle')
 	})
 
-	test('should apply correct size class', () => {
-		const sizes = [
-			{ size: BoModalSize.SM, class: 'max-w-sm' },
-			{ size: BoModalSize.MD, class: 'max-w-md' },
-			{ size: BoModalSize.LG, class: 'max-w-lg' },
-			{ size: BoModalSize.XL, class: 'max-w-xl' },
-			{ size: BoModalSize.XXL, class: 'max-w-2xl' },
-		]
-
-		sizes.forEach(({ size, class: className }) => {
-			const wrapper = mount(BoModal, {
-				props: {
-					size,
-				},
+	suite('Width options', () => {
+		test('applies px width when provided', async () => {
+			await wrapper.setProps({
+				width: { px: 500 },
 			})
-
-			expect(wrapper.find(`.${className}`).exists()).toBe(true)
+			const modalContent = wrapper.find('[role="document"]')
+			expect(modalContent.attributes('style')).toContain('width: 500px')
 		})
-	})
 
-	test('should apply correct padding class', () => {
-		const paddings = [
-			{ padding: BoPaddingSize.SM, class: 'p-3' },
-			{ padding: BoPaddingSize.MD, class: 'p-5' },
-			{ padding: BoPaddingSize.LG, class: 'p-6' },
-			{ padding: BoPaddingSize.XL, class: 'p-8' },
-		]
-
-		paddings.forEach(({ padding, class: className }) => {
-			const wrapper = mount(BoModal, {
-				props: {
-					padding,
-				},
+		test('applies percent width when provided', async () => {
+			await wrapper.setProps({
+				width: { percent: 75 },
 			})
+			const modalContent = wrapper.find('[role="document"]')
+			expect(modalContent.attributes('style')).toContain('width: 75%')
+		})
 
-			expect(wrapper.find('.relative').classes()).toContain(className)
+		test('applies tailwind class when provided', async () => {
+			await wrapper.setProps({
+				width: { tailwind: 'w-96' },
+			})
+			const modalContent = wrapper.find('[role="document"]')
+			expect(modalContent.classes()).toContain('w-96')
 		})
 	})
 
-	test('should apply width in pixels when widthInPx is provided', () => {
-		const wrapper = mount(BoModal, {
-			props: {
-				widthInPx: 400,
-			},
-		})
+	test('lifecycle hooks call accessibility functions', async () => {
+		// Check if announceToScreenReader was called on mount
+		expect(AccessibilityUtils.announceToScreenReader).toHaveBeenCalledWith(
+			'Dialog opened',
+			'assertive',
+		)
 
-		expect(wrapper.find('.relative').attributes('style')).toBe('width: 400px;')
-	})
+		// Unmount the component
+		wrapper.unmount()
 
-	test('should apply width in percent when widthInPercent is provided', () => {
-		const wrapper = mount(BoModal, {
-			props: {
-				widthInPercent: 80,
-			},
-		})
-
-		expect(wrapper.find('.relative').attributes('style')).toBe('width: 80%;')
-	})
-
-	test('should apply tailwind class when widthAsTailwindClass is provided', () => {
-		const wrapper = mount(BoModal, {
-			props: {
-				widthAsTailwindClass: 'w-3/4',
-			},
-		})
-
-		expect(wrapper.find('.relative').classes()).toContain('w-3/4')
-	})
-
-	test('should prioritize custom width options over size class', () => {
-		const wrapper = mount(BoModal, {
-			props: {
-				size: BoModalSize.LG,
-				widthInPx: 500,
-			},
-		})
-
-		expect(wrapper.find('.relative').classes()).not.toContain('max-w-lg')
-		expect(wrapper.find('.relative').attributes('style')).toBe('width: 500px;')
-	})
-
-	test('should render slots correctly', () => {
-		const wrapper = mount(BoModal, {
-			slots: {
-				header: '<h2 class="header-content">Modal Header</h2>',
-				content: '<p class="content-text">Modal Content</p>',
-				footer: '<button class="footer-button">Close</button>',
-			},
-		})
-
-		expect(wrapper.find('.header-content').exists()).toBe(true)
-		expect(wrapper.find('.header-content').text()).toBe('Modal Header')
-
-		expect(wrapper.find('.content-text').exists()).toBe(true)
-		expect(wrapper.find('.content-text').text()).toBe('Modal Content')
-
-		expect(wrapper.find('.footer-button').exists()).toBe(true)
-		expect(wrapper.find('.footer-button').text()).toBe('Close')
-	})
-
-	test('should have proper ARIA attributes for accessibility', () => {
-		const wrapper = mount(BoModal, {
-			props: {
-				title: 'Accessible Modal',
-				subtitle: 'This modal is accessible',
-			},
-		})
-
-		const modal = wrapper.find('[role="dialog"]')
-		expect(modal.exists()).toBe(true)
-		expect(modal.attributes('aria-modal')).toBe('true')
-		expect(modal.attributes('aria-labelledby')).toBeDefined()
-		expect(modal.attributes('aria-describedby')).toBeDefined()
-
-		// Check the title and subtitle elements have proper IDs
-		const titleId = modal.attributes('aria-labelledby')
-		const subtitleId = modal.attributes('aria-describedby')
-		expect(wrapper.find(`#${titleId}`).exists()).toBe(true)
-		expect(wrapper.find(`#${subtitleId}`).exists()).toBe(true)
-	})
-
-	test('should handle Tab key to trap focus within modal', async () => {
-		const wrapper = mount(BoModal)
-
-		// Simulate Tab key press
-		await wrapper.trigger('keydown', { key: 'Tab' })
-
-		// Verify trapTabKey was called
-		expect(KeyboardUtils.trapTabKey).toHaveBeenCalled()
-	})
-
-	test('should close modal when Escape key is pressed', async () => {
-		const wrapper = mount(BoModal, {
-			props: {
-				closable: true,
-			},
-		})
-
-		// Simulate a document keydown event
-		const escapeEvent = new KeyboardEvent('keydown', { key: 'Escape' })
-		document.dispatchEvent(escapeEvent)
-
-		// Verify the close event was emitted
-		expect(wrapper.emitted('close')).toBeTruthy()
+		// Check if announceToScreenReader was called on unmount
+		expect(AccessibilityUtils.announceToScreenReader).toHaveBeenCalledWith(
+			'Dialog closed',
+			'assertive',
+		)
 	})
 })

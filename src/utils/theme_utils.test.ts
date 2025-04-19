@@ -2,7 +2,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { LocalStorageUtils } from './local_storage_utils'
 import { Theme, ThemeUtils } from './theme_utils'
 
-// Mock the LocalStorageUtils
 vi.mock('./local_storage_utils', () => {
 	return {
 		LocalStorageUtils: {
@@ -20,17 +19,14 @@ vi.mock('./local_storage_utils', () => {
 describe('ThemeUtils', () => {
 	const originalMatchMedia = window.matchMedia
 
-	// Setup mocks
 	beforeEach(() => {
 		vi.spyOn(document.documentElement.classList, 'add').mockImplementation(vi.fn())
 		vi.spyOn(document.documentElement.classList, 'remove').mockImplementation(vi.fn())
 
-		// Reset LocalStorageUtils mock
 		vi.mocked(LocalStorageUtils.getItem).mockReset()
 		vi.mocked(LocalStorageUtils.setItem).mockReset()
 	})
 
-	// Restore original methods after each test
 	afterEach(() => {
 		vi.restoreAllMocks()
 		window.matchMedia = originalMatchMedia
