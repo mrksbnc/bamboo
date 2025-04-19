@@ -245,7 +245,7 @@ describe('bo_text.vue', () => {
 
 		test('the text should have the correct secondary color classes', async () => {
 			await wrapper.setProps({ color: BoTextColor.secondary })
-			expect(wrapper.find('#test-id').classes()).toContain('text-neutral-500')
+			expect(wrapper.find('#test-id').classes()).toContain('text-neutral-600')
 		})
 
 		test('the text should have the correct info color classes', async () => {

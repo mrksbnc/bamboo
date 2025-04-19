@@ -1,7 +1,13 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { BoTextarea } from '.'
-import { BoTextareaSize, BoTextareaState, BoTextareaVariant } from './constants'
+import {
+	BoTextareaResize,
+	BoTextareaSize,
+	BoTextareaState,
+	BoTextareaVariant,
+	BoTextareaWrap,
+} from './constants'
 
 describe('BoTextarea', () => {
 	it('renders properly', () => {
@@ -230,14 +236,24 @@ describe('BoTextarea', () => {
 	})
 
 	it('applies custom resize style when specified', () => {
-		const resize = 'vertical'
 		const wrapper = mount(BoTextarea, {
 			props: {
-				resize,
+				resize: BoTextareaResize.vertical,
 				modelValue: '',
 			},
 		})
 		const textarea = wrapper.find('textarea')
-		expect(textarea.attributes('style')).toContain(`resize: ${resize}`)
+		expect(textarea.attributes('style')).toContain(`resize: ${BoTextareaResize.vertical}`)
+	})
+
+	it('applies wrap attribute correctly when specified', () => {
+		const wrapper = mount(BoTextarea, {
+			props: {
+				wrap: BoTextareaWrap.hard,
+				modelValue: '',
+			},
+		})
+		const textarea = wrapper.find('textarea')
+		expect(textarea.attributes('wrap')).toBe(BoTextareaWrap.hard)
 	})
 })

@@ -1,8 +1,11 @@
 <template>
 	<bo-card>
 		<template #header>
-			<div class="flex flex-row gap-2 items-center text-neutral-900 dark:text-neutral-100">
-				<bo-icon :icon="Icon.globe" :size="BoSize.default" />
+			<div class="flex flex-row items-center gap-2 text-neutral-900 dark:text-neutral-100">
+				<bo-icon
+					:icon="Icon.globe"
+					:size="BoSize.default"
+				/>
 				<bo-text
 					text="Lorem ipsum"
 					:size="BoFontSize['1xl']"
@@ -12,7 +15,7 @@
 			</div>
 		</template>
 		<template #content>
-			<div class="flex flex-col gap-2 mt-2">
+			<div class="flex flex-col gap-2">
 				<bo-text
 					:size="BoFontSize.sm"
 					:color="BoTextColor.secondary"
@@ -21,17 +24,21 @@
 			</div>
 		</template>
 		<template #actions>
-			<div class="flex gap-2 mt-2">
-				<bo-button label="Read more" :size="BoSize.small" :variant="BoButtonVariant.dark" />
+			<div class="mt-2 flex gap-2">
+				<bo-button
+					label="Read more"
+					:size="BoSize.small"
+					:variant="BoButtonVariant.dark"
+				/>
 			</div>
 		</template>
 	</bo-card>
 </template>
 
 <script setup lang="ts">
-import { BoCard } from '@/components/bo_card';
-import { BoButton, BoButtonVariant } from '@/components/bo_button';
-import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text';
-import { BoSize } from '@/shared';
-import { Icon, BoIcon } from '@/components/bo_icon';
+import { BoButton, BoButtonVariant } from '@/components/bo_button'
+import { BoCard } from '@/components/bo_card'
+import { BoIcon, Icon } from '@/components/bo_icon'
+import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text'
+import { BoSize } from '@/shared'
 </script>

@@ -19,13 +19,13 @@ To enable dark mode in your application, you have two options:
 ```javascript
 // Toggle dark mode on/off
 function toggleDarkMode() {
-	if (document.documentElement.classList.contains('dark')) {
-		document.documentElement.classList.remove('dark');
-		localStorage.setItem('vitepress-theme', 'light');
-	} else {
-		document.documentElement.classList.add('dark');
-		localStorage.setItem('vitepress-theme', 'dark');
-	}
+  if (document.documentElement.classList.contains('dark')) {
+    document.documentElement.classList.remove('dark')
+    localStorage.setItem('bamboo-theme', 'light')
+  } else {
+    document.documentElement.classList.add('dark')
+    localStorage.setItem('bamboo-theme', 'dark')
+  }
 }
 ```
 
@@ -34,18 +34,18 @@ function toggleDarkMode() {
 ```javascript
 // Check for saved theme preference or use system preference
 function initializeDarkMode() {
-	const savedTheme = localStorage.getItem('vitepress-theme');
+  const savedTheme = localStorage.getItem('bamboo-theme')
 
-	if (savedTheme === 'dark') {
-		document.documentElement.classList.add('dark');
-	} else if (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-		document.documentElement.classList.add('dark');
-		localStorage.setItem('vitepress-theme', 'dark');
-	}
+  if (savedTheme === 'dark') {
+    document.documentElement.classList.add('dark')
+  } else if (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.classList.add('dark')
+    localStorage.setItem('bamboo-theme', 'dark')
+  }
 }
 
 // Call on page load
-initializeDarkMode();
+initializeDarkMode()
 ```
 
 ## Using ThemeUtils
@@ -53,16 +53,16 @@ initializeDarkMode();
 The Bamboo library provides utility functions for managing dark mode:
 
 ```javascript
-import { ThemeUtils } from '@/utils';
+import { ThemeUtils } from '@/utils'
 
 // Initialize dark mode (recommended on app startup)
-ThemeUtils.initializeDarkMode();
+ThemeUtils.initializeDarkMode()
 
 // Toggle dark mode
-const newTheme = ThemeUtils.toggleDarkMode(); // Returns 'dark' or 'light'
+const newTheme = ThemeUtils.toggleDarkMode() // Returns 'dark' or 'light'
 
 // Get current theme
-const currentTheme = ThemeUtils.getCurrentTheme(); // Returns 'dark' or 'light'
+const currentTheme = ThemeUtils.getCurrentTheme() // Returns 'dark' or 'light'
 ```
 
 ## Early Initialization
@@ -71,22 +71,22 @@ To prevent a flash of unstyled content (FOUC), you can initialize dark mode befo
 
 ```html
 <script>
-	// Run before the app initializes
-	(function () {
-		try {
-			const savedTheme = localStorage.getItem('vitepress-theme');
+  // Run before the app initializes
+  ;(function () {
+    try {
+      const savedTheme = localStorage.getItem('bamboo-theme')
 
-			if (savedTheme === 'dark') {
-				document.documentElement.classList.add('dark');
-			} else if (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-				document.documentElement.classList.add('dark');
-				localStorage.setItem('vitepress-theme', 'dark');
-			}
-		} catch (e) {
-			// Fallback to light mode if localStorage is not available
-			document.documentElement.classList.remove('dark');
-		}
-	})();
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else if (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark')
+        localStorage.setItem('bamboo-theme', 'dark')
+      }
+    } catch (e) {
+      // Fallback to light mode if localStorage is not available
+      document.documentElement.classList.remove('dark')
+    }
+  })()
 </script>
 ```
 

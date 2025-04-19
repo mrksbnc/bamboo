@@ -6,6 +6,11 @@
 			class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 		>
 			{{ label }}
+			<span
+				v-if="required"
+				class="text-red-500"
+				>*</span
+			>
 		</label>
 		<div
 			class="relative"
@@ -34,21 +39,42 @@
 				@blur="$emit('blur')"
 				@input="$emit('input', $event)"
 			/>
-			<bo-icon
-				v-if="clearable && modelValue"
-				:icon="Icon.x"
-				:size="BoSize.small"
-				@click="clearInput"
-				class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-			/>
 			<div
-				v-if="suffixIcon && !clearable"
+				v-if="clearable && modelValue"
+				class="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
+				@click="clearInput"
+			>
+				<bo-icon
+					:icon="Icon.x"
+					:size="BoSize.small"
+					class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+				/>
+			</div>
+			<div
+				v-else-if="suffixIcon"
 				class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
 			>
 				<bo-icon
 					:icon="suffixIcon"
 					class="text-gray-500 dark:text-gray-400"
 				/>
+			</div>
+			<div
+				v-if="isLoading"
+				class="loading-indicator absolute inset-y-0 right-0 flex items-center pr-3"
+			>
+				<span
+					v-if="loaderVariant === BoInputLoaderVariant.spinner"
+					class="loading-spinner"
+				>
+					<!-- Spinner content -->
+				</span>
+				<span
+					v-else-if="loaderVariant === BoInputLoaderVariant.pulse"
+					class="loading-pulse"
+				>
+					<!-- Pulse content -->
+				</span>
 			</div>
 		</div>
 		<span
@@ -72,11 +98,16 @@ import { BoIcon, Icon } from '@/components/bo_icon'
 import { BoSize } from '@/shared'
 import { StringUtils, TailwindUtils } from '@/utils'
 import { IdentityUtils } from '@/utils/identity_utils'
-import { computed, defineModel } from 'vue'
-import { BoInputSize, BoInputState, BoInputType, BoInputVariant } from './constants'
+import { computed } from 'vue'
+import {
+	BoInputLoaderVariant,
+	BoInputSize,
+	BoInputState,
+	BoInputType,
+	BoInputVariant,
+} from './constants'
 import type { BoInputProps } from './types'
 
-// Define emits
 const emit = defineEmits(['update:modelValue', 'input', 'focus', 'blur', 'clear'])
 
 const props = withDefaults(defineProps<BoInputProps>(), {
@@ -91,6 +122,7 @@ const props = withDefaults(defineProps<BoInputProps>(), {
 	clearable: false,
 	prefixIcon: null,
 	suffixIcon: null,
+	loaderVariant: BoInputLoaderVariant.spinner,
 })
 
 const modelValue = defineModel<string>('modelValue', { required: true })

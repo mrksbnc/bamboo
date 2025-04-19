@@ -1,6 +1,12 @@
 import type { Icon } from '@/components/bo_icon'
 import type { TextareaHTMLAttributes } from 'vue'
-import type { BoTextareaSize, BoTextareaState, BoTextareaVariant } from './constants'
+import type {
+	BoTextareaResize,
+	BoTextareaSize,
+	BoTextareaState,
+	BoTextareaVariant,
+	BoTextareaWrap,
+} from './constants'
 
 export type BoTextareaProps = {
 	modelValue?: string
@@ -24,7 +30,7 @@ export type BoTextareaProps = {
 	cols?: number
 	maxlength?: number
 	minlength?: number
-	wrap?: 'soft' | 'hard'
-	resize?: 'none' | 'both' | 'horizontal' | 'vertical'
+	wrap?: BoTextareaWrap
+	resize?: BoTextareaResize
 	attributes?: TextareaHTMLAttributes
 }

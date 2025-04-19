@@ -10,15 +10,14 @@ An avatar is a visual representation of a user or entity. Use avatars to help us
 
 ## Basic Example
 
-<div class="flex gap-4 items-center">
-  <bo-avatar :data="{ label: 'B' }" />
-</div>
-
 ```html
 <bo-avatar :data="{ label: 'B' }" />
 ```
 
-## Component API
+<hr class="border-gray-200 dark:border-gray-700" />
+<div class="flex gap-4 items-center">
+  <bo-avatar :data="{ label: 'B' }" />
+</div>
 
 ### Props
 
@@ -37,23 +36,23 @@ An avatar is a visual representation of a user or entity. Use avatars to help us
 
 ```ts
 export type BoAvatarData = {
-	alt?: string; // Alt text for the avatar image
-	src?: string; // URL of the avatar image
-	label?: string; // Text to display as initials
-};
+  alt?: string // Alt text for the avatar image
+  src?: string // URL of the avatar image
+  label?: string // Text to display as initials
+}
 
 export enum BoAvatarType {
-	image = 'image', // Shows an image
-	initials = 'initials', // Shows text initials
+  image = 'image', // Shows an image
+  initials = 'initials', // Shows text initials
 }
 
 export enum BoAvatarShape {
-	circle = 'circle', // Circular shape
-	flat = 'flat', // Square shape
-	rounded = 'rounded', // Rounded corners
-	outline_flat = 'outline_flat', // Square with border
-	outline_rounded = 'outline_rounded', // Rounded corners with border
-	outline_circle = 'outline_circle', // Circle with border
+  circle = 'circle', // Circular shape
+  flat = 'flat', // Square shape
+  rounded = 'rounded', // Rounded corners
+  outline_flat = 'outline_flat', // Square with border
+  outline_rounded = 'outline_rounded', // Rounded corners with border
+  outline_circle = 'outline_circle', // Circle with border
 }
 ```
 
@@ -64,21 +63,21 @@ Use different avatar shapes with initials or images.
 <div class="flex gap-4 items-center">
   <bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'B' }" />
   <bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'JD' }" />
-  <bo-avatar :type="BoAvatarType.image" :data="{ src: 'https://flowbite.com/docs/images/people/profile-picture-5.jpg', alt: 'User profile' }" />
+  <bo-avatar :type="BoAvatarType.image" :data="{ src: 'https://avatar.iran.liara.run/public', alt: 'User profile' }" />
 </div>
 
 ```html
 <bo-avatar
-	:shape="BoAvatarShape.circle"
-	:data="{ label: 'B' }"
+  :shape="BoAvatarShape.circle"
+  :data="{ label: 'B' }"
 />
 <bo-avatar
-	:shape="BoAvatarShape.rounded"
-	:data="{ label: 'JD' }"
+  :shape="BoAvatarShape.rounded"
+  :data="{ label: 'JD' }"
 />
 <bo-avatar
-	:type="BoAvatarType.image"
-	:data="{ src: 'path/to/image.jpg', alt: 'User profile' }"
+  :type="BoAvatarType.image"
+  :data="{ src: 'path/to/image.jpg', alt: 'User profile' }"
 />
 ```
 
@@ -94,16 +93,16 @@ Use the outline shape variants to create avatars with borders.
 
 ```html
 <bo-avatar
-	:shape="BoAvatarShape.outline_circle"
-	:data="{ label: 'B' }"
+  :shape="BoAvatarShape.outline_circle"
+  :data="{ label: 'B' }"
 />
 <bo-avatar
-	:shape="BoAvatarShape.outline_rounded"
-	:data="{ label: 'JD' }"
+  :shape="BoAvatarShape.outline_rounded"
+  :data="{ label: 'JD' }"
 />
 <bo-avatar
-	:shape="BoAvatarShape.outline_flat"
-	:data="{ label: 'ML' }"
+  :shape="BoAvatarShape.outline_flat"
+  :data="{ label: 'ML' }"
 />
 ```
 
@@ -119,8 +118,8 @@ When no image or initials are provided, a default placeholder image is used.
 ```html
 <bo-avatar :data="{}" />
 <bo-avatar
-	:with-default-image="true"
-	:data="{ label: undefined }"
+  :with-default-image="true"
+  :data="{ label: undefined }"
 />
 ```
 
@@ -136,18 +135,18 @@ Use initials as a placeholder when no image is available.
 
 ```html
 <bo-avatar
-	:type="BoAvatarType.initials"
-	:data="{ label: 'JL' }"
+  :type="BoAvatarType.initials"
+  :data="{ label: 'JL' }"
 />
 <bo-avatar
-	:type="BoAvatarType.initials"
-	:data="{ label: 'AB' }"
-	:shape="BoAvatarShape.rounded"
+  :type="BoAvatarType.initials"
+  :data="{ label: 'AB' }"
+  :shape="BoAvatarShape.rounded"
 />
 <bo-avatar
-	:type="BoAvatarType.initials"
-	:data="{ label: 'RK' }"
-	:shape="BoAvatarShape.flat"
+  :type="BoAvatarType.initials"
+  :data="{ label: 'RK' }"
+  :shape="BoAvatarShape.flat"
 />
 ```
 
@@ -156,6 +155,7 @@ Use initials as a placeholder when no image is available.
 Customize both the background and text colors of avatars using the `color-hex` and `font-color-hex` props.
 
 <div class="flex gap-4 items-center">
+
   <bo-avatar :color-hex="'#41b883'" :font-color-hex="'#ffffff'" :data="{ label: 'VJ' }" />
   <bo-avatar :color-hex="'#000000'" :font-color-hex="'#ffffff'" :data="{ label: 'UI' }" />
   <bo-avatar :color-hex="'#3b82f6'" :font-color-hex="'#ffffff'" :data="{ label: 'BO' }" />
@@ -163,19 +163,19 @@ Customize both the background and text colors of avatars using the `color-hex` a
 
 ```html
 <bo-avatar
-	:color-hex="'#41b883'"
-	:font-color-hex="'#ffffff'"
-	:data="{ label: 'VJ' }"
+  :color-hex="'#41b883'"
+  :font-color-hex="'#ffffff'"
+  :data="{ label: 'VJ' }"
 />
 <bo-avatar
-	:color-hex="'#000000'"
-	:font-color-hex="'#ffffff'"
-	:data="{ label: 'UI' }"
+  :color-hex="'#000000'"
+  :font-color-hex="'#ffffff'"
+  :data="{ label: 'UI' }"
 />
 <bo-avatar
-	:color-hex="'#3b82f6'"
-	:font-color-hex="'#ffffff'"
-	:data="{ label: 'BO' }"
+  :color-hex="'#3b82f6'"
+  :font-color-hex="'#ffffff'"
+  :data="{ label: 'BO' }"
 />
 ```
 
@@ -185,18 +185,18 @@ Make avatars interactive by using the `clickable` prop which adds a hover effect
 
 <div class="flex gap-4 items-center">
   <bo-avatar :clickable="true" :data="{ label: 'JD' }" />
-  <bo-avatar :clickable="true" :type="BoAvatarType.image" :data="{ src: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg', alt: 'User profile' }" />
+  <bo-avatar :clickable="true" :type="BoAvatarType.image" :data="{ src: 'https://avatar.iran.liara.run/public/boy', alt: 'User profile' }" />
 </div>
 
 ```html
 <bo-avatar
-	:clickable="true"
-	:data="{ label: 'JD' }"
+  :clickable="true"
+  :data="{ label: 'JD' }"
 />
 <bo-avatar
-	:clickable="true"
-	:type="BoAvatarType.image"
-	:data="{ src: 'path/to/image.jpg', alt: 'User profile' }"
+  :clickable="true"
+  :type="BoAvatarType.image"
+  :data="{ src: 'path/to/image.jpg', alt: 'User profile' }"
 />
 ```
 
@@ -214,78 +214,23 @@ Choose from multiple sizes using the `size` prop.
 
 ```html
 <bo-avatar
-	:size="BoSize.extra_small"
-	:data="{ label: 'XS' }"
+  :size="BoSize.extra_small"
+  :data="{ label: 'XS' }"
 />
 <bo-avatar
-	:size="BoSize.small"
-	:data="{ label: 'S' }"
+  :size="BoSize.small"
+  :data="{ label: 'S' }"
 />
 <bo-avatar
-	:size="BoSize.default"
-	:data="{ label: 'M' }"
+  :size="BoSize.default"
+  :data="{ label: 'M' }"
 />
 <bo-avatar
-	:size="BoSize.large"
-	:data="{ label: 'L' }"
+  :size="BoSize.large"
+  :data="{ label: 'L' }"
 />
 <bo-avatar
-	:size="BoSize.extra_large"
-	:data="{ label: 'XL' }"
+  :size="BoSize.extra_large"
+  :data="{ label: 'XL' }"
 />
-```
-
-## Avatar with Text
-
-Combine avatars with text to display user information.
-
-<div class="flex items-center space-x-4">
-  <bo-avatar :data="{ label: 'JL' }" />
-  <div class="font-medium dark:text-white">
-    <div>Jese Leos</div>
-    <div class="text-sm text-gray-500 dark:text-gray-400">Frontend Developer</div>
-  </div>
-</div>
-
-```html
-<div class="flex items-center space-x-4">
-	<bo-avatar :data="{ label: 'JL' }" />
-	<div class="font-medium dark:text-white">
-		<div>Jese Leos</div>
-		<div class="text-sm text-gray-500 dark:text-gray-400">Frontend Developer</div>
-	</div>
-</div>
-```
-
-## Stacked Avatars
-
-Create a stack of avatars to represent a group of users.
-
-<div class="flex -space-x-4 rtl:space-x-reverse">
-  <bo-avatar :type="BoAvatarType.image" :data="{ src: 'https://flowbite.com/docs/images/people/profile-picture-5.jpg', alt: 'User 1' }" />
-  <bo-avatar :type="BoAvatarType.image" :data="{ src: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg', alt: 'User 2' }" />
-  <bo-avatar :type="BoAvatarType.image" :data="{ src: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg', alt: 'User 3' }" />
-  <bo-avatar :color-hex="'#1d4ed8'" :font-color-hex="'#ffffff'" :data="{ label: '+3' }" />
-</div>
-
-```html
-<div class="flex -space-x-4 rtl:space-x-reverse">
-	<bo-avatar
-		:type="BoAvatarType.image"
-		:data="{ src: 'path/to/image1.jpg', alt: 'User 1' }"
-	/>
-	<bo-avatar
-		:type="BoAvatarType.image"
-		:data="{ src: 'path/to/image2.jpg', alt: 'User 2' }"
-	/>
-	<bo-avatar
-		:type="BoAvatarType.image"
-		:data="{ src: 'path/to/image3.jpg', alt: 'User 3' }"
-	/>
-	<bo-avatar
-		:color-hex="'#1d4ed8'"
-		:font-color-hex="'#ffffff'"
-		:data="{ label: '+3' }"
-	/>
-</div>
 ```

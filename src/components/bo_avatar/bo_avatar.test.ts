@@ -65,42 +65,42 @@ describe('bo_avatar.vue', () => {
 			test('the avatar should have the default size', () => {
 				const element = initialWrapper.find('.bo-avatar')
 
-				expect(element.classes()).toContain('size-9')
+				expect(element.classes()).toContain('size-10')
 			})
 
 			test('the avatar should be able to change the size to extra small', async () => {
 				await initialWrapper.setProps({ size: BoSize.extra_small })
 				const element = initialWrapper.find('.bo-avatar')
 
-				expect(element.classes()).toContain('size-5')
+				expect(element.classes()).toContain('size-6')
 			})
 
 			test('the avatar should be able to change the size to small', async () => {
 				await initialWrapper.setProps({ size: BoSize.small })
 				const element = initialWrapper.find('.bo-avatar')
 
-				expect(element.classes()).toContain('size-7')
+				expect(element.classes()).toContain('size-8')
 			})
 
 			test('the avatar should be able to change the size to default', async () => {
 				await initialWrapper.setProps({ size: BoSize.default })
 				const element = initialWrapper.find('.bo-avatar')
 
-				expect(element.classes()).toContain('size-9')
+				expect(element.classes()).toContain('size-10')
 			})
 
 			test('the avatar should be able to change the size to large', async () => {
 				await initialWrapper.setProps({ size: BoSize.large })
 				const element = initialWrapper.find('.bo-avatar')
 
-				expect(element.classes()).toContain('size-11')
+				expect(element.classes()).toContain('size-16')
 			})
 
 			test('the avatar should be able to change the size to extra large', async () => {
 				await initialWrapper.setProps({ size: BoSize.extra_large })
 				const element = initialWrapper.find('.bo-avatar')
 
-				expect(element.classes()).toContain('size-14')
+				expect(element.classes()).toContain('size-24')
 			})
 		})
 
@@ -203,42 +203,42 @@ describe('bo_avatar.vue', () => {
 				test('the avatar should have the default size', () => {
 					const element = imageWrapper.find('.bo-avatar')
 
-					expect(element.classes()).toContain('size-9')
+					expect(element.classes()).toContain('size-10')
 				})
 
 				test('the avatar should be able to change the size to extra small', async () => {
 					await imageWrapper.setProps({ size: BoSize.extra_small })
 					const element = imageWrapper.find('.bo-avatar')
 
-					expect(element.classes()).toContain('size-5')
+					expect(element.classes()).toContain('size-6')
 				})
 
 				test('the avatar should be able to change the size to small', async () => {
 					await imageWrapper.setProps({ size: BoSize.small })
 					const element = imageWrapper.find('.bo-avatar')
 
-					expect(element.classes()).toContain('size-7')
+					expect(element.classes()).toContain('size-8')
 				})
 
 				test('the avatar should be able to change the size to default', async () => {
 					await imageWrapper.setProps({ size: BoSize.default })
 					const element = imageWrapper.find('.bo-avatar')
 
-					expect(element.classes()).toContain('size-9')
+					expect(element.classes()).toContain('size-10')
 				})
 
 				test('the avatar should be able to change the size to large', async () => {
 					await imageWrapper.setProps({ size: BoSize.large })
 					const element = imageWrapper.find('.bo-avatar')
 
-					expect(element.classes()).toContain('size-11')
+					expect(element.classes()).toContain('size-16')
 				})
 
 				test('the avatar should be able to change the size to extra large', async () => {
 					await imageWrapper.setProps({ size: BoSize.extra_large })
 					const element = imageWrapper.find('.bo-avatar')
 
-					expect(element.classes()).toContain('size-14')
+					expect(element.classes()).toContain('size-24')
 				})
 			})
 

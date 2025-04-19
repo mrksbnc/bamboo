@@ -6,7 +6,7 @@ describe('bo_divider.vue', () => {
 	test('the divider should have the default classes', () => {
 		const wrapper = mount(BoDivider)
 
-		expect(wrapper.classes()).toContain('my-2')
+		expect(wrapper.classes()).toContain('my-3')
 		expect(wrapper.classes()).toContain('w-full')
 		expect(wrapper.classes()).toContain('bo-divider')
 		expect(wrapper.classes()).toContain('border-t')

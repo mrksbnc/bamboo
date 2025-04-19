@@ -234,4 +234,67 @@ describe('bo_card.vue', () => {
 			expect(wrapper.classes()).toContain('w-1/2')
 		})
 	})
+
+	suite('Events', () => {
+		test('emits click event when clicked', async () => {
+			const wrapper = mount(BoCard, {
+				props: {
+					clickable: true,
+				},
+			})
+
+			await wrapper.trigger('click')
+			expect(wrapper.emitted()).toHaveProperty('click')
+		})
+
+		test('does not emit click event when not clickable', async () => {
+			const wrapper = mount(BoCard, {
+				props: {
+					clickable: false,
+				},
+			})
+
+			await wrapper.trigger('click')
+			expect(wrapper.emitted('click')).toBeFalsy()
+		})
+	})
+
+	suite('Dark mode', () => {
+		test('applies dark mode classes', () => {
+			const wrapper = mount(BoCard, {
+				props: {
+					title: 'Test Title',
+					description: 'Test Description',
+				},
+			})
+
+			// Find elements with classes
+			expect(wrapper.find('.bo-card__container').classes()).toContain('dark:bg-gray-800')
+			expect(wrapper.find('.bo-card__container').classes()).toContain('dark:border-gray-700')
+			expect(wrapper.find('.bo-card__title').classes()).toContain('dark:text-white')
+			expect(wrapper.find('.bo-card__description').classes()).toContain('dark:text-gray-400')
+		})
+	})
+
+	suite('Accessibility', () => {
+		test('adds role="button" attribute when clickable', () => {
+			const wrapper = mount(BoCard, {
+				props: {
+					clickable: true,
+				},
+			})
+
+			expect(wrapper.attributes('role')).toBe('button')
+		})
+
+		test('adds tabindex attribute when clickable', () => {
+			const wrapper = mount(BoCard, {
+				props: {
+					clickable: true,
+				},
+			})
+
+			expect(wrapper.attributes('tabindex')).toBe('0')
+		})
+	})
 })

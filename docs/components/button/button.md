@@ -136,10 +136,10 @@ In some cases you may want to make the button take up the full width of the cont
 
 ```js
 <div class="flex gap-2">
-	<bo-button
-		label="Button"
-		full-width
-	/>
+  <bo-button
+    label="Button"
+    full-width
+  />
 </div>
 ```
 

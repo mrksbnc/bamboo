@@ -14,6 +14,7 @@
 			<bo-text
 				:color="BoTextColor.secondary"
 				:font-family="BoFontFamily.sans"
+				:size="BoFontSize.sm"
 				:text="StringUtils.safeString(loaderText)"
 			/>
 		</span>
@@ -21,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { BoFontFamily, BoText, BoTextColor } from '@/components/bo_text'
+import { BoFontFamily, BoFontSize, BoText, BoTextColor } from '@/components/bo_text'
 import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo_loader'
 import { BoSize } from '@/shared/bo_size'
 import { StringUtils, TailwindUtils } from '@/utils'

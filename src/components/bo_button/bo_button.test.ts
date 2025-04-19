@@ -223,29 +223,29 @@ describe('bo_button.vue', () => {
 		})
 
 		test('the button should have the correct default padding classes', () => {
-			expect(wrapper.classes()).contains('px-3.5')
-			expect(wrapper.classes()).contains('py-2')
+			expect(wrapper.classes()).contains('px-5')
+			expect(wrapper.classes()).contains('py-2.5')
 		})
 
 		test('the button should have the correct padding classes if a the size is extra small', async () => {
 			await wrapper.setProps({ size: BoSize.extra_small })
 
 			expect(wrapper.classes()).contains('py-1')
-			expect(wrapper.classes()).contains('px-2.5')
+			expect(wrapper.classes()).contains('px-2')
 		})
 
 		test('the button should have the correct padding classes if a the size is small', async () => {
 			await wrapper.setProps({ size: BoSize.small })
 
-			expect(wrapper.classes()).contains('py-1.5')
+			expect(wrapper.classes()).contains('py-2')
 			expect(wrapper.classes()).contains('px-3')
 		})
 
 		test('the button should have the correct padding classes if a the size is default', async () => {
 			await wrapper.setProps({ size: BoSize.default })
 
-			expect(wrapper.classes()).contains('px-3.5')
-			expect(wrapper.classes()).contains('py-2')
+			expect(wrapper.classes()).contains('px-5')
+			expect(wrapper.classes()).contains('py-2.5')
 		})
 
 		test('the button should have the correct size classes if a the size is large', async () => {
@@ -258,28 +258,21 @@ describe('bo_button.vue', () => {
 		test('the button should have the correct padding classes if a the size is extra large', async () => {
 			await wrapper.setProps({ size: BoSize.extra_large })
 
-			expect(wrapper.classes()).contains('py-4')
+			expect(wrapper.classes()).contains('py-3.5')
 			expect(wrapper.classes()).contains('px-6')
 		})
 
 		suite('button padding classes icon only', () => {
-			let wrapper: ReturnType<typeof mount>
-
-			beforeEach(() => {
-				wrapper = mount(BoButton, {
-					props: {
-						disabled: false,
-						size: BoSize.default,
-						prefixIcon: Icon.activity,
-						type: HtmlButtonType.button,
-						variant: BoButtonVariant.primary,
-					},
+			beforeEach(async () => {
+				await wrapper.setProps({
+					prefixIcon: Icon.bookmark,
+					label: '',
 				})
 			})
 
 			test('the button should have the correct padding classes if a the size is extra small', async () => {
 				await wrapper.setProps({ size: BoSize.extra_small })
-				expect(wrapper.classes()).contains('p-1.5')
+				expect(wrapper.classes()).contains('p-1')
 			})
 
 			test('the button should have the correct padding classes if a the size is small', async () => {
@@ -294,12 +287,12 @@ describe('bo_button.vue', () => {
 
 			test('the button should have the correct padding classes if a the size is large', async () => {
 				await wrapper.setProps({ size: BoSize.large })
-				expect(wrapper.classes()).contains('p-3.5')
+				expect(wrapper.classes()).contains('p-3')
 			})
 
 			test('the button should have the correct padding classes if a the size is extra large', async () => {
 				await wrapper.setProps({ size: BoSize.extra_large })
-				expect(wrapper.classes()).contains('p-4')
+				expect(wrapper.classes()).contains('p-3.5')
 			})
 		})
 	})

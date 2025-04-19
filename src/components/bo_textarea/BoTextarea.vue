@@ -6,6 +6,11 @@
 			class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 		>
 			{{ label }}
+			<span
+				v-if="required"
+				class="text-red-500"
+				>*</span
+			>
 		</label>
 		<div class="relative">
 			<textarea
@@ -57,12 +62,12 @@
 </template>
 
 <script setup lang="ts">
+import { BoIcon, Icon } from '@/components/bo_icon'
 import { BoSize } from '@/shared'
 import { StringUtils, TailwindUtils } from '@/utils'
 import { IdentityUtils } from '@/utils/identity_utils'
-import { computed, defineModel } from 'vue'
-import { BoIcon, Icon } from '../bo_icon'
-import { BoTextareaSize, BoTextareaState, BoTextareaVariant } from './constants'
+import { computed } from 'vue'
+import { BoTextareaResize, BoTextareaSize, BoTextareaState, BoTextareaVariant } from './constants'
 import type { BoTextareaProps } from './types'
 
 const emit = defineEmits(['update:modelValue', 'input', 'focus', 'blur', 'clear'])
@@ -77,7 +82,7 @@ const props = withDefaults(defineProps<BoTextareaProps>(), {
 	variant: BoTextareaVariant.default,
 	clearable: false,
 	rows: 3,
-	resize: 'none',
+	resize: BoTextareaResize.none,
 	prefixIcon: null,
 	suffixIcon: null,
 })

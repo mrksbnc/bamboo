@@ -1,6 +1,12 @@
 import type { Icon } from '@/components/bo_icon'
 import type { InputHTMLAttributes } from 'vue'
-import type { BoInputSize, BoInputState, BoInputType, BoInputVariant } from './constants'
+import type {
+	BoInputLoaderVariant,
+	BoInputSize,
+	BoInputState,
+	BoInputType,
+	BoInputVariant,
+} from './constants'
 
 export type BoInputProps = {
 	modelValue?: string | number
@@ -16,7 +22,7 @@ export type BoInputProps = {
 	prefixIcon?: Icon | null
 	suffixIcon?: Icon | null
 	errorMessage?: string | null
-	loaderVariant?: 'spinner' | 'pulse'
+	loaderVariant?: BoInputLoaderVariant
 	disabled?: boolean
 	readonly?: boolean
 	required?: boolean

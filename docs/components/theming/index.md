@@ -16,8 +16,7 @@ The theming system in Bamboo offers:
 To start using the Bamboo theming features:
 
 1. Explore the [Dark Mode documentation](./dark-mode.md) to understand how to implement theme switching
-2. Check the [Component Sizing documentation](./sizing.md) to learn about the consistent sizing system
-3. Apply these principles to your application for a cohesive and polished UI
+2. Check the [Component Sizing documentation](./sizing.md)
 
 ## Default Theme
 
@@ -36,14 +35,3 @@ While Bamboo components look great with default styling, there are multiple ways
 2. **CSS Variables** - Override CSS variables for global theme adjustments
 3. **Tailwind Classes** - Apply additional Tailwind classes to modify specific instances
 4. **Dark Mode Classes** - Use `dark:` variants to customize dark mode appearance
-
-## Theme Consistency Best Practices
-
-For a professional and cohesive UI:
-
-1. Choose a primary color and use it consistently for interactive elements
-2. Maintain consistent spacing using the sizing system
-3. Use dark mode appropriately for different user contexts
-4. Test themes thoroughly for accessibility compliance
-
-Explore the detailed documentation on [Dark Mode](./dark-mode.md) and [Component Sizing](./sizing.md) to make the most of the Bamboo theming system.

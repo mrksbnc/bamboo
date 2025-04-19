@@ -26,3 +26,8 @@ export enum BoInputVariant {
 	filled = 'filled',
 	underline = 'underline',
 }
+
+export enum BoInputLoaderVariant {
+	spinner = 'spinner',
+	pulse = 'pulse',
+}

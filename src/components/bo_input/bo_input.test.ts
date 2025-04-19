@@ -1,6 +1,7 @@
 import { BoIcon, Icon } from '@/components/bo_icon'
 import {
 	BoInput,
+	BoInputLoaderVariant,
 	BoInputSize,
 	BoInputState,
 	BoInputType,
@@ -167,19 +168,19 @@ describe('BoInput.vue', () => {
 	suite('Clearable Input', () => {
 		test('does not show clear button when input is empty', async () => {
 			await globalWrapper.setProps({ clearable: true, modelValue: '' })
-			const clearButton = globalWrapper.find('button')
+			const clearButton = globalWrapper.find('.cursor-pointer')
 			expect(clearButton.exists()).toBe(false)
 		})
 
 		test('shows clear button when input has value', async () => {
 			await globalWrapper.setProps({ clearable: true, modelValue: 'Test Value' })
-			const clearButton = globalWrapper.find('button')
+			const clearButton = globalWrapper.find('.cursor-pointer')
 			expect(clearButton.exists()).toBe(true)
 		})
 
 		test('clears the input when clear button is clicked', async () => {
 			await globalWrapper.setProps({ clearable: true, modelValue: 'Test Value' })
-			const clearButton = globalWrapper.find('button')
+			const clearButton = globalWrapper.find('.cursor-pointer')
 			await clearButton.trigger('click')
 
 			expect(globalWrapper.emitted('clear')).toBeTruthy()
@@ -273,6 +274,28 @@ describe('BoInput.vue', () => {
 			}
 
 			expect(descriptionVisible).toBe(false)
+		})
+	})
+
+	suite('Input with Loading State', () => {
+		test('shows loading spinner when isLoading is true', async () => {
+			await globalWrapper.setProps({ isLoading: true })
+			expect(globalWrapper.find('.loading-indicator').exists()).toBe(true)
+		})
+
+		test('does not show loading spinner when isLoading is false', async () => {
+			await globalWrapper.setProps({ isLoading: false })
+			expect(globalWrapper.find('.loading-indicator').exists()).toBe(false)
+		})
+
+		test('uses spinner loader variant by default', async () => {
+			await globalWrapper.setProps({ isLoading: true })
+			expect(globalWrapper.find('.loading-spinner').exists()).toBe(true)
+		})
+
+		test('uses pulse loader variant when specified', async () => {
+			await globalWrapper.setProps({ isLoading: true, loaderVariant: BoInputLoaderVariant.pulse })
+			expect(globalWrapper.find('.loading-pulse').exists()).toBe(true)
 		})
 	})
 })
