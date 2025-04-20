@@ -10,7 +10,6 @@ export * from '@/components/bo_loading_pulse';
 export * from '@/components/bo_loading_spinner';
 export * from '@/components/bo_modal';
 export * from '@/components/bo_radio';
-export * from '@/components/bo_table';
 export * from '@/components/bo_text';
 export * from '@/components/bo_textarea';
 export * from '@/components/bo_toast';

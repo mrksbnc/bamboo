@@ -1,20 +1,19 @@
 import type { Icon } from '@/components/bo_icon';
-import type { BoSize } from '@/shared';
-import type { Booleanish } from '@/types/boolean';
+import type { BoLoaderType, BoSize } from '@/shared';
 
 export type BoButtonProps = {
 	label?: string;
 	variant?: BoButtonVariant;
 	shape?: BoButtonShape;
-	loaderType?: 'spinner' | 'pulse';
+	loaderType?: BoLoaderType;
 	isLoading?: boolean;
 	size?: BoSize;
 	useSlot?: boolean;
 	prefixIcon?: Icon;
 	suffixIcon?: Icon;
-	autofocus?: Booleanish;
-	disabled?: Booleanish;
-	type?: 'submit' | 'reset' | 'button';
+	autofocus?: boolean;
+	disabled?: boolean;
+	type?: ButtonType;
 	fullWidth?: boolean;
 	/**
 	 * For toggle buttons, indicates whether the button is in a pressed state
@@ -46,4 +45,10 @@ export enum BoButtonShape {
 	pill = 'pill',
 	outline = 'outline',
 	link = 'link',
+}
+
+export enum ButtonType {
+	submit = 'submit',
+	reset = 'reset',
+	button = 'button',
 }

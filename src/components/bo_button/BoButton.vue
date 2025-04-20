@@ -67,11 +67,10 @@ import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoLoadingPulse } from '@/components/bo_loading_pulse';
 import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
-import { BoLoaderVariant } from '@/shared/bo_loader';
-import { BoSize } from '@/shared/bo_size';
+import { BoLoaderType, BoLoaderVariant, BoSize } from '@/shared';
 import { IdentityUtils, StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs } from 'vue';
-import { BoButtonShape, BoButtonVariant, type BoButtonProps } from './bo_button';
+import { BoButtonShape, BoButtonVariant, ButtonType, type BoButtonProps } from './bo_button';
 
 const slots = defineSlots<{
 	content(props: Record<string, unknown>): void;
@@ -79,11 +78,11 @@ const slots = defineSlots<{
 
 const props = withDefaults(defineProps<BoButtonProps>(), {
 	id: IdentityUtils.generateRandomIdWithPrefix('bo-button'),
-	type: 'button',
-	loaderType: 'spinner',
+	loaderType: BoLoaderType.spinner,
 	size: () => BoSize.default,
 	prefixIcon: () => Icon.none,
 	suffixIcon: () => Icon.none,
+	type: () => ButtonType.button,
 	shape: () => BoButtonShape.default,
 	variant: () => BoButtonVariant.primary,
 	fullWidth: false,

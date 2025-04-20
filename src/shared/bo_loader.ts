@@ -12,3 +12,8 @@ export enum BoLoaderTextPosition {
 	side = 'side',
 	bottom = 'bottom',
 }
+
+export enum BoLoaderType {
+	spinner = 'spinner',
+	pulse = 'pulse',
+}

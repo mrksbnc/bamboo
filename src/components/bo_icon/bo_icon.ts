@@ -213,8 +213,6 @@ export enum Icon {
 	share = 'share',
 	shield_off = 'shield-off',
 	shield = 'shield',
-	shopping_bag = 'shopping-bag',
-	shopping_cart = 'shopping-cart',
 	shuffle = 'shuffle',
 	sidebar = 'sidebar',
 	skip_back = 'skip-back',
