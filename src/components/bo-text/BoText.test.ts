@@ -204,35 +204,6 @@ describe('BoText', () => {
 		expect(wrapper.classes()).toContain('select-auto');
 	});
 
-	it('renders the correct HTML tag based on font size', async () => {
-		const wrapper = mount(BoText, {
-			props: {
-				text: 'Hello World',
-				size: BoFontSize.base,
-			},
-		});
-
-		expect(wrapper.element.tagName.toLowerCase()).toBe('p');
-
-		await wrapper.setProps({ size: BoFontSize.xl });
-		expect(wrapper.element.tagName.toLowerCase()).toBe('h6');
-
-		await wrapper.setProps({ size: BoFontSize['2xl'] });
-		expect(wrapper.element.tagName.toLowerCase()).toBe('h5');
-
-		await wrapper.setProps({ size: BoFontSize['3xl'] });
-		expect(wrapper.element.tagName.toLowerCase()).toBe('h4');
-
-		await wrapper.setProps({ size: BoFontSize['4xl'] });
-		expect(wrapper.element.tagName.toLowerCase()).toBe('h3');
-
-		await wrapper.setProps({ size: BoFontSize['5xl'] });
-		expect(wrapper.element.tagName.toLowerCase()).toBe('h2');
-
-		await wrapper.setProps({ size: BoFontSize['6xl'] });
-		expect(wrapper.element.tagName.toLowerCase()).toBe('h1');
-	});
-
 	it('applies custom CSS class when provided', () => {
 		const wrapper = mount(BoText, {
 			props: {

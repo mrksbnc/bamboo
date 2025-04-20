@@ -288,12 +288,14 @@ export const icons = import.meta.glob('@/assets/icons/**/*.svg', {
 	import: 'default',
 }) as Record<string, () => Promise<string>>;
 
+export interface IconAccessibility {
+	decorative?: boolean;
+	title?: string;
+}
+
 export interface BoIconProps {
 	icon: Icon;
 	size?: BoSize;
 	color?: string;
-	/** Whether the icon is decorative (true) or meaningful/informative (false) */
-	decorative?: boolean;
-	/** Title for the icon when it conveys information (required when decorative is false) */
-	title?: string;
+	accessibility?: IconAccessibility;
 }

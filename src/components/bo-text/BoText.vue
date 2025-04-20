@@ -1,12 +1,11 @@
 <template>
-	<component
-		:is="htmlTag"
+	<span
 		:id="id"
 		:class="classes"
 		:style="containerStyle"
 	>
 		{{ text }}
-	</component>
+	</span>
 </template>
 
 <script setup lang="ts">
@@ -82,33 +81,6 @@ const fontSize = computed<string>(() => {
 		case BoFontSize.base:
 		default:
 			return /*tw*/ 'text-base';
-	}
-});
-
-const htmlTag = computed<string>(() => {
-	switch (size.value) {
-		case BoFontSize.xs:
-		case BoFontSize.sm:
-		case BoFontSize.lg:
-		case BoFontSize.base:
-			return 'p';
-		case BoFontSize.xl:
-			return 'h6';
-		case BoFontSize['2xl']:
-			return 'h5';
-		case BoFontSize['3xl']:
-			return 'h4';
-		case BoFontSize['4xl']:
-			return 'h3';
-		case BoFontSize['5xl']:
-			return 'h2';
-		case BoFontSize['6xl']:
-		case BoFontSize['7xl']:
-		case BoFontSize['8xl']:
-		case BoFontSize['9xl']:
-			return 'h1';
-		default:
-			return 'p';
 	}
 });
 

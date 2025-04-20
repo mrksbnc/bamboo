@@ -8,57 +8,50 @@
 		:aria-disabled="isDisabled"
 		:aria-label="computedAriaLabel"
 	>
-		<div
-			v-if="useSlot"
-			class="bo-button__slot-container inline-flex items-center justify-center gap-1"
-		>
-			<slot name="content" />
-		</div>
-		<span
-			v-else
-			class="bo-button__content inline-flex items-center justify-center gap-2"
-		>
-			<bo-icon
-				v-if="prefixIcon !== Icon.none || iconOnlyButton"
-				:icon="iconOnlyIcon"
-				:size="size"
-				class="bo-button__prefix-icon"
-				aria-hidden="true"
-			/>
-			<span
-				v-if="!!label && !iconOnlyButton"
-				class="bo-button__label flex items-center justify-center"
-			>
-				<bo-text
-					:text="label"
-					:clickable="true"
-					:weight="BoFontWeight.semibold"
-					:size="buttonFontSize"
-					class="bo-button__label"
+		<slot>
+			<span class="bo-button__content inline-flex items-center justify-center gap-3">
+				<bo-icon
+					v-if="prefixIcon !== Icon.none || iconOnlyButton"
+					:icon="iconOnlyIcon"
+					:size="size"
+					class="bo-button__prefix-icon"
+					aria-hidden="true"
+				/>
+				<span
+					v-if="!!label && !iconOnlyButton"
+					class="bo-button__label flex items-center justify-center"
+				>
+					<bo-text
+						:text="label"
+						:clickable="true"
+						:weight="BoFontWeight.semibold"
+						:size="buttonFontSize"
+						class="bo-button__label"
+					/>
+				</span>
+				<bo-icon
+					v-if="suffixIcon && suffixIcon !== Icon.none && !isLoading && !iconOnlyButton"
+					:icon="suffixIcon"
+					:size="size"
+					class="bo-button__suffix-icon"
+					aria-hidden="true"
+				/>
+				<bo-loading-spinner
+					v-if="isLoading && loaderType === 'spinner'"
+					:size="loaderSize"
+					:variant="loaderVariant"
+					class="ml-2"
+					aria-hidden="true"
+				/>
+				<bo-loading-pulse
+					v-if="isLoading && loaderType === 'pulse'"
+					:size="loaderSize"
+					:variant="loaderVariant"
+					class="ml-2"
+					aria-hidden="true"
 				/>
 			</span>
-			<bo-icon
-				v-if="suffixIcon && suffixIcon !== Icon.none && !isLoading && !iconOnlyButton"
-				:icon="suffixIcon"
-				:size="size"
-				class="bo-button__suffix-icon"
-				aria-hidden="true"
-			/>
-			<bo-loading-spinner
-				v-if="isLoading && loaderType === 'spinner'"
-				:size="loaderSize"
-				:variant="loaderVariant"
-				class="ml-2"
-				aria-hidden="true"
-			/>
-			<bo-loading-pulse
-				v-if="isLoading && loaderType === 'pulse'"
-				:size="loaderSize"
-				:variant="loaderVariant"
-				class="ml-2"
-				aria-hidden="true"
-			/>
-		</span>
+		</slot>
 	</button>
 </template>
 
@@ -73,7 +66,7 @@ import { computed, toRefs } from 'vue';
 import { BoButtonShape, BoButtonVariant, type BoButtonProps } from './bo-button';
 
 const slots = defineSlots<{
-	content(props: Record<string, unknown>): void;
+	default?: (props: Record<string, unknown>) => void;
 }>();
 
 const props = withDefaults(defineProps<BoButtonProps>(), {
@@ -132,7 +125,7 @@ const filledButtonClasses = {
 	[BoButtonVariant.primary]:
 		/*tw*/ 'bg-blue-600 dark:bg-blue-700 hover:opacity-80 focus:ring-transparent border border-blue-600 dark:border-blue-800 text-white',
 	[BoButtonVariant.secondary]:
-		/*tw*/ 'bg-gray-400 dark:bg-gray-700 hover:opacity-80 focus:ring-transparent border border-gray-400 dark:border-neutral-800 text-white',
+		/*tw*/ 'bg-neutral-400 dark:bg-neutral-700 hover:opacity-80 focus:ring-transparent border border-neutral-400 dark:border-neutral-800 text-white',
 	[BoButtonVariant.danger]:
 		/*tw*/ 'bg-red-600 dark:bg-red-700 hover:opacity-80 focus:ring-transparent border border-red-600 dark:border-red-800 text-white',
 	[BoButtonVariant.warning]:
@@ -149,7 +142,7 @@ const outlineButtonClasses = {
 	[BoButtonVariant.primary]:
 		/*tw*/ 'border border-blue-600 bg-transparent hover:bg-blue-700 focus:ring-transparent text-blue-600 hover:text-white dark:border-blue-500 dark:text-blue-500',
 	[BoButtonVariant.secondary]:
-		/*tw*/ 'border border-gray-500 bg-transparent dark:border-neutral-300 hover:bg-gray-500 focus:ring-transparent text-gray-500 dark:text-neutral-300 hover:text-white',
+		/*tw*/ 'border border-neutral-500 bg-transparent dark:border-neutral-300 hover:bg-neutral-500 focus:ring-transparent text-neutral-500 dark:text-neutral-300 hover:text-white',
 	[BoButtonVariant.danger]:
 		/*tw*/ 'border border-red-600 bg-transparent hover:bg-red-600 focus:ring-transparent text-red-600 hover:text-white dark:border-red-500 dark:text-red-500',
 	[BoButtonVariant.warning]:
@@ -195,19 +188,19 @@ const variantClasses = {
 };
 
 const sizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'px-2 py-1',
-	[BoSize.small]: /*tw*/ 'px-3 py-2',
-	[BoSize.default]: /*tw*/ 'px-5 py-2.5',
-	[BoSize.large]: /*tw*/ 'px-5 py-3',
-	[BoSize.extra_large]: /*tw*/ 'px-6 py-3.5',
+	[BoSize.extra_small]: /*tw*/ 'px-1 py-1',
+	[BoSize.small]: /*tw*/ 'px-2 py-2',
+	[BoSize.default]: /*tw*/ 'px-4 py-2.5',
+	[BoSize.large]: /*tw*/ 'px-4 py-3',
+	[BoSize.extra_large]: /*tw*/ 'px-5 py-3.5',
 };
 
 const iconOnlySizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'p-1',
-	[BoSize.small]: /*tw*/ 'p-2',
-	[BoSize.default]: /*tw*/ 'p-2.5',
-	[BoSize.large]: /*tw*/ 'p-3',
-	[BoSize.extra_large]: /*tw*/ 'p-3.5',
+	[BoSize.extra_small]: /*tw*/ 'p-1.5',
+	[BoSize.small]: /*tw*/ 'p-[8px]',
+	[BoSize.default]: /*tw*/ 'p-3',
+	[BoSize.large]: /*tw*/ 'p-3.5',
+	[BoSize.extra_large]: /*tw*/ 'p-4',
 };
 
 const isDisabled = computed<boolean>(() => {

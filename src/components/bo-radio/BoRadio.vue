@@ -1,72 +1,58 @@
 <template>
 	<label
-		class="flex items-center"
+		class="flex gap-2"
 		:class="labelClass"
 	>
 		<input
 			v-model="modelValue"
 			type="radio"
-			:value="value"
-			:id="inputId"
+			:id="id"
 			:name="name"
 			:disabled="disabled"
 			:class="inputClass"
 		/>
-		<span
-			v-if="text"
-			class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-			:class="{ 'text-gray-400 dark:text-gray-500': disabled }"
-		>
-			{{ text }}
-		</span>
-		<slot></slot>
-		<p
-			v-if="description"
-			class="mt-1 text-xs text-gray-500 dark:text-gray-400"
-		>
-			{{ description }}
-		</p>
+		<div class="flex flex-col gap-1">
+			<bo-text
+				v-if="text"
+				:text="text"
+				:size="BoFontSize.sm"
+				:weight="BoFontWeight.medium"
+				class="ms-2 text-gray-900 disabled:text-gray-400 dark:text-gray-300 dark:disabled:text-gray-500"
+			/>
+			<bo-text
+				v-if="description"
+				:text="description"
+				:size="BoFontSize.sm"
+				:weight="BoFontWeight.medium"
+				class="text-gray-500 dark:text-gray-400"
+			/>
+		</div>
 	</label>
 </template>
 
 <script setup lang="ts">
-import { IdentityService } from '@/services';
+import { IdentityService, TailwindService } from '@/services';
 import { BoSize } from '@/shared';
 import { computed } from 'vue';
+import { BoFontSize, BoFontWeight } from '../bo-text';
 import type { BoRadioProps } from './bo-radio';
 
-const props = withDefaults(
-	defineProps<
-		BoRadioProps & {
-			modelValue?: any;
-		}
-	>(),
-	{
-		id: undefined,
-		text: undefined,
-		description: undefined,
-		disabled: false,
-		size: BoSize.default,
-		name: undefined,
-	},
-);
-
-const emit = defineEmits<{
-	(e: 'update:modelValue', value: any): void;
-}>();
-
-const inputId = computed(() => props.id ?? IdentityService.instance.getId('radio'));
-
-const modelValue = computed({
-	get() {
-		return props.modelValue;
-	},
-	set(val) {
-		emit('update:modelValue', val);
-	},
+const props = withDefaults(defineProps<BoRadioProps>(), {
+	id: () => IdentityService.instance.getId('radio'),
+	size: BoSize.default,
+	name: 'radio',
 });
 
-const sizeClasses = computed(() => {
+const modelValue = defineModel<boolean>({
+	required: true,
+});
+
+const classes = {
+	default: 'flex gap-2 items-center cursor-pointer',
+	disabled: 'disabled:cursor-not-allowed',
+};
+
+const sizeClasses = computed<string>(() => {
 	switch (props.size) {
 		case BoSize.extra_small:
 			return 'w-3 h-3';
@@ -83,14 +69,11 @@ const sizeClasses = computed(() => {
 	}
 });
 
-const inputClass = computed(() => {
-	return [
-		sizeClasses.value,
-		'text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600',
-	];
+const inputClass = computed<string>(() => {
+	return TailwindService.instance.merge(classes.default, classes.disabled, sizeClasses.value);
 });
 
-const labelClass = computed(() => {
+const labelClass = computed<string>(() => {
 	return props.disabled ? 'cursor-not-allowed' : 'cursor-pointer';
 });
 </script>

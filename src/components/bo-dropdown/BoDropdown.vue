@@ -5,8 +5,9 @@
 			:variant="toggleVariant"
 			:label="activeOption.label"
 			:prefix-icon="defaultOption.icon"
+			:suffix-icon="isDropdownOpen ? Icon.chevron_up : Icon.chevron_down"
 			data-dropdown-toggle="dropdown"
-			@click="onDropdownClick"
+			@click="onDropdownToggle"
 		/>
 	</slot>
 	<div
@@ -47,14 +48,14 @@ const emit = defineEmits<{
 const props = withDefaults(defineProps<BoDropdownProps>(), {
 	id: () => IdentityService.instance.getId('bo-dropdown'),
 	toggleVariant: () => BoButtonVariant.primary,
+	options: () => [],
+	component: () => shallowRef(BoDefaultDropdownItem),
 	defaultOption: () => {
 		return {
 			icon: Icon.none,
 			label: '',
 		};
 	},
-	options: () => [],
-	component: () => shallowRef(BoDefaultDropdownItem),
 });
 
 const { defaultOption, options, component } = toRefs(props);
@@ -62,13 +63,18 @@ const { defaultOption, options, component } = toRefs(props);
 const isDropdownOpen = ref<boolean>(false);
 const activeOption = ref<BaseDropdownOption>(defaultOption.value);
 
-function onDropdownClick(): void {
+function onDropdownToggle(): void {
 	isDropdownOpen.value = !isDropdownOpen.value;
 }
 
 function onOptionClick(option: BaseDropdownOption): void {
 	activeOption.value = option;
 	isDropdownOpen.value = false;
+
 	emit('select', option);
 }
+
+defineExpose({
+	onDropdownToggle,
+});
 </script>

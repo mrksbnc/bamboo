@@ -2,10 +2,6 @@ import { BoSize } from '@/shared';
 
 export interface BoRadioProps {
 	/**
-	 * The value of the radio button
-	 */
-	value: string | number | boolean;
-	/**
 	 * The ID for the radio button
 	 */
 	id?: string;

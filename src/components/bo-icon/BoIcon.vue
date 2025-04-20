@@ -3,8 +3,9 @@
 		v-html="svg"
 		:style="style"
 		:class="tailwindCssSizeClasses"
-		role="img"
-		aria-label="icon"
+		:aria-label="accessibility?.title"
+		:aria-hidden="accessibility?.decorative"
+		:role="accessibility?.decorative ? 'presentation' : 'img'"
 	></div>
 </template>
 

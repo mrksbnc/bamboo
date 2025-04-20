@@ -1,1 +1,97 @@
 @import 'tailwindcss';
+
+/* Screen reader only class - visually hides content while keeping it accessible to screen readers */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+/* Skip link - hidden until focused */
+.skip-link {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateY(-100%);
+	transition: transform 0.3s;
+	padding: 0.5rem;
+	background-color: #fff;
+	color: #000;
+	z-index: 9999;
+}
+
+.skip-link:focus {
+	transform: translateY(0);
+}
+
+/* Enhanced focus styles that meet WCAG 2.1 AA contrast requirements */
+:focus-visible {
+	outline: 3px solid #2563eb; /* Blue with sufficient contrast against white and dark backgrounds */
+	outline-offset: 2px;
+}
+
+.dark :focus-visible {
+	outline: 3px solid #60a5fa; /* Lighter blue with sufficient contrast against dark backgrounds */
+}
+
+/* High contrast focus option for better visibility */
+.focus-visible\:high-contrast:focus-visible {
+	outline: 3px solid #0078d7;
+	outline-offset: 2px;
+	box-shadow: 0 0 0 2px white; /* Double outline for extreme visibility */
+}
+
+/* Darker backgrounds need higher contrast focus indicators */
+.bg-gray-800 :focus-visible,
+.bg-gray-900 :focus-visible,
+.bg-black :focus-visible,
+.dark .bg-gray-800 :focus-visible,
+.dark .bg-gray-900 :focus-visible,
+.dark .bg-black :focus-visible {
+	outline: 3px solid #38bdf8; /* Bright blue for dark backgrounds */
+}
+
+/* Special focus styles for form elements */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+	outline: 3px solid #2563eb;
+	outline-offset: 0px;
+	border-color: #2563eb;
+}
+
+.dark input:focus-visible,
+.dark select:focus-visible,
+.dark textarea:focus-visible {
+	outline: 3px solid #60a5fa;
+	border-color: #60a5fa;
+}
+
+/* Reduces motion for users who have indicated they prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* ARIA live region that's visually hidden */
+#aria-live-announcer {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
