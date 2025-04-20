@@ -6,7 +6,7 @@ title: Bamboo
 
 hero:
   name: Bamboo
-  text: UI library built with Vue and Tailwind CSS
+  text: Accessible and lightweight UI components for Vue 3
   actions:
     - theme: brand
       text: Get started

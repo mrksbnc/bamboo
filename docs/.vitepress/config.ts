@@ -27,23 +27,22 @@ function buildSidebar() {
 
 function getComponents() {
 	return [
-		{ text: 'Avatar', link: '/components/avatar/avatar' },
-		{ text: 'Badge', link: '/components/badge/badge' },
-		{ text: 'Button', link: '/components/button/button' },
-		{ text: 'Card', link: '/components/card/card' },
-		{ text: 'Checkbox', link: '/components/checkbox/checkbox' },
-		{ text: 'Divider', link: '/components/divider/divider' },
-		{ text: 'Dropdown', link: '/components/dropdown/dropdown' },
-		{ text: 'Icon', link: '/components/icon/icon' },
-		{ text: 'Input', link: '/components/input/input' },
-		{ text: 'Loading Pulse', link: '/components/loading-pulse/loading-pulse' },
-		{ text: 'Loading Spinner', link: '/components/loading-spinner/loading-spinner' },
-		{ text: 'Modal', link: '/components/modal/modal' },
-		{ text: 'Radio', link: '/components/radio/radio' },
-		{ text: 'Table', link: '/components/table/index' },
-		{ text: 'Text', link: '/components/text/text' },
-		{ text: 'Textarea', link: '/components/textarea/textarea' },
-		{ text: 'Toast', link: '/components/toast/toast' },
+		{ text: 'Avatar', link: '/components/avatar' },
+		{ text: 'Badge', link: '/components/badge' },
+		{ text: 'Button', link: '/components/button' },
+		{ text: 'Card', link: '/components/card' },
+		{ text: 'Checkbox', link: '/components/checkbox' },
+		{ text: 'Divider', link: '/components/divider' },
+		{ text: 'Dropdown', link: '/components/dropdown' },
+		{ text: 'Icon', link: '/components/icon' },
+		{ text: 'Input', link: '/components/input' },
+		{ text: 'Loading Pulse', link: '/components/loading-pulse' },
+		{ text: 'Loading Spinner', link: '/components/loading-spinner' },
+		{ text: 'Modal', link: '/components/modal' },
+		{ text: 'Radio', link: '/components/radio' },
+		{ text: 'Text', link: '/components/text' },
+		{ text: 'Textarea', link: '/components/textarea' },
+		{ text: 'Toast', link: '/components/toast' },
 	];
 }
 
@@ -54,7 +53,7 @@ export default defineConfig({
 	base: '/',
 	cleanUrls: true,
 	head: [
-		['link', { rel: 'icon', type: 'image/svg', href: '/assets/logo.webp' }],
+		['link', { rel: 'icon', type: 'image/x-icon', href: '/assets/logo.ico' }],
 		[
 			'script',
 			{
