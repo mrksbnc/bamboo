@@ -1,7 +1,6 @@
 <script setup>
 import { BoModal } from '@/components/bo-modal';
 import { ref } from 'vue';
-import BasicModalExample from './examples/BasicModalExample.vue';
 
 const showModal = ref(false);
 const toggleModal = () => {
@@ -83,10 +82,6 @@ export interface BoModalWidthOptions {
 	tailwind?: string;
 }
 ```
-
-## Examples
-
-<BasicModalExample />
 
 <div class="p-4">
   <button 

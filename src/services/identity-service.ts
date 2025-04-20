@@ -16,6 +16,6 @@ export class IdentityService implements BoIdentityService {
 	}
 
 	getId(descriptor?: string): string {
-		return Symbol(descriptor ?? crypto.randomUUID()).toString();
+		return descriptor ? `${descriptor}-${crypto.randomUUID()}` : crypto.randomUUID();
 	}
 }

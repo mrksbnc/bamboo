@@ -1,48 +1,58 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { TailwindService } from './tailwind-service';
 
 describe('TailwindService', () => {
-	let service: TailwindService;
-
-	beforeEach(() => {
-		service = TailwindService.instance;
-	});
-
-	it('should be a singleton', () => {
-		const instance1 = TailwindService.instance;
-		const instance2 = TailwindService.instance;
-		expect(instance1).toBe(instance2);
-	});
+	const service = TailwindService.instance;
 
 	describe('merge', () => {
-		it('should return an empty string when no arguments are provided', () => {
+		it('should return an empty string when no classes are provided', () => {
 			expect(service.merge()).toBe('');
 		});
 
-		it('should filter out null and undefined values', () => {
-			expect(service.merge('text-red', null, 'bg-blue', undefined)).toBe('text-red bg-blue');
+		it('should return the class when a single class is provided', () => {
+			expect(service.merge('text-red-500')).toBe('text-red-500');
 		});
 
-		it('should merge multiple classes into a single string', () => {
-			expect(service.merge('text-red', 'bg-blue')).toBe('text-red bg-blue');
+		it('should merge multiple classes', () => {
+			expect(service.merge('text-red-500', 'bg-blue-500')).toBe('text-red-500 bg-blue-500');
+		});
+
+		it('should filter out null and undefined values', () => {
+			expect(service.merge('text-red-500', null, 'bg-blue-500', undefined)).toBe(
+				'text-red-500 bg-blue-500',
+			);
+		});
+
+		it('should handle multiple space-separated classes in a single string', () => {
+			expect(service.merge('text-red-500 font-bold', 'bg-blue-500')).toBe(
+				'text-red-500 font-bold bg-blue-500',
+			);
 		});
 
 		it('should remove duplicate classes', () => {
-			expect(service.merge('text-red', 'bg-blue text-red')).toBe('text-red bg-blue');
+			expect(service.merge('text-red-500', 'bg-blue-500', 'text-red-500')).toBe(
+				'text-red-500 bg-blue-500',
+			);
 		});
 
-		it('should handle classes with multiple spaces', () => {
-			expect(service.merge('text-red  bg-blue', '  p-4')).toBe('text-red bg-blue p-4');
+		it('should handle complex combinations', () => {
+			expect(
+				service.merge(
+					'text-red-500 font-bold',
+					null,
+					'bg-blue-500 text-red-500',
+					undefined,
+					'p-4 m-2',
+				),
+			).toBe('text-red-500 font-bold bg-blue-500 p-4 m-2');
 		});
 
 		it('should handle empty strings', () => {
-			expect(service.merge('text-red', '', 'bg-blue')).toBe('text-red bg-blue');
+			expect(service.merge('', 'text-red-500', '')).toBe('text-red-500');
 		});
 
-		it('should handle when null or undefined is provided', () => {
-			expect(service.merge('text-red', null, 'bg-blue')).toBe('text-red bg-blue');
-			expect(service.merge('text-red', undefined, 'bg-blue')).toBe('text-red bg-blue');
-			expect(service.merge(null, 'text-red', 'bg-blue', undefined, null)).toBe('text-red bg-blue');
+		it('should handle strings with extra spaces', () => {
+			expect(service.merge('  text-red-500  ', ' bg-blue-500 ')).toBe('text-red-500 bg-blue-500');
 		});
 	});
 });

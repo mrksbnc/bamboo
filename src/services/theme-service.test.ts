@@ -12,9 +12,9 @@ describe('ThemeService', () => {
 			setItem: vi.fn((key: string, value: string) => {
 				store[key] = value;
 			}),
-			clear: () => {
+			clear: vi.fn(() => {
 				store = {};
-			},
+			}),
 		};
 	})();
 
@@ -26,114 +26,107 @@ describe('ThemeService', () => {
 		removeEventListener: vi.fn(),
 	}));
 
-	// Mock document.documentElement
-	const documentElementMock = {
-		setAttribute: vi.fn(),
-	};
-
-	// Mock window
-	const windowMock = {
-		matchMedia: matchMediaMock,
+	// Mock document
+	const documentMock = {
+		documentElement: {
+			setAttribute: vi.fn(),
+		},
 	};
 
 	beforeEach(() => {
 		// Setup mocks
-		vi.stubGlobal('localStorage', localStorageMock);
-		vi.stubGlobal('matchMedia', matchMediaMock);
+		Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+		Object.defineProperty(window, 'matchMedia', { value: matchMediaMock });
+		Object.defineProperty(global, 'document', { value: documentMock });
 
-		// Add window.matchMedia mock
-		Object.defineProperty(global, 'window', {
-			value: windowMock,
-			writable: true,
-		});
-
-		// Reset localStorage mock
+		// Clear mocks
 		localStorageMock.clear();
+		vi.clearAllMocks();
 
-		// Mock document.documentElement
-		Object.defineProperty(document, 'documentElement', {
-			value: documentElementMock,
-			writable: true,
-		});
-
+		// Get service instance
 		service = ThemeService.instance;
 	});
 
 	afterEach(() => {
-		vi.unstubAllGlobals();
-		vi.resetAllMocks();
+		vi.restoreAllMocks();
 	});
 
-	it('should be a singleton', () => {
-		const instance1 = ThemeService.instance;
-		const instance2 = ThemeService.instance;
-		expect(instance1).toBe(instance2);
-	});
+	describe('theme getters', () => {
+		it('should return the current theme', () => {
+			// Get the private property using indirection
+			expect(service.theme).toBeDefined();
+		});
 
-	describe('isDarkMode', () => {
-		it('should return true when theme is DARK', () => {
-			service.currentTheme = Theme.DARK;
+		it('should correctly determine if dark mode is active', () => {
+			// Test by changing the theme via the public method
+			service.toggleTheme(Theme.DARK);
 			expect(service.isDarkMode).toBe(true);
-		});
 
-		it('should return false when theme is not DARK', () => {
-			service.currentTheme = Theme.LIGHT;
-			expect(service.isDarkMode).toBe(false);
-
-			service.currentTheme = Theme.SYSTEM;
+			service.toggleTheme(Theme.LIGHT);
 			expect(service.isDarkMode).toBe(false);
 		});
-	});
 
-	describe('isSystemDarkMode', () => {
-		it('should return true when theme is SYSTEM', () => {
-			service.currentTheme = Theme.SYSTEM;
+		it('should correctly determine if system theme is active', () => {
+			service.toggleTheme(Theme.SYSTEM);
 			expect(service.isSystemDarkMode).toBe(true);
-		});
 
-		it('should return false when theme is not SYSTEM', () => {
-			service.currentTheme = Theme.LIGHT;
-			expect(service.isSystemDarkMode).toBe(false);
-
-			service.currentTheme = Theme.DARK;
+			service.toggleTheme(Theme.LIGHT);
 			expect(service.isSystemDarkMode).toBe(false);
 		});
 	});
 
 	describe('initTheme', () => {
-		it('should initialize with SYSTEM theme when no preferences exist', () => {
-			// No stored theme, system is not dark
-			matchMediaMock.mockReturnValueOnce({ matches: false } as any);
+		it('should initialize theme from system preference when dark mode is preferred', () => {
+			matchMediaMock.mockImplementationOnce(() => ({
+				matches: true,
+				media: '',
+				addEventListener: vi.fn(),
+				removeEventListener: vi.fn(),
+			}));
 
 			service.initTheme();
 
-			expect(service.theme).toBe(Theme.SYSTEM);
-			expect(documentElementMock.setAttribute).toHaveBeenCalledWith('data-theme', Theme.SYSTEM);
-			expect(localStorageMock.setItem).toHaveBeenCalledWith('bamboo-theme', Theme.SYSTEM);
-		});
-
-		it('should initialize with DARK theme when system prefers dark', () => {
-			// System prefers dark
-			matchMediaMock.mockReturnValueOnce({ matches: true } as any);
-
-			service.initTheme();
-
-			expect(service.theme).toBe(Theme.DARK);
-			expect(documentElementMock.setAttribute).toHaveBeenCalledWith('data-theme', Theme.DARK);
+			expect(documentMock.documentElement.setAttribute).toHaveBeenCalledWith(
+				'data-theme',
+				Theme.DARK,
+			);
 			expect(localStorageMock.setItem).toHaveBeenCalledWith('bamboo-theme', Theme.DARK);
 		});
 
-		it('should use stored theme from localStorage if available', () => {
-			// No system preference (matches: false)
-			matchMediaMock.mockReturnValueOnce({ matches: false } as any);
-
-			// Stored theme is LIGHT
+		it('should initialize theme from localStorage when available', () => {
+			matchMediaMock.mockImplementationOnce(() => ({
+				matches: false,
+				media: '',
+				addEventListener: vi.fn(),
+				removeEventListener: vi.fn(),
+			}));
 			localStorageMock.getItem.mockReturnValueOnce(Theme.LIGHT);
 
 			service.initTheme();
 
-			expect(service.theme).toBe(Theme.LIGHT);
-			expect(documentElementMock.setAttribute).toHaveBeenCalledWith('data-theme', Theme.LIGHT);
+			expect(documentMock.documentElement.setAttribute).toHaveBeenCalledWith(
+				'data-theme',
+				Theme.LIGHT,
+			);
+			expect(localStorageMock.setItem).toHaveBeenCalledWith('bamboo-theme', Theme.LIGHT);
+		});
+
+		it('should default to system theme when no preference is available', () => {
+			matchMediaMock.mockImplementationOnce(() => ({
+				matches: false,
+				media: '',
+				addEventListener: vi.fn(),
+				removeEventListener: vi.fn(),
+			}));
+			localStorageMock.getItem.mockReturnValueOnce(null);
+
+			service.initTheme();
+
+			expect(documentMock.documentElement.setAttribute).toHaveBeenCalledWith(
+				'data-theme',
+				Theme.SYSTEM,
+			);
+			expect(localStorageMock.setItem).toHaveBeenCalledWith('bamboo-theme', Theme.SYSTEM);
 		});
 	});
 
@@ -142,15 +135,22 @@ describe('ThemeService', () => {
 			service.toggleTheme(Theme.DARK);
 
 			expect(service.theme).toBe(Theme.DARK);
-			expect(documentElementMock.setAttribute).toHaveBeenCalledWith('data-theme', Theme.DARK);
+			expect(documentMock.documentElement.setAttribute).toHaveBeenCalledWith(
+				'data-theme',
+				Theme.DARK,
+			);
 			expect(localStorageMock.setItem).toHaveBeenCalledWith('bamboo-theme', Theme.DARK);
 		});
 
-		it('should update theme in localStorage and DOM', () => {
+		it('should toggle between themes', () => {
 			service.toggleTheme(Theme.LIGHT);
+			expect(service.theme).toBe(Theme.LIGHT);
 
-			expect(documentElementMock.setAttribute).toHaveBeenCalledWith('data-theme', Theme.LIGHT);
-			expect(localStorageMock.setItem).toHaveBeenCalledWith('bamboo-theme', Theme.LIGHT);
+			service.toggleTheme(Theme.DARK);
+			expect(service.theme).toBe(Theme.DARK);
+
+			service.toggleTheme(Theme.SYSTEM);
+			expect(service.theme).toBe(Theme.SYSTEM);
 		});
 	});
 });

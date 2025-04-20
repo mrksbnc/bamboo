@@ -6,19 +6,13 @@ const bambooTestConfig = mergeConfig(
 	viteConfig,
 	defineConfig({
 		test: {
+			globals: true,
 			environment: 'jsdom',
 			include: ['./src/**/*.test.ts'],
-			setupFiles: ['./vitest.setup.ts'],
 			exclude: [...configDefaults.exclude],
 			root: fileURLToPath(new URL('./', import.meta.url)),
 			alias: {
 				'@/': new URL('./src/', import.meta.url).pathname,
-			},
-			browser: {
-				enabled: true,
-				name: 'chrome',
-				provider: 'playwright',
-				headless: true,
 			},
 		},
 	}),

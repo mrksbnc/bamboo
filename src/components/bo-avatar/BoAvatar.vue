@@ -131,17 +131,17 @@ const variantColors = {
 
 const outlineVariantColors = {
 	[BoAvatarVariant.primary]:
-		/*tw*/ 'border border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-500',
+		/*tw*/ 'border bg-transparent border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-500',
 	[BoAvatarVariant.secondary]:
-		/*tw*/ 'border border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',
+		/*tw*/ 'border bg-transparent border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',
 	[BoAvatarVariant.danger]:
-		/*tw*/ 'border border-red-600 text-red-600 dark:border-red-500 dark:text-red-500',
+		/*tw*/ 'border bg-transparent border-red-600 text-red-600 dark:border-red-500 dark:text-red-500',
 	[BoAvatarVariant.warning]:
-		/*tw*/ 'border border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
+		/*tw*/ 'border bg-transparent border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
 	[BoAvatarVariant.success]:
-		/*tw*/ 'border border-green-600 text-green-600 dark:border-green-500 dark:text-green-500',
+		/*tw*/ 'border bg-transparent border-green-600 text-green-600 dark:border-green-500 dark:text-green-500',
 	[BoAvatarVariant.dark]:
-		/*tw*/ 'border border-black text-black dark:border-neutral-700 dark:text-neutral-300',
+		/*tw*/ 'border bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-300',
 };
 
 const variantTextColors = {
@@ -171,10 +171,7 @@ const bgConstruct = computed<string>(() => {
 		return /*tw*/ 'bg-transparent';
 	}
 
-	const isOutlineShape =
-		shape.value === BoAvatarShape.outline_circle ||
-		shape.value === BoAvatarShape.outline_rounded ||
-		shape.value === BoAvatarShape.outline_flat;
+	const isOutlineShape = shape.value.includes('outline');
 
 	if (isOutlineShape) {
 		return variant.value in outlineVariantColors

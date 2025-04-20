@@ -147,19 +147,19 @@ const filledButtonClasses = {
 
 const outlineButtonClasses = {
 	[BoButtonVariant.primary]:
-		/*tw*/ 'border border-blue-600 hover:bg-blue-700 focus:ring-transparent text-blue-600 hover:text-white dark:border-blue-500 dark:text-blue-500',
+		/*tw*/ 'border border-blue-600 bg-transparent hover:bg-blue-700 focus:ring-transparent text-blue-600 hover:text-white dark:border-blue-500 dark:text-blue-500',
 	[BoButtonVariant.secondary]:
-		/*tw*/ 'border border-gray-500 dark:border-neutral-300 hover:bg-gray-500 focus:ring-transparent text-gray-500 dark:text-neutral-300 hover:text-white',
+		/*tw*/ 'border border-gray-500 bg-transparent dark:border-neutral-300 hover:bg-gray-500 focus:ring-transparent text-gray-500 dark:text-neutral-300 hover:text-white',
 	[BoButtonVariant.danger]:
-		/*tw*/ 'border border-red-600 hover:bg-red-600 focus:ring-transparent text-red-600 hover:text-white dark:border-red-500 dark:text-red-500',
+		/*tw*/ 'border border-red-600 bg-transparent hover:bg-red-600 focus:ring-transparent text-red-600 hover:text-white dark:border-red-500 dark:text-red-500',
 	[BoButtonVariant.warning]:
-		/*tw*/ 'border border-yellow-500 hover:bg-yellow-500 focus:ring-transparent text-yellow-500 hover:text-white dark:border-yellow-400 dark:text-yellow-400',
+		/*tw*/ 'border border-yellow-500 bg-transparent hover:bg-yellow-500 focus:ring-transparent text-yellow-500 hover:text-white dark:border-yellow-400 dark:text-yellow-400',
 	[BoButtonVariant.success]:
-		/*tw*/ 'border border-green-600 hover:bg-green-600 focus:ring-transparent text-green-600 hover:text-white dark:border-green-500 dark:text-green-500',
+		/*tw*/ 'border border-green-600 bg-transparent hover:bg-green-600 focus:ring-transparent text-green-600 hover:text-white dark:border-green-500 dark:text-green-500',
 	[BoButtonVariant.light]:
-		/*tw*/ 'border border-neutral-50 hover:bg-white focus:ring-transparent text-neutral-50 hover:border-neutral-500 hover:text-neutral-900 dark:border-neutral-200 dark:text-neutral-200',
+		/*tw*/ 'border border-neutral-50 bg-transparent hover:bg-white focus:ring-transparent text-neutral-50 hover:border-neutral-500 hover:text-neutral-900 dark:border-neutral-200 dark:text-neutral-200',
 	[BoButtonVariant.dark]:
-		/*tw*/ 'border border-black hover:bg-black focus:ring-transparent text-black hover:text-white dark:border-neutral-700 dark:text-neutral-300',
+		/*tw*/ 'border border-black bg-transparent hover:bg-black focus:ring-transparent text-black hover:text-white dark:border-neutral-700 dark:text-neutral-300',
 };
 
 const linkButtonClasses = {

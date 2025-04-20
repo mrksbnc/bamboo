@@ -101,7 +101,7 @@ Use different avatar shapes with initials or images.
 />
 <bo-avatar
   :shape="BoAvatarShape.rounded"
-  :data="{ label: 'JD' }"
+  :data="{ label: 'BO' }"
 />
 <bo-avatar
   :shape="BoAvatarShape.circle"
@@ -117,7 +117,7 @@ Use different avatar shapes with initials or images.
 />
 <bo-avatar
 	:shape="BoAvatarShape.rounded"
-	:data="{ label: 'JD' }"
+	:data="{ label: 'BO' }"
 />
 <bo-avatar
 	:shape="BoAvatarShape.circle"
@@ -200,14 +200,14 @@ You can customize avatar colors using the `color` prop which accepts an object w
 Make avatars interactive by using the `clickable` prop which adds a hover effect and changes the cursor.
 
 <div class="flex gap-4 items-center">
-  <bo-avatar :clickable="true" :data="{ label: 'JD' }" />
+  <bo-avatar :clickable="true" :data="{ label: 'BO' }" />
   <bo-avatar :clickable="true" :type="BoAvatarType.image" :data="{ src: 'https://avatar.iran.liara.run/public/boy', alt: 'User profile' }" :shape="BoAvatarShape.circle" />
 </div>
 
 ```html
 <bo-avatar
 	:clickable="true"
-	:data="{ label: 'JD' }"
+	:data="{ label: 'BO' }"
 />
 <bo-avatar
 	:clickable="true"
