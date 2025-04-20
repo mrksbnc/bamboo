@@ -1,273 +1,244 @@
 <template>
-	<div class="input-wrapper w-full">
-		<label
-			v-if="label"
-			:for="inputId"
-			class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
-		>
-			{{ label }}
+	<div class="bo-input w-full">
+		<div class="flex items-center gap-1">
+			<bo-text
+				v-if="label"
+				:for="inputId"
+				:value="label"
+				:size="BoFontSize.sm"
+				class="mb-1"
+			/>
 			<span
 				v-if="required"
-				class="text-red-500"
-				aria-hidden="true"
-				>*<span class="sr-only">(required)</span></span
+				class="pl-0.5 text-red-500"
 			>
-		</label>
-		<div
-			class="relative"
-			:class="{ flex: prefixIcon || suffixIcon }"
-		>
+				*
+			</span>
+		</div>
+		<div class="relative flex items-center">
 			<div
-				v-if="prefixIcon"
-				class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
-				aria-hidden="true"
+				v-if="prefixIcon && prefixIcon !== Icon.none"
+				class="pointer-events-none absolute inset-y-0 left-0 flex translate-x-[4px] items-center"
 			>
 				<bo-icon
 					:icon="prefixIcon"
-					class="h-5 w-5 text-gray-500 dark:text-gray-400"
+					:size="iconSize"
+					class="bo-input__prefix-icon"
+					aria-hidden="true"
 				/>
 			</div>
 			<input
-				v-model="modelValue"
-				:type="type"
-				:name="name"
 				:id="inputId"
-				:class="inputClass"
+				:name="name"
+				:type="inputType"
+				:value="modelValue"
 				:disabled="disabled"
 				:readonly="readonly"
 				:required="required"
-				:aria-disabled="disabled"
-				:aria-readonly="readonly"
+				:autofocus="autofocus"
 				:placeholder="placeholder"
-				:aria-describedby="getAriaDescribedBy"
-				:aria-invalid="state === BoInputState.invalid"
-				@blur="$emit('blur', $event)"
-				@focus="$emit('focus', $event)"
-				@input="$emit('input', $event)"
+				:class="inputClasses"
+				:aria-label="ariaLabel"
+				:aria-describedby="helperTextId"
+				:aria-invalid="state === BoInputState.error"
+				@input="onInput"
 			/>
-			<button
-				v-if="clearable && modelValue"
-				type="button"
-				class="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
-				aria-label="Clear input"
-				@click="handleClear"
-			>
-				<bo-icon
-					:icon="Icon.x"
-					:size="BoSize.small"
-					aria-hidden="true"
-				/>
-			</button>
 			<div
-				v-else-if="suffixIcon"
-				class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
-				aria-hidden="true"
+				v-if="suffixIcon && suffixIcon !== Icon.none"
+				class="pointer-events-none absolute inset-y-0 right-0 flex -translate-x-[4px] items-center"
 			>
 				<bo-icon
 					:icon="suffixIcon"
-					class="text-gray-500 dark:text-gray-400"
+					:size="iconSize"
+					class="bo-input__suffix-icon"
+					aria-hidden="true"
 				/>
 			</div>
-			<div
-				v-if="isLoading"
-				class="loading-indicator absolute inset-y-0 right-0 flex items-center pr-3"
-				aria-hidden="true"
-			>
-				<span
-					v-if="loaderVariant === BoInputLoaderVariant.spinner"
-					class="loading-spinner"
-				>
-					<!-- Spinner content -->
-				</span>
-				<span
-					v-else-if="loaderVariant === BoInputLoaderVariant.pulse"
-					class="loading-pulse"
-				>
-					<!-- Pulse content -->
-				</span>
-			</div>
 		</div>
-		<span
-			v-if="description && StringService.instance.isEmptyStr(errorMessage)"
-			:id="descriptionId"
-			class="bo-input__description mt-1 text-sm text-gray-500 dark:text-gray-400"
-		>
-			{{ description }}
-		</span>
-		<span
-			v-if="errorMessage && state === BoInputState.invalid"
-			:id="errorId"
-			class="mt-1 flex items-center gap-1 text-sm text-red-600 dark:text-red-500"
-			role="alert"
-			aria-live="assertive"
+		<div
+			v-if="error"
+			class="flex items-center gap-1 pt-1.5"
 		>
 			<bo-icon
-				:icon="Icon.alert_circle"
 				:size="BoSize.small"
-				aria-hidden="true"
+				:icon="Icon.alert_circle"
+				:color="BoColor.red_600"
 			/>
-			{{ errorMessage }}
-		</span>
+			<bo-text
+				:id="helperTextId"
+				:size="BoFontSize.sm"
+				:class="helperTextClasses"
+				:value="error"
+			/>
+		</div>
+		<bo-text
+			v-if="description"
+			:id="helperTextId"
+			:value="description"
+			:size="BoFontSize.sm"
+			:class="helperTextClasses"
+		/>
 	</div>
 </template>
 
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo-icon';
+import { BoFontSize, BoText } from '@/components/bo-text';
+import { IdentityService, TailwindService } from '@/services';
+import { BoColor, BoSize } from '@/shared';
+import { computed, toRefs } from 'vue';
 import {
-	AccessibilityService,
-	AriaLivePriority,
-	IdentityService,
-	StringService,
-	TailwindService,
-} from '@/services';
-import { BoSize } from '@/shared';
-import { computed, ref, watch } from 'vue';
-import {
-	BoInputLoaderVariant,
-	type BoInputProps,
 	BoInputSize,
 	BoInputState,
 	BoInputType,
 	BoInputVariant,
+	type BoInputProps,
 } from './bo-input';
 
-const emit = defineEmits<{
-	(e: 'update:modelValue', value: string): void;
-	(e: 'input', event: Event): void;
-	(e: 'focus', event: FocusEvent): void;
-	(e: 'blur', event: FocusEvent): void;
-	(e: 'clear'): void;
-}>();
-
 const props = withDefaults(defineProps<BoInputProps>(), {
-	id: () => IdentityService.instance.getId('input'),
-	placeholder: '',
-	disabled: false,
-	readonly: false,
-	required: false,
-	clearable: false,
-	type: BoInputType.text,
-	state: BoInputState.none,
-	size: BoInputSize.default,
-	variant: BoInputVariant.default,
+	id: () => IdentityService.instance.generateId('bo-input'),
+	variant: () => BoInputVariant.default,
+	state: () => BoInputState.default,
+	size: () => BoInputSize.default,
+	type: () => BoInputType.text,
 	prefixIcon: () => Icon.none,
 	suffixIcon: () => Icon.none,
-	loaderVariant: BoInputLoaderVariant.spinner,
 });
 
-const modelValue = defineModel<string>('modelValue', { required: true });
+const emit = defineEmits<{
+	'update:modelValue': [value: string];
+}>();
 
-const errorId = ref<string>(IdentityService.instance.getId('input-error'));
-const descriptionId = ref<string>(IdentityService.instance.getId('input-desc'));
+const {
+	modelValue,
+	variant,
+	state,
+	size,
+	label,
+	disabled,
+	required,
+	type,
+	description,
+	error,
+	prefixIcon,
+	suffixIcon,
+	id,
+} = toRefs(props);
 
-const inputId = computed<string>(() => props.id ?? IdentityService.instance.getId('input'));
-
-const getAriaDescribedBy = computed<string | undefined>(() => {
-	const ids = [];
-	if (props.description && StringService.instance.isEmptyStr(props.errorMessage)) {
-		ids.push(descriptionId.value);
-	}
-	if (props.errorMessage && props.state === BoInputState.invalid) {
-		ids.push(errorId.value);
-	}
-	return ids.length > 0 ? ids.join(' ') : undefined;
+const inputId = computed<string>(() => {
+	return id.value;
 });
 
-const inputClass = computed<string>(() => {
-	const baseClasses =
-		'block w-full focus:outline-none focus:ring-2 focus:ring-offset-0 transition-colors';
+const helperTextId = computed<string>(() => {
+	return `${inputId.value}-helper`;
+});
 
-	const sizeClasses = {
-		[BoInputSize.small]: 'px-3 py-1.5 text-xs',
-		[BoInputSize.default]: 'px-3 py-2 text-sm',
-		[BoInputSize.large]: 'px-4 py-3 text-base',
-	};
+const baseInputClasses: Record<string, string> = {
+	common: /*tw*/ 'bo-input__field w-full transition-colors duration-200',
+	disabled:
+		/*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50 disabled:text-neutral-400 disabled:bg-neutral-100',
+	readonly: /*tw*/ 'readonly:cursor-not-allowed',
+	required: /*tw*/ 'required:border required:border-red-500',
+};
 
-	const variantClasses = {
-		[BoInputVariant.default]:
-			'border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-blue-500/30 focus:border-blue-500 dark:border-gray-600 dark:bg-transparent dark:text-white dark:focus:ring-blue-500/40 dark:focus:border-blue-500',
-		[BoInputVariant.filled]:
-			'border border-transparent rounded-md bg-gray-100 text-gray-900 focus:ring-blue-500/30 focus:border-blue-500 dark:bg-gray-800 dark:text-white dark:focus:ring-blue-500/40 dark:focus:border-blue-500',
-		[BoInputVariant.underline]:
-			'border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 focus:ring-0 focus:ring-offset-0 text-gray-900 focus:border-blue-500 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 outline-none',
-	};
+const sizeClasses: Record<BoInputSize, string> = {
+	[BoInputSize.small]: /*tw*/ 'py-1 text-xs',
+	[BoInputSize.default]: /*tw*/ 'py-1.5 text-sm',
+	[BoInputSize.large]: /*tw*/ 'py-2 text-base',
+};
 
-	let classes = TailwindService.instance.merge(
-		baseClasses,
-		sizeClasses[props.size],
-		variantClasses[props.variant],
+const variantClasses: Record<BoInputVariant, Record<BoInputState, string>> = {
+	[BoInputVariant.default]: {
+		[BoInputState.default]: /*tw*/ 'bg-transparent border border-neutral-300 focus:border-blue-500',
+		[BoInputState.error]: /*tw*/ 'bg-transparent border border-red-500 focus:border-red-500',
+		[BoInputState.success]: /*tw*/ 'bg-transparent border border-green-600 focus:border-green-600',
+	},
+	[BoInputVariant.filled]: {
+		[BoInputState.default]: /*tw*/ 'bg-neutral-100 focus:border-blue-500',
+		[BoInputState.error]: /*tw*/ 'bg-neutral-100 focus:border-red-500',
+		[BoInputState.success]: /*tw*/ 'bg-neutral-100 focus:border-green-600',
+	},
+	[BoInputVariant.underlined]: {
+		[BoInputState.default]:
+			/*tw*/ 'bg-transparent border-b border-neutral-300 focus:border-blue-500 rounded-none focus:outline-none dark:border-neutral-600 dark:text-white',
+		[BoInputState.error]:
+			/*tw*/ 'bg-transparent border-b border-red-700 focus:border-red-700 rounded-none focus:outline-none dark:border-red-700 dark:text-white',
+		[BoInputState.success]:
+			/*tw*/ 'bg-transparent border-b border-green-700 focus:border-green-700 rounded-none focus:outline-none dark:border-green-700 dark:text-white',
+	},
+};
+
+const sizeTextClasses: Record<BoInputSize, string> = {
+	[BoInputSize.small]: /*tw*/ 'text-sm',
+	[BoInputSize.default]: /*tw*/ 'text-sm',
+	[BoInputSize.large]: /*tw*/ 'text-base',
+};
+
+const helperTextColorClasses: Record<BoInputState, string> = {
+	[BoInputState.default]: /*tw*/ 'text-neutral-600 dark:text-neutral-500',
+	[BoInputState.error]: /*tw*/ 'text-red-500 dark:text-red-500',
+	[BoInputState.success]: /*tw*/ 'text-green-600 dark:text-green-600',
+};
+
+const inputType = computed<string>(() => {
+	return type.value;
+});
+
+const iconSize = computed<BoSize>(() => {
+	switch (size.value) {
+		case BoInputSize.small:
+			return BoSize.small;
+		case BoInputSize.default:
+			return BoSize.default;
+		case BoInputSize.large:
+			return BoSize.large;
+		default:
+			return BoSize.default;
+	}
+});
+
+const iconPadding = computed<string>(() => {
+	const hasPrefixIcon = prefixIcon.value && prefixIcon.value !== Icon.none;
+	const hasSuffixIcon = suffixIcon.value && suffixIcon.value !== Icon.none;
+
+	if (hasPrefixIcon && hasSuffixIcon) {
+		return /*tw*/ 'px-8 py-2';
+	}
+
+	if (hasPrefixIcon) {
+		return /*tw*/ 'pl-8 pr-4';
+	}
+
+	if (hasSuffixIcon) {
+		return /*tw*/ 'pl-4 pr-8';
+	}
+
+	return /*tw*/ 'px-4 py-2';
+});
+
+const roundedClasses = computed<string>(() => {
+	return variant.value === BoInputVariant.underlined ? /*tw*/ '' : /*tw*/ 'rounded-lg';
+});
+
+const inputClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		iconPadding.value,
+		roundedClasses.value,
+		baseInputClasses.common,
+		baseInputClasses.disabled,
+		baseInputClasses.readonly,
+		baseInputClasses.required,
+		sizeClasses[size.value],
+		sizeTextClasses[size.value],
+		variantClasses[variant.value][state.value],
 	);
-
-	if (props.prefixIcon) {
-		classes = TailwindService.instance.merge(classes, 'pl-10');
-	}
-
-	if ((props.suffixIcon && !props.clearable) || (props.clearable && props.modelValue)) {
-		classes = TailwindService.instance.merge(classes, 'pr-10');
-	}
-
-	if (props.disabled) {
-		classes = TailwindService.instance.merge(
-			classes,
-			'cursor-not-allowed bg-gray-100 text-gray-500 placeholder-gray-400 dark:bg-transparent dark:text-gray-400 dark:placeholder-gray-500',
-		);
-	} else if (props.readonly) {
-		classes = TailwindService.instance.merge(
-			classes,
-			'text-gray-500 placeholder-gray-400 dark:text-gray-400 dark:placeholder-gray-500',
-		);
-	}
-
-	if (props.state === BoInputState.invalid) {
-		classes = TailwindService.instance.merge(
-			classes,
-			'border-red-500 focus:ring-red-500/30 focus:border-red-500 text-red-900 placeholder-red-400 dark:border-red-500 dark:focus:border-red-500',
-		);
-	} else if (props.state === BoInputState.valid) {
-		classes = TailwindService.instance.merge(
-			classes,
-			'border-green-500 focus:ring-green-500/30 focus:border-green-500 text-green-900 placeholder-green-400 dark:border-green-500 dark:focus:border-green-500',
-		);
-	}
-
-	return classes;
 });
 
-function handleClear(): void {
-	modelValue.value = '';
-	emit('clear');
+const helperTextClasses = computed<string>(() => {
+	return helperTextColorClasses[state.value];
+});
+
+function onInput(event: Event) {
+	emit('update:modelValue', (event.target as HTMLInputElement).value);
 }
-
-watch(
-	() => props.state,
-	(newState, oldState) => {
-		if (
-			newState === BoInputState.invalid &&
-			props.errorMessage &&
-			oldState !== BoInputState.invalid
-		) {
-			// Announce error message to screen readers when state becomes invalid
-			AccessibilityService.instance.announceToScreenReader(
-				props.errorMessage,
-				AriaLivePriority.assertive,
-			);
-		} else if (newState === BoInputState.valid && oldState === BoInputState.invalid) {
-			// Announce when field becomes valid after being invalid
-			AccessibilityService.instance.announceToScreenReader(
-				'Field is now valid',
-				AriaLivePriority.polite,
-			);
-		}
-	},
-);
-
-watch(
-	() => props.errorMessage,
-	(newMessage, oldMessage) => {
-		if (newMessage && props.state === BoInputState.invalid && newMessage !== oldMessage) {
-			// Announce new error messages
-			AccessibilityService.instance.announceToScreenReader(newMessage, AriaLivePriority.assertive);
-		}
-	},
-);
 </script>

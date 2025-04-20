@@ -13,7 +13,7 @@ import { computed, toRefs } from 'vue';
 import { type BoDividerProps, BoDividerVariant } from './bo-divider';
 
 const props = withDefaults(defineProps<BoDividerProps>(), {
-	id: () => IdentityService.instance.getId('bo-divider'),
+	id: () => IdentityService.instance.generateId('bo-divider'),
 	variant: () => BoDividerVariant.default,
 });
 

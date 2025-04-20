@@ -4,7 +4,7 @@ export interface BoIdentityService {
 	/**
 	 * Generates a unique identifier for an element
 	 */
-	getId(prefix?: string): string;
+	generateId(prefix?: string): string;
 }
 
 export class IdentityService implements BoIdentityService {
@@ -15,7 +15,7 @@ export class IdentityService implements BoIdentityService {
 		return instance;
 	}
 
-	getId(descriptor?: string): string {
+	generateId(descriptor?: string): string {
 		return descriptor ? `${descriptor}-${crypto.randomUUID()}` : crypto.randomUUID();
 	}
 }

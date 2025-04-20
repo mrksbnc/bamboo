@@ -2,7 +2,7 @@
 	<i
 		v-html="svg"
 		:style="style"
-		:class="tailwindCssSizeClasses"
+		:class="tailwindCssClasses"
 		:aria-label="accessibility.title"
 		:aria-hidden="accessibility?.decorative"
 		:role="role"
@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+import { TailwindService } from '@/services';
 import { BoSize } from '@/shared/bo-size';
 import { computed, ref, toRefs, watch, type StyleValue } from 'vue';
 import { icons, type BoIconProps } from './bo-icon';
@@ -43,6 +44,14 @@ const iconMap = Object.keys(icons).reduce(
 	{} as Record<string, () => Promise<string>>,
 );
 
+const sizeClasses = {
+	[BoSize.extra_small]: /*tw*/ 'size-3',
+	[BoSize.small]: /*tw*/ 'size-3.5',
+	[BoSize.default]: /*tw*/ 'size-4',
+	[BoSize.large]: /*tw*/ 'size-5',
+	[BoSize.extra_large]: /*tw*/ 'size-6',
+};
+
 const role = computed<string>(() => {
 	return props.accessibility.decorative ? 'presentation' : 'img';
 });
@@ -53,16 +62,12 @@ const style = computed<StyleValue>(() => {
 	};
 });
 
-const sizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'size-3',
-	[BoSize.small]: /*tw*/ 'size-3.5',
-	[BoSize.default]: /*tw*/ 'size-4',
-	[BoSize.large]: /*tw*/ 'size-5',
-	[BoSize.extra_large]: /*tw*/ 'size-6',
-};
-
 const tailwindCssSizeClasses = computed<string>(() => {
 	return sizeClasses[size.value];
+});
+
+const tailwindCssClasses = computed<string>(() => {
+	return TailwindService.instance.merge(tailwindCssSizeClasses.value);
 });
 
 async function load(): Promise<void> {

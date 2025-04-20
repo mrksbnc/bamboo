@@ -46,7 +46,7 @@ const emit = defineEmits<{
 }>();
 
 const props = withDefaults(defineProps<BoDropdownProps>(), {
-	id: () => IdentityService.instance.getId('bo-dropdown'),
+	id: () => IdentityService.instance.generateId('bo-dropdown'),
 	toggleVariant: () => BoButtonVariant.primary,
 	options: () => [],
 	component: () => shallowRef(BoDefaultDropdownItem),

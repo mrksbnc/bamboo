@@ -1,3 +1,4 @@
+import BoTextarea from './BoTextarea.vue';
+
 export * from './bo-textarea';
-export { default as BoTextarea } from './BoTextarea.vue';
-export * from './types';
+export { BoTextarea };

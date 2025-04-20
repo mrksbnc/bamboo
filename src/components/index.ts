@@ -8,7 +8,5 @@ export * from '@/components/bo-input';
 export * from '@/components/bo-loading-pulse';
 export * from '@/components/bo-loading-spinner';
 export * from '@/components/bo-modal';
-export * from '@/components/bo-radio';
 export * from '@/components/bo-text';
 export * from '@/components/bo-textarea';
-export * from '@/components/bo-toast';

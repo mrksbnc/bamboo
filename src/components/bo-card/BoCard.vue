@@ -57,7 +57,7 @@ const props = withDefaults(defineProps<BoCardProps>(), {
 	disabled: false,
 });
 
-const cardId = ref<string>(IdentityService.instance.getId('card'));
+const cardId = ref<string>(IdentityService.instance.generateId('card'));
 
 const role = computed<string | undefined>(() => {
 	return props.clickable ? 'button' : undefined;

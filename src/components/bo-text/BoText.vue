@@ -4,7 +4,7 @@
 		:class="classes"
 		:style="containerStyle"
 	>
-		{{ text }}
+		{{ value }}
 	</span>
 </template>
 
@@ -22,7 +22,7 @@ import {
 } from './bo-text';
 
 const props = withDefaults(defineProps<BoTextProps>(), {
-	id: () => IdentityService.instance.getId('bo-text'),
+	id: () => IdentityService.instance.generateId('bo-text'),
 	size: () => BoFontSize.base,
 	color: () => BoTextColor.current,
 	weight: () => BoFontWeight.regular,
@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<BoTextProps>(), {
 });
 
 const {
-	text,
+	value,
 	size,
 	weight,
 	fontFamily,

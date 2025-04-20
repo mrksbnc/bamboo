@@ -56,16 +56,52 @@ export enum BoTextAlign {
 }
 
 export interface BoTextProps {
+	/**
+	 * The id of the element.
+	 */
 	id?: string;
-	text: string;
+	/**
+	 * The text of the element.
+	 */
+	value: string;
+	/**
+	 * The size of the element.
+	 */
 	size?: BoFontSize;
+	/**
+	 * The weight of the element.
+	 */
 	weight?: BoFontWeight;
+	/**
+	 * The font family of the element.
+	 */
 	fontFamily?: BoFontFamily;
+	/**
+	 * The white space of the element.
+	 */
 	whiteSpace?: BoTextWhiteSpace;
+	/**
+	 * The color of the element.
+	 */
 	color?: BoTextColor;
+	/**
+	 * The custom color of the element.
+	 */
 	customColor?: string;
+	/**
+	 * The css class of the element.
+	 */
 	cssClass?: string;
+	/**
+	 * The clickable of the element.
+	 */
 	clickable?: boolean;
+	/**
+	 * The text align of the element.
+	 */
 	textAlign?: BoTextAlign;
+	/**
+	 * The selectable of the element.
+	 */
 	selectable?: boolean;
 }

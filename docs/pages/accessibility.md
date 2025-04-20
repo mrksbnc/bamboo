@@ -49,13 +49,13 @@ Bamboo provides a utility class `AccessibilityUtils` with methods to enhance acc
 Dynamically announce messages to screen readers:
 
 ```typescript
-import { AccessibilityUtils } from '@mrksbnc/bamboo'
+import { AccessibilityUtils } from '@mrksbnc/bamboo';
 
 // Announce with default politeness level (polite)
-AccessibilityUtils.announceToScreenReader('Item added to cart')
+AccessibilityUtils.announceToScreenReader('Item added to cart');
 
 // Announce with higher priority
-AccessibilityUtils.announceToScreenReader('Form submission error', 'assertive')
+AccessibilityUtils.announceToScreenReader('Form submission error', 'assertive');
 ```
 
 ### Skip Links
@@ -63,13 +63,13 @@ AccessibilityUtils.announceToScreenReader('Form submission error', 'assertive')
 Add a skip link to bypass navigation and jump directly to content:
 
 ```typescript
-import { AccessibilityUtils } from '@mrksbnc/bamboo'
+import { AccessibilityUtils } from '@mrksbnc/bamboo';
 
 // Add a skip link to the main content
-AccessibilityUtils.addSkipLink('main-content')
+AccessibilityUtils.addSkipLink('main-content');
 
 // Add a skip link with custom text
-AccessibilityUtils.addSkipLink('main-content', 'Skip to main content')
+AccessibilityUtils.addSkipLink('main-content', 'Skip to main content');
 ```
 
 ### Accessible ID Generation
@@ -77,10 +77,10 @@ AccessibilityUtils.addSkipLink('main-content', 'Skip to main content')
 Generate unique IDs for ARIA attributes:
 
 ```typescript
-import { AccessibilityUtils } from '@mrksbnc/bamboo'
+import { AccessibilityUtils } from '@mrksbnc/bamboo';
 
 // Generate a unique ID with a prefix
-const headingId = AccessibilityUtils.generateAccessibleId('section-heading')
+const headingId = AccessibilityUtils.generateAccessibleId('section-heading');
 // Result: "section-heading-a7b3c9d"
 ```
 
@@ -89,9 +89,9 @@ const headingId = AccessibilityUtils.generateAccessibleId('section-heading')
 Check if an element is hidden from screen readers:
 
 ```typescript
-import { AccessibilityUtils } from '@mrksbnc/bamboo'
+import { AccessibilityUtils } from '@mrksbnc/bamboo';
 
-const isHidden = AccessibilityUtils.isHiddenFromScreenReaders(element)
+const isHidden = AccessibilityUtils.isHiddenFromScreenReaders(element);
 ```
 
 ## CSS Utility Classes
@@ -112,9 +112,9 @@ The `skip-link` class provides styled skip links (hidden until focused):
 
 ```html
 <a
-  href="#main"
-  class="skip-link"
-  >Skip to main content</a
+	href="#main"
+	class="skip-link"
+	>Skip to main content</a
 >
 ```
 
@@ -124,11 +124,11 @@ Bamboo automatically respects the user's reduced motion preference:
 
 ```css
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+	* {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 }
 ```
 

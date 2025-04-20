@@ -19,12 +19,12 @@
 		>
 			<bo-text
 				alt="avatar"
+				:value="label"
 				:size="labelSize"
 				:clickable="clickable"
 				:class="textColorClass"
 				:weight="BoFontWeight.medium"
 				:custom-color="color?.colorHex"
-				:text="StringService.instance.safeString(data.label)"
 			/>
 		</span>
 		<span
@@ -64,12 +64,17 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 	type: () => BoAvatarType.initials,
 	shape: () => BoAvatarShape.rounded,
 	variant: () => BoAvatarVariant.primary,
+	data: () => ({
+		src: undefined,
+		label: undefined,
+		alt: undefined,
+	}),
 });
 
 const { clickable, data, type, shape, size, variant, indicator, color, withDefaultImage } =
 	toRefs(props);
 
-const defaultAvatarSrc = new URL('@/assets/img/avatar.jpg', import.meta.url).href;
+const defaultAvatarSrc = new URL('@/assets/img/avatar.png', import.meta.url).href;
 
 const containerClasses = {
 	default: /*tw*/ 'bo-avatar relative inline-flex overflow-hidden',
@@ -161,6 +166,16 @@ const outlineVariantTextColors = {
 	[BoAvatarVariant.success]: /*tw*/ 'text-green-600 dark:text-green-500',
 	[BoAvatarVariant.dark]: /*tw*/ 'text-black dark:text-neutral-300',
 };
+
+const label = computed<string>(() => {
+	const safeStr = StringService.instance.safeString(data.value.label);
+
+	if (safeStr.length > 2) {
+		return safeStr.slice(0, 2).toUpperCase();
+	}
+
+	return safeStr.toUpperCase();
+});
 
 const bgConstruct = computed<string>(() => {
 	if (

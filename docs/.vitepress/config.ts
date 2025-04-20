@@ -11,30 +11,11 @@ function buildSidebar() {
 		},
 		{
 			text: 'Components',
-			items: [...getComponents()],
+			items: [
+				{ text: 'Avatar', link: '/pages/components/avatar' },
+				{ text: 'Input', link: '/pages/components/input' },
+			],
 		},
-	];
-}
-
-function getComponents() {
-	return [
-		{ text: 'Avatar', link: '/components/avatar' },
-		{ text: 'Badge', link: '/components/badge' },
-		{ text: 'Button', link: '/components/button' },
-		{ text: 'Card', link: '/components/card' },
-		{ text: 'Checkbox', link: '/components/checkbox' },
-		{ text: 'Divider', link: '/components/divider' },
-		{ text: 'Dropdown', link: '/components/dropdown' },
-		{ text: 'Icon', link: '/components/icon' },
-		{ text: 'Input', link: '/components/input' },
-		{ text: 'Loading Pulse', link: '/components/loading-pulse' },
-		{ text: 'Loading Spinner', link: '/components/loading-spinner' },
-		{ text: 'Modal', link: '/components/modal' },
-		{ text: 'Radio', link: '/components/radio' },
-		{ text: 'Radio Group', link: '/components/radio-group' },
-		{ text: 'Text', link: '/components/text' },
-		{ text: 'Textarea', link: '/components/textarea' },
-		{ text: 'Toast', link: '/components/toast' },
 	];
 }
 

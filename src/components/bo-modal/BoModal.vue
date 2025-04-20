@@ -83,7 +83,7 @@ const emit = defineEmits<{
 }>();
 
 const props = withDefaults(defineProps<BoModalProps>(), {
-	id: () => IdentityService.instance.getId('modal'),
+	id: () => IdentityService.instance.generateId('modal'),
 	showClose: true,
 });
 
@@ -94,11 +94,11 @@ let previousActiveElement: HTMLElement | null = null;
 const modalRef = ref<HTMLElement | null>(null);
 
 const modalTitleId = ref<string>(
-	props.id ? `${props.id}-title` : IdentityService.instance.getId('modal-title'),
+	props.id ? `${props.id}-title` : IdentityService.instance.generateId('modal-title'),
 );
 
 const modalDescriptionId = ref<string>(
-	props.id ? `${props.id}-description` : IdentityService.instance.getId('modal-description'),
+	props.id ? `${props.id}-description` : IdentityService.instance.generateId('modal-description'),
 );
 
 const computedStyle = computed<StyleValue>(() => {

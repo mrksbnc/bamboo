@@ -1,6 +1,6 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
-import svgLoader from 'vite-svg-loader'
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+import svgLoader from 'vite-svg-loader';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,4 +10,4 @@ export default defineConfig({
 			'@': resolve(__dirname, '../src'), // to resolve @ inside docs
 		},
 	},
-})
+});
