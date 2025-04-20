@@ -15,8 +15,8 @@
 				<bo-text
 					:size="BoFontSize.xs"
 					:color="BoTextColor.secondary"
+					:text="safeString(loaderText)"
 					:font-family="BoFontFamily.sans"
-					:text="StringUtils.safeString(loaderText)"
 				/>
 			</slot>
 		</span>
@@ -25,9 +25,9 @@
 
 <script setup lang="ts">
 import { BoFontFamily, BoFontSize, BoText, BoTextColor } from '@/components/bo_text';
+import { useString, useTailwind } from '@/composables';
 import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo_loader';
 import { BoSize } from '@/shared/bo_size';
-import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs, type StyleValue } from 'vue';
 import type { BoLoadingSpinnerProps } from './types';
 
@@ -43,6 +43,9 @@ const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 
 const { size, variant, loaderText, customColor } = toRefs(props);
 
+const { merge } = useTailwind();
+const { isEmptyStr, safeString } = useString();
+
 const defaultContainerClasses =
 	/*tw*/ 'bo-loading-spinner__container flex h-full w-full content-center items-center justify-center gap-1';
 
@@ -50,7 +53,7 @@ const defaultClasses =
 	/*tw*/ 'bo-loading-spinner__animation inline-flex animate-spin rounded-full border-[2px] border-current border-t-transparent';
 
 const displayLoaderText = computed<boolean>(() => {
-	return !StringUtils.isEmptyStr(loaderText.value);
+	return !isEmptyStr(loaderText.value);
 });
 
 const loaderTailwindCssSizeClasses = computed<string>(() => {
@@ -70,7 +73,7 @@ const loaderTailwindCssSizeClasses = computed<string>(() => {
 });
 
 const customColorStyle = computed<StyleValue>(() => {
-	if (!StringUtils.isEmptyStr(customColor.value)) {
+	if (!isEmptyStr(customColor.value)) {
 		return {
 			color: customColor.value,
 		};
@@ -80,7 +83,7 @@ const customColorStyle = computed<StyleValue>(() => {
 });
 
 const tailwindCssVariantClasses = computed<string>(() => {
-	if (!StringUtils.isEmptyStr(customColor.value)) {
+	if (!isEmptyStr(customColor.value)) {
 		return '';
 	}
 
@@ -104,10 +107,6 @@ const tailwindCssVariantClasses = computed<string>(() => {
 });
 
 const classes = computed<string>(() => {
-	return TailwindUtils.merge(
-		defaultClasses,
-		loaderTailwindCssSizeClasses.value,
-		tailwindCssVariantClasses.value,
-	);
+	return merge(defaultClasses, loaderTailwindCssSizeClasses.value, tailwindCssVariantClasses.value);
 });
 </script>

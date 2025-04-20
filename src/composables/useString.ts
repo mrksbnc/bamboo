@@ -20,10 +20,20 @@ export function useString() {
 		return isEmptyStr(str) ? '' : String(str);
 	}
 
+	function slugify(str: string): string {
+		return str.toLowerCase().replace(/ /g, '-');
+	}
+
+	function truncate(str: string, maxLength: number, suffix = '...'): string {
+		return str.length > maxLength ? str.slice(0, maxLength) + suffix : str;
+	}
+
 	return {
 		capitalize,
 		camelCaseToTitleCase,
 		isEmptyStr,
 		safeString,
+		slugify,
+		truncate,
 	};
 }
