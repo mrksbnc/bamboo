@@ -1,5 +1,5 @@
 import { useLocalStorage, useMediaQuery } from '@vueuse/core';
-import { computed, watch } from 'vue';
+import { computed, watch, type Ref } from 'vue';
 
 export enum Theme {
 	LIGHT = 'light',
@@ -10,7 +10,34 @@ export enum Theme {
 const THEME_KEY = 'bamboo-theme';
 const DARK_MODE_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 
-export function useTheme() {
+export interface UseThemeReturn {
+	/**
+	 * The current theme
+	 */
+	theme: Ref<Theme>;
+	/**
+	 * Whether the current theme is dark
+	 */
+	isDarkMode: Ref<boolean>;
+	/**
+	 * Whether the system is in dark mode
+	 */
+	isSystemDarkMode: Ref<boolean>;
+	/**
+	 * Applies the current theme to the document
+	 */
+	applyTheme: (newTheme: Theme) => void;
+	/**
+	 * Toggles the current theme
+	 */
+	toggleTheme: () => void;
+	/**
+	 * Initializes the theme
+	 */
+	initTheme: () => void;
+}
+
+export function useTheme(): UseThemeReturn {
 	const prefersDark = useMediaQuery(DARK_MODE_MEDIA_QUERY);
 	const theme = useLocalStorage<Theme>(THEME_KEY, Theme.SYSTEM, { window });
 
@@ -25,39 +52,25 @@ export function useTheme() {
 		return theme.value === Theme.DARK || prefersDark.value;
 	});
 
-	function applyTheme(): void {
+	function applyTheme(newTheme: Theme): void {
 		if (!window) {
 			return;
 		}
 
+		theme.value = newTheme;
+
 		document.documentElement.classList.remove(Theme.LIGHT, Theme.DARK);
 		document.documentElement.classList.add(isDarkMode.value ? Theme.DARK : Theme.LIGHT);
-
-		const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-		if (metaThemeColor) {
-			metaThemeColor.setAttribute('content', isDarkMode.value ? '#1a1a1a' : '#ffffff');
-		}
 	}
 
-	function setTheme(newTheme: Theme): void {
-		theme.value = newTheme;
-		applyTheme();
-	}
-
-	function toggleTheme() {
+	function toggleTheme(): void {
 		switch (theme.value) {
 			case Theme.LIGHT:
-				setTheme(Theme.DARK);
+				applyTheme(Theme.DARK);
 				break;
 			case Theme.DARK:
-				setTheme(Theme.LIGHT);
-				break;
-			case Theme.SYSTEM:
-				setTheme(isSystemDarkMode.value ? Theme.LIGHT : Theme.DARK);
-				break;
 			default:
-				setTheme(Theme.LIGHT);
-				break;
+				applyTheme(Theme.LIGHT);
 		}
 	}
 
@@ -66,17 +79,19 @@ export function useTheme() {
 			return;
 		}
 
-		applyTheme();
+		applyTheme(theme.value);
 	}
 
-	watch(prefersDark, () => {
-		if (theme.value === Theme.SYSTEM) {
-			applyTheme();
+	watch(prefersDark, (val) => {
+		if (val) {
+			applyTheme(Theme.DARK);
+		} else {
+			applyTheme(Theme.SYSTEM);
 		}
 	});
 
-	watch(theme, () => {
-		applyTheme();
+	watch(theme, (val) => {
+		applyTheme(val);
 	});
 
 	return {
@@ -84,7 +99,7 @@ export function useTheme() {
 		isDarkMode,
 		isSystemDarkMode,
 		applyTheme,
-		setTheme,
+
 		toggleTheme,
 		initTheme,
 	};

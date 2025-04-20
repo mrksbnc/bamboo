@@ -1,39 +1,40 @@
 import { isDefined } from '@vueuse/core';
 import { onMounted, ref, type Ref } from 'vue';
-import { useIdentity } from './useIdentity';
+import { useBrowser } from './useBrowser';
 
+/**
+ * Enum representing the priority of announcements to screen readers
+ * - `polite`: Announce changes in a polite manner
+ * - `assertive`: Announce changes in an assertive manner
+ */
 export enum AriaLivePriority {
 	polite = 'polite',
 	assertive = 'assertive',
 }
 
 export interface UseAccessibilityReturn {
-	announceToScreenReader: (message: string, priority?: AriaLivePriority) => void;
-	isHiddenFromScreenReaders: (element: HTMLElement) => boolean;
-	addSkipLink: (targetId: string, text?: string) => void;
-	generateAccessibleId: (prefix: string) => string;
+	/**
+	 * A reference to the live region element
+	 */
 	liveRegion: Ref<HTMLElement | null>;
+	/**
+	 * Announces a message to screen readers
+	 */
+	announceToScreenReader: (message: string, priority?: AriaLivePriority) => void;
+	/**
+	 * Checks if an element is hidden from screen readers
+	 */
+	isHiddenFromScreenReaders: (element: HTMLElement) => boolean;
+	/**
+	 * Adds a skip link to the page
+	 */
+	addSkipLink: (targetId: string, text?: string) => void;
 }
 
 export function useAccessibility(): UseAccessibilityReturn {
-	const liveRegion = ref<HTMLElement | null>(null);
+	const { isBrowserEnv } = useBrowser();
 
-	onMounted(() => {
-		if (!liveRegion.value) {
-			const existingRegion = document.getElementById('aria-live-announcer');
-			if (existingRegion) {
-				liveRegion.value = existingRegion as HTMLElement;
-			} else {
-				const newRegion = document.createElement('div');
-				newRegion.id = 'aria-live-announcer';
-				newRegion.setAttribute('aria-live', 'polite');
-				newRegion.setAttribute('aria-atomic', 'true');
-				newRegion.className = 'sr-only';
-				document.body.appendChild(newRegion);
-				liveRegion.value = newRegion;
-			}
-		}
-	});
+	const liveRegion = ref<HTMLElement | null>(null);
 
 	function announceToScreenReader(
 		message: string,
@@ -60,8 +61,10 @@ export function useAccessibility(): UseAccessibilityReturn {
 		}
 	}
 
-	const isHiddenFromScreenReaders = (element: HTMLElement): boolean => {
-		if (!isDefined(element)) return true;
+	function isHiddenFromScreenReaders(element: HTMLElement): boolean {
+		if (!isDefined(element)) {
+			return true;
+		}
 
 		// Check aria-hidden attribute
 		if (element.hasAttribute('aria-hidden') && element.getAttribute('aria-hidden') === 'true') {
@@ -75,36 +78,41 @@ export function useAccessibility(): UseAccessibilityReturn {
 
 		// In test environments, we may not have access to IntersectionObserver
 		// This is a simplification for the test
-		if (typeof window !== 'undefined' && window.IntersectionObserver) {
+		if (isBrowserEnv() && window.IntersectionObserver) {
 			// We're checking visibility only in real browser environments
 			// We could also use useElementVisibility but it requires a reactive element
 			return false;
 		}
 
 		return false;
-	};
+	}
 
-	const addSkipLink = (targetId: string, text = 'Skip to main content'): void => {
-		if (typeof document === 'undefined') return;
+	function addSkipLink(targetId: string, text = 'Skip to main content'): void {
+		if (!isBrowserEnv()) {
+			return;
+		}
 
 		// Check if skip link already exists
 		const existingSkipLink = document.querySelector('.skip-link');
-		if (existingSkipLink) return;
+		if (existingSkipLink) {
+			return;
+		}
 
 		const skipLink = document.createElement('a');
+
+		skipLink.textContent = text;
 		skipLink.href = `#${targetId}`;
 		skipLink.className = 'skip-link';
-		skipLink.textContent = text;
 
-		skipLink.style.position = 'absolute';
-		skipLink.style.transform = 'translateY(-100%)';
-		skipLink.style.transition = 'transform 0.3s';
-		skipLink.style.padding = '0.5rem';
-		skipLink.style.backgroundColor = '#fff';
+		skipLink.style.top = '0';
+		skipLink.style.left = '0';
 		skipLink.style.color = '#000';
 		skipLink.style.zIndex = '9999';
-		skipLink.style.left = '0';
-		skipLink.style.top = '0';
+		skipLink.style.padding = '0.5rem';
+		skipLink.style.position = 'absolute';
+		skipLink.style.backgroundColor = '#fff';
+		skipLink.style.transform = 'translateY(-100%)';
+		skipLink.style.transition = 'transform 0.3s';
 
 		skipLink.addEventListener('focus', () => {
 			skipLink.style.transform = 'translateY(0)';
@@ -115,17 +123,34 @@ export function useAccessibility(): UseAccessibilityReturn {
 		});
 
 		document.body.insertBefore(skipLink, document.body.firstChild);
-	};
+	}
 
-	const generateAccessibleId = (prefix: string): string => {
-		return useIdentity().generateRandomIdWithPrefix(prefix);
-	};
+	onMounted(() => {
+		if (!liveRegion.value) {
+			const existingRegion = document.getElementById('aria-live-announcer');
+			if (existingRegion) {
+				liveRegion.value = existingRegion as HTMLElement;
+				return;
+			}
+
+			const newRegion = document.createElement('div');
+
+			newRegion.id = 'aria-live-announcer';
+			newRegion.setAttribute('aria-live', 'polite');
+			newRegion.setAttribute('aria-atomic', 'true');
+			newRegion.className = 'sr-only';
+
+			document.body.appendChild(newRegion);
+
+			liveRegion.value = newRegion;
+		}
+	});
 
 	return {
 		announceToScreenReader,
 		isHiddenFromScreenReaders,
 		addSkipLink,
-		generateAccessibleId,
+
 		liveRegion,
 	};
 }
