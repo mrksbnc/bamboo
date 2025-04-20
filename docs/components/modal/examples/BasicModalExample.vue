@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { BoButton, BoButtonVariant } from '@/components/bo_button'
 import { BoModal } from '@/components/bo_modal'
-import { bo-text, BoTextColor } from '@/components/bo_text'
+import { BoText, BoTextColor } from '@/components/bo_text'
 import { ref } from 'vue'
 
 const showModal = ref(false)

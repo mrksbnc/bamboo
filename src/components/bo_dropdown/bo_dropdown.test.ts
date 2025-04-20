@@ -68,24 +68,18 @@ describe('BoDropdown', () => {
 			},
 		})
 
-		// Open the dropdown
 		await wrapper.findComponent(BoButton).trigger('click')
 
-		// Find the dropdown items
 		const dropdownItems = wrapper.findAllComponents(BoDefaultDropdownItem)
 		expect(dropdownItems.length).toBe(3)
 
-		// Click the second option
 		await dropdownItems[1].trigger('click')
 
-		// Dropdown should be closed
 		expect(wrapper.find('#dropdown').exists()).toBe(false)
 
-		// Should emit 'select' event with the selected option
 		expect(wrapper.emitted('select')).toBeTruthy()
 		expect(wrapper.emitted('select')?.[0][0]).toEqual(defaultOptions[1])
 
-		// Button label should be updated to the selected option
 		expect(wrapper.findComponent(BoButton).props().label).toBe('Settings')
 	})
 

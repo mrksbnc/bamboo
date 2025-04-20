@@ -1,4 +1,4 @@
-import type { BoSize } from '@/shared/bo_size'
+import type { BoSize } from '@/shared/bo_size';
 
 export enum BoAvatarShape {
 	circle = 'circle',
@@ -38,23 +38,30 @@ export enum BoAvatarIndicatorStatus {
 	none = 'none',
 }
 
-export type BoAvatarData = {
-	alt?: string
-	src?: string
-	label?: string
+export interface BoAvatarData {
+	alt?: string;
+	src?: string;
+	label?: string;
 }
 
-export type BoAvatarProps = {
-	data: BoAvatarData
-	type?: BoAvatarType
-	shape?: BoAvatarShape
-	size?: BoSize
-	colorHex?: string
-	fontColorHex?: string
-	clickable?: boolean
-	withDefaultImage?: boolean
-	variant?: BoAvatarVariant
-	withIndicator?: boolean
-	indicatorStatus?: BoAvatarIndicatorStatus
-	indicatorPosition?: BoAvatarIndicatorPosition
+export interface BoAvatarColor {
+	bgColorHex?: string;
+	colorHex?: string;
+}
+
+export interface BoAvatarIndicator {
+	status?: BoAvatarIndicatorStatus;
+	position?: BoAvatarIndicatorPosition;
+}
+
+export interface BoAvatarProps {
+	data: BoAvatarData;
+	type?: BoAvatarType;
+	shape?: BoAvatarShape;
+	size?: BoSize;
+	clickable?: boolean;
+	withDefaultImage?: boolean;
+	variant?: BoAvatarVariant;
+	color?: BoAvatarColor;
+	indicator?: BoAvatarIndicator;
 }

@@ -8,8 +8,8 @@
 			class="bo-avatar__default relative overflow-hidden"
 		>
 			<img
-				:src="defaultAvatarSrc"
 				alt="avatar"
+				:src="defaultAvatarSrc"
 				class="h-full w-full object-cover"
 			/>
 		</span>
@@ -21,8 +21,8 @@
 				alt="avatar"
 				:size="labelSize"
 				:clickable="clickable"
-				:custom-color="fontColorHex"
 				:weight="BoFontWeight.medium"
+				:custom-color="color?.colorHex"
 				:text="StringUtils.safeString(data.label)"
 				:class="textColorClass"
 			/>
@@ -37,20 +37,18 @@
 				class="h-full w-full object-cover"
 			/>
 		</span>
-
-		<!-- Status Indicator -->
 		<span
-			v-if="withIndicator && indicatorStatus !== BoAvatarIndicatorStatus.none"
+			v-if="withIndicator && indicator?.status !== BoAvatarIndicatorStatus.none"
 			:class="indicatorClasses"
 		></span>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text'
-import { BoSize } from '@/shared'
-import { StringUtils, TailwindUtils } from '@/utils'
-import { computed, toRefs, type StyleValue } from 'vue'
+import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
+import { BoSize } from '@/shared';
+import { StringUtils, TailwindUtils } from '@/utils';
+import { computed, toRefs, type StyleValue } from 'vue';
 import {
 	BoAvatarIndicatorPosition,
 	BoAvatarIndicatorStatus,
@@ -58,51 +56,29 @@ import {
 	BoAvatarType,
 	BoAvatarVariant,
 	type BoAvatarProps,
-} from './bo_avatar'
+} from './bo_avatar';
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
-	data: () => {
-		return {
-			alt: undefined,
-			src: undefined,
-			label: undefined,
-		}
-	},
 	withDefaultImage: false,
 	size: () => BoSize.default,
 	type: () => BoAvatarType.initials,
 	shape: () => BoAvatarShape.rounded,
 	variant: () => BoAvatarVariant.primary,
-	withIndicator: false,
-	indicatorStatus: () => BoAvatarIndicatorStatus.none,
-	indicatorPosition: () => BoAvatarIndicatorPosition.bottomRight,
-})
+});
 
-const {
-	clickable,
-	data,
-	type,
-	shape,
-	size,
-	colorHex,
-	withDefaultImage,
-	fontColorHex,
-	variant,
-	withIndicator,
-	indicatorStatus,
-	indicatorPosition,
-} = toRefs(props)
+const { clickable, data, type, shape, size, variant, indicator, color, withDefaultImage } =
+	toRefs(props);
 
-const defaultAvatarSrc = new URL('@/assets/img/avatar.jpg', import.meta.url).href
+const defaultAvatarSrc = new URL('@/assets/img/avatar.jpg', import.meta.url).href;
 
 const containerClasses = {
 	default: /*tw*/ 'bo-avatar relative inline-flex overflow-hidden',
-}
+};
 
 const cursorClasses = {
 	default: 'cursor-default',
 	clickable: 'cursor-pointer hover:bg-opacity-80',
-}
+};
 
 const avatarSizeClasses = {
 	[BoSize.extra_small]: /*tw*/ 'w-6 h-6',
@@ -110,7 +86,7 @@ const avatarSizeClasses = {
 	[BoSize.default]: /*tw*/ 'w-10 h-10',
 	[BoSize.large]: /*tw*/ 'w-20 h-20',
 	[BoSize.extra_large]: /*tw*/ 'w-36 h-36',
-}
+};
 
 const avatarShapeClasses = {
 	[BoAvatarShape.circle]: /*tw*/ 'rounded-full',
@@ -119,33 +95,30 @@ const avatarShapeClasses = {
 	[BoAvatarShape.outline_circle]: /*tw*/ 'rounded-full',
 	[BoAvatarShape.outline_rounded]: /*tw*/ 'rounded-md',
 	[BoAvatarShape.outline_flat]: /*tw*/ 'rounded-none',
-}
+};
 
-// Indicator status colors
 const indicatorStatusClasses = {
 	[BoAvatarIndicatorStatus.online]: /*tw*/ 'bg-green-500',
 	[BoAvatarIndicatorStatus.offline]: /*tw*/ 'bg-gray-400',
 	[BoAvatarIndicatorStatus.busy]: /*tw*/ 'bg-red-500',
 	[BoAvatarIndicatorStatus.away]: /*tw*/ 'bg-yellow-500',
 	[BoAvatarIndicatorStatus.none]: '',
-}
+};
 
-// Indicator position classes
 const indicatorPositionClasses = {
 	[BoAvatarIndicatorPosition.topLeft]: /*tw*/ 'top-0 left-0',
 	[BoAvatarIndicatorPosition.topRight]: /*tw*/ 'top-0 right-0',
 	[BoAvatarIndicatorPosition.bottomLeft]: /*tw*/ 'bottom-0 left-0',
 	[BoAvatarIndicatorPosition.bottomRight]: /*tw*/ 'bottom-0 right-0',
-}
+};
 
-// Indicator size based on avatar size
 const indicatorSizeClasses = {
 	[BoSize.extra_small]: /*tw*/ 'w-1.5 h-1.5',
 	[BoSize.small]: /*tw*/ 'w-2 h-2',
 	[BoSize.default]: /*tw*/ 'w-2.5 h-2.5',
 	[BoSize.large]: /*tw*/ 'w-3.5 h-3.5',
 	[BoSize.extra_large]: /*tw*/ 'w-5 h-5',
-}
+};
 
 const variantColors = {
 	[BoAvatarVariant.primary]: /*tw*/ 'bg-blue-600 dark:bg-blue-700 text-white',
@@ -154,7 +127,7 @@ const variantColors = {
 	[BoAvatarVariant.warning]: /*tw*/ 'bg-yellow-500 dark:bg-yellow-600 text-white',
 	[BoAvatarVariant.success]: /*tw*/ 'bg-green-600 dark:bg-green-700 text-white',
 	[BoAvatarVariant.dark]: /*tw*/ 'bg-black dark:bg-black text-white',
-}
+};
 
 const outlineVariantColors = {
 	[BoAvatarVariant.primary]:
@@ -169,7 +142,7 @@ const outlineVariantColors = {
 		/*tw*/ 'border border-green-600 text-green-600 dark:border-green-500 dark:text-green-500',
 	[BoAvatarVariant.dark]:
 		/*tw*/ 'border border-black text-black dark:border-neutral-700 dark:text-neutral-300',
-}
+};
 
 const variantTextColors = {
 	[BoAvatarVariant.primary]: /*tw*/ 'text-white dark:text-white',
@@ -178,7 +151,7 @@ const variantTextColors = {
 	[BoAvatarVariant.warning]: /*tw*/ 'text-white dark:text-white',
 	[BoAvatarVariant.success]: /*tw*/ 'text-white dark:text-white',
 	[BoAvatarVariant.dark]: /*tw*/ 'text-white dark:text-white',
-}
+};
 
 const outlineVariantTextColors = {
 	[BoAvatarVariant.primary]: /*tw*/ 'text-blue-600 dark:text-blue-500',
@@ -187,68 +160,72 @@ const outlineVariantTextColors = {
 	[BoAvatarVariant.warning]: /*tw*/ 'text-yellow-500 dark:text-yellow-400',
 	[BoAvatarVariant.success]: /*tw*/ 'text-green-600 dark:text-green-500',
 	[BoAvatarVariant.dark]: /*tw*/ 'text-black dark:text-neutral-300',
-}
+};
 
 const bgConstruct = computed<string>(() => {
 	if (
-		!StringUtils.isEmptyStr(colorHex.value) ||
+		!StringUtils.isEmptyStr(color.value?.bgColorHex) ||
 		withDefaultImage.value ||
 		type.value === BoAvatarType.image
 	) {
-		return /*tw*/ 'bg-transparent'
+		return /*tw*/ 'bg-transparent';
 	}
 
 	const isOutlineShape =
 		shape.value === BoAvatarShape.outline_circle ||
 		shape.value === BoAvatarShape.outline_rounded ||
-		shape.value === BoAvatarShape.outline_flat
+		shape.value === BoAvatarShape.outline_flat;
 
 	if (isOutlineShape) {
 		return variant.value in outlineVariantColors
 			? outlineVariantColors[variant.value]
-			: generateRandomOutlineColor()
+			: generateRandomOutlineColor();
 	}
 
-	return variant.value in variantColors ? variantColors[variant.value] : generateRandomColor()
-})
+	return variant.value in variantColors ? variantColors[variant.value] : generateRandomColor();
+});
 
 const textColorClass = computed<string>(() => {
-	if (!StringUtils.isEmptyStr(fontColorHex.value)) {
-		return ''
+	if (!StringUtils.isEmptyStr(color.value?.colorHex)) {
+		return '';
 	}
 
 	const isOutlineShape =
 		shape.value === BoAvatarShape.outline_circle ||
 		shape.value === BoAvatarShape.outline_rounded ||
-		shape.value === BoAvatarShape.outline_flat
+		shape.value === BoAvatarShape.outline_flat;
 
 	if (isOutlineShape && variant.value in outlineVariantTextColors) {
-		return outlineVariantTextColors[variant.value]
+		return outlineVariantTextColors[variant.value];
 	}
 
 	if (variant.value in variantTextColors) {
-		return variantTextColors[variant.value]
+		return variantTextColors[variant.value];
 	}
 
-	return 'text-gray-600 dark:text-gray-300'
-})
+	return 'text-gray-600 dark:text-gray-300';
+});
+
+const withIndicator = computed<boolean>(() => {
+	return !!indicator.value;
+});
 
 const indicatorClasses = computed<string>(() => {
-	if (!withIndicator.value || indicatorStatus.value === BoAvatarIndicatorStatus.none) {
-		return ''
+	if (indicator.value?.status === BoAvatarIndicatorStatus.none) {
+		return '';
 	}
 
 	return TailwindUtils.merge(
 		'absolute rounded-full border-2 border-white',
-		indicatorStatusClasses[indicatorStatus.value],
-		indicatorPositionClasses[indicatorPosition.value],
 		indicatorSizeClasses[size.value],
-	)
-})
+		indicatorStatusClasses[indicator.value?.status ?? BoAvatarIndicatorStatus.none],
+		indicatorPositionClasses[indicator.value?.position ?? BoAvatarIndicatorPosition.bottomRight],
+	);
+});
 
 const cursorClassConstruct = computed<string>(() => {
-	return clickable.value ? cursorClasses.clickable : cursorClasses.default
-})
+	return clickable.value ? cursorClasses.clickable : cursorClasses.default;
+});
 
 const avatarContainerDefaultClasses = computed<string>(() => {
 	return TailwindUtils.merge(
@@ -256,51 +233,47 @@ const avatarContainerDefaultClasses = computed<string>(() => {
 		containerClasses.default,
 		cursorClassConstruct.value,
 		!shape.value.includes('outline') ? /*tw*/ 'shadow-sm dark:shadow-gray-800' : '',
-	)
-})
+	);
+});
 
 const showDefaultAvatar = computed<boolean>(() => {
 	if (withDefaultImage.value) {
-		return true
+		return true;
 	}
 
-	return data.value.src === undefined && StringUtils.isEmptyStr(data.value.label)
-})
+	return data.value.src === undefined && StringUtils.isEmptyStr(data.value.label);
+});
 
 const labelSize = computed<BoFontSize>(() => {
 	switch (size.value) {
 		case BoSize.extra_small:
-			return BoFontSize.xs
+			return BoFontSize.xs;
 		case BoSize.small:
-			return BoFontSize.sm
+			return BoFontSize.sm;
 		case BoSize.large:
-			return BoFontSize.lg
+			return BoFontSize.lg;
 		case BoSize.extra_large:
-			return BoFontSize.xl
+			return BoFontSize.xl;
 		case BoSize.default:
 		default:
-			return BoFontSize.base
+			return BoFontSize.base;
 	}
-})
+});
 
 const containerStyle = computed<StyleValue>(() => {
-	if (!StringUtils.isEmptyStr(colorHex.value)) {
-		return {
-			backgroundColor: colorHex.value,
-			color: fontColorHex.value,
-		}
-	}
-
-	return {}
-})
+	return {
+		backgroundColor: color.value?.bgColorHex,
+		color: color.value?.colorHex,
+	};
+});
 
 const avatarContainerClasses = computed<string>(() => {
 	return TailwindUtils.merge(
 		avatarSizeClasses[size.value],
 		avatarShapeClasses[shape.value],
 		avatarContainerDefaultClasses.value,
-	)
-})
+	);
+});
 
 function generateRandomColor(): string {
 	const colors = [
@@ -310,9 +283,9 @@ function generateRandomColor(): string {
 		/*tw*/ 'bg-yellow-500 dark:bg-yellow-600 text-white',
 		/*tw*/ 'bg-green-600 dark:bg-green-700 text-white',
 		/*tw*/ 'bg-black dark:bg-black text-white',
-	]
+	];
 
-	return colors[Math.floor(Math.random() * colors.length)]
+	return colors[Math.floor(Math.random() * colors.length)];
 }
 
 function generateRandomOutlineColor(): string {
@@ -323,8 +296,8 @@ function generateRandomOutlineColor(): string {
 		/*tw*/ 'border border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
 		/*tw*/ 'border border-green-600 text-green-600 dark:border-green-500 dark:text-green-500',
 		/*tw*/ 'border border-black text-black dark:border-neutral-700 dark:text-neutral-300',
-	]
+	];
 
-	return colors[Math.floor(Math.random() * colors.length)]
+	return colors[Math.floor(Math.random() * colors.length)];
 }
 </script>

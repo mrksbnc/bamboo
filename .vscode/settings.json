@@ -10,6 +10,7 @@
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "css.customData": [".vscode/tailwind.json"],
   "tailwindCSS.experimental.classRegex": [
     "/\\*\\s*tw\\s*\\*/\\s*'([^']*)'",
     "/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\""
