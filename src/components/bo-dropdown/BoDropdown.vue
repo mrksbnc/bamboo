@@ -15,16 +15,14 @@
 		class="absolute z-10 mt-2 w-44 divide-y divide-gray-100 rounded-lg border border-neutral-100 bg-white shadow dark:divide-gray-700 dark:border-gray-800 dark:bg-gray-700"
 	>
 		<div class="p-1">
-			<slot name="items">
-				<component
-					:is="component"
-					v-for="option in options"
-					:key="option.label"
-					:icon="option.icon"
-					:label="option.label"
-					@click="onOptionClick(option)"
-				/>
-			</slot>
+			<component
+				:is="component"
+				v-for="option in options"
+				:key="option.label"
+				:icon="option.icon"
+				:label="option.label"
+				@click="onOptionClick(option)"
+			/>
 		</div>
 	</div>
 </template>

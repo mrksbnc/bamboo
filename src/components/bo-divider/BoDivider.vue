@@ -39,14 +39,19 @@ const color = computed<StyleConstruct>(() => {
 		style: {},
 	};
 
-	if (colorHex.value !== undefined && tailwindColor.value === undefined) {
+	if (tailwindColor.value && colorHex.value) {
+		styles.class = tailwindColor.value;
+		return styles;
+	}
+
+	if (colorHex.value) {
 		styles.style = {
 			borderColor: colorHex.value,
 		};
 		return styles;
 	}
 
-	if (tailwindColor.value !== undefined) {
+	if (tailwindColor.value) {
 		styles.class = tailwindColor.value;
 		return styles;
 	}

@@ -1,26 +1,10 @@
-export enum BoRadioSize {
-	small = 'small',
-	default = 'default',
-	large = 'large',
-}
+import { BoSize } from '@/shared';
 
-export enum BoRadioState {
-	none = 'none',
-	valid = 'valid',
-	invalid = 'invalid',
-}
-
-export type BoRadioProps = {
-	modelValue?: string | number | boolean;
+export interface BoRadioProps {
 	value: string | number | boolean;
 	id?: string;
-	label?: string;
-	description?: string;
-	state?: BoRadioState;
-	size?: BoRadioSize;
-	errorMessage?: string | null;
+	text?: string;
 	disabled?: boolean;
-	readonly?: boolean;
-	required?: boolean;
-	name?: string;
-};
+	description?: string;
+	size?: BoSize;
+}

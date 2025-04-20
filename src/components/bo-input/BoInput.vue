@@ -90,7 +90,7 @@
 		<span
 			v-if="description && StringService.instance.isEmptyStr(errorMessage)"
 			:id="descriptionId"
-			class="mt-1 text-sm text-gray-500 dark:text-gray-400"
+			class="bo-input__description mt-1 text-sm text-gray-500 dark:text-gray-400"
 		>
 			{{ description }}
 		</span>
