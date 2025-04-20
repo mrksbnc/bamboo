@@ -1,12 +1,12 @@
 <template>
-	<div
+	<i
 		v-html="svg"
 		:style="style"
 		:class="tailwindCssSizeClasses"
-		:aria-label="accessibility?.title"
+		:aria-label="accessibility.title"
 		:aria-hidden="accessibility?.decorative"
-		:role="accessibility?.decorative ? 'presentation' : 'img'"
-	></div>
+		:role="role"
+	></i>
 </template>
 
 <script setup lang="ts">
@@ -17,6 +17,10 @@ import { icons, type BoIconProps } from './bo-icon';
 const props = withDefaults(defineProps<BoIconProps>(), {
 	size: () => BoSize.default,
 	color: () => 'currentColor',
+	accessibility: () => ({
+		title: 'icon',
+		decorative: true,
+	}),
 });
 
 const { icon, size, color } = toRefs(props);
@@ -38,6 +42,10 @@ const iconMap = Object.keys(icons).reduce(
 	},
 	{} as Record<string, () => Promise<string>>,
 );
+
+const role = computed<string>(() => {
+	return props.accessibility.decorative ? 'presentation' : 'img';
+});
 
 const style = computed<StyleValue>(() => {
 	return {

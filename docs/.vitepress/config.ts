@@ -31,6 +31,7 @@ function getComponents() {
 		{ text: 'Loading Spinner', link: '/components/loading-spinner' },
 		{ text: 'Modal', link: '/components/modal' },
 		{ text: 'Radio', link: '/components/radio' },
+		{ text: 'Radio Group', link: '/components/radio-group' },
 		{ text: 'Text', link: '/components/text' },
 		{ text: 'Textarea', link: '/components/textarea' },
 		{ text: 'Toast', link: '/components/toast' },
@@ -44,7 +45,7 @@ export default defineConfig({
 	base: '/',
 	cleanUrls: true,
 	head: [
-		['link', { rel: 'icon', type: 'image/x-icon', href: '/assets/logo.ico' }],
+		['link', { rel: 'icon', href: '/assets/logo.ico' }],
 		[
 			'script',
 			{
@@ -54,7 +55,7 @@ export default defineConfig({
 	],
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config
-		logo: '/assets/logo.webp',
+		logo: '/assets/logo.ico',
 		sidebar: buildSidebar(),
 		socialLinks: [{ icon: 'github', link: 'https://github.com/mrksbnc/bamboo' }],
 		footer: {

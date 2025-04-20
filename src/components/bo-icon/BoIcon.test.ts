@@ -13,7 +13,7 @@ describe('BoIcon', () => {
 		});
 
 		expect(wrapper.exists()).toBe(true);
-		expect(wrapper.attributes('role')).toBe('img');
+		expect(wrapper.attributes('role')).toBe('presentation');
 		expect(wrapper.attributes('aria-label')).toBe('icon');
 	});
 

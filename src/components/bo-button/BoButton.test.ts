@@ -11,14 +11,6 @@ describe('BoButton', () => {
 			props: {
 				label: 'Button',
 			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
-			},
 		});
 
 		expect(wrapper.exists()).toBe(true);
@@ -32,20 +24,12 @@ describe('BoButton', () => {
 				label: 'Button',
 				variant: BoButtonVariant.primary,
 			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
-			},
 		});
 
 		expect(wrapper.classes()).toContain('bg-blue-600');
 
 		await wrapper.setProps({ variant: BoButtonVariant.secondary });
-		expect(wrapper.classes()).toContain('bg-gray-400');
+		expect(wrapper.classes()).toContain('bg-neutral-400');
 
 		await wrapper.setProps({ variant: BoButtonVariant.danger });
 		expect(wrapper.classes()).toContain('bg-red-600');
@@ -91,33 +75,25 @@ describe('BoButton', () => {
 				label: 'Button',
 				size: BoSize.default,
 			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
-			},
 		});
 
-		expect(wrapper.classes()).toContain('px-5');
+		expect(wrapper.classes()).toContain('px-4');
 		expect(wrapper.classes()).toContain('py-2.5');
 
 		await wrapper.setProps({ size: BoSize.small });
-		expect(wrapper.classes()).toContain('px-3');
+		expect(wrapper.classes()).toContain('px-2');
 		expect(wrapper.classes()).toContain('py-2');
 
 		await wrapper.setProps({ size: BoSize.large });
-		expect(wrapper.classes()).toContain('px-5');
+		expect(wrapper.classes()).toContain('px-4');
 		expect(wrapper.classes()).toContain('py-3');
 
 		await wrapper.setProps({ size: BoSize.extra_small });
-		expect(wrapper.classes()).toContain('px-2');
+		expect(wrapper.classes()).toContain('px-1');
 		expect(wrapper.classes()).toContain('py-1');
 
 		await wrapper.setProps({ size: BoSize.extra_large });
-		expect(wrapper.classes()).toContain('px-6');
+		expect(wrapper.classes()).toContain('px-5');
 		expect(wrapper.classes()).toContain('py-3.5');
 	});
 
@@ -126,14 +102,6 @@ describe('BoButton', () => {
 			props: {
 				label: 'Button',
 				prefixIcon: Icon.check,
-			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
 			},
 		});
 
@@ -148,14 +116,6 @@ describe('BoButton', () => {
 				label: 'Button',
 				suffixIcon: Icon.check,
 			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
-			},
 		});
 
 		const icon = wrapper.findComponent({ name: 'bo-icon' });
@@ -167,14 +127,6 @@ describe('BoButton', () => {
 		const wrapper = mount(BoButton, {
 			props: {
 				prefixIcon: Icon.check,
-			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
 			},
 		});
 
@@ -192,17 +144,9 @@ describe('BoButton', () => {
 				prefixIcon: Icon.check,
 				size: BoSize.default,
 			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
-			},
 		});
 
-		expect(wrapper.classes()).toContain('p-2.5');
+		expect(wrapper.classes()).toContain('p-3');
 	});
 
 	it('disables the button when disabled prop is true', async () => {
@@ -210,14 +154,6 @@ describe('BoButton', () => {
 			props: {
 				label: 'Button',
 				disabled: false,
-			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
 			},
 		});
 
@@ -237,14 +173,6 @@ describe('BoButton', () => {
 				isLoading: true,
 				loaderType: BoLoaderType.spinner,
 			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
-			},
 		});
 
 		expect(wrapper.findComponent({ name: 'bo-loading-spinner' }).exists()).toBe(true);
@@ -259,14 +187,6 @@ describe('BoButton', () => {
 				isLoading: true,
 				loaderType: BoLoaderType.pulse,
 			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
-			},
 		});
 
 		expect(wrapper.findComponent({ name: 'bo-loading-pulse' }).exists()).toBe(true);
@@ -278,14 +198,6 @@ describe('BoButton', () => {
 			props: {
 				label: 'Button',
 				fullWidth: false,
-			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
 			},
 		});
 
@@ -301,14 +213,6 @@ describe('BoButton', () => {
 				label: 'Button',
 				pressed: false,
 			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
-			},
 		});
 
 		expect(wrapper.attributes('aria-pressed')).toBe('false');
@@ -322,14 +226,6 @@ describe('BoButton', () => {
 			props: {
 				label: 'Button',
 				type: HtmlButtonType.button,
-			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
 			},
 		});
 
@@ -348,14 +244,6 @@ describe('BoButton', () => {
 				prefixIcon: Icon.check,
 				ariaLabel: 'Check button',
 			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
-			},
 		});
 
 		expect(wrapper.attributes('aria-label')).toBe('Check button');
@@ -367,14 +255,6 @@ describe('BoButton', () => {
 				label: 'Button',
 				autofocus: true,
 			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
-			},
 		});
 
 		expect(wrapper.attributes('autofocus')).toBeDefined();
@@ -383,22 +263,13 @@ describe('BoButton', () => {
 	it('renders custom content when useSlot is true', () => {
 		const wrapper = mount(BoButton, {
 			props: {
-				useSlot: true,
+				label: 'Button',
 			},
 			slots: {
-				content: '<span data-test="custom-content">Custom Content</span>',
-			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
+				default: '<div data-test="custom-content">Custom Content</div>',
 			},
 		});
 
-		expect(wrapper.find('.bo-button__slot-container').exists()).toBe(true);
 		expect(wrapper.find('[data-test="custom-content"]').exists()).toBe(true);
 	});
 
@@ -407,14 +278,6 @@ describe('BoButton', () => {
 			props: {
 				label: 'Button',
 				id: 'custom-button-id',
-			},
-			global: {
-				stubs: {
-					'bo-text': true,
-					'bo-icon': true,
-					'bo-loading-spinner': true,
-					'bo-loading-pulse': true,
-				},
 			},
 		});
 

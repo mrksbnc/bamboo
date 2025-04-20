@@ -288,8 +288,15 @@ export const icons = import.meta.glob('@/assets/icons/**/*.svg', {
 	import: 'default',
 }) as Record<string, () => Promise<string>>;
 
-export interface IconAccessibility {
+export interface AccessibilityDefinition {
+	/**
+	 * Whether the icon is decorative. This means that the icon is not a part of
+	 * the UI and is only used to convey information.
+	 */
 	decorative?: boolean;
+	/**
+	 * The title of the icon. This is used to describe the icon to users of assistive technologies.
+	 */
 	title?: string;
 }
 
@@ -297,5 +304,5 @@ export interface BoIconProps {
 	icon: Icon;
 	size?: BoSize;
 	color?: string;
-	accessibility?: IconAccessibility;
+	accessibility?: AccessibilityDefinition;
 }
