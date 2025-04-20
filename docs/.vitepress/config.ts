@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from 'vitepress';
 
 function buildSidebar() {
 	return [
@@ -22,20 +22,7 @@ function buildSidebar() {
 			text: 'Components',
 			items: [...getComponents()],
 		},
-		{
-			text: 'Utilities',
-			items: [
-				{ text: 'Overview', link: '/pages/utilities' },
-				{ text: 'Accessibility Utils', link: '/pages/utilities/accessibility-utils' },
-				{ text: 'Identity Utils', link: '/pages/utilities/identity-utils' },
-				{ text: 'Keyboard Utils', link: '/pages/utilities/keyboard-utils' },
-				{ text: 'LocalStorage Utils', link: '/pages/utilities/local-storage-utils' },
-				{ text: 'String Utils', link: '/pages/utilities/string-utils' },
-				{ text: 'Tailwind Utils', link: '/pages/utilities/tailwind-utils' },
-				{ text: 'Theme Utils', link: '/pages/utilities/theme-utils' },
-			],
-		},
-	]
+	];
 }
 
 function getComponents() {
@@ -57,7 +44,7 @@ function getComponents() {
 		{ text: 'Text', link: '/components/text/text' },
 		{ text: 'Textarea', link: '/components/textarea/textarea' },
 		{ text: 'Toast', link: '/components/toast/toast' },
-	]
+	];
 }
 
 // https://vitepress.dev/reference/site-config
@@ -86,4 +73,4 @@ export default defineConfig({
 			copyright: 'Bence Markus',
 		},
 	},
-})
+});
