@@ -1,5 +1,5 @@
 <script setup>
-import { BoAvatar, BoAvatarType, BoAvatarShape, BoAvatarVariant, BoAvatarIndicatorStatus, BoAvatarIndicatorPosition } from '@/components/bo_avatar';
+import { BoAvatar, BoAvatarType, BoAvatarShape, BoAvatarVariant, BoAvatarIndicatorStatus, BoAvatarIndicatorPosition } from '@/components/bo-avatar';
 import { BoSize } from '@/shared'
 </script>
 

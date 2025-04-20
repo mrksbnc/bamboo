@@ -1,7 +1,7 @@
 <script setup>
-import { BoButton, BoButtonVariant, BoButtonShape } from '@/components/bo_button'
+import { BoButton, BoButtonVariant, BoButtonShape } from '@/components/bo-button'
 import { BoSize } from '@/shared'
-import { Icon } from '@/components/bo_icon'
+import { Icon } from '@/components/bo-icon'
 import SlotButton from './examples/SlotButton.vue'
 </script>
 
@@ -140,10 +140,10 @@ In some cases you may want to make the button take up the full width of the cont
 
 ```js
 <div class="flex gap-2">
-  <bo-button
-    label="Button"
-    full-width
-  />
+	<bo-button
+		label="Button"
+		full-width
+	/>
 </div>
 ```
 

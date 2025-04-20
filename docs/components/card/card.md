@@ -1,5 +1,5 @@
 <script setup>
-import { BoCard } from '@/components/bo_card';
+import { BoCard } from '@/components/bo-card';
 import DefaultSlotExample from './examples/DefaultSlotExample.vue'
 </script>
 
@@ -21,21 +21,21 @@ A card is a container that holds related content and actions with a predifined s
 
 ```vue
 <template>
-  <bo-card>
-    <template #header>
-      <div>Header content</div>
-    </template>
-    <template #content>
-      <div>Main content</div>
-    </template>
-    <template #actions>
-      <div>Action buttons</div>
-    </template>
-  </bo-card>
+	<bo-card>
+		<template #header>
+			<div>Header content</div>
+		</template>
+		<template #content>
+			<div>Main content</div>
+		</template>
+		<template #actions>
+			<div>Action buttons</div>
+		</template>
+	</bo-card>
 </template>
 
 <script setup>
-import { BoCard } from '@/components/bo_card'
+import { BoCard } from '@/components/bo-card';
 </script>
 ```
 

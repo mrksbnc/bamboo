@@ -1,5 +1,5 @@
 <script setup>
-import { BoDivider, BoDividerVariant } from '@/components/bo_divider';
+import { BoDivider, BoDividerVariant } from '@/components/bo-divider';
 </script>
 
 # bo-divider

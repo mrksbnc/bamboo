@@ -1,5 +1,5 @@
 <script setup>
-import { BoIcon, Icon, icons } from '@/components/bo_icon';
+import { BoIcon, Icon, icons } from '@/components/bo-icon';
 import { BoSize } from '@/shared';
 </script>
 

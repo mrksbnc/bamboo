@@ -1,5 +1,5 @@
 <script setup>
-import { BoCheckbox, BoLinkedCheckbox, BoCheckboxSize, BoCheckboxState } from '@/components/bo_checkbox';
+import { BoCheckbox, BoLinkedCheckbox, BoCheckboxSize, BoCheckboxState } from '@/components/bo-checkbox';
 </script>
 
 # Checkbox

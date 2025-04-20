@@ -6,27 +6,27 @@ The BoModal component creates a dialog that appears above the main content to pr
 
 ```vue
 <template>
-  <bo-button
-    @click="showModal = true"
-    label="Open Modal"
-  />
+	<bo-button
+		@click="showModal = true"
+		label="Open Modal"
+	/>
 
-  <bo-modal
-    v-if="showModal"
-    title="Example Modal"
-    description="This is a basic modal example."
-    @close="showModal = false"
-  >
-    <!-- Modal content goes here -->
-  </bo-modal>
+	<bo-modal
+		v-if="showModal"
+		title="Example Modal"
+		description="This is a basic modal example."
+		@close="showModal = false"
+	>
+		<!-- Modal content goes here -->
+	</bo-modal>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { BoModal } from '@/components/bo_modal'
-import { BoButton } from '@/components/bo_button'
+import { ref } from 'vue';
+import { BoModal } from '@/components/bo-modal';
+import { BoButton } from '@/components/bo-button';
 
-const showModal = ref(false)
+const showModal = ref(false);
 </script>
 ```
 
@@ -34,9 +34,9 @@ const showModal = ref(false)
 
 <script setup>
 import { ref } from 'vue';
-import { BoModal } from '@/components/bo_modal';
-import { BoButton, BoButtonVariant } from '@/components/bo_button';
-import { bo-text, BoFontSize, BoTextColor } from '@/components/bo_text';
+import { BoModal } from '@/components/bo-modal';
+import { BoButton, BoButtonVariant } from '@/components/bo-button';
+import { bo-text, BoFontSize, BoTextColor } from '@/components/bo-text';
 
 const showModal = ref(false);
 </script>
@@ -154,15 +154,15 @@ The BoModal component implements several accessibility features:
 
 ```ts
 interface BoModalProps {
-  id?: string
-  title?: string
-  description?: string
-  showClose?: boolean
-  width?: {
-    px?: number
-    percent?: number
-    tailwind?: string
-  }
+	id?: string;
+	title?: string;
+	description?: string;
+	showClose?: boolean;
+	width?: {
+		px?: number;
+		percent?: number;
+		tailwind?: string;
+	};
 }
 ```
 
@@ -170,48 +170,48 @@ Example of defining props in your component:
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
-import { BoModal } from '@/components/bo_modal'
-import { BoButton } from '@/components/bo_button'
+import { ref } from 'vue';
+import { BoModal } from '@/components/bo-modal';
+import { BoButton } from '@/components/bo-button';
 
-const showModal = ref(false)
+const showModal = ref(false);
 
 const modalProps = {
-  id: 'confirm-modal',
-  title: 'Confirm Action',
-  description: 'Are you sure you want to proceed with this action?',
-  showClose: true,
-  width: {
-    px: 500,
-  },
-}
+	id: 'confirm-modal',
+	title: 'Confirm Action',
+	description: 'Are you sure you want to proceed with this action?',
+	showClose: true,
+	width: {
+		px: 500,
+	},
+};
 
 const handleClose = () => {
-  showModal.value = false
-}
+	showModal.value = false;
+};
 </script>
 
 <template>
-  <bo-button
-    @click="showModal = true"
-    label="Open Modal"
-  />
+	<bo-button
+		@click="showModal = true"
+		label="Open Modal"
+	/>
 
-  <bo-modal
-    v-if="showModal"
-    v-bind="modalProps"
-    @close="handleClose"
-  >
-    <!-- Modal content -->
-    <template #footer>
-      <div class="flex justify-end border-t p-4">
-        <bo-button
-          label="Confirm"
-          @click="handleClose"
-        />
-      </div>
-    </template>
-  </bo-modal>
+	<bo-modal
+		v-if="showModal"
+		v-bind="modalProps"
+		@close="handleClose"
+	>
+		<!-- Modal content -->
+		<template #footer>
+			<div class="flex justify-end border-t p-4">
+				<bo-button
+					label="Confirm"
+					@click="handleClose"
+				/>
+			</div>
+		</template>
+	</bo-modal>
 </template>
 ```
 
@@ -219,8 +219,8 @@ const handleClose = () => {
 
 ```ts
 const emit = defineEmits<{
-  close: []
-}>()
+	close: [];
+}>();
 ```
 
 ### Slots

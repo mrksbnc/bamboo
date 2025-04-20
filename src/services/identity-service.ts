@@ -1,6 +1,9 @@
 let instance: IdentityService | null = null;
 
 export interface BoIdentityService {
+	/**
+	 * Generates a unique identifier for an element
+	 */
 	getId(prefix?: string): string;
 }
 

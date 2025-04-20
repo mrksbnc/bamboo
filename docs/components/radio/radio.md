@@ -1,5 +1,5 @@
 <script setup>
-import { BoRadio, BoRadioSize, BoRadioState } from '@/components/bo_radio';
+import { BoRadio, BoRadioSize, BoRadioState } from '@/components/bo-radio';
 import { ref } from 'vue';
 
 const selectedValue = ref('option1');
@@ -15,24 +15,24 @@ The `BoRadio` component allows users to select one option from a set. It provide
 
 ```vue
 <template>
-  <bo-radio
-    v-model="selectedValue"
-    name="options"
-    value="option1"
-    label="Option 1"
-  />
-  <bo-radio
-    v-model="selectedValue"
-    name="options"
-    value="option2"
-    label="Option 2"
-  />
+	<bo-radio
+		v-model="selectedValue"
+		name="options"
+		value="option1"
+		label="Option 1"
+	/>
+	<bo-radio
+		v-model="selectedValue"
+		name="options"
+		value="option2"
+		label="Option 2"
+	/>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const selectedValue = ref('option1')
+const selectedValue = ref('option1');
 </script>
 ```
 
@@ -73,24 +73,24 @@ The Radio component supports different sizes: small, default, and large.
 
 ```vue
 <template>
-  <bo-radio
-    size="small"
-    label="Small Radio"
-    name="size-demo"
-    value="small"
-  />
-  <bo-radio
-    size="default"
-    label="Default Radio"
-    name="size-demo"
-    value="default"
-  />
-  <bo-radio
-    size="large"
-    label="Large Radio"
-    name="size-demo"
-    value="large"
-  />
+	<bo-radio
+		size="small"
+		label="Small Radio"
+		name="size-demo"
+		value="small"
+	/>
+	<bo-radio
+		size="default"
+		label="Default Radio"
+		name="size-demo"
+		value="default"
+	/>
+	<bo-radio
+		size="large"
+		label="Large Radio"
+		name="size-demo"
+		value="large"
+	/>
 </template>
 ```
 
@@ -106,26 +106,26 @@ The Radio component supports different states: none (default), valid, and invali
 
 ```vue
 <template>
-  <bo-radio
-    state="none"
-    label="Default State"
-    name="state-demo"
-    value="none"
-  />
-  <bo-radio
-    state="valid"
-    label="Valid State"
-    description="This radio is valid"
-    name="state-demo"
-    value="valid"
-  />
-  <bo-radio
-    state="invalid"
-    label="Invalid State"
-    error-message="This field is required"
-    name="state-demo"
-    value="invalid"
-  />
+	<bo-radio
+		state="none"
+		label="Default State"
+		name="state-demo"
+		value="none"
+	/>
+	<bo-radio
+		state="valid"
+		label="Valid State"
+		description="This radio is valid"
+		name="state-demo"
+		value="valid"
+	/>
+	<bo-radio
+		state="invalid"
+		label="Invalid State"
+		error-message="This field is required"
+		name="state-demo"
+		value="invalid"
+	/>
 </template>
 ```
 
@@ -141,19 +141,19 @@ Disabled radio buttons prevent user interaction and appear visually dimmed to in
 
 ```vue
 <template>
-  <bo-radio
-    label="Disabled Radio"
-    disabled
-    name="disabled-demo"
-    value="disabled"
-  />
-  <bo-radio
-    label="Disabled Selected Radio"
-    disabled
-    name="disabled-demo"
-    value="selected"
-    :model-value="'selected'"
-  />
+	<bo-radio
+		label="Disabled Radio"
+		disabled
+		name="disabled-demo"
+		value="disabled"
+	/>
+	<bo-radio
+		label="Disabled Selected Radio"
+		disabled
+		name="disabled-demo"
+		value="selected"
+		:model-value="'selected'"
+	/>
 </template>
 ```
 
@@ -168,19 +168,19 @@ Readonly radio buttons display a state that cannot be changed but still allow fo
 
 ```vue
 <template>
-  <bo-radio
-    label="Readonly Radio"
-    readonly
-    name="readonly-demo"
-    value="readonly"
-  />
-  <bo-radio
-    label="Readonly Selected Radio"
-    readonly
-    name="readonly-demo"
-    value="selected"
-    :model-value="'selected'"
-  />
+	<bo-radio
+		label="Readonly Radio"
+		readonly
+		name="readonly-demo"
+		value="readonly"
+	/>
+	<bo-radio
+		label="Readonly Selected Radio"
+		readonly
+		name="readonly-demo"
+		value="selected"
+		:model-value="'selected'"
+	/>
 </template>
 ```
 
@@ -195,20 +195,20 @@ Radio buttons can include description text that appears below the radio to provi
 
 ```vue
 <template>
-  <bo-radio
-    label="Radio with Description"
-    description="This description provides additional information"
-    name="description-demo"
-    value="with-description"
-  />
-  <bo-radio
-    label="Invalid Radio with Error"
-    state="invalid"
-    error-message="Please select a valid option"
-    description="This description won't show when there's an error"
-    name="description-demo"
-    value="with-error"
-  />
+	<bo-radio
+		label="Radio with Description"
+		description="This description provides additional information"
+		name="description-demo"
+		value="with-description"
+	/>
+	<bo-radio
+		label="Invalid Radio with Error"
+		state="invalid"
+		error-message="Please select a valid option"
+		description="This description won't show when there's an error"
+		name="description-demo"
+		value="with-error"
+	/>
 </template>
 ```
 
@@ -235,12 +235,12 @@ A required radio button displays an asterisk next to the label to indicate a sel
 
 ```vue
 <template>
-  <bo-radio
-    label="Required Radio"
-    required
-    name="required-demo"
-    value="required"
-  />
+	<bo-radio
+		label="Required Radio"
+		required
+		name="required-demo"
+		value="required"
+	/>
 </template>
 ```
 
@@ -254,36 +254,36 @@ Radio buttons with the same `name` attribute form a group where only one option 
 
 ```vue
 <template>
-  <div class="flex flex-col gap-2">
-    <h3 class="mb-2 text-lg font-medium">Select your preferred contact method:</h3>
-    <bo-radio
-      v-model="contactMethod"
-      name="contact"
-      value="email"
-      label="Email"
-      description="We'll send you email updates"
-    />
-    <bo-radio
-      v-model="contactMethod"
-      name="contact"
-      value="phone"
-      label="Phone"
-      description="We'll call you with updates"
-    />
-    <bo-radio
-      v-model="contactMethod"
-      name="contact"
-      value="mail"
-      label="Mail"
-      description="We'll send physical mail to your address"
-    />
-  </div>
+	<div class="flex flex-col gap-2">
+		<h3 class="mb-2 text-lg font-medium">Select your preferred contact method:</h3>
+		<bo-radio
+			v-model="contactMethod"
+			name="contact"
+			value="email"
+			label="Email"
+			description="We'll send you email updates"
+		/>
+		<bo-radio
+			v-model="contactMethod"
+			name="contact"
+			value="phone"
+			label="Phone"
+			description="We'll call you with updates"
+		/>
+		<bo-radio
+			v-model="contactMethod"
+			name="contact"
+			value="mail"
+			label="Mail"
+			description="We'll send physical mail to your address"
+		/>
+	</div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const contactMethod = ref('email')
+const contactMethod = ref('email');
 </script>
 ```
 

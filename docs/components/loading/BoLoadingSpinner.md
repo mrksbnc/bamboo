@@ -6,11 +6,11 @@ A customizable loading spinner component with various sizes, colors, and optiona
 
 ```vue
 <template>
-  <bo-loading-spinner />
+	<bo-loading-spinner />
 </template>
 
 <script setup>
-import { BoLoadingSpinner } from '@/components/bo_loading_spinner'
+import { BoLoadingSpinner } from '@/components/bo-loading_spinner';
 </script>
 ```
 
@@ -18,8 +18,8 @@ import { BoLoadingSpinner } from '@/components/bo_loading_spinner'
 
 <script setup>
 import { BoSize } from '@/shared';
-import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
-import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo_loader';
+import { BoLoadingSpinner } from '@/components/bo-loading_spinner';
+import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo-loader';
 </script>
 
 <div class="flex flex-wrap gap-8">
@@ -127,11 +127,11 @@ You can set a custom color using the `custom-color` prop:
 
 ```ts
 interface BoLoadingSpinnerProps {
-  size?: BoSize
-  variant?: BoLoaderVariant
-  textPosition?: BoLoaderTextPosition
-  loaderText?: string
-  customColor?: string
+	size?: BoSize;
+	variant?: BoLoaderVariant;
+	textPosition?: BoLoaderTextPosition;
+	loaderText?: string;
+	customColor?: string;
 }
 ```
 
@@ -139,26 +139,26 @@ The component uses these enums:
 
 ```ts
 enum BoSize {
-  extra_small = 'extra_small',
-  small = 'small',
-  default = 'default',
-  large = 'large',
-  extra_large = 'extra_large',
+	extra_small = 'extra_small',
+	small = 'small',
+	default = 'default',
+	large = 'large',
+	extra_large = 'extra_large',
 }
 
 enum BoLoaderVariant {
-  primary = 'primary',
-  secondary = 'secondary',
-  danger = 'danger',
-  warning = 'warning',
-  success = 'success',
-  dark = 'dark',
-  white = 'white',
+	primary = 'primary',
+	secondary = 'secondary',
+	danger = 'danger',
+	warning = 'warning',
+	success = 'success',
+	dark = 'dark',
+	white = 'white',
 }
 
 enum BoLoaderTextPosition {
-  bottom = 'bottom',
-  side = 'side',
+	bottom = 'bottom',
+	side = 'side',
 }
 ```
 
@@ -166,21 +166,21 @@ Example of defining props in your component:
 
 ```vue
 <script setup lang="ts">
-import { BoLoadingSpinner } from '@/components/bo_loading_spinner'
-import { BoSize } from '@/shared/bo_size'
-import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo_loader'
+import { BoLoadingSpinner } from '@/components/bo-loading_spinner';
+import { BoSize } from '@/shared/bo-size';
+import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo-loader';
 
 const spinnerProps = {
-  size: BoSize.large,
-  variant: BoLoaderVariant.primary,
-  textPosition: BoLoaderTextPosition.bottom,
-  loaderText: 'Loading data...',
-  customColor: '',
-}
+	size: BoSize.large,
+	variant: BoLoaderVariant.primary,
+	textPosition: BoLoaderTextPosition.bottom,
+	loaderText: 'Loading data...',
+	customColor: '',
+};
 </script>
 
 <template>
-  <bo-loading-spinner v-bind="spinnerProps" />
+	<bo-loading-spinner v-bind="spinnerProps" />
 </template>
 ```
 

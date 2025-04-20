@@ -1,6 +1,6 @@
 <script setup>
-    import { BoDropdown } from '@/components/bo_dropdown';
-    import { Icon } from '@/components/bo_icon';
+    import { BoDropdown } from '@/components/bo-dropdown';
+    import { Icon } from '@/components/bo-icon';
 </script>
 
 # bo-dropdown

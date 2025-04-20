@@ -1,6 +1,6 @@
 <script setup>
-  import { BoBadge, BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/bo_badge';
-  import { Icon } from '@/components/bo_icon';
+  import { BoBadge, BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/bo-badge';
+  import { Icon } from '@/components/bo-icon';
   import { BoSize } from '@/shared';
 </script>
 
@@ -44,25 +44,25 @@ Though none of the props are required, either the `label`, `prefix-icon`, or the
 
 ```ts
 export enum BoBadgeVariant {
-  primary = 'primary',
-  secondary = 'secondary',
-  danger = 'danger',
-  warning = 'warning',
-  success = 'success',
-  light = 'light',
-  dark = 'dark',
+	primary = 'primary',
+	secondary = 'secondary',
+	danger = 'danger',
+	warning = 'warning',
+	success = 'success',
+	light = 'light',
+	dark = 'dark',
 }
 
 export enum BoBadgeType {
-  default = 'default', // Solid colored background with white text
-  outline = 'outline', // Transparent background with colored border and text
+	default = 'default', // Solid colored background with white text
+	outline = 'outline', // Transparent background with colored border and text
 }
 
 export enum BoBadgeShape {
-  pill = 'pill',
-  default = 'default',
-  flat = 'flat',
-  circle = 'circle',
+	pill = 'pill',
+	default = 'default',
+	flat = 'flat',
+	circle = 'circle',
 }
 ```
 
@@ -79,12 +79,12 @@ Badges come in two types: default (solid) and outline.
 
 ```html
 <bo-badge
-  label="Default"
-  :type="BoBadgeType.default"
+	label="Default"
+	:type="BoBadgeType.default"
 />
 <bo-badge
-  label="Outline"
-  :type="BoBadgeType.outline"
+	label="Outline"
+	:type="BoBadgeType.outline"
 />
 ```
 
@@ -104,32 +104,32 @@ Change the color of the badge using the predefined variants.
 
 ```html
 <bo-badge
-  label="Primary"
-  :variant="BoBadgeVariant.primary"
+	label="Primary"
+	:variant="BoBadgeVariant.primary"
 />
 <bo-badge
-  label="Secondary"
-  :variant="BoBadgeVariant.secondary"
+	label="Secondary"
+	:variant="BoBadgeVariant.secondary"
 />
 <bo-badge
-  label="Danger"
-  :variant="BoBadgeVariant.danger"
+	label="Danger"
+	:variant="BoBadgeVariant.danger"
 />
 <bo-badge
-  label="Warning"
-  :variant="BoBadgeVariant.warning"
+	label="Warning"
+	:variant="BoBadgeVariant.warning"
 />
 <bo-badge
-  label="Success"
-  :variant="BoBadgeVariant.success"
+	label="Success"
+	:variant="BoBadgeVariant.success"
 />
 <bo-badge
-  label="Light"
-  :variant="BoBadgeVariant.light"
+	label="Light"
+	:variant="BoBadgeVariant.light"
 />
 <bo-badge
-  label="Dark"
-  :variant="BoBadgeVariant.dark"
+	label="Dark"
+	:variant="BoBadgeVariant.dark"
 />
 ```
 
@@ -145,16 +145,16 @@ Change the border radius of the badge using different shapes.
 
 ```html
 <bo-badge
-  label="Default"
-  :shape="BoBadgeShape.default"
+	label="Default"
+	:shape="BoBadgeShape.default"
 />
 <bo-badge
-  label="Pill"
-  :shape="BoBadgeShape.pill"
+	label="Pill"
+	:shape="BoBadgeShape.pill"
 />
 <bo-badge
-  label="Flat"
-  :shape="BoBadgeShape.flat"
+	label="Flat"
+	:shape="BoBadgeShape.flat"
 />
 ```
 
@@ -167,8 +167,8 @@ To create a circle badge, set the `shape` to `circle` and provide only an icon.
 
 ```html
 <bo-badge
-  :shape="BoBadgeShape.circle"
-  :prefix-icon="Icon.alert_circle"
+	:shape="BoBadgeShape.circle"
+	:prefix-icon="Icon.alert_circle"
 />
 ```
 
@@ -188,24 +188,24 @@ Choose from multiple sizes using the `size` prop.
 
 ```html
 <bo-badge
-  label="Extra small"
-  :size="BoSize.extra_small"
+	label="Extra small"
+	:size="BoSize.extra_small"
 />
 <bo-badge
-  label="Small"
-  :size="BoSize.small"
+	label="Small"
+	:size="BoSize.small"
 />
 <bo-badge
-  label="Default"
-  :size="BoSize.default"
+	label="Default"
+	:size="BoSize.default"
 />
 <bo-badge
-  label="Large"
-  :size="BoSize.large"
+	label="Large"
+	:size="BoSize.large"
 />
 <bo-badge
-  label="Extra large"
-  :size="BoSize.extra_large"
+	label="Extra large"
+	:size="BoSize.extra_large"
 />
 ```
 
@@ -220,12 +220,12 @@ Add icons before or after the badge label.
 
 ```html
 <bo-badge
-  label="Prefix"
-  :prefix-icon="Icon.activity"
+	label="Prefix"
+	:prefix-icon="Icon.activity"
 />
 <bo-badge
-  label="Suffix"
-  :suffix-icon="Icon.activity"
+	label="Suffix"
+	:suffix-icon="Icon.activity"
 />
 ```
 
@@ -241,8 +241,8 @@ Create badges with only icons.
 ```html
 <bo-badge :prefix-icon="Icon.alert_circle" />
 <bo-badge
-  :prefix-icon="Icon.alert_circle"
-  :shape="BoBadgeShape.circle"
+	:prefix-icon="Icon.alert_circle"
+	:shape="BoBadgeShape.circle"
 />
 ```
 
@@ -262,32 +262,32 @@ Here are examples of different badge combinations with variants and icons.
 
 ```html
 <bo-badge
-  label="Primary"
-  :variant="BoBadgeVariant.primary"
+	label="Primary"
+	:variant="BoBadgeVariant.primary"
 />
 <bo-badge
-  label="Secondary"
-  :variant="BoBadgeVariant.secondary"
+	label="Secondary"
+	:variant="BoBadgeVariant.secondary"
 />
 <bo-badge
-  label="Danger"
-  :variant="BoBadgeVariant.danger"
+	label="Danger"
+	:variant="BoBadgeVariant.danger"
 />
 <bo-badge
-  label="Warning"
-  :variant="BoBadgeVariant.warning"
+	label="Warning"
+	:variant="BoBadgeVariant.warning"
 />
 <bo-badge
-  label="Success"
-  :variant="BoBadgeVariant.success"
+	label="Success"
+	:variant="BoBadgeVariant.success"
 />
 <bo-badge
-  label="Light"
-  :variant="BoBadgeVariant.light"
+	label="Light"
+	:variant="BoBadgeVariant.light"
 />
 <bo-badge
-  label="Dark"
-  :variant="BoBadgeVariant.dark"
+	label="Dark"
+	:variant="BoBadgeVariant.dark"
 />
 ```
 
@@ -315,18 +315,18 @@ Combine badges with icons for more visual impact.
 
 ```html
 <bo-badge
-  label="New"
-  :variant="BoBadgeVariant.success"
-  :prefix-icon="Icon.plus"
+	label="New"
+	:variant="BoBadgeVariant.success"
+	:prefix-icon="Icon.plus"
 />
 <bo-badge
-  label="Warning"
-  :variant="BoBadgeVariant.warning"
-  :prefix-icon="Icon.alert_triangle"
+	label="Warning"
+	:variant="BoBadgeVariant.warning"
+	:prefix-icon="Icon.alert_triangle"
 />
 <bo-badge
-  label="Error"
-  :variant="BoBadgeVariant.danger"
-  :prefix-icon="Icon.x"
+	label="Error"
+	:variant="BoBadgeVariant.danger"
+	:prefix-icon="Icon.x"
 />
 ```

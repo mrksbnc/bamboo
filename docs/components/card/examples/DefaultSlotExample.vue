@@ -36,9 +36,9 @@
 </template>
 
 <script setup lang="ts">
-import { BoButton, BoButtonVariant } from '@/components/bo_button'
-import { BoCard } from '@/components/bo_card'
-import { BoIcon, Icon } from '@/components/bo_icon'
-import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text'
-import { BoSize } from '@/shared'
+import { BoButton, BoButtonVariant } from '@/components/bo-button';
+import { BoCard } from '@/components/bo-card';
+import { BoIcon, Icon } from '@/components/bo-icon';
+import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo-text';
+import { BoSize } from '@/shared';
 </script>

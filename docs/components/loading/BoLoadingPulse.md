@@ -6,11 +6,11 @@ A pulsating loading indicator component with various sizes, colors, and optional
 
 ```vue
 <template>
-  <bo-loading-pulse />
+	<bo-loading-pulse />
 </template>
 
 <script setup>
-import { BoLoadingPulse } from '@/components/bo_loading_pulse'
+import { BoLoadingPulse } from '@/components/bo-loading_pulse';
 </script>
 ```
 
@@ -18,8 +18,8 @@ import { BoLoadingPulse } from '@/components/bo_loading_pulse'
 
 <script setup>
 import { BoSize } from '@/shared';
-import { BoLoadingPulse } from '@/components/bo_loading_pulse';
-import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo_loader';
+import { BoLoadingPulse } from '@/components/bo-loading_pulse';
+import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo-loader';
 </script>
 
 <div class="flex flex-wrap gap-8">
@@ -127,11 +127,11 @@ You can set a custom color using the `custom-color` prop:
 
 ```ts
 interface BoLoadingPulseProps {
-  size?: BoSize
-  variant?: BoLoaderVariant
-  textPosition?: BoLoaderTextPosition
-  loaderText?: string
-  customColor?: string
+	size?: BoSize;
+	variant?: BoLoaderVariant;
+	textPosition?: BoLoaderTextPosition;
+	loaderText?: string;
+	customColor?: string;
 }
 ```
 
@@ -139,26 +139,26 @@ The component uses these enums:
 
 ```ts
 enum BoSize {
-  extra_small = 'extra_small',
-  small = 'small',
-  default = 'default',
-  large = 'large',
-  extra_large = 'extra_large',
+	extra_small = 'extra_small',
+	small = 'small',
+	default = 'default',
+	large = 'large',
+	extra_large = 'extra_large',
 }
 
 enum BoLoaderVariant {
-  primary = 'primary',
-  secondary = 'secondary',
-  danger = 'danger',
-  warning = 'warning',
-  success = 'success',
-  dark = 'dark',
-  white = 'white',
+	primary = 'primary',
+	secondary = 'secondary',
+	danger = 'danger',
+	warning = 'warning',
+	success = 'success',
+	dark = 'dark',
+	white = 'white',
 }
 
 enum BoLoaderTextPosition {
-  bottom = 'bottom',
-  side = 'side',
+	bottom = 'bottom',
+	side = 'side',
 }
 ```
 
@@ -166,21 +166,21 @@ Example of defining props in your component:
 
 ```vue
 <script setup lang="ts">
-import { BoLoadingPulse } from '@/components/bo_loading_pulse'
-import { BoSize } from '@/shared/bo_size'
-import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo_loader'
+import { BoLoadingPulse } from '@/components/bo-loading_pulse';
+import { BoSize } from '@/shared/bo-size';
+import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo-loader';
 
 const pulseProps = {
-  size: BoSize.large,
-  variant: BoLoaderVariant.primary,
-  textPosition: BoLoaderTextPosition.bottom,
-  loaderText: 'Loading data...',
-  customColor: '',
-}
+	size: BoSize.large,
+	variant: BoLoaderVariant.primary,
+	textPosition: BoLoaderTextPosition.bottom,
+	loaderText: 'Loading data...',
+	customColor: '',
+};
 </script>
 
 <template>
-  <bo-loading-pulse v-bind="pulseProps" />
+	<bo-loading-pulse v-bind="pulseProps" />
 </template>
 ```
 

@@ -6,18 +6,18 @@ A versatile card component for displaying content with headers, descriptions, an
 
 ```vue
 <template>
-  <bo-card
-    title="Card Title"
-    description="This is a simple card with a title and description."
-  >
-    <template #content>
-      <!-- Card content here -->
-    </template>
-  </bo-card>
+	<bo-card
+		title="Card Title"
+		description="This is a simple card with a title and description."
+	>
+		<template #content>
+			<!-- Card content here -->
+		</template>
+	</bo-card>
 </template>
 
 <script setup>
-import { BoCard } from '@/components/bo_card'
+import { BoCard } from '@/components/bo-card';
 </script>
 ```
 
@@ -25,10 +25,10 @@ import { BoCard } from '@/components/bo_card'
 
 <script setup>
 import { BoSize } from '@/shared';
-import { BoCard } from '@/components/bo_card';
-import { BoButton, BoButtonVariant } from '@/components/bo_button';
-import { BoIcon, Icon } from '@/components/bo_icon';
-import { bo-text, BoFontSize, BoTextColor, BoFontWeight } from '@/components/bo_text';
+import { BoCard } from '@/components/bo-card';
+import { BoButton, BoButtonVariant } from '@/components/bo-button';
+import { BoIcon, Icon } from '@/components/bo-icon';
+import { bo-text, BoFontSize, BoTextColor, BoFontWeight } from '@/components/bo-text';
 </script>
 
 <bo-card>
@@ -107,13 +107,13 @@ Control padding on each side of the card by setting the `padding` prop:
 
 ```vue
 <bo-card
-  title="Custom Padding"
-  :padding="{
-    top: true,
-    right: false,
-    bottom: true,
-    left: false,
-  }"
+	title="Custom Padding"
+	:padding="{
+		top: true,
+		right: false,
+		bottom: true,
+		left: false,
+	}"
 >
   <!-- Card content -->
 </bo-card>
@@ -125,19 +125,19 @@ Control padding on each side of the card by setting the `padding` prop:
 
 ```ts
 interface BoCardProps {
-  title?: string
-  description?: string
-  widthInPx?: number
-  widthInPercent?: number
-  widthAsTailwindClass?: string
-  padding?: {
-    top: boolean
-    right: boolean
-    bottom: boolean
-    left: boolean
-  }
-  clickable?: boolean
-  disabled?: boolean
+	title?: string;
+	description?: string;
+	widthInPx?: number;
+	widthInPercent?: number;
+	widthAsTailwindClass?: string;
+	padding?: {
+		top: boolean;
+		right: boolean;
+		bottom: boolean;
+		left: boolean;
+	};
+	clickable?: boolean;
+	disabled?: boolean;
 }
 ```
 
@@ -145,36 +145,36 @@ Example of defining props in your component:
 
 ```vue
 <script setup lang="ts">
-import { BoCard } from '@/components/bo_card'
+import { BoCard } from '@/components/bo-card';
 
 const cardProps = {
-  title: 'Card Title',
-  description: 'Card description text',
-  widthInPx: 400, // Fixed width in pixels
-  padding: {
-    top: true,
-    right: true,
-    bottom: true,
-    left: true,
-  },
-  clickable: true,
-  disabled: false,
-}
+	title: 'Card Title',
+	description: 'Card description text',
+	widthInPx: 400, // Fixed width in pixels
+	padding: {
+		top: true,
+		right: true,
+		bottom: true,
+		left: true,
+	},
+	clickable: true,
+	disabled: false,
+};
 
 const handleClick = (event) => {
-  console.log('Card clicked', event)
-}
+	console.log('Card clicked', event);
+};
 </script>
 
 <template>
-  <bo-card
-    v-bind="cardProps"
-    @click="handleClick"
-  >
-    <template #content>
-      <!-- Card content -->
-    </template>
-  </bo-card>
+	<bo-card
+		v-bind="cardProps"
+		@click="handleClick"
+	>
+		<template #content>
+			<!-- Card content -->
+		</template>
+	</bo-card>
 </template>
 ```
 
@@ -182,7 +182,7 @@ const handleClick = (event) => {
 
 ```ts
 // Events emitted by the component
-const emit = defineEmits(['click'])
+const emit = defineEmits(['click']);
 ```
 
 ### Slots

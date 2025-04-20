@@ -14,6 +14,12 @@ const bambooTestConfig = mergeConfig(
 			alias: {
 				'@/': new URL('./src/', import.meta.url).pathname,
 			},
+			browser: {
+				enabled: true,
+				name: 'chrome',
+				provider: 'playwright',
+				headless: true,
+			},
 		},
 	}),
 );

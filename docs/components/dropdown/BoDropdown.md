@@ -8,16 +8,16 @@ A dropdown component for displaying a list of selectable options that appear whe
 
 ```ts
 interface BoDropdownProps {
-  id?: string
-  toggleVariant?: BoButtonVariant
-  defaultOption?: BaseDropdownOption
-  options?: BaseDropdownOption[]
-  component?: Component
+	id?: string;
+	toggleVariant?: BoButtonVariant;
+	defaultOption?: BaseDropdownOption;
+	options?: BaseDropdownOption[];
+	component?: Component;
 }
 
 interface BaseDropdownOption {
-  icon: Icon
-  label: string
+	icon: Icon;
+	label: string;
 }
 ```
 
@@ -25,23 +25,23 @@ interface BaseDropdownOption {
 
 ```ts
 enum BoButtonVariant {
-  primary = 'primary',
-  secondary = 'secondary',
-  success = 'success',
-  danger = 'danger',
-  warning = 'warning',
-  info = 'info',
-  light = 'light',
-  dark = 'dark',
-  outline = 'outline',
+	primary = 'primary',
+	secondary = 'secondary',
+	success = 'success',
+	danger = 'danger',
+	warning = 'warning',
+	info = 'info',
+	light = 'light',
+	dark = 'dark',
+	outline = 'outline',
 }
 
 // Icon enum from BoIcon component
 enum Icon {
-  user = 'user',
-  settings = 'settings',
-  // ... many more icons
-  none = 'none',
+	user = 'user',
+	settings = 'settings',
+	// ... many more icons
+	none = 'none',
 }
 ```
 
@@ -49,8 +49,8 @@ enum Icon {
 
 ```ts
 const emits = defineEmits<{
-  (e: 'select', value: BaseDropdownOption): void
-}>()
+	(e: 'select', value: BaseDropdownOption): void;
+}>();
 ```
 
 ### Slots
@@ -64,26 +64,26 @@ const emits = defineEmits<{
 
 ```vue
 <template>
-  <bo-dropdown
-    :options="options"
-    :default-option="options[0]"
-    @select="handleSelect"
-  />
+	<bo-dropdown
+		:options="options"
+		:default-option="options[0]"
+		@select="handleSelect"
+	/>
 </template>
 
 <script setup>
-import { BoDropdown } from '@/components/bo_dropdown'
-import { Icon } from '@/components/bo_icon'
+import { BoDropdown } from '@/components/bo-dropdown';
+import { Icon } from '@/components/bo-icon';
 
 const options = [
-  { label: 'Profile', icon: Icon.user },
-  { label: 'Settings', icon: Icon.settings },
-  { label: 'Logout', icon: Icon.log_out },
-]
+	{ label: 'Profile', icon: Icon.user },
+	{ label: 'Settings', icon: Icon.settings },
+	{ label: 'Logout', icon: Icon.log_out },
+];
 
 const handleSelect = (option) => {
-  console.log('Selected option:', option)
-}
+	console.log('Selected option:', option);
+};
 </script>
 ```
 
@@ -91,10 +91,10 @@ const handleSelect = (option) => {
 
 <script setup>
 import { ref } from 'vue';
-import { BoDropdown } from '@/components/bo_dropdown';
-import { BoButton, BoButtonVariant } from '@/components/bo_button';
-import { bo-text, BoTextColor } from '@/components/bo_text';
-import { Icon } from '@/components/bo_icon';
+import { BoDropdown } from '@/components/bo-dropdown';
+import { BoButton, BoButtonVariant } from '@/components/bo-button';
+import { bo-text, BoTextColor } from '@/components/bo-text';
+import { Icon } from '@/components/bo-icon';
 
 const options = [
   { label: 'Profile', icon: Icon.user },
@@ -188,33 +188,33 @@ Example of defining props in your component:
 
 ```vue
 <script setup lang="ts">
-import { BoDropdown } from '@/components/bo_dropdown'
-import { BoButtonVariant } from '@/components/bo_button'
-import { Icon } from '@/components/bo_icon'
-import MyCustomDropdownItem from './MyCustomDropdownItem.vue'
+import { BoDropdown } from '@/components/bo-dropdown';
+import { BoButtonVariant } from '@/components/bo-button';
+import { Icon } from '@/components/bo-icon';
+import MyCustomDropdownItem from './MyCustomDropdownItem.vue';
 
 const dropdownProps = {
-  id: 'user-menu-dropdown',
-  toggleVariant: BoButtonVariant.outline,
-  defaultOption: { label: 'User Menu', icon: Icon.user },
-  options: [
-    { label: 'Profile', icon: Icon.user },
-    { label: 'Settings', icon: Icon.settings },
-    { label: 'Logout', icon: Icon.log_out },
-  ],
-  // Optional custom component for items
-  component: MyCustomDropdownItem,
-}
+	id: 'user-menu-dropdown',
+	toggleVariant: BoButtonVariant.outline,
+	defaultOption: { label: 'User Menu', icon: Icon.user },
+	options: [
+		{ label: 'Profile', icon: Icon.user },
+		{ label: 'Settings', icon: Icon.settings },
+		{ label: 'Logout', icon: Icon.log_out },
+	],
+	// Optional custom component for items
+	component: MyCustomDropdownItem,
+};
 
 const handleSelect = (option) => {
-  console.log('Selected:', option.label)
-}
+	console.log('Selected:', option.label);
+};
 </script>
 
 <template>
-  <bo-dropdown
-    v-bind="dropdownProps"
-    @select="handleSelect"
-  />
+	<bo-dropdown
+		v-bind="dropdownProps"
+		@select="handleSelect"
+	/>
 </template>
 ```

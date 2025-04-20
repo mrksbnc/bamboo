@@ -1,5 +1,5 @@
 <script setup>
-import { BoModal } from '@/components/bo_modal';
+import { BoModal } from '@/components/bo-modal';
 import { ref } from 'vue';
 import BasicModalExample from './examples/BasicModalExample.vue';
 
@@ -19,33 +19,33 @@ The component to use is called `bo-modal`. Since the modal component doesn't man
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const showModal = ref(false)
+import { ref } from 'vue';
+const showModal = ref(false);
 </script>
 
 <template>
-  <button @click="showModal = true">Open Modal</button>
+	<button @click="showModal = true">Open Modal</button>
 
-  <bo-modal
-    v-if="showModal"
-    @close="showModal = false"
-    title="Important Information"
-  >
-    <p>This is the modal content.</p>
+	<bo-modal
+		v-if="showModal"
+		@close="showModal = false"
+		title="Important Information"
+	>
+		<p>This is the modal content.</p>
 
-    <template #footer>
-      <div
-        class="flex items-center justify-end space-x-2 border-t border-gray-200 p-4 dark:border-gray-700"
-      >
-        <button class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">Accept</button>
-        <button
-          class="rounded border border-gray-300 bg-white px-4 py-2 text-gray-800 hover:bg-gray-100"
-        >
-          Cancel
-        </button>
-      </div>
-    </template>
-  </bo-modal>
+		<template #footer>
+			<div
+				class="flex items-center justify-end space-x-2 border-t border-gray-200 p-4 dark:border-gray-700"
+			>
+				<button class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">Accept</button>
+				<button
+					class="rounded border border-gray-300 bg-white px-4 py-2 text-gray-800 hover:bg-gray-100"
+				>
+					Cancel
+				</button>
+			</div>
+		</template>
+	</bo-modal>
 </template>
 ```
 
@@ -78,9 +78,9 @@ const showModal = ref(false)
 
 ```ts
 export interface BoModalWidthOptions {
-  px?: number
-  percent?: number
-  tailwind?: string
+	px?: number;
+	percent?: number;
+	tailwind?: string;
 }
 ```
 
@@ -169,53 +169,53 @@ The modal component is designed with accessibility in mind, following WCAG 2.1 A
 
 ```vue
 <template>
-  <button
-    @click="openModal"
-    aria-haspopup="dialog"
-  >
-    Open Accessible Modal
-  </button>
+	<button
+		@click="openModal"
+		aria-haspopup="dialog"
+	>
+		Open Accessible Modal
+	</button>
 
-  <bo-modal
-    v-if="isOpen"
-    id="accessible-dialog"
-    title="Accessible Dialog"
-    description="This dialog follows WCAG 2.1 AA standards"
-    @close="closeModal"
-  >
-    <p>This modal demonstrates accessible features including:</p>
-    <ul>
-      <li>Focus management</li>
-      <li>Keyboard navigation</li>
-      <li>Proper ARIA attributes</li>
-      <li>Screen reader announcements</li>
-    </ul>
+	<bo-modal
+		v-if="isOpen"
+		id="accessible-dialog"
+		title="Accessible Dialog"
+		description="This dialog follows WCAG 2.1 AA standards"
+		@close="closeModal"
+	>
+		<p>This modal demonstrates accessible features including:</p>
+		<ul>
+			<li>Focus management</li>
+			<li>Keyboard navigation</li>
+			<li>Proper ARIA attributes</li>
+			<li>Screen reader announcements</li>
+		</ul>
 
-    <template #footer>
-      <div
-        class="flex items-center justify-end space-x-2 border-t border-gray-200 p-4 dark:border-gray-700"
-      >
-        <button
-          @click="closeModal"
-          class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-        >
-          Close Dialog
-        </button>
-      </div>
-    </template>
-  </bo-modal>
+		<template #footer>
+			<div
+				class="flex items-center justify-end space-x-2 border-t border-gray-200 p-4 dark:border-gray-700"
+			>
+				<button
+					@click="closeModal"
+					class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+				>
+					Close Dialog
+				</button>
+			</div>
+		</template>
+	</bo-modal>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const isOpen = ref(false)
+import { ref } from 'vue';
+const isOpen = ref(false);
 
 function openModal() {
-  isOpen.value = true
+	isOpen.value = true;
 }
 
 function closeModal() {
-  isOpen.value = false
+	isOpen.value = false;
 }
 </script>
 ```

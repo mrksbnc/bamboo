@@ -1,6 +1,6 @@
 <script setup>
-import { BoInput, BoInputSize, BoInputState, BoInputType, BoInputVariant } from '@/components/bo_input';
-import { Icon } from '@/components/bo_icon';
+import { BoInput, BoInputSize, BoInputState, BoInputType, BoInputVariant } from '@/components/bo-input';
+import { Icon } from '@/components/bo-icon';
 </script>
 
 # Input
@@ -13,11 +13,11 @@ The `BoInput` component provides a way to create styled form inputs with various
 
 ```vue
 <template>
-  <bo-input
-    v-model="text"
-    label="Username"
-    placeholder="Enter your username"
-  />
+	<bo-input
+		v-model="text"
+		label="Username"
+		placeholder="Enter your username"
+	/>
 </template>
 ```
 
@@ -71,18 +71,18 @@ The Input component supports different sizes: small, default, and large.
 
 ```vue
 <template>
-  <bo-input
-    size="small"
-    label="Small Input"
-  />
-  <bo-input
-    size="default"
-    label="Default Input"
-  />
-  <bo-input
-    size="large"
-    label="Large Input"
-  />
+	<bo-input
+		size="small"
+		label="Small Input"
+	/>
+	<bo-input
+		size="default"
+		label="Default Input"
+	/>
+	<bo-input
+		size="large"
+		label="Large Input"
+	/>
 </template>
 ```
 
@@ -98,20 +98,20 @@ The Input component supports different states: none (default), valid, and invali
 
 ```vue
 <template>
-  <bo-input
-    state="none"
-    label="Default State"
-  />
-  <bo-input
-    state="valid"
-    label="Valid State"
-    description="This input is valid"
-  />
-  <bo-input
-    state="invalid"
-    label="Invalid State"
-    error-message="This field is required"
-  />
+	<bo-input
+		state="none"
+		label="Default State"
+	/>
+	<bo-input
+		state="valid"
+		label="Valid State"
+		description="This input is valid"
+	/>
+	<bo-input
+		state="invalid"
+		label="Invalid State"
+		error-message="This field is required"
+	/>
 </template>
 ```
 
@@ -127,18 +127,18 @@ The Input component supports different style variants: default, filled, and unde
 
 ```vue
 <template>
-  <bo-input
-    variant="default"
-    label="Default Variant"
-  />
-  <bo-input
-    variant="filled"
-    label="Filled Variant"
-  />
-  <bo-input
-    variant="underline"
-    label="Underline Variant"
-  />
+	<bo-input
+		variant="default"
+		label="Default Variant"
+	/>
+	<bo-input
+		variant="filled"
+		label="Filled Variant"
+	/>
+	<bo-input
+		variant="underline"
+		label="Underline Variant"
+	/>
 </template>
 ```
 
@@ -154,22 +154,22 @@ Disabled inputs prevent user interaction and appear visually dimmed to indicate 
 
 ```vue
 <template>
-  <bo-input
-    label="Disabled Input"
-    disabled
-    model-value="This input is disabled"
-  />
-  <bo-input
-    variant="filled"
-    label="Disabled Filled Input"
-    disabled
-    model-value="Disabled filled input"
-  />
-  <bo-input
-    label="Disabled Input with Placeholder"
-    disabled
-    placeholder="Placeholder text appears in neutral gray"
-  />
+	<bo-input
+		label="Disabled Input"
+		disabled
+		model-value="This input is disabled"
+	/>
+	<bo-input
+		variant="filled"
+		label="Disabled Filled Input"
+		disabled
+		model-value="Disabled filled input"
+	/>
+	<bo-input
+		label="Disabled Input with Placeholder"
+		disabled
+		placeholder="Placeholder text appears in neutral gray"
+	/>
 </template>
 ```
 
@@ -186,22 +186,22 @@ Readonly inputs display information that cannot be edited but still allow focus 
 
 ```vue
 <template>
-  <bo-input
-    label="Readonly Input"
-    readonly
-    model-value="This input is readonly"
-  />
-  <bo-input
-    variant="filled"
-    label="Readonly Filled Input"
-    readonly
-    model-value="Readonly filled input"
-  />
-  <bo-input
-    label="Readonly Input with Placeholder"
-    readonly
-    placeholder="Placeholder text appears in neutral gray"
-  />
+	<bo-input
+		label="Readonly Input"
+		readonly
+		model-value="This input is readonly"
+	/>
+	<bo-input
+		variant="filled"
+		label="Readonly Filled Input"
+		readonly
+		model-value="Readonly filled input"
+	/>
+	<bo-input
+		label="Readonly Input with Placeholder"
+		readonly
+		placeholder="Placeholder text appears in neutral gray"
+	/>
 </template>
 ```
 
@@ -218,24 +218,24 @@ Inputs can include description text that appears below the input to provide addi
 
 ```vue
 <template>
-  <bo-input
-    label="Input with Description"
-    description="This description provides additional information about the field"
-    placeholder="Enter your text here"
-  />
-  <bo-input
-    label="Password with Description"
-    type="password"
-    description="Password must be at least 8 characters long and include numbers"
-    placeholder="Enter your password"
-  />
-  <bo-input
-    label="Invalid Input with Error"
-    state="invalid"
-    error-message="This field is required"
-    description="This description won't show when there's an error"
-    placeholder="This field has an error"
-  />
+	<bo-input
+		label="Input with Description"
+		description="This description provides additional information about the field"
+		placeholder="Enter your text here"
+	/>
+	<bo-input
+		label="Password with Description"
+		type="password"
+		description="Password must be at least 8 characters long and include numbers"
+		placeholder="Enter your password"
+	/>
+	<bo-input
+		label="Invalid Input with Error"
+		state="invalid"
+		error-message="This field is required"
+		description="This description won't show when there's an error"
+		placeholder="This field has an error"
+	/>
 </template>
 ```
 
@@ -264,23 +264,23 @@ Inputs can include description text that appears below the input to provide addi
 
 ```vue
 <template>
-  <bo-input
-    label="With Prefix Icon"
-    :prefix-icon="Icon.user"
-  />
-  <bo-input
-    label="With Suffix Icon"
-    :suffix-icon="Icon.lock"
-  />
-  <bo-input
-    label="With Both Icons"
-    :prefix-icon="Icon.mail"
-    :suffix-icon="Icon.alert_circle"
-  />
+	<bo-input
+		label="With Prefix Icon"
+		:prefix-icon="Icon.user"
+	/>
+	<bo-input
+		label="With Suffix Icon"
+		:suffix-icon="Icon.lock"
+	/>
+	<bo-input
+		label="With Both Icons"
+		:prefix-icon="Icon.mail"
+		:suffix-icon="Icon.alert_circle"
+	/>
 </template>
 
 <script setup>
-import { Icon } from '@/components/bo_icon'
+import { Icon } from '@/components/bo-icon';
 </script>
 ```
 
@@ -310,10 +310,10 @@ The BoInput component uses Vue 3.4's new `defineModel` macro for two-way data bi
 
 ```vue
 <template>
-  <bo-input
-    v-model="username"
-    label="Username"
-  />
+	<bo-input
+		v-model="username"
+		label="Username"
+	/>
 </template>
 ```
 
@@ -323,12 +323,12 @@ When the `clearable` prop is set to `true`, a clear button appears on the right 
 
 ```vue
 <template>
-  <bo-input
-    v-model="text"
-    label="Clearable Input"
-    clearable
-    placeholder="Enter text to see the clear button"
-  />
+	<bo-input
+		v-model="text"
+		label="Clearable Input"
+		clearable
+		placeholder="Enter text to see the clear button"
+	/>
 </template>
 ```
 
@@ -370,35 +370,35 @@ The `BoInput` component has been built with accessibility in mind, following WCA
 
 ```vue
 <template>
-  <bo-input
-    v-model="email"
-    label="Email Address"
-    type="email"
-    required
-    description="We'll never share your email with anyone else"
-    placeholder="name@example.com"
-    :state="emailState"
-    :error-message="emailError"
-    aria-required="true"
-  />
+	<bo-input
+		v-model="email"
+		label="Email Address"
+		type="email"
+		required
+		description="We'll never share your email with anyone else"
+		placeholder="name@example.com"
+		:state="emailState"
+		:error-message="emailError"
+		aria-required="true"
+	/>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from 'vue';
 
-const email = ref('')
-const emailError = ref('')
+const email = ref('');
+const emailError = ref('');
 const emailState = computed(() => {
-  if (!email.value) {
-    emailError.value = 'Email is required'
-    return 'invalid'
-  }
-  if (!email.value.includes('@')) {
-    emailError.value = 'Please enter a valid email address'
-    return 'invalid'
-  }
-  return 'valid'
-})
+	if (!email.value) {
+		emailError.value = 'Email is required';
+		return 'invalid';
+	}
+	if (!email.value.includes('@')) {
+		emailError.value = 'Please enter a valid email address';
+		return 'invalid';
+	}
+	return 'valid';
+});
 </script>
 ```
 

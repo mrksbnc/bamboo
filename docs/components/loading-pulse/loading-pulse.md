@@ -1,7 +1,7 @@
 <script setup>
-import { BoLoadingPulse } from '@/components/bo_loading_pulse';
+import { BoLoadingPulse } from '@/components/bo-loading_pulse';
 import { BoSize } from '@/shared';
-import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo_loader';
+import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo-loader';
 </script>
 
 # bo-loading-pulse
@@ -34,18 +34,18 @@ A loading pulse is an animated indicator that shows a pulsing animation to repre
 
 ```ts
 export enum BoLoaderVariant {
-  primary = 'primary',
-  secondary = 'secondary',
-  danger = 'danger',
-  warning = 'warning',
-  success = 'success',
-  dark = 'dark',
-  white = 'white',
+	primary = 'primary',
+	secondary = 'secondary',
+	danger = 'danger',
+	warning = 'warning',
+	success = 'success',
+	dark = 'dark',
+	white = 'white',
 }
 
 export enum BoLoaderTextPosition {
-  side = 'side',
-  bottom = 'bottom',
+	side = 'side',
+	bottom = 'bottom',
 }
 ```
 
@@ -156,7 +156,7 @@ Add descriptive text using the `loader-text` prop.
 ```html
 <bo-loading-pulse loader-text="Loading..." />
 <bo-loading-pulse
-  loader-text="Processing data"
-  :text-position="BoLoaderTextPosition.side"
+	loader-text="Processing data"
+	:text-position="BoLoaderTextPosition.side"
 />
 ```

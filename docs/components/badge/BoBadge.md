@@ -8,13 +8,13 @@ Badges are small visual indicators for counts, labels, or statuses that can incl
 
 ```ts
 interface BoBadgeProps {
-  label?: string
-  type?: BoBadgeType
-  size?: BoSize
-  shape?: BoBadgeShape
-  variant?: BoBadgeVariant
-  prefixIcon?: Icon
-  suffixIcon?: Icon
+	label?: string;
+	type?: BoBadgeType;
+	size?: BoSize;
+	shape?: BoBadgeShape;
+	variant?: BoBadgeVariant;
+	prefixIcon?: Icon;
+	suffixIcon?: Icon;
 }
 ```
 
@@ -22,33 +22,33 @@ interface BoBadgeProps {
 
 ```ts
 enum BoBadgeVariant {
-  primary = 'primary',
-  secondary = 'secondary',
-  danger = 'danger',
-  warning = 'warning',
-  success = 'success',
-  light = 'light',
-  dark = 'dark',
+	primary = 'primary',
+	secondary = 'secondary',
+	danger = 'danger',
+	warning = 'warning',
+	success = 'success',
+	light = 'light',
+	dark = 'dark',
 }
 
 enum BoBadgeType {
-  default = 'default', // Solid background with colored border
-  outline = 'outline', // Transparent background with colored border and text
+	default = 'default', // Solid background with colored border
+	outline = 'outline', // Transparent background with colored border and text
 }
 
 enum BoBadgeShape {
-  pill = 'pill',
-  default = 'default',
-  flat = 'flat',
-  circle = 'circle',
+	pill = 'pill',
+	default = 'default',
+	flat = 'flat',
+	circle = 'circle',
 }
 
 enum BoSize {
-  extra_small = 'extra_small',
-  small = 'small',
-  default = 'default',
-  large = 'large',
-  extra_large = 'extra_large',
+	extra_small = 'extra_small',
+	small = 'small',
+	default = 'default',
+	large = 'large',
+	extra_large = 'extra_large',
 }
 ```
 
@@ -62,20 +62,20 @@ enum BoSize {
 
 ```vue
 <template>
-  <bo-badge label="New" />
+	<bo-badge label="New" />
 </template>
 
 <script setup>
-import { BoBadge } from '@/components/bo_badge'
+import { BoBadge } from '@/components/bo-badge';
 </script>
 ```
 
 ## Examples
 
 <script setup>
-import { BoBadge, BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/bo_badge';
+import { BoBadge, BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/bo-badge';
 import { BoSize } from '@/shared';
-import { Icon } from '@/components/bo_icon';
+import { Icon } from '@/components/bo-icon';
 </script>
 
 ### Default Badge
@@ -235,22 +235,22 @@ Example of defining props in your component:
 
 ```vue
 <script setup lang="ts">
-import { BoBadge, BoBadgeType, BoBadgeShape, BoBadgeVariant } from '@/components/bo_badge'
-import { BoSize } from '@/shared/bo_size'
-import { Icon } from '@/components/bo_icon'
+import { BoBadge, BoBadgeType, BoBadgeShape, BoBadgeVariant } from '@/components/bo-badge';
+import { BoSize } from '@/shared/bo-size';
+import { Icon } from '@/components/bo-icon';
 
 const badgeProps = {
-  label: 'New Feature',
-  type: BoBadgeType.default,
-  size: BoSize.default,
-  shape: BoBadgeShape.pill,
-  variant: BoBadgeVariant.primary,
-  prefixIcon: Icon.star,
-  suffixIcon: Icon.none,
-}
+	label: 'New Feature',
+	type: BoBadgeType.default,
+	size: BoSize.default,
+	shape: BoBadgeShape.pill,
+	variant: BoBadgeVariant.primary,
+	prefixIcon: Icon.star,
+	suffixIcon: Icon.none,
+};
 </script>
 
 <template>
-  <bo-badge v-bind="badgeProps" />
+	<bo-badge v-bind="badgeProps" />
 </template>
 ```

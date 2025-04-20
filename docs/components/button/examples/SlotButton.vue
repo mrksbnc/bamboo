@@ -7,6 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { BoButton } from '@/components/bo_button';
-import { Icon, BoIcon } from '@/components/bo_icon';
+import { BoButton } from '@/components/bo-button';
+import { BoIcon, Icon } from '@/components/bo-icon';
 </script>

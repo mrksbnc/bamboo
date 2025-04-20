@@ -1,5 +1,5 @@
 export * from './components';
-export * from './composables';
 export * from './directives';
+export * from './services';
 export * from './shared';
 export * from './types';

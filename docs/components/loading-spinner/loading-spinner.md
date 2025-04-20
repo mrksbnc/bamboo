@@ -1,7 +1,7 @@
 <script setup>
-import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
+import { BoLoadingSpinner } from '@/components/bo-loading_spinner';
 import { BoSize } from '@/shared';
-import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo_loader';
+import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo-loader';
 </script>
 
 # bo-loading-spinner
@@ -36,13 +36,13 @@ The `BoLoaderVariant` enum defines the available color variants for the spinner.
 
 ```ts
 export enum BoLoaderVariant {
-  primary = 'primary',
-  secondary = 'secondary',
-  danger = 'danger',
-  warning = 'warning',
-  success = 'success',
-  dark = 'dark',
-  white = 'white',
+	primary = 'primary',
+	secondary = 'secondary',
+	danger = 'danger',
+	warning = 'warning',
+	success = 'success',
+	dark = 'dark',
+	white = 'white',
 }
 ```
 
@@ -50,8 +50,8 @@ The `BoLoaderTextPosition` enum defines the available positions for the spinner 
 
 ```ts
 export enum BoLoaderTextPosition {
-  side = 'side',
-  bottom = 'bottom',
+	side = 'side',
+	bottom = 'bottom',
 }
 ```
 
@@ -165,7 +165,7 @@ Add descriptive text using the `loader-text` prop.
 ```html
 <bo-loading-spinner loader-text="Loading..." />
 <bo-loading-spinner
-  loader-text="Processing data"
-  :text-position="BoLoaderTextPosition.side"
+	loader-text="Processing data"
+	:text-position="BoLoaderTextPosition.side"
 />
 ```

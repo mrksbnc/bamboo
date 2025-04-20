@@ -8,11 +8,11 @@ The BoIcon component provides a consistent way to display vector icons throughou
 
 ```ts
 interface BoIconProps {
-  icon: Icon
-  size?: BoSize
-  color?: string
-  decorative?: boolean
-  title?: string
+	icon: Icon;
+	size?: BoSize;
+	color?: string;
+	decorative?: boolean;
+	title?: string;
 }
 ```
 
@@ -20,21 +20,21 @@ interface BoIconProps {
 
 ```ts
 enum Icon {
-  activity = 'activity',
-  airplay = 'airplay',
-  alert_circle = 'alert-circle',
-  alert_octagon = 'alert-octagon',
-  alert_triangle = 'alert-triangle',
-  // ... many more icons
-  none = 'none',
+	activity = 'activity',
+	airplay = 'airplay',
+	alert_circle = 'alert-circle',
+	alert_octagon = 'alert-octagon',
+	alert_triangle = 'alert-triangle',
+	// ... many more icons
+	none = 'none',
 }
 
 enum BoSize {
-  extra_small = 'extra_small',
-  small = 'small',
-  default = 'default',
-  large = 'large',
-  extra_large = 'extra_large',
+	extra_small = 'extra_small',
+	small = 'small',
+	default = 'default',
+	large = 'large',
+	extra_large = 'extra_large',
 }
 ```
 
@@ -49,18 +49,18 @@ The BoIcon component dynamically loads SVG content based on the specified icon n
 
 ```vue
 <template>
-  <bo-icon :icon="Icon.heart" />
+	<bo-icon :icon="Icon.heart" />
 </template>
 
 <script setup>
-import { BoIcon, Icon } from '@/components/bo_icon'
+import { BoIcon, Icon } from '@/components/bo-icon';
 </script>
 ```
 
 ## Examples
 
 <script setup>
-import { BoIcon, Icon } from '@/components/bo_icon';
+import { BoIcon, Icon } from '@/components/bo-icon';
 import { BoSize } from '@/shared';
 </script>
 
@@ -119,9 +119,9 @@ By default, icons are treated as decorative elements. For icons that convey mean
 
 ```vue
 <bo-icon
-  :icon="Icon.alert_circle"
-  :decorative="false"
-  title="Warning: This action cannot be undone"
+	:icon="Icon.alert_circle"
+	:decorative="false"
+	title="Warning: This action cannot be undone"
 />
 ```
 
@@ -172,19 +172,19 @@ Example of defining props in your component:
 
 ```vue
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo_icon'
-import { BoSize } from '@/shared/bo_size'
+import { BoIcon, Icon } from '@/components/bo-icon';
+import { BoSize } from '@/shared/bo-size';
 
 const iconProps = {
-  icon: Icon.alert_circle,
-  size: BoSize.large,
-  color: '#ff0000', // Red color
-  decorative: false, // This icon conveys meaning
-  title: 'Warning: Critical error', // Accessible title for screen readers
-}
+	icon: Icon.alert_circle,
+	size: BoSize.large,
+	color: '#ff0000', // Red color
+	decorative: false, // This icon conveys meaning
+	title: 'Warning: Critical error', // Accessible title for screen readers
+};
 </script>
 
 <template>
-  <bo-icon v-bind="iconProps" />
+	<bo-icon v-bind="iconProps" />
 </template>
 ```

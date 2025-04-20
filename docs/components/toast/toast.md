@@ -1,5 +1,5 @@
 <script setup>
-import { BoToast, BoToastType, BoToastPosition } from '@/components/bo_toast';
+import { BoToast, BoToastType, BoToastPosition } from '@/components/bo-toast';
 import { ref } from 'vue';
 
 const showToast = ref(false);
@@ -19,20 +19,20 @@ The `BoToast` component provides a way to show non-disruptive notifications to u
 
 ```vue
 <template>
-  <button @click="showToast = true">Show Toast</button>
+	<button @click="showToast = true">Show Toast</button>
 
-  <bo-toast
-    v-if="showToast"
-    title="Connected"
-    message="You're online now. Internet is connected."
-    @close="showToast = false"
-  />
+	<bo-toast
+		v-if="showToast"
+		title="Connected"
+		message="You're online now. Internet is connected."
+		@close="showToast = false"
+	/>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const showToast = ref(false)
+const showToast = ref(false);
 </script>
 ```
 
@@ -71,29 +71,29 @@ The Toast component supports different types to communicate various message cate
 
 ```vue
 <template>
-  <bo-toast
-    title="Success"
-    message="Operation completed successfully"
-    type="success"
-  />
+	<bo-toast
+		title="Success"
+		message="Operation completed successfully"
+		type="success"
+	/>
 
-  <bo-toast
-    title="Error"
-    message="An error occurred during the operation"
-    type="error"
-  />
+	<bo-toast
+		title="Error"
+		message="An error occurred during the operation"
+		type="error"
+	/>
 
-  <bo-toast
-    title="Warning"
-    message="Please review your input before continuing"
-    type="warning"
-  />
+	<bo-toast
+		title="Warning"
+		message="Please review your input before continuing"
+		type="warning"
+	/>
 
-  <bo-toast
-    title="Information"
-    message="Your session will expire in 5 minutes"
-    type="info"
-  />
+	<bo-toast
+		title="Information"
+		message="Your session will expire in 5 minutes"
+		type="info"
+	/>
 </template>
 ```
 
@@ -110,19 +110,19 @@ By default, toasts automatically close after 3 seconds (3000ms). You can customi
 
 ```vue
 <template>
-  <!-- Custom duration of 5 seconds -->
-  <bo-toast
-    title="Long Toast"
-    message="This toast will stay visible for 5 seconds"
-    :duration="5000"
-  />
+	<!-- Custom duration of 5 seconds -->
+	<bo-toast
+		title="Long Toast"
+		message="This toast will stay visible for 5 seconds"
+		:duration="5000"
+	/>
 
-  <!-- Disable auto-close -->
-  <bo-toast
-    title="Persistent Toast"
-    message="This toast will stay visible until manually closed"
-    :auto-close="false"
-  />
+	<!-- Disable auto-close -->
+	<bo-toast
+		title="Persistent Toast"
+		message="This toast will stay visible until manually closed"
+		:auto-close="false"
+	/>
 </template>
 ```
 
@@ -132,39 +132,39 @@ The Toast component is ideal for notifying users about their internet connection
 
 ```vue
 <template>
-  <bo-toast
-    v-if="isOnline"
-    title="You're online now"
-    message="Hurray! Internet is connected."
-    type="success"
-  />
+	<bo-toast
+		v-if="isOnline"
+		title="You're online now"
+		message="Hurray! Internet is connected."
+		type="success"
+	/>
 
-  <bo-toast
-    v-else
-    title="You're offline now"
-    message="Oops! Internet is disconnected."
-    type="error"
-  />
+	<bo-toast
+		v-else
+		title="You're offline now"
+		message="Oops! Internet is disconnected."
+		type="error"
+	/>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue';
 
-const isOnline = ref(navigator.onLine)
+const isOnline = ref(navigator.onLine);
 
 function updateOnlineStatus() {
-  isOnline.value = navigator.onLine
+	isOnline.value = navigator.onLine;
 }
 
 onMounted(() => {
-  window.addEventListener('online', updateOnlineStatus)
-  window.addEventListener('offline', updateOnlineStatus)
-})
+	window.addEventListener('online', updateOnlineStatus);
+	window.addEventListener('offline', updateOnlineStatus);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('online', updateOnlineStatus)
-  window.removeEventListener('offline', updateOnlineStatus)
-})
+	window.removeEventListener('online', updateOnlineStatus);
+	window.removeEventListener('offline', updateOnlineStatus);
+});
 </script>
 ```
 
@@ -174,29 +174,29 @@ The component supports various positions on screen:
 
 ```vue
 <template>
-  <bo-toast
-    title="Top Left Toast"
-    message="This toast appears in the top left corner"
-    position="topLeft"
-  />
+	<bo-toast
+		title="Top Left Toast"
+		message="This toast appears in the top left corner"
+		position="topLeft"
+	/>
 
-  <bo-toast
-    title="Top Right Toast"
-    message="This toast appears in the top right corner"
-    position="topRight"
-  />
+	<bo-toast
+		title="Top Right Toast"
+		message="This toast appears in the top right corner"
+		position="topRight"
+	/>
 
-  <bo-toast
-    title="Bottom Left Toast"
-    message="This toast appears in the bottom left corner"
-    position="bottomLeft"
-  />
+	<bo-toast
+		title="Bottom Left Toast"
+		message="This toast appears in the bottom left corner"
+		position="bottomLeft"
+	/>
 
-  <bo-toast
-    title="Bottom Right Toast"
-    message="This toast appears in the bottom right corner"
-    position="bottomRight"
-  />
+	<bo-toast
+		title="Bottom Right Toast"
+		message="This toast appears in the bottom right corner"
+		position="bottomRight"
+	/>
 </template>
 ```
 

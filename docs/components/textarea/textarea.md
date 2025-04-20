@@ -1,6 +1,6 @@
 <script setup>
-import { BoTextarea, BoTextareaSize, BoTextareaState, BoTextareaVariant } from '@/components/bo_textarea';
-import { Icon } from '@/components/bo_icon';
+import { BoTextarea, BoTextareaSize, BoTextareaState, BoTextareaVariant } from '@/components/bo-textarea';
+import { Icon } from '@/components/bo-icon';
 </script>
 
 # Textarea
@@ -13,11 +13,11 @@ The `BoTextarea` component provides a way to create styled multi-line text input
 
 ```vue
 <template>
-  <bo-textarea
-    v-model="text"
-    label="Comments"
-    placeholder="Enter your comments"
-  />
+	<bo-textarea
+		v-model="text"
+		label="Comments"
+		placeholder="Enter your comments"
+	/>
 </template>
 ```
 
@@ -70,18 +70,18 @@ The Textarea component supports different sizes: small, default, and large. All 
 
 ```vue
 <template>
-  <bo-textarea
-    size="small"
-    label="Small Textarea"
-  />
-  <bo-textarea
-    size="default"
-    label="Default Textarea"
-  />
-  <bo-textarea
-    size="large"
-    label="Large Textarea"
-  />
+	<bo-textarea
+		size="small"
+		label="Small Textarea"
+	/>
+	<bo-textarea
+		size="default"
+		label="Default Textarea"
+	/>
+	<bo-textarea
+		size="large"
+		label="Large Textarea"
+	/>
 </template>
 ```
 
@@ -97,20 +97,20 @@ The Textarea component supports different states: none (default), valid, and inv
 
 ```vue
 <template>
-  <bo-textarea
-    state="none"
-    label="Default State"
-  />
-  <bo-textarea
-    state="valid"
-    label="Valid State"
-    description="This textarea is valid"
-  />
-  <bo-textarea
-    state="invalid"
-    label="Invalid State"
-    error-message="This field is required"
-  />
+	<bo-textarea
+		state="none"
+		label="Default State"
+	/>
+	<bo-textarea
+		state="valid"
+		label="Valid State"
+		description="This textarea is valid"
+	/>
+	<bo-textarea
+		state="invalid"
+		label="Invalid State"
+		error-message="This field is required"
+	/>
 </template>
 ```
 
@@ -126,14 +126,14 @@ The Textarea component supports different style variants: default and filled.
 
 ```vue
 <template>
-  <bo-textarea
-    variant="default"
-    label="Default Variant"
-  />
-  <bo-textarea
-    variant="filled"
-    label="Filled Variant"
-  />
+	<bo-textarea
+		variant="default"
+		label="Default Variant"
+	/>
+	<bo-textarea
+		variant="filled"
+		label="Filled Variant"
+	/>
 </template>
 ```
 
@@ -148,22 +148,22 @@ By default, the textarea is not resizable, but you can enable resizing with the 
 
 ```vue
 <template>
-  <bo-textarea
-    label="Not Resizable (Default)"
-    resize="none"
-  />
-  <bo-textarea
-    label="Vertical Resize"
-    resize="vertical"
-  />
-  <bo-textarea
-    label="Horizontal Resize"
-    resize="horizontal"
-  />
-  <bo-textarea
-    label="Both Directions Resize"
-    resize="both"
-  />
+	<bo-textarea
+		label="Not Resizable (Default)"
+		resize="none"
+	/>
+	<bo-textarea
+		label="Vertical Resize"
+		resize="vertical"
+	/>
+	<bo-textarea
+		label="Horizontal Resize"
+		resize="horizontal"
+	/>
+	<bo-textarea
+		label="Both Directions Resize"
+		resize="both"
+	/>
 </template>
 ```
 
@@ -180,17 +180,17 @@ Disabled textareas prevent user interaction and appear visually dimmed to indica
 
 ```vue
 <template>
-  <bo-textarea
-    label="Disabled Textarea"
-    disabled
-    model-value="This textarea is disabled"
-  />
-  <bo-textarea
-    variant="filled"
-    label="Disabled Filled Textarea"
-    disabled
-    model-value="Disabled filled textarea"
-  />
+	<bo-textarea
+		label="Disabled Textarea"
+		disabled
+		model-value="This textarea is disabled"
+	/>
+	<bo-textarea
+		variant="filled"
+		label="Disabled Filled Textarea"
+		disabled
+		model-value="Disabled filled textarea"
+	/>
 </template>
 ```
 
@@ -205,17 +205,17 @@ Readonly textareas display information that cannot be edited but still allow foc
 
 ```vue
 <template>
-  <bo-textarea
-    label="Readonly Textarea"
-    readonly
-    model-value="This textarea is readonly"
-  />
-  <bo-textarea
-    variant="filled"
-    label="Readonly Filled Textarea"
-    readonly
-    model-value="Readonly filled textarea"
-  />
+	<bo-textarea
+		label="Readonly Textarea"
+		readonly
+		model-value="This textarea is readonly"
+	/>
+	<bo-textarea
+		variant="filled"
+		label="Readonly Filled Textarea"
+		readonly
+		model-value="Readonly filled textarea"
+	/>
 </template>
 ```
 
@@ -230,11 +230,11 @@ The clearable prop adds a clear button that appears when the textarea has a valu
 
 ```vue
 <template>
-  <bo-textarea
-    v-model="text"
-    label="Clearable Textarea"
-    clearable
-  />
+	<bo-textarea
+		v-model="text"
+		label="Clearable Textarea"
+		clearable
+	/>
 </template>
 ```
 
@@ -248,15 +248,15 @@ By default, the textarea displays 3 rows of text. You can control the initial si
 
 ```vue
 <template>
-  <bo-textarea
-    label="2 Rows Textarea"
-    :rows="2"
-  />
-  <bo-textarea label="Default (3 Rows) Textarea" />
-  <bo-textarea
-    label="5 Rows Textarea"
-    :rows="5"
-  />
+	<bo-textarea
+		label="2 Rows Textarea"
+		:rows="2"
+	/>
+	<bo-textarea label="Default (3 Rows) Textarea" />
+	<bo-textarea
+		label="5 Rows Textarea"
+		:rows="5"
+	/>
 </template>
 ```
 
@@ -272,12 +272,12 @@ When used with form validation, you can display error messages with the `errorMe
 
 ```vue
 <template>
-  <bo-textarea
-    v-model="message"
-    label="Message"
-    state="invalid"
-    error-message="Please enter at least 10 characters"
-  />
+	<bo-textarea
+		v-model="message"
+		label="Message"
+		state="invalid"
+		error-message="Please enter at least 10 characters"
+	/>
 </template>
 ```
 

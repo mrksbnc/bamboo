@@ -1,7 +1,7 @@
 <script setup>
 import { BoTable } from '@/components'
 import { BoSize } from '@/shared'
-import { Icon } from '@/components/bo_icon'
+import { Icon } from '@/components/bo-icon'
 import BasicTable from './examples/BasicTable.vue'
 import SearchPaginationTable from './examples/SearchPaginationTable.vue'
 import SelectableTable from './examples/SelectableTable.vue'
@@ -19,28 +19,28 @@ The `BoTable` component is a flexible table implementation with support for sear
 
 ```vue
 <template>
-  <bo-table
-    :items="users"
-    :columns="columns"
-  />
+	<bo-table
+		:items="users"
+		:columns="columns"
+	/>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { BoTable } from '@/components'
+import { ref } from 'vue';
+import { BoTable } from '@/components';
 
 const users = ref([
-  { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-  { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
-  { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor' },
-])
+	{ id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+	{ id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+	{ id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor' },
+]);
 
 const columns = ref([
-  { key: 'id', label: 'ID', sortable: true },
-  { key: 'name', label: 'Name', field: 'name', sortable: true },
-  { key: 'email', label: 'Email', field: 'email' },
-  { key: 'role', label: 'Role', field: 'role', sortable: true },
-])
+	{ key: 'id', label: 'ID', sortable: true },
+	{ key: 'name', label: 'Name', field: 'name', sortable: true },
+	{ key: 'email', label: 'Email', field: 'email' },
+	{ key: 'role', label: 'Role', field: 'role', sortable: true },
+]);
 </script>
 ```
 
@@ -115,36 +115,36 @@ Adding search functionality and pagination to your table is as simple as adding 
 
 ```vue
 <template>
-  <bo-table
-    :items="users"
-    :columns="columns"
-    searchable
-    search-placeholder="Search users..."
-    paginated
-    :per-page="5"
-  />
+	<bo-table
+		:items="users"
+		:columns="columns"
+		searchable
+		search-placeholder="Search users..."
+		paginated
+		:per-page="5"
+	/>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { BoTable } from '@/components'
+import { ref } from 'vue';
+import { BoTable } from '@/components';
 
 const users = ref([
-  { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-  { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
-  { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor' },
-  { id: 4, name: 'Sarah Williams', email: 'sarah@example.com', role: 'Admin' },
-  { id: 5, name: 'Michael Brown', email: 'michael@example.com', role: 'User' },
-  { id: 6, name: 'Emily Davis', email: 'emily@example.com', role: 'Editor' },
-  { id: 7, name: 'David Miller', email: 'david@example.com', role: 'User' },
-])
+	{ id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+	{ id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+	{ id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor' },
+	{ id: 4, name: 'Sarah Williams', email: 'sarah@example.com', role: 'Admin' },
+	{ id: 5, name: 'Michael Brown', email: 'michael@example.com', role: 'User' },
+	{ id: 6, name: 'Emily Davis', email: 'emily@example.com', role: 'Editor' },
+	{ id: 7, name: 'David Miller', email: 'david@example.com', role: 'User' },
+]);
 
 const columns = ref([
-  { key: 'id', label: 'ID', sortable: true },
-  { key: 'name', label: 'Name', field: 'name', sortable: true },
-  { key: 'email', label: 'Email', field: 'email' },
-  { key: 'role', label: 'Role', field: 'role', sortable: true },
-])
+	{ key: 'id', label: 'ID', sortable: true },
+	{ key: 'name', label: 'Name', field: 'name', sortable: true },
+	{ key: 'email', label: 'Email', field: 'email' },
+	{ key: 'role', label: 'Role', field: 'role', sortable: true },
+]);
 </script>
 ```
 
@@ -160,47 +160,47 @@ To enable row selection, use the `selectable` prop. For multiple selection, add 
 
 ```vue
 <template>
-  <div>
-    <bo-table
-      :items="users"
-      :columns="columns"
-      selectable
-      multi-select
-      row-key="id"
-      @selection-change="onSelectionChange"
-    />
-    <div
-      v-if="selectedItems.length"
-      class="mt-4 rounded border p-4"
-    >
-      <p class="font-bold">Selected items:</p>
-      <pre class="mt-2 text-sm">{{ JSON.stringify(selectedItems, null, 2) }}</pre>
-    </div>
-  </div>
+	<div>
+		<bo-table
+			:items="users"
+			:columns="columns"
+			selectable
+			multi-select
+			row-key="id"
+			@selection-change="onSelectionChange"
+		/>
+		<div
+			v-if="selectedItems.length"
+			class="mt-4 rounded border p-4"
+		>
+			<p class="font-bold">Selected items:</p>
+			<pre class="mt-2 text-sm">{{ JSON.stringify(selectedItems, null, 2) }}</pre>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { BoTable } from '@/components'
+import { ref } from 'vue';
+import { BoTable } from '@/components';
 
 const users = ref([
-  { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-  { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
-  { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor' },
-])
+	{ id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+	{ id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+	{ id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor' },
+]);
 
 const columns = ref([
-  { key: 'id', label: 'ID', sortable: true },
-  { key: 'name', label: 'Name', field: 'name', sortable: true },
-  { key: 'email', label: 'Email', field: 'email' },
-  { key: 'role', label: 'Role', field: 'role', sortable: true },
-])
+	{ key: 'id', label: 'ID', sortable: true },
+	{ key: 'name', label: 'Name', field: 'name', sortable: true },
+	{ key: 'email', label: 'Email', field: 'email' },
+	{ key: 'role', label: 'Role', field: 'role', sortable: true },
+]);
 
-const selectedItems = ref([])
+const selectedItems = ref([]);
 
 const onSelectionChange = (keys, items) => {
-  selectedItems.value = items
-}
+	selectedItems.value = items;
+};
 </script>
 ```
 
@@ -216,54 +216,54 @@ You can customize the rendering of cells using slots. The `cell(columnKey)` slot
 
 ```vue
 <template>
-  <bo-table
-    :items="users"
-    :columns="columns"
-  >
-    <template #cell(actions)="{ item }">
-      <div class="flex space-x-2">
-        <button
-          class="text-blue-500 hover:text-blue-700"
-          @click="editUser(item)"
-        >
-          Edit
-        </button>
-        <button
-          class="text-red-500 hover:text-red-700"
-          @click="deleteUser(item)"
-        >
-          Delete
-        </button>
-      </div>
-    </template>
-  </bo-table>
+	<bo-table
+		:items="users"
+		:columns="columns"
+	>
+		<template #cell(actions)="{ item }">
+			<div class="flex space-x-2">
+				<button
+					class="text-blue-500 hover:text-blue-700"
+					@click="editUser(item)"
+				>
+					Edit
+				</button>
+				<button
+					class="text-red-500 hover:text-red-700"
+					@click="deleteUser(item)"
+				>
+					Delete
+				</button>
+			</div>
+		</template>
+	</bo-table>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { BoTable } from '@/components'
+import { ref } from 'vue';
+import { BoTable } from '@/components';
 
 const users = ref([
-  { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-  { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
-  { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor' },
-])
+	{ id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+	{ id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+	{ id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor' },
+]);
 
 const columns = ref([
-  { key: 'id', label: 'ID', sortable: true },
-  { key: 'name', label: 'Name', field: 'name', sortable: true },
-  { key: 'email', label: 'Email', field: 'email' },
-  { key: 'role', label: 'Role', field: 'role', sortable: true },
-  { key: 'actions', label: 'Actions', sortable: false },
-])
+	{ key: 'id', label: 'ID', sortable: true },
+	{ key: 'name', label: 'Name', field: 'name', sortable: true },
+	{ key: 'email', label: 'Email', field: 'email' },
+	{ key: 'role', label: 'Role', field: 'role', sortable: true },
+	{ key: 'actions', label: 'Actions', sortable: false },
+]);
 
 const editUser = (user) => {
-  alert(`Edit user: ${user.name}`)
-}
+	alert(`Edit user: ${user.name}`);
+};
 
 const deleteUser = (user) => {
-  alert(`Delete user: ${user.name}`)
-}
+	alert(`Delete user: ${user.name}`);
+};
 </script>
 ```
 
@@ -279,71 +279,71 @@ The BoTable component offers various styling options including bordered, striped
 
 ```vue
 <template>
-  <div class="space-y-6">
-    <div>
-      <h3 class="mb-2 text-sm font-medium">Bordered Table</h3>
-      <bo-table
-        :items="data"
-        :columns="columns"
-        bordered
-      />
-    </div>
+	<div class="space-y-6">
+		<div>
+			<h3 class="mb-2 text-sm font-medium">Bordered Table</h3>
+			<bo-table
+				:items="data"
+				:columns="columns"
+				bordered
+			/>
+		</div>
 
-    <div>
-      <h3 class="mb-2 text-sm font-medium">Striped Table</h3>
-      <bo-table
-        :items="data"
-        :columns="columns"
-        striped
-      />
-    </div>
+		<div>
+			<h3 class="mb-2 text-sm font-medium">Striped Table</h3>
+			<bo-table
+				:items="data"
+				:columns="columns"
+				striped
+			/>
+		</div>
 
-    <div>
-      <h3 class="mb-2 text-sm font-medium">Hoverable Table</h3>
-      <bo-table
-        :items="data"
-        :columns="columns"
-        hoverable
-      />
-    </div>
+		<div>
+			<h3 class="mb-2 text-sm font-medium">Hoverable Table</h3>
+			<bo-table
+				:items="data"
+				:columns="columns"
+				hoverable
+			/>
+		</div>
 
-    <div>
-      <h3 class="mb-2 text-sm font-medium">Combined Styles</h3>
-      <bo-table
-        :items="data"
-        :columns="columns"
-        bordered
-        striped
-        hoverable
-        size="large"
-      />
-    </div>
-  </div>
+		<div>
+			<h3 class="mb-2 text-sm font-medium">Combined Styles</h3>
+			<bo-table
+				:items="data"
+				:columns="columns"
+				bordered
+				striped
+				hoverable
+				size="large"
+			/>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { BoTable } from '@/components'
-import { BoSize } from '@/shared'
+import { ref } from 'vue';
+import { BoTable } from '@/components';
+import { BoSize } from '@/shared';
 
 const data = ref([
-  { id: 1, name: 'Product A', price: 25.99, stock: 120 },
-  { id: 2, name: 'Product B', price: 35.99, stock: 80 },
-  { id: 3, name: 'Product C', price: 15.99, stock: 0 },
-])
+	{ id: 1, name: 'Product A', price: 25.99, stock: 120 },
+	{ id: 2, name: 'Product B', price: 35.99, stock: 80 },
+	{ id: 3, name: 'Product C', price: 15.99, stock: 0 },
+]);
 
 const columns = ref([
-  { key: 'id', label: 'ID', sortable: true },
-  { key: 'name', label: 'Product Name', field: 'name', sortable: true },
-  {
-    key: 'price',
-    label: 'Price',
-    field: 'price',
-    sortable: true,
-    align: 'right',
-  },
-  { key: 'stock', label: 'Stock', field: 'stock', sortable: true },
-])
+	{ key: 'id', label: 'ID', sortable: true },
+	{ key: 'name', label: 'Product Name', field: 'name', sortable: true },
+	{
+		key: 'price',
+		label: 'Price',
+		field: 'price',
+		sortable: true,
+		align: 'right',
+	},
+	{ key: 'stock', label: 'Stock', field: 'stock', sortable: true },
+]);
 </script>
 ```
 
@@ -355,47 +355,47 @@ const columns = ref([
 
 ```typescript
 export type BoTableColumn<T = Record<string, unknown>> = {
-  key: string
-  label: string
-  field?: string
-  sortable?: boolean
-  sortFn?: (item: T) => unknown
-  headerIcon?: string
-  renderFn?: (value: unknown, item: T, index: number) => unknown
-  width?: string
-  align?: 'left' | 'center' | 'right'
-  class?: string
-  headerClass?: string
-}
+	key: string;
+	label: string;
+	field?: string;
+	sortable?: boolean;
+	sortFn?: (item: T) => unknown;
+	headerIcon?: string;
+	renderFn?: (value: unknown, item: T, index: number) => unknown;
+	width?: string;
+	align?: 'left' | 'center' | 'right';
+	class?: string;
+	headerClass?: string;
+};
 ```
 
 ### BoTableProps
 
 ```typescript
 export type BoTableProps<T = Record<string, unknown>> = {
-  items: T[]
-  columns: BoTableColumn<T>[]
-  searchable?: boolean
-  searchPlaceholder?: string
-  initialSearch?: string
-  searchFields?: string[]
-  paginated?: boolean
-  perPage?: number
-  bordered?: boolean
-  striped?: boolean
-  hoverable?: boolean
-  size?: BoSize
-  loading?: boolean
-  emptyText?: string
-  stickyHeader?: boolean
-  height?: string
-  showHeader?: boolean
-  selectable?: boolean
-  selectedKeys?: (string | number)[]
-  rowKey?: string
-  rowKeyFn?: (item: T) => string | number
-  multiSelect?: boolean
-  defaultSortKey?: string
-  defaultSortOrder?: 'asc' | 'desc'
-}
+	items: T[];
+	columns: BoTableColumn<T>[];
+	searchable?: boolean;
+	searchPlaceholder?: string;
+	initialSearch?: string;
+	searchFields?: string[];
+	paginated?: boolean;
+	perPage?: number;
+	bordered?: boolean;
+	striped?: boolean;
+	hoverable?: boolean;
+	size?: BoSize;
+	loading?: boolean;
+	emptyText?: string;
+	stickyHeader?: boolean;
+	height?: string;
+	showHeader?: boolean;
+	selectable?: boolean;
+	selectedKeys?: (string | number)[];
+	rowKey?: string;
+	rowKeyFn?: (item: T) => string | number;
+	multiSelect?: boolean;
+	defaultSortKey?: string;
+	defaultSortOrder?: 'asc' | 'desc';
+};
 ```
