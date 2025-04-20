@@ -58,15 +58,15 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo_icon'
-import { BoSize } from '@/shared'
-import { AccessibilityUtils, StringUtils, TailwindUtils } from '@/utils'
-import { IdentityUtils } from '@/utils/identity_utils'
-import { computed, ref, watch } from 'vue'
-import { BoRadioSize, BoRadioState } from './constants'
-import type { BoRadioProps } from './types'
+import { BoIcon, Icon } from '@/components/bo_icon';
+import { BoSize } from '@/shared';
+import { AccessibilityUtils, StringUtils, TailwindUtils } from '@/utils';
+import { IdentityUtils } from '@/utils/identity_utils';
+import { computed, ref, watch } from 'vue';
+import { BoRadioSize, BoRadioState } from './constants';
+import type { BoRadioProps } from './types';
 
-const emit = defineEmits(['update:modelValue', 'change', 'focus', 'blur'])
+const emit = defineEmits(['update:modelValue', 'change', 'focus', 'blur']);
 
 const props = withDefaults(defineProps<BoRadioProps>(), {
 	disabled: false,
@@ -74,59 +74,59 @@ const props = withDefaults(defineProps<BoRadioProps>(), {
 	required: false,
 	state: BoRadioState.none,
 	size: BoRadioSize.default,
-})
+});
 
-const modelValue = defineModel<string | number | boolean>('modelValue', { required: true })
+const modelValue = defineModel<string | number | boolean>('modelValue', { required: true });
 
 const inputId = computed<string>(
 	() => props.id ?? IdentityUtils.generateRandomIdWithPrefix('radio'),
-)
+);
 
-const descriptionId = ref(AccessibilityUtils.generateAccessibleId('radio-desc'))
-const errorId = ref(AccessibilityUtils.generateAccessibleId('radio-error'))
+const descriptionId = ref(AccessibilityUtils.generateAccessibleId('radio-desc'));
+const errorId = ref(AccessibilityUtils.generateAccessibleId('radio-error'));
 
 // Compute aria-describedby based on presence of description or error
 const getAriaDescribedBy = computed(() => {
-	const ids = []
+	const ids = [];
 	if (props.description && StringUtils.isEmptyStr(props.errorMessage)) {
-		ids.push(descriptionId.value)
+		ids.push(descriptionId.value);
 	}
 	if (props.errorMessage && props.state === BoRadioState.invalid) {
-		ids.push(errorId.value)
+		ids.push(errorId.value);
 	}
-	return ids.length > 0 ? ids.join(' ') : undefined
-})
+	return ids.length > 0 ? ids.join(' ') : undefined;
+});
 
 const radioClass = computed<string>(() => {
 	const baseClasses =
-		'rounded-full border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600'
+		'rounded-full border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600';
 
 	const sizeClasses = {
 		[BoRadioSize.small]: 'h-3 w-3',
 		[BoRadioSize.default]: 'h-4 w-4',
 		[BoRadioSize.large]: 'h-5 w-5',
-	}
+	};
 
-	let classes = TailwindUtils.merge(baseClasses, sizeClasses[props.size])
+	let classes = TailwindUtils.merge(baseClasses, sizeClasses[props.size]);
 
 	if (props.disabled) {
-		classes = TailwindUtils.merge(classes, 'cursor-not-allowed opacity-50 dark:opacity-40')
+		classes = TailwindUtils.merge(classes, 'cursor-not-allowed opacity-50 dark:opacity-40');
 	}
 
 	if (props.state === BoRadioState.invalid) {
 		classes = TailwindUtils.merge(
 			classes,
 			'border-red-500 focus:ring-red-500 text-red-600 dark:border-red-500 dark:focus:ring-red-500',
-		)
+		);
 	} else if (props.state === BoRadioState.valid) {
 		classes = TailwindUtils.merge(
 			classes,
 			'border-green-500 focus:ring-green-500 text-green-600 dark:border-green-500 dark:focus:ring-green-500',
-		)
+		);
 	}
 
-	return classes
-})
+	return classes;
+});
 
 // Add a watcher for state changes to announce errors to screen readers
 watch(
@@ -138,11 +138,11 @@ watch(
 			oldState !== BoRadioState.invalid
 		) {
 			// Announce error message to screen readers when state becomes invalid
-			AccessibilityUtils.announceToScreenReader(props.errorMessage, 'assertive')
+			AccessibilityUtils.announceToScreenReader(props.errorMessage, 'assertive');
 		} else if (newState === BoRadioState.valid && oldState === BoRadioState.invalid) {
 			// Announce when field becomes valid after being invalid
-			AccessibilityUtils.announceToScreenReader('Field is now valid', 'polite')
+			AccessibilityUtils.announceToScreenReader('Field is now valid', 'polite');
 		}
 	},
-)
+);
 </script>

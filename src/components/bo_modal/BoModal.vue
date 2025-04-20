@@ -65,99 +65,99 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo_icon'
-import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text'
-import { AccessibilityUtils, KeyboardUtils } from '@/utils'
-import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
-import type { BoModalProps } from './bo_modal'
+import { BoIcon, Icon } from '@/components/bo_icon';
+import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text';
+import { AccessibilityUtils, KeyboardUtils } from '@/utils';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
+import type { BoModalProps } from './bo_modal';
 
 const props = withDefaults(defineProps<BoModalProps>(), {
 	showClose: true,
-})
+});
 
 defineSlots<{
-	header?: () => unknown
-	description?: () => unknown
-	default?: () => unknown
-	footer?: () => unknown
-}>()
+	header?: () => unknown;
+	description?: () => unknown;
+	default?: () => unknown;
+	footer?: () => unknown;
+}>();
 
 const emit = defineEmits<{
-	close: []
-}>()
+	close: [];
+}>();
 
-let previousActiveElement: HTMLElement | null = null
+let previousActiveElement: HTMLElement | null = null;
 
 const modalTitleId = ref<string>(
 	props.id ? `${props.id}-title` : AccessibilityUtils.generateAccessibleId('modal-title'),
-)
+);
 
 const modalDescriptionId = ref<string>(
 	props.id
 		? `${props.id}-description`
 		: AccessibilityUtils.generateAccessibleId('modal-description'),
-)
+);
 
-const modalRef = ref<HTMLElement | null>(null)
+const modalRef = ref<HTMLElement | null>(null);
 
 const computedStyle = computed<Record<string, string> | undefined>(() => {
 	if (props.width) {
 		if (props.width.px) {
-			return { width: `${props.width.px}px` }
+			return { width: `${props.width.px}px` };
 		}
 
 		if (props.width.percent) {
-			return { width: `${props.width.percent}%` }
+			return { width: `${props.width.percent}%` };
 		}
 
 		if (props.width.tailwind) {
-			return undefined
+			return undefined;
 		}
 	}
 
-	return undefined
-})
+	return undefined;
+});
 
 function handleKeyDown(e: KeyboardEvent): void {
 	if (modalRef.value) {
-		KeyboardUtils.trapTabKey(e, modalRef.value, true)
+		KeyboardUtils.trapTabKey(e, modalRef.value, true);
 	}
 }
 
 function handleEscapeKey(e: KeyboardEvent): void {
 	KeyboardUtils.registerEscapeKeyHandler(e, () => {
-		emit('close')
-	})
+		emit('close');
+	});
 }
 
 onMounted(() => {
-	previousActiveElement = document.activeElement as HTMLElement | null
+	previousActiveElement = document.activeElement as HTMLElement | null;
 
-	AccessibilityUtils.announceToScreenReader('Dialog opened', 'assertive')
+	AccessibilityUtils.announceToScreenReader('Dialog opened', 'assertive');
 
 	nextTick(() => {
 		if (modalRef.value) {
-			const focusableElements = KeyboardUtils['getFocusableElements'](modalRef.value)
+			const focusableElements = KeyboardUtils['getFocusableElements'](modalRef.value);
 			if (focusableElements.length > 0) {
-				focusableElements[0].focus()
+				focusableElements[0].focus();
 			} else {
-				modalRef.value.focus()
+				modalRef.value.focus();
 			}
 		}
-	})
+	});
 
-	document.addEventListener('keydown', handleEscapeKey)
-	document.body.style.overflow = 'hidden'
-})
+	document.addEventListener('keydown', handleEscapeKey);
+	document.body.style.overflow = 'hidden';
+});
 
 onBeforeUnmount(() => {
-	document.removeEventListener('keydown', handleEscapeKey)
+	document.removeEventListener('keydown', handleEscapeKey);
 
 	if (previousActiveElement) {
-		previousActiveElement.focus()
+		previousActiveElement.focus();
 	}
 
-	document.body.style.overflow = ''
-	AccessibilityUtils.announceToScreenReader('Dialog closed', 'assertive')
-})
+	document.body.style.overflow = '';
+	AccessibilityUtils.announceToScreenReader('Dialog closed', 'assertive');
+});
 </script>

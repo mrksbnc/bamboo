@@ -5,7 +5,7 @@ export class TailwindUtils {
 	 */
 	static merge(...classes: (string | null | undefined)[]): string {
 		if (classes.length === 0) {
-			return ''
+			return '';
 		}
 
 		return Array.from(
@@ -13,10 +13,10 @@ export class TailwindUtils {
 				classes
 					.filter((f) => f !== null && f !== undefined)
 					.map((c) => {
-						return c.split(' ')
+						return c.split(' ');
 					})
 					.flat(),
 			),
-		).join(' ')
+		).join(' ');
 	}
 }

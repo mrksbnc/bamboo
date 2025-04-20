@@ -139,10 +139,10 @@
 </template>
 
 <script setup lang="ts">
-import { BoBadge, BoBadgeVariant, BoTable } from '@/components'
-import { BoIcon, Icon } from '@/components/bo_icon'
-import type { BoTableColumn } from '@/components/bo_table'
-import { ref } from 'vue'
+import { BoBadge, BoBadgeVariant, BoTable } from '@/components';
+import { BoIcon, Icon } from '@/components/bo_icon';
+import type { BoTableColumn } from '@/components/bo_table';
+import { ref } from 'vue';
 
 // Basic user data
 const users = ref([
@@ -151,7 +151,7 @@ const users = ref([
 	{ id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor' },
 	{ id: 4, name: 'Alice Williams', email: 'alice@example.com', role: 'User' },
 	{ id: 5, name: 'Charlie Brown', email: 'charlie@example.com', role: 'Editor' },
-])
+]);
 
 // User columns
 const userColumns = ref<BoTableColumn[]>([
@@ -159,7 +159,7 @@ const userColumns = ref<BoTableColumn[]>([
 	{ key: 'name', label: 'Name', field: 'name', sortable: true },
 	{ key: 'email', label: 'Email', field: 'email' },
 	{ key: 'role', label: 'Role', field: 'role', sortable: true },
-])
+]);
 
 // User columns with actions
 const userColumnsWithActions = ref<BoTableColumn[]>([
@@ -168,7 +168,7 @@ const userColumnsWithActions = ref<BoTableColumn[]>([
 	{ key: 'email', label: 'Email', field: 'email' },
 	{ key: 'role', label: 'Role', field: 'role', sortable: true },
 	{ key: 'actions', label: 'Actions', sortable: false },
-])
+]);
 
 // Product data
 const products = ref([
@@ -177,7 +177,7 @@ const products = ref([
 	{ id: 3, name: 'Product C', price: 15.99, stock: 0 },
 	{ id: 4, name: 'Product D', price: 45.99, stock: 35 },
 	{ id: 5, name: 'Product E', price: 55.99, stock: 15 },
-])
+]);
 
 // Product columns with icons
 const productColumns = ref<BoTableColumn[]>([
@@ -200,11 +200,11 @@ const productColumns = ref<BoTableColumn[]>([
 		headerIcon: Icon.shoppingCart,
 		align: 'center',
 		renderFn: (item) => {
-			const stock = (item as { stock: number }).stock
-			return stock === 0 ? 'Out of Stock' : stock
+			const stock = (item as { stock: number }).stock;
+			return stock === 0 ? 'Out of Stock' : stock;
 		},
 	},
-])
+]);
 
 // Order data for status badges example
 const orders = ref([
@@ -213,7 +213,7 @@ const orders = ref([
 	{ id: 103, customer: 'Bob Johnson', amount: 250.0, status: 'Canceled' },
 	{ id: 104, customer: 'Alice Williams', amount: 75.25, status: 'Pending' },
 	{ id: 105, customer: 'Charlie Brown', amount: 199.99, status: 'Completed' },
-])
+]);
 
 // Order columns
 const orderColumns = ref<BoTableColumn[]>([
@@ -228,42 +228,42 @@ const orderColumns = ref<BoTableColumn[]>([
 		renderFn: (item) => `$${(item as { amount: number }).amount.toFixed(2)}`,
 	},
 	{ key: 'status', label: 'Status', field: 'status', sortable: true, align: 'center' },
-])
+]);
 
 // State for selected users
-const selectedUsers = ref<unknown[]>([])
+const selectedUsers = ref<unknown[]>([]);
 
 // Selection change handler
 const onSelectionChange = (_keys: (string | number)[], selectedItems: unknown[]) => {
-	selectedUsers.value = selectedItems
-}
+	selectedUsers.value = selectedItems;
+};
 
 // Get badge variant based on status
 const getStatusVariant = (status: string) => {
 	switch (status) {
 		case 'Completed':
-			return BoBadgeVariant.success
+			return BoBadgeVariant.success;
 		case 'Processing':
-			return BoBadgeVariant.primary
+			return BoBadgeVariant.primary;
 		case 'Pending':
-			return BoBadgeVariant.warning
+			return BoBadgeVariant.warning;
 		case 'Canceled':
-			return BoBadgeVariant.danger
+			return BoBadgeVariant.danger;
 		default:
-			return BoBadgeVariant.secondary
+			return BoBadgeVariant.secondary;
 	}
-}
+};
 
 // Action handlers
 const editUser = (user: unknown) => {
-	console.log('Edit user:', user)
+	console.log('Edit user:', user);
 	// Implementation would go here
-}
+};
 
 const deleteUser = (user: unknown) => {
-	console.log('Delete user:', user)
+	console.log('Delete user:', user);
 	// Implementation would go here
-}
+};
 </script>
 
 <style scoped>

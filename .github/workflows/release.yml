@@ -39,11 +39,16 @@ jobs:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Run tests
-        run: npm test
+        run: pnpm test
 
       - name: Configure Git
         run: |
@@ -54,20 +59,20 @@ jobs:
         id: update_version
         run: |
           if [ "${{ github.event.inputs.version_type }}" == "prerelease" ]; then
-            NEW_VERSION=$(npm version ${{ github.event.inputs.version_type }} --preid=${{ github.event.inputs.prerelease_id }} --no-git-tag-version)
+            NEW_VERSION=$(pnpm version ${{ github.event.inputs.version_type }} --preid=${{ github.event.inputs.prerelease_id }} --no-git-tag-version)
           else
-            NEW_VERSION=$(npm version ${{ github.event.inputs.version_type }} --no-git-tag-version)
+            NEW_VERSION=$(pnpm version ${{ github.event.inputs.version_type }} --no-git-tag-version)
           fi
           echo "new_version=${NEW_VERSION:1}" >> $GITHUB_OUTPUT
           echo "Version updated to ${NEW_VERSION:1}"
 
       - name: Build package
-        run: npm run build
+        run: pnpm run build
 
       - name: Commit and push changes
         if: ${{ github.event.inputs.dry_run == 'false' }}
         run: |
-          git add package.json package-lock.json
+          git add package.json pnpm-lock.yaml
           git commit -m "chore: bump version to ${{ steps.update_version.outputs.new_version }}"
           git tag v${{ steps.update_version.outputs.new_version }}
           git push
@@ -87,7 +92,7 @@ jobs:
 
       - name: Publish to npm
         if: ${{ github.event.inputs.dry_run == 'false' }}
-        run: npm publish
+        run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

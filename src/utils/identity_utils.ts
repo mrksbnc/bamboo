@@ -3,10 +3,10 @@ export class IdentityUtils {
 		return Math.random()
 			.toString(36)
 			.replace(/[^a-z]+/g, '')
-			.slice(0, 10)
+			.slice(0, 10);
 	}
 
 	static generateRandomIdWithPrefix(prefix: string): string {
-		return [prefix, IdentityUtils.generateRandomId()].join('-')
+		return [prefix, IdentityUtils.generateRandomId()].join('-');
 	}
 }

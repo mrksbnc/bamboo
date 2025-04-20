@@ -1,13 +1,13 @@
-import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
-import { BoTextarea } from '.'
+import { mount } from '@vue/test-utils';
+import { describe, expect, it } from 'vitest';
+import { BoTextarea } from '.';
 import {
 	BoTextareaResize,
 	BoTextareaSize,
 	BoTextareaState,
 	BoTextareaVariant,
 	BoTextareaWrap,
-} from './constants'
+} from './constants';
 
 describe('BoTextarea', () => {
 	it('renders properly', () => {
@@ -15,20 +15,20 @@ describe('BoTextarea', () => {
 			props: {
 				modelValue: '',
 			},
-		})
-		expect(wrapper.find('textarea').exists()).toBe(true)
-	})
+		});
+		expect(wrapper.find('textarea').exists()).toBe(true);
+	});
 
 	it('displays label when provided', () => {
-		const label = 'Test Label'
+		const label = 'Test Label';
 		const wrapper = mount(BoTextarea, {
 			props: {
 				label,
 				modelValue: '',
 			},
-		})
-		expect(wrapper.find('label').text()).toContain(label)
-	})
+		});
+		expect(wrapper.find('label').text()).toContain(label);
+	});
 
 	it('shows required asterisk when required is true', () => {
 		const wrapper = mount(BoTextarea, {
@@ -37,53 +37,53 @@ describe('BoTextarea', () => {
 				required: true,
 				modelValue: '',
 			},
-		})
-		const requiredAsterisk = wrapper.find('label span.text-red-500')
-		expect(requiredAsterisk.exists()).toBe(true)
-		expect(requiredAsterisk.attributes('aria-hidden')).toBe('true')
-		expect(requiredAsterisk.text()).toContain('*')
-	})
+		});
+		const requiredAsterisk = wrapper.find('label span.text-red-500');
+		expect(requiredAsterisk.exists()).toBe(true);
+		expect(requiredAsterisk.attributes('aria-hidden')).toBe('true');
+		expect(requiredAsterisk.text()).toContain('*');
+	});
 
 	it('updates modelValue on input', async () => {
 		const wrapper = mount(BoTextarea, {
 			props: {
 				modelValue: '',
 			},
-		})
-		const textarea = wrapper.find('textarea')
-		await textarea.setValue('Test input')
-		expect(wrapper.emitted()).toHaveProperty('update:modelValue')
-		expect(wrapper.emitted()['update:modelValue'][0]).toEqual(['Test input'])
-	})
+		});
+		const textarea = wrapper.find('textarea');
+		await textarea.setValue('Test input');
+		expect(wrapper.emitted()).toHaveProperty('update:modelValue');
+		expect(wrapper.emitted()['update:modelValue'][0]).toEqual(['Test input']);
+	});
 
 	it('emits focus event', async () => {
 		const wrapper = mount(BoTextarea, {
 			props: {
 				modelValue: '',
 			},
-		})
-		const textarea = wrapper.find('textarea')
-		await textarea.trigger('focus')
-		expect(wrapper.emitted()).toHaveProperty('focus')
-	})
+		});
+		const textarea = wrapper.find('textarea');
+		await textarea.trigger('focus');
+		expect(wrapper.emitted()).toHaveProperty('focus');
+	});
 
 	it('emits blur event', async () => {
 		const wrapper = mount(BoTextarea, {
 			props: {
 				modelValue: '',
 			},
-		})
-		const textarea = wrapper.find('textarea')
-		await textarea.trigger('blur')
-		expect(wrapper.emitted()).toHaveProperty('blur')
-	})
+		});
+		const textarea = wrapper.find('textarea');
+		await textarea.trigger('blur');
+		expect(wrapper.emitted()).toHaveProperty('blur');
+	});
 
 	it('applies different sizes correctly', () => {
 		const sizes = [
 			{ size: BoTextareaSize.small, expectedClasses: ['px-3', 'py-1.5', 'text-xs'] },
 			{ size: BoTextareaSize.default, expectedClasses: ['px-3', 'py-2', 'text-sm'] },
 			{ size: BoTextareaSize.large, expectedClasses: ['px-4', 'py-3', 'text-base'] },
-		]
+		];
 
 		sizes.forEach(({ size, expectedClasses }) => {
 			const wrapper = mount(BoTextarea, {
@@ -91,15 +91,15 @@ describe('BoTextarea', () => {
 					size,
 					modelValue: '',
 				},
-			})
-			const textarea = wrapper.find('textarea')
-			const classes = textarea.classes().join(' ')
+			});
+			const textarea = wrapper.find('textarea');
+			const classes = textarea.classes().join(' ');
 
 			expectedClasses.forEach((expectedClass) => {
-				expect(classes).toContain(expectedClass)
-			})
-		})
-	})
+				expect(classes).toContain(expectedClass);
+			});
+		});
+	});
 
 	it('applies different variants correctly', () => {
 		const variants = [
@@ -111,7 +111,7 @@ describe('BoTextarea', () => {
 				variant: BoTextareaVariant.filled,
 				expectedClass: 'bg-gray-100',
 			},
-		]
+		];
 
 		variants.forEach(({ variant, expectedClass }) => {
 			const wrapper = mount(BoTextarea, {
@@ -119,11 +119,11 @@ describe('BoTextarea', () => {
 					variant,
 					modelValue: '',
 				},
-			})
-			const textarea = wrapper.find('textarea')
-			expect(textarea.classes().join(' ')).toContain(expectedClass)
-		})
-	})
+			});
+			const textarea = wrapper.find('textarea');
+			expect(textarea.classes().join(' ')).toContain(expectedClass);
+		});
+	});
 
 	it('applies state styling correctly', () => {
 		const states = [
@@ -135,7 +135,7 @@ describe('BoTextarea', () => {
 				state: BoTextareaState.valid,
 				expectedClass: 'border-green-500',
 			},
-		]
+		];
 
 		states.forEach(({ state, expectedClass }) => {
 			const wrapper = mount(BoTextarea, {
@@ -143,46 +143,46 @@ describe('BoTextarea', () => {
 					state,
 					modelValue: '',
 				},
-			})
-			const textarea = wrapper.find('textarea')
-			expect(textarea.classes().join(' ')).toContain(expectedClass)
-		})
-	})
+			});
+			const textarea = wrapper.find('textarea');
+			expect(textarea.classes().join(' ')).toContain(expectedClass);
+		});
+	});
 
 	it('displays description when provided', () => {
-		const description = 'This is a test description'
+		const description = 'This is a test description';
 		const wrapper = mount(BoTextarea, {
 			props: {
 				description,
 				modelValue: '',
 			},
-		})
-		expect(wrapper.text()).toContain(description)
-	})
+		});
+		expect(wrapper.text()).toContain(description);
+	});
 
 	it('displays error message when in invalid state', () => {
-		const errorMessage = 'This is an error message'
+		const errorMessage = 'This is an error message';
 		const wrapper = mount(BoTextarea, {
 			props: {
 				errorMessage,
 				state: BoTextareaState.invalid,
 				modelValue: '',
 			},
-		})
-		expect(wrapper.text()).toContain(errorMessage)
-	})
+		});
+		expect(wrapper.text()).toContain(errorMessage);
+	});
 
 	it('does not display error message when not in invalid state', () => {
-		const errorMessage = 'This is an error message'
+		const errorMessage = 'This is an error message';
 		const wrapper = mount(BoTextarea, {
 			props: {
 				errorMessage,
 				state: BoTextareaState.valid,
 				modelValue: '',
 			},
-		})
-		expect(wrapper.text()).not.toContain(errorMessage)
-	})
+		});
+		expect(wrapper.text()).not.toContain(errorMessage);
+	});
 
 	it('clears textarea when clear button is clicked', async () => {
 		const wrapper = mount(BoTextarea, {
@@ -190,12 +190,12 @@ describe('BoTextarea', () => {
 				modelValue: 'Test value',
 				clearable: true,
 			},
-		})
-		const clearButton = wrapper.find('.cursor-pointer')
-		await clearButton.trigger('click')
-		expect(wrapper.emitted()).toHaveProperty('clear')
-		expect(wrapper.emitted()['update:modelValue'][0]).toEqual([''])
-	})
+		});
+		const clearButton = wrapper.find('.cursor-pointer');
+		await clearButton.trigger('click');
+		expect(wrapper.emitted()).toHaveProperty('clear');
+		expect(wrapper.emitted()['update:modelValue'][0]).toEqual(['']);
+	});
 
 	it('applies disabled styling and attributes', () => {
 		const wrapper = mount(BoTextarea, {
@@ -203,11 +203,11 @@ describe('BoTextarea', () => {
 				disabled: true,
 				modelValue: '',
 			},
-		})
-		const textarea = wrapper.find('textarea')
-		expect(textarea.attributes('disabled')).toBeDefined()
-		expect(textarea.classes().join(' ')).toContain('cursor-not-allowed')
-	})
+		});
+		const textarea = wrapper.find('textarea');
+		expect(textarea.attributes('disabled')).toBeDefined();
+		expect(textarea.classes().join(' ')).toContain('cursor-not-allowed');
+	});
 
 	it('applies readonly styling and attributes', () => {
 		const wrapper = mount(BoTextarea, {
@@ -215,22 +215,22 @@ describe('BoTextarea', () => {
 				readonly: true,
 				modelValue: '',
 			},
-		})
-		const textarea = wrapper.find('textarea')
-		expect(textarea.attributes('readonly')).toBeDefined()
-	})
+		});
+		const textarea = wrapper.find('textarea');
+		expect(textarea.attributes('readonly')).toBeDefined();
+	});
 
 	it('applies rows attribute correctly', () => {
-		const rows = 8
+		const rows = 8;
 		const wrapper = mount(BoTextarea, {
 			props: {
 				rows,
 				modelValue: '',
 			},
-		})
-		const textarea = wrapper.find('textarea')
-		expect(textarea.attributes('rows')).toBe(rows.toString())
-	})
+		});
+		const textarea = wrapper.find('textarea');
+		expect(textarea.attributes('rows')).toBe(rows.toString());
+	});
 
 	it('applies resize style correctly', () => {
 		const wrapper = mount(BoTextarea, {
@@ -238,10 +238,10 @@ describe('BoTextarea', () => {
 				modelValue: '',
 				resize: BoTextareaResize.none,
 			},
-		})
-		const textarea = wrapper.find('textarea')
-		expect(textarea.attributes('style')).toContain('resize: none')
-	})
+		});
+		const textarea = wrapper.find('textarea');
+		expect(textarea.attributes('style')).toContain('resize: none');
+	});
 
 	it('applies custom resize style when specified', () => {
 		const wrapper = mount(BoTextarea, {
@@ -249,10 +249,10 @@ describe('BoTextarea', () => {
 				resize: BoTextareaResize.vertical,
 				modelValue: '',
 			},
-		})
-		const textarea = wrapper.find('textarea')
-		expect(textarea.attributes('style')).toContain('resize: vertical')
-	})
+		});
+		const textarea = wrapper.find('textarea');
+		expect(textarea.attributes('style')).toContain('resize: vertical');
+	});
 
 	it('applies wrap attribute correctly when specified', () => {
 		const wrapper = mount(BoTextarea, {
@@ -260,8 +260,8 @@ describe('BoTextarea', () => {
 				wrap: BoTextareaWrap.hard,
 				modelValue: '',
 			},
-		})
-		const textarea = wrapper.find('textarea')
-		expect(textarea.attributes('wrap')).toBe(BoTextareaWrap.hard)
-	})
-})
+		});
+		const textarea = wrapper.find('textarea');
+		expect(textarea.attributes('wrap')).toBe(BoTextareaWrap.hard);
+	});
+});

@@ -1,5 +1,5 @@
-import type { Icon } from '@/components/bo_icon'
-import type { BoSize } from '@/shared/bo_size'
+import type { Icon } from '@/components/bo_icon';
+import type { BoSize } from '@/shared/bo_size';
 
 export enum BoBadgeVariant {
 	primary = 'primary',
@@ -24,11 +24,11 @@ export enum BoBadgeShape {
 }
 
 export type BoBadgeProps = {
-	label?: string
-	type?: BoBadgeType
-	size?: BoSize
-	shape?: BoBadgeShape
-	variant?: BoBadgeVariant
-	prefixIcon?: Icon
-	suffixIcon?: Icon
-}
+	label?: string;
+	type?: BoBadgeType;
+	size?: BoSize;
+	shape?: BoBadgeShape;
+	variant?: BoBadgeVariant;
+	prefixIcon?: Icon;
+	suffixIcon?: Icon;
+};

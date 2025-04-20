@@ -32,15 +32,15 @@
 </template>
 
 <script setup lang="ts">
-import { IdentityUtils } from '@/utils'
-import { computed, ref } from 'vue'
-import type { BoCardProps } from './bo_card'
+import { IdentityUtils } from '@/utils';
+import { computed, ref } from 'vue';
+import type { BoCardProps } from './bo_card';
 
 defineSlots<{
-	header?: (props: Record<string, unknown>) => void
-	content?: (props: Record<string, unknown>) => void
-	actions?: (props: Record<string, unknown>) => void
-}>()
+	header?: (props: Record<string, unknown>) => void;
+	content?: (props: Record<string, unknown>) => void;
+	actions?: (props: Record<string, unknown>) => void;
+}>();
 
 const props = withDefaults(defineProps<BoCardProps>(), {
 	padding: () => ({
@@ -51,28 +51,28 @@ const props = withDefaults(defineProps<BoCardProps>(), {
 	}),
 	clickable: false,
 	disabled: false,
-})
+});
 
-const emit = defineEmits(['click'])
+const emit = defineEmits(['click']);
 
 // Generate a unique ID for the card
-const cardId = ref(IdentityUtils.generateRandomIdWithPrefix('card'))
+const cardId = ref(IdentityUtils.generateRandomIdWithPrefix('card'));
 
 const containerClasses = computed(() => {
-	const classes = []
+	const classes = [];
 
 	// Width class
 	if (props.widthAsTailwindClass) {
-		classes.push(props.widthAsTailwindClass)
+		classes.push(props.widthAsTailwindClass);
 	} else {
-		classes.push('w-fit')
+		classes.push('w-fit');
 	}
 
 	// Padding classes
-	if (props.padding.top) classes.push('pt-5')
-	if (props.padding.right) classes.push('pr-5')
-	if (props.padding.bottom) classes.push('pb-5')
-	if (props.padding.left) classes.push('pl-5')
+	if (props.padding.top) classes.push('pt-5');
+	if (props.padding.right) classes.push('pr-5');
+	if (props.padding.bottom) classes.push('pb-5');
+	if (props.padding.left) classes.push('pl-5');
 
 	// Clickable classes
 	if (props.clickable) {
@@ -80,47 +80,47 @@ const containerClasses = computed(() => {
 			'cursor-pointer',
 			'hover:bg-gray-50 dark:hover:bg-gray-700',
 			'transition-colors duration-150',
-		)
+		);
 		if (!props.disabled) {
 			classes.push(
 				'focus:outline-none',
 				'focus:ring-2',
 				'focus:ring-blue-500/50',
 				'focus:ring-offset-2',
-			)
+			);
 		}
 	} else {
-		classes.push('cursor-default')
+		classes.push('cursor-default');
 	}
 
 	// Disabled state
 	if (props.disabled) {
-		classes.push('opacity-60', 'cursor-not-allowed', 'pointer-events-none')
+		classes.push('opacity-60', 'cursor-not-allowed', 'pointer-events-none');
 	}
 
 	// Add margins for visual rhythm
-	classes.push('my-4')
+	classes.push('my-4');
 
-	return classes
-})
+	return classes;
+});
 
 const styleWidth = computed(() => {
 	if (props.widthInPx) {
-		return `width: ${props.widthInPx}px;`
+		return `width: ${props.widthInPx}px;`;
 	}
 	if (props.widthInPercent) {
-		return `width: ${props.widthInPercent}%;`
+		return `width: ${props.widthInPercent}%;`;
 	}
-	return undefined
-})
+	return undefined;
+});
 
 function handleClick(event: MouseEvent | KeyboardEvent) {
 	if (props.clickable && !props.disabled) {
 		// If triggered by keyboard, prevent default action
 		if (event instanceof KeyboardEvent) {
-			event.preventDefault()
+			event.preventDefault();
 		}
-		emit('click', event)
+		emit('click', event);
 	}
 }
 </script>

@@ -18,15 +18,15 @@
 </template>
 
 <script setup lang="ts">
-import type { BaseDropdownOption } from '@/components/bo_dropdown'
-import { BoIcon, Icon } from '@/components/bo_icon'
-import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text'
-import { toRefs } from 'vue'
+import type { BaseDropdownOption } from '@/components/bo_dropdown';
+import { BoIcon, Icon } from '@/components/bo_icon';
+import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text';
+import { toRefs } from 'vue';
 
 const props = withDefaults(defineProps<BaseDropdownOption>(), {
 	icon: () => Icon.none,
 	label: () => '',
-})
+});
 
-const { icon, label } = toRefs(props)
+const { icon, label } = toRefs(props);
 </script>

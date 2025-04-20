@@ -270,12 +270,12 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo_icon'
-import { BoLoadingSpinner } from '@/components/bo_loading_spinner'
-import { BoSize } from '@/shared/bo_size'
-import { IdentityUtils, TailwindUtils } from '@/utils'
-import { computed, ref, toRefs, watch } from 'vue'
-import type { BoTableColumn, BoTableEmits, BoTableProps } from './bo_table'
+import { BoIcon, Icon } from '@/components/bo_icon';
+import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
+import { BoSize } from '@/shared/bo_size';
+import { IdentityUtils, TailwindUtils } from '@/utils';
+import { computed, ref, toRefs, watch } from 'vue';
+import type { BoTableColumn, BoTableEmits, BoTableProps } from './bo_table';
 
 const props = withDefaults(defineProps<BoTableProps<unknown>>(), {
 	searchable: false,
@@ -300,20 +300,20 @@ const props = withDefaults(defineProps<BoTableProps<unknown>>(), {
 	multiSelect: false,
 	defaultSortKey: '',
 	defaultSortOrder: 'asc',
-})
+});
 
 // Emit events
-const emit = defineEmits<BoTableEmits<unknown>>()
+const emit = defineEmits<BoTableEmits<unknown>>();
 
 // Define slots
 defineSlots<{
 	[key: `cell(${string})`]: (props: {
-		item: unknown
-		index: number
-		value: unknown
-		column: BoTableColumn<unknown>
-	}) => unknown
-}>()
+		item: unknown;
+		index: number;
+		value: unknown;
+		column: BoTableColumn<unknown>;
+	}) => unknown;
+}>();
 
 // Destructure props
 const {
@@ -336,33 +336,33 @@ const {
 	stickyHeader,
 	loading,
 	size,
-} = toRefs(props)
+} = toRefs(props);
 
 // Search state
-const searchQuery = ref(initialSearch.value)
+const searchQuery = ref(initialSearch.value);
 
 // Sorting state
-const sortKey = ref(defaultSortKey.value)
-const sortOrder = ref<'asc' | 'desc'>(defaultSortOrder.value)
+const sortKey = ref(defaultSortKey.value);
+const sortOrder = ref<'asc' | 'desc'>(defaultSortOrder.value);
 
 // Pagination state
-const currentPage = ref(1)
+const currentPage = ref(1);
 
 // Selection state
-const selectedRowKeys = ref<(string | number)[]>(selectedKeys.value || [])
+const selectedRowKeys = ref<(string | number)[]>(selectedKeys.value || []);
 
 // Computed properties for Tailwind classes
 const searchInputClasses = computed(() => {
-	return /*tw*/ 'w-full rounded-lg border border-gray-300 py-2 pr-3 pl-10 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white transition-colors'
-})
+	return /*tw*/ 'w-full rounded-lg border border-gray-300 py-2 pr-3 pl-10 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white transition-colors';
+});
 
 const tableContainerClasses = computed(() => {
 	return TailwindUtils.merge(
 		'relative overflow-hidden rounded-lg',
 		stickyHeader.value ? 'overflow-y-auto' : '',
 		bordered.value ? 'border border-gray-200 dark:border-gray-700 shadow-sm' : '',
-	)
-})
+	);
+});
 
 const tableClasses = computed(() => {
 	const sizeClass = {
@@ -371,7 +371,7 @@ const tableClasses = computed(() => {
 		[BoSize.default]: 'text-base',
 		[BoSize.large]: 'text-lg',
 		[BoSize.extra_large]: 'text-xl',
-	}
+	};
 
 	return TailwindUtils.merge(
 		'min-w-full divide-y dark:divide-gray-700 bo-table',
@@ -384,59 +384,59 @@ const tableClasses = computed(() => {
 		selectable.value ? 'bo-table--selectable' : '',
 		`bo-table--${size.value}`,
 		sizeClass[size.value],
-	)
-})
+	);
+});
 
 const theadClasses = computed(() => {
 	return TailwindUtils.merge(
 		'bg-gray-50 dark:bg-gray-800 transition-colors',
 		stickyHeader.value ? 'sticky top-0 z-10' : '',
-	)
-})
+	);
+});
 
 const thBaseClasses = computed(() => {
-	return /*tw*/ 'px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase dark:text-gray-300 transition-colors'
-})
+	return /*tw*/ 'px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase dark:text-gray-300 transition-colors';
+});
 
 const thCheckboxClasses = computed(() => {
-	return TailwindUtils.merge(thBaseClasses.value, 'w-12 px-3')
-})
+	return TailwindUtils.merge(thBaseClasses.value, 'w-12 px-3');
+});
 
 const thSortableClasses = computed(() => {
-	return /*tw*/ 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors'
-})
+	return /*tw*/ 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors';
+});
 
 const tdBaseClasses = computed(() => {
-	return /*tw*/ 'px-6 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400 transition-colors'
-})
+	return /*tw*/ 'px-6 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400 transition-colors';
+});
 
 const tdCheckboxClasses = computed(() => {
-	return TailwindUtils.merge(tdBaseClasses.value, 'w-12 px-3')
-})
+	return TailwindUtils.merge(tdBaseClasses.value, 'w-12 px-3');
+});
 
 const stripedRowClasses = computed(() => {
-	return /*tw*/ 'bg-gray-50 dark:bg-gray-800'
-})
+	return /*tw*/ 'bg-gray-50 dark:bg-gray-800';
+});
 
 const tbodyClasses = computed(() => {
-	return /*tw*/ 'divide-y bg-white dark:divide-gray-800 dark:bg-gray-900 transition-colors'
-})
+	return /*tw*/ 'divide-y bg-white dark:divide-gray-800 dark:bg-gray-900 transition-colors';
+});
 
 const borderedCellClasses = computed(() => {
-	return /*tw*/ 'border border-gray-200 dark:border-gray-700'
-})
+	return /*tw*/ 'border border-gray-200 dark:border-gray-700';
+});
 
 const selectableRowClasses = computed(() => {
-	return /*tw*/ 'cursor-pointer transition-colors'
-})
+	return /*tw*/ 'cursor-pointer transition-colors';
+});
 
 const selectedRowClasses = computed(() => {
-	return /*tw*/ 'bg-blue-50 dark:bg-blue-900/20 transition-colors'
-})
+	return /*tw*/ 'bg-blue-50 dark:bg-blue-900/20 transition-colors';
+});
 
 const loadingOverlayClasses = computed(() => {
-	return /*tw*/ 'absolute inset-0 flex items-center justify-center bg-white/80 dark:bg-gray-900/80 rounded-lg'
-})
+	return /*tw*/ 'absolute inset-0 flex items-center justify-center bg-white/80 dark:bg-gray-900/80 rounded-lg';
+});
 
 const tableSizeClasses = computed(() => {
 	return {
@@ -460,36 +460,36 @@ const tableSizeClasses = computed(() => {
 			th: /*tw*/ 'px-10 py-5 text-lg',
 			td: /*tw*/ 'px-10 py-5 text-lg',
 		},
-	}
-})
+	};
+});
 
 const checkboxClasses = computed(() => {
-	return /*tw*/ 'h-4 w-4 rounded-sm border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 transition-colors'
-})
+	return /*tw*/ 'h-4 w-4 rounded-sm border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 transition-colors';
+});
 
 const emptyStateClasses = computed(() => {
-	return /*tw*/ 'py-8 text-center text-gray-500 dark:text-gray-400 rounded-lg'
-})
+	return /*tw*/ 'py-8 text-center text-gray-500 dark:text-gray-400 rounded-lg';
+});
 
 const paginationButtonClasses = computed(() => {
-	return /*tw*/ 'relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 transition-colors shadow-sm'
-})
+	return /*tw*/ 'relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 transition-colors shadow-sm';
+});
 
 const paginationPrevButtonClasses = computed(() => {
-	return /*tw*/ 'relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 transition-colors shadow-sm'
-})
+	return /*tw*/ 'relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 transition-colors shadow-sm';
+});
 
 const paginationNextButtonClasses = computed(() => {
-	return /*tw*/ 'relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 transition-colors shadow-sm'
-})
+	return /*tw*/ 'relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 transition-colors shadow-sm';
+});
 
 const paginationEllipsisClasses = computed(() => {
-	return /*tw*/ 'relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 transition-colors shadow-sm'
-})
+	return /*tw*/ 'relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 transition-colors shadow-sm';
+});
 
 // Helper functions for dynamic classes
 function getThClasses(column) {
-	const sizeClass = tableSizeClasses.value[size.value]?.th || thBaseClasses.value
+	const sizeClass = tableSizeClasses.value[size.value]?.th || thBaseClasses.value;
 
 	return TailwindUtils.merge(
 		sizeClass,
@@ -497,25 +497,25 @@ function getThClasses(column) {
 		column.align ? `text-${column.align}` : '',
 		column.sortable ? thSortableClasses.value : '',
 		bordered.value ? borderedCellClasses.value : '',
-	)
+	);
 }
 
 function getTdClasses(column) {
-	const sizeClass = tableSizeClasses.value[size.value]?.td || tdBaseClasses.value
+	const sizeClass = tableSizeClasses.value[size.value]?.td || tdBaseClasses.value;
 
 	return TailwindUtils.merge(
 		sizeClass,
 		column.class || '',
 		column.align ? `text-${column.align}` : '',
 		bordered.value ? borderedCellClasses.value : '',
-	)
+	);
 }
 
 function getColumnAlignmentClasses(column) {
 	return TailwindUtils.merge(
 		column.align === 'center' ? 'justify-center' : '',
 		column.align === 'right' ? 'justify-end' : '',
-	)
+	);
 }
 
 function getRowClasses(item, index) {
@@ -525,7 +525,7 @@ function getRowClasses(item, index) {
 		hoverable.value ? 'hover:bg-gray-50 dark:hover:bg-gray-700/50' : '',
 		selectable.value ? selectableRowClasses.value : '',
 		striped.value && index % 2 === 1 ? stripedRowClasses.value : '',
-	)
+	);
 }
 
 function getPaginationPageClasses(page) {
@@ -534,125 +534,125 @@ function getPaginationPageClasses(page) {
 		currentPage.value === Number(page)
 			? 'z-10 border-blue-500 bg-blue-50 text-blue-600 dark:border-blue-600 dark:bg-blue-900/50 dark:text-blue-300'
 			: 'border-gray-300 bg-white text-gray-500 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700',
-	)
+	);
 }
 
 // Computed properties
 const totalColumns = computed(() => {
-	let count = columns.value.length
-	if (selectable.value) count++
-	return count
-})
+	let count = columns.value.length;
+	if (selectable.value) count++;
+	return count;
+});
 
 // Filter items based on search query
 const filteredItems = computed(() => {
-	const query = searchQuery.value.toLowerCase().trim()
-	if (!query) return items.value
+	const query = searchQuery.value.toLowerCase().trim();
+	if (!query) return items.value;
 
 	return items.value.filter((item) => {
 		// If searchFields is provided, only search in those fields
 		if (searchFields.value.length > 0) {
 			return searchFields.value.some((field) => {
-				const value = getNestedValue(item, field)
-				return typeof value === 'string' && value.toLowerCase().includes(query)
-			})
+				const value = getNestedValue(item, field);
+				return typeof value === 'string' && value.toLowerCase().includes(query);
+			});
 		}
 
 		// Otherwise, search in all string fields
 		return Object.keys(item as Record<string, unknown>).some((key) => {
-			const value = (item as Record<string, unknown>)[key]
-			return typeof value === 'string' && value.toLowerCase().includes(query)
-		})
-	})
-})
+			const value = (item as Record<string, unknown>)[key];
+			return typeof value === 'string' && value.toLowerCase().includes(query);
+		});
+	});
+});
 
 // Sort filtered items
 const sortedItems = computed(() => {
-	const items = [...filteredItems.value]
-	if (!sortKey.value) return items
+	const items = [...filteredItems.value];
+	if (!sortKey.value) return items;
 
-	const column = columns.value.find((col) => col.key === sortKey.value)
-	if (!column) return items
+	const column = columns.value.find((col) => col.key === sortKey.value);
+	if (!column) return items;
 
-	const isAsc = sortOrder.value === 'asc'
+	const isAsc = sortOrder.value === 'asc';
 
 	// Use custom sort function if provided
 	if (column.sortFn) {
-		return items.sort((a, b) => column.sortFn!(a, b, isAsc))
+		return items.sort((a, b) => column.sortFn!(a, b, isAsc));
 	}
 
 	// Otherwise sort by field value
 	return items.sort((a, b) => {
-		const aValue = column.field ? getNestedValue(a, column.field) : null
-		const bValue = column.field ? getNestedValue(b, column.field) : null
+		const aValue = column.field ? getNestedValue(a, column.field) : null;
+		const bValue = column.field ? getNestedValue(b, column.field) : null;
 
 		// Handle null/undefined values
-		if (aValue == null && bValue == null) return 0
-		if (aValue == null) return isAsc ? -1 : 1
-		if (bValue == null) return isAsc ? 1 : -1
+		if (aValue == null && bValue == null) return 0;
+		if (aValue == null) return isAsc ? -1 : 1;
+		if (bValue == null) return isAsc ? 1 : -1;
 
 		// Compare based on type
 		if (typeof aValue === 'string' && typeof bValue === 'string') {
-			return isAsc ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue)
+			return isAsc ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
 		}
 
 		if (typeof aValue === 'number' && typeof bValue === 'number') {
-			return isAsc ? aValue - bValue : bValue - aValue
+			return isAsc ? aValue - bValue : bValue - aValue;
 		}
 
 		if (aValue instanceof Date && bValue instanceof Date) {
-			return isAsc ? aValue.getTime() - bValue.getTime() : bValue.getTime() - aValue.getTime()
+			return isAsc ? aValue.getTime() - bValue.getTime() : bValue.getTime() - aValue.getTime();
 		}
 
 		// Convert to string as fallback
-		const aStr = String(aValue)
-		const bStr = String(bValue)
-		return isAsc ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr)
-	})
-})
+		const aStr = String(aValue);
+		const bStr = String(bValue);
+		return isAsc ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr);
+	});
+});
 
 // Paginated items
 const displayedItems = computed(() => {
-	if (!paginated.value) return sortedItems.value
+	if (!paginated.value) return sortedItems.value;
 
-	const start = (currentPage.value - 1) * perPage.value
-	const end = start + perPage.value
-	return sortedItems.value.slice(start, end)
-})
+	const start = (currentPage.value - 1) * perPage.value;
+	const end = start + perPage.value;
+	return sortedItems.value.slice(start, end);
+});
 
 // Pagination information
 const totalPages = computed(() =>
 	Math.max(1, Math.ceil(filteredItems.value.length / perPage.value)),
-)
+);
 
 const paginationInfo = computed(() => {
 	if (filteredItems.value.length === 0) {
-		return { from: 0, to: 0 }
+		return { from: 0, to: 0 };
 	}
 
-	const from = (currentPage.value - 1) * perPage.value + 1
-	const to = Math.min(from + perPage.value - 1, filteredItems.value.length)
+	const from = (currentPage.value - 1) * perPage.value + 1;
+	const to = Math.min(from + perPage.value - 1, filteredItems.value.length);
 
-	return { from, to }
-})
+	return { from, to };
+});
 
 // Generate pagination range with ellipsis
 const paginationRange = computed(() => {
 	if (totalPages.value <= 7) {
-		return Array.from({ length: totalPages.value }, (_, i) => String(i + 1))
+		return Array.from({ length: totalPages.value }, (_, i) => String(i + 1));
 	}
 
-	const range: (string | number)[] = []
-	const leftBound = 1
-	const rightBound = totalPages.value
-	const current = currentPage.value
+	const range: (string | number)[] = [];
+	const leftBound = 1;
+	const rightBound = totalPages.value;
+	const current = currentPage.value;
 
 	// Always show first page
-	range.push('1')
+	range.push('1');
 
 	if (current <= 3) {
 		// Close to start
-		range.push('2', '3', '4', '...', String(rightBound - 1), String(rightBound))
+		range.push('2', '3', '4', '...', String(rightBound - 1), String(rightBound));
 	} else if (current >= totalPages.value - 2) {
 		// Close to end
 		range.push(
@@ -662,7 +662,7 @@ const paginationRange = computed(() => {
 			String(rightBound - 2),
 			String(rightBound - 1),
 			String(rightBound),
-		)
+		);
 	} else {
 		// Middle
 		range.push(
@@ -672,106 +672,106 @@ const paginationRange = computed(() => {
 			String(current + 1),
 			'...',
 			String(rightBound),
-		)
+		);
 	}
 
-	return range
-})
+	return range;
+});
 
 // Selection computed properties
 const allSelected = computed(() => {
-	return displayedItems.value.length > 0 && displayedItems.value.every((item) => isSelected(item))
-})
+	return displayedItems.value.length > 0 && displayedItems.value.every((item) => isSelected(item));
+});
 
 const someSelected = computed(() => {
-	return displayedItems.value.some((item) => isSelected(item)) && !allSelected.value
-})
+	return displayedItems.value.some((item) => isSelected(item)) && !allSelected.value;
+});
 
 // Methods
 // Get nested value from object using dot notation
 function getNestedValue(obj: unknown, path: string): unknown {
-	const keys = path.split('.')
-	let result: unknown = obj
+	const keys = path.split('.');
+	let result: unknown = obj;
 
 	for (const key of keys) {
-		if (result == null || typeof result !== 'object') return null
-		result = (result as Record<string, unknown>)[key]
+		if (result == null || typeof result !== 'object') return null;
+		result = (result as Record<string, unknown>)[key];
 	}
 
-	return result
+	return result;
 }
 
 // Get cell value for display
 function getCellValue(item: unknown, column: BoTableColumn<unknown>): unknown {
 	if (column.renderFn) {
-		return column.renderFn(item, displayedItems.value.indexOf(item))
+		return column.renderFn(item, displayedItems.value.indexOf(item));
 	}
 
 	if (column.field) {
-		return getNestedValue(item, column.field)
+		return getNestedValue(item, column.field);
 	}
 
-	return null
+	return null;
 }
 
 // Format cell value for display
 function formatCellValue(item: unknown, column: BoTableColumn<unknown>, index: number): string {
-	const value = getCellValue(item, column)
+	const value = getCellValue(item, column);
 
 	if (value === null || value === undefined) {
-		return ''
+		return '';
 	}
 
 	if (value instanceof Date) {
-		return value.toLocaleString()
+		return value.toLocaleString();
 	}
 
-	return String(value)
+	return String(value);
 }
 
 // Get unique key for a row
 function getRowKey(item: unknown, index: number): string | number {
 	if (rowKey.value && typeof item === 'object' && item !== null) {
-		const key = (item as Record<string, unknown>)[rowKey.value]
+		const key = (item as Record<string, unknown>)[rowKey.value];
 		if (key !== undefined) {
-			return String(key)
+			return String(key);
 		}
 	}
 
 	// Fallback to index
-	return index
+	return index;
 }
 
 // Check if a row is selected
 function isSelected(item: unknown): boolean {
-	const key = getRowKey(item, displayedItems.value.indexOf(item))
-	return selectedRowKeys.value.includes(key)
+	const key = getRowKey(item, displayedItems.value.indexOf(item));
+	return selectedRowKeys.value.includes(key);
 }
 
 // Toggle selection of a row
 function toggleSelect(item: unknown): void {
-	const key = getRowKey(item, displayedItems.value.indexOf(item))
-	const index = selectedRowKeys.value.indexOf(key)
+	const key = getRowKey(item, displayedItems.value.indexOf(item));
+	const index = selectedRowKeys.value.indexOf(key);
 
 	if (index === -1) {
 		// Add to selection
 		if (multiSelect.value) {
-			selectedRowKeys.value = [...selectedRowKeys.value, key]
+			selectedRowKeys.value = [...selectedRowKeys.value, key];
 		} else {
-			selectedRowKeys.value = [key]
+			selectedRowKeys.value = [key];
 		}
 	} else {
 		// Remove from selection
-		selectedRowKeys.value = selectedRowKeys.value.filter((k) => k !== key)
+		selectedRowKeys.value = selectedRowKeys.value.filter((k) => k !== key);
 	}
 
 	// Emit selection change
 	const selectedItems = items.value.filter((item) => {
-		const itemKey = getRowKey(item, items.value.indexOf(item))
-		return selectedRowKeys.value.includes(itemKey)
-	})
+		const itemKey = getRowKey(item, items.value.indexOf(item));
+		return selectedRowKeys.value.includes(itemKey);
+	});
 
-	emit('selection-change', selectedRowKeys.value, selectedItems)
+	emit('selection-change', selectedRowKeys.value, selectedItems);
 }
 
 // Toggle select all rows
@@ -781,95 +781,95 @@ function toggleSelectAll(): void {
 		selectedRowKeys.value = selectedRowKeys.value.filter((key) => {
 			return !displayedItems.value.some(
 				(item) => getRowKey(item, displayedItems.value.indexOf(item)) === key,
-			)
-		})
+			);
+		});
 	} else {
 		// Select all displayed
 		const newKeys = displayedItems.value.map((item) =>
 			getRowKey(item, displayedItems.value.indexOf(item)),
-		)
+		);
 
 		if (multiSelect.value) {
 			// Merge with existing selections that are not displayed
 			const existingKeys = selectedRowKeys.value.filter((key) => {
 				return !displayedItems.value.some(
 					(item) => getRowKey(item, displayedItems.value.indexOf(item)) === key,
-				)
-			})
-			selectedRowKeys.value = [...existingKeys, ...newKeys]
+				);
+			});
+			selectedRowKeys.value = [...existingKeys, ...newKeys];
 		} else {
 			// Only select the first item
-			selectedRowKeys.value = newKeys.slice(0, 1)
+			selectedRowKeys.value = newKeys.slice(0, 1);
 		}
 	}
 
 	// Emit selection change
 	const selectedItems = items.value.filter((item) => {
-		const itemKey = getRowKey(item, items.value.indexOf(item))
-		return selectedRowKeys.value.includes(itemKey)
-	})
+		const itemKey = getRowKey(item, items.value.indexOf(item));
+		return selectedRowKeys.value.includes(itemKey);
+	});
 
-	emit('selection-change', selectedRowKeys.value, selectedItems)
+	emit('selection-change', selectedRowKeys.value, selectedItems);
 }
 
 // Handle row click
 function onRowClick(item: unknown, index: number): void {
-	emit('row-click', item, index)
+	emit('row-click', item, index);
 
 	if (selectable.value && !multiSelect.value) {
-		toggleSelect(item)
+		toggleSelect(item);
 	}
 }
 
 // Handle search
 function onSearch(): void {
-	currentPage.value = 1
-	emit('search', searchQuery.value)
+	currentPage.value = 1;
+	emit('search', searchQuery.value);
 }
 
 // Clear search
 function clearSearch(): void {
-	searchQuery.value = ''
-	emit('search', '')
+	searchQuery.value = '';
+	emit('search', '');
 }
 
 // Handle sorting
 function sort(key: string): void {
 	if (sortKey.value === key) {
 		// Toggle sort order
-		sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
+		sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
 	} else {
 		// Set new sort key
-		sortKey.value = key
-		sortOrder.value = 'asc'
+		sortKey.value = key;
+		sortOrder.value = 'asc';
 	}
 
 	// Reset to first page when sorting
-	currentPage.value = 1
+	currentPage.value = 1;
 
 	// Emit sort event
-	emit('sort', sortKey.value, sortOrder.value)
+	emit('sort', sortKey.value, sortOrder.value);
 }
 
 // Change page
 function changePage(page: number): void {
-	if (page < 1 || page > totalPages.value) return
+	if (page < 1 || page > totalPages.value) return;
 
-	currentPage.value = page
-	emit('page-change', page)
+	currentPage.value = page;
+	emit('page-change', page);
 }
 
 // Watch for changes in props
 watch(selectedKeys, (newKeys) => {
-	selectedRowKeys.value = newKeys.value || []
-})
+	selectedRowKeys.value = newKeys.value || [];
+});
 
 // Watch for changes in search query
 watch(
 	() => filteredItems.value.length,
 	() => {
 		// Reset to first page when filtered items change
-		currentPage.value = 1
+		currentPage.value = 1;
 	},
-)
+);
 </script>

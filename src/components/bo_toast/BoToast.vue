@@ -39,83 +39,83 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo_icon'
-import { BoSize } from '@/shared'
-import { computed, onMounted, ref, watch } from 'vue'
-import { BoToastType } from './constants'
-import type { BoToastProps } from './types'
+import { BoIcon, Icon } from '@/components/bo_icon';
+import { BoSize } from '@/shared';
+import { computed, onMounted, ref, watch } from 'vue';
+import { BoToastType } from './constants';
+import type { BoToastProps } from './types';
 
 const props = withDefaults(defineProps<BoToastProps>(), {
 	duration: 3000, // Default duration in milliseconds
 	type: BoToastType.success,
 	autoClose: true,
-})
+});
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close']);
 
-const visible = ref(false)
-const hideClass = ref('')
+const visible = ref(false);
+const hideClass = ref('');
 
 const getIcon = computed(() => {
 	switch (props.type) {
 		case BoToastType.success:
-			return Icon.check
+			return Icon.check;
 		case BoToastType.error:
-			return Icon.wifi_off
+			return Icon.wifi_off;
 		case BoToastType.warning:
-			return Icon.alert_triangle
+			return Icon.alert_triangle;
 		case BoToastType.info:
-			return Icon.info
+			return Icon.info;
 		default:
-			return Icon.check
+			return Icon.check;
 	}
-})
+});
 
-let timeoutId: number | null = null
+let timeoutId: number | null = null;
 
 function show() {
-	visible.value = true
-	hideClass.value = ''
+	visible.value = true;
+	hideClass.value = '';
 
 	if (props.autoClose) {
-		if (timeoutId) clearTimeout(timeoutId)
+		if (timeoutId) clearTimeout(timeoutId);
 
 		timeoutId = window.setTimeout(() => {
-			hide()
-		}, props.duration)
+			hide();
+		}, props.duration);
 	}
 }
 
 function hide() {
-	hideClass.value = 'hide'
+	hideClass.value = 'hide';
 	setTimeout(() => {
-		visible.value = false
-		emit('close')
-	}, 1000) // Match the animation duration
+		visible.value = false;
+		emit('close');
+	}, 1000); // Match the animation duration
 }
 
 function handleClose() {
 	if (timeoutId) {
-		clearTimeout(timeoutId)
-		timeoutId = null
+		clearTimeout(timeoutId);
+		timeoutId = null;
 	}
-	hide()
+	hide();
 }
 
 onMounted(() => {
-	show()
-})
+	show();
+});
 
 watch(
 	() => props.visible,
 	(newVal) => {
 		if (newVal) {
-			show()
+			show();
 		} else {
-			hide()
+			hide();
 		}
 	},
-)
+);
 </script>
 
 <style scoped>

@@ -2,15 +2,12 @@
 logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 npm-debug.log*
-lerna-debug.log*
+
 
 node_modules
 .DS_Store
 dist
-dist-ssr
 coverage
 *.local
 
@@ -20,14 +17,5 @@ coverage
 !.vscode/extensions.json
 .idea
 
-
 *.tsbuildinfo
-
-*storybook.log
-
-dist
-coverage
-static
-test
-
 cache

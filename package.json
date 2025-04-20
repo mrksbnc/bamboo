@@ -1,6 +1,6 @@
 {
 	"name": "@mrksbnc/bamboo",
-	"version": "0.0.0-beta.6",
+	"version": "0.1.0",
 	"type": "module",
 	"exports": {
 		".": {
@@ -26,7 +26,7 @@
 		"lint:eslint": "eslint . --fix",
 		"lint": "run-s lint:*",
 		"format": "prettier --write src/",
-		"build": "NODE_ENV=production run-p type-check \"build-only {@}\" && npm run build:css:min",
+		"build": "NODE_ENV=production run-p type-check \"build-only {@}\" && pnpm run build:css:min",
 		"build:css:min": "NPM_ENV=production npx postcss src/lib.css > dist/lib.min.css",
 		"build:css": "NPM_ENV=development npx postcss src/lib.css > dist/lib.css",
 		"docs:dev": "vitepress dev docs",
@@ -52,10 +52,10 @@
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.21.0",
 		"eslint-plugin-oxlint": "^0.16.6",
-		"eslint-plugin-vue": "^9.32.0",
+		"eslint-plugin-vue": "^10.0.0",
 		"jsdom": "^26.0.0",
 		"npm-run-all2": "^7.0.2",
-		"oxlint": "^0.15.11",
+		"oxlint": "^0.16.6",
 		"playwright": "^1.50.1",
 		"postcss": "^8.5.3",
 		"postcss-cli": "^11.0.0",
@@ -73,5 +73,10 @@
 		"vitepress": "^1.6.3",
 		"vitest": "^3.1.1",
 		"vue-tsc": "^2.2.2"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild"
+		]
 	}
 }

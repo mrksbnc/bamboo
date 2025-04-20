@@ -112,21 +112,21 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo_icon'
-import { BoSize } from '@/shared'
-import { AccessibilityUtils, StringUtils, TailwindUtils } from '@/utils'
-import { IdentityUtils } from '@/utils/identity_utils'
-import { computed, ref, watch } from 'vue'
+import { BoIcon, Icon } from '@/components/bo_icon';
+import { BoSize } from '@/shared';
+import { AccessibilityUtils, StringUtils, TailwindUtils } from '@/utils';
+import { IdentityUtils } from '@/utils/identity_utils';
+import { computed, ref, watch } from 'vue';
 import {
 	BoInputLoaderVariant,
 	BoInputSize,
 	BoInputState,
 	BoInputType,
 	BoInputVariant,
-} from './constants'
-import type { BoInputProps } from './types'
+} from './constants';
+import type { BoInputProps } from './types';
 
-const emit = defineEmits(['update:modelValue', 'input', 'focus', 'blur', 'clear'])
+const emit = defineEmits(['update:modelValue', 'input', 'focus', 'blur', 'clear']);
 
 const props = withDefaults(defineProps<BoInputProps>(), {
 	type: BoInputType.text,
@@ -141,38 +141,38 @@ const props = withDefaults(defineProps<BoInputProps>(), {
 	prefixIcon: null,
 	suffixIcon: null,
 	loaderVariant: BoInputLoaderVariant.spinner,
-})
+});
 
-const modelValue = defineModel<string>('modelValue', { required: true })
+const modelValue = defineModel<string>('modelValue', { required: true });
 
 const inputId = computed<string>(
 	() => props.id ?? IdentityUtils.generateRandomIdWithPrefix('input'),
-)
+);
 
-const descriptionId = ref(AccessibilityUtils.generateAccessibleId('input-desc'))
-const errorId = ref(AccessibilityUtils.generateAccessibleId('input-error'))
+const descriptionId = ref(AccessibilityUtils.generateAccessibleId('input-desc'));
+const errorId = ref(AccessibilityUtils.generateAccessibleId('input-error'));
 
 // Compute aria-describedby based on presence of description or error
 const getAriaDescribedBy = computed(() => {
-	const ids = []
+	const ids = [];
 	if (props.description && StringUtils.isEmptyStr(props.errorMessage)) {
-		ids.push(descriptionId.value)
+		ids.push(descriptionId.value);
 	}
 	if (props.errorMessage && props.state === BoInputState.invalid) {
-		ids.push(errorId.value)
+		ids.push(errorId.value);
 	}
-	return ids.length > 0 ? ids.join(' ') : undefined
-})
+	return ids.length > 0 ? ids.join(' ') : undefined;
+});
 
 const inputClass = computed<string>(() => {
 	const baseClasses =
-		'block w-full focus:outline-none focus:ring-2 focus:ring-offset-0 transition-colors'
+		'block w-full focus:outline-none focus:ring-2 focus:ring-offset-0 transition-colors';
 
 	const sizeClasses = {
 		[BoInputSize.small]: 'px-3 py-1.5 text-xs',
 		[BoInputSize.default]: 'px-3 py-2 text-sm',
 		[BoInputSize.large]: 'px-4 py-3 text-base',
-	}
+	};
 
 	const variantClasses = {
 		[BoInputVariant.default]:
@@ -181,52 +181,52 @@ const inputClass = computed<string>(() => {
 			'border border-transparent rounded-md bg-gray-100 text-gray-900 focus:ring-blue-500/30 focus:border-blue-500 dark:bg-gray-800 dark:text-white dark:focus:ring-blue-500/40 dark:focus:border-blue-500',
 		[BoInputVariant.underline]:
 			'border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 focus:ring-0 focus:ring-offset-0 text-gray-900 focus:border-blue-500 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 outline-none',
-	}
+	};
 
 	let classes = TailwindUtils.merge(
 		baseClasses,
 		sizeClasses[props.size],
 		variantClasses[props.variant],
-	)
+	);
 
 	if (props.prefixIcon) {
-		classes = TailwindUtils.merge(classes, 'pl-10')
+		classes = TailwindUtils.merge(classes, 'pl-10');
 	}
 
 	if ((props.suffixIcon && !props.clearable) || (props.clearable && props.modelValue)) {
-		classes = TailwindUtils.merge(classes, 'pr-10')
+		classes = TailwindUtils.merge(classes, 'pr-10');
 	}
 
 	if (props.disabled) {
 		classes = TailwindUtils.merge(
 			classes,
 			'cursor-not-allowed bg-gray-100 text-gray-500 placeholder-gray-400 dark:bg-transparent dark:text-gray-400 dark:placeholder-gray-500',
-		)
+		);
 	} else if (props.readonly) {
 		classes = TailwindUtils.merge(
 			classes,
 			'text-gray-500 placeholder-gray-400 dark:text-gray-400 dark:placeholder-gray-500',
-		)
+		);
 	}
 
 	if (props.state === BoInputState.invalid) {
 		classes = TailwindUtils.merge(
 			classes,
 			'border-red-500 focus:ring-red-500/30 focus:border-red-500 text-red-900 placeholder-red-400 dark:border-red-500 dark:focus:border-red-500',
-		)
+		);
 	} else if (props.state === BoInputState.valid) {
 		classes = TailwindUtils.merge(
 			classes,
 			'border-green-500 focus:ring-green-500/30 focus:border-green-500 text-green-900 placeholder-green-400 dark:border-green-500 dark:focus:border-green-500',
-		)
+		);
 	}
 
-	return classes
-})
+	return classes;
+});
 
 function handleClear() {
-	modelValue.value = ''
-	emit('clear')
+	modelValue.value = '';
+	emit('clear');
 }
 
 // Add a watcher for state changes to announce errors to screen readers
@@ -239,13 +239,13 @@ watch(
 			oldState !== BoInputState.invalid
 		) {
 			// Announce error message to screen readers when state becomes invalid
-			AccessibilityUtils.announceToScreenReader(props.errorMessage, 'assertive')
+			AccessibilityUtils.announceToScreenReader(props.errorMessage, 'assertive');
 		} else if (newState === BoInputState.valid && oldState === BoInputState.invalid) {
 			// Announce when field becomes valid after being invalid
-			AccessibilityUtils.announceToScreenReader('Field is now valid', 'polite')
+			AccessibilityUtils.announceToScreenReader('Field is now valid', 'polite');
 		}
 	},
-)
+);
 
 // Add a watcher for error message changes
 watch(
@@ -253,8 +253,8 @@ watch(
 	(newMessage, oldMessage) => {
 		if (newMessage && props.state === BoInputState.invalid && newMessage !== oldMessage) {
 			// Announce new error messages
-			AccessibilityUtils.announceToScreenReader(newMessage, 'assertive')
+			AccessibilityUtils.announceToScreenReader(newMessage, 'assertive');
 		}
 	},
-)
+);
 </script>

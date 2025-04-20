@@ -1,3 +1,3 @@
-export { default as BoInput } from './BoInput.vue'
-export * from './constants'
-export * from './types'
+export { default as BoInput } from './BoInput.vue';
+export * from './constants';
+export * from './types';

@@ -1,1 +1,1 @@
-export { default as BoModal } from './BoModal.vue'
+export { default as BoModal } from './BoModal.vue';
