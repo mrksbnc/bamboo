@@ -1,12 +1,12 @@
 <template>
 	<button
 		v-bind="props"
-		:disabled="disabled || isLoading"
+		:disabled="isDisabled"
 		:class="buttonClasses"
-		:aria-disabled="disabled || isLoading ? 'true' : 'false'"
-		:aria-busy="isLoading ? 'true' : 'false'"
-		:aria-pressed="pressed ? 'true' : 'false'"
-		:aria-label="ariaLabel ?? (label ? undefined : iconOnlyButton ? 'Button with icon' : undefined)"
+		:aria-busy="isLoading"
+		:aria-pressed="pressed"
+		:aria-disabled="isDisabled"
+		:aria-label="computedAriaLabel"
 	>
 		<div
 			v-if="useSlot"
@@ -67,17 +67,20 @@ import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoLoadingPulse } from '@/components/bo_loading_pulse';
 import { BoLoadingSpinner } from '@/components/bo_loading_spinner';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
+import { useString, useTailwind } from '@/composables';
 import { BoLoaderType, BoLoaderVariant, BoSize } from '@/shared';
-import { IdentityUtils, StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs } from 'vue';
 import { BoButtonShape, BoButtonVariant, ButtonType, type BoButtonProps } from './bo_button';
+
+const { merge } = useTailwind();
+const { isEmptyStr } = useString();
 
 const slots = defineSlots<{
 	content(props: Record<string, unknown>): void;
 }>();
 
 const props = withDefaults(defineProps<BoButtonProps>(), {
-	id: IdentityUtils.generateRandomIdWithPrefix('bo-button'),
+	id: Symbol('bo-button').toString(),
 	loaderType: BoLoaderType.spinner,
 	size: () => BoSize.default,
 	prefixIcon: () => Icon.none,
@@ -101,6 +104,8 @@ const {
 	loaderType,
 	isLoading,
 	fullWidth,
+	pressed,
+	ariaLabel,
 } = toRefs(props);
 
 const defaultButtonClasses = {
@@ -208,12 +213,23 @@ const iconOnlySizeClasses = {
 	[BoSize.extra_large]: /*tw*/ 'p-3.5',
 };
 
+const isDisabled = computed<boolean>(() => {
+	return disabled.value || isLoading.value;
+});
+
+const computedAriaLabel = computed<string | undefined>(() => {
+	return (
+		ariaLabel.value ??
+		(label.value ? undefined : iconOnlyButton.value ? 'Button with icon' : undefined)
+	);
+});
+
 const widthConstruct = computed<string>(() => {
 	return fullWidth.value ? widthClasses.fullWidth : widthClasses.default;
 });
 
 const iconOnlyButton = computed<boolean>(() => {
-	return StringUtils.isEmptyStr(label.value) && prefixIcon.value && prefixIcon.value !== Icon.none;
+	return isEmptyStr(label.value) && prefixIcon.value && prefixIcon.value !== Icon.none;
 });
 
 const buttonSizeClasses = computed<string>(() => {
@@ -236,7 +252,7 @@ const variantShadowClasses = computed<string>(() => {
 });
 
 const buttonClasses = computed<string>(() => {
-	return TailwindUtils.merge(
+	return merge(
 		widthConstruct.value,
 		buttonSizeClasses.value,
 		shapeClasses[shape.value],

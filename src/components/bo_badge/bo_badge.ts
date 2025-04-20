@@ -29,6 +29,8 @@ export type BoBadgeProps = {
 	size?: BoSize;
 	shape?: BoBadgeShape;
 	variant?: BoBadgeVariant;
-	prefixIcon?: Icon;
-	suffixIcon?: Icon;
+	icon?: {
+		prefix?: Icon;
+		suffix?: Icon;
+	};
 };

@@ -4,7 +4,7 @@ import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import { BoDropdown } from '.';
 import type { BaseDropdownOption } from './bo_dropdown';
-import BoDefaultDropdownItem from './options/BoDefaultDropdownItem.vue';
+import BoDefaultDropdownItem from './BoDefaultDropdownItem.vue';
 
 describe('BoDropdown', () => {
 	const defaultOptions: BaseDropdownOption[] = [

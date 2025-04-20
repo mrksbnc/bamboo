@@ -61,7 +61,7 @@ const getIcon = computed(() => {
 		case BoToastType.success:
 			return Icon.check;
 		case BoToastType.error:
-			return Icon.wifi_off;
+			return Icon.x;
 		case BoToastType.warning:
 			return Icon.alert_triangle;
 		case BoToastType.info:

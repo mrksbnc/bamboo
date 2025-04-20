@@ -14,7 +14,7 @@
 			/>
 		</span>
 		<span
-			v-else-if="type === BoAvatarType.initials && !StringUtils.isEmptyStr(data.label)"
+			v-else-if="type === BoAvatarType.initials && !isEmptyStr(data.label)"
 			class="bo-avatar__initials flex h-full w-full items-center justify-center"
 		>
 			<bo-text
@@ -23,7 +23,7 @@
 				:clickable="clickable"
 				:weight="BoFontWeight.medium"
 				:custom-color="color?.colorHex"
-				:text="StringUtils.safeString(data.label)"
+				:text="safeString(data.label)"
 				:class="textColorClass"
 			/>
 		</span>
@@ -46,8 +46,8 @@
 
 <script setup lang="ts">
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
+import { useString, useTailwind } from '@/composables';
 import { BoSize } from '@/shared';
-import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs, type StyleValue } from 'vue';
 import {
 	BoAvatarIndicatorPosition,
@@ -57,6 +57,9 @@ import {
 	BoAvatarVariant,
 	type BoAvatarProps,
 } from './bo_avatar';
+
+const { merge } = useTailwind();
+const { isEmptyStr, safeString } = useString();
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
 	withDefaultImage: false,
@@ -164,7 +167,7 @@ const outlineVariantTextColors = {
 
 const bgConstruct = computed<string>(() => {
 	if (
-		!StringUtils.isEmptyStr(color.value?.bgColorHex) ||
+		!isEmptyStr(color.value?.bgColorHex) ||
 		withDefaultImage.value ||
 		type.value === BoAvatarType.image
 	) {
@@ -186,7 +189,7 @@ const bgConstruct = computed<string>(() => {
 });
 
 const textColorClass = computed<string>(() => {
-	if (!StringUtils.isEmptyStr(color.value?.colorHex)) {
+	if (!isEmptyStr(color.value?.colorHex)) {
 		return '';
 	}
 
@@ -215,7 +218,7 @@ const indicatorClasses = computed<string>(() => {
 		return '';
 	}
 
-	return TailwindUtils.merge(
+	return merge(
 		'absolute rounded-full border-2 border-white',
 		indicatorSizeClasses[size.value],
 		indicatorStatusClasses[indicator.value?.status ?? BoAvatarIndicatorStatus.none],
@@ -228,7 +231,7 @@ const cursorClassConstruct = computed<string>(() => {
 });
 
 const avatarContainerDefaultClasses = computed<string>(() => {
-	return TailwindUtils.merge(
+	return merge(
 		bgConstruct.value,
 		containerClasses.default,
 		cursorClassConstruct.value,
@@ -241,7 +244,7 @@ const showDefaultAvatar = computed<boolean>(() => {
 		return true;
 	}
 
-	return data.value.src === undefined && StringUtils.isEmptyStr(data.value.label);
+	return data.value.src === undefined && isEmptyStr(data.value.label);
 });
 
 const labelSize = computed<BoFontSize>(() => {
@@ -268,7 +271,7 @@ const containerStyle = computed<StyleValue>(() => {
 });
 
 const avatarContainerClasses = computed<string>(() => {
-	return TailwindUtils.merge(
+	return merge(
 		avatarSizeClasses[size.value],
 		avatarShapeClasses[shape.value],
 		avatarContainerDefaultClasses.value,

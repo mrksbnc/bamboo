@@ -67,15 +67,15 @@
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo_text';
-import { AccessibilityUtils, KeyboardUtils } from '@/utils';
-import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
+import { useAccessibility } from '@/composables';
+import { AriaLivePriority } from '@/composables/useAccessibility';
+import { IdentityService } from '@/services';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, type StyleValue } from 'vue';
 import type { BoModalProps } from './bo_modal';
 
-const props = withDefaults(defineProps<BoModalProps>(), {
-	showClose: true,
-});
+const { announceToScreenReader } = useAccessibility();
 
-defineSlots<{
+const slots = defineSlots<{
 	header?: () => unknown;
 	description?: () => unknown;
 	default?: () => unknown;
@@ -83,24 +83,29 @@ defineSlots<{
 }>();
 
 const emit = defineEmits<{
-	close: [];
+	(e: 'close'): void;
 }>();
+
+const props = withDefaults(defineProps<BoModalProps>(), {
+	id: () => IdentityService.instance.getId('modal'),
+	showClose: true,
+});
 
 let previousActiveElement: HTMLElement | null = null;
 
+// Use keyboard composable for escape and tab trap, but we'll need to implement these functions manually
+// since the composable APIs differ from the old utils
+const modalRef = ref<HTMLElement | null>(null);
+
 const modalTitleId = ref<string>(
-	props.id ? `${props.id}-title` : AccessibilityUtils.generateAccessibleId('modal-title'),
+	props.id ? `${props.id}-title` : IdentityService.instance.getId('modal-title'),
 );
 
 const modalDescriptionId = ref<string>(
-	props.id
-		? `${props.id}-description`
-		: AccessibilityUtils.generateAccessibleId('modal-description'),
+	props.id ? `${props.id}-description` : IdentityService.instance.getId('modal-description'),
 );
 
-const modalRef = ref<HTMLElement | null>(null);
-
-const computedStyle = computed<Record<string, string> | undefined>(() => {
+const computedStyle = computed<StyleValue>(() => {
 	if (props.width) {
 		if (props.width.px) {
 			return { width: `${props.width.px}px` };
@@ -111,21 +116,55 @@ const computedStyle = computed<Record<string, string> | undefined>(() => {
 		}
 
 		if (props.width.tailwind) {
-			return undefined;
+			return {};
 		}
 	}
 
-	return undefined;
+	return {};
 });
+
+function getFocusableElements(container: HTMLElement): HTMLElement[] {
+	const focusable = container.querySelectorAll(
+		'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+	);
+	return Array.from(focusable) as HTMLElement[];
+}
+
+function trapTabKey(e: KeyboardEvent, container: HTMLElement, shouldTrap: boolean): void {
+	if (!shouldTrap || e.key !== 'Tab') return;
+
+	const focusableElements = getFocusableElements(container);
+	if (focusableElements.length === 0) return;
+
+	const firstElement = focusableElements[0];
+	const lastElement = focusableElements[focusableElements.length - 1];
+
+	// If shift+tab on first element, go to last element
+	if (e.shiftKey && document.activeElement === firstElement) {
+		lastElement.focus();
+		e.preventDefault();
+	}
+	// If tab on last element, go to first element
+	else if (!e.shiftKey && document.activeElement === lastElement) {
+		firstElement.focus();
+		e.preventDefault();
+	}
+}
+
+function registerEscapeKeyHandler(e: KeyboardEvent, handler: () => void): void {
+	if (e.key === 'Escape') {
+		handler();
+	}
+}
 
 function handleKeyDown(e: KeyboardEvent): void {
 	if (modalRef.value) {
-		KeyboardUtils.trapTabKey(e, modalRef.value, true);
+		trapTabKey(e, modalRef.value, true);
 	}
 }
 
 function handleEscapeKey(e: KeyboardEvent): void {
-	KeyboardUtils.registerEscapeKeyHandler(e, () => {
+	registerEscapeKeyHandler(e, () => {
 		emit('close');
 	});
 }
@@ -133,11 +172,11 @@ function handleEscapeKey(e: KeyboardEvent): void {
 onMounted(() => {
 	previousActiveElement = document.activeElement as HTMLElement | null;
 
-	AccessibilityUtils.announceToScreenReader('Dialog opened', 'assertive');
+	announceToScreenReader('Dialog opened', AriaLivePriority.assertive);
 
 	nextTick(() => {
 		if (modalRef.value) {
-			const focusableElements = KeyboardUtils['getFocusableElements'](modalRef.value);
+			const focusableElements = getFocusableElements(modalRef.value);
 			if (focusableElements.length > 0) {
 				focusableElements[0].focus();
 			} else {
@@ -158,6 +197,6 @@ onBeforeUnmount(() => {
 	}
 
 	document.body.style.overflow = '';
-	AccessibilityUtils.announceToScreenReader('Dialog closed', 'assertive');
+	announceToScreenReader('Dialog closed', AriaLivePriority.assertive);
 });
 </script>

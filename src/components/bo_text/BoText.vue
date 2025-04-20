@@ -1,16 +1,17 @@
 <template>
-	<div
-		:id="id ?? IdentityUtils.generateRandomIdWithPrefix('bo-text')"
+	<component
+		:is="htmlTag"
+		:id="id"
 		:class="classes"
 		:style="containerStyle"
 	>
 		{{ text }}
-	</div>
+	</component>
 </template>
 
 <script setup lang="ts">
-import { StringUtils, TailwindUtils } from '@/utils';
-import { IdentityUtils } from '@/utils/identity_utils';
+import { useString, useTailwind } from '@/composables';
+import { IdentityService } from '@/services';
 import { computed, toRefs, type StyleValue } from 'vue';
 import {
 	BoFontFamily,
@@ -23,6 +24,7 @@ import {
 import type { BoTextProps } from './types';
 
 const props = withDefaults(defineProps<BoTextProps>(), {
+	id: () => IdentityService.instance.getId('bo-text'),
 	size: () => BoFontSize.base,
 	color: () => BoTextColor.current,
 	weight: () => BoFontWeight.regular,
@@ -45,6 +47,9 @@ const {
 	textAlign,
 	selectable,
 } = toRefs(props);
+
+const { merge } = useTailwind();
+const { isEmptyStr } = useString();
 
 const defaultClasses = /*tw*/ 'bo-text inline-flex flex-wrap shrink';
 
@@ -81,6 +86,33 @@ const fontSize = computed<string>(() => {
 		case BoFontSize.base:
 		default:
 			return /*tw*/ 'text-base';
+	}
+});
+
+const htmlTag = computed<string>(() => {
+	switch (size.value) {
+		case BoFontSize.xs:
+		case BoFontSize.sm:
+		case BoFontSize.lg:
+		case BoFontSize.base:
+			return 'p';
+		case BoFontSize.xl:
+			return 'h6';
+		case BoFontSize['2xl']:
+			return 'h5';
+		case BoFontSize['3xl']:
+			return 'h4';
+		case BoFontSize['4xl']:
+			return 'h3';
+		case BoFontSize['5xl']:
+			return 'h2';
+		case BoFontSize['6xl']:
+		case BoFontSize['7xl']:
+		case BoFontSize['8xl']:
+		case BoFontSize['9xl']:
+			return 'h1';
+		default:
+			return 'p';
 	}
 });
 
@@ -167,7 +199,7 @@ const textAlignment = computed<string>(() => {
 });
 
 const classes = computed<string>(() => {
-	return TailwindUtils.merge(
+	return merge(
 		cssClass.value,
 		defaultClasses,
 		fontSize.value,
@@ -182,7 +214,7 @@ const classes = computed<string>(() => {
 });
 
 const containerStyle = computed<StyleValue>(() => {
-	if (!StringUtils.isEmptyStr(customColor.value)) {
+	if (!isEmptyStr(customColor.value)) {
 		return {
 			color: customColor.value,
 		};

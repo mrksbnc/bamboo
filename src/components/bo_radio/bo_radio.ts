@@ -1,4 +1,14 @@
-import type { BoRadioSize, BoRadioState } from './constants';
+export enum BoRadioSize {
+	small = 'small',
+	default = 'default',
+	large = 'large',
+}
+
+export enum BoRadioState {
+	none = 'none',
+	valid = 'valid',
+	invalid = 'invalid',
+}
 
 export type BoRadioProps = {
 	modelValue?: string | number | boolean;

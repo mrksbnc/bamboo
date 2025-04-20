@@ -4,10 +4,10 @@
 		:class="containerClasses"
 		:style="styleWidth"
 		@click="handleClick"
-		:role="clickable ? 'button' : undefined"
-		:tabindex="clickable ? '0' : undefined"
-		:aria-disabled="disabled ? 'true' : 'false'"
-		:aria-labelledby="title ? 'card-title-' + cardId : undefined"
+		:role="role"
+		:tabindex="tabindex"
+		:aria-disabled="ariaDisabled"
+		:aria-labelledby="ariaLabelledBy"
 		@keydown.enter="clickable && !disabled ? handleClick($event) : undefined"
 		@keydown.space="clickable && !disabled ? handleClick($event) : undefined"
 	>
@@ -32,14 +32,18 @@
 </template>
 
 <script setup lang="ts">
-import { IdentityUtils } from '@/utils';
-import { computed, ref } from 'vue';
+import { IdentityService } from '@/services';
+import { computed, ref, type StyleValue } from 'vue';
 import type { BoCardProps } from './bo_card';
 
-defineSlots<{
+const slots = defineSlots<{
 	header?: (props: Record<string, unknown>) => void;
 	content?: (props: Record<string, unknown>) => void;
 	actions?: (props: Record<string, unknown>) => void;
+}>();
+
+const emit = defineEmits<{
+	(e: 'click', event: MouseEvent | KeyboardEvent): void;
 }>();
 
 const props = withDefaults(defineProps<BoCardProps>(), {
@@ -53,15 +57,23 @@ const props = withDefaults(defineProps<BoCardProps>(), {
 	disabled: false,
 });
 
-const emit = defineEmits(['click']);
+const cardId = ref<string>(IdentityService.instance.getId('card'));
 
-// Generate a unique ID for the card
-const cardId = ref(IdentityUtils.generateRandomIdWithPrefix('card'));
+const role = computed<string | undefined>(() => {
+	return props.clickable ? 'button' : undefined;
+});
 
-const containerClasses = computed(() => {
+const tabindex = computed<string | undefined>(() => {
+	return props.clickable ? '0' : undefined;
+});
+
+const ariaDisabled = computed<boolean>(() => {
+	return props.disabled;
+});
+
+const containerClasses = computed<string[]>(() => {
 	const classes = [];
 
-	// Width class
 	if (props.widthAsTailwindClass) {
 		classes.push(props.widthAsTailwindClass);
 	} else {
@@ -104,7 +116,11 @@ const containerClasses = computed(() => {
 	return classes;
 });
 
-const styleWidth = computed(() => {
+const ariaLabelledBy = computed<string | undefined>(() => {
+	return props.title ? 'card-title-' + cardId.value : 'card';
+});
+
+const styleWidth = computed<StyleValue>(() => {
 	if (props.widthInPx) {
 		return `width: ${props.widthInPx}px;`;
 	}
@@ -114,9 +130,8 @@ const styleWidth = computed(() => {
 	return undefined;
 });
 
-function handleClick(event: MouseEvent | KeyboardEvent) {
+function handleClick(event: MouseEvent | KeyboardEvent): void {
 	if (props.clickable && !props.disabled) {
-		// If triggered by keyboard, prevent default action
 		if (event instanceof KeyboardEvent) {
 			event.preventDefault();
 		}

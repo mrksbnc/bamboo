@@ -28,21 +28,21 @@
 				/>
 			</div>
 			<input
-				:id="inputId"
 				v-model="modelValue"
 				:type="type"
-				:placeholder="placeholder"
+				:name="name"
+				:id="inputId"
+				:class="inputClass"
 				:disabled="disabled"
 				:readonly="readonly"
 				:required="required"
-				:name="name"
-				:class="inputClass"
+				:aria-disabled="disabled"
+				:aria-readonly="readonly"
+				:placeholder="placeholder"
 				:aria-describedby="getAriaDescribedBy"
-				:aria-invalid="state === BoInputState.invalid ? 'true' : 'false'"
-				:aria-disabled="disabled ? 'true' : 'false'"
-				:aria-readonly="readonly ? 'true' : 'false'"
-				@focus="$emit('focus')"
-				@blur="$emit('blur')"
+				:aria-invalid="state === BoInputState.invalid"
+				@blur="$emit('blur', $event)"
+				@focus="$emit('focus', $event)"
 				@input="$emit('input', $event)"
 			/>
 			<button
@@ -88,7 +88,7 @@
 			</div>
 		</div>
 		<span
-			v-if="description && StringUtils.isEmptyStr(errorMessage)"
+			v-if="description && isEmptyStr(errorMessage)"
 			:id="descriptionId"
 			class="mt-1 text-sm text-gray-500 dark:text-gray-400"
 		>
@@ -113,9 +113,9 @@
 
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo_icon';
+import { AriaLivePriority, useAccessibility, useString, useTailwind } from '@/composables';
+import { IdentityService } from '@/services';
 import { BoSize } from '@/shared';
-import { AccessibilityUtils, StringUtils, TailwindUtils } from '@/utils';
-import { IdentityUtils } from '@/utils/identity_utils';
 import { computed, ref, watch } from 'vue';
 import {
 	BoInputLoaderVariant,
@@ -126,36 +126,44 @@ import {
 } from './constants';
 import type { BoInputProps } from './types';
 
-const emit = defineEmits(['update:modelValue', 'input', 'focus', 'blur', 'clear']);
+const emit = defineEmits<{
+	(e: 'update:modelValue', value: string): void;
+	(e: 'input', event: Event): void;
+	(e: 'focus', event: FocusEvent): void;
+	(e: 'blur', event: FocusEvent): void;
+	(e: 'clear'): void;
+}>();
 
 const props = withDefaults(defineProps<BoInputProps>(), {
-	type: BoInputType.text,
+	id: () => IdentityService.instance.getId('input'),
 	placeholder: '',
 	disabled: false,
 	readonly: false,
 	required: false,
+	clearable: false,
+	type: BoInputType.text,
 	state: BoInputState.none,
 	size: BoInputSize.default,
 	variant: BoInputVariant.default,
-	clearable: false,
-	prefixIcon: null,
-	suffixIcon: null,
+	prefixIcon: () => Icon.none,
+	suffixIcon: () => Icon.none,
 	loaderVariant: BoInputLoaderVariant.spinner,
 });
 
 const modelValue = defineModel<string>('modelValue', { required: true });
 
-const inputId = computed<string>(
-	() => props.id ?? IdentityUtils.generateRandomIdWithPrefix('input'),
-);
+const { merge } = useTailwind();
+const { isEmptyStr } = useString();
+const { announceToScreenReader } = useAccessibility();
 
-const descriptionId = ref(AccessibilityUtils.generateAccessibleId('input-desc'));
-const errorId = ref(AccessibilityUtils.generateAccessibleId('input-error'));
+const errorId = ref<string>(IdentityService.instance.getId('input-error'));
+const descriptionId = ref<string>(IdentityService.instance.getId('input-desc'));
 
-// Compute aria-describedby based on presence of description or error
-const getAriaDescribedBy = computed(() => {
+const inputId = computed<string>(() => props.id ?? IdentityService.instance.getId('input'));
+
+const getAriaDescribedBy = computed<string | undefined>(() => {
 	const ids = [];
-	if (props.description && StringUtils.isEmptyStr(props.errorMessage)) {
+	if (props.description && isEmptyStr(props.errorMessage)) {
 		ids.push(descriptionId.value);
 	}
 	if (props.errorMessage && props.state === BoInputState.invalid) {
@@ -183,39 +191,35 @@ const inputClass = computed<string>(() => {
 			'border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-0 focus:ring-0 focus:ring-offset-0 text-gray-900 focus:border-blue-500 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 outline-none',
 	};
 
-	let classes = TailwindUtils.merge(
-		baseClasses,
-		sizeClasses[props.size],
-		variantClasses[props.variant],
-	);
+	let classes = merge(baseClasses, sizeClasses[props.size], variantClasses[props.variant]);
 
 	if (props.prefixIcon) {
-		classes = TailwindUtils.merge(classes, 'pl-10');
+		classes = merge(classes, 'pl-10');
 	}
 
 	if ((props.suffixIcon && !props.clearable) || (props.clearable && props.modelValue)) {
-		classes = TailwindUtils.merge(classes, 'pr-10');
+		classes = merge(classes, 'pr-10');
 	}
 
 	if (props.disabled) {
-		classes = TailwindUtils.merge(
+		classes = merge(
 			classes,
 			'cursor-not-allowed bg-gray-100 text-gray-500 placeholder-gray-400 dark:bg-transparent dark:text-gray-400 dark:placeholder-gray-500',
 		);
 	} else if (props.readonly) {
-		classes = TailwindUtils.merge(
+		classes = merge(
 			classes,
 			'text-gray-500 placeholder-gray-400 dark:text-gray-400 dark:placeholder-gray-500',
 		);
 	}
 
 	if (props.state === BoInputState.invalid) {
-		classes = TailwindUtils.merge(
+		classes = merge(
 			classes,
 			'border-red-500 focus:ring-red-500/30 focus:border-red-500 text-red-900 placeholder-red-400 dark:border-red-500 dark:focus:border-red-500',
 		);
 	} else if (props.state === BoInputState.valid) {
-		classes = TailwindUtils.merge(
+		classes = merge(
 			classes,
 			'border-green-500 focus:ring-green-500/30 focus:border-green-500 text-green-900 placeholder-green-400 dark:border-green-500 dark:focus:border-green-500',
 		);
@@ -224,12 +228,11 @@ const inputClass = computed<string>(() => {
 	return classes;
 });
 
-function handleClear() {
+function handleClear(): void {
 	modelValue.value = '';
 	emit('clear');
 }
 
-// Add a watcher for state changes to announce errors to screen readers
 watch(
 	() => props.state,
 	(newState, oldState) => {
@@ -239,21 +242,20 @@ watch(
 			oldState !== BoInputState.invalid
 		) {
 			// Announce error message to screen readers when state becomes invalid
-			AccessibilityUtils.announceToScreenReader(props.errorMessage, 'assertive');
+			announceToScreenReader(props.errorMessage, AriaLivePriority.assertive);
 		} else if (newState === BoInputState.valid && oldState === BoInputState.invalid) {
 			// Announce when field becomes valid after being invalid
-			AccessibilityUtils.announceToScreenReader('Field is now valid', 'polite');
+			announceToScreenReader('Field is now valid', AriaLivePriority.polite);
 		}
 	},
 );
 
-// Add a watcher for error message changes
 watch(
 	() => props.errorMessage,
 	(newMessage, oldMessage) => {
 		if (newMessage && props.state === BoInputState.invalid && newMessage !== oldMessage) {
 			// Announce new error messages
-			AccessibilityUtils.announceToScreenReader(newMessage, 'assertive');
+			announceToScreenReader(newMessage, AriaLivePriority.assertive);
 		}
 	},
 );

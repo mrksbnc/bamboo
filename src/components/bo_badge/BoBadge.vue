@@ -1,6 +1,6 @@
 <template>
 	<span :class="classes">
-		<span v-if="prefixIcon !== Icon.none || iconOnly || isCircle">
+		<span v-if="icon?.prefix !== Icon.none || iconOnly || isCircle">
 			<bo-icon
 				:size="boBadgeIconSize"
 				:icon="prefixOrIconOnlySrc"
@@ -16,9 +16,9 @@
 				class="bo-badge__label"
 			/>
 		</slot>
-		<span v-if="suffixIcon !== Icon.none && !iconOnly && !isCircle">
+		<span v-if="icon?.suffix && icon?.suffix !== Icon.none && !iconOnly && !isCircle">
 			<bo-icon
-				:icon="suffixIcon"
+				:icon="icon.suffix"
 				:size="boBadgeIconSize"
 				class="bo-badge__suffix-icon"
 			/>
@@ -29,12 +29,15 @@
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo_icon';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo_text';
+import { useString, useTailwind } from '@/composables';
 import { BoSize } from '@/shared/bo_size';
-import { StringUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs } from 'vue';
 import { BoBadgeShape, BoBadgeType, BoBadgeVariant, type BoBadgeProps } from './bo_badge';
 
-defineSlots<{
+const { merge } = useTailwind();
+const { isEmptyStr } = useString();
+
+const slots = defineSlots<{
 	default?: unknown;
 }>();
 
@@ -43,11 +46,13 @@ const props = withDefaults(defineProps<BoBadgeProps>(), {
 	size: () => BoSize.default,
 	shape: () => BoBadgeShape.default,
 	variant: () => BoBadgeVariant.primary,
-	prefixIcon: () => Icon.none,
-	suffixIcon: () => Icon.none,
+	icon: () => ({
+		prefix: Icon.none,
+		suffix: Icon.none,
+	}),
 });
 
-const { label, type, size, variant, shape, prefixIcon, suffixIcon } = toRefs(props);
+const { label, type, size, variant, shape, icon } = toRefs(props);
 
 const containerClasses = {
 	[BoBadgeShape.default]:
@@ -97,17 +102,17 @@ const variantClasses = {
 
 const iconOnly = computed<boolean>(() => {
 	return (
-		(prefixIcon.value !== Icon.none || suffixIcon.value !== Icon.none) &&
-		StringUtils.isEmptyStr(label.value)
+		(icon?.value?.prefix !== Icon.none || icon?.value?.suffix !== Icon.none) &&
+		isEmptyStr(label.value)
 	);
 });
 
 const prefixOrIconOnlySrc = computed<Icon>(() => {
 	if (iconOnly.value) {
-		return prefixIcon.value ?? suffixIcon.value ?? Icon.none;
+		return icon?.value?.prefix ?? icon?.value?.suffix ?? Icon.none;
 	}
 
-	return prefixIcon.value ?? Icon.none;
+	return icon?.value?.prefix ?? Icon.none;
 });
 
 const isCircle = computed<boolean>(() => {
@@ -115,7 +120,7 @@ const isCircle = computed<boolean>(() => {
 });
 
 const renderLabel = computed<boolean>(() => {
-	return !StringUtils.isEmptyStr(label.value) && !iconOnly.value;
+	return !isEmptyStr(label.value) && !iconOnly.value;
 });
 
 const boBadgeVariantClasses = computed<string>(() => {
@@ -157,7 +162,7 @@ const boBadgeSizeClasses = computed<string>(() => {
 });
 
 const classes = computed<string>(() => {
-	return TailwindUtils.merge(
+	return merge(
 		/*tw*/ 'cursor-default',
 		boBadgeSizeClasses.value,
 		boBadgeVariantClasses.value,

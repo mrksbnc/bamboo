@@ -31,7 +31,10 @@ import { BoSize } from '@/shared/bo_size';
 import { computed, toRefs, type StyleValue } from 'vue';
 import type { BoLoadingSpinnerProps } from './types';
 
-defineSlots<{
+const { merge } = useTailwind();
+const { isEmptyStr, safeString } = useString();
+
+const slots = defineSlots<{
 	default?: () => unknown;
 }>();
 
@@ -42,9 +45,6 @@ const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 });
 
 const { size, variant, loaderText, customColor } = toRefs(props);
-
-const { merge } = useTailwind();
-const { isEmptyStr, safeString } = useString();
 
 const defaultContainerClasses =
 	/*tw*/ 'bo-loading-spinner__container flex h-full w-full content-center items-center justify-center gap-1';

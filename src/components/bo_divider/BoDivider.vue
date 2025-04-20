@@ -1,28 +1,28 @@
 <template>
 	<span
-		:id="dividerId"
+		:id="id"
 		:class="dividerClasses"
 		:style="color.style"
 	/>
 </template>
 
 <script setup lang="ts">
+import { useTailwind } from '@/composables';
+import { IdentityService } from '@/services';
 import type { StyleConstruct } from '@/types';
-import { IdentityUtils, TailwindUtils } from '@/utils';
 import { computed, toRefs } from 'vue';
 import { type BoDividerProps, BoDividerVariant } from './bo_divider';
 
+const { merge } = useTailwind();
+
 const props = withDefaults(defineProps<BoDividerProps>(), {
+	id: () => IdentityService.instance.getId('bo-divider'),
 	variant: () => BoDividerVariant.default,
 });
 
 const { id, variant, colorHex, tailwindColor } = toRefs(props);
 
 const defaultDividerClasses = /*tw*/ 'bo-divider my-3 w-full';
-
-const dividerId = computed<string>(() => {
-	return id.value ?? IdentityUtils.generateRandomIdWithPrefix('bo-divider');
-});
 
 const tailwindCssTypeClasses = computed<string>(() => {
 	switch (variant.value) {
@@ -59,10 +59,6 @@ const color = computed<StyleConstruct>(() => {
 });
 
 const dividerClasses = computed<string>(() => {
-	return TailwindUtils.merge(
-		defaultDividerClasses,
-		tailwindCssTypeClasses.value,
-		color.value.class,
-	);
+	return merge(defaultDividerClasses, tailwindCssTypeClasses.value, color.value.class);
 });
 </script>

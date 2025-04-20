@@ -26,7 +26,7 @@
 					role="text"
 					:color="BoTextColor.secondary"
 					:font-family="BoFontFamily.sans"
-					:text="StringUtils.safeString(loaderText)"
+					:text="safeString(loaderText)"
 				/>
 			</slot>
 		</span>
@@ -35,13 +35,15 @@
 
 <script setup lang="ts">
 import { BoFontFamily, BoText, BoTextColor } from '@/components/bo_text';
+import { useString } from '@/composables';
 import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo_loader';
 import { BoSize } from '@/shared/bo_size';
-import { StringUtils } from '@/utils';
 import { computed, toRefs, type StyleValue } from 'vue';
 import type { BoLoadingPulseProps } from './types';
 
-defineSlots<{
+const { isEmptyStr, safeString } = useString();
+
+const slots = defineSlots<{
 	default?: () => unknown;
 }>();
 
@@ -63,7 +65,7 @@ const defaultInnerPulseRelativeClasses =
 	/*tw*/ 'bo-loading-pulse__inner-pulse-relative relative inline-flex rounded-full';
 
 const displayLoaderText = computed<boolean>(() => {
-	return !StringUtils.isEmptyStr(loaderText.value);
+	return !isEmptyStr(loaderText.value);
 });
 
 const loaderSizeClasses = computed<string>(() => {
@@ -83,7 +85,7 @@ const loaderSizeClasses = computed<string>(() => {
 });
 
 const customColorStyle = computed<StyleValue>(() => {
-	if (!StringUtils.isEmptyStr(customColor.value)) {
+	if (!isEmptyStr(customColor.value)) {
 		return {
 			backgroundColor: customColor.value,
 		};
@@ -93,7 +95,7 @@ const customColorStyle = computed<StyleValue>(() => {
 });
 
 const loaderPulseVariantClasses = computed<string>(() => {
-	if (!StringUtils.isEmptyStr(customColor.value)) {
+	if (!isEmptyStr(customColor.value)) {
 		return '';
 	}
 

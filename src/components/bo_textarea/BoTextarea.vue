@@ -16,24 +16,24 @@
 		</label>
 		<div class="relative">
 			<textarea
-				:id="textareaId"
 				v-model="modelValue"
-				:placeholder="placeholder"
-				:disabled="disabled"
-				:readonly="readonly"
-				:required="required"
-				:name="name"
+				:id="textareaId"
 				:rows="rows"
 				:wrap="wrap"
+				:name="name"
+				:required="required"
+				:readonly="readonly"
+				:disabled="disabled"
 				:class="textareaClass"
-				:style="{ resize: props.resize }"
-				:aria-describedby="getAriaDescribedBy"
-				:aria-invalid="state === BoTextareaState.invalid ? 'true' : 'false'"
-				:aria-disabled="disabled ? 'true' : 'false'"
-				:aria-readonly="readonly ? 'true' : 'false'"
+				:placeholder="placeholder"
+				:style="textareaStyle"
+				:aria-readonly="readonly"
+				:aria-disabled="disabled"
+				:aria-invalid="ariaInvalid"
+				:aria-describedby="ariaDescribedBy"
+				@input="$emit('input', $event)"
 				@focus="$emit('focus')"
 				@blur="$emit('blur')"
-				@input="$emit('input', $event)"
 			></textarea>
 			<div
 				v-if="clearable && modelValue"
@@ -49,7 +49,7 @@
 			</div>
 		</div>
 		<span
-			v-if="description && StringUtils.isEmptyStr(errorMessage)"
+			v-if="description && isEmptyStr(errorMessage)"
 			:id="descriptionId"
 			class="mt-1 text-sm text-gray-500 dark:text-gray-400"
 		>
@@ -74,41 +74,43 @@
 
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo_icon';
+import { useAccessibility, useString, useTailwind } from '@/composables';
+import { AriaLivePriority } from '@/composables/useAccessibility';
+import { IdentityService } from '@/services';
 import { BoSize } from '@/shared';
-import { AccessibilityUtils, StringUtils, TailwindUtils } from '@/utils';
-import { IdentityUtils } from '@/utils/identity_utils';
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, type StyleValue } from 'vue';
 import { BoTextareaResize, BoTextareaSize, BoTextareaState, BoTextareaVariant } from './constants';
 import type { BoTextareaProps } from './types';
 
 const emit = defineEmits(['update:modelValue', 'input', 'focus', 'blur', 'clear']);
 
 const props = withDefaults(defineProps<BoTextareaProps>(), {
+	rows: 3,
 	placeholder: '',
 	disabled: false,
 	readonly: false,
 	required: false,
-	rows: 3,
+	clearable: false,
 	state: BoTextareaState.none,
 	size: BoTextareaSize.default,
-	variant: BoTextareaVariant.default,
 	resize: BoTextareaResize.none,
-	clearable: false,
+	variant: BoTextareaVariant.default,
 });
 
 const modelValue = defineModel<string>('modelValue', { required: true });
 
-const textareaId = computed<string>(
-	() => props.id ?? IdentityUtils.generateRandomIdWithPrefix('textarea'),
-);
+const { merge } = useTailwind();
+const { isEmptyStr } = useString();
+const { announceToScreenReader } = useAccessibility();
 
-const descriptionId = ref(AccessibilityUtils.generateAccessibleId('textarea-desc'));
-const errorId = ref(AccessibilityUtils.generateAccessibleId('textarea-error'));
+const errorId = ref(IdentityService.instance.getId('textarea-error'));
+const descriptionId = ref(IdentityService.instance.getId('textarea-desc'));
 
-// Compute aria-describedby based on presence of description or error
-const getAriaDescribedBy = computed(() => {
+const textareaId = computed<string>(() => props.id ?? IdentityService.instance.getId('textarea'));
+
+const getAriaDescribedBy = computed<string | undefined>(() => {
 	const ids = [];
-	if (props.description && StringUtils.isEmptyStr(props.errorMessage)) {
+	if (props.description && isEmptyStr(props.errorMessage)) {
 		ids.push(descriptionId.value);
 	}
 	if (props.errorMessage && props.state === BoTextareaState.invalid) {
@@ -134,31 +136,27 @@ const textareaClass = computed<string>(() => {
 			'border border-transparent rounded-md bg-gray-100 text-gray-900 focus:ring-blue-500/30 focus:border-blue-500 dark:bg-gray-800 dark:text-white dark:focus:ring-blue-500/40 dark:focus:border-blue-500',
 	};
 
-	let classes = TailwindUtils.merge(
-		baseClasses,
-		sizeClasses[props.size],
-		variantClasses[props.variant],
-	);
+	let classes = merge(baseClasses, sizeClasses[props.size], variantClasses[props.variant]);
 
 	if (props.disabled) {
-		classes = TailwindUtils.merge(
+		classes = merge(
 			classes,
 			'cursor-not-allowed bg-gray-100 text-gray-500 placeholder-gray-400 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-500',
 		);
 	} else if (props.readonly) {
-		classes = TailwindUtils.merge(
+		classes = merge(
 			classes,
 			'text-gray-500 placeholder-gray-400 dark:text-gray-400 dark:placeholder-gray-500',
 		);
 	}
 
 	if (props.state === BoTextareaState.invalid) {
-		classes = TailwindUtils.merge(
+		classes = merge(
 			classes,
 			'border-red-500 focus:ring-red-500/30 focus:border-red-500 text-red-900 placeholder-red-400 dark:border-red-500 dark:focus:border-red-500',
 		);
 	} else if (props.state === BoTextareaState.valid) {
-		classes = TailwindUtils.merge(
+		classes = merge(
 			classes,
 			'border-green-500 focus:ring-green-500/30 focus:border-green-500 text-green-900 placeholder-green-400 dark:border-green-500 dark:focus:border-green-500',
 		);
@@ -167,12 +165,23 @@ const textareaClass = computed<string>(() => {
 	return classes;
 });
 
-const clearTextarea = () => {
+const textareaStyle = computed<StyleValue>(() => {
+	return { resize: props.resize };
+});
+
+const ariaDescribedBy = computed<string | undefined>(() => {
+	return getAriaDescribedBy.value;
+});
+
+const ariaInvalid = computed<boolean>(() => {
+	return props.state === BoTextareaState.invalid;
+});
+
+function clearTextarea(): void {
 	modelValue.value = '';
 	emit('clear');
-};
+}
 
-// Add a watcher for state changes to announce errors to screen readers
 watch(
 	() => props.state,
 	(newState, oldState) => {
@@ -182,21 +191,20 @@ watch(
 			oldState !== BoTextareaState.invalid
 		) {
 			// Announce error message to screen readers when state becomes invalid
-			AccessibilityUtils.announceToScreenReader(props.errorMessage, 'assertive');
+			announceToScreenReader(props.errorMessage, AriaLivePriority.assertive);
 		} else if (newState === BoTextareaState.valid && oldState === BoTextareaState.invalid) {
 			// Announce when field becomes valid after being invalid
-			AccessibilityUtils.announceToScreenReader('Field is now valid', 'polite');
+			announceToScreenReader('Field is now valid', AriaLivePriority.polite);
 		}
 	},
 );
 
-// Add a watcher for error message changes
 watch(
 	() => props.errorMessage,
 	(newMessage, oldMessage) => {
 		if (newMessage && props.state === BoTextareaState.invalid && newMessage !== oldMessage) {
 			// Announce new error messages
-			AccessibilityUtils.announceToScreenReader(newMessage, 'assertive');
+			announceToScreenReader(newMessage, AriaLivePriority.assertive);
 		}
 	},
 );

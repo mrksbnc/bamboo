@@ -2,21 +2,21 @@
 	<div class="radio-wrapper">
 		<div class="flex items-center">
 			<input
-				:id="inputId"
 				v-model="modelValue"
+				:id="inputId"
 				type="radio"
+				:name="name"
 				:value="value"
+				:class="radioClass"
 				:disabled="disabled"
 				:readonly="readonly"
 				:required="required"
-				:name="name"
-				:class="radioClass"
+				:aria-disabled="disabled"
 				:aria-describedby="getAriaDescribedBy"
-				:aria-invalid="state === BoRadioState.invalid ? 'true' : 'false'"
-				:aria-disabled="disabled ? 'true' : 'false'"
-				@focus="$emit('focus')"
-				@blur="$emit('blur')"
-				@change="$emit('change', $event)"
+				:aria-invalid="state === BoRadioState.invalid"
+				@blur="emit('blur', $event)"
+				@focus="emit('focus', $event)"
+				@change="emit('change', $event)"
 			/>
 			<label
 				v-if="label"
@@ -34,7 +34,7 @@
 			</label>
 		</div>
 		<span
-			v-if="description && StringUtils.isEmptyStr(errorMessage)"
+			v-if="description && isEmptyStr(errorMessage)"
 			:id="descriptionId"
 			class="mt-1 ml-6 block text-sm text-gray-500 dark:text-gray-400"
 		>
@@ -59,14 +59,18 @@
 
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo_icon';
+import { AriaLivePriority, useAccessibility, useString, useTailwind } from '@/composables';
+import { IdentityService } from '@/services';
 import { BoSize } from '@/shared';
-import { AccessibilityUtils, StringUtils, TailwindUtils } from '@/utils';
-import { IdentityUtils } from '@/utils/identity_utils';
 import { computed, ref, watch } from 'vue';
-import { BoRadioSize, BoRadioState } from './constants';
-import type { BoRadioProps } from './types';
+import { BoRadioSize, BoRadioState, type BoRadioProps } from './bo_radio';
 
-const emit = defineEmits(['update:modelValue', 'change', 'focus', 'blur']);
+const emit = defineEmits<{
+	(e: 'update:modelValue', value: string | number | boolean): void;
+	(e: 'change', event: Event): void;
+	(e: 'focus', event: FocusEvent): void;
+	(e: 'blur', event: FocusEvent): void;
+}>();
 
 const props = withDefaults(defineProps<BoRadioProps>(), {
 	disabled: false,
@@ -78,17 +82,18 @@ const props = withDefaults(defineProps<BoRadioProps>(), {
 
 const modelValue = defineModel<string | number | boolean>('modelValue', { required: true });
 
-const inputId = computed<string>(
-	() => props.id ?? IdentityUtils.generateRandomIdWithPrefix('radio'),
-);
+const { merge } = useTailwind();
+const { isEmptyStr } = useString();
+const { announceToScreenReader } = useAccessibility();
 
-const descriptionId = ref(AccessibilityUtils.generateAccessibleId('radio-desc'));
-const errorId = ref(AccessibilityUtils.generateAccessibleId('radio-error'));
+const errorId = ref<string>(IdentityService.instance.getId('radio-error'));
+const descriptionId = ref<string>(IdentityService.instance.getId('radio-desc'));
 
-// Compute aria-describedby based on presence of description or error
-const getAriaDescribedBy = computed(() => {
+const inputId = computed<string>(() => props.id ?? IdentityService.instance.getId('radio'));
+
+const getAriaDescribedBy = computed<string | undefined>(() => {
 	const ids = [];
-	if (props.description && StringUtils.isEmptyStr(props.errorMessage)) {
+	if (props.description && isEmptyStr(props.errorMessage)) {
 		ids.push(descriptionId.value);
 	}
 	if (props.errorMessage && props.state === BoRadioState.invalid) {
@@ -107,19 +112,19 @@ const radioClass = computed<string>(() => {
 		[BoRadioSize.large]: 'h-5 w-5',
 	};
 
-	let classes = TailwindUtils.merge(baseClasses, sizeClasses[props.size]);
+	let classes = merge(baseClasses, sizeClasses[props.size]);
 
 	if (props.disabled) {
-		classes = TailwindUtils.merge(classes, 'cursor-not-allowed opacity-50 dark:opacity-40');
+		classes = merge(classes, 'cursor-not-allowed opacity-50 dark:opacity-40');
 	}
 
 	if (props.state === BoRadioState.invalid) {
-		classes = TailwindUtils.merge(
+		classes = merge(
 			classes,
 			'border-red-500 focus:ring-red-500 text-red-600 dark:border-red-500 dark:focus:ring-red-500',
 		);
 	} else if (props.state === BoRadioState.valid) {
-		classes = TailwindUtils.merge(
+		classes = merge(
 			classes,
 			'border-green-500 focus:ring-green-500 text-green-600 dark:border-green-500 dark:focus:ring-green-500',
 		);
@@ -128,7 +133,6 @@ const radioClass = computed<string>(() => {
 	return classes;
 });
 
-// Add a watcher for state changes to announce errors to screen readers
 watch(
 	() => props.state,
 	(newState, oldState) => {
@@ -138,10 +142,10 @@ watch(
 			oldState !== BoRadioState.invalid
 		) {
 			// Announce error message to screen readers when state becomes invalid
-			AccessibilityUtils.announceToScreenReader(props.errorMessage, 'assertive');
+			announceToScreenReader(props.errorMessage, AriaLivePriority.assertive);
 		} else if (newState === BoRadioState.valid && oldState === BoRadioState.invalid) {
 			// Announce when field becomes valid after being invalid
-			AccessibilityUtils.announceToScreenReader('Field is now valid', 'polite');
+			announceToScreenReader('Field is now valid', AriaLivePriority.polite);
 		}
 	},
 );

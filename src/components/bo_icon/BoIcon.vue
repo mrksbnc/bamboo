@@ -2,11 +2,9 @@
 	<div
 		v-html="svg"
 		:style="style"
-		class="bo-icon"
 		:class="tailwindCssSizeClasses"
-		:role="decorative ? 'presentation' : 'img'"
-		:aria-hidden="decorative ? 'true' : undefined"
-		:aria-label="!decorative && title ? title : undefined"
+		role="img"
+		aria-label="icon"
 	></div>
 </template>
 
@@ -18,13 +16,11 @@ import { icons, type BoIconProps } from './bo_icon';
 const props = withDefaults(defineProps<BoIconProps>(), {
 	size: () => BoSize.default,
 	color: () => 'currentColor',
-	decorative: true,
-	title: undefined,
 });
 
 const { icon, size, color } = toRefs(props);
 
-const svg = ref('');
+const svg = ref<string>('');
 
 /**
  * @description This is a map of all the icons that are available in the library.
@@ -63,15 +59,7 @@ const tailwindCssSizeClasses = computed<string>(() => {
 async function load(): Promise<void> {
 	try {
 		await iconMap[icon.value]().then((val) => {
-			// If not decorative and has a title, insert title tag into the SVG
-			if (!props.decorative && props.title) {
-				// Simple regex to insert a title tag after the svg tag opens
-				const titleInsertPoint = val.indexOf('>') + 1;
-				const titleTag = `<title>${props.title}</title>`;
-				svg.value = val.slice(0, titleInsertPoint) + titleTag + val.slice(titleInsertPoint);
-			} else {
-				svg.value = val;
-			}
+			svg.value = val;
 		});
 	} catch (e) {
 		console.error(`Could not find icon of name ${icon.value}`);
@@ -79,12 +67,4 @@ async function load(): Promise<void> {
 }
 
 watch(icon, () => load(), { immediate: true });
-watch(
-	() => props.title,
-	() => load(),
-);
-watch(
-	() => props.decorative,
-	() => load(),
-);
 </script>
