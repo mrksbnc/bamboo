@@ -4,58 +4,77 @@ import { BoDivider, BoDividerVariant } from '@/components/bo-divider';
 
 # Divider
 
-The Divider component is a simple horizontal line used to separate content. It supports different styles and colors to match your application's design system. Dividers are commonly used to create visual separation between sections of content.
+Dividers are horizontal lines that separate content into clear sections. They help organize and structure layouts for improved readability.
 
-## Basic Example
-
-```html
-<bo-divider />
+```js
+import { BoDivider } from '@mrksbnc/bamboo';
 ```
 
-<hr class="border-gray-200 dark:border-gray-700" />
-<div class="flex flex-col gap-4">
-  <p>Content above</p>
-  <bo-divider />
-  <p>Content below</p>
+## Basic Usage
+
+```vue
+<template>
+	<bo-divider />
+</template>
+
+<script setup>
+import { BoDivider } from '@mrksbnc/bamboo';
+</script>
+```
+
+<hr />
+<div class="flex flex-col gap-4 my-6">
+	<p>Content above divider</p>
+	<bo-divider />
+	<p>Content below divider</p>
 </div>
 
-### Props
+## Props
 
-| Prop name       | Type               | Default   | Description                       |
-| --------------- | ------------------ | --------- | --------------------------------- |
-| `id`            | `string`           | Auto      | Unique identifier for the divider |
-| `variant`       | `BoDividerVariant` | `default` | Style variant of the divider      |
-| `colorHex`      | `string`           | -         | Custom color in hex format        |
-| `tailwindColor` | `string`           | -         | Tailwind color class              |
+| Name            | Type               | Default        | Description                       |
+| --------------- | ------------------ | -------------- | --------------------------------- |
+| `id`            | `string`           | Auto-generated | Unique identifier for the divider |
+| `variant`       | `BoDividerVariant` | `default`      | Style of the divider line         |
+| `colorHex`      | `string`           | `undefined`    | Custom color in hex format        |
+| `tailwindColor` | `string`           | `undefined`    | Tailwind color class              |
 
-### Types
+## Types
 
 ```ts
-export enum BoDividerVariant {
-	default = 'default', // Solid line
-	dotted = 'dotted', // Dotted line
-	dashed = 'dashed', // Dashed line
-}
-
 export type BoDividerProps = {
-	id?: string; // Unique identifier
-	variant?: BoDividerVariant; // Style variant
-	colorHex?: string; // Custom color in hex
-	tailwindColor?: string; // Tailwind color class
+	id?: string;
+	variant?: BoDividerVariant;
+	colorHex?: string;
+	tailwindColor?: string;
 };
+
+export enum BoDividerVariant {
+	default = 'default',
+	dotted = 'dotted',
+	dashed = 'dashed',
+}
 ```
 
 ## Variants
 
-The Divider component supports different line styles:
-
-<div class="flex flex-col gap-4">
-  <bo-divider :variant="BoDividerVariant.default" />
-  <bo-divider :variant="BoDividerVariant.dotted" />
-  <bo-divider :variant="BoDividerVariant.dashed" />
+<div class="flex flex-col gap-8 my-6">
+	<div>
+		<p class="mb-2">Default</p>
+		<bo-divider :variant="BoDividerVariant.default" />
+	</div>
+	
+	<div>
+		<p class="mb-2">Dotted</p>
+		<bo-divider :variant="BoDividerVariant.dotted" />
+	</div>
+	
+	<div>
+		<p class="mb-2">Dashed</p>
+		<bo-divider :variant="BoDividerVariant.dashed" />
+	</div>
 </div>
 
-```html
+```vue
 <bo-divider :variant="BoDividerVariant.default" />
 <bo-divider :variant="BoDividerVariant.dotted" />
 <bo-divider :variant="BoDividerVariant.dashed" />
@@ -63,70 +82,38 @@ The Divider component supports different line styles:
 
 ## Custom Colors
 
-You can customize the divider color using hex values or Tailwind classes:
-
-<div class="flex flex-col gap-4">
-  <bo-divider colorHex="#FF0000" />
-  <bo-divider tailwindColor="border-blue-500" />
-  <bo-divider tailwindColor="border-green-500" />
+<div class="flex flex-col gap-8 my-6">
+	<div>
+		<p class="mb-2">Using Hex Color</p>
+		<bo-divider color-hex="#3B82F6" />
+	</div>
+	
+	<div>
+		<p class="mb-2">Using Tailwind Color</p>
+		<bo-divider tailwind-color="bg-red-500" />
+	</div>
 </div>
 
-```html
-<bo-divider colorHex="#FF0000" />
-<bo-divider tailwindColor="border-blue-500" />
-<bo-divider tailwindColor="border-green-500" />
+```vue
+<bo-divider color-hex="#3B82F6" />
+<bo-divider tailwind-color="bg-red-500" />
 ```
 
-## Usage Examples
+## Custom Variants with Colors
 
-### Between Content Sections
-
-<div class="flex flex-col gap-4">
-  <h3>Section 1</h3>
-  <p>Content for section 1</p>
-  <bo-divider />
-  <h3>Section 2</h3>
-  <p>Content for section 2</p>
+<div class="flex flex-col gap-8 my-6">
+	<div>
+		<p class="mb-2">Dotted with Hex Color</p>
+		<bo-divider :variant="BoDividerVariant.dotted" color-hex="#10B981" />
+	</div>
+	
+	<div>
+		<p class="mb-2">Dashed with Tailwind Color</p>
+		<bo-divider :variant="BoDividerVariant.dashed" tailwind-color="bg-purple-500" />
+	</div>
 </div>
 
-```html
-<h3>Section 1</h3>
-<p>Content for section 1</p>
-<bo-divider />
-<h3>Section 2</h3>
-<p>Content for section 2</p>
+```vue
+<bo-divider :variant="BoDividerVariant.dotted" color-hex="#10B981" />
+<bo-divider :variant="BoDividerVariant.dashed" tailwind-color="bg-purple-500" />
 ```
-
-### In Lists
-
-<div class="flex flex-col gap-4">
-  <ul class="space-y-2">
-    <li>Item 1</li>
-    <bo-divider :variant="BoDividerVariant.dotted" />
-    <li>Item 2</li>
-    <bo-divider :variant="BoDividerVariant.dotted" />
-    <li>Item 3</li>
-  </ul>
-</div>
-
-```html
-<ul class="space-y-2">
-	<li>Item 1</li>
-	<bo-divider :variant="BoDividerVariant.dotted" />
-	<li>Item 2</li>
-	<bo-divider :variant="BoDividerVariant.dotted" />
-	<li>Item 3</li>
-</ul>
-```
-
-## Best Practices
-
-When using the Divider component:
-
-1. Use dividers sparingly to avoid visual clutter
-2. Choose appropriate variants based on context
-3. Consider using custom colors to match your design system
-4. Use consistent spacing around dividers
-5. Consider accessibility when choosing colors
-6. Use appropriate variants for different content types
-7. Maintain consistent divider usage throughout your application

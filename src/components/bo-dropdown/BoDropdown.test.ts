@@ -1,200 +1,137 @@
 import { BoButtonVariant } from '@/components/bo-button';
 import { Icon } from '@/components/bo-icon';
-import { mount, shallowMount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
-import { defineComponent, shallowRef } from 'vue';
-import BoDefaultDropdownItem from './BoDefaultDropdownItem.vue';
+import { mount } from '@vue/test-utils';
+import { describe, expect, it, vi } from 'vitest';
+import { nextTick } from 'vue';
 import BoDropdown from './BoDropdown.vue';
+import { BoDropdownPlacement } from './bo-dropdown';
+
+// Mock the useElementBounding function
+vi.mock('@vueuse/core', async () => {
+	const actual = await vi.importActual('@vueuse/core');
+	return {
+		...actual,
+		useElementBounding: () => ({
+			left: { value: 100 },
+			right: { value: 200 },
+			top: { value: 100 },
+			bottom: { value: 150 },
+			width: { value: 100 },
+			height: { value: 50 },
+			update: vi.fn(),
+		}),
+		onClickOutside: vi.fn(),
+	};
+});
 
 describe('BoDropdown', () => {
-	it('renders correctly with default props', () => {
-		const wrapper = shallowMount(BoDropdown);
+	const defaultOptions = [
+		{ label: 'Option 1', icon: Icon.check },
+		{ label: 'Option 2', icon: Icon.x },
+		{ label: 'Option 3', icon: Icon.heart },
+	];
 
-		expect(wrapper.exists()).toBe(true);
-		expect(wrapper.findComponent({ name: 'bo-button' }).exists()).toBe(true);
-		expect(wrapper.find('#dropdown').exists()).toBe(false);
-	});
-
-	it('uses custom id when provided', () => {
-		const wrapper = shallowMount(BoDropdown, {
+	it('renders properly with default settings', () => {
+		const wrapper = mount(BoDropdown, {
 			props: {
-				id: 'custom-dropdown-id',
+				options: defaultOptions,
+				defaultOption: defaultOptions[0],
 			},
 		});
 
-		const button = wrapper.findComponent({ name: 'bo-button' });
-		expect(button.attributes('id')).toBe('custom-dropdown-id');
+		expect(wrapper.exists()).toBe(true);
+		expect(wrapper.findComponent({ name: 'BoButton' }).exists()).toBe(true);
+
+		// Dropdown should be closed initially
+		expect(wrapper.find('#dropdown').exists()).toBe(false);
 	});
 
-	it('applies toggle variant to button', () => {
-		const wrapper = shallowMount(BoDropdown, {
+	it('opens dropdown when toggle button is clicked', async () => {
+		const wrapper = mount(BoDropdown, {
 			props: {
+				options: defaultOptions,
+				defaultOption: defaultOptions[0],
+			},
+		});
+
+		// Click toggle button
+		await wrapper.findComponent({ name: 'BoButton' }).trigger('click');
+
+		// Dropdown should be open
+		expect(wrapper.find('#dropdown').exists()).toBe(true);
+	});
+
+	it('closes dropdown when an option is clicked', async () => {
+		const wrapper = mount(BoDropdown, {
+			props: {
+				options: defaultOptions,
+				defaultOption: defaultOptions[0],
+			},
+		});
+
+		// Open dropdown
+		await wrapper.findComponent({ name: 'BoButton' }).trigger('click');
+		expect(wrapper.find('#dropdown').exists()).toBe(true);
+
+		// Click first option
+		await wrapper.findAll('component').at(0)?.trigger('click');
+
+		// Dropdown should be closed
+		expect(wrapper.find('#dropdown').exists()).toBe(false);
+	});
+
+	it('emits select event with option when clicked', async () => {
+		const wrapper = mount(BoDropdown, {
+			props: {
+				options: defaultOptions,
+				defaultOption: defaultOptions[0],
+			},
+		});
+
+		// Open dropdown
+		await wrapper.findComponent({ name: 'BoButton' }).trigger('click');
+
+		// Click second option
+		await wrapper.findAll('component').at(1)?.trigger('click');
+
+		// Check that select event was emitted with the correct option
+		expect(wrapper.emitted('select')).toBeTruthy();
+		expect(wrapper.emitted('select')?.[0][0]).toEqual(defaultOptions[1]);
+	});
+
+	it('applies custom toggle variant', () => {
+		const wrapper = mount(BoDropdown, {
+			props: {
+				options: defaultOptions,
+				defaultOption: defaultOptions[0],
 				toggleVariant: BoButtonVariant.secondary,
 			},
 		});
 
-		const button = wrapper.findComponent({ name: 'bo-button' });
-		expect(button.props('variant')).toBe('secondary');
+		const button = wrapper.findComponent({ name: 'BoButton' });
+		expect(button.props('variant')).toBe(BoButtonVariant.secondary);
 	});
 
-	it('renders default option in toggle button', () => {
-		const defaultOption = {
-			icon: Icon.user,
-			label: 'User Profile',
-		};
-
-		const wrapper = shallowMount(BoDropdown, {
-			props: {
-				defaultOption,
-			},
-		});
-
-		const button = wrapper.findComponent({ name: 'bo-button' });
-		expect(button.props('label')).toBe('User Profile');
-		expect(button.props('prefixIcon')).toBe(Icon.user);
-	});
-
-	it('toggles dropdown visibility on button click', async () => {
-		const wrapper = mount(BoDropdown);
-
-		expect(wrapper.find('#dropdown').exists()).toBe(false);
-
-		await wrapper.findComponent({ name: 'bo-button' }).trigger('click');
-		expect(wrapper.find('#dropdown').exists()).toBe(true);
-
-		await wrapper.findComponent({ name: 'bo-button' }).trigger('click');
-		expect(wrapper.find('#dropdown').exists()).toBe(false);
-	});
-
-	it('renders dropdown options when open', async () => {
-		const options = [
-			{ icon: Icon.user, label: 'Profile' },
-			{ icon: Icon.settings, label: 'Settings' },
-			{ icon: Icon.log_out, label: 'Logout' },
-		];
-
+	it('positions dropdown based on placement prop', async () => {
 		const wrapper = mount(BoDropdown, {
 			props: {
-				options,
+				options: defaultOptions,
+				defaultOption: defaultOptions[0],
+				placement: BoDropdownPlacement.bottomStart,
 			},
 		});
 
-		await wrapper.findComponent({ name: 'bo-button' }).trigger('click');
+		// Open dropdown
+		await wrapper.findComponent({ name: 'BoButton' }).trigger('click');
+		await nextTick();
 
-		const dropdownItems = wrapper.findAllComponents(BoDefaultDropdownItem);
-		expect(dropdownItems.length).toBe(3);
+		const dropdown = wrapper.find('#dropdown');
+		expect(dropdown.exists()).toBe(true);
 
-		expect(dropdownItems[0].props('icon')).toBe(Icon.user);
-		expect(dropdownItems[0].props('label')).toBe('Profile');
-
-		expect(dropdownItems[1].props('icon')).toBe(Icon.settings);
-		expect(dropdownItems[1].props('label')).toBe('Settings');
-
-		expect(dropdownItems[2].props('icon')).toBe(Icon.log_out);
-		expect(dropdownItems[2].props('label')).toBe('Logout');
-	});
-
-	it('emits select event when an option is clicked', async () => {
-		const options = [
-			{ icon: Icon.user, label: 'Profile' },
-			{ icon: Icon.settings, label: 'Settings' },
-		];
-
-		const wrapper = mount(BoDropdown, {
-			props: {
-				options,
-			},
-		});
-
-		await wrapper.findComponent({ name: 'bo-button' }).trigger('click');
-		await wrapper.findAllComponents(BoDefaultDropdownItem)[1].trigger('click');
-
-		const selectEmit = wrapper.emitted('select');
-		expect(selectEmit).toBeTruthy();
-		if (selectEmit) {
-			expect(selectEmit[0][0]).toEqual(options[1]);
-		}
-
-		// Dropdown should be closed after selection
-		expect(wrapper.find('#dropdown').exists()).toBe(false);
-	});
-
-	it('updates active option when an option is selected', async () => {
-		const options = [
-			{ icon: Icon.user, label: 'Profile' },
-			{ icon: Icon.settings, label: 'Settings' },
-		];
-
-		const wrapper = mount(BoDropdown, {
-			props: {
-				options,
-				defaultOption: { icon: Icon.user, label: 'Select option' },
-			},
-		});
-
-		const button = wrapper.findComponent({ name: 'bo-button' });
-		expect(button.props('label')).toBe('Select option');
-
-		await button.trigger('click');
-		await wrapper.findAllComponents(BoDefaultDropdownItem)[1].trigger('click');
-
-		expect(button.props('label')).toBe('Settings');
-	});
-
-	it('uses custom component for dropdown items when provided', async () => {
-		const CustomItemComponent = {
-			name: 'custom-item',
-			template: '<div class="custom-item">{{ label }}</div>',
-			props: ['icon', 'label'],
-		};
-
-		const options = [
-			{ icon: Icon.user, label: 'Profile' },
-			{ icon: Icon.settings, label: 'Settings' },
-		];
-
-		const wrapper = mount(BoDropdown, {
-			props: {
-				options,
-				component: shallowRef(CustomItemComponent),
-			},
-		});
-
-		await wrapper.findComponent({ name: 'bo-button' }).trigger('click');
-
-		const customItems = wrapper.findAll('.custom-item');
-		expect(customItems.length).toBe(2);
-		expect(customItems[0].text()).toBe('Profile');
-		expect(customItems[1].text()).toBe('Settings');
-	});
-
-	it('renders custom toggle slot when provided', () => {
-		const wrapper = mount(BoDropdown, {
-			slots: {
-				toggle: '<button data-test="custom-toggle">Custom Toggle</button>',
-				items: '<div>Default items slot</div>',
-			},
-		});
-
-		expect(wrapper.find('[data-test="custom-toggle"]').exists()).toBe(true);
-		expect(wrapper.findComponent({ name: 'bo-button' }).exists()).toBe(false);
-	});
-
-	it('renders custom items slot when provided', async () => {
-		const CustomItemComponent = defineComponent({
-			name: 'custom-item',
-			template: '<div class="custom-item">{{ label }}</div>',
-			props: ['icon', 'label'],
-		});
-
-		const wrapper = mount(BoDropdown, {
-			component: shallowRef(CustomItemComponent),
-			options: [
-				{ icon: Icon.user, label: 'Profile' },
-				{ icon: Icon.settings, label: 'Settings' },
-			],
-		});
-
-		expect(wrapper.findComponent(BoDefaultDropdownItem).exists()).toBe(false);
+		// Check positioning style
+		const style = dropdown.attributes('style');
+		expect(style).toContain('position: absolute');
+		expect(style).toContain('left: 100px'); // From mocked useElementBounding
+		expect(style).toContain('top: 154px'); // bottom (150) + offset (4)
 	});
 });

@@ -3,133 +3,182 @@ import { ComponentName, ComponentEnum1, ComponentEnum2 } from '@/components/comp
 import { SharedEnum } from '@/shared'
 </script>
 
-# component-name
+# ComponentName
 
-Brief description of what the component is and when to use it.
+Brief description of the component's purpose and functionality.
 
-## Basic Example
-
-```html
-<component-name :prop="value" />
+```js
+import { ComponentName } from '@mrksbnc/bamboo';
 ```
 
-<hr class="border-gray-200 dark:border-gray-700" />
-<div class="flex gap-4 items-center">
-  <component-name :prop="value" />
+## Basic Usage
+
+```vue
+<template>
+	<component-name prop="value" />
+</template>
+
+<script setup>
+import { ComponentName } from '@mrksbnc/bamboo';
+</script>
+```
+
+<hr />
+<div class="flex gap-4 items-center my-4">
+	<component-name :prop="value" />
 </div>
 
-### Props
+## Props
 
-| Prop name | Type    | Default        | Description          |
-| --------- | ------- | -------------- | -------------------- |
-| `prop1`   | `Type1` | `DefaultValue` | Description of prop1 |
-| `prop2`   | `Type2` | `DefaultValue` | Description of prop2 |
-| `prop3`   | `Type3` | `DefaultValue` | Description of prop3 |
+| Name      | Type             | Default   | Description          |
+| --------- | ---------------- | --------- | -------------------- |
+| `prop1`   | `Type1`          | `value1`  | Description of prop1 |
+| `prop2`   | `Type2`          | `value2`  | Description of prop2 |
+| `variant` | `ComponentEnum1` | `default` | Component appearance |
+| `size`    | `SharedEnum`     | `default` | Component size       |
 
-### Slots
+## Events
 
-| Slot name | Description |
-| --------- | ----------- |
-| `default` | Description |
+| Name     | Payload          | Description                |
+| -------- | ---------------- | -------------------------- |
+| `click`  | `MouseEvent`     | Emitted when clicked       |
+| `update` | `{ value: any }` | Emitted when value changes |
 
-### Events
+## Slots
 
-| Event name | Description |
-| ---------- | ----------- |
-| `event1`   | Description |
-| `event2`   | Description |
+| Name      | Description    |
+| --------- | -------------- |
+| `default` | Main content   |
+| `header`  | Header content |
+| `footer`  | Footer content |
 
-### Types
+## Types
 
 ```ts
-export interface ComponentDataType {
-	property1?: string; // Description of property1
-	property2?: string; // Description of property2
-}
-
 export enum ComponentEnum1 {
-	value1 = 'value1', // Description of value1
-	value2 = 'value2', // Description of value2
+	default = 'default',
+	primary = 'primary',
+	secondary = 'secondary',
 }
 
-export enum ComponentEnum2 {
-	option1 = 'option1', // Description of option1
-	option2 = 'option2', // Description of option2
+export interface ComponentProps {
+	prop1?: string;
+	prop2?: boolean;
+	variant?: ComponentEnum1;
+	size?: SharedEnum;
 }
-```
-
-## Example Section 1
-
-Description of this example and when to use this variation.
-
-<div class="flex gap-4 items-center">
-  <component-name :prop="value1" />
-  <component-name :prop="value2" />
-</div>
-
-```html
-<component-name :prop="value1" /> <component-name :prop="value2" />
-```
-
-## Example Section 2
-
-Description of another variation of the component.
-
-<div class="flex gap-4 items-center">
-  <component-name :prop1="value1" :prop2="value2" />
-  <component-name :prop1="value3" :prop2="value4" />
-</div>
-
-```html
-<component-name
-	:prop1="value1"
-	:prop2="value2"
-/>
-<component-name
-	:prop1="value3"
-	:prop2="value4"
-/>
 ```
 
 ## Variants
 
-Different style variants of the component.
-
-<div class="flex gap-4 items-center">
-  <component-name :variant="ComponentEnum1.value1" />
-  <component-name :variant="ComponentEnum1.value2" />
+<div class="flex gap-4 items-center my-4">
+	<component-name :variant="ComponentEnum1.default" />
+	<component-name :variant="ComponentEnum1.primary" />
+	<component-name :variant="ComponentEnum1.secondary" />
 </div>
 
-```html
-<component-name :variant="ComponentEnum1.value1" />
-<component-name :variant="ComponentEnum1.value2" />
+```vue
+<component-name :variant="ComponentEnum1.default" />
+<component-name :variant="ComponentEnum1.primary" />
+<component-name :variant="ComponentEnum1.secondary" />
 ```
 
 ## Sizes
 
-Available sizes for the component.
-
-<div class="flex items-center gap-4">
-  <component-name :size="SharedEnum.small" />
-  <component-name :size="SharedEnum.default" />
-  <component-name :size="SharedEnum.large" />
+<div class="flex items-center gap-4 my-4">
+	<component-name :size="SharedEnum.small" />
+	<component-name :size="SharedEnum.default" />
+	<component-name :size="SharedEnum.large" />
 </div>
 
-```html
+```vue
 <component-name :size="SharedEnum.small" />
 <component-name :size="SharedEnum.default" />
 <component-name :size="SharedEnum.large" />
 ```
 
-## Shapes
+## States
 
-Available shapes for the component.
+### Disabled
 
-<div class="flex gap-4 items-center">
-  <component-name :shape="ComponentEnum1.value1" />
-  <component-name :shape="ComponentEnum1.value2" />
+<div class="flex gap-4 items-center my-4">
+	<component-name disabled />
 </div>
 
-```html
-<component-name :shape="ComponentEnum1.value1" /> <component-name :shape="ComponentEnum1.value2" />
+```vue
+<component-name disabled />
+```
+
+## Custom Content
+
+<div class="flex gap-4 items-center my-4">
+	<component-name>
+		<div>Custom content</div>
+	</component-name>
+</div>
+
+```vue
+<component-name>
+	<div>Custom content</div>
+</component-name>
+```
+
+## With Icons
+
+<div class="flex gap-4 items-center my-4">
+	<component-name prefix-icon="icon-name" />
+	<component-name suffix-icon="icon-name" />
+</div>
+
+```vue
+<component-name prefix-icon="icon-name" />
+<component-name suffix-icon="icon-name" />
+```
+
+## Event Handling
+
+```vue
+<template>
+	<component-name
+		@click="handleClick"
+		@update="handleUpdate"
+	/>
+</template>
+
+<script setup>
+const handleClick = (event) => {
+	console.log('Clicked:', event);
+};
+
+const handleUpdate = ({ value }) => {
+	console.log('Updated value:', value);
+};
+</script>
+```
+
+## Usage Examples
+
+### Basic Form Example
+
+```vue
+<form @submit.prevent="submitForm">
+	<component-name v-model="formData.value" />
+	<bo-button type="submit">Submit</bo-button>
+</form>
+```
+
+### In a Layout
+
+```vue
+<bo-card>
+	<template #header>
+		<h3>Card Title</h3>
+	</template>
+	
+	<component-name />
+	
+	<template #footer>
+		<bo-button>Action</bo-button>
+	</template>
+</bo-card>
 ```

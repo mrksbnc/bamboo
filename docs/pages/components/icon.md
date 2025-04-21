@@ -5,161 +5,197 @@ import { BoSize } from '@/shared';
 
 # Icon
 
-The Icon component provides a comprehensive set of icons for use throughout your application. It supports various sizes, colors, and accessibility features. The component uses a consistent icon set that matches your application's design system.
+Icons provide visual cues and improve user interface recognition. The Bamboo icon system uses a consistent set of symbols that help communicate meaning and actions.
 
-## Basic Example
-
-```html
-<bo-icon icon="check" />
-```
-
-<hr class="border-gray-200 dark:border-gray-700" />
-<div class="flex gap-4 items-center">
-  <bo-icon icon="check" />
-</div>
-
-### Props
-
-| Prop name       | Type                      | Default | Description                   |
-| --------------- | ------------------------- | ------- | ----------------------------- |
-| `icon`          | `Icon`                    | -       | Required. The icon to display |
-| `size`          | `BoSize`                  | `md`    | Size of the icon              |
-| `color`         | `string`                  | -       | Custom color for the icon     |
-| `accessibility` | `AccessibilityDefinition` | -       | Accessibility configuration   |
-
-### Types
-
-```ts
-export interface AccessibilityDefinition {
-	decorative?: boolean; // Whether the icon is decorative
-	title?: string; // Title for screen readers
-}
-
-export interface BoIconProps {
-	icon: Icon; // Icon to display
-	size?: BoSize; // Icon size
-	color?: string; // Custom color
-	accessibility?: AccessibilityDefinition; // Accessibility config
-}
+```js
+import { BoIcon, Icon } from '@mrksbnc/bamboo';
 ```
 
 ## Basic Usage
 
-Display a simple icon:
+```vue
+<template>
+	<bo-icon :icon="Icon.heart" />
+</template>
 
-<div class="flex flex-wrap gap-4 items-center">
-  <bo-icon icon="check" />
-  <bo-icon icon="x" />
-  <bo-icon icon="info" />
+<script setup>
+import { BoIcon, Icon } from '@mrksbnc/bamboo';
+</script>
+```
+
+<hr />
+<div class="flex gap-4 items-center my-4">
+	<bo-icon :icon="Icon.heart" />
 </div>
 
-```html
-<bo-icon icon="check" />
-<bo-icon icon="x" />
-<bo-icon icon="info" />
+## Props
+
+| Name            | Type                      | Default        | Description                                     |
+| --------------- | ------------------------- | -------------- | ----------------------------------------------- |
+| `icon`          | `Icon`                    | Required       | The icon to display                             |
+| `size`          | `BoSize`                  | `default`      | Size of the icon                                |
+| `color`         | `string`                  | `currentColor` | Color of the icon (hex, rgb, or CSS color name) |
+| `accessibility` | `AccessibilityDefinition` | `undefined`    | Accessibility options for screen readers        |
+
+## Types
+
+```ts
+export enum Icon {
+	activity = 'activity',
+	airplay = 'airplay',
+	alert_circle = 'alert-circle',
+	// ... many more icons (over 200)
+	zap = 'zap',
+	zoom_in = 'zoom-in',
+	zoom_out = 'zoom-out',
+	none = 'none',
+}
+
+export interface AccessibilityDefinition {
+	/**
+	 * Whether the icon is decorative. This means that the icon is not a part of
+	 * the UI and is only used to convey information.
+	 */
+	decorative?: boolean;
+	/**
+	 * The title of the icon. This is used to describe the icon to users of assistive technologies.
+	 */
+	title?: string;
+}
+
+export interface BoIconProps {
+	icon: Icon;
+	size?: BoSize;
+	color?: string;
+	accessibility?: AccessibilityDefinition;
+}
 ```
 
 ## Sizes
 
-Icons can be displayed in different sizes:
-
-<div class="flex flex-wrap gap-4 items-center">
-  <bo-icon icon="check" :size="BoSize.xs" />
-  <bo-icon icon="check" :size="BoSize.sm" />
-  <bo-icon icon="check" :size="BoSize.md" />
-  <bo-icon icon="check" :size="BoSize.lg" />
-  <bo-icon icon="check" :size="BoSize.xl" />
+<div class="flex items-center gap-4 my-4">
+	<bo-icon :icon="Icon.heart" :size="BoSize.small" />
+	<bo-icon :icon="Icon.heart" :size="BoSize.default" />
+	<bo-icon :icon="Icon.heart" :size="BoSize.large" />
 </div>
 
-```html
-<bo-icon
-	icon="check"
-	:size="BoSize.xs"
-/>
-<bo-icon
-	icon="check"
-	:size="BoSize.sm"
-/>
-<bo-icon
-	icon="check"
-	:size="BoSize.md"
-/>
-<bo-icon
-	icon="check"
-	:size="BoSize.lg"
-/>
-<bo-icon
-	icon="check"
-	:size="BoSize.xl"
-/>
+```vue
+<bo-icon :icon="Icon.heart" :size="BoSize.small" />
+<bo-icon :icon="Icon.heart" :size="BoSize.default" />
+<bo-icon :icon="Icon.heart" :size="BoSize.large" />
 ```
 
 ## Custom Colors
 
-Icons can be colored using custom values:
-
-<div class="flex flex-wrap gap-4 items-center">
-  <bo-icon icon="check" color="#FF0000" />
-  <bo-icon icon="check" color="#00FF00" />
-  <bo-icon icon="check" color="#0000FF" />
+<div class="flex gap-4 items-center my-4">
+	<bo-icon :icon="Icon.heart" color="red" />
+	<bo-icon :icon="Icon.info" color="#3B82F6" />
+	<bo-icon :icon="Icon.check" color="rgb(16, 185, 129)" />
 </div>
 
-```html
-<bo-icon
-	icon="check"
-	color="#FF0000"
-/>
-<bo-icon
-	icon="check"
-	color="#00FF00"
-/>
-<bo-icon
-	icon="check"
-	color="#0000FF"
-/>
+```vue
+<bo-icon :icon="Icon.heart" color="red" />
+<bo-icon :icon="Icon.info" color="#3B82F6" />
+<bo-icon :icon="Icon.check" color="rgb(16, 185, 129)" />
 ```
 
-## Accessibility
+## With Accessibility Options
 
-Icons can be configured for accessibility:
-
-<div class="flex flex-wrap gap-4 items-center">
-  <bo-icon 
-    icon="check" 
-    :accessibility="{ title: 'Success' }" 
-  />
-  <bo-icon 
-    icon="x" 
-    :accessibility="{ title: 'Error' }" 
-  />
-  <bo-icon 
-    icon="info" 
-    :accessibility="{ decorative: true }" 
-  />
+<div class="flex gap-4 items-center my-4">
+	<bo-icon 
+		:icon="Icon.bell" 
+		:accessibility="{ title: 'Notifications' }" 
+	/>
 </div>
 
-```html
-<bo-icon
-	icon="check"
-	:accessibility="{ title: 'Success' }"
-/>
-<bo-icon
-	icon="x"
-	:accessibility="{ title: 'Error' }"
-/>
-<bo-icon
-	icon="info"
-	:accessibility="{ decorative: true }"
-/>
+```vue
+<bo-icon :icon="Icon.bell" :accessibility="{ title: 'Notifications' }" />
 ```
 
-## All Icons
+## Common Icon Examples
 
-Here is a list of all icons available:
-
-<div class="flex flex-wrap gap-4 items-center">
-  <div v-for="icon in Object.keys(Icon)" :key="icon" class="flex flex-col gap-1">
-    <bo-icon :icon="icon" />
-    <span class="text-sm">{{ icon }}</span>
-  </div>
+<div class="grid grid-cols-4 gap-4 my-6">
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.heart" />
+		<span class="text-xs mt-1">heart</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.home" />
+		<span class="text-xs mt-1">home</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.settings" />
+		<span class="text-xs mt-1">settings</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.user" />
+		<span class="text-xs mt-1">user</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.mail" />
+		<span class="text-xs mt-1">mail</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.calendar" />
+		<span class="text-xs mt-1">calendar</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.search" />
+		<span class="text-xs mt-1">search</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.bell" />
+		<span class="text-xs mt-1">bell</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.check" />
+		<span class="text-xs mt-1">check</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.x" />
+		<span class="text-xs mt-1">x</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.plus" />
+		<span class="text-xs mt-1">plus</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.minus" />
+		<span class="text-xs mt-1">minus</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.arrow_right" />
+		<span class="text-xs mt-1">arrow_right</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.arrow_left" />
+		<span class="text-xs mt-1">arrow_left</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.arrow_up" />
+		<span class="text-xs mt-1">arrow_up</span>
+	</div>
+	<div class="flex flex-col items-center">
+		<bo-icon :icon="Icon.arrow_down" />
+		<span class="text-xs mt-1">arrow_down</span>
+	</div>
 </div>
+
+```vue
+<bo-icon :icon="Icon.heart" />
+<bo-icon :icon="Icon.home" />
+<bo-icon :icon="Icon.settings" />
+<bo-icon :icon="Icon.user" />
+<bo-icon :icon="Icon.mail" />
+<bo-icon :icon="Icon.calendar" />
+<bo-icon :icon="Icon.search" />
+<bo-icon :icon="Icon.bell" />
+<bo-icon :icon="Icon.check" />
+<bo-icon :icon="Icon.x" />
+<bo-icon :icon="Icon.plus" />
+<bo-icon :icon="Icon.minus" />
+<bo-icon :icon="Icon.arrow_right" />
+<bo-icon :icon="Icon.arrow_left" />
+<bo-icon :icon="Icon.arrow_up" />
+<bo-icon :icon="Icon.arrow_down" />
+```

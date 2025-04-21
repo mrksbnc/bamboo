@@ -1,284 +1,157 @@
 <script setup>
 import { BoBadge, BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/bo-badge';
 import { BoSize } from '@/shared';
+import { Icon } from '@/components/bo-icon';
 </script>
 
 # Badge
 
-The Badge component is a small visual indicator used to highlight status, notifications, or labels. It supports various styles, sizes, and shapes to match your application's design system. Badges can include text, icons, or both, and are commonly used to display counts, status indicators, or labels.
+Badges are small visual indicators for counts, statuses, or labels. They help highlight key information or indicate statuses.
 
-## Basic Example
-
-```html
-<bo-badge label="New" />
+```js
+import { BoBadge } from '@mrksbnc/bamboo';
 ```
 
-<hr class="border-gray-200 dark:border-gray-700" />
-<div class="flex gap-4 items-center">
-  <bo-badge label="New" />
+## Basic Usage
+
+```vue
+<template>
+	<bo-badge label="New" />
+</template>
+
+<script setup>
+import { BoBadge } from '@mrksbnc/bamboo';
+</script>
+```
+
+<hr />
+<div class="flex gap-4 items-center my-4">
+	<bo-badge label="New" />
 </div>
 
-### Props
+## Props
 
-| Prop name | Type                               | Default   | Description                                         |
-| --------- | ---------------------------------- | --------- | --------------------------------------------------- |
-| `label`   | `string`                           | -         | Text content of the badge                           |
-| `type`    | `BoBadgeType`                      | `default` | Visual style type of the badge (filled or outlined) |
-| `size`    | `BoSize`                           | `md`      | Size of the badge (xs, sm, md, lg, xl)              |
-| `shape`   | `BoBadgeShape`                     | `default` | Shape of the badge (default, pill, flat, circle)    |
-| `variant` | `BoBadgeVariant`                   | `primary` | Color variant of the badge                          |
-| `icon`    | `{ prefix?: Icon, suffix?: Icon }` | -         | Icons to show before/after the label                |
+| Name      | Type                               | Default     | Description                                    |
+| --------- | ---------------------------------- | ----------- | ---------------------------------------------- |
+| `label`   | `string`                           | `undefined` | Text displayed inside the badge                |
+| `type`    | `BoBadgeType`                      | `default`   | Controls the badge's style                     |
+| `size`    | `BoSize`                           | `default`   | Controls the badge's size                      |
+| `shape`   | `BoBadgeShape`                     | `default`   | Controls the badge's shape                     |
+| `variant` | `BoBadgeVariant`                   | `primary`   | Controls the badge's color scheme              |
+| `icon`    | `{ prefix?: Icon; suffix?: Icon }` | `undefined` | Icons to display before and/or after the label |
 
-### Slots
-
-| Slot name | Description                                                  |
-| --------- | ------------------------------------------------------------ |
-| `default` | Slot for custom content that replaces the default label text |
-
-### Types
+## Types
 
 ```ts
 export enum BoBadgeVariant {
-	primary = 'primary', // Primary brand color
-	secondary = 'secondary', // Secondary brand color
-	danger = 'danger', // Danger/error state
-	warning = 'warning', // Warning state
-	success = 'success', // Success state
-	light = 'light', // Light background
-	dark = 'dark', // Dark background
+	primary = 'primary',
+	secondary = 'secondary',
+	danger = 'danger',
+	warning = 'warning',
+	success = 'success',
+	light = 'light',
+	dark = 'dark',
 }
 
 export enum BoBadgeType {
-	default = 'default', // Default filled style
-	outline = 'outline', // Outlined style
+	default = 'default',
+	outline = 'outline',
 }
 
 export enum BoBadgeShape {
-	pill = 'pill', // Rounded pill style
-	default = 'default', // Default rectangular style with rounded corners
-	flat = 'flat', // Flat style with minimal padding
-	circle = 'circle', // Circular shape, ideal for icon-only badges
+	pill = 'pill',
+	default = 'default',
+	flat = 'flat',
+	circle = 'circle',
 }
+
+export type BoBadgeProps = {
+	label?: string;
+	type?: BoBadgeType;
+	size?: BoSize;
+	shape?: BoBadgeShape;
+	variant?: BoBadgeVariant;
+	icon?: {
+		prefix?: Icon;
+		suffix?: Icon;
+	};
+};
 ```
 
 ## Variants
 
-The Badge component supports various color variants to convey different meanings:
-
-<div class="flex flex-wrap gap-4 items-center">
-  <bo-badge label="Primary" :variant="BoBadgeVariant.primary" />
-  <bo-badge label="Secondary" :variant="BoBadgeVariant.secondary" />
-  <bo-badge label="Danger" :variant="BoBadgeVariant.danger" />
-  <bo-badge label="Warning" :variant="BoBadgeVariant.warning" />
-  <bo-badge label="Success" :variant="BoBadgeVariant.success" />
-  <bo-badge label="Light" :variant="BoBadgeVariant.light" />
-  <bo-badge label="Dark" :variant="BoBadgeVariant.dark" />
+<div class="flex gap-4 items-center my-4">
+	<bo-badge :variant="BoBadgeVariant.primary" label="Primary" />
+	<bo-badge :variant="BoBadgeVariant.secondary" label="Secondary" />
+	<bo-badge :variant="BoBadgeVariant.danger" label="Danger" />
+	<bo-badge :variant="BoBadgeVariant.warning" label="Warning" />
+	<bo-badge :variant="BoBadgeVariant.success" label="Success" />
+	<bo-badge :variant="BoBadgeVariant.light" label="Light" />
+	<bo-badge :variant="BoBadgeVariant.dark" label="Dark" />
 </div>
 
-```html
-<bo-badge
-	label="Primary"
-	:variant="BoBadgeVariant.primary"
-/>
-<bo-badge
-	label="Secondary"
-	:variant="BoBadgeVariant.secondary"
-/>
-<bo-badge
-	label="Danger"
-	:variant="BoBadgeVariant.danger"
-/>
-<bo-badge
-	label="Warning"
-	:variant="BoBadgeVariant.warning"
-/>
-<bo-badge
-	label="Success"
-	:variant="BoBadgeVariant.success"
-/>
-<bo-badge
-	label="Light"
-	:variant="BoBadgeVariant.light"
-/>
-<bo-badge
-	label="Dark"
-	:variant="BoBadgeVariant.dark"
-/>
+```vue
+<bo-badge :variant="BoBadgeVariant.primary" label="Primary" />
+<bo-badge :variant="BoBadgeVariant.secondary" label="Secondary" />
+<bo-badge :variant="BoBadgeVariant.danger" label="Danger" />
+<bo-badge :variant="BoBadgeVariant.warning" label="Warning" />
+<bo-badge :variant="BoBadgeVariant.success" label="Success" />
+<bo-badge :variant="BoBadgeVariant.light" label="Light" />
+<bo-badge :variant="BoBadgeVariant.dark" label="Dark" />
 ```
 
 ## Types
 
-Badges can have different visual styles to control emphasis:
-
-<div class="flex flex-wrap gap-4 items-center">
-  <bo-badge label="Default" :type="BoBadgeType.default" />
-  <bo-badge label="Outline" :type="BoBadgeType.outline" />
+<div class="flex gap-4 items-center my-4">
+	<bo-badge :type="BoBadgeType.default" label="Default" />
+	<bo-badge :type="BoBadgeType.outline" label="Outline" />
 </div>
 
-```html
-<bo-badge
-	label="Default"
-	:type="BoBadgeType.default"
-/>
-<bo-badge
-	label="Outline"
-	:type="BoBadgeType.outline"
-/>
+```vue
+<bo-badge :type="BoBadgeType.default" label="Default" />
+<bo-badge :type="BoBadgeType.outline" label="Outline" />
 ```
 
 ## Shapes
 
-Different badge shapes are available to match your design system:
-
-<div class="flex flex-wrap gap-4 items-center">
-  <bo-badge label="Pill" :shape="BoBadgeShape.pill" />
-  <bo-badge label="Default" :shape="BoBadgeShape.default" />
-  <bo-badge label="Flat" :shape="BoBadgeShape.flat" />
-  <bo-badge :icon="{ prefix: 'check' }" :shape="BoBadgeShape.circle" />
+<div class="flex gap-4 items-center my-4">
+	<bo-badge :shape="BoBadgeShape.default" label="Default" />
+	<bo-badge :shape="BoBadgeShape.pill" label="Pill" />
+	<bo-badge :shape="BoBadgeShape.flat" label="Flat" />
+	<bo-badge :shape="BoBadgeShape.circle" label="C" />
 </div>
 
-```html
-<bo-badge
-	label="Pill"
-	:shape="BoBadgeShape.pill"
-/>
-<bo-badge
-	label="Default"
-	:shape="BoBadgeShape.default"
-/>
-<bo-badge
-	label="Flat"
-	:shape="BoBadgeShape.flat"
-/>
-<bo-badge
-	:icon="{ prefix: 'check' }"
-	:shape="BoBadgeShape.circle"
-/>
+```vue
+<bo-badge :shape="BoBadgeShape.default" label="Default" />
+<bo-badge :shape="BoBadgeShape.pill" label="Pill" />
+<bo-badge :shape="BoBadgeShape.flat" label="Flat" />
+<bo-badge :shape="BoBadgeShape.circle" label="C" />
 ```
 
 ## Sizes
 
-The Badge component supports different sizes to fit various UI contexts:
-
-<div class="flex flex-wrap gap-4 items-center">
-  <bo-badge label="XS" :size="BoSize.xs" />
-  <bo-badge label="SM" :size="BoSize.sm" />
-  <bo-badge label="MD" :size="BoSize.md" />
-  <bo-badge label="LG" :size="BoSize.lg" />
-  <bo-badge label="XL" :size="BoSize.xl" />
+<div class="flex items-center gap-4 my-4">
+	<bo-badge :size="BoSize.small" label="Small" />
+	<bo-badge :size="BoSize.default" label="Default" />
+	<bo-badge :size="BoSize.large" label="Large" />
 </div>
 
-```html
-<bo-badge
-	label="XS"
-	:size="BoSize.xs"
-/>
-<bo-badge
-	label="SM"
-	:size="BoSize.sm"
-/>
-<bo-badge
-	label="MD"
-	:size="BoSize.md"
-/>
-<bo-badge
-	label="LG"
-	:size="BoSize.lg"
-/>
-<bo-badge
-	label="XL"
-	:size="BoSize.xl"
-/>
+```vue
+<bo-badge :size="BoSize.small" label="Small" />
+<bo-badge :size="BoSize.default" label="Default" />
+<bo-badge :size="BoSize.large" label="Large" />
 ```
 
 ## With Icons
 
-Badges can include icons before or after the text to enhance meaning and visibility:
-
-<div class="flex flex-wrap gap-4 items-center">
-  <bo-badge label="Notification" :icon="{ prefix: 'bell' }" />
-  <bo-badge label="Error" :icon="{ suffix: 'x-circle' }" />
-  <bo-badge :icon="{ prefix: 'check' }" />
+<div class="flex gap-4 items-center my-4">
+	<bo-badge label="Badge" :icon="{ prefix: Icon.check }" />
+	<bo-badge label="Badge" :icon="{ suffix: Icon.arrow_right }" />
+	<bo-badge label="Badge" :icon="{ prefix: Icon.bell, suffix: Icon.alert_circle }" />
 </div>
 
-```html
-<bo-badge
-	label="Notification"
-	:icon="{ prefix: 'bell' }"
-/>
-<bo-badge
-	label="Error"
-	:icon="{ suffix: 'x-circle' }"
-/>
-<bo-badge :icon="{ prefix: 'check' }" />
+```vue
+<bo-badge label="Badge" :icon="{ prefix: Icon.check }" />
+<bo-badge label="Badge" :icon="{ suffix: Icon.arrow_right }" />
+<bo-badge label="Badge" :icon="{ prefix: Icon.bell, suffix: Icon.alert_circle }" />
 ```
-
-## Combining Properties
-
-You can combine different properties to create badges that suit your specific needs:
-
-<div class="flex flex-wrap gap-4 items-center">
-  <bo-badge 
-    label="Featured" 
-    :variant="BoBadgeVariant.success" 
-    :icon="{ prefix: 'star' }" 
-    :shape="BoBadgeShape.pill"
-  />
-  <bo-badge 
-    label="Error" 
-    :variant="BoBadgeVariant.danger" 
-    :type="BoBadgeType.outline"
-    :icon="{ suffix: 'x-circle' }" 
-  />
-  <bo-badge 
-    :icon="{ prefix: 'check' }" 
-    :variant="BoBadgeVariant.success" 
-    :shape="BoBadgeShape.circle"
-    :size="BoSize.lg"
-  />
-</div>
-
-```html
-<bo-badge
-	label="Featured"
-	:variant="BoBadgeVariant.success"
-	:icon="{ prefix: 'star' }"
-	:shape="BoBadgeShape.pill"
-/>
-<bo-badge
-	label="Error"
-	:variant="BoBadgeVariant.danger"
-	:type="BoBadgeType.outline"
-	:icon="{ suffix: 'x-circle' }"
-/>
-<bo-badge
-	:icon="{ prefix: 'check' }"
-	:variant="BoBadgeVariant.success"
-	:shape="BoBadgeShape.circle"
-	:size="BoSize.lg"
-/>
-```
-
-## Accessibility Considerations
-
-When using badges, keep the following accessibility considerations in mind:
-
-1. **Color meaning**: Don't rely solely on color to convey information. Always include text or an icon.
-2. **Icon-only badges**: When using icon-only badges, ensure they have appropriate context or tooltips.
-3. **Text contrast**: Ensure sufficient contrast between text and background colors.
-4. **Size appropriateness**: Use appropriate sizes that are readable but not overwhelming.
-5. **Screen readers**: If badges convey important information, ensure screen readers can access it.
-
-## Best Practices
-
-When using the Badge component:
-
-1. Use appropriate variants for different statuses (success for positive outcomes, danger for errors, etc.)
-2. Keep badge text short and concise
-3. Consider using icons to enhance meaning
-4. Use appropriate sizes based on context - smaller badges for less emphasis, larger for more importance
-5. Choose shapes that match your design system
-6. Use outline type for less emphasis
-7. Reserve circle shape primarily for icon-only badges
-8. Avoid overusing badges as they can create visual noise
-9. Maintain consistent usage patterns throughout your application

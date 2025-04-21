@@ -4,75 +4,91 @@ import { BoCard } from '@/components/bo-card';
 
 # Card
 
-The Card component is a flexible container that can be used to group related content and actions. It provides a clean, elevated surface with customizable padding, width, and interactive states. Cards are commonly used to display content in a structured and visually appealing way.
+Cards are flexible containers that group related content and actions together. They help organize information and provide a consistent layout.
 
-## Basic Example
-
-```html
-<bo-card
-	title="Card Title"
-	description="This is a card description"
->
-	<p>Card content goes here</p>
-</bo-card>
-```
-
-<hr class="border-gray-200 dark:border-gray-700" />
-<div class="flex gap-4 items-center">
-  <bo-card title="Card Title" description="This is a card description">
-    <p>Card content goes here</p>
-  </bo-card>
-</div>
-
-### Props
-
-| Prop name              | Type            | Default  | Description                        |
-| ---------------------- | --------------- | -------- | ---------------------------------- |
-| `padding`              | `BoCardPadding` | All true | Padding configuration for the card |
-| `title`                | `string`        | -        | Title of the card                  |
-| `description`          | `string`        | -        | Description text for the card      |
-| `clickable`            | `boolean`       | `false`  | Whether the card is clickable      |
-| `disabled`             | `boolean`       | `false`  | Whether the card is disabled       |
-| `widthInPx`            | `number`        | -        | Fixed width in pixels              |
-| `widthInPercent`       | `number`        | -        | Width as percentage of parent      |
-| `widthAsTailwindClass` | `string`        | -        | Tailwind class for width           |
-
-### Types
-
-```ts
-export type BoCardPadding = {
-	top: boolean; // Whether to apply top padding
-	right: boolean; // Whether to apply right padding
-	bottom: boolean; // Whether to apply bottom padding
-	left: boolean; // Whether to apply left padding
-};
-
-export type BoCardProps = {
-	padding?: BoCardPadding; // Padding configuration
-	title?: string; // Card title
-	description?: string; // Card description
-	clickable?: boolean; // Whether card is clickable
-	disabled?: boolean; // Whether card is disabled
-	widthInPx?: number; // Fixed width in pixels
-	widthInPercent?: number; // Width as percentage
-	widthAsTailwindClass?: string; // Tailwind width class
-};
+```js
+import { BoCard } from '@mrksbnc/bamboo';
 ```
 
 ## Basic Usage
 
-A simple card with title and description:
+```vue
+<template>
+	<bo-card
+		title="Card Title"
+		description="Card description"
+	>
+		<p>Card content goes here</p>
+	</bo-card>
+</template>
 
-<div class="flex flex-col gap-4">
-  <bo-card title="Welcome" description="This is a simple card example">
-    <p>Card content goes here</p>
-  </bo-card>
+<script setup>
+import { BoCard } from '@mrksbnc/bamboo';
+</script>
+```
+
+<hr />
+<div class="flex gap-4 items-center my-4">
+	<bo-card title="Card Title" description="Card description">
+		<p>Card content goes here</p>
+	</bo-card>
 </div>
 
-```html
+## Props
+
+| Name                   | Type            | Default                                                | Description                                 |
+| ---------------------- | --------------- | ------------------------------------------------------ | ------------------------------------------- |
+| `padding`              | `BoCardPadding` | `{ top: true, right: true, bottom: true, left: true }` | Controls padding on each side of the card   |
+| `title`                | `string`        | `undefined`                                            | Card title displayed at the top             |
+| `description`          | `string`        | `undefined`                                            | Card description displayed below the title  |
+| `clickable`            | `boolean`       | `false`                                                | Makes the card clickable with hover effects |
+| `disabled`             | `boolean`       | `false`                                                | Disables the card, reducing opacity         |
+| `widthInPx`            | `number`        | `undefined`                                            | Sets the card width in pixels               |
+| `widthInPercent`       | `number`        | `undefined`                                            | Sets the card width as a percentage         |
+| `widthAsTailwindClass` | `string`        | `undefined`                                            | Sets the card width using a Tailwind class  |
+
+## Types
+
+```ts
+export type BoCardPadding = {
+	top: boolean;
+	right: boolean;
+	bottom: boolean;
+	left: boolean;
+};
+
+export type BoCardProps = {
+	padding?: BoCardPadding;
+	title?: string;
+	description?: string;
+	clickable?: boolean;
+	disabled?: boolean;
+	widthInPx?: number;
+	widthInPercent?: number;
+	widthAsTailwindClass?: string;
+};
+```
+
+## Slots
+
+| Name      | Description                                                    |
+| --------- | -------------------------------------------------------------- |
+| `default` | Main content of the card                                       |
+| `header`  | Custom header content (replaces the default title/description) |
+| `footer`  | Footer content at the bottom of the card                       |
+
+## With Title and Description
+
+<div class="flex gap-4 items-center my-4">
+	<bo-card title="Card Title" description="This is a description that provides additional details about the card.">
+		<p>Card content goes here</p>
+	</bo-card>
+</div>
+
+```vue
 <bo-card
-	title="Welcome"
-	description="This is a simple card example"
+	title="Card Title"
+	description="This is a description that provides additional details about the card."
 >
 	<p>Card content goes here</p>
 </bo-card>
@@ -80,133 +96,125 @@ A simple card with title and description:
 
 ## Custom Width
 
-The card width can be customized using different methods:
-
-<div class="flex flex-col gap-4">
-  <bo-card 
-    title="Fixed Width" 
-    :widthInPx="400"
-  >
-    <p>Card with fixed width of 400px</p>
-  </bo-card>
-
-<bo-card
-title="Percentage Width"
-:widthInPercent="75"
-
->
-
-    <p>Card with 75% width</p>
-
-  </bo-card>
-
-<bo-card
-title="Tailwind Width"
-widthAsTailwindClass="w-96"
-
->
-
-    <p>Card with Tailwind width class</p>
-
-  </bo-card>
+<div class="flex gap-4 items-center my-4">
+	<bo-card title="Fixed Width" :width-in-px="200">
+		<p>This card is 200px wide</p>
+	</bo-card>
+	<bo-card title="Percentage Width" :width-in-percent="50">
+		<p>This card is 50% wide</p>
+	</bo-card>
+	<bo-card title="Tailwind Width" width-as-tailwind-class="w-1/3">
+		<p>This card uses Tailwind width class</p>
+	</bo-card>
 </div>
 
-```html
-<bo-card
-	title="Fixed Width"
-	:widthInPx="400"
->
-	<p>Card with fixed width of 400px</p>
+```vue
+<bo-card title="Fixed Width" :width-in-px="200">
+	<p>This card is 200px wide</p>
 </bo-card>
 
-<bo-card
-	title="Percentage Width"
-	:widthInPercent="75"
->
+<bo-card title="Percentage Width" :width-in-percent="50">
+	<p>This card is 50% wide</p>
 </bo-card>
 
-<bo-card
-	title="Tailwind Width"
-	widthAsTailwindClass="w-96"
->
-	<p>Card with Tailwind width class</p>
+<bo-card title="Tailwind Width" width-as-tailwind-class="w-1/3">
+	<p>This card uses Tailwind width class</p>
 </bo-card>
 ```
 
 ## Custom Padding
 
-You can customize the padding for each side of the card:
-
-<div class="flex flex-col gap-4">
-  <bo-card 
-    title="Custom Padding" 
-    :padding="{ top: true, right: false, bottom: true, left: false }"
-  >
-    <p>Card with custom padding configuration</p>
-  </bo-card>
+<div class="flex gap-4 items-center my-4">
+	<bo-card 
+		title="Custom Padding" 
+		:padding="{ top: true, right: false, bottom: true, left: false }"
+	>
+		<p>This card has padding only on top and bottom</p>
+	</bo-card>
 </div>
 
-```html
-<bo-card
-	title="Custom Padding"
-	:padding="{ top: true, right: false, bottom: true, left: false }"
->
-	<p>Card with custom padding configuration</p>
+```vue
+<bo-card title="Custom Padding" :padding="{ top: true, right: false, bottom: true, left: false }">
+	<p>This card has padding only on top and bottom</p>
 </bo-card>
 ```
 
-## Clickable Cards
+## Clickable
 
-Cards can be made clickable for interactive elements:
-
-<div class="flex flex-col gap-4">
-  <bo-card 
-    title="Clickable Card" 
-    :clickable="true"
-  >
-    <p>This card can be clicked</p>
-  </bo-card>
+<div class="flex gap-4 items-center my-4">
+	<bo-card 
+		title="Clickable Card" 
+		:clickable="true"
+	>
+		<p>Click this card to trigger an action</p>
+	</bo-card>
 </div>
 
-```html
-<bo-card
-	title="Clickable Card"
-	:clickable="true"
->
-	<p>This card can be clicked</p>
+```vue
+<bo-card title="Clickable Card" :clickable="true">
+	<p>Click this card to trigger an action</p>
 </bo-card>
 ```
 
-## Disabled Cards
+## Disabled
 
-Cards can be disabled to prevent interaction:
-
-<div class="flex flex-col gap-4">
-  <bo-card 
-    title="Disabled Card" 
-    :disabled="true"
-  >
-    <p>This card is disabled</p>
-  </bo-card>
+<div class="flex gap-4 items-center my-4">
+	<bo-card 
+		title="Disabled Card" 
+		:disabled="true"
+	>
+		<p>This card is disabled</p>
+	</bo-card>
 </div>
 
-```html
-<bo-card
-	title="Disabled Card"
-	:disabled="true"
->
+```vue
+<bo-card title="Disabled Card" :disabled="true">
 	<p>This card is disabled</p>
 </bo-card>
 ```
 
-## Best Practices
+## Custom Header and Footer
 
-When using the Card component:
+<div class="flex gap-4 items-center my-4">
+	<bo-card>
+		<template #header>
+			<div class="flex items-center justify-between bg-gray-100 p-4 rounded-t-lg">
+				<h3 class="text-lg font-medium">Custom Header</h3>
+				<button class="text-gray-500 hover:text-gray-700">
+					×
+				</button>
+			</div>
+		</template>
+		
+		<p class="p-4">Card content with custom header and footer</p>
+		
+		<template #footer>
+			<div class="flex justify-end gap-2 bg-gray-50 p-3 rounded-b-lg">
+				<button class="px-3 py-1 bg-gray-200 rounded">Cancel</button>
+				<button class="px-3 py-1 bg-blue-500 text-white rounded">Save</button>
+			</div>
+		</template>
+	</bo-card>
+</div>
 
-1. Use appropriate width based on content and layout
-2. Consider padding for content readability
-3. Use titles and descriptions to provide context
-4. Make cards clickable only when necessary
-5. Use disabled state appropriately
-6. Consider responsive design
-7. Maintain consistent spacing between cards
+```vue
+<bo-card>
+	<template #header>
+		<div class="flex items-center justify-between bg-gray-100 p-4 rounded-t-lg">
+			<h3 class="text-lg font-medium">Custom Header</h3>
+			<button class="text-gray-500 hover:text-gray-700">
+				×
+			</button>
+		</div>
+	</template>
+	
+	<p class="p-4">Card content with custom header and footer</p>
+	
+	<template #footer>
+		<div class="flex justify-end gap-2 bg-gray-50 p-3 rounded-b-lg">
+			<button class="px-3 py-1 bg-gray-200 rounded">Cancel</button>
+			<button class="px-3 py-1 bg-blue-500 text-white rounded">Save</button>
+		</div>
+	</template>
+</bo-card>
+```

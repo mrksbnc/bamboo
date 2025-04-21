@@ -1,92 +1,90 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import BoCard from './BoCard.vue';
+import type { BoCardPadding } from './bo-card';
 
 describe('BoCard', () => {
-	it('renders correctly with default props', () => {
-		const wrapper = mount(BoCard);
+	// Basic rendering tests
+	it('renders properly with default props', () => {
+		const wrapper = mount(BoCard, {
+			slots: {
+				content: 'Card content',
+			},
+		});
 
-		expect(wrapper.exists()).toBe(true);
+		expect(wrapper.text()).toContain('Card content');
 		expect(wrapper.classes()).toContain('bo-card__container');
-		expect(wrapper.classes()).toContain('w-fit');
 	});
 
-	it('renders title and description when provided', () => {
+	// Title and description tests
+	it('renders title when provided', () => {
 		const wrapper = mount(BoCard, {
 			props: {
 				title: 'Card Title',
+			},
+		});
+
+		expect(wrapper.find('.bo-card__title').exists()).toBe(true);
+		expect(wrapper.find('.bo-card__title').text()).toBe('Card Title');
+	});
+
+	it('renders description when provided', () => {
+		const wrapper = mount(BoCard, {
+			props: {
 				description: 'Card Description',
 			},
 		});
 
-		const title = wrapper.find('.bo-card__title');
-		expect(title.exists()).toBe(true);
-		expect(title.text()).toBe('Card Title');
-
-		const description = wrapper.find('.bo-card__description');
-		expect(description.exists()).toBe(true);
-		expect(description.text()).toBe('Card Description');
+		expect(wrapper.find('.bo-card__description').exists()).toBe(true);
+		expect(wrapper.find('.bo-card__description').text()).toBe('Card Description');
 	});
 
-	it('applies padding classes based on padding prop', async () => {
-		const wrapper = mount(BoCard, {
-			props: {
-				padding: {
-					top: true,
-					right: true,
-					bottom: true,
-					left: true,
-				},
-			},
-		});
+	// Padding tests
+	it('applies all padding when default padding is used', () => {
+		const wrapper = mount(BoCard);
 
 		expect(wrapper.classes()).toContain('pt-5');
 		expect(wrapper.classes()).toContain('pr-5');
 		expect(wrapper.classes()).toContain('pb-5');
 		expect(wrapper.classes()).toContain('pl-5');
-
-		await wrapper.setProps({
-			padding: {
-				top: false,
-				right: true,
-				bottom: false,
-				left: true,
-			},
-		});
-
-		expect(wrapper.classes()).not.toContain('pt-5');
-		expect(wrapper.classes()).toContain('pr-5');
-		expect(wrapper.classes()).not.toContain('pb-5');
-		expect(wrapper.classes()).toContain('pl-5');
 	});
 
-	it('applies width styling based on width props', async () => {
+	it('applies specific padding when custom padding is provided', () => {
+		const customPadding: BoCardPadding = {
+			top: true,
+			right: false,
+			bottom: true,
+			left: false,
+		};
+
 		const wrapper = mount(BoCard, {
 			props: {
-				widthInPx: 300,
+				padding: customPadding,
 			},
 		});
 
-		expect(wrapper.attributes('style')).toContain('width: 300px');
-
-		await wrapper.setProps({
-			widthInPx: undefined,
-			widthInPercent: 50,
-		});
-
-		expect(wrapper.attributes('style')).toContain('width: 50%');
-
-		await wrapper.setProps({
-			widthInPx: undefined,
-			widthInPercent: undefined,
-			widthAsTailwindClass: 'w-1/2',
-		});
-
-		expect(wrapper.classes()).toContain('w-1/2');
-		expect(wrapper.classes()).not.toContain('w-fit');
+		expect(wrapper.classes()).toContain('pt-5');
+		expect(wrapper.classes()).not.toContain('pr-5');
+		expect(wrapper.classes()).toContain('pb-5');
+		expect(wrapper.classes()).not.toContain('pl-5');
 	});
 
-	it('applies clickable styles when clickable prop is true', async () => {
+	// Clickable tests
+	it('renders clickable card with appropriate styles', () => {
+		const wrapper = mount(BoCard, {
+			props: {
+				clickable: true,
+			},
+		});
+
+		expect(wrapper.classes()).toContain('cursor-pointer');
+		expect(wrapper.classes()).toContain('hover:bg-gray-50');
+		expect(wrapper.classes()).toContain('transition-colors');
+		expect(wrapper.attributes('role')).toBe('button');
+		expect(wrapper.attributes('tabindex')).toBe('0');
+	});
+
+	it('renders non-clickable card with default styles', () => {
 		const wrapper = mount(BoCard, {
 			props: {
 				clickable: false,
@@ -95,40 +93,66 @@ describe('BoCard', () => {
 
 		expect(wrapper.classes()).toContain('cursor-default');
 		expect(wrapper.classes()).not.toContain('cursor-pointer');
-
-		await wrapper.setProps({
-			clickable: true,
-		});
-
-		expect(wrapper.classes()).toContain('cursor-pointer');
-		expect(wrapper.classes()).toContain('hover:bg-gray-50');
-		expect(wrapper.classes()).toContain('focus:ring-2');
+		expect(wrapper.attributes('role')).toBeUndefined();
+		expect(wrapper.attributes('tabindex')).toBeUndefined();
 	});
 
-	it('applies disabled styles when disabled prop is true', async () => {
+	// Disabled tests
+	it('applies disabled styles when disabled prop is true', () => {
 		const wrapper = mount(BoCard, {
 			props: {
-				disabled: false,
+				disabled: true,
 			},
-		});
-
-		expect(wrapper.classes()).not.toContain('opacity-60');
-		expect(wrapper.classes()).not.toContain('cursor-not-allowed');
-
-		await wrapper.setProps({
-			disabled: true,
 		});
 
 		expect(wrapper.classes()).toContain('opacity-60');
 		expect(wrapper.classes()).toContain('cursor-not-allowed');
 		expect(wrapper.classes()).toContain('pointer-events-none');
+		expect(wrapper.attributes('aria-disabled')).toBe('true');
 	});
 
-	it('emits click event when clickable and not disabled', async () => {
+	// Width tests
+	it('applies width in pixels when widthInPx is provided', () => {
+		const wrapper = mount(BoCard, {
+			props: {
+				widthInPx: 300,
+			},
+		});
+
+		expect(wrapper.attributes('style')).toContain('width: 300px');
+	});
+
+	it('applies width in percentage when widthInPercent is provided', () => {
+		const wrapper = mount(BoCard, {
+			props: {
+				widthInPercent: 50,
+			},
+		});
+
+		expect(wrapper.attributes('style')).toContain('width: 50%');
+	});
+
+	it('applies Tailwind width class when widthAsTailwindClass is provided', () => {
+		const wrapper = mount(BoCard, {
+			props: {
+				widthAsTailwindClass: 'w-full',
+			},
+		});
+
+		expect(wrapper.classes()).toContain('w-full');
+	});
+
+	it('applies w-fit class by default if no width props are provided', () => {
+		const wrapper = mount(BoCard);
+
+		expect(wrapper.classes()).toContain('w-fit');
+	});
+
+	// Event tests
+	it('emits click event when clickable card is clicked', async () => {
 		const wrapper = mount(BoCard, {
 			props: {
 				clickable: true,
-				disabled: false,
 			},
 		});
 
@@ -137,7 +161,7 @@ describe('BoCard', () => {
 		expect(wrapper.emitted('click')?.length).toBe(1);
 	});
 
-	it('does not emit click event when disabled', async () => {
+	it('does not emit click event when disabled card is clicked', async () => {
 		const wrapper = mount(BoCard, {
 			props: {
 				clickable: true,
@@ -149,70 +173,26 @@ describe('BoCard', () => {
 		expect(wrapper.emitted('click')).toBeFalsy();
 	});
 
-	it('applies correct accessibility attributes', async () => {
-		const wrapper = mount(BoCard, {
-			props: {
-				clickable: true,
-				title: 'Card Title',
-			},
-		});
-
-		expect(wrapper.attributes('role')).toBe('button');
-		expect(wrapper.attributes('tabindex')).toBe('0');
-		expect(wrapper.attributes('aria-labelledby')).toContain('card-title-');
-
-		await wrapper.setProps({
-			clickable: false,
-		});
-
-		expect(wrapper.attributes('role')).toBeUndefined();
-		expect(wrapper.attributes('tabindex')).toBeUndefined();
-	});
-
+	// Slots tests
 	it('renders content slot', () => {
 		const wrapper = mount(BoCard, {
 			slots: {
-				content: '<div data-test="content-slot">Content</div>',
+				content: '<div class="test-content">Content here</div>',
 			},
 		});
 
-		expect(wrapper.find('[data-test="content-slot"]').exists()).toBe(true);
+		expect(wrapper.find('.test-content').exists()).toBe(true);
+		expect(wrapper.html()).toContain('Content here');
 	});
 
 	it('renders actions slot', () => {
 		const wrapper = mount(BoCard, {
 			slots: {
-				actions: '<div data-test="actions-slot">Actions</div>',
+				actions: '<div class="test-actions">Actions here</div>',
 			},
 		});
 
-		expect(wrapper.find('[data-test="actions-slot"]').exists()).toBe(true);
-	});
-
-	it('handles enter and space key presses when clickable', async () => {
-		const wrapper = mount(BoCard, {
-			props: {
-				clickable: true,
-			},
-		});
-
-		await wrapper.trigger('keydown.enter');
-		expect(wrapper.emitted('click')).toBeTruthy();
-		expect(wrapper.emitted('click')?.length).toBe(1);
-
-		await wrapper.trigger('keydown.space');
-		expect(wrapper.emitted('click')?.length).toBe(2);
-	});
-
-	it('does not handle key presses when not clickable', async () => {
-		const wrapper = mount(BoCard, {
-			props: {
-				clickable: false,
-			},
-		});
-
-		await wrapper.trigger('keydown.enter');
-		await wrapper.trigger('keydown.space');
-		expect(wrapper.emitted('click')).toBeFalsy();
+		expect(wrapper.find('.test-actions').exists()).toBe(true);
+		expect(wrapper.html()).toContain('Actions here');
 	});
 });

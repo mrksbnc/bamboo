@@ -1,12 +1,12 @@
 <template>
-	<i
+	<span
 		v-html="svg"
 		:style="style"
 		:class="tailwindCssClasses"
 		:aria-label="accessibility.title"
 		:aria-hidden="accessibility?.decorative"
 		:role="role"
-	></i>
+	></span>
 </template>
 
 <script setup lang="ts">

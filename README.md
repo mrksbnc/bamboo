@@ -1,101 +1,72 @@
 # Bamboo
 
 [![npm version](https://badge.fury.io/js/@mrksbnc%2Fbamboo.svg)](https://badge.fury.io/js/@mrksbnc%2Fbamboo)
-
-[![Storybook to GitHub Pages](https://github.com/mrksbnc/bamboo/actions/workflows/deploy.yml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/deploy.yml)
-
-[![Test](https://github.com/mrksbnc/bamboo/actions/workflows/test.yml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/test.yml)
-
+[![Tests](https://github.com/mrksbnc/bamboo/actions/workflows/test.yml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/test.yml)
 [![CodeQL](https://github.com/mrksbnc/bamboo/actions/workflows/codeql.yml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/codeql.yml)
 
-Lightweight and flexible (hence the name) UI Library built with [Vite](https://vitejs.dev/) and [Vue 3](https://vuejs.org/). The documentation is created with [Storybook](https://storybook.js.org/).
+A lightweight UI component library for Vue 3 with TypeScript support and Tailwind CSS styling.
 
-### Add to your project
-
-To install the library, run the following command:
+## Quick Start
 
 ```bash
 npm install @mrksbnc/bamboo
 ```
 
-After this you need to import the `css` file in your `main.js` or `main.ts` file.
-
 ```js
+// Import styles
 import '@mrksbnc/bamboo/lib.css';
-```
 
-After this you can use the components in your `components`.
-
-```js
-<script setup lang="ts">
+// Use components
 import { BoButton } from '@mrksbnc/bamboo';
-</script>
-
-<template>
-	<bo-button label="Button" />
-</template>
 ```
 
-### Project setup
+## Features
 
-You need to have `node` and `npm` installed on your machine as a prerequisite. You can download and install them from [here](https://nodejs.org/en/).
+- **Vue 3** - Built with Composition API
+- **TypeScript** - Full type definitions
+- **Tailwind CSS** - Responsive styling
+- **Dark Mode** - Automatic theme switching
+- **Lightweight** - Optimized bundles
 
-### Install dependencies
+## Documentation
 
-To install the dependencies, run the following command:
+Visit our [documentation site](https://mrksbnc.github.io/bamboo/) for detailed usage examples and API references.
+
+## Development
+
+### Requirements
+
+- Node.js 16+
+- npm, yarn, or pnpm
+
+### Setup
 
 ```bash
+# Clone repository
+git clone https://github.com/mrksbnc/bamboo.git
+cd bamboo
+
+# Install dependencies
 npm install
+
+# Start documentation server
+npm run docs:dev
 ```
 
-### Run documentation
+### Commands
 
-To start the development server, run the following command:
+| Command              | Description                  |
+| -------------------- | ---------------------------- |
+| `npm run build`      | Build library for production |
+| `npm run docs:dev`   | Start documentation server   |
+| `npm run docs:build` | Build documentation          |
+| `npm run test`       | Run test suite               |
+| `npm run lint`       | Run code linter              |
 
-```bash
-npm run storybook
-```
+## Contributing
 
-This will start the Storybook server and open the browser at [http://localhost:6006](http://localhost:6006).
-Here you can see the documentation for the components and play around with them.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-### Build for production
-
-To build the components for production, run the following command:
-
-```bash
-npm run build
-```
-
-This will build the components and generate the static files in the `dist` folder.
-
-### Build storybook for production
-
-To build the Storybook documentation for production, run the following command:
-
-```bash
-npm run build:storybook
-```
-
-This will build the Storybook documentation and generate the static files in the `static` folder.
-GitHub Pages uses the directory to host the documentation.
-
-### Run your unit tests
-
-The project uses [Vitest](https://vitest.dev) for unit and snapshot testing. To run the tests, run the following command:
-
-```bash
-npm run test
-```
-
-### Lints and fixes files
-
-The project uses [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) for linting and formatting. To run the linter, run the following command:
-
-```bash
-npm run lint
-```
-
-### License
+## License
 
 [MIT](LICENSE)
