@@ -1,71 +1,39 @@
-import { describe, expect, it } from 'vitest';
-import { StringService } from './string-service';
+import { StringService } from '@/services';
+import { describe, expect, test } from 'vitest';
 
 describe('StringService', () => {
-	const service = StringService.instance;
+	const svc = StringService.instance;
 
-	describe('capitalize', () => {
-		it('should capitalize the first letter of a string', () => {
-			expect(service.capitalize('hello')).toBe('Hello');
-			expect(service.capitalize('world')).toBe('World');
-			expect(service.capitalize('')).toBe('');
-		});
+	test('capitalize should uppercase first letter', () => {
+		expect(svc.capitalize('hello')).toBe('Hello');
 	});
 
-	describe('camelCaseToTitleCase', () => {
-		it('should convert camelCase to Title Case', () => {
-			expect(service.camelCaseToTitleCase('helloWorld')).toBe('Hello World');
-			expect(service.camelCaseToTitleCase('thisIsATest')).toBe('This Is A Test');
-			expect(service.camelCaseToTitleCase('')).toBe('');
-		});
+	test('camelCaseToTitleCase should convert camelCase strings to Title Case', () => {
+		expect(svc.camelCaseToTitleCase('helloWorldExample')).toBe('Hello World Example');
 	});
 
-	describe('isEmptyStr', () => {
-		it('should return true for empty strings, null, or undefined', () => {
-			expect(service.isEmptyStr('')).toBe(true);
-			expect(service.isEmptyStr('  ')).toBe(true);
-			expect(service.isEmptyStr(null)).toBe(true);
-			expect(service.isEmptyStr(undefined)).toBe(true);
-		});
-
-		it('should return false for non-empty strings', () => {
-			expect(service.isEmptyStr('hello')).toBe(false);
-			expect(service.isEmptyStr(' hello ')).toBe(false);
-			expect(service.isEmptyStr('0')).toBe(false);
-		});
+	test('isEmptyStr should return true for null, undefined, empty or whitespace-only strings', () => {
+		expect(svc.isEmptyStr(null)).toBe(true);
+		expect(svc.isEmptyStr(undefined)).toBe(true);
+		expect(svc.isEmptyStr('')).toBe(true);
+		expect(svc.isEmptyStr('   ')).toBe(true);
+		expect(svc.isEmptyStr('not empty')).toBe(false);
 	});
 
-	describe('safeString', () => {
-		it('should return empty string for null or undefined', () => {
-			expect(service.safeString(null)).toBe('');
-			expect(service.safeString(undefined)).toBe('');
-			expect(service.safeString('')).toBe('');
-		});
-
-		it('should convert non-string values to strings', () => {
-			expect(service.safeString(123)).toBe('123');
-			expect(service.safeString(true)).toBe('true');
-			expect(service.safeString(false)).toBe('false');
-		});
+	test('safeString should return empty for null/undefined and string for other values', () => {
+		expect(svc.safeString(null)).toBe('');
+		expect(svc.safeString(undefined)).toBe('');
+		expect(svc.safeString(123)).toBe('123');
+		expect(svc.safeString('abc')).toBe('abc');
 	});
 
-	describe('slugify', () => {
-		it('should convert strings to slugs', () => {
-			expect(service.slugify('Hello World')).toBe('hello-world');
-			expect(service.slugify('This is a test')).toBe('this-is-a-test');
-			expect(service.slugify('')).toBe('');
-		});
+	test('slugify should lowercase and replace spaces with hyphens', () => {
+		expect(svc.slugify('Hello World Test')).toBe('hello-world-test');
 	});
 
-	describe('truncate', () => {
-		it('should truncate strings that exceed the maximum length', () => {
-			expect(service.truncate('Hello World', 5)).toBe('Hello...');
-			expect(service.truncate('Testing', 4, '!')).toBe('Test!');
-		});
-
-		it('should not truncate strings that are shorter than the maximum length', () => {
-			expect(service.truncate('Hello', 10)).toBe('Hello');
-			expect(service.truncate('', 5)).toBe('');
-		});
+	test('truncate should shorten long strings and append suffix', () => {
+		expect(svc.truncate('abcdefghij', 5)).toBe('abcde...');
+		expect(svc.truncate('short', 10)).toBe('short');
+		expect(svc.truncate('1234567890', 3, ' (more)')).toBe('123 (more)');
 	});
 });

@@ -1,47 +1,102 @@
 <template>
 	<div
 		class="bo-table"
-		:class="[containerClasses]"
+		:class="[
+			{
+				'cursor-pointer': !disabled,
+				'cursor-not-allowed opacity-60': disabled,
+			},
+		]"
+		:data-testid="`bo-table-${id}`"
 	>
-		<table :class="tableClasses">
-			<thead :class="theadClasses">
-				<tr>
-					<th
-						v-for="(column, index) in columns"
-						:key="index"
-						:class="[headerCellClasses, column.headerClass]"
-						:style="column.width ? { width: column.width } : {}"
-					>
-						{{ column.header }}
-					</th>
-				</tr>
-			</thead>
-			<tbody :class="tbodyClasses">
-				<component
-					v-for="(row, rowIndex) in data"
-					:key="rowIndex"
-					:is="rowComponent"
-					:row="row"
-					:columns="columns"
-					:class="rowClasses"
+		<!-- Table container -->
+		<div
+			class="bo-table__container"
+			:data-testid="`bo-table-container-${id}`"
+		>
+			<!-- Table header -->
+			<div
+				v-if="showHeader"
+				class="bo-table__header"
+				:data-testid="`bo-table-header-${id}`"
+			>
+				<bo-text
+					:value="title"
+					:size="BoFontSize.lg"
+					:weight="BoFontWeight.semibold"
+					:data-testid="`bo-table-title-${id}`"
 				/>
-				<tr
-					v-if="!data || data.length === 0"
-					:class="rowClasses"
+			</div>
+
+			<!-- Table content -->
+			<table
+				class="bo-table__content"
+				:data-testid="`bo-table-content-${id}`"
+			>
+				<!-- Table head -->
+				<thead
+					class="bo-table__head"
+					:data-testid="`bo-table-head-${id}`"
 				>
-					<td
-						:colspan="columns.length"
-						:class="cellClasses"
+					<tr
+						class="bo-table__head-row"
+						:data-testid="`bo-table-head-row-${id}`"
 					>
-						<slot name="empty">
-							<div class="bo-table__empty-message py-4 text-center text-slate-500">
-								No data available
-							</div>
-						</slot>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+						<th
+							v-for="(column, index) in columns"
+							:key="index"
+							class="bo-table__head-cell"
+							:data-testid="`bo-table-head-cell-${id}-${column.key}`"
+						>
+							<bo-text
+								:value="column.label"
+								:size="BoFontSize.sm"
+								:weight="BoFontWeight.medium"
+								:data-testid="`bo-table-head-cell-text-${id}-${column.key}`"
+							/>
+						</th>
+					</tr>
+				</thead>
+
+				<!-- Table body -->
+				<tbody
+					class="bo-table__body"
+					:data-testid="`bo-table-body-${id}`"
+				>
+					<tr
+						v-for="(row, rowIndex) in data"
+						:key="rowIndex"
+						class="bo-table__body-row"
+						:data-testid="`bo-table-body-row-${id}-${rowIndex}`"
+					>
+						<td
+							v-for="(column, columnIndex) in columns"
+							:key="columnIndex"
+							class="bo-table__body-cell"
+							:data-testid="`bo-table-body-cell-${id}-${rowIndex}-${column.key}`"
+						>
+							<slot
+								:name="column.key"
+								:row="row"
+								:column="column"
+								:data-testid="`bo-table-body-cell-slot-${id}-${rowIndex}-${column.key}`"
+							>
+								{{ row[column.key] }}
+							</slot>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- Table footer -->
+			<div
+				v-if="showFooter"
+				class="bo-table__footer"
+				:data-testid="`bo-table-footer-${id}`"
+			>
+				<slot name="footer" />
+			</div>
+		</div>
 	</div>
 </template>
 

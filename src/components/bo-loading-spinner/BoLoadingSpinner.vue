@@ -1,7 +1,15 @@
 <template>
 	<div
 		role="status"
-		:class="[defaultContainerClasses, textPosition === 'side' ? 'flex-row' : 'flex-col']"
+		:class="[
+			defaultContainerClasses,
+			textPosition === 'side' ? 'flex-row' : 'flex-col',
+			{
+				'cursor-pointer': !disabled,
+				'cursor-not-allowed opacity-60': disabled,
+			},
+		]"
+		:data-testid="`bo-loading-spinner-${id}`"
 	>
 		<div
 			:class="classes"
@@ -41,7 +49,7 @@ const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 	textPosition: () => BoLoaderTextPosition.bottom,
 });
 
-const { size, variant, loaderText, customColor } = toRefs(props);
+const { size, variant, loaderText, customColor, disabled, id } = toRefs(props);
 
 const defaultContainerClasses =
 	/*tw*/ 'bo-loading-spinner__container flex h-full max-w-fit content-center items-center justify-center gap-1';

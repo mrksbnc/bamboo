@@ -12,10 +12,13 @@ function buildSidebar() {
 		{
 			text: 'Components',
 			items: [
+				{ text: 'Accordion', link: '/pages/components/accordion' },
 				{ text: 'Avatar', link: '/pages/components/avatar' },
 				{ text: 'Badge', link: '/pages/components/badge' },
 				{ text: 'Button', link: '/pages/components/button' },
+				{ text: 'Button Group', link: '/pages/components/button-group' },
 				{ text: 'Card', link: '/pages/components/card' },
+				{ text: 'Checkbox', link: '/pages/components/checkbox' },
 				{ text: 'Divider', link: '/pages/components/divider' },
 				{ text: 'Dropdown', link: '/pages/components/dropdown' },
 				{ text: 'Icon', link: '/pages/components/icon' },
@@ -25,6 +28,8 @@ function buildSidebar() {
 				{ text: 'Modal', link: '/pages/components/modal' },
 				{ text: 'Popover', link: '/pages/components/popover' },
 				{ text: 'Progress Bar', link: '/pages/components/progress-bar' },
+				{ text: 'Radio', link: '/pages/components/radio' },
+				{ text: 'Radio Group', link: '/pages/components/radio-group' },
 				{ text: 'Table', link: '/pages/components/table' },
 				{ text: 'Text', link: '/pages/components/text' },
 				{ text: 'Textarea', link: '/pages/components/textarea' },

@@ -3,6 +3,7 @@
 		<div
 			v-if="showTopContainer"
 			class="flex justify-between gap-2"
+			:data-testid="`bo-input-top-${inputId}`"
 		>
 			<div class="mb-1 flex items-center gap-1">
 				<bo-text
@@ -10,6 +11,7 @@
 					:for="inputId"
 					:value="label"
 					:size="BoFontSize.sm"
+					:data-testid="`bo-input-label-${inputId}`"
 				/>
 				<span
 					v-if="required"
@@ -17,7 +19,10 @@
 					>*</span
 				>
 			</div>
-			<slot name="topRightContent"></slot>
+			<slot
+				name="topRightContent"
+				:data-testid="`bo-input-top-right-${inputId}`"
+			></slot>
 		</div>
 
 		<!-- Input container -->
@@ -38,6 +43,7 @@
 				pills && pills.length > 0 ? 'h-auto' : '',
 				variantClasses[variant][state],
 			]"
+			:data-testid="`bo-input-container-${inputId}`"
 		>
 			<!-- Prefix icon -->
 			<div
@@ -45,6 +51,7 @@
 				class="absolute text-neutral-500 dark:text-gray-400"
 				:class="iconPositionClasses"
 				@click="onPrefixIconClick"
+				:data-testid="`bo-input-prefix-icon-${inputId}`"
 			>
 				<bo-icon
 					:icon="prefixIcon"
@@ -64,6 +71,7 @@
 					prefixIcon && prefixIcon !== Icon.none ? 'ml-8' : '',
 					suffixIcon && suffixIcon !== Icon.none ? 'mr-8' : '',
 				]"
+				:data-testid="`bo-input-content-${inputId}`"
 			>
 				<!-- Pills section -->
 				<BoInputPill
@@ -71,6 +79,7 @@
 					:key="index"
 					:pill="pill"
 					@remove="onPillRemove"
+					:data-testid="`bo-input-pill-${inputId}-${pill.id}`"
 				/>
 
 				<!-- Input field -->
@@ -97,6 +106,7 @@
 					@blur="onBlur"
 					@change="onChange"
 					ref="inputRef"
+					:data-testid="`bo-input-field-${inputId}`"
 				/>
 			</div>
 
@@ -106,6 +116,7 @@
 				class="absolute right-3 text-neutral-500 dark:text-gray-400"
 				:class="iconPositionClasses"
 				@click="onSuffixIconClick"
+				:data-testid="`bo-input-suffix-icon-${inputId}`"
 			>
 				<bo-icon
 					v-if="suffixIcon && suffixIcon !== Icon.none"
@@ -120,6 +131,7 @@
 					:size="iconSize"
 					class="cursor-pointer"
 					@click.stop="togglePasswordVisibility"
+					:data-testid="`bo-input-password-toggle-${inputId}`"
 				/>
 				<bo-icon
 					v-if="showPasswordToggle && !passwordVisible"
@@ -135,10 +147,12 @@
 		<div
 			v-if="showHelperContainer"
 			class="mt-1 flex flex-col gap-1"
+			:data-testid="`bo-input-helper-${inputId}`"
 		>
 			<div
 				v-if="error"
 				class="flex items-center gap-1"
+				:data-testid="`bo-input-error-${inputId}`"
 			>
 				<bo-icon
 					:size="BoSize.small"
@@ -150,6 +164,7 @@
 					:size="BoFontSize.sm"
 					:class="helperTextClasses"
 					:value="error"
+					:data-testid="`bo-input-error-${inputId}`"
 				/>
 			</div>
 			<bo-text
@@ -158,6 +173,7 @@
 				:value="description"
 				:size="BoFontSize.sm"
 				:class="helperTextClasses"
+				:data-testid="`bo-input-description-${inputId}`"
 			/>
 		</div>
 	</div>

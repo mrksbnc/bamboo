@@ -1,7 +1,13 @@
 <template>
 	<div
-		:class="containerClasses"
-		class="bo-radio"
+		:class="[
+			'bo-radio',
+			{
+				'cursor-pointer': !disabled,
+				'cursor-not-allowed opacity-60': disabled,
+			},
+		]"
+		:data-testid="`bo-radio-${id}`"
 	>
 		<input
 			:id="id"
@@ -10,31 +16,72 @@
 			:value="value"
 			:checked="modelValue === value"
 			:disabled="disabled"
-			class="bo-radio__input"
-			@change="handleChange"
+			:required="required"
+			:class="[
+				'bo-radio__input',
+				{
+					'cursor-pointer': !disabled,
+					'cursor-not-allowed': disabled,
+				},
+			]"
+			:aria-label="ariaLabel"
+			:aria-describedby="helperTextId"
+			:aria-invalid="state === BoRadioState.error"
+			@change="onChange"
+			:data-testid="`bo-radio-input-${id}`"
 		/>
 		<label
 			:for="id"
 			class="bo-radio__label"
+			:class="[
+				{
+					'cursor-pointer': !disabled,
+					'cursor-not-allowed': disabled,
+				},
+			]"
+			:data-testid="`bo-radio-label-${id}`"
 		>
-			<span
-				:class="radioClasses"
-				class="bo-radio__custom"
-			>
-				<span class="bo-radio__dot" />
-			</span>
-			<span
-				v-if="label || $slots.default"
-				class="bo-radio__content"
-			>
-				<slot>
-					<bo-text
-						:value="label"
-						:size="textSize"
-					/>
-				</slot>
-			</span>
+			<bo-text
+				:value="label"
+				:size="BoFontSize.sm"
+				:weight="BoFontWeight.medium"
+				:data-testid="`bo-radio-text-${id}`"
+			/>
 		</label>
+
+		<!-- Helper text/error container -->
+		<div
+			v-if="showHelperContainer"
+			class="mt-1 flex flex-col gap-1"
+			:data-testid="`bo-radio-helper-${id}`"
+		>
+			<div
+				v-if="error"
+				class="flex items-center gap-1"
+				:data-testid="`bo-radio-error-${id}`"
+			>
+				<bo-icon
+					:size="BoSize.small"
+					:icon="Icon.alert_circle"
+					:color="BoColor.red_600"
+				/>
+				<bo-text
+					:id="helperTextId"
+					:size="BoFontSize.sm"
+					:class="helperTextClasses"
+					:value="error"
+					:data-testid="`bo-radio-error-text-${id}`"
+				/>
+			</div>
+			<bo-text
+				v-if="description && !error"
+				:id="helperTextId"
+				:value="description"
+				:size="BoFontSize.sm"
+				:class="helperTextClasses"
+				:data-testid="`bo-radio-description-${id}`"
+			/>
+		</div>
 	</div>
 </template>
 

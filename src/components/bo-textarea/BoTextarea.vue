@@ -4,6 +4,7 @@
 		<div
 			v-if="label || required"
 			class="flex items-center justify-start pb-2"
+			:data-testid="`bo-textarea-top-${id}`"
 		>
 			<bo-text
 				v-if="label"
@@ -12,6 +13,7 @@
 				class="text-neutral-800"
 				:size="BoFontSize.sm"
 				:value="label"
+				:data-testid="`bo-textarea-label-${id}`"
 			/>
 			<label
 				:for="id"
@@ -35,6 +37,7 @@
 				error ? 'border-error-600' : invalidField ? 'border-error-100' : 'border-neutral-300',
 				disabled ? 'bg-grey-50 cursor-not-allowed border-neutral-200' : 'bg-white',
 			]"
+			:data-testid="`bo-textarea-container-${id}`"
 		>
 			<!-- Prefix icon -->
 			<div
@@ -69,6 +72,7 @@
 				]"
 				@input="onInput"
 				@blur="onBlur"
+				:data-testid="`bo-textarea-field-${id}`"
 			></textarea>
 
 			<!-- Suffix icon -->
@@ -90,6 +94,7 @@
 		<div
 			v-if="error"
 			class="text-error-600 mt-1 flex items-center gap-1 text-sm font-normal"
+			:data-testid="`bo-textarea-error-${id}`"
 		>
 			<bo-icon
 				:icon="Icon.alert_circle"

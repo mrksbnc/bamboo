@@ -2,6 +2,7 @@
 	<div
 		:class="containerClasses"
 		class="bo-checkbox"
+		:data-testid="`bo-checkbox-${id}`"
 	>
 		<input
 			:id="id"
@@ -10,12 +11,30 @@
 			:checked="modelValue"
 			:value="value"
 			:disabled="disabled"
-			class="bo-checkbox__input peer"
+			:required="required"
+			:class="[
+				'bo-checkbox__input',
+				{
+					'cursor-pointer': !disabled,
+					'cursor-not-allowed': disabled,
+				},
+			]"
+			:aria-label="ariaLabel"
+			:aria-describedby="helperTextId"
+			:aria-invalid="state === BoCheckboxState.error"
 			@change="handleChange"
+			:data-testid="`bo-checkbox-input-${id}`"
 		/>
 		<label
 			:for="id"
 			class="bo-checkbox__label"
+			:class="[
+				{
+					'cursor-pointer': !disabled,
+					'cursor-not-allowed': disabled,
+				},
+			]"
+			:data-testid="`bo-checkbox-label-${id}`"
 		>
 			<span
 				:class="checkboxClasses"
@@ -44,17 +63,53 @@
 							v-if="label"
 							:value="label"
 							:size="textSize"
+							:data-testid="`bo-checkbox-text-${id}`"
 						/>
 						<bo-text
 							v-if="description"
 							:value="description"
 							:size="descriptionSize"
 							:color="BoTextColor.secondary"
+							:data-testid="`bo-checkbox-description-${id}`"
 						/>
 					</span>
 				</slot>
 			</span>
 		</label>
+
+		<!-- Helper text/error container -->
+		<div
+			v-if="showHelperContainer"
+			class="mt-1 flex flex-col gap-1"
+			:data-testid="`bo-checkbox-helper-${id}`"
+		>
+			<div
+				v-if="error"
+				class="flex items-center gap-1"
+				:data-testid="`bo-checkbox-error-${id}`"
+			>
+				<bo-icon
+					:size="BoSize.small"
+					:icon="Icon.alert_circle"
+					:color="BoColor.red_600"
+				/>
+				<bo-text
+					:id="helperTextId"
+					:size="BoFontSize.sm"
+					:class="helperTextClasses"
+					:value="error"
+					:data-testid="`bo-checkbox-error-text-${id}`"
+				/>
+			</div>
+			<bo-text
+				v-if="description && !error"
+				:id="helperTextId"
+				:value="description"
+				:size="BoFontSize.sm"
+				:class="helperTextClasses"
+				:data-testid="`bo-checkbox-description-${id}`"
+			/>
+		</div>
 	</div>
 </template>
 

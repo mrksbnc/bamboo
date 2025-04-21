@@ -1,13 +1,20 @@
 <template>
 	<div
 		class="bo-timeline"
-		:class="timelineClasses"
+		:class="[
+			{
+				'cursor-pointer': !disabled,
+				'cursor-not-allowed opacity-60': disabled,
+			},
+		]"
+		:data-testid="`bo-timeline-${id}`"
 	>
 		<div
 			v-for="(item, index) in items"
 			:key="index"
 			class="bo-timeline-item"
 			:class="timelineItemClasses"
+			:data-testid="`bo-timeline-item-${id}-${index}`"
 		>
 			<!-- Timeline connector/line -->
 			<div
@@ -20,6 +27,7 @@
 			<div
 				class="bo-timeline-indicator"
 				:class="indicatorClasses"
+				:data-testid="`bo-timeline-dot-${id}-${index}`"
 			>
 				<template v-if="variant === BoTimelineVariant.avatar && item.avatar">
 					<img
@@ -53,10 +61,12 @@
 			<div
 				class="bo-timeline-content"
 				:class="contentClasses"
+				:data-testid="`bo-timeline-content-${id}-${index}`"
 			>
 				<h6
 					class="bo-timeline-title"
 					:class="titleClasses"
+					:data-testid="`bo-timeline-title-${id}-${index}`"
 				>
 					{{ item.title }}
 				</h6>
@@ -64,6 +74,7 @@
 				<p
 					class="bo-timeline-description"
 					:class="descriptionClasses"
+					:data-testid="`bo-timeline-description-${id}-${index}`"
 				>
 					{{ item.content }}
 				</p>
@@ -72,6 +83,7 @@
 					v-if="item.time"
 					class="bo-timeline-time"
 					:class="timeClasses"
+					:data-testid="`bo-timeline-time-${id}-${index}`"
 				>
 					{{ item.time }}
 				</small>

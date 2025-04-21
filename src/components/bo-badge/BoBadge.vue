@@ -1,16 +1,27 @@
 <template>
-	<span :class="classes">
+	<span
+		:class="[
+			'bo-badge',
+			{
+				'cursor-pointer': !disabled,
+				'cursor-not-allowed opacity-60': disabled,
+			},
+		]"
+		:data-testid="`bo-badge-${id}`"
+	>
 		<span v-if="icon?.prefix !== Icon.none || iconOnly || isCircle">
 			<bo-icon
 				:size="boBadgeIconSize"
 				:icon="prefixOrIconOnlySrc"
 				class="bo-badge__prefix-icon"
+				:data-testid="`bo-badge-icon-${id}`"
 			/>
 		</span>
 		<slot name="default">
 			<span
 				v-if="renderLabel && label && !iconOnly && !isCircle"
 				class="bo-badge__label flex items-center justify-center"
+				:data-testid="`bo-badge-text-${id}`"
 			>
 				<bo-text
 					:value="label"
@@ -24,6 +35,7 @@
 				:icon="icon.suffix"
 				:size="boBadgeIconSize"
 				class="bo-badge__suffix-icon"
+				:data-testid="`bo-badge-icon-${id}`"
 			/>
 		</span>
 	</span>

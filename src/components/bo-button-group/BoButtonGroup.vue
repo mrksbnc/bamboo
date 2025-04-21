@@ -5,6 +5,7 @@
 		class="bo-button-group"
 		role="group"
 		:aria-disabled="disabled"
+		:data-testid="`bo-button-group-${id}`"
 	>
 		<component
 			v-for="(buttonProp, index) in contentComponentProps"
@@ -56,6 +57,7 @@
 					? 'rounded-tr-none !rounded-bl-lg'
 					: '',
 			]"
+			:data-testid="`bo-button-group-item-${id}-${index}`"
 		/>
 	</div>
 </template>
@@ -103,7 +105,7 @@ const orientationClasses = computed(() => {
 });
 
 const widthClasses = computed(() => {
-	return fullWidth.value ? /*tw*/ 'w-full' : /*tw*/ 'w-auto';
+	return fullWidth.value ? /*tw*/ 'w-full' : /*tw*/ 'max-w-fit';
 });
 
 const sizeClasses = computed(() => {

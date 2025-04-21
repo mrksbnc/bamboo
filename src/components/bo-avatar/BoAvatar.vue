@@ -1,48 +1,66 @@
 <template>
 	<div
-		:class="avatarContainerClasses"
-		:style="containerStyle"
+		:id="id"
+		:class="[
+			'bo-avatar',
+			avatarClasses,
+			cssClass,
+			{
+				'cursor-pointer': clickable && !disabled,
+				'cursor-not-allowed opacity-60': disabled,
+			},
+		]"
+		:data-testid="`bo-avatar-${id}`"
 	>
-		<span
-			v-if="showDefaultAvatar"
-			class="bo-avatar__default relative overflow-hidden"
-		>
-			<img
-				alt="avatar"
-				:src="defaultAvatarSrc"
-				class="h-full w-full object-cover"
-			/>
-		</span>
-		<span
-			v-else-if="type === BoAvatarType.initials && !StringService.instance.isEmptyStr(data.label)"
-			class="bo-avatar__initials flex h-full w-full items-center justify-center"
-		>
-			<bo-text
-				alt="avatar"
-				:value="label"
-				:size="labelSize"
-				:clickable="clickable"
-				:class="textColorClass"
-				:weight="BoFontWeight.medium"
-				:custom-color="color?.colorHex"
-			/>
-		</span>
-		<span
-			v-else-if="type === BoAvatarType.image && data.src !== undefined"
-			class="bo-avatar__image relative h-full w-full overflow-hidden"
+		<div
+			v-if="type === BoAvatarType.image"
+			class="bo-avatar-image"
+			:data-testid="`bo-avatar-image-${id}`"
 		>
 			<img
 				:src="data.src"
-				:alt="data.alt ?? 'avatar'"
-				class="h-full w-full object-cover"
+				:alt="data.alt"
+				:class="[
+					'bo-avatar-img',
+					avatarShapeClasses[shape],
+					{
+						'object-cover': true,
+					},
+				]"
+				:data-testid="`bo-avatar-img-${id}`"
 				@error="handleImageError"
 			/>
-		</span>
-		<span
-			v-if="withIndicator && indicator?.status !== BoAvatarIndicatorStatus.none"
-			:class="indicatorClasses"
-			class="status-indicator"
-		></span>
+		</div>
+		<div
+			v-else
+			class="bo-avatar-initials"
+			:class="[
+				avatarShapeClasses[shape],
+				{
+					'flex items-center justify-center': true,
+				},
+			]"
+			:data-testid="`bo-avatar-initials-${id}`"
+		>
+			<bo-text
+				:value="label"
+				:size="BoFontSize.xl"
+				:weight="BoFontWeight.bold"
+				:color="BoTextColor.white"
+				:data-testid="`bo-avatar-label-${id}`"
+			/>
+		</div>
+
+		<div
+			v-if="withIndicator"
+			class="bo-avatar-indicator"
+			:class="[
+				indicatorPositionClasses[indicator.position],
+				indicatorSizeClasses[size],
+				indicatorStatusClasses[indicator.status],
+			]"
+			:data-testid="`bo-avatar-indicator-${id}`"
+		/>
 	</div>
 </template>
 

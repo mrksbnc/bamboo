@@ -9,6 +9,7 @@
 			@mouseleave="onTriggerMouseLeave"
 			@focus="onTriggerFocus"
 			@blur="onTriggerBlur"
+			:data-testid="`bo-popover-trigger-${id}`"
 		>
 			<slot name="trigger"></slot>
 		</div>
@@ -31,6 +32,7 @@
 				@mouseenter="onPopoverMouseEnter"
 				@mouseleave="onPopoverMouseLeave"
 				@click.stop
+				:data-testid="`bo-popover-content-${id}`"
 			>
 				<!-- Arrow -->
 				<div
@@ -41,16 +43,18 @@
 
 				<!-- Popover content -->
 				<div class="bo-popover-content relative z-10">
-					<slot>
+					<slot name="default">
 						<div
 							v-if="title"
 							class="bo-popover-title"
+							:data-testid="`bo-popover-title-${id}`"
 						>
 							{{ title }}
 						</div>
 						<div
 							v-if="content"
 							class="bo-popover-body"
+							:data-testid="`bo-popover-body-${id}`"
 						>
 							{{ content }}
 						</div>

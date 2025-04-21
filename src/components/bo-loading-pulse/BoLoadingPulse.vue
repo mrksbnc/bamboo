@@ -2,6 +2,7 @@
 	<div
 		role="status"
 		:class="[defaultClasses, textPosition === 'side' ? 'flex-row' : 'flex-col']"
+		:data-testid="`bo-loading-pulse-${id}`"
 	>
 		<span :class="['bo-loading-pulse__inner-pulse-relative', loaderSizeClasses, 'relative flex']">
 			<span

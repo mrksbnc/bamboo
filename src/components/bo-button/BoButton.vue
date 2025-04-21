@@ -2,20 +2,25 @@
 	<button
 		v-bind="props"
 		:disabled="isDisabled"
-		:class="buttonClasses"
+		:class="buttonClass"
 		:aria-busy="isLoading"
 		:aria-pressed="pressed"
 		:aria-disabled="isDisabled"
 		:aria-label="computedAriaLabel"
+		:data-testid="`bo-button-${id}`"
 	>
 		<slot>
-			<span class="bo-button__content inline-flex items-center justify-center gap-3">
+			<span
+				class="bo-button__content flex items-center justify-center gap-3"
+				:data-testid="`bo-button-content-${id}`"
+			>
 				<bo-icon
 					v-if="prefixIcon !== Icon.none || iconOnlyButton"
 					:icon="iconOnlyIcon"
 					:size="size"
 					class="bo-button__prefix-icon"
 					aria-hidden="true"
+					:data-testid="`bo-button-prefix-icon-${id}`"
 				/>
 				<span
 					v-if="!!label && !iconOnlyButton"
@@ -35,6 +40,7 @@
 					:size="size"
 					class="bo-button__suffix-icon"
 					aria-hidden="true"
+					:data-testid="`bo-button-suffix-icon-${id}`"
 				/>
 				<bo-loading-spinner
 					v-if="isLoading && loaderType === 'spinner'"
@@ -98,20 +104,24 @@ const {
 
 const defaultButtonClasses = {
 	default:
-		/*tw*/ 'bo-button inline-flex items-center justify-center cursor-pointer max-h-fit font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500',
-	disabled: /*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none',
+		/*tw*/ 'bo-button flex items-center justify-center cursor-pointer max-h-fit font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500',
+	disabled:
+		/*tw*/ 'bo-button--disabled disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none',
+	loading: /*tw*/ 'bo-button--loading',
+	pressed: /*tw*/ 'bo-button--pressed',
+	fullWidth: /*tw*/ 'bo-button--full-width w-full',
 };
 
 const widthClasses = {
-	default: /*tw*/ 'w-auto',
-	fullWidth: /*tw*/ 'w-full',
+	default: /*tw*/ 'w-auto max-w-fit',
+	fullWidth: /*tw*/ 'bo-button--full-width w-full',
 };
 
 const shapeClasses = {
-	[BoButtonShape.pill]: /*tw*/ 'rounded-full',
-	[BoButtonShape.link]: /*tw*/ 'rounded-none',
-	[BoButtonShape.default]: /*tw*/ 'rounded-lg',
-	[BoButtonShape.outline]: /*tw*/ 'rounded-lg',
+	[BoButtonShape.pill]: /*tw*/ 'bo-button--pill rounded-full',
+	[BoButtonShape.link]: /*tw*/ 'bo-button--link rounded-none',
+	[BoButtonShape.default]: /*tw*/ 'bo-button--default rounded-lg',
+	[BoButtonShape.outline]: /*tw*/ 'bo-button--outline rounded-lg',
 };
 
 const shadowClasses = {
@@ -119,86 +129,87 @@ const shadowClasses = {
 	default: /*tw*/ 'shadow-lg',
 };
 
-const filledButtonClasses = {
-	[BoButtonVariant.primary]:
-		/*tw*/ 'bg-blue-600 dark:bg-blue-700 hover:opacity-80 focus:ring-transparent border border-blue-600 dark:border-blue-700 text-white',
-	[BoButtonVariant.secondary]:
-		/*tw*/ 'bg-neutral-400 dark:bg-neutral-700 hover:opacity-80 focus:ring-transparent border border-neutral-400 dark:border-neutral-700 text-white',
-	[BoButtonVariant.danger]:
-		/*tw*/ 'bg-red-600 dark:bg-red-700 hover:opacity-80 focus:ring-transparent border border-red-600 dark:border-red-700 text-white',
-	[BoButtonVariant.warning]:
-		/*tw*/ 'bg-yellow-500 dark:bg-yellow-600 hover:opacity-80 focus:ring-transparent border border-yellow-500 dark:border-yellow-600 text-white',
-	[BoButtonVariant.success]:
-		/*tw*/ 'bg-green-600 dark:bg-green-700 hover:opacity-80 focus:ring-transparent border border-green-600 dark:border-green-700 text-white',
-	[BoButtonVariant.light]:
-		/*tw*/ 'bg-white dark:bg-white hover:opacity-80 focus:ring-transparent border border-white dark:border-white text-black',
-	[BoButtonVariant.dark]:
-		/*tw*/ 'bg-black dark:bg-black hover:opacity-80 focus:ring-transparent border border-black dark:border-black text-white',
-};
-
-const outlineButtonClasses = {
-	[BoButtonVariant.primary]:
-		/*tw*/ 'border border-blue-600 bg-transparent hover:bg-blue-700 focus:ring-transparent text-blue-600 hover:text-white dark:border-blue-500 dark:text-blue-500',
-	[BoButtonVariant.secondary]:
-		/*tw*/ 'border border-neutral-500 bg-transparent dark:border-neutral-300 hover:bg-neutral-500 focus:ring-transparent text-neutral-500 dark:text-neutral-300 hover:text-white',
-	[BoButtonVariant.danger]:
-		/*tw*/ 'border border-red-600 bg-transparent hover:bg-red-600 focus:ring-transparent text-red-600 hover:text-white dark:border-red-500 dark:text-red-500',
-	[BoButtonVariant.warning]:
-		/*tw*/ 'border border-yellow-500 bg-transparent hover:bg-yellow-500 focus:ring-transparent text-yellow-500 hover:text-white dark:border-yellow-400 dark:text-yellow-400',
-	[BoButtonVariant.success]:
-		/*tw*/ 'border border-green-600 bg-transparent hover:bg-green-600 focus:ring-transparent text-green-600 hover:text-white dark:border-green-500 dark:text-green-500',
-	[BoButtonVariant.light]:
-		/*tw*/ 'border border-neutral-50 bg-transparent hover:bg-white focus:ring-transparent text-neutral-50 hover:border-neutral-500 hover:text-neutral-900 dark:border-neutral-200 dark:text-neutral-200',
-	[BoButtonVariant.dark]:
-		/*tw*/ 'border border-black bg-transparent hover:bg-black focus:ring-transparent text-black hover:text-white dark:border-neutral-700 dark:text-neutral-300',
-};
-
-const linkButtonClasses = {
-	[BoButtonVariant.primary]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-blue-700 dark:text-blue-500 hover:opacity-80',
-	[BoButtonVariant.secondary]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-neutral-700 dark:text-neutral-400 hover:opacity-80',
-	[BoButtonVariant.danger]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 dark:text-red-500 hover:opacity-80',
-	[BoButtonVariant.warning]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 dark:text-yellow-400 hover:opacity-80',
-	[BoButtonVariant.success]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 dark:text-green-500 hover:opacity-80',
-	[BoButtonVariant.light]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-neutral-500 dark:text-neutral-200 hover:opacity-80',
-	[BoButtonVariant.dark]:
-		/*tw*/ 'bg-transparent hover:bg-transparent focus:ring-transparent text-black dark:text-neutral-300 hover:opacity-80',
-};
-
 const variantClasses = {
 	[BoButtonShape.default]: {
-		...filledButtonClasses,
+		[BoButtonVariant.primary]:
+			/*tw*/ 'bo-button--primary bg-blue-600 dark:bg-blue-700 hover:opacity-80 focus:ring-transparent border border-blue-600 dark:border-blue-700 text-white',
+		[BoButtonVariant.secondary]:
+			/*tw*/ 'bo-button--secondary bg-neutral-400 dark:bg-neutral-700 hover:opacity-80 focus:ring-transparent border border-neutral-400 dark:border-neutral-700 text-white',
+		[BoButtonVariant.danger]:
+			/*tw*/ 'bo-button--danger bg-red-600 dark:bg-red-700 hover:opacity-80 focus:ring-transparent border border-red-600 dark:border-red-700 text-white',
+		[BoButtonVariant.warning]:
+			/*tw*/ 'bo-button--warning bg-yellow-500 dark:bg-yellow-600 hover:opacity-80 focus:ring-transparent border border-yellow-500 dark:border-yellow-600 text-white',
+		[BoButtonVariant.success]:
+			/*tw*/ 'bo-button--success bg-green-600 dark:bg-green-700 hover:opacity-80 focus:ring-transparent border border-green-600 dark:border-green-700 text-white',
+		[BoButtonVariant.light]:
+			/*tw*/ 'bo-button--light bg-white dark:bg-white hover:opacity-80 focus:ring-transparent border border-white dark:border-white text-black',
+		[BoButtonVariant.dark]:
+			/*tw*/ 'bo-button--dark bg-black dark:bg-black hover:opacity-80 focus:ring-transparent border border-black dark:border-black text-white',
 	},
 	[BoButtonShape.pill]: {
-		...filledButtonClasses,
+		[BoButtonVariant.primary]:
+			/*tw*/ 'bo-button--primary bg-blue-600 dark:bg-blue-700 hover:opacity-80 focus:ring-transparent border border-blue-600 dark:border-blue-700 text-white',
+		[BoButtonVariant.secondary]:
+			/*tw*/ 'bo-button--secondary bg-neutral-400 dark:bg-neutral-700 hover:opacity-80 focus:ring-transparent border border-neutral-400 dark:border-neutral-700 text-white',
+		[BoButtonVariant.danger]:
+			/*tw*/ 'bo-button--danger bg-red-600 dark:bg-red-700 hover:opacity-80 focus:ring-transparent border border-red-600 dark:border-red-700 text-white',
+		[BoButtonVariant.warning]:
+			/*tw*/ 'bo-button--warning bg-yellow-500 dark:bg-yellow-600 hover:opacity-80 focus:ring-transparent border border-yellow-500 dark:border-yellow-600 text-white',
+		[BoButtonVariant.success]:
+			/*tw*/ 'bo-button--success bg-green-600 dark:bg-green-700 hover:opacity-80 focus:ring-transparent border border-green-600 dark:border-green-700 text-white',
+		[BoButtonVariant.light]:
+			/*tw*/ 'bo-button--light bg-white dark:bg-white hover:opacity-80 focus:ring-transparent border border-white dark:border-white text-black',
+		[BoButtonVariant.dark]:
+			/*tw*/ 'bo-button--dark bg-black dark:bg-black hover:opacity-80 focus:ring-transparent border border-black dark:border-black text-white',
 	},
 	[BoButtonShape.outline]: {
-		...outlineButtonClasses,
+		[BoButtonVariant.primary]:
+			/*tw*/ 'bo-button--primary border border-blue-600 bg-transparent hover:bg-blue-700 focus:ring-transparent text-blue-600 hover:text-white dark:border-blue-500 dark:text-blue-500',
+		[BoButtonVariant.secondary]:
+			/*tw*/ 'bo-button--secondary border border-neutral-500 bg-transparent dark:border-neutral-300 hover:bg-neutral-500 focus:ring-transparent text-neutral-500 dark:text-neutral-300 hover:text-white',
+		[BoButtonVariant.danger]:
+			/*tw*/ 'bo-button--danger border border-red-600 bg-transparent hover:bg-red-600 focus:ring-transparent text-red-600 hover:text-white dark:border-red-500 dark:text-red-500',
+		[BoButtonVariant.warning]:
+			/*tw*/ 'bo-button--warning border border-yellow-500 bg-transparent hover:bg-yellow-500 focus:ring-transparent text-yellow-500 hover:text-white dark:border-yellow-400 dark:text-yellow-400',
+		[BoButtonVariant.success]:
+			/*tw*/ 'bo-button--success border border-green-600 bg-transparent hover:bg-green-600 focus:ring-transparent text-green-600 hover:text-white dark:border-green-500 dark:text-green-500',
+		[BoButtonVariant.light]:
+			/*tw*/ 'bo-button--light border border-neutral-50 bg-transparent hover:bg-white focus:ring-transparent text-neutral-50 hover:border-neutral-500 hover:text-neutral-900 dark:border-neutral-200 dark:text-neutral-200',
+		[BoButtonVariant.dark]:
+			/*tw*/ 'bo-button--dark border border-black bg-transparent hover:bg-black focus:ring-transparent text-black hover:text-white dark:border-neutral-700 dark:text-neutral-300',
 	},
 	[BoButtonShape.link]: {
-		...linkButtonClasses,
+		[BoButtonVariant.primary]:
+			/*tw*/ 'bo-button--primary bg-transparent hover:bg-transparent focus:ring-transparent text-blue-700 dark:text-blue-500 hover:opacity-80',
+		[BoButtonVariant.secondary]:
+			/*tw*/ 'bo-button--secondary bg-transparent hover:bg-transparent focus:ring-transparent text-neutral-700 dark:text-neutral-400 hover:opacity-80',
+		[BoButtonVariant.danger]:
+			/*tw*/ 'bo-button--danger bg-transparent hover:bg-transparent focus:ring-transparent text-red-600 dark:text-red-500 hover:opacity-80',
+		[BoButtonVariant.warning]:
+			/*tw*/ 'bo-button--warning bg-transparent hover:bg-transparent focus:ring-transparent text-yellow-500 dark:text-yellow-400 hover:opacity-80',
+		[BoButtonVariant.success]:
+			/*tw*/ 'bo-button--success bg-transparent hover:bg-transparent focus:ring-transparent text-green-600 dark:text-green-500 hover:opacity-80',
+		[BoButtonVariant.light]:
+			/*tw*/ 'bo-button--light bg-transparent hover:bg-transparent focus:ring-transparent text-neutral-500 dark:text-neutral-200 hover:opacity-80',
+		[BoButtonVariant.dark]:
+			/*tw*/ 'bo-button--dark bg-transparent hover:bg-transparent focus:ring-transparent text-black dark:text-neutral-300 hover:opacity-80',
 	},
 };
 
 const sizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'px-2 py-1',
-	[BoSize.small]: /*tw*/ 'px-3 py-1.5',
-	[BoSize.default]: /*tw*/ 'px-4 py-2',
-	[BoSize.large]: /*tw*/ 'px-5 py-2.5',
-	[BoSize.extra_large]: /*tw*/ 'px-6 py-3',
+	[BoSize.extra_small]: /*tw*/ 'bo-button--extra-small px-2 py-1',
+	[BoSize.small]: /*tw*/ 'bo-button--small px-3 py-1.5',
+	[BoSize.default]: /*tw*/ 'bo-button--default px-4 py-2',
+	[BoSize.large]: /*tw*/ 'bo-button--large px-5 py-2.5',
+	[BoSize.extra_large]: /*tw*/ 'bo-button--extra-large px-6 py-3',
 };
 
 const iconOnlySizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'p-1',
-	[BoSize.small]: /*tw*/ 'p-1.5',
-	[BoSize.default]: /*tw*/ 'p-2.5',
-	[BoSize.large]: /*tw*/ 'p-2.5',
-	[BoSize.extra_large]: /*tw*/ 'p-3',
+	[BoSize.extra_small]: /*tw*/ 'bo-button--extra-small p-1',
+	[BoSize.small]: /*tw*/ 'bo-button--small p-1.5',
+	[BoSize.default]: /*tw*/ 'bo-button--default p-2.5',
+	[BoSize.large]: /*tw*/ 'bo-button--large p-2.5',
+	[BoSize.extra_large]: /*tw*/ 'bo-button--extra-large p-3',
 };
 
 const isDisabled = computed<boolean>(() => {
@@ -244,7 +255,7 @@ const variantShadowClasses = computed<string>(() => {
 	return shadowClasses.default;
 });
 
-const buttonClasses = computed<string>(() => {
+const buttonClass = computed<string>(() => {
 	return TailwindService.instance.merge(
 		widthConstruct.value,
 		buttonSizeClasses.value,
@@ -252,6 +263,9 @@ const buttonClasses = computed<string>(() => {
 		variantShadowClasses.value,
 		defaultButtonClasses.default,
 		defaultButtonClasses.disabled,
+		defaultButtonClasses.loading,
+		defaultButtonClasses.pressed,
+		defaultButtonClasses.fullWidth,
 		variantClasses[shape.value][variant.value],
 	);
 });

@@ -11,10 +11,12 @@
 			:aria-valuenow="value"
 			:aria-valuemin="0"
 			:aria-valuemax="max"
+			:data-testid="`bo-progress-bar-${id}`"
 		>
 			<span
 				v-if="showLabel"
 				class="bo-progress-label"
+				:data-testid="`bo-progress-bar-label-${id}`"
 			>
 				{{ computedLabel }}
 			</span>
@@ -37,10 +39,33 @@ const props = withDefaults(defineProps<BoProgressBarProps>(), {
 	variant: () => BoProgressBarVariant.primary,
 	label: undefined,
 	indeterminate: false,
+	id: '',
+	disabled: false,
+	showPercentage: false,
+	error: '',
+	description: '',
+	helperTextId: '',
+	helperTextClasses: '',
 });
 
-const { value, max, showLabel, striped, animated, size, variant, label, indeterminate } =
-	toRefs(props);
+const {
+	value,
+	max,
+	showLabel,
+	striped,
+	animated,
+	size,
+	variant,
+	label,
+	indeterminate,
+	id,
+	disabled,
+	showPercentage,
+	error,
+	description,
+	helperTextId,
+	helperTextClasses,
+} = toRefs(props);
 
 const computedWidth = computed(() => {
 	if (indeterminate.value) {
@@ -74,6 +99,10 @@ const progressBarClasses = computed(() => {
 		animated.value ? 'animate-progress' : '',
 		indeterminate.value ? 'animate-indeterminate' : '',
 		showLabel.value ? 'h-full' : '',
+		{
+			'cursor-pointer': !disabled.value,
+			'cursor-not-allowed opacity-60': disabled.value,
+		},
 	);
 });
 

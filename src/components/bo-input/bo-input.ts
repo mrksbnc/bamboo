@@ -2,46 +2,37 @@ import type { Icon } from '@/components/bo-icon';
 
 export enum BoInputVariant {
 	default = 'default',
-	filled = 'filled',
+	outline = 'outline',
 }
 
 export enum BoInputState {
 	default = 'default',
-	success = 'success',
 	error = 'error',
+	success = 'success',
+	warning = 'warning',
 }
 
 export enum BoInputSize {
+	extra_small = 'extra_small',
 	small = 'small',
 	default = 'default',
 	large = 'large',
+	extra_large = 'extra_large',
 }
 
 export enum BoInputType {
 	text = 'text',
-	email = 'email',
 	password = 'password',
 	number = 'number',
-	search = 'search',
-	phone = 'tel',
+	email = 'email',
 }
 
 /**
  * Pill Item interface for input component
  */
 export interface BoInputPill {
-	/**
-	 * Unique identifier for the pill
-	 */
-	id: string;
-	/**
-	 * Text to display on the pill
-	 */
-	text: string;
-	/**
-	 * Optional icon to display before pill text
-	 */
-	icon?: Icon;
+	label: string;
+	value: string;
 }
 
 export type BoInputProps = {
