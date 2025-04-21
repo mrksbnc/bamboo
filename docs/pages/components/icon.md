@@ -105,40 +105,12 @@ export interface BoIconProps {
 <bo-icon :icon="Icon.x" color="#FF0000" />
 ```
 
-## Common Icons
+## All Icons
 
 <div class="grid grid-cols-4 gap-4 my-4">
-  <div class="flex flex-col items-center">
-    <bo-icon :icon="Icon.home" />
-    <span class="text-xs mt-1">home</span>
-  </div>
-  <div class="flex flex-col items-center">
-    <bo-icon :icon="Icon.settings" />
-    <span class="text-xs mt-1">settings</span>
-  </div>
-  <div class="flex flex-col items-center">
-    <bo-icon :icon="Icon.user" />
-    <span class="text-xs mt-1">user</span>
-  </div>
-  <div class="flex flex-col items-center">
-    <bo-icon :icon="Icon.search" />
-    <span class="text-xs mt-1">search</span>
-  </div>
-  <div class="flex flex-col items-center">
-    <bo-icon :icon="Icon.bell" />
-    <span class="text-xs mt-1">bell</span>
-  </div>
-  <div class="flex flex-col items-center">
-    <bo-icon :icon="Icon.check" />
-    <span class="text-xs mt-1">check</span>
-  </div>
-  <div class="flex flex-col items-center">
-    <bo-icon :icon="Icon.x" />
-    <span class="text-xs mt-1">x</span>
-  </div>
-  <div class="flex flex-col items-center">
-    <bo-icon :icon="Icon.chevron_down" />
-    <span class="text-xs mt-1">chevron_down</span>
+  <div v-for="(value, key) in Icon" :key="key" class="flex flex-col items-center p-2 border rounded hover:bg-gray-50">
+    <bo-icon :icon="value" />
+    <span class="text-xs mt-1">{{ key }}</span>
   </div>
 </div>
 

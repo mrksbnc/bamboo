@@ -157,11 +157,11 @@ export interface BoBadgeProps {
 <div class="flex gap-4 items-center my-4">
   <bo-badge 
     label="New" 
-    :icon="{ prefix: Icon.star }" 
+    :icon="{ prefix: Icon.bell }" 
   />
   <bo-badge 
     label="Settings" 
-    :icon="{ suffix: Icon.settings }" 
+    :icon="{ suffix: Icon.bell }" 
   />
   <bo-badge 
     label="Profile" 
@@ -241,94 +241,19 @@ export interface BoBadgeProps {
 <div class="flex gap-4 items-center my-4">
   <bo-badge>
     <div class="flex items-center gap-1">
-      <bo-icon :icon="Icon.check" :size="BoSize.small" />
       <span class="text-xs">Verified</span>
+      💁🏻
     </div>
   </bo-badge>
 </div>
 
 ```vue
-<bo-badge>
-  <div class="flex items-center gap-1">
-    <bo-icon :icon="Icon.check" :size="BoSize.small" />
-    <span class="text-xs">Verified</span>
-  </div>
-</bo-badge>
-```
-
-## Usage Examples
-
-### Status Indicator
-
-```vue
-<div class="flex items-center gap-2">
-  <bo-avatar :data="{ label: 'JD' }" />
-  <div>
-    <bo-text value="John Doe" :weight="BoFontWeight.semibold" />
-    <div class="flex items-center gap-1 mt-0.5">
-      <bo-badge
-        :variant="BoBadgeVariant.success"
-        :size="BoSize.extra_small"
-        label="Online"
-      />
+<div class="flex gap-4 items-center my-4">
+  <bo-badge>
+    <div class="flex items-center gap-1">
+      <span class="text-xs">Verified</span>
+      💁🏻
     </div>
-  </div>
-</div>
-```
-
-### Notification Badge
-
-```vue
-<button class="relative">
-  <bo-icon :icon="Icon.bell" />
-  <bo-badge 
-    :shape="BoBadgeShape.circle" 
-    :size="BoSize.extra_small" 
-    :variant="BoBadgeVariant.danger" 
-    class="absolute -top-1 -right-1" 
-  />
-</button>
-```
-
-### Feature Tags
-
-```vue
-<div class="border rounded p-4">
-  <div class="flex items-center justify-between">
-    <bo-text value="Enterprise Plan" :size="BoFontSize.lg" :weight="BoFontWeight.semibold" />
-    <bo-badge
-      :variant="BoBadgeVariant.primary"
-      :type="BoBadgeType.outline"
-      label="Popular"
-    />
-  </div>
-  <div class="mt-4">
-    <div class="flex items-center gap-2 mb-2">
-      <bo-icon :icon="Icon.check" color="green" />
-      <bo-text value="Unlimited users" />
-      <bo-badge
-        :variant="BoBadgeVariant.success"
-        :size="BoSize.extra_small"
-        label="New"
-      />
-    </div>
-    <div class="flex items-center gap-2">
-      <bo-icon :icon="Icon.check" color="green" />
-      <bo-text value="Advanced analytics" />
-    </div>
-  </div>
-</div>
-```
-
-### Item Count
-
-```vue
-<div class="flex items-center gap-2">
-  <bo-text value="Messages" />
-  <bo-badge 
-    :variant="BoBadgeVariant.secondary" 
-    :size="BoSize.small" 
-    label="24" 
-  />
+  </bo-badge>
 </div>
 ```

@@ -4,17 +4,13 @@
 		ref="accordionRef"
 	>
 		<div
-			:class="[
-				'bo-accordion-header text-blue-gray-700 flex cursor-pointer items-center justify-between p-4 transition-colors',
-				disabled ? 'cursor-not-allowed opacity-50' : 'hover:bg-blue-50',
-				className,
-			]"
-			@click="toggleAccordion"
+			tabindex="0"
+			:class="headerClass"
 			:aria-expanded="isOpen"
 			:aria-disabled="disabled"
 			:id="`accordion-header-${id}`"
 			:aria-controls="`accordion-body-${id}`"
-			tabindex="0"
+			@click="toggleAccordion"
 			@keydown.enter="toggleAccordion"
 			@keydown.space="toggleAccordion"
 		>
@@ -22,33 +18,34 @@
 				<bo-icon
 					v-if="prefixIcon !== Icon.none"
 					:icon="prefixIcon"
-					class="bo-accordion-icon"
+					class="bo-accordion__prefix-icon"
 					aria-hidden="true"
 				/>
-				<span class="bo-accordion-title font-medium">{{ title }}</span>
+				<bo-text
+					v-if="title"
+					:value="title"
+					:size="BoFontSize.base"
+					:weight="BoFontWeight.semibold"
+					class="bo-accordion__title"
+				/>
 			</div>
-			<div
-				class="bo-accordion-collapse-icon transition-transform duration-200"
-				:class="{ 'rotate-180': isOpen }"
-			>
+			<div class="bo-accordion__collapse-icon transition-transform duration-200">
 				<bo-icon
-					:icon="customIcon !== Icon.none ? customIcon : Icon.chevron_down"
+					:icon="customIcon"
 					aria-hidden="true"
 				/>
 			</div>
 		</div>
 		<div
 			v-show="isOpen"
-			class="bo-accordion-body overflow-hidden transition-all duration-300"
+			ref="accordionBodyRef"
 			:id="`accordion-body-${id}`"
 			role="region"
 			:aria-labelledby="`accordion-header-${id}`"
-			ref="accordionBodyRef"
+			:class="bodyClasses"
 		>
-			<div class="bo-accordion-content text-blue-gray-500 p-4">
-				<slot>
-					<!-- Default content will go here -->
-				</slot>
+			<div class="bo-accordion__content p-4">
+				<slot name="default"></slot>
 			</div>
 		</div>
 	</div>
@@ -56,9 +53,11 @@
 
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo-icon';
-import { FocusTrapService, IdentityService, KeyboardService } from '@/services';
-import { inject, onBeforeUnmount, onMounted, ref, watch } from 'vue';
-import type { BoAccordionProps } from './bo-accordion';
+import { BoFontSize, BoFontWeight, BoText } from '@/components/bo-text';
+import { FocusTrapService, IdentityService, KeyboardService, TailwindService } from '@/services';
+import { InjectKey } from '@/shared/injection-key';
+import { computed, inject, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import type { AccordionGroup, BoAccordionProps } from './bo-accordion';
 
 const props = withDefaults(defineProps<BoAccordionProps>(), {
 	id: () => IdentityService.instance.generateId(),
@@ -69,42 +68,74 @@ const props = withDefaults(defineProps<BoAccordionProps>(), {
 	className: '',
 });
 
-const emit = defineEmits(['toggle']);
+const emit = defineEmits<{
+	(e: 'toggle', payload: { id: string; open: boolean }): void;
+}>();
 
-// Internal state
+// Injected from parent BoAccordionContainer if present
+const accordionGroup = inject<AccordionGroup | null>(InjectKey.AccordionGroup, null);
+
+const headerClasses: Record<string, string> = {
+	default:
+		/*tw*/ 'bo-accordion__header pointer flex cursor-pointer items-center justify-between p-4 transition-colors',
+	text: /*tw*/ 'text-blue-gray-700 dark:text-white',
+	hover: /*tw*/ 'hover:bg-blue-50 dark:hover:bg-blue-600',
+	background: /*tw*/ 'bg-neutral-50 dark:bg-neutral-800',
+	state: /*tw*/ 'hover:bg-neutral-50 dark:hover:bg-neutral-600',
+	disabled: /*tw*/ 'cursor-not-allowed opacity-50',
+};
+
+const defaultBodyClasses: Record<string, string> = {
+	default: /*tw*/ 'bo-accordion__body overflow-hidden',
+	animation: /*tw*/ 'transition-all duration-300',
+	background: /*tw*/ 'bg-neutral-50 dark:bg-neutral-700',
+};
+
+let focusTrap: { activate: () => void; deactivate: () => void } | null = null;
+
 const isOpen = ref(props.open);
 const accordionRef = ref<HTMLElement | null>(null);
 const accordionBodyRef = ref<HTMLElement | null>(null);
 
-// Define the type for the injected accordion group
-type AccordionGroup = {
-	openItems: string[];
-	toggle: (id: string) => void;
-	registerItem: (id: string, initialOpen: boolean) => void;
-};
+const headerClass = computed<string>(() => {
+	return TailwindService.instance.merge(
+		headerClasses.default,
+		headerClasses.text,
+		headerClasses.hover,
+		headerClasses.background,
+		headerClasses.state,
+		props.disabled ? headerClasses.disabled : '',
+	);
+});
 
-// Injected from parent BoAccordionContainer if present
-const accordionGroup = inject<AccordionGroup | null>('accordionGroup', null);
+const bodyClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		defaultBodyClasses.default,
+		defaultBodyClasses.animation,
+		defaultBodyClasses.background,
+	);
+});
 
-// Focus trap setup
-let focusTrap: { activate: () => void; deactivate: () => void } | null = null;
+const customIcon = computed<Icon>(() => {
+	if (props.customToggleIcon && props.customToggleIcon !== Icon.none) {
+		return props.customToggleIcon;
+	}
 
-// Handle toggle
-const toggleAccordion = () => {
+	return isOpen.value ? Icon.chevron_up : Icon.chevron_down;
+});
+
+function toggleAccordion(): void {
 	if (props.disabled) return;
 
 	if (accordionGroup) {
-		// If part of a group, let the parent component handle the state
 		accordionGroup.toggle(props.id);
 	} else {
-		// Standalone accordion
 		isOpen.value = !isOpen.value;
 		emit('toggle', { id: props.id, open: isOpen.value });
 	}
-};
+}
 
-// Setup keyboard escape handler when accordion is open
-const setupKeyboardHandlers = () => {
+function setupKeyboardHandlers() {
 	if (isOpen.value) {
 		KeyboardService.instance.useEscapeKey((e) => {
 			if (isOpen.value && !props.disabled) {
@@ -112,10 +143,9 @@ const setupKeyboardHandlers = () => {
 			}
 		});
 	}
-};
+}
 
-// Set up focus trap when accordion is open
-const setupFocusTrap = () => {
+function setupFocusTrap(): void {
 	if (isOpen.value && accordionBodyRef.value) {
 		focusTrap = FocusTrapService.instance.useFocusTrap(accordionBodyRef.value, {
 			handleEscapeKey: true,
@@ -131,35 +161,30 @@ const setupFocusTrap = () => {
 		focusTrap.deactivate();
 		focusTrap = null;
 	}
-};
+}
 
-// Watch for changes in open state
 watch(
 	() => isOpen.value,
-	(newVal) => {
-		if (newVal) {
-			// Set up focus trap and keyboard handlers when opened
-			setTimeout(() => {
+	(val) => {
+		if (val) {
+			nextTick(() => {
 				setupFocusTrap();
 				setupKeyboardHandlers();
-			}, 50); // Small delay to ensure DOM is updated
+			});
 		} else if (focusTrap) {
-			// Deactivate focus trap when closed
 			focusTrap.deactivate();
 			focusTrap = null;
 		}
 	},
 );
 
-// Watch for external changes
 watch(
 	() => props.open,
-	(newVal) => {
-		isOpen.value = newVal;
+	(val) => {
+		isOpen.value = val;
 	},
 );
 
-// When part of a group, respond to parent state changes
 watch(
 	() => accordionGroup?.openItems,
 	(openItems) => {
@@ -170,19 +195,18 @@ watch(
 	{ deep: true },
 );
 
-// Register with parent on mount if part of a group
 onMounted(() => {
 	if (accordionGroup) {
 		accordionGroup.registerItem(props.id, props.open);
 	}
 
-	// Initialize if open by default
 	if (isOpen.value) {
-		setTimeout(setupFocusTrap, 50);
+		nextTick(() => {
+			setupFocusTrap;
+		});
 	}
 });
 
-// Clean up on unmount
 onBeforeUnmount(() => {
 	if (focusTrap) {
 		focusTrap.deactivate();

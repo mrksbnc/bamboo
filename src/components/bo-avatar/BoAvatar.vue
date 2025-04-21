@@ -1,15 +1,8 @@
 <template>
 	<div
 		:id="id"
-		:class="[
-			'bo-avatar',
-			avatarClasses,
-			cssClass,
-			{
-				'cursor-pointer': clickable && !disabled,
-				'cursor-not-allowed opacity-60': disabled,
-			},
-		]"
+		:style="containerStyle"
+		:class="avatarContainerClasses"
 		:data-testid="`bo-avatar-${id}`"
 	>
 		<div
@@ -20,65 +13,36 @@
 			<img
 				:src="data.src"
 				:alt="data.alt"
-				:class="[
-					'bo-avatar-img',
-					avatarShapeClasses[shape],
-					{
-						'object-cover': true,
-					},
-				]"
-				:data-testid="`bo-avatar-img-${id}`"
+				class="'bo-avatar__image object-cover"
+				:data-testid="`bo-avatar__image-${id}`"
 				@error="handleImageError"
 			/>
 		</div>
 		<div
 			v-else
-			class="bo-avatar-initials"
-			:class="[
-				avatarShapeClasses[shape],
-				{
-					'flex items-center justify-center': true,
-				},
-			]"
-			:data-testid="`bo-avatar-initials-${id}`"
+			:class="['bo-avatar__initials flex items-center justify-center', textColorClass]"
+			:data-testid="`bo-avatar__initials-${id}`"
 		>
 			<bo-text
 				:value="label"
-				:size="BoFontSize.xl"
-				:weight="BoFontWeight.bold"
-				:color="BoTextColor.white"
-				:data-testid="`bo-avatar-label-${id}`"
+				:size="labelSize"
+				:color="BoTextColor.current"
+				:weight="BoFontWeight.medium"
+				:data-testid="`bo-avatar__label-${id}`"
 			/>
 		</div>
-
-		<div
-			v-if="withIndicator"
-			class="bo-avatar-indicator"
-			:class="[
-				indicatorPositionClasses[indicator.position],
-				indicatorSizeClasses[size],
-				indicatorStatusClasses[indicator.status],
-			]"
-			:data-testid="`bo-avatar-indicator-${id}`"
-		/>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { BoFontSize, BoFontWeight, BoText } from '@/components/bo-text';
-import { StringService, TailwindService } from '@/services';
+import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo-text';
+import { IdentityService, StringService, TailwindService } from '@/services';
 import { BoSize } from '@/shared';
 import { computed, ref, toRefs, type StyleValue } from 'vue';
-import {
-	BoAvatarIndicatorPosition,
-	BoAvatarIndicatorStatus,
-	BoAvatarShape,
-	BoAvatarType,
-	BoAvatarVariant,
-	type BoAvatarProps,
-} from './bo-avatar';
+import { BoAvatarShape, BoAvatarType, BoAvatarVariant, type BoAvatarProps } from './bo-avatar';
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
+	id: () => IdentityService.instance.generateId(),
 	withDefaultImage: false,
 	size: () => BoSize.default,
 	type: () => BoAvatarType.initials,
@@ -98,7 +62,8 @@ const defaultAvatarSrc = new URL('@/assets/img/avatar.png', import.meta.url).hre
 const imgError = ref(false);
 
 const containerClasses = {
-	default: /*tw*/ 'bo-avatar relative inline-flex overflow-hidden',
+	default:
+		/*tw*/ 'bo-avatar relative flex items-center justify-center overflow-hidden object-cover',
 };
 
 const cursorClasses = {
@@ -121,30 +86,6 @@ const avatarShapeClasses = {
 	[BoAvatarShape.outline_circle]: /*tw*/ 'rounded-full border',
 	[BoAvatarShape.outline_rounded]: /*tw*/ 'rounded-md border',
 	[BoAvatarShape.outline_flat]: /*tw*/ 'rounded-none border',
-};
-
-const indicatorStatusClasses = {
-	[BoAvatarIndicatorStatus.online]: /*tw*/ 'bg-green-500 ring-2 ring-white dark:ring-gray-800',
-	[BoAvatarIndicatorStatus.offline]: /*tw*/ 'bg-gray-400 ring-2 ring-white dark:ring-gray-800',
-	[BoAvatarIndicatorStatus.busy]: /*tw*/ 'bg-red-500 ring-2 ring-white dark:ring-gray-800',
-	[BoAvatarIndicatorStatus.away]: /*tw*/ 'bg-yellow-500 ring-2 ring-white dark:ring-gray-800',
-	[BoAvatarIndicatorStatus.none]: '',
-};
-
-const indicatorPositionClasses = {
-	[BoAvatarIndicatorPosition.topLeft]: /*tw*/ 'top-0 left-0 -translate-x-1/4 -translate-y-1/4',
-	[BoAvatarIndicatorPosition.topRight]: /*tw*/ 'top-0 right-0 translate-x-1/4 -translate-y-1/4',
-	[BoAvatarIndicatorPosition.bottomLeft]: /*tw*/ 'bottom-0 left-0 -translate-x-1/4 translate-y-1/4',
-	[BoAvatarIndicatorPosition.bottomRight]:
-		/*tw*/ 'bottom-0 right-0 translate-x-1/4 translate-y-1/4',
-};
-
-const indicatorSizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'w-2 h-2',
-	[BoSize.small]: /*tw*/ 'w-2.5 h-2.5',
-	[BoSize.default]: /*tw*/ 'w-3 h-3',
-	[BoSize.large]: /*tw*/ 'w-4 h-4',
-	[BoSize.extra_large]: /*tw*/ 'w-5 h-5',
 };
 
 const variantColors = {
@@ -239,20 +180,6 @@ const textColorClass = computed<string>(() => {
 
 const withIndicator = computed<boolean>(() => {
 	return !!indicator.value;
-});
-
-const indicatorClasses = computed<string>(() => {
-	if (indicator.value?.status === BoAvatarIndicatorStatus.none) {
-		return '';
-	}
-
-	return TailwindService.instance.merge(
-		'absolute rounded-full shadow-sm',
-		indicatorSizeClasses[size.value],
-		indicatorStatusClasses[indicator.value?.status ?? BoAvatarIndicatorStatus.none],
-		indicatorPositionClasses[indicator.value?.position ?? BoAvatarIndicatorPosition.bottomRight],
-		'transition-all duration-200 ease-in-out',
-	);
 });
 
 const cursorClassConstruct = computed<string>(() => {

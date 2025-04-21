@@ -55,6 +55,7 @@ export interface BoAvatarIndicator {
 }
 
 export interface BoAvatarProps {
+	id?: string;
 	data: BoAvatarData;
 	type?: BoAvatarType;
 	shape?: BoAvatarShape;

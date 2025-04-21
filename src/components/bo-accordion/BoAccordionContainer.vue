@@ -5,60 +5,47 @@
 </template>
 
 <script setup lang="ts">
+import { InjectKey } from '@/shared/injection-key';
 import { provide, reactive, ref } from 'vue';
 import type { BoAccordionContainerProps } from './bo-accordion';
 
 const props = withDefaults(defineProps<BoAccordionContainerProps>(), {
+	defaultOpen: '',
 	allowMultiple: false,
 	alwaysOpen: false,
-	defaultOpen: '',
 });
 
-// Track which accordion items are open
 const openItems = ref<string[]>([]);
 
-// Register accordion items
 const registeredItems = ref<Set<string>>(new Set());
 
-// Register a new accordion item
-const registerItem = (id: string, initialOpen: boolean) => {
+function registerItem(id: string, initialOpen: boolean) {
+	if (registeredItems.value.has(id)) {
+		return;
+	}
+
 	registeredItems.value.add(id);
 
-	// Set initial state
 	if (initialOpen || id === props.defaultOpen) {
-		if (props.allowMultiple) {
-			openItems.value.push(id);
-		} else {
-			openItems.value = [id];
-		}
+		props.allowMultiple ? openItems.value.push(id) : (openItems.value = [id]);
 	}
-};
+}
 
-// Toggle an accordion item
-const toggle = (id: string) => {
-	const isOpen = openItems.value.includes(id);
-
-	if (isOpen) {
-		// Check if we should keep at least one open
+function toggle(id: string): void {
+	if (openItems.value.includes(id)) {
 		if (props.alwaysOpen && openItems.value.length === 1) {
-			return; // Don't close if it's the only open item
+			return;
 		}
 
-		// Close the item
 		openItems.value = openItems.value.filter((item) => item !== id);
-	} else {
-		// Open the item
-		if (props.allowMultiple) {
-			openItems.value.push(id);
-		} else {
-			openItems.value = [id];
-		}
+		return;
 	}
-};
 
-// Provide the accordion group context to child components
+	props.allowMultiple ? openItems.value.push(id) : (openItems.value = [id]);
+}
+
 provide(
-	'accordionGroup',
+	InjectKey.AccordionGroup,
 	reactive({
 		openItems,
 		toggle,

@@ -22,3 +22,5 @@ export interface StyleConstruct {
  * @template T The type that can be nullable
  */
 export type Nullable<T> = T | null;
+
+export * from './component';

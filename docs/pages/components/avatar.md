@@ -1,6 +1,7 @@
 <script setup>
 import { BoAvatar, BoAvatarShape, BoAvatarType, BoAvatarVariant, BoAvatarIndicatorStatus, BoAvatarIndicatorPosition } from '@/components/bo-avatar';
 import { BoSize } from '@/shared';
+import { BoIcon, Icon } from '@/components/bo-icon';
 </script>
 
 # Avatar
@@ -24,8 +25,44 @@ import { BoAvatar } from '@mrksbnc/bamboo';
 ```
 
 <hr />
-<div class="flex gap-4 items-center my-4">
-  <bo-avatar :data="{ label: 'JD' }" />
+
+<div class="my-4 flex items-center gap-4">
+	<div class="my-4 flex items-center gap-4">
+		<bo-avatar :data="{ label: 'JD' }" />
+		<bo-avatar
+			:data="{ label: 'JD' }"
+			:shape="BoAvatarShape.circle"
+		/>
+		<bo-avatar
+			:shape="BoAvatarShape.flat"
+			:data="{ label: 'JD' }"
+		/>
+	</div>
+	<div class="my-4 flex items-center gap-4">
+		<bo-avatar
+			:type="BoAvatarType.image"
+			:data="{
+				src: 'https://i.pravatar.cc/300',
+				alt: 'Avatar image',
+			}"
+		/>
+		<bo-avatar
+			:type="BoAvatarType.image"
+			:shape="BoAvatarShape.circle"
+			:data="{
+				src: 'https://i.pravatar.cc/300',
+				alt: 'Avatar image',
+			}"
+		/>
+		<bo-avatar
+			:type="BoAvatarType.image"
+			:shape="BoAvatarShape.flat"
+			:data="{
+				src: 'https://i.pravatar.cc/300',
+				alt: 'Avatar image',
+			}"
+		/>
+	</div>
 </div>
 
 ## Props
@@ -111,8 +148,6 @@ export interface BoAvatarProps {
 	indicator?: BoAvatarIndicator;
 }
 ```
-
-## Types
 
 ### Initials Avatar
 
@@ -202,212 +237,4 @@ export interface BoAvatarProps {
 <bo-avatar :variant="BoAvatarVariant.warning" :data="{ label: 'JD' }" />
 <bo-avatar :variant="BoAvatarVariant.success" :data="{ label: 'JD' }" />
 <bo-avatar :variant="BoAvatarVariant.dark" :data="{ label: 'JD' }" />
-```
-
-## With Status Indicator
-
-<div class="flex gap-4 items-center my-4">
-  <bo-avatar 
-    :data="{ label: 'JD' }" 
-    :indicator="{ 
-      status: BoAvatarIndicatorStatus.online,
-      position: BoAvatarIndicatorPosition.bottomRight
-    }" 
-  />
-  <bo-avatar 
-    :data="{ label: 'JD' }" 
-    :indicator="{ 
-      status: BoAvatarIndicatorStatus.offline,
-      position: BoAvatarIndicatorPosition.bottomRight
-    }" 
-  />
-  <bo-avatar 
-    :data="{ label: 'JD' }" 
-    :indicator="{ 
-      status: BoAvatarIndicatorStatus.busy,
-      position: BoAvatarIndicatorPosition.bottomRight
-    }" 
-  />
-  <bo-avatar 
-    :data="{ label: 'JD' }" 
-    :indicator="{ 
-      status: BoAvatarIndicatorStatus.away,
-      position: BoAvatarIndicatorPosition.bottomRight
-    }" 
-  />
-</div>
-
-```vue
-<bo-avatar
-	:data="{ label: 'JD' }"
-	:indicator="{
-		status: BoAvatarIndicatorStatus.online,
-		position: BoAvatarIndicatorPosition.bottomRight,
-	}"
-/>
-<bo-avatar
-	:data="{ label: 'JD' }"
-	:indicator="{
-		status: BoAvatarIndicatorStatus.offline,
-		position: BoAvatarIndicatorPosition.bottomRight,
-	}"
-/>
-<bo-avatar
-	:data="{ label: 'JD' }"
-	:indicator="{
-		status: BoAvatarIndicatorStatus.busy,
-		position: BoAvatarIndicatorPosition.bottomRight,
-	}"
-/>
-<bo-avatar
-	:data="{ label: 'JD' }"
-	:indicator="{
-		status: BoAvatarIndicatorStatus.away,
-		position: BoAvatarIndicatorPosition.bottomRight,
-	}"
-/>
-```
-
-## Indicator Positions
-
-<div class="flex gap-4 items-center my-4">
-  <bo-avatar 
-    :data="{ label: 'JD' }" 
-    :indicator="{ 
-      status: BoAvatarIndicatorStatus.online,
-      position: BoAvatarIndicatorPosition.topLeft
-    }" 
-  />
-  <bo-avatar 
-    :data="{ label: 'JD' }" 
-    :indicator="{ 
-      status: BoAvatarIndicatorStatus.online,
-      position: BoAvatarIndicatorPosition.topRight
-    }" 
-  />
-  <bo-avatar 
-    :data="{ label: 'JD' }" 
-    :indicator="{ 
-      status: BoAvatarIndicatorStatus.online,
-      position: BoAvatarIndicatorPosition.bottomLeft
-    }" 
-  />
-  <bo-avatar 
-    :data="{ label: 'JD' }" 
-    :indicator="{ 
-      status: BoAvatarIndicatorStatus.online,
-      position: BoAvatarIndicatorPosition.bottomRight
-    }" 
-  />
-</div>
-
-```vue
-<bo-avatar
-	:data="{ label: 'JD' }"
-	:indicator="{
-		status: BoAvatarIndicatorStatus.online,
-		position: BoAvatarIndicatorPosition.topLeft,
-	}"
-/>
-<bo-avatar
-	:data="{ label: 'JD' }"
-	:indicator="{
-		status: BoAvatarIndicatorStatus.online,
-		position: BoAvatarIndicatorPosition.topRight,
-	}"
-/>
-<bo-avatar
-	:data="{ label: 'JD' }"
-	:indicator="{
-		status: BoAvatarIndicatorStatus.online,
-		position: BoAvatarIndicatorPosition.bottomLeft,
-	}"
-/>
-<bo-avatar
-	:data="{ label: 'JD' }"
-	:indicator="{
-		status: BoAvatarIndicatorStatus.online,
-		position: BoAvatarIndicatorPosition.bottomRight,
-	}"
-/>
-```
-
-## Custom Colors
-
-```vue
-<bo-avatar
-	:data="{ label: 'JD' }"
-	:color="{
-		bgColorHex: '#8B5CF6',
-		colorHex: '#FFFFFF',
-	}"
-/>
-```
-
-## Usage Examples
-
-### User Profile
-
-```vue
-<template>
-	<div class="flex items-center gap-3">
-		<bo-avatar
-			:data="userData"
-			:indicator="userStatus"
-			:size="BoSize.large"
-		/>
-		<div>
-			<bo-text
-				value="John Doe"
-				:weight="BoFontWeight.semibold"
-			/>
-			<bo-text
-				value="john.doe@example.com"
-				:size="BoFontSize.sm"
-			/>
-		</div>
-	</div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { BoAvatar, BoAvatarIndicatorStatus, BoAvatarIndicatorPosition } from '@mrksbnc/bamboo';
-import { BoText, BoFontWeight, BoFontSize } from '@mrksbnc/bamboo';
-import { BoSize } from '@mrksbnc/bamboo';
-
-const userData = ref({
-	label: 'JD',
-	alt: 'John Doe',
-	src: 'https://i.pravatar.cc/300',
-});
-
-const userStatus = ref({
-	status: BoAvatarIndicatorStatus.online,
-	position: BoAvatarIndicatorPosition.bottomRight,
-});
-</script>
-```
-
-### Avatar Group
-
-```vue
-<template>
-	<div class="flex -space-x-2">
-		<bo-avatar
-			v-for="(user, index) in users"
-			:key="index"
-			:data="user"
-			:size="BoSize.small"
-			:shape="BoAvatarShape.circle"
-		/>
-	</div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { BoAvatar, BoAvatarShape } from '@mrksbnc/bamboo';
-import { BoSize } from '@mrksbnc/bamboo';
-
-const users = ref([{ label: 'JD' }, { label: 'AB' }, { label: 'CD' }, { label: 'EF' }]);
-</script>
 ```

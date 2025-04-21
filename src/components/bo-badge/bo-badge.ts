@@ -23,7 +23,8 @@ export enum BoBadgeShape {
 	circle = 'circle',
 }
 
-export type BoBadgeProps = {
+export interface BoBadgeProps {
+	id?: string;
 	label?: string;
 	type?: BoBadgeType;
 	size?: BoSize;
@@ -33,4 +34,4 @@ export type BoBadgeProps = {
 		prefix?: Icon;
 		suffix?: Icon;
 	};
-};
+}

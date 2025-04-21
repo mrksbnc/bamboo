@@ -2,11 +2,16 @@ import type { Icon } from '@/components/bo-icon';
 
 export type BoAccordionProps = {
 	/**
+	 * Unique ID for the accordion, used for accessibility and testing
+	 */
+	id?: string;
+	/**
 	 * The title of the accordion item
 	 */
 	title?: string;
 	/**
 	 * Whether the accordion is open by default
+	 * @default false
 	 */
 	open?: boolean;
 	/**
@@ -14,21 +19,14 @@ export type BoAccordionProps = {
 	 */
 	disabled?: boolean;
 	/**
-	 * Icon to display before the title (prefix)
+	 * Prefix icon for the accordion
 	 */
 	prefixIcon?: Icon;
 	/**
-	 * Custom icon to display for the expand/collapse action
+	 * Custom icon for the expand/collapse indicator
+	 * @default Icon.chevron_down
 	 */
-	customIcon?: Icon;
-	/**
-	 * Unique ID for the accordion, used for accessibility and testing
-	 */
-	id?: string;
-	/**
-	 * Custom class names for styling
-	 */
-	className?: string;
+	customToggleIcon?: Icon;
 };
 
 /**
@@ -48,3 +46,9 @@ export type BoAccordionContainerProps = {
 	 */
 	defaultOpen?: string;
 };
+
+export interface AccordionGroup {
+	openItems: string[];
+	toggle: (id: string) => void;
+	registerItem: (id: string, initialOpen: boolean) => void;
+}

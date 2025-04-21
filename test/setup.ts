@@ -1,39 +1,64 @@
-import { config } from '@vue/test-utils';
-import { vi } from 'vitest';
+import { mount } from '@vue/test-utils';
+import { expect, vi } from 'vitest';
+import type { Component } from 'vue';
 
-// Mock ResizeObserver
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-	observe: vi.fn(),
-	unobserve: vi.fn(),
-	disconnect: vi.fn(),
-}));
+global.ResizeObserver = class ResizeObserver {
+	observe() {}
+	unobserve() {}
+	disconnect() {}
+};
 
-// Mock IntersectionObserver
-global.IntersectionObserver = vi.fn().mockImplementation(() => ({
-	observe: vi.fn(),
-	unobserve: vi.fn(),
-	disconnect: vi.fn(),
-}));
+global.IntersectionObserver = class IntersectionObserver {
+	constructor() {}
+	observe() {}
+	unobserve() {}
+	disconnect() {}
+	root: null;
+	rootMargin: '';
+	thresholds: [];
+	takeRecords(): IntersectionObserverEntry[] {
+		return [];
+	}
+};
 
-// Global mocks
-config.global.mocks = {
-	$t: (key: string) => key,
-	$i18n: {
-		locale: 'en',
+Object.defineProperty(window, 'matchMedia', {
+	writable: true,
+	value: vi.fn().mockImplementation((query) => ({
+		matches: false,
+		media: query,
+		onchange: null,
+		addListener: vi.fn(),
+		removeListener: vi.fn(),
+		addEventListener: vi.fn(),
+		removeEventListener: vi.fn(),
+		dispatchEvent: vi.fn(),
+	})),
+});
+
+export const mountComponent = (component: Component, options: any = {}) => {
+	return mount(component, {
+		global: {
+			...options.global,
+		},
+		...options,
+	});
+};
+
+export const waitFor = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+expect.extend({
+	toBeWithinRange(received: number, floor: number, ceiling: number) {
+		const pass = received >= floor && received <= ceiling;
+		if (pass) {
+			return {
+				message: () => `expected ${received} not to be within range ${floor} - ${ceiling}`,
+				pass: true,
+			};
+		} else {
+			return {
+				message: () => `expected ${received} to be within range ${floor} - ${ceiling}`,
+				pass: false,
+			};
+		}
 	},
-};
-
-// Global components
-config.global.components = {
-	'router-link': {
-		template: '<a :href="to"><slot /></a>',
-		props: ['to'],
-	},
-};
-
-// Global stubs
-config.global.stubs = {
-	'bo-icon': true,
-	transition: true,
-	'transition-group': true,
-};
+});

@@ -4,6 +4,10 @@
 		:data-dialog-backdrop-close="closeOnBackdropClick"
 		class="bg-opacity-60 pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black opacity-0 backdrop-blur-sm transition-opacity duration-300"
 		:data-testid="`bo-modal-${id}`"
+		role="dialog"
+		:aria-modal="isOpen"
+		:aria-labelledby="`bo-modal-title-${id}`"
+		:aria-describedby="`bo-modal-content-${id}`"
 	>
 		<div
 			:data-dialog="id"
@@ -12,6 +16,7 @@
 			:data-testid="`bo-modal-container-${id}`"
 		>
 			<div
+				:id="`bo-modal-title-${id}`"
 				class="flex shrink-0 items-center p-4 pb-4 text-xl font-medium text-slate-800"
 				:data-testid="`bo-modal-header-${id}`"
 			>
@@ -20,6 +25,7 @@
 				</slot>
 			</div>
 			<div
+				:id="`bo-modal-content-${id}`"
 				class="relative border-t border-slate-200 p-4 py-4 leading-normal font-light text-slate-600"
 				:data-testid="`bo-modal-content-${id}`"
 			>

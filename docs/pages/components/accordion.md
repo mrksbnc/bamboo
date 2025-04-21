@@ -1,3 +1,9 @@
+<script setup>
+import { Icon } from '@/components/bo-icon';
+import { BoBadge } from '@/components/bo-badge';
+import { BoAccordion, BoAccordionContainer } from '@/components/bo-accordion';
+</script>
+
 # Accordion
 
 The Accordion component is a collapsible content panel that helps organize and present information in expandable sections. This pattern is especially useful when you want to provide users with the ability to show and hide related content, saving space and reducing visual clutter.
@@ -14,91 +20,14 @@ Use the `BoAccordion` component for a simple expandable section:
 </template>
 ```
 
-## Multiple Accordions
-
-For multiple accordion items, wrap them in a `BoAccordionContainer`:
-
-```vue
-<template>
-	<bo-accordion-container>
-		<bo-accordion title="What is Bamboo?">
-			Bamboo is a UI component library built with Vue 3 and Tailwind CSS.
-		</bo-accordion>
-		<bo-accordion title="How do I install it?">
-			You can install Bamboo using npm or yarn.
-		</bo-accordion>
-		<bo-accordion title="Is it customizable?">
-			Yes, every component is highly customizable using props and slots.
-		</bo-accordion>
-	</bo-accordion-container>
-</template>
-```
-
-## Multiple Open Items
-
-By default, only one accordion item can be open at a time. To allow multiple open items, use the `allow-multiple` prop:
-
-```vue
-<template>
-	<bo-accordion-container :allow-multiple="true">
-		<bo-accordion title="Section 1">Content 1</bo-accordion>
-		<bo-accordion title="Section 2">Content 2</bo-accordion>
-		<bo-accordion title="Section 3">Content 3</bo-accordion>
-	</bo-accordion-container>
-</template>
-```
-
-## Always Keep One Open
-
-To ensure at least one accordion is always open, use the `always-open` prop:
-
-```vue
-<template>
-	<bo-accordion-container :always-open="true">
-		<bo-accordion
-			title="Section 1"
-			:open="true"
-			>Content 1</bo-accordion
-		>
-		<bo-accordion title="Section 2">Content 2</bo-accordion>
-	</bo-accordion-container>
-</template>
-```
-
-## Custom Icons
-
-You can customize both the prefix icon (before the title) and the expand/collapse icon:
-
-```vue
-<template>
-	<bo-accordion
-		title="Section with Custom Icons"
-		:prefix-icon="Icon.info"
-		:custom-icon="Icon.arrow_down"
-	>
-		Content with custom icons
-	</bo-accordion>
-</template>
-
-<script setup>
-import { Icon } from '@/components/bo-icon';
-</script>
-```
-
-## Disabled Accordion
-
-You can disable an accordion to prevent it from being toggled:
-
-```vue
-<template>
-	<bo-accordion
-		title="Disabled Section"
-		:disabled="true"
-	>
-		This content cannot be accessed
-	</bo-accordion>
-</template>
-```
+<bo-accordion title="Frequently Asked Questions">
+	<template #default>
+		<div class="flex flex-col items-center gap-2">
+			<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue.</p>
+			<p>The answers to all your questions can be found here.</p>
+		</div>
+	</template>
+</bo-accordion>
 
 ## API Reference
 
@@ -128,20 +57,128 @@ You can disable an accordion to prevent it from being toggled:
 | -------- | ------------------------------- | ---------------------------------------------- |
 | `toggle` | `{ id: string, open: boolean }` | Emitted when the accordion is opened or closed |
 
-## Accessibility
+## Disabled Accordion
 
-The accordion component follows accessibility best practices:
+You can disable an accordion to prevent it from being toggled:
 
-- Uses appropriate ARIA attributes (`aria-expanded`, `aria-controls`, etc.)
-- Supports keyboard navigation
-- Provides visual indication of the current state
-- Labels interactive elements appropriately
+<bo-accordion title="Disabled Section" :disabled="true">This content cannot be accessed</bo-accordion>
 
-## Best Practices
+```vue
+<template>
+	<bo-accordion
+		title="Disabled Section"
+		:disabled="true"
+	>
+		This content cannot be accessed
+	</bo-accordion>
+</template>
+```
 
-- Use accordions to organize related content into manageable sections
-- Keep accordion titles short, clear, and descriptive
-- Consider starting with the most important accordion section open by default
-- Avoid nesting accordions too deeply
-- Use accordions for content that's supplementary, not for critical information
-- Test with keyboard navigation to ensure accessibility
+## Multiple Accordions
+
+For multiple accordion items, wrap them in a `BoAccordionContainer`:
+
+<bo-accordion-container>
+	<bo-accordion title="What is Bamboo?">
+		Bamboo is a UI component library built with Vue 3 and Tailwind CSS.
+	</bo-accordion>
+	<bo-accordion title="How do I install it?">
+		You can install Bamboo using npm or yarn.
+	</bo-accordion>
+	<bo-accordion title="Is it customizable?">
+		Yes, every component is highly customizable using props and slots.
+	</bo-accordion>
+</bo-accordion-container>
+
+```vue
+<template>
+	<bo-accordion-container>
+		<bo-accordion title="What is Bamboo?">
+			Bamboo is a UI component library built with Vue 3 and Tailwind CSS.
+		</bo-accordion>
+		<bo-accordion title="How do I install it?">
+			You can install Bamboo using npm or yarn.
+		</bo-accordion>
+		<bo-accordion title="Is it customizable?">
+			Yes, every component is highly customizable using props and slots.
+		</bo-accordion>
+	</bo-accordion-container>
+</template>
+```
+
+## Multiple Open Items
+
+By default, only one accordion item can be open at a time. To allow multiple open items, use the `allow-multiple` prop:
+
+<bo-accordion-container :allow-multiple="true">
+	<bo-accordion title="Section 1">Content 1</bo-accordion>
+	<bo-accordion title="Section 2">Content 2</bo-accordion>
+	<bo-accordion title="Section 3">Content 3</bo-accordion>
+</bo-accordion-container>
+
+```vue
+<template>
+	<bo-accordion-container :allow-multiple="true">
+		<bo-accordion title="Section 1">Content 1</bo-accordion>
+		<bo-accordion title="Section 2">Content 2</bo-accordion>
+		<bo-accordion title="Section 3">Content 3</bo-accordion>
+	</bo-accordion-container>
+</template>
+```
+
+## Always Keep One Open
+
+To ensure at least one accordion is always open, use the `always-open` prop:
+
+<bo-accordion-container :always-open="true">
+	<bo-accordion
+		title="Section 1"
+		:open="true"
+	>
+		Content 1
+	</bo-accordion>
+	<bo-accordion title="Section 2">Content 2</bo-accordion>
+</bo-accordion-container>
+
+```vue
+<template>
+	<bo-accordion-container :always-open="true">
+		<bo-accordion
+			title="Section 1"
+			:open="true"
+		>
+			Content 1
+		</bo-accordion>
+		<bo-accordion title="Section 2">Content 2</bo-accordion>
+	</bo-accordion-container>
+</template>
+```
+
+## Prefix Icon
+
+You can add a prefix icon to the accordion header:
+
+<bo-accordion title="Section 1" prefix-icon="info">Content 1</bo-accordion>
+
+```vue
+<template>
+	<bo-accordion
+		title="Section with Prefix Icon"
+		prefix-icon="info"
+	>
+		Content
+	</bo-accordion>
+</template>
+```
+
+## Custom toggle icon
+
+You can customize the expand/collapse icon:
+
+<bo-accordion title="Section with Custom Icons" custom-toggle-icon="x">Content with custom icons</bo-accordion>
+
+```vue
+<bo-accordion title="Section with Custom Icons" custom-toggle-icon="x">
+	Content with custom icons
+</bo-accordion>
+```

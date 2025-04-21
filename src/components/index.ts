@@ -18,3 +18,4 @@ export * from '@/components/bo-table';
 export * from '@/components/bo-text';
 export * from '@/components/bo-textarea';
 export * from '@/components/bo-timeline';
+export * from '@/components/bo-toast';
