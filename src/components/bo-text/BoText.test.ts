@@ -14,7 +14,7 @@ describe('BoText', () => {
 	it('renders correctly with default props', () => {
 		const wrapper = mount(BoText, {
 			props: {
-				text: 'Hello World',
+				value: 'Hello World',
 			},
 		});
 
@@ -26,7 +26,7 @@ describe('BoText', () => {
 	it('applies different font sizes correctly', async () => {
 		const wrapper = mount(BoText, {
 			props: {
-				text: 'Hello World',
+				value: 'Hello World',
 				size: BoFontSize.base,
 			},
 		});
@@ -52,7 +52,7 @@ describe('BoText', () => {
 	it('applies different font weights correctly', async () => {
 		const wrapper = mount(BoText, {
 			props: {
-				text: 'Hello World',
+				value: 'Hello World',
 				weight: BoFontWeight.regular,
 			},
 		});
@@ -75,7 +75,7 @@ describe('BoText', () => {
 	it('applies different font families correctly', async () => {
 		const wrapper = mount(BoText, {
 			props: {
-				text: 'Hello World',
+				value: 'Hello World',
 				fontFamily: BoFontFamily.sans,
 			},
 		});
@@ -92,7 +92,7 @@ describe('BoText', () => {
 	it('applies different text colors correctly', async () => {
 		const wrapper = mount(BoText, {
 			props: {
-				text: 'Hello World',
+				value: 'Hello World',
 				color: BoTextColor.current,
 			},
 		});
@@ -121,7 +121,7 @@ describe('BoText', () => {
 	it('applies custom color when provided', () => {
 		const wrapper = mount(BoText, {
 			props: {
-				text: 'Hello World',
+				value: 'Hello World',
 				customColor: '#ff0000',
 			},
 		});
@@ -133,7 +133,7 @@ describe('BoText', () => {
 	it('applies different text alignments correctly', async () => {
 		const wrapper = mount(BoText, {
 			props: {
-				text: 'Hello World',
+				value: 'Hello World',
 				textAlign: BoTextAlign.justify,
 			},
 		});
@@ -153,7 +153,7 @@ describe('BoText', () => {
 	it('applies different white space styles correctly', async () => {
 		const wrapper = mount(BoText, {
 			props: {
-				text: 'Hello World',
+				value: 'Hello World',
 				whiteSpace: BoTextWhiteSpace.normal,
 			},
 		});
@@ -179,7 +179,7 @@ describe('BoText', () => {
 	it('applies clickable cursor style when clickable is true', async () => {
 		const wrapper = mount(BoText, {
 			props: {
-				text: 'Hello World',
+				value: 'Hello World',
 				clickable: false,
 			},
 		});
@@ -193,7 +193,7 @@ describe('BoText', () => {
 	it('applies selectable state correctly', async () => {
 		const wrapper = mount(BoText, {
 			props: {
-				text: 'Hello World',
+				value: 'Hello World',
 				selectable: false,
 			},
 		});
@@ -207,7 +207,7 @@ describe('BoText', () => {
 	it('applies custom CSS class when provided', () => {
 		const wrapper = mount(BoText, {
 			props: {
-				text: 'Hello World',
+				value: 'Hello World',
 				cssClass: 'custom-class',
 			},
 		});

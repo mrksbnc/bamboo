@@ -16,31 +16,28 @@
 			:style="computedStyle"
 			role="document"
 		>
-			<!-- Header -->
 			<div
 				class="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-700"
 			>
-				<div class="flex flex-col gap-2">
-					<slot name="header">
+				<slot name="header">
+					<div class="flex flex-col gap-2">
 						<bo-text
 							v-if="title"
 							:id="modalTitleId"
-							:text="title"
+							:value="title"
 							:size="BoFontSize.xl"
 							:weight="BoFontWeight.semibold"
 							:color="BoTextColor.default"
 						/>
-					</slot>
-					<slot name="description">
 						<bo-text
 							v-if="description"
 							:id="modalDescriptionId"
-							:text="description"
+							:value="description"
 							class="mb-4"
 							:color="BoTextColor.secondary"
 						/>
-					</slot>
-				</div>
+					</div>
+				</slot>
 				<button
 					v-if="showClose"
 					type="button"
@@ -55,7 +52,7 @@
 
 			<!-- Content -->
 			<div class="p-4">
-				<slot></slot>
+				<slot name="default"></slot>
 			</div>
 
 			<!-- Footer -->
@@ -73,7 +70,6 @@ import type { BoModalProps } from './bo-modal';
 
 const slots = defineSlots<{
 	header?: () => unknown;
-	description?: () => unknown;
 	default?: () => unknown;
 	footer?: () => unknown;
 }>();

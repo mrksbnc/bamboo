@@ -30,7 +30,7 @@
 			<input
 				:id="inputId"
 				:name="name"
-				:type="inputType"
+				:type="type"
 				:value="modelValue"
 				:disabled="disabled"
 				:readonly="readonly"
@@ -42,6 +42,7 @@
 				:aria-describedby="helperTextId"
 				:aria-invalid="state === BoInputState.error"
 				@input="onInput"
+				ref="inputRef"
 			/>
 			<div
 				v-if="suffixIcon && suffixIcon !== Icon.none"
@@ -86,7 +87,7 @@ import { BoIcon, Icon } from '@/components/bo-icon';
 import { BoFontSize, BoText } from '@/components/bo-text';
 import { IdentityService, TailwindService } from '@/services';
 import { BoColor, BoSize } from '@/shared';
-import { computed, toRefs } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 import {
 	BoInputSize,
 	BoInputState,
@@ -103,6 +104,7 @@ const props = withDefaults(defineProps<BoInputProps>(), {
 	type: () => BoInputType.text,
 	prefixIcon: () => Icon.none,
 	suffixIcon: () => Icon.none,
+	revealPassword: false,
 });
 
 const emit = defineEmits<{
@@ -125,6 +127,8 @@ const {
 	id,
 } = toRefs(props);
 
+const inputRef = ref<HTMLInputElement | null>(null);
+
 const inputId = computed<string>(() => {
 	return id.value;
 });
@@ -142,9 +146,9 @@ const baseInputClasses: Record<string, string> = {
 };
 
 const sizeClasses: Record<BoInputSize, string> = {
-	[BoInputSize.small]: /*tw*/ 'py-1 text-xs',
-	[BoInputSize.default]: /*tw*/ 'py-1.5 text-sm',
-	[BoInputSize.large]: /*tw*/ 'py-2 text-base',
+	[BoInputSize.small]: /*tw*/ 'py-2 text-xs',
+	[BoInputSize.default]: /*tw*/ 'py-2.5 text-sm',
+	[BoInputSize.large]: /*tw*/ 'py-3 text-base',
 };
 
 const variantClasses: Record<BoInputVariant, Record<BoInputState, string>> = {
@@ -181,7 +185,7 @@ const helperTextColorClasses: Record<BoInputState, string> = {
 };
 
 const inputType = computed<string>(() => {
-	return type.value;
+	return type.value ?? BoInputType.text;
 });
 
 const iconSize = computed<BoSize>(() => {
@@ -202,18 +206,24 @@ const iconPadding = computed<string>(() => {
 	const hasSuffixIcon = suffixIcon.value && suffixIcon.value !== Icon.none;
 
 	if (hasPrefixIcon && hasSuffixIcon) {
-		return /*tw*/ 'px-8 py-2';
+		return /*tw*/ 'px-8';
 	}
 
 	if (hasPrefixIcon) {
+		if (size.value === BoInputSize.small) {
+			return /*tw*/ 'pl-8 pr-2';
+		}
 		return /*tw*/ 'pl-8 pr-4';
 	}
 
 	if (hasSuffixIcon) {
+		if (size.value === BoInputSize.small) {
+			return /*tw*/ 'pl-2 pr-8';
+		}
 		return /*tw*/ 'pl-4 pr-8';
 	}
 
-	return /*tw*/ 'px-4 py-2';
+	return /*tw*/ 'px-3';
 });
 
 const roundedClasses = computed<string>(() => {

@@ -15,8 +15,8 @@
 				<bo-text
 					:size="BoFontSize.xs"
 					:color="BoTextColor.secondary"
-					:text="StringService.instance.safeString(loaderText)"
 					:font-family="BoFontFamily.sans"
+					:value="StringService.instance.safeString(loaderText)"
 				/>
 			</slot>
 		</span>

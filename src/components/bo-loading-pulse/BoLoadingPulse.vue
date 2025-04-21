@@ -26,7 +26,7 @@
 					role="text"
 					:color="BoTextColor.secondary"
 					:font-family="BoFontFamily.sans"
-					:text="StringService.instance.safeString(loaderText)"
+					:value="StringService.instance.safeString(loaderText)"
 				/>
 			</slot>
 		</span>

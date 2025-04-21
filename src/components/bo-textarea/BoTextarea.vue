@@ -1,16 +1,20 @@
 <template>
-	<div class="bo-textarea">
-		<label
-			v-if="label"
-			:for="textareaId"
-			class="mb-2 block"
-			:class="required ? 'after:ml-0.5 after:text-red-500 after:content-[\'*\']' : ''"
-		>
+	<div class="bo-textarea w-full">
+		<div class="flex items-center gap-1">
 			<bo-text
+				v-if="label"
+				:for="textareaId"
 				:value="label"
-				:weight="BoFontWeight.semibold"
+				:size="BoFontSize.sm"
+				class="mb-1"
 			/>
-		</label>
+			<span
+				v-if="required"
+				class="pl-0.5 text-red-500"
+			>
+				*
+			</span>
+		</div>
 		<div class="relative">
 			<div
 				v-if="prefixIcon && prefixIcon !== Icon.none"
@@ -25,21 +29,21 @@
 			</div>
 			<textarea
 				:id="textareaId"
+				:rows="rows"
 				:name="name"
 				:value="modelValue"
-				:class="textareaClasses"
-				:placeholder="placeholder"
 				:disabled="disabled"
 				:readonly="readonly"
 				:required="required"
-				:rows="rows"
 				:maxlength="maxlength"
-				:aria-label="ariaLabel || label"
-				:aria-invalid="state === BoTextareaState.error"
-				:aria-describedby="descriptionId"
 				:autofocus="autofocus"
-				:style="{ resize: resizable ? 'vertical' : 'none' }"
-				@input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
+				:placeholder="placeholder"
+				:style="textAreaStyle"
+				:class="textareaClasses"
+				:aria-label="ariaLabel || label"
+				:aria-describedby="descriptionId"
+				:aria-invalid="state === BoTextareaState.error"
+				@input="onInput"
 			></textarea>
 			<div
 				v-if="suffixIcon && suffixIcon !== Icon.none"
@@ -53,23 +57,38 @@
 				/>
 			</div>
 		</div>
-		<p
-			v-if="description || statusMessage"
-			:id="descriptionId"
-			class="mt-2 text-sm"
-			:class="descriptionTextClasses"
+		<div
+			v-if="error"
+			class="flex items-center gap-1 pt-1.5"
 		>
-			{{ statusMessage || description }}
-		</p>
+			<bo-icon
+				:size="BoSize.small"
+				:icon="Icon.alert_circle"
+				:color="BoColor.red_600"
+			/>
+			<bo-text
+				:id="descriptionId"
+				:size="BoFontSize.sm"
+				:class="descriptionClasses"
+				:value="error"
+			/>
+		</div>
+		<bo-text
+			v-if="description"
+			:id="descriptionId"
+			:value="description"
+			:size="BoFontSize.sm"
+			:class="descriptionClasses"
+		/>
 	</div>
 </template>
 
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo-icon';
-import { BoFontWeight, BoText } from '@/components/bo-text';
-import { TailwindService } from '@/services';
-import { BoSize } from '@/shared';
-import { computed, toRefs } from 'vue';
+import { BoFontSize, BoText } from '@/components/bo-text';
+import { IdentityService, TailwindService } from '@/services';
+import { BoColor, BoSize } from '@/shared';
+import { computed, toRefs, type StyleValue } from 'vue';
 import {
 	BoTextareaSize,
 	BoTextareaState,
@@ -77,24 +96,20 @@ import {
 	type BoTextareaProps,
 } from './bo-textarea';
 
+const emit = defineEmits<{
+	'update:modelValue': [value: string];
+}>();
+
 const props = withDefaults(defineProps<BoTextareaProps>(), {
-	modelValue: '',
-	placeholder: '',
+	id: () => IdentityService.instance.generateId(),
 	variant: () => BoTextareaVariant.default,
 	state: () => BoTextareaState.default,
 	size: () => BoTextareaSize.default,
-	disabled: false,
-	required: false,
-	id: () => Symbol('bo-textarea').toString(),
 	prefixIcon: () => Icon.none,
 	suffixIcon: () => Icon.none,
 	rows: 3,
 	resizable: false,
 });
-
-const emit = defineEmits<{
-	'update:modelValue': [value: string];
-}>();
 
 const {
 	modelValue,
@@ -105,9 +120,7 @@ const {
 	disabled,
 	required,
 	description,
-	errorMessage,
-	warningMessage,
-	successMessage,
+	error,
 	prefixIcon,
 	suffixIcon,
 	id,
@@ -119,94 +132,33 @@ const textareaId = computed<string>(() => {
 });
 
 const descriptionId = computed<string>(() => {
-	return `${textareaId.value}-description`;
-});
-
-const statusMessage = computed<string | undefined>(() => {
-	switch (state.value) {
-		case BoTextareaState.error:
-			return errorMessage.value;
-		case BoTextareaState.success:
-			return successMessage.value;
-		case BoTextareaState.warning:
-			return warningMessage.value;
-		default:
-			return undefined;
-	}
+	return IdentityService.instance.generateId(`${textareaId.value}-description`);
 });
 
 const baseTextareaClasses = {
-	common: 'bo-textarea__field w-full focus:outline-none transition-colors duration-200',
-	disabled: 'disabled:cursor-not-allowed disabled:opacity-50',
+	common: /*tw*/ 'bo-textarea__field w-full transition-colors duration-200 rounded-lg text-sm p-2',
+	disabled: /*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50',
 };
 
-const sizeClasses = {
-	[BoTextareaSize.small]: 'py-1.5 text-sm',
-	[BoTextareaSize.default]: 'py-2 text-base',
-	[BoTextareaSize.large]: 'py-2.5 text-lg',
-};
-
-const iconPaddingClasses = {
-	prefix: {
-		[BoTextareaSize.small]: 'pl-8',
-		[BoTextareaSize.default]: 'pl-10',
-		[BoTextareaSize.large]: 'pl-11',
-	},
-	suffix: {
-		[BoTextareaSize.small]: 'pr-8',
-		[BoTextareaSize.default]: 'pr-10',
-		[BoTextareaSize.large]: 'pr-11',
-	},
-	both: {
-		[BoTextareaSize.small]: 'pl-8 pr-8',
-		[BoTextareaSize.default]: 'pl-10 pr-10',
-		[BoTextareaSize.large]: 'pl-11 pr-11',
-	},
-	none: {
-		[BoTextareaSize.small]: 'px-3',
-		[BoTextareaSize.default]: 'px-4',
-		[BoTextareaSize.large]: 'px-4',
-	},
-};
-
-const variantClasses = {
+const variantClasses: Record<BoTextareaVariant, Record<BoTextareaState, string>> = {
 	[BoTextareaVariant.default]: {
 		[BoTextareaState.default]:
-			'bg-transparent outline outline-1 outline-neutral-300 focus:outline-2 focus:outline-blue-500 dark:outline-neutral-600 dark:text-white',
-		[BoTextareaState.error]:
-			'bg-transparent outline outline-1 outline-red-500 focus:outline-2 focus:outline-red-500 dark:outline-red-500 dark:text-white',
+			/*tw*/ 'bg-transparent border border-neutral-300 focus:border-blue-500',
+		[BoTextareaState.error]: /*tw*/ 'bg-transparent border border-red-500 focus:border-red-500',
 		[BoTextareaState.success]:
-			'bg-transparent outline outline-1 outline-green-500 focus:outline-2 focus:outline-green-500 dark:outline-green-500 dark:text-white',
-		[BoTextareaState.warning]:
-			'bg-transparent outline outline-1 outline-yellow-500 focus:outline-2 focus:outline-yellow-500 dark:outline-yellow-500 dark:text-white',
+			/*tw*/ 'bg-transparent border border-green-600 focus:border-green-600',
 	},
 	[BoTextareaVariant.filled]: {
-		[BoTextareaState.default]:
-			'bg-neutral-100 outline outline-1 outline-neutral-300 focus:outline-2 focus:outline-blue-500 dark:bg-neutral-700 dark:outline-neutral-600 dark:text-white',
-		[BoTextareaState.error]:
-			'bg-neutral-100 outline outline-1 outline-red-500 focus:outline-2 focus:outline-red-500 dark:bg-neutral-700 dark:outline-red-500 dark:text-white',
-		[BoTextareaState.success]:
-			'bg-neutral-100 outline outline-1 outline-green-500 focus:outline-2 focus:outline-green-500 dark:bg-neutral-700 dark:outline-green-500 dark:text-white',
-		[BoTextareaState.warning]:
-			'bg-neutral-100 outline outline-1 outline-yellow-500 focus:outline-2 focus:outline-yellow-500 dark:bg-neutral-700 dark:outline-yellow-500 dark:text-white',
-	},
-	[BoTextareaVariant.underlined]: {
-		[BoTextareaState.default]:
-			'bg-transparent border-b border-neutral-300 focus:border-blue-500 rounded-none focus:outline-none dark:border-neutral-600 dark:text-white',
-		[BoTextareaState.error]:
-			'bg-transparent border-b border-red-500 focus:border-red-500 rounded-none focus:outline-none dark:border-red-500 dark:text-white',
-		[BoTextareaState.success]:
-			'bg-transparent border-b border-green-500 focus:border-green-500 rounded-none focus:outline-none dark:border-green-500 dark:text-white',
-		[BoTextareaState.warning]:
-			'bg-transparent border-b border-yellow-500 focus:border-yellow-500 rounded-none focus:outline-none dark:border-yellow-500 dark:text-white',
+		[BoTextareaState.default]: /*tw*/ 'bg-neutral-100 focus:border-blue-500',
+		[BoTextareaState.error]: /*tw*/ 'bg-neutral-100 focus:border-red-500',
+		[BoTextareaState.success]: /*tw*/ 'bg-neutral-100 focus:border-green-600',
 	},
 };
 
-const descriptionTextClasses = {
-	[BoTextareaState.default]: 'text-neutral-600 dark:text-neutral-400',
-	[BoTextareaState.error]: 'text-red-500 dark:text-red-400',
-	[BoTextareaState.success]: 'text-green-500 dark:text-green-400',
-	[BoTextareaState.warning]: 'text-yellow-600 dark:text-yellow-500',
+const helperTextColorClasses: Record<BoTextareaState, string> = {
+	[BoTextareaState.default]: /*tw*/ 'text-neutral-600 dark:text-neutral-500',
+	[BoTextareaState.error]: /*tw*/ 'text-red-500 dark:text-red-500',
+	[BoTextareaState.success]: /*tw*/ 'text-green-600 dark:text-green-600',
 };
 
 const iconSize = computed<BoSize>(() => {
@@ -227,28 +179,47 @@ const iconPadding = computed<string>(() => {
 	const hasSuffixIcon = suffixIcon.value && suffixIcon.value !== Icon.none;
 
 	if (hasPrefixIcon && hasSuffixIcon) {
-		return iconPaddingClasses.both[size.value];
-	} else if (hasPrefixIcon) {
-		return iconPaddingClasses.prefix[size.value];
-	} else if (hasSuffixIcon) {
-		return iconPaddingClasses.suffix[size.value];
-	} else {
-		return iconPaddingClasses.none[size.value];
+		return /*tw*/ 'px-8';
 	}
-});
 
-const roundedClasses = computed<string>(() => {
-	return variant.value === BoTextareaVariant.underlined ? '' : 'rounded-lg';
+	if (hasPrefixIcon) {
+		if (size.value === BoTextareaSize.small) {
+			return /*tw*/ 'pl-8 pr-2';
+		}
+		return /*tw*/ 'pl-8 pr-4';
+	}
+
+	if (hasSuffixIcon) {
+		if (size.value === BoTextareaSize.small) {
+			return /*tw*/ 'pl-2 pr-8';
+		}
+		return /*tw*/ 'pl-4 pr-8';
+	}
+
+	return /*tw*/ 'px-3';
 });
 
 const textareaClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
+		iconPadding.value,
 		baseTextareaClasses.common,
 		baseTextareaClasses.disabled,
-		sizeClasses[size.value],
+		helperTextColorClasses[state.value],
 		variantClasses[variant.value][state.value],
-		iconPadding.value,
-		roundedClasses.value,
 	);
 });
+
+const textAreaStyle = computed<StyleValue>(() => {
+	return {
+		resize: resizable.value ? 'vertical' : 'none',
+	};
+});
+
+const descriptionClasses = computed<string>(() => {
+	return helperTextColorClasses[state.value];
+});
+
+const onInput = (event: Event) => {
+	emit('update:modelValue', (event.target as HTMLTextAreaElement).value);
+};
 </script>

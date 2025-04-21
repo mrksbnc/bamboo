@@ -45,6 +45,7 @@ The Input component is a versatile form control that allows users to enter and e
 | `readonly`       | `boolean`        | `false`                  | Whether the input is readonly                 |
 | `ariaLabel`      | `string`         | -                        | Accessible label for screen readers           |
 | `autofocus`      | `boolean`        | `false`                  | Whether the input should autofocus            |
+| `revealPassword` | `boolean`        | `false`                  | Show toggle button to reveal/hide password    |
 
 ### Events
 
@@ -288,5 +289,37 @@ Display an error message when the input is in an error state:
 	state="error"
 	placeholder="Error state"
 	error="This field is required"
+/>
+```
+
+## Password Input with Reveal Button
+
+Add a button to toggle password visibility with the `revealPassword` prop:
+
+<div class="flex flex-col gap-4">
+  <bo-input 
+    type="password" 
+    label="Password" 
+    placeholder="Enter your password" 
+  />
+  <bo-input 
+    type="password" 
+    label="Password with reveal button" 
+    placeholder="Enter your password" 
+    :reveal-password="true" 
+  />
+</div>
+
+```html
+<bo-input
+	type="password"
+	label="Password"
+	placeholder="Enter your password"
+/>
+<bo-input
+	type="password"
+	label="Password with reveal button"
+	placeholder="Enter your password"
+	:reveal-password="true"
 />
 ```

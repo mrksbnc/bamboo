@@ -121,17 +121,6 @@ describe('BoModal', () => {
 		expect(wrapper.find('[data-test="custom-header"]').text()).toBe('Custom Header');
 	});
 
-	it('renders custom description slot content', () => {
-		const wrapper = mount(BoModal, {
-			slots: {
-				description: '<div data-test="custom-desc">Custom Description</div>',
-			},
-		});
-
-		expect(wrapper.find('[data-test="custom-desc"]').exists()).toBe(true);
-		expect(wrapper.find('[data-test="custom-desc"]').text()).toBe('Custom Description');
-	});
-
 	it('renders custom default slot content', () => {
 		const wrapper = mount(BoModal, {
 			slots: {

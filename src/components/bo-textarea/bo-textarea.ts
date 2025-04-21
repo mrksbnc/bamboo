@@ -3,14 +3,12 @@ import type { Icon } from '@/components/bo-icon';
 export enum BoTextareaVariant {
 	default = 'default',
 	filled = 'filled',
-	underlined = 'underlined',
 }
 
 export enum BoTextareaState {
 	default = 'default',
 	success = 'success',
 	error = 'error',
-	warning = 'warning',
 }
 
 export enum BoTextareaSize {
@@ -59,15 +57,7 @@ export type BoTextareaProps = {
 	/**
 	 * Error message to display when in error state
 	 */
-	errorMessage?: string;
-	/**
-	 * Success message to display when in success state
-	 */
-	successMessage?: string;
-	/**
-	 * Warning message to display when in warning state
-	 */
-	warningMessage?: string;
+	error?: string;
 	/**
 	 * Icon to display before the textarea text
 	 */

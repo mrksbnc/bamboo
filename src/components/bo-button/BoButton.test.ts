@@ -77,24 +77,24 @@ describe('BoButton', () => {
 			},
 		});
 
-		expect(wrapper.classes()).toContain('px-4');
-		expect(wrapper.classes()).toContain('py-2.5');
-
-		await wrapper.setProps({ size: BoSize.small });
-		expect(wrapper.classes()).toContain('px-2');
+		expect(wrapper.classes()).toContain('px-3');
 		expect(wrapper.classes()).toContain('py-2');
-
-		await wrapper.setProps({ size: BoSize.large });
-		expect(wrapper.classes()).toContain('px-4');
-		expect(wrapper.classes()).toContain('py-3');
 
 		await wrapper.setProps({ size: BoSize.extra_small });
 		expect(wrapper.classes()).toContain('px-1');
 		expect(wrapper.classes()).toContain('py-1');
 
+		await wrapper.setProps({ size: BoSize.small });
+		expect(wrapper.classes()).toContain('px-2');
+		expect(wrapper.classes()).toContain('py-1.5');
+
+		await wrapper.setProps({ size: BoSize.large });
+		expect(wrapper.classes()).toContain('px-4');
+		expect(wrapper.classes()).toContain('py-2.5');
+
 		await wrapper.setProps({ size: BoSize.extra_large });
 		expect(wrapper.classes()).toContain('px-5');
-		expect(wrapper.classes()).toContain('py-3.5');
+		expect(wrapper.classes()).toContain('py-3');
 	});
 
 	it('renders with prefix icon', () => {
@@ -146,7 +146,7 @@ describe('BoButton', () => {
 			},
 		});
 
-		expect(wrapper.classes()).toContain('p-3');
+		expect(wrapper.classes()).toContain('p-2.5');
 	});
 
 	it('disables the button when disabled prop is true', async () => {

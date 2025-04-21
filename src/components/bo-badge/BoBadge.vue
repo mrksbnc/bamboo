@@ -10,7 +10,7 @@
 		<slot name="default">
 			<bo-text
 				v-if="renderLabel && label && !iconOnly && !isCircle"
-				:text="label"
+				:value="label"
 				:size="badgeFontSize"
 				:weight="BoFontWeight.semibold"
 				class="bo-badge__label"

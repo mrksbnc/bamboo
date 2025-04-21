@@ -13,7 +13,27 @@ function buildSidebar() {
 			text: 'Components',
 			items: [
 				{ text: 'Avatar', link: '/pages/components/avatar' },
+				{ text: 'Badge', link: '/pages/components/badge' },
+				{ text: 'Button', link: '/pages/components/button' },
+				{ text: 'Card', link: '/pages/components/card' },
+				{ text: 'Divider', link: '/pages/components/divider' },
+				{ text: 'Dropdown', link: '/pages/components/dropdown' },
+				{ text: 'Icon', link: '/pages/components/icon' },
 				{ text: 'Input', link: '/pages/components/input' },
+				{ text: 'Loading Pulse', link: '/pages/components/loading-pulse' },
+				{ text: 'Loading Spinner', link: '/pages/components/loading-spinner' },
+				{ text: 'Modal', link: '/pages/components/modal' },
+				{ text: 'Table', link: '/pages/components/table' },
+				{ text: 'Text', link: '/pages/components/text' },
+				{ text: 'Textarea', link: '/pages/components/textarea' },
+			],
+		},
+		{
+			text: 'Types & Utilities',
+			items: [
+				{ text: 'Overview', link: '/pages/types/index' },
+				{ text: 'Color System', link: '/pages/types/colors' },
+				{ text: 'Size System', link: '/pages/types/sizes' },
 			],
 		},
 	];

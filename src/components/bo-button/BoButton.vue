@@ -22,7 +22,7 @@
 					class="bo-button__label flex items-center justify-center"
 				>
 					<bo-text
-						:text="label"
+						:value="label"
 						:clickable="true"
 						:weight="BoFontWeight.semibold"
 						:size="buttonFontSize"
@@ -60,7 +60,7 @@ import { BoIcon, Icon } from '@/components/bo-icon';
 import { BoLoadingPulse } from '@/components/bo-loading-pulse';
 import { BoLoadingSpinner } from '@/components/bo-loading-spinner';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo-text';
-import { StringService, TailwindService } from '@/services';
+import { IdentityService, StringService, TailwindService } from '@/services';
 import { BoLoaderType, BoLoaderVariant, BoSize, HtmlButtonType } from '@/shared';
 import { computed, toRefs } from 'vue';
 import { BoButtonShape, BoButtonVariant, type BoButtonProps } from './bo-button';
@@ -70,7 +70,7 @@ const slots = defineSlots<{
 }>();
 
 const props = withDefaults(defineProps<BoButtonProps>(), {
-	id: Symbol('bo-button').toString(),
+	id: IdentityService.instance.generateId(),
 	loaderType: BoLoaderType.spinner,
 	size: () => BoSize.default,
 	prefixIcon: () => Icon.none,
@@ -78,9 +78,7 @@ const props = withDefaults(defineProps<BoButtonProps>(), {
 	type: () => HtmlButtonType.button,
 	shape: () => BoButtonShape.default,
 	variant: () => BoButtonVariant.primary,
-	fullWidth: false,
-	pressed: false,
-	ariaLabel: undefined,
+	ariaLabel: 'Button',
 });
 
 const {
@@ -118,20 +116,20 @@ const shapeClasses = {
 
 const shadowClasses = {
 	link: /*tw*/ 'shadow-none',
-	default: /*tw*/ 'shadow-lg inset-shadow-sm inset-shadow-white/20',
+	default: /*tw*/ 'shadow-lg',
 };
 
 const filledButtonClasses = {
 	[BoButtonVariant.primary]:
-		/*tw*/ 'bg-blue-600 dark:bg-blue-700 hover:opacity-80 focus:ring-transparent border border-blue-600 dark:border-blue-800 text-white',
+		/*tw*/ 'bg-blue-600 dark:bg-blue-700 hover:opacity-80 focus:ring-transparent border border-blue-600 dark:border-blue-700 text-white',
 	[BoButtonVariant.secondary]:
-		/*tw*/ 'bg-neutral-400 dark:bg-neutral-700 hover:opacity-80 focus:ring-transparent border border-neutral-400 dark:border-neutral-800 text-white',
+		/*tw*/ 'bg-neutral-400 dark:bg-neutral-700 hover:opacity-80 focus:ring-transparent border border-neutral-400 dark:border-neutral-700 text-white',
 	[BoButtonVariant.danger]:
-		/*tw*/ 'bg-red-600 dark:bg-red-700 hover:opacity-80 focus:ring-transparent border border-red-600 dark:border-red-800 text-white',
+		/*tw*/ 'bg-red-600 dark:bg-red-700 hover:opacity-80 focus:ring-transparent border border-red-600 dark:border-red-700 text-white',
 	[BoButtonVariant.warning]:
 		/*tw*/ 'bg-yellow-500 dark:bg-yellow-600 hover:opacity-80 focus:ring-transparent border border-yellow-500 dark:border-yellow-600 text-white',
 	[BoButtonVariant.success]:
-		/*tw*/ 'bg-green-600 dark:bg-green-700 hover:opacity-80 focus:ring-transparent border border-green-600 dark:border-green-800 text-white',
+		/*tw*/ 'bg-green-600 dark:bg-green-700 hover:opacity-80 focus:ring-transparent border border-green-600 dark:border-green-700 text-white',
 	[BoButtonVariant.light]:
 		/*tw*/ 'bg-white dark:bg-white hover:opacity-80 focus:ring-transparent border border-white dark:border-white text-black',
 	[BoButtonVariant.dark]:
@@ -189,18 +187,18 @@ const variantClasses = {
 
 const sizeClasses = {
 	[BoSize.extra_small]: /*tw*/ 'px-1 py-1',
-	[BoSize.small]: /*tw*/ 'px-2 py-2',
-	[BoSize.default]: /*tw*/ 'px-4 py-2.5',
-	[BoSize.large]: /*tw*/ 'px-4 py-3',
-	[BoSize.extra_large]: /*tw*/ 'px-5 py-3.5',
+	[BoSize.small]: /*tw*/ 'px-2 py-1.5',
+	[BoSize.default]: /*tw*/ 'px-3 py-2',
+	[BoSize.large]: /*tw*/ 'px-4 py-2.5',
+	[BoSize.extra_large]: /*tw*/ 'px-5 py-3',
 };
 
 const iconOnlySizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'p-1.5',
-	[BoSize.small]: /*tw*/ 'p-[8px]',
-	[BoSize.default]: /*tw*/ 'p-3',
-	[BoSize.large]: /*tw*/ 'p-3.5',
-	[BoSize.extra_large]: /*tw*/ 'p-4',
+	[BoSize.extra_small]: /*tw*/ 'p-1',
+	[BoSize.small]: /*tw*/ 'p-1.5',
+	[BoSize.default]: /*tw*/ 'p-2.5',
+	[BoSize.large]: /*tw*/ 'p-2.5',
+	[BoSize.extra_large]: /*tw*/ 'p-3',
 };
 
 const isDisabled = computed<boolean>(() => {
@@ -230,6 +228,7 @@ const buttonSizeClasses = computed<string>(() => {
 	if (iconOnlyButton.value) {
 		return iconOnlySizeClasses[size.value];
 	}
+
 	return sizeClasses[size.value];
 });
 

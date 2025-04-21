@@ -8,7 +8,7 @@
 			:class="'text-gray-600 dark:text-gray-400'"
 		/>
 		<bo-text
-			:text="label"
+			:value="label"
 			:clickable="true"
 			:size="BoFontSize.sm"
 			:weight="BoFontWeight.medium"
