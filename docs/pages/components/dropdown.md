@@ -1,7 +1,7 @@
 <script setup>
-import { BoDropdown, BoDropdownPlacement } from '@/components/bo-dropdown';
+import { BoDropdown, BoDropdownPlacement, BoDropdownTriggerType } from '@/components/bo-dropdown';
 import { BoButtonVariant } from '@/components/bo-button';
-import { Icon } from '@/components/bo-icon';
+import { BoIcon, Icon } from '@/components/bo-icon';
 </script>
 
 # Dropdown
@@ -9,7 +9,7 @@ import { Icon } from '@/components/bo-icon';
 Dropdowns display a list of options that can be selected from a toggle button. They're used to show selectable options or menus in a space-efficient way.
 
 ```js
-import { BoDropdown, BoDropdownPlacement } from '@mrksbnc/bamboo';
+import { BoDropdown, BoDropdownPlacement, BoDropdownTriggerType } from '@mrksbnc/bamboo';
 ```
 
 ## Basic Usage
@@ -25,7 +25,7 @@ import { BoDropdown, BoDropdownPlacement } from '@mrksbnc/bamboo';
 
 <script setup>
 import { BoDropdown } from '@mrksbnc/bamboo';
-import { Icon } from '@mrksbnc/bamboo';
+import { BoIcon, Icon } from '@mrksbnc/bamboo';
 import { ref } from 'vue';
 
 const options = [
@@ -54,62 +54,111 @@ const handleSelect = (option) => {
 
 ## Props
 
-| Name            | Type                   | Default                           | Description                                      |
-| --------------- | ---------------------- | --------------------------------- | ------------------------------------------------ |
-| `id`            | `string`               | Auto-generated                    | Unique identifier for the dropdown               |
-| `toggleVariant` | `BoButtonVariant`      | `primary`                         | The variant of the toggle button                 |
-| `defaultOption` | `BaseDropdownOption`   | `{ icon: Icon.none, label: '' }`  | The default item shown in the toggle             |
-| `options`       | `BaseDropdownOption[]` | `[]`                              | Array of options to display in the dropdown      |
-| `component`     | `Component`            | `BoDefaultDropdownItem`           | Component used to render each dropdown item      |
-| `placement`     | `BoDropdownPlacement`  | `BoDropdownPlacement.bottomStart` | Placement of the dropdown relative to the toggle |
+| Name                  | Type                    | Default                           | Description                                              |
+| --------------------- | ----------------------- | --------------------------------- | -------------------------------------------------------- |
+| `id`                  | `string`                | Auto-generated                    | Unique identifier for the dropdown                       |
+| `options`             | `BaseDropdownOption[]`  | `[]`                              | Array of options to display in the dropdown              |
+| `component`           | `Component`             | `BoDefaultDropdownItem`           | Component used to render each dropdown item              |
+| `defaultOption`       | `BaseDropdownOption`    | `{ icon: Icon.none, label: '' }`  | The default item shown in the toggle                     |
+| `placement`           | `BoDropdownPlacement`   | `BoDropdownPlacement.bottomStart` | Placement of the dropdown relative to the toggle element |
+| `toggleVariant`       | `BoButtonVariant`       | `primary`                         | The variant of the toggle button                         |
+| `toggleIcon`          | `Icon`                  | `undefined`                       | Icon to display for the toggle button                    |
+| `header`              | `string`                | `undefined`                       | Optional header text for the dropdown                    |
+| `subheader`           | `string`                | `undefined`                       | Optional subheader text for the dropdown                 |
+| `defaultLabel`        | `string`                | `'Select option'`                 | Default label text when no option is selected            |
+| `width`               | `string`                | `''`                              | Set a fixed width for the dropdown menu (e.g., '200px')  |
+| `closeOnSelect`       | `boolean`               | `true`                            | Close the dropdown when an option is selected            |
+| `closeOnClickOutside` | `boolean`               | `true`                            | Close the dropdown when clicked outside                  |
+| `keyboardNav`         | `boolean`               | `true`                            | Allow keyboard navigation                                |
+| `search`              | `boolean`               | `false`                           | Enable search functionality                              |
+| `triggerType`         | `BoDropdownTriggerType` | `BoDropdownTriggerType.click`     | Trigger type: click or hover                             |
+| `delay`               | `number`                | `300`                             | Delay for hover trigger (ms)                             |
+| `maxHeight`           | `boolean`               | `false`                           | Max height with scrolling                                |
+| `toggleClasses`       | `string`                | `''`                              | CSS classes for the toggle button                        |
 
 ## Types
 
 ```ts
 export enum BoDropdownPlacement {
-	top = 'top',
-	topStart = 'top-start',
-	topEnd = 'top-end',
 	bottom = 'bottom',
 	bottomStart = 'bottom-start',
 	bottomEnd = 'bottom-end',
-	right = 'right',
-	rightStart = 'right-start',
-	rightEnd = 'right-end',
+	top = 'top',
+	topStart = 'top-start',
+	topEnd = 'top-end',
 	left = 'left',
 	leftStart = 'left-start',
 	leftEnd = 'left-end',
+	right = 'right',
+	rightStart = 'right-start',
+	rightEnd = 'right-end',
 }
 
-export type BaseDropdownOption = {
-	id?: string;
-	icon?: Icon;
-	label?: string;
-	[key: string]: unknown;
-};
+export enum BoDropdownTriggerType {
+	click = 'click',
+	hover = 'hover',
+}
 
-export type BoDropdownProps = {
+export interface BaseDropdownOption {
+	id?: string | number;
+	label: string;
+	icon?: Icon;
+	disabled?: boolean;
+	description?: string;
+	divider?: boolean;
+	[key: string]: any;
+}
+
+export interface BoDropdownProps {
 	id?: string;
-	toggleVariant?: BoButtonVariant;
-	defaultOption?: BaseDropdownOption;
 	options?: BaseDropdownOption[];
 	component?: Component;
+	defaultOption?: BaseDropdownOption;
 	placement?: BoDropdownPlacement;
-};
+	toggleVariant?: BoButtonVariant;
+	toggleIcon?: Icon;
+	header?: string;
+	subheader?: string;
+	defaultLabel?: string;
+	width?: string;
+	closeOnSelect?: boolean;
+	closeOnClickOutside?: boolean;
+	keyboardNav?: boolean;
+	search?: boolean;
+	triggerType?: BoDropdownTriggerType;
+	delay?: number;
+	maxHeight?: boolean;
+	toggleClasses?: string;
+}
 ```
 
 ## Events
 
-| Name     | Payload              | Description                        |
-| -------- | -------------------- | ---------------------------------- |
-| `select` | `BaseDropdownOption` | Emitted when an option is selected |
+| Name     | Payload              | Description                                        |
+| -------- | -------------------- | -------------------------------------------------- |
+| `select` | `BaseDropdownOption` | Emitted when an option is selected                 |
+| `open`   | `void`               | Emitted when the dropdown opens                    |
+| `close`  | `void`               | Emitted when the dropdown closes                   |
+| `search` | `string`             | Emitted when the search query changes (if enabled) |
 
 ## Slots
 
-| Name     | Description                          |
-| -------- | ------------------------------------ |
-| `toggle` | Custom content for the toggle button |
-| `items`  | Custom content for dropdown items    |
+| Name     | Description                                                     |
+| -------- | --------------------------------------------------------------- |
+| `toggle` | Custom content for the toggle button. Overrides default button. |
+| `items`  | Custom content for dropdown items. Overrides default list.      |
+| `footer` | Custom content for the dropdown footer area.                    |
+
+## Exposes
+
+| Name           | Type                      | Description                                       |
+| -------------- | ------------------------- | ------------------------------------------------- |
+| `isOpen`       | `Ref<boolean>`            | Reactive ref indicating if the dropdown is open.  |
+| `activeOption` | `Ref<BaseDropdownOption>` | Reactive ref of the currently active option.      |
+| `open`         | `() => void`              | Function to programmatically open the dropdown.   |
+| `close`        | `() => void`              | Function to programmatically close the dropdown.  |
+| `toggle`       | `() => void`              | Function to programmatically toggle the dropdown. |
+| `search`       | `Ref<string>`             | Reactive ref of the current search query.         |
 
 ## Toggle Button Variants
 
@@ -254,6 +303,27 @@ export type BoDropdownProps = {
 />
 ```
 
+## With Search
+
+<div class="flex gap-4 items-center my-4">
+	<bo-dropdown 
+		:options="[
+			{ label: 'Apple' },
+			{ label: 'Banana' },
+			{ label: 'Cherry' },
+			{ label: 'Date' },
+			{ label: 'Elderberry' },
+		]" 
+		search
+		default-label="Select Fruit"
+		width="200px"
+	/>
+</div>
+
+```vue
+<bo-dropdown :options="fruitOptions" search default-label="Select Fruit" width="200px" />
+```
+
 ## Custom Toggle
 
 <div class="flex gap-4 items-center my-4">
@@ -264,13 +334,13 @@ export type BoDropdownProps = {
 			{ label: 'Logout', icon: Icon.log_out }
 		]" 
 	>
-		<template #toggle>
-			<div class="flex cursor-pointer items-center gap-2 rounded-full bg-gray-100 px-3 py-2 hover:bg-gray-200">
+		<template #toggle="{ toggle, isOpen }">
+			<div @click="toggle" class="flex cursor-pointer items-center gap-2 rounded-full bg-gray-100 px-3 py-2 hover:bg-gray-200">
 				<div class="h-8 w-8 overflow-hidden rounded-full bg-blue-500">
 					<img src="https://i.pravatar.cc/100" alt="User Avatar" />
 				</div>
 				<span>John Doe</span>
-				<bo-icon :icon="Icon.chevron_down" />
+				<bo-icon :icon="isOpen ? Icon.chevron_up : Icon.chevron_down" />
 			</div>
 		</template>
 	</bo-dropdown>
@@ -284,13 +354,13 @@ export type BoDropdownProps = {
 		{ label: 'Logout', icon: Icon.log_out },
 	]"
 >
-	<template #toggle>
-		<div class="flex cursor-pointer items-center gap-2 rounded-full bg-gray-100 px-3 py-2 hover:bg-gray-200">
+	<template #toggle="{ toggle, isOpen }">
+		<div @click="toggle" class="flex cursor-pointer items-center gap-2 rounded-full bg-gray-100 px-3 py-2 hover:bg-gray-200">
 			<div class="h-8 w-8 overflow-hidden rounded-full bg-blue-500">
 				<img src="https://i.pravatar.cc/100" alt="User Avatar" />
 			</div>
 			<span>John Doe</span>
-			<bo-icon :icon="Icon.chevron_down" />
+			<bo-icon :icon="isOpen ? Icon.chevron_up : Icon.chevron_down" />
 		</div>
 	</template>
 </bo-dropdown>
@@ -304,14 +374,19 @@ export type BoDropdownProps = {
 		:options="options"
 		:default-option="selectedOption"
 		@select="onSelect"
+		@open="onOpen"
+		@close="onClose"
+		@search="onSearch"
 	/>
 
 	<p class="mt-4">Selected: {{ selectedOption.label }}</p>
+	<p>Dropdown state: {{ dropdownState }}</p>
+	<p>Search query: {{ currentSearchQuery }}</p>
 </template>
 
 <script setup>
 import { BoDropdown } from '@mrksbnc/bamboo';
-import { Icon } from '@mrksbnc/bamboo';
+import { BoIcon, Icon } from '@mrksbnc/bamboo';
 import { ref } from 'vue';
 
 const options = [
@@ -321,11 +396,27 @@ const options = [
 ];
 
 const selectedOption = ref(options[0]);
+const dropdownState = ref('closed');
+const currentSearchQuery = ref('');
 
 const onSelect = (option) => {
 	selectedOption.value = option;
-	// You can access option.value or any custom properties
 	console.log('Selected value:', option.value);
+};
+
+const onOpen = () => {
+	dropdownState.value = 'open';
+	console.log('Dropdown opened');
+};
+
+const onClose = () => {
+	dropdownState.value = 'closed';
+	console.log('Dropdown closed');
+};
+
+const onSearch = (query) => {
+	currentSearchQuery.value = query;
+	console.log('Search query:', query);
 };
 </script>
 ```

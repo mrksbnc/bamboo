@@ -6,9 +6,14 @@ export interface BoKeyboardService {
 	/**
 	 * Creates a focus trap within the specified container, preventing
 	 * focus from leaving when tabbing through elements.
-	 * Based on Material Design and accessibility best practices.
 	 */
-	useTrapTabKey: (container: string | HTMLElement) => void;
+	useTrapTabKey: (
+		container: string | HTMLElement,
+		returnFocusTo?: HTMLElement,
+	) => {
+		activate: () => void;
+		deactivate: () => void;
+	};
 	/**
 	 * Register a handler for Enter key press
 	 */
@@ -34,67 +39,129 @@ export class KeyboardService implements BoKeyboardService {
 		return instance;
 	}
 
-	useTrapTabKey(container: string | HTMLElement): void {
-		useEventListener('keydown', (e: KeyboardEvent) => {
-			const isTab = e.key === 'Tab' || e.keyCode === 9;
+	/**
+	 * Creates a focus trap within the specified container, preventing
+	 * focus from leaving when tabbing through elements.
+	 */
+	useTrapTabKey(container: string | HTMLElement, returnFocusTo?: HTMLElement) {
+		let containerElement: HTMLElement | null = null;
+		let focusableElements: HTMLElement[] = [];
+		let previouslyFocusedElement: HTMLElement | null = null;
+		let handleKeyDown: ((e: KeyboardEvent) => void) | null = null;
 
-			if (!isTab) {
-				return;
-			}
+		const getFocusableElements = () => {
+			if (!containerElement) return [];
 
-			let containerElement: HTMLElement | null = null;
+			const elements = containerElement.querySelectorAll<HTMLElement>(
+				'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+			);
 
+			return Array.from(elements).filter((element) => {
+				const isDisabled =
+					element.hasAttribute('disabled') || element.getAttribute('aria-disabled') === 'true';
+				return !isDisabled && element.tabIndex >= 0;
+			});
+		};
+
+		const setup = () => {
 			if (typeof container === 'string') {
-				containerElement = document.querySelector(`#${container}`) as HTMLElement | null;
+				containerElement = document.getElementById(container.replace('#', ''));
 			} else if (container instanceof HTMLElement) {
 				containerElement = container;
 			}
 
 			if (!containerElement) {
+				console.warn('Focus trap: Container element not found');
+				return false;
+			}
+
+			// Set aria attributes for accessibility
+			containerElement.setAttribute('aria-modal', 'true');
+
+			// Get all focusable elements
+			focusableElements = getFocusableElements();
+
+			if (!focusableElements.length) {
+				console.warn('Focus trap: No focusable elements found in container');
+				return false;
+			}
+
+			return true;
+		};
+
+		const handleTabKey = (e: KeyboardEvent) => {
+			if (!containerElement || focusableElements.length === 0) {
 				return;
 			}
 
-			// Find all focusable elements in the container
-			// This includes more elements than just those with tabindex
-			const focusable = containerElement.querySelectorAll(
-				'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-			);
-
-			if (!focusable?.length) {
+			if (e.key !== 'Tab') {
 				return;
 			}
 
-			// Sort by tabindex to ensure logical navigation order
-			const sorted = [...focusable].sort((a, b) => {
-				const aIndex = a.getAttribute('tabindex');
-				const bIndex = b.getAttribute('tabindex');
+			// Get first and last focusable elements
+			const firstFocusableElement = focusableElements[0];
+			const lastFocusableElement = focusableElements[focusableElements.length - 1];
 
-				// Elements without tabindex or with tabindex="0" should come after
-				// those with explicit positive tabindex values, per accessibility standards
-				if (!aIndex || aIndex === '0') {
-					return bIndex && bIndex !== '0' ? 1 : 0;
+			// If Shift+Tab is pressed and the first element is focused,
+			// move focus to the last focusable element
+			if (e.shiftKey) {
+				if (document.activeElement === firstFocusableElement) {
+					lastFocusableElement.focus();
+					e.preventDefault();
 				}
-
-				if (!bIndex || bIndex === '0') {
-					return -1;
-				}
-
-				return parseInt(aIndex) - parseInt(bIndex);
-			});
-
-			const shift = e.shiftKey;
-			const first = sorted[0] as HTMLElement;
-			const last = sorted[sorted.length - 1] as HTMLElement;
-
-			// Handle focus cycling
-			if (shift && e.target === first) {
-				last.focus();
-				e.preventDefault();
-			} else if (!shift && e.target === last) {
-				first.focus();
-				e.preventDefault();
 			}
-		});
+			// If Tab is pressed and the last element is focused,
+			// move focus to the first focusable element
+			else {
+				if (document.activeElement === lastFocusableElement) {
+					firstFocusableElement.focus();
+					e.preventDefault();
+				}
+			}
+		};
+
+		const focusFirstElement = () => {
+			if (focusableElements.length > 0) {
+				// Save the currently focused element to restore later
+				previouslyFocusedElement = document.activeElement as HTMLElement;
+
+				// Focus the first element
+				focusableElements[0].focus();
+			}
+		};
+
+		const activate = () => {
+			if (!setup()) return;
+
+			// Setup the keyboard event handler
+			handleKeyDown = (e: KeyboardEvent) => handleTabKey(e);
+
+			// Add event listener
+			if (containerElement && handleKeyDown) {
+				containerElement.addEventListener('keydown', handleKeyDown);
+			}
+
+			// Focus the first element
+			focusFirstElement();
+		};
+
+		const deactivate = () => {
+			// Remove event listener
+			if (containerElement && handleKeyDown) {
+				containerElement.removeEventListener('keydown', handleKeyDown);
+				containerElement.removeAttribute('aria-modal');
+			}
+
+			// Restore focus to the element that had focus before the trap was activated,
+			// or to a specified element
+			if (returnFocusTo) {
+				returnFocusTo.focus();
+			} else if (previouslyFocusedElement) {
+				previouslyFocusedElement.focus();
+			}
+		};
+
+		return { activate, deactivate };
 	}
 
 	useEnterKey(handler: KeyHandler): void {

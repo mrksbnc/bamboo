@@ -3,7 +3,6 @@ import type { Icon } from '@/components/bo-icon';
 export enum BoInputVariant {
 	default = 'default',
 	filled = 'filled',
-	underlined = 'underlined',
 }
 
 export enum BoInputState {
@@ -25,6 +24,24 @@ export enum BoInputType {
 	number = 'number',
 	search = 'search',
 	phone = 'tel',
+}
+
+/**
+ * Pill Item interface for input component
+ */
+export interface BoInputPill {
+	/**
+	 * Unique identifier for the pill
+	 */
+	id: string;
+	/**
+	 * Text to display on the pill
+	 */
+	text: string;
+	/**
+	 * Optional icon to display before pill text
+	 */
+	icon?: Icon;
 }
 
 export type BoInputProps = {
@@ -100,4 +117,16 @@ export type BoInputProps = {
 	 * Whether the input should autofocus
 	 */
 	autofocus?: boolean;
+	/**
+	 * Array of pill items to display in the input
+	 */
+	pills?: BoInputPill[];
+	/**
+	 * Whether to enable horizontal scrolling for pills
+	 */
+	horizontalScroll?: boolean;
+	/**
+	 * Whether to show toggle button for password input
+	 */
+	revealPassword?: boolean;
 };

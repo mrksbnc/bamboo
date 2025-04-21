@@ -29,17 +29,19 @@
 		</span>
 		<span
 			v-else-if="type === BoAvatarType.image && data.src !== undefined"
-			class="bo-avatar__unknown relative h-full w-full overflow-hidden"
+			class="bo-avatar__image relative h-full w-full overflow-hidden"
 		>
 			<img
 				:src="data.src"
 				:alt="data.alt ?? 'avatar'"
 				class="h-full w-full object-cover"
+				@error="handleImageError"
 			/>
 		</span>
 		<span
 			v-if="withIndicator && indicator?.status !== BoAvatarIndicatorStatus.none"
 			:class="indicatorClasses"
+			class="status-indicator"
 		></span>
 	</div>
 </template>
@@ -48,7 +50,7 @@
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo-text';
 import { StringService, TailwindService } from '@/services';
 import { BoSize } from '@/shared';
-import { computed, toRefs, type StyleValue } from 'vue';
+import { computed, ref, toRefs, type StyleValue } from 'vue';
 import {
 	BoAvatarIndicatorPosition,
 	BoAvatarIndicatorStatus,
@@ -75,6 +77,7 @@ const { clickable, data, type, shape, size, variant, indicator, color, withDefau
 	toRefs(props);
 
 const defaultAvatarSrc = new URL('@/assets/img/avatar.png', import.meta.url).href;
+const imgError = ref(false);
 
 const containerClasses = {
 	default: /*tw*/ 'bo-avatar relative inline-flex overflow-hidden',
@@ -82,14 +85,14 @@ const containerClasses = {
 
 const cursorClasses = {
 	default: 'cursor-default',
-	clickable: 'cursor-pointer hover:bg-opacity-80',
+	clickable: 'cursor-pointer hover:opacity-80',
 };
 
 const avatarSizeClasses = {
 	[BoSize.extra_small]: /*tw*/ 'w-6 h-6',
 	[BoSize.small]: /*tw*/ 'w-8 h-8',
 	[BoSize.default]: /*tw*/ 'w-10 h-10',
-	[BoSize.large]: /*tw*/ 'w-20 h-20',
+	[BoSize.large]: /*tw*/ 'w-12 h-12',
 	[BoSize.extra_large]: /*tw*/ 'w-36 h-36',
 };
 
@@ -97,9 +100,9 @@ const avatarShapeClasses = {
 	[BoAvatarShape.circle]: /*tw*/ 'rounded-full',
 	[BoAvatarShape.rounded]: /*tw*/ 'rounded-md',
 	[BoAvatarShape.flat]: /*tw*/ 'rounded-none',
-	[BoAvatarShape.outline_circle]: /*tw*/ 'rounded-full',
-	[BoAvatarShape.outline_rounded]: /*tw*/ 'rounded-md',
-	[BoAvatarShape.outline_flat]: /*tw*/ 'rounded-none',
+	[BoAvatarShape.outline_circle]: /*tw*/ 'rounded-full border',
+	[BoAvatarShape.outline_rounded]: /*tw*/ 'rounded-md border',
+	[BoAvatarShape.outline_flat]: /*tw*/ 'rounded-none border',
 };
 
 const indicatorStatusClasses = {
@@ -126,9 +129,9 @@ const indicatorSizeClasses = {
 };
 
 const variantColors = {
-	[BoAvatarVariant.primary]: /*tw*/ 'bg-blue-600 dark:bg-blue-700 text-white',
+	[BoAvatarVariant.primary]: /*tw*/ 'bg-blue-500 dark:bg-blue-700 text-white',
 	[BoAvatarVariant.secondary]: /*tw*/ 'bg-gray-400 dark:bg-gray-700 text-white',
-	[BoAvatarVariant.danger]: /*tw*/ 'bg-red-600 dark:bg-red-700 text-white',
+	[BoAvatarVariant.danger]: /*tw*/ 'bg-red-500 dark:bg-red-700 text-white',
 	[BoAvatarVariant.warning]: /*tw*/ 'bg-yellow-500 dark:bg-yellow-600 text-white',
 	[BoAvatarVariant.success]: /*tw*/ 'bg-green-600 dark:bg-green-700 text-white',
 	[BoAvatarVariant.dark]: /*tw*/ 'bg-black dark:bg-black text-white',
@@ -136,17 +139,17 @@ const variantColors = {
 
 const outlineVariantColors = {
 	[BoAvatarVariant.primary]:
-		/*tw*/ 'border bg-transparent border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-500',
+		/*tw*/ 'bg-transparent border-blue-500 text-blue-500 dark:border-blue-400 dark:text-blue-400',
 	[BoAvatarVariant.secondary]:
-		/*tw*/ 'border bg-transparent border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',
+		/*tw*/ 'bg-transparent border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',
 	[BoAvatarVariant.danger]:
-		/*tw*/ 'border bg-transparent border-red-600 text-red-600 dark:border-red-500 dark:text-red-500',
+		/*tw*/ 'bg-transparent border-red-500 text-red-500 dark:border-red-400 dark:text-red-400',
 	[BoAvatarVariant.warning]:
-		/*tw*/ 'border bg-transparent border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
+		/*tw*/ 'bg-transparent border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
 	[BoAvatarVariant.success]:
-		/*tw*/ 'border bg-transparent border-green-600 text-green-600 dark:border-green-500 dark:text-green-500',
+		/*tw*/ 'bg-transparent border-green-500 text-green-500 dark:border-green-400 dark:text-green-400',
 	[BoAvatarVariant.dark]:
-		/*tw*/ 'border bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-300',
+		/*tw*/ 'bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-300',
 };
 
 const variantTextColors = {
@@ -159,11 +162,11 @@ const variantTextColors = {
 };
 
 const outlineVariantTextColors = {
-	[BoAvatarVariant.primary]: /*tw*/ 'text-blue-600 dark:text-blue-500',
+	[BoAvatarVariant.primary]: /*tw*/ 'text-blue-500 dark:text-blue-400',
 	[BoAvatarVariant.secondary]: /*tw*/ 'text-gray-500 dark:text-neutral-300',
-	[BoAvatarVariant.danger]: /*tw*/ 'text-red-600 dark:text-red-500',
+	[BoAvatarVariant.danger]: /*tw*/ 'text-red-500 dark:text-red-400',
 	[BoAvatarVariant.warning]: /*tw*/ 'text-yellow-500 dark:text-yellow-400',
-	[BoAvatarVariant.success]: /*tw*/ 'text-green-600 dark:text-green-500',
+	[BoAvatarVariant.success]: /*tw*/ 'text-green-500 dark:text-green-400',
 	[BoAvatarVariant.dark]: /*tw*/ 'text-black dark:text-neutral-300',
 };
 
@@ -181,7 +184,7 @@ const bgConstruct = computed<string>(() => {
 	if (
 		!StringService.instance.isEmptyStr(color.value?.bgColorHex) ||
 		withDefaultImage.value ||
-		type.value === BoAvatarType.image
+		(type.value === BoAvatarType.image && !imgError.value)
 	) {
 		return /*tw*/ 'bg-transparent';
 	}
@@ -202,10 +205,7 @@ const textColorClass = computed<string>(() => {
 		return '';
 	}
 
-	const isOutlineShape =
-		shape.value === BoAvatarShape.outline_circle ||
-		shape.value === BoAvatarShape.outline_rounded ||
-		shape.value === BoAvatarShape.outline_flat;
+	const isOutlineShape = shape.value.includes('outline');
 
 	if (isOutlineShape && variant.value in outlineVariantTextColors) {
 		return outlineVariantTextColors[variant.value];
@@ -249,7 +249,7 @@ const avatarContainerDefaultClasses = computed<string>(() => {
 });
 
 const showDefaultAvatar = computed<boolean>(() => {
-	if (withDefaultImage.value) {
+	if (withDefaultImage.value || imgError.value) {
 		return true;
 	}
 
@@ -287,13 +287,21 @@ const avatarContainerClasses = computed<string>(() => {
 	);
 });
 
+function handleImageError(e: Event) {
+	imgError.value = true;
+	if (withDefaultImage.value) {
+		const imgElement = e.target as HTMLImageElement;
+		imgElement.src = defaultAvatarSrc;
+	}
+}
+
 function generateRandomColor(): string {
 	const colors = [
-		/*tw*/ 'bg-blue-600 dark:bg-blue-700 text-white',
-		/*tw*/ 'bg-gray-400 dark:bg-gray-700 text-white',
-		/*tw*/ 'bg-red-600 dark:bg-red-700 text-white',
+		/*tw*/ 'bg-blue-500 dark:bg-blue-600 text-white',
+		/*tw*/ 'bg-gray-400 dark:bg-gray-600 text-white',
+		/*tw*/ 'bg-red-500 dark:bg-red-600 text-white',
 		/*tw*/ 'bg-yellow-500 dark:bg-yellow-600 text-white',
-		/*tw*/ 'bg-green-600 dark:bg-green-700 text-white',
+		/*tw*/ 'bg-green-500 dark:bg-green-600 text-white',
 		/*tw*/ 'bg-black dark:bg-black text-white',
 	];
 
@@ -302,12 +310,12 @@ function generateRandomColor(): string {
 
 function generateRandomOutlineColor(): string {
 	const colors = [
-		/*tw*/ 'border border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-500',
-		/*tw*/ 'border border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',
-		/*tw*/ 'border border-red-600 text-red-600 dark:border-red-500 dark:text-red-500',
-		/*tw*/ 'border border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
-		/*tw*/ 'border border-green-600 text-green-600 dark:border-green-500 dark:text-green-500',
-		/*tw*/ 'border border-black text-black dark:border-neutral-700 dark:text-neutral-300',
+		/*tw*/ 'bg-transparent border-blue-500 text-blue-500 dark:border-blue-400 dark:text-blue-400',
+		/*tw*/ 'bg-transparent border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',
+		/*tw*/ 'bg-transparent border-red-500 text-red-500 dark:border-red-400 dark:text-red-400',
+		/*tw*/ 'bg-transparent border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
+		/*tw*/ 'bg-transparent border-green-500 text-green-500 dark:border-green-400 dark:text-green-400',
+		/*tw*/ 'bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-300',
 	];
 
 	return colors[Math.floor(Math.random() * colors.length)];

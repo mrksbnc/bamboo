@@ -40,14 +40,14 @@
 					v-if="isLoading && loaderType === 'spinner'"
 					:size="loaderSize"
 					:variant="loaderVariant"
-					class="ml-2"
+					class="bo-button__loader"
 					aria-hidden="true"
 				/>
 				<bo-loading-pulse
 					v-if="isLoading && loaderType === 'pulse'"
 					:size="loaderSize"
 					:variant="loaderVariant"
-					class="ml-2"
+					class="bo-button__loader"
 					aria-hidden="true"
 				/>
 			</span>
@@ -300,20 +300,31 @@ const loaderVariant = computed<BoLoaderVariant>(() => {
 });
 
 const loaderSize = computed<BoSize>(() => {
-	if (size.value === BoSize.default && loaderType.value === 'pulse') {
-		return BoSize.extra_small;
-	}
-
 	switch (size.value) {
 		case BoSize.extra_small:
-		case BoSize.small:
 			return BoSize.extra_small;
+		case BoSize.small:
+			return BoSize.small;
 		case BoSize.default:
+			return loaderType.value === 'pulse' ? BoSize.small : BoSize.default;
+		case BoSize.large:
+			return BoSize.default;
+		case BoSize.extra_large:
+			return BoSize.large;
 		default:
 			return BoSize.small;
-		case BoSize.large:
-		case BoSize.extra_large:
-			return BoSize.default;
 	}
 });
 </script>
+
+<style scoped>
+.bo-button__loader {
+	margin-left: 0.5rem;
+}
+
+.bo-button__content {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+</style>
