@@ -63,7 +63,7 @@
     "autoprefixer": "^10.4.20",
     "eslint-plugin-storybook": "^0.11.2",
     "chromatic": "^11.28.2",
-    "eslint": "^9.21.0",
+    "eslint": "^9.25.0",
     "eslint-plugin-oxlint": "^0.16.6",
     "eslint-plugin-vue": "^9.32.0",
     "jsdom": "^25.0.1",
