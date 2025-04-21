@@ -38,6 +38,28 @@ The `BoAccordionContainer` component is a wrapper component that manages multipl
 | `alwaysOpen`    | `boolean` | `false` | Whether at least one accordion item must remain open        |
 | `defaultOpen`   | `string`  | `''`    | The ID of the accordion item that should be open by default |
 
+## Types
+
+```ts
+interface BoAccordionContainerProps {
+	/**
+	 * Whether to allow multiple accordion items to be open at once
+	 * @default false
+	 */
+	allowMultiple?: boolean;
+	/**
+	 * Whether to keep at least one accordion item open
+	 * @default false
+	 */
+	alwaysOpen?: boolean;
+	/**
+	 * The ID of the accordion item that should be open by default
+	 * @default ''
+	 */
+	defaultOpen?: string;
+}
+```
+
 ## Multiple Open Items
 
 By default, only one accordion item can be open at a time. To allow multiple open items, use the `allowMultiple` prop:
@@ -131,25 +153,3 @@ To specify which accordion item should be open by default, use the `defaultOpen`
 		<p>Content for section 3</p>
 	</bo-accordion>
 </bo-accordion-container>
-
-## Types
-
-```ts
-interface BoAccordionContainerProps {
-	/**
-	 * Whether to allow multiple accordion items to be open at once
-	 * @default false
-	 */
-	allowMultiple?: boolean;
-	/**
-	 * Whether to keep at least one accordion item open
-	 * @default false
-	 */
-	alwaysOpen?: boolean;
-	/**
-	 * The ID of the accordion item that should be open by default
-	 * @default ''
-	 */
-	defaultOpen?: string;
-}
-```
