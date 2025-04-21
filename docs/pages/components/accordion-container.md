@@ -19,14 +19,14 @@ The `BoAccordionContainer` component is a wrapper component that manages multipl
 ```
 
 <bo-accordion-container>
-	<bo-accordion title="Section 1">
-		<p>Content for section 1</p>
+	<bo-accordion title="What is Bamboo?">
+		Bamboo is a UI component library built with Vue 3 and Tailwind CSS.
 	</bo-accordion>
-	<bo-accordion title="Section 2">
-		<p>Content for section 2</p>
+	<bo-accordion title="How do I install it?">
+		You can install Bamboo using npm or yarn.
 	</bo-accordion>
-	<bo-accordion title="Section 3">
-		<p>Content for section 3</p>
+	<bo-accordion title="Is it customizable?">
+		Yes, every component is highly customizable using props and slots.
 	</bo-accordion>
 </bo-accordion-container>
 

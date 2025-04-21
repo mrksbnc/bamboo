@@ -40,7 +40,7 @@ import { BoIcon, Icon } from '@/components/bo-icon';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo-text';
 import { IdentityService, StringService, TailwindService } from '@/services';
 import { BoSize } from '@/shared/bo-size';
-import { computed, toRefs } from 'vue';
+import { computed } from 'vue';
 import { BoBadgeShape, BoBadgeType, BoBadgeVariant, type BoBadgeProps } from './bo-badge';
 
 const slots = defineSlots<{
@@ -58,8 +58,6 @@ const props = withDefaults(defineProps<BoBadgeProps>(), {
 		suffix: Icon.none,
 	}),
 });
-
-const { label, type, size, variant, shape, icon } = toRefs(props);
 
 const containerClasses = {
 	[BoBadgeShape.default]:
@@ -91,17 +89,17 @@ const variantClasses = {
 	},
 	[BoBadgeType.outline]: {
 		[BoBadgeVariant.primary]:
-			/*tw*/ ' bo-badge--outline bo-badge--primary bg-transparent border border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-400',
+			/*tw*/ ' bo-badge--outline bo-badge--primary bg-transparent border border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-500',
 		[BoBadgeVariant.secondary]:
-			/*tw*/ ' bo-badge--outline bo-badge--secondary bg-transparent border border-neutral-600 text-neutral-600 dark:border-neutral-400 dark:text-neutral-400',
+			/*tw*/ ' bo-badge--outline bo-badge--secondary bg-transparent border border-neutral-600 text-neutral-600 dark:border-neutral-500 dark:text-neutral-500',
 		[BoBadgeVariant.danger]:
-			/*tw*/ ' bo-badge--outline bo-badge--danger bg-transparent border border-red-600 text-red-600 dark:border-red-500 dark:text-red-400',
+			/*tw*/ ' bo-badge--outline bo-badge--danger bg-transparent border border-red-600 text-red-600 dark:border-red-500 dark:text-red-500',
 		[BoBadgeVariant.warning]:
-			/*tw*/ ' bo-badge--outline bo-badge--warning bg-transparent border border-yellow-600 text-yellow-600 dark:border-yellow-500 dark:text-yellow-400',
+			/*tw*/ ' bo-badge--outline bo-badge--warning bg-transparent border border-yellow-600 text-yellow-600 dark:border-yellow-500 dark:text-yellow-500',
 		[BoBadgeVariant.success]:
-			/*tw*/ ' bo-badge--outline bo-badge--success bg-transparent border border-green-600 text-green-600 dark:border-green-500 dark:text-green-400',
+			/*tw*/ ' bo-badge--outline bo-badge--success bg-transparent border border-green-600 text-green-600 dark:border-green-500 dark:text-green-500',
 		[BoBadgeVariant.light]:
-			/*tw*/ ' bo-badge--outline bo-badge--light bg-transparent border border-neutral-400 text-neutral-400 dark:border-neutral-400 dark:text-neutral-300',
+			/*tw*/ ' bo-badge--outline bo-badge--light bg-transparent border border-neutral-500 text-neutral-500 dark:border-neutral-500 dark:text-neutral-400',
 		[BoBadgeVariant.dark]:
 			/*tw*/ ' bo-badge--outline bo-badge--dark bg-transparent border border-black text-black dark:border-white dark:text-white',
 	},
@@ -109,46 +107,46 @@ const variantClasses = {
 
 const iconOnly = computed<boolean>(() => {
 	return (
-		(icon?.value?.prefix !== Icon.none || icon?.value?.suffix !== Icon.none) &&
-		StringService.instance.isEmptyStr(label.value)
+		(props.icon?.prefix !== Icon.none || props.icon?.suffix !== Icon.none) &&
+		StringService.instance.isEmptyStr(props.label)
 	);
 });
 
 const prefixOrIconOnlySrc = computed<Icon>(() => {
 	if (iconOnly.value) {
-		return icon?.value?.prefix ?? icon?.value?.suffix ?? Icon.none;
+		return props.icon?.prefix ?? props.icon?.suffix ?? Icon.none;
 	}
 
-	return icon?.value?.prefix ?? Icon.none;
+	return props.icon?.prefix ?? Icon.none;
 });
 
 const isCircle = computed<boolean>(() => {
-	return shape.value === BoBadgeShape.circle && iconOnly.value;
+	return props.shape === BoBadgeShape.circle && iconOnly.value;
 });
 
 const renderPrefixIcon = computed<boolean>(() => {
 	return (
-		(!StringService.instance.isEmptyStr(icon?.value?.prefix) && icon.value.prefix !== Icon.none) ||
+		(!StringService.instance.isEmptyStr(props.icon?.prefix) && props.icon.prefix !== Icon.none) ||
 		iconOnly.value ||
 		isCircle.value
 	);
 });
 
 const renderSuffixIcon = computed<boolean>(() => {
-	return !StringService.instance.isEmptyStr(icon?.value?.suffix) && icon.value.suffix !== Icon.none;
+	return !StringService.instance.isEmptyStr(props.icon?.suffix) && props.icon.suffix !== Icon.none;
 });
 
 const renderLabel = computed<boolean>(() => {
-	return !StringService.instance.isEmptyStr(label.value) && !iconOnly.value;
+	return !StringService.instance.isEmptyStr(props.label) && !iconOnly.value;
 });
 
 const boBadgeVariantClasses = computed<string>(() => {
-	return variantClasses[type.value][variant.value];
+	return variantClasses[props.type][props.variant];
 });
 
 const boBadgeSizeClasses = computed<string>(() => {
-	if (shape.value === BoBadgeShape.circle) {
-		switch (size.value) {
+	if (props.shape === BoBadgeShape.circle) {
+		switch (props.size) {
 			case BoSize.extra_small:
 				return /*tw*/ 'p-0';
 			case BoSize.small:
@@ -163,7 +161,7 @@ const boBadgeSizeClasses = computed<string>(() => {
 		}
 	}
 
-	switch (size.value) {
+	switch (props.size) {
 		case BoSize.extra_small:
 			return /*tw*/ 'px-1 py-0 text-xs rounded-md';
 		case BoSize.small:
@@ -183,12 +181,12 @@ const classes = computed<string>(() => {
 		/*tw*/ 'cursor-default',
 		boBadgeSizeClasses.value,
 		boBadgeVariantClasses.value,
-		containerClasses[shape.value],
+		containerClasses[props.shape],
 	);
 });
 
 const badgeFontSize = computed<BoFontSize>(() => {
-	switch (size.value) {
+	switch (props.size) {
 		case BoSize.extra_small:
 		case BoSize.small:
 		case BoSize.default:
@@ -202,7 +200,7 @@ const badgeFontSize = computed<BoFontSize>(() => {
 });
 
 const boBadgeIconSize = computed<BoSize>(() => {
-	switch (size.value) {
+	switch (props.size) {
 		case BoSize.extra_small:
 		case BoSize.small:
 			return BoSize.small;

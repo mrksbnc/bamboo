@@ -43,7 +43,7 @@
 
 				<!-- Popover content -->
 				<div class="bo-popover-content relative z-10">
-					<slot name="default">
+					<slot>
 						<div
 							v-if="title"
 							class="bo-popover-title"

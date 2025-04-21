@@ -24,12 +24,38 @@ export enum BoBadgeShape {
 }
 
 export interface BoBadgeProps {
+	/**
+	 * Unique ID for the badge, used for accessibility and testing
+	 */
 	id?: string;
+	/**
+	 * Text content of the badge
+	 */
 	label?: string;
+	/**
+	 * Visual style of the badge
+	 * @default BoBadgeType.default
+	 */
 	type?: BoBadgeType;
+	/**
+	 * Size of the badge
+	 * @default BoSize.default
+	 */
 	size?: BoSize;
+	/**
+	 * Shape of the badge
+	 * @default BoBadgeShape.default
+	 */
 	shape?: BoBadgeShape;
+	/**
+	 * Color variant of the badge
+	 * @default BoBadgeVariant.primary
+	 */
 	variant?: BoBadgeVariant;
+	/**
+	 * Custom icon configuration for badge
+	 * @default { prefix: Icon.none, suffix: Icon.none }
+	 */
 	icon?: {
 		prefix?: Icon;
 		suffix?: Icon;

@@ -29,7 +29,7 @@
 				class="relative border-t border-slate-200 p-4 py-4 leading-normal font-light text-slate-600"
 				:data-testid="`bo-modal-content-${id}`"
 			>
-				<slot name="default"></slot>
+				<slot></slot>
 			</div>
 			<div
 				class="flex shrink-0 flex-wrap items-center justify-end border-t border-slate-200 p-4 pt-4"

@@ -44,8 +44,8 @@
 			:aria-labelledby="`accordion-header-${id}`"
 			:class="bodyClasses"
 		>
-			<div class="bo-accordion__content p-4">
-				<slot name="default"></slot>
+			<div class="bo-accordion__content p-4 text-neutral-800 dark:text-white">
+				<slot></slot>
 			</div>
 		</div>
 	</div>
@@ -54,9 +54,9 @@
 <script setup lang="ts">
 import { BoIcon, Icon } from '@/components/bo-icon';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo-text';
-import { FocusTrapService, IdentityService, KeyboardService, TailwindService } from '@/services';
+import { IdentityService, TailwindService } from '@/services';
 import { InjectKey } from '@/shared/injection-key';
-import { computed, inject, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { computed, inject, onMounted, ref, watch } from 'vue';
 import type { AccordionGroup, BoAccordionProps } from './bo-accordion';
 
 const props = withDefaults(defineProps<BoAccordionProps>(), {
@@ -90,8 +90,6 @@ const defaultBodyClasses: Record<string, string> = {
 	animation: /*tw*/ 'transition-all duration-300',
 	background: /*tw*/ 'bg-neutral-50 dark:bg-neutral-700',
 };
-
-let focusTrap: { activate: () => void; deactivate: () => void } | null = null;
 
 const isOpen = ref(props.open);
 const accordionRef = ref<HTMLElement | null>(null);
@@ -135,49 +133,6 @@ function toggleAccordion(): void {
 	}
 }
 
-function setupKeyboardHandlers() {
-	if (isOpen.value) {
-		KeyboardService.instance.useEscapeKey((e) => {
-			if (isOpen.value && !props.disabled) {
-				toggleAccordion();
-			}
-		});
-	}
-}
-
-function setupFocusTrap(): void {
-	if (isOpen.value && accordionBodyRef.value) {
-		focusTrap = FocusTrapService.instance.useFocusTrap(accordionBodyRef.value, {
-			handleEscapeKey: true,
-			onEscape: () => {
-				if (!props.disabled) {
-					toggleAccordion();
-				}
-			},
-			initialFocus: 'first-focusable',
-		});
-		focusTrap.activate();
-	} else if (focusTrap) {
-		focusTrap.deactivate();
-		focusTrap = null;
-	}
-}
-
-watch(
-	() => isOpen.value,
-	(val) => {
-		if (val) {
-			nextTick(() => {
-				setupFocusTrap();
-				setupKeyboardHandlers();
-			});
-		} else if (focusTrap) {
-			focusTrap.deactivate();
-			focusTrap = null;
-		}
-	},
-);
-
 watch(
 	() => props.open,
 	(val) => {
@@ -189,7 +144,7 @@ watch(
 	() => accordionGroup?.openItems,
 	(openItems) => {
 		if (accordionGroup && openItems) {
-			isOpen.value = openItems.includes(props.id);
+			isOpen.value = openItems.has(props.id);
 		}
 	},
 	{ deep: true },
@@ -198,19 +153,6 @@ watch(
 onMounted(() => {
 	if (accordionGroup) {
 		accordionGroup.registerItem(props.id, props.open);
-	}
-
-	if (isOpen.value) {
-		nextTick(() => {
-			setupFocusTrap;
-		});
-	}
-});
-
-onBeforeUnmount(() => {
-	if (focusTrap) {
-		focusTrap.deactivate();
-		focusTrap = null;
 	}
 });
 </script>

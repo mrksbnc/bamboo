@@ -1,10 +1,9 @@
 <template>
 	<button
-		v-bind="props"
-		:disabled="isDisabled"
+		v-bind="$attrs"
 		:class="buttonClass"
+		:disabled="isDisabled"
 		:aria-busy="isLoading"
-		:aria-pressed="pressed"
 		:aria-disabled="isDisabled"
 		:aria-label="computedAriaLabel"
 		:data-testid="`bo-button-${id}`"
@@ -68,11 +67,11 @@ import { BoLoadingSpinner } from '@/components/bo-loading-spinner';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo-text';
 import { IdentityService, StringService, TailwindService } from '@/services';
 import { BoLoaderType, BoLoaderVariant, BoSize, HtmlButtonType } from '@/shared';
-import { computed, toRefs } from 'vue';
+import { computed } from 'vue';
 import { BoButtonShape, BoButtonVariant, type BoButtonProps } from './bo-button';
 
 const slots = defineSlots<{
-	default?: (props: Record<string, unknown>) => void;
+	default?: () => unknown;
 }>();
 
 const props = withDefaults(defineProps<BoButtonProps>(), {
@@ -84,23 +83,8 @@ const props = withDefaults(defineProps<BoButtonProps>(), {
 	type: () => HtmlButtonType.button,
 	shape: () => BoButtonShape.default,
 	variant: () => BoButtonVariant.primary,
-	ariaLabel: 'Button',
+	ariaLabel: 'button',
 });
-
-const {
-	label,
-	variant,
-	size,
-	prefixIcon,
-	suffixIcon,
-	shape,
-	disabled,
-	loaderType,
-	isLoading,
-	fullWidth,
-	pressed,
-	ariaLabel,
-} = toRefs(props);
 
 const defaultButtonClasses = {
 	default:
@@ -197,11 +181,11 @@ const variantClasses = {
 };
 
 const sizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'bo-button--extra-small px-2 py-1',
-	[BoSize.small]: /*tw*/ 'bo-button--small px-3 py-1.5',
-	[BoSize.default]: /*tw*/ 'bo-button--default px-4 py-2',
-	[BoSize.large]: /*tw*/ 'bo-button--large px-5 py-2.5',
-	[BoSize.extra_large]: /*tw*/ 'bo-button--extra-large px-6 py-3',
+	[BoSize.extra_small]: /*tw*/ 'bo-button--extra-small px-1.5 py-1',
+	[BoSize.small]: /*tw*/ 'bo-button--small px-2 py-1.5',
+	[BoSize.default]: /*tw*/ 'bo-button--default px-3 py-2',
+	[BoSize.large]: /*tw*/ 'bo-button--large px-4 py-2.5',
+	[BoSize.extra_large]: /*tw*/ 'bo-button--extra-large px-5 py-3',
 };
 
 const iconOnlySizeClasses = {
@@ -213,42 +197,42 @@ const iconOnlySizeClasses = {
 };
 
 const isDisabled = computed<boolean>(() => {
-	return disabled.value || isLoading.value;
+	return props.disabled || props.isLoading;
 });
 
 const computedAriaLabel = computed<string | undefined>(() => {
 	return (
-		ariaLabel.value ??
-		(label.value ? undefined : iconOnlyButton.value ? 'Button with icon' : undefined)
+		props.ariaLabel ??
+		(props.label ? props.label : iconOnlyButton.value ? 'button with icon' : 'button')
 	);
 });
 
 const widthConstruct = computed<string>(() => {
-	return fullWidth.value ? widthClasses.fullWidth : widthClasses.default;
+	return props.fullWidth ? widthClasses.fullWidth : widthClasses.default;
 });
 
 const iconOnlyButton = computed<boolean>(() => {
 	return (
-		StringService.instance.isEmptyStr(label.value) &&
-		prefixIcon.value &&
-		prefixIcon.value !== Icon.none
+		StringService.instance.isEmptyStr(props.label) &&
+		props.prefixIcon &&
+		props.prefixIcon !== Icon.none
 	);
 });
 
 const buttonSizeClasses = computed<string>(() => {
 	if (iconOnlyButton.value) {
-		return iconOnlySizeClasses[size.value];
+		return iconOnlySizeClasses[props.size];
 	}
 
-	return sizeClasses[size.value];
+	return sizeClasses[props.size];
 });
 
 const iconOnlyIcon = computed<Icon>(() => {
-	return prefixIcon.value ?? suffixIcon.value ?? Icon.none;
+	return props.prefixIcon ?? props.suffixIcon ?? Icon.none;
 });
 
 const variantShadowClasses = computed<string>(() => {
-	if (shape.value === BoButtonShape.link) {
+	if (props.shape === BoButtonShape.link) {
 		return shadowClasses.link;
 	}
 
@@ -259,19 +243,19 @@ const buttonClass = computed<string>(() => {
 	return TailwindService.instance.merge(
 		widthConstruct.value,
 		buttonSizeClasses.value,
-		shapeClasses[shape.value],
+		shapeClasses[props.shape],
 		variantShadowClasses.value,
 		defaultButtonClasses.default,
-		defaultButtonClasses.disabled,
 		defaultButtonClasses.loading,
 		defaultButtonClasses.pressed,
+		defaultButtonClasses.disabled,
 		defaultButtonClasses.fullWidth,
-		variantClasses[shape.value][variant.value],
+		variantClasses[props.shape][props.variant],
 	);
 });
 
 const buttonFontSize = computed<BoFontSize>(() => {
-	switch (size.value) {
+	switch (props.size) {
 		case BoSize.extra_small:
 		case BoSize.small:
 			return BoFontSize.xs;
@@ -285,8 +269,8 @@ const buttonFontSize = computed<BoFontSize>(() => {
 });
 
 const loaderVariant = computed<BoLoaderVariant>(() => {
-	if (shape.value === BoButtonShape.outline || shape.value === BoButtonShape.link) {
-		switch (variant.value) {
+	if (props.shape === BoButtonShape.outline || props.shape === BoButtonShape.link) {
+		switch (props.variant) {
 			case BoButtonVariant.secondary:
 				return BoLoaderVariant.secondary;
 			case BoButtonVariant.danger:
@@ -303,7 +287,7 @@ const loaderVariant = computed<BoLoaderVariant>(() => {
 		}
 	}
 
-	switch (variant.value) {
+	switch (props.variant) {
 		case BoButtonVariant.primary:
 		case BoButtonVariant.secondary:
 		case BoButtonVariant.danger:
@@ -316,13 +300,13 @@ const loaderVariant = computed<BoLoaderVariant>(() => {
 });
 
 const loaderSize = computed<BoSize>(() => {
-	switch (size.value) {
+	switch (props.size) {
 		case BoSize.extra_small:
 			return BoSize.extra_small;
 		case BoSize.small:
 			return BoSize.small;
 		case BoSize.default:
-			return loaderType.value === 'pulse' ? BoSize.small : BoSize.default;
+			return props.loaderType === BoLoaderType.pulse ? BoSize.small : BoSize.default;
 		case BoSize.large:
 			return BoSize.default;
 		case BoSize.extra_large:

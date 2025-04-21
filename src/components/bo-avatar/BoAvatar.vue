@@ -200,7 +200,7 @@ const avatarContainerDefaultClasses = computed<string>(() => {
 		bgConstruct.value,
 		containerClasses.default,
 		cursorClassConstruct.value,
-		!shape.value.includes('outline') ? /*tw*/ 'shadow-sm dark:shadow-gray-800' : '',
+		!shape.value.includes('outline') ? /*tw*/ 'shadow-md' : 'shadow-none',
 	);
 });
 

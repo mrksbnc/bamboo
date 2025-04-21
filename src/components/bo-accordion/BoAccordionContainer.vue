@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<BoAccordionContainerProps>(), {
 	alwaysOpen: false,
 });
 
-const openItems = ref<string[]>([]);
+const openItems = ref<Set<string>>(new Set());
 
 const registeredItems = ref<Set<string>>(new Set());
 
@@ -27,21 +27,31 @@ function registerItem(id: string, initialOpen: boolean): void {
 	registeredItems.value.add(id);
 
 	if (initialOpen || id === props.defaultOpen) {
-		props.allowMultiple ? openItems.value.push(id) : (openItems.value = [id]);
+		if (props.allowMultiple) {
+			openItems.value.add(id);
+		} else {
+			openItems.value.clear();
+			openItems.value.add(id);
+		}
 	}
 }
 
 function toggle(id: string): void {
-	if (openItems.value.includes(id)) {
-		if (props.alwaysOpen && openItems.value.length === 1) {
+	if (openItems.value.has(id)) {
+		if (props.alwaysOpen && openItems.value.size === 1) {
 			return;
 		}
 
-		openItems.value = openItems.value.filter((item) => item !== id);
+		openItems.value.delete(id);
 		return;
 	}
 
-	props.allowMultiple ? openItems.value.push(id) : (openItems.value = [id]);
+	if (props.allowMultiple) {
+		openItems.value.add(id);
+	} else {
+		openItems.value.clear();
+		openItems.value.add(id);
+	}
 }
 
 provide(

@@ -48,7 +48,7 @@ export interface BoAccordionContainerProps {
 }
 
 export interface AccordionGroup {
-	openItems: string[];
+	openItems: Set<string>;
 	toggle: (id: string) => void;
 	registerItem: (id: string, initialOpen: boolean) => void;
 }

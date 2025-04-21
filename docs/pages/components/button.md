@@ -64,7 +64,7 @@ import { BoButton } from '@mrksbnc/bamboo';
 ## Types
 
 ```ts
-export enum BoButtonVariant {
+enum BoButtonVariant {
 	primary = 'primary',
 	secondary = 'secondary',
 	danger = 'danger',
@@ -74,30 +74,79 @@ export enum BoButtonVariant {
 	dark = 'dark',
 }
 
-export enum BoButtonShape {
+enum BoButtonShape {
 	default = 'default',
 	pill = 'pill',
 	outline = 'outline',
 	link = 'link',
 }
 
-export interface BoButtonProps {
-	label?: string;
-	variant?: BoButtonVariant;
-	shape?: BoButtonShape;
-	loaderType?: BoLoaderType;
-	isLoading?: boolean;
-	size?: BoSize;
-	useSlot?: boolean;
-	prefixIcon?: Icon;
-	suffixIcon?: Icon;
-	autofocus?: boolean;
-	disabled?: boolean;
-	type?: HtmlButtonType;
-	fullWidth?: boolean;
-	pressed?: boolean;
-	ariaLabel?: string;
+interface BoButtonProps {
+	/**
+	 * Unique ID for the button, used for accessibility and testing
+	 */
 	id?: string;
+	/**
+	 * Text content of the button
+	 */
+	label?: string;
+	/**
+	 * Button appearance style
+	 * @default BoButtonVariant.primary
+	 */
+	variant?: BoButtonVariant;
+	/**
+	 * Shape of the button
+	 * @default BoButtonShape.default
+	 */
+	shape?: BoButtonShape;
+	/**
+	 * Type of loader to show when loading
+	 * @default BoLoaderType.spinner
+	 */
+	loaderType?: BoLoaderType;
+	/**
+	 * Whether the button is in a loading state
+	 */
+	isLoading?: boolean;
+	/**
+	 * Button size
+	 * @default BoSize.default
+	 */
+	size?: BoSize;
+	/**
+	 * The prefix icon to display before the label
+	 */
+	prefixIcon?: Icon;
+	/**
+	 * The suffix icon to display after the label
+	 */
+	suffixIcon?: Icon;
+	/**
+	 * Whether the button should be autofocused
+	 * @default false
+	 */
+	autofocus?: boolean;
+	/**
+	 * Whether the button is disabled
+	 * @default false
+	 */
+	disabled?: boolean;
+	/**
+	 * HTML button type
+	 * @default 'button'
+	 */
+	type?: HtmlButtonType;
+	/**
+	 * Whether the button should take full width
+	 * @default false
+	 */
+	fullWidth?: boolean;
+	/**
+	 * Custom accessible name for the button, especially important for icon-only buttons
+	 * @see https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html
+	 */
+	ariaLabel?: string;
 }
 ```
 
@@ -150,12 +199,20 @@ export interface BoButtonProps {
 </div>
 
 ```vue
-<bo-button :size="BoSize.extra_small" label="Extra Small" />
-<bo-button :size="BoSize.small" label="Small" />
-<bo-button :size="BoSize.default" label="Default" />
-<bo-button :size="BoSize.large" label="Large" />
-<bo-button :size="BoSize.extra_large" label="Extra Large" />
+<div class="my-4 flex items-center gap-4">
+  <bo-button :size="BoSize.extra_small" label="Extra Small" />
+  <bo-button :size="BoSize.small" label="Small" />
+  <bo-button :size="BoSize.default" label="Default" />
+  <bo-button :size="BoSize.large" label="Large" />
+  <bo-button :size="BoSize.extra_large" label="Extra Large" />
+</div>
 ```
+
+## Full Width
+
+<div class="my-4 flex items-center gap-4">
+  <bo-button full-width label="Full Width" />
+</div>
 
 ## States
 
@@ -206,38 +263,6 @@ export interface BoButtonProps {
 <script setup>
 const handleClick = (event) => {
 	console.log('Button clicked:', event);
-};
-</script>
-```
-
-## Usage Examples
-
-### In a Form
-
-```vue
-<form @submit.prevent="submitForm">
-  <bo-input v-model="formData.name" label="Name" />
-  <bo-button type="submit" label="Submit" />
-</form>
-```
-
-### As a Toggle Button
-
-```vue
-<template>
-	<bo-button
-		:pressed="isPressed"
-		@click="togglePressed"
-		label="Toggle Me"
-	/>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const isPressed = ref(false);
-const togglePressed = () => {
-	isPressed.value = !isPressed.value;
 };
 </script>
 ```

@@ -18,7 +18,7 @@
 				:style="customColorStyle"
 			></span>
 		</span>
-		<slot name="default">
+		<slot>
 			<span
 				v-if="displayLoaderText"
 				class="bo-loading-pulse__text"
