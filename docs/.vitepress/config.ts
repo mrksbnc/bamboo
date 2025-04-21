@@ -23,9 +23,19 @@ function buildSidebar() {
 				{ text: 'Loading Pulse', link: '/pages/components/loading-pulse' },
 				{ text: 'Loading Spinner', link: '/pages/components/loading-spinner' },
 				{ text: 'Modal', link: '/pages/components/modal' },
+				{ text: 'Popover', link: '/pages/components/popover' },
+				{ text: 'Progress Bar', link: '/pages/components/progress-bar' },
 				{ text: 'Table', link: '/pages/components/table' },
 				{ text: 'Text', link: '/pages/components/text' },
 				{ text: 'Textarea', link: '/pages/components/textarea' },
+				{ text: 'Timeline', link: '/pages/components/timeline' },
+			],
+		},
+		{
+			text: 'Directives',
+			items: [
+				{ text: 'Overview', link: '/pages/directives/index' },
+				{ text: 'Tooltip', link: '/pages/directives/tooltip' },
 			],
 		},
 		{

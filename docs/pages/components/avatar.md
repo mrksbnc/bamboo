@@ -1,11 +1,11 @@
 <script setup>
-import { BoAvatar, BoAvatarShape, BoAvatarType, BoAvatarVariant, BoAvatarIndicatorPosition, BoAvatarIndicatorStatus } from '@/components/bo-avatar';
+import { BoAvatar, BoAvatarShape, BoAvatarType, BoAvatarVariant, BoAvatarIndicatorStatus, BoAvatarIndicatorPosition } from '@/components/bo-avatar';
 import { BoSize } from '@/shared';
 </script>
 
 # Avatar
 
-Avatars represent users or entities with images, initials, or icons. They provide visual identification in user interfaces.
+A versatile avatar component used to represent users or entities with images or initials.
 
 ```js
 import { BoAvatar } from '@mrksbnc/bamboo';
@@ -15,7 +15,7 @@ import { BoAvatar } from '@mrksbnc/bamboo';
 
 ```vue
 <template>
-	<bo-avatar :data="{ src: '/path/to/image.jpg', alt: 'User Avatar' }" />
+	<bo-avatar :data="{ label: 'JD' }" />
 </template>
 
 <script setup>
@@ -25,22 +25,22 @@ import { BoAvatar } from '@mrksbnc/bamboo';
 
 <hr />
 <div class="flex gap-4 items-center my-4">
-	<bo-avatar :data="{ src: 'https://i.pravatar.cc/300', alt: 'User Avatar' }" />
+  <bo-avatar :data="{ label: 'JD' }" />
 </div>
 
 ## Props
 
-| Name               | Type                | Default     | Description                                               |
-| ------------------ | ------------------- | ----------- | --------------------------------------------------------- |
-| `data`             | `BoAvatarData`      | Required    | Avatar data (image source, alt text, or initials)         |
-| `type`             | `BoAvatarType`      | `image`     | Type of avatar (image or initials)                        |
-| `shape`            | `BoAvatarShape`     | `circle`    | Controls the avatar's shape                               |
-| `size`             | `BoSize`            | `default`   | Controls the avatar's size                                |
-| `clickable`        | `boolean`           | `false`     | Makes the avatar clickable with hover effects             |
-| `withDefaultImage` | `boolean`           | `false`     | Shows a default image if the provided image fails to load |
-| `variant`          | `BoAvatarVariant`   | `primary`   | Color variant for backgrounds and outlines                |
-| `color`            | `BoAvatarColor`     | `undefined` | Custom background and text colors                         |
-| `indicator`        | `BoAvatarIndicator` | `undefined` | Status indicator settings                                 |
+| Name               | Type                | Default     | Description                            |
+| ------------------ | ------------------- | ----------- | -------------------------------------- |
+| `data`             | `BoAvatarData`      | `{}`        | Avatar data (image source or label)    |
+| `type`             | `BoAvatarType`      | `initials`  | Type of avatar (image or initials)     |
+| `shape`            | `BoAvatarShape`     | `rounded`   | Shape of the avatar                    |
+| `size`             | `BoSize`            | `default`   | Size of the avatar                     |
+| `clickable`        | `boolean`           | `false`     | Whether the avatar is clickable        |
+| `withDefaultImage` | `boolean`           | `false`     | Show default image if no data provided |
+| `variant`          | `BoAvatarVariant`   | `primary`   | Color variant of the avatar            |
+| `color`            | `BoAvatarColor`     | `undefined` | Custom colors for the avatar           |
+| `indicator`        | `BoAvatarIndicator` | `undefined` | Status indicator for the avatar        |
 
 ## Types
 
@@ -112,255 +112,302 @@ export interface BoAvatarProps {
 }
 ```
 
-## Avatar Types
-
-### Image Avatar
-
-<div class="flex gap-4 items-center my-4">
-	<bo-avatar 
-		:type="BoAvatarType.image" 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'User Avatar' }" 
-	/>
-</div>
-
-```vue
-<bo-avatar
-	:type="BoAvatarType.image"
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'User Avatar' }"
-/>
-```
+## Types
 
 ### Initials Avatar
 
 <div class="flex gap-4 items-center my-4">
-	<bo-avatar 
-		:type="BoAvatarType.initials" 
-		:data="{ label: 'JD' }" 
-	/>
+  <bo-avatar :type="BoAvatarType.initials" :data="{ label: 'JD' }" />
 </div>
 
 ```vue
 <bo-avatar :type="BoAvatarType.initials" :data="{ label: 'JD' }" />
 ```
 
-## Shapes
+### Image Avatar
 
 <div class="flex gap-4 items-center my-4">
-	<bo-avatar 
-		:shape="BoAvatarShape.circle" 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Circle' }" 
-	/>
-	<bo-avatar 
-		:shape="BoAvatarShape.flat" 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Flat' }" 
-	/>
-	<bo-avatar 
-		:shape="BoAvatarShape.rounded" 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Rounded' }" 
-	/>
-	<bo-avatar 
-		:shape="BoAvatarShape.outline_circle" 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Outline Circle' }" 
-	/>
-	<bo-avatar 
-		:shape="BoAvatarShape.outline_flat" 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Outline Flat' }" 
-	/>
-	<bo-avatar 
-		:shape="BoAvatarShape.outline_rounded" 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Outline Rounded' }" 
-	/>
+  <bo-avatar 
+    :type="BoAvatarType.image" 
+    :data="{ 
+      src: 'https://i.pravatar.cc/300', 
+      alt: 'Avatar image' 
+    }" 
+  />
 </div>
 
 ```vue
 <bo-avatar
-	:shape="BoAvatarShape.circle"
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'Circle' }"
+	:type="BoAvatarType.image"
+	:data="{
+		src: 'https://i.pravatar.cc/300',
+		alt: 'Avatar image',
+	}"
 />
-<bo-avatar :shape="BoAvatarShape.flat" :data="{ src: 'https://i.pravatar.cc/300', alt: 'Flat' }" />
-<bo-avatar
-	:shape="BoAvatarShape.rounded"
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'Rounded' }"
-/>
-<bo-avatar
-	:shape="BoAvatarShape.outline_circle"
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'Outline Circle' }"
-/>
-<bo-avatar
-	:shape="BoAvatarShape.outline_flat"
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'Outline Flat' }"
-/>
-<bo-avatar
-	:shape="BoAvatarShape.outline_rounded"
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'Outline Rounded' }"
-/>
+```
+
+## Shapes
+
+<div class="flex gap-4 items-center my-4">
+  <bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'JD' }" />
+  <bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'JD' }" />
+  <bo-avatar :shape="BoAvatarShape.flat" :data="{ label: 'JD' }" />
+  <bo-avatar :shape="BoAvatarShape.outline_rounded" :data="{ label: 'JD' }" />
+  <bo-avatar :shape="BoAvatarShape.outline_circle" :data="{ label: 'JD' }" />
+  <bo-avatar :shape="BoAvatarShape.outline_flat" :data="{ label: 'JD' }" />
+</div>
+
+```vue
+<bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'JD' }" />
+<bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'JD' }" />
+<bo-avatar :shape="BoAvatarShape.flat" :data="{ label: 'JD' }" />
+<bo-avatar :shape="BoAvatarShape.outline_rounded" :data="{ label: 'JD' }" />
+<bo-avatar :shape="BoAvatarShape.outline_circle" :data="{ label: 'JD' }" />
+<bo-avatar :shape="BoAvatarShape.outline_flat" :data="{ label: 'JD' }" />
 ```
 
 ## Sizes
 
 <div class="flex items-center gap-4 my-4">
-	<bo-avatar 
-		:size="BoSize.small" 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Small Avatar' }" 
-	/>
-	<bo-avatar 
-		:size="BoSize.default" 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Default Avatar' }" 
-	/>
-	<bo-avatar 
-		:size="BoSize.large" 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Large Avatar' }" 
-	/>
+  <bo-avatar :size="BoSize.extra_small" :data="{ label: 'JD' }" />
+  <bo-avatar :size="BoSize.small" :data="{ label: 'JD' }" />
+  <bo-avatar :size="BoSize.default" :data="{ label: 'JD' }" />
+  <bo-avatar :size="BoSize.large" :data="{ label: 'JD' }" />
+  <bo-avatar :size="BoSize.extra_large" :data="{ label: 'JD' }" />
 </div>
 
 ```vue
-<bo-avatar :size="BoSize.small" :data="{ src: 'https://i.pravatar.cc/300', alt: 'Small Avatar' }" />
-<bo-avatar
-	:size="BoSize.default"
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'Default Avatar' }"
-/>
-<bo-avatar :size="BoSize.large" :data="{ src: 'https://i.pravatar.cc/300', alt: 'Large Avatar' }" />
+<bo-avatar :size="BoSize.extra_small" :data="{ label: 'JD' }" />
+<bo-avatar :size="BoSize.small" :data="{ label: 'JD' }" />
+<bo-avatar :size="BoSize.default" :data="{ label: 'JD' }" />
+<bo-avatar :size="BoSize.large" :data="{ label: 'JD' }" />
+<bo-avatar :size="BoSize.extra_large" :data="{ label: 'JD' }" />
 ```
 
 ## Variants
 
 <div class="flex gap-4 items-center my-4">
-	<bo-avatar 
-		:type="BoAvatarType.initials" 
-		:variant="BoAvatarVariant.primary" 
-		:data="{ label: 'P' }" 
-	/>
-	<bo-avatar 
-		:type="BoAvatarType.initials" 
-		:variant="BoAvatarVariant.secondary" 
-		:data="{ label: 'S' }" 
-	/>
-	<bo-avatar 
-		:type="BoAvatarType.initials" 
-		:variant="BoAvatarVariant.danger" 
-		:data="{ label: 'D' }" 
-	/>
-	<bo-avatar 
-		:type="BoAvatarType.initials" 
-		:variant="BoAvatarVariant.warning" 
-		:data="{ label: 'W' }" 
-	/>
-	<bo-avatar 
-		:type="BoAvatarType.initials" 
-		:variant="BoAvatarVariant.success" 
-		:data="{ label: 'S' }" 
-	/>
-	<bo-avatar 
-		:type="BoAvatarType.initials" 
-		:variant="BoAvatarVariant.dark" 
-		:data="{ label: 'D' }" 
-	/>
+  <bo-avatar :variant="BoAvatarVariant.primary" :data="{ label: 'JD' }" />
+  <bo-avatar :variant="BoAvatarVariant.secondary" :data="{ label: 'JD' }" />
+  <bo-avatar :variant="BoAvatarVariant.danger" :data="{ label: 'JD' }" />
+  <bo-avatar :variant="BoAvatarVariant.warning" :data="{ label: 'JD' }" />
+  <bo-avatar :variant="BoAvatarVariant.success" :data="{ label: 'JD' }" />
+  <bo-avatar :variant="BoAvatarVariant.dark" :data="{ label: 'JD' }" />
 </div>
 
 ```vue
-<bo-avatar
-	:type="BoAvatarType.initials"
-	:variant="BoAvatarVariant.primary"
-	:data="{ label: 'P' }"
-/>
-<bo-avatar
-	:type="BoAvatarType.initials"
-	:variant="BoAvatarVariant.secondary"
-	:data="{ label: 'S' }"
-/>
-<bo-avatar :type="BoAvatarType.initials" :variant="BoAvatarVariant.danger" :data="{ label: 'D' }" />
-<bo-avatar
-	:type="BoAvatarType.initials"
-	:variant="BoAvatarVariant.warning"
-	:data="{ label: 'W' }"
-/>
-<bo-avatar
-	:type="BoAvatarType.initials"
-	:variant="BoAvatarVariant.success"
-	:data="{ label: 'S' }"
-/>
-<bo-avatar :type="BoAvatarType.initials" :variant="BoAvatarVariant.dark" :data="{ label: 'D' }" />
-```
-
-## Custom Colors
-
-<div class="flex gap-4 items-center my-4">
-	<bo-avatar 
-		:type="BoAvatarType.initials" 
-		:data="{ label: 'C' }" 
-		:color="{ bgColorHex: '#8B5CF6', colorHex: '#FFFFFF' }" 
-	/>
-</div>
-
-```vue
-<bo-avatar
-	:type="BoAvatarType.initials"
-	:data="{ label: 'C' }"
-	:color="{ bgColorHex: '#8B5CF6', colorHex: '#FFFFFF' }"
-/>
+<bo-avatar :variant="BoAvatarVariant.primary" :data="{ label: 'JD' }" />
+<bo-avatar :variant="BoAvatarVariant.secondary" :data="{ label: 'JD' }" />
+<bo-avatar :variant="BoAvatarVariant.danger" :data="{ label: 'JD' }" />
+<bo-avatar :variant="BoAvatarVariant.warning" :data="{ label: 'JD' }" />
+<bo-avatar :variant="BoAvatarVariant.success" :data="{ label: 'JD' }" />
+<bo-avatar :variant="BoAvatarVariant.dark" :data="{ label: 'JD' }" />
 ```
 
 ## With Status Indicator
 
 <div class="flex gap-4 items-center my-4">
-	<bo-avatar 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Online User' }" 
-		:indicator="{ status: BoAvatarIndicatorStatus.online, position: BoAvatarIndicatorPosition.bottomRight }" 
-	/>
-	<bo-avatar 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Busy User' }" 
-		:indicator="{ status: BoAvatarIndicatorStatus.busy, position: BoAvatarIndicatorPosition.topRight }" 
-	/>
-	<bo-avatar 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Away User' }" 
-		:indicator="{ status: BoAvatarIndicatorStatus.away, position: BoAvatarIndicatorPosition.topLeft }" 
-	/>
-	<bo-avatar 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Offline User' }" 
-		:indicator="{ status: BoAvatarIndicatorStatus.offline, position: BoAvatarIndicatorPosition.bottomLeft }" 
-	/>
+  <bo-avatar 
+    :data="{ label: 'JD' }" 
+    :indicator="{ 
+      status: BoAvatarIndicatorStatus.online,
+      position: BoAvatarIndicatorPosition.bottomRight
+    }" 
+  />
+  <bo-avatar 
+    :data="{ label: 'JD' }" 
+    :indicator="{ 
+      status: BoAvatarIndicatorStatus.offline,
+      position: BoAvatarIndicatorPosition.bottomRight
+    }" 
+  />
+  <bo-avatar 
+    :data="{ label: 'JD' }" 
+    :indicator="{ 
+      status: BoAvatarIndicatorStatus.busy,
+      position: BoAvatarIndicatorPosition.bottomRight
+    }" 
+  />
+  <bo-avatar 
+    :data="{ label: 'JD' }" 
+    :indicator="{ 
+      status: BoAvatarIndicatorStatus.away,
+      position: BoAvatarIndicatorPosition.bottomRight
+    }" 
+  />
 </div>
 
 ```vue
 <bo-avatar
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'Online User' }"
+	:data="{ label: 'JD' }"
 	:indicator="{
 		status: BoAvatarIndicatorStatus.online,
 		position: BoAvatarIndicatorPosition.bottomRight,
 	}"
 />
 <bo-avatar
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'Busy User' }"
+	:data="{ label: 'JD' }"
 	:indicator="{
-		status: BoAvatarIndicatorStatus.busy,
-		position: BoAvatarIndicatorPosition.topRight,
+		status: BoAvatarIndicatorStatus.offline,
+		position: BoAvatarIndicatorPosition.bottomRight,
 	}"
 />
 <bo-avatar
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'Away User' }"
-	:indicator="{ status: BoAvatarIndicatorStatus.away, position: BoAvatarIndicatorPosition.topLeft }"
+	:data="{ label: 'JD' }"
+	:indicator="{
+		status: BoAvatarIndicatorStatus.busy,
+		position: BoAvatarIndicatorPosition.bottomRight,
+	}"
 />
 <bo-avatar
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'Offline User' }"
+	:data="{ label: 'JD' }"
 	:indicator="{
-		status: BoAvatarIndicatorStatus.offline,
-		position: BoAvatarIndicatorPosition.bottomLeft,
+		status: BoAvatarIndicatorStatus.away,
+		position: BoAvatarIndicatorPosition.bottomRight,
 	}"
 />
 ```
 
-## Clickable Avatar
+## Indicator Positions
 
 <div class="flex gap-4 items-center my-4">
-	<bo-avatar 
-		:data="{ src: 'https://i.pravatar.cc/300', alt: 'Clickable Avatar' }" 
-		:clickable="true" 
-	/>
+  <bo-avatar 
+    :data="{ label: 'JD' }" 
+    :indicator="{ 
+      status: BoAvatarIndicatorStatus.online,
+      position: BoAvatarIndicatorPosition.topLeft
+    }" 
+  />
+  <bo-avatar 
+    :data="{ label: 'JD' }" 
+    :indicator="{ 
+      status: BoAvatarIndicatorStatus.online,
+      position: BoAvatarIndicatorPosition.topRight
+    }" 
+  />
+  <bo-avatar 
+    :data="{ label: 'JD' }" 
+    :indicator="{ 
+      status: BoAvatarIndicatorStatus.online,
+      position: BoAvatarIndicatorPosition.bottomLeft
+    }" 
+  />
+  <bo-avatar 
+    :data="{ label: 'JD' }" 
+    :indicator="{ 
+      status: BoAvatarIndicatorStatus.online,
+      position: BoAvatarIndicatorPosition.bottomRight
+    }" 
+  />
 </div>
 
 ```vue
 <bo-avatar
-	:data="{ src: 'https://i.pravatar.cc/300', alt: 'Clickable Avatar' }"
-	:clickable="true"
+	:data="{ label: 'JD' }"
+	:indicator="{
+		status: BoAvatarIndicatorStatus.online,
+		position: BoAvatarIndicatorPosition.topLeft,
+	}"
 />
+<bo-avatar
+	:data="{ label: 'JD' }"
+	:indicator="{
+		status: BoAvatarIndicatorStatus.online,
+		position: BoAvatarIndicatorPosition.topRight,
+	}"
+/>
+<bo-avatar
+	:data="{ label: 'JD' }"
+	:indicator="{
+		status: BoAvatarIndicatorStatus.online,
+		position: BoAvatarIndicatorPosition.bottomLeft,
+	}"
+/>
+<bo-avatar
+	:data="{ label: 'JD' }"
+	:indicator="{
+		status: BoAvatarIndicatorStatus.online,
+		position: BoAvatarIndicatorPosition.bottomRight,
+	}"
+/>
+```
+
+## Custom Colors
+
+```vue
+<bo-avatar
+	:data="{ label: 'JD' }"
+	:color="{
+		bgColorHex: '#8B5CF6',
+		colorHex: '#FFFFFF',
+	}"
+/>
+```
+
+## Usage Examples
+
+### User Profile
+
+```vue
+<template>
+	<div class="flex items-center gap-3">
+		<bo-avatar
+			:data="userData"
+			:indicator="userStatus"
+			:size="BoSize.large"
+		/>
+		<div>
+			<bo-text
+				value="John Doe"
+				:weight="BoFontWeight.semibold"
+			/>
+			<bo-text
+				value="john.doe@example.com"
+				:size="BoFontSize.sm"
+			/>
+		</div>
+	</div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { BoAvatar, BoAvatarIndicatorStatus, BoAvatarIndicatorPosition } from '@mrksbnc/bamboo';
+import { BoText, BoFontWeight, BoFontSize } from '@mrksbnc/bamboo';
+import { BoSize } from '@mrksbnc/bamboo';
+
+const userData = ref({
+	label: 'JD',
+	alt: 'John Doe',
+	src: 'https://i.pravatar.cc/300',
+});
+
+const userStatus = ref({
+	status: BoAvatarIndicatorStatus.online,
+	position: BoAvatarIndicatorPosition.bottomRight,
+});
+</script>
+```
+
+### Avatar Group
+
+```vue
+<template>
+	<div class="flex -space-x-2">
+		<bo-avatar
+			v-for="(user, index) in users"
+			:key="index"
+			:data="user"
+			:size="BoSize.small"
+			:shape="BoAvatarShape.circle"
+		/>
+	</div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { BoAvatar, BoAvatarShape } from '@mrksbnc/bamboo';
+import { BoSize } from '@mrksbnc/bamboo';
+
+const users = ref([{ label: 'JD' }, { label: 'AB' }, { label: 'CD' }, { label: 'EF' }]);
+</script>
 ```

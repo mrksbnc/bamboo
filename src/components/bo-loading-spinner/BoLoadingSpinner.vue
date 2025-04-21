@@ -44,7 +44,7 @@ const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 const { size, variant, loaderText, customColor } = toRefs(props);
 
 const defaultContainerClasses =
-	/*tw*/ 'bo-loading-spinner__container flex h-full w-full content-center items-center justify-center gap-1';
+	/*tw*/ 'bo-loading-spinner__container flex h-full max-w-fit content-center items-center justify-center gap-1';
 
 const defaultClasses =
 	/*tw*/ 'bo-loading-spinner__animation inline-flex animate-spin rounded-full border-[2px] border-current border-t-transparent';

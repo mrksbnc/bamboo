@@ -8,13 +8,16 @@
 			/>
 		</span>
 		<slot name="default">
-			<bo-text
+			<span
 				v-if="renderLabel && label && !iconOnly && !isCircle"
-				:value="label"
-				:size="badgeFontSize"
-				:weight="BoFontWeight.semibold"
-				class="bo-badge__label"
-			/>
+				class="bo-badge__label flex items-center justify-center"
+			>
+				<bo-text
+					:value="label"
+					:size="badgeFontSize"
+					:weight="BoFontWeight.semibold"
+				/>
+			</span>
 		</slot>
 		<span v-if="icon?.suffix && icon?.suffix !== Icon.none && !iconOnly && !isCircle">
 			<bo-icon
@@ -53,31 +56,31 @@ const { label, type, size, variant, shape, icon } = toRefs(props);
 
 const containerClasses = {
 	[BoBadgeShape.default]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-md shadow-sm',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-md shadow-sm hover:shadow',
 	[BoBadgeShape.circle]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-sm',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-sm hover:shadow',
 	[BoBadgeShape.pill]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-sm',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-sm hover:shadow',
 	[BoBadgeShape.flat]:
-		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-none shadow-sm',
+		/*tw*/ 'bo-badge inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-none shadow-sm hover:shadow',
 };
 
 const variantClasses = {
 	[BoBadgeType.default]: {
 		[BoBadgeVariant.primary]:
-			/*tw*/ 'bg-blue-600 text-white border border-blue-700 dark:bg-blue-700 dark:text-white',
+			/*tw*/ 'bg-blue-600 text-white border border-blue-600 dark:bg-blue-700 dark:text-white',
 		[BoBadgeVariant.secondary]:
-			/*tw*/ 'bg-neutral-600 text-white border border-neutral-700 dark:bg-neutral-700 dark:text-white',
+			/*tw*/ 'bg-neutral-600 text-white border border-neutral-600 dark:bg-neutral-700 dark:text-white',
 		[BoBadgeVariant.danger]:
-			/*tw*/ 'bg-red-600 text-white border border-red-700 dark:bg-red-700 dark:text-white',
+			/*tw*/ 'bg-red-600 text-white border border-red-600 dark:bg-red-700 dark:text-white',
 		[BoBadgeVariant.warning]:
-			/*tw*/ 'bg-yellow-600 text-white border border-yellow-700 dark:bg-yellow-600 dark:text-white',
+			/*tw*/ 'bg-yellow-500 text-white border border-yellow-500 dark:bg-yellow-600 dark:text-white',
 		[BoBadgeVariant.success]:
-			/*tw*/ 'bg-green-600 text-white border border-green-700 dark:bg-green-700 dark:text-white',
+			/*tw*/ 'bg-green-600 text-white border border-green-600 dark:bg-green-700 dark:text-white',
 		[BoBadgeVariant.light]:
-			/*tw*/ 'bg-neutral-100 text-neutral-800 border border-neutral-200 dark:bg-neutral-200 dark:border-neutral-300 dark:text-neutral-800',
+			/*tw*/ 'bg-neutral-100 text-neutral-800 border border-neutral-100 dark:bg-neutral-200 dark:border-neutral-200 dark:text-neutral-800',
 		[BoBadgeVariant.dark]:
-			/*tw*/ 'bg-neutral-800 text-white border border-neutral-900 dark:bg-black dark:text-white',
+			/*tw*/ 'bg-neutral-800 text-white border border-neutral-800 dark:bg-black dark:text-white',
 	},
 	[BoBadgeType.outline]: {
 		[BoBadgeVariant.primary]:
@@ -144,17 +147,17 @@ const boBadgeSizeClasses = computed<string>(() => {
 
 	switch (size.value) {
 		case BoSize.extra_small:
-			return /*tw*/ 'px-1 py-0';
+			return /*tw*/ 'px-1 py-0.5 text-xs rounded-md';
 		case BoSize.small:
-			return /*tw*/ 'px-1.5 py-0.5';
+			return /*tw*/ 'px-1.5 py-0.5 text-xs rounded-md';
 		case BoSize.default:
-			return /*tw*/ 'px-2 py-0.75';
+			return /*tw*/ 'px-2 py-0.75 text-sm rounded-md';
 		case BoSize.large:
-			return /*tw*/ 'px-2.5 py-1';
+			return /*tw*/ 'px-2.5 py-1 text-sm rounded-md';
 		case BoSize.extra_large:
-			return /*tw*/ 'px-3 py-1.5';
+			return /*tw*/ 'px-3 py-1.5 text-base rounded-md';
 		default:
-			return /*tw*/ 'px-2 py-0.75';
+			return /*tw*/ 'px-2 py-0.75 text-xs rounded-md';
 	}
 });
 

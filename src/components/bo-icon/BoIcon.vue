@@ -1,12 +1,11 @@
 <template>
-	<span
+	<i
 		v-html="svg"
 		:style="style"
 		:class="tailwindCssClasses"
 		:aria-label="accessibility.title"
-		:aria-hidden="accessibility?.decorative"
 		:role="role"
-	></span>
+	></i>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +24,8 @@ const props = withDefaults(defineProps<BoIconProps>(), {
 });
 
 const { icon, size, color } = toRefs(props);
+
+const defaultClasses = /*tw*/ 'bo-icon block';
 
 const svg = ref<string>('');
 
@@ -67,7 +68,7 @@ const tailwindCssSizeClasses = computed<string>(() => {
 });
 
 const tailwindCssClasses = computed<string>(() => {
-	return TailwindService.instance.merge(tailwindCssSizeClasses.value);
+	return TailwindService.instance.merge(defaultClasses, tailwindCssSizeClasses.value);
 });
 
 async function load(): Promise<void> {

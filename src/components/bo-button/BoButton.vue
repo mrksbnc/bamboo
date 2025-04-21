@@ -24,8 +24,8 @@
 					<bo-text
 						:value="label"
 						:clickable="true"
-						:weight="BoFontWeight.semibold"
 						:size="buttonFontSize"
+						:weight="BoFontWeight.semibold"
 						class="bo-button__label"
 					/>
 				</span>
@@ -186,11 +186,11 @@ const variantClasses = {
 };
 
 const sizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'px-1 py-1',
-	[BoSize.small]: /*tw*/ 'px-2 py-1.5',
-	[BoSize.default]: /*tw*/ 'px-3 py-2',
-	[BoSize.large]: /*tw*/ 'px-4 py-2.5',
-	[BoSize.extra_large]: /*tw*/ 'px-5 py-3',
+	[BoSize.extra_small]: /*tw*/ 'px-2 py-1',
+	[BoSize.small]: /*tw*/ 'px-3 py-1.5',
+	[BoSize.default]: /*tw*/ 'px-4 py-2',
+	[BoSize.large]: /*tw*/ 'px-5 py-2.5',
+	[BoSize.extra_large]: /*tw*/ 'px-6 py-3',
 };
 
 const iconOnlySizeClasses = {
@@ -257,14 +257,16 @@ const buttonClasses = computed<string>(() => {
 });
 
 const buttonFontSize = computed<BoFontSize>(() => {
-	if (size.value === BoSize.extra_small || size.value === BoSize.small) {
-		return BoFontSize.xs;
-	} else if (size.value === BoSize.large) {
-		return BoFontSize.base;
-	} else if (size.value === BoSize.extra_large) {
-		return BoFontSize.lg;
-	} else {
-		return BoFontSize.sm;
+	switch (size.value) {
+		case BoSize.extra_small:
+		case BoSize.small:
+			return BoFontSize.xs;
+		case BoSize.large:
+		case BoSize.extra_large:
+			return BoFontSize.base;
+		case BoSize.default:
+		default:
+			return BoFontSize.sm;
 	}
 });
 
@@ -316,15 +318,3 @@ const loaderSize = computed<BoSize>(() => {
 	}
 });
 </script>
-
-<style scoped>
-.bo-button__loader {
-	margin-left: 0.5rem;
-}
-
-.bo-button__content {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-}
-</style>

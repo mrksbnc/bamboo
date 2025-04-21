@@ -106,25 +106,26 @@ const avatarShapeClasses = {
 };
 
 const indicatorStatusClasses = {
-	[BoAvatarIndicatorStatus.online]: /*tw*/ 'bg-green-500',
-	[BoAvatarIndicatorStatus.offline]: /*tw*/ 'bg-gray-400',
-	[BoAvatarIndicatorStatus.busy]: /*tw*/ 'bg-red-500',
-	[BoAvatarIndicatorStatus.away]: /*tw*/ 'bg-yellow-500',
+	[BoAvatarIndicatorStatus.online]: /*tw*/ 'bg-green-500 ring-2 ring-white dark:ring-gray-800',
+	[BoAvatarIndicatorStatus.offline]: /*tw*/ 'bg-gray-400 ring-2 ring-white dark:ring-gray-800',
+	[BoAvatarIndicatorStatus.busy]: /*tw*/ 'bg-red-500 ring-2 ring-white dark:ring-gray-800',
+	[BoAvatarIndicatorStatus.away]: /*tw*/ 'bg-yellow-500 ring-2 ring-white dark:ring-gray-800',
 	[BoAvatarIndicatorStatus.none]: '',
 };
 
 const indicatorPositionClasses = {
-	[BoAvatarIndicatorPosition.topLeft]: /*tw*/ 'top-0 left-0',
-	[BoAvatarIndicatorPosition.topRight]: /*tw*/ 'top-0 right-0',
-	[BoAvatarIndicatorPosition.bottomLeft]: /*tw*/ 'bottom-0 left-0',
-	[BoAvatarIndicatorPosition.bottomRight]: /*tw*/ 'bottom-0 right-0',
+	[BoAvatarIndicatorPosition.topLeft]: /*tw*/ 'top-0 left-0 -translate-x-1/4 -translate-y-1/4',
+	[BoAvatarIndicatorPosition.topRight]: /*tw*/ 'top-0 right-0 translate-x-1/4 -translate-y-1/4',
+	[BoAvatarIndicatorPosition.bottomLeft]: /*tw*/ 'bottom-0 left-0 -translate-x-1/4 translate-y-1/4',
+	[BoAvatarIndicatorPosition.bottomRight]:
+		/*tw*/ 'bottom-0 right-0 translate-x-1/4 translate-y-1/4',
 };
 
 const indicatorSizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'w-1.5 h-1.5',
-	[BoSize.small]: /*tw*/ 'w-2 h-2',
-	[BoSize.default]: /*tw*/ 'w-2.5 h-2.5',
-	[BoSize.large]: /*tw*/ 'w-3.5 h-3.5',
+	[BoSize.extra_small]: /*tw*/ 'w-2 h-2',
+	[BoSize.small]: /*tw*/ 'w-2.5 h-2.5',
+	[BoSize.default]: /*tw*/ 'w-3 h-3',
+	[BoSize.large]: /*tw*/ 'w-4 h-4',
 	[BoSize.extra_large]: /*tw*/ 'w-5 h-5',
 };
 
@@ -228,10 +229,11 @@ const indicatorClasses = computed<string>(() => {
 	}
 
 	return TailwindService.instance.merge(
-		'absolute rounded-full border-2 border-white',
+		'absolute rounded-full shadow-sm',
 		indicatorSizeClasses[size.value],
 		indicatorStatusClasses[indicator.value?.status ?? BoAvatarIndicatorStatus.none],
 		indicatorPositionClasses[indicator.value?.position ?? BoAvatarIndicatorPosition.bottomRight],
+		'transition-all duration-200 ease-in-out',
 	);
 });
 

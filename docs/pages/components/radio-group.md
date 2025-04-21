@@ -1,0 +1,342 @@
+<script setup>
+import { BoRadioGroup, BoRadioGroupOrientation } from '@/components/bo-radio-group';
+import { BoRadio, BoRadioVariant } from '@/components/bo-radio';
+import { BoSize } from '@/shared';
+</script>
+
+# Radio Group
+
+A container component for organizing radio buttons with consistent styling and layout.
+
+```js
+import { BoRadioGroup } from '@mrksbnc/bamboo';
+```
+
+## Basic Usage
+
+```vue
+<template>
+	<bo-radio-group label="Select an option">
+		<bo-radio
+			v-model="selected"
+			name="options"
+			value="option1"
+			label="Option 1"
+		/>
+		<bo-radio
+			v-model="selected"
+			name="options"
+			value="option2"
+			label="Option 2"
+		/>
+		<bo-radio
+			v-model="selected"
+			name="options"
+			value="option3"
+			label="Option 3"
+		/>
+	</bo-radio-group>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { BoRadioGroup, BoRadio } from '@mrksbnc/bamboo';
+
+const selected = ref('option1');
+</script>
+```
+
+<hr />
+<div class="flex flex-col gap-4 my-4">
+  <bo-radio-group label="Select an option">
+    <bo-radio name="demo-group" value="option1" model-value="option1" label="Option 1" />
+    <bo-radio name="demo-group" value="option2" model-value="option1" label="Option 2" />
+    <bo-radio name="demo-group" value="option3" model-value="option1" label="Option 3" />
+  </bo-radio-group>
+</div>
+
+## Props
+
+| Name          | Type                      | Default     | Description                         |
+| ------------- | ------------------------- | ----------- | ----------------------------------- |
+| `label`       | `string`                  | `undefined` | Label for the radio group           |
+| `description` | `string`                  | `undefined` | Description for the radio group     |
+| `orientation` | `BoRadioGroupOrientation` | `vertical`  | Layout orientation of radio buttons |
+| `cssClass`    | `string`                  | `undefined` | Additional CSS classes              |
+
+## Slots
+
+| Name      | Description                    |
+| --------- | ------------------------------ |
+| `default` | Radio buttons within the group |
+
+## Types
+
+```ts
+export enum BoRadioGroupOrientation {
+	vertical = 'vertical',
+	horizontal = 'horizontal',
+}
+
+export interface BoRadioGroupProps {
+	label?: string;
+	description?: string;
+	orientation?: BoRadioGroupOrientation;
+	cssClass?: string;
+}
+```
+
+## Orientations
+
+### Vertical (Default)
+
+<div class="flex flex-col gap-4 my-4">
+  <bo-radio-group 
+    label="Vertical Radio Group" 
+    :orientation="BoRadioGroupOrientation.vertical"
+  >
+    <bo-radio name="vertical-group" value="option1" model-value="option1" label="Option 1" />
+    <bo-radio name="vertical-group" value="option2" model-value="option1" label="Option 2" />
+    <bo-radio name="vertical-group" value="option3" model-value="option1" label="Option 3" />
+  </bo-radio-group>
+</div>
+
+```vue
+<bo-radio-group label="Vertical Radio Group" :orientation="BoRadioGroupOrientation.vertical">
+  <bo-radio name="vertical-group" value="option1" v-model="selected" label="Option 1" />
+  <bo-radio name="vertical-group" value="option2" v-model="selected" label="Option 2" />
+  <bo-radio name="vertical-group" value="option3" v-model="selected" label="Option 3" />
+</bo-radio-group>
+```
+
+### Horizontal
+
+<div class="flex flex-col gap-4 my-4">
+  <bo-radio-group 
+    label="Horizontal Radio Group" 
+    :orientation="BoRadioGroupOrientation.horizontal"
+  >
+    <bo-radio name="horizontal-group" value="option1" model-value="option1" label="Option 1" />
+    <bo-radio name="horizontal-group" value="option2" model-value="option1" label="Option 2" />
+    <bo-radio name="horizontal-group" value="option3" model-value="option1" label="Option 3" />
+  </bo-radio-group>
+</div>
+
+```vue
+<bo-radio-group label="Horizontal Radio Group" :orientation="BoRadioGroupOrientation.horizontal">
+  <bo-radio name="horizontal-group" value="option1" v-model="selected" label="Option 1" />
+  <bo-radio name="horizontal-group" value="option2" v-model="selected" label="Option 2" />
+  <bo-radio name="horizontal-group" value="option3" v-model="selected" label="Option 3" />
+</bo-radio-group>
+```
+
+## With Description
+
+<div class="flex flex-col gap-4 my-4">
+  <bo-radio-group 
+    label="Subscription Plan" 
+    description="Select the plan that best fits your needs"
+  >
+    <bo-radio name="plan-group" value="basic" model-value="basic" label="Basic Plan" />
+    <bo-radio name="plan-group" value="pro" model-value="basic" label="Pro Plan" />
+    <bo-radio name="plan-group" value="enterprise" model-value="basic" label="Enterprise Plan" />
+  </bo-radio-group>
+</div>
+
+```vue
+<bo-radio-group label="Subscription Plan" description="Select the plan that best fits your needs">
+  <bo-radio name="plan-group" value="basic" v-model="plan" label="Basic Plan" />
+  <bo-radio name="plan-group" value="pro" v-model="plan" label="Pro Plan" />
+  <bo-radio name="plan-group" value="enterprise" v-model="plan" label="Enterprise Plan" />
+</bo-radio-group>
+```
+
+## Radio Variants
+
+<div class="flex flex-col gap-4 my-4">
+  <bo-radio-group label="Radio Variants">
+    <bo-radio :variant="BoRadioVariant.primary" name="variant-group" value="primary" model-value="primary" label="Primary" />
+    <bo-radio :variant="BoRadioVariant.secondary" name="variant-group2" value="secondary" model-value="secondary" label="Secondary" />
+    <bo-radio :variant="BoRadioVariant.success" name="variant-group3" value="success" model-value="success" label="Success" />
+    <bo-radio :variant="BoRadioVariant.danger" name="variant-group4" value="danger" model-value="danger" label="Danger" />
+  </bo-radio-group>
+</div>
+
+```vue
+<bo-radio-group label="Radio Variants">
+  <bo-radio :variant="BoRadioVariant.primary" name="variant-group" value="primary" v-model="variant" label="Primary" />
+  <bo-radio :variant="BoRadioVariant.secondary" name="variant-group" value="secondary" v-model="variant" label="Secondary" />
+  <bo-radio :variant="BoRadioVariant.success" name="variant-group" value="success" v-model="variant" label="Success" />
+  <bo-radio :variant="BoRadioVariant.danger" name="variant-group" value="danger" v-model="variant" label="Danger" />
+</bo-radio-group>
+```
+
+## Usage Examples
+
+### Form Field
+
+```vue
+<template>
+	<form
+		@submit.prevent="submitForm"
+		class="space-y-4"
+	>
+		<bo-radio-group
+			label="Preferred Contact Method"
+			description="How would you like us to contact you?"
+		>
+			<bo-radio
+				v-model="contactMethod"
+				name="contact-method"
+				value="email"
+				label="Email"
+			/>
+			<bo-radio
+				v-model="contactMethod"
+				name="contact-method"
+				value="phone"
+				label="Phone Call"
+			/>
+			<bo-radio
+				v-model="contactMethod"
+				name="contact-method"
+				value="sms"
+				label="SMS"
+			/>
+		</bo-radio-group>
+
+		<bo-button
+			type="submit"
+			label="Submit"
+		/>
+	</form>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { BoRadioGroup, BoRadio, BoButton } from '@mrksbnc/bamboo';
+
+const contactMethod = ref('email');
+
+const submitForm = () => {
+	console.log('Contact method:', contactMethod.value);
+};
+</script>
+```
+
+### Survey Question
+
+```vue
+<template>
+	<div class="space-y-6">
+		<bo-radio-group
+			label="How satisfied are you with our product?"
+			description="Please rate your overall satisfaction"
+		>
+			<bo-radio
+				v-model="satisfaction"
+				name="satisfaction"
+				value="very_satisfied"
+				:variant="BoRadioVariant.success"
+				label="Very Satisfied"
+			/>
+			<bo-radio
+				v-model="satisfaction"
+				name="satisfaction"
+				value="satisfied"
+				:variant="BoRadioVariant.success"
+				label="Satisfied"
+			/>
+			<bo-radio
+				v-model="satisfaction"
+				name="satisfaction"
+				value="neutral"
+				:variant="BoRadioVariant.secondary"
+				label="Neutral"
+			/>
+			<bo-radio
+				v-model="satisfaction"
+				name="satisfaction"
+				value="dissatisfied"
+				:variant="BoRadioVariant.danger"
+				label="Dissatisfied"
+			/>
+			<bo-radio
+				v-model="satisfaction"
+				name="satisfaction"
+				value="very_dissatisfied"
+				:variant="BoRadioVariant.danger"
+				label="Very Dissatisfied"
+			/>
+		</bo-radio-group>
+	</div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { BoRadioGroup, BoRadio } from '@mrksbnc/bamboo';
+import { BoRadioVariant } from '@mrksbnc/bamboo';
+
+const satisfaction = ref('');
+</script>
+```
+
+### Toggle Options
+
+```vue
+<template>
+	<div class="space-y-4">
+		<bo-radio-group
+			label="Theme Selection"
+			:orientation="BoRadioGroupOrientation.horizontal"
+		>
+			<bo-radio
+				v-model="theme"
+				name="theme"
+				value="light"
+				label="Light"
+			/>
+			<bo-radio
+				v-model="theme"
+				name="theme"
+				value="dark"
+				label="Dark"
+			/>
+			<bo-radio
+				v-model="theme"
+				name="theme"
+				value="system"
+				label="System"
+			/>
+		</bo-radio-group>
+
+		<div
+			class="rounded p-4"
+			:class="themeClass"
+		>
+			<bo-text value="Preview content in selected theme" />
+		</div>
+	</div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue';
+import { BoRadioGroup, BoRadio, BoText } from '@mrksbnc/bamboo';
+import { BoRadioGroupOrientation } from '@mrksbnc/bamboo';
+
+const theme = ref('light');
+
+const themeClass = computed(() => {
+	switch (theme.value) {
+		case 'light':
+			return 'bg-white border border-gray-200 text-black';
+		case 'dark':
+			return 'bg-gray-800 border border-gray-700 text-white';
+		case 'system':
+			return 'bg-gray-100 border border-gray-300 text-gray-800';
+		default:
+			return '';
+	}
+});
+</script>
+```

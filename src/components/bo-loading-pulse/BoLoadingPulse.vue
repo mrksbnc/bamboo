@@ -17,19 +17,19 @@
 				:style="customColorStyle"
 			></span>
 		</span>
-		<span
-			v-if="displayLoaderText || $slots.default"
-			class="bo-loading-pulse__text"
-		>
-			<slot>
+		<slot name="default">
+			<span
+				v-if="displayLoaderText"
+				class="bo-loading-pulse__text"
+			>
 				<bo-text
 					role="text"
 					:color="BoTextColor.secondary"
 					:font-family="BoFontFamily.sans"
 					:value="StringService.instance.safeString(loaderText)"
 				/>
-			</slot>
-		</span>
+			</span>
+		</slot>
 	</div>
 </template>
 
@@ -54,7 +54,7 @@ const props = withDefaults(defineProps<BoLoadingPulseProps>(), {
 const { size, variant, loaderText, customColor } = toRefs(props);
 
 const defaultClasses =
-	/*tw*/ 'bo-loading-pulse__container flex h-full w-full content-center items-center justify-center gap-2';
+	/*tw*/ 'bo-loading-pulse__container flex h-full max-w-fit content-center items-center justify-center gap-2';
 
 const defaultOuterPulseAbsoluteClasses =
 	/*tw*/ 'bo-loading-pulse__outer-pulse-absolute absolute inline-flex h-full w-full animate-ping rounded-full opacity-75';

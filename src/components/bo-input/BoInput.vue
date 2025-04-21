@@ -27,9 +27,11 @@
 				sizeClasses,
 				state === BoInputState.error
 					? 'border-red-500'
-					: required && !modelValue
-						? 'border-red-100 dark:border-red-900'
-						: 'border-neutral-300 dark:border-gray-700',
+					: state === BoInputState.success
+						? 'border-green-500 ring-1 ring-green-500'
+						: required && !modelValue
+							? 'border-red-100 dark:border-red-900'
+							: 'border-neutral-300 dark:border-gray-700',
 				disabled
 					? 'cursor-not-allowed border-neutral-200 bg-neutral-100 dark:border-gray-800 dark:bg-gray-900'
 					: 'bg-white dark:bg-gray-800',
@@ -90,6 +92,7 @@
 					:aria-describedby="helperTextId"
 					:aria-invalid="state === BoInputState.error"
 					@input="onInput"
+					@keydown="onKeyDown"
 					@focus="onFocus"
 					@blur="onBlur"
 					@change="onChange"
@@ -269,11 +272,11 @@ const iconSize = computed<BoSize>(() => {
 	}
 });
 
-// Update height classes to match Flowbite
+// Update height classes to match the button sizes
 const heightClasses: Record<string, string> = {
-	[BoInputSize.small]: 'h-9', // 36px
-	[BoInputSize.default]: 'h-10', // 40px
-	[BoInputSize.large]: 'h-11', // 44px
+	[BoInputSize.small]: 'h-9', // Small
+	[BoInputSize.default]: 'h-10', // Medium
+	[BoInputSize.large]: 'h-11', // Large
 };
 
 // Update the sizeClasses computed property
@@ -302,12 +305,12 @@ const iconPositionClasses = computed<string>(() => {
 const inputContainerPadding = computed<string>(() => {
 	switch (size.value) {
 		case BoInputSize.small:
-			return 'py-2 px-3'; // Less padding for small
+			return 'py-1.5 px-3'; // Match button small
 		case BoInputSize.large:
-			return 'py-2.5 px-4'; // More padding for large
+			return 'py-2.5 px-5'; // Match button large
 		case BoInputSize.default:
 		default:
-			return 'py-2.5 px-3.5'; // Standard padding
+			return 'py-2 px-4'; // Match button medium
 	}
 });
 
@@ -351,6 +354,14 @@ function getIconTopClass(): string {
 function onInput(event: Event) {
 	if (event.target instanceof HTMLInputElement) {
 		emit('update:modelValue', event.target.value);
+	}
+}
+
+function onKeyDown(event: KeyboardEvent) {
+	// If backspace is pressed, input is empty, and there are pills, remove the last pill
+	if (event.key === 'Backspace' && !modelValue.value && pills.value && pills.value.length > 0) {
+		const lastPill = pills.value[pills.value.length - 1];
+		emit('pillRemove', lastPill.id);
 	}
 }
 

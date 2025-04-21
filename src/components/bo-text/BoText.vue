@@ -46,7 +46,7 @@ const {
 	selectable,
 } = toRefs(props);
 
-const defaultClasses = /*tw*/ 'bo-text inline-flex flex-wrap shrink';
+const defaultClasses = /*tw*/ 'bo-text block max-w-fit';
 
 const cursor = computed<string>(() => {
 	return clickable.value ? /*tw*/ 'cursor-pointer' : /*tw*/ 'cursor-default';
