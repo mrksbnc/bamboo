@@ -19,7 +19,6 @@ export default defineConfig({
 	],
 	build: {
 		cssMinify: true,
-
 		lib: {
 			name: 'bamboo',
 			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),

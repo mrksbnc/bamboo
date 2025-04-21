@@ -27,7 +27,8 @@
 <script setup lang="ts">
 import { IdentityService } from '@/services';
 import { BoSize } from '@/shared';
-import { BoTreeProps, TreeNode } from './bo-tree';
+import TreeNode from './TreeNode.vue';
+import type { BoTreeProps } from './bo-tree';
 
 const props = withDefaults(defineProps<BoTreeProps>(), {
 	id: IdentityService.instance.generateId(),
@@ -41,8 +42,8 @@ const props = withDefaults(defineProps<BoTreeProps>(), {
 
 const emit = defineEmits<{
 	'update:modelValue': [value: string[]];
-	'node-toggle': [node: TreeNode];
-	'node-select': [node: TreeNode];
+	'node-toggle': [node: typeof TreeNode];
+	'node-select': [node: typeof TreeNode];
 }>();
 
 const sizeClasses = {
@@ -54,13 +55,17 @@ const sizeClasses = {
 };
 
 const toggleNode = (node: TreeNode) => {
-	if (props.disabled) return;
+	if (props.disabled) {
+		return;
+	}
 	node.expanded = !node.expanded;
 	emit('node-toggle', node);
 };
 
 const selectNode = (node: TreeNode) => {
-	if (props.disabled || node.disabled) return;
+	if (props.disabled || node.disabled) {
+		return;
+	}
 
 	if (props.multiple) {
 		const newSelection = [...props.modelValue];

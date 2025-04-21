@@ -1,16 +1,22 @@
+import type { Icon } from '@/components/bo-icon';
 import type { BoSize } from '@/shared';
 
-export type TreeNode = {
+export enum BoTreeVariant {
+	default = 'default',
+	compact = 'compact',
+}
+
+export interface TreeNode {
 	id: string;
+	icon?: Icon;
 	label: string;
-	children?: TreeNode[];
 	expanded?: boolean;
 	selected?: boolean;
 	disabled?: boolean;
-	icon?: string;
-};
+	children?: TreeNode[];
+}
 
-export type BoTreeProps = {
+export interface BoTreeProps {
 	/**
 	 * The data for the tree
 	 */
@@ -48,9 +54,43 @@ export type BoTreeProps = {
 	 * Unique ID for the tree, used for accessibility and testing
 	 */
 	id?: string;
-};
+}
 
-export enum BoTreeVariant {
-	default = 'default',
-	compact = 'compact',
+export interface TreeNodeProps {
+	/**
+	 * The main data. This contains the constructs for the tree node.
+	 */
+	node: TreeNode;
+	/**
+	 * The level of the node in the tree
+	 */
+	level: number;
+	/**
+	 * Whether to show checkboxes
+	 */
+	showCheckboxes: boolean;
+	/**
+	 * Whether to show icons
+	 */
+	showIcons: boolean;
+	/**
+	 * Whether the node is disabled
+	 */
+	disabled: boolean;
+	/**
+	 * Whether the node is selected
+	 */
+	selected: boolean;
+	/**
+	 * Whether the node is expanded
+	 */
+	expanded: boolean;
+	/**
+	 * Whether multiple selections are allowed
+	 */
+	multiple: boolean;
+	/**
+	 * The IDs of the currently selected nodes
+	 */
+	selectedIds: Set<string>;
 }

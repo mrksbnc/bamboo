@@ -1,6 +1,4 @@
-import { mount } from '@vue/test-utils';
-import { expect, vi } from 'vitest';
-import type { Component } from 'vue';
+import { vi } from 'vitest';
 
 global.ResizeObserver = class ResizeObserver {
 	observe() {}
@@ -33,32 +31,4 @@ Object.defineProperty(window, 'matchMedia', {
 		removeEventListener: vi.fn(),
 		dispatchEvent: vi.fn(),
 	})),
-});
-
-export const mountComponent = (component: Component, options: any = {}) => {
-	return mount(component, {
-		global: {
-			...options.global,
-		},
-		...options,
-	});
-};
-
-export const waitFor = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-expect.extend({
-	toBeWithinRange(received: number, floor: number, ceiling: number) {
-		const pass = received >= floor && received <= ceiling;
-		if (pass) {
-			return {
-				message: () => `expected ${received} not to be within range ${floor} - ${ceiling}`,
-				pass: true,
-			};
-		} else {
-			return {
-				message: () => `expected ${received} to be within range ${floor} - ${ceiling}`,
-				pass: false,
-			};
-		}
-	},
 });

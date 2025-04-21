@@ -1,5 +1,5 @@
 import { fileURLToPath } from 'node:url';
-import { configDefaults, defineConfig, mergeConfig } from 'vitest/config';
+import { defineConfig, mergeConfig } from 'vitest/config';
 import viteConfig from './vite.config';
 
 const bambooTestConfig = mergeConfig(
@@ -7,14 +7,8 @@ const bambooTestConfig = mergeConfig(
 	defineConfig({
 		test: {
 			globals: true,
-			environment: '',
+			environment: 'jsdom',
 			include: ['./src/**/*.test.ts', './test/**/*.test.ts'],
-			exclude: [
-				...configDefaults.exclude,
-				'**/node_modules/**',
-				'**/dist/**',
-				'**/{vite,vitest,playwright}.config.*',
-			],
 			root: fileURLToPath(new URL('./', import.meta.url)),
 			alias: {
 				'@/': new URL('./src/', import.meta.url).pathname,
