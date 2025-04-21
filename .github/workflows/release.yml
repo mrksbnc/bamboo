@@ -1,0 +1,103 @@
+name: Release Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version type (major, minor, patch)'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+          - prerelease
+      prerelease_id:
+        description: 'Prerelease identifier (e.g., alpha, beta) - only used if version_type is prerelease'
+        required: false
+        default: 'beta'
+      dry_run:
+        description: 'Dry run (skip npm publish and GitHub release)'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Update version
+        id: update_version
+        run: |
+          if [ "${{ github.event.inputs.version_type }}" == "prerelease" ]; then
+            NEW_VERSION=$(pnpm version ${{ github.event.inputs.version_type }} --preid=${{ github.event.inputs.prerelease_id }} --no-git-tag-version)
+          else
+            NEW_VERSION=$(pnpm version ${{ github.event.inputs.version_type }} --no-git-tag-version)
+          fi
+          echo "new_version=${NEW_VERSION:1}" >> $GITHUB_OUTPUT
+          echo "Version updated to ${NEW_VERSION:1}"
+
+      - name: Build package
+        run: pnpm run build
+
+      - name: Commit and push changes
+        if: ${{ github.event.inputs.dry_run == 'false' }}
+        run: |
+          git add package.json pnpm-lock.yaml
+          git commit -m "chore: bump version to ${{ steps.update_version.outputs.new_version }}"
+          git tag v${{ steps.update_version.outputs.new_version }}
+          git push
+          git push --tags
+
+      - name: Create GitHub Release
+        if: ${{ github.event.inputs.dry_run == 'false' }}
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.update_version.outputs.new_version }}
+          name: Release v${{ steps.update_version.outputs.new_version }}
+          draft: false
+          prerelease: ${{ github.event.inputs.version_type == 'prerelease' }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to npm
+        if: ${{ github.event.inputs.dry_run == 'false' }}
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Log dry run results
+        if: ${{ github.event.inputs.dry_run == 'true' }}
+        run: |
+          echo "DRY RUN: Would have released version v${{ steps.update_version.outputs.new_version }}"
+          echo "DRY RUN: Would have published to npm"
