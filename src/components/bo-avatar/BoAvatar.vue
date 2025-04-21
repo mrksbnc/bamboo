@@ -6,13 +6,28 @@
 		:data-testid="`bo-avatar-${id}`"
 	>
 		<div
-			v-if="type === BoAvatarType.image"
+			v-if="showFallbackImage"
+			class="bo-avatar__fallback-img flex items-center justify-center"
+			:data-testid="`bo-avatar-image-${id}`"
+		>
+			<img
+				alt="avatar"
+				ref="fallbackImage"
+				:src="defaultAvatarSrc"
+				class="'bo-avatar__image object-cover"
+				:data-testid="`bo-avatar__image-${id}`"
+				@error="handleImageError"
+			/>
+		</div>
+		<div
+			v-else-if="type === BoAvatarType.image"
 			class="bo-avatar-image"
 			:data-testid="`bo-avatar-image-${id}`"
 		>
 			<img
-				:src="data.src"
-				:alt="data.alt"
+				ref="imageElement"
+				:src="data?.src"
+				:alt="data?.alt ?? 'avatar'"
 				class="'bo-avatar__image object-cover"
 				:data-testid="`bo-avatar__image-${id}`"
 				@error="handleImageError"
@@ -43,23 +58,20 @@ import { BoAvatarShape, BoAvatarType, BoAvatarVariant, type BoAvatarProps } from
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
 	id: () => IdentityService.instance.generateId(),
-	withDefaultImage: false,
 	size: () => BoSize.default,
 	type: () => BoAvatarType.initials,
 	shape: () => BoAvatarShape.rounded,
 	variant: () => BoAvatarVariant.primary,
-	data: () => ({
-		src: undefined,
-		label: undefined,
-		alt: undefined,
-	}),
 });
 
-const { clickable, data, type, shape, size, variant, indicator, color, withDefaultImage } =
-	toRefs(props);
+const { clickable, data, type, shape, size, variant, color } = toRefs(props);
 
 const defaultAvatarSrc = new URL('@/assets/img/avatar.png', import.meta.url).href;
-const imgError = ref(false);
+
+const imgError = ref<boolean>(false);
+
+const fallbackImage = ref<HTMLImageElement>();
+const imageElement = ref<HTMLImageElement>();
 
 const containerClasses = {
 	default:
@@ -72,44 +84,46 @@ const cursorClasses = {
 };
 
 const avatarSizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'w-6 h-6',
-	[BoSize.small]: /*tw*/ 'w-8 h-8',
-	[BoSize.default]: /*tw*/ 'w-10 h-10',
-	[BoSize.large]: /*tw*/ 'w-12 h-12',
-	[BoSize.extra_large]: /*tw*/ 'w-36 h-36',
+	[BoSize.extra_small]: /*tw*/ 'bo-avatar--extra-small size-6',
+	[BoSize.small]: /*tw*/ 'bo-avatar--small size-8',
+	[BoSize.default]: /*tw*/ 'bo-avatar--default size-10',
+	[BoSize.large]: /*tw*/ 'bo-avatar--large size-14',
+	[BoSize.extra_large]: /*tw*/ 'bo-avatar--extra-large size-20',
 };
 
 const avatarShapeClasses = {
-	[BoAvatarShape.circle]: /*tw*/ 'rounded-full',
-	[BoAvatarShape.rounded]: /*tw*/ 'rounded-md',
-	[BoAvatarShape.flat]: /*tw*/ 'rounded-none',
-	[BoAvatarShape.outline_circle]: /*tw*/ 'rounded-full border',
-	[BoAvatarShape.outline_rounded]: /*tw*/ 'rounded-md border',
-	[BoAvatarShape.outline_flat]: /*tw*/ 'rounded-none border',
+	[BoAvatarShape.circle]: /*tw*/ 'bo-avatar--circle rounded-full',
+	[BoAvatarShape.rounded]: /*tw*/ 'bo-avatar--rounded rounded-md',
+	[BoAvatarShape.flat]: /*tw*/ 'bo-avatar--flat rounded-none',
+	[BoAvatarShape.outline_circle]: /*tw*/ 'bo-avatar--outline-circle rounded-full border',
+	[BoAvatarShape.outline_rounded]: /*tw*/ 'bo-avatar--outline-rounded rounded-md border',
+	[BoAvatarShape.outline_flat]: /*tw*/ 'bo-avatar--outline-flat rounded-none border',
 };
 
 const variantColors = {
-	[BoAvatarVariant.primary]: /*tw*/ 'bg-blue-500 dark:bg-blue-700 text-white',
-	[BoAvatarVariant.secondary]: /*tw*/ 'bg-gray-400 dark:bg-gray-700 text-white',
-	[BoAvatarVariant.danger]: /*tw*/ 'bg-red-500 dark:bg-red-700 text-white',
-	[BoAvatarVariant.warning]: /*tw*/ 'bg-yellow-500 dark:bg-yellow-600 text-white',
-	[BoAvatarVariant.success]: /*tw*/ 'bg-green-600 dark:bg-green-700 text-white',
-	[BoAvatarVariant.dark]: /*tw*/ 'bg-black dark:bg-black text-white',
+	[BoAvatarVariant.primary]: /*tw*/ ' bo-avatar--primary bg-blue-500 dark:bg-blue-700 text-white',
+	[BoAvatarVariant.secondary]:
+		/*tw*/ ' bo-avatar--secondary bg-gray-400 dark:bg-gray-700 text-white',
+	[BoAvatarVariant.danger]: /*tw*/ ' bo-avatar--danger bg-red-500 dark:bg-red-700 text-white',
+	[BoAvatarVariant.warning]:
+		/*tw*/ ' bo-avatar--warning bg-yellow-500 dark:bg-yellow-600 text-white',
+	[BoAvatarVariant.success]: /*tw*/ ' bo-avatar--success bg-green-600 dark:bg-green-700 text-white',
+	[BoAvatarVariant.dark]: /*tw*/ ' bo-avatar--dark bg-black dark:bg-black text-white',
 };
 
 const outlineVariantColors = {
 	[BoAvatarVariant.primary]:
-		/*tw*/ 'bg-transparent border-blue-500 text-blue-500 dark:border-blue-400 dark:text-blue-400',
+		/*tw*/ 'bo-avatar--outline-primary bg-transparent border-blue-500 text-blue-500 dark:border-blue-400 dark:text-blue-400',
 	[BoAvatarVariant.secondary]:
-		/*tw*/ 'bg-transparent border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',
+		/*tw*/ 'bo-avatar--outline-secondary bg-transparent border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',
 	[BoAvatarVariant.danger]:
-		/*tw*/ 'bg-transparent border-red-500 text-red-500 dark:border-red-400 dark:text-red-400',
+		/*tw*/ 'bo-avatar--outline-danger bg-transparent border-red-500 text-red-500 dark:border-red-400 dark:text-red-400',
 	[BoAvatarVariant.warning]:
-		/*tw*/ 'bg-transparent border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
+		/*tw*/ 'bo-avatar--outline-warning bg-transparent border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
 	[BoAvatarVariant.success]:
-		/*tw*/ 'bg-transparent border-green-500 text-green-500 dark:border-green-400 dark:text-green-400',
+		/*tw*/ 'bo-avatar--outline-success bg-transparent border-green-500 text-green-500 dark:border-green-400 dark:text-green-400',
 	[BoAvatarVariant.dark]:
-		/*tw*/ 'bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-300',
+		/*tw*/ 'bo-avatar--outline-dark bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-300',
 };
 
 const variantTextColors = {
@@ -131,7 +145,7 @@ const outlineVariantTextColors = {
 };
 
 const label = computed<string>(() => {
-	const safeStr = StringService.instance.safeString(data.value.label);
+	const safeStr = StringService.instance.safeString(data.value?.label);
 
 	if (safeStr.length > 2) {
 		return safeStr.slice(0, 2).toUpperCase();
@@ -143,7 +157,6 @@ const label = computed<string>(() => {
 const bgConstruct = computed<string>(() => {
 	if (
 		!StringService.instance.isEmptyStr(color.value?.bgColorHex) ||
-		withDefaultImage.value ||
 		(type.value === BoAvatarType.image && !imgError.value)
 	) {
 		return /*tw*/ 'bg-transparent';
@@ -178,10 +191,6 @@ const textColorClass = computed<string>(() => {
 	return 'text-gray-600 dark:text-gray-300';
 });
 
-const withIndicator = computed<boolean>(() => {
-	return !!indicator.value;
-});
-
 const cursorClassConstruct = computed<string>(() => {
 	return clickable.value ? cursorClasses.clickable : cursorClasses.default;
 });
@@ -193,14 +202,6 @@ const avatarContainerDefaultClasses = computed<string>(() => {
 		cursorClassConstruct.value,
 		!shape.value.includes('outline') ? /*tw*/ 'shadow-sm dark:shadow-gray-800' : '',
 	);
-});
-
-const showDefaultAvatar = computed<boolean>(() => {
-	if (withDefaultImage.value || imgError.value) {
-		return true;
-	}
-
-	return data.value.src === undefined && StringService.instance.isEmptyStr(data.value.label);
 });
 
 const labelSize = computed<BoFontSize>(() => {
@@ -234,12 +235,21 @@ const avatarContainerClasses = computed<string>(() => {
 	);
 });
 
+const showFallbackImage = computed<boolean>(() => {
+	const invalidImage = imgError.value || (!data.value?.src && type.value === BoAvatarType.image);
+	const invalidInitials = !data.value?.label && type.value === BoAvatarType.initials;
+
+	return !data.value || invalidImage || invalidInitials;
+});
+
 function handleImageError(e: Event) {
 	imgError.value = true;
-	if (withDefaultImage.value) {
-		const imgElement = e.target as HTMLImageElement;
-		imgElement.src = defaultAvatarSrc;
+
+	if (imageElement.value) {
+		imageElement.value.src = defaultAvatarSrc;
 	}
+
+	console.error('Error loading image', e);
 }
 
 function generateRandomColor(): string {

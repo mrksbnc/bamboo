@@ -19,7 +19,7 @@ const openItems = ref<string[]>([]);
 
 const registeredItems = ref<Set<string>>(new Set());
 
-function registerItem(id: string, initialOpen: boolean) {
+function registerItem(id: string, initialOpen: boolean): void {
 	if (registeredItems.value.has(id)) {
 		return;
 	}

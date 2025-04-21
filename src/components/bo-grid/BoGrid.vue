@@ -19,7 +19,6 @@
 <script setup lang="ts">
 import { IdentityService } from '@/services';
 import { BoSize } from '@/shared';
-import { withDefaults } from 'vue';
 import { BoGridProps, BoGridVariant } from './bo-grid';
 
 const props = withDefaults(defineProps<BoGridProps>(), {

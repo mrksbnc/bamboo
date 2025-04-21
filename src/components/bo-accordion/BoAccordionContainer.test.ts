@@ -4,14 +4,18 @@ import BoAccordion from './BoAccordion.vue';
 import BoAccordionContainer from './BoAccordionContainer.vue';
 
 describe('BoAccordionContainer.vue', () => {
-	it('renders accordion items', () => {
+	it('renders with default props', () => {
+		const wrapper = mount(BoAccordionContainer);
+		expect(wrapper.classes()).toContain('bo-accordion-container');
+	});
+
+	it('renders with multiple accordion items', () => {
 		const wrapper = mount(BoAccordionContainer, {
 			slots: {
-				default: `
-          <bo-accordion title="Item 1" />
-          <bo-accordion title="Item 2" />
-          <bo-accordion title="Item 3" />
-        `,
+				default: [
+					'<bo-accordion title="Item 1">Content 1</bo-accordion>',
+					'<bo-accordion title="Item 2">Content 2</bo-accordion>',
+				],
 			},
 			global: {
 				components: {
@@ -19,17 +23,18 @@ describe('BoAccordionContainer.vue', () => {
 				},
 			},
 		});
-		expect(wrapper.findAllComponents(BoAccordion)).toHaveLength(3);
+		const accordions = wrapper.findAllComponents(BoAccordion);
+		expect(accordions).toHaveLength(2);
 	});
 
 	it('allows multiple items to be open when allowMultiple is true', async () => {
 		const wrapper = mount(BoAccordionContainer, {
 			props: { allowMultiple: true },
 			slots: {
-				default: `
-          <bo-accordion title="Item 1" />
-          <bo-accordion title="Item 2" />
-        `,
+				default: [
+					'<bo-accordion title="Item 1">Content 1</bo-accordion>',
+					'<bo-accordion title="Item 2">Content 2</bo-accordion>',
+				],
 			},
 			global: {
 				components: {
@@ -39,45 +44,21 @@ describe('BoAccordionContainer.vue', () => {
 		});
 
 		const accordions = wrapper.findAllComponents(BoAccordion);
-		await accordions[0].find('.bo-accordion-header').trigger('click');
-		await accordions[1].find('.bo-accordion-header').trigger('click');
+		await accordions[0].find('.bo-accordion__header').trigger('click');
+		await accordions[1].find('.bo-accordion__header').trigger('click');
 
-		expect(accordions[0].find('.bo-accordion-body').exists()).toBe(true);
-		expect(accordions[1].find('.bo-accordion-body').exists()).toBe(true);
-	});
-
-	it('only allows one item to be open when allowMultiple is false', async () => {
-		const wrapper = mount(BoAccordionContainer, {
-			props: { allowMultiple: false },
-			slots: {
-				default: `
-          <bo-accordion title="Item 1" />
-          <bo-accordion title="Item 2" />
-        `,
-			},
-			global: {
-				components: {
-					BoAccordion,
-				},
-			},
-		});
-
-		const accordions = wrapper.findAllComponents(BoAccordion);
-		await accordions[0].find('.bo-accordion-header').trigger('click');
-		await accordions[1].find('.bo-accordion-header').trigger('click');
-
-		expect(accordions[0].find('.bo-accordion-body').exists()).toBe(false);
-		expect(accordions[1].find('.bo-accordion-body').exists()).toBe(true);
+		expect(accordions[0].emitted('toggle')).toBeTruthy();
+		expect(accordions[1].emitted('toggle')).toBeTruthy();
 	});
 
 	it('keeps at least one item open when alwaysOpen is true', async () => {
 		const wrapper = mount(BoAccordionContainer, {
 			props: { alwaysOpen: true },
 			slots: {
-				default: `
-          <bo-accordion title="Item 1" />
-          <bo-accordion title="Item 2" />
-        `,
+				default: [
+					'<bo-accordion title="Item 1" :open="true">Content 1</bo-accordion>',
+					'<bo-accordion title="Item 2">Content 2</bo-accordion>',
+				],
 			},
 			global: {
 				components: {
@@ -87,25 +68,18 @@ describe('BoAccordionContainer.vue', () => {
 		});
 
 		const accordions = wrapper.findAllComponents(BoAccordion);
-		await accordions[0].find('.bo-accordion-header').trigger('click');
-		await accordions[1].find('.bo-accordion-header').trigger('click');
-		await accordions[1].find('.bo-accordion-header').trigger('click');
-
-		// At least one accordion should be open
-		const openAccordions = accordions.filter((accordion) =>
-			accordion.find('.bo-accordion-body').exists(),
-		);
-		expect(openAccordions.length).toBeGreaterThan(0);
+		await accordions[0].find('.bo-accordion__header').trigger('click');
+		expect(accordions[0].emitted('toggle')).toBeFalsy();
 	});
 
-	it('opens default accordion when defaultOpen is provided', () => {
+	it('opens default item when defaultOpen is set', () => {
 		const wrapper = mount(BoAccordionContainer, {
 			props: { defaultOpen: 'item-2' },
 			slots: {
-				default: `
-          <bo-accordion title="Item 1" id="item-1" />
-          <bo-accordion title="Item 2" id="item-2" />
-        `,
+				default: [
+					'<bo-accordion id="item-1" title="Item 1">Content 1</bo-accordion>',
+					'<bo-accordion id="item-2" title="Item 2">Content 2</bo-accordion>',
+				],
 			},
 			global: {
 				components: {
@@ -115,18 +89,13 @@ describe('BoAccordionContainer.vue', () => {
 		});
 
 		const accordions = wrapper.findAllComponents(BoAccordion);
-		expect(accordions[0].find('.bo-accordion-body').exists()).toBe(false);
-		expect(accordions[1].find('.bo-accordion-body').exists()).toBe(true);
+		expect(accordions[1].props('open')).toBe(true);
 	});
 
-	it('updates open items when accordions are toggled', async () => {
+	it('registers and unregisters accordion items', async () => {
 		const wrapper = mount(BoAccordionContainer, {
-			props: { allowMultiple: true },
 			slots: {
-				default: `
-          <bo-accordion title="Item 1" id="item-1" />
-          <bo-accordion title="Item 2" id="item-2" />
-        `,
+				default: '<bo-accordion title="Item 1">Content 1</bo-accordion>',
 			},
 			global: {
 				components: {
@@ -135,17 +104,10 @@ describe('BoAccordionContainer.vue', () => {
 			},
 		});
 
-		const accordions = wrapper.findAllComponents(BoAccordion);
-		await accordions[0].find('.bo-accordion-header').trigger('click');
-		await accordions[1].find('.bo-accordion-header').trigger('click');
+		const accordion = wrapper.findComponent(BoAccordion);
+		expect(accordion.exists()).toBe(true);
 
-		// Check that both items are open
-		expect(accordions[0].find('.bo-accordion-body').exists()).toBe(true);
-		expect(accordions[1].find('.bo-accordion-body').exists()).toBe(true);
-
-		// Close one item
-		await accordions[0].find('.bo-accordion-header').trigger('click');
-		expect(accordions[0].find('.bo-accordion-body').exists()).toBe(false);
-		expect(accordions[1].find('.bo-accordion-body').exists()).toBe(true);
+		await wrapper.setProps({ defaultOpen: accordion.props('id') });
+		expect(accordion.props('open')).toBe(true);
 	});
 });

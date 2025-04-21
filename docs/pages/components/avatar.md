@@ -1,5 +1,5 @@
 <script setup>
-import { BoAvatar, BoAvatarShape, BoAvatarType, BoAvatarVariant, BoAvatarIndicatorStatus, BoAvatarIndicatorPosition } from '@/components/bo-avatar';
+import { BoAvatar, BoAvatarShape, BoAvatarType, BoAvatarVariant } from '@/components/bo-avatar';
 import { BoSize } from '@/shared';
 import { BoIcon, Icon } from '@/components/bo-icon';
 </script>
@@ -26,7 +26,12 @@ import { BoAvatar } from '@mrksbnc/bamboo';
 
 <hr />
 
-<div class="my-4 flex items-center gap-4">
+<div class="my-4 flex flex-col gap-4">
+	<div class="my-4 flex items-center gap-4">
+		<bo-avatar />
+		<bo-avatar shape="flat" />
+		<bo-avatar shape="circle" />
+	</div>
 	<div class="my-4 flex items-center gap-4">
 		<bo-avatar :data="{ label: 'JD' }" />
 		<bo-avatar
@@ -65,24 +70,72 @@ import { BoAvatar } from '@mrksbnc/bamboo';
 	</div>
 </div>
 
+```vue
+<template>
+	<div class="my-4 flex flex-col gap-4">
+		<div class="my-4 flex items-center gap-4">
+			<bo-avatar />
+			<bo-avatar :shape="BoAvatarShape.flat" />
+			<bo-avatar :shape="BoAvatarShape.circle" />
+		</div>
+		<div class="my-4 flex items-center gap-4">
+			<bo-avatar :data="{ label: 'JD' }" />
+			<bo-avatar
+				:data="{ label: 'JD' }"
+				:shape="BoAvatarShape.circle"
+			/>
+			<bo-avatar
+				:shape="BoAvatarShape.flat"
+				:data="{ label: 'JD' }"
+			/>
+		</div>
+		<div class="my-4 flex items-center gap-4">
+			<bo-avatar
+				:type="BoAvatarType.image"
+				:data="{
+					src: 'https://i.pravatar.cc/300',
+					alt: 'Avatar image',
+				}"
+			/>
+			<bo-avatar
+				:type="BoAvatarType.image"
+				:shape="BoAvatarShape.circle"
+				:data="{
+					src: 'https://i.pravatar.cc/300',
+					alt: 'Avatar image',
+				}"
+			/>
+			<bo-avatar
+				:type="BoAvatarType.image"
+				:shape="BoAvatarShape.flat"
+				:data="{
+					src: 'https://i.pravatar.cc/300',
+					alt: 'Avatar image',
+				}"
+			/>
+		</div>
+	</div>
+</template>
+```
+
 ## Props
 
-| Name               | Type                | Default     | Description                            |
-| ------------------ | ------------------- | ----------- | -------------------------------------- |
-| `data`             | `BoAvatarData`      | `{}`        | Avatar data (image source or label)    |
-| `type`             | `BoAvatarType`      | `initials`  | Type of avatar (image or initials)     |
-| `shape`            | `BoAvatarShape`     | `rounded`   | Shape of the avatar                    |
-| `size`             | `BoSize`            | `default`   | Size of the avatar                     |
-| `clickable`        | `boolean`           | `false`     | Whether the avatar is clickable        |
-| `withDefaultImage` | `boolean`           | `false`     | Show default image if no data provided |
-| `variant`          | `BoAvatarVariant`   | `primary`   | Color variant of the avatar            |
-| `color`            | `BoAvatarColor`     | `undefined` | Custom colors for the avatar           |
-| `indicator`        | `BoAvatarIndicator` | `undefined` | Status indicator for the avatar        |
+| Name                 | Type              | Default        | Description                            |
+| -------------------- | ----------------- | -------------- | -------------------------------------- |
+| `id`                 | `string`          | auto-generated | Unique ID for the avatar               |
+| `data`               | `BoAvatarData`    | `{}`           | Avatar data (image source or label)    |
+| `type`               | `BoAvatarType`    | `initials`     | Type of avatar (image or initials)     |
+| `shape`              | `BoAvatarShape`   | `rounded`      | Shape of the avatar                    |
+| `size`               | `BoSize`          | `default`      | Size of the avatar                     |
+| `clickable`          | `boolean`         | `false`        | Whether the avatar is clickable        |
+| `with-default-image` | `boolean`         | `false`        | Show default image if no data provided |
+| `variant`            | `BoAvatarVariant` | `primary`      | Color variant of the avatar            |
+| `color`              | `BoAvatarColor`   | `undefined`    | Custom colors for the avatar           |
 
 ## Types
 
 ```ts
-export enum BoAvatarShape {
+enum BoAvatarShape {
 	circle = 'circle',
 	flat = 'flat',
 	rounded = 'rounded',
@@ -91,7 +144,7 @@ export enum BoAvatarShape {
 	outline_circle = 'outline_circle',
 }
 
-export enum BoAvatarVariant {
+enum BoAvatarVariant {
 	primary = 'primary',
 	secondary = 'secondary',
 	danger = 'danger',
@@ -100,52 +153,58 @@ export enum BoAvatarVariant {
 	dark = 'dark',
 }
 
-export enum BoAvatarType {
+enum BoAvatarType {
 	image = 'image',
 	initials = 'initials',
 }
 
-export enum BoAvatarIndicatorPosition {
-	topLeft = 'top-left',
-	topRight = 'top-right',
-	bottomLeft = 'bottom-left',
-	bottomRight = 'bottom-right',
-}
-
-export enum BoAvatarIndicatorStatus {
-	online = 'online',
-	offline = 'offline',
-	busy = 'busy',
-	away = 'away',
-	none = 'none',
-}
-
-export interface BoAvatarData {
+interface BoAvatarData {
 	alt?: string;
 	src?: string;
 	label?: string;
 }
 
-export interface BoAvatarColor {
+interface BoAvatarColor {
 	bgColorHex?: string;
 	colorHex?: string;
 }
 
-export interface BoAvatarIndicator {
-	status?: BoAvatarIndicatorStatus;
-	position?: BoAvatarIndicatorPosition;
-}
-
-export interface BoAvatarProps {
-	data: BoAvatarData;
-	type?: BoAvatarType;
-	shape?: BoAvatarShape;
+interface BoAvatarProps {
+	/**
+	 * Unique ID for the avatar, used for accessibility and testing
+	 */
+	id?: string;
+	/**
+	 * Size of the avatar
+	 * @default BoSize.default
+	 */
 	size?: BoSize;
+	/**
+	 * Avatar data (image source or label)
+	 */
+	data?: BoAvatarData;
+	/**
+	 * Type of avatar (image or initials)
+	 * @default BoAvatarType.initials
+	 */
+	type?: BoAvatarType;
+	/**
+	 * Whether the avatar is clickable. In case yes
+	 * the avatar will use cursor-pointer and hover:opacity-80
+	 */
 	clickable?: boolean;
-	withDefaultImage?: boolean;
-	variant?: BoAvatarVariant;
+	/**
+	 * Shape of the avatar
+	 */
+	shape?: BoAvatarShape;
+	/**
+	 * Custom colors for the avatar
+	 */
 	color?: BoAvatarColor;
-	indicator?: BoAvatarIndicator;
+	/**
+	 * Color variant of the avatar
+	 */
+	variant?: BoAvatarVariant;
 }
 ```
 

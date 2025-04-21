@@ -31,14 +31,15 @@ import { BoBadge } from '@mrksbnc/bamboo';
 
 ## Props
 
-| Name      | Type             | Default     | Description                  |
-| --------- | ---------------- | ----------- | ---------------------------- |
-| `label`   | `string`         | `undefined` | Text content of the badge    |
-| `type`    | `BoBadgeType`    | `default`   | Visual style of the badge    |
-| `size`    | `BoSize`         | `default`   | Size of the badge            |
-| `shape`   | `BoBadgeShape`   | `default`   | Shape of the badge           |
-| `variant` | `BoBadgeVariant` | `primary`   | Color variant of the badge   |
-| `icon`    | `object`         | `{}`        | Icon configuration for badge |
+| Name      | Type             | Default        | Description                  |
+| --------- | ---------------- | -------------- | ---------------------------- |
+| `id`      | `string`         | auto-generated | Unique ID for the badge      |
+| `label`   | `string`         | `undefined`    | Text content of the badge    |
+| `type`    | `BoBadgeType`    | `default`      | Visual style of the badge    |
+| `size`    | `BoSize`         | `default`      | Size of the badge            |
+| `shape`   | `BoBadgeShape`   | `default`      | Shape of the badge           |
+| `variant` | `BoBadgeVariant` | `primary`      | Color variant of the badge   |
+| `icon`    | `object`         | `{}`           | Icon configuration for badge |
 
 ## Slots
 

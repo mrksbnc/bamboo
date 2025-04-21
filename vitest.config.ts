@@ -7,13 +7,12 @@ const bambooTestConfig = mergeConfig(
 	defineConfig({
 		test: {
 			globals: true,
-			environment: 'jsdom',
-			include: ['./src/**/*.{test}.{js,ts}', './test/**/*.{test}.{js,ts}'],
+			environment: '',
+			include: ['./src/**/*.test.ts', './test/**/*.test.ts'],
 			exclude: [
 				...configDefaults.exclude,
 				'**/node_modules/**',
 				'**/dist/**',
-				'**/.{git,cache}/**',
 				'**/{vite,vitest,playwright}.config.*',
 			],
 			root: fileURLToPath(new URL('./', import.meta.url)),
@@ -23,16 +22,6 @@ const bambooTestConfig = mergeConfig(
 			coverage: {
 				provider: 'v8',
 				reporter: ['json', 'html', 'lcov'],
-				exclude: [
-					'**/node_modules/**',
-					'**/dist/**',
-					'**/*.d.ts',
-					'**/*.test.ts',
-					'**/types.ts',
-					'**/index.ts',
-					'**/vite-env.d.ts',
-					'**/env.d.ts',
-				],
 				thresholds: {
 					lines: 80,
 					functions: 80,

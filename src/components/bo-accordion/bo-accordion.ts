@@ -1,6 +1,6 @@
 import type { Icon } from '@/components/bo-icon';
 
-export type BoAccordionProps = {
+export interface BoAccordionProps {
 	/**
 	 * Unique ID for the accordion, used for accessibility and testing
 	 */
@@ -27,12 +27,12 @@ export type BoAccordionProps = {
 	 * @default Icon.chevron_down
 	 */
 	customToggleIcon?: Icon;
-};
+}
 
 /**
  * Props for the accordion container that holds multiple accordion items
  */
-export type BoAccordionContainerProps = {
+export interface BoAccordionContainerProps {
 	/**
 	 * Whether to allow multiple accordion items to be open at once
 	 */
@@ -45,7 +45,7 @@ export type BoAccordionContainerProps = {
 	 * The initial open accordion item ID
 	 */
 	defaultOpen?: string;
-};
+}
 
 export interface AccordionGroup {
 	openItems: string[];

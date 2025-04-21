@@ -29,33 +29,88 @@ Use the `BoAccordion` component for a simple expandable section:
 	</template>
 </bo-accordion>
 
-## API Reference
-
 ### BoAccordion Props
 
-| Prop         | Type      | Default        | Description                                       |
-| ------------ | --------- | -------------- | ------------------------------------------------- |
-| `title`      | `string`  | `''`           | Title displayed in the accordion header           |
-| `open`       | `boolean` | `false`        | Whether the accordion is open by default          |
-| `disabled`   | `boolean` | `false`        | Disables the accordion                            |
-| `prefixIcon` | `Icon`    | `Icon.none`    | Icon to display before the title                  |
-| `customIcon` | `Icon`    | `Icon.none`    | Custom icon for the expand/collapse indicator     |
-| `id`         | `string`  | auto-generated | Unique ID for the accordion item                  |
-| `className`  | `string`  | `''`           | Custom CSS class to apply to the accordion header |
+| Prop                 | Type      | Default             | Description                                             |
+| -------------------- | --------- | ------------------- | ------------------------------------------------------- |
+| `id`                 | `string`  | auto-generated      | Unique ID for the accordion item                        |
+| `title`              | `string`  | `''`                | Title displayed in the accordion header                 |
+| `open`               | `boolean` | `false`             | Whether the accordion is open by default                |
+| `disabled`           | `boolean` | `false`             | Disables the accordion                                  |
+| `prefix-icon`        | `Icon`    | `Icon.none`         | Icon to display before the title                        |
+| `custom-toggle-icon` | `Icon`    | `Icon.chevron_down` | Custom icon for the expand/collapse indicator           |
+| `allow-multiple`     | `boolean` | `false`             | Allow multiple accordion items to be open at once       |
+| `always-open`        | `boolean` | `false`             | Keep at least one accordion item open                   |
+| `default-open`       | `string`  | `''`                | ID of the accordion item that should be open by default |
 
-### BoAccordionContainer Props
+### Slots
 
-| Prop            | Type      | Default | Description                                             |
-| --------------- | --------- | ------- | ------------------------------------------------------- |
-| `allowMultiple` | `boolean` | `false` | Allow multiple accordion items to be open at once       |
-| `alwaysOpen`    | `boolean` | `false` | Keep at least one accordion item open                   |
-| `defaultOpen`   | `string`  | `''`    | ID of the accordion item that should be open by default |
+| Name      | Description                                 |
+| --------- | ------------------------------------------- |
+| `default` | The content inside the accordion body slot. |
 
-### BoAccordion Events
+### Events
 
 | Event    | Payload                         | Description                                    |
 | -------- | ------------------------------- | ---------------------------------------------- |
 | `toggle` | `{ id: string, open: boolean }` | Emitted when the accordion is opened or closed |
+
+## Types
+
+```ts
+interface BoAccordionProps {
+	/**
+	 * Unique ID for the accordion, used for accessibility and testing
+	 */
+	id?: string;
+	/**
+	 * The title of the accordion item
+	 */
+	title?: string;
+	/**
+	 * Whether the accordion is open by default
+	 * @default false
+	 */
+	open?: boolean;
+	/**
+	 * Whether the accordion is disabled
+	 */
+	disabled?: boolean;
+	/**
+	 * Prefix icon for the accordion
+	 */
+	prefixIcon?: Icon;
+	/**
+	 * Custom icon for the expand/collapse indicator
+	 * @default Icon.chevron_down
+	 */
+	customToggleIcon?: Icon;
+}
+
+/**
+ * Props for the accordion container that holds multiple accordion items
+ */
+interface BoAccordionContainerProps {
+	/**
+	 * Whether to allow multiple accordion items to be open at once
+	 */
+	allowMultiple?: boolean;
+	/**
+	 * Whether to keep at least one accordion item open
+	 */
+	alwaysOpen?: boolean;
+	/**
+	 * The initial open accordion item ID
+	 */
+	defaultOpen?: string;
+}
+
+export interface AccordionGroup {
+	openItems: string[];
+	toggle: (id: string) => void;
+	registerItem: (id: string, initialOpen: boolean) => void;
+}
+```
 
 ## Disabled Accordion
 

@@ -1,104 +1,110 @@
+// @vitest-environment jsdom
+
 import { BoSize } from '@/shared/bo-size';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import BoAvatar from './BoAvatar.vue';
-import { BoAvatarIndicatorStatus, BoAvatarShape, BoAvatarType } from './bo-avatar';
+import { BoAvatarShape, BoAvatarType, BoAvatarVariant } from './bo-avatar';
 
 describe('BoAvatar.vue', () => {
-	it('renders with default size', () => {
+	it('renders with default props', () => {
 		const wrapper = mount(BoAvatar, {
-			props: {
-				data: { label: 'Test' },
-			},
+			props: { data: { label: 'JD' } },
 		});
-		const sizeClass = `w-${BoSize.default} h-${BoSize.default}`;
-		expect(wrapper.classes().some((c) => c.includes(sizeClass))).toBe(true);
+		expect(wrapper.text()).toContain('JD');
+		expect(wrapper.classes()).toContain('bo-avatar');
 	});
 
-	it('renders with specified size', () => {
+	it('renders with image type', () => {
 		const wrapper = mount(BoAvatar, {
 			props: {
-				data: { label: 'Test' },
-				size: BoSize.large,
-			},
-		});
-		const sizeClass = `w-${BoSize.large} h-${BoSize.large}`;
-		expect(wrapper.classes().some((c) => c.includes(sizeClass))).toBe(true);
-	});
-
-	it('renders with image when src is provided', () => {
-		const wrapper = mount(BoAvatar, {
-			props: {
-				data: { src: 'test.jpg' },
 				type: BoAvatarType.image,
+				data: {
+					src: 'test.jpg',
+					alt: 'Test Image',
+				},
 			},
 		});
 		const img = wrapper.find('img');
 		expect(img.exists()).toBe(true);
 		expect(img.attributes('src')).toBe('test.jpg');
+		expect(img.attributes('alt')).toBe('Test Image');
 	});
 
-	it('renders initials when label is provided', () => {
+	it('renders with circle shape', () => {
 		const wrapper = mount(BoAvatar, {
 			props: {
-				data: { label: 'John Doe' },
-				type: BoAvatarType.initials,
+				data: { label: 'JD' },
+				shape: BoAvatarShape.circle,
 			},
 		});
-		expect(wrapper.text()).toBe('JD');
+		expect(wrapper.classes()).toContain('rounded-full');
 	});
 
-	it('renders with custom color', () => {
+	it('renders with custom size', () => {
 		const wrapper = mount(BoAvatar, {
 			props: {
-				data: { label: 'Test' },
-				color: { bgColorHex: '#ff0000', colorHex: '#ffffff' },
+				data: { label: 'JD' },
+				size: BoSize.large,
 			},
 		});
-		expect(wrapper.classes()).toContain('bg-transparent');
+		expect(wrapper.classes()).toContain('w-12');
+		expect(wrapper.classes()).toContain('h-12');
 	});
 
-	it('renders with online indicator', () => {
+	it('renders with custom variant', () => {
 		const wrapper = mount(BoAvatar, {
 			props: {
-				data: { label: 'Test' },
-				indicator: { status: BoAvatarIndicatorStatus.online },
+				data: { label: 'JD' },
+				variant: BoAvatarVariant.success,
 			},
 		});
-		const status = wrapper.find('.status-indicator');
-		expect(status.exists()).toBe(true);
-		expect(status.classes()).toContain('bg-green-500');
+		expect(wrapper.classes()).toContain('bg-green-600');
 	});
 
-	it('renders with offline indicator', () => {
+	it('applies clickable styles when clickable', () => {
 		const wrapper = mount(BoAvatar, {
 			props: {
-				data: { label: 'Test' },
-				indicator: { status: BoAvatarIndicatorStatus.offline },
+				data: { label: 'JD' },
+				clickable: true,
 			},
 		});
-		const status = wrapper.find('.status-indicator');
-		expect(status.exists()).toBe(true);
-		expect(status.classes()).toContain('bg-gray-400');
+		expect(wrapper.classes()).toContain('cursor-pointer');
+		expect(wrapper.classes()).toContain('hover:opacity-80');
 	});
 
-	it('renders with square shape', () => {
+	it('shows default image when withDefaultImage is true', () => {
 		const wrapper = mount(BoAvatar, {
 			props: {
-				data: { label: 'Test' },
-				shape: BoAvatarShape.flat,
+				data: { label: 'JD' },
+				withDefaultImage: true,
 			},
 		});
-		expect(wrapper.classes()).toContain('rounded-none');
+		expect(wrapper.find('img').exists()).toBe(true);
 	});
 
-	it('renders with custom class', () => {
+	it('applies custom colors when provided', () => {
 		const wrapper = mount(BoAvatar, {
 			props: {
-				data: { label: 'Test' },
-				class: 'custom-class',
+				data: { label: 'JD' },
+				color: {
+					bgColorHex: '#ff0000',
+					colorHex: '#ffffff',
+				},
 			},
 		});
-		expect(wrapper.classes()).toContain('custom-class');
+		expect(wrapper.attributes('style')).toContain('background-color: #ff0000');
+		expect(wrapper.attributes('style')).toContain('color: #ffffff');
+	});
+
+	it('renders with outline shape', () => {
+		const wrapper = mount(BoAvatar, {
+			props: {
+				data: { label: 'JD' },
+				shape: BoAvatarShape.outline_rounded,
+			},
+		});
+		expect(wrapper.classes()).toContain('border');
+		expect(wrapper.classes()).toContain('rounded-md');
 	});
 });

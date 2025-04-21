@@ -63,13 +63,13 @@ const { label, type, size, variant, shape, icon } = toRefs(props);
 
 const containerClasses = {
 	[BoBadgeShape.default]:
-		/*tw*/ 'bo-badge--default inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-md shadow-sm hover:shadow',
+		/*tw*/ 'bo-badge--default flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-md shadow-sm hover:shadow',
 	[BoBadgeShape.circle]:
-		/*tw*/ 'bo-badge--circle inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-sm hover:shadow',
+		/*tw*/ 'bo-badge--circle flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-sm hover:shadow',
 	[BoBadgeShape.pill]:
-		/*tw*/ 'bo-badge--pill inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-sm hover:shadow',
+		/*tw*/ 'bo-badge--pill flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-full shadow-sm hover:shadow',
 	[BoBadgeShape.flat]:
-		/*tw*/ 'bo-badge--flat inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-none shadow-sm hover:shadow',
+		/*tw*/ 'bo-badge--flat flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-none shadow-sm hover:shadow',
 };
 
 const variantClasses = {

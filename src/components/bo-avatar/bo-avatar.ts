@@ -23,21 +23,6 @@ export enum BoAvatarType {
 	initials = 'initials',
 }
 
-export enum BoAvatarIndicatorPosition {
-	topLeft = 'top-left',
-	topRight = 'top-right',
-	bottomLeft = 'bottom-left',
-	bottomRight = 'bottom-right',
-}
-
-export enum BoAvatarIndicatorStatus {
-	online = 'online',
-	offline = 'offline',
-	busy = 'busy',
-	away = 'away',
-	none = 'none',
-}
-
 export interface BoAvatarData {
 	alt?: string;
 	src?: string;
@@ -49,20 +34,40 @@ export interface BoAvatarColor {
 	colorHex?: string;
 }
 
-export interface BoAvatarIndicator {
-	status?: BoAvatarIndicatorStatus;
-	position?: BoAvatarIndicatorPosition;
-}
-
 export interface BoAvatarProps {
+	/**
+	 * Unique ID for the avatar, used for accessibility and testing
+	 */
 	id?: string;
-	data: BoAvatarData;
-	type?: BoAvatarType;
-	shape?: BoAvatarShape;
+	/**
+	 * Size of the avatar
+	 * @default BoSize.default
+	 */
 	size?: BoSize;
+	/**
+	 * Avatar data (image source or label)
+	 */
+	data?: BoAvatarData;
+	/**
+	 * Type of avatar (image or initials)
+	 * @default BoAvatarType.initials
+	 */
+	type?: BoAvatarType;
+	/**
+	 * Whether the avatar is clickable. In case yes
+	 * the avatar will use cursor-pointer and hover:opacity-80
+	 */
 	clickable?: boolean;
-	withDefaultImage?: boolean;
-	variant?: BoAvatarVariant;
+	/**
+	 * Shape of the avatar
+	 */
+	shape?: BoAvatarShape;
+	/**
+	 * Custom colors for the avatar
+	 */
 	color?: BoAvatarColor;
-	indicator?: BoAvatarIndicator;
+	/**
+	 * Color variant of the avatar
+	 */
+	variant?: BoAvatarVariant;
 }
