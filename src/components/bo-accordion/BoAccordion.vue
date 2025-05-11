@@ -26,7 +26,7 @@
 					:value="title"
 					:size="BoFontSize.base"
 					:weight="BoFontWeight.semibold"
-					class="bo-accordion__title"
+					class="bo-accordion__title cursor-pointer"
 				/>
 			</div>
 			<div class="bo-accordion__collapse-icon transition-transform duration-200">
@@ -77,11 +77,9 @@ const accordionGroup = inject<AccordionGroup | null>(InjectKey.AccordionGroup, n
 
 const headerClasses: Record<string, string> = {
 	default:
-		/*tw*/ 'bo-accordion__header pointer flex cursor-pointer items-center justify-between p-4 transition-colors',
+		/*tw*/ 'bo-accordion__header flex cursor-pointer items-center justify-between p-4 transition-colors',
 	text: /*tw*/ 'text-blue-gray-700 dark:text-white',
-	hover: /*tw*/ 'hover:bg-blue-50 dark:hover:bg-blue-600',
 	background: /*tw*/ 'bg-neutral-50 dark:bg-neutral-800',
-	state: /*tw*/ 'hover:bg-neutral-50 dark:hover:bg-neutral-600',
 	disabled: /*tw*/ 'cursor-not-allowed opacity-50',
 };
 
