@@ -2,9 +2,7 @@ let instance: TailwindService | null = null;
 
 export interface BoTailwindService {
 	/**
-	 * Merges multiple class strings into a single string, removing duplicates
-	 * and returning a single string of combined classes without duplicates
-	 * or null/undefined values
+	 * Merges multiple class strings into a single one and removes duplicates.
 	 */
 	merge(...classes: (string | null | undefined)[]): string;
 }
