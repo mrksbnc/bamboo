@@ -2,6 +2,7 @@
 	<div
 		:class="[
 			'bo-radio',
+
 			{
 				'cursor-pointer': !disabled,
 				'cursor-not-allowed opacity-60': disabled,
@@ -27,8 +28,8 @@
 			:aria-label="ariaLabel"
 			:aria-describedby="helperTextId"
 			:aria-invalid="state === BoRadioState.error"
-			@change="onChange"
 			:data-testid="`bo-radio-input-${id}`"
+			@change="onChange"
 		/>
 		<label
 			:for="id"
@@ -68,7 +69,6 @@
 				<bo-text
 					:id="helperTextId"
 					:size="BoFontSize.sm"
-					:class="helperTextClasses"
 					:value="error"
 					:data-testid="`bo-radio-error-text-${id}`"
 				/>
@@ -78,7 +78,6 @@
 				:id="helperTextId"
 				:value="description"
 				:size="BoFontSize.sm"
-				:class="helperTextClasses"
 				:data-testid="`bo-radio-description-${id}`"
 			/>
 		</div>

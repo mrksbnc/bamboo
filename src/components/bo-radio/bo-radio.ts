@@ -39,6 +39,10 @@ export interface BoRadioProps {
 	 */
 	size?: BoSize;
 	/**
+	 * The error message of the element.
+	 */
+	error?: string;
+	/**
 	 * The variant of the element.
 	 */
 	variant?: BoRadioVariant;
