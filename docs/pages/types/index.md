@@ -103,39 +103,3 @@ interface FocusableProps extends BaseProps {
 	tabindex?: number;
 }
 ```
-
-## Usage Examples
-
-```typescript
-import { StyleValue, StyleConstruct, Nullable } from '@/types';
-
-// Style value usage
-const style: StyleValue = {
-	color: 'red',
-	fontSize: '16px',
-};
-
-// Style construct usage
-const styleConstruct: StyleConstruct = {
-	style: { color: 'blue' },
-	class: 'my-class',
-};
-
-// Nullable usage
-const value: Nullable<string> = 'Hello';
-const nullValue: Nullable<string> = null;
-
-// Component props usage
-interface ButtonProps extends ClickableProps, FocusableProps {
-	label: string;
-	variant: 'primary' | 'secondary';
-}
-
-const buttonProps: ButtonProps = {
-	id: 'my-button',
-	label: 'Click me',
-	variant: 'primary',
-	disabled: false,
-	onClick: (event) => console.log('Clicked'),
-};
-```

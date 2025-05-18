@@ -155,30 +155,3 @@ const handleUpdate = ({ value }) => {
 };
 </script>
 ```
-
-## Usage Examples
-
-### Basic Form Example
-
-```vue
-<form @submit.prevent="submitForm">
-	<component-name v-model="formData.value" />
-	<bo-button type="submit">Submit</bo-button>
-</form>
-```
-
-### In a Layout
-
-```vue
-<bo-card>
-	<template #header>
-		<h3>Card Title</h3>
-	</template>
-	
-	<component-name />
-	
-	<template #footer>
-		<bo-button>Action</bo-button>
-	</template>
-</bo-card>
-```
