@@ -230,6 +230,7 @@ interface BoButtonProps {
 
 <div class="flex gap-4 items-center my-4">
   <bo-button :is-loading="true" label="Loading Button" />
+  <bo-button :is-loading="true" label="Loading Button" loader-type="pulse" />
 </div>
 
 ```vue

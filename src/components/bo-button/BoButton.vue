@@ -305,12 +305,11 @@ const loaderSize = computed<BoSize>(() => {
 			return BoSize.extra_small;
 		case BoSize.small:
 			return BoSize.small;
-		case BoSize.default:
-			return props.loaderType === BoLoaderType.pulse ? BoSize.small : BoSize.default;
 		case BoSize.large:
 			return BoSize.default;
 		case BoSize.extra_large:
 			return BoSize.large;
+		case BoSize.default:
 		default:
 			return BoSize.small;
 	}
