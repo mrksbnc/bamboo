@@ -25,47 +25,19 @@
 </template>
 
 <script setup lang="ts">
-import { TailwindService } from '@/services';
-import { BoSize } from '@/shared';
+import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { BoSize } from '@/shared/bo-size.js';
 import { computed, toRefs } from 'vue';
-import { BoProgressBarVariant, type BoProgressBarProps } from './bo-progress-bar';
+import { BoProgressBarVariant, type BoProgressBarProps } from './bo-progress-bar.js';
 
 const props = withDefaults(defineProps<BoProgressBarProps>(), {
 	max: 100,
-	showLabel: false,
-	striped: false,
-	animated: false,
-	size: () => BoSize.default,
-	variant: () => BoProgressBarVariant.primary,
-	label: undefined,
-	indeterminate: false,
-	id: '',
-	disabled: false,
-	showPercentage: false,
-	error: '',
-	description: '',
-	helperTextId: '',
-	helperTextClasses: '',
+	id: () => IdentityService.instance.getComponentId(),
 });
 
-const {
-	value,
-	max,
-	showLabel,
-	striped,
-	animated,
-	size,
-	variant,
-	label,
-	indeterminate,
-	id,
-	disabled,
-	showPercentage,
-	error,
-	description,
-	helperTextId,
-	helperTextClasses,
-} = toRefs(props);
+const { value, max, showLabel, striped, animated, size, variant, label, indeterminate, id } =
+	toRefs(props);
 
 const computedWidth = computed(() => {
 	if (indeterminate.value) {
@@ -99,10 +71,6 @@ const progressBarClasses = computed(() => {
 		animated.value ? 'animate-progress' : '',
 		indeterminate.value ? 'animate-indeterminate' : '',
 		showLabel.value ? 'h-full' : '',
-		{
-			'cursor-pointer': !disabled.value,
-			'cursor-not-allowed opacity-60': disabled.value,
-		},
 	);
 });
 

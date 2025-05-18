@@ -8,5 +8,6 @@
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"types": ["node"]
-	}
+	},
+	"exclude": ["node_modules", "dist", "test"]
 }

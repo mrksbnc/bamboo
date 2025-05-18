@@ -42,6 +42,7 @@ export interface BoTimelineItem {
 }
 
 export interface BoTimelineProps {
+	id?: string;
 	/**  Array of timeline items to display */
 	items: BoTimelineItem[];
 	/**  Timeline appearance variant */

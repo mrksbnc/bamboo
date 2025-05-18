@@ -1,4 +1,4 @@
-import type { BoSize } from '@/shared';
+import type { BoSize } from '@/shared/bo-size.js';
 
 export enum BoPopoverPlacement {
 	top = 'top',
@@ -21,69 +21,43 @@ export enum BoPopoverTrigger {
 	focus = 'focus',
 }
 
+export enum BoPopoverAnimation {
+	fade = 'fade',
+	scale = 'scale',
+	shift = 'shift',
+}
+
 export interface BoPopoverProps {
-	/**
-	 * ID for the popover
-	 */
+	/** Id for the popover */
 	id?: string;
-	/**
-	 * Whether the popover is open
-	 */
+	/** Whether the popover is open */
 	modelValue?: boolean;
-	/**
-	 * Placement of the popover
-	 */
+	/** Placement of the popover */
 	placement?: BoPopoverPlacement;
-	/**
-	 * Offset distance from the trigger element
-	 */
+	/** Offset distance from the trigger element */
 	offset?: number;
-	/**
-	 * The event that triggers the popover
-	 */
+	/** The event that triggers the popover */
 	trigger?: BoPopoverTrigger;
-	/**
-	 * Whether to disable interactive content inside the popover
-	 */
+	/** Whether to disable interactive content inside the popover */
 	interactive?: boolean;
-	/**
-	 * Title of the popover
-	 */
+	/** Title of the popover */
 	title?: string;
-	/**
-	 * Content of the popover
-	 */
+	/** Content of the popover */
 	content?: string;
-	/**
-	 * Size of the popover
-	 */
+	/** Size of the popover */
 	size?: BoSize;
-	/**
-	 * CSS class to add to the popover
-	 */
+	/** CSS class to add to the popover */
 	popoverClass?: string;
-	/**
-	 * Whether to show an arrow pointing to the trigger element
-	 */
+	/** Whether to show an arrow pointing to the trigger element */
 	arrow?: boolean;
-	/**
-	 * Animation duration in ms
-	 */
+	/** Animation duration in ms */
 	animationDuration?: number;
-	/**
-	 * Animation style
-	 */
-	animation?: 'fade' | 'scale' | 'shift';
-	/**
-	 * Whether the popover should have a shadow
-	 */
+	/** Animation style */
+	animation?: BoPopoverAnimation;
+	/** Whether the popover should have a shadow */
 	shadow?: boolean;
-	/**
-	 * Whether the popover should have a border
-	 */
+	/** Whether the popover should have a border */
 	border?: boolean;
-	/**
-	 * Whether to close the popover when clicking outside
-	 */
+	/** Whether to close the popover when clicking outside */
 	closeOnOutsideClick?: boolean;
 }

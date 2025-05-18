@@ -1,5 +1,5 @@
 import { createApp, h } from 'vue';
-import type { ToastOptions } from './bo-toast';
+import { BoToastType, type ToastOptions } from './bo-toast.js';
 import BoToast from './bo-toast.vue';
 
 class ToastService {
@@ -45,7 +45,7 @@ class ToastService {
 		this.show({
 			...options,
 			message,
-			type: 'success',
+			type: BoToastType.success,
 		});
 	}
 
@@ -53,7 +53,7 @@ class ToastService {
 		this.show({
 			...options,
 			message,
-			type: 'error',
+			type: BoToastType.error,
 		});
 	}
 
@@ -61,7 +61,7 @@ class ToastService {
 		this.show({
 			...options,
 			message,
-			type: 'warning',
+			type: BoToastType.warning,
 		});
 	}
 
@@ -69,7 +69,7 @@ class ToastService {
 		this.show({
 			...options,
 			message,
-			type: 'info',
+			type: BoToastType.info,
 		});
 	}
 
@@ -90,5 +90,3 @@ class ToastService {
 		this.toasts.clear();
 	}
 }
-
-export const toast = ToastService.getInstance();

@@ -5,4 +5,4 @@ export { default as BoToast } from './bo-toast.vue';
 /** Toast module js exports */
 
 export * from './bo-toast.js';
-export * from './ToastService.js';
+export * from './toast-service.js';

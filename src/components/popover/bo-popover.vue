@@ -1,6 +1,5 @@
 <template>
-	<div class="bo-popover-container">
-		<!-- Trigger element -->
+	<div class="bo-popover-container relative z-50 inline-block">
 		<div
 			ref="triggerRef"
 			class="bo-popover-trigger inline-block"
@@ -13,8 +12,6 @@
 		>
 			<slot name="trigger"></slot>
 		</div>
-
-		<!-- Popover content -->
 		<Teleport to="body">
 			<div
 				v-if="isOpen"
@@ -22,12 +19,6 @@
 				:id="id"
 				role="dialog"
 				:class="popoverClasses"
-				:style="{
-					maxWidth: '20rem',
-					visibility: isOpen ? 'visible' : 'hidden',
-					opacity: isOpen ? '1' : '0',
-					transform: isOpen && animation !== 'fade' ? 'scale(1) translate(0, 0)' : '',
-				}"
 				:tabindex="interactive ? 0 : -1"
 				@mouseenter="onPopoverMouseEnter"
 				@mouseleave="onPopoverMouseLeave"
@@ -40,8 +31,7 @@
 					class="bo-popover-arrow absolute h-2 w-2 rotate-45 transform bg-white dark:bg-gray-800"
 					:style="arrowStyles"
 				></div>
-				<!-- Popover content -->
-				<div class="bo-popover-content relative z-10">
+				<div class="bo-popover-content relative z-20">
 					<slot>
 						<div
 							v-if="title"
@@ -82,26 +72,29 @@ import BoText from '@/components/text/bo-text.vue';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, toRefs, watch } from 'vue';
-import { BoPopoverPlacement, BoPopoverTrigger, type BoPopoverProps } from './bo-popover.js';
+import { onClickOutside, useEventListener } from '@vueuse/core';
+import { computed, nextTick, onBeforeUnmount, ref, toRefs, watch } from 'vue';
+import {
+	BoPopoverAnimation,
+	BoPopoverPlacement,
+	BoPopoverTrigger,
+	type BoPopoverProps,
+} from './bo-popover.js';
 
 const props = withDefaults(defineProps<BoPopoverProps>(), {
 	id: () => IdentityService.instance.getComponentId('popover'),
 	modelValue: false,
 	placement: () => BoPopoverPlacement.bottom,
 	offset: 8,
-	trigger: () => BoPopoverTrigger.click,
-	interactive: true,
-	title: undefined,
-	content: undefined,
-	size: () => BoSize.default,
-	popoverClass: '',
 	arrow: true,
-	animationDuration: 300,
-	animation: 'fade',
 	shadow: true,
 	border: true,
+	interactive: true,
+	animationDuration: 300,
 	closeOnOutsideClick: true,
+	size: () => BoSize.default,
+	trigger: () => BoPopoverTrigger.click,
+	animation: () => BoPopoverAnimation.fade,
 });
 
 const emit = defineEmits<{
@@ -133,37 +126,29 @@ const isOpen = ref(modelValue.value);
 
 const triggerRef = ref<HTMLElement>();
 const popoverRef = ref<HTMLElement>();
+
 const hoverTimeout = ref<number | undefined>(undefined);
 
-// Watch for changes in modelValue to update isOpen
-watch(modelValue, (newValue) => {
-	isOpen.value = newValue;
-});
-
-// Watch for changes in isOpen to emit events
-watch(isOpen, (newValue) => {
-	emit('update:modelValue', newValue);
-	if (newValue) {
-		emit('opened');
-		nextTick(() => {
-			positionPopover();
-		});
-	} else {
-		emit('closed');
-	}
-});
-
-// Computed styles and classes
 const popoverClasses = computed(() => {
+	const defaultClasses =
+		/*tw*/ 'bo-popover max-w-80 fixed z-[9999] rounded-lg bg-white p-4 font-sans text-base font-normal text-gray-900 shadow-none outline-none transition-opacity dark:bg-gray-800 dark:text-white';
+
 	return TailwindService.instance.merge(
-		'bo-popover fixed z-[9999] rounded-lg bg-white p-4 font-sans text-base font-normal text-gray-900 shadow-none outline-none transition-opacity dark:bg-gray-800 dark:text-white',
+		defaultClasses,
 		shadow.value ? 'shadow-lg' : '',
 		border.value ? 'border border-gray-200 dark:border-gray-700' : '',
-		animation.value === 'fade' ? 'transition-opacity duration-300' : '',
-		animation.value === 'scale' ? 'transition-transform duration-300 scale-95 origin-center' : '',
-		animation.value === 'shift' ? 'transition-transform duration-300 -translate-y-2' : '',
+		animation.value === 'fade'
+			? `transition-opacity duration-${animationDuration.value}`
+			: animation.value === 'scale'
+				? `transition-transform duration-${animationDuration.value} scale-95 origin-center`
+				: '',
+		animation.value === 'shift'
+			? `transition-transform duration-${animationDuration.value} -translate-y-2`
+			: '',
 		sizeClasses.value,
 		popoverClass.value,
+		isOpen ? 'opacity-100 visible' : 'opacity-0 invisible',
+		isOpen && props.animation !== 'fade' ? 'translate-x-0 translate-y-0 scale-100' : '',
 	);
 });
 
@@ -259,7 +244,9 @@ const sizeClasses = computed(() => {
 });
 
 function positionPopover() {
-	if (!triggerRef.value || !popoverRef.value) return;
+	if (!triggerRef.value || !popoverRef.value) {
+		return;
+	}
 
 	const triggerRect = triggerRef.value.getBoundingClientRect();
 	const popoverRect = popoverRef.value.getBoundingClientRect();
@@ -348,99 +335,82 @@ function positionPopover() {
 	}
 }
 
-const onTriggerClick = () => {
+function onTriggerClick(): void {
 	if (trigger.value === BoPopoverTrigger.click) {
 		isOpen.value = !isOpen.value;
 	}
-};
+}
 
-const onTriggerMouseEnter = () => {
+function onTriggerMouseEnter(): void {
 	if (trigger.value === BoPopoverTrigger.hover) {
 		clearTimeout(hoverTimeout.value);
 		isOpen.value = true;
 	}
-};
+}
 
-const onTriggerMouseLeave = () => {
+function onTriggerMouseLeave(): void {
 	if (trigger.value === BoPopoverTrigger.hover && !interactive.value) {
 		hoverTimeout.value = window.setTimeout(() => {
 			isOpen.value = false;
 		}, 100);
 	}
-};
+}
 
-const onTriggerFocus = () => {
+function onTriggerFocus(): void {
 	if (trigger.value === BoPopoverTrigger.focus) {
 		isOpen.value = true;
 	}
-};
+}
 
-const onTriggerBlur = () => {
+function onTriggerBlur(): void {
 	if (trigger.value === BoPopoverTrigger.focus) {
 		isOpen.value = false;
 	}
-};
+}
 
-const onPopoverMouseEnter = () => {
+function onPopoverMouseEnter(): void {
 	if (trigger.value === BoPopoverTrigger.hover && interactive.value) {
 		clearTimeout(hoverTimeout.value);
 	}
-};
+}
 
-const onPopoverMouseLeave = () => {
+function onPopoverMouseLeave(): void {
 	if (trigger.value === BoPopoverTrigger.hover && interactive.value) {
 		hoverTimeout.value = window.setTimeout(() => {
 			isOpen.value = false;
 		}, 100);
 	}
-};
+}
 
-const onClickOutside = (event: MouseEvent) => {
-	if (
-		closeOnOutsideClick.value &&
-		isOpen.value &&
-		triggerRef.value &&
-		popoverRef.value &&
-		!triggerRef.value.contains(event.target as Node) &&
-		!popoverRef.value.contains(event.target as Node)
-	) {
-		isOpen.value = false;
-	}
-};
-
-onMounted(() => {
-	if (closeOnOutsideClick.value) {
-		document.addEventListener('click', onClickOutside);
-	}
-
-	window.addEventListener('resize', positionPopover);
-	window.addEventListener('scroll', positionPopover);
+watch(modelValue, (newValue) => {
+	isOpen.value = newValue;
 });
 
-onBeforeUnmount(() => {
-	if (closeOnOutsideClick.value) {
-		document.removeEventListener('click', onClickOutside);
+watch(isOpen, (val) => {
+	emit('update:modelValue', val);
+
+	if (!val) {
+		emit('closed');
+		return;
 	}
 
-	window.removeEventListener('resize', positionPopover);
-	window.removeEventListener('scroll', positionPopover);
+	emit('opened');
 
+	nextTick(() => {
+		positionPopover();
+	});
+});
+
+onClickOutside(popoverRef, () => {
+	if (closeOnOutsideClick.value && isOpen.value) {
+		isOpen.value = false;
+	}
+});
+
+useEventListener(window, 'resize', positionPopover);
+useEventListener(window, 'scroll', positionPopover);
+
+onBeforeUnmount(() => {
 	clearTimeout(hoverTimeout.value);
 });
 </script>
-
-<style scoped>
-.bo-popover-container {
-	position: relative;
-	display: inline-block;
-}
-
-.bo-popover-title {
-	font-weight: 600;
-	margin-bottom: 0.5rem;
-}
-
-.bo-popover-body {
-	font-weight: normal;
-}
-</style>

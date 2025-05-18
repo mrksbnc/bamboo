@@ -1,3 +1,4 @@
+import vue from '@vitejs/plugin-vue';
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -6,6 +7,7 @@ import svgLoader from 'vite-svg-loader';
 // https://vite.dev/config/
 export default defineConfig({
 	plugins: [
+		vue(),
 		dts({
 			outDir: 'dist',
 			entryRoot: 'src/index.ts',

@@ -1,4 +1,4 @@
-import type { BoSize } from '@/shared';
+import type { BoSize } from '@/shared/bo-size.js';
 
 export enum BoProgressBarVariant {
 	primary = 'primary',
@@ -12,40 +12,23 @@ export enum BoProgressBarVariant {
 }
 
 export interface BoProgressBarProps {
-	/**
-	 * Current value of the progress bar
-	 */
+	id?: string;
+	/** Current value of the progress bar */
 	value: number;
-	/**
-	 * Maximum value of the progress bar
-	 */
+	/** Maximum value of the progress bar */
 	max?: number;
-	/**
-	 * Show label with percentage
-	 */
+	/** Show label with percentage */
 	showLabel?: boolean;
-	/**
-	 * Whether the progress bar is striped
-	 */
+	/** Whether the progress bar is striped */
 	striped?: boolean;
-	/**
-	 * Whether the progress bar is animated
-	 */
+	/** Whether the progress bar is animated */
 	animated?: boolean;
-	/**
-	 * Size of the progress bar
-	 */
+	/** Size of the progress bar */
 	size?: BoSize;
-	/**
-	 * Color variant of the progress bar
-	 */
+	/** Color variant of the progress bar */
 	variant?: BoProgressBarVariant;
-	/**
-	 * Label to display instead of percentage
-	 */
+	/** Label to display instead of percentage */
 	label?: string;
-	/**
-	 * Whether to show indeterminate state
-	 */
+	/** Whether to show indeterminate state */
 	indeterminate?: boolean;
 }

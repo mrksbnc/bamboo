@@ -11,7 +11,7 @@
 				<button
 					v-if="hasChildren"
 					type="button"
-					class="toggle-button"
+					class="flex h-6 w-6 items-center justify-center rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700"
 					:disabled="node.disabled"
 					@click.stop="onToggle"
 				>
@@ -19,7 +19,7 @@
 				</button>
 				<span
 					v-else
-					class="toggle-spacer"
+					class="toggle-spacer w-6"
 				/>
 
 				<bo-checkbox
@@ -42,7 +42,7 @@
 
 		<div
 			v-if="hasChildren && node.expanded"
-			class="children"
+			class="children mt-1"
 		>
 			<tree-node
 				v-for="child in node.children"
@@ -64,9 +64,10 @@
 </template>
 
 <script setup lang="ts">
-import { BoCheckbox } from '@/components/checkbox';
-import { BoIcon, Icon } from '@/components/icon';
-import { BoText } from '@/components/text';
+import BoCheckbox from '@/components/checkbox/bo-checkbox.vue';
+import { Icon } from '@/components/icon/bo-icon.js';
+import BoIcon from '@/components/icon/bo-icon.vue';
+import boText from '@/components/text/bo-text.vue';
 import { TailwindService } from '@/services';
 import { computed } from 'vue';
 import type { TreeNode, TreeNodeProps } from './bo-tree';
@@ -139,16 +140,4 @@ function onClick(): void {
 }
 </script>
 
-<style scoped>
-.toggle-button {
-	@apply flex h-6 w-6 items-center justify-center rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700;
-}
-
-.toggle-spacer {
-	@apply w-6;
-}
-
-.children {
-	@apply mt-1;
-}
-</style>
+<style scoped></style>

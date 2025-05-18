@@ -1,1 +1,1 @@
-export * from './v-tooltip';
+export * from './v-tooltip.js';

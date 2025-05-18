@@ -1,25 +1,19 @@
 <template>
 	<div
-		class="bo-timeline"
-		:class="[
-			{
-				'cursor-pointer': !disabled,
-				'cursor-not-allowed opacity-60': disabled,
-			},
-		]"
+		class="bo-timeline flex flex-col"
 		:data-testid="`bo-timeline-${id}`"
 	>
 		<div
 			v-for="(item, index) in items"
 			:key="index"
-			class="bo-timeline-item"
+			class="bo-timeline-item relative"
 			:class="timelineItemClasses"
 			:data-testid="`bo-timeline-item-${id}-${index}`"
 		>
 			<!-- Timeline connector/line -->
 			<div
 				v-if="showConnector && index < items.length - 1"
-				class="bo-timeline-connector"
+				class="bo-timeline-connector absolute bottom-0 z-0 translate-y-full"
 				:class="connectorClasses"
 			></div>
 
@@ -93,18 +87,20 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon } from '@/components/icon/bo-icon.js';
-import { TailwindService } from '@/services';
-import { BoSize } from '@/shared';
+import BoIcon from '@/components/icon/bo-icon.vue';
+import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { BoSize } from '@/shared/bo-size.js';
 import { computed, toRefs } from 'vue';
 import {
 	BoTimelineAlign,
 	BoTimelineIconColor,
 	BoTimelineVariant,
 	type BoTimelineProps,
-} from './bo-timeline';
+} from './bo-timeline.js';
 
 const props = withDefaults(defineProps<BoTimelineProps>(), {
+	id: () => IdentityService.instance.getComponentId('bo-timeline'),
 	variant: () => BoTimelineVariant.default,
 	size: () => BoSize.default,
 	showConnector: true,
@@ -222,21 +218,3 @@ const iconColorClasses = {
 	[BoTimelineIconColor.dark]: 'bg-gray-800 text-white',
 };
 </script>
-
-<style scoped>
-.bo-timeline {
-	display: flex;
-	flex-direction: column;
-}
-
-.bo-timeline-item {
-	position: relative;
-}
-
-.bo-timeline-connector {
-	position: absolute;
-	bottom: 0;
-	transform: translateY(100%);
-	z-index: 0;
-}
-</style>

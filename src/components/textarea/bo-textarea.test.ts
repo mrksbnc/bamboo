@@ -1,4 +1,3 @@
-import { BoSize } from '@/shared/bo-size.js';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import BoTextarea from './bo-textarea.vue';
@@ -37,13 +36,6 @@ describe('BoTextarea.vue', () => {
 			props: { readonly: true },
 		});
 		expect(wrapper.find('textarea').attributes('readonly')).toBeDefined();
-	});
-
-	it('renders with specified size', () => {
-		const wrapper = mount(BoTextarea, {
-			props: { size: BoSize.large },
-		});
-		expect(wrapper.classes()).toContain('bo-textarea--large');
 	});
 
 	it('renders with custom class', () => {

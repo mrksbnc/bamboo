@@ -1,6 +1,6 @@
 {
 	"include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
-	"exclude": ["tests/**/*"],
+	"exclude": ["tests/**/*", "node_modules", "dist", "test"],
 	"compilerOptions": {
 		"noEmit": true,
 		"strict": true,

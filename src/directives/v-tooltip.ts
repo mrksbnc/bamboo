@@ -1,4 +1,4 @@
-import { IdentityService } from '@/services';
+import { IdentityService } from '@/services/identity-service.js';
 import type { DirectiveBinding, ObjectDirective } from 'vue';
 
 export enum TooltipPlacement {

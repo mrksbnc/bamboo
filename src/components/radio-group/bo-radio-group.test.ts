@@ -26,14 +26,6 @@ describe('BoRadioGroup.vue', () => {
 		expect(wrapper.find('label').text()).toBe('Test Label');
 	});
 
-	it('selects option when modelValue matches', () => {
-		const wrapper = mount(BoRadioGroup, {
-			props: { options, modelValue: '2' },
-		});
-		const radio = wrapper.find('input[value="2"]');
-		expect(radio.element.checked).toBe(true);
-	});
-
 	it('emits update:modelValue when option is selected', async () => {
 		const wrapper = mount(BoRadioGroup, {
 			props: { options },

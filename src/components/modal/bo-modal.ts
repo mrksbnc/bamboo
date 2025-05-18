@@ -1,6 +1,6 @@
 import { BoButtonVariant } from '@/components/button/bo-button.js';
 import { Icon } from '@/components/icon/bo-icon.js';
-import { BoSize } from '@/shared';
+import { BoSize } from '@/shared/bo-size.js';
 
 export enum BoModalSize {
 	xs = 'xs',

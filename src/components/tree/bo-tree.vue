@@ -1,9 +1,9 @@
 <template>
 	<div
 		:class="[
-			'tree',
+			'tree space-y-1',
 			sizeClasses[size],
-			variant === 'compact' ? 'compact' : '',
+			variant === BoTreeVariant.compact ? 'compact' : '',
 			disabled ? 'opacity-50' : '',
 		]"
 		:data-testid="`bo-tree-${id}`"
@@ -11,15 +11,10 @@
 		<tree-node
 			v-for="node in data"
 			:key="node.id"
+			:id="node.id"
 			:node="node"
 			:level="0"
-			:show-checkboxes="showCheckboxes"
-			:show-icons="showIcons"
-			:disabled="disabled"
-			:multiple="multiple"
-			:selected-ids="modelValue"
-			@toggle="toggleNode"
-			@select="selectNode"
+			:selected-ids="new Set()"
 		/>
 	</div>
 </template>
@@ -27,17 +22,15 @@
 <script setup lang="ts">
 import { IdentityService } from '@/services';
 import { BoSize } from '@/shared';
-import type { BoTreeProps } from './bo-tree';
+import { BoTreeVariant, type BoTreeProps } from './bo-tree';
 import TreeNode from './tree-node.vue';
 
 const props = withDefaults(defineProps<BoTreeProps>(), {
 	id: IdentityService.instance.getComponentId(),
-	disabled: false,
-	showCheckboxes: false,
 	showIcons: true,
 	size: BoSize.default,
-	multiple: false,
 	modelValue: () => [],
+	variant: () => BoTreeVariant.default,
 });
 
 const emit = defineEmits<{
@@ -54,7 +47,7 @@ const sizeClasses = {
 	[BoSize.extra_large]: 'text-xl',
 };
 
-const toggleNode = (node: TreeNode) => {
+const toggleNode = (node: typeof TreeNode) => {
 	if (props.disabled) {
 		return;
 	}
@@ -62,33 +55,23 @@ const toggleNode = (node: TreeNode) => {
 	emit('node-toggle', node);
 };
 
-const selectNode = (node: TreeNode) => {
+const selectNode = (node: typeof TreeNode) => {
 	if (props.disabled || node.disabled) {
 		return;
 	}
 
-	if (props.multiple) {
-		const newSelection = [...props.modelValue];
-		const index = newSelection.indexOf(node.id);
-		if (index === -1) {
-			newSelection.push(node.id);
-		} else {
-			newSelection.splice(index, 1);
-		}
-		emit('update:modelValue', newSelection);
-	} else {
-		emit('update:modelValue', [node.id]);
-	}
-	emit('node-select', node);
+	// if (props.multiple) {
+	// 	const newSelection = [...props.modelValue];
+	// 	const index = newSelection.indexOf(node.id);
+	// 	if (index === -1) {
+	// 		newSelection.push(node.id);
+	// 	} else {
+	// 		newSelection.splice(index, 1);
+	// 	}
+	// 	emit('update:modelValue', newSelection);
+	// } else {
+	// 	emit('update:modelValue', [node.id]);
+	// }
+	// emit('node-select', node);
 };
 </script>
-
-<style scoped>
-.tree {
-	@apply space-y-1;
-}
-
-.tree.compact {
-	@apply space-y-0;
-}
-</style>
