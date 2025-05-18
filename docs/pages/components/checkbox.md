@@ -41,6 +41,32 @@ const checkedFalse = false;
 
 <bo-checkbox v-model="checkedFalse" label="Accept terms and conditions" />
 
+## Props
+
+| Name          | Type      | Default   | Description                             |
+| ------------- | --------- | --------- | --------------------------------------- |
+| `id`          | `string`  | `auto`    | Unique ID for the checkbox              |
+| `name`        | `string`  | `''`      | Name attribute for the checkbox group   |
+| `value`       | `string`  | `''`      | Value attribute for the checkbox button |
+| `disabled`    | `boolean` | `false`   | Whether the checkbox is disabled        |
+| `label`       | `string`  | `''`      | Text label for the checkbox             |
+| `description` | `string`  | `''`      | Description for the checkbox            |
+| `size`        | `BoSize`  | `default` | Size of the checkbox                    |
+
+## Types
+
+```ts
+interface BoCheckboxProps {
+	id?: string;
+	name?: string;
+	value?: string;
+	disabled?: boolean;
+	label?: string;
+	description?: string;
+	size?: BoSize;
+}
+```
+
 ## Sizes
 
 The checkbox component can be sized using the `size` prop.

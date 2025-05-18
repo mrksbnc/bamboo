@@ -1,93 +1,153 @@
 <template>
-	<div
-		:data-dialog-backdrop="id"
-		:data-dialog-backdrop-close="closeOnBackdropClick"
-		class="bg-opacity-60 pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black opacity-0 backdrop-blur-sm transition-opacity duration-300"
-		:data-testid="`bo-modal-${id}`"
-		role="dialog"
-		:aria-modal="isOpen"
-		:aria-labelledby="`bo-modal-title-${id}`"
-		:aria-describedby="`bo-modal-content-${id}`"
-	>
+	<Teleport to="body">
 		<div
-			:data-dialog="id"
-			:class="modalSizeClasses"
-			class="relative rounded-lg bg-white shadow-sm"
-			:data-testid="`bo-modal-container-${id}`"
+			v-if="isOpen"
+			class="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-gray-800/80"
+			@click="onClose"
 		>
 			<div
-				:id="`bo-modal-title-${id}`"
-				class="flex shrink-0 items-center p-4 pb-4 text-xl font-medium text-slate-800"
-				:data-testid="`bo-modal-header-${id}`"
+				:class="modalContentClasses"
+				:data-testid="`bo-modal-container-${id}`"
 			>
-				<slot name="header">
-					{{ title }}
-				</slot>
-			</div>
-			<div
-				:id="`bo-modal-content-${id}`"
-				class="relative border-t border-slate-200 p-4 py-4 leading-normal font-light text-slate-600"
-				:data-testid="`bo-modal-content-${id}`"
-			>
-				<slot></slot>
-			</div>
-			<div
-				class="flex shrink-0 flex-wrap items-center justify-end border-t border-slate-200 p-4 pt-4"
-				:data-testid="`bo-modal-footer-${id}`"
-			>
-				<slot name="footer"></slot>
+				<div
+					:id="`bo-modal-title-${id}`"
+					class="flex flex-shrink-0 justify-between pt-4"
+					:data-testid="`bo-modal-header-${id}`"
+				>
+					<div class="flex flex-col gap-1">
+						<slot name="header">
+							<bo-text
+								v-if="title"
+								:value="title"
+								:size="BoFontSize.xl"
+								:weight="BoFontWeight.semibold"
+								:color="BoTextColor.default"
+							/>
+							<bo-text
+								v-if="description"
+								:value="description"
+								:size="BoFontSize.sm"
+								:weight="BoFontWeight.medium"
+								:color="BoTextColor.secondary"
+							/>
+						</slot>
+					</div>
+					<div
+						class="flex max-h-fit cursor-pointer rounded-md p-1 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+					>
+						<bo-icon
+							v-if="showCloseButton"
+							:icon="Icon.x"
+							:size="BoSize.small"
+							@click="onClose"
+						/>
+					</div>
+				</div>
+				<div
+					v-if="$slots.default || content"
+					:id="`bo-modal-content-${id}`"
+					class="relative py-4 leading-normal font-light text-slate-600"
+					:data-testid="`bo-modal-content-${id}`"
+				>
+					<slot>
+						<bo-text
+							v-if="content"
+							:value="content"
+							:size="BoFontSize.sm"
+							:weight="BoFontWeight.regular"
+							:color="BoTextColor.secondary"
+						/>
+					</slot>
+				</div>
+				<div
+					v-if="!!$slots.footer || !!footerButtons.length"
+					class="flex shrink-0 flex-wrap items-center justify-end p-4 pt-4"
+					:data-testid="`bo-modal-footer-${id}`"
+				>
+					<slot name="footer">
+						<div :class="footerClasses">
+							<bo-button
+								v-for="button in footerButtons"
+								:key="button.id"
+								:id="button.id"
+								:label="button.label"
+								:variant="button.variant"
+								:size="button.size"
+								:icon="button.icon"
+								:disabled="button.disabled"
+								:is-loading="button.isLoading"
+								:full-width="button.fullWidth"
+								@click="button.onClick"
+							/>
+						</div>
+					</slot>
+				</div>
 			</div>
 		</div>
-	</div>
+	</Teleport>
 </template>
 
 <script setup lang="ts">
-import { IdentityService } from '@/services';
-import { computed, toRefs, useSlots } from 'vue';
-import { BoModalSize, type BoModalProps } from './bo-modal';
+import BoButton from '@/components/button/bo-button.vue';
+import { Icon } from '@/components/icon/bo-icon.js';
+import BoIcon from '@/components/icon/bo-icon.vue';
+import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/text/bo-text.js';
+import BoText from '@/components/text/bo-text.vue';
+import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { BoSize } from '@/shared/bo-size.js';
+import { computed } from 'vue';
+import { BoModalSize, FooterButtonOrientation, type BoModalProps } from './bo-modal.js';
 
 const props = withDefaults(defineProps<BoModalProps>(), {
 	id: () => IdentityService.instance.getComponentId(),
-	title: 'Modal',
-	size: BoModalSize.md,
-	closeOnBackdropClick: true,
 	isOpen: false,
+	size: BoModalSize.md,
+	showCloseButton: true,
+	closeOnBackdropClick: true,
+	footerButtons: () => [],
+	footerButtonOrientation: FooterButtonOrientation.horizontal,
 });
 
-defineEmits<{
-	(e: 'open'): void;
+const emit = defineEmits<{
 	(e: 'close'): void;
 }>();
 
-const { size } = toRefs(props);
-
-// Slots
-defineSlots<{
-	default?: (props: Record<string, unknown>) => void;
-	trigger?: (props: Record<string, unknown>) => void;
-	header?: (props: Record<string, unknown>) => void;
-	footer?: (props: Record<string, unknown>) => void;
-}>();
-
-// Computed properties
-const customTrigger = computed<boolean>(() => {
-	return !!useSlots().trigger;
-});
-
-const triggerText = computed<string>(() => {
-	return `Open Modal ${size.value.toUpperCase()}`;
-});
+const modalBodyClasses =
+	/*tw*/ 'bo-modal-body relative flex flex-col rounded-lg bg-white shadow-sm p-6';
 
 const modalSizeClasses = computed<string>(() => {
-	const sizeMap = {
-		[BoModalSize.xs]: 'w-1/4 p-4 m-4',
-		[BoModalSize.sm]: 'w-1/3 p-4 m-4',
-		[BoModalSize.md]: 'w-2/5 p-4 m-4',
-		[BoModalSize.lg]: 'w-3/5 p-4 m-4',
-		[BoModalSize.xl]: 'w-3/4 p-4 m-4',
-		[BoModalSize.xxl]: 'w-screen h-screen',
-	};
-
-	return sizeMap[size.value] || sizeMap[BoModalSize.md];
+	switch (props.size) {
+		case BoModalSize.xs:
+			return /*tw*/ 'w-1/4 p-4 m-4';
+		case BoModalSize.sm:
+			return /*tw*/ 'w-1/3 p-4 m-4';
+		case BoModalSize.lg:
+			return /*tw*/ 'w-3/5 p-4 m-4';
+		case BoModalSize.xl:
+			return /*tw*/ 'w-3/4 p-4 m-4';
+		case BoModalSize.xxl:
+			return /*tw*/ 'w-screen h-screen';
+		case BoModalSize.md:
+		default:
+			return /*tw*/ 'w-2/5 p-4 m-4';
+	}
 });
+
+const modalContentClasses = computed<string>(() => {
+	return TailwindService.instance.merge(modalBodyClasses, modalSizeClasses.value);
+});
+
+const footerClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		'flex gap-2',
+		props.footerButtonOrientation === FooterButtonOrientation.horizontal ? 'flex-row' : 'flex-col',
+	);
+});
+
+function onClose(): void {
+	if (props.closeOnBackdropClick) {
+		emit('close');
+	}
+}
 </script>

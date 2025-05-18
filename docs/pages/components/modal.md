@@ -1,10 +1,76 @@
 <script setup>
 import BoModal from '@/components/modal/bo-modal.vue';
 import { BoModalSize } from '@/components/modal/bo-modal';
-import { BoButton } from '@/components/button/bo-button';
 import { ref } from 'vue';
+import BoButton from '@/components/button/bo-button.vue';
+import { BoButtonVariant } from '@/components/button/bo-button';
+import { BoSize } from '@/shared/bo-size';
 
 const isModalOpen = ref(false);
+const isSlotModalOpen = ref(false);
+const isFooterButtonsModalOpen = ref(false);
+const isExtraSmallModalOpen = ref(false);
+const isSmallModalOpen = ref(false);
+const isDefaultModalOpen = ref(false);
+const isLargeModalOpen = ref(false);
+const isExtraLargeModalOpen = ref(false);
+
+const footerButtons = [
+	{
+		id: 'footer-button-1',
+		label: 'Cancel',
+		variant: BoButtonVariant.secondary,
+		size: BoSize.default,
+		fullWidth: true,
+		onClick: () => {
+			console.log('Cancel button clicked');
+			isModalOpen.value = false;
+		},
+	},
+	{
+		id: 'footer-button-2',
+		label: 'Save',
+		variant: BoButtonVariant.primary,
+		size: BoSize.default,
+		fullWidth: true,
+		onClick: () => {
+			console.log('Save button clicked');
+			isModalOpen.value = false;
+		},
+	},
+];
+
+function openModal() {
+	isModalOpen.value = true;
+}
+
+function openExtraSmallModal() {
+	isExtraSmallModalOpen.value = true;
+}
+
+function openSmallModal() {
+	isSmallModalOpen.value = true;
+}
+
+function openDefaultModal() {
+	isDefaultModalOpen.value = true;
+}
+
+function openLargeModal() {
+	isLargeModalOpen.value = true;
+}
+
+function openExtraLargeModal() {
+	isExtraLargeModalOpen.value = true;
+}
+
+function closeSlotModal() {
+	isSlotModalOpen.value = false;
+}
+
+function openSlotModal() {
+	isSlotModalOpen.value = true;
+}
 </script>
 
 # Modal
@@ -17,63 +83,106 @@ import { BoModal } from '@mrksbnc/bamboo';
 
 ## Basic Usage
 
+<div class="flex gap-4">
+	<bo-button label="Open Modal" @click="openModal" />
+	<bo-modal 
+		:isOpen="isModalOpen"
+		title="Example Modal"
+		description="This is the description of the modal."
+		content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat."
+		:footer-buttons="footerButtons"
+		@close="isModalOpen = false"
+	/>
+</div>
+
 ```vue
 <template>
-	<BoModal title="Example Modal">
-		<p>This is the content of the modal.</p>
-	</BoModal>
+	<div class="flex gap-4">
+		<bo-button
+			label="Open Modal"
+			@click="openModal"
+		/>
+		<bo-modal
+			:isOpen="isModalOpen"
+			title="Example Modal"
+			description="This is the description of the modal."
+			content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat."
+			:footer-buttons="footerButtons"
+			@close="isModalOpen = false"
+		/>
+	</div>
 </template>
 
 <script setup>
-import { BoModal } from '@mrksbnc/bamboo';
+import { ref } from 'vue';
+import { BoModal, BoButton, BoModalSize } from '@mrksbnc/bamboo';
+
+const isModalOpen = ref(false);
+
+const footerButtons = [
+	{
+		id: 'footer-button-1',
+		label: 'Cancel',
+		variant: BoButtonVariant.secondary,
+		size: BoSize.default,
+		fullWidth: true,
+		onClick: () => {
+			console.log('Cancel button clicked');
+			isModalOpen.value = false;
+		},
+	},
+	{
+		id: 'footer-button-2',
+		label: 'Save',
+		variant: BoButtonVariant.primary,
+		size: BoSize.default,
+		fullWidth: true,
+		onClick: () => {
+			console.log('Save button clicked');
+			isModalOpen.value = false;
+		},
+	},
+];
+
+function openModal() {
+	isModalOpen.value = true;
+}
 </script>
 ```
 
-<hr />
-<div class="flex gap-4 items-center my-4">
-  <BoModal title="Example Modal">
-    <p>This is the content of the modal.</p>
-  </BoModal>
-</div>
-
 ## Props
 
-| Name                   | Type          | Default   | Description                           |
-| ---------------------- | ------------- | --------- | ------------------------------------- |
-| `id`                   | `string`      | `auto`    | Unique ID for the modal               |
-| `title`                | `string`      | `'Modal'` | Title displayed in the modal header   |
-| `size`                 | `BoModalSize` | `md`      | Size of the modal dialog              |
-| `closeOnBackdropClick` | `boolean`     | `true`    | Close modal when clicking backdrop    |
-| `isOpen`               | `boolean`     | `false`   | Controls whether the modal is visible |
+| Name                      | Type                      | Default      | Description                                     |
+| ------------------------- | ------------------------- | ------------ | ----------------------------------------------- |
+| `id`                      | `string`                  | `auto`       | Unique ID for the modal                         |
+| `isOpen`                  | `boolean`                 | `false`      | Controls whether the modal is visible           |
+| `title`                   | `string`                  | `''`         | The title of the modal                          |
+| `description`             | `string`                  | `''`         | The description of the modal                    |
+| `content`                 | `string`                  | `''`         | The content of the modal                        |
+| `showCloseButton`         | `boolean`                 | `true`       | Whether to show the close button                |
+| `size`                    | `BoModalSize`             | `md`         | The size of the modal                           |
+| `closeOnBackdropClick`    | `boolean`                 | `true`       | Close modal when clicking backdrop              |
+| `footerButtons`           | `BoModalFooter[]`         | `[]`         | Array of footer buttons to display in the modal |
+| `footerButtonOrientation` | `FooterButtonOrientation` | `horizontal` | The orientation of the buttons                  |
 
 ## Events
 
-| Name    | Payload | Description                  |
-| ------- | ------- | ---------------------------- |
-| `open`  | -       | Emitted when modal is opened |
-| `close` | -       | Emitted when modal is closed |
+| Name    | Payload | Description                             |
+| ------- | ------- | --------------------------------------- |
+| `close` | -       | Emitted when the modal should be closed |
 
 ## Slots
 
-| Name      | Description                          |
-| --------- | ------------------------------------ |
-| `default` | Main content of the modal            |
-| `trigger` | Custom trigger element for the modal |
-| `header`  | Custom header content                |
-| `footer`  | Custom footer content with actions   |
+| Name      | Props | Description                        |
+| --------- | ----- | ---------------------------------- |
+| `header`  | none  | Custom header content              |
+| `default` | none  | Custom modal content               |
+| `footer`  | none  | Custom footer content with actions |
 
-## Types
+## Types & Enums
 
 ```ts
-export type BoModalProps = {
-	id: string;
-	title?: string;
-	size?: BoModalSize;
-	closeOnBackdropClick?: boolean;
-	isOpen?: boolean;
-};
-
-export enum BoModalSize {
+enum BoModalSize {
 	xs = 'xs',
 	sm = 'sm',
 	md = 'md',
@@ -81,401 +190,277 @@ export enum BoModalSize {
 	xl = 'xl',
 	xxl = 'xxl',
 }
+
+enum FooterButtonOrientation {
+	horizontal = 'horizontal',
+	vertical = 'vertical',
+}
+
+interface BoModalFooter {
+	/** Unique id for the button */
+	id?: string;
+	/** The label of the button */
+	label: string;
+	/** The variant of the button */
+	variant?: BoButtonVariant;
+	/** The size of the button */
+	size?: BoSize;
+	/** The icon of the button */
+	icon?: Icon;
+	/** Whether the button is disabled */
+	disabled?: boolean;
+	/** Whether the button is loading */
+	isLoading?: boolean;
+	/** Whether the button is full width */
+	fullWidth?: boolean;
+	/** The action to perform when the button is clicked */
+	onClick?: () => void;
+}
+
+type BoModalProps = {
+	/** Unique id for the modal */
+	id?: string;
+	/** Whether the modal is open */
+	isOpen?: boolean;
+	/** The title of the modal */
+	title?: string;
+	/** The description of the modal */
+	description?: string;
+	/** The text content of the modal */
+	content?: string;
+	/** Whether to show the close button */
+	showCloseButton?: boolean;
+	/** The size of the modal dialog */
+	size?: BoModalSize;
+	/** Whether to close the modal when clicking outside of its bounds */
+	closeOnBackdropClick?: boolean;
+	/** Footer buttons to display in the modal */
+	footerButtons?: BoModalFooter[];
+	/** The orientation of the buttons */
+	footerButtonOrientation?: FooterButtonOrientation;
+};
 ```
 
 ## Sizes
 
-<div class="flex flex-wrap gap-4 my-4">
-  <BoModal
-    :size="BoModalSize.xs"
+<div class="flex flex-wrap items-center gap-4">
+  <bo-button label="Open Extra Small Modal" @click="openExtraSmallModal" />
+  <bo-button label="Open Small Modal" @click="openSmallModal" />
+  <bo-button label="Open Default Modal" @click="openDefaultModal" />
+  <bo-button label="Open Large Modal" @click="openLargeModal" />
+  <bo-button label="Open Extra Large Modal" @click="openExtraLargeModal" />
+  <bo-modal
+    :isOpen="isExtraSmallModalOpen"
+	:size="BoModalSize.xs"
     title="Extra Small Modal"
+	@close="isExtraSmallModalOpen = false"
   >
     <p>This is an extra small modal dialog.</p>
-  </BoModal>
-  
-  <BoModal
+  </bo-modal>
+  <bo-modal
+    :isOpen="isSmallModalOpen"
     :size="BoModalSize.sm"
     title="Small Modal"
+	@close="isSmallModalOpen = false"
   >
     <p>This is a small modal dialog.</p>
-  </BoModal>
-  
-  <BoModal
+  </bo-modal>
+  <bo-modal
+    :isOpen="isDefaultModalOpen"
     :size="BoModalSize.md"
-    title="Medium Modal"
+    title="Default Modal"
+	@close="isDefaultModalOpen = false"
   >
-    <p>This is a medium modal dialog (default).</p>
-  </BoModal>
-  
-  <BoModal
+    <p>This is a default size modal dialog.</p>
+  </bo-modal>
+  <bo-modal
+    :isOpen="isLargeModalOpen"
     :size="BoModalSize.lg"
     title="Large Modal"
+	@close="isLargeModalOpen = false"
   >
     <p>This is a large modal dialog.</p>
-  </BoModal>
-  
-  <BoModal
+  </bo-modal>
+  <bo-modal
+    :isOpen="isExtraLargeModalOpen"
     :size="BoModalSize.xl"
     title="Extra Large Modal"
+	@close="isExtraLargeModalOpen = false"
   >
     <p>This is an extra large modal dialog.</p>
-  </BoModal>
+  </bo-modal>
 </div>
 
 ```vue
-<BoModal :size="BoModalSize.xs" title="Extra Small Modal">
-  <p>This is an extra small modal dialog.</p>
-</BoModal>
-
-<BoModal :size="BoModalSize.sm" title="Small Modal">
-  <p>This is a small modal dialog.</p>
-</BoModal>
-
-<BoModal :size="BoModalSize.md" title="Medium Modal">
-  <p>This is a medium modal dialog (default).</p>
-</BoModal>
-
-<BoModal :size="BoModalSize.lg" title="Large Modal">
-  <p>This is a large modal dialog.</p>
-</BoModal>
-
-<BoModal :size="BoModalSize.xl" title="Extra Large Modal">
-  <p>This is an extra large modal dialog.</p>
-</BoModal>
+<template>
+	<bo-modal
+		:isOpen="isExtraSmallModalOpen"
+		:size="BoModalSize.xs"
+		title="Extra Small Modal"
+		@close="isExtraSmallModalOpen = false"
+	>
+		<p>This is an extra small modal dialog.</p>
+	</bo-modal>
+	<bo-modal
+		:isOpen="isSmallModalOpen"
+		:size="BoModalSize.sm"
+		title="Small Modal"
+		@close="isSmallModalOpen = false"
+	>
+		<p>This is a small modal dialog.</p>
+	</bo-modal>
+	<bo-modal
+		:isOpen="isDefaultModalOpen"
+		:size="BoModalSize.md"
+		title="Default Modal"
+		@close="isDefaultModalOpen = false"
+	>
+		<p>This is a default size modal dialog.</p>
+	</bo-modal>
+	<bo-modal
+		:isOpen="isLargeModalOpen"
+		:size="BoModalSize.lg"
+		title="Large Modal"
+		@close="isLargeModalOpen = false"
+	>
+		<p>This is a large modal dialog.</p>
+	</bo-modal>
+	<bo-modal
+		:isOpen="isExtraLargeModalOpen"
+		:size="BoModalSize.xl"
+		title="Extra Large Modal"
+		@close="isExtraLargeModalOpen = false"
+	>
+		<p>This is an extra large modal dialog.</p>
+	</bo-modal>
+</template>
 ```
 
-## Custom Trigger
+## With footer buttons
 
-<div class="flex gap-4 items-center my-4">
-  <BoModal title="Custom Trigger Modal">
-    <template #trigger>
-      <BoButton label="Open Custom Modal" />
-    </template>
-    <p>This modal has a custom trigger button.</p>
-  </BoModal>
+In case you don't want to use the `slot` for the footer, you can use the `footer-buttons` prop to display them in the footer. It accepts most of the same props as the `BoButton` component.
+
+<div class="flex gap-4">
+	<bo-button label="Open Modal" @click="isFooterButtonsModalOpen = true" />
+	<bo-modal
+		:isOpen="isFooterButtonsModalOpen"
+		title="Modal with Footer Buttons"
+		description="This is the description of the modal."
+		content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		Sed non risus"
+		:footer-buttons="footerButtons"
+		@close="isFooterButtonsModalOpen = false"
+	/>
 </div>
 
 ```vue
-<BoModal title="Custom Trigger Modal">
-  <template #trigger>
-    <BoButton label="Open Custom Modal" />
-  </template>
-  <p>This modal has a custom trigger button.</p>
-</BoModal>
-```
+<template>
+	<bo-button
+		label="Open Modal"
+		@click="openModal"
+	/>
+	<bo-modal
+		:isOpen="isModalOpen"
+		title="Modal with Footer Buttons"
+		description="This is the description of the modal."
+		content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		Sed non risus"
+		:footer-buttons="footerButtons"
+		@close="isModalOpen = false"
+	/>
+</template>
 
-## Custom Header and Footer
-
-<div class="flex gap-4 items-center my-4">
-  <BoModal>
-    <template #header>
-      <div class="flex items-center">
-        <span class="text-xl font-bold text-blue-600">Custom Header</span>
-      </div>
-    </template>
-    
-    <p>This modal has a custom header and footer.</p>
-    
-    <template #footer>
-      <div class="flex justify-end gap-2">
-        <BoButton label="Custom Button" />
-        <BoButton label="Save" variant="primary" />
-      </div>
-    </template>
-  </BoModal>
-</div>
-
-```vue
-<BoModal>
-  <template #header>
-    <div class="flex items-center">
-      <span class="text-xl font-bold text-blue-600">Custom Header</span>
-    </div>
-  </template>
-  
-  <p>This modal has a custom header and footer.</p>
-  
-  <template #footer>
-    <div class="flex justify-end gap-2">
-      <BoButton label="Custom Button" />
-      <BoButton label="Save" variant="primary" />
-    </div>
-  </template>
-</BoModal>
-```
-
-## Programmatic Control
-
-<div class="flex flex-col gap-4 my-4">
-  <div class="flex gap-4 items-center">
-    <BoButton 
-      label="Open Controlled Modal" 
-      @click="isModalOpen = true" 
-    />
-    
-    <BoModal 
-      title="Controlled Modal"
-      :is-open="isModalOpen"
-      @close="isModalOpen = false"
-    >
-      <p>This modal is controlled programmatically.</p>
-      <p>Current state: {{ isModalOpen ? 'Open' : 'Closed' }}</p>
-    </BoModal>
-  </div>
-</div>
-
-```vue
 <script setup>
 import { ref } from 'vue';
-import { BoModal, BoButton } from '@mrksbnc/bamboo';
+import { BoModal, BoButton, BoModalSize } from '@mrksbnc/bamboo';
 
 const isModalOpen = ref(false);
-</script>
 
-<template>
-	<BoButton
-		label="Open Controlled Modal"
-		@click="isModalOpen = true"
-	/>
-
-	<BoModal
-		title="Controlled Modal"
-		:is-open="isModalOpen"
-		@close="isModalOpen = false"
-	>
-		<p>This modal is controlled programmatically.</p>
-		<p>Current state: {{ isModalOpen ? 'Open' : 'Closed' }}</p>
-	</BoModal>
-</template>
-```
-
-## Usage Examples
-
-### Confirmation Dialog
-
-```vue
-<template>
-	<BoModal title="Confirm Deletion">
-		<template #trigger>
-			<BoButton
-				label="Delete Item"
-				variant="danger"
-			/>
-		</template>
-
-		<p class="mb-4">Are you sure you want to delete this item? This action cannot be undone.</p>
-
-		<template #footer>
-			<div class="flex justify-end gap-2">
-				<BoButton
-					label="Cancel"
-					data-dialog-close="true"
-				/>
-				<BoButton
-					label="Delete"
-					variant="danger"
-					data-dialog-close="true"
-					@click="handleDelete"
-				/>
-			</div>
-		</template>
-	</BoModal>
-</template>
-
-<script setup>
-import { BoModal, BoButton } from '@mrksbnc/bamboo';
-
-function handleDelete() {
-	// Handle deletion logic
-	console.log('Item deleted');
-}
-</script>
-```
-
-### Form Modal
-
-```vue
-<template>
-	<BoModal
-		title="Create New Item"
-		:size="BoModalSize.lg"
-	>
-		<template #trigger>
-			<BoButton
-				label="Add New Item"
-				variant="primary"
-			/>
-		</template>
-
-		<form
-			@submit.prevent="handleSubmit"
-			class="space-y-4"
-		>
-			<div>
-				<label class="mb-1 block text-sm font-medium">Name</label>
-				<input
-					v-model="form.name"
-					type="text"
-					class="w-full rounded-md border px-3 py-2"
-					required
-				/>
-			</div>
-
-			<div>
-				<label class="mb-1 block text-sm font-medium">Description</label>
-				<textarea
-					v-model="form.description"
-					class="w-full rounded-md border px-3 py-2"
-					rows="3"
-				></textarea>
-			</div>
-
-			<div>
-				<label class="mb-1 block text-sm font-medium">Category</label>
-				<select
-					v-model="form.category"
-					class="w-full rounded-md border px-3 py-2"
-				>
-					<option value="general">General</option>
-					<option value="work">Work</option>
-					<option value="personal">Personal</option>
-				</select>
-			</div>
-		</form>
-
-		<template #footer>
-			<div class="flex justify-end gap-2">
-				<BoButton
-					label="Cancel"
-					data-dialog-close="true"
-				/>
-				<BoButton
-					label="Create"
-					variant="primary"
-					type="submit"
-					@click="handleSubmit"
-				/>
-			</div>
-		</template>
-	</BoModal>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { BoModal, BoButton, BoModalSize } from '@mrksbnc/bamboo';
-
-const form = ref({
-	name: '',
-	description: '',
-	category: 'general',
-});
-
-function handleSubmit() {
-	// Form submission logic
-	console.log('Form submitted:', form.value);
-
-	// Here you would typically validate and submit the form data
-
-	// Close the modal by triggering the dialog close attribute
-	// This requires a direct DOM manipulation or a ref to access the button
-	// In a real application, you might want to use a more robust approach
-}
-</script>
-```
-
-### Image Preview
-
-```vue
-<template>
-	<div class="grid grid-cols-3 gap-4">
-		<div
-			v-for="(image, index) in images"
-			:key="index"
-			class="relative aspect-square overflow-hidden rounded-lg"
-		>
-			<img
-				:src="image.thumbnail"
-				:alt="image.alt"
-				class="h-full w-full cursor-pointer object-cover"
-				@click="openImageModal(index)"
-			/>
-		</div>
-	</div>
-
-	<BoModal
-		:title="selectedImage ? images[selectedImage].alt : ''"
-		:size="BoModalSize.lg"
-		:is-open="!!selectedImage"
-		@close="selectedImage = null"
-	>
-		<div class="flex justify-center">
-			<img
-				v-if="selectedImage !== null"
-				:src="images[selectedImage].fullsize"
-				:alt="images[selectedImage].alt"
-				class="max-h-[70vh] max-w-full object-contain"
-			/>
-		</div>
-
-		<template #footer>
-			<div class="flex w-full justify-between">
-				<BoButton
-					label="Previous"
-					:disabled="selectedImage === 0"
-					@click="previousImage"
-				/>
-				<BoButton
-					label="Close"
-					data-dialog-close="true"
-				/>
-				<BoButton
-					label="Next"
-					:disabled="selectedImage === images.length - 1"
-					@click="nextImage"
-				/>
-			</div>
-		</template>
-	</BoModal>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { BoModal, BoButton, BoModalSize } from '@mrksbnc/bamboo';
-
-const images = [
+const footerButtons = [
 	{
-		thumbnail: '/images/thumbnail1.jpg',
-		fullsize: '/images/fullsize1.jpg',
-		alt: 'Image 1',
+		id: 'footer-button-1',
+		label: 'Cancel',
+		variant: BoButtonVariant.secondary,
+		size: BoSize.default,
+		fullWidth: true,
+		onClick: () => {
+			console.log('Cancel button clicked');
+			isModalOpen.value = false;
+		},
 	},
 	{
-		thumbnail: '/images/thumbnail2.jpg',
-		fullsize: '/images/fullsize2.jpg',
-		alt: 'Image 2',
-	},
-	{
-		thumbnail: '/images/thumbnail3.jpg',
-		fullsize: '/images/fullsize3.jpg',
-		alt: 'Image 3',
+		id: 'footer-button-2',
+		label: 'Save',
+		variant: BoButtonVariant.primary,
+		size: BoSize.default,
+		fullWidth: true,
+		onClick: () => {
+			console.log('Save button clicked');
+			isModalOpen.value = false;
+		},
 	},
 ];
 
-const selectedImage = ref(null);
-
-function openImageModal(index) {
-	selectedImage.value = index;
-}
-
-function previousImage() {
-	if (selectedImage.value > 0) {
-		selectedImage.value--;
-	}
-}
-
-function nextImage() {
-	if (selectedImage.value < images.length - 1) {
-		selectedImage.value++;
-	}
+function openModal() {
+	isModalOpen.value = true;
 }
 </script>
+```
+
+## Slots
+
+The modal supports custom content for the header, default content, and footer. The default slot is used for the main content of the modal. The header slot replaces the existing header with custom content. The footer slot replaces the existing footer with custom content this means that the footer buttons will be removed.
+
+<div>
+	<bo-button label="Open Slot Modal" @click="openSlotModal" />
+	<bo-modal
+		:isOpen="isSlotModalOpen"
+		title="Custom Slot Modal"
+		@close="closeSlotModal"
+		:size="BoModalSize.md"
+	>
+		<template #header>
+			<div class="flex flex-col gap-1">
+				<span class="text-xl font-bold text-blue-600">Custom Header</span>
+			</div>
+		</template>
+		<template #default>
+			<p>This modal has a custom header and footer.</p>
+		</template>
+		<template #footer>
+			<div class="flex justify-end gap-2">
+				<bo-button label="Custom Button" @click="closeSlotModal" />
+				<bo-button label="Save" variant="primary" @click="closeSlotModal" />
+			</div>
+		</template>
+	</bo-modal>
+</div>
+
+```vue
+<template>
+	<bo-modal
+		:isOpen="isSlotModalOpen"
+		title="Custom Slot Modal"
+		@close="closeSlotModal"
+		:size="BoModalSize.md"
+	>
+		<template #header>
+			<div class="flex flex-col gap-1">
+				<span class="text-xl font-bold text-blue-600">Custom Header</span>
+			</div>
+		</template>
+		<template #default>
+			<p>This modal has a custom header and footer.</p>
+		</template>
+		<template #footer>
+			<div class="flex justify-end gap-2">
+				<bo-button label="Custom Button" />
+				<bo-button
+					label="Save"
+					variant="primary"
+				/>
+			</div>
+		</template>
+	</bo-modal>
+</template>
 ```

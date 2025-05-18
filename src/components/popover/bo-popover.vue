@@ -258,8 +258,7 @@ const sizeClasses = computed(() => {
 	}
 });
 
-// Methods
-const positionPopover = () => {
+function positionPopover() {
 	if (!triggerRef.value || !popoverRef.value) return;
 
 	const triggerRect = triggerRef.value.getBoundingClientRect();
@@ -347,7 +346,7 @@ const positionPopover = () => {
 		popoverRef.value.style.top = `${top}px`;
 		popoverRef.value.style.left = `${left}px`;
 	}
-};
+}
 
 const onTriggerClick = () => {
 	if (trigger.value === BoPopoverTrigger.click) {
@@ -409,7 +408,6 @@ const onClickOutside = (event: MouseEvent) => {
 	}
 };
 
-// Lifecycle hooks
 onMounted(() => {
 	if (closeOnOutsideClick.value) {
 		document.addEventListener('click', onClickOutside);

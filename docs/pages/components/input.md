@@ -2,7 +2,10 @@
 import BoInput from '@/components/input/bo-input.vue';
 import { BoInputState, BoInputSize, BoInputType } from '@/components/input/bo-input';
 import { BoSize } from '@/shared/bo-size';
+import { ref } from 'vue';
 import { Icon } from '@/components/icon/bo-icon';
+
+const modelValue = ref('');
 </script>
 
 # Input
@@ -37,6 +40,7 @@ const inputValue = ref('');
 <hr />
 <div class="my-4 flex items-center gap-4">
 	<bo-input
+		v-model="modelValue"
 		label="Username"
 		placeholder="Enter your username"
 		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -147,21 +151,21 @@ interface BoInputProps {
 ## Disabled
 
 <div class="flex gap-4 my-4">
-  <bo-input disabled placeholder="Disabled input" />
+  <bo-input disabled placeholder="Disabled input" v-model="modelValue" />
 </div>
 
 ```vue
-<bo-input disabled placeholder="Disabled input" />
+<bo-input disabled placeholder="Disabled input" v-model="modelValue" />
 ```
 
 ## Readonly
 
 <div class="flex gap-4 my-4">
-  <bo-input readonly modelValue="Read-only value" />
+  <bo-input readonly modelValue="Read-only value" v-model="modelValue"/>
 </div>
 
 ```vue
-<bo-input readonly modelValue="Read-only value" />
+<bo-input readonly modelValue="Read-only value" v-model="modelValue" />
 ```
 
 ## States
@@ -169,17 +173,17 @@ interface BoInputProps {
 To support validation states, the component supports four different states: `default`, `success`, `error`, and `warning`. These can be set using the `state` prop.
 
 <div class="flex flex-col gap-4 my-4">
-  <bo-input :state="BoInputState.default" label="default" placeholder="Default state" />
-  <bo-input :state="BoInputState.success" label="success" placeholder="Success state" />
-  <bo-input :state="BoInputState.warning" label="warning" placeholder="Warning state" />
-  <bo-input :state="BoInputState.error" label="error" placeholder="Error state" error="This field has an error" />
+  <bo-input v-model="modelValue" :state="BoInputState.default" label="default" placeholder="Default state" />
+  <bo-input v-model="modelValue" :state="BoInputState.success" label="success" placeholder="Success state" />
+  <bo-input v-model="modelValue" :state="BoInputState.warning" label="warning" placeholder="Warning state" />
+  <bo-input v-model="modelValue" :state="BoInputState.error" label="error" placeholder="Error state" error="This field has an error" />
 </div>
 
 ```vue
-<bo-input :state="BoInputState.default" />
-<bo-input :state="BoInputState.success" />
-<bo-input :state="BoInputState.warning" />
-<bo-input :state="BoInputState.error" error="This field has an error" />
+<bo-input v-model="modelValue" :state="BoInputState.default" />
+<bo-input v-model="modelValue" :state="BoInputState.success" />
+<bo-input v-model="modelValue" :state="BoInputState.warning" />
+<bo-input v-model="modelValue" :state="BoInputState.error" error="This field has an error" />
 ```
 
 ## Sizes
@@ -188,15 +192,15 @@ The component supports three different sizes: `small`, `default`, and `large`.
 This can be set using the `size` prop.
 
 <div class="flex flex-col gap-4 my-4">
-  <bo-input :size="BoInputSize.small" placeholder="Small input" />
-  <bo-input :size="BoInputSize.default" placeholder="Default input" />
-  <bo-input :size="BoInputSize.large" placeholder="Large input" />
+  <bo-input v-model="modelValue" :size="BoInputSize.small" placeholder="Small input" />
+  <bo-input v-model="modelValue" :size="BoInputSize.default" placeholder="Default input" />
+  <bo-input v-model="modelValue" :size="BoInputSize.large" placeholder="Large input" />
 </div>
 
 ```vue
-<bo-input :size="BoInputSize.small" placeholder="Small input" />
-<bo-input :size="BoInputSize.default" placeholder="Default input" />
-<bo-input :size="BoInputSize.large" placeholder="Large input" />
+<bo-input v-model="modelValue" :size="BoInputSize.small" placeholder="Small input" />
+<bo-input v-model="modelValue" :size="BoInputSize.default" placeholder="Default input" />
+<bo-input v-model="modelValue" :size="BoInputSize.large" placeholder="Large input" />
 ```
 
 ## With Label
@@ -204,11 +208,11 @@ This can be set using the `size` prop.
 To display a label for the input, use the `label` prop.
 
 <div class="flex flex-col gap-4 my-4">
-  <bo-input label="Username" placeholder="Enter your username" />
+  <bo-input v-model="modelValue" label="Username" placeholder="Enter your username" />
 </div>
 
 ```vue
-<bo-input label="Username" placeholder="Enter your username" />
+<bo-input v-model="modelValue" label="Username" placeholder="Enter your username" />
 ```
 
 ## With Description
@@ -217,6 +221,7 @@ To display a description for the input, use the `description` prop.
 
 <div class="flex flex-col gap-4 my-4">
   <bo-input
+  	v-model="modelValue"
     placeholder="Enter your username"
     description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   />
@@ -224,6 +229,7 @@ To display a description for the input, use the `description` prop.
 
 ```vue
 <bo-input
+	v-model="modelValue"
 	label="Username"
 	placeholder="Enter your username"
 	description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -234,10 +240,10 @@ To display a description for the input, use the `description` prop.
 
 To indicate that a field is required, use the `required` prop. This will display a red asterisk next to the label.
 
-<bo-input label="Email" placeholder="Enter your email" required />
+<bo-input v-model="modelValue" label="Email" placeholder="Enter your email" required />
 
 ```vue
-<bo-input label="Email" placeholder="Enter your email" required />
+<bo-input v-model="modelValue" label="Email" placeholder="Enter your email" required />
 ```
 
 ## With Icons
@@ -245,37 +251,38 @@ To indicate that a field is required, use the `required` prop. This will display
 The input supports prefix and suffix icons using the `prefix-icon` and `suffix-icon` props. The icons values must be members of the `Icon` enum.
 
 <div class="flex flex-col gap-4 my-4">
-  <bo-input :prefix-icon="Icon.search" placeholder="Search..." />
-  <bo-input :suffix-icon="Icon.mail" placeholder="Enter email..." />
-  <bo-input 
-    :prefix-icon="Icon.user" 
-    :suffix-icon="Icon.check" 
-    placeholder="Username" 
-  />
+  <bo-input v-model="modelValue" :prefix-icon="Icon.search" placeholder="Search..." />
+  <bo-input v-model="modelValue" :suffix-icon="Icon.mail" placeholder="Enter email..." />
+  <bo-input v-model="modelValue" :prefix-icon="Icon.user" :suffix-icon="Icon.check" placeholder="Username" />
 </div>
 
 ```vue
-<bo-input :prefix-icon="Icon.search" placeholder="Search..." />
-<bo-input :suffix-icon="Icon.mail" placeholder="Enter email..." />
-<bo-input :prefix-icon="Icon.user" :suffix-icon="Icon.check" placeholder="Username" />
+<bo-input v-model="modelValue" :prefix-icon="Icon.search" placeholder="Search..." />
+<bo-input v-model="modelValue" :suffix-icon="Icon.mail" placeholder="Enter email..." />
+<bo-input
+	v-model="modelValue"
+	:prefix-icon="Icon.user"
+	:suffix-icon="Icon.check"
+	placeholder="Username"
+/>
 ```
 
 ## Input Types
 
 <div class="flex flex-col gap-4 my-4">
-  <bo-input type="text" label="Text input" />
-  <bo-input type="email" label="Email input" />
-  <bo-input type="password" label="Password input" :reveal-password="true" />
-  <bo-input type="number" label="Number input" />
-  <bo-input type="search" label="Search input" :prefix-icon="Icon.search" />
-  <bo-input type="tel" label="Phone input" />
+  <bo-input v-model="modelValue" type="text" label="Text input" />
+  <bo-input v-model="modelValue" type="email" label="Email input" />
+  <bo-input v-model="modelValue" type="password" label="Password input" :reveal-password="true" />
+  <bo-input v-model="modelValue" type="number" label="Number input" />
+  <bo-input v-model="modelValue" type="search" label="Search input" :prefix-icon="Icon.search" />
+  <bo-input v-model="modelValue" type="tel" label="Phone input" />
 </div>
 
 ```vue
-<bo-input type="text" label="Text input" />
-<bo-input type="email" label="Email input" />
-<bo-input type="password" label="Password input" :reveal-password="true" />
-<bo-input type="number" label="Number input" />
-<bo-input type="search" label="Search input" :prefix-icon="Icon.search" />
-<bo-input type="tel" label="Phone input" />
+<bo-input v-model="modelValue" type="text" label="Text input" />
+<bo-input v-model="modelValue" type="email" label="Email input" />
+<bo-input v-model="modelValue" type="password" label="Password input" :reveal-password="true" />
+<bo-input v-model="modelValue" type="number" label="Number input" />
+<bo-input v-model="modelValue" type="search" label="Search input" :prefix-icon="Icon.search" />
+<bo-input v-model="modelValue" type="tel" label="Phone input" />
 ```
