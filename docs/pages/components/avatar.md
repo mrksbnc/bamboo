@@ -1,14 +1,14 @@
 <script setup>
-import BoAvatar from '@/components/bo-avatar/bo-avatar.vue';
-import {  BoAvatarShape, BoAvatarType, BoAvatarVariant } from '@/components/bo-avatar/bo-avatar';
+import BoAvatar from '@/components/avatar/bo-avatar.vue';
+import {  BoAvatarShape, BoAvatarType, BoAvatarVariant } from '@/components/avatar/bo-avatar';
 import { BoSize } from '@/shared/bo-size';
-import { Icon } from '@/components/bo-icon/bo-icon';
-import BoIcon from '@/components/bo-icon/bo-icon.vue';
+import { Icon } from '@/components/icon/bo-icon';
+import BoIcon from '@/components/icon/bo-icon.vue';
 </script>
 
 # Avatar
 
-A versatile avatar component used to represent users or entities with images or initials.
+Avatar is a component used to represent users or entities with images or initials.
 
 ```js
 import { BoAvatar } from '@mrksbnc/bamboo';

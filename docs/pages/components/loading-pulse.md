@@ -1,5 +1,5 @@
 <script setup>
-import BoLoadingPulse from '@/components/bo-loading-pulse/bo-loading-pulse.vue';
+import BoLoadingPulse from '@/components/loading-pulse/bo-loading-pulse.vue';
 import { BoSize } from '@/shared/bo-size';
 import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo-loader';
 </script>

@@ -1,7 +1,7 @@
 <script setup>
-import BoTimeline from '@/components/bo-timeline/bo-timeline.vue';
-import { BoTimelineVariant, BoTimelineAlign, BoTimelineIconColor } from '@/components/bo-timeline';
-import { Icon } from '@/components/bo-icon/bo-icon';
+import BoTimeline from '@/components/timeline/bo-timeline.vue';
+import { BoTimelineVariant, BoTimelineAlign, BoTimelineIconColor } from '@/components/timeline/bo-timeline';
+import { Icon } from '@/components/icon/bo-icon';
 import { BoSize } from '@/shared/bo-size';
 </script>
 

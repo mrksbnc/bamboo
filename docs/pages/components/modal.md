@@ -1,7 +1,7 @@
 <script setup>
-import BoModal from '@/components/bo-modal/bo-modal.vue';
-import { BoModalSize } from '@/components/bo-modal';
-import { BoButton } from '@/components/bo-button/bo-button';
+import BoModal from '@/components/modal/bo-modal.vue';
+import { BoModalSize } from '@/components/modal/bo-modal';
+import { BoButton } from '@/components/button/bo-button';
 import { ref } from 'vue';
 
 const isModalOpen = ref(false);

@@ -1,10 +1,5 @@
 import type { Icon } from '@/components/icon/bo-icon.js';
 
-export enum BoInputVariant {
-	default = 'default',
-	outline = 'outline',
-}
-
 export enum BoInputState {
 	default = 'default',
 	error = 'error',
@@ -25,13 +20,7 @@ export enum BoInputType {
 	email = 'email',
 }
 
-export interface BoInputPill {
-	value: string;
-	id?: string;
-	icon?: Icon;
-}
-
-export type BoInputProps = {
+export interface BoInputProps {
 	/** Unique id for the input*/
 	id?: string;
 	/** Input name attribute */
@@ -64,10 +53,6 @@ export type BoInputProps = {
 	ariaLabel?: string;
 	/** Whether the input should autofocus */
 	autofocus?: boolean;
-	/** Array of pill items to display in the input */
-	pills?: BoInputPill[];
-	/** Whether to enable horizontal scrolling for pills*/
-	horizontalScroll?: boolean;
 	/** Whether to show toggle button for password input*/
 	revealPassword?: boolean;
-};
+}

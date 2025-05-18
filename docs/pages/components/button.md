@@ -1,8 +1,8 @@
 <script setup>
-import BoButton from '@/components/bo-button/bo-button.vue';
-import { BoButtonVariant, BoButtonShape } from '@/components/bo-button/bo-button';
+import BoButton from '@/components/button/bo-button.vue';
+import { BoButtonVariant, BoButtonShape } from '@/components/button/bo-button';
 import { BoSize } from '@/shared/bo-size';
-import { Icon } from '@/components/bo-icon/bo-icon';
+import { Icon } from '@/components/icon/bo-icon';
 </script>
 
 # Button

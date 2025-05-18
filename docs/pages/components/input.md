@@ -1,8 +1,8 @@
 <script setup>
-import BoInput from '@/components/bo-input/bo-input.vue';
-import {  BoInputVariant, BoInputState, BoInputSize, BoInputType } from '@/components/bo-input/bo-input';
+import BoInput from '@/components/input/bo-input.vue';
+import { BoInputState, BoInputSize, BoInputType } from '@/components/input/bo-input';
 import { BoSize } from '@/shared/bo-size';
-import { Icon } from '@/components/bo-icon/bo-icon';
+import { Icon } from '@/components/icon/bo-icon';
 </script>
 
 # Input
@@ -17,10 +17,13 @@ import { BoInput } from '@mrksbnc/bamboo';
 
 ```vue
 <template>
-	<bo-input
-		v-model="inputValue"
-		placeholder="Enter text..."
-	/>
+	<div class="my-4 flex items-center gap-4">
+		<bo-input
+			label="Username"
+			placeholder="Enter your username"
+			description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+		/>
+	</div>
 </template>
 
 <script setup>
@@ -32,65 +35,59 @@ const inputValue = ref('');
 ```
 
 <hr />
-<div class="flex gap-4 items-center my-4">
-  <bo-input placeholder="Enter text..." />
+<div class="my-4 flex items-center gap-4">
+	<bo-input
+		label="Username"
+		placeholder="Enter your username"
+		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	/>
 </div>
 
 ## Props
 
-| Name               | Type             | Default     | Description                            |
-| ------------------ | ---------------- | ----------- | -------------------------------------- |
-| `modelValue`       | `string`         | `''`        | The input value                        |
-| `placeholder`      | `string`         | `undefined` | Placeholder text                       |
-| `label`            | `string`         | `undefined` | Input label                            |
-| `variant`          | `BoInputVariant` | `default`   | Input style variant                    |
-| `state`            | `BoInputState`   | `default`   | Input validation state                 |
-| `size`             | `BoInputSize`    | `default`   | Input size                             |
-| `disabled`         | `boolean`        | `false`     | Whether input is disabled              |
-| `required`         | `boolean`        | `false`     | Whether input is required              |
-| `description`      | `string`         | `undefined` | Helper text below the input            |
-| `error`            | `string`         | `undefined` | Error message for error state          |
-| `prefixIcon`       | `Icon`           | `Icon.none` | Icon before input text                 |
-| `suffixIcon`       | `Icon`           | `Icon.none` | Icon after input text                  |
-| `type`             | `string`         | `text`      | Input type (text, email, password...)  |
-| `id`               | `string`         | `auto`      | Unique ID for the input                |
-| `name`             | `string`         | `undefined` | Input name attribute                   |
-| `readonly`         | `boolean`        | `false`     | Whether input is readonly              |
-| `ariaLabel`        | `string`         | `undefined` | ARIA label for accessibility           |
-| `autofocus`        | `boolean`        | `false`     | Whether input should autofocus         |
-| `pills`            | `BoInputPill[]`  | `[]`        | Array of pill items to display         |
-| `horizontalScroll` | `boolean`        | `false`     | Enable horizontal scrolling for pills  |
-| `revealPassword`   | `boolean`        | `false`     | Show password toggle for password type |
+| Name           | Type           | Default     | Description                            |
+| -------------- | -------------- | ----------- | -------------------------------------- |
+| id             | `string`       | `auto`      | Unique ID for the input                |
+| name           | `string`       | `undefined` | Input name attribute                   |
+| placeholder    | `string`       | `undefined` | Placeholder text                       |
+| label          | `string`       | `undefined` | Input label                            |
+| state          | `BoInputState` | `default`   | Input validation state                 |
+| size           | `BoInputSize`  | `default`   | Input size                             |
+| disabled       | `boolean`      | `false`     | Whether input is disabled              |
+| required       | `boolean`      | `false`     | Whether input is required              |
+| description    | `string`       | `undefined` | Helper text below the input            |
+| error          | `string`       | `undefined` | Error message for error state          |
+| prefixIcon     | `Icon`         | `Icon.none` | Icon before input text                 |
+| suffixIcon     | `Icon`         | `Icon.none` | Icon after input text                  |
+| type           | `string`       | `text`      | Input type (text, email, password...)  |
+| readonly       | `boolean`      | `false`     | Whether input is readonly              |
+| ariaLabel      | `string`       | `undefined` | ARIA label for accessibility           |
+| autofocus      | `boolean`      | `false`     | Whether input should autofocus         |
+| revealPassword | `boolean`      | `false`     | Show password toggle for password type |
 
 ## Events
 
-| Name                | Payload  | Description                              |
-| ------------------- | -------- | ---------------------------------------- |
-| `update:modelValue` | `string` | Emitted when input value changes         |
-| `focus`             | -        | Emitted when input gains focus           |
-| `blur`              | `Event`  | Emitted when input loses focus           |
-| `change`            | `string` | Emitted when input value changes         |
-| `prefixIconClick`   | -        | Emitted when prefix icon is clicked      |
-| `suffixIconClick`   | -        | Emitted when suffix icon is clicked      |
-| `pillRemove`        | `string` | Emitted when a pill is removed (pill ID) |
+| Name                | Payload  | Description                      |
+| ------------------- | -------- | -------------------------------- |
+| `update:modelValue` | `string` | Emitted when input value changes |
+| `focus`             | -        | Emitted when input gains focus   |
+| `blur`              | `Event`  | Emitted when input loses focus   |
+| `change`            | `string` | Emitted when input value changes |
 
-## Slots
+## Exposed Properties
 
-| Name              | Description                  |
-| ----------------- | ---------------------------- |
-| `topRightContent` | Content to show in top right |
+- `inputRef`
+  - Type: `Ref<HTMLInputElement | undefined>`
+- `inputContainerRef`
+  - Type: `Ref<HTMLDivElement | undefined>`
 
 ## Types
 
 ```ts
-export enum BoInputVariant {
-	default = 'default',
-	filled = 'filled',
-}
-
 export enum BoInputState {
 	default = 'default',
 	success = 'success',
+	warning = 'warning',
 	error = 'error',
 }
 
@@ -109,64 +106,86 @@ export enum BoInputType {
 	phone = 'tel',
 }
 
-export interface BoInputPill {
-	id: string;
-	text: string;
-	icon?: Icon;
-}
-
-export interface BoInputProps {
-	modelValue?: string;
-	placeholder?: string;
-	label?: string;
-	variant?: BoInputVariant;
-	state?: BoInputState;
-	size?: BoInputSize;
-	disabled?: boolean;
-	required?: boolean;
-	description?: string;
-	error?: string;
-	prefixIcon?: Icon;
-	suffixIcon?: Icon;
-	type?: string;
+interface BoInputProps {
+	/** Unique id for the input*/
 	id?: string;
+	/** Input name attribute */
 	name?: string;
+	/** The placeholder text */
+	placeholder?: string;
+	/** The label for the input */
+	label?: string;
+	/** Which state the input is in */
+	state?: BoInputState;
+	/** The size of the input */
+	size?: BoInputSize;
+	/** Whether the input is disabled */
+	disabled?: boolean;
+	/** Whether the input is required */
+	required?: boolean;
+	/** Helper text to display below the input */
+	description?: string;
+	/** Error message to display when in error state */
+	error?: string;
+	/** Icon to display before the input text */
+	prefixIcon?: Icon;
+	/** Icon to display after the input text */
+	suffixIcon?: Icon;
+	/** Input type (text, email, password, etc.) */
+	type?: string;
+	/** Whether the input is readonly*/
 	readonly?: boolean;
+	/** ARIA label for accessibility */
 	ariaLabel?: string;
+	/** Whether the input should autofocus */
 	autofocus?: boolean;
-	pills?: BoInputPill[];
-	horizontalScroll?: boolean;
+	/** Whether to show toggle button for password input*/
 	revealPassword?: boolean;
 }
 ```
 
-## Variants
+## Disabled
 
-<div class="flex flex-col gap-4 my-4">
-  <bo-input :variant="BoInputVariant.default" placeholder="Default variant" />
-  <bo-input :variant="BoInputVariant.filled" placeholder="Filled variant" />
+<div class="flex gap-4 my-4">
+  <bo-input disabled placeholder="Disabled input" />
 </div>
 
 ```vue
-<bo-input :variant="BoInputVariant.default" placeholder="Default variant" />
-<bo-input :variant="BoInputVariant.filled" placeholder="Filled variant" />
+<bo-input disabled placeholder="Disabled input" />
+```
+
+## Readonly
+
+<div class="flex gap-4 my-4">
+  <bo-input readonly modelValue="Read-only value" />
+</div>
+
+```vue
+<bo-input readonly modelValue="Read-only value" />
 ```
 
 ## States
 
+To support validation states, the component supports four different states: `default`, `success`, `error`, and `warning`. These can be set using the `state` prop.
+
 <div class="flex flex-col gap-4 my-4">
-  <bo-input :state="BoInputState.default" placeholder="Default state" />
-  <bo-input :state="BoInputState.success" placeholder="Success state" />
-  <bo-input :state="BoInputState.error" placeholder="Error state" error="This field has an error" />
+  <bo-input :state="BoInputState.default" label="default" placeholder="Default state" />
+  <bo-input :state="BoInputState.success" label="success" placeholder="Success state" />
+  <bo-input :state="BoInputState.warning" label="warning" placeholder="Warning state" />
+  <bo-input :state="BoInputState.error" label="error" placeholder="Error state" error="This field has an error" />
 </div>
 
 ```vue
-<bo-input :state="BoInputState.default" placeholder="Default state" />
-<bo-input :state="BoInputState.success" placeholder="Success state" />
-<bo-input :state="BoInputState.error" placeholder="Error state" error="This field has an error" />
+<bo-input :state="BoInputState.default" />
+<bo-input :state="BoInputState.success" />
+<bo-input :state="BoInputState.warning" />
+<bo-input :state="BoInputState.error" error="This field has an error" />
 ```
 
 ## Sizes
+
+The component supports three different sizes: `small`, `default`, and `large`.
+This can be set using the `size` prop.
 
 <div class="flex flex-col gap-4 my-4">
   <bo-input :size="BoInputSize.small" placeholder="Small input" />
@@ -182,37 +201,48 @@ export interface BoInputProps {
 
 ## With Label
 
+To display a label for the input, use the `label` prop.
+
 <div class="flex flex-col gap-4 my-4">
   <bo-input label="Username" placeholder="Enter your username" />
-  <bo-input label="Email" placeholder="Enter your email" required />
 </div>
 
 ```vue
 <bo-input label="Username" placeholder="Enter your username" />
-<bo-input label="Email" placeholder="Enter your email" required />
 ```
 
-## With Helper Text
+## With Description
+
+To display a description for the input, use the `description` prop.
 
 <div class="flex flex-col gap-4 my-4">
-  <bo-input 
-    label="Password" 
-    type="password" 
-    description="Password must be at least 8 characters"
-    placeholder="Enter password" 
+  <bo-input
+    placeholder="Enter your username"
+    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   />
 </div>
 
 ```vue
 <bo-input
-	label="Password"
-	type="password"
-	description="Password must be at least 8 characters"
-	placeholder="Enter password"
+	label="Username"
+	placeholder="Enter your username"
+	description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 />
 ```
 
+## Required Field
+
+To indicate that a field is required, use the `required` prop. This will display a red asterisk next to the label.
+
+<bo-input label="Email" placeholder="Enter your email" required />
+
+```vue
+<bo-input label="Email" placeholder="Enter your email" required />
+```
+
 ## With Icons
+
+The input supports prefix and suffix icons using the `prefix-icon` and `suffix-icon` props. The icons values must be members of the `Icon` enum.
 
 <div class="flex flex-col gap-4 my-4">
   <bo-input :prefix-icon="Icon.search" placeholder="Search..." />
@@ -233,205 +263,19 @@ export interface BoInputProps {
 ## Input Types
 
 <div class="flex flex-col gap-4 my-4">
-  <bo-input type="text" placeholder="Text input" />
-  <bo-input type="email" placeholder="Email input" />
-  <bo-input type="password" placeholder="Password input" :reveal-password="true" />
-  <bo-input type="number" placeholder="Number input" />
-  <bo-input type="search" placeholder="Search input" :prefix-icon="Icon.search" />
-  <bo-input type="tel" placeholder="Phone input" />
+  <bo-input type="text" label="Text input" />
+  <bo-input type="email" label="Email input" />
+  <bo-input type="password" label="Password input" :reveal-password="true" />
+  <bo-input type="number" label="Number input" />
+  <bo-input type="search" label="Search input" :prefix-icon="Icon.search" />
+  <bo-input type="tel" label="Phone input" />
 </div>
 
 ```vue
-<bo-input type="text" placeholder="Text input" />
-<bo-input type="email" placeholder="Email input" />
-<bo-input type="password" placeholder="Password input" :reveal-password="true" />
-<bo-input type="number" placeholder="Number input" />
-<bo-input type="search" placeholder="Search input" :prefix-icon="Icon.search" />
-<bo-input type="tel" placeholder="Phone input" />
-```
-
-## States
-
-### Disabled
-
-<div class="flex gap-4 my-4">
-  <bo-input disabled placeholder="Disabled input" />
-</div>
-
-```vue
-<bo-input disabled placeholder="Disabled input" />
-```
-
-### Readonly
-
-<div class="flex gap-4 my-4">
-  <bo-input readonly modelValue="Read-only value" />
-</div>
-
-```vue
-<bo-input readonly modelValue="Read-only value" />
-```
-
-## With Pills
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-input 
-    placeholder="Enter tags..." 
-    :pills="[
-      { id: '1', text: 'React' },
-      { id: '2', text: 'Vue', icon: Icon.check },
-      { id: '3', text: 'Angular' }
-    ]"
-  />
-</div>
-
-```vue
-<template>
-	<bo-input
-		placeholder="Enter tags..."
-		v-model="inputValue"
-		:pills="pills"
-		@pill-remove="handlePillRemove"
-	/>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { BoInput, Icon } from '@mrksbnc/bamboo';
-
-const inputValue = ref('');
-const pills = ref([
-	{ id: '1', text: 'React' },
-	{ id: '2', text: 'Vue', icon: Icon.check },
-	{ id: '3', text: 'Angular' },
-]);
-
-const handlePillRemove = (id) => {
-	pills.value = pills.value.filter((pill) => pill.id !== id);
-};
-</script>
-```
-
-## Event Handling
-
-```vue
-<template>
-	<bo-input
-		v-model="email"
-		placeholder="Enter email"
-		:prefix-icon="Icon.mail"
-		@focus="handleFocus"
-		@blur="handleBlur"
-		@prefix-icon-click="handlePrefixIconClick"
-	/>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { BoInput, Icon } from '@mrksbnc/bamboo';
-
-const email = ref('');
-
-const handleFocus = () => {
-	console.log('Input focused');
-};
-
-const handleBlur = (event) => {
-	console.log('Input blurred:', event);
-};
-
-const handlePrefixIconClick = () => {
-	console.log('Prefix icon clicked');
-};
-</script>
-```
-
-## Usage Examples
-
-### Form Field
-
-```vue
-<div class="space-y-4">
-  <bo-input
-    label="Email"
-    type="email"
-    placeholder="Enter your email"
-    required
-    :prefix-icon="Icon.mail"
-  />
-  
-  <bo-input
-    label="Password"
-    type="password"
-    placeholder="Enter your password"
-    required
-    :reveal-password="true"
-    description="Must be at least 8 characters"
-  />
-  
-  <bo-button type="submit">Sign In</bo-button>
-</div>
-```
-
-### Search Field
-
-```vue
-<template>
-	<div class="relative">
-		<bo-input
-			v-model="searchQuery"
-			placeholder="Search..."
-			:prefix-icon="Icon.search"
-			@update:model-value="handleSearch"
-		/>
-	</div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { BoInput, Icon } from '@mrksbnc/bamboo';
-
-const searchQuery = ref('');
-
-const handleSearch = (value) => {
-	// Perform search with value
-};
-</script>
-```
-
-### Tag Input
-
-```vue
-<template>
-	<bo-input
-		v-model="tagInput"
-		placeholder="Add tags..."
-		:pills="tags"
-		@keydown.enter.prevent="addTag"
-		@pill-remove="removeTag"
-	/>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { BoInput } from '@mrksbnc/bamboo';
-
-const tagInput = ref('');
-const tags = ref([]);
-let nextId = 1;
-
-const addTag = () => {
-	if (tagInput.value.trim()) {
-		tags.value.push({
-			id: `tag-${nextId++}`,
-			text: tagInput.value.trim(),
-		});
-		tagInput.value = '';
-	}
-};
-
-const removeTag = (id) => {
-	tags.value = tags.value.filter((tag) => tag.id !== id);
-};
-</script>
+<bo-input type="text" label="Text input" />
+<bo-input type="email" label="Email input" />
+<bo-input type="password" label="Password input" :reveal-password="true" />
+<bo-input type="number" label="Number input" />
+<bo-input type="search" label="Search input" :prefix-icon="Icon.search" />
+<bo-input type="tel" label="Phone input" />
 ```

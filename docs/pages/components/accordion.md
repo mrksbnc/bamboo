@@ -1,8 +1,8 @@
 <script setup>
-import { Icon } from '@/components/bo-icon/bo-icon';
-import BoBadge from '@/components/bo-badge/bo-badge.vue';
-import BoAccordion from '@/components/bo-accordion/bo-accordion.vue';
-import BoAccordionContainer from '@/components/bo-accordion/bo-accordion-container.vue';
+import { Icon } from '@/components/icon/bo-icon';
+import BoBadge from '@/components/badge/bo-badge.vue';
+import BoAccordion from '@/components/accordion/bo-accordion.vue';
+import BoAccordionContainer from '@/components/accordion/bo-accordion-container.vue';
 </script>
 
 # Accordion
@@ -11,7 +11,9 @@ The Accordion component is a collapsible content panel that helps organize and p
 
 ## Basic Usage
 
-Use the `BoAccordion` component for a simple expandable section:
+```js
+import { BoAccordion } from '@mrksbnc/bamboo';
+```
 
 ```vue
 <template>

@@ -36,6 +36,7 @@ import BoButtonGroupItem from './bo-button-group-item.vue';
 import {
 	BoButtonGroupItemProps,
 	BoButtonGroupOrientation,
+	BoButtonGroupShape,
 	type BoButtonGroupProps,
 } from './bo-button-group.js';
 
@@ -44,6 +45,7 @@ const props = withDefaults(defineProps<BoButtonGroupProps<BoButtonGroupItemProps
 	size: () => BoSize.default,
 	variant: () => BoButtonVariant.secondary,
 	orientation: () => BoButtonGroupOrientation.horizontal,
+	shape: () => BoButtonGroupShape.rounded,
 	items: () => [],
 	defaultActiveIndex: () => -1,
 });

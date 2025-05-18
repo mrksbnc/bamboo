@@ -1,8 +1,8 @@
 <script setup>
-import BoRadioGroup from '@/components/bo-radio-group/bo-radio-group.vue';
-import { BoRadioGroupOrientation } from '@/components/bo-radio-group';
-import BoRadio from '@/components/bo-radio/bo-radio.vue';
-import { BoRadioVariant } from '@/components/bo-radio';
+import BoRadioGroup from '@/components/radio-group/bo-radio-group.vue';
+import { BoRadioGroupOrientation } from '@/components/radio-group';
+import BoRadio from '@/components/radio/bo-radio.vue';
+import { BoRadioVariant } from '@/components/radio';
 import { BoSize } from '@/shared/bo-size';
 </script>
 

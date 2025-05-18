@@ -24,13 +24,13 @@ import { BoFontSize, BoFontWeight } from '../text/bo-text.js';
 import {
 	BoButtonGroupItemProps,
 	BoButtonGroupOrientation,
-	BoButtonShape,
+	BoButtonGroupShape,
 } from './bo-button-group.js';
 
 const props = withDefaults(defineProps<BoButtonGroupItemProps>(), {
 	size: () => BoSize.default,
 	variant: () => BoButtonVariant.secondary,
-	shape: () => BoButtonShape.rounded,
+	shape: () => BoButtonGroupShape.rounded,
 	position: () => ({
 		index: -1,
 		length: -1,
@@ -169,7 +169,7 @@ const borderColorClasses = computed<string>(() => {
 });
 
 const borderRadiusClasses = computed<string>(() => {
-	if (props.shape === BoButtonShape.rounded) {
+	if (props.shape === BoButtonGroupShape.rounded) {
 		// Vertical orientation
 		if (props.orientation === BoButtonGroupOrientation.vertical) {
 			if (props.position.isFirst && props.position.isLast) {

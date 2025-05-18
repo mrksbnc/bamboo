@@ -1,5 +1,5 @@
 <script setup>
-import BoCheckbox from '@/components/bo-checkbox/bo-checkbox.vue';
+import BoCheckbox from '@/components/checkbox/bo-checkbox.vue';
 import { BoSize } from '@/shared/bo-size';
 
 const checkedTrue = true;

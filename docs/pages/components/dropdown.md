@@ -1,6 +1,6 @@
 # Dropdown
 
-A customizable dropdown component for displaying a list of options in a popup menu, triggered by a button or custom element.
+Dropdown is a component that allows users to select an option from a predefined list.
 
 ```js
 import { BoDropdown } from '@mrksbnc/bamboo';

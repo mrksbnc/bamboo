@@ -1,13 +1,13 @@
 <script setup>
-import BoBadge from '@/components/bo-badge/bo-badge.vue';
-import {  BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/bo-badge';
+import BoBadge from '@/components/badge/bo-badge.vue';
+import {  BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/badge/bo-badge';
 import { BoSize } from '@/shared/bo-size';
-import { Icon } from '@/components/bo-icon';
+import { Icon } from '@/components/icon/bo-icon';
 </script>
 
 # Badge
 
-A lightweight component for highlighting status, labels, or small pieces of information.
+Badge is a lightweight component for highlighting status, labels, or small pieces of information.
 
 ```js
 import { BoBadge } from '@mrksbnc/bamboo';

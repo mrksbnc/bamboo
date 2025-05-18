@@ -1,8 +1,8 @@
 <script setup>
-import BoButtonGroup from '@/components/bo-button-group/bo-button-group.vue';
-import { BoButtonGroupOrientation, BoButtonShape } from '@/components/bo-button-group/bo-button-group';
-import { BoButtonVariant } from '@/components/bo-button/bo-button';
-import { BoSize } from '@/shared/bo-size';
+import BoButtonGroup from '@/components/button-group/bo-button-group.vue';
+import { BoButtonGroupOrientation, BoButtonGroupShape } from '@/components/button-group/bo-button-group';
+import { BoButtonVariant } from '@/components/button/bo-button';
+import { BoSize } from '@/shared';
 </script>
 
 # Button Group
@@ -56,7 +56,7 @@ import { BoButtonGroup } from '@mrksbnc/bamboo';
 | `size`               | `BoSize`                   | `default`    | Size of the buttons                          |
 | `fullWidth`          | `boolean`                  | `false`      | Whether the group takes full container width |
 | `disabled`           | `boolean`                  | `false`      | Whether all buttons are disabled             |
-| `shape`              | `BoButtonShape`            | `rounded`    | Shape of the button group                    |
+| `shape`              | `BoButtonGroupShape`       | `rounded`    | Shape of the button group                    |
 | `items`              | `BoButtonGroupItemProps[]` | `[]`         | Array of button items to display             |
 | `defaultActiveIndex` | `number`                   | `-1`         | The index of the active button in the group  |
 
@@ -69,7 +69,7 @@ import { BoButtonGroup } from '@mrksbnc/bamboo';
 | `size`        | `BoSize`                      | `default`   | Size of the individual button              |
 | `active`      | `boolean`                     | `false`     | Whether the button is in active state      |
 | `disabled`    | `boolean`                     | `false`     | Whether the button is disabled             |
-| `shape`       | `BoButtonShape`               | `rounded`   | Shape of the individual button             |
+| `shape`       | `BoButtonGroupShape`          | `rounded`   | Shape of the individual button             |
 | `variant`     | `BoButtonVariant`             | `secondary` | Color variant of the individual button     |
 | `orientation` | `BoButtonGroupOrientation`    | `undefined` | Override group orientation for this button |
 | `position`    | `ButtonGroupItemListPosition` | `undefined` | Position information in the button group   |
@@ -94,7 +94,7 @@ export enum BoButtonGroupOrientation {
 /**
  * Defines the shape of the button group and its items
  */
-export enum BoButtonShape {
+export enum BoButtonGroupShape {
 	square = 'square',
 	rounded = 'rounded',
 }
@@ -130,7 +130,7 @@ export interface BoButtonGroupItemProps {
 	/** Whether the button is disabled */
 	disabled?: boolean;
 	/** Shape of the button */
-	shape?: BoButtonShape;
+	shape?: BoButtonGroupShape;
 	/** Color variant of the button */
 	variant?: BoButtonVariant;
 	/** Override the group's orientation for this button */
@@ -156,7 +156,7 @@ export interface BoButtonGroupProps<T = Record<string, unknown>> {
 	/** Whether all buttons in the group are disabled */
 	disabled?: boolean;
 	/** Shape for all buttons in the group */
-	shape?: BoButtonShape;
+	shape?: BoButtonGroupShape;
 	/** Array of button items to display */
 	items?: T[];
 	/** The index of the active button in the group */
@@ -253,6 +253,46 @@ export interface BoButtonGroupProps<T = Record<string, unknown>> {
 	:items="[
 		{ id: 'btn1', label: 'Disabled 1' },
 		{ id: 'btn2', label: 'Disabled 2' },
+	]"
+/>
+```
+
+## Shapes
+
+<div class="flex gap-4 items-center my-4">
+  <bo-button-group
+    :shape="BoButtonGroupShape.square"
+    :items="[
+      { id: 'square1', label: 'Square 1' },
+      { id: 'square2', label: 'Square 2' },
+      { id: 'square3', label: 'Square 3' },
+    ]"
+  />
+  <bo-button-group
+    :shape="BoButtonGroupShape.rounded"
+    :items="[
+      { id: 'rounded1', label: 'Rounded 1' },
+      { id: 'rounded2', label: 'Rounded 2' },
+      { id: 'rounded3', label: 'Rounded 3' },
+    ]"
+  />
+</div>
+
+```vue
+<bo-button-group
+	:shape="BoButtonGroupShape.square"
+	:items="[
+		{ id: 'square1', label: 'Square 1' },
+		{ id: 'square2', label: 'Square 2' },
+		{ id: 'square3', label: 'Square 3' },
+	]"
+/>
+<bo-button-group
+	:shape="BoButtonGroupShape.rounded"
+	:items="[
+		{ id: 'rounded1', label: 'Rounded 1' },
+		{ id: 'rounded2', label: 'Rounded 2' },
+		{ id: 'rounded3', label: 'Rounded 3' },
 	]"
 />
 ```

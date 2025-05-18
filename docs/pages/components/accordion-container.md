@@ -1,11 +1,15 @@
 <script setup>
-import BoAccordion from '@/components/bo-accordion/bo-accordion.vue';
-import BoAccordionContainer from '@/components/bo-accordion/bo-accordion-container.vue';
+import BoAccordion from '@/components/accordion/bo-accordion.vue';
+import BoAccordionContainer from '@/components/accordion/bo-accordion-container.vue';
 </script>
 
 # Accordion Container
 
 The `BoAccordionContainer` component is a wrapper component that manages multiple accordion items. It provides functionality for controlling how accordion items interact with each other, such as allowing multiple items to be open simultaneously or ensuring at least one item remains open.
+
+```js
+import { BoAccordionContainer } from '@mrksbnc/bamboo';
+```
 
 ## Basic Usage
 

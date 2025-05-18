@@ -10,8 +10,6 @@
 					v-if="label"
 					:value="label"
 					:size="BoFontSize.sm"
-					:weight="BoFontWeight.medium"
-					:color="BoTextColor.secondary"
 				/>
 				<bo-text
 					v-if="required"
@@ -23,7 +21,10 @@
 			</div>
 		</div>
 		<!-- Input -->
-		<div class="relative flex items-center">
+		<div
+			ref="inputContainerRef"
+			class="relative flex items-center"
+		>
 			<!-- Prefix Icon -->
 			<bo-icon
 				v-if="showPrefixIcon"
@@ -35,6 +36,7 @@
 			/>
 			<!-- Input Container -->
 			<input
+				ref="inputRef"
 				v-model="modelValue"
 				:type="inputType"
 				:disabled="disabled"
@@ -49,7 +51,6 @@
 				@focus="onFocus"
 				@blur="onBlur"
 				@change="onChange"
-				ref="inputContainerRef"
 			/>
 			<!-- Suffix Icon -->
 			<div :class="['absolute right-3 text-neutral-500 dark:text-gray-400']">
@@ -109,13 +110,7 @@ import { BoColor } from '@/shared/bo-color.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { computed, ref } from 'vue';
 import { BoFontSize, BoFontWeight, BoTextColor } from '../text/bo-text.js';
-import {
-	BoInputSize,
-	BoInputState,
-	BoInputType,
-	BoInputVariant,
-	type BoInputProps,
-} from './bo-input.js';
+import { BoInputSize, BoInputState, BoInputType, type BoInputProps } from './bo-input.js';
 
 const props = withDefaults(defineProps<BoInputProps>(), {
 	id: () => IdentityService.instance.getComponentId('bo-input'),
@@ -125,7 +120,6 @@ const props = withDefaults(defineProps<BoInputProps>(), {
 	type: () => BoInputType.text,
 	size: () => BoInputSize.default,
 	state: () => BoInputState.default,
-	variant: () => BoInputVariant.default,
 });
 
 const emit = defineEmits<{
@@ -133,9 +127,6 @@ const emit = defineEmits<{
 	(e: 'focus'): void;
 	(e: 'blur', event: Event): void;
 	(e: 'change', value: string): void;
-	(e: 'prefixIconClick'): void;
-	(e: 'suffixIconClick'): void;
-	(e: 'pillRemove', id: string): void;
 }>();
 
 const modelValue = defineModel<string>({
@@ -145,8 +136,8 @@ const modelValue = defineModel<string>({
 
 const passwordVisible = ref(false);
 
-const inputRef = ref<HTMLInputElement | null>(null);
-const inputContainerRef = ref<HTMLDivElement | null>(null);
+const inputRef = ref<HTMLInputElement>();
+const inputContainerRef = ref<HTMLDivElement>();
 
 const showPrefixIcon = computed<boolean>(() => {
 	return props.prefixIcon && props.prefixIcon !== Icon.none;
@@ -207,11 +198,11 @@ const inputClasses = computed<string>(() => {
 	let paddingClassArray: string[] = [];
 
 	if (props.size === BoInputSize.small) {
-		paddingClassArray.push(/*tw*/ 'py-1.5 px-3 text-sm');
+		paddingClassArray.push(/*tw*/ 'py-1.5 px-2 text-sm');
 	} else if (props.size === BoInputSize.default) {
-		paddingClassArray.push(/*tw*/ 'py-2 px-4 text-sm');
+		paddingClassArray.push(/*tw*/ 'py-2 px-3 text-sm');
 	} else if (props.size === BoInputSize.large) {
-		paddingClassArray.push(/*tw*/ 'py-2.5 px-5 text-lg');
+		paddingClassArray.push(/*tw*/ 'py-2.5 px-4 text-lg');
 	}
 
 	if (props.prefixIcon && props.prefixIcon !== Icon.none) {
@@ -268,4 +259,9 @@ function onChange(event: Event): void {
 	const target = event.target as HTMLInputElement;
 	emit('change', target.value);
 }
+
+defineExpose({
+	inputRef,
+	inputContainerRef,
+});
 </script>

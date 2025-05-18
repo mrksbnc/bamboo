@@ -19,7 +19,7 @@
 			<div
 				v-if="isOpen"
 				ref="popoverRef"
-				:id="popoverId"
+				:id="id"
 				role="dialog"
 				:class="popoverClasses"
 				:style="{
@@ -40,7 +40,6 @@
 					class="bo-popover-arrow absolute h-2 w-2 rotate-45 transform bg-white dark:bg-gray-800"
 					:style="arrowStyles"
 				></div>
-
 				<!-- Popover content -->
 				<div class="bo-popover-content relative z-10">
 					<slot>
@@ -49,14 +48,26 @@
 							class="bo-popover-title"
 							:data-testid="`bo-popover-title-${id}`"
 						>
-							{{ title }}
+							<bo-text
+								v-if="title"
+								:value="title"
+								:size="BoFontSize.base"
+								:color="BoTextColor.default"
+								:weight="BoFontWeight.semibold"
+							/>
 						</div>
 						<div
 							v-if="content"
 							class="bo-popover-body"
 							:data-testid="`bo-popover-body-${id}`"
 						>
-							{{ content }}
+							<bo-text
+								v-if="content"
+								:value="content"
+								:size="BoFontSize.sm"
+								:weight="BoFontWeight.regular"
+								:color="BoTextColor.secondary"
+							/>
 						</div>
 					</slot>
 				</div>
@@ -66,10 +77,13 @@
 </template>
 
 <script setup lang="ts">
-import { IdentityService, TailwindService } from '@/services';
-import { BoSize } from '@/shared';
+import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/text/bo-text.js';
+import BoText from '@/components/text/bo-text.vue';
+import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { BoSize } from '@/shared/bo-size.js';
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, toRefs, watch } from 'vue';
-import { BoPopoverPlacement, BoPopoverTrigger, type BoPopoverProps } from './bo-popover';
+import { BoPopoverPlacement, BoPopoverTrigger, type BoPopoverProps } from './bo-popover.js';
 
 const props = withDefaults(defineProps<BoPopoverProps>(), {
 	id: () => IdentityService.instance.getComponentId('popover'),
@@ -115,10 +129,10 @@ const {
 	closeOnOutsideClick,
 } = toRefs(props);
 
-const triggerRef = ref<HTMLElement | null>(null);
-const popoverRef = ref<HTMLElement | null>(null);
 const isOpen = ref(modelValue.value);
-const popoverId = ref(id.value);
+
+const triggerRef = ref<HTMLElement>();
+const popoverRef = ref<HTMLElement>();
 const hoverTimeout = ref<number | undefined>(undefined);
 
 // Watch for changes in modelValue to update isOpen

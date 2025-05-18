@@ -1,5 +1,5 @@
 <script setup>
-import { BoSize } from '@/shared/bo-size.js';
+import { BoSize } from '@/shared/bo-size';
 import { BoButton } from '@/components/bo-button';
 import { BoBadge } from '@/components/bo-badge';
 </script>

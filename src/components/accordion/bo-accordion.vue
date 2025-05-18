@@ -93,8 +93,8 @@ const defaultBodyClasses: Record<string, string> = {
 };
 
 const isOpen = ref(props.open);
-const accordionRef = ref<HTMLElement | null>(null);
-const accordionBodyRef = ref<HTMLElement | null>(null);
+const accordionRef = ref<HTMLElement>();
+const accordionBodyRef = ref<HTMLElement>();
 
 const headerClass = computed<string>(() => {
 	return TailwindService.instance.merge(

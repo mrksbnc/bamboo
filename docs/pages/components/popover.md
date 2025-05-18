@@ -1,7 +1,7 @@
 <script setup>
-import BoPopover from '@/components/bo-popover/bo-popover.vue';
-import BoButton from '@/components/bo-button/bo-button.vue';
-import { BoPopoverPlacement, BoPopoverTrigger } from '@/components/bo-popover/bo-popover';
+import BoPopover from '@/components/popover/bo-popover.vue';
+import BoButton from '@/components/button/bo-button.vue';
+import { BoPopoverPlacement, BoPopoverTrigger } from '@/components/popover/bo-popover';
 import { BoSize } from '@/shared/bo-size';
 import { ref } from 'vue';
 
@@ -371,14 +371,15 @@ export interface BoPopoverProps {
     <template #trigger>
       <BoButton label="Custom Content" />
     </template>
-    
-    <div>
+    <template #default>
+        <div>
       <h3 class="text-lg font-semibold mb-2">Custom Popover</h3>
       <p class="mb-2">This popover has custom content.</p>
       <div class="flex justify-end">
         <BoButton label="Action" size="small" />
       </div>
     </div>
+    </template>
   </BoPopover>
 </div>
 
@@ -387,205 +388,14 @@ export interface BoPopoverProps {
   <template #trigger>
     <BoButton label="Custom Content" />
   </template>
-  
-  <div>
-    <h3 class="text-lg font-semibold mb-2">Custom Popover</h3>
-    <p class="mb-2">This popover has custom content.</p>
-    <div class="flex justify-end">
-      <BoButton label="Action" size="small" />
+  <template #default>
+    <div>
+      <h3 class="text-lg font-semibold mb-2">Custom Popover</h3>
+      <p class="mb-2">This popover has custom content.</p>
+      <div class="flex justify-end">
+        <BoButton label="Action" size="small" />
+      </div>
     </div>
-  </div>
+  </template>
 </BoPopover>
-```
-
-## Controlled Popover
-
-<div class="flex flex-col gap-4 my-4">
-  <div class="flex gap-4 items-center">
-    <BoPopover v-model="isOpen" title="Controlled Popover" content="This popover is controlled externally">
-      <template #trigger>
-        <BoButton label="Trigger" />
-      </template>
-    </BoPopover>
-    
-    <BoButton 
-      :label="isOpen ? 'Close Popover' : 'Open Popover'" 
-      @click="isOpen = !isOpen" 
-    />
-  </div>
-  
-  <div>Current state: {{ isOpen ? 'Open' : 'Closed' }}</div>
-</div>
-
-```vue
-<script setup>
-import { ref } from 'vue';
-import { BoPopover, BoButton } from '@mrksbnc/bamboo';
-
-const isOpen = ref(false);
-</script>
-
-<template>
-	<div class="flex items-center gap-4">
-		<BoPopover
-			v-model="isOpen"
-			title="Controlled Popover"
-			content="This popover is controlled externally"
-		>
-			<template #trigger>
-				<BoButton label="Trigger" />
-			</template>
-		</BoPopover>
-
-		<BoButton
-			:label="isOpen ? 'Close Popover' : 'Open Popover'"
-			@click="isOpen = !isOpen"
-		/>
-	</div>
-
-	<div>Current state: {{ isOpen ? 'Open' : 'Closed' }}</div>
-</template>
-```
-
-## Usage Examples
-
-### Tooltip
-
-```vue
-<template>
-	<BoPopover
-		:trigger="BoPopoverTrigger.hover"
-		content="This is a tooltip"
-		:arrow="true"
-		:interactive="false"
-		:size="BoSize.small"
-		:animation-duration="200"
-		animation="fade"
-	>
-		<template #trigger>
-			<span class="cursor-help text-blue-600 underline">Hover me</span>
-		</template>
-	</BoPopover>
-</template>
-
-<script setup>
-import { BoPopover, BoPopoverTrigger } from '@mrksbnc/bamboo';
-import { BoSize } from '@mrksbnc/bamboo';
-</script>
-```
-
-### Confirmation Dialog
-
-```vue
-<template>
-	<BoPopover
-		ref="confirmPopover"
-		:interactive="true"
-	>
-		<template #trigger>
-			<BoButton
-				label="Delete Item"
-				variant="danger"
-			/>
-		</template>
-
-		<div class="text-center">
-			<h3 class="mb-2 text-lg font-semibold">Confirm Deletion</h3>
-			<p class="mb-4">Are you sure you want to delete this item?</p>
-			<div class="flex justify-center gap-2">
-				<BoButton
-					label="Cancel"
-					variant="secondary"
-					size="small"
-					@click="closePopover"
-				/>
-				<BoButton
-					label="Delete"
-					variant="danger"
-					size="small"
-					@click="confirmDelete"
-				/>
-			</div>
-		</div>
-	</BoPopover>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { BoPopover, BoButton } from '@mrksbnc/bamboo';
-
-const confirmPopover = ref(null);
-
-function closePopover() {
-	confirmPopover.value.isOpen = false;
-}
-
-function confirmDelete() {
-	// Handle deletion logic
-	alert('Item deleted!');
-	closePopover();
-}
-</script>
-```
-
-### Feature Highlight
-
-```vue
-<template>
-	<div class="relative rounded border p-4">
-		<h2 class="mb-2 text-xl font-bold">Dashboard</h2>
-
-		<div class="mb-4 flex items-center">
-			<div class="mr-auto">Welcome back, User!</div>
-
-			<BoPopover
-				:placement="BoPopoverPlacement.bottom"
-				:offset="12"
-				v-model="showNewFeature"
-				:closeOnOutsideClick="false"
-			>
-				<template #trigger>
-					<BoButton
-						label="New Feature"
-						variant="primary"
-					/>
-				</template>
-
-				<div class="p-1">
-					<h3 class="mb-2 text-lg font-semibold">New Feature Released!</h3>
-					<p class="mb-3">We've added a new dashboard with improved analytics.</p>
-					<div class="flex justify-end">
-						<BoButton
-							label="Got it!"
-							size="small"
-							@click="dismissFeatureHighlight"
-						/>
-					</div>
-				</div>
-			</BoPopover>
-		</div>
-
-		<div class="text-sm text-gray-500">Dashboard content would go here...</div>
-	</div>
-</template>
-
-<script setup>
-import { ref, onMounted } from 'vue';
-import { BoPopover, BoPopoverPlacement, BoButton } from '@mrksbnc/bamboo';
-
-const showNewFeature = ref(false);
-
-// Show the feature highlight after a short delay
-onMounted(() => {
-	setTimeout(() => {
-		showNewFeature.value = true;
-	}, 1000);
-});
-
-function dismissFeatureHighlight() {
-	showNewFeature.value = false;
-	// In a real app, you might store this preference
-	localStorage.setItem('featureHighlightDismissed', 'true');
-}
-</script>
 ```
