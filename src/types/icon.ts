@@ -1,4 +1,4 @@
-import type { Icon } from '@/components/bo-icon/bo-icon.js';
+import type { Icon } from '@/components/icon/bo-icon.js';
 
 export interface IconDefinition {
 	prefix?: Icon;
