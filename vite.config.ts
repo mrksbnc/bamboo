@@ -1,4 +1,3 @@
-import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -10,10 +9,8 @@ export default defineConfig({
 		dts({
 			outDir: 'dist',
 			entryRoot: 'src/index.ts',
-			tsconfigPath: './tsconfig.app.json',
 		}),
 		svgLoader(),
-		tailwindcss(),
 	],
 	build: {
 		cssMinify: true,
