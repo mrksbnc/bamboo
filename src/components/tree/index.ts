@@ -5,5 +5,4 @@ export { default as TreeNode } from './tree-node.vue';
 
 /** Tree module js exports */
 
-export { BoTreeVariant } from './bo-tree.js';
-export type { BoTreeProps, TreeNode as TreeNodeType } from './bo-tree.js';
+export * from './bo-tree.js';

@@ -4,4 +4,4 @@ export { default as BoBadge } from './bo-badge.vue';
 
 /** Badge module js exports */
 
-export * from './bo-badge';
+export * from './bo-badge.js';

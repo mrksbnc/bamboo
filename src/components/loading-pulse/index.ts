@@ -4,4 +4,4 @@ export { default as BoLoadingPulse } from './bo-loading-pulse.vue';
 
 /** Loading Pulse module js exports */
 
-export * from './bo-loading-pulse';
+export * from './bo-loading-pulse.js';

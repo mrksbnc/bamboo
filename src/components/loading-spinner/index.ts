@@ -4,4 +4,4 @@ export { default as BoLoadingSpinner } from './bo-loading-spinner.vue';
 
 /** Loading Spinner module js exports */
 
-export * from './bo-loading-spinner';
+export * from './bo-loading-spinner.js';

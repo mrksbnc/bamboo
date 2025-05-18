@@ -4,4 +4,4 @@ export { default as BoAvatar } from './bo-avatar.vue';
 
 /** Avatar  module js exports */
 
-export * from './bo-avatar';
+export * from './bo-avatar.js';

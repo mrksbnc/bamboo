@@ -4,4 +4,4 @@ export { default as BoModal } from './bo-modal.vue';
 
 /** Modal module js exports */
 
-export * from './bo-modal';
+export * from './bo-modal.js';

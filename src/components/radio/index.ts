@@ -4,4 +4,4 @@ export { default as BoRadio } from './bo-radio.vue';
 
 /** Radio module js exports */
 
-export * from './bo-radio';
+export * from './bo-radio.js';
