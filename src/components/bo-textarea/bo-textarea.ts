@@ -1,4 +1,4 @@
-import type { Icon } from '@/components/bo-icon';
+import type { Icon } from '@/components/bo-icon/bo-icon.js';
 
 export enum BoTextareaVariant {
 	default = 'default',

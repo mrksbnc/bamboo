@@ -1,8 +1,8 @@
 import { BoSize } from '@/shared';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
-import BoTree from './BoTree.vue';
 import { BoTreeVariant } from './bo-tree';
+import BoTree from './bo-tree.vue';
 
 const sampleData = [
 	{

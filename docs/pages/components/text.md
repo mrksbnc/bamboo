@@ -1,5 +1,6 @@
 <script setup>
-import { BoText, BoFontSize, BoFontWeight, BoTextColor, BoTextAlign, BoFontFamily, BoTextWhiteSpace } from '@/components/bo-text';
+import BoText from '@/components/bo-text/bo-text.vue';
+import { BoFontSize, BoFontWeight, BoTextColor, BoTextAlign, BoFontFamily, BoTextWhiteSpace } from '@/components/bo-text/bo-text';
 </script>
 
 # Text

@@ -1,6 +1,6 @@
 <script setup>
-import { BoProgressBar } from '@/components/bo-progress-bar';
-import { BoSize } from '@/shared';
+import BoProgressBar from '@/components/bo-progress-bar/bo-progress-bar.vue';
+import { BoSize } from '@/shared/bo-size';
 import { BoProgressBarVariant } from '@/components/bo-progress-bar/bo-progress-bar';
 import { ref } from 'vue';
 

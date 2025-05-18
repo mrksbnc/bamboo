@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
-import BoRadioGroup from './BoRadioGroup.vue';
+import BoRadioGroup from './bo-radio-group.vue';
 
 describe('BoRadioGroup.vue', () => {
 	const options = [

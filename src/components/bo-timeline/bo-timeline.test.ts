@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
-import BoTimeline from './BoTimeline.vue';
+import BoTimeline from './bo-timeline.vue';
 
 describe('BoTimeline.vue', () => {
 	it('renders timeline items', () => {

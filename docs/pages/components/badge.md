@@ -1,6 +1,7 @@
 <script setup>
-import { BoBadge, BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/bo-badge';
-import { BoSize } from '@/shared';
+import BoBadge from '@/components/bo-badge/bo-badge.vue';
+import {  BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/bo-badge';
+import { BoSize } from '@/shared/bo-size';
 import { Icon } from '@/components/bo-icon';
 </script>
 

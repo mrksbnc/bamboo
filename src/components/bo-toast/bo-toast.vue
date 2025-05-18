@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo-icon';
+import { BoIcon, Icon } from '@/components/bo-icon/bo-icon.js';
 import { IdentityService } from '@/services';
 import { BoSize } from '@/shared';
 import { onMounted, onUnmounted } from 'vue';

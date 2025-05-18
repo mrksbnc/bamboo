@@ -1,6 +1,7 @@
 <script setup>
-import { BoIcon, Icon } from '@/components/bo-icon';
-import { BoSize } from '@/shared';
+import BoIcon from '@/components/bo-icon/bo-icon.vue';
+import { Icon } from '@/components/bo-icon';
+import { BoSize } from '@/shared/bo-size';
 </script>
 
 # Icon

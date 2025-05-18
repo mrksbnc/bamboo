@@ -151,7 +151,7 @@ const fontColor = computed<string>(() => {
 		case BoTextColor.primary:
 			return /*tw*/ 'text-blue-600 dark:text-blue-500';
 		case BoTextColor.secondary:
-			return /*tw*/ 'text-neutral-600 dark:text-neutral-300';
+			return /*tw*/ 'text-neutral-500 dark:text-neutral-300';
 		case BoTextColor.success:
 			return /*tw*/ 'text-green-600 dark:text-green-500';
 		case BoTextColor.warning:

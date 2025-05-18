@@ -55,7 +55,7 @@
 import { Icon } from '@/components/bo-icon/bo-icon.js';
 import BoIcon from '@/components/bo-icon/bo-icon.vue';
 import { BoFontSize, BoFontWeight } from '@/components/bo-text';
-import BoText from '@/components/bo-text/BoText.vue';
+import BoText from '@/components/bo-text/bo-text.vue';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { InjectKey } from '@/shared/injection-key.js';

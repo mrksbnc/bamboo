@@ -1,6 +1,6 @@
 <script setup>
-import { BoLoadingSpinner } from '@/components/bo-loading-spinner';
-import { BoSize } from '@/shared';
+import BoLoadingSpinner from '@/components/bo-loading-spinner/bo-loading-spinner.vue';
+import { BoSize } from '@/shared/bo-size';
 import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo-loader';
 </script>
 

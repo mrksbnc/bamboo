@@ -1,6 +1,7 @@
 <script setup>
-import { BoTable, BoTableVariant, BoTableSize } from '@/components/bo-table';
-import { BoSize } from '@/shared';
+import BoTable from '@/components/bo-table/bo-table.vue';
+import { BoTableVariant, BoTableSize } from '@/components/bo-table/bo-table';
+import { BoSize } from '@/shared/bo-size';
 </script>
 
 # Table

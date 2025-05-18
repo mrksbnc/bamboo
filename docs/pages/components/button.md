@@ -1,12 +1,13 @@
 <script setup>
-import { BoButton, BoButtonVariant, BoButtonShape } from '@/components/bo-button';
-import { BoSize } from '@/shared';
-import { Icon } from '@/components/bo-icon';
+import BoButton from '@/components/bo-button/bo-button.vue';
+import { BoButtonVariant, BoButtonShape } from '@/components/bo-button/bo-button';
+import { BoSize } from '@/shared/bo-size';
+import { Icon } from '@/components/bo-icon/bo-icon';
 </script>
 
 # Button
 
-A versatile button component that can be used for actions, form submissions, and navigation.
+Button is a component that allows users to trigger actions. It can be used for a variety of purposes, such as navigation, form submissions, and actions.
 
 ```js
 import { BoButton } from '@mrksbnc/bamboo';

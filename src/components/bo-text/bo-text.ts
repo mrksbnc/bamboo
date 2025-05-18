@@ -56,57 +56,30 @@ export enum BoTextAlign {
 }
 
 export interface BoTextProps {
-	/**
-	 * The id of the element.
-	 */
+	/** The id of the element. */
 	id?: string;
-	/**
-	 * The text of the element.
-	 */
+	/** The text of the element. */
 	value: string;
-	/**
-	 * The size of the element.
-	 */
+	/** The size of the element. */
 	size?: BoFontSize;
-	/**
-	 * The weight of the element.
-	 */
+	/** The weight of the element. */
 	weight?: BoFontWeight;
-	/**
-	 * The font family of the element.
-	 */
+	/** The font family of the element. */
 	fontFamily?: BoFontFamily;
-	/**
-	 * The white space of the element.
-	 */
+	/** The white space of the element. */
 	whiteSpace?: BoTextWhiteSpace;
-	/**
-	 * The color of the element.
-	 */
+	/** The color of the element. */
 	color?: BoTextColor;
-	/**
-	 * The custom color of the element.
-	 */
+	/** The custom color of the element. */
 	customColor?: string;
-	/**
-	 * The css class of the element.
-	 */
+	/** The css class of the element. */
 	cssClass?: string;
-	/**
-	 * The clickable of the element.
-	 */
+	/** The clickable of the element. */
 	clickable?: boolean;
-	/**
-	 * The text align of the element.
-	 */
+	/** The text align of the element. */
 	textAlign?: BoTextAlign;
-	/**
-	 * The selectable of the element.
-	 */
+	/** The selectable of the element. */
 	selectable?: boolean;
-	/**
-	 * Cursor type of the element. This must be a valid Tailwindcss cursor value.
-	 *
-	 */
+	/** Cursor type of the element. This must be a valid Tailwindcss cursor value. */
 	cursor?: string;
 }

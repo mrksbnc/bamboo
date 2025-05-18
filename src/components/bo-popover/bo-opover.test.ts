@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
-import BoPopover from './BoPopover.vue';
 import { BoPopoverPlacement, BoPopoverTrigger } from './bo-popover';
+import BoPopover from './bo-popover.vue';
 
 describe('BoPopover.vue', () => {
 	it('renders trigger element', () => {

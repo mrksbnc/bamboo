@@ -1,7 +1,8 @@
 <script setup>
-import { BoPopover, BoPopoverPlacement, BoPopoverTrigger } from '@/components/bo-popover';
-import { BoButton } from '@/components/bo-button';
-import { BoSize } from '@/shared';
+import BoPopover from '@/components/bo-popover/bo-popover.vue';
+import BoButton from '@/components/bo-button/bo-button.vue';
+import { BoPopoverPlacement, BoPopoverTrigger } from '@/components/bo-popover/bo-popover';
+import { BoSize } from '@/shared/bo-size';
 import { ref } from 'vue';
 
 const isOpen = ref(false);

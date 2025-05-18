@@ -1,4 +1,4 @@
-import type { Icon } from '@/components/bo-icon';
+import type { Icon } from '@/components/bo-icon/bo-icon.js';
 
 export enum BoInputVariant {
 	default = 'default',
@@ -13,11 +13,9 @@ export enum BoInputState {
 }
 
 export enum BoInputSize {
-	extra_small = 'extra_small',
 	small = 'small',
 	default = 'default',
 	large = 'large',
-	extra_large = 'extra_large',
 }
 
 export enum BoInputType {

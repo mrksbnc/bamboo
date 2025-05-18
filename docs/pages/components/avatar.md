@@ -1,7 +1,9 @@
 <script setup>
-import { BoAvatar, BoAvatarShape, BoAvatarType, BoAvatarVariant } from '@/components/bo-avatar';
-import { BoSize } from '@/shared';
-import { BoIcon, Icon } from '@/components/bo-icon';
+import BoAvatar from '@/components/bo-avatar/bo-avatar.vue';
+import {  BoAvatarShape, BoAvatarType, BoAvatarVariant } from '@/components/bo-avatar/bo-avatar';
+import { BoSize } from '@/shared/bo-size';
+import { Icon } from '@/components/bo-icon/bo-icon';
+import BoIcon from '@/components/bo-icon/bo-icon.vue';
 </script>
 
 # Avatar

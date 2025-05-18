@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import BoText from '@/components/bo-text/BoText.vue';
+import BoText from '@/components/bo-text/bo-text.vue';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { computed } from 'vue';

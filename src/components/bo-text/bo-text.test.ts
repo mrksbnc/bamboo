@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
-import BoText from './BoText.vue';
 import { BoFontSize, BoFontWeight, BoTextAlign, BoTextColor } from './bo-text';
+import BoText from './bo-text.vue';
 
 describe('BoText.vue', () => {
 	it('renders with default size', () => {

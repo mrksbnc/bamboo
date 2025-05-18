@@ -1,5 +1,5 @@
-import type { Icon } from '@/components/bo-icon';
-import type { BoSize } from '@/shared/bo-size';
+import type { Icon } from '@/components/bo-icon/bo-icon.js';
+import type { BoSize } from '@/shared/bo-size.js';
 
 export enum BoBadgeVariant {
 	primary = 'primary',

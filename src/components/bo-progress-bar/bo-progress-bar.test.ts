@@ -1,7 +1,7 @@
-import { BoSize } from '@/shared/bo-size';
+import { BoSize } from '@/shared/bo-size.js';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
-import BoProgressBar from './BoProgressBar.vue';
+import BoProgressBar from './bo-progress-bar.vue';
 
 describe('BoProgressBar.vue', () => {
 	it('renders with default value', () => {

@@ -1,6 +1,7 @@
 <script setup>
-import { BoRadio, BoRadioVariant } from '@/components/bo-radio';
-import { BoSize } from '@/shared';
+import BoRadio from '@/components/bo-radio/bo-radio.vue';
+import { BoRadioVariant } from '@/components/bo-radio';
+import { BoSize } from '@/shared/bo-size';
 </script>
 
 # Radio

@@ -27,8 +27,8 @@
 <script setup lang="ts">
 import { IdentityService } from '@/services';
 import { BoSize } from '@/shared';
-import TreeNode from './TreeNode.vue';
 import type { BoTreeProps } from './bo-tree';
+import TreeNode from './tree-node.vue';
 
 const props = withDefaults(defineProps<BoTreeProps>(), {
 	id: IdentityService.instance.getComponentId(),

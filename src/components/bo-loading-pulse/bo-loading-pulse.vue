@@ -35,18 +35,21 @@
 </template>
 
 <script setup lang="ts">
-import { BoFontFamily, BoText, BoTextColor } from '@/components/bo-text';
-import { StringService } from '@/services';
-import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo-loader';
-import { BoSize } from '@/shared/bo-size';
+import { BoFontFamily, BoTextColor } from '@/components/bo-text/bo-text.js';
+import BoText from '@/components/bo-text/bo-text.vue';
+import { IdentityService } from '@/services/identity-service.js';
+import { StringService } from '@/services/string-service.js';
+import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo-loader.js';
+import { BoSize } from '@/shared/bo-size.js';
 import { computed, toRefs, type StyleValue } from 'vue';
-import type { BoLoadingPulseProps } from './bo-loading-pulse';
+import type { BoLoadingPulseProps } from './bo-loading-pulse.js';
 
 const slots = defineSlots<{
 	default?: () => unknown;
 }>();
 
 const props = withDefaults(defineProps<BoLoadingPulseProps>(), {
+	id: () => IdentityService.instance.getComponentId('bo-loading-pulse'),
 	size: () => BoSize.default,
 	variant: () => BoLoaderVariant.primary,
 	textPosition: () => BoLoaderTextPosition.bottom,

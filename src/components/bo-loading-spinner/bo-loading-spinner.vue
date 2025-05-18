@@ -1,14 +1,7 @@
 <template>
 	<div
 		role="status"
-		:class="[
-			defaultContainerClasses,
-			textPosition === 'side' ? 'flex-row' : 'flex-col',
-			{
-				'cursor-pointer': !disabled,
-				'cursor-not-allowed opacity-60': disabled,
-			},
-		]"
+		:class="[defaultContainerClasses, textPosition === 'side' ? 'flex-row' : 'flex-col']"
 		:data-testid="`bo-loading-spinner-${id}`"
 	>
 		<div
@@ -32,12 +25,14 @@
 </template>
 
 <script setup lang="ts">
-import { BoFontFamily, BoFontSize, BoText, BoTextColor } from '@/components/bo-text';
-import { StringService, TailwindService } from '@/services';
-import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo-loader';
-import { BoSize } from '@/shared/bo-size';
+import { BoFontFamily, BoFontSize, BoTextColor } from '@/components/bo-text/bo-text.js';
+import BoText from '@/components/bo-text/bo-text.vue';
+import { StringService } from '@/services/string-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo-loader.js';
+import { BoSize } from '@/shared/bo-size.js';
 import { computed, toRefs, type StyleValue } from 'vue';
-import type { BoLoadingSpinnerProps } from './bo-loading-spinner';
+import type { BoLoadingSpinnerProps } from './bo-loading-spinner.js';
 
 const slots = defineSlots<{
 	default?: () => unknown;
@@ -49,7 +44,7 @@ const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 	textPosition: () => BoLoaderTextPosition.bottom,
 });
 
-const { size, variant, loaderText, customColor, disabled, id } = toRefs(props);
+const { size, variant, loaderText, customColor } = toRefs(props);
 
 const defaultContainerClasses =
 	/*tw*/ 'bo-loading-spinner__container flex h-full max-w-fit content-center items-center justify-center gap-1';

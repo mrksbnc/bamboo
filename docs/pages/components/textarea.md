@@ -1,7 +1,8 @@
 <script setup>
-import { BoTextarea, BoTextareaSize, BoTextareaVariant, BoTextareaState } from '@/components/bo-textarea';
-import { Icon } from '@/components/bo-icon';
-import { BoSize } from '@/shared';
+import BoTextarea from '@/components/bo-textarea/bo-textarea.vue';
+import { BoTextareaSize, BoTextareaVariant, BoTextareaState } from '@/components/bo-textarea/bo-textarea';
+import { Icon } from '@/components/bo-icon/bo-icon';
+import { BoSize } from '@/shared/bo-size';
 </script>
 
 # Textarea

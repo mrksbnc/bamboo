@@ -1,55 +1,5 @@
-import type { Icon } from '@/components/bo-icon';
-import type { BoSize } from '@/shared';
-
-export interface BoTimelineItem {
-	/**
-	 * Title of the timeline item
-	 */
-	title: string;
-	/**
-	 * Description or content of the timeline item
-	 */
-	content: string;
-	/**
-	 * Optional time/date text for the item
-	 */
-	time?: string;
-	/**
-	 * Optional icon to display
-	 */
-	icon?: Icon;
-	/**
-	 * Optional avatar image URL
-	 */
-	avatar?: string;
-	/**
-	 * Optional icon color/variant
-	 */
-	iconColor?: BoTimelineIconColor;
-}
-
-export interface BoTimelineProps {
-	/**
-	 * Array of timeline items to display
-	 */
-	items: BoTimelineItem[];
-	/**
-	 * Timeline appearance variant
-	 */
-	variant?: BoTimelineVariant;
-	/**
-	 * Size of the timeline
-	 */
-	size?: BoSize;
-	/**
-	 * Whether to show connecting lines between items
-	 */
-	showConnector?: boolean;
-	/**
-	 * Alignment of the timeline
-	 */
-	align?: BoTimelineAlign;
-}
+import type { Icon } from '@/components/bo-icon/bo-icon.js';
+import type { BoSize } from '@/shared/bo-size.js';
 
 export enum BoTimelineVariant {
 	default = 'default',
@@ -72,4 +22,34 @@ export enum BoTimelineIconColor {
 	info = 'info',
 	light = 'light',
 	dark = 'dark',
+}
+
+export interface BoTimelineItem {
+	/** Unique id for the timeline item */
+	id?: string;
+	/** Title of the timeline item */
+	title: string;
+	/** Description or content of the timeline item */
+	content: string;
+	/** Optional time/date text for the item */
+	time?: string;
+	/** Optional icon to display */
+	icon?: Icon;
+	/** Optional avatar image URL */
+	avatar?: string;
+	/** Optional icon color/variant */
+	iconColor?: BoTimelineIconColor;
+}
+
+export interface BoTimelineProps {
+	/**  Array of timeline items to display */
+	items: BoTimelineItem[];
+	/**  Timeline appearance variant */
+	variant?: BoTimelineVariant;
+	/**  Size of the timeline */
+	size?: BoSize;
+	/**  Whether to show connecting lines between items */
+	showConnector?: boolean;
+	/**  Alignment of the timeline */
+	align?: BoTimelineAlign;
 }

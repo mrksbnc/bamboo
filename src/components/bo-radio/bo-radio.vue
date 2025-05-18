@@ -36,8 +36,8 @@
 </template>
 
 <script setup lang="ts">
-import BoText from '@/components/bo-text/BoText.vue';
 import { BoFontSize } from '@/components/bo-text/bo-text.js';
+import BoText from '@/components/bo-text/bo-text.vue';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';

@@ -1,4 +1,4 @@
-import type { Icon } from '@/components/bo-icon';
+import type { Icon } from '@/components/bo-icon/bo-icon.js';
 import type { BoSize } from '@/shared';
 
 export enum BoTreeVariant {

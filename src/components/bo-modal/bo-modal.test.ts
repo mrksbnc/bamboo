@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/vue';
 import { describe, expect, it } from 'vitest';
-import BoModal from './BoModal.vue';
+import BoModal from './bo-modal.vue';
 
 describe('BoModal.vue', () => {
 	it('renders with default title', () => {

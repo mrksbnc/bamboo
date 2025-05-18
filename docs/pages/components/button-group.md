@@ -1,7 +1,8 @@
 <script setup>
-import { BoButtonGroup, BoButtonGroupOrientation, BoButtonShape } from '@/components/bo-button-group';
+import BoButtonGroup from '@/components/bo-button-group/bo-button-group.vue';
+import { BoButtonGroupOrientation, BoButtonShape } from '@/components/bo-button-group/bo-button-group';
 import { BoButtonVariant } from '@/components/bo-button/bo-button';
-import { BoSize } from '@/shared';
+import { BoSize } from '@/shared/bo-size';
 </script>
 
 # Button Group

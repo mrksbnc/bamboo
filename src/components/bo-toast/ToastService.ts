@@ -1,6 +1,6 @@
 import { createApp, h } from 'vue';
-import BoToast from './BoToast.vue';
 import type { ToastOptions } from './bo-toast';
+import BoToast from './bo-toast.vue';
 
 class ToastService {
 	private static instance: ToastService;

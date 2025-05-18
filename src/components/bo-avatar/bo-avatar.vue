@@ -51,8 +51,8 @@
 
 <script setup lang="ts">
 import DefaultAvatarSvg from '@/assets/img/avatar.png?url';
-import BoText from '@/components/bo-text/BoText.vue';
 import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/bo-text/bo-text.js';
+import BoText from '@/components/bo-text/bo-text.vue';
 import { IdentityService } from '@/services/identity-service.js';
 import { StringService } from '@/services/string-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';

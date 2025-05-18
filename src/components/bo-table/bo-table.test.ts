@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/vue';
 import { describe, expect, it } from 'vitest';
-import BoTable from './BoTable.vue';
+import BoTable from './bo-table.vue';
 
 describe('BoTable.vue', () => {
 	const columns = [

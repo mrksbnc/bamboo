@@ -1,25 +1,17 @@
-import type { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo-loader';
-import type { BoSize } from '@/shared/bo-size';
+import type { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo-loader.js';
+import type { BoSize } from '@/shared/bo-size.js';
 
 export interface BoLoadingPulseProps {
-	/**
-	 * The size of the loading pulse
-	 */
+	/** Unique id for the loading pulse */
+	id?: string;
+	/** The size of the loading pulse */
 	size?: BoSize;
-	/**
-	 * The variant of the loading pulse
-	 */
+	/** The variant of the loading pulse */
 	variant?: BoLoaderVariant;
-	/**
-	 * The custom color of the loading pulse
-	 */
+	/** The custom color of the loading pulse */
 	customColor?: string;
-	/**
-	 * The text of the loading pulse
-	 */
+	/** Optional loader text to display */
 	loaderText?: string;
-	/**
-	 * The position of the text of the loading pulse
-	 */
+	/** Position of the text of the loading pulse */
 	textPosition?: BoLoaderTextPosition;
 }

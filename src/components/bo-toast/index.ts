@@ -1,13 +1,8 @@
-import BoToast from './BoToast.vue';
-import { toast } from './ToastService';
-import type { BoToastProps, ToastOptions } from './bo-toast';
-import { BoToastVariant } from './bo-toast';
+/** Toast module vue exports */
 
-export { BoToast, BoToastVariant, toast };
-export type { BoToastProps, ToastOptions };
+export { default as BoToast } from './bo-toast.vue';
 
-export default {
-	BoToast,
-	toast,
-	BoToastVariant,
-};
+/** Toast module js exports */
+
+export * from './bo-toast.js';
+export * from './ToastService.js';

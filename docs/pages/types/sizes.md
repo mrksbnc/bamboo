@@ -1,5 +1,5 @@
 <script setup>
-import { BoSize } from '@/shared/bo-size';
+import { BoSize } from '@/shared/bo-size.js';
 import { BoButton } from '@/components/bo-button';
 import { BoBadge } from '@/components/bo-badge';
 </script>
@@ -13,7 +13,7 @@ The size system provides standardized sizing options for components throughout t
 Sizes are defined in the `BoSize` enum and can be imported and used in your components:
 
 ```typescript
-import { BoSize } from '@/shared/bo-size';
+import { BoSize } from '@/shared/bo-size.js';
 
 // Using a specific size
 const buttonSize = BoSize.md;

@@ -39,7 +39,7 @@
 import { BoIcon, Icon } from '@/components/bo-icon';
 import { BoFontSize, BoFontWeight, BoText } from '@/components/bo-text';
 import { IdentityService, StringService, TailwindService } from '@/services';
-import { BoSize } from '@/shared/bo-size';
+import { BoSize } from '@/shared/bo-size.js';
 import { computed } from 'vue';
 import { BoBadgeShape, BoBadgeType, BoBadgeVariant, type BoBadgeProps } from './bo-badge';
 

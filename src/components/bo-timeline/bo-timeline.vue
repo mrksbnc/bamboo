@@ -93,7 +93,7 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon } from '@/components/bo-icon';
+import { BoIcon } from '@/components/bo-icon/bo-icon.js';
 import { TailwindService } from '@/services';
 import { BoSize } from '@/shared';
 import { computed, toRefs } from 'vue';
