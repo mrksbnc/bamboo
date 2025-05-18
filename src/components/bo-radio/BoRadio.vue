@@ -45,7 +45,7 @@ import { computed } from 'vue';
 import { type BoRadioProps, BoRadioVariant } from './bo-radio';
 
 const props = withDefaults(defineProps<BoRadioProps>(), {
-	id: () => IdentityService.instance.uuid('bo-radio'),
+	id: () => IdentityService.instance.getComponentId('bo-radio'),
 	disabled: false,
 	size: BoSize.default,
 	variant: BoRadioVariant.primary,

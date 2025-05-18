@@ -43,8 +43,8 @@ import { BoFontSize, BoFontWeight, BoTextColor } from '../bo-text/bo-text.js';
 import { BoCheckboxProps } from './bo-checkbox.js';
 
 const props = withDefaults(defineProps<BoCheckboxProps>(), {
-	id: () => IdentityService.instance.uuid('bo-checkbox'),
-	name: () => IdentityService.instance.uuid('checkbox'),
+	id: () => IdentityService.instance.getComponentId('bo-checkbox'),
+	name: () => IdentityService.instance.getComponentId('checkbox'),
 	size: () => BoSize.default,
 });
 
@@ -111,11 +111,11 @@ const checkBoxLabelFontSize = computed<BoFontSize>(() => {
 	}
 });
 
-function onChange(event: Event) {
+function onChange(event: Event): void {
 	emits('change', event);
 }
 
-function onInput(event: Event) {
+function onInput(event: Event): void {
 	emits('input', event);
 }
 </script>

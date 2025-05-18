@@ -32,15 +32,15 @@ import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { computed, ref } from 'vue';
+import BoButtonGroupItem from './bo-button-group-item.vue';
 import {
 	BoButtonGroupItemProps,
 	BoButtonGroupOrientation,
 	type BoButtonGroupProps,
 } from './bo-button-group.js';
-import BoButtonGroupItem from './BoButtonGroupItem.vue';
 
 const props = withDefaults(defineProps<BoButtonGroupProps<BoButtonGroupItemProps>>(), {
-	id: () => IdentityService.instance.uuid('bo-button-group'),
+	id: () => IdentityService.instance.getComponentId('bo-button-group'),
 	size: () => BoSize.default,
 	variant: () => BoButtonVariant.secondary,
 	orientation: () => BoButtonGroupOrientation.horizontal,
@@ -60,7 +60,7 @@ const activeItemIndex = ref(props.defaultActiveIndex);
 const collection = computed<BoButtonGroupItemProps[]>(() => {
 	return props.items.map((item, index) => {
 		return {
-			id: item.id ?? IdentityService.instance.uuid('bo-button-group-item'),
+			id: item.id ?? IdentityService.instance.getComponentId('bo-button-group-item'),
 			variant: item.variant ?? props.variant,
 			disabled: item.disabled ?? props.disabled,
 			shape: item.shape ?? props.shape,

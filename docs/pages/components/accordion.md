@@ -1,7 +1,8 @@
 <script setup>
-import { Icon } from '@/components/bo-icon';
-import { BoBadge } from '@/components/bo-badge';
-import { BoAccordion, BoAccordionContainer } from '@/components/bo-accordion';
+import { Icon } from '@/components/bo-icon/bo-icon';
+import BoBadge from '@/components/bo-badge/bo-badge.vue';
+import BoAccordion from '@/components/bo-accordion/bo-accordion.vue';
+import BoAccordionContainer from '@/components/bo-accordion/bo-accordion-container.vue';
 </script>
 
 # Accordion
@@ -59,26 +60,14 @@ Use the `BoAccordion` component for a simple expandable section:
 
 ```ts
 interface BoAccordionProps {
-	/**
-	 * Unique ID for the accordion, used for accessibility and testing
-	 */
+	/** Unique ID for the accordion, used for accessibility and testing */
 	id?: string;
-	/**
-	 * The title of the accordion item
-	 */
+	/** The title of the accordion item */
 	title?: string;
-	/**
-	 * Whether the accordion is open by default
-	 * @default false
-	 */
+	/** Whether the accordion is open by default */
 	open?: boolean;
-	/**
-	 * Whether the accordion is disabled
-	 */
 	disabled?: boolean;
-	/**
-	 * Prefix icon for the accordion
-	 */
+	/** Prefix icon for the accordion item */
 	prefixIcon?: Icon;
 	/**
 	 * Custom icon for the expand/collapse indicator
@@ -87,26 +76,17 @@ interface BoAccordionProps {
 	customToggleIcon?: Icon;
 }
 
-/**
- * Props for the accordion container that holds multiple accordion items
- */
 interface BoAccordionContainerProps {
-	/**
-	 * Whether to allow multiple accordion items to be open at once
-	 */
+	/** Whether to allow multiple accordion items to be open at once */
 	allowMultiple?: boolean;
-	/**
-	 * Whether to keep at least one accordion item open
-	 */
+	/** Whether to keep at least one accordion item open */
 	alwaysOpen?: boolean;
-	/**
-	 * The initial open accordion item ID
-	 */
-	defaultOpen?: string;
+	/** The initial open accordion item Id */
+	defaultOpenItemId?: string;
 }
 
-export interface AccordionGroup {
-	openItems: string[];
+interface AccordionGroup {
+	openItems: Set<string>;
 	toggle: (id: string) => void;
 	registerItem: (id: string, initialOpen: boolean) => void;
 }

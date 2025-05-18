@@ -31,7 +31,7 @@ import TreeNode from './TreeNode.vue';
 import type { BoTreeProps } from './bo-tree';
 
 const props = withDefaults(defineProps<BoTreeProps>(), {
-	id: IdentityService.instance.uuid(),
+	id: IdentityService.instance.getComponentId(),
 	disabled: false,
 	showCheckboxes: false,
 	showIcons: true,

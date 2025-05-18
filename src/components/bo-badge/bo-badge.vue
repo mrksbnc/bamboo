@@ -48,7 +48,7 @@ const slots = defineSlots<{
 }>();
 
 const props = withDefaults(defineProps<BoBadgeProps>(), {
-	id: () => IdentityService.instance.uuid(),
+	id: () => IdentityService.instance.getComponentId(),
 	type: () => BoBadgeType.default,
 	size: () => BoSize.default,
 	shape: () => BoBadgeShape.default,

@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
-import BoAccordion from './BoAccordion.vue';
-import BoAccordionContainer from './BoAccordionContainer.vue';
+import BoAccordionContainer from './bo-accordion-container.vue';
+import BoAccordion from './bo-accordion.vue';
 
 describe('BoAccordionContainer.vue', () => {
 	it('renders with default props', () => {

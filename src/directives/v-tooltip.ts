@@ -56,7 +56,7 @@ const createTooltip = (
 
 	if (!tooltip) {
 		tooltip = document.createElement('div');
-		tooltip.id = `tooltip-${el.id ?? IdentityService.instance.uuid()}`;
+		tooltip.id = `tooltip-${el.id ?? IdentityService.instance.getComponentId()}`;
 		tooltip.setAttribute('role', 'tooltip');
 		tooltip.className = `invisible absolute z-50 whitespace-normal break-words rounded-lg bg-black py-1.5 px-3 font-sans text-sm font-normal text-white focus:outline-none ${options.class}`;
 
@@ -213,7 +213,7 @@ const attachListeners = (el: HTMLElement, binding: DirectiveBinding<TooltipOptio
 export const vTooltip: ObjectDirective<HTMLElement, TooltipOptions | string> = {
 	mounted(el: HTMLElement, binding: DirectiveBinding<TooltipOptions | string>) {
 		if (!el.id) {
-			el.id = `el-${IdentityService.instance.uuid()}`;
+			el.id = `el-${IdentityService.instance.getComponentId()}`;
 		}
 
 		createTooltip(el, binding);

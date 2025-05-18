@@ -1,5 +1,6 @@
 <script setup>
-import { BoAccordion, BoAccordionContainer } from '@/components/bo-accordion';
+import BoAccordion from '@/components/bo-accordion/bo-accordion.vue';
+import BoAccordionContainer from '@/components/bo-accordion/bo-accordion-container.vue';
 </script>
 
 # Accordion Container

@@ -22,14 +22,13 @@ import {
 } from './bo-text';
 
 const props = withDefaults(defineProps<BoTextProps>(), {
-	id: () => IdentityService.instance.uuid('bo-text'),
+	id: () => IdentityService.instance.getComponentId('bo-text'),
 	size: () => BoFontSize.base,
 	color: () => BoTextColor.current,
 	weight: () => BoFontWeight.regular,
 	fontFamily: () => BoFontFamily.sans,
 	textAlign: () => BoTextAlign.justify,
 	whiteSpace: () => BoTextWhiteSpace.normal,
-	selectable: false,
 });
 
 const {
@@ -50,7 +49,7 @@ const {
 const defaultClasses = /*tw*/ 'bo-text block max-w-fit';
 
 const textCursor = computed<string>(() => {
-	if (cursor.value) {
+	if (cursor?.value) {
 		return cursor.value;
 	}
 
@@ -181,7 +180,6 @@ const textAlignment = computed<string>(() => {
 
 const classes = computed<string>(() => {
 	return TailwindService.instance.merge(
-		cursor.value,
 		cssClass.value,
 		defaultClasses,
 		fontSize.value,

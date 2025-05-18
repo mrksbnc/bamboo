@@ -2,8 +2,8 @@ import { BoIcon, Icon } from '@/components/bo-icon';
 import { BoSize } from '@/shared/bo-size';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
-import BoBadge from './BoBadge.vue';
 import { BoBadgeShape, BoBadgeType, BoBadgeVariant } from './bo-badge';
+import BoBadge from './bo-badge.vue';
 
 describe('BoBadge.vue', () => {
 	it('renders with default variant', () => {

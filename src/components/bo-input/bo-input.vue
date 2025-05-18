@@ -16,40 +16,23 @@
 				<span
 					v-if="required"
 					class="pl-0.5 text-red-500"
-					>*</span
 				>
+					*
+				</span>
 			</div>
 			<slot
 				name="topRightContent"
 				:data-testid="`bo-input-top-right-${inputId}`"
 			></slot>
 		</div>
-
-		<!-- Input container -->
 		<div
-			class="relative flex w-full items-center justify-start rounded-md border bg-white shadow-[inset_-2px_-2px_6px_0px_rgba(245,245,245,0.25),0px_1px_2px_0px_rgba(16,16,16,0.05)] transition-all duration-200 dark:border-gray-700 dark:bg-gray-800 dark:shadow-[inset_-2px_-2px_6px_0px_rgba(0,0,0,0.25),0px_1px_2px_0px_rgba(0,0,0,0.05)]"
-			:class="[
-				sizeClasses,
-				state === BoInputState.error
-					? 'border-red-500'
-					: state === BoInputState.success
-						? 'border-green-500 ring-1 ring-green-500'
-						: required && !modelValue
-							? 'border-red-100 dark:border-red-900'
-							: 'border-neutral-300 dark:border-gray-700',
-				disabled
-					? 'cursor-not-allowed border-neutral-200 bg-neutral-100 dark:border-gray-800 dark:bg-gray-900'
-					: 'bg-white dark:bg-gray-800',
-				pills && pills.length > 0 ? 'h-auto' : '',
-				variantClasses[variant][state],
-			]"
+			:class="inputWrapperClasses"
 			:data-testid="`bo-input-container-${inputId}`"
 		>
-			<!-- Prefix icon -->
 			<div
 				v-if="prefixIcon && prefixIcon !== Icon.none"
 				class="absolute text-neutral-500 dark:text-gray-400"
-				:class="iconPositionClasses"
+				:class="prefixIconPositionClasses"
 				@click="onPrefixIconClick"
 				:data-testid="`bo-input-prefix-icon-${inputId}`"
 			>
@@ -60,43 +43,32 @@
 					aria-hidden="true"
 				/>
 			</div>
-
-			<!-- Input field and pills container -->
 			<div
 				ref="inputContainerRef"
-				class="flex max-h-[124px] w-full gap-1.5 overflow-y-auto"
-				:class="[
-					inputContainerPadding,
-					horizontalScroll ? 'scrollbar-none flex-nowrap overflow-x-auto' : 'flex-wrap',
-					prefixIcon && prefixIcon !== Icon.none ? 'ml-8' : '',
-					suffixIcon && suffixIcon !== Icon.none ? 'mr-8' : '',
-				]"
+				:class="inputContainerClasses"
 				:data-testid="`bo-input-content-${inputId}`"
 			>
-				<!-- Pills section -->
-				<BoInputPill
+				<bo-input-pill
 					v-for="(pill, index) in pills"
 					:key="index"
-					:pill="pill"
+					:id="pill.id"
+					:icon="pill.icon"
+					:value="pill.value"
 					@remove="onPillRemove"
 					:data-testid="`bo-input-pill-${inputId}-${pill.id}`"
 				/>
 
-				<!-- Input field -->
 				<input
+					v-model="modelValue"
 					:id="inputId"
 					:name="name"
 					:type="inputType"
-					:value="modelValue"
 					:disabled="disabled"
 					:readonly="readonly"
 					:required="required"
 					:autofocus="autofocus"
 					:placeholder="placeholder"
-					:class="[
-						'w-full flex-1 border-none bg-transparent text-sm font-normal outline-none dark:text-white dark:placeholder-gray-400',
-						pills && pills.length > 0 ? 'min-w-[100px]' : '',
-					]"
+					:class="inputClasses"
 					:aria-label="ariaLabel"
 					:aria-describedby="helperTextId"
 					:aria-invalid="state === BoInputState.error"
@@ -109,12 +81,10 @@
 					:data-testid="`bo-input-field-${inputId}`"
 				/>
 			</div>
-
-			<!-- Suffix/action icons -->
 			<div
 				v-if="(suffixIcon && suffixIcon !== Icon.none) || showPasswordToggle"
 				class="absolute right-3 text-neutral-500 dark:text-gray-400"
-				:class="iconPositionClasses"
+				:class="suffixIconPositionClasses"
 				@click="onSuffixIconClick"
 				:data-testid="`bo-input-suffix-icon-${inputId}`"
 			>
@@ -142,8 +112,6 @@
 				/>
 			</div>
 		</div>
-
-		<!-- Helper text/error container -->
 		<div
 			v-if="showHelperContainer"
 			class="mt-1 flex flex-col gap-1"
@@ -180,71 +148,59 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo-icon';
-import { BoFontSize, BoText } from '@/components/bo-text';
-import { IdentityService } from '@/services';
-import { BoColor, BoSize } from '@/shared';
+import { Icon } from '@/components/bo-icon/bo-icon.js';
+import BoIcon from '@/components/bo-icon/bo-icon.vue';
+import BoText from '@/components/bo-text/BoText.vue';
+import { BoFontSize } from '@/components/bo-text/bo-text.js';
+import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { BoColor } from '@/shared/bo-color.js';
+import { BoSize } from '@/shared/bo-size.js';
 import { useDebounceFn, useMutationObserver, useResizeObserver } from '@vueuse/core';
-import { computed, onMounted, ref, toRefs, useSlots } from 'vue';
+import { computed, onMounted, ref, useSlots } from 'vue';
+import BoInputPill from './bo-input-pill.vue';
 import {
 	BoInputSize,
 	BoInputState,
 	BoInputType,
 	BoInputVariant,
 	type BoInputProps,
-} from './bo-input';
-import BoInputPill from './BoInputPill.vue';
+} from './bo-input.js';
 const slots = useSlots();
 
-// Extend the existing BoInputProps to support pills
 const props = withDefaults(defineProps<BoInputProps>(), {
-	id: () => IdentityService.instance.uuid('bo-input'),
-	variant: () => BoInputVariant.default,
-	state: () => BoInputState.default,
-	size: () => BoInputSize.default,
-	type: () => BoInputType.text,
+	id: () => IdentityService.instance.getComponentId('bo-input'),
+	name: () => `bo-input-${Date.now()}`,
 	prefixIcon: () => Icon.none,
 	suffixIcon: () => Icon.none,
-	revealPassword: false,
-	pills: () => [],
-	horizontalScroll: false,
+	type: () => BoInputType.text,
+	size: () => BoInputSize.default,
+	state: () => BoInputState.default,
+	variant: () => BoInputVariant.default,
 });
 
 const emit = defineEmits<{
-	'update:modelValue': [value: string];
-	focus: [];
-	blur: [event: Event];
-	change: [value: string];
-	prefixIconClick: [];
-	suffixIconClick: [];
-	pillRemove: [id: string];
+	(e: 'update:modelValue', value: string): void;
+	(e: 'focus'): void;
+	(e: 'blur', event: Event): void;
+	(e: 'change', value: string): void;
+	(e: 'prefixIconClick'): void;
+	(e: 'suffixIconClick'): void;
+	(e: 'pillRemove', id: string): void;
 }>();
 
-const {
-	modelValue,
-	variant,
-	state,
-	size,
-	label,
-	disabled,
-	required,
-	type,
-	description,
-	error,
-	prefixIcon,
-	suffixIcon,
-	id,
-	pills,
-	horizontalScroll,
-	revealPassword,
-} = toRefs(props);
+const modelValue = defineModel<string>({
+	required: true,
+	default: '',
+});
+
+const passwordVisible = ref(false);
 
 const inputRef = ref<HTMLInputElement | null>(null);
 const inputContainerRef = ref<HTMLDivElement | null>(null);
-const passwordVisible = ref(false);
 
 const inputId = computed<string>(() => {
-	return id.value;
+	return props.id;
 });
 
 const helperTextId = computed<string>(() => {
@@ -252,31 +208,31 @@ const helperTextId = computed<string>(() => {
 });
 
 const showTopContainer = computed<boolean>(() => {
-	return !!label.value || !!required.value || !!slots.topRightContent;
+	return !!props.label || !!props.required || !!slots.topRightContent;
 });
 
 const showHelperContainer = computed<boolean>(() => {
-	return !!error.value || !!description.value;
+	return !!props.error || !!props.description;
 });
 
 const showPasswordToggle = computed<boolean>(() => {
 	return (
-		type.value === BoInputType.password &&
-		!disabled.value &&
+		props.type === BoInputType.password &&
+		!props.disabled &&
 		!!modelValue.value &&
-		revealPassword.value
+		props.revealPassword
 	);
 });
 
 const inputType = computed<string>(() => {
-	if (type.value === BoInputType.password && passwordVisible.value) {
+	if (props.type === BoInputType.password && passwordVisible.value) {
 		return BoInputType.text;
 	}
-	return type.value;
+	return props.type;
 });
 
 const iconSize = computed<BoSize>(() => {
-	switch (size.value) {
+	switch (props.size) {
 		case BoInputSize.small:
 			return BoSize.small;
 		case BoInputSize.default:
@@ -288,25 +244,22 @@ const iconSize = computed<BoSize>(() => {
 	}
 });
 
-// Update height classes to match the button sizes
 const heightClasses: Record<string, string> = {
 	[BoInputSize.small]: 'h-9', // Small
 	[BoInputSize.default]: 'h-10', // Medium
 	[BoInputSize.large]: 'h-11', // Large
 };
 
-// Update the sizeClasses computed property
 const sizeClasses = computed<string>(() => {
-	const currentSize = size.value;
+	const currentSize = props.size;
 	const height = heightClasses[currentSize];
-	const minHeight = pills.value && pills.value.length > 0 ? `min-h-${height.split('-')[1]}` : '';
+	const minHeight = props.pills && props.pills.length > 0 ? `min-h-${height.split('-')[1]}` : '';
 
-	return `${pills.value && pills.value.length > 0 ? minHeight : height}`;
+	return `${props.pills && props.pills.length > 0 ? minHeight : height}`;
 });
 
-// Update the icon positioning for each size
-const iconPositionClasses = computed<string>(() => {
-	switch (size.value) {
+const prefixIconPositionClasses = computed<string>(() => {
+	switch (props.size) {
 		case BoInputSize.small:
 			return 'left-3 top-1/2 transform -translate-y-1/2'; // Center vertically
 		case BoInputSize.large:
@@ -317,103 +270,125 @@ const iconPositionClasses = computed<string>(() => {
 	}
 });
 
-// Input container padding needs to be adjusted
+const suffixIconPositionClasses = computed<string>(() => {
+	switch (props.size) {
+		case BoInputSize.small:
+			return 'right-3 top-1/2 transform -translate-y-1/2'; // Center vertically
+		case BoInputSize.large:
+			return 'right-3 top-1/2 transform -translate-y-1/2'; // Center vertically
+		case BoInputSize.default:
+		default:
+			return 'right-3 top-1/2 transform -translate-y-1/2'; // Center vertically
+	}
+});
+
 const inputContainerPadding = computed<string>(() => {
-	switch (size.value) {
+	switch (props.size) {
 		case BoInputSize.small:
-			return 'py-1.5 px-3'; // Match button small
+			return 'py-1.5 px-3';
 		case BoInputSize.large:
-			return 'py-2.5 px-5'; // Match button large
+			return 'py-2.5 px-5';
 		case BoInputSize.default:
 		default:
-			return 'py-2 px-4'; // Match button medium
+			return 'py-2 px-4';
 	}
 });
 
-// Replace the existing variant classes if needed
-const variantClasses = computed(() => ({
-	[BoInputVariant.default]: {
-		[BoInputState.default]:
-			'bg-white dark:bg-gray-800 focus-within:border-blue-500 dark:focus-within:border-blue-400',
-		[BoInputState.error]: 'bg-white dark:bg-gray-800 focus-within:border-red-500',
-		[BoInputState.success]: 'bg-white dark:bg-gray-800 focus-within:border-green-600',
-	},
-	[BoInputVariant.filled]: {
-		[BoInputState.default]:
-			'bg-neutral-100 dark:bg-gray-700 focus-within:border-blue-500 dark:focus-within:border-blue-400',
-		[BoInputState.error]: 'bg-neutral-100 dark:bg-gray-700 focus-within:border-red-500',
-		[BoInputState.success]: 'bg-neutral-100 dark:bg-gray-700 focus-within:border-green-600',
-	},
-}));
+const inputWrapperClasses = computed<string>(() => {
+	const defaultClass =
+		/*tw*/ 'relative flex w-full items-center justify-start rounded-md border bg-white shadow-[inset_-2px_-2px_6px_0px_rgba(245,245,245,0.25),0px_1px_2px_0px_rgba(16,16,16,0.05)] transition-all duration-200 dark:border-gray-700 dark:bg-gray-800 dark:shadow-[inset_-2px_-2px_6px_0px_rgba(0,0,0,0.25),0px_1px_2px_0px_rgba(0,0,0,0.05)]';
+
+	let stateClasses = '';
+
+	if (props.state === BoInputState.error) {
+		stateClasses = /*tw*/ 'border-red-500 ring-red-500 dark:border-red-600 dark:ring-red-600';
+	} else if (props.state === BoInputState.success) {
+		stateClasses =
+			/*tw*/ 'border-green-500 ring-green-500 dark:border-green-600 dark:ring-green-600';
+	} else if (props.state === BoInputState.warning) {
+		stateClasses =
+			/*tw*/ 'border-yellow-500 ring-yellow-500 dark:border-yellow-600 dark:ring-yellow-600';
+	} else if (props.required && !modelValue.value) {
+		stateClasses = /*tw*/ 'border-red-500 ring-red-500 dark:border-red-600 dark:ring-red-600';
+	} else {
+		stateClasses = /*tw*/ 'border-neutral-300 dark:border-gray-700';
+	}
+
+	const disabledClasses = props.disabled
+		? /*tw*/ 'cursor-not-allowed border-neutral-200 bg-neutral-100 dark:border-gray-800 dark:bg-gray-900'
+		: /*tw*/ 'bg-white dark:bg-gray-800';
+
+	return TailwindService.instance.merge(
+		stateClasses,
+		defaultClass,
+		disabledClasses,
+		sizeClasses.value,
+	);
+});
+
+const inputClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		/*tw*/ 'w-full flex-1 border-none bg-transparent text-sm font-normal outline-none dark:text-white dark:placeholder-gray-400',
+		props.pills && props.pills.length > 0 ? 'min-w-[100px]' : '',
+	);
+});
 
 const helperTextClasses = computed<string>(() => {
 	return {
 		[BoInputState.default]: 'text-neutral-600 dark:text-gray-300',
 		[BoInputState.error]: 'text-red-500',
 		[BoInputState.success]: 'text-green-600',
-	}[state.value];
+		[BoInputState.warning]: 'text-yellow-500',
+	}[props.state];
 });
 
-function getIconTopClass(): string {
-	switch (size.value) {
-		case BoInputSize.small:
-			return 'top-1.5';
-		case BoInputSize.default:
-			return 'top-2.5';
-		case BoInputSize.large:
-			return 'top-3.5';
-		default:
-			return 'top-2.5';
-	}
-}
-
-function onInput(event: Event) {
+function onInput(event: Event): void {
 	if (event.target instanceof HTMLInputElement) {
 		emit('update:modelValue', event.target.value);
 	}
 }
 
-function onKeyDown(event: KeyboardEvent) {
+function onKeyDown(event: KeyboardEvent): void {
 	// If backspace is pressed, input is empty, and there are pills, remove the last pill
-	if (event.key === 'Backspace' && !modelValue.value && pills.value && pills.value.length > 0) {
-		const lastPill = pills.value[pills.value.length - 1];
-		emit('pillRemove', lastPill.id);
+	if (event.key === 'Backspace' && !modelValue.value && props.pills && props.pills.length > 0) {
+		const lastPill = props.pills[props.pills.length - 1];
+		emit('pillRemove', lastPill.id ?? '');
 	}
 }
 
-function onFocus() {
+function onFocus(): void {
 	emit('focus');
 }
 
-function onBlur(event: Event) {
+function onBlur(event: Event): void {
 	emit('blur', event);
 }
 
-function onChange(event: Event) {
+function onChange(event: Event): void {
 	if (event.target instanceof HTMLInputElement) {
 		emit('change', event.target.value);
 	}
 }
 
-function togglePasswordVisibility() {
+function togglePasswordVisibility(): void {
 	passwordVisible.value = !passwordVisible.value;
 }
 
-function onPrefixIconClick() {
+function onPrefixIconClick(): void {
 	emit('prefixIconClick');
 }
 
-function onSuffixIconClick() {
+function onSuffixIconClick(): void {
 	emit('suffixIconClick');
 }
 
-function onPillRemove(id: string) {
+function onPillRemove(id: string): void {
 	emit('pillRemove', id);
 }
 
 function scrollToEnd(): void {
 	if (inputContainerRef.value != null) {
-		if (horizontalScroll.value) {
+		if (props.horizontalScroll) {
 			inputContainerRef.value.scrollLeft = inputContainerRef.value.scrollWidth;
 		} else {
 			inputContainerRef.value.scrollTop = inputContainerRef.value.scrollHeight;
@@ -426,10 +401,6 @@ function focus(): void {
 }
 
 const debouncedScrollToEnd = useDebounceFn(scrollToEnd, 10);
-
-defineExpose({
-	focus,
-});
 
 useResizeObserver(inputContainerRef, () => {
 	debouncedScrollToEnd();
@@ -462,9 +433,13 @@ onMounted(() => {
 		},
 	);
 });
+
+defineExpose({
+	focus,
+});
 </script>
 
-<style>
+<style scoped>
 /* Hide browser-specific elements */
 input[type='search']::-webkit-search-decoration,
 input[type='search']::-webkit-search-cancel-button,

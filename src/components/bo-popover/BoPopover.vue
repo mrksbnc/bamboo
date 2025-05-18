@@ -72,7 +72,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, toRefs, watch } fr
 import { BoPopoverPlacement, BoPopoverTrigger, type BoPopoverProps } from './bo-popover';
 
 const props = withDefaults(defineProps<BoPopoverProps>(), {
-	id: () => IdentityService.instance.uuid('popover'),
+	id: () => IdentityService.instance.getComponentId('popover'),
 	modelValue: false,
 	placement: () => BoPopoverPlacement.bottom,
 	offset: 8,

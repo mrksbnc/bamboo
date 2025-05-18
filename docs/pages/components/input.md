@@ -1,7 +1,8 @@
 <script setup>
-import { BoInput, BoInputVariant, BoInputState, BoInputSize, BoInputType } from '@/components/bo-input';
-import { BoSize } from '@/shared';
-import { Icon } from '@/components/bo-icon';
+import BoInput from '@/components/bo-input/bo-input.vue';
+import {  BoInputVariant, BoInputState, BoInputSize, BoInputType } from '@/components/bo-input/bo-input';
+import { BoSize } from '@/shared/bo-size';
+import { Icon } from '@/components/bo-icon/bo-icon';
 </script>
 
 # Input

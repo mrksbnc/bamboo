@@ -3,8 +3,8 @@
 import { BoSize } from '@/shared/bo-size.js';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
-import BoAvatar from './BoAvatar.vue';
 import { BoAvatarShape, BoAvatarType, BoAvatarVariant } from './bo-avatar.js';
+import BoAvatar from './bo-avatar.vue';
 
 describe('BoAvatar.vue', () => {
 	it('renders with default props', () => {

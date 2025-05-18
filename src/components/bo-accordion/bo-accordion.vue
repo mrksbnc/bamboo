@@ -52,8 +52,8 @@
 </template>
 
 <script setup lang="ts">
-import BoIcon from '@/components/bo-icon/BoIcon.vue';
 import { Icon } from '@/components/bo-icon/bo-icon.js';
+import BoIcon from '@/components/bo-icon/bo-icon.vue';
 import { BoFontSize, BoFontWeight } from '@/components/bo-text';
 import BoText from '@/components/bo-text/BoText.vue';
 import { IdentityService } from '@/services/identity-service.js';
@@ -63,7 +63,7 @@ import { computed, inject, onMounted, ref, watch } from 'vue';
 import type { AccordionGroup, BoAccordionProps } from './bo-accordion.js';
 
 const props = withDefaults(defineProps<BoAccordionProps>(), {
-	id: () => IdentityService.instance.uuid(),
+	id: () => IdentityService.instance.getComponentId(),
 	open: false,
 	disabled: false,
 	prefixIcon: () => Icon.none,

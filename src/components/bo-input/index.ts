@@ -1,2 +1,2 @@
 export * from './bo-input';
-export { default as BoInput } from './BoInput.vue';
+export { default as BoInput } from './bo-input.vue';

@@ -5,7 +5,7 @@ import { HtmlButtonType } from '@/shared/html-button.js';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it, vi } from 'vitest';
 import { BoButtonShape, BoButtonVariant } from './bo-button.js';
-import BoButton from './BoButton.vue';
+import BoButton from './bo-button.vue';
 
 describe('BoButton.vue', () => {
 	it('renders with default props', () => {

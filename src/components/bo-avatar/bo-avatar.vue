@@ -61,7 +61,7 @@ import { computed, ref, toRefs, type StyleValue } from 'vue';
 import { BoAvatarShape, BoAvatarType, BoAvatarVariant, type BoAvatarProps } from './bo-avatar.js';
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
-	id: () => IdentityService.instance.uuid(),
+	id: () => IdentityService.instance.getComponentId(),
 	size: () => BoSize.default,
 	type: () => BoAvatarType.initials,
 	shape: () => BoAvatarShape.rounded,

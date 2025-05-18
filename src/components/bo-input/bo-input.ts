@@ -27,97 +27,49 @@ export enum BoInputType {
 	email = 'email',
 }
 
-/**
- * Pill Item interface for input component
- */
 export interface BoInputPill {
-	label: string;
 	value: string;
+	id?: string;
+	icon?: Icon;
 }
 
 export type BoInputProps = {
-	/**
-	 * The input value
-	 */
-	modelValue?: string;
-	/**
-	 * The placeholder text
-	 */
-	placeholder?: string;
-	/**
-	 * The input label
-	 */
-	label?: string;
-	/**
-	 * The input variant
-	 */
-	variant?: BoInputVariant;
-	/**
-	 * The input state
-	 */
-	state?: BoInputState;
-	/**
-	 * The input size
-	 */
-	size?: BoInputSize;
-	/**
-	 * Whether the input is disabled
-	 */
-	disabled?: boolean;
-	/**
-	 * Whether the input is required
-	 */
-	required?: boolean;
-	/**
-	 * Helper text to display below the input
-	 */
-	description?: string;
-	/**
-	 * Error message to display when in error state
-	 */
-	error?: string;
-	/**
-	 * Icon to display before the input text
-	 */
-	prefixIcon?: Icon;
-	/**
-	 * Icon to display after the input text
-	 */
-	suffixIcon?: Icon;
-	/**
-	 * Input type (text, email, password, etc.)
-	 */
-	type?: string;
-	/**
-	 * Unique ID for the input
-	 */
+	/** Unique id for the input*/
 	id?: string;
-	/**
-	 * Input name attribute
-	 */
+	/** Input name attribute */
 	name?: string;
-	/**
-	 * Whether the input is readonly
-	 */
+	/** The placeholder text */
+	placeholder?: string;
+	/** The label for the input */
+	label?: string;
+	/** Which state the input is in */
+	state?: BoInputState;
+	/** The size of the input */
+	size?: BoInputSize;
+	/** Whether the input is disabled */
+	disabled?: boolean;
+	/** Whether the input is required */
+	required?: boolean;
+	/** Helper text to display below the input */
+	description?: string;
+	/** Error message to display when in error state */
+	error?: string;
+	/** Icon to display before the input text */
+	prefixIcon?: Icon;
+	/** Icon to display after the input text */
+	suffixIcon?: Icon;
+	/** Input type (text, email, password, etc.) */
+	type?: string;
+	/** Whether the input is readonly*/
 	readonly?: boolean;
-	/**
-	 * ARIA label for accessibility
-	 */
+	/** ARIA label for accessibility */
 	ariaLabel?: string;
-	/**
-	 * Whether the input should autofocus
-	 */
+	/** Whether the input should autofocus */
 	autofocus?: boolean;
-	/**
-	 * Array of pill items to display in the input
-	 */
+	/** Array of pill items to display in the input */
 	pills?: BoInputPill[];
-	/**
-	 * Whether to enable horizontal scrolling for pills
-	 */
+	/** Whether to enable horizontal scrolling for pills*/
 	horizontalScroll?: boolean;
-	/**
-	 * Whether to show toggle button for password input
-	 */
+	/** Whether to show toggle button for password input*/
 	revealPassword?: boolean;
 };

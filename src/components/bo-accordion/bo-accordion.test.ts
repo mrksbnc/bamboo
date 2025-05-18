@@ -1,8 +1,8 @@
 import { Icon } from '@/components/bo-icon/bo-icon.js';
-import BoIcon from '@/components/bo-icon/BoIcon.vue';
+import BoIcon from '@/components/bo-icon/bo-icon.vue';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
-import BoAccordion from './BoAccordion.vue';
+import BoAccordion from './bo-accordion.vue';
 
 describe('BoAccordion.vue', () => {
 	it('renders with default props', () => {

@@ -47,7 +47,7 @@ import { computed, toRefs, useSlots } from 'vue';
 import { BoModalSize, type BoModalProps } from './bo-modal';
 
 const props = withDefaults(defineProps<BoModalProps>(), {
-	id: () => IdentityService.instance.uuid(),
+	id: () => IdentityService.instance.getComponentId(),
 	title: 'Modal',
 	size: BoModalSize.md,
 	closeOnBackdropClick: true,

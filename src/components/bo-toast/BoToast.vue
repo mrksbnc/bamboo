@@ -41,7 +41,7 @@ import { onMounted, onUnmounted } from 'vue';
 import { BoToastProps, BoToastVariant } from './bo-toast';
 
 const props = withDefaults(defineProps<BoToastProps>(), {
-	id: IdentityService.instance.uuid(),
+	id: IdentityService.instance.getComponentId(),
 	type: 'info',
 	duration: 3000,
 	closable: true,
