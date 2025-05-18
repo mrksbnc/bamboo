@@ -1,264 +1,273 @@
 # Tree
 
-The Tree component provides a hierarchical view of data, allowing users to navigate through a tree structure. It supports features like node expansion/collapse, selection, and checkboxes.
+A customizable tree component for displaying hierarchical data structures with expandable/collapsible nodes.
 
-## Features
-
-- Hierarchical data display
-- Node expansion and collapse
-- Single and multiple selection
-- Checkbox support
-- Custom icons
-- Disabled state
-- Different sizes
-- Compact variant
-- Keyboard navigation
-
-## Usage
-
-### Basic Usage
-
-```vue
-<template>
-	<bo-tree :data="treeData" />
-</template>
-
-<script setup lang="ts">
-const treeData = [
-	{
-		id: '1',
-		label: 'Node 1',
-		children: [
-			{
-				id: '1.1',
-				label: 'Node 1.1',
-			},
-		],
-	},
-];
-</script>
+```js
+import { BoTree } from '@mrksbnc/bamboo';
 ```
 
-### With Checkboxes
+## Basic Usage
 
 ```vue
 <template>
 	<bo-tree
-		:data="treeData"
-		show-checkboxes
-		multiple
-		v-model="selectedNodes"
+		:items="[
+			{
+				id: '1',
+				label: 'Root',
+				children: [
+					{
+						id: '1-1',
+						label: 'Child 1',
+					},
+					{
+						id: '1-2',
+						label: 'Child 2',
+						children: [
+							{
+								id: '1-2-1',
+								label: 'Grandchild 1',
+							},
+						],
+					},
+				],
+			},
+		]"
 	/>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-
-const treeData = [
-	{
-		id: '1',
-		label: 'Node 1',
-		children: [
-			{
-				id: '1.1',
-				label: 'Node 1.1',
-			},
-		],
-	},
-];
-
-const selectedNodes = ref<string[]>([]);
-</script>
-```
-
-### With Icons
-
-```vue
-<template>
-	<bo-tree
-		:data="treeData"
-		show-icons
-	/>
-</template>
-
-<script setup lang="ts">
-const treeData = [
-	{
-		id: '1',
-		label: 'Node 1',
-		icon: 'folder',
-		children: [
-			{
-				id: '1.1',
-				label: 'Node 1.1',
-				icon: 'file',
-			},
-		],
-	},
-];
+<script setup>
+import { BoTree } from '@mrksbnc/bamboo';
 </script>
 ```
 
 ## Props
 
-| Prop           | Type          | Default   | Description                          |
-| -------------- | ------------- | --------- | ------------------------------------ |
-| data           | TreeNode[]    | -         | The data for the tree                |
-| disabled       | boolean       | false     | Whether the tree is disabled         |
-| showCheckboxes | boolean       | false     | Whether to show checkboxes           |
-| showIcons      | boolean       | true      | Whether to show icons                |
-| size           | BoSize        | 'default' | The size of the tree                 |
-| multiple       | boolean       | false     | Whether to allow multiple selections |
-| modelValue     | string[]      | []        | The currently selected nodes         |
-| variant        | BoTreeVariant | 'default' | The variant of the tree              |
-| id             | string        | -         | Unique ID for the tree               |
-
-### TreeNode Type
-
-| Property | Type       | Description                    |
-| -------- | ---------- | ------------------------------ |
-| id       | string     | Unique identifier for the node |
-| label    | string     | Display text for the node      |
-| children | TreeNode[] | Child nodes                    |
-| expanded | boolean    | Whether the node is expanded   |
-| selected | boolean    | Whether the node is selected   |
-| disabled | boolean    | Whether the node is disabled   |
-| icon     | string     | Icon to display for the node   |
+| Name          | Type         | Default        | Description                       |
+| ------------- | ------------ | -------------- | --------------------------------- |
+| `items`       | `TreeItem[]` | `[]`           | Array of tree items to display    |
+| `expandedIds` | `string[]`   | `[]`           | Array of expanded node IDs        |
+| `selectedId`  | `string`     | `''`           | ID of the currently selected node |
+| `selectable`  | `boolean`    | `true`         | Whether nodes can be selected     |
+| `multiSelect` | `boolean`    | `false`        | Allow multiple node selection     |
+| `size`        | `BoSize`     | `'default'`    | Size of tree nodes                |
+| `disabled`    | `boolean`    | `false`        | Disable the entire tree           |
+| `loading`     | `boolean`    | `false`        | Show loading state                |
+| `icons`       | `TreeIcons`  | `defaultIcons` | Custom icons for nodes            |
 
 ## Events
 
-| Event             | Parameters | Description                               |
-| ----------------- | ---------- | ----------------------------------------- |
-| update:modelValue | string[]   | Emitted when selected nodes change        |
-| node-toggle       | TreeNode   | Emitted when a node is expanded/collapsed |
-| node-select       | TreeNode   | Emitted when a node is selected           |
+| Name                 | Payload              | Description                        |
+| -------------------- | -------------------- | ---------------------------------- |
+| `expand`             | `string`             | Emitted when a node is expanded    |
+| `collapse`           | `string`             | Emitted when a node is collapsed   |
+| `select`             | `string \| string[]` | Emitted when a node is selected    |
+| `update:expandedIds` | `string[]`           | Emitted when expanded nodes change |
+| `update:selectedId`  | `string \| string[]` | Emitted when selection changes     |
 
-## Variants
+## Types
 
-### BoTreeVariant
+```ts
+interface TreeItem {
+	/** Unique identifier for the node */
+	id: string;
+	/** Display label for the node */
+	label: string;
+	/** Child nodes */
+	children?: TreeItem[];
+	/** Whether the node is disabled */
+	disabled?: boolean;
+	/** Custom icon component/name */
+	icon?: string | Component;
+	/** Additional data attached to the node */
+	data?: any;
+}
 
-| Variant | Description                       |
-| ------- | --------------------------------- |
-| default | Default tree with normal spacing  |
-| compact | Compact tree with minimal spacing |
+interface TreeIcons {
+	/** Icon for collapsed state */
+	collapsed?: string | Component;
+	/** Icon for expanded state */
+	expanded?: string | Component;
+	/** Default folder icon */
+	folder?: string | Component;
+	/** Default file icon */
+	file?: string | Component;
+	/** Loading indicator icon */
+	loading?: string | Component;
+}
+```
 
 ## Examples
 
-### File Explorer
+### Custom Icons
 
 ```vue
 <template>
 	<bo-tree
-		:data="fileSystem"
-		show-icons
-		@node-select="handleFileSelect"
+		:items="items"
+		:icons="{
+			collapsed: 'chevron-right',
+			expanded: 'chevron-down',
+			folder: 'folder',
+			file: 'document',
+			loading: 'spinner',
+		}"
+	/>
+</template>
+```
+
+### Async Loading
+
+```vue
+<template>
+	<bo-tree
+		:items="items"
+		:loading="loading"
+		@expand="loadChildren"
 	/>
 </template>
 
-<script setup lang="ts">
-const fileSystem = [
+<script setup>
+const loading = ref(false);
+const items = ref([
 	{
-		id: 'root',
-		label: 'Root',
-		icon: 'folder',
-		children: [
-			{
-				id: 'documents',
-				label: 'Documents',
-				icon: 'folder',
-				children: [
-					{
-						id: 'report',
-						label: 'Report.pdf',
-						icon: 'file-pdf',
-					},
-				],
-			},
-		],
+		id: '1',
+		label: 'Async Node',
+		children: [], // Will be loaded on expand
 	},
-];
+]);
 
-const handleFileSelect = (node: TreeNode) => {
-	console.log('Selected file:', node.label);
+const loadChildren = async (nodeId) => {
+	loading.value = true;
+	// Simulate API call
+	await new Promise((resolve) => setTimeout(resolve, 1000));
+	// Add children to the expanded node
+	const node = findNodeById(items.value, nodeId);
+	if (node) {
+		node.children = [
+			{ id: `${nodeId}-1`, label: 'Loaded Child 1' },
+			{ id: `${nodeId}-2`, label: 'Loaded Child 2' },
+		];
+	}
+	loading.value = false;
 };
 </script>
 ```
 
-### Multi-select Tree
+### Multi-Select
 
 ```vue
 <template>
 	<bo-tree
-		:data="categories"
-		show-checkboxes
-		multiple
-		v-model="selectedCategories"
+		:items="items"
+		multi-select
+		v-model:selectedId="selectedIds"
 	/>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-
-const categories = [
+<script setup>
+const selectedIds = ref([]);
+const items = ref([
 	{
-		id: 'electronics',
-		label: 'Electronics',
+		id: '1',
+		label: 'Multi-select Root',
 		children: [
-			{
-				id: 'phones',
-				label: 'Phones',
-			},
-			{
-				id: 'laptops',
-				label: 'Laptops',
-			},
-		],
-	},
-];
-
-const selectedCategories = ref<string[]>([]);
+			{ id: '1-1', label: 'Option 1' },
+			{ id: '1-2', label: 'Option 2' },
+			{ id: '1-3', label: 'Option 3' }
+		}
+	}
+]);
 </script>
 ```
 
-## Best Practices
+### Disabled Nodes
 
-1. Use meaningful IDs for nodes
-2. Keep the tree depth reasonable (3-4 levels max)
-3. Use icons to improve visual hierarchy
-4. Consider using checkboxes for multi-select scenarios
-5. Use the compact variant for dense data
-6. Handle disabled state appropriately
-7. Provide keyboard navigation support
-8. Consider lazy loading for large trees
+```vue
+<template>
+	<bo-tree
+		:items="[
+			{
+				id: '1',
+				label: 'Root',
+				children: [
+					{
+						id: '1-1',
+						label: 'Enabled Node',
+					},
+					{
+						id: '1-2',
+						label: 'Disabled Node',
+						disabled: true,
+					},
+				],
+			},
+		]"
+	/>
+</template>
+```
+
+### Different Sizes
+
+```vue
+<template>
+	<div class="space-y-4">
+		<bo-tree
+			:items="items"
+			size="small"
+		/>
+		<bo-tree
+			:items="items"
+			size="default"
+		/>
+		<bo-tree
+			:items="items"
+			size="large"
+		/>
+	</div>
+</template>
+```
+
+### Custom Node Content
+
+```vue
+<template>
+	<bo-tree :items="items">
+		<template #node="{ item }">
+			<div class="flex items-center gap-2">
+				<span>{{ item.label }}</span>
+				<bo-badge v-if="item.count">{{ item.count }}</bo-badge>
+			</div>
+		</template>
+	</bo-tree>
+</template>
+
+<script setup>
+const items = ref([
+	{
+		id: '1',
+		label: 'Custom Node',
+		count: 5,
+		children: [{ id: '1-1', label: 'Child', count: 2 }],
+	},
+]);
+</script>
+```
+
+## Slots
+
+| Name          | Props                   | Description                 |
+| ------------- | ----------------------- | --------------------------- |
+| `node`        | `{ item: TreeItem }`    | Custom node content         |
+| `icon`        | `{ item: TreeItem }`    | Custom icon for a node      |
+| `expand-icon` | `{ expanded: boolean }` | Custom expand/collapse icon |
+| `loading`     | none                    | Custom loading indicator    |
 
 ## Accessibility
 
-The tree component is built with accessibility in mind:
+The tree component implements the WAI-ARIA tree view pattern:
 
-- Uses semantic HTML elements
-- Supports keyboard navigation
-- Provides ARIA attributes
-- Maintains proper focus management
-- Works with screen readers
-- Supports high contrast mode
-
-## Keyboard Navigation
-
-- `Arrow Up`: Move to previous node
-- `Arrow Down`: Move to next node
-- `Arrow Right`: Expand node
-- `Arrow Left`: Collapse node
-- `Enter`: Select node
-- `Space`: Toggle checkbox (if enabled)
-- `Home`: Move to first node
-- `End`: Move to last node
-
-## Browser Support
-
-The tree component works in all modern browsers:
-
-- Chrome
-- Firefox
-- Safari
-- Edge
-- Opera
+- Uses appropriate ARIA roles (`tree`, `treeitem`, `group`)
+- Supports keyboard navigation (arrows, Enter, Space)
+- Announces expanded/collapsed states
+- Provides focus management

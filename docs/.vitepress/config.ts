@@ -20,7 +20,6 @@ function buildSidebar() {
 				{ text: 'Button Group', link: '/pages/components/button-group' },
 				{ text: 'Card', link: '/pages/components/card' },
 				{ text: 'Checkbox', link: '/pages/components/checkbox' },
-				{ text: 'Datepicker', link: '/pages/components/datepicker' },
 				{ text: 'Divider', link: '/pages/components/divider' },
 				{ text: 'Dropdown', link: '/pages/components/dropdown' },
 				{ text: 'Icon', link: '/pages/components/icon' },
@@ -37,8 +36,6 @@ function buildSidebar() {
 				{ text: 'Textarea', link: '/pages/components/textarea' },
 				{ text: 'Timeline', link: '/pages/components/timeline' },
 				{ text: 'Toast', link: '/pages/components/toast' },
-				{ text: 'Calendar', link: '/pages/components/calendar' },
-				{ text: 'Datepicker', link: '/pages/components/datepicker' },
 			],
 		},
 		{
