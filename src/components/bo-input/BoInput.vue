@@ -198,7 +198,7 @@ const slots = useSlots();
 
 // Extend the existing BoInputProps to support pills
 const props = withDefaults(defineProps<BoInputProps>(), {
-	id: () => IdentityService.instance.generateId('bo-input'),
+	id: () => IdentityService.instance.uuid('bo-input'),
 	variant: () => BoInputVariant.default,
 	state: () => BoInputState.default,
 	size: () => BoInputSize.default,

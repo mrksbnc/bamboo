@@ -1,4 +1,5 @@
-import { BoIcon, Icon } from '@/components/bo-icon';
+import { Icon } from '@/components/bo-icon/bo-icon.js';
+import BoIcon from '@/components/bo-icon/BoIcon.vue';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import BoAccordion from './BoAccordion.vue';

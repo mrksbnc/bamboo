@@ -13,7 +13,7 @@
 			<img
 				alt="avatar"
 				ref="fallbackImage"
-				:src="defaultAvatarSrc"
+				:src="DefaultAvatarSvg"
 				class="'bo-avatar__image object-cover"
 				:data-testid="`bo-avatar__image-${id}`"
 				@error="handleImageError"
@@ -50,14 +50,18 @@
 </template>
 
 <script setup lang="ts">
-import { BoFontSize, BoFontWeight, BoText, BoTextColor } from '@/components/bo-text';
-import { IdentityService, StringService, TailwindService } from '@/services';
-import { BoSize } from '@/shared';
+import DefaultAvatarSvg from '@/assets/img/avatar.png?url';
+import BoText from '@/components/bo-text/BoText.vue';
+import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/bo-text/bo-text.js';
+import { IdentityService } from '@/services/identity-service.js';
+import { StringService } from '@/services/string-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { BoSize } from '@/shared/bo-size.js';
 import { computed, ref, toRefs, type StyleValue } from 'vue';
-import { BoAvatarShape, BoAvatarType, BoAvatarVariant, type BoAvatarProps } from './bo-avatar';
+import { BoAvatarShape, BoAvatarType, BoAvatarVariant, type BoAvatarProps } from './bo-avatar.js';
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
-	id: () => IdentityService.instance.generateId(),
+	id: () => IdentityService.instance.uuid(),
 	size: () => BoSize.default,
 	type: () => BoAvatarType.initials,
 	shape: () => BoAvatarShape.rounded,
@@ -65,8 +69,6 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 });
 
 const { clickable, data, type, shape, size, variant, color } = toRefs(props);
-
-const defaultAvatarSrc = new URL('@/assets/img/avatar.png', import.meta.url).href;
 
 const imgError = ref<boolean>(false);
 
@@ -246,7 +248,7 @@ function handleImageError(e: Event) {
 	imgError.value = true;
 
 	if (imageElement.value) {
-		imageElement.value.src = defaultAvatarSrc;
+		imageElement.value.src = DefaultAvatarSvg;
 	}
 
 	console.error('Error loading image', e);

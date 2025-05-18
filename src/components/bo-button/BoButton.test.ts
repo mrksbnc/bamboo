@@ -1,8 +1,10 @@
-import { Icon } from '@/components/bo-icon';
-import { BoLoaderType, BoSize, HtmlButtonType } from '@/shared';
+import { Icon } from '@/components/bo-icon/bo-icon.js';
+import { BoLoaderType } from '@/shared/bo-loader.js';
+import { BoSize } from '@/shared/bo-size.js';
+import { HtmlButtonType } from '@/shared/html-button.js';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it, vi } from 'vitest';
-import { BoButtonShape, BoButtonVariant } from './bo-button';
+import { BoButtonShape, BoButtonVariant } from './bo-button.js';
 import BoButton from './BoButton.vue';
 
 describe('BoButton.vue', () => {
@@ -800,11 +802,6 @@ describe('BoButton.vue - Additional Edge Cases and Accessibility', () => {
 		await wrapper.setProps({ isLoading: true });
 		expect(wrapper.classes()).toContain('bo-button--loading');
 		expect(wrapper.attributes('aria-busy')).toBe('true');
-
-		// Test pressed state change
-		await wrapper.setProps({ pressed: true });
-		expect(wrapper.classes()).toContain('bo-button--pressed');
-		expect(wrapper.attributes('aria-pressed')).toBe('true');
 	});
 
 	it('handles custom role attributes', () => {

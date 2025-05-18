@@ -123,7 +123,7 @@ import { BoCheckboxVariant, type BoCheckboxProps } from './bo-checkbox';
 const emit = defineEmits(['update:modelValue', 'change']);
 
 const props = withDefaults(defineProps<BoCheckboxProps>(), {
-	id: () => IdentityService.instance.generateId('bo-checkbox'),
+	id: () => IdentityService.instance.uuid('bo-checkbox'),
 	size: () => BoSize.default,
 	variant: () => BoCheckboxVariant.primary,
 	modelValue: () => false,

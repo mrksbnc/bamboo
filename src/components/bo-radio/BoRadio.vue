@@ -1,199 +1,129 @@
 <template>
-	<div
-		:class="[
-			'bo-radio',
-
-			{
-				'cursor-pointer': !disabled,
-				'cursor-not-allowed opacity-60': disabled,
-			},
-		]"
-		:data-testid="`bo-radio-${id}`"
-	>
+	<div class="flex items-center">
 		<input
-			:id="id"
-			:name="name"
 			type="radio"
+			:id="id || name"
+			:name="name"
 			:value="value"
-			:checked="modelValue === value"
+			:checked="isChecked"
 			:disabled="disabled"
-			:required="required"
+			@change="handleChange"
 			:class="[
-				'bo-radio__input',
-				{
-					'cursor-pointer': !disabled,
-					'cursor-not-allowed': disabled,
-				},
+				variantClasses,
+				sizeClasses,
+				disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
+				error ? 'border-red-500' : '',
 			]"
-			:aria-label="ariaLabel"
-			:aria-describedby="helperTextId"
-			:aria-invalid="state === BoRadioState.error"
-			:data-testid="`bo-radio-input-${id}`"
-			@change="onChange"
 		/>
-		<label
-			:for="id"
-			class="bo-radio__label"
+		<bo-text
+			v-if="label"
+			:for="id ?? name"
+			:size="labelSizeClasses"
+			:value="label"
 			:class="[
-				{
-					'cursor-pointer': !disabled,
-					'cursor-not-allowed': disabled,
-				},
+				'ml-2',
+				disabled ? 'cursor-not-allowed text-gray-400' : 'cursor-pointer',
+				error ? 'text-red-500' : 'text-gray-700',
 			]"
-			:data-testid="`bo-radio-label-${id}`"
-		>
-			<bo-text
-				:value="label"
-				:size="BoFontSize.sm"
-				:weight="BoFontWeight.medium"
-				:data-testid="`bo-radio-text-${id}`"
-			/>
-		</label>
-
-		<!-- Helper text/error container -->
-		<div
-			v-if="showHelperContainer"
-			class="mt-1 flex flex-col gap-1"
-			:data-testid="`bo-radio-helper-${id}`"
-		>
-			<div
-				v-if="error"
-				class="flex items-center gap-1"
-				:data-testid="`bo-radio-error-${id}`"
-			>
-				<bo-icon
-					:size="BoSize.small"
-					:icon="Icon.alert_circle"
-					:color="BoColor.red_600"
-				/>
-				<bo-text
-					:id="helperTextId"
-					:size="BoFontSize.sm"
-					:value="error"
-					:data-testid="`bo-radio-error-text-${id}`"
-				/>
-			</div>
-			<bo-text
-				v-if="description && !error"
-				:id="helperTextId"
-				:value="description"
-				:size="BoFontSize.sm"
-				:data-testid="`bo-radio-description-${id}`"
-			/>
-		</div>
+		/>
+	</div>
+	<div
+		v-if="error"
+		class="mt-1 text-sm text-red-500"
+	>
+		{{ error }}
 	</div>
 </template>
 
 <script setup lang="ts">
-import { BoFontSize, BoText } from '@/components/bo-text';
-import { IdentityService, StringService, TailwindService } from '@/services';
-import { BoSize } from '@/shared';
-import { computed, toRefs } from 'vue';
-import { BoRadioVariant, type BoRadioProps } from './bo-radio';
-
-const emit = defineEmits(['update:modelValue', 'change']);
+import BoText from '@/components/bo-text/BoText.vue';
+import { BoFontSize } from '@/components/bo-text/bo-text.js';
+import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { BoSize } from '@/shared/bo-size.js';
+import { computed } from 'vue';
+import { type BoRadioProps, BoRadioVariant } from './bo-radio';
 
 const props = withDefaults(defineProps<BoRadioProps>(), {
-	id: () => IdentityService.instance.generateId('bo-radio'),
-	size: () => BoSize.default,
-	variant: () => BoRadioVariant.primary,
+	id: () => IdentityService.instance.uuid('bo-radio'),
+	disabled: false,
+	size: BoSize.default,
+	variant: BoRadioVariant.primary,
 });
 
-const { id, name, value, modelValue, disabled, label, size, variant, customColor } = toRefs(props);
+const emit = defineEmits<{
+	(e: 'update:modelValue', value: string): void;
+}>();
 
-const radioSizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'size-3',
-	[BoSize.small]: /*tw*/ 'size-4',
-	[BoSize.default]: /*tw*/ 'size-5',
-	[BoSize.large]: /*tw*/ 'size-6',
-	[BoSize.extra_large]: /*tw*/ 'size-7',
+const isChecked = computed(() => props.modelValue === props.value);
+
+const variantClasses = computed(() => {
+	const baseClasses = 'form-radio transition-all duration-200 ease-in-out';
+
+	if (props.customColor) {
+		return `${baseClasses} text-[${props.customColor}]`;
+	}
+
+	const variants = {
+		[BoRadioVariant.primary]: /**tw*/ 'text-blue-600 checked:bg-blue-600',
+		[BoRadioVariant.success]: /**tw*/ 'text-green-600 checked:bg-green-600',
+		[BoRadioVariant.danger]: /**tw*/ 'text-red-600 checked:bg-red-600',
+		[BoRadioVariant.warning]: /**tw*/ 'text-yellow-600 checked:bg-yellow-600',
+		[BoRadioVariant.dark]: /**tw*/ 'text-gray-900 checked:bg-gray-900',
+	};
+
+	switch (props.variant) {
+		case BoRadioVariant.primary:
+			return TailwindService.instance.merge(baseClasses, variants.primary);
+		case BoRadioVariant.success:
+			return TailwindService.instance.merge(baseClasses, variants.success);
+		case BoRadioVariant.danger:
+			return TailwindService.instance.merge(baseClasses, variants.danger);
+		case BoRadioVariant.warning:
+			return TailwindService.instance.merge(baseClasses, variants.warning);
+		case BoRadioVariant.dark:
+			return TailwindService.instance.merge(baseClasses, variants.dark);
+		default:
+			return baseClasses;
+	}
+});
+
+const sizeClasses = computed<string>(() => {
+	switch (props.size) {
+		case BoSize.extra_small:
+			return 'h-3 w-3';
+		case BoSize.small:
+			return 'h-4 w-4';
+
+		case BoSize.large:
+			return 'h-6 w-6';
+		case BoSize.extra_large:
+			return 'h-7 w-7';
+		case BoSize.default:
+		default:
+			return 'h-5 w-5';
+	}
+});
+
+const labelSizeClasses = computed<BoFontSize>(() => {
+	switch (props.size) {
+		case BoSize.extra_small:
+			return BoFontSize.xs;
+		case BoSize.small:
+			return BoFontSize.sm;
+		case BoSize.large:
+			return BoFontSize.lg;
+		case BoSize.extra_large:
+			return BoFontSize.xl;
+		case BoSize.default:
+		default:
+			return BoFontSize.base;
+	}
+});
+
+const handleChange = () => {
+	if (!props.disabled) {
+		emit('update:modelValue', props.value);
+	}
 };
-
-const radioTextSizeMap = {
-	[BoSize.extra_small]: BoFontSize.xs,
-	[BoSize.small]: BoFontSize.sm,
-	[BoSize.default]: BoFontSize.base,
-	[BoSize.large]: BoFontSize.lg,
-	[BoSize.extra_large]: BoFontSize.xl,
-};
-
-const radioVariantClasses = {
-	[BoRadioVariant.primary]:
-		/*tw*/ 'peer-checked:border-blue-500 peer-checked:before:bg-blue-500 dark:border-gray-600 dark:peer-checked:border-blue-500 dark:peer-checked:before:bg-blue-500',
-	[BoRadioVariant.secondary]:
-		/*tw*/ 'peer-checked:border-gray-500 peer-checked:before:bg-gray-500 dark:border-gray-600 dark:peer-checked:border-gray-500 dark:peer-checked:before:bg-gray-500',
-	[BoRadioVariant.success]:
-		/*tw*/ 'peer-checked:border-green-500 peer-checked:before:bg-green-500 dark:border-gray-600 dark:peer-checked:border-green-500 dark:peer-checked:before:bg-green-500',
-	[BoRadioVariant.danger]:
-		/*tw*/ 'peer-checked:border-red-500 peer-checked:before:bg-red-500 dark:border-gray-600 dark:peer-checked:border-red-500 dark:peer-checked:before:bg-red-500',
-	[BoRadioVariant.warning]:
-		/*tw*/ 'peer-checked:border-amber-500 peer-checked:before:bg-amber-500 dark:border-gray-600 dark:peer-checked:border-amber-500 dark:peer-checked:before:bg-amber-500',
-	[BoRadioVariant.dark]:
-		/*tw*/ 'peer-checked:border-black peer-checked:before:bg-black dark:border-gray-600 dark:peer-checked:border-neutral-300 dark:peer-checked:before:bg-neutral-300',
-};
-
-const containerClasses = computed(() => {
-	return TailwindService.instance.merge(
-		'relative flex items-start',
-		disabled.value ? 'cursor-not-allowed opacity-60' : 'cursor-pointer',
-	);
-});
-
-const radioClasses = computed(() => {
-	return TailwindService.instance.merge(
-		'peer-checked:after:border-blue-500 border-gray-300 dark:border-gray-600 mr-2 flex items-center justify-center rounded-full border bg-white dark:bg-gray-800',
-		radioSizeClasses[size.value],
-		'relative after:absolute after:size-3/5 after:rounded-full after:opacity-0 after:content-[""] peer-checked:after:opacity-100',
-		!StringService.instance.isEmptyStr(customColor.value) ? '' : radioVariantClasses[variant.value],
-		'peer hidden',
-	);
-});
-
-const textSize = computed(() => {
-	return radioTextSizeMap[size.value] || BoFontSize.base;
-});
-
-function handleChange(event: Event) {
-	const target = event.target as HTMLInputElement;
-	emit('update:modelValue', target.value);
-	emit('change', target.value);
-}
 </script>
-
-<style scoped>
-.bo-radio__input {
-	@apply hidden;
-}
-
-.bo-radio__input:checked + .bo-radio__label .bo-radio__custom .bo-radio__dot {
-	@apply opacity-100;
-}
-
-.bo-radio__input:disabled + .bo-radio__label {
-	@apply cursor-not-allowed opacity-60;
-}
-
-.bo-radio__label {
-	@apply flex cursor-pointer items-center;
-}
-
-.bo-radio__custom {
-	@apply relative flex h-5 w-5 items-center justify-center rounded-full border border-gray-300 bg-white transition-colors dark:border-gray-600 dark:bg-gray-800;
-}
-
-.bo-radio__dot {
-	@apply absolute size-3/5 rounded-full opacity-0 transition-opacity;
-}
-
-.bo-radio__content {
-	@apply ml-2;
-}
-
-.bo-radio__input:checked + .bo-radio__label .bo-radio__custom {
-	@apply border-blue-500 dark:border-blue-500;
-}
-
-.bo-radio__input:checked + .bo-radio__label .bo-radio__dot {
-	@apply bg-blue-500 dark:bg-blue-500;
-}
-</style>

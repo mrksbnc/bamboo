@@ -1,4 +1,4 @@
-import type { BoSize } from '@/shared/bo-size';
+import type { BoSize } from '@/shared/bo-size.js';
 
 export enum Icon {
 	activity = 'activity',

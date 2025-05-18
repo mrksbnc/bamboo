@@ -4,8 +4,8 @@
 	"exclude": [],
 	"compilerOptions": {
 		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",
-		"module": "ESNext",
-		"moduleResolution": "Bundler",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
 		"lib": [],
 		"types": ["node", "jsdom"]
 	}

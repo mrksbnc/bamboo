@@ -1,5 +1,7 @@
-import type { Icon } from '@/components/bo-icon';
-import type { BoLoaderType, BoSize, HtmlButtonType } from '@/shared';
+import type { Icon } from '@/components/bo-icon/bo-icon.js';
+import { BoLoaderType } from '@/shared/bo-loader.js';
+import { BoSize } from '@/shared/bo-size.js';
+import type { HtmlButtonType } from '@/shared/html-button.js';
 
 export enum BoButtonVariant {
 	primary = 'primary',

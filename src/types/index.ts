@@ -23,4 +23,4 @@ export interface StyleConstruct {
  */
 export type Nullable<T> = T | null;
 
-export * from './component';
+export * from './component.js';

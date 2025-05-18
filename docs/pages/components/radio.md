@@ -45,17 +45,18 @@ const selectedOption = ref('option1');
 
 ## Props
 
-| Name          | Type             | Default     | Description                          |
-| ------------- | ---------------- | ----------- | ------------------------------------ |
-| `id`          | `string`         | `auto`      | Unique ID for the radio button       |
-| `name`        | `string`         | Required    | Name attribute for the radio group   |
-| `value`       | `string`         | Required    | Value attribute for the radio button |
-| `modelValue`  | `string`         | `undefined` | Current selected value in the group  |
-| `disabled`    | `boolean`        | `false`     | Whether the radio button is disabled |
-| `label`       | `string`         | `undefined` | Text label for the radio button      |
-| `size`        | `BoSize`         | `default`   | Size of the radio button             |
-| `variant`     | `BoRadioVariant` | `primary`   | Color variant of the radio button    |
-| `customColor` | `string`         | `undefined` | Custom color (HEX, RGB) for radio    |
+| Name          | Type             | Default     | Description                                             |
+| ------------- | ---------------- | ----------- | ------------------------------------------------------- |
+| `id`          | `string`         | `auto`      | Unique ID for the radio button                          |
+| `name`        | `string`         | Required    | Name attribute for the radio group                      |
+| `value`       | `string`         | Required    | Value attribute for the radio button                    |
+| `modelValue`  | `string`         | `undefined` | Current selected value in the group (v-model)           |
+| `disabled`    | `boolean`        | `false`     | Whether the radio button is disabled                    |
+| `label`       | `string`         | `undefined` | Text label for the radio button                         |
+| `size`        | `BoSize`         | `md`        | Size of the radio button (xs, sm, md, lg, xl)           |
+| `error`       | `string`         | `undefined` | Error message to display below the radio button         |
+| `variant`     | `BoRadioVariant` | `primary`   | Color variant of the radio button                       |
+| `customColor` | `string`         | `undefined` | Custom color (HEX, RGB) for radio button and focus ring |
 
 ## Events
 
@@ -188,6 +189,16 @@ export interface BoRadioProps {
 	model-value="disabled-selected"
 	label="Disabled Selected Radio"
 />
+```
+
+### Error State
+
+<div class="flex gap-4 my-4">
+  <bo-radio name="state-demo5" value="error" label="Radio with Error" error="This field is required" />
+</div>
+
+```vue
+<bo-radio name="state" value="error" label="Radio with Error" error="This field is required" />
 ```
 
 ## Custom Content

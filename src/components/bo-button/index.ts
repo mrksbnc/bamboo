@@ -1,2 +1,2 @@
-export * from './bo-button';
+export * from './bo-button.js';
 export { default as BoButton } from './BoButton.vue';

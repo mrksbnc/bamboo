@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import { TailwindService } from '@/services';
-import { BoSize } from '@/shared/bo-size';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { BoSize } from '@/shared/bo-size.js';
 import { computed, ref, toRefs, watch, type StyleValue } from 'vue';
-import { icons, type BoIconProps } from './bo-icon';
+import { icons, type BoIconProps } from './bo-icon.js';
 
 const props = withDefaults(defineProps<BoIconProps>(), {
 	size: () => BoSize.default,

@@ -52,15 +52,18 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/bo-icon';
-import { BoFontSize, BoFontWeight, BoText } from '@/components/bo-text';
-import { IdentityService, TailwindService } from '@/services';
-import { InjectKey } from '@/shared/injection-key';
+import BoIcon from '@/components/bo-icon/BoIcon.vue';
+import { Icon } from '@/components/bo-icon/bo-icon.js';
+import { BoFontSize, BoFontWeight } from '@/components/bo-text';
+import BoText from '@/components/bo-text/BoText.vue';
+import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { InjectKey } from '@/shared/injection-key.js';
 import { computed, inject, onMounted, ref, watch } from 'vue';
-import type { AccordionGroup, BoAccordionProps } from './bo-accordion';
+import type { AccordionGroup, BoAccordionProps } from './bo-accordion.js';
 
 const props = withDefaults(defineProps<BoAccordionProps>(), {
-	id: () => IdentityService.instance.generateId(),
+	id: () => IdentityService.instance.uuid(),
 	open: false,
 	disabled: false,
 	prefixIcon: () => Icon.none,

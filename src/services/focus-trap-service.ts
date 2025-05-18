@@ -1,4 +1,4 @@
-import { BrowserService } from '@/services/browser-service';
+import { BrowserService } from '@/services/browser-service.js';
 import { onBeforeUnmount, onMounted } from 'vue';
 
 export interface FocusTrap {

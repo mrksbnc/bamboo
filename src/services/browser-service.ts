@@ -1,9 +1,6 @@
 let instance: BrowserService | null = null;
 
 export interface BoBrowserService {
-	/**
-	 * Checks if the current environment is a browser environment
-	 */
 	isBrowserEnv(): boolean;
 }
 

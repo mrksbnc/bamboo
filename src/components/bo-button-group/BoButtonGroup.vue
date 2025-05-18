@@ -2,183 +2,107 @@
 	<div
 		:id="id"
 		:class="groupClasses"
-		class="bo-button-group"
 		role="group"
 		:aria-disabled="disabled"
 		:data-testid="`bo-button-group-${id}`"
 	>
-		<component
-			v-for="(buttonProp, index) in contentComponentProps"
-			:key="`${id}-${index}`"
-			:is="contentComponent"
-			v-bind="buttonProp"
-			:class="[
-				// Remove shadows from all buttons in group
-				'rounded-none shadow-none',
-				// Add negative margin to create connected appearance
-				index > 0
-					? orientation === BoButtonGroupOrientation.horizontal
-						? '-ml-[1px]'
-						: '-mt-[1px]'
-					: '',
-				// First item border radius
-				index === 0 && style === BoButtonGroupStyle.default
-					? orientation === BoButtonGroupOrientation.horizontal
-						? 'rounded-l-lg'
-						: 'rounded-t-lg'
-					: '',
-				index === 0 && style === BoButtonGroupStyle.pill
-					? orientation === BoButtonGroupOrientation.horizontal
-						? 'rounded-l-full'
-						: 'rounded-t-full'
-					: '',
-				// Last item border radius
-				contentComponentProps &&
-				index === contentComponentProps?.length - 1 &&
-				style === BoButtonGroupStyle.default
-					? orientation === BoButtonGroupOrientation.horizontal
-						? 'rounded-r-lg'
-						: 'rounded-b-lg'
-					: '',
-				contentComponentProps &&
-				index === contentComponentProps.length - 1 &&
-				style === BoButtonGroupStyle.pill
-					? orientation === BoButtonGroupOrientation.horizontal
-						? 'rounded-r-full'
-						: 'rounded-b-full'
-					: '',
-				// First and last item when vertical
-				orientation === BoButtonGroupOrientation.vertical && index === 0
-					? '!rounded-tr-lg rounded-bl-none'
-					: '',
-				orientation === BoButtonGroupOrientation.vertical &&
-				contentComponentProps &&
-				index === contentComponentProps.length - 1
-					? 'rounded-tr-none !rounded-bl-lg'
-					: '',
-			]"
-			:data-testid="`bo-button-group-item-${id}-${index}`"
-		/>
+		<div :class="listClasses">
+			<bo-button-group-item
+				v-for="(item, index) in collection"
+				:key="item.id"
+				:size="size"
+				:id="item.id"
+				:shape="shape"
+				:label="item.label"
+				:variant="item.variant"
+				:disabled="item.disabled"
+				:position="item.position"
+				:orientation="orientation"
+				:active="activeItemIndex === index"
+				:data-testid="`bo-button-group-item-${item.id}`"
+				@select="onItemSelect"
+			/>
+		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { BoButtonVariant, type BoButtonProps } from '@/components/bo-button';
-import { IdentityService, TailwindService } from '@/services';
-import { BoSize } from '@/shared';
-import { computed, toRefs } from 'vue';
+import { BoButtonVariant } from '@/components/bo-button/bo-button.js';
+import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { BoSize } from '@/shared/bo-size.js';
+import { computed, ref } from 'vue';
 import {
+	BoButtonGroupItemProps,
 	BoButtonGroupOrientation,
-	BoButtonGroupStyle,
 	type BoButtonGroupProps,
-} from './bo-button-group';
+} from './bo-button-group.js';
+import BoButtonGroupItem from './BoButtonGroupItem.vue';
 
-const props = withDefaults(defineProps<BoButtonGroupProps>(), {
-	id: () => IdentityService.instance.generateId('bo-button-group'),
+const props = withDefaults(defineProps<BoButtonGroupProps<BoButtonGroupItemProps>>(), {
+	id: () => IdentityService.instance.uuid('bo-button-group'),
 	size: () => BoSize.default,
-	variant: () => BoButtonVariant.primary,
-	style: () => BoButtonGroupStyle.default,
+	variant: () => BoButtonVariant.secondary,
 	orientation: () => BoButtonGroupOrientation.horizontal,
-	fullWidth: false,
-	disabled: false,
+	items: () => [],
+	defaultActiveIndex: () => -1,
 });
 
-const {
-	id,
-	variant,
-	style,
-	orientation,
-	size,
-	fullWidth,
-	cssClass,
-	disabled,
-	contentComponent,
-	contentComponentProps,
-} = toRefs(props);
+const emit = defineEmits<{
+	(e: 'select', index: number): void;
+}>();
 
-const defaultClasses = /*tw*/ 'inline-flex overflow-hidden';
+const defaultClasses = /*tw*/ 'flex overflow-hidden max-w-fit';
+const defaultListClasses = /*tw*/ 'flex flex-wrap';
 
-const orientationClasses = computed(() => {
-	return orientation.value === BoButtonGroupOrientation.vertical
-		? /*tw*/ 'flex-col'
-		: /*tw*/ 'flex-row';
+const activeItemIndex = ref(props.defaultActiveIndex);
+
+const collection = computed<BoButtonGroupItemProps[]>(() => {
+	return props.items.map((item, index) => {
+		return {
+			id: item.id ?? IdentityService.instance.uuid('bo-button-group-item'),
+			variant: item.variant ?? props.variant,
+			disabled: item.disabled ?? props.disabled,
+			shape: item.shape ?? props.shape,
+			size: item.size ?? props.size,
+			active: activeItemIndex.value === index,
+			label: item.label ?? '',
+			position: {
+				index,
+				isLast: index === props.items.length - 1,
+				isFirst: index === 0,
+				length: props.items.length,
+				activeIndex: activeItemIndex.value,
+			},
+			orientation: props.orientation,
+		};
+	});
 });
 
-const widthClasses = computed(() => {
-	return fullWidth.value ? /*tw*/ 'w-full' : /*tw*/ 'max-w-fit';
-});
-
-const sizeClasses = computed(() => {
-	switch (size.value) {
-		case BoSize.extra_small:
-			return /*tw*/ 'text-xs';
-		case BoSize.small:
-			return /*tw*/ 'text-sm';
-		case BoSize.large:
-			return /*tw*/ 'text-lg';
-		case BoSize.extra_large:
-			return /*tw*/ 'text-xl';
-		case BoSize.default:
+const orientationClasses = computed<string>(() => {
+	switch (props.orientation) {
+		case BoButtonGroupOrientation.vertical:
+			return /*tw*/ 'flex-col';
+		case BoButtonGroupOrientation.horizontal:
 		default:
-			return /*tw*/ 'text-base';
+			return /*tw*/ 'flex-row';
 	}
 });
 
-const variantClasses = computed(() => {
-	switch (variant.value) {
-		case BoButtonVariant.secondary:
-			return /*tw*/ 'bg-neutral-400 dark:bg-neutral-700 text-white';
-		case BoButtonVariant.danger:
-			return /*tw*/ 'bg-red-600 dark:bg-red-700 text-white';
-		case BoButtonVariant.warning:
-			return /*tw*/ 'bg-yellow-500 dark:bg-yellow-600 text-white';
-		case BoButtonVariant.success:
-			return /*tw*/ 'bg-green-600 dark:bg-green-700 text-white';
-		case BoButtonVariant.light:
-			return /*tw*/ 'bg-white dark:bg-white text-black';
-		case BoButtonVariant.dark:
-			return /*tw*/ 'bg-black dark:bg-black text-white';
-		case BoButtonVariant.primary:
-		default:
-			return /*tw*/ 'bg-blue-600 dark:bg-blue-700 text-white';
-	}
+const listClasses = computed<string>(() => {
+	return TailwindService.instance.merge(defaultListClasses, orientationClasses.value);
 });
 
-const styleClasses = computed(() => {
-	switch (style.value) {
-		case BoButtonGroupStyle.outlined:
-			return /*tw*/ 'bg-transparent border border-current';
-		case BoButtonGroupStyle.filled:
-			return /*tw*/ 'shadow-lg';
-		case BoButtonGroupStyle.pill:
-			return /*tw*/ 'rounded-full overflow-hidden';
-		case BoButtonGroupStyle.default:
-		default:
-			return /*tw*/ 'rounded-lg overflow-hidden';
-	}
-});
-
-const groupClasses = computed(() => {
+const groupClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
 		defaultClasses,
 		orientationClasses.value,
-		widthClasses.value,
-		sizeClasses.value,
-		style.value !== BoButtonGroupStyle.outlined ? variantClasses.value : '',
-		styleClasses.value,
-		cssClass.value || '',
-		disabled.value ? /*tw*/ 'opacity-50 cursor-not-allowed pointer-events-none' : '',
+		props.disabled ? /*tw*/ 'disabled:cursor-not-allowed disabled:pointer-events-none' : '',
 	);
 });
 
-/**
- * Get button props with defaults from the group
- */
-function getButtonProps(buttonProps: BoButtonProps): BoButtonProps {
-	return {
-		...buttonProps,
-		disabled: disabled.value || buttonProps.disabled,
-		size: buttonProps.size || size.value,
-	};
+function onItemSelect(index: number) {
+	activeItemIndex.value = index;
+	emit('select', index);
 }
 </script>

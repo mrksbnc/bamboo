@@ -75,7 +75,7 @@ const slots = defineSlots<{
 }>();
 
 const props = withDefaults(defineProps<BoButtonProps>(), {
-	id: IdentityService.instance.generateId(),
+	id: IdentityService.instance.uuid(),
 	loaderType: BoLoaderType.spinner,
 	size: () => BoSize.default,
 	prefixIcon: () => Icon.none,

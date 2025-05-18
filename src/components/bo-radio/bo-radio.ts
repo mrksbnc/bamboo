@@ -1,4 +1,4 @@
-import { BoSize } from '@/shared';
+import { BoSize } from '@/shared/bo-size.js';
 
 export enum BoRadioVariant {
 	primary = 'primary',

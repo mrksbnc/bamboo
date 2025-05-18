@@ -1,4 +1,4 @@
-import type { Icon } from '@/components/bo-icon';
+import type { Icon } from '@/components/bo-icon/bo-icon.js';
 
 export interface BoAccordionProps {
 	/**
@@ -44,7 +44,7 @@ export interface BoAccordionContainerProps {
 	/**
 	 * The initial open accordion item ID
 	 */
-	defaultOpen?: string;
+	defaultOpenItemId?: string;
 }
 
 export interface AccordionGroup {

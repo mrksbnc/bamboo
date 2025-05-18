@@ -1,13 +1,12 @@
 <script setup>
-import { BoButtonGroup, BoButtonGroupOrientation, BoButtonGroupStyle } from '@/components/bo-button-group';
-import { BoButton, BoButtonVariant, BoButtonShape } from '@/components/bo-button';
+import { BoButtonGroup, BoButtonGroupOrientation, BoButtonShape } from '@/components/bo-button-group';
+import { BoButtonVariant } from '@/components/bo-button/bo-button';
 import { BoSize } from '@/shared';
-import { Icon } from '@/components/bo-icon';
 </script>
 
 # Button Group
 
-A component for grouping related buttons with consistent styling and layout.
+A customizable button group component for creating a set of related buttons with consistent styling and behavior.
 
 ```js
 import { BoButtonGroup } from '@mrksbnc/bamboo';
@@ -17,515 +16,291 @@ import { BoButtonGroup } from '@mrksbnc/bamboo';
 
 ```vue
 <template>
-	<bo-button-group>
-		<bo-button label="Left" />
-		<bo-button label="Middle" />
-		<bo-button label="Right" />
-	</bo-button-group>
+	<bo-button-group
+		:default-active-index="0"
+		:items="[
+			{ id: 'btn1', label: 'Button 1' },
+			{ id: 'btn2', label: 'Button 2' },
+			{ id: 'btn3', label: 'Button 3' },
+		]"
+	/>
 </template>
 
 <script setup>
-import { BoButtonGroup, BoButton } from '@mrksbnc/bamboo';
+import { BoButtonGroup } from '@mrksbnc/bamboo';
 </script>
 ```
 
 <hr />
 <div class="flex gap-4 items-center my-4">
   <bo-button-group
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
+  	:default-active-index="0"
+    :items="[
+      { id: 'demo1', label: 'Button 1' },
+      { id: 'demo2', label: 'Button 2' },
+      { id: 'demo3', label: 'Button 3' },
     ]"
   />
 </div>
 
 ## Props
 
-| Name                    | Type                       | Default      | Description                         |
-| ----------------------- | -------------------------- | ------------ | ----------------------------------- |
-| `variant`               | `BoButtonVariant`          | `primary`    | Color variant of the button group   |
-| `style`                 | `BoButtonGroupStyle`       | `default`    | Style of the button group           |
-| `orientation`           | `BoButtonGroupOrientation` | `horizontal` | Layout orientation                  |
-| `size`                  | `BoSize`                   | `default`    | Size of the buttons in the group    |
-| `fullWidth`             | `boolean`                  | `false`      | Whether to take full width          |
-| `cssClass`              | `string`                   | `undefined`  | Additional CSS classes              |
-| `id`                    | `string`                   | `auto`       | Unique ID for the button group      |
-| `disabled`              | `boolean`                  | `false`      | Whether all buttons are disabled    |
-| `contentComponent`      | `Component`                | `undefined`  | Component to render for each button |
-| `contentComponentProps` | `Record<string, any>[]`    | `undefined`  | Props for each button component     |
+### Button Group Props
+
+| Name                 | Type                       | Default      | Description                                  |
+| -------------------- | -------------------------- | ------------ | -------------------------------------------- |
+| `id`                 | `string`                   | `auto`       | Unique ID for the button group               |
+| `variant`            | `BoButtonVariant`          | `secondary`  | Color variant of the buttons                 |
+| `orientation`        | `BoButtonGroupOrientation` | `horizontal` | Layout orientation of the buttons            |
+| `size`               | `BoSize`                   | `default`    | Size of the buttons                          |
+| `fullWidth`          | `boolean`                  | `false`      | Whether the group takes full container width |
+| `disabled`           | `boolean`                  | `false`      | Whether all buttons are disabled             |
+| `shape`              | `BoButtonShape`            | `rounded`    | Shape of the button group                    |
+| `items`              | `BoButtonGroupItemProps[]` | `[]`         | Array of button items to display             |
+| `defaultActiveIndex` | `number`                   | `-1`         | The index of the active button in the group  |
+
+### Button Group Item Props
+
+| Name          | Type                          | Default     | Description                                |
+| ------------- | ----------------------------- | ----------- | ------------------------------------------ |
+| `id`          | `string`                      | Required    | Unique ID for the button                   |
+| `label`       | `string`                      | Required    | Text label for the button                  |
+| `size`        | `BoSize`                      | `default`   | Size of the individual button              |
+| `active`      | `boolean`                     | `false`     | Whether the button is in active state      |
+| `disabled`    | `boolean`                     | `false`     | Whether the button is disabled             |
+| `shape`       | `BoButtonShape`               | `rounded`   | Shape of the individual button             |
+| `variant`     | `BoButtonVariant`             | `secondary` | Color variant of the individual button     |
+| `orientation` | `BoButtonGroupOrientation`    | `undefined` | Override group orientation for this button |
+| `position`    | `ButtonGroupItemListPosition` | `undefined` | Position information in the button group   |
+
+## Events
+
+| Name     | Payload  | Description                           |
+| -------- | -------- | ------------------------------------- |
+| `select` | `number` | Emitted when a button item is clicked |
 
 ## Types
 
 ```ts
+/**
+ * Defines the orientation of the button group
+ */
 export enum BoButtonGroupOrientation {
 	horizontal = 'horizontal',
 	vertical = 'vertical',
 }
 
-export enum BoButtonGroupStyle {
-	default = 'default',
-	outlined = 'outlined',
-	filled = 'filled',
-	pill = 'pill',
+/**
+ * Defines the shape of the button group and its items
+ */
+export enum BoButtonShape {
+	square = 'square',
+	rounded = 'rounded',
 }
 
-export interface BoButtonGroupProps {
-	variant?: BoButtonVariant;
-	style?: BoButtonGroupStyle;
-	orientation?: BoButtonGroupOrientation;
+/**
+ * Position information for a button item within the group
+ */
+export interface ButtonGroupItemListPosition {
+	/** Zero-based index of the button in the group */
+	index: number;
+	/** Total number of buttons in the group */
+	length: number;
+	/** Whether this is the last button in the group */
+	isLast: boolean;
+	/** Whether this is the first button in the group */
+	isFirst: boolean;
+	/** Index of the currently active button in the group */
+	activeIndex: number;
+}
+
+/**
+ * Props for individual button items within the group
+ */
+export interface BoButtonGroupItemProps {
+	/** Unique identifier for the button */
+	id: string;
+	/** Text label to display on the button */
+	label: string;
+	/** Size of the button */
 	size?: BoSize;
-	fullWidth?: boolean;
-	cssClass?: string;
-	id?: string;
+	/** Whether the button is in active state */
+	active?: boolean;
+	/** Whether the button is disabled */
 	disabled?: boolean;
-	contentComponent?: Component;
-	contentComponentProps?: Record<string, any>[];
+	/** Shape of the button */
+	shape?: BoButtonShape;
+	/** Color variant of the button */
+	variant?: BoButtonVariant;
+	/** Override the group's orientation for this button */
+	orientation?: BoButtonGroupOrientation;
+	/** Position information within the button group */
+	position?: ButtonGroupItemListPosition;
 }
-```
 
-## Orientations
-
-### Horizontal (Default)
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-button-group
-    :orientation="BoButtonGroupOrientation.horizontal"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
-    ]"
-  />
-</div>
-
-```vue
-<bo-button-group :orientation="BoButtonGroupOrientation.horizontal">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
-```
-
-### Vertical
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-button-group
-    :orientation="BoButtonGroupOrientation.vertical"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Top' },
-      { label: 'Middle' },
-      { label: 'Bottom' }
-    ]"
-  />
-</div>
-
-```vue
-<bo-button-group :orientation="BoButtonGroupOrientation.vertical">
-  <bo-button label="Top" />
-  <bo-button label="Middle" />
-  <bo-button label="Bottom" />
-</bo-button-group>
-```
-
-## Styles
-
-### Default
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-button-group
-    :style="BoButtonGroupStyle.default"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
-    ]"
-  />
-</div>
-
-```vue
-<bo-button-group :style="BoButtonGroupStyle.default">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
-```
-
-### Outlined
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-button-group
-    :style="BoButtonGroupStyle.outlined"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
-    ]"
-  />
-</div>
-
-```vue
-<bo-button-group :style="BoButtonGroupStyle.outlined">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
-```
-
-### Filled
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-button-group
-    :style="BoButtonGroupStyle.filled"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
-    ]"
-  />
-</div>
-
-```vue
-<bo-button-group :style="BoButtonGroupStyle.filled">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
-```
-
-### Pill
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-button-group
-    :style="BoButtonGroupStyle.pill"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
-    ]"
-  />
-</div>
-
-```vue
-<bo-button-group :style="BoButtonGroupStyle.pill">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
+/**
+ * Props for the button group component
+ */
+export interface BoButtonGroupProps<T = Record<string, unknown>> {
+	/** Unique identifier for the group */
+	id?: string;
+	/** Color variant for all buttons in the group */
+	variant?: BoButtonVariant;
+	/** Layout orientation of the buttons */
+	orientation?: BoButtonGroupOrientation;
+	/** Size for all buttons in the group */
+	size?: BoSize;
+	/** Whether the group should take full width of its container */
+	fullWidth?: boolean;
+	/** Whether all buttons in the group are disabled */
+	disabled?: boolean;
+	/** Shape for all buttons in the group */
+	shape?: BoButtonShape;
+	/** Array of button items to display */
+	items?: T[];
+	/** The index of the active button in the group */
+	defaultActiveIndex?: number;
+}
 ```
 
 ## Variants
 
 <div class="flex flex-col gap-4 my-4">
+  <div class="flex gap-4">
+    <bo-button-group
+      :variant="BoButtonVariant.primary"
+      :items="[
+        { id: 'primary1', label: 'Primary 1' },
+        { id: 'primary2', label: 'Primary 2' },
+      ]"
+    />
+    <bo-button-group
+      :variant="BoButtonVariant.secondary"
+      :items="[
+        { id: 'secondary1', label: 'Secondary 1' },
+        { id: 'secondary2', label: 'Secondary 2' },
+      ]"
+    />
+  </div>
+  <div class="flex gap-4">
+    <bo-button-group
+      :variant="BoButtonVariant.success"
+      :items="[
+        { id: 'success1', label: 'Success 1' },
+        { id: 'success2', label: 'Success 2' },
+      ]"
+    />
+    <bo-button-group
+      :variant="BoButtonVariant.danger"
+      :items="[
+        { id: 'danger1', label: 'Danger 1' },
+        { id: 'danger2', label: 'Danger 2' },
+      ]"
+    />
+  </div>
+  <div class="flex gap-4">
+    <bo-button-group
+      :variant="BoButtonVariant.warning"
+      :items="[
+        { id: 'warning1', label: 'Warning 1' },
+        { id: 'warning2', label: 'Warning 2' },
+      ]"
+    />
+    <bo-button-group
+      :variant="BoButtonVariant.dark"
+      :items="[
+        { id: 'dark1', label: 'Dark 1' },
+        { id: 'dark2', label: 'Dark 2' },
+      ]"
+    />
+  </div>
+</div>
+
+```vue
+<bo-button-group
+	:variant="BoButtonVariant.primary"
+	:items="[
+		{ id: 'btn1', label: 'Primary 1' },
+		{ id: 'btn2', label: 'Primary 2' },
+	]"
+/>
+<bo-button-group
+	:variant="BoButtonVariant.secondary"
+	:items="[
+		{ id: 'btn1', label: 'Secondary 1' },
+		{ id: 'btn2', label: 'Secondary 2' },
+	]"
+/>
+<!-- Other variants: success, danger, warning, dark -->
+```
+
+### Disabled Group
+
+<div class="flex gap-4 my-4">
   <bo-button-group
-    :variant="BoButtonVariant.primary"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
-    ]"
-  />
-  <bo-button-group
-    :variant="BoButtonVariant.secondary"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
-    ]"
-  />
-  <bo-button-group
-    :variant="BoButtonVariant.success"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
-    ]"
-  />
-  <bo-button-group
-    :variant="BoButtonVariant.danger"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
+    disabled
+    :items="[
+      { id: 'disabled1', label: 'Disabled 1' },
+      { id: 'disabled2', label: 'Disabled 2' },
     ]"
   />
 </div>
 
 ```vue
-<bo-button-group :variant="BoButtonVariant.primary">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
-
-<bo-button-group :variant="BoButtonVariant.secondary">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
-
-<bo-button-group :variant="BoButtonVariant.success">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
-
-<bo-button-group :variant="BoButtonVariant.danger">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
+<bo-button-group
+	disabled
+	:items="[
+		{ id: 'btn1', label: 'Disabled 1' },
+		{ id: 'btn2', label: 'Disabled 2' },
+	]"
+/>
 ```
 
-## Sizes
+## Orientations
 
-<div class="flex flex-col gap-4 my-4">
+<div class="flex gap-8 my-4">
   <bo-button-group
-    :size="BoSize.small"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
+    :orientation="BoButtonGroupOrientation.horizontal"
+    :items="[
+      { id: 'h1', label: 'Horizontal 1' },
+      { id: 'h2', label: 'Horizontal 2' },
+      { id: 'h3', label: 'Horizontal 3' },
     ]"
   />
   <bo-button-group
-    :size="BoSize.default"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
-    ]"
-  />
-  <bo-button-group
-    :size="BoSize.large"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
+    :orientation="BoButtonGroupOrientation.vertical"
+    :items="[
+      { id: 'v1', label: 'Vertical 1' },
+      { id: 'v2', label: 'Vertical 2' },
+      { id: 'v3', label: 'Vertical 3' },
     ]"
   />
 </div>
 
 ```vue
-<bo-button-group :size="BoSize.small">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
-
-<bo-button-group :size="BoSize.default">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
-
-<bo-button-group :size="BoSize.large">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
+<bo-button-group :orientation="BoButtonGroupOrientation.horizontal" :items="items" />
+<bo-button-group :orientation="BoButtonGroupOrientation.vertical" :items="items" />
 ```
 
-## Full Width
+## States
 
-<div class="flex flex-col gap-4 my-4">
+### Active Button
+
+<div class="flex gap-4 my-4">
   <bo-button-group
-    :full-width="true"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
+    :default-active-index="0"
+    :items="[
+      { id: 'active1', label: 'Active' },
+      { id: 'active2', label: 'Normal' },
     ]"
   />
 </div>
 
 ```vue
-<bo-button-group :full-width="true">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
-```
-
-## Disabled
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-button-group
-    :disabled="true"
-    :content-component="BoButton"
-    :content-component-props="[
-      { label: 'Left' },
-      { label: 'Middle' },
-      { label: 'Right' }
-    ]"
-  />
-</div>
-
-```vue
-<bo-button-group :disabled="true">
-  <bo-button label="Left" />
-  <bo-button label="Middle" />
-  <bo-button label="Right" />
-</bo-button-group>
-```
-
-## With Icons
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-button-group
-    :content-component="BoButton"
-    :content-component-props="[
-      { prefixIcon: Icon.arrowLeft, label: 'Previous' },
-      { prefixIcon: Icon.refresh, label: 'Refresh' },
-      { suffixIcon: Icon.arrowRight, label: 'Next' }
-    ]"
-  />
-</div>
-
-```vue
-<bo-button-group>
-  <bo-button :prefix-icon="Icon.arrowLeft" label="Previous" />
-  <bo-button :prefix-icon="Icon.refresh" label="Refresh" />
-  <bo-button :suffix-icon="Icon.arrowRight" label="Next" />
-</bo-button-group>
-```
-
-## Usage Examples
-
-### Pagination Controls
-
-```vue
-<template>
-	<div class="flex items-center justify-between">
-		<bo-text :value="`Page ${currentPage} of ${totalPages}`" />
-
-		<bo-button-group>
-			<bo-button
-				:prefix-icon="Icon.chevronLeft"
-				label="Previous"
-				:disabled="currentPage <= 1"
-				@click="previousPage"
-			/>
-			<bo-button
-				:suffix-icon="Icon.chevronRight"
-				label="Next"
-				:disabled="currentPage >= totalPages"
-				@click="nextPage"
-			/>
-		</bo-button-group>
-	</div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { BoButtonGroup, BoButton, BoText } from '@mrksbnc/bamboo';
-import { Icon } from '@mrksbnc/bamboo';
-
-const currentPage = ref(1);
-const totalPages = ref(10);
-
-function previousPage() {
-	if (currentPage.value > 1) {
-		currentPage.value -= 1;
-	}
-}
-
-function nextPage() {
-	if (currentPage.value < totalPages.value) {
-		currentPage.value += 1;
-	}
-}
-</script>
-```
-
-### Toolbar
-
-```vue
-<template>
-	<bo-button-group
-		:variant="BoButtonVariant.secondary"
-		:style="BoButtonGroupStyle.outlined"
-	>
-		<bo-button
-			:prefix-icon="Icon.bold"
-			aria-label="Bold"
-		/>
-		<bo-button
-			:prefix-icon="Icon.italic"
-			aria-label="Italic"
-		/>
-		<bo-button
-			:prefix-icon="Icon.underline"
-			aria-label="Underline"
-		/>
-		<bo-button
-			:prefix-icon="Icon.link"
-			aria-label="Insert Link"
-		/>
-	</bo-button-group>
-</template>
-
-<script setup>
-import { BoButtonGroup, BoButton } from '@mrksbnc/bamboo';
-import { BoButtonVariant, BoButtonGroupStyle } from '@mrksbnc/bamboo';
-import { Icon } from '@mrksbnc/bamboo';
-</script>
-```
-
-### Toggle Button Group
-
-```vue
-<template>
-	<div class="space-y-2">
-		<bo-text value="View Mode:" />
-		<bo-button-group>
-			<bo-button
-				label="List"
-				:prefix-icon="Icon.list"
-				:variant="viewMode === 'list' ? BoButtonVariant.primary : BoButtonVariant.secondary"
-				@click="viewMode = 'list'"
-			/>
-			<bo-button
-				label="Grid"
-				:prefix-icon="Icon.grid"
-				:variant="viewMode === 'grid' ? BoButtonVariant.primary : BoButtonVariant.secondary"
-				@click="viewMode = 'grid'"
-			/>
-			<bo-button
-				label="Kanban"
-				:prefix-icon="Icon.columns"
-				:variant="viewMode === 'kanban' ? BoButtonVariant.primary : BoButtonVariant.secondary"
-				@click="viewMode = 'kanban'"
-			/>
-		</bo-button-group>
-
-		<div class="mt-4 rounded border p-4">
-			<bo-text :value="`Current view mode: ${viewMode}`" />
-		</div>
-	</div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { BoButtonGroup, BoButton, BoText } from '@mrksbnc/bamboo';
-import { BoButtonVariant } from '@mrksbnc/bamboo';
-import { Icon } from '@mrksbnc/bamboo';
-
-const viewMode = ref('list');
-</script>
+<bo-button-group
+	:items="[
+		{ id: 'btn1', label: 'Active', active: true },
+		{ id: 'btn2', label: 'Normal' },
+	]"
+/>
 ```

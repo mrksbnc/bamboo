@@ -107,7 +107,7 @@ describe('BoAccordionContainer.vue', () => {
 		const accordion = wrapper.findComponent(BoAccordion);
 		expect(accordion.exists()).toBe(true);
 
-		await wrapper.setProps({ defaultOpen: accordion.props('id') });
+		await wrapper.setProps({ defaultOpenItemId: accordion.props('id') });
 		expect(accordion.props('open')).toBe(true);
 	});
 });

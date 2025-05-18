@@ -104,4 +104,9 @@ export interface BoTextProps {
 	 * The selectable of the element.
 	 */
 	selectable?: boolean;
+	/**
+	 * Cursor type of the element. This must be a valid Tailwindcss cursor value.
+	 *
+	 */
+	cursor?: string;
 }

@@ -5,18 +5,13 @@
 </template>
 
 <script setup lang="ts">
-import { InjectKey } from '@/shared/injection-key';
+import { InjectKey } from '@/shared/injection-key.js';
 import { provide, reactive, ref } from 'vue';
-import type { BoAccordionContainerProps } from './bo-accordion';
+import type { BoAccordionContainerProps } from './bo-accordion.js';
 
-const props = withDefaults(defineProps<BoAccordionContainerProps>(), {
-	defaultOpen: '',
-	allowMultiple: false,
-	alwaysOpen: false,
-});
+const props = defineProps<BoAccordionContainerProps>();
 
 const openItems = ref<Set<string>>(new Set());
-
 const registeredItems = ref<Set<string>>(new Set());
 
 function registerItem(id: string, initialOpen: boolean): void {
@@ -26,7 +21,7 @@ function registerItem(id: string, initialOpen: boolean): void {
 
 	registeredItems.value.add(id);
 
-	if (initialOpen || id === props.defaultOpen) {
+	if (initialOpen || id === props.defaultOpenItemId) {
 		if (props.allowMultiple) {
 			openItems.value.add(id);
 		} else {
@@ -48,10 +43,11 @@ function toggle(id: string): void {
 
 	if (props.allowMultiple) {
 		openItems.value.add(id);
-	} else {
-		openItems.value.clear();
-		openItems.value.add(id);
+		return;
 	}
+
+	openItems.value.clear();
+	openItems.value.add(id);
 }
 
 provide(

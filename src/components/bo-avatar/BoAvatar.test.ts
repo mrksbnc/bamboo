@@ -1,10 +1,10 @@
 // @vitest-environment jsdom
 
-import { BoSize } from '@/shared/bo-size';
+import { BoSize } from '@/shared/bo-size.js';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import BoAvatar from './BoAvatar.vue';
-import { BoAvatarShape, BoAvatarType, BoAvatarVariant } from './bo-avatar';
+import { BoAvatarShape, BoAvatarType, BoAvatarVariant } from './bo-avatar.js';
 
 describe('BoAvatar.vue', () => {
 	it('renders with default props', () => {

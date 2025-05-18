@@ -1,8 +1,8 @@
-import { BoSize } from '@/shared/bo-size';
+import { BoSize } from '@/shared/bo-size.js';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import BoIcon from './BoIcon.vue';
-import { Icon } from './bo-icon';
+import { Icon } from './bo-icon.js';
 
 describe('BoIcon.vue', () => {
 	it('renders with specified icon', () => {
