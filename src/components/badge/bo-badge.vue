@@ -36,16 +36,16 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/icon';
-import { BoFontSize, BoFontWeight, BoText } from '@/components/text';
-import { IdentityService, StringService, TailwindService } from '@/services';
+import { Icon } from '@/components/icon/bo-icon.js';
+import BoIcon from '@/components/icon/bo-icon.vue';
+import { BoFontSize, BoFontWeight } from '@/components/text/bo-text.js';
+import BoText from '@/components/text/bo-text.vue';
+import { IdentityService } from '@/services/identity-service.js';
+import { StringService } from '@/services/string-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { computed } from 'vue';
 import { BoBadgeShape, BoBadgeType, BoBadgeVariant, type BoBadgeProps } from './bo-badge';
-
-const slots = defineSlots<{
-	default?: unknown;
-}>();
 
 const props = withDefaults(defineProps<BoBadgeProps>(), {
 	id: () => IdentityService.instance.getComponentId(),
@@ -59,7 +59,11 @@ const props = withDefaults(defineProps<BoBadgeProps>(), {
 	}),
 });
 
-const containerClasses = {
+const slots = defineSlots<{
+	default?: unknown;
+}>();
+
+const containerClasses: Record<BoBadgeShape, string> = {
 	[BoBadgeShape.default]:
 		/*tw*/ 'bo-badge--default flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-md shadow-sm hover:shadow',
 	[BoBadgeShape.circle]:
@@ -70,7 +74,7 @@ const containerClasses = {
 		/*tw*/ 'bo-badge--flat flex max-h-fit items-center justify-center text-center select-none gap-1.5 rounded-none shadow-sm hover:shadow',
 };
 
-const variantClasses = {
+const variantClasses: Record<BoBadgeType, Record<BoBadgeVariant, string>> = {
 	[BoBadgeType.default]: {
 		[BoBadgeVariant.primary]:
 			/*tw*/ 'bo-badge--primary bg-blue-600 text-white border border-blue-600 dark:bg-blue-700 dark:text-white',

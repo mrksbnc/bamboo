@@ -27,4 +27,6 @@ export interface BoDropdownTriggerProps {
 	prefixIcon?: Icon;
 	/** Custom icon for the dropdown trigger */
 	suffixIcon?: Icon;
+	/** Custom icon for the dropdown trigger */
+	triggerIcon?: Icon;
 }

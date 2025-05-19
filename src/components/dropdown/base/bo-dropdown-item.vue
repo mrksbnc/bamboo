@@ -45,7 +45,7 @@ const emit = defineEmits<{
 	(e: 'select', id: string): void;
 }>();
 
-const itemClassDefault = {
+const itemClassDefault: Record<'default' | 'disabled' | 'hover', string> = {
 	default:
 		/*tw*/ 'bo-dropdown-item flex items-center gap-3 py-1.5 px-2 rounded-md border border-transparent',
 	disabled: /*tw*/ 'bo-dropdown-item--disabled cursor-not-allowed opacity-50',

@@ -75,17 +75,17 @@ const imgError = ref<boolean>(false);
 const fallbackImage = ref<HTMLImageElement>();
 const imageElement = ref<HTMLImageElement>();
 
-const containerClasses = {
+const containerClasses: Record<'default', string> = {
 	default:
 		/*tw*/ 'bo-avatar relative flex items-center justify-center overflow-hidden object-cover',
 };
 
-const cursorClasses = {
-	default: 'cursor-default',
-	clickable: 'cursor-pointer hover:opacity-80',
+const cursorClasses: Record<'default' | 'clickable', string> = {
+	default: /*tw*/ 'cursor-default',
+	clickable: /*tw*/ 'cursor-pointer hover:opacity-80',
 };
 
-const avatarSizeClasses = {
+const avatarSizeClasses: Record<BoSize, string> = {
 	[BoSize.extra_small]: /*tw*/ 'bo-avatar--extra-small size-6',
 	[BoSize.small]: /*tw*/ 'bo-avatar--small size-8',
 	[BoSize.default]: /*tw*/ 'bo-avatar--default size-10',
@@ -93,7 +93,7 @@ const avatarSizeClasses = {
 	[BoSize.extra_large]: /*tw*/ 'bo-avatar--extra-large size-20',
 };
 
-const avatarShapeClasses = {
+const avatarShapeClasses: Record<BoAvatarShape, string> = {
 	[BoAvatarShape.circle]: /*tw*/ 'bo-avatar--circle rounded-full',
 	[BoAvatarShape.rounded]: /*tw*/ 'bo-avatar--rounded rounded-md',
 	[BoAvatarShape.flat]: /*tw*/ 'bo-avatar--flat rounded-none',
@@ -102,7 +102,7 @@ const avatarShapeClasses = {
 	[BoAvatarShape.outline_flat]: /*tw*/ 'bo-avatar--outline-flat rounded-none border',
 };
 
-const variantColors = {
+const variantColors: Record<BoAvatarVariant, string> = {
 	[BoAvatarVariant.primary]: /*tw*/ ' bo-avatar--primary bg-blue-500 dark:bg-blue-700 text-white',
 	[BoAvatarVariant.secondary]:
 		/*tw*/ ' bo-avatar--secondary bg-gray-400 dark:bg-gray-700 text-white',
@@ -113,7 +113,7 @@ const variantColors = {
 	[BoAvatarVariant.dark]: /*tw*/ ' bo-avatar--dark bg-black dark:bg-black text-white',
 };
 
-const outlineVariantColors = {
+const outlineVariantColors: Record<BoAvatarVariant, string> = {
 	[BoAvatarVariant.primary]:
 		/*tw*/ 'bo-avatar--outline-primary bg-transparent border-blue-500 text-blue-500 dark:border-blue-400 dark:text-blue-400',
 	[BoAvatarVariant.secondary]:
@@ -128,7 +128,7 @@ const outlineVariantColors = {
 		/*tw*/ 'bo-avatar--outline-dark bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-300',
 };
 
-const variantTextColors = {
+const variantTextColors: Record<BoAvatarVariant, string> = {
 	[BoAvatarVariant.primary]: /*tw*/ 'text-white dark:text-white',
 	[BoAvatarVariant.secondary]: /*tw*/ 'text-white dark:text-white',
 	[BoAvatarVariant.danger]: /*tw*/ 'text-white dark:text-white',
@@ -137,7 +137,7 @@ const variantTextColors = {
 	[BoAvatarVariant.dark]: /*tw*/ 'text-white dark:text-white',
 };
 
-const outlineVariantTextColors = {
+const outlineVariantTextColors: Record<BoAvatarVariant, string> = {
 	[BoAvatarVariant.primary]: /*tw*/ 'text-blue-500 dark:text-blue-400',
 	[BoAvatarVariant.secondary]: /*tw*/ 'text-gray-500 dark:text-neutral-300',
 	[BoAvatarVariant.danger]: /*tw*/ 'text-red-500 dark:text-red-400',
@@ -244,7 +244,7 @@ const showFallbackImage = computed<boolean>(() => {
 	return !data.value || invalidImage || invalidInitials;
 });
 
-function handleImageError(e: Event) {
+function handleImageError(e: Event): void {
 	imgError.value = true;
 
 	if (imageElement.value) {
@@ -255,7 +255,7 @@ function handleImageError(e: Event) {
 }
 
 function generateRandomColor(): string {
-	const colors = [
+	const colors: string[] = [
 		/*tw*/ 'bg-blue-500 dark:bg-blue-600 text-white',
 		/*tw*/ 'bg-gray-400 dark:bg-gray-600 text-white',
 		/*tw*/ 'bg-red-500 dark:bg-red-600 text-white',

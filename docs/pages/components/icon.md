@@ -52,7 +52,7 @@ export enum Icon {
 	none = 'none',
 }
 
-export interface AccessibilityDefinition {
+interface AccessibilityDefinition {
 	/**
 	 * Whether the icon is decorative. This means that the icon is not a part of
 	 * the UI and is only used to convey information.
@@ -64,10 +64,14 @@ export interface AccessibilityDefinition {
 	title?: string;
 }
 
-export interface BoIconProps {
+interface BoIconProps {
+	/** The icon to display */
 	icon: Icon;
+	/** Size of the icon */
 	size?: BoSize;
+	/** Color of the icon */
 	color?: string;
+	/** Accessibility options */
 	accessibility?: AccessibilityDefinition;
 }
 ```
@@ -109,7 +113,7 @@ export interface BoIconProps {
 ## All Icons
 
 <div class="grid grid-cols-4 gap-4 my-4">
-  <div v-for="(value, key) in Icon" :key="key" class="flex flex-col items-center p-2 border rounded hover:bg-gray-50">
+  <div v-for="(value, key) in Icon" :key="key" class="flex flex-col items-center p-4 border rounded hover:bg-gray-50">
     <bo-icon :icon="value" />
     <span class="text-xs mt-1">{{ key }}</span>
   </div>

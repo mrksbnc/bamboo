@@ -7,7 +7,9 @@
 			<bo-dropdown-trigger
 				:label="triggerLabel"
 				:disabled="disabled"
-				@click="onDropdownToggle"
+				:is-open="showDropdown"
+				:trigger-icon="props.triggerIcon"
+				@trigger-click="onDropdownToggle"
 			/>
 		</slot>
 
@@ -47,11 +49,10 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '@/components/icon/bo-icon.js';
 import { IdentityService } from '@/services/identity-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { onClickOutside } from '@vueuse/core';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import BoDropdownItem from './base/bo-dropdown-item.vue';
 import BoDropdownTrigger from './base/bo-dropdown-trigger.vue';
 import { BoDropdownItemProps } from './base/dropdown-defaults.js';
@@ -71,21 +72,13 @@ const emit = defineEmits<{
 	(e: 'item-select', id: string): void;
 }>();
 
-const dropdownContentClasses =
+const dropdownContentClasses: string =
 	/*tw*/ 'bo-dropdown-menu absolute z-10 rounded-md bg-white border p-2 font-sans text-base font-normal text-gray-900 shadow-none outline-none transition-opacity dark:bg-gray-800 dark:text-white mt-1';
 
-const showDropdown = ref(props?.open ?? false);
-const triggerLabel = ref(props.defaultTriggerText);
+const showDropdown = ref<boolean>(props?.open ?? false);
+const triggerLabel = ref<string>(props.defaultTriggerText);
 
 const dropdownContentRef = ref<HTMLDivElement>();
-
-const triggerIcon = computed<Icon>(() => {
-	if (props.triggerIcon) {
-		return props.triggerIcon;
-	}
-
-	return showDropdown.value ? Icon.chevron_up : Icon.chevron_down;
-});
 
 function onDropdownToggle(): void {
 	if (props.disabled) {
@@ -93,7 +86,6 @@ function onDropdownToggle(): void {
 	}
 
 	showDropdown.value = !showDropdown.value;
-	emit('update:open', showDropdown.value);
 }
 
 function onDropdownItemSelect(id: string): void {

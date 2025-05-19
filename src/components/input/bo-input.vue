@@ -103,13 +103,13 @@
 <script setup lang="ts">
 import { Icon } from '@/components/icon/bo-icon.js';
 import BoIcon from '@/components/icon/bo-icon.vue';
+import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/text/bo-text.js';
 import BoText from '@/components/text/bo-text.vue';
 import { TailwindService } from '@/services';
 import { IdentityService } from '@/services/identity-service.js';
 import { BoColor } from '@/shared/bo-color.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { computed, ref } from 'vue';
-import { BoFontSize, BoFontWeight, BoTextColor } from '../text/bo-text.js';
 import { BoInputSize, BoInputState, BoInputType, type BoInputProps } from './bo-input.js';
 
 const props = withDefaults(defineProps<BoInputProps>(), {

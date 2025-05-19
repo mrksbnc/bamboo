@@ -7,6 +7,7 @@ export interface BoAccordionProps {
 	title?: string;
 	/** Whether the accordion is open by default */
 	open?: boolean;
+	/** Whether the accordion is disabled */
 	disabled?: boolean;
 	/** Prefix icon for the accordion item */
 	prefixIcon?: Icon;

@@ -34,12 +34,12 @@
 </template>
 
 <script setup lang="ts">
+import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/text/bo-text.js';
 import BoText from '@/components/text/bo-text.vue';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { computed } from 'vue';
-import { BoFontSize, BoFontWeight, BoTextColor } from '../text/bo-text.js';
 import { BoCheckboxProps } from './bo-checkbox.js';
 
 const props = withDefaults(defineProps<BoCheckboxProps>(), {

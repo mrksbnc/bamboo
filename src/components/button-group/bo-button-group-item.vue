@@ -15,12 +15,12 @@
 </template>
 
 <script setup lang="ts">
+import { BoButtonVariant } from '@/components/button/bo-button.js';
+import { BoFontSize, BoFontWeight } from '@/components/text/bo-text.js';
 import BoText from '@/components/text/bo-text.vue';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { computed } from 'vue';
-import { BoButtonVariant } from '../button/bo-button.js';
-import { BoFontSize, BoFontWeight } from '../text/bo-text.js';
 import {
 	BoButtonGroupItemProps,
 	BoButtonGroupOrientation,

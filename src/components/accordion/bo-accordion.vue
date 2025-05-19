@@ -68,7 +68,6 @@ const props = withDefaults(defineProps<BoAccordionProps>(), {
 	disabled: false,
 	prefixIcon: () => Icon.none,
 	customIcon: () => Icon.none,
-	className: '',
 });
 
 const emit = defineEmits<{

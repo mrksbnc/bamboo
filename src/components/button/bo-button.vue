@@ -61,12 +61,18 @@
 </template>
 
 <script setup lang="ts">
-import { BoIcon, Icon } from '@/components/icon';
-import { BoLoadingPulse } from '@/components/loading-pulse';
-import { BoLoadingSpinner } from '@/components/loading-spinner';
-import { BoFontSize, BoFontWeight, BoText } from '@/components/text';
-import { IdentityService, StringService, TailwindService } from '@/services';
-import { BoLoaderType, BoLoaderVariant, BoSize, HtmlButtonType } from '@/shared';
+import { Icon } from '@/components/icon/bo-icon.js';
+import BoIcon from '@/components/icon/bo-icon.vue';
+import BoLoadingPulse from '@/components/loading-pulse/bo-loading-pulse.vue';
+import BoLoadingSpinner from '@/components/loading-spinner/bo-loading-spinner.vue';
+import { BoFontSize, BoFontWeight } from '@/components/text/bo-text.js';
+import BoText from '@/components/text/bo-text.vue';
+import { IdentityService } from '@/services/identity-service.js';
+import { StringService } from '@/services/string-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
+import { BoLoaderType, BoLoaderVariant } from '@/shared/bo-loader.js';
+import { BoSize } from '@/shared/bo-size.js';
+import { HtmlButtonType } from '@/shared/html-button.js';
 import { computed } from 'vue';
 import { BoButtonShape, BoButtonVariant, type BoButtonProps } from './bo-button';
 
@@ -200,7 +206,7 @@ const isDisabled = computed<boolean>(() => {
 	return props.disabled || props.isLoading;
 });
 
-const computedAriaLabel = computed<string | undefined>(() => {
+const computedAriaLabel = computed<string>(() => {
 	return (
 		props.ariaLabel ??
 		(props.label ? props.label : iconOnlyButton.value ? 'button with icon' : 'button')
