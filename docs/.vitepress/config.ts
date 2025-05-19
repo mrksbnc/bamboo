@@ -73,6 +73,9 @@ export default defineConfig({
 		// https://vitepress.dev/reference/default-theme-config
 		logo: '/assets/logo.ico',
 		sidebar: buildSidebar(),
+		search: {
+			provider: 'local',
+		},
 		socialLinks: [{ icon: 'github', link: 'https://github.com/mrksbnc/bamboo' }],
 		footer: {
 			message:

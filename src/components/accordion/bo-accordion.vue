@@ -92,7 +92,7 @@ const defaultBodyClasses: Record<string, string> = {
 	background: /*tw*/ 'bg-neutral-50 dark:bg-neutral-700',
 };
 
-const isOpen = ref(props.open);
+const isOpen = ref<boolean>(props.open);
 const accordionRef = ref<HTMLElement>();
 const accordionBodyRef = ref<HTMLElement>();
 
