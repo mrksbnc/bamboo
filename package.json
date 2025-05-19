@@ -52,7 +52,7 @@
 		"@vue/test-utils": "^2.4.6",
 		"@vue/tsconfig": "^0.7.0",
 		"autoprefixer": "^10.4.21",
-		"eslint": "^9.25.0",
+		"eslint": "^9.27.0",
 		"eslint-plugin-oxlint": "^0.16.6",
 		"eslint-plugin-vue": "^10.0.0",
 		"jsdom": "^26.1.0",
