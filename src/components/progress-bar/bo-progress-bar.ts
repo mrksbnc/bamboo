@@ -11,24 +11,30 @@ export enum BoProgressBarVariant {
 	dark = 'dark',
 }
 
+export enum BoProgressBarShape {
+	rounded = 'rounded',
+	square = 'square',
+}
+
 export interface BoProgressBarProps {
+	/** Id for the progress bar */
 	id?: string;
 	/** Current value of the progress bar */
-	value: number;
+	value?: number;
 	/** Maximum value of the progress bar */
 	max?: number;
-	/** Show label with percentage */
+	/** Show label or precentage in the progress bar */
 	showLabel?: boolean;
-	/** Whether the progress bar is striped */
-	striped?: boolean;
-	/** Whether the progress bar is animated */
-	animated?: boolean;
+	/** The shape of the progress bar */
+	shape?: BoProgressBarShape;
 	/** Size of the progress bar */
 	size?: BoSize;
 	/** Color variant of the progress bar */
 	variant?: BoProgressBarVariant;
 	/** Label to display instead of percentage */
 	label?: string;
-	/** Whether to show indeterminate state */
-	indeterminate?: boolean;
+	/** Custom color for the progress bar in hex format */
+	color?: string;
+	/** Custom tailwind class for the progress bar */
+	tailwindClass?: string;
 }

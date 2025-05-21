@@ -158,6 +158,8 @@ const fontColor = computed<string>(() => {
 			return /*tw*/ 'text-yellow-600 dark:text-yellow-500';
 		case BoTextColor.danger:
 			return /*tw*/ 'text-red-600 dark:text-red-500';
+		case BoTextColor.light:
+			return /*tw*/ 'text-white';
 		case BoTextColor.current:
 		default:
 			return /*tw*/ 'text-current';

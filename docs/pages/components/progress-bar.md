@@ -12,12 +12,12 @@ function startLoading() {
   isLoading.value = true;
   progress.value = 0;
   const interval = setInterval(() => {
-    progress.value += 10;
+    progress.value += 1;
     if (progress.value >= 100) {
       clearInterval(interval);
       isLoading.value = false;
     }
-  }, 500);
+  }, 100);
 }
 </script>
 
@@ -183,12 +183,12 @@ function startLoading() {
 	isLoading.value = true;
 	progress.value = 0;
 	const interval = setInterval(() => {
-		progress.value += 10;
+		progress.value += 1;
 		if (progress.value >= 100) {
 			clearInterval(interval);
 			isLoading.value = false;
 		}
-	}, 500);
+	}, 100);
 }
 </script>
 

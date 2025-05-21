@@ -46,6 +46,7 @@ export enum BoTextColor {
 	success = 'success',
 	warning = 'warning',
 	danger = 'danger',
+	light = 'light',
 }
 
 export enum BoTextAlign {
