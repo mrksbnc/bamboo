@@ -2,17 +2,17 @@ import type { BoSize } from '@/shared/bo-size.js';
 
 export enum BoPopoverPlacement {
 	top = 'top',
-	topStart = 'top-start',
-	topEnd = 'top-end',
+	top_start = 'top-start',
+	top_end = 'top-end',
 	right = 'right',
-	rightStart = 'right-start',
-	rightEnd = 'right-end',
+	right_start = 'right-start',
+	right_end = 'right-end',
 	bottom = 'bottom',
-	bottomStart = 'bottom-start',
-	bottomEnd = 'bottom-end',
+	bottom_start = 'bottom-start',
+	bottom_end = 'bottom-end',
 	left = 'left',
-	leftStart = 'left-start',
-	leftEnd = 'left-end',
+	left_start = 'left-start',
+	left_end = 'left-end',
 }
 
 export enum BoPopoverTrigger {
@@ -30,8 +30,6 @@ export enum BoPopoverAnimation {
 export interface BoPopoverProps {
 	/** Id for the popover */
 	id?: string;
-	/** Whether the popover is open */
-	modelValue?: boolean;
 	/** Placement of the popover */
 	placement?: BoPopoverPlacement;
 	/** Offset distance from the trigger element */
@@ -50,10 +48,6 @@ export interface BoPopoverProps {
 	popoverClass?: string;
 	/** Whether to show an arrow pointing to the trigger element */
 	arrow?: boolean;
-	/** Animation duration in ms */
-	animationDuration?: number;
-	/** Animation style */
-	animation?: BoPopoverAnimation;
 	/** Whether the popover should have a shadow */
 	shadow?: boolean;
 	/** Whether the popover should have a border */

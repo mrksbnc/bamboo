@@ -1,13 +1,13 @@
 <template>
-	<div class="bo-popover-container relative z-50 inline-block">
+	<div class="bo-popover-container relative inline-block">
 		<div
 			ref="triggerRef"
 			class="bo-popover-trigger inline-block"
+			@blur="onTriggerBlur"
 			@click="onTriggerClick"
+			@focus="onTriggerFocus"
 			@mouseenter="onTriggerMouseEnter"
 			@mouseleave="onTriggerMouseLeave"
-			@focus="onTriggerFocus"
-			@blur="onTriggerBlur"
 			:data-testid="`bo-popover-trigger-${id}`"
 		>
 			<slot name="trigger"></slot>
@@ -25,13 +25,11 @@
 				@click.stop
 				:data-testid="`bo-popover-content-${id}`"
 			>
-				<!-- Arrow -->
-				<div
+				<i
 					v-if="arrow"
-					class="bo-popover-arrow absolute h-2 w-2 rotate-45 transform bg-white dark:bg-gray-800"
-					:style="arrowStyles"
-				></div>
-				<div class="bo-popover-content relative z-20">
+					:class="arrowClasses"
+				></i>
+				<div class="bo-popover-content relative">
 					<slot>
 						<div
 							v-if="title"
@@ -73,167 +71,171 @@ import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { onClickOutside, useEventListener } from '@vueuse/core';
-import { computed, nextTick, onBeforeUnmount, ref, toRefs, watch } from 'vue';
-import {
-	BoPopoverAnimation,
-	BoPopoverPlacement,
-	BoPopoverTrigger,
-	type BoPopoverProps,
-} from './bo-popover.js';
+import { computed, nextTick, onBeforeUnmount, ref, watch, watchEffect } from 'vue';
+import { BoPopoverPlacement, BoPopoverTrigger, type BoPopoverProps } from './bo-popover.js';
 
 const props = withDefaults(defineProps<BoPopoverProps>(), {
 	id: () => IdentityService.instance.getComponentId('popover'),
-	modelValue: false,
 	placement: () => BoPopoverPlacement.bottom,
 	offset: 8,
 	arrow: true,
 	shadow: true,
 	border: true,
 	interactive: true,
-	animationDuration: 300,
 	closeOnOutsideClick: true,
 	size: () => BoSize.default,
 	trigger: () => BoPopoverTrigger.click,
-	animation: () => BoPopoverAnimation.fade,
+});
+
+const modelValue = defineModel<boolean>({
+	default: false,
 });
 
 const emit = defineEmits<{
-	'update:modelValue': [value: boolean];
-	opened: [];
-	closed: [];
+	(e: 'opened'): void;
+	(e: 'closed'): void;
 }>();
-
-const {
-	id,
-	modelValue,
-	placement,
-	offset,
-	trigger,
-	interactive,
-	title,
-	content,
-	size,
-	popoverClass,
-	arrow,
-	animationDuration,
-	animation,
-	shadow,
-	border,
-	closeOnOutsideClick,
-} = toRefs(props);
 
 const isOpen = ref(modelValue.value);
 
 const triggerRef = ref<HTMLElement>();
 const popoverRef = ref<HTMLElement>();
 
-const hoverTimeout = ref<number | undefined>(undefined);
+const hoverTimeout = ref<NodeJS.Timeout>();
 
-const popoverClasses = computed(() => {
+const popoverClasses = computed<string>(() => {
 	const defaultClasses =
-		/*tw*/ 'bo-popover max-w-80 fixed z-[9999] rounded-lg bg-white p-4 font-sans text-base font-normal text-gray-900 shadow-none outline-none transition-opacity dark:bg-gray-800 dark:text-white';
+		/*tw*/ 'bo-popover max-w-80 fixed z-40 rounded-lg bg-white p-4 font-sans text-base font-normal text-gray-900 shadow-none outline-none transition-opacity dark:bg-gray-800 dark:text-white';
 
 	return TailwindService.instance.merge(
 		defaultClasses,
-		shadow.value ? 'shadow-lg' : '',
-		border.value ? 'border border-gray-200 dark:border-gray-700' : '',
-		animation.value === 'fade'
-			? `transition-opacity duration-${animationDuration.value}`
-			: animation.value === 'scale'
-				? `transition-transform duration-${animationDuration.value} scale-95 origin-center`
-				: '',
-		animation.value === 'shift'
-			? `transition-transform duration-${animationDuration.value} -translate-y-2`
-			: '',
+		props.shadow ? 'shadow-lg' : '',
+		props.border ? 'border border-gray-200 dark:border-gray-700' : '',
 		sizeClasses.value,
-		popoverClass.value,
-		isOpen ? 'opacity-100 visible' : 'opacity-0 invisible',
-		isOpen && props.animation !== 'fade' ? 'translate-x-0 translate-y-0 scale-100' : '',
+		props.popoverClass,
+		isOpen ? 'opacity-100 visible fade-in' : 'opacity-0 invisible fade-out',
 	);
 });
 
-const arrowStyles = computed(() => {
-	const placementVal = placement.value;
+const arrowClasses = computed<string>(() => {
+	const defaultClasses =
+		/*tw*/ 'bo-popover-arrow absolute h-2 w-2 rotate-45 transform bg-white dark:bg-gray-800';
 
-	if (placementVal.startsWith('top')) {
-		return {
-			bottom: '-4px',
-			left:
-				placementVal === BoPopoverPlacement.topStart
-					? '12px'
-					: placementVal === BoPopoverPlacement.topEnd
-						? 'calc(100% - 12px)'
-						: '50%',
-			transform:
-				placementVal === BoPopoverPlacement.topStart
-					? 'translateX(0) rotate(45deg)'
-					: placementVal === BoPopoverPlacement.topEnd
-						? 'translateX(-100%) rotate(45deg)'
-						: 'translateX(-50%) rotate(45deg)',
-			'border-right': border.value ? '1px solid #e5e7eb' : '',
-			'border-bottom': border.value ? '1px solid #e5e7eb' : '',
+	if (props.placement.startsWith('top')) {
+		const bottom = /*tw*/ '-bottom-1';
+		const left =
+			props.placement === BoPopoverPlacement.top_start
+				? /*tw*/ 'left-3' //'12px'
+				: props.placement === BoPopoverPlacement.top_end
+					? /*tw*/ 'left-[calc(100%_-_12px)]'
+					: /*tw*/ 'left-2/4';
+		const transform =
+			props.placement === BoPopoverPlacement.top_start
+				? /*tw*/ 'translate-x-0 rotate-45'
+				: props.placement === BoPopoverPlacement.top_end
+					? /*tw*/ '-translate-x-full rotate-45'
+					: /*tw*/ '-translate-x-2/4 rotate-45';
+		const borderValues = {
+			right: props.border ? /*tw*/ 'border-r border-gray-200' : '',
+			bottom: props.border ? /*tw*/ 'border-b border-gray-200' : '',
 		};
-	} else if (placementVal.startsWith('right')) {
-		return {
-			left: '-4px',
-			top:
-				placementVal === BoPopoverPlacement.rightStart
-					? '12px'
-					: placementVal === BoPopoverPlacement.rightEnd
-						? 'calc(100% - 12px)'
-						: '50%',
-			transform:
-				placementVal === BoPopoverPlacement.rightStart
-					? 'translateY(0) rotate(45deg)'
-					: placementVal === BoPopoverPlacement.rightEnd
-						? 'translateY(-100%) rotate(45deg)'
-						: 'translateY(-50%) rotate(45deg)',
-			'border-left': border.value ? '1px solid #e5e7eb' : '',
-			'border-top': border.value ? '1px solid #e5e7eb' : '',
+
+		return TailwindService.instance.merge(
+			left,
+			bottom,
+			transform,
+			defaultClasses,
+			borderValues.right,
+			borderValues.bottom,
+		);
+	} else if (props.placement.startsWith('right')) {
+		const left = /*tw*/ '-left-1';
+		const top =
+			props.placement === BoPopoverPlacement.right_start
+				? /*tw*/ 'top-3' //'12px'
+				: props.placement === BoPopoverPlacement.right_end
+					? /*tw*/ 'top-[calc(100%_-_12px)]'
+					: /*tw*/ 'top-2/4';
+		const transform =
+			props.placement === BoPopoverPlacement.right_start
+				? /*tw*/ 'translate-y-0 rotate-45'
+				: props.placement === BoPopoverPlacement.right_end
+					? /*tw*/ '-translate-y-full -rotate-45'
+					: /*tw*/ '-translate-y-2/4 -rotate-45';
+		const borderValues = {
+			top: props.border ? /*tw*/ 'border-t border-gray-200' : '',
+			left: props.border ? /*tw*/ 'border-l border-gray-200' : '',
 		};
-	} else if (placementVal.startsWith('bottom')) {
-		return {
-			top: '-4px',
-			left:
-				placementVal === BoPopoverPlacement.bottomStart
-					? '12px'
-					: placementVal === BoPopoverPlacement.bottomEnd
-						? 'calc(100% - 12px)'
-						: '50%',
-			transform:
-				placementVal === BoPopoverPlacement.bottomStart
-					? 'translateX(0) rotate(45deg)'
-					: placementVal === BoPopoverPlacement.bottomEnd
-						? 'translateX(-100%) rotate(45deg)'
-						: 'translateX(-50%) rotate(45deg)',
-			'border-left': border.value ? '1px solid #e5e7eb' : '',
-			'border-top': border.value ? '1px solid #e5e7eb' : '',
+
+		return TailwindService.instance.merge(
+			left,
+			top,
+			transform,
+			defaultClasses,
+			borderValues.top,
+			borderValues.left,
+		);
+	} else if (props.placement.startsWith('bottom')) {
+		const top = /*tw*/ '-top-1';
+		const left =
+			props.placement === BoPopoverPlacement.bottom_start
+				? /*tw*/ 'left-3' //'12px'
+				: props.placement === BoPopoverPlacement.bottom_end
+					? /*tw*/ 'left-[calc(100%_-_12px)]'
+					: /*tw*/ 'left-2/4';
+		const transform =
+			props.placement === BoPopoverPlacement.bottom_start
+				? /*tw*/ 'translate-x-0 rotate-45'
+				: props.placement === BoPopoverPlacement.bottom_end
+					? /*tw*/ '-translate-x-full rotate-45'
+					: /*tw*/ '-translate-x-2/4 rotate-45';
+		const borderValues = {
+			top: props.border ? /*tw*/ 'border-t border-gray-200' : '',
+			left: props.border ? /*tw*/ 'border-l border-gray-200' : '',
 		};
-	} else if (placementVal.startsWith('left')) {
-		return {
-			right: '-4px',
-			top:
-				placementVal === BoPopoverPlacement.leftStart
-					? '12px'
-					: placementVal === BoPopoverPlacement.leftEnd
-						? 'calc(100% - 12px)'
-						: '50%',
-			transform:
-				placementVal === BoPopoverPlacement.leftStart
-					? 'translateY(0) rotate(45deg)'
-					: placementVal === BoPopoverPlacement.leftEnd
-						? 'translateY(-100%) rotate(45deg)'
-						: 'translateY(-50%) rotate(45deg)',
-			'border-right': border.value ? '1px solid #e5e7eb' : '',
-			'border-bottom': border.value ? '1px solid #e5e7eb' : '',
+
+		return TailwindService.instance.merge(
+			top,
+			left,
+			transform,
+			defaultClasses,
+			borderValues.top,
+			borderValues.left,
+		);
+	} else if (props.placement.startsWith('left')) {
+		const right = /*tw*/ '-right-1';
+		const top =
+			props.placement === BoPopoverPlacement.left_start
+				? /*tw*/ 'top-3' //'12px'
+				: props.placement === BoPopoverPlacement.left_end
+					? /*tw*/ 'top-[calc(100%_-_12px)]'
+					: /*tw*/ 'top-2/4';
+		const transform =
+			props.placement === BoPopoverPlacement.left_start
+				? /*tw*/ 'translate-y-0 -rotate-45'
+				: props.placement === BoPopoverPlacement.left_end
+					? /*tw*/ '-translate-y-full -rotate-45'
+					: /*tw*/ '-translate-y-2/4 -rotate-45';
+		const borderValues = {
+			right: props.border ? /*tw*/ 'border-r border-gray-200' : '',
+			bottom: props.border ? /*tw*/ 'border-b border-gray-200' : '',
 		};
+
+		return TailwindService.instance.merge(
+			right,
+			top,
+			transform,
+			defaultClasses,
+			borderValues.right,
+			borderValues.bottom,
+		);
 	}
 
-	return {};
+	return '';
 });
 
-const sizeClasses = computed(() => {
-	switch (size.value) {
+const sizeClasses = computed<string>(() => {
+	switch (props.size) {
 		case BoSize.small:
 			return 'text-xs p-2';
 		case BoSize.large:
@@ -243,92 +245,85 @@ const sizeClasses = computed(() => {
 	}
 });
 
-function positionPopover() {
+function positionPopover(): void {
 	if (!triggerRef.value || !popoverRef.value) {
 		return;
 	}
 
 	const triggerRect = triggerRef.value.getBoundingClientRect();
 	const popoverRect = popoverRef.value.getBoundingClientRect();
-	const placementVal = placement.value;
-	const offsetVal = offset.value;
 
-	// Calculate position based on placement
 	let top: number, left: number;
 
-	switch (placementVal) {
+	switch (props.placement) {
 		case BoPopoverPlacement.top:
-			top = triggerRect.top - popoverRect.height - offsetVal;
+			top = triggerRect.top - popoverRect.height - props.offset;
 			left = triggerRect.left + triggerRect.width / 2 - popoverRect.width / 2;
 			break;
-		case BoPopoverPlacement.topStart:
-			top = triggerRect.top - popoverRect.height - offsetVal;
+		case BoPopoverPlacement.top_start:
+			top = triggerRect.top - popoverRect.height - props.offset;
 			left = triggerRect.left;
 			break;
-		case BoPopoverPlacement.topEnd:
-			top = triggerRect.top - popoverRect.height - offsetVal;
+		case BoPopoverPlacement.top_end:
+			top = triggerRect.top - popoverRect.height - props.offset;
 			left = triggerRect.right - popoverRect.width;
 			break;
 		case BoPopoverPlacement.right:
 			top = triggerRect.top + triggerRect.height / 2 - popoverRect.height / 2;
-			left = triggerRect.right + offsetVal;
+			left = triggerRect.right + props.offset;
 			break;
-		case BoPopoverPlacement.rightStart:
+		case BoPopoverPlacement.right_start:
 			top = triggerRect.top;
-			left = triggerRect.right + offsetVal;
+			left = triggerRect.right + props.offset;
 			break;
-		case BoPopoverPlacement.rightEnd:
+		case BoPopoverPlacement.right_end:
 			top = triggerRect.bottom - popoverRect.height;
-			left = triggerRect.right + offsetVal;
+			left = triggerRect.right + props.offset;
 			break;
 		case BoPopoverPlacement.bottom:
-			top = triggerRect.bottom + offsetVal;
+			top = triggerRect.bottom + props.offset;
 			left = triggerRect.left + triggerRect.width / 2 - popoverRect.width / 2;
 			break;
-		case BoPopoverPlacement.bottomStart:
-			top = triggerRect.bottom + offsetVal;
+		case BoPopoverPlacement.bottom_start:
+			top = triggerRect.bottom + props.offset;
 			left = triggerRect.left;
 			break;
-		case BoPopoverPlacement.bottomEnd:
-			top = triggerRect.bottom + offsetVal;
+		case BoPopoverPlacement.bottom_end:
+			top = triggerRect.bottom + props.offset;
 			left = triggerRect.right - popoverRect.width;
 			break;
 		case BoPopoverPlacement.left:
 			top = triggerRect.top + triggerRect.height / 2 - popoverRect.height / 2;
-			left = triggerRect.left - popoverRect.width - offsetVal;
+			left = triggerRect.left - popoverRect.width - props.offset;
 			break;
-		case BoPopoverPlacement.leftStart:
+		case BoPopoverPlacement.left_start:
 			top = triggerRect.top;
-			left = triggerRect.left - popoverRect.width - offsetVal;
+			left = triggerRect.left - popoverRect.width - props.offset;
 			break;
-		case BoPopoverPlacement.leftEnd:
+		case BoPopoverPlacement.left_end:
 			top = triggerRect.bottom - popoverRect.height;
-			left = triggerRect.left - popoverRect.width - offsetVal;
+			left = triggerRect.left - popoverRect.width - props.offset;
 			break;
 		default:
-			top = triggerRect.bottom + offsetVal;
+			top = triggerRect.bottom + props.offset;
 			left = triggerRect.left + triggerRect.width / 2 - popoverRect.width / 2;
 	}
 
-	// Adjust for viewport boundaries
 	const viewportWidth = window.innerWidth;
 	const viewportHeight = window.innerHeight;
 
-	// Ensure the popover stays within viewport horizontally
 	if (left < 10) {
 		left = 10;
 	} else if (left + popoverRect.width > viewportWidth - 10) {
 		left = viewportWidth - popoverRect.width - 10;
 	}
 
-	// Ensure the popover stays within viewport vertically
 	if (top < 10) {
 		top = 10;
 	} else if (top + popoverRect.height > viewportHeight - 10) {
 		top = viewportHeight - popoverRect.height - 10;
 	}
 
-	// Apply position
 	if (popoverRef.value) {
 		popoverRef.value.style.top = `${top}px`;
 		popoverRef.value.style.left = `${left}px`;
@@ -336,73 +331,69 @@ function positionPopover() {
 }
 
 function onTriggerClick(): void {
-	if (trigger.value === BoPopoverTrigger.click) {
+	if (props.trigger === BoPopoverTrigger.click) {
 		isOpen.value = !isOpen.value;
 	}
 }
 
 function onTriggerMouseEnter(): void {
-	if (trigger.value === BoPopoverTrigger.hover) {
+	if (props.trigger === BoPopoverTrigger.hover) {
 		clearTimeout(hoverTimeout.value);
 		isOpen.value = true;
 	}
 }
 
 function onTriggerMouseLeave(): void {
-	if (trigger.value === BoPopoverTrigger.hover && !interactive.value) {
-		hoverTimeout.value = window.setTimeout(() => {
+	if (props.trigger === BoPopoverTrigger.hover && !props.interactive) {
+		hoverTimeout.value = setTimeout(() => {
 			isOpen.value = false;
 		}, 100);
 	}
 }
 
 function onTriggerFocus(): void {
-	if (trigger.value === BoPopoverTrigger.focus) {
+	if (props.trigger === BoPopoverTrigger.focus) {
 		isOpen.value = true;
 	}
 }
 
 function onTriggerBlur(): void {
-	if (trigger.value === BoPopoverTrigger.focus) {
+	if (props.trigger === BoPopoverTrigger.focus) {
 		isOpen.value = false;
 	}
 }
 
 function onPopoverMouseEnter(): void {
-	if (trigger.value === BoPopoverTrigger.hover && interactive.value) {
+	if (props.trigger === BoPopoverTrigger.hover && props.interactive) {
 		clearTimeout(hoverTimeout.value);
 	}
 }
 
 function onPopoverMouseLeave(): void {
-	if (trigger.value === BoPopoverTrigger.hover && interactive.value) {
-		hoverTimeout.value = window.setTimeout(() => {
+	if (props.trigger === BoPopoverTrigger.hover && props.interactive) {
+		hoverTimeout.value = setTimeout(() => {
 			isOpen.value = false;
 		}, 100);
 	}
 }
 
-watch(modelValue, (newValue) => {
-	isOpen.value = newValue;
+watch(modelValue, (val) => {
+	isOpen.value = val;
 });
 
-watch(isOpen, (val) => {
-	emit('update:modelValue', val);
-
-	if (!val) {
+watchEffect(() => {
+	if (isOpen.value) {
+		emit('opened');
+		nextTick(() => {
+			positionPopover();
+		});
+	} else {
 		emit('closed');
-		return;
 	}
-
-	emit('opened');
-
-	nextTick(() => {
-		positionPopover();
-	});
 });
 
 onClickOutside(popoverRef, () => {
-	if (closeOnOutsideClick.value && isOpen.value) {
+	if (props.closeOnOutsideClick && isOpen.value) {
 		isOpen.value = false;
 	}
 });

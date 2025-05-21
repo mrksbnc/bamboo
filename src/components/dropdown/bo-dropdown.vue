@@ -73,7 +73,7 @@ const emit = defineEmits<{
 }>();
 
 const dropdownContentClasses: string =
-	/*tw*/ 'bo-dropdown-menu absolute z-10 rounded-md bg-white border p-2 font-sans text-base font-normal text-gray-900 shadow-none outline-none transition-opacity dark:bg-gray-800 dark:text-white mt-1';
+	/*tw*/ 'bo-dropdown-menu absolute z-50 rounded-md bg-white border p-2 font-sans text-base font-normal text-gray-900 shadow-none outline-none transition-opacity dark:bg-gray-800 dark:text-white mt-1';
 
 const showDropdown = ref<boolean>(props?.open ?? false);
 const triggerLabel = ref<string>(props.defaultTriggerText);

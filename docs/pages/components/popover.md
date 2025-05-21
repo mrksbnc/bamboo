@@ -49,7 +49,6 @@ import { BoPopover, BoButton } from '@mrksbnc/bamboo';
 | Name                  | Type                 | Default     | Description                                |
 | --------------------- | -------------------- | ----------- | ------------------------------------------ |
 | `id`                  | `string`             | `auto`      | Unique ID for the popover                  |
-| `modelValue`          | `boolean`            | `false`     | Controls whether the popover is visible    |
 | `placement`           | `BoPopoverPlacement` | `bottom`    | Position of the popover relative to target |
 | `offset`              | `number`             | `8`         | Distance from the target element (px)      |
 | `trigger`             | `BoPopoverTrigger`   | `click`     | Event that triggers the popover            |
@@ -59,11 +58,11 @@ import { BoPopover, BoButton } from '@mrksbnc/bamboo';
 | `size`                | `BoSize`             | `default`   | Size of the popover                        |
 | `popoverClass`        | `string`             | `''`        | Additional CSS classes for the popover     |
 | `arrow`               | `boolean`            | `true`      | Show arrow pointing to the target          |
-| `animationDuration`   | `number`             | `300`       | Duration of animation in ms                |
-| `animation`           | `string`             | `fade`      | Animation style (fade, scale, shift)       |
 | `shadow`              | `boolean`            | `true`      | Add shadow to the popover                  |
 | `border`              | `boolean`            | `true`      | Add border to the popover                  |
 | `closeOnOutsideClick` | `boolean`            | `true`      | Close popover when clicking outside        |
+
+The component uses `defineModel` to manage the popover state. This means that you can use the `v-model` directive to bind the popover to a variable.
 
 ## Events
 
@@ -214,16 +213,6 @@ export interface BoPopoverProps {
   >
     <template #trigger>
       <BoButton label="Hover" />
-    </template>
-  </BoPopover>
-  
-  <BoPopover 
-    :trigger="BoPopoverTrigger.focus" 
-    title="Focus Trigger" 
-    content="Focus to open, blur to close"
-  >
-    <template #trigger>
-      <BoButton label="Focus" />
     </template>
   </BoPopover>
 </div>
