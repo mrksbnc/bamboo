@@ -1,12 +1,22 @@
 <script setup>
 import BoTable from '@/components/table/bo-table.vue';
-import { BoTableVariant, BoTableSize } from '@/components/table/bo-table';
-import { BoSize } from '@/shared/bo-size';
+
+const columns = [
+	{ key: 'name', label: 'Name' },
+	{ key: 'age', label: 'Age' },
+	{ key: 'email', label: 'Email' },
+];
+
+const data = [
+	{ id: 1, name: 'John Doe', age: 30, email: 'john@example.com' },
+	{ id: 2, name: 'Jane Smith', age: 25, email: 'jane@example.com' },
+	{ id: 3, name: 'Bob Johnson', age: 35, email: 'bob@example.com' },
+];
 </script>
 
 # Table
 
-A customizable data table component for displaying structured data in rows and columns.
+Table is a component that displays data in a structured tabular format.
 
 ```js
 import { BoTable } from '@mrksbnc/bamboo';
@@ -14,262 +24,127 @@ import { BoTable } from '@mrksbnc/bamboo';
 
 ## Basic Usage
 
+<bo-table :columns="columns" :data="data" />
+
 ```vue
 <template>
 	<bo-table
 		:columns="columns"
 		:data="data"
-		:row-component="RowComponent"
-		hoverable
-		striped
 	/>
 </template>
 
 <script setup>
-import { BoTable } from '@mrksbnc/bamboo';
-import RowComponent from './RowComponent.vue';
-
 const columns = [
-	{ header: 'Name', field: 'name' },
-	{ header: 'Email', field: 'email' },
-	{ header: 'Status', field: 'status' },
+	{ key: 'name', label: 'Name' },
+	{ key: 'age', label: 'Age' },
+	{ key: 'email', label: 'Email' },
 ];
 
 const data = [
-	{ id: 1, name: 'John Doe', email: 'john@example.com', status: 'Active' },
-	{ id: 2, name: 'Jane Smith', email: 'jane@example.com', status: 'Inactive' },
-	{ id: 3, name: 'Robert Johnson', email: 'robert@example.com', status: 'Pending' },
+	{ id: 1, name: 'John Doe', age: 30, email: 'john@example.com' },
+	{ id: 2, name: 'Jane Smith', age: 25, email: 'jane@example.com' },
+	{ id: 3, name: 'Bob Johnson', age: 35, email: 'bob@example.com' },
 ];
 </script>
 ```
 
-<hr />
-<div class="my-4">
-  <!-- Sample table display would go here in the actual documentation -->
-</div>
-
 ## Props
 
-| Name           | Type              | Default     | Description                                     |
-| -------------- | ----------------- | ----------- | ----------------------------------------------- |
-| `data`         | `any[]`           | required    | Array of data to display in the table           |
-| `columns`      | `BoTableColumn[]` | required    | Column definitions for the table                |
-| `rowComponent` | `Component`       | required    | Vue component used to render each row           |
-| `bordered`     | `boolean`         | `false`     | Whether to show borders around the table        |
-| `striped`      | `boolean`         | `false`     | Whether to use alternating row colors           |
-| `hoverable`    | `boolean`         | `false`     | Whether rows highlight on hover                 |
-| `fullWidth`    | `boolean`         | `true`      | Whether table takes full width of container     |
-| `stickyHeader` | `boolean`         | `false`     | Whether headers stick to the top when scrolling |
-| `height`       | `string`          | `undefined` | Fixed height for the table container            |
+| Name      | Type                    | Default | Description                      |
+| --------- | ----------------------- | ------- | -------------------------------- |
+| `id`      | `string`                | `auto`  | Unique ID for the table          |
+| `columns` | `BoTableColumn[]`       | -       | Array of column definitions      |
+| `data`    | `Record<string, any>[]` | -       | Array of data objects to display |
 
 ## Types
 
 ```ts
-export interface BoTableColumn {
-	header: string;
-	field: string;
-	sortable?: boolean;
-	width?: string;
-	cellRenderer?: Component | ((value: any, row: any) => string);
+interface BoTableColumn {
+	/** Unique key for the column */
+	key: string;
+	/** Display label for the column */
+	label: string;
+	/** Optional CSS class for the column */
 	class?: string;
-	headerClass?: string;
 }
 
-export enum BoTableVariant {
-	default = 'default',
-	bordered = 'bordered',
-	minimal = 'minimal',
-}
-
-export enum BoTableSize {
-	small = 'small',
-	default = 'default',
-	large = 'large',
+interface BoTableProps {
+	/** Unique ID for the table */
+	id?: string;
+	/** Array of column definitions */
+	columns: BoTableColumn[];
+	/** Array of data objects to display in the table */
+	data: Record<string, any>[];
 }
 ```
 
-## Table Styles
+## Custom Cell Content
 
-### Basic Table
+You can customize the content of any cell using slots. The slot name should match the column key:
 
-```vue
-<template>
-	<bo-table
-		:columns="columns"
-		:data="data"
-		:row-component="RowComponent"
-	/>
-</template>
-```
-
-### Bordered Table
+<bo-table :columns="columns" :data="data">
+	<template #email="{ value }">
+		<a :href="`mailto:${value}`" class="text-blue-500 hover:underline">
+			{{ value }}
+		</a>
+	</template>
+</bo-table>
 
 ```vue
 <template>
 	<bo-table
 		:columns="columns"
 		:data="data"
-		:row-component="RowComponent"
-		bordered
-	/>
-</template>
-```
-
-### Striped Table
-
-```vue
-<template>
-	<bo-table
-		:columns="columns"
-		:data="data"
-		:row-component="RowComponent"
-		striped
-	/>
-</template>
-```
-
-### Hoverable Rows
-
-```vue
-<template>
-	<bo-table
-		:columns="columns"
-		:data="data"
-		:row-component="RowComponent"
-		hoverable
-	/>
-</template>
-```
-
-### Sticky Header
-
-```vue
-<template>
-	<bo-table
-		:columns="columns"
-		:data="data"
-		:row-component="RowComponent"
-		sticky-header
-		height="300px"
-	/>
-</template>
-```
-
-## Custom Row Component
-
-The `rowComponent` prop allows you to completely customize how rows are rendered in the table. Here's an example of a custom row component:
-
-```vue
-<!-- UserTableRow.vue -->
-<template>
-	<tr :class="$attrs.class">
-		<td class="p-3">{{ row.name }}</td>
-		<td class="p-3">{{ row.email }}</td>
-		<td class="p-3">
-			<span :class="statusClass">{{ row.status }}</span>
-		</td>
-		<td class="p-3">
-			<bo-button
-				size="small"
-				@click="editUser"
-				>Edit</bo-button
+	>
+		<template #email="{ value }">
+			<a
+				:href="`mailto:${value}`"
+				class="text-blue-500 hover:underline"
 			>
-		</td>
-	</tr>
+				{{ value }}
+			</a>
+		</template>
+	</bo-table>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { BoButton } from '@mrksbnc/bamboo';
+const columns = [
+	{ key: 'name', label: 'Name' },
+	{ key: 'age', label: 'Age' },
+	{ key: 'email', label: 'Email' },
+];
 
-// Props passed by the BoTable component
-const props = defineProps({
-	row: {
-		type: Object,
-		required: true,
-	},
-	columns: {
-		type: Array,
-		required: true,
-	},
-});
-
-// Computed property to determine status badge styling
-const statusClass = computed(() => {
-	switch (props.row.status) {
-		case 'Active':
-			return 'px-2 py-1 rounded-full bg-green-100 text-green-800';
-		case 'Inactive':
-			return 'px-2 py-1 rounded-full bg-red-100 text-red-800';
-		case 'Pending':
-			return 'px-2 py-1 rounded-full bg-yellow-100 text-yellow-800';
-		default:
-			return '';
-	}
-});
-
-// Row action method
-const editUser = () => {
-	console.log('Edit user:', props.row);
-};
+const data = [
+	{ id: 1, name: 'John Doe', age: 30, email: 'john@example.com' },
+	{ id: 2, name: 'Jane Smith', age: 25, email: 'jane@example.com' },
+	{ id: 3, name: 'Bob Johnson', age: 35, email: 'bob@example.com' },
+];
 </script>
 ```
 
-## Column Configuration
+## Custom Column Styling
 
-The `columns` prop provides several options for customizing how data is displayed:
+You can add custom CSS classes to columns:
 
-```js
-const columns = [
-	// Basic column
-	{
-		header: 'Name',
-		field: 'name',
-	},
-
-	// Column with custom width
-	{
-		header: 'Email',
-		field: 'email',
-		width: '30%',
-	},
-
-	// Column with custom classes
-	{
-		header: 'Status',
-		field: 'status',
-		class: 'text-center',
-		headerClass: 'bg-slate-200',
-	},
-
-	// Column with cell renderer function
-	{
-		header: 'Created',
-		field: 'createdAt',
-		cellRenderer: (value) => {
-			return new Date(value).toLocaleDateString();
-		},
-	},
-];
-```
-
-## Empty State
-
-The table automatically shows an empty state message when no data is available, but you can customize this with a slot:
+<bo-table
+	:columns="[
+		{ key: 'name', label: 'Name', class: 'font-bold' },
+		{ key: 'age', label: 'Age', class: 'text-right' },
+		{ key: 'email', label: 'Email' },
+	]"
+	:data="data"
+/>
 
 ```vue
 <template>
 	<bo-table
-		:columns="columns"
-		:data="[]"
-		:row-component="RowComponent"
-	>
-		<template #empty>
-			<div class="py-8 text-center">
-				<p class="text-slate-500">No users found</p>
-				<bo-button class="mt-4">Add User</bo-button>
-			</div>
-		</template>
-	</bo-table>
+		:columns="[
+			{ key: 'name', label: 'Name', class: 'font-bold' },
+			{ key: 'age', label: 'Age', class: 'text-right' },
+			{ key: 'email', label: 'Email' },
+		]"
+		:data="data"
+	/>
 </template>
 ```

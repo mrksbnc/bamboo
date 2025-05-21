@@ -82,43 +82,59 @@ The component uses `defineModel` to manage the popover state. This means that yo
 ## Types
 
 ```ts
-export enum BoPopoverPlacement {
+enum BoPopoverPlacement {
 	top = 'top',
-	topStart = 'top-start',
-	topEnd = 'top-end',
+	top_start = 'top-start',
+	top_end = 'top-end',
 	right = 'right',
-	rightStart = 'right-start',
-	rightEnd = 'right-end',
+	right_start = 'right-start',
+	right_end = 'right-end',
 	bottom = 'bottom',
-	bottomStart = 'bottom-start',
-	bottomEnd = 'bottom-end',
+	bottom_start = 'bottom-start',
+	bottom_end = 'bottom-end',
 	left = 'left',
-	leftStart = 'left-start',
-	leftEnd = 'left-end',
+	left_start = 'left-start',
+	left_end = 'left-end',
 }
 
-export enum BoPopoverTrigger {
+enum BoPopoverTrigger {
 	click = 'click',
 	hover = 'hover',
 	focus = 'focus',
 }
 
-export interface BoPopoverProps {
+enum BoPopoverAnimation {
+	fade = 'fade',
+	scale = 'scale',
+	shift = 'shift',
+}
+
+interface BoPopoverProps {
+	/** Id for the popover */
 	id?: string;
-	modelValue?: boolean;
+	/** Placement of the popover */
 	placement?: BoPopoverPlacement;
+	/** Offset distance from the trigger element */
 	offset?: number;
+	/** The event that triggers the popover */
 	trigger?: BoPopoverTrigger;
+	/** Whether to disable interactive content inside the popover */
 	interactive?: boolean;
+	/** Title of the popover */
 	title?: string;
+	/** Content of the popover */
 	content?: string;
+	/** Size of the popover */
 	size?: BoSize;
+	/** CSS class to add to the popover */
 	popoverClass?: string;
+	/** Whether to show an arrow pointing to the trigger element */
 	arrow?: boolean;
-	animationDuration?: number;
-	animation?: 'fade' | 'scale' | 'shift';
+	/** Whether the popover should have a shadow */
 	shadow?: boolean;
+	/** Whether the popover should have a border */
 	border?: boolean;
+	/** Whether to close the popover when clicking outside */
 	closeOnOutsideClick?: boolean;
 }
 ```

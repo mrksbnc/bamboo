@@ -39,9 +39,10 @@ import { BoFontFamily, BoTextColor } from '@/components/text/bo-text.js';
 import BoText from '@/components/text/bo-text.vue';
 import { IdentityService } from '@/services/identity-service.js';
 import { StringService } from '@/services/string-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
 import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/bo-loader.js';
 import { BoSize } from '@/shared/bo-size.js';
-import { computed, toRefs, type StyleValue } from 'vue';
+import { computed, type StyleValue } from 'vue';
 import type { BoLoadingPulseProps } from './bo-loading-pulse.js';
 
 const slots = defineSlots<{
@@ -55,23 +56,41 @@ const props = withDefaults(defineProps<BoLoadingPulseProps>(), {
 	textPosition: () => BoLoaderTextPosition.bottom,
 });
 
-const { size, variant, loaderText, customColor } = toRefs(props);
+const defaultClasses = TailwindService.instance.merge(
+	/*tw*/ 'bo-loading-pulse__container',
+	/*tw*/ 'flex',
+	/*tw*/ 'gap-3',
+	/*tw*/ 'h-full',
+	/*tw*/ 'max-w-fit',
+	/*tw*/ 'items-center',
+	/*tw*/ 'content-center',
+	/*tw*/ 'justify-center',
+);
 
-const defaultClasses =
-	/*tw*/ 'bo-loading-pulse__container flex h-full max-w-fit content-center items-center justify-center gap-2';
+const defaultOuterPulseAbsoluteClasses = TailwindService.instance.merge(
+	/*tw*/ 'bo-loading-pulse__outer-pulse-absolute',
+	/*tw*/ 'h-full',
+	/*tw*/ 'w-full',
+	/*tw*/ 'absolute',
+	/*tw*/ 'opacity-75',
+	/*tw*/ 'inline-flex',
+	/*tw*/ 'animate-ping',
+	/*tw*/ 'rounded-full',
+);
 
-const defaultOuterPulseAbsoluteClasses =
-	/*tw*/ 'bo-loading-pulse__outer-pulse-absolute absolute inline-flex h-full w-full animate-ping rounded-full opacity-75';
-
-const defaultInnerPulseRelativeClasses =
-	/*tw*/ 'bo-loading-pulse__inner-pulse-relative relative inline-flex rounded-full';
+const defaultInnerPulseRelativeClasses = TailwindService.instance.merge(
+	/*tw*/ 'bo-loading-pulse__inner-pulse-relative',
+	/*tw*/ 'relative',
+	/*tw*/ 'inline-flex',
+	/*tw*/ 'rounded-full',
+);
 
 const displayLoaderText = computed<boolean>(() => {
-	return !StringService.instance.isEmptyStr(loaderText.value);
+	return !StringService.instance.isEmptyStr(props.loaderText);
 });
 
 const loaderSizeClasses = computed<string>(() => {
-	switch (size.value) {
+	switch (props.size) {
 		case BoSize.extra_small:
 			return /*tw*/ 'size-[8px]';
 		case BoSize.small:
@@ -87,9 +106,9 @@ const loaderSizeClasses = computed<string>(() => {
 });
 
 const customColorStyle = computed<StyleValue>(() => {
-	if (!StringService.instance.isEmptyStr(customColor.value)) {
+	if (!StringService.instance.isEmptyStr(props.customColor)) {
 		return {
-			backgroundColor: customColor.value,
+			backgroundColor: props.customColor,
 		};
 	}
 
@@ -97,11 +116,11 @@ const customColorStyle = computed<StyleValue>(() => {
 });
 
 const loaderPulseVariantClasses = computed<string>(() => {
-	if (!StringService.instance.isEmptyStr(customColor.value)) {
+	if (!StringService.instance.isEmptyStr(props.customColor)) {
 		return '';
 	}
 
-	switch (variant.value) {
+	switch (props.variant) {
 		case BoLoaderVariant.secondary:
 			return /*tw*/ 'bg-gray-600 dark:bg-gray-400';
 		case BoLoaderVariant.danger:
@@ -121,7 +140,7 @@ const loaderPulseVariantClasses = computed<string>(() => {
 });
 
 const shiftedPulseLoaderVariantClasses = computed<string>(() => {
-	switch (variant.value) {
+	switch (props.variant) {
 		case BoLoaderVariant.secondary:
 			return /*tw*/ 'bg-gray-500 dark:bg-gray-300';
 		case BoLoaderVariant.danger:

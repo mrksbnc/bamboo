@@ -48,7 +48,7 @@ import { BoLoadingPulse } from '@mrksbnc/bamboo';
 ## Types
 
 ```ts
-export enum BoLoaderVariant {
+enum BoLoaderVariant {
 	primary = 'primary',
 	secondary = 'secondary',
 	danger = 'danger',
@@ -58,16 +58,23 @@ export enum BoLoaderVariant {
 	white = 'white',
 }
 
-export enum BoLoaderTextPosition {
+enum BoLoaderTextPosition {
 	side = 'side',
 	bottom = 'bottom',
 }
 
-export interface BoLoadingPulseProps {
+interface BoLoadingPulseProps {
+	/** Unique id for the loading pulse */
+	id?: string;
+	/** The size of the loading pulse */
 	size?: BoSize;
+	/** The variant of the loading pulse */
 	variant?: BoLoaderVariant;
+	/** The custom color of the loading pulse */
 	customColor?: string;
+	/** Optional loader text to display */
 	loaderText?: string;
+	/** Position of the text of the loading pulse */
 	textPosition?: BoLoaderTextPosition;
 }
 ```
@@ -168,28 +175,4 @@ export interface BoLoadingPulseProps {
 <bo-loading-pulse :text-position="BoLoaderTextPosition.side">
   <span class="text-xs font-medium text-blue-600">Processing...</span>
 </bo-loading-pulse>
-```
-
-## Comparison with Loading Spinner
-
-<div class="flex items-center gap-6 my-4 border p-4 rounded">
-  <div class="flex flex-col items-center gap-2">
-    <bo-loading-pulse 
-      :size="BoSize.default"
-      loader-text="Loading Pulse" 
-    />
-  </div>
-  <div class="flex flex-col items-center gap-2">
-    <bo-loading-spinner 
-      :size="BoSize.default"
-      loader-text="Loading Spinner" 
-    />
-  </div>
-</div>
-
-```vue
-<div class="flex items-center gap-6">
-  <bo-loading-pulse loader-text="Loading Pulse" />
-  <bo-loading-spinner loader-text="Loading Spinner" />
-</div>
 ```

@@ -48,7 +48,7 @@ import { BoLoadingSpinner } from '@mrksbnc/bamboo';
 ## Types
 
 ```ts
-export enum BoLoaderVariant {
+enum BoLoaderVariant {
 	primary = 'primary',
 	secondary = 'secondary',
 	danger = 'danger',
@@ -58,16 +58,23 @@ export enum BoLoaderVariant {
 	white = 'white',
 }
 
-export enum BoLoaderTextPosition {
+enum BoLoaderTextPosition {
 	side = 'side',
 	bottom = 'bottom',
 }
 
-export interface BoLoadingSpinnerProps {
+interface BoLoadingSpinnerProps {
+	/** Unique id for the loading spinner */
+	id?: string;
+	/** The size of the loading spinner */
 	size?: BoSize;
+	/** The variant of the loading spinner */
 	variant?: BoLoaderVariant;
+	/** Custom color of the loading spinner in hex format */
 	customColor?: string;
+	/** Optional loader text to display */
 	loaderText?: string;
+	/** Position of the text of the loading spinner */
 	textPosition?: BoLoaderTextPosition;
 }
 ```
