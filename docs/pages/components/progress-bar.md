@@ -3,6 +3,7 @@ import BoProgressBar from '@/components/progress-bar/bo-progress-bar.vue';
 import { BoSize } from '@/shared/bo-size';
 import { BoProgressBarVariant } from '@/components/progress-bar/bo-progress-bar';
 import { ref } from 'vue';
+import BoButton from '@/components/button/bo-button.vue';
 
 // For examples with animated progress
 const progress = ref(45);
@@ -23,35 +24,41 @@ function startLoading() {
 
 # Progress Bar
 
-The Progress Bar component provides a visual indicator of task progression or loading status.
+Progress Bar is a component that displays the progress of a task or operation.
+
+```js
+import { BoProgressBar } from '@mrksbnc/bamboo';
+```
 
 ## Basic Usage
 
-<div class="component-preview">
-  <BoProgressBar :value="45" />
-</div>
+<bo-progress-bar :value="75" />
 
 ```vue
-<BoProgressBar :value="45" />
+<template>
+	<bo-progress-bar :value="75" />
+</template>
 ```
 
 ## Props
 
-| Prop          | Type                 | Default   | Description                            |
-| ------------- | -------------------- | --------- | -------------------------------------- |
-| value         | Number               | —         | Current value of the progress bar      |
-| max           | Number               | 100       | Maximum value of the progress bar      |
-| showLabel     | Boolean              | false     | Show label with percentage             |
-| striped       | Boolean              | false     | Whether the progress bar is striped    |
-| animated      | Boolean              | false     | Whether the progress bar is animated   |
-| size          | BoSize               | default   | Size of the progress bar               |
-| variant       | BoProgressBarVariant | primary   | Color variant of the progress bar      |
-| label         | String               | undefined | Label to display instead of percentage |
-| indeterminate | Boolean              | false     | Whether to show indeterminate state    |
+| Name            | Type                   | Default     | Description                                     |
+| --------------- | ---------------------- | ----------- | ----------------------------------------------- |
+| `id`            | `string`               | `auto`      | Unique ID for the progress bar                  |
+| `value`         | `number`               | `0`         | Current value of the progress bar               |
+| `max`           | `number`               | `100`       | Maximum value of the progress bar               |
+| `showLabel`     | `boolean`              | `true`      | Show label or percentage in the progress bar    |
+| `shape`         | `BoProgressBarShape`   | `rounded`   | The shape of the progress bar                   |
+| `size`          | `BoSize`               | `default`   | Size of the progress bar                        |
+| `variant`       | `BoProgressBarVariant` | `primary`   | Color variant of the progress bar               |
+| `label`         | `string`               | `undefined` | Label to display instead of percentage          |
+| `color`         | `string`               | `undefined` | Custom color for the progress bar in hex format |
+| `tailwindClass` | `string`               | `undefined` | Custom tailwind class for the progress bar      |
+| `fontColor`     | `string`               | `undefined` | Custom font color for the progress bar          |
 
 ## Types
 
-```typescript
+```ts
 enum BoProgressBarVariant {
 	primary = 'primary',
 	secondary = 'secondary',
@@ -63,93 +70,157 @@ enum BoProgressBarVariant {
 	dark = 'dark',
 }
 
-interface BoProgressBarProps {
-	value: number;
-	max?: number;
-	showLabel?: boolean;
-	striped?: boolean;
-	animated?: boolean;
-	size?: BoSize;
-	variant?: BoProgressBarVariant;
-	label?: string;
-	indeterminate?: boolean;
+enum BoProgressBarShape {
+	rounded = 'rounded',
+	square = 'square',
 }
-```
 
-## Sizes
-
-<div class="component-preview">
-  <BoProgressBar :value="45" :size="BoSize.extra_small" class="mb-3" />
-  <BoProgressBar :value="55" :size="BoSize.small" class="mb-3" />
-  <BoProgressBar :value="65" :size="BoSize.default" class="mb-3" />
-  <BoProgressBar :value="75" :size="BoSize.large" class="mb-3" />
-  <BoProgressBar :value="85" :size="BoSize.extra_large" />
-</div>
-
-```vue
-<BoProgressBar :value="45" :size="BoSize.extra_small" />
-<BoProgressBar :value="55" :size="BoSize.small" />
-<BoProgressBar :value="65" :size="BoSize.default" />
-<BoProgressBar :value="75" :size="BoSize.large" />
-<BoProgressBar :value="85" :size="BoSize.extra_large" />
+interface BoProgressBarProps {
+	/** Id for the progress bar */
+	id?: string;
+	/** Current value of the progress bar */
+	value?: number;
+	/** Maximum value of the progress bar */
+	max?: number;
+	/** Show label or percentage in the progress bar */
+	showLabel?: boolean;
+	/** The shape of the progress bar */
+	shape?: BoProgressBarShape;
+	/** Size of the progress bar */
+	size?: BoSize;
+	/** Color variant of the progress bar */
+	variant?: BoProgressBarVariant;
+	/** Label to display instead of percentage */
+	label?: string;
+	/** Custom color for the progress bar in hex format */
+	color?: string;
+	/** Custom tailwind class for the progress bar */
+	tailwindClass?: string;
+	/** Custom font color for the progress bar */
+	fontColor?: string;
+}
 ```
 
 ## Variants
 
-<div class="component-preview">
-  <BoProgressBar :value="45" :variant="BoProgressBarVariant.primary" class="mb-3" />
-  <BoProgressBar :value="45" :variant="BoProgressBarVariant.secondary" class="mb-3" />
-  <BoProgressBar :value="45" :variant="BoProgressBarVariant.success" class="mb-3" />
-  <BoProgressBar :value="45" :variant="BoProgressBarVariant.danger" class="mb-3" />
-  <BoProgressBar :value="45" :variant="BoProgressBarVariant.warning" class="mb-3" />
-  <BoProgressBar :value="45" :variant="BoProgressBarVariant.info" class="mb-3" />
-  <BoProgressBar :value="45" :variant="BoProgressBarVariant.light" class="mb-3" />
-  <BoProgressBar :value="45" :variant="BoProgressBarVariant.dark" />
-</div>
+The progress bar supports different color variants:
+
+<bo-progress-bar :value="75" variant="primary" class="mb-2" />
+<bo-progress-bar :value="75" variant="secondary" class="mb-2" />
+<bo-progress-bar :value="75" variant="success" class="mb-2" />
+<bo-progress-bar :value="75" variant="danger" class="mb-2" />
+<bo-progress-bar :value="75" variant="warning" class="mb-2" />
+<bo-progress-bar :value="75" variant="info" class="mb-2" />
+<bo-progress-bar :value="75" variant="light" class="mb-2" />
+<bo-progress-bar :value="75" variant="dark" />
 
 ```vue
-<BoProgressBar :value="45" :variant="BoProgressBarVariant.primary" />
-<BoProgressBar :value="45" :variant="BoProgressBarVariant.secondary" />
-<BoProgressBar :value="45" :variant="BoProgressBarVariant.success" />
-<BoProgressBar :value="45" :variant="BoProgressBarVariant.danger" />
-<BoProgressBar :value="45" :variant="BoProgressBarVariant.warning" />
-<BoProgressBar :value="45" :variant="BoProgressBarVariant.info" />
-<BoProgressBar :value="45" :variant="BoProgressBarVariant.light" />
-<BoProgressBar :value="45" :variant="BoProgressBarVariant.dark" />
+<template>
+	<bo-progress-bar
+		:value="75"
+		variant="primary"
+	/>
+	<bo-progress-bar
+		:value="75"
+		variant="secondary"
+	/>
+	<bo-progress-bar
+		:value="75"
+		variant="success"
+	/>
+	<bo-progress-bar
+		:value="75"
+		variant="danger"
+	/>
+	<bo-progress-bar
+		:value="75"
+		variant="warning"
+	/>
+	<bo-progress-bar
+		:value="75"
+		variant="info"
+	/>
+	<bo-progress-bar
+		:value="75"
+		variant="light"
+	/>
+	<bo-progress-bar
+		:value="75"
+		variant="dark"
+	/>
+</template>
 ```
 
-## With Label
+## Shapes
 
-<div class="component-preview">
-  <BoProgressBar :value="45" :showLabel="true" class="mb-3" />
-  <BoProgressBar :value="65" :showLabel="true" label="Uploading..." />
-</div>
+The progress bar supports different shapes:
+
+<bo-progress-bar :value="75" shape="rounded" class="mb-2" />
+<bo-progress-bar :value="75" shape="square" />
 
 ```vue
-<BoProgressBar :value="45" :showLabel="true" />
-<BoProgressBar :value="65" :showLabel="true" label="Uploading..." />
+<template>
+	<bo-progress-bar
+		:value="75"
+		shape="rounded"
+	/>
+	<bo-progress-bar
+		:value="75"
+		shape="square"
+	/>
+</template>
 ```
 
-## Striped and Animated
+## Custom Label
 
-<div class="component-preview">
-  <BoProgressBar :value="45" :striped="true" class="mb-3" />
-  <BoProgressBar :value="65" :striped="true" :animated="true" />
-</div>
+You can provide a custom label instead of the percentage:
+
+<bo-progress-bar :value="75" label="Loading..." />
 
 ```vue
-<BoProgressBar :value="45" :striped="true" />
-<BoProgressBar :value="65" :striped="true" :animated="true" />
+<template>
+	<bo-progress-bar
+		:value="75"
+		label="Loading..."
+	/>
+</template>
 ```
 
-## Indeterminate
+## Hide Label
+
+You can hide the label completely:
+
+<bo-progress-bar :value="75" :show-label="false" />
+
+```vue
+<template>
+	<bo-progress-bar
+		:value="75"
+		:show-label="false"
+	/>
+</template>
+```
+
+## Custom Color
+
+You can provide a custom color using hex format:
 
 <div class="component-preview">
-  <BoProgressBar :value="45" :indeterminate="true" />
+  <bo-progress-bar :value="75" color="#FF5733" class="mb-2" />
+  <bo-progress-bar :value="75" tailwind-class="bg-teal-500" />
 </div>
 
 ```vue
-<BoProgressBar :value="45" :indeterminate="true" />
+<template>
+	<bo-progress-bar
+		:value="75"
+		color="#FF5733"
+	/>
+	<bo-progress-bar
+		:value="75"
+		tailwind-class="bg-teal-500"
+	/>
+</template>
 ```
 
 ## Example: File Upload Progress
@@ -158,17 +229,17 @@ interface BoProgressBarProps {
   <div class="mb-2">Upload Progress: {{ progress }}%</div>
   <BoProgressBar 
     :value="progress" 
-    :variant="BoProgressBarVariant.primary" 
-    :striped="true" 
-    :animated="isLoading" 
+    :variant="BoProgressBarVariant.primary"
     class="mb-3" 
   />
   <button 
-    class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" 
+    class="px-3 py-2 bg-blue-600 text-white hover:bg-blue-600 rounded-lg" 
     @click="startLoading"
     :disabled="isLoading"
   >
-    {{ isLoading ? 'Uploading...' : 'Start Upload' }}
+    <span class="flex items-center gap-1 text-sm font-semibold">
+		{{ isLoading ? 'Uploading...' : 'Start Upload' }}
+	</span>
   </button>
 </div>
 

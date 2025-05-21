@@ -1,20 +1,8 @@
 <template>
-	<div
-		:class="[
-			shapeClasses,
-			'bo-progress-bar__container bg-neutral-100 dark:bg-neutral-800',
-			'border border-neutral-200 dark:border-neutral-700',
-		]"
-	>
-		<div
-			:class="[
-				'bo-progress-bar__progress rounded-md p-0.5',
-				progressBarWidth,
-				progressDefaultClasses,
-				progressBackgroundColorClasses,
-			]"
-		>
+	<div :class="containerClasses">
+		<div :class="progressBarClasses">
 			<bo-text
+				v-if="showLabel"
 				:value="computedLabel"
 				:size="BoFontSize.xs"
 				:color="variant === BoProgressBarVariant.light ? BoTextColor.inherit : BoTextColor.light"
@@ -30,6 +18,7 @@
 import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/text/bo-text.js';
 import BoText from '@/components/text/bo-text.vue';
 import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
 import { computed } from 'vue';
 import {
 	BoProgressBarShape,
@@ -44,9 +33,6 @@ const props = withDefaults(defineProps<BoProgressBarProps>(), {
 	shape: BoProgressBarShape.rounded,
 	id: () => IdentityService.instance.getComponentId(),
 });
-
-// 'w-full overflow-hidden rounded-full bg-blue-gray-50 dark:bg-blue-gray-800',
-const progressContainerClasses = 'w-full overflow-hidden rounded-full';
 
 const progressDefaultClasses = 'flex items-center justify-center  transition-all animate-progress';
 
@@ -94,6 +80,45 @@ const computedLabel = computed<string>(() => {
 const progressBarWidth = computed<string>(() => {
 	const percentage = Math.round((props.value / props.max) * 100);
 	return `w-[${percentage}%]`;
+});
+
+const containerClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		'bo-progress',
+		shapeClasses.value,
+		/*tw*/ 'min-h-5',
+		/*tw*/ 'border border-neutral-200 dark:border-neutral-700',
+		/*tw*/ 'bo-progress-bar__container bg-neutral-100 dark:bg-neutral-800',
+	);
+});
+
+const customColorClasses = computed<string>(() => {
+	let classes = '';
+
+	if (props.color) {
+		classes = TailwindService.instance.merge(/*tw*/ `bg-[${props.color}]`);
+	}
+
+	if (props.fontColor) {
+		classes = TailwindService.instance.merge(/*tw*/ `text-[${props.fontColor}]`);
+	}
+
+	if (props.tailwindClass) {
+		classes = TailwindService.instance.merge(props.tailwindClass);
+	}
+
+	return classes;
+});
+
+const progressBarClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		'bo-progress-bar__bar p-0.5 min-h-5',
+		shapeClasses.value,
+		progressBarWidth.value,
+		progressDefaultClasses,
+		progressBackgroundColorClasses.value,
+		customColorClasses.value,
+	);
 });
 </script>
 

@@ -35,6 +35,8 @@ export interface BoProgressBarProps {
 	label?: string;
 	/** Custom color for the progress bar in hex format */
 	color?: string;
+	/** Custom font color for the progress bar */
+	fontColor?: string;
 	/** Custom tailwind class for the progress bar */
 	tailwindClass?: string;
 }
