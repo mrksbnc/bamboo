@@ -48,7 +48,7 @@ import { BoText } from '@mrksbnc/bamboo';
 ## Types
 
 ```ts
-export enum BoFontWeight {
+enum BoFontWeight {
 	light = 'light',
 	regular = 'regular',
 	medium = 'medium',
@@ -56,7 +56,7 @@ export enum BoFontWeight {
 	bold = 'bold',
 }
 
-export enum BoFontSize {
+enum BoFontSize {
 	xs = 'xs',
 	sm = 'sm',
 	base = 'base',
@@ -72,13 +72,13 @@ export enum BoFontSize {
 	'9xl' = '9xl',
 }
 
-export enum BoFontFamily {
+enum BoFontFamily {
 	sans = 'sans',
 	mono = 'mono',
 	serif = 'serif',
 }
 
-export enum BoTextWhiteSpace {
+enum BoTextWhiteSpace {
 	normal = 'normal',
 	nowrap = 'nowrap',
 	pre = 'pre',
@@ -87,7 +87,7 @@ export enum BoTextWhiteSpace {
 	break_spaces = 'break-spaces',
 }
 
-export enum BoTextColor {
+enum BoTextColor {
 	default = 'default',
 	primary = 'primary',
 	secondary = 'secondary',
@@ -96,28 +96,43 @@ export enum BoTextColor {
 	success = 'success',
 	warning = 'warning',
 	danger = 'danger',
+	light = 'light',
 }
 
-export enum BoTextAlign {
+enum BoTextAlign {
 	left = 'left',
 	center = 'center',
 	right = 'right',
 	justify = 'justify',
 }
 
-export interface BoTextProps {
+interface BoTextProps {
+	/** The id of the element. */
 	id?: string;
+	/** The text of the element. */
 	value: string;
+	/** The size of the element. */
 	size?: BoFontSize;
+	/** The weight of the element. */
 	weight?: BoFontWeight;
+	/** The font family of the element. */
 	fontFamily?: BoFontFamily;
+	/** The white space of the element. */
 	whiteSpace?: BoTextWhiteSpace;
+	/** The color of the element. */
 	color?: BoTextColor;
+	/** The custom color of the element. */
 	customColor?: string;
+	/** The css class of the element. */
 	cssClass?: string;
+	/** The clickable of the element. */
 	clickable?: boolean;
+	/** The text align of the element. */
 	textAlign?: BoTextAlign;
+	/** The selectable of the element. */
 	selectable?: boolean;
+	/** Cursor type of the element. This must be a valid Tailwindcss cursor value. */
+	cursor?: string;
 }
 ```
 
@@ -131,6 +146,12 @@ export interface BoTextProps {
   <bo-text :size="BoFontSize.xl" value="Extra Large Text (xl)" />
   <bo-text :size="BoFontSize['2xl']" value="2XL Text (2xl)" />
   <bo-text :size="BoFontSize['3xl']" value="3XL Text (3xl)" />
+  <bo-text :size="BoFontSize['4xl']" value="4XL Text (4xl)" />
+  <bo-text :size="BoFontSize['5xl']" value="5XL Text (5xl)" />
+  <bo-text :size="BoFontSize['6xl']" value="6XL Text (6xl)" />
+  <bo-text :size="BoFontSize['7xl']" value="7XL Text (7xl)" />
+  <bo-text :size="BoFontSize['8xl']" value="8XL Text (8xl)" />
+  <bo-text :size="BoFontSize['9xl']" value="9XL Text (9xl)" />
 </div>
 
 ```vue
@@ -141,6 +162,12 @@ export interface BoTextProps {
 <bo-text :size="BoFontSize.xl" value="Extra Large Text (xl)" />
 <bo-text :size="BoFontSize['2xl']" value="2XL Text (2xl)" />
 <bo-text :size="BoFontSize['3xl']" value="3XL Text (3xl)" />
+<bo-text :size="BoFontSize['4xl']" value="4XL Text (4xl)" />
+<bo-text :size="BoFontSize['5xl']" value="5XL Text (5xl)" />
+<bo-text :size="BoFontSize['6xl']" value="6XL Text (6xl)" />
+<bo-text :size="BoFontSize['7xl']" value="7XL Text (7xl)" />
+<bo-text :size="BoFontSize['8xl']" value="8XL Text (8xl)" />
+<bo-text :size="BoFontSize['9xl']" value="9XL Text (9xl)" />
 ```
 
 ## Font Weights
@@ -170,6 +197,9 @@ export interface BoTextProps {
   <bo-text :color="BoTextColor.success" value="Success Color" />
   <bo-text :color="BoTextColor.warning" value="Warning Color" />
   <bo-text :color="BoTextColor.danger" value="Danger Color" />
+  <span class="bg-black"> 
+  	<bo-text :color="BoTextColor.light" value="White Color" />
+  </span>
   <bo-text custom-color="#8B5CF6" value="Custom Color (#8B5CF6)" />
 </div>
 
@@ -180,6 +210,7 @@ export interface BoTextProps {
 <bo-text :color="BoTextColor.success" value="Success Color" />
 <bo-text :color="BoTextColor.warning" value="Warning Color" />
 <bo-text :color="BoTextColor.danger" value="Danger Color" />
+
 <bo-text custom-color="#8B5CF6" value="Custom Color (#8B5CF6)" />
 ```
 
