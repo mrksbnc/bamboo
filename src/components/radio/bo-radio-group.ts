@@ -14,7 +14,7 @@ export interface BoRadioGroupProps {
 	orientation?: BoRadioGroupOrientation;
 }
 
-export interface RadioGroup {
+export interface BoRadioGroup {
 	/** Currently selected value */
 	selectedValue: string | null;
 	/** Name attribute for all radio buttons in the group */

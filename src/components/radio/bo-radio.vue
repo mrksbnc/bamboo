@@ -7,9 +7,9 @@
 			ref="inputRef"
 			type="radio"
 			:id="id"
-			:name="effectiveName"
+			:name="inputName"
 			:checked="isChecked"
-			:value="props.value"
+			v-model="props.value"
 			:disabled="effectiveDisabled"
 			:class="inputClasses"
 			:data-testid="`bo-radio-input-${id}`"
@@ -47,16 +47,17 @@ import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { InjectionKey } from '@/shared/injection-key.js';
 import { computed, inject, onMounted, ref } from 'vue';
-import { type BoRadioProps, type RadioGroup } from './bo-radio.js';
+import { type BoRadioGroup } from './bo-radio-group.js';
+import { type BoRadioProps } from './bo-radio.js';
 
 const props = withDefaults(defineProps<BoRadioProps>(), {
 	id: () => IdentityService.instance.getComponentId('bo-radio'),
 });
 
 const inputRef = ref<HTMLInputElement>();
-const radioGroup = inject<RadioGroup>(InjectionKey.RadioGroup);
+const radioGroup = inject<BoRadioGroup>(InjectionKey.RadioGroup);
 
-const effectiveName = computed<string>(() => props.name ?? radioGroup?.name ?? '');
+const inputName = computed<string>(() => props.name ?? radioGroup?.name ?? '');
 
 const effectiveDisabled = computed<boolean>(() => props.disabled || radioGroup?.disabled || false);
 
