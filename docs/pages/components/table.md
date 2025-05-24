@@ -2,9 +2,9 @@
 import BoTable from '@/components/table/bo-table.vue';
 
 const columns = [
-	{ key: 'name', label: 'Name' },
-	{ key: 'age', label: 'Age' },
-	{ key: 'email', label: 'Email' },
+	{ id: 'name', label: 'Name' },
+	{ id: 'age', label: 'Age' },
+	{ id: 'email', label: 'Email' },
 ];
 
 const data = [
@@ -36,9 +36,9 @@ import { BoTable } from '@mrksbnc/bamboo';
 
 <script setup>
 const columns = [
-	{ key: 'name', label: 'Name' },
-	{ key: 'age', label: 'Age' },
-	{ key: 'email', label: 'Email' },
+	{ id: 'name', label: 'Name' },
+	{ id: 'age', label: 'Age' },
+	{ id: 'email', label: 'Email' },
 ];
 
 const data = [
@@ -62,7 +62,7 @@ const data = [
 ```ts
 interface BoTableColumn {
 	/** Unique key for the column */
-	key: string;
+	id: string;
 	/** Display label for the column */
 	label: string;
 	/** Optional CSS class for the column */
@@ -81,7 +81,7 @@ interface BoTableProps {
 
 ## Custom Cell Content
 
-You can customize the content of any cell using slots. The slot name should match the column key:
+You can customize the content of any cell using slots. The slot name should match the column id:
 
 <bo-table :columns="columns" :data="data">
 	<template #email="{ value }">
@@ -110,9 +110,9 @@ You can customize the content of any cell using slots. The slot name should matc
 
 <script setup>
 const columns = [
-	{ key: 'name', label: 'Name' },
-	{ key: 'age', label: 'Age' },
-	{ key: 'email', label: 'Email' },
+	{ id: 'name', label: 'Name' },
+	{ id: 'age', label: 'Age' },
+	{ id: 'email', label: 'Email' },
 ];
 
 const data = [
@@ -129,9 +129,9 @@ You can add custom CSS classes to columns:
 
 <bo-table
 	:columns="[
-		{ key: 'name', label: 'Name', class: 'font-bold' },
-		{ key: 'age', label: 'Age', class: 'text-right' },
-		{ key: 'email', label: 'Email' },
+		{ id: 'name', label: 'Name', class: 'font-bold' },
+		{ id: 'age', label: 'Age', class: 'text-right' },
+		{ id: 'email', label: 'Email' },
 	]"
 	:data="data"
 />
@@ -140,9 +140,9 @@ You can add custom CSS classes to columns:
 <template>
 	<bo-table
 		:columns="[
-			{ key: 'name', label: 'Name', class: 'font-bold' },
-			{ key: 'age', label: 'Age', class: 'text-right' },
-			{ key: 'email', label: 'Email' },
+			{ id: 'name', label: 'Name', class: 'font-bold' },
+			{ id: 'age', label: 'Age', class: 'text-right' },
+			{ id: 'email', label: 'Email' },
 		]"
 		:data="data"
 	/>

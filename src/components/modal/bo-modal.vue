@@ -140,8 +140,10 @@ const modalContentClasses = computed<string>(() => {
 
 const footerClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
-		'flex gap-2',
-		props.footerButtonOrientation === FooterButtonOrientation.horizontal ? 'flex-row' : 'flex-col',
+		/*tw*/ 'flex gap-2',
+		props.footerButtonOrientation === FooterButtonOrientation.horizontal
+			? /*tw*/ 'flex-row'
+			: /*tw*/ 'flex-col',
 	);
 });
 

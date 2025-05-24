@@ -57,14 +57,14 @@ const progressBackgroundColorClasses = computed<string>(() => {
 		case BoProgressBarVariant.warning:
 			return 'bg-yellow-500';
 		case BoProgressBarVariant.info:
-			return 'bg-blue-400';
+			return 'bg-sky-600';
 		case BoProgressBarVariant.light:
-			return 'bg-gray-200 text-gray-700';
+			return 'bg-white text-gray-700';
 		case BoProgressBarVariant.dark:
 			return 'bg-gray-900';
 		case BoProgressBarVariant.primary:
 		default:
-			return 'bg-blue-500';
+			return 'bg-blue-600';
 	}
 });
 

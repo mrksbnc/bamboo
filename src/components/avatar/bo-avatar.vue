@@ -57,7 +57,7 @@ import { IdentityService } from '@/services/identity-service.js';
 import { StringService } from '@/services/string-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
-import { computed, ref, toRefs, type StyleValue } from 'vue';
+import { computed, ref, type StyleValue } from 'vue';
 import { BoAvatarShape, BoAvatarType, BoAvatarVariant, type BoAvatarProps } from './bo-avatar.js';
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
@@ -67,8 +67,6 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 	shape: () => BoAvatarShape.rounded,
 	variant: () => BoAvatarVariant.primary,
 });
-
-const { clickable, data, type, shape, size, variant, color } = toRefs(props);
 
 const imgError = ref<boolean>(false);
 
@@ -147,7 +145,7 @@ const outlineVariantTextColors: Record<BoAvatarVariant, string> = {
 };
 
 const label = computed<string>(() => {
-	const safeStr = StringService.instance.safeString(data.value?.label);
+	const safeStr = StringService.instance.safeString(props?.data?.label);
 
 	if (safeStr.length > 2) {
 		return safeStr.slice(0, 2).toUpperCase();
@@ -158,43 +156,43 @@ const label = computed<string>(() => {
 
 const bgConstruct = computed<string>(() => {
 	if (
-		!StringService.instance.isEmptyStr(color.value?.bgColorHex) ||
-		(type.value === BoAvatarType.image && !imgError.value)
+		!StringService.instance.isEmptyStr(props?.color?.bgColorHex) ||
+		(props.type === BoAvatarType.image && !imgError.value)
 	) {
 		return /*tw*/ 'bg-transparent';
 	}
 
-	const isOutlineShape = shape.value.includes('outline');
+	const isOutlineShape = props?.shape.includes('outline');
 
 	if (isOutlineShape) {
-		return variant.value in outlineVariantColors
-			? outlineVariantColors[variant.value]
+		return props?.variant in outlineVariantColors
+			? outlineVariantColors[props?.variant]
 			: generateRandomOutlineColor();
 	}
 
-	return variant.value in variantColors ? variantColors[variant.value] : generateRandomColor();
+	return props?.variant in variantColors ? variantColors[props?.variant] : generateRandomColor();
 });
 
 const textColorClass = computed<string>(() => {
-	if (!StringService.instance.isEmptyStr(color.value?.colorHex)) {
+	if (!StringService.instance.isEmptyStr(props?.color?.colorHex)) {
 		return '';
 	}
 
-	const isOutlineShape = shape.value.includes('outline');
+	const isOutlineShape = props?.shape.includes('outline');
 
-	if (isOutlineShape && variant.value in outlineVariantTextColors) {
-		return outlineVariantTextColors[variant.value];
+	if (isOutlineShape && props?.variant in outlineVariantTextColors) {
+		return outlineVariantTextColors[props?.variant];
 	}
 
-	if (variant.value in variantTextColors) {
-		return variantTextColors[variant.value];
+	if (props?.variant in variantTextColors) {
+		return variantTextColors[props?.variant];
 	}
 
 	return 'text-gray-600 dark:text-gray-300';
 });
 
 const cursorClassConstruct = computed<string>(() => {
-	return clickable.value ? cursorClasses.clickable : cursorClasses.default;
+	return props.clickable ? cursorClasses.clickable : cursorClasses.default;
 });
 
 const avatarContainerDefaultClasses = computed<string>(() => {
@@ -202,12 +200,12 @@ const avatarContainerDefaultClasses = computed<string>(() => {
 		bgConstruct.value,
 		containerClasses.default,
 		cursorClassConstruct.value,
-		!shape.value.includes('outline') ? /*tw*/ 'shadow-md' : 'shadow-none',
+		!props?.shape.includes('outline') ? /*tw*/ 'shadow-md' : 'shadow-none',
 	);
 });
 
 const labelSize = computed<BoFontSize>(() => {
-	switch (size.value) {
+	switch (props.size) {
 		case BoSize.extra_small:
 			return BoFontSize.xs;
 		case BoSize.small:
@@ -224,24 +222,24 @@ const labelSize = computed<BoFontSize>(() => {
 
 const containerStyle = computed<StyleValue>(() => {
 	return {
-		backgroundColor: color.value?.bgColorHex,
-		color: color.value?.colorHex,
+		backgroundColor: props?.color?.bgColorHex,
+		color: props?.color?.colorHex,
 	};
 });
 
 const avatarContainerClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
-		avatarSizeClasses[size.value],
-		avatarShapeClasses[shape.value],
+		avatarSizeClasses[props.size],
+		avatarShapeClasses[props?.shape],
 		avatarContainerDefaultClasses.value,
 	);
 });
 
 const showFallbackImage = computed<boolean>(() => {
-	const invalidImage = imgError.value || (!data.value?.src && type.value === BoAvatarType.image);
-	const invalidInitials = !data.value?.label && type.value === BoAvatarType.initials;
+	const invalidImage = imgError.value || (!props?.data?.src && props?.type === BoAvatarType.image);
+	const invalidInitials = !props?.data?.label && props?.type === BoAvatarType.initials;
 
-	return !data.value || invalidImage || invalidInitials;
+	return !props?.data || invalidImage || invalidInitials;
 });
 
 function handleImageError(e: Event): void {

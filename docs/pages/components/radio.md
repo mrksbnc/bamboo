@@ -1,15 +1,30 @@
 <script setup>
-import BoRadio from '@/components/radio/bo-radio.vue';
-import { BoRadioVariant } from '@/components/radio';
-import { BoSize } from '@/shared/bo-size';
+import { BoRadio, BoRadioGroup } from '@/components/radio';
+import { InjectionKey } from '@/shared/injection-key';
+import { ref, provide } from 'vue';
+
+const selected = ref('A');
+const selectedRadioDemo = ref('A');
+
+const radioProvide = provide(InjectionKey.RadioGroup, {
+	selectedValue: selectedRadioDemo,
+	name: 'group1',
+	disabled: false,
+	select: (value) => {
+		console.log('Selected:', value);
+	},
+	registerItem: (value, isDefault) => {
+		console.log('Registered:', value, isDefault);
+	},
+});
 </script>
 
 # Radio
 
-A customizable radio button component for selecting a single option from a group of choices.
+Radio components allow users to select a single option from a set. Use radio buttons for mutually exclusive choices, typically presented in a group.
 
 ```js
-import { BoRadio } from '@mrksbnc/bamboo';
+import { BoRadio, BoRadioGroup } from '@mrksbnc/bamboo';
 ```
 
 ## Basic Usage
@@ -17,239 +32,220 @@ import { BoRadio } from '@mrksbnc/bamboo';
 ```vue
 <template>
 	<bo-radio
-		v-model="selectedOption"
-		name="example"
-		value="option1"
 		label="Option 1"
-	/>
-	<bo-radio
-		v-model="selectedOption"
+		value="option1"
 		name="example"
-		value="option2"
-		label="Option 2"
 	/>
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import { BoRadio } from '@mrksbnc/bamboo';
-
-const selectedOption = ref('option1');
 </script>
 ```
 
-<hr />
-<div class="flex gap-4 items-center my-4">
-  <bo-radio name="demo" value="option1" model-value="option1" label="Option 1" />
-  <bo-radio name="demo" value="option2" model-value="option1" label="Option 2" />
-</div>
+<bo-radio label="Option 1" value="option1" name="example" />
 
-## Props
+## Radio Group
 
-| Name          | Type             | Default     | Description                                             |
-| ------------- | ---------------- | ----------- | ------------------------------------------------------- |
-| `id`          | `string`         | `auto`      | Unique ID for the radio button                          |
-| `name`        | `string`         | Required    | Name attribute for the radio group                      |
-| `value`       | `string`         | Required    | Value attribute for the radio button                    |
-| `modelValue`  | `string`         | `undefined` | Current selected value in the group (v-model)           |
-| `disabled`    | `boolean`        | `false`     | Whether the radio button is disabled                    |
-| `label`       | `string`         | `undefined` | Text label for the radio button                         |
-| `size`        | `BoSize`         | `md`        | Size of the radio button (xs, sm, md, lg, xl)           |
-| `error`       | `string`         | `undefined` | Error message to display below the radio button         |
-| `variant`     | `BoRadioVariant` | `primary`   | Color variant of the radio button                       |
-| `customColor` | `string`         | `undefined` | Custom color (HEX, RGB) for radio button and focus ring |
-
-## Events
-
-| Name                | Payload  | Description                      |
-| ------------------- | -------- | -------------------------------- |
-| `update:modelValue` | `string` | Emitted when selection changes   |
-| `change`            | `string` | Emitted when radio value changes |
-
-## Slots
-
-| Name      | Description                 |
-| --------- | --------------------------- |
-| `default` | Custom radio button content |
-
-## Types
-
-```ts
-export enum BoRadioVariant {
-	primary = 'primary',
-	secondary = 'secondary',
-	success = 'success',
-	danger = 'danger',
-	warning = 'warning',
-	dark = 'dark',
-}
-
-export interface BoRadioProps {
-	id?: string;
-	name: string;
-	value: string;
-	modelValue?: string;
-	disabled?: boolean;
-	label?: string;
-	size?: BoSize;
-	variant?: BoRadioVariant;
-	customColor?: string;
-}
-```
-
-## Variants
-
-<div class="flex flex-col gap-4 my-4">
-  <div class="flex gap-4">
-    <bo-radio :variant="BoRadioVariant.primary" name="variant-demo1" value="primary" model-value="primary" label="Primary" />
-    <bo-radio :variant="BoRadioVariant.secondary" name="variant-demo2" value="secondary" model-value="secondary" label="Secondary" />
-  </div>
-  <div class="flex gap-4">
-    <bo-radio :variant="BoRadioVariant.success" name="variant-demo3" value="success" model-value="success" label="Success" />
-    <bo-radio :variant="BoRadioVariant.danger" name="variant-demo4" value="danger" model-value="danger" label="Danger" />
-  </div>
-  <div class="flex gap-4">
-    <bo-radio :variant="BoRadioVariant.warning" name="variant-demo5" value="warning" model-value="warning" label="Warning" />
-    <bo-radio :variant="BoRadioVariant.dark" name="variant-demo6" value="dark" model-value="dark" label="Dark" />
-  </div>
-</div>
-
-```vue
-<bo-radio :variant="BoRadioVariant.primary" name="variant-group" value="primary" label="Primary" />
-<bo-radio
-	:variant="BoRadioVariant.secondary"
-	name="variant-group"
-	value="secondary"
-	label="Secondary"
-/>
-<bo-radio :variant="BoRadioVariant.success" name="variant-group" value="success" label="Success" />
-<bo-radio :variant="BoRadioVariant.danger" name="variant-group" value="danger" label="Danger" />
-<bo-radio :variant="BoRadioVariant.warning" name="variant-group" value="warning" label="Warning" />
-<bo-radio :variant="BoRadioVariant.dark" name="variant-group" value="dark" label="Dark" />
-```
-
-## Sizes
-
-<div class="flex flex-col gap-4 my-4">
-  <div class="flex items-center gap-4">
-    <bo-radio :size="BoSize.extra_small" name="size-demo1" value="xs" model-value="xs" label="Extra Small" />
-    <bo-radio :size="BoSize.small" name="size-demo2" value="sm" model-value="sm" label="Small" />
-  </div>
-  <div class="flex items-center gap-4">
-    <bo-radio :size="BoSize.default" name="size-demo3" value="default" model-value="default" label="Default" />
-    <bo-radio :size="BoSize.large" name="size-demo4" value="lg" model-value="lg" label="Large" />
-  </div>
-  <div class="flex items-center gap-4">
-    <bo-radio :size="BoSize.extra_large" name="size-demo5" value="xl" model-value="xl" label="Extra Large" />
-  </div>
-</div>
-
-```vue
-<bo-radio :size="BoSize.extra_small" name="size-group" value="xs" label="Extra Small" />
-<bo-radio :size="BoSize.small" name="size-group" value="sm" label="Small" />
-<bo-radio :size="BoSize.default" name="size-group" value="default" label="Default" />
-<bo-radio :size="BoSize.large" name="size-group" value="lg" label="Large" />
-<bo-radio :size="BoSize.extra_large" name="size-group" value="xl" label="Extra Large" />
-```
-
-## States
-
-### Selected
-
-<div class="flex gap-4 my-4">
-  <bo-radio name="state-demo1" value="selected" model-value="selected" label="Selected Radio" />
-</div>
-
-```vue
-<bo-radio name="state" value="selected" model-value="selected" label="Selected Radio" />
-```
-
-### Unselected
-
-<div class="flex gap-4 my-4">
-  <bo-radio name="state-demo2" value="unselected" model-value="other" label="Unselected Radio" />
-</div>
-
-```vue
-<bo-radio name="state" value="unselected" model-value="other" label="Unselected Radio" />
-```
-
-### Disabled
-
-<div class="flex gap-4 my-4">
-  <bo-radio disabled name="state-demo3" value="disabled" label="Disabled Radio" />
-  <bo-radio disabled name="state-demo4" value="disabled-selected" model-value="disabled-selected" label="Disabled Selected Radio" />
-</div>
-
-```vue
-<bo-radio disabled name="state" value="disabled" label="Disabled Radio" />
-<bo-radio
-	disabled
-	name="state"
-	value="disabled-selected"
-	model-value="disabled-selected"
-	label="Disabled Selected Radio"
-/>
-```
-
-### Error State
-
-<div class="flex gap-4 my-4">
-  <bo-radio name="state-demo5" value="error" label="Radio with Error" error="This field is required" />
-</div>
-
-```vue
-<bo-radio name="state" value="error" label="Radio with Error" error="This field is required" />
-```
-
-## Custom Content
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-radio name="custom-demo" value="custom" model-value="custom">
-    <div>
-      <span class="font-medium">Custom Content</span>
-      <p class="text-sm text-gray-500">You can use any custom content here</p>
-    </div>
-  </bo-radio>
-</div>
-
-```vue
-<bo-radio name="custom" value="custom">
-  <div>
-    <span class="font-medium">Custom Content</span>
-    <p class="text-sm text-gray-500">You can use any custom content here</p>
-  </div>
-</bo-radio>
-```
-
-## Event Handling
+To present a set of related options, use `BoRadioGroup` to manage selection state.
 
 ```vue
 <template>
-	<bo-radio
-		v-model="selectedOption"
-		name="event-example"
-		value="option1"
-		label="Option 1"
-		@change="handleChange"
-	/>
-	<bo-radio
-		v-model="selectedOption"
-		name="event-example"
-		value="option2"
-		label="Option 2"
-		@change="handleChange"
-	/>
+	<bo-radio-group
+		v-model="selected"
+		name="group1"
+	>
+		<bo-radio
+			label="Option A"
+			value="A"
+		/>
+		<bo-radio
+			label="Option B"
+			value="B"
+		/>
+		<bo-radio
+			label="Option C"
+			value="C"
+		/>
+	</bo-radio-group>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { BoRadio } from '@mrksbnc/bamboo';
-
-const selectedOption = ref('option1');
-
-const handleChange = (value) => {
-	console.log('Selected option:', value);
-};
+import { BoRadio, BoRadioGroup } from '@mrksbnc/bamboo';
+const selected = ref('A');
 </script>
+```
+
+<bo-radio-group v-model="selectedRadioDemo" name="group1">
+  <bo-radio label="Option A" value="A" />
+  <bo-radio label="Option B" value="B" />
+  <bo-radio label="Option C" value="C" />
+</bo-radio-group>
+
+## Props
+
+### BoRadio Props
+
+| Name          | Type      | Default | Description                                |
+| ------------- | --------- | ------- | ------------------------------------------ |
+| `id`          | `string`  | auto    | Unique identifier for the radio button     |
+| `name`        | `string`  | ''      | Name attribute for the radio button        |
+| `value`       | `string`  | ''      | Value of the radio button                  |
+| `disabled`    | `boolean` | `false` | Whether the radio button is disabled       |
+| `label`       | `string`  | ''      | Label text displayed next to the radio     |
+| `description` | `string`  | ''      | Description text displayed below the label |
+
+### BoRadioGroup Props
+
+| Name           | Type                      | Default    | Description                                    |
+| -------------- | ------------------------- | ---------- | ---------------------------------------------- |
+| `name`         | `string`                  | auto       | Name attribute for all radios in the group     |
+| `disabled`     | `boolean`                 | `false`    | Whether all radios in the group are disabled   |
+| `defaultValue` | `string`                  | `''`       | Initially selected value                       |
+| `orientation`  | `BoRadioGroupOrientation` | `vertical` | Layout orientation: `vertical` or `horizontal` |
+
+## Types & Enums
+
+```ts
+interface BoRadioProps {
+	/** Unique identifier for the radio button */
+	id?: string;
+	/** Whether the radio button is disabled */
+	disabled?: boolean;
+	/**  Value of the radio button */
+	value?: string;
+	/** Name attribute for the radio button */
+	name?: string;
+	/** Label text displayed next to the radio button */
+	label?: string;
+	/** Additional description text displayed below the label */
+	description?: string;
+}
+
+enum BoRadioGroupOrientation {
+	vertical = 'vertical',
+	horizontal = 'horizontal',
+}
+
+interface BoRadioGroupProps {
+	/** Name attribute for all radio buttons in the group*/
+	name?: string;
+	/** Whether all radio buttons in the group are disabled */
+	disabled?: boolean;
+	/** Initially selected value */
+	defaultValue?: string;
+	/** The orientation of the radio buttons in the group */
+	orientation?: BoRadioGroupOrientation;
+}
+
+interface RadioGroup {
+	/** Currently selected value */
+	selectedValue: string | null;
+	/** Name attribute for all radio buttons in the group */
+	name: string;
+	/** Whether all radio buttons in the group are disabled */
+	disabled: boolean;
+	/** Callback to select a radio button */
+	select: (value: string) => void;
+	/** Callback to register a radio button */
+	registerItem: (value: string, isDefault: boolean) => void;
+}
+```
+
+## Events
+
+### BoRadioGroup Events
+
+| Name                | Payload  | Description                             |
+| ------------------- | -------- | --------------------------------------- |
+| `update:modelValue` | `string` | Emitted when the selected value changes |
+| `change`            | `string` | Emitted when the selected value changes |
+
+## Slots
+
+### BoRadio Slots
+
+| Name    | Description                       |
+| ------- | --------------------------------- |
+| `label` | Custom content for the label area |
+
+### BoRadioGroup Slots
+
+| Name      | Description                            |
+| --------- | -------------------------------------- |
+| `default` | Place `BoRadio` components as children |
+
+## Disabled
+
+You can disable the entire group or individual radios using the `disabled` prop.
+
+<bo-radio label="Disabled Single" value="single" :disabled="true" />
+<hr />
+<bo-radio-group v-model="selected" :disabled="true">
+  <bo-radio label="Disabled A" value="A" />
+  <bo-radio label="Disabled B" value="B" />
+</bo-radio-group>
+
+```vue
+<bo-radio-group v-model="selected" :disabled="true">
+  <bo-radio label="Disabled A" value="A" />
+  <bo-radio label="Disabled B" value="B" />
+</bo-radio-group>
+
+<bo-radio label="Disabled Single" value="single" :disabled="true" />
+```
+
+## Description
+
+Add a description to provide additional context for a radio option.
+
+<bo-radio
+	label="Option with description"
+	value="desc"
+	description="Additional information about this option."
+/>
+
+```vue
+<bo-radio
+	label="Option with description"
+	value="desc"
+	description="Additional information about this option."
+/>
+```
+
+## Orientation
+
+The radio group can be displayed vertically (default) or horizontally using the `orientation` prop.
+
+### Vertical (Default)
+
+<bo-radio-group v-model="selected" orientation="vertical">
+  <bo-radio label="Top" value="top" />
+  <bo-radio label="Middle" value="middle" />
+  <bo-radio label="Bottom" value="bottom" />
+</bo-radio-group>
+
+```vue
+<bo-radio-group v-model="selected">
+  <bo-radio label="Top" value="top" />
+  <bo-radio label="Middle" value="middle" />
+  <bo-radio label="Bottom" value="bottom" />
+</bo-radio-group>
+```
+
+### Horizontal
+
+<bo-radio-group v-model="selected" orientation="horizontal">
+  <bo-radio label="Left" value="left" />
+  <bo-radio label="Center" value="center" />
+  <bo-radio label="Right" value="right" />
+</bo-radio-group>
+
+```vue
+<bo-radio-group v-model="selected" orientation="horizontal">
+  <bo-radio label="Left" value="left" />
+  <bo-radio label="Center" value="center" />
+  <bo-radio label="Right" value="right" />
+</bo-radio-group>
 ```

@@ -29,7 +29,6 @@ function buildSidebar() {
 				{ text: 'Popover', link: '/pages/components/popover' },
 				{ text: 'Progress Bar', link: '/pages/components/progress-bar' },
 				{ text: 'Radio', link: '/pages/components/radio' },
-				{ text: 'Radio Group', link: '/pages/components/radio-group' },
 				{ text: 'Table', link: '/pages/components/table' },
 				{ text: 'Tree', link: '/pages/components/tree' },
 				{ text: 'Text', link: '/pages/components/text' },
@@ -67,7 +66,7 @@ export default defineConfig({
 		[
 			'script',
 			{
-				src: 'https://cdn.tailwindcss.com',
+				src: 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4',
 			},
 		],
 	],

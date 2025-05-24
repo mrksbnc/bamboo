@@ -71,7 +71,7 @@ import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { onClickOutside, useEventListener } from '@vueuse/core';
-import { computed, nextTick, onBeforeUnmount, ref, watch, watchEffect } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { BoPopoverPlacement, BoPopoverTrigger, type BoPopoverProps } from './bo-popover.js';
 
 const props = withDefaults(defineProps<BoPopoverProps>(), {
@@ -381,8 +381,8 @@ watch(modelValue, (val) => {
 	isOpen.value = val;
 });
 
-watchEffect(() => {
-	if (isOpen.value) {
+watch(isOpen, (val) => {
+	if (val) {
 		emit('opened');
 		nextTick(() => {
 			positionPopover();
@@ -403,5 +403,9 @@ useEventListener(window, 'scroll', positionPopover);
 
 onBeforeUnmount(() => {
 	clearTimeout(hoverTimeout.value);
+});
+
+onMounted(() => {
+	positionPopover();
 });
 </script>

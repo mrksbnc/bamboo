@@ -11,8 +11,8 @@
 <script setup lang="ts">
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
-import { computed, ref, toRefs, watch, type StyleValue } from 'vue';
-import { icons, type BoIconProps } from './bo-icon.js';
+import { computed, ref, watchEffect, type StyleValue } from 'vue';
+import { Icon, icons, type BoIconProps } from './bo-icon.js';
 
 const props = withDefaults(defineProps<BoIconProps>(), {
 	size: () => BoSize.default,
@@ -22,8 +22,6 @@ const props = withDefaults(defineProps<BoIconProps>(), {
 		decorative: true,
 	}),
 });
-
-const { icon, size, color } = toRefs(props);
 
 const defaultClasses = /*tw*/ 'bo-icon block';
 
@@ -59,27 +57,29 @@ const role = computed<string>(() => {
 
 const style = computed<StyleValue>(() => {
 	return {
-		color: color.value,
+		color: props.color,
 	};
 });
 
 const tailwindCssSizeClasses = computed<string>(() => {
-	return sizeClasses[size.value];
+	return sizeClasses[props.size];
 });
 
 const tailwindCssClasses = computed<string>(() => {
 	return TailwindService.instance.merge(defaultClasses, tailwindCssSizeClasses.value);
 });
 
-async function load(): Promise<void> {
+async function load(icon: Icon): Promise<void> {
 	try {
-		await iconMap[icon.value]().then((val) => {
+		await iconMap[icon]().then((val) => {
 			svg.value = val;
 		});
 	} catch (e) {
-		console.error(`Could not find icon of name ${icon.value}`);
+		console.error(`Could not find icon of name ${icon}`);
 	}
 }
 
-watch(icon, () => load(), { immediate: true });
+watchEffect(() => {
+	load(props.icon);
+});
 </script>

@@ -1,129 +1,112 @@
 <template>
-	<div class="flex items-center">
-		<input
-			type="radio"
-			:id="id || name"
-			:name="name"
-			:value="value"
-			:checked="isChecked"
-			:disabled="disabled"
-			@change="handleChange"
-			:class="[
-				variantClasses,
-				sizeClasses,
-				disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-				error ? 'border-red-500' : '',
-			]"
-		/>
-		<bo-text
-			v-if="label"
-			:for="id ?? name"
-			:size="labelSizeClasses"
-			:value="label"
-			:class="[
-				'ml-2',
-				disabled ? 'cursor-not-allowed text-gray-400' : 'cursor-pointer',
-				error ? 'text-red-500' : 'text-gray-700',
-			]"
-		/>
-	</div>
 	<div
-		v-if="error"
-		class="mt-1 text-sm text-red-500"
+		:class="wrapperClasses"
+		@click="handleClick"
 	>
-		{{ error }}
+		<input
+			ref="inputRef"
+			type="radio"
+			:id="id"
+			:name="effectiveName"
+			:checked="isChecked"
+			:value="props.value"
+			:disabled="effectiveDisabled"
+			:class="inputClasses"
+			:data-testid="`bo-radio-input-${id}`"
+		/>
+		<div :class="textWrapperClasses">
+			<slot name="label">
+				<bo-text
+					v-if="label"
+					:value="label"
+					:size="BoFontSize.base"
+					:weight="BoFontWeight.medium"
+					:color="BoTextColor.default"
+					:cursor="!effectiveDisabled ? 'cursor-pointer' : 'cursor-not-allowed'"
+					class="bo-radio__label"
+					:data-testid="`bo-radio-label-${id}`"
+				/>
+				<bo-text
+					v-if="description"
+					:value="description"
+					:size="BoFontSize.sm"
+					:color="BoTextColor.secondary"
+					:cursor="!effectiveDisabled ? 'cursor-pointer' : 'cursor-not-allowed'"
+					class="bo-radio__description"
+					:data-testid="`bo-radio-description-${id}`"
+				/>
+			</slot>
+		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { BoFontSize } from '@/components/text/bo-text.js';
+import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/text/bo-text.js';
 import BoText from '@/components/text/bo-text.vue';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
-import { BoSize } from '@/shared/bo-size.js';
-import { computed } from 'vue';
-import { type BoRadioProps, BoRadioVariant } from './bo-radio';
+import { InjectionKey } from '@/shared/injection-key.js';
+import { computed, inject, onMounted, ref } from 'vue';
+import { type BoRadioProps, type RadioGroup } from './bo-radio.js';
 
 const props = withDefaults(defineProps<BoRadioProps>(), {
 	id: () => IdentityService.instance.getComponentId('bo-radio'),
-	disabled: false,
-	size: BoSize.default,
-	variant: BoRadioVariant.primary,
 });
 
-const emit = defineEmits<{
-	(e: 'update:modelValue', value: string): void;
-}>();
+const inputRef = ref<HTMLInputElement>();
+const radioGroup = inject<RadioGroup>(InjectionKey.RadioGroup);
 
-const isChecked = computed(() => props.modelValue === props.value);
+const effectiveName = computed<string>(() => props.name ?? radioGroup?.name ?? '');
 
-const variantClasses = computed(() => {
-	const baseClasses = 'form-radio transition-all duration-200 ease-in-out';
+const effectiveDisabled = computed<boolean>(() => props.disabled || radioGroup?.disabled || false);
 
-	if (props.customColor) {
-		return `${baseClasses} text-[${props.customColor}]`;
+const isChecked = computed<boolean>(() => {
+	if (radioGroup && props.value) {
+		return radioGroup.selectedValue === props.value;
 	}
-
-	const variants = {
-		[BoRadioVariant.primary]: /**tw*/ 'text-blue-600 checked:bg-blue-600',
-		[BoRadioVariant.success]: /**tw*/ 'text-green-600 checked:bg-green-600',
-		[BoRadioVariant.danger]: /**tw*/ 'text-red-600 checked:bg-red-600',
-		[BoRadioVariant.warning]: /**tw*/ 'text-yellow-600 checked:bg-yellow-600',
-		[BoRadioVariant.dark]: /**tw*/ 'text-gray-900 checked:bg-gray-900',
-	};
-
-	switch (props.variant) {
-		case BoRadioVariant.primary:
-			return TailwindService.instance.merge(baseClasses, variants.primary);
-		case BoRadioVariant.success:
-			return TailwindService.instance.merge(baseClasses, variants.success);
-		case BoRadioVariant.danger:
-			return TailwindService.instance.merge(baseClasses, variants.danger);
-		case BoRadioVariant.warning:
-			return TailwindService.instance.merge(baseClasses, variants.warning);
-		case BoRadioVariant.dark:
-			return TailwindService.instance.merge(baseClasses, variants.dark);
-		default:
-			return baseClasses;
-	}
+	return false;
 });
 
-const sizeClasses = computed<string>(() => {
-	switch (props.size) {
-		case BoSize.extra_small:
-			return 'h-3 w-3';
-		case BoSize.small:
-			return 'h-4 w-4';
+const inputClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		'bo-radio__input size-4',
+		effectiveDisabled.value ? /*tw*/ 'cursor-not-allowed opacity-50' : /*tw*/ 'cursor-pointer',
+	);
+});
 
-		case BoSize.large:
-			return 'h-6 w-6';
-		case BoSize.extra_large:
-			return 'h-7 w-7';
-		case BoSize.default:
-		default:
-			return 'h-5 w-5';
+const wrapperClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		'bo-radio__wrapper',
+		/*tw*/ 'flex items-center gap-2',
+		effectiveDisabled.value ? /*tw*/ 'cursor-not-allowed' : /*tw*/ 'cursor-pointer',
+	);
+});
+
+const textWrapperClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		'bo-radio__text-wrapper',
+		/*tw*/ 'flex flex-col',
+		effectiveDisabled.value ? /*tw*/ 'opacity-50' : /*tw*/ '',
+	);
+});
+
+function handleClick(): void {
+	if (effectiveDisabled.value || !props.value) {
+		return;
+	}
+
+	if (radioGroup) {
+		radioGroup.select(props.value);
+	}
+}
+
+onMounted(() => {
+	if (radioGroup && props.value) {
+		radioGroup.registerItem(props.value, false);
 	}
 });
 
-const labelSizeClasses = computed<BoFontSize>(() => {
-	switch (props.size) {
-		case BoSize.extra_small:
-			return BoFontSize.xs;
-		case BoSize.small:
-			return BoFontSize.sm;
-		case BoSize.large:
-			return BoFontSize.lg;
-		case BoSize.extra_large:
-			return BoFontSize.xl;
-		case BoSize.default:
-		default:
-			return BoFontSize.base;
-	}
+defineExpose({
+	isChecked,
 });
-
-const handleChange = () => {
-	if (!props.disabled) {
-		emit('update:modelValue', props.value);
-	}
-};
 </script>

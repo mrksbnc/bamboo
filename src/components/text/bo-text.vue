@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { IdentityService, StringService, TailwindService } from '@/services';
-import { computed, toRefs, type StyleValue } from 'vue';
+import { computed, type StyleValue } from 'vue';
 import {
 	BoFontFamily,
 	BoFontSize,
@@ -31,33 +31,18 @@ const props = withDefaults(defineProps<BoTextProps>(), {
 	whiteSpace: () => BoTextWhiteSpace.normal,
 });
 
-const {
-	value,
-	size,
-	weight,
-	fontFamily,
-	whiteSpace,
-	cssClass,
-	color,
-	customColor,
-	clickable,
-	textAlign,
-	selectable,
-	cursor,
-} = toRefs(props);
-
 const defaultClasses = /*tw*/ 'bo-text block max-w-fit';
 
 const textCursor = computed<string>(() => {
-	if (cursor?.value) {
-		return cursor.value;
+	if (props?.cursor) {
+		return props.cursor;
 	}
 
-	if (clickable.value) {
+	if (props?.clickable) {
 		return /*tw*/ 'cursor-pointer';
 	}
 
-	if (selectable.value) {
+	if (props?.selectable) {
 		return /*tw*/ 'cursor-text';
 	}
 
@@ -65,7 +50,7 @@ const textCursor = computed<string>(() => {
 });
 
 const fontSize = computed<string>(() => {
-	switch (size.value) {
+	switch (props.size) {
 		case BoFontSize.xs:
 			return /*tw*/ 'text-xs';
 		case BoFontSize.sm:
@@ -97,7 +82,7 @@ const fontSize = computed<string>(() => {
 });
 
 const fontWeight = computed<string>(() => {
-	switch (weight.value) {
+	switch (props.weight) {
 		case BoFontWeight.light:
 			return /*tw*/ 'font-light';
 		case BoFontWeight.medium:
@@ -113,7 +98,7 @@ const fontWeight = computed<string>(() => {
 });
 
 const textFontFamily = computed<string>(() => {
-	switch (fontFamily.value) {
+	switch (props.fontFamily) {
 		case BoFontFamily.mono:
 			return /*tw*/ 'font-mono';
 		case BoFontFamily.serif:
@@ -125,7 +110,7 @@ const textFontFamily = computed<string>(() => {
 });
 
 const textWhiteSpaceClasses = computed<string>(() => {
-	switch (whiteSpace.value) {
+	switch (props.whiteSpace) {
 		case BoTextWhiteSpace.nowrap:
 			return /*tw*/ 'truncate';
 		case BoTextWhiteSpace.pre:
@@ -143,7 +128,7 @@ const textWhiteSpaceClasses = computed<string>(() => {
 });
 
 const fontColor = computed<string>(() => {
-	switch (color.value) {
+	switch (props.color) {
 		case BoTextColor.default:
 			return /*tw*/ 'text-neutral-900 dark:text-neutral-100';
 		case BoTextColor.inherit:
@@ -167,7 +152,7 @@ const fontColor = computed<string>(() => {
 });
 
 const textAlignment = computed<string>(() => {
-	switch (textAlign.value) {
+	switch (props.textAlign) {
 		case BoTextAlign.left:
 			return /*tw*/ 'text-left';
 		case BoTextAlign.center:
@@ -182,7 +167,7 @@ const textAlignment = computed<string>(() => {
 
 const classes = computed<string>(() => {
 	return TailwindService.instance.merge(
-		cssClass.value,
+		props.cssClass,
 		defaultClasses,
 		fontSize.value,
 		fontColor.value,
@@ -191,14 +176,14 @@ const classes = computed<string>(() => {
 		textAlignment.value,
 		textFontFamily.value,
 		textWhiteSpaceClasses.value,
-		selectable.value ? /*tw*/ 'select-auto' : /*tw*/ 'select-none',
+		props.selectable ? /*tw*/ 'select-auto' : /*tw*/ 'select-none',
 	);
 });
 
 const containerStyle = computed<StyleValue>(() => {
-	if (!StringService.instance.isEmptyStr(customColor.value)) {
+	if (!StringService.instance.isEmptyStr(props.customColor)) {
 		return {
-			color: customColor.value,
+			color: props.customColor,
 		};
 	}
 

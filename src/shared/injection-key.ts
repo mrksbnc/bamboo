@@ -1,9 +1,12 @@
 import type { InjectionKey } from 'vue';
 
-export enum InjectKey {
+export enum InjectionKey {
 	AccordionGroup = 'accordion-group',
+	RadioGroup = 'radio-group',
 }
 
-export const AccordionGroupKey: InjectionKey<InjectKey.AccordionGroup> = Symbol(
-	InjectKey.AccordionGroup,
+export const AccordionGroupKey: InjectionKey<InjectionKey.AccordionGroup> = Symbol(
+	InjectionKey.AccordionGroup,
 );
+
+export const RadioGroupKey: InjectionKey<InjectionKey.RadioGroup> = Symbol(InjectionKey.RadioGroup);

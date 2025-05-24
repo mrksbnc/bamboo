@@ -1,53 +1,14 @@
-import { BoSize } from '@/shared/bo-size.js';
-
-export enum BoRadioVariant {
-	primary = 'primary',
-	secondary = 'secondary',
-	success = 'success',
-	danger = 'danger',
-	warning = 'warning',
-	dark = 'dark',
-}
-
 export interface BoRadioProps {
-	/**
-	 * The id of the element.
-	 */
+	/** Unique identifier for the radio button */
 	id?: string;
-	/**
-	 * The name of the element.
-	 */
-	name: string;
-	/**
-	 * The value of the element.
-	 */
-	value: string;
-	/**
-	 * The model value of the element.
-	 */
-	modelValue?: string;
-	/**
-	 * The disabled state of the element.
-	 */
+	/** Whether the radio button is disabled */
 	disabled?: boolean;
-	/**
-	 * The label of the element.
-	 */
+	/**  Value of the radio button */
+	value?: string;
+	/** Name attribute for the radio button */
+	name?: string;
+	/** Label text displayed next to the radio button */
 	label?: string;
-	/**
-	 * The size of the element.
-	 */
-	size?: BoSize;
-	/**
-	 * The error message of the element.
-	 */
-	error?: string;
-	/**
-	 * The variant of the element.
-	 */
-	variant?: BoRadioVariant;
-	/**
-	 * The custom color of the element.
-	 */
-	customColor?: string;
+	/** Additional description text displayed below the label */
+	description?: string;
 }
