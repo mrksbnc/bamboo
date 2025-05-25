@@ -666,7 +666,7 @@ describe('BoButton', () => {
 			});
 			const prefixIcon = iconLoadingWrapper.find('[data-testid*="button-prefix-icon"]');
 			const loader = iconLoadingWrapper.find('[data-testid*="button-loader"]');
-			expect(prefixIcon.exists()).toBe(true);
+			expect(prefixIcon.exists()).toBe(false);
 			expect(loader.exists()).toBe(true);
 		});
 

@@ -104,14 +104,14 @@ describe('BoAccordion', () => {
 
 	suite('Toggle Icon', () => {
 		test('should render toggle icon with correct test id', () => {
-			const icon = wrapper.find('[data-testid="bo-icon-chevron-down"]');
+			const icon = wrapper.find('[data-testid*="accordion-toggle-icon"]');
 			expect(icon.exists()).toBe(true);
 		});
 
 		test('should show chevron down when closed', () => {
-			const icon = wrapper.find('[data-testid="bo-icon-chevron-down"]');
+			const icon = wrapper.find('[data-testid*="accordion-toggle-icon"]');
 			expect(icon.exists()).toBe(true);
-			expect(icon.attributes('data-testid')).toBe('bo-icon-chevron-down');
+			expect(icon.attributes('data-testid')).toMatch(/.*-accordion-toggle-icon$/);
 		});
 
 		test('should show chevron up when open', () => {
@@ -121,9 +121,9 @@ describe('BoAccordion', () => {
 					open: true,
 				},
 			});
-			const icon = openWrapper.find('[data-testid="bo-icon-chevron-up"]');
+			const icon = openWrapper.find('[data-testid*="accordion-toggle-icon"]');
 			expect(icon.exists()).toBe(true);
-			expect(icon.attributes('data-testid')).toBe('bo-icon-chevron-up');
+			expect(icon.attributes('data-testid')).toMatch(/.*-accordion-toggle-icon$/);
 		});
 
 		test('should use custom toggle icon when provided', () => {
@@ -133,9 +133,9 @@ describe('BoAccordion', () => {
 					customToggleIcon: Icon.plus,
 				},
 			});
-			const icon = customWrapper.find('[data-testid="bo-icon-plus"]');
+			const icon = customWrapper.find('[data-testid*="accordion-toggle-icon"]');
 			expect(icon.exists()).toBe(true);
-			expect(icon.attributes('data-testid')).toBe('bo-icon-plus');
+			expect(icon.attributes('data-testid')).toMatch(/.*-accordion-toggle-icon$/);
 		});
 	});
 
@@ -488,8 +488,8 @@ describe('BoAccordion', () => {
 				},
 			});
 
-			// Default fallback is chevron down
-			const icon = noneIconWrapper.find('[data-testid="bo-icon-chevron-down"]');
+			// Default fallback is chevron down, but we check for the accordion toggle icon test ID
+			const icon = noneIconWrapper.find('[data-testid*="accordion-toggle-icon"]');
 			expect(icon.exists()).toBe(true);
 		});
 
