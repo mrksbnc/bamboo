@@ -8,8 +8,8 @@
 		>
 			<bo-text
 				v-if="label"
-				:id="id"
 				:for="id"
+				:id="`${id}-label`"
 				class="text-neutral-800"
 				:size="BoFontSize.sm"
 				:value="label"
@@ -63,6 +63,10 @@
 				:required="required"
 				:rows="rows"
 				:maxlength="maxLength"
+				:aria-labelledby="label ? `${id}-label` : undefined"
+				:aria-describedby="ariaDescribedBy"
+				:aria-invalid="error || invalidField ? 'true' : 'false'"
+				:aria-required="required ? 'true' : 'false'"
 				class="w-full resize-none rounded-md border-none bg-transparent text-base font-normal text-neutral-800 transition-all duration-200 outline-none"
 				:class="[
 					containerPadding,
@@ -92,12 +96,15 @@
 		<!-- Error message -->
 		<div
 			v-if="error"
+			:id="`${id}-error`"
 			class="text-error-600 mt-1 flex items-center gap-1 text-sm font-normal"
+			role="alert"
 			:data-testid="`bo-textarea-error-${id}`"
 		>
 			<bo-icon
 				:icon="Icon.alert_circle"
 				:size="BoSize.small"
+				aria-hidden="true"
 			/>
 			<span>{{ error }}</span>
 		</div>
@@ -105,7 +112,9 @@
 		<!-- Hint message -->
 		<div
 			v-else-if="hint"
+			:id="`${id}-hint`"
 			class="mt-1 flex w-full text-sm font-normal text-neutral-500"
+			:data-testid="`bo-textarea-hint-${id}`"
 		>
 			{{ hint }}
 		</div>
@@ -206,6 +215,19 @@ const iconSize = computed(() => {
 		default:
 			return BoSize.default;
 	}
+});
+
+// Computed property for aria-describedby
+const ariaDescribedBy = computed<string | undefined>(() => {
+	const describedBy: string[] = [];
+
+	if (props.error) {
+		describedBy.push(`${props.id}-error`);
+	} else if (props.hint) {
+		describedBy.push(`${props.id}-hint`);
+	}
+
+	return describedBy.length > 0 ? describedBy.join(' ') : undefined;
 });
 
 function onBlur(event: FocusEvent) {

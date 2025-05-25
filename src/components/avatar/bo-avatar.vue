@@ -200,7 +200,7 @@ const avatarContainerDefaultClasses = computed<string>(() => {
 		bgConstruct.value,
 		containerClasses.default,
 		cursorClassConstruct.value,
-		!props?.shape.includes('outline') ? /*tw*/ 'shadow-md' : 'shadow-none',
+		!props?.shape.includes('outline') ? /*tw*/ 'shadow-md' : /*tw*/ 'shadow-none',
 	);
 });
 

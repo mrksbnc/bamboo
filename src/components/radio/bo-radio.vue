@@ -12,7 +12,9 @@
 			:name="inputName"
 			:checked="isChecked"
 			:disabled="isDisabled"
+			:value="value"
 			:class="inputClasses"
+			:aria-describedby="description ? `${id}-description` : undefined"
 			:data-testid="`bo-radio-input-${id}`"
 		/>
 		<div :class="textWrapperClasses">
@@ -29,6 +31,7 @@
 				/>
 				<bo-text
 					v-if="description"
+					:id="`${id}-description`"
 					:value="description"
 					:size="BoFontSize.sm"
 					:color="BoTextColor.secondary"

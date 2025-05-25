@@ -8,6 +8,7 @@
 			<div class="flex items-center gap-1 pb-1">
 				<bo-text
 					v-if="label"
+					:id="`${id}-label`"
 					:value="label"
 					:size="BoFontSize.sm"
 				/>
@@ -46,14 +47,16 @@
 				:placeholder="placeholder"
 				:class="inputClasses"
 				:aria-label="ariaLabel"
+				:aria-labelledby="label ? `${id}-label` : undefined"
+				:aria-describedby="ariaDescribedBy"
 				:aria-invalid="state === BoInputState.error"
+				:aria-required="required ?? false"
 				@input="onInput"
 				@focus="onFocus"
 				@blur="onBlur"
 				@change="onChange"
 			/>
-			<!-- Suffix Icon -->
-			<div :class="['absolute right-3 text-neutral-500 dark:text-gray-400']">
+			<div class="absolute right-3 text-neutral-500 dark:text-gray-400">
 				<bo-icon
 					v-if="showSuffixIcon"
 					:icon="suffixIcon"
@@ -69,13 +72,16 @@
 		>
 			<div
 				v-if="error"
+				:id="`${id}-error`"
 				class="flex items-center gap-1"
+				role="alert"
 			>
 				<bo-icon
 					:icon="Icon.alert_circle"
 					:size="BoSize.small"
 					:color="BoColor.red_600"
 					class="mr-1"
+					aria-hidden="true"
 				/>
 				<bo-text
 					:value="error"
@@ -86,12 +92,14 @@
 
 			<bo-text
 				v-if="required && !error"
+				:id="`${id}-required`"
 				value="This field is required"
 				:size="BoFontSize.sm"
 				:color="BoTextColor.danger"
 			/>
 			<bo-text
 				v-if="description && !error"
+				:id="`${id}-description`"
 				:value="description"
 				:size="BoFontSize.sm"
 				:color="BoTextColor.secondary"
@@ -237,6 +245,21 @@ const inputClasses = computed<string>(() => {
 		props.state === BoInputState.default && !props.required ? focusClasses : '',
 		stateClasses,
 	);
+});
+
+// Computed property for aria-describedby
+const ariaDescribedBy = computed<string | undefined>(() => {
+	const describedBy: string[] = [];
+
+	if (props.error) {
+		describedBy.push(`${props.id}-error`);
+	} else if (props.required && !props.error) {
+		describedBy.push(`${props.id}-required`);
+	} else if (props.description && !props.error) {
+		describedBy.push(`${props.id}-description`);
+	}
+
+	return describedBy.length > 0 ? describedBy.join(' ') : undefined;
 });
 
 function onInput(event: Event): void {
