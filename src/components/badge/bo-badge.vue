@@ -6,17 +6,13 @@
 		:aria-label="ariaLabel"
 		:data-testid="constructAttribute(id, 'badge')"
 	>
-		<span
+		<bo-icon
 			v-if="renderPrefixIcon"
+			:size="boBadgeIconSize"
+			:icon="prefixOrIconOnlySrc"
+			:class="BADGE_STYLE.layout.prefixIcon"
 			:data-testid="constructAttribute(id, 'badge-prefix-icon')"
-		>
-			<bo-icon
-				:size="boBadgeIconSize"
-				:icon="prefixOrIconOnlySrc"
-				:class="BADGE_STYLE.layout.prefixIcon"
-				aria-hidden="true"
-			/>
-		</span>
+		/>
 		<slot name="default">
 			<span
 				v-if="renderLabel && label && !iconOnly && !isCircle"
@@ -31,17 +27,13 @@
 				/>
 			</span>
 		</slot>
-		<span
+		<bo-icon
 			v-if="icon?.suffix && renderSuffixIcon"
+			:icon="icon.suffix"
+			:size="boBadgeIconSize"
+			:class="BADGE_STYLE.layout.suffixIcon"
 			:data-testid="constructAttribute(id, 'badge-suffix-icon')"
-		>
-			<bo-icon
-				:icon="icon.suffix"
-				:size="boBadgeIconSize"
-				:class="BADGE_STYLE.layout.suffixIcon"
-				aria-hidden="true"
-			/>
-		</span>
+		/>
 	</span>
 </template>
 
