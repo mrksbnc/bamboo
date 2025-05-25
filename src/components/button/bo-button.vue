@@ -111,11 +111,11 @@ const BUTTON_STYLE = {
 			[BoSize.extra_large]: /*tw*/ 'bo-button--extra-large px-5 py-3 text-lg',
 		},
 		iconOnly: {
-			[BoSize.extra_small]: /*tw*/ 'bo-button--extra-small p-1.5',
-			[BoSize.small]: /*tw*/ 'bo-button--small p-2',
-			[BoSize.default]: /*tw*/ 'bo-button--default p-2.5',
+			[BoSize.extra_small]: /*tw*/ 'bo-button--extra-small h-[26px] p-1.5',
+			[BoSize.small]: /*tw*/ 'bo-button--small h-[32px] p-2',
+			[BoSize.default]: /*tw*/ 'bo-button--default h-[38px] p-2.5',
 			[BoSize.large]: /*tw*/ 'bo-button--large p-3',
-			[BoSize.extra_large]: /*tw*/ 'bo-button--extra-large p-3.5',
+			[BoSize.extra_large]: /*tw*/ 'bo-button--extra-large p-4',
 		},
 	},
 	shape: {
@@ -214,7 +214,7 @@ const iconOnly = computed<boolean>(() => {
 });
 
 const renderPrefixIcon = computed<boolean>(() => {
-	return props.prefixIcon !== Icon.none || iconOnly.value;
+	return (props.prefixIcon !== Icon.none || iconOnly.value) && !props.isLoading;
 });
 
 const renderSuffixIcon = computed<boolean>(() => {
