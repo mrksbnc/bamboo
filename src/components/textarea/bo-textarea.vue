@@ -57,7 +57,7 @@
 			<textarea
 				:id="id"
 				:name="name"
-				:value="modelValue"
+				v-model="modelValue"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:required="required"
@@ -70,7 +70,6 @@
 					suffixIcon ? 'pr-10' : '',
 					expand ? 'flex-grow' : '',
 				]"
-				@input="onInput"
 				@blur="onBlur"
 				:data-testid="`bo-textarea-field-${id}`"
 			></textarea>
@@ -130,7 +129,6 @@ const props = withDefaults(
 	defineProps<{
 		id?: string;
 		name?: string;
-		modelValue?: string;
 		label?: string;
 		placeholder?: string;
 		hint?: string;
@@ -154,9 +152,12 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{
-	'update:modelValue': [value: string];
 	blur: [event: FocusEvent];
 }>();
+
+const modelValue = defineModel<string>({
+	default: '',
+});
 
 // Computed properties for consistent sizing with Flowbite
 const containerPadding = computed<string>(() => {
@@ -206,11 +207,6 @@ const iconSize = computed(() => {
 			return BoSize.default;
 	}
 });
-
-function onInput(event: Event) {
-	const target = event.target as HTMLTextAreaElement;
-	emit('update:modelValue', target.value);
-}
 
 function onBlur(event: FocusEvent) {
 	emit('blur', event);

@@ -123,7 +123,6 @@ const props = withDefaults(defineProps<BoInputProps>(), {
 });
 
 const emit = defineEmits<{
-	(e: 'update:modelValue', value: string): void;
 	(e: 'focus'): void;
 	(e: 'blur', event: Event): void;
 	(e: 'change', value: string): void;
@@ -242,9 +241,7 @@ const inputClasses = computed<string>(() => {
 
 function onInput(event: Event): void {
 	const target = event.target as HTMLInputElement;
-	if (target.value) {
-		emit('update:modelValue', target.value);
-	}
+	emit('change', target.value);
 }
 
 function onFocus(): void {
