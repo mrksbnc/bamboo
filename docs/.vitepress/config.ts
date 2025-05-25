@@ -13,7 +13,6 @@ function buildSidebar() {
 			text: 'Components',
 			items: [
 				{ text: 'Accordion', link: '/pages/components/accordion' },
-				{ text: 'Accordion Container', link: '/pages/components/accordion-container' },
 				{ text: 'Avatar', link: '/pages/components/avatar' },
 				{ text: 'Badge', link: '/pages/components/badge' },
 				{ text: 'Button', link: '/pages/components/button' },

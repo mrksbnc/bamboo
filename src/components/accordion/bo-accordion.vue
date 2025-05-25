@@ -12,8 +12,8 @@
 			:aria-expanded="isOpen"
 			:aria-disabled="disabled"
 			:id="constructAttribute(id, 'accordion-header')"
-			:data-testid="constructAttribute(id, 'accordion-header')"
 			:aria-controls="constructAttribute(id, 'accordion-body')"
+			:data-testid="constructAttribute(id, 'accordion-header')"
 			@click="onAccordionToggle"
 			@keydown.enter="onAccordionToggle"
 			@keydown.space="onAccordionToggle"
@@ -49,8 +49,8 @@
 			ref="accordionBodyRef"
 			:class="bodyClasses"
 			:id="constructAttribute(id, 'accordion-body')"
-			:aria-labelledby="constructAttribute(id, 'accordion-header')"
 			:data-testid="constructAttribute(id, 'accordion-content')"
+			:aria-labelledby="constructAttribute(id, 'accordion-header')"
 		>
 			<div :class="slotClasses">
 				<slot></slot>

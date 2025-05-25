@@ -30,7 +30,10 @@ export interface BoAccordionContainerProps {
 }
 
 export interface AccordionGroup {
+	/** The currently open accordion items */
 	openItems: Set<string>;
+	/** Toggle an accordion item */
 	toggle: (id: string) => void;
+	/** Register an accordion item on the accordion group */
 	registerItem: (id: string, initialOpen: boolean) => void;
 }

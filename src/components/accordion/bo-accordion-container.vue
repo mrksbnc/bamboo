@@ -16,7 +16,7 @@ import { provide, reactive, ref } from 'vue';
 import type { BoAccordionContainerProps } from './bo-accordion.js';
 
 const props = withDefaults(defineProps<BoAccordionContainerProps>(), {
-	id: () => IdentityService.instance.getComponentId('bo-accordion-container'),
+	id: () => IdentityService.instance.getComponentId(),
 });
 
 const { constructAttribute } = useAttributes();

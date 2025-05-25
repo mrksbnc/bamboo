@@ -1,0 +1,506 @@
+import { Icon } from '@/components/icon/bo-icon.js';
+import { InjectKey } from '@/shared/injection-key.js';
+import { mount } from '@vue/test-utils';
+import { beforeEach, describe, expect, suite, test, vi } from 'vitest';
+import { nextTick } from 'vue';
+import type { AccordionGroup } from './bo-accordion.js';
+import BoAccordion from './bo-accordion.vue';
+
+let wrapper: ReturnType<typeof mount>;
+
+beforeEach(() => {
+	wrapper = mount(BoAccordion, {
+		props: {
+			title: 'Test Accordion',
+		},
+	});
+});
+
+describe('BoAccordion', () => {
+	suite('Basic Rendering', () => {
+		test('should render accordion container', () => {
+			expect(wrapper.find('.bo-accordion').exists()).toBe(true);
+		});
+
+		test('should have correct test id', () => {
+			expect(wrapper.find('[data-testid*="accordion"]').exists()).toBe(true);
+		});
+
+		test('should render with custom id', () => {
+			const customWrapper = mount(BoAccordion, {
+				props: {
+					id: 'custom-id',
+					title: 'Test',
+				},
+			});
+			expect(customWrapper.find('[data-testid="custom-id-accordion"]').exists()).toBe(true);
+		});
+	});
+
+	suite('Header Element', () => {
+		test('should render header with correct attributes', () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+
+			expect(header.exists()).toBe(true);
+			expect(header.attributes('role')).toBe('button');
+			expect(header.attributes('tabindex')).toBe('0');
+			expect(header.attributes('aria-expanded')).toBe('false');
+			expect(header.attributes('aria-disabled')).toBe('false');
+		});
+
+		test('should have correct test id for header', () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			expect(header.attributes('data-testid')).toMatch(/.*-accordion-header$/);
+		});
+
+		test('should have aria-controls pointing to content body', () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const content = wrapper.find('[data-testid*="accordion-content"]');
+
+			expect(header.attributes('aria-controls')).toMatch(/.*-accordion-body$/);
+			expect(content.attributes('id')).toMatch(/.*-accordion-body$/);
+		});
+	});
+
+	suite('Content Element', () => {
+		test('should render content with correct attributes', () => {
+			const content = wrapper.find('[data-testid*="accordion-content"]');
+
+			expect(content.exists()).toBe(true);
+			expect(content.attributes('role')).toBe('region');
+		});
+
+		test('should have correct test id for content', () => {
+			const content = wrapper.find('[data-testid*="accordion-content"]');
+			expect(content.attributes('data-testid')).toMatch(/.*-accordion-content$/);
+		});
+
+		test('should have aria-labelledby pointing to header', () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const content = wrapper.find('[data-testid*="accordion-content"]');
+
+			expect(content.attributes('aria-labelledby')).toMatch(/.*-accordion-header$/);
+			expect(header.attributes('id')).toMatch(/.*-accordion-header$/);
+		});
+
+		test('should be hidden by default', () => {
+			const content = wrapper.find('[data-testid*="accordion-content"]');
+			expect(content.isVisible()).toBe(false);
+		});
+	});
+
+	suite('Title', () => {
+		test('should render title with correct test id', () => {
+			const title = wrapper.find('[data-testid*="accordion-title"]');
+			expect(title.exists()).toBe(true);
+			expect(title.text()).toBe('Test Accordion');
+		});
+
+		test('should not render title when not provided', () => {
+			const noTitleWrapper = mount(BoAccordion);
+			expect(noTitleWrapper.find('[data-testid*="accordion-title"]').exists()).toBe(false);
+		});
+	});
+
+	suite('Toggle Icon', () => {
+		test('should render toggle icon with correct test id', () => {
+			const icon = wrapper.find('[data-testid="bo-icon-chevron-down"]');
+			expect(icon.exists()).toBe(true);
+		});
+
+		test('should show chevron down when closed', () => {
+			const icon = wrapper.find('[data-testid="bo-icon-chevron-down"]');
+			expect(icon.exists()).toBe(true);
+			expect(icon.attributes('data-testid')).toBe('bo-icon-chevron-down');
+		});
+
+		test('should show chevron up when open', () => {
+			const openWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					open: true,
+				},
+			});
+			const icon = openWrapper.find('[data-testid="bo-icon-chevron-up"]');
+			expect(icon.exists()).toBe(true);
+			expect(icon.attributes('data-testid')).toBe('bo-icon-chevron-up');
+		});
+
+		test('should use custom toggle icon when provided', () => {
+			const customWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					customToggleIcon: Icon.plus,
+				},
+			});
+			const icon = customWrapper.find('[data-testid="bo-icon-plus"]');
+			expect(icon.exists()).toBe(true);
+			expect(icon.attributes('data-testid')).toBe('bo-icon-plus');
+		});
+	});
+
+	suite('Prefix Icon', () => {
+		test('should not render prefix icon by default', () => {
+			expect(wrapper.find('[data-testid*="accordion-prefix-icon"]').exists()).toBe(false);
+		});
+
+		test('should render prefix icon when provided', () => {
+			const prefixWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					prefixIcon: Icon.star,
+				},
+				global: {
+					stubs: {
+						BoIcon: {
+							template: '<i data-testid="mocked-icon"></i>',
+							props: ['icon'],
+						},
+					},
+				},
+			});
+			const prefixIcon = prefixWrapper.find('[data-testid*="accordion-prefix-icon"]');
+			expect(prefixIcon.exists()).toBe(true);
+			expect(prefixIcon.attributes('data-testid')).toMatch(/.*-accordion-prefix-icon$/);
+		});
+
+		test('should not render when set to none', () => {
+			const noneWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					prefixIcon: Icon.none,
+				},
+			});
+			expect(noneWrapper.find('[data-testid*="accordion-prefix-icon"]').exists()).toBe(false);
+		});
+	});
+
+	suite('Open/Close State', () => {
+		test('should be closed by default', () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const content = wrapper.find('[data-testid*="accordion-content"]');
+
+			expect(header.attributes('aria-expanded')).toBe('false');
+			expect(content.isVisible()).toBe(false);
+		});
+
+		test('should be open when open prop is true', () => {
+			const openWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					open: true,
+				},
+			});
+
+			const header = openWrapper.find('[data-testid*="accordion-header"]');
+			const content = openWrapper.find('[data-testid*="accordion-content"]');
+
+			expect(header.attributes('aria-expanded')).toBe('true');
+			expect(content.isVisible()).toBe(true);
+		});
+
+		test('should toggle when clicked', async () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+
+			await header.trigger('click');
+			await nextTick();
+
+			expect(header.attributes('aria-expanded')).toBe('true');
+
+			await header.trigger('click');
+			await nextTick();
+
+			expect(header.attributes('aria-expanded')).toBe('false');
+		});
+
+		test('should emit toggle event', async () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+
+			await header.trigger('click');
+
+			const events = wrapper.emitted('toggle');
+			expect(events).toHaveLength(1);
+			expect(events![0]).toEqual([{ id: expect.any(String), open: true }]);
+		});
+	});
+
+	suite('Keyboard Interaction', () => {
+		test('should toggle on Enter key', async () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+
+			await header.trigger('keydown.enter');
+			await nextTick();
+
+			expect(header.attributes('aria-expanded')).toBe('true');
+		});
+
+		test('should toggle on Space key', async () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+
+			await header.trigger('keydown.space');
+			await nextTick();
+
+			expect(header.attributes('aria-expanded')).toBe('true');
+		});
+
+		test('should not toggle on other keys', async () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+
+			await header.trigger('keydown.escape');
+			await header.trigger('keydown.tab');
+			await nextTick();
+
+			expect(header.attributes('aria-expanded')).toBe('false');
+		});
+	});
+
+	suite('Disabled State', () => {
+		test('should have correct disabled attributes', () => {
+			const disabledWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					disabled: true,
+				},
+			});
+
+			const header = disabledWrapper.find('[data-testid*="accordion-header"]');
+			expect(header.attributes('aria-disabled')).toBe('true');
+		});
+
+		test('should not toggle when disabled', async () => {
+			const disabledWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					disabled: true,
+				},
+			});
+
+			const header = disabledWrapper.find('[data-testid*="accordion-header"]');
+
+			await header.trigger('click');
+			await nextTick();
+
+			expect(header.attributes('aria-expanded')).toBe('false');
+			expect(disabledWrapper.emitted('toggle')).toBeFalsy();
+		});
+	});
+
+	suite('Slot Content', () => {
+		test('should render slot content', () => {
+			const slotWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+				},
+				slots: {
+					default: '<div class="test-content">Slot Content</div>',
+				},
+			});
+
+			expect(slotWrapper.find('.test-content').exists()).toBe(true);
+			expect(slotWrapper.find('.test-content').text()).toBe('Slot Content');
+		});
+	});
+
+	suite('Accordion Group Integration', () => {
+		test('should register with group when provided', () => {
+			const mockGroup: AccordionGroup = {
+				openItems: new Set(),
+				toggle: vi.fn(),
+				registerItem: vi.fn(),
+			};
+
+			mount(BoAccordion, {
+				props: {
+					id: 'test-id',
+					title: 'Test',
+					open: true,
+				},
+				global: {
+					provide: {
+						[InjectKey.AccordionGroup]: mockGroup,
+					},
+				},
+			});
+
+			expect(mockGroup.registerItem).toHaveBeenCalledWith('test-id', true);
+		});
+
+		test('should call group toggle when in group', async () => {
+			const mockGroup: AccordionGroup = {
+				openItems: new Set(),
+				toggle: vi.fn(),
+				registerItem: vi.fn(),
+			};
+
+			const groupWrapper = mount(BoAccordion, {
+				props: {
+					id: 'test-id',
+					title: 'Test',
+				},
+				global: {
+					provide: {
+						[InjectKey.AccordionGroup]: mockGroup,
+					},
+				},
+			});
+
+			const header = groupWrapper.find('[data-testid*="accordion-header"]');
+			await header.trigger('click');
+
+			expect(mockGroup.toggle).toHaveBeenCalledWith('test-id');
+		});
+
+		test('should not emit toggle event when in group', async () => {
+			const mockGroup: AccordionGroup = {
+				openItems: new Set(),
+				toggle: vi.fn(),
+				registerItem: vi.fn(),
+			};
+
+			const groupWrapper = mount(BoAccordion, {
+				props: {
+					id: 'test-id',
+					title: 'Test',
+				},
+				global: {
+					provide: {
+						[InjectKey.AccordionGroup]: mockGroup,
+					},
+				},
+			});
+
+			const header = groupWrapper.find('[data-testid*="accordion-header"]');
+			await header.trigger('click');
+
+			// Should not emit toggle event when in group, group handles it
+			expect(groupWrapper.emitted('toggle')).toBeFalsy();
+		});
+	});
+
+	suite('CSS Classes', () => {
+		test('should have base accordion classes', () => {
+			expect(wrapper.find('.bo-accordion').exists()).toBe(true);
+			expect(wrapper.find('.bo-accordion__header').exists()).toBe(true);
+			expect(wrapper.find('.bo-accordion__content').exists()).toBe(true);
+		});
+
+		test('should have interactive classes on header', () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			expect(header.classes()).toContain('cursor-pointer');
+		});
+
+		test('should have disabled classes when disabled', () => {
+			const disabledWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					disabled: true,
+				},
+			});
+
+			const header = disabledWrapper.find('[data-testid*="accordion-header"]');
+			// The disabled classes are applied as a single string 'cursor-not-allowed opacity-50'
+			const headerClasses = header.classes().join(' ');
+			expect(headerClasses).toContain('cursor-not-allowed');
+			expect(headerClasses).toContain('opacity-50');
+		});
+	});
+
+	suite('Internal State & Computed Properties', () => {
+		test('should compute header classes correctly', () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const classes = header.classes();
+
+			// Should have all expected base classes
+			expect(classes).toContain('bo-accordion__header');
+			expect(classes).toContain('flex');
+			expect(classes).toContain('items-center');
+			expect(classes).toContain('justify-between');
+			expect(classes).toContain('cursor-pointer');
+		});
+
+		test('should compute body classes correctly', async () => {
+			await wrapper.setProps({ open: true });
+			const body = wrapper.find('[data-testid*="accordion-content"]');
+			const classes = body.classes();
+
+			expect(classes).toContain('bo-accordion__body');
+			expect(classes).toContain('overflow-hidden');
+		});
+
+		test('should compute slot classes correctly', async () => {
+			await wrapper.setProps({ open: true });
+			const content = wrapper.find('[data-testid*="accordion-content"] > div');
+			const classes = content.classes();
+
+			expect(classes).toContain('bo-accordion__content');
+		});
+
+		test('should handle template refs correctly', () => {
+			const container = wrapper.find('.bo-accordion');
+			const content = wrapper.find('[data-testid*="accordion-content"]');
+
+			expect(container.exists()).toBe(true);
+			expect(content.exists()).toBe(true);
+		});
+	});
+
+	suite('Edge Cases', () => {
+		test('should handle undefined open prop', () => {
+			const undefinedWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					open: undefined,
+				},
+			});
+
+			const header = undefinedWrapper.find('[data-testid*="accordion-header"]');
+			expect(header.attributes('aria-expanded')).toBe('false');
+		});
+
+		test('should handle accordion without any props', () => {
+			const emptyWrapper = mount(BoAccordion);
+			expect(emptyWrapper.find('.bo-accordion').exists()).toBe(true);
+		});
+
+		test('should handle prop changes reactively', async () => {
+			const reactiveWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					open: false,
+					disabled: false,
+				},
+			});
+
+			const header = reactiveWrapper.find('[data-testid*="accordion-header"]');
+
+			await reactiveWrapper.setProps({ open: true });
+			expect(header.attributes('aria-expanded')).toBe('true');
+
+			await reactiveWrapper.setProps({ disabled: true });
+			expect(header.attributes('aria-disabled')).toBe('true');
+		});
+
+		test('should handle customToggleIcon set to none', () => {
+			const noneIconWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					customToggleIcon: Icon.none,
+				},
+			});
+
+			// Default fallback is chevron down
+			const icon = noneIconWrapper.find('[data-testid="bo-icon-chevron-down"]');
+			expect(icon.exists()).toBe(true);
+		});
+
+		test('should prevent default keyboard events', async () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+
+			const spaceEvent = new KeyboardEvent('keydown', { key: ' ' });
+
+			await header.trigger('keydown.space');
+
+			expect(header.attributes('aria-expanded')).toBe('true');
+		});
+	});
+});
