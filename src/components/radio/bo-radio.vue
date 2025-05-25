@@ -1,7 +1,9 @@
 <template>
 	<div
+		v-bind="$attrs"
 		:class="wrapperClasses"
-		@click="handleClick"
+		:tabindex="isDisabled ? -1 : 0"
+		@click="onClick"
 	>
 		<input
 			ref="inputRef"
@@ -9,8 +11,7 @@
 			:id="id"
 			:name="inputName"
 			:checked="isChecked"
-			v-model="props.value"
-			:disabled="effectiveDisabled"
+			:disabled="isDisabled"
 			:class="inputClasses"
 			:data-testid="`bo-radio-input-${id}`"
 		/>
@@ -22,7 +23,7 @@
 					:size="BoFontSize.base"
 					:weight="BoFontWeight.medium"
 					:color="BoTextColor.default"
-					:cursor="!effectiveDisabled ? 'cursor-pointer' : 'cursor-not-allowed'"
+					:cursor="!isDisabled ? 'cursor-pointer' : 'cursor-not-allowed'"
 					class="bo-radio__label"
 					:data-testid="`bo-radio-label-${id}`"
 				/>
@@ -31,7 +32,7 @@
 					:value="description"
 					:size="BoFontSize.sm"
 					:color="BoTextColor.secondary"
-					:cursor="!effectiveDisabled ? 'cursor-pointer' : 'cursor-not-allowed'"
+					:cursor="!isDisabled ? 'cursor-pointer' : 'cursor-not-allowed'"
 					class="bo-radio__description"
 					:data-testid="`bo-radio-description-${id}`"
 				/>
@@ -59,7 +60,7 @@ const radioGroup = inject<BoRadioGroup>(InjectKey.RadioGroup);
 
 const inputName = computed<string>(() => props.name ?? radioGroup?.name ?? '');
 
-const effectiveDisabled = computed<boolean>(() => props.disabled || radioGroup?.disabled || false);
+const isDisabled = computed<boolean>(() => props.disabled || radioGroup?.disabled || false);
 
 const isChecked = computed<boolean>(() => {
 	if (radioGroup && props.value) {
@@ -71,7 +72,7 @@ const isChecked = computed<boolean>(() => {
 const inputClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
 		'bo-radio__input size-4',
-		effectiveDisabled.value ? /*tw*/ 'cursor-not-allowed opacity-50' : /*tw*/ 'cursor-pointer',
+		isDisabled.value ? /*tw*/ 'cursor-not-allowed opacity-50' : /*tw*/ 'cursor-pointer',
 	);
 });
 
@@ -79,7 +80,7 @@ const wrapperClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
 		'bo-radio__wrapper',
 		/*tw*/ 'flex items-center gap-2',
-		effectiveDisabled.value ? /*tw*/ 'cursor-not-allowed' : /*tw*/ 'cursor-pointer',
+		isDisabled.value ? /*tw*/ 'cursor-not-allowed' : /*tw*/ 'cursor-pointer',
 	);
 });
 
@@ -87,12 +88,12 @@ const textWrapperClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
 		'bo-radio__text-wrapper',
 		/*tw*/ 'flex flex-col',
-		effectiveDisabled.value ? /*tw*/ 'opacity-50' : /*tw*/ '',
+		isDisabled.value ? /*tw*/ 'opacity-50' : /*tw*/ '',
 	);
 });
 
-function handleClick(): void {
-	if (effectiveDisabled.value || !props.value) {
+function onClick(): void {
+	if (isDisabled.value || !props.value) {
 		return;
 	}
 

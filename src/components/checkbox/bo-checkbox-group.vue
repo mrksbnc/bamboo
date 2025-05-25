@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { IdentityService } from '@/services/identity-service.js';
 import { InjectKey } from '@/shared/injection-key.js';
-import { computed, provide, reactive, ref } from 'vue';
+import { computed, provide, reactive, ref, watch } from 'vue';
 import { BoCheckboxGroupOrientation, type BoCheckboxGroupProps } from './bo-checkbox-group.js';
 
 const props = withDefaults(defineProps<BoCheckboxGroupProps>(), {
@@ -42,7 +42,19 @@ const orientationClasses = computed<string>(() => {
 });
 
 function registerItem(value: string): void {
+	if (registeredItems.value.has(value)) {
+		return;
+	}
+
 	registeredItems.value.add(value);
+
+	// Check if this item should be initially selected
+	if (props.defaultValue && props.defaultValue.includes(value)) {
+		if (!selectedValues.value.includes(value)) {
+			selectedValues.value.push(value);
+			modelValue.value = selectedValues.value.slice();
+		}
+	}
 }
 
 function select(value: string): void {
@@ -59,15 +71,25 @@ function select(value: string): void {
 	}
 
 	modelValue.value = selectedValues.value.slice();
-
 	emit('update:modelValue', modelValue.value);
 	emit('change', modelValue.value);
 }
 
+// Watch for external changes to modelValue
+watch(
+	() => modelValue.value,
+	(newValue) => {
+		if (newValue && Array.isArray(newValue)) {
+			selectedValues.value = newValue.slice();
+		}
+	},
+	{ deep: true },
+);
+
 provide(
-	Symbol(InjectKey.CheckboxGroup),
+	InjectKey.CheckboxGroup,
 	reactive({
-		selectedValues: selectedValues.value,
+		selectedValues,
 		name: props.name,
 		disabled: props.disabled,
 		select,

@@ -2,7 +2,7 @@ import { createApp, h } from 'vue';
 import { BoToastType, type ToastOptions } from './bo-toast.js';
 import BoToast from './bo-toast.vue';
 
-class ToastService {
+export class ToastService {
 	private static instance: ToastService;
 	private container: HTMLElement;
 	private toasts: Map<string, { app: any; element: HTMLElement }> = new Map();

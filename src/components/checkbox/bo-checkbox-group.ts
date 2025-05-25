@@ -4,6 +4,8 @@ export enum BoCheckboxGroupOrientation {
 }
 
 export interface BoCheckboxGroupProps {
+	/** Array of selected values (v-model) */
+	modelValue?: string[];
 	/** Name attribute for all checkboxes in the group*/
 	name?: string;
 	/** Whether all checkboxes in the group are disabled */

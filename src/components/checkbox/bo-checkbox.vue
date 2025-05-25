@@ -1,32 +1,41 @@
 <template>
-	<div class="bo-checkbox-container flex items-center gap-2">
-		<div class="bo-checkbox__input-container flex items-center justify-center">
-			<input
-				:id="id"
-				v-model="modelValue"
-				type="checkbox"
-				:value="value"
-				:name="name"
-				:disabled="disabled"
-				:class="inputClasses"
-				@input="onInput"
-				@change="onChange"
-			/>
-		</div>
-		<div :class="labelClasses">
+	<div
+		v-bind="$attrs"
+		:class="wrapperClasses"
+		:tabindex="isDisabled ? -1 : 0"
+		@click="onClick"
+	>
+		<input
+			ref="inputRef"
+			type="checkbox"
+			:id="id"
+			:name="inputName"
+			:checked="isChecked"
+			:disabled="isDisabled"
+			:value="value"
+			:class="inputClasses"
+			:data-testid="`bo-checkbox-input-${id}`"
+		/>
+		<div :class="textWrapperClasses">
 			<slot name="label">
 				<bo-text
 					v-if="label"
 					:value="label"
-					:color="BoTextColor.default"
-					:size="checkBoxLabelFontSize"
+					:size="BoFontSize.base"
 					:weight="BoFontWeight.medium"
+					:color="BoTextColor.default"
+					:cursor="!isDisabled ? 'cursor-pointer' : 'cursor-not-allowed'"
+					class="bo-checkbox__label"
+					:data-testid="`bo-checkbox-label-${id}`"
 				/>
 				<bo-text
 					v-if="description"
 					:value="description"
 					:size="BoFontSize.sm"
 					:color="BoTextColor.secondary"
+					:cursor="!isDisabled ? 'cursor-pointer' : 'cursor-not-allowed'"
+					class="bo-checkbox__description"
+					:data-testid="`bo-checkbox-description-${id}`"
 				/>
 			</slot>
 		</div>
@@ -38,84 +47,89 @@ import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/text/bo-text
 import BoText from '@/components/text/bo-text.vue';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
-import { BoSize } from '@/shared/bo-size.js';
-import { computed } from 'vue';
-import { BoCheckboxProps } from './bo-checkbox.js';
+import { InjectKey } from '@/shared/injection-key.js';
+import { computed, inject, onMounted, ref } from 'vue';
+import { type BoCheckboxGroup } from './bo-checkbox-group.js';
+import { type BoCheckboxProps } from './bo-checkbox.js';
 
 const props = withDefaults(defineProps<BoCheckboxProps>(), {
 	id: () => IdentityService.instance.getComponentId('bo-checkbox'),
-	name: () => IdentityService.instance.getComponentId('checkbox'),
-	size: () => BoSize.default,
 });
 
-const emits = defineEmits<{
-	(e: 'input', event: Event): void;
+const emit = defineEmits<{
 	(e: 'change', event: Event): void;
 	(e: 'update:modelValue', value: boolean): void;
 }>();
 
 const modelValue = defineModel<boolean>({
-	required: true,
 	default: false,
 });
 
-const inputSizeClass = computed<string>(() => {
-	switch (props.size) {
-		case BoSize.extra_small:
-			return /*tw*/ 'w-2 h-2';
-		case BoSize.small:
-			return /*tw*/ 'w-3 h-3';
-		case BoSize.large:
-			return /*tw*/ 'w-5 h-5';
-		case BoSize.extra_large:
-			return /*tw*/ 'w-6 h-6';
-		case BoSize.default:
-		default:
-			return /*tw*/ 'w-4 h-4';
+const inputRef = ref<HTMLInputElement>();
+const checkboxGroup = inject<BoCheckboxGroup>(InjectKey.CheckboxGroup);
+
+const inputName = computed<string>(() => props.name ?? checkboxGroup?.name ?? '');
+
+const isDisabled = computed<boolean>(() => props.disabled || checkboxGroup?.disabled || false);
+
+const isChecked = computed<boolean>(() => {
+	if (checkboxGroup && props.value) {
+		return checkboxGroup.selectedValues.includes(props.value);
 	}
+	return modelValue.value;
 });
 
 const inputClasses = computed<string>(() => {
-	const defaultClasses = /*tw*/ 'bo-checkbox__input cursor-pointer';
-	const disabledClasses =
-		/*tw*/ 'bo-checkbox__input-disabled disabled:border-gray-300 disabled:bg-gray-300 disabled:text-gray-500';
-
-	return TailwindService.instance.merge(defaultClasses, disabledClasses, inputSizeClass.value);
-});
-
-const labelClasses = computed<string>(() => {
-	const defaultClasses = /*tw*/ 'bo-checkbox__label';
-	const disabledClasses = /*tw*/ 'text-gray-500';
-	const checkedClasses = /*tw*/ 'text-primary-500';
-
 	return TailwindService.instance.merge(
-		defaultClasses,
-		disabledClasses,
-		checkedClasses,
-		props.disabled ? 'opacity-50' : '',
+		'bo-checkbox__input size-4 rounded border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-700',
+		'accent-blue-600 focus:ring-blue-500',
+		isDisabled.value ? /*tw*/ 'cursor-not-allowed opacity-50' : /*tw*/ 'cursor-pointer',
+		/*tw*/ 'focus:ring-2 focus:ring-offset-0',
 	);
 });
 
-const checkBoxLabelFontSize = computed<BoFontSize>(() => {
-	switch (props.size) {
-		case BoSize.extra_small:
-			return BoFontSize.xs;
-		case BoSize.small:
-			return BoFontSize.sm;
-		case BoSize.default:
-			return BoFontSize.base;
-		case BoSize.large:
-			return BoFontSize.lg;
-		case BoSize.extra_large:
-			return BoFontSize.xl;
+const wrapperClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		'bo-checkbox__wrapper',
+		/*tw*/ 'flex items-center gap-2',
+		isDisabled.value ? /*tw*/ 'cursor-not-allowed' : /*tw*/ 'cursor-pointer',
+	);
+});
+
+const textWrapperClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		'bo-checkbox__text-wrapper',
+		/*tw*/ 'flex flex-col',
+		isDisabled.value ? /*tw*/ 'opacity-50' : /*tw*/ '',
+	);
+});
+
+function onClick(): void {
+	if (isDisabled.value) {
+		return;
+	}
+
+	if (checkboxGroup && props.value) {
+		checkboxGroup.select(props.value);
+		return;
+	}
+
+	const newValue = !modelValue.value;
+	modelValue.value = newValue;
+
+	const syntheticEvent = new Event('change', { bubbles: true });
+
+	emit('update:modelValue', newValue);
+	emit('change', syntheticEvent);
+}
+
+onMounted(() => {
+	if (checkboxGroup && props.value) {
+		checkboxGroup.registerItem(props.value);
 	}
 });
 
-function onChange(event: Event): void {
-	emits('change', event);
-}
-
-function onInput(event: Event): void {
-	emits('input', event);
-}
+defineExpose({
+	isChecked,
+});
 </script>

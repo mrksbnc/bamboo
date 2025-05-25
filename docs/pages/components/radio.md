@@ -100,6 +100,7 @@ const selected = ref('A');
 
 | Name           | Type                      | Default    | Description                                    |
 | -------------- | ------------------------- | ---------- | ---------------------------------------------- |
+| `modelValue`   | `string`                  | `''`       | Currently selected value (v-model)             |
 | `name`         | `string`                  | auto       | Name attribute for all radios in the group     |
 | `disabled`     | `boolean`                 | `false`    | Whether all radios in the group are disabled   |
 | `defaultValue` | `string`                  | `''`       | Initially selected value                       |
@@ -129,6 +130,8 @@ enum BoRadioGroupOrientation {
 }
 
 interface BoRadioGroupProps {
+	/** Currently selected value (v-model) */
+	modelValue?: string;
 	/** Name attribute for all radio buttons in the group*/
 	name?: string;
 	/** Whether all radio buttons in the group are disabled */
@@ -139,7 +142,7 @@ interface BoRadioGroupProps {
 	orientation?: BoRadioGroupOrientation;
 }
 
-interface RadioGroup {
+interface BoRadioGroup {
 	/** Currently selected value */
 	selectedValue: string | null;
 	/** Name attribute for all radio buttons in the group */
@@ -154,6 +157,13 @@ interface RadioGroup {
 ```
 
 ## Events
+
+### BoRadio Events
+
+| Name                | Payload  | Description                             |
+| ------------------- | -------- | --------------------------------------- |
+| `change`            | `Event`  | Emitted on change                       |
+| `update:modelValue` | `string` | Emitted when the selected value changes |
 
 ### BoRadioGroup Events
 
