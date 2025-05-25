@@ -301,8 +301,14 @@ export interface AccessibilityDefinition {
 }
 
 export interface BoIconProps {
+	/** The unique ID for the icon */
+	id?: string;
+	/** The icon to display */
 	icon: Icon;
+	/** The size of the icon */
 	size?: BoSize;
+	/** The color of the icon */
 	color?: string;
+	/** Accessibility definition for the icon */
 	accessibility?: AccessibilityDefinition;
 }

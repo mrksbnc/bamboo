@@ -1,25 +1,25 @@
 <template>
 	<i
 		v-html="svg"
-		:style="style"
-		:class="tailwindCssClasses"
-		:aria-label="accessibility.title"
+		:id="id"
 		:role="role"
+		:style="style"
+		:aria-label="ariaLabel"
+		:aria-hidden="ariaHidden"
+		:class="tailwindCssClasses"
 		:data-testid="`bo-icon-${icon}`"
 	></i>
 </template>
 
 <script setup lang="ts">
+import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
-import { computed, ref, watchEffect, type StyleValue } from 'vue';
+import { computed, ref, useAttrs, watchEffect, type StyleValue } from 'vue';
 import { Icon, icons, type BoIconProps } from './bo-icon.js';
 
-defineOptions({
-	inheritAttrs: false,
-});
-
 const props = withDefaults(defineProps<BoIconProps>(), {
+	id: () => IdentityService.instance.getComponentId(),
 	size: () => BoSize.default,
 	color: () => 'currentColor',
 	accessibility: () => ({
@@ -27,6 +27,8 @@ const props = withDefaults(defineProps<BoIconProps>(), {
 		decorative: true,
 	}),
 });
+
+const attrs = useAttrs();
 
 const defaultClasses = /*tw*/ 'bo-icon block';
 
@@ -72,6 +74,21 @@ const tailwindCssSizeClasses = computed<string>(() => {
 
 const tailwindCssClasses = computed<string>(() => {
 	return TailwindService.instance.merge(defaultClasses, tailwindCssSizeClasses.value);
+});
+
+const ariaLabel = computed<string | undefined>(() => {
+	if (attrs['aria-hidden'] === 'true' || attrs['aria-hidden'] === true) {
+		return undefined;
+	}
+	return props.accessibility.decorative ? undefined : props.accessibility.title;
+});
+
+const ariaHidden = computed<boolean | undefined>(() => {
+	if (attrs['aria-hidden']) {
+		return Boolean(attrs['aria-hidden']);
+	}
+
+	return props.accessibility.decorative ? true : undefined;
 });
 
 async function load(icon: Icon): Promise<void> {
