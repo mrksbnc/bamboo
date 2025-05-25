@@ -78,7 +78,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 
 ### Neutral Color Families
 
-#### Slate
+#### Slate (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -127,7 +127,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Gray
+#### Gray (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -176,7 +176,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Zinc
+#### Zinc (10 shades - missing 50)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -221,7 +221,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Neutral
+#### Neutral (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -270,7 +270,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Stone
+#### Stone (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-6">
 	<div class="flex flex-col items-center">
@@ -321,7 +321,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 
 ### Warm Color Families
 
-#### Red
+#### Red (11 shades) - Danger Color
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -349,8 +349,8 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 		<span class="text-xs mt-1">500</span>
 	</div>
 	<div class="flex flex-col items-center">
-		<div class="w-12 h-12 rounded" style="background-color: #dc2626;"></div>
-		<span class="text-xs mt-1">600</span>
+		<div class="w-12 h-12 rounded border-2 border-blue-500" style="background-color: #dc2626;"></div>
+		<span class="text-xs mt-1 font-bold">600</span>
 	</div>
 	<div class="flex flex-col items-center">
 		<div class="w-12 h-12 rounded" style="background-color: #b91c1c;"></div>
@@ -370,7 +370,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Orange
+#### Orange (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -419,7 +419,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Amber
+#### Amber (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -468,7 +468,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Yellow
+#### Yellow (11 shades) - Warning Color
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -492,8 +492,8 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 		<span class="text-xs mt-1">400</span>
 	</div>
 	<div class="flex flex-col items-center">
-		<div class="w-12 h-12 rounded" style="background-color: #eab308;"></div>
-		<span class="text-xs mt-1">500</span>
+		<div class="w-12 h-12 rounded border-2 border-blue-500" style="background-color: #eab308;"></div>
+		<span class="text-xs mt-1 font-bold">500</span>
 	</div>
 	<div class="flex flex-col items-center">
 		<div class="w-12 h-12 rounded" style="background-color: #ca8a04;"></div>
@@ -517,7 +517,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Pink
+#### Pink (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -566,7 +566,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Rose
+#### Rose (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-6">
 	<div class="flex flex-col items-center">
@@ -617,7 +617,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 
 ### Cool Color Families
 
-#### Lime
+#### Lime (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -666,7 +666,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Green
+#### Green (11 shades) - Success Color
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -694,8 +694,8 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 		<span class="text-xs mt-1">500</span>
 	</div>
 	<div class="flex flex-col items-center">
-		<div class="w-12 h-12 rounded" style="background-color: #16a34a;"></div>
-		<span class="text-xs mt-1">600</span>
+		<div class="w-12 h-12 rounded border-2 border-blue-500" style="background-color: #16a34a;"></div>
+		<span class="text-xs mt-1 font-bold">600</span>
 	</div>
 	<div class="flex flex-col items-center">
 		<div class="w-12 h-12 rounded" style="background-color: #15803d;"></div>
@@ -715,7 +715,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Emerald
+#### Emerald (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -764,7 +764,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Teal
+#### Teal (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -813,7 +813,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Cyan
+#### Cyan (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -862,7 +862,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Sky
+#### Sky (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -911,7 +911,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Blue
+#### Blue (11 shades) - Primary Color
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -939,8 +939,8 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 		<span class="text-xs mt-1">500</span>
 	</div>
 	<div class="flex flex-col items-center">
-		<div class="w-12 h-12 rounded" style="background-color: #2563eb;"></div>
-		<span class="text-xs mt-1">600</span>
+		<div class="w-12 h-12 rounded border-2 border-yellow-500" style="background-color: #2563eb;"></div>
+		<span class="text-xs mt-1 font-bold">600</span>
 	</div>
 	<div class="flex flex-col items-center">
 		<div class="w-12 h-12 rounded" style="background-color: #1d4ed8;"></div>
@@ -960,7 +960,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Indigo
+#### Indigo (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -1009,7 +1009,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Violet
+#### Violet (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -1058,7 +1058,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Purple
+#### Purple (11 shades)
 
 <div class="flex flex-wrap gap-1 mb-4">
 	<div class="flex flex-col items-center">
@@ -1107,7 +1107,7 @@ The color system includes all Tailwind CSS colors, organized by color family. Ea
 	</div>
 </div>
 
-#### Fuchsia
+#### Fuchsia (6 shades - partial)
 
 <div class="flex flex-wrap gap-1 mb-6">
 	<div class="flex flex-col items-center">
