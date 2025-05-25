@@ -76,37 +76,63 @@ import { BoAccordion } from '@mrksbnc/bamboo';
 
 ```ts
 interface BoAccordionProps {
-	/** Unique ID for the accordion, used for accessibility and testing */
+	/**
+	 * Unique ID for the accordion, used for accessibility and testing
+	 */
 	id?: string;
-	/** The title of the accordion item */
+	/**
+	 * The title of the accordion item
+	 */
 	title?: string;
-	/** Whether the accordion is open by default */
+	/**
+	 * Whether the accordion is open by default
+	 */
 	open?: boolean;
-	/** Whether the accordion is disabled */
+	/**
+	 * Whether the accordion is disabled
+	 */
 	disabled?: boolean;
-	/** Prefix icon for the accordion item */
+	/**
+	 * Prefix icon for the accordion item
+	 */
 	prefixIcon?: Icon;
-	/** Custom icon for the expand/collapse indicator */
+	/**
+	 * Custom icon for the expand/collapse indicator
+	 */
 	customToggleIcon?: Icon;
 }
 
 interface BoAccordionContainerProps {
-	/** Unique ID for the accordion container, used for accessibility and testing */
+	/**
+	 * Unique ID for the accordion container, used for accessibility and testing
+	 */
 	id?: string;
-	/** Whether to allow multiple accordion items to be open at once */
+	/**
+	 * Whether to allow multiple accordion items to be open at once
+	 */
 	allowMultiple?: boolean;
-	/** Whether to keep at least one accordion item open */
+	/**
+	 * Whether to keep at least one accordion item open
+	 */
 	alwaysOpen?: boolean;
-	/** The ID of the accordion item that should be open by default */
+	/**
+	 * The ID of the accordion item that should be open by default
+	 */
 	defaultOpenItemId?: string;
 }
 
 interface AccordionGroup {
-	/** The currently open accordion items */
+	/**
+	 * The currently open accordion items
+	 */
 	openItems: Set<string>;
-	/** Toggle an accordion item */
+	/**
+	 * Toggle an accordion item
+	 */
 	toggle: (id: string) => void;
-	/** Register an accordion item on the accordion group */
+	/**
+	 * Register an accordion item on the accordion group
+	 */
 	registerItem: (id: string, initialOpen: boolean) => void;
 }
 ```

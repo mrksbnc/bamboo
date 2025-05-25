@@ -166,37 +166,63 @@ enum BoAvatarType {
 }
 
 interface BoAvatarData {
-	/** Alternative text for the avatar image */
+	/**
+	 * Alternative text for the avatar image
+	 */
 	alt?: string;
-	/** Source URL for the avatar image */
+	/**
+	 * Source URL for the avatar image
+	 */
 	src?: string;
-	/** Label text for initials avatar */
+	/**
+	 * Label text for initials avatar
+	 */
 	label?: string;
 }
 
 interface BoAvatarColor {
-	/** Background color in hex format */
+	/**
+	 * Background color in hex format
+	 */
 	bgColorHex?: string;
-	/** Text color in hex format */
+	/**
+	 * Text color in hex format
+	 */
 	colorHex?: string;
 }
 
 interface BoAvatarProps {
-	/** Unique ID for the avatar, used for accessibility and testing */
+	/**
+	 * Unique ID for the avatar, used for accessibility and testing
+	 */
 	id?: string;
-	/** Size of the avatar */
+	/**
+	 * Size of the avatar
+	 */
 	size?: BoSize;
-	/** Avatar data (image source or label) */
+	/**
+	 * Avatar data (image source or label)
+	 */
 	data?: BoAvatarData;
-	/** Type of avatar (image or initials) */
+	/**
+	 * Type of avatar (image or initials)
+	 */
 	type?: BoAvatarType;
-	/** Whether the avatar is clickable and interactive */
+	/**
+	 * Whether the avatar is clickable and interactive
+	 */
 	clickable?: boolean;
-	/** Shape of the avatar */
+	/**
+	 * Shape of the avatar
+	 */
 	shape?: BoAvatarShape;
-	/** Custom colors for the avatar */
+	/**
+	 * Custom colors for the avatar
+	 */
 	color?: BoAvatarColor;
-	/** Color variant of the avatar */
+	/**
+	 * Color variant of the avatar
+	 */
 	variant?: BoAvatarVariant;
 }
 ```
