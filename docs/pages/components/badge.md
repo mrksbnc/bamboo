@@ -1,7 +1,6 @@
 <script setup>
-import BoBadge from '@/components/badge/bo-badge.vue';
-import {  BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/badge/bo-badge';
-import { BoSize } from '@/shared/bo-size';
+import { BoBadge, BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/badge';
+import { BoSize } from '@/shared'
 import { Icon } from '@/components/icon/bo-icon';
 </script>
 
@@ -27,7 +26,7 @@ import { BoBadge } from '@mrksbnc/bamboo';
 
 <hr />
 <div class="flex gap-4 items-center my-4">
-  <bo-badge label="New" />
+	<bo-badge label="New" />
 </div>
 
 ## Props
@@ -107,7 +106,13 @@ interface BoBadgeProps {
 	 * @default { prefix: Icon.none, suffix: Icon.none }
 	 */
 	icon?: {
+		/**
+		 * Icon to display before the label
+		 */
 		prefix?: Icon;
+		/**
+		 * Icon to display after the label
+		 */
 		suffix?: Icon;
 	};
 }
@@ -116,13 +121,13 @@ interface BoBadgeProps {
 ## Variants
 
 <div class="flex gap-4 items-center my-4">
-  <bo-badge :variant="BoBadgeVariant.primary" label="Primary" />
-  <bo-badge :variant="BoBadgeVariant.secondary" label="Secondary" />
-  <bo-badge :variant="BoBadgeVariant.danger" label="Danger" />
-  <bo-badge :variant="BoBadgeVariant.warning" label="Warning" />
-  <bo-badge :variant="BoBadgeVariant.success" label="Success" />
-  <bo-badge :variant="BoBadgeVariant.light" label="Light" />
-  <bo-badge :variant="BoBadgeVariant.dark" label="Dark" />
+	<bo-badge :variant="BoBadgeVariant.primary" label="Primary" />
+	<bo-badge :variant="BoBadgeVariant.secondary" label="Secondary" />
+	<bo-badge :variant="BoBadgeVariant.danger" label="Danger" />
+	<bo-badge :variant="BoBadgeVariant.warning" label="Warning" />
+	<bo-badge :variant="BoBadgeVariant.success" label="Success" />
+	<bo-badge :variant="BoBadgeVariant.light" label="Light" />
+	<bo-badge :variant="BoBadgeVariant.dark" label="Dark" />
 </div>
 
 ```vue
@@ -138,8 +143,8 @@ interface BoBadgeProps {
 ## Types
 
 <div class="flex gap-4 items-center my-4">
-  <bo-badge :type="BoBadgeType.default" label="Default" />
-  <bo-badge :type="BoBadgeType.outline" label="Outline" />
+	<bo-badge :type="BoBadgeType.default" label="Default" />
+	<bo-badge :type="BoBadgeType.outline" label="Outline" />
 </div>
 
 ```vue
@@ -150,10 +155,10 @@ interface BoBadgeProps {
 ## Shapes
 
 <div class="flex gap-4 items-center my-4">
-  <bo-badge :shape="BoBadgeShape.default" label="Default" />
-  <bo-badge :shape="BoBadgeShape.pill" label="Pill" />
-  <bo-badge :shape="BoBadgeShape.flat" label="Flat" />
-  <bo-badge :shape="BoBadgeShape.circle" :icon="{ prefix: Icon.check }" />
+	<bo-badge :shape="BoBadgeShape.default" label="Default" />
+	<bo-badge :shape="BoBadgeShape.pill" label="Pill" />
+	<bo-badge :shape="BoBadgeShape.flat" label="Flat" />
+	<bo-badge :shape="BoBadgeShape.circle" :icon="{ prefix: Icon.check }" />
 </div>
 
 ```vue
@@ -166,11 +171,11 @@ interface BoBadgeProps {
 ## Sizes
 
 <div class="flex items-center gap-4 my-4">
-  <bo-badge :size="BoSize.extra_small" label="XS" />
-  <bo-badge :size="BoSize.small" label="Small" />
-  <bo-badge :size="BoSize.default" label="Default" />
-  <bo-badge :size="BoSize.large" label="Large" />
-  <bo-badge :size="BoSize.extra_large" label="XL" />
+	<bo-badge :size="BoSize.extra_small" label="XS" />
+	<bo-badge :size="BoSize.small" label="Small" />
+	<bo-badge :size="BoSize.default" label="Default" />
+	<bo-badge :size="BoSize.large" label="Large" />
+	<bo-badge :size="BoSize.extra_large" label="XL" />
 </div>
 
 ```vue
@@ -184,28 +189,28 @@ interface BoBadgeProps {
 ## With Icons
 
 <div class="flex gap-4 items-center my-4">
-  <bo-badge 
-    label="New" 
-    :icon="{ prefix: Icon.bell }" 
-  />
-  <bo-badge 
-    label="Settings" 
-    :icon="{ suffix: Icon.bell }" 
-  />
-  <bo-badge 
-    label="Profile" 
-    :icon="{ 
-      prefix: Icon.user,
-      suffix: Icon.chevron_right 
-    }" 
-  />
-  <bo-badge 
-    :icon="{ prefix: Icon.bell }" 
-  />
+	<bo-badge 
+		label="New" 
+		:icon="{ prefix: Icon.bell }" 
+	/>
+	<bo-badge 
+		label="Settings" 
+		:icon="{ suffix: Icon.settings }" 
+	/>
+	<bo-badge 
+		label="Profile" 
+		:icon="{ 
+			prefix: Icon.user,
+			suffix: Icon.chevron_right 
+		}" 
+	/>
+	<bo-badge 
+		:icon="{ prefix: Icon.bell }" 
+	/>
 </div>
 
 ```vue
-<bo-badge label="New" :icon="{ prefix: Icon.star }" />
+<bo-badge label="New" :icon="{ prefix: Icon.bell }" />
 <bo-badge label="Settings" :icon="{ suffix: Icon.settings }" />
 <bo-badge
 	label="Profile"
@@ -220,26 +225,26 @@ interface BoBadgeProps {
 ## Circle Badges with Icons
 
 <div class="flex gap-4 items-center my-4">
-  <bo-badge 
-    :shape="BoBadgeShape.circle" 
-    :icon="{ prefix: Icon.check }" 
-    :variant="BoBadgeVariant.success" 
-  />
-  <bo-badge 
-    :shape="BoBadgeShape.circle" 
-    :icon="{ prefix: Icon.x }" 
-    :variant="BoBadgeVariant.danger" 
-  />
-  <bo-badge 
-    :shape="BoBadgeShape.circle" 
-    :icon="{ prefix: Icon.alert_triangle }" 
-    :variant="BoBadgeVariant.warning" 
-  />
-  <bo-badge 
-    :shape="BoBadgeShape.circle" 
-    :icon="{ prefix: Icon.info }" 
-    :variant="BoBadgeVariant.primary" 
-  />
+	<bo-badge 
+		:shape="BoBadgeShape.circle" 
+		:icon="{ prefix: Icon.check }" 
+		:variant="BoBadgeVariant.success" 
+	/>
+	<bo-badge 
+		:shape="BoBadgeShape.circle" 
+		:icon="{ prefix: Icon.x }" 
+		:variant="BoBadgeVariant.danger" 
+	/>
+	<bo-badge 
+		:shape="BoBadgeShape.circle" 
+		:icon="{ prefix: Icon.alert_triangle }" 
+		:variant="BoBadgeVariant.warning" 
+	/>
+	<bo-badge 
+		:shape="BoBadgeShape.circle" 
+		:icon="{ prefix: Icon.info }" 
+		:variant="BoBadgeVariant.primary" 
+	/>
 </div>
 
 ```vue
@@ -268,21 +273,19 @@ interface BoBadgeProps {
 ## Custom Content
 
 <div class="flex gap-4 items-center my-4">
-  <bo-badge>
-    <div class="flex items-center gap-1">
-      <span class="text-xs">Verified</span>
-      💁🏻
-    </div>
-  </bo-badge>
+	<bo-badge>
+		<div class="flex items-center gap-1">
+			<span class="text-xs">Verified</span>
+			💁🏻
+		</div>
+	</bo-badge>
 </div>
 
 ```vue
-<div class="flex gap-4 items-center my-4">
-  <bo-badge>
-    <div class="flex items-center gap-1">
-      <span class="text-xs">Verified</span>
-      💁🏻
-    </div>
-  </bo-badge>
-</div>
+<bo-badge>
+	<div class="flex items-center gap-1">
+		<span class="text-xs">Verified</span>
+		💁🏻
+	</div>
+</bo-badge>
 ```

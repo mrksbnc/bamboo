@@ -24,9 +24,13 @@ export enum BoBadgeShape {
 }
 
 export interface BoBadgeProps {
-	/**  Unique ID for the badge, used for accessibility and testing */
+	/**
+	 * Unique ID for the badge, used for accessibility and testing
+	 */
 	id?: string;
-	/** Text content of the badge */
+	/**
+	 * Text content of the badge
+	 */
 	label?: string;
 	/**
 	 * Visual style of the badge
@@ -53,9 +57,13 @@ export interface BoBadgeProps {
 	 * @default { prefix: Icon.none, suffix: Icon.none }
 	 */
 	icon?: {
-		/** Icon to display before the label */
+		/**
+		 * Icon to display before the label
+		 */
 		prefix?: Icon;
-		/** Icon to display after the label */
+		/**
+		 * Icon to display after the label
+		 */
 		suffix?: Icon;
 	};
 }
