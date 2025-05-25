@@ -7,9 +7,9 @@
 		:aria-label="ariaLabel"
 		:tabindex="clickable ? 0 : undefined"
 		:data-testid="constructAttribute(id, 'avatar')"
-		@click="handleClick"
-		@keydown.enter="handleClick"
-		@keydown.space="handleClick"
+		@click="onClick"
+		@keydown.enter="onClick"
+		@keydown.space="onClick"
 	>
 		<div
 			v-if="showFallbackImage"
@@ -22,7 +22,7 @@
 				:src="DefaultAvatarSvg"
 				:class="AVATAR_STYLE.layout.image"
 				:data-testid="constructAttribute(id, 'avatar-fallback-image')"
-				@error="handleImageError"
+				@error="onImageError"
 			/>
 		</div>
 		<div
@@ -36,7 +36,7 @@
 				:alt="data?.alt ?? 'avatar'"
 				:class="AVATAR_STYLE.layout.image"
 				:data-testid="constructAttribute(id, 'avatar-image')"
-				@error="handleImageError"
+				@error="onImageError"
 			/>
 		</div>
 		<div
@@ -170,7 +170,6 @@ const label = computed<string>(() => {
 		return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase();
 	}
 
-	// If only one word, take first 2 characters
 	if (safeStr.length > 2) {
 		return safeStr.slice(0, 2).toUpperCase();
 	}
@@ -203,12 +202,12 @@ const bgConstruct = computed<string>(() => {
 	if (isOutlineShape) {
 		return props?.variant in AVATAR_STYLE.outlineVariant
 			? AVATAR_STYLE.outlineVariant[props?.variant]
-			: generateRandomOutlineColor();
+			: getRandomOutlineColor();
 	}
 
 	return props?.variant in AVATAR_STYLE.variant
 		? AVATAR_STYLE.variant[props?.variant]
-		: generateRandomColor();
+		: getRandomColor();
 });
 
 const textColorClass = computed<string>(() => {
@@ -275,18 +274,20 @@ const avatarContainerClasses = computed<string>(() => {
 	);
 });
 
+/**
+ * 1. Show fallback if no data at all
+ * 2. For image type, show fallback if no src or image error
+ * 3. For initials type, show fallback if no label
+ */
 const showFallbackImage = computed<boolean>(() => {
-	// Show fallback if no data at all
 	if (!props?.data) {
 		return true;
 	}
 
-	// For image type, show fallback if no src or image error
 	if (props?.type === BoAvatarType.image) {
 		return !props?.data?.src || imgError.value;
 	}
 
-	// For initials type, show fallback if no label
 	if (props?.type === BoAvatarType.initials) {
 		return !props?.data?.label;
 	}
@@ -294,13 +295,13 @@ const showFallbackImage = computed<boolean>(() => {
 	return false;
 });
 
-function handleClick(): void {
+function onClick(): void {
 	if (props.clickable) {
 		emit('click', { id: props.id });
 	}
 }
 
-function handleImageError(e: Event): void {
+function onImageError(e: Event): void {
 	imgError.value = true;
 
 	if (imageElement.value) {
@@ -310,7 +311,7 @@ function handleImageError(e: Event): void {
 	console.error('Error loading image', e);
 }
 
-function generateRandomColor(): string {
+function getRandomColor(): string {
 	const colors: string[] = [
 		/*tw*/ 'bg-blue-500 dark:bg-blue-600 text-white',
 		/*tw*/ 'bg-gray-400 dark:bg-gray-600 text-white',
@@ -323,7 +324,7 @@ function generateRandomColor(): string {
 	return colors[Math.floor(Math.random() * colors.length)];
 }
 
-function generateRandomOutlineColor(): string {
+function getRandomOutlineColor(): string {
 	const colors = [
 		/*tw*/ 'bg-transparent border-blue-500 text-blue-500 dark:border-blue-400 dark:text-blue-400',
 		/*tw*/ 'bg-transparent border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',

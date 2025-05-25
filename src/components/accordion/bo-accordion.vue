@@ -91,25 +91,26 @@ const accordionGroup = inject<AccordionGroup | null>(InjectKey.AccordionGroup, n
 
 const ACCORDION_STYLE = {
 	layout: {
-		container: 'bo-accordion w-full first:rounded-t-lg last:rounded-b-lg',
-		header: 'bo-accordion__header flex items-center justify-between p-3 sm:p-4',
-		content: 'bo-accordion__content p-3 sm:p-4 md:p-6',
-		body: 'bo-accordion__body overflow-hidden',
+		container: /*tw*/ 'bo-accordion w-full first:rounded-t-lg last:rounded-b-lg',
+		header: /*tw*/ 'bo-accordion__header flex items-center justify-between p-3 sm:p-4',
+		content: /*tw*/ 'bo-accordion__content p-3 sm:p-4 md:p-6',
+		body: /*tw*/ 'bo-accordion__body overflow-hidden',
 	},
 	appearance: {
-		text: 'text-neutral-700 dark:text-neutral-200',
-		background: 'bg-neutral-50 dark:bg-neutral-800',
-		bodyBackground: 'bg-white dark:bg-neutral-900',
-		contentText: 'text-neutral-800 dark:text-neutral-100 text-sm sm:text-base',
-		border: 'border-b border-neutral-200 dark:border-neutral-700 last:border-b-0',
+		text: /*tw*/ 'text-neutral-700 dark:text-neutral-200',
+		background: /*tw*/ 'bg-neutral-50 dark:bg-neutral-800',
+		bodyBackground: /*tw*/ 'bg-white dark:bg-neutral-900',
+		contentText: /*tw*/ 'text-neutral-800 dark:text-neutral-100 text-sm sm:text-base',
+		border: /*tw*/ 'border-b border-neutral-200 dark:border-neutral-700 last:border-b-0',
 	},
 	interactive: {
-		header: 'cursor-pointer transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-700',
-		disabled: 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
+		header:
+			/*tw*/ 'cursor-pointer transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-700',
+		disabled: /*tw*/ 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
 	},
 	animation: {
-		icon: 'bo-accordion__collapse-icon transition-transform duration-200',
-		body: 'transition-all duration-300',
+		icon: /*tw*/ 'bo-accordion__collapse-icon transition-transform duration-200',
+		body: /*tw*/ 'transition-all duration-300 ',
 	},
 } as const;
 
