@@ -210,12 +210,12 @@ const boBadgeSizeClasses = computed<string>(() => {
 
 const badgeContainerClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
-		BADGE_STYLE.layout.container,
-		BADGE_STYLE.shape[props.shape],
 		boBadgeSizeClasses.value,
 		boBadgeVariantClasses.value,
-		BADGE_STYLE.interactive.default,
+		BADGE_STYLE.layout.container,
 		BADGE_STYLE.appearance.shadow,
+		BADGE_STYLE.shape[props.shape],
+		BADGE_STYLE.interactive.default,
 	);
 });
 
