@@ -5,6 +5,7 @@
 		:class="tailwindCssClasses"
 		:aria-label="accessibility.title"
 		:role="role"
+		:data-testid="`bo-icon-${icon}`"
 	></i>
 </template>
 
@@ -13,6 +14,10 @@ import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { computed, ref, watchEffect, type StyleValue } from 'vue';
 import { Icon, icons, type BoIconProps } from './bo-icon.js';
+
+defineOptions({
+	inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<BoIconProps>(), {
 	size: () => BoSize.default,

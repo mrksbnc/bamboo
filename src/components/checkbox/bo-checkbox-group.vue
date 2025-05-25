@@ -1,5 +1,9 @@
 <template>
-	<div :class="orientationClasses">
+	<div
+		:class="orientationClasses"
+		:data-testid="`bo-checkbox-group-${name}`"
+		role="group"
+	>
 		<slot></slot>
 	</div>
 </template>

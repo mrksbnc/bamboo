@@ -19,6 +19,8 @@ export interface BoAccordionProps {
 }
 
 export interface BoAccordionContainerProps {
+	/** Unique ID for the accordion container, used for accessibility and testing */
+	id?: string;
 	/** Whether to allow multiple accordion items to be open at once */
 	allowMultiple?: boolean;
 	/** Whether to keep at least one accordion item open */

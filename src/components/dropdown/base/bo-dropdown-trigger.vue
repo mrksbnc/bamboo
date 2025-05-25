@@ -2,7 +2,10 @@
 	<button
 		:class="buttonClasses"
 		:disabled="disabled"
+		:data-testid="`bo-dropdown-trigger-${id}`"
+		role="button"
 		@click="onTriggerClick"
+		@keydown="onKeyDown"
 	>
 		<div class="flex items-center gap-2">
 			<bo-icon
@@ -115,5 +118,12 @@ const buttonFontSize = computed<BoFontSize>(() => {
 
 function onTriggerClick(): void {
 	emit('trigger-click');
+}
+
+function onKeyDown(event: KeyboardEvent): void {
+	if (event.key === 'Enter' || event.key === 'Space') {
+		event.preventDefault();
+		onTriggerClick();
+	}
 }
 </script>

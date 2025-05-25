@@ -2,14 +2,18 @@
 	<div
 		class="bo-accordion w-full"
 		ref="accordionRef"
+		:data-testid="`bo-accordion-${id}`"
+		role="group"
 	>
 		<div
 			tabindex="0"
+			role="button"
 			:class="headerClass"
 			:aria-expanded="isOpen"
 			:aria-disabled="disabled"
 			:id="`accordion-header-${id}`"
 			:aria-controls="`accordion-body-${id}`"
+			:data-testid="`bo-accordion-header-${id}`"
 			@click="toggleAccordion"
 			@keydown.enter="toggleAccordion"
 			@keydown.space="toggleAccordion"
@@ -19,6 +23,7 @@
 					v-if="prefixIcon !== Icon.none"
 					:icon="prefixIcon"
 					class="bo-accordion__prefix-icon"
+					:data-testid="`bo-accordion-prefix-icon-${id}`"
 					aria-hidden="true"
 				/>
 				<bo-text
@@ -27,11 +32,13 @@
 					:size="BoFontSize.base"
 					:weight="BoFontWeight.semibold"
 					class="bo-accordion__title cursor-pointer"
+					:data-testid="`bo-accordion-title-${id}`"
 				/>
 			</div>
 			<div class="bo-accordion__collapse-icon transition-transform duration-200">
 				<bo-icon
 					:icon="customIcon"
+					:data-testid="`bo-accordion-toggle-icon-${id}`"
 					aria-hidden="true"
 				/>
 			</div>
@@ -43,6 +50,7 @@
 			role="region"
 			:aria-labelledby="`accordion-header-${id}`"
 			:class="bodyClasses"
+			:data-testid="`bo-accordion-content-${id}`"
 		>
 			<div class="bo-accordion__content p-4 text-neutral-800 dark:text-white">
 				<slot></slot>
@@ -64,8 +72,6 @@ import type { AccordionGroup, BoAccordionProps } from './bo-accordion.js';
 
 const props = withDefaults(defineProps<BoAccordionProps>(), {
 	id: () => IdentityService.instance.getComponentId(),
-	open: false,
-	disabled: false,
 	prefixIcon: () => Icon.none,
 	customIcon: () => Icon.none,
 });

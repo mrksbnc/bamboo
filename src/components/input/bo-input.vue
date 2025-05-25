@@ -1,9 +1,12 @@
 <template>
-	<div class="bo-input-wrapper flex w-full flex-col transition-all duration-200">
-		<!-- Label -->
+	<div
+		class="bo-input-wrapper flex w-full flex-col transition-all duration-200"
+		:data-testid="`bo-input-wrapper-${id}`"
+	>
 		<div
 			v-if="showTopContainer"
 			class="flex items-center"
+			:data-testid="`bo-input-label-container-${id}`"
 		>
 			<div class="flex items-center gap-1 pb-1">
 				<bo-text
@@ -11,6 +14,7 @@
 					:id="`${id}-label`"
 					:value="label"
 					:size="BoFontSize.sm"
+					:data-testid="`bo-input-label-${id}`"
 				/>
 				<bo-text
 					v-if="required"
@@ -18,26 +22,27 @@
 					:size="BoFontSize.sm"
 					:color="BoTextColor.danger"
 					:weight="BoFontWeight.medium"
+					:data-testid="`bo-input-required-indicator-${id}`"
 				/>
 			</div>
 		</div>
-		<!-- Input -->
 		<div
 			ref="inputContainerRef"
 			class="relative flex items-center"
+			:data-testid="`bo-input-container-${id}`"
 		>
-			<!-- Prefix Icon -->
 			<bo-icon
 				v-if="showPrefixIcon"
 				:icon="prefixIcon"
 				:size="inputIconSize"
 				:color="BoColor.neutral_400"
 				:class="['absolute left-3 text-neutral-500 dark:text-gray-400']"
+				:data-testid="`bo-input-prefix-icon-${id}`"
 				aria-hidden="true"
 			/>
-			<!-- Input Container -->
 			<input
 				ref="inputRef"
+				v-bind="$attrs"
 				v-model="modelValue"
 				:type="inputType"
 				:disabled="disabled"
@@ -51,6 +56,7 @@
 				:aria-describedby="ariaDescribedBy"
 				:aria-invalid="state === BoInputState.error"
 				:aria-required="required ?? false"
+				:data-testid="`bo-input-field-${id}`"
 				@input="onInput"
 				@focus="onFocus"
 				@blur="onBlur"
@@ -62,6 +68,7 @@
 					:icon="suffixIcon"
 					:size="inputIconSize"
 					:color="BoColor.neutral_400"
+					:data-testid="`bo-input-suffix-icon-${id}`"
 					aria-hidden="true"
 				/>
 			</div>
@@ -69,12 +76,15 @@
 		<div
 			v-if="showHelperContainer"
 			class="flex items-center pt-1"
+			:data-testid="`bo-input-helper-container-${id}`"
+			role="group"
 		>
 			<div
 				v-if="error"
 				:id="`${id}-error`"
 				class="flex items-center gap-1"
 				role="alert"
+				:data-testid="`bo-input-error-${id}`"
 			>
 				<bo-icon
 					:icon="Icon.alert_circle"
@@ -89,13 +99,13 @@
 					:color="BoTextColor.danger"
 				/>
 			</div>
-
 			<bo-text
 				v-if="required && !error"
 				:id="`${id}-required`"
 				value="This field is required"
 				:size="BoFontSize.sm"
 				:color="BoTextColor.danger"
+				:data-testid="`bo-input-required-message-${id}`"
 			/>
 			<bo-text
 				v-if="description && !error"
@@ -103,6 +113,7 @@
 				:value="description"
 				:size="BoFontSize.sm"
 				:color="BoTextColor.secondary"
+				:data-testid="`bo-input-description-${id}`"
 			/>
 		</div>
 	</div>

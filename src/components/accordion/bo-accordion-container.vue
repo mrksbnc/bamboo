@@ -1,15 +1,22 @@
 <template>
-	<div class="bo-accordion-container">
+	<div
+		class="bo-accordion-container"
+		:data-testid="`bo-accordion-container-${id}`"
+		role="group"
+	>
 		<slot></slot>
 	</div>
 </template>
 
 <script setup lang="ts">
+import { IdentityService } from '@/services/identity-service.js';
 import { InjectKey } from '@/shared/injection-key.js';
 import { provide, reactive, ref } from 'vue';
 import type { BoAccordionContainerProps } from './bo-accordion.js';
 
-const props = defineProps<BoAccordionContainerProps>();
+const props = withDefaults(defineProps<BoAccordionContainerProps>(), {
+	id: () => IdentityService.instance.getComponentId('bo-accordion-container'),
+});
 
 const openItems = ref<Set<string>>(new Set());
 const registeredItems = ref<Set<string>>(new Set());

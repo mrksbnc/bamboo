@@ -1,6 +1,16 @@
 <template>
-	<div :class="containerClasses">
-		<div :class="progressBarClasses">
+	<div
+		:class="containerClasses"
+		:data-testid="`bo-progress-bar-${id}`"
+		role="progressbar"
+		:aria-valuenow="value"
+		:aria-valuemin="0"
+		:aria-valuemax="max"
+	>
+		<div
+			:class="progressBarClasses"
+			:data-testid="`bo-progress-bar-fill-${id}`"
+		>
 			<bo-text
 				v-if="showLabel"
 				:value="computedLabel"

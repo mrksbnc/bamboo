@@ -5,7 +5,9 @@
 	>
 		<div
 			:class="treeNodeContentClasses"
+			:tabindex="isDisabled ? -1 : 0"
 			@click="onClick"
+			@keydown="onKeyDown"
 		>
 			<div class="flex items-center gap-2">
 				<button
@@ -137,6 +139,29 @@ function onClick(): void {
 		return;
 	}
 	emit('select', props.node);
+}
+
+function onKeyDown(event: KeyboardEvent): void {
+	if (props.disabled || props.node.disabled) {
+		return;
+	}
+
+	switch (event.key) {
+		case 'Enter':
+		case 'Space':
+			emit('select', props.node);
+			break;
+		case 'ArrowLeft':
+			if (props.node.expanded) {
+				emit('toggle', props.node);
+			}
+			break;
+		case 'ArrowRight':
+			if (!props.node.expanded) {
+				emit('toggle', props.node);
+			}
+			break;
+	}
 }
 </script>
 

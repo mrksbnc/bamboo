@@ -4,6 +4,7 @@
 		:class="wrapperClasses"
 		:tabindex="isDisabled ? -1 : 0"
 		@click="onClick"
+		@keydown="onKeyDown"
 	>
 		<input
 			ref="inputRef"
@@ -102,6 +103,18 @@ function onClick(): void {
 
 	if (radioGroup) {
 		radioGroup.select(props.value);
+	}
+}
+
+function onKeyDown(event: KeyboardEvent): void {
+	if (isDisabled.value || !props.value) {
+		return;
+	}
+
+	if (event.key === 'Space' || event.key === 'Enter') {
+		if (radioGroup) {
+			radioGroup.select(props.value);
+		}
 	}
 }
 

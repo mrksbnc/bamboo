@@ -3,11 +3,18 @@
 		<div
 			v-if="isOpen"
 			class="fixed inset-0 z-30 flex h-full w-full items-center justify-center bg-gray-800/80"
+			role="dialog"
+			aria-modal="true"
+			:aria-labelledby="`bo-modal-title-${id}`"
+			:aria-describedby="`bo-modal-content-${id}`"
 			@click="onClose"
+			@keydown="onKeyDown"
 		>
 			<div
 				:class="modalContentClasses"
 				:data-testid="`bo-modal-container-${id}`"
+				role="document"
+				@click.stop
 			>
 				<div
 					:id="`bo-modal-title-${id}`"
@@ -150,6 +157,12 @@ const footerClasses = computed<string>(() => {
 function onClose(): void {
 	if (props.closeOnBackdropClick) {
 		emit('close');
+	}
+}
+
+function onKeyDown(event: KeyboardEvent): void {
+	if (event.key === 'Escape') {
+		onClose();
 	}
 }
 </script>

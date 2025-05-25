@@ -2,7 +2,11 @@
 	<div
 		role="button"
 		:class="itemClasses"
+		:data-testid="`bo-button-group-item-${id}`"
+		:tabindex="disabled ? -1 : 0"
 		@click="onSelect"
+		@keydown.enter="onSelect"
+		@keydown.space="onSelect"
 	>
 		<bo-text
 			:value="label"

@@ -3,6 +3,7 @@
 		:id="id"
 		:class="classes"
 		:style="containerStyle"
+		:data-testid="`bo-text-${id}`"
 	>
 		{{ value }}
 	</span>

@@ -4,6 +4,7 @@
 		:class="wrapperClasses"
 		:tabindex="isDisabled ? -1 : 0"
 		@click="onClick"
+		@keydown="onKeyDown"
 	>
 		<input
 			ref="inputRef"
@@ -123,6 +124,13 @@ function onClick(): void {
 
 	emit('update:modelValue', newValue);
 	emit('change', syntheticEvent);
+}
+
+function onKeyDown(event: KeyboardEvent): void {
+	if (event.key === 'Space' || event.key === 'Enter') {
+		event.preventDefault();
+		onClick();
+	}
 }
 
 onMounted(() => {

@@ -1,5 +1,9 @@
 <template>
-	<div :class="orientationClasses">
+	<div
+		:class="orientationClasses"
+		:data-testid="`bo-radio-group-${name}`"
+		role="radiogroup"
+	>
 		<slot></slot>
 	</div>
 </template>

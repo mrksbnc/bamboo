@@ -1,6 +1,7 @@
 <template>
 	<button
-		v-bind="$attrs"
+		:id="id"
+		:type="type"
 		:class="buttonClass"
 		:disabled="isDisabled"
 		:aria-busy="isLoading"

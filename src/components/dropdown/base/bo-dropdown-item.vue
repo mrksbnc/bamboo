@@ -1,12 +1,17 @@
 <template>
 	<div
 		:class="itemClasses"
+		:data-testid="`bo-dropdown-item-${id}`"
+		role="menuitem"
+		:tabindex="disabled ? -1 : 0"
 		@click="onItemSelect(id)"
+		@keydown="onKeyDown"
 	>
 		<bo-icon
 			v-if="icon"
 			:icon="icon"
 			:size="BoSize.small"
+			:data-testid="`bo-dropdown-item-icon-${id}`"
 		/>
 		<div class="flex-1">
 			<bo-text
@@ -15,6 +20,7 @@
 				:size="BoFontSize.sm"
 				:clickable="!disabled"
 				:weight="BoFontWeight.semibold"
+				:data-testid="`bo-dropdown-item-label-${id}`"
 			/>
 			<bo-text
 				v-if="description"
@@ -23,6 +29,7 @@
 				:clickable="!disabled"
 				:weight="BoFontWeight.medium"
 				:color="BoTextColor.secondary"
+				:data-testid="`bo-dropdown-item-description-${id}`"
 			/>
 		</div>
 	</div>
@@ -60,5 +67,9 @@ const itemClasses = TailwindService.instance.merge(
 
 function onItemSelect(id: string): void {
 	emit('select', id);
+}
+
+function onKeyDown(event: KeyboardEvent): void {
+	// Implement keydown event handling if needed
 }
 </script>

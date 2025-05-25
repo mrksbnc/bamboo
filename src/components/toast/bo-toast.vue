@@ -3,6 +3,8 @@
 		:class="toastContainerClasses"
 		:data-testid="`bo-toast-${id}`"
 		role="alert"
+		:tabindex="closable ? 0 : -1"
+		@keydown="onKeyDown"
 	>
 		<div class="flex items-center gap-2">
 			<bo-icon
@@ -119,4 +121,10 @@ onUnmounted(() => {
 		clearTimeout(timeoutId);
 	}
 });
+
+const onKeyDown = (event: KeyboardEvent) => {
+	if (event.key === 'Escape' && props.closable) {
+		close();
+	}
+};
 </script>
