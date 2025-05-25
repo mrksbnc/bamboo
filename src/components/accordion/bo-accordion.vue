@@ -2,7 +2,7 @@
 	<div
 		role="group"
 		ref="accordionRef"
-		:class="ACCORDION_STYLE.layout.container"
+		:class="containerClasses"
 		:data-testid="constructAttribute(id, 'accordion')"
 	>
 		<div
@@ -91,20 +91,21 @@ const accordionGroup = inject<AccordionGroup | null>(InjectKey.AccordionGroup, n
 
 const ACCORDION_STYLE = {
 	layout: {
-		container: 'bo-accordion w-full',
-		header: 'bo-accordion__header flex items-center justify-between p-4',
-		content: 'bo-accordion__content p-4',
+		container: 'bo-accordion w-full first:rounded-t-lg last:rounded-b-lg',
+		header: 'bo-accordion__header flex items-center justify-between p-3 sm:p-4',
+		content: 'bo-accordion__content p-3 sm:p-4 md:p-6',
 		body: 'bo-accordion__body overflow-hidden',
 	},
 	appearance: {
-		text: 'text-blue-gray-700 dark:text-white',
+		text: 'text-neutral-700 dark:text-neutral-200',
 		background: 'bg-neutral-50 dark:bg-neutral-800',
-		bodyBackground: 'bg-neutral-50 dark:bg-neutral-700',
-		contentText: 'text-neutral-800 dark:text-white',
+		bodyBackground: 'bg-white dark:bg-neutral-900',
+		contentText: 'text-neutral-800 dark:text-neutral-100 text-sm sm:text-base',
+		border: 'border-b border-neutral-200 dark:border-neutral-700 last:border-b-0',
 	},
 	interactive: {
-		header: 'cursor-pointer transition-colors',
-		disabled: 'cursor-not-allowed opacity-50',
+		header: 'cursor-pointer transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-700',
+		disabled: 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
 	},
 	animation: {
 		icon: 'bo-accordion__collapse-icon transition-transform duration-200',
@@ -115,6 +116,13 @@ const ACCORDION_STYLE = {
 const isOpen = ref<boolean>(props.open ?? false);
 const accordionRef = ref<HTMLElement>();
 const accordionBodyRef = ref<HTMLElement>();
+
+const containerClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		ACCORDION_STYLE.layout.container,
+		ACCORDION_STYLE.appearance.border,
+	);
+});
 
 const headerClass = computed<string>(() => {
 	return TailwindService.instance.merge(
