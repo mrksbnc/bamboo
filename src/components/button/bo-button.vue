@@ -191,8 +191,7 @@ const BUTTON_STYLE = {
 		},
 	},
 	state: {
-		disabled:
-			/*tw*/ 'bo-button--disabled disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none',
+		disabled: /*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none',
 		loading: /*tw*/ 'bo-button--loading cursor-wait',
 		fullWidth: /*tw*/ 'bo-button--full-width w-full',
 	},
@@ -274,6 +273,7 @@ const buttonClasses = computed<string>(() => {
 		BUTTON_STYLE.state.disabled,
 		BUTTON_STYLE.layout.container,
 		BUTTON_STYLE.shape[props.shape],
+		props.disabled ? 'bo-button--disabled ' : '',
 		props.isLoading ? BUTTON_STYLE.state.loading : '',
 		props.fullWidth ? BUTTON_STYLE.state.fullWidth : '',
 	);

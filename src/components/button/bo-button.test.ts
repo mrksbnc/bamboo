@@ -158,14 +158,14 @@ describe('BoButton', () => {
 		});
 
 		test('should not render suffix icon when loading', () => {
-			const loadingWrapper = mount(BoButton, {
+			const mountedButton = mount(BoButton, {
 				props: {
 					label: 'Test',
 					suffixIcon: Icon.check,
 					isLoading: true,
 				},
 			});
-			const suffixIcon = loadingWrapper.find('[data-testid*="button-suffix-icon"]');
+			const suffixIcon = mountedButton.find('[data-testid*="button-suffix-icon"]');
 			expect(suffixIcon.exists()).toBe(false);
 		});
 
@@ -184,7 +184,7 @@ describe('BoButton', () => {
 		});
 	});
 
-	suite('Size Variants', () => {
+	suite('Sizes', () => {
 		test('should apply extra small size classes', () => {
 			const sizeWrapper = mount(BoButton, {
 				props: {
@@ -302,7 +302,7 @@ describe('BoButton', () => {
 		});
 	});
 
-	suite('Color Variants', () => {
+	suite('Variants', () => {
 		test('should apply primary variant classes', () => {
 			const variantWrapper = mount(BoButton, {
 				props: {
@@ -312,6 +312,8 @@ describe('BoButton', () => {
 			});
 			const button = variantWrapper.find('button');
 			expect(button.classes()).toContain('bo-button--primary');
+			expect(button.classes()).toContain('bg-blue-600');
+			expect(button.classes()).toContain('text-white');
 		});
 
 		test('should apply secondary variant classes', () => {
@@ -323,6 +325,8 @@ describe('BoButton', () => {
 			});
 			const button = variantWrapper.find('button');
 			expect(button.classes()).toContain('bo-button--secondary');
+			expect(button.classes()).toContain('bg-neutral-600');
+			expect(button.classes()).toContain('text-white');
 		});
 
 		test('should apply danger variant classes', () => {
@@ -334,6 +338,8 @@ describe('BoButton', () => {
 			});
 			const button = variantWrapper.find('button');
 			expect(button.classes()).toContain('bo-button--danger');
+			expect(button.classes()).toContain('bg-red-600');
+			expect(button.classes()).toContain('text-white');
 		});
 
 		test('should apply warning variant classes', () => {
@@ -345,6 +351,8 @@ describe('BoButton', () => {
 			});
 			const button = variantWrapper.find('button');
 			expect(button.classes()).toContain('bo-button--warning');
+			expect(button.classes()).toContain('bg-yellow-500');
+			expect(button.classes()).toContain('text-white');
 		});
 
 		test('should apply success variant classes', () => {
@@ -356,6 +364,8 @@ describe('BoButton', () => {
 			});
 			const button = variantWrapper.find('button');
 			expect(button.classes()).toContain('bo-button--success');
+			expect(button.classes()).toContain('bg-green-600');
+			expect(button.classes()).toContain('text-white');
 		});
 
 		test('should apply light variant classes', () => {
@@ -367,6 +377,8 @@ describe('BoButton', () => {
 			});
 			const button = variantWrapper.find('button');
 			expect(button.classes()).toContain('bo-button--light');
+			expect(button.classes()).toContain('bg-neutral-100');
+			expect(button.classes()).toContain('text-neutral-800');
 		});
 
 		test('should apply dark variant classes', () => {
@@ -378,6 +390,8 @@ describe('BoButton', () => {
 			});
 			const button = variantWrapper.find('button');
 			expect(button.classes()).toContain('bo-button--dark');
+			expect(button.classes()).toContain('bg-neutral-800');
+			expect(button.classes()).toContain('text-white');
 		});
 	});
 
@@ -390,6 +404,7 @@ describe('BoButton', () => {
 				},
 			});
 			const button = disabledWrapper.find('button');
+
 			expect(button.attributes('disabled')).toBeDefined();
 			expect(button.attributes('aria-disabled')).toBe('true');
 		});
@@ -403,71 +418,81 @@ describe('BoButton', () => {
 			});
 			const button = disabledWrapper.find('button');
 			expect(button.classes()).toContain('bo-button--disabled');
+			expect(button.classes()).toContain('disabled:cursor-not-allowed');
+			expect(button.classes()).toContain('disabled:opacity-50');
+			expect(button.classes()).toContain('disabled:pointer-events-none');
 		});
 
 		test('should be disabled when loading', () => {
-			const loadingWrapper = mount(BoButton, {
+			const mountedButton = mount(BoButton, {
 				props: {
 					label: 'Test',
 					isLoading: true,
 				},
 			});
-			const button = loadingWrapper.find('button');
+			const button = mountedButton.find('button');
 			expect(button.attributes('disabled')).toBeDefined();
 			expect(button.attributes('aria-disabled')).toBe('true');
+			expect(button.classes()).toContain('bo-button--loading');
+			expect(button.classes()).toContain('cursor-wait');
 		});
 
 		test('should not be disabled by default', () => {
 			const button = wrapper.find('button');
 			expect(button.attributes('disabled')).toBeUndefined();
 			expect(button.attributes('aria-disabled')).toBe('false');
+			expect(button.classes()).not.toContain('bo-button--disabled');
 		});
 	});
 
 	suite('Loading State', () => {
-		test('should show spinner loader by default', () => {
-			const loadingWrapper = mount(BoButton, {
+		test('should show loader if the prop is set to true', () => {
+			const button = mount(BoButton, {
 				props: {
 					label: 'Test',
 					isLoading: true,
 				},
 			});
-			const loader = loadingWrapper.find('[data-testid*="button-loader"]');
+			const loader = button.find('[data-testid*="button-loader"]');
+
 			expect(loader.exists()).toBe(true);
 		});
 
 		test('should show pulse loader when specified', () => {
-			const loadingWrapper = mount(BoButton, {
+			const button = mount(BoButton, {
 				props: {
 					label: 'Test',
 					isLoading: true,
 					loaderType: BoLoaderType.pulse,
 				},
 			});
-			const loader = loadingWrapper.find('[data-testid*="button-loader"]');
+			const loader = button.find('[data-testid*="button-loader"]');
+
 			expect(loader.exists()).toBe(true);
 		});
 
 		test('should apply loading CSS classes', () => {
-			const loadingWrapper = mount(BoButton, {
+			const mountedButton = mount(BoButton, {
 				props: {
 					label: 'Test',
 					isLoading: true,
 				},
 			});
-			const button = loadingWrapper.find('button');
+			const button = mountedButton.find('button');
+
 			expect(button.classes()).toContain('bo-button--loading');
 			expect(button.classes()).toContain('cursor-wait');
 		});
 
 		test('should set aria-busy when loading', () => {
-			const loadingWrapper = mount(BoButton, {
+			const mountedButton = mount(BoButton, {
 				props: {
 					label: 'Test',
 					isLoading: true,
 				},
 			});
-			const button = loadingWrapper.find('button');
+
+			const button = mountedButton.find('button');
 			expect(button.attributes('aria-busy')).toBe('true');
 		});
 
@@ -486,12 +511,14 @@ describe('BoButton', () => {
 				},
 			});
 			const button = fullWidthWrapper.find('button');
+
 			expect(button.classes()).toContain('bo-button--full-width');
 			expect(button.classes()).toContain('w-full');
 		});
 
 		test('should not apply full width classes by default', () => {
 			const button = wrapper.find('button');
+
 			expect(button.classes()).not.toContain('bo-button--full-width');
 			expect(button.classes()).not.toContain('w-full');
 		});
@@ -505,7 +532,9 @@ describe('BoButton', () => {
 					autofocus: true,
 				},
 			});
+
 			const button = autofocusWrapper.find('button');
+
 			expect(button.attributes('autofocus')).toBeDefined();
 		});
 
@@ -528,7 +557,9 @@ describe('BoButton', () => {
 					ariaLabel: 'Custom aria label',
 				},
 			});
+
 			const button = ariaWrapper.find('button');
+
 			expect(button.attributes('aria-label')).toBe('Custom aria label');
 		});
 
@@ -538,7 +569,9 @@ describe('BoButton', () => {
 					prefixIcon: Icon.star,
 				},
 			});
+
 			const button = iconOnlyWrapper.find('button');
+
 			expect(button.attributes('aria-label')).toBe('Button with icon');
 		});
 
@@ -591,16 +624,16 @@ describe('BoButton', () => {
 		});
 
 		test('should not emit click when loading', async () => {
-			const loadingWrapper = mount(BoButton, {
+			const mountedButton = mount(BoButton, {
 				props: {
 					label: 'Test',
 					isLoading: true,
 				},
 			});
-			const button = loadingWrapper.find('button');
+			const button = mountedButton.find('button');
 			await button.trigger('click');
 
-			expect(loadingWrapper.emitted('click')).toBeFalsy();
+			expect(mountedButton.emitted('click')).toBeFalsy();
 		});
 	});
 
@@ -658,14 +691,14 @@ describe('BoButton', () => {
 		});
 
 		test('should handle icon-only button with loading state', () => {
-			const iconLoadingWrapper = mount(BoButton, {
+			const iconmountedButton = mount(BoButton, {
 				props: {
 					prefixIcon: Icon.star,
 					isLoading: true,
 				},
 			});
-			const prefixIcon = iconLoadingWrapper.find('[data-testid*="button-prefix-icon"]');
-			const loader = iconLoadingWrapper.find('[data-testid*="button-loader"]');
+			const prefixIcon = iconmountedButton.find('[data-testid*="button-prefix-icon"]');
+			const loader = iconmountedButton.find('[data-testid*="button-loader"]');
 			expect(prefixIcon.exists()).toBe(false);
 			expect(loader.exists()).toBe(true);
 		});
@@ -707,14 +740,14 @@ describe('BoButton', () => {
 		});
 
 		test('should handle both disabled and loading states', () => {
-			const disabledLoadingWrapper = mount(BoButton, {
+			const disabledmountedButton = mount(BoButton, {
 				props: {
 					label: 'Test',
 					disabled: true,
 					isLoading: true,
 				},
 			});
-			const button = disabledLoadingWrapper.find('button');
+			const button = disabledmountedButton.find('button');
 			expect(button.attributes('disabled')).toBeDefined();
 			expect(button.attributes('aria-disabled')).toBe('true');
 			expect(button.attributes('aria-busy')).toBe('true');
@@ -733,12 +766,9 @@ describe('BoButton', () => {
 			const suffixIcon = bothIconsWrapper.find('[data-testid*="button-suffix-icon"]');
 			const label = bothIconsWrapper.find('[data-testid*="button-label"]');
 
-			// Should render prefix icon (icon-only mode uses prefix)
-			expect(prefixIcon.exists()).toBe(true);
-			// Should not render suffix icon in icon-only mode
-			expect(suffixIcon.exists()).toBe(false);
-			// Should not render label
 			expect(label.exists()).toBe(false);
+			expect(prefixIcon.exists()).toBe(true);
+			expect(suffixIcon.exists()).toBe(false);
 		});
 	});
 });
