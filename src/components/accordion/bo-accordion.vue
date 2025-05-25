@@ -1,9 +1,9 @@
 <template>
 	<div
-		class="bo-accordion w-full"
-		ref="accordionRef"
-		:data-testid="`bo-accordion-${id}`"
 		role="group"
+		ref="accordionRef"
+		:class="ACCORDION_STYLE.layout.container"
+		:data-testid="constructAttribute(id, 'accordion')"
 	>
 		<div
 			tabindex="0"
@@ -11,20 +11,20 @@
 			:class="headerClass"
 			:aria-expanded="isOpen"
 			:aria-disabled="disabled"
-			:id="`accordion-header-${id}`"
-			:aria-controls="`accordion-body-${id}`"
-			:data-testid="`bo-accordion-header-${id}`"
-			@click="toggleAccordion"
-			@keydown.enter="toggleAccordion"
-			@keydown.space="toggleAccordion"
+			:id="constructAttribute(id, 'accordion-header')"
+			:data-testid="constructAttribute(id, 'accordion-header')"
+			:aria-controls="constructAttribute(id, 'accordion-body')"
+			@click="onAccordionToggle"
+			@keydown.enter="onAccordionToggle"
+			@keydown.space="onAccordionToggle"
 		>
 			<div class="flex items-center gap-2">
 				<bo-icon
 					v-if="prefixIcon !== Icon.none"
 					:icon="prefixIcon"
-					class="bo-accordion__prefix-icon"
-					:data-testid="`bo-accordion-prefix-icon-${id}`"
 					aria-hidden="true"
+					class="bo-accordion__prefix-icon"
+					:data-testid="constructAttribute(id, 'accordion-prefix-icon')"
 				/>
 				<bo-text
 					v-if="title"
@@ -32,27 +32,27 @@
 					:size="BoFontSize.base"
 					:weight="BoFontWeight.semibold"
 					class="bo-accordion__title cursor-pointer"
-					:data-testid="`bo-accordion-title-${id}`"
+					:data-testid="constructAttribute(id, 'accordion-title')"
 				/>
 			</div>
-			<div class="bo-accordion__collapse-icon transition-transform duration-200">
+			<div :class="ACCORDION_STYLE.animation.icon">
 				<bo-icon
 					:icon="customIcon"
-					:data-testid="`bo-accordion-toggle-icon-${id}`"
 					aria-hidden="true"
+					:data-testid="constructAttribute(id, 'accordion-toggle-icon')"
 				/>
 			</div>
 		</div>
 		<div
 			v-show="isOpen"
-			ref="accordionBodyRef"
-			:id="`accordion-body-${id}`"
 			role="region"
-			:aria-labelledby="`accordion-header-${id}`"
+			ref="accordionBodyRef"
 			:class="bodyClasses"
-			:data-testid="`bo-accordion-content-${id}`"
+			:id="constructAttribute(id, 'accordion-body')"
+			:aria-labelledby="constructAttribute(id, 'accordion-header')"
+			:data-testid="constructAttribute(id, 'accordion-content')"
 		>
-			<div class="bo-accordion__content p-4 text-neutral-800 dark:text-white">
+			<div :class="slotClasses">
 				<slot></slot>
 			</div>
 		</div>
@@ -64,6 +64,7 @@ import { Icon } from '@/components/icon/bo-icon.js';
 import BoIcon from '@/components/icon/bo-icon.vue';
 import BoText from '@/components/text/bo-text.vue';
 import { BoFontSize, BoFontWeight } from '@/components/text/index.js';
+import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { InjectKey } from '@/shared/injection-key.js';
@@ -73,50 +74,70 @@ import type { AccordionGroup, BoAccordionProps } from './bo-accordion.js';
 const props = withDefaults(defineProps<BoAccordionProps>(), {
 	id: () => IdentityService.instance.getComponentId(),
 	prefixIcon: () => Icon.none,
-	customIcon: () => Icon.none,
+	customToggleIcon: () => Icon.none,
 });
 
 const emit = defineEmits<{
 	(e: 'toggle', payload: { id: string; open: boolean }): void;
 }>();
 
-// Injected from parent BoAccordionContainer if present
+const { constructAttribute } = useAttributes();
+
+/**
+ * Injected from parent BoAccordionContainer if present
+ * unused if not in a group
+ */
 const accordionGroup = inject<AccordionGroup | null>(InjectKey.AccordionGroup, null);
 
-const headerClasses: Record<string, string> = {
-	default:
-		/*tw*/ 'bo-accordion__header flex cursor-pointer items-center justify-between p-4 transition-colors',
-	text: /*tw*/ 'text-blue-gray-700 dark:text-white',
-	background: /*tw*/ 'bg-neutral-50 dark:bg-neutral-800',
-	disabled: /*tw*/ 'cursor-not-allowed opacity-50',
-};
+const ACCORDION_STYLE = {
+	layout: {
+		container: 'bo-accordion w-full',
+		header: 'bo-accordion__header flex items-center justify-between p-4',
+		content: 'bo-accordion__content p-4',
+		body: 'bo-accordion__body overflow-hidden',
+	},
+	appearance: {
+		text: 'text-blue-gray-700 dark:text-white',
+		background: 'bg-neutral-50 dark:bg-neutral-800',
+		bodyBackground: 'bg-neutral-50 dark:bg-neutral-700',
+		contentText: 'text-neutral-800 dark:text-white',
+	},
+	interactive: {
+		header: 'cursor-pointer transition-colors',
+		disabled: 'cursor-not-allowed opacity-50',
+	},
+	animation: {
+		icon: 'bo-accordion__collapse-icon transition-transform duration-200',
+		body: 'transition-all duration-300',
+	},
+} as const;
 
-const defaultBodyClasses: Record<string, string> = {
-	default: /*tw*/ 'bo-accordion__body overflow-hidden',
-	animation: /*tw*/ 'transition-all duration-300',
-	background: /*tw*/ 'bg-neutral-50 dark:bg-neutral-700',
-};
-
-const isOpen = ref<boolean>(props.open);
+const isOpen = ref<boolean>(props.open ?? false);
 const accordionRef = ref<HTMLElement>();
 const accordionBodyRef = ref<HTMLElement>();
 
 const headerClass = computed<string>(() => {
 	return TailwindService.instance.merge(
-		headerClasses.default,
-		headerClasses.text,
-		headerClasses.hover,
-		headerClasses.background,
-		headerClasses.state,
-		props.disabled ? headerClasses.disabled : '',
+		ACCORDION_STYLE.layout.header,
+		ACCORDION_STYLE.appearance.text,
+		ACCORDION_STYLE.appearance.background,
+		ACCORDION_STYLE.interactive.header,
+		props.disabled ? ACCORDION_STYLE.interactive.disabled : '',
 	);
 });
 
 const bodyClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
-		defaultBodyClasses.default,
-		defaultBodyClasses.animation,
-		defaultBodyClasses.background,
+		ACCORDION_STYLE.layout.body,
+		ACCORDION_STYLE.animation.body,
+		ACCORDION_STYLE.appearance.bodyBackground,
+	);
+});
+
+const slotClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		ACCORDION_STYLE.layout.content,
+		ACCORDION_STYLE.appearance.contentText,
 	);
 });
 
@@ -128,21 +149,24 @@ const customIcon = computed<Icon>(() => {
 	return isOpen.value ? Icon.chevron_up : Icon.chevron_down;
 });
 
-function toggleAccordion(): void {
-	if (props.disabled) return;
+function onAccordionToggle(): void {
+	if (props.disabled) {
+		return;
+	}
 
 	if (accordionGroup) {
 		accordionGroup.toggle(props.id);
-	} else {
-		isOpen.value = !isOpen.value;
-		emit('toggle', { id: props.id, open: isOpen.value });
+		return;
 	}
+
+	isOpen.value = !isOpen.value;
+	emit('toggle', { id: props.id, open: isOpen.value });
 }
 
 watch(
 	() => props.open,
 	(val) => {
-		isOpen.value = val;
+		isOpen.value = val ?? false;
 	},
 );
 
@@ -158,7 +182,7 @@ watch(
 
 onMounted(() => {
 	if (accordionGroup) {
-		accordionGroup.registerItem(props.id, props.open);
+		accordionGroup.registerItem(props.id, props.open ?? false);
 	}
 });
 </script>

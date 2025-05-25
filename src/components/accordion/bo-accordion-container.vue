@@ -1,14 +1,15 @@
 <template>
 	<div
-		class="bo-accordion-container"
-		:data-testid="`bo-accordion-container-${id}`"
 		role="group"
+		class="bo-accordion-container"
+		:data-testid="constructAttribute(id, 'accordion-container')"
 	>
 		<slot></slot>
 	</div>
 </template>
 
 <script setup lang="ts">
+import { useAttributes } from '@/composables/use-attributes.js';
 import { IdentityService } from '@/services/identity-service.js';
 import { InjectKey } from '@/shared/injection-key.js';
 import { provide, reactive, ref } from 'vue';
@@ -17,6 +18,8 @@ import type { BoAccordionContainerProps } from './bo-accordion.js';
 const props = withDefaults(defineProps<BoAccordionContainerProps>(), {
 	id: () => IdentityService.instance.getComponentId('bo-accordion-container'),
 });
+
+const { constructAttribute } = useAttributes();
 
 const openItems = ref<Set<string>>(new Set());
 const registeredItems = ref<Set<string>>(new Set());
