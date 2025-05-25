@@ -58,7 +58,7 @@ import BoText from '@/components/text/bo-text.vue';
 import { BoFontSize, BoFontWeight } from '@/components/text/index.js';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
-import { InjectionKey } from '@/shared/injection-key.js';
+import { InjectKey } from '@/shared/injection-key.js';
 import { computed, inject, onMounted, ref, watch } from 'vue';
 import type { AccordionGroup, BoAccordionProps } from './bo-accordion.js';
 
@@ -75,7 +75,7 @@ const emit = defineEmits<{
 }>();
 
 // Injected from parent BoAccordionContainer if present
-const accordionGroup = inject<AccordionGroup | null>(InjectionKey.AccordionGroup, null);
+const accordionGroup = inject<AccordionGroup | null>(InjectKey.AccordionGroup, null);
 
 const headerClasses: Record<string, string> = {
 	default:

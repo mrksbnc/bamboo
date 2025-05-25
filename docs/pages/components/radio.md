@@ -1,12 +1,12 @@
 <script setup>
 import { BoRadio, BoRadioGroup } from '@/components/radio';
-import { InjectionKey } from '@/shared/injection-key';
+import { InjectKey } from '@/shared/injection-key';
 import { ref, provide } from 'vue';
 
 const selected = ref('A');
 const selectedRadioDemo = ref('A');
 
-const radioProvide = provide(InjectionKey.RadioGroup, {
+const radioProvide = provide(InjectKey.RadioGroup, {
 	selectedValue: selectedRadioDemo,
 	name: 'group1',
 	disabled: false,

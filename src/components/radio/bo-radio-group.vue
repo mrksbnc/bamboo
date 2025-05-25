@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { IdentityService } from '@/services/identity-service.js';
-import { InjectionKey } from '@/shared/injection-key.js';
+import { InjectKey } from '@/shared/injection-key.js';
 import { computed, provide, reactive, ref } from 'vue';
 import { BoRadioGroupOrientation, type BoRadioGroupProps } from './bo-radio-group.js';
 
@@ -64,7 +64,7 @@ function select(value: string): void {
 }
 
 provide(
-	InjectionKey.RadioGroup,
+	InjectKey.RadioGroup,
 	reactive({
 		selectedValue,
 		name: props.name,

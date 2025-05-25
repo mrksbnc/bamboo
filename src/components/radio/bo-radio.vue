@@ -45,7 +45,7 @@ import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/text/bo-text
 import BoText from '@/components/text/bo-text.vue';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
-import { InjectionKey } from '@/shared/injection-key.js';
+import { InjectKey } from '@/shared/injection-key.js';
 import { computed, inject, onMounted, ref } from 'vue';
 import { type BoRadioGroup } from './bo-radio-group.js';
 import { type BoRadioProps } from './bo-radio.js';
@@ -55,7 +55,7 @@ const props = withDefaults(defineProps<BoRadioProps>(), {
 });
 
 const inputRef = ref<HTMLInputElement>();
-const radioGroup = inject<BoRadioGroup>(InjectionKey.RadioGroup);
+const radioGroup = inject<BoRadioGroup>(InjectKey.RadioGroup);
 
 const inputName = computed<string>(() => props.name ?? radioGroup?.name ?? '');
 

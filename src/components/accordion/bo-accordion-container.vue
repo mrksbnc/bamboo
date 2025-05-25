@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { InjectionKey } from '@/shared/injection-key.js';
+import { InjectKey } from '@/shared/injection-key.js';
 import { provide, reactive, ref } from 'vue';
 import type { BoAccordionContainerProps } from './bo-accordion.js';
 
@@ -51,7 +51,7 @@ function toggle(id: string): void {
 }
 
 provide(
-	InjectionKey.AccordionGroup,
+	InjectKey.AccordionGroup,
 	reactive({
 		openItems,
 		toggle,
