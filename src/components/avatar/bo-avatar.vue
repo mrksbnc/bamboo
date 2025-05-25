@@ -1,49 +1,55 @@
 <template>
 	<div
+		role="img"
 		:id="id"
 		:style="containerStyle"
 		:class="avatarContainerClasses"
-		:data-testid="`bo-avatar-${id}`"
+		:aria-label="ariaLabel"
+		:tabindex="clickable ? 0 : undefined"
+		:data-testid="constructAttribute(id, 'avatar')"
+		@click="handleClick"
+		@keydown.enter="handleClick"
+		@keydown.space="handleClick"
 	>
 		<div
 			v-if="showFallbackImage"
-			class="bo-avatar__fallback-img flex items-center justify-center"
-			:data-testid="`bo-avatar-image-${id}`"
+			:class="AVATAR_STYLE.layout.fallbackContainer"
+			:data-testid="constructAttribute(id, 'avatar-fallback')"
 		>
 			<img
 				alt="avatar"
 				ref="fallbackImage"
 				:src="DefaultAvatarSvg"
-				class="'bo-avatar__image object-cover"
-				:data-testid="`bo-avatar__image-${id}`"
+				:class="AVATAR_STYLE.layout.image"
+				:data-testid="constructAttribute(id, 'avatar-fallback-image')"
 				@error="handleImageError"
 			/>
 		</div>
 		<div
 			v-else-if="type === BoAvatarType.image"
-			class="bo-avatar-image"
-			:data-testid="`bo-avatar-image-${id}`"
+			:class="AVATAR_STYLE.layout.imageContainer"
+			:data-testid="constructAttribute(id, 'avatar-image-container')"
 		>
 			<img
 				ref="imageElement"
 				:src="data?.src"
 				:alt="data?.alt ?? 'avatar'"
-				class="'bo-avatar__image object-cover"
-				:data-testid="`bo-avatar__image-${id}`"
+				:class="AVATAR_STYLE.layout.image"
+				:data-testid="constructAttribute(id, 'avatar-image')"
 				@error="handleImageError"
 			/>
 		</div>
 		<div
 			v-else
-			:class="['bo-avatar__initials flex items-center justify-center', textColorClass]"
-			:data-testid="`bo-avatar__initials-${id}`"
+			:class="[AVATAR_STYLE.layout.initialsContainer, textColorClass]"
+			:data-testid="constructAttribute(id, 'avatar-initials')"
 		>
 			<bo-text
 				:value="label"
 				:size="labelSize"
 				:color="BoTextColor.current"
 				:weight="BoFontWeight.medium"
-				:data-testid="`bo-avatar__label-${id}`"
+				:data-testid="constructAttribute(id, 'avatar-label')"
 			/>
 		</div>
 	</div>
@@ -53,6 +59,7 @@
 import DefaultAvatarSvg from '@/assets/img/avatar.png?url';
 import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/text/bo-text.js';
 import BoText from '@/components/text/bo-text.vue';
+import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
 import { StringService } from '@/services/string-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
@@ -68,90 +75,119 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 	variant: () => BoAvatarVariant.primary,
 });
 
-const imgError = ref<boolean>(false);
+const emit = defineEmits<{
+	(e: 'click', payload: { id: string }): void;
+}>();
 
+const { constructAttribute } = useAttributes();
+
+const imgError = ref<boolean>(false);
 const fallbackImage = ref<HTMLImageElement>();
 const imageElement = ref<HTMLImageElement>();
 
-const containerClasses: Record<'default', string> = {
-	default:
-		/*tw*/ 'bo-avatar relative flex items-center justify-center overflow-hidden object-cover',
-};
-
-const cursorClasses: Record<'default' | 'clickable', string> = {
-	default: /*tw*/ 'cursor-default',
-	clickable: /*tw*/ 'cursor-pointer hover:opacity-80',
-};
-
-const avatarSizeClasses: Record<BoSize, string> = {
-	[BoSize.extra_small]: /*tw*/ 'bo-avatar--extra-small size-6',
-	[BoSize.small]: /*tw*/ 'bo-avatar--small size-8',
-	[BoSize.default]: /*tw*/ 'bo-avatar--default size-10',
-	[BoSize.large]: /*tw*/ 'bo-avatar--large size-14',
-	[BoSize.extra_large]: /*tw*/ 'bo-avatar--extra-large size-20',
-};
-
-const avatarShapeClasses: Record<BoAvatarShape, string> = {
-	[BoAvatarShape.circle]: /*tw*/ 'bo-avatar--circle rounded-full',
-	[BoAvatarShape.rounded]: /*tw*/ 'bo-avatar--rounded rounded-md',
-	[BoAvatarShape.flat]: /*tw*/ 'bo-avatar--flat rounded-none',
-	[BoAvatarShape.outline_circle]: /*tw*/ 'bo-avatar--outline-circle rounded-full border',
-	[BoAvatarShape.outline_rounded]: /*tw*/ 'bo-avatar--outline-rounded rounded-md border',
-	[BoAvatarShape.outline_flat]: /*tw*/ 'bo-avatar--outline-flat rounded-none border',
-};
-
-const variantColors: Record<BoAvatarVariant, string> = {
-	[BoAvatarVariant.primary]: /*tw*/ ' bo-avatar--primary bg-blue-500 dark:bg-blue-700 text-white',
-	[BoAvatarVariant.secondary]:
-		/*tw*/ ' bo-avatar--secondary bg-gray-400 dark:bg-gray-700 text-white',
-	[BoAvatarVariant.danger]: /*tw*/ ' bo-avatar--danger bg-red-500 dark:bg-red-700 text-white',
-	[BoAvatarVariant.warning]:
-		/*tw*/ ' bo-avatar--warning bg-yellow-500 dark:bg-yellow-600 text-white',
-	[BoAvatarVariant.success]: /*tw*/ ' bo-avatar--success bg-green-600 dark:bg-green-700 text-white',
-	[BoAvatarVariant.dark]: /*tw*/ ' bo-avatar--dark bg-black dark:bg-black text-white',
-};
-
-const outlineVariantColors: Record<BoAvatarVariant, string> = {
-	[BoAvatarVariant.primary]:
-		/*tw*/ 'bo-avatar--outline-primary bg-transparent border-blue-500 text-blue-500 dark:border-blue-400 dark:text-blue-400',
-	[BoAvatarVariant.secondary]:
-		/*tw*/ 'bo-avatar--outline-secondary bg-transparent border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',
-	[BoAvatarVariant.danger]:
-		/*tw*/ 'bo-avatar--outline-danger bg-transparent border-red-500 text-red-500 dark:border-red-400 dark:text-red-400',
-	[BoAvatarVariant.warning]:
-		/*tw*/ 'bo-avatar--outline-warning bg-transparent border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
-	[BoAvatarVariant.success]:
-		/*tw*/ 'bo-avatar--outline-success bg-transparent border-green-500 text-green-500 dark:border-green-400 dark:text-green-400',
-	[BoAvatarVariant.dark]:
-		/*tw*/ 'bo-avatar--outline-dark bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-300',
-};
-
-const variantTextColors: Record<BoAvatarVariant, string> = {
-	[BoAvatarVariant.primary]: /*tw*/ 'text-white dark:text-white',
-	[BoAvatarVariant.secondary]: /*tw*/ 'text-white dark:text-white',
-	[BoAvatarVariant.danger]: /*tw*/ 'text-white dark:text-white',
-	[BoAvatarVariant.warning]: /*tw*/ 'text-white dark:text-white',
-	[BoAvatarVariant.success]: /*tw*/ 'text-white dark:text-white',
-	[BoAvatarVariant.dark]: /*tw*/ 'text-white dark:text-white',
-};
-
-const outlineVariantTextColors: Record<BoAvatarVariant, string> = {
-	[BoAvatarVariant.primary]: /*tw*/ 'text-blue-500 dark:text-blue-400',
-	[BoAvatarVariant.secondary]: /*tw*/ 'text-gray-500 dark:text-neutral-300',
-	[BoAvatarVariant.danger]: /*tw*/ 'text-red-500 dark:text-red-400',
-	[BoAvatarVariant.warning]: /*tw*/ 'text-yellow-500 dark:text-yellow-400',
-	[BoAvatarVariant.success]: /*tw*/ 'text-green-500 dark:text-green-400',
-	[BoAvatarVariant.dark]: /*tw*/ 'text-black dark:text-neutral-300',
-};
+const AVATAR_STYLE = {
+	layout: {
+		container:
+			/*tw*/ 'bo-avatar relative flex items-center justify-center overflow-hidden object-cover',
+		fallbackContainer: /*tw*/ 'bo-avatar__fallback-img flex items-center justify-center',
+		imageContainer: /*tw*/ 'bo-avatar__image-container',
+		image: /*tw*/ 'bo-avatar__image object-cover',
+		initialsContainer: /*tw*/ 'bo-avatar__initials flex items-center justify-center',
+	},
+	size: {
+		[BoSize.extra_small]: /*tw*/ 'bo-avatar--extra-small size-6',
+		[BoSize.small]: /*tw*/ 'bo-avatar--small size-8',
+		[BoSize.default]: /*tw*/ 'bo-avatar--default size-10',
+		[BoSize.large]: /*tw*/ 'bo-avatar--large size-14',
+		[BoSize.extra_large]: /*tw*/ 'bo-avatar--extra-large size-20',
+	},
+	shape: {
+		[BoAvatarShape.circle]: /*tw*/ 'bo-avatar--circle rounded-full',
+		[BoAvatarShape.rounded]: /*tw*/ 'bo-avatar--rounded rounded-md',
+		[BoAvatarShape.flat]: /*tw*/ 'bo-avatar--flat rounded-none',
+		[BoAvatarShape.outline_circle]: /*tw*/ 'bo-avatar--outline-circle rounded-full border',
+		[BoAvatarShape.outline_rounded]: /*tw*/ 'bo-avatar--outline-rounded rounded-md border',
+		[BoAvatarShape.outline_flat]: /*tw*/ 'bo-avatar--outline-flat rounded-none border',
+	},
+	interactive: {
+		default: /*tw*/ 'cursor-default',
+		clickable: /*tw*/ 'cursor-pointer hover:opacity-80 transition-opacity duration-200',
+		focus: /*tw*/ 'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+	},
+	appearance: {
+		shadow: /*tw*/ 'shadow-md',
+		noShadow: /*tw*/ 'shadow-none',
+	},
+	variant: {
+		[BoAvatarVariant.primary]: /*tw*/ 'bo-avatar--primary bg-blue-500 dark:bg-blue-700 text-white',
+		[BoAvatarVariant.secondary]:
+			/*tw*/ 'bo-avatar--secondary bg-gray-400 dark:bg-gray-700 text-white',
+		[BoAvatarVariant.danger]: /*tw*/ 'bo-avatar--danger bg-red-500 dark:bg-red-700 text-white',
+		[BoAvatarVariant.warning]:
+			/*tw*/ 'bo-avatar--warning bg-yellow-500 dark:bg-yellow-600 text-white',
+		[BoAvatarVariant.success]:
+			/*tw*/ 'bo-avatar--success bg-green-600 dark:bg-green-700 text-white',
+		[BoAvatarVariant.dark]: /*tw*/ 'bo-avatar--dark bg-black dark:bg-black text-white',
+	},
+	outlineVariant: {
+		[BoAvatarVariant.primary]:
+			/*tw*/ 'bo-avatar--outline-primary bg-transparent border-blue-500 text-blue-500 dark:border-blue-400 dark:text-blue-400',
+		[BoAvatarVariant.secondary]:
+			'bo-avatar--outline-secondary bg-transparent border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',
+		[BoAvatarVariant.danger]:
+			/*tw*/ 'bo-avatar--outline-danger bg-transparent border-red-500 text-red-500 dark:border-red-400 dark:text-red-400',
+		[BoAvatarVariant.warning]:
+			/*tw*/ 'bo-avatar--outline-warning bg-transparent border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
+		[BoAvatarVariant.success]:
+			/*tw*/ 'bo-avatar--outline-success bg-transparent border-green-500 text-green-500 dark:border-green-400 dark:text-green-400',
+		[BoAvatarVariant.dark]:
+			/*tw*/ 'bo-avatar--outline-dark bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-300',
+	},
+	variantText: {
+		[BoAvatarVariant.primary]: /*tw*/ 'text-white dark:text-white',
+		[BoAvatarVariant.secondary]: /*tw*/ 'text-white dark:text-white',
+		[BoAvatarVariant.danger]: /*tw*/ 'text-white dark:text-white',
+		[BoAvatarVariant.warning]: /*tw*/ 'text-white dark:text-white',
+		[BoAvatarVariant.success]: /*tw*/ 'text-white dark:text-white',
+		[BoAvatarVariant.dark]: /*tw*/ 'text-white dark:text-white',
+	},
+	outlineVariantText: {
+		[BoAvatarVariant.primary]: /*tw*/ 'text-blue-500 dark:text-blue-400',
+		[BoAvatarVariant.secondary]: /*tw*/ 'text-gray-500 dark:text-neutral-300',
+		[BoAvatarVariant.danger]: /*tw*/ 'text-red-500 dark:text-red-400',
+		[BoAvatarVariant.warning]: /*tw*/ 'text-yellow-500 dark:text-yellow-400',
+		[BoAvatarVariant.success]: /*tw*/ 'text-green-500 dark:text-green-400',
+		[BoAvatarVariant.dark]: /*tw*/ 'text-black dark:text-neutral-300',
+	},
+} as const;
 
 const label = computed<string>(() => {
 	const safeStr = StringService.instance.safeString(props?.data?.label);
 
+	// Split by spaces and take first letter of each word, max 2 letters
+	const words = safeStr.trim().split(/\s+/);
+	if (words.length >= 2) {
+		return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase();
+	}
+
+	// If only one word, take first 2 characters
 	if (safeStr.length > 2) {
 		return safeStr.slice(0, 2).toUpperCase();
 	}
 
 	return safeStr.toUpperCase();
+});
+
+const ariaLabel = computed<string>(() => {
+	if (props.type === BoAvatarType.image && props.data?.alt) {
+		return props.data.alt;
+	}
+
+	if (props.type === BoAvatarType.initials && props.data?.label) {
+		return `Avatar for ${props.data.label}`;
+	}
+
+	return 'Avatar';
 });
 
 const bgConstruct = computed<string>(() => {
@@ -165,12 +201,14 @@ const bgConstruct = computed<string>(() => {
 	const isOutlineShape = props?.shape.includes('outline');
 
 	if (isOutlineShape) {
-		return props?.variant in outlineVariantColors
-			? outlineVariantColors[props?.variant]
+		return props?.variant in AVATAR_STYLE.outlineVariant
+			? AVATAR_STYLE.outlineVariant[props?.variant]
 			: generateRandomOutlineColor();
 	}
 
-	return props?.variant in variantColors ? variantColors[props?.variant] : generateRandomColor();
+	return props?.variant in AVATAR_STYLE.variant
+		? AVATAR_STYLE.variant[props?.variant]
+		: generateRandomColor();
 });
 
 const textColorClass = computed<string>(() => {
@@ -180,28 +218,25 @@ const textColorClass = computed<string>(() => {
 
 	const isOutlineShape = props?.shape.includes('outline');
 
-	if (isOutlineShape && props?.variant in outlineVariantTextColors) {
-		return outlineVariantTextColors[props?.variant];
+	if (isOutlineShape && props?.variant in AVATAR_STYLE.outlineVariantText) {
+		return AVATAR_STYLE.outlineVariantText[props?.variant];
 	}
 
-	if (props?.variant in variantTextColors) {
-		return variantTextColors[props?.variant];
+	if (props?.variant in AVATAR_STYLE.variantText) {
+		return AVATAR_STYLE.variantText[props?.variant];
 	}
 
-	return 'text-gray-600 dark:text-gray-300';
+	return /*tw*/ 'text-gray-600 dark:text-gray-300';
 });
 
 const cursorClassConstruct = computed<string>(() => {
-	return props.clickable ? cursorClasses.clickable : cursorClasses.default;
-});
+	const baseClasses = props.clickable
+		? AVATAR_STYLE.interactive.clickable
+		: AVATAR_STYLE.interactive.default;
 
-const avatarContainerDefaultClasses = computed<string>(() => {
-	return TailwindService.instance.merge(
-		bgConstruct.value,
-		containerClasses.default,
-		cursorClassConstruct.value,
-		!props?.shape.includes('outline') ? /*tw*/ 'shadow-md' : /*tw*/ 'shadow-none',
-	);
+	return props.clickable
+		? TailwindService.instance.merge(baseClasses, AVATAR_STYLE.interactive.focus)
+		: baseClasses;
 });
 
 const labelSize = computed<BoFontSize>(() => {
@@ -229,18 +264,41 @@ const containerStyle = computed<StyleValue>(() => {
 
 const avatarContainerClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
-		avatarSizeClasses[props.size],
-		avatarShapeClasses[props?.shape],
-		avatarContainerDefaultClasses.value,
+		AVATAR_STYLE.layout.container,
+		AVATAR_STYLE.size[props.size],
+		AVATAR_STYLE.shape[props?.shape],
+		bgConstruct.value,
+		cursorClassConstruct.value,
+		!props?.shape.includes('outline')
+			? AVATAR_STYLE.appearance.shadow
+			: AVATAR_STYLE.appearance.noShadow,
 	);
 });
 
 const showFallbackImage = computed<boolean>(() => {
-	const invalidImage = imgError.value || (!props?.data?.src && props?.type === BoAvatarType.image);
-	const invalidInitials = !props?.data?.label && props?.type === BoAvatarType.initials;
+	// Show fallback if no data at all
+	if (!props?.data) {
+		return true;
+	}
 
-	return !props?.data || invalidImage || invalidInitials;
+	// For image type, show fallback if no src or image error
+	if (props?.type === BoAvatarType.image) {
+		return !props?.data?.src || imgError.value;
+	}
+
+	// For initials type, show fallback if no label
+	if (props?.type === BoAvatarType.initials) {
+		return !props?.data?.label;
+	}
+
+	return false;
 });
+
+function handleClick(): void {
+	if (props.clickable) {
+		emit('click', { id: props.id });
+	}
+}
 
 function handleImageError(e: Event): void {
 	imgError.value = true;
