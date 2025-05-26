@@ -22,7 +22,7 @@
 				<bo-icon
 					v-if="prefixIcon !== Icon.none"
 					:icon="prefixIcon"
-					aria-hidden="true"
+					:aria-hidden="true"
 					class="bo-accordion__prefix-icon"
 					:data-testid="constructAttribute(id, 'accordion-prefix-icon')"
 				/>
@@ -38,7 +38,7 @@
 			<div :class="ACCORDION_STYLE.animation.icon">
 				<bo-icon
 					:icon="customIcon"
-					aria-hidden="true"
+					:aria-hidden="true"
 					:data-testid="constructAttribute(id, 'accordion-toggle-icon')"
 				/>
 			</div>

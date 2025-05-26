@@ -59,6 +59,7 @@ const defaultClasses = /*tw*/ TailwindService.instance.merge(
 	'items-center',
 	'content-center',
 	'justify-center',
+	/*tw*/ 'animate-pulse',
 );
 
 const displayLoaderText = computed<boolean>(() => {
@@ -111,25 +112,3 @@ function getAnimationDelayStyle(dot: number): StyleValue {
 	};
 }
 </script>
-
-<style scoped>
-.bo-loading-dots__dot {
-	animation: dots-pulse 1.4s ease-in-out infinite;
-	opacity: 0.3;
-}
-
-@keyframes dots-pulse {
-	0% {
-		transform: scale(0.8);
-		opacity: 0.3;
-	}
-	50% {
-		transform: scale(1.2);
-		opacity: 1;
-	}
-	100% {
-		transform: scale(0.8);
-		opacity: 0.3;
-	}
-}
-</style>

@@ -20,7 +20,7 @@
 					:icon="prefixOrIconOnlyIcon"
 					:size="iconSize"
 					:class="BUTTON_STYLE.layout.prefixIcon"
-					aria-hidden="true"
+					:aria-hidden="true"
 					:data-testid="constructAttribute(id, 'button-prefix-icon')"
 				/>
 				<bo-text
@@ -38,7 +38,7 @@
 					:icon="suffixIcon"
 					:size="iconSize"
 					:class="BUTTON_STYLE.layout.suffixIcon"
-					aria-hidden="true"
+					:aria-hidden="true"
 					:data-testid="constructAttribute(id, 'button-suffix-icon')"
 				/>
 				<bo-loading-spinner
@@ -46,7 +46,7 @@
 					:size="loaderSize"
 					:variant="loaderVariant"
 					:class="BUTTON_STYLE.layout.loader"
-					aria-hidden="true"
+					:aria-hidden="true"
 					:data-testid="constructAttribute(id, 'button-loader')"
 				/>
 				<bo-loading-pulse
@@ -54,7 +54,7 @@
 					:size="loaderSize"
 					:variant="loaderVariant"
 					:class="BUTTON_STYLE.layout.loader"
-					aria-hidden="true"
+					:aria-hidden="true"
 					:data-testid="constructAttribute(id, 'button-loader')"
 				/>
 			</span>

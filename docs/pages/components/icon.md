@@ -215,7 +215,7 @@ You can override the component's accessibility behavior using external attribute
 <bo-icon
 	:icon="Icon.star"
 	:accessibility="{ decorative: false, title: 'Should not be announced' }"
-	aria-hidden="true"
+	:aria-hidden="true"
 />
 ```
 

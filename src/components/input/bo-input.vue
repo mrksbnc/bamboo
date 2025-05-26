@@ -38,7 +38,7 @@
 				:color="BoColor.neutral_400"
 				:class="['absolute left-3 text-neutral-500 dark:text-gray-400']"
 				:data-testid="`bo-input-prefix-icon-${id}`"
-				aria-hidden="true"
+				:aria-hidden="true"
 			/>
 			<input
 				ref="inputRef"
@@ -69,7 +69,7 @@
 					:size="inputIconSize"
 					:color="BoColor.neutral_400"
 					:data-testid="`bo-input-suffix-icon-${id}`"
-					aria-hidden="true"
+					:aria-hidden="true"
 				/>
 			</div>
 		</div>
@@ -91,7 +91,7 @@
 					:size="BoSize.small"
 					:color="BoColor.red_600"
 					class="mr-1"
-					aria-hidden="true"
+					:aria-hidden="true"
 				/>
 				<bo-text
 					:value="error"

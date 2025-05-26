@@ -19,7 +19,6 @@ export default defineConfig({
 		emptyOutDir: true,
 		lib: {
 			name: 'bamboo',
-			formats: ['es'],
 			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 		},
 	},

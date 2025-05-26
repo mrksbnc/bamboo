@@ -248,7 +248,7 @@ export class FocusTrapService implements BoFocusTrapService {
 				return;
 			}
 
-			const allElements = document.querySelectorAll<HTMLElement>('[aria-hidden="true"][inert]');
+			const allElements = document.querySelectorAll<HTMLElement>('[:aria-hidden="true"][inert]');
 			allElements.forEach((element) => {
 				element.removeAttribute('aria-hidden');
 				element.removeAttribute('inert');

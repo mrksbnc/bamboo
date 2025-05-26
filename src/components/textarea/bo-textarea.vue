@@ -49,7 +49,7 @@
 					class="prefix-icon"
 					:icon="prefixIcon"
 					:size="iconSize"
-					aria-hidden="true"
+					:aria-hidden="true"
 				/>
 			</div>
 
@@ -88,7 +88,7 @@
 					class="suffix-icon"
 					:icon="suffixIcon"
 					:size="iconSize"
-					aria-hidden="true"
+					:aria-hidden="true"
 				/>
 			</div>
 		</div>
@@ -104,7 +104,7 @@
 			<bo-icon
 				:icon="Icon.alert_circle"
 				:size="BoSize.small"
-				aria-hidden="true"
+				:aria-hidden="true"
 			/>
 			<span>{{ error }}</span>
 		</div>
