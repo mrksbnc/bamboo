@@ -1,27 +1,47 @@
 <template>
-	<div
-		role="button"
+	<button
 		:class="itemClasses"
-		:data-testid="`bo-button-group-item-${id}`"
-		:tabindex="disabled ? -1 : 0"
+		:disabled="disabled"
+		:aria-pressed="active ? 'true' : 'false'"
+		:aria-label="computedAriaLabel"
+		:data-testid="constructAttribute(id, 'button-group-item')"
 		@click="onSelect"
-		@keydown.enter="onSelect"
-		@keydown.space="onSelect"
 	>
+		<bo-icon
+			v-if="prefixIcon !== Icon.none"
+			:icon="prefixIcon"
+			:aria-hidden="true"
+			:class="BUTTON_GROUP_ITEM_STYLE.layout.prefixIcon"
+			:data-testid="constructAttribute(id, 'button-group-item-prefix-icon')"
+		/>
 		<bo-text
-			:value="label"
+			v-if="label"
 			:size="fontSize"
 			:clickable="!disabled"
 			:weight="BoFontWeight.medium"
+			:value="StringService.instance.safeString(label)"
 			:cursor="disabled ? 'cursor-not-allowed' : 'cursor-pointer'"
+			:data-testid="constructAttribute(id, 'button-group-item-label')"
 		/>
-	</div>
+		<bo-icon
+			v-if="suffixIcon !== Icon.none"
+			:icon="suffixIcon"
+			:aria-hidden="true"
+			:class="BUTTON_GROUP_ITEM_STYLE.layout.suffixIcon"
+			:data-testid="constructAttribute(id, 'button-group-item-suffix-icon')"
+		/>
+	</button>
 </template>
 
 <script setup lang="ts">
 import { BoButtonVariant } from '@/components/button/bo-button.js';
+import { Icon } from '@/components/icon/bo-icon.js';
+import BoIcon from '@/components/icon/bo-icon.vue';
 import { BoFontSize, BoFontWeight } from '@/components/text/bo-text.js';
 import BoText from '@/components/text/bo-text.vue';
+import { useAttributes } from '@/composables/use-attributes';
+import { IdentityService } from '@/services/identity-service.js';
+import { StringService } from '@/services/string-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { computed } from 'vue';
@@ -32,9 +52,12 @@ import {
 } from './bo-button-group.js';
 
 const props = withDefaults(defineProps<BoButtonGroupItemProps>(), {
+	id: () => IdentityService.instance.getComponentId(),
 	size: () => BoSize.default,
-	variant: () => BoButtonVariant.secondary,
 	shape: () => BoButtonGroupShape.rounded,
+	variant: () => BoButtonVariant.secondary,
+	prefixIcon: () => Icon.none,
+	suffixIcon: () => Icon.none,
 	position: () => ({
 		index: -1,
 		length: -1,
@@ -48,154 +71,146 @@ const emits = defineEmits<{
 	(e: 'select', index: number): void;
 }>();
 
-const defaultClasses = /*tw*/ 'flex items-center justify-center max-h-fit duration-60 ';
+const { constructAttribute } = useAttributes();
 
-const paddingClasses = computed<string>(() => {
-	switch (props.size) {
-		case BoSize.extra_small:
-			return /*tw*/ 'px-2 py-1';
-		case BoSize.small:
-			return /*tw*/ 'px-3 py-1.5';
-		case BoSize.large:
-			return /*tw*/ 'px-4 py-2';
-		case BoSize.extra_large:
-			return /*tw*/ 'px-5 py-2.5';
-		case BoSize.default:
-		default:
-			return /*tw*/ 'px-4 py-2';
-	}
-});
+const BUTTON_GROUP_ITEM_STYLE = {
+	layout: {
+		container:
+			/*tw*/ 'bo-button-group-item flex items-center justify-center max-h-fit duration-60 transition-colors',
+		prefixIcon: /*tw*/ 'bo-button-group-item__prefix-icon',
+		suffixIcon: /*tw*/ 'bo-button-group-item__suffix-icon',
+	},
+	size: {
+		[BoSize.extra_small]: /*tw*/ 'bo-button-group-item--extra-small px-2 py-1',
+		[BoSize.small]: /*tw*/ 'bo-button-group-item--small px-3 py-1.5',
+		[BoSize.default]: /*tw*/ 'bo-button-group-item--default px-4 py-2',
+		[BoSize.large]: /*tw*/ 'bo-button-group-item--large px-4 py-2',
+		[BoSize.extra_large]: /*tw*/ 'bo-button-group-item--extra-large px-5 py-2.5',
+	},
+	variant: {
+		inactive: /*tw*/ 'bo-button-group-item--inactive text-neutral-700 dark:text-neutral-300',
+		active: {
+			[BoButtonVariant.primary]:
+				/*tw*/ 'bo-button-group-item--active-primary bg-blue-600 dark:bg-blue-700 text-white dark:text-white',
+			[BoButtonVariant.secondary]:
+				/*tw*/ 'bo-button-group-item--active-secondary bg-neutral-700 dark:bg-neutral-600 text-white dark:text-neutral-400',
+			[BoButtonVariant.danger]:
+				/*tw*/ 'bo-button-group-item--active-danger bg-red-600 dark:bg-red-700 text-white dark:text-white',
+			[BoButtonVariant.success]:
+				/*tw*/ 'bo-button-group-item--active-success bg-green-600 dark:bg-green-700 text-white dark:text-white',
+			[BoButtonVariant.warning]:
+				/*tw*/ 'bo-button-group-item--active-warning bg-yellow-500 dark:bg-yellow-600 text-white dark:text-white',
+			[BoButtonVariant.light]:
+				/*tw*/ 'bo-button-group-item--active-light bg-gray-100 dark:bg-gray-200 text-gray-900 dark:text-gray-900',
+			[BoButtonVariant.dark]:
+				/*tw*/ 'bo-button-group-item--active-dark bg-gray-900 dark:bg-black text-white dark:text-white',
+		},
+	},
+	hover: {
+		[BoButtonVariant.primary]:
+			/*tw*/ 'hover:bg-blue-700 dark:hover:bg-blue-800 hover:text-white dark:hover:text-white',
+		[BoButtonVariant.secondary]:
+			/*tw*/ 'hover:bg-neutral-700 dark:hover:bg-neutral-600 hover:text-neutral-300 dark:hover:text-neutral-700',
+		[BoButtonVariant.danger]:
+			/*tw*/ 'hover:bg-red-700 dark:hover:bg-red-800 hover:text-white dark:hover:text-white',
+		[BoButtonVariant.success]:
+			/*tw*/ 'hover:bg-green-700 dark:hover:bg-green-800 hover:text-white dark:hover:text-white',
+		[BoButtonVariant.warning]:
+			/*tw*/ 'hover:bg-yellow-600 dark:hover:bg-yellow-700 hover:text-white dark:hover:text-white',
+		[BoButtonVariant.light]:
+			/*tw*/ 'hover:bg-gray-200 dark:hover:bg-gray-300 hover:text-gray-900 dark:hover:text-gray-900',
+		[BoButtonVariant.dark]:
+			/*tw*/ 'hover:bg-black dark:hover:bg-gray-800 hover:text-white dark:hover:text-white',
+	},
+	border: {
+		[BoButtonVariant.primary]: /*tw*/ 'border-blue-600 dark:border-blue-600',
+		[BoButtonVariant.secondary]: /*tw*/ 'border-neutral-600 dark:border-neutral-600',
+		[BoButtonVariant.danger]: /*tw*/ 'border-red-600 dark:border-red-600',
+		[BoButtonVariant.success]: /*tw*/ 'border-green-600 dark:border-green-600',
+		[BoButtonVariant.warning]: /*tw*/ 'border-yellow-600 dark:border-yellow-600',
+		[BoButtonVariant.light]: /*tw*/ 'border-gray-200 dark:border-gray-200',
+		[BoButtonVariant.dark]: /*tw*/ 'border-gray-800 dark:border-gray-800',
+	},
+	shape: {
+		[BoButtonGroupShape.square]: /*tw*/ 'bo-button-group-item--square rounded-none',
+		[BoButtonGroupShape.rounded]: /*tw*/ 'bo-button-group-item--rounded',
+	},
+	interactive: {
+		default: /*tw*/ 'cursor-pointer',
+		disabled: /*tw*/ 'cursor-not-allowed opacity-50',
+	},
+} as const;
 
 const fontSize = computed<BoFontSize>(() => {
 	switch (props.size) {
 		case BoSize.extra_small:
 		case BoSize.small:
-			return /*tw*/ BoFontSize.xs;
+			return BoFontSize.xs;
 		case BoSize.large:
 		case BoSize.extra_large:
-			return /*tw*/ BoFontSize.base;
+			return BoFontSize.base;
 		case BoSize.default:
 		default:
-			return /*tw*/ BoFontSize.sm;
+			return BoFontSize.sm;
 	}
 });
 
-const fontColorClasses = computed<string>(() => {
-	switch (props.active) {
-		case true:
-			switch (props.variant) {
-				case BoButtonVariant.secondary:
-					return /*tw*/ 'text-neutral-600 dark:text-neutral-300';
-				case BoButtonVariant.danger:
-					return /*tw*/ 'text-red-600 dark:text-red-500';
-				case BoButtonVariant.success:
-					return /*tw*/ 'text-green-600 dark:text-green-500';
-				case BoButtonVariant.warning:
-					return /*tw*/ 'text-yellow-600 dark:text-yellow-500';
-				case BoButtonVariant.dark:
-					return /*tw*/ 'text-white dark:text-neutral-400';
-				case BoButtonVariant.light:
-					return /*tw*/ 'text-neutral-700 dark:text-neutral-300';
-				case BoButtonVariant.primary:
-				default:
-					return /*tw*/ 'text-blue-600 dark:text-blue-500';
-			}
-		case false:
-		default:
-			return /*tw*/ 'text-neutral-700 dark:text-neutral-300';
+const computedAriaLabel = computed<string>(() => {
+	if (props.ariaLabel && !StringService.instance.isEmptyStr(props.ariaLabel)) {
+		return props.ariaLabel;
 	}
+
+	if (StringService.instance.isEmptyStr(props.label)) {
+		return 'Button';
+	}
+
+	return props.label ?? 'Button';
+});
+
+const variantClasses = computed<string>(() => {
+	if (props.active && props.variant) {
+		return BUTTON_GROUP_ITEM_STYLE.variant.active[props.variant];
+	}
+	return BUTTON_GROUP_ITEM_STYLE.variant.inactive;
 });
 
 const hoverClasses = computed<string>(() => {
-	if (props.disabled) {
-		return /*tw*/ '';
+	if (props.disabled || !props.variant) {
+		return '';
 	}
-
-	switch (props.variant) {
-		case BoButtonVariant.secondary:
-			return /*tw*/ 'hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-neutral-800 dark:hover:text-neutral-100';
-		case BoButtonVariant.danger:
-			return /*tw*/ 'hover:bg-red-50 dark:hover:bg-red-600 hover:text-red-800 dark:hover:text-red-100';
-		case BoButtonVariant.success:
-			return /*tw*/ 'hover:bg-green-50 dark:hover:bg-green-600 hover:text-green-800 dark:hover:text-green-100';
-		case BoButtonVariant.warning:
-			return /*tw*/ 'hover:bg-yellow-50 dark:hover:bg-yellow-600 hover:text-yellow-800 dark:hover:text-yellow-100';
-		case BoButtonVariant.dark:
-			return /*tw*/ 'hover:bg-neutral-700 dark:hover:bg-neutral-600 hover:text-neutral-300 dark:hover:text-neutral-700';
-		case BoButtonVariant.light:
-			return /*tw*/ 'hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:text-neutral-800 dark:hover:text-neutral-100';
-		case BoButtonVariant.primary:
-		default:
-			return /*tw*/ 'hover:bg-blue-50 dark:hover:bg-blue-700 hover:text-blue-800 dark:hover:text-blue-100';
-	}
-});
-
-const borderColorClasses = computed<string>(() => {
-	switch (props.active) {
-		case true:
-			switch (props.variant) {
-				case BoButtonVariant.secondary:
-					return /*tw*/ 'border-neutral-800 dark:border-neutral-600';
-				case BoButtonVariant.danger:
-					return /*tw*/ 'border-red-600 dark:border-red-600';
-				case BoButtonVariant.success:
-					return /*tw*/ 'border-green-600 dark:border-green-600';
-				case BoButtonVariant.warning:
-					return /*tw*/ 'border-yellow-600 dark:border-yellow-600';
-				case BoButtonVariant.dark:
-					return /*tw*/ 'border-neutral-600 dark:border-neutral-600';
-				case BoButtonVariant.light:
-					return /*tw*/ 'border-neutral-600 dark:border-neutral-400';
-				case BoButtonVariant.primary:
-				default:
-					return /*tw*/ 'border-blue-600 dark:border-blue-600';
-			}
-		case false:
-		default:
-			switch (props.variant) {
-				case BoButtonVariant.secondary:
-					return /*tw*/ 'border-neutral-300 dark:border-neutral-800';
-				case BoButtonVariant.danger:
-					return /*tw*/ 'border-red-400 dark:border-red-700';
-				case BoButtonVariant.success:
-					return /*tw*/ 'border-green-400 dark:border-green-700';
-				case BoButtonVariant.warning:
-					return /*tw*/ 'border-yellow-400 dark:border-yellow-700';
-				case BoButtonVariant.dark:
-					return /*tw*/ 'border-neutral-700 dark:border-neutral-600';
-				case BoButtonVariant.light:
-					return /*tw*/ 'border-neutral-400 dark:border-neutral-800';
-				case BoButtonVariant.primary:
-				default:
-					return /*tw*/ 'border-blue-400 dark:border-blue-700';
-			}
-	}
+	return BUTTON_GROUP_ITEM_STYLE.hover[props.variant];
 });
 
 const borderRadiusClasses = computed<string>(() => {
-	if (props.shape === BoButtonGroupShape.rounded) {
-		// Vertical orientation
-		if (props.orientation === BoButtonGroupOrientation.vertical) {
-			if (props.position.isFirst && props.position.isLast) {
-				return /*tw*/ 'rounded-md';
-			} else if (props.position.isFirst) {
-				return /*tw*/ 'rounded-t-md';
-			} else if (props.position.isLast) {
-				return /*tw*/ 'rounded-b-md';
-			}
-		}
+	if (props.shape === BoButtonGroupShape.square) {
+		return BUTTON_GROUP_ITEM_STYLE.shape[BoButtonGroupShape.square];
+	}
 
-		// Horizontal orientation
+	let classes: string[] = [BUTTON_GROUP_ITEM_STYLE.shape[BoButtonGroupShape.rounded]];
+
+	if (props.orientation === BoButtonGroupOrientation.vertical) {
 		if (props.position.isFirst && props.position.isLast) {
-			return /*tw*/ 'rounded-md';
+			classes.push(/*tw*/ 'rounded-md');
 		} else if (props.position.isFirst) {
-			return /*tw*/ 'rounded-l-md';
+			classes.push(/*tw*/ 'rounded-t-md');
 		} else if (props.position.isLast) {
-			return /*tw*/ 'rounded-r-md';
+			classes.push(/*tw*/ 'rounded-b-md');
+		} else {
+			classes.push(/*tw*/ 'rounded-none');
+		}
+	} else {
+		if (props.position.isFirst && props.position.isLast) {
+			classes.push(/*tw*/ 'rounded-md');
+		} else if (props.position.isFirst) {
+			classes.push(/*tw*/ 'rounded-l-md');
+		} else if (props.position.isLast) {
+			classes.push(/*tw*/ 'rounded-r-md');
+		} else {
+			classes.push(/*tw*/ 'rounded-none');
 		}
 	}
 
-	return /*tw*/ 'rounded-none';
+	return TailwindService.instance.merge(...classes);
 });
 
 const borderClasses = computed<string>(() => {
@@ -254,37 +269,22 @@ const borderClasses = computed<string>(() => {
 	return TailwindService.instance.merge(...classes);
 });
 
-const backgroundColorClasses = computed<string>(() => {
-	switch (props.variant) {
-		case BoButtonVariant.secondary:
-			return /*tw*/ 'bg-neutral-50 dark:bg-neutral-700';
-		case BoButtonVariant.danger:
-			return /*tw*/ 'bg-red-50 dark:bg-red-700';
-		case BoButtonVariant.success:
-			return /*tw*/ 'bg-green-50 dark:bg-green-700';
-		case BoButtonVariant.warning:
-			return /*tw*/ 'bg-yellow-50 dark:bg-yellow-700';
-		case BoButtonVariant.dark:
-			return /*tw*/ 'bg-neutral-700 dark:bg-neutral-600';
-		case BoButtonVariant.light:
-			return /*tw*/ 'bg-neutral-50 dark:bg-neutral-800';
-		case BoButtonVariant.primary:
-		default:
-			return /*tw*/ 'bg-blue-50 dark:bg-blue-700';
-	}
+const interactiveClasses = computed<string>(() => {
+	return props.disabled
+		? BUTTON_GROUP_ITEM_STYLE.interactive.disabled
+		: BUTTON_GROUP_ITEM_STYLE.interactive.default;
 });
 
 const itemClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
-		defaultClasses,
 		hoverClasses.value,
 		borderClasses.value,
-		paddingClasses.value,
-		fontColorClasses.value,
-		borderColorClasses.value,
+		variantClasses.value,
+		interactiveClasses.value,
 		borderRadiusClasses.value,
-		props.active ? backgroundColorClasses.value : '',
-		props.disabled ? /*tw*/ 'cursor-not-allowed opacity-50' : /*tw*/ 'cursor-pointer',
+		BUTTON_GROUP_ITEM_STYLE.layout.container,
+		BUTTON_GROUP_ITEM_STYLE.size[props.size],
+		BUTTON_GROUP_ITEM_STYLE.border[props.variant],
 	);
 });
 

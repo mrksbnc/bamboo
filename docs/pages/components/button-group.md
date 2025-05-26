@@ -94,91 +94,154 @@ const handleSelect = (index) => {
 ## Types
 
 ```ts
-/**
- * Defines the orientation of the button group
- */
-export enum BoButtonGroupOrientation {
+enum BoButtonGroupOrientation {
 	horizontal = 'horizontal',
 	vertical = 'vertical',
 }
 
-/**
- * Defines the shape of the button group and its items
- */
-export enum BoButtonGroupShape {
+enum BoButtonGroupShape {
 	square = 'square',
 	rounded = 'rounded',
 }
 
-/**
- * Position information for a button item within the group
- */
-export interface ButtonGroupItemListPosition {
-	/** Zero-based index of the button in the group */
+interface ButtonGroupItemListPosition {
+	/**
+	 * Zero-based index of the button in the group
+	 */
 	index: number;
 	/** Total number of buttons in the group */
 	length: number;
-	/** Whether this is the last button in the group */
+	/**
+	 * Whether this is the last button in the group
+	 */
 	isLast: boolean;
-	/** Whether this is the first button in the group */
+	/**
+	 * Whether this is the first button in the group
+	 */
 	isFirst: boolean;
-	/** Index of the currently active button in the group */
+	/**
+	 * Index of the currently active button in the group
+	 */
 	activeIndex: number;
+}
+
+interface BoButtonGroupSubgroup {
+	/**
+	 * Unique identifier for the subgroup
+	 */
+	id?: string;
+	/**
+	 * Label for the subgroup (for accessibility)
+	 */
+	label?: string;
+	/**
+	 * Array of button items in this subgroup
+	 */
+	items: BoButtonGroupItemProps[];
+	/**
+	 * Whether this subgroup is disabled
+	 */
+	disabled?: boolean;
 }
 
 /**
  * Props for individual button items within the group
  */
-export interface BoButtonGroupItemProps {
-	/** Unique identifier for the button */
+interface BoButtonGroupItemProps {
+	/**
+	 * Unique identifier for the button
+	 */
 	id?: string;
-	/** Text label to display on the button */
+	/**
+	 * Text label to display on the button
+	 */
 	label?: string;
-	/** Size of the button */
+	/**
+	 * Size of the button
+	 */
 	size?: BoSize;
-	/** Whether the button is in active state */
+	/**
+	 * Whether the button is in active state
+	 */
 	active?: boolean;
-	/** Whether the button is disabled */
+	/**
+	 * Whether the button is disabled
+	 */
 	disabled?: boolean;
-	/** Shape of the button */
+	/**
+	 * Shape of the button
+	 */
 	shape?: BoButtonGroupShape;
-	/** Color variant of the button */
+	/**
+	 * Color variant of the button
+	 */
 	variant?: BoButtonVariant;
-	/** Override the group's orientation for this button */
+	/**
+	 * Override the group's orientation for this button
+	 */
 	orientation?: BoButtonGroupOrientation;
-	/** Position information within the button group */
+	/**
+	 * Position information within the button group
+	 */
 	position?: ButtonGroupItemListPosition;
-	/** Icon to display before the label */
+	/**
+	 * Icon to display before the label
+	 */
 	prefixIcon?: Icon;
-	/** Icon to display after the label */
+	/**
+	 * Icon to display after the label
+	 */
 	suffixIcon?: Icon;
-	/** Custom accessible name for the button */
+	/**
+	 * Custom accessible name for the button
+	 */
 	ariaLabel?: string;
 }
 
-/**
- * Props for the button group component
- */
-export interface BoButtonGroupProps<T = Record<string, unknown>> {
-	/** Unique identifier for the group */
+interface BoButtonGroupProps<T = Record<string, unknown>> {
+	/**
+	 * Unique identifier for the group
+	 */
 	id?: string;
-	/** Color variant for all buttons in the group */
+	/**
+	 * Color variant for all buttons in the group
+	 */
 	variant?: BoButtonVariant;
-	/** Layout orientation of the buttons */
+	/**
+	 * Layout orientation of the buttons
+	 */
 	orientation?: BoButtonGroupOrientation;
-	/** Size for all buttons in the group */
+	/**
+	 * Size for all buttons in the group
+	 */
 	size?: BoSize;
-	/** Whether all buttons in the group are disabled */
+	/**
+	 * Whether all buttons in the group are disabled
+	 */
 	disabled?: boolean;
-	/** Shape for all buttons in the group */
+	/**
+	 * Shape for all buttons in the group
+	 */
 	shape?: BoButtonGroupShape;
-	/** Array of button items to display */
+	/**
+	 * Array of button items to display
+	 */
 	items?: T[];
-	/** The index of the active button in the group */
+	/**
+	 * Array of subgroups for logical grouping
+	 */
+	subgroups?: BoButtonGroupSubgroup[];
+	/**
+	 * The index of the active button in the group
+	 */
 	defaultActiveIndex?: number;
-	/** Custom accessible label for the button group */
+	/**
+	 * Custom accessible label for the button group
+	 */
 	ariaLabel?: string;
-	/** Whether multiple items can be selected at once */
+	/**
+	 * Whether multiple items can be selected at once
+	 */
 	multiSelect?: boolean;
 }
 ```
@@ -450,12 +513,12 @@ export interface BoButtonGroupProps<T = Record<string, unknown>> {
 			{ id: 'opt2', label: 'Option 2' },
 			{ id: 'opt3', label: 'Option 3' },
 		]"
-		@multi-select="handleMultiSelect"
+		@multiSelect="onMultiSelect"
 	/>
 </template>
 
 <script setup>
-const handleMultiSelect = (selectedIndices) => {
+const onMultiSelect = (selectedIndices) => {
 	console.log('Selected indices:', selectedIndices);
 };
 </script>
@@ -529,38 +592,6 @@ const handleMultiSelect = (selectedIndices) => {
 />
 ```
 
-## Accessibility
-
-The Button Group component includes comprehensive accessibility features:
-
-- **ARIA Attributes**: Proper `role="group"`, `aria-label`, and `aria-pressed` attributes
-- **Keyboard Navigation**: Full keyboard support with proper focus management
-- **Screen Reader Support**: Descriptive labels and hidden decorative icons
-- **Semantic HTML**: Uses proper `<button>` elements for all interactive items
-
-### Custom Accessibility Labels
-
-```vue
-<bo-button-group
-	aria-label="Document actions"
-	:items="[
-		{ id: 'save', prefixIcon: Icon.save, ariaLabel: 'Save document' },
-		{ id: 'print', prefixIcon: Icon.printer, ariaLabel: 'Print document' },
-	]"
-/>
-```
-
-## Dark Mode Support
-
-The Button Group component includes full dark mode support with automatic color adjustments:
-
-- **Text Colors**: Optimized contrast for both light and dark themes
-- **Background Colors**: Appropriate backgrounds for active and hover states
-- **Border Colors**: Consistent border styling across themes
-- **Hover Effects**: Smooth transitions that work in both modes
-
-Dark mode is automatically applied when the `dark` class is present on a parent element.
-
 ## Event Handling
 
 ```vue
@@ -568,8 +599,8 @@ Dark mode is automatically applied when the `dark` class is present on a parent 
 	<bo-button-group
 		:items="items"
 		:multi-select="isMultiSelect"
-		@select="handleSingleSelect"
-		@multi-select="handleMultiSelect"
+		@select="onSingleItemSelect"
+		@multiSelect="onMultiSelect"
 	/>
 </template>
 
@@ -577,23 +608,24 @@ Dark mode is automatically applied when the `dark` class is present on a parent 
 import { ref } from 'vue';
 
 const isMultiSelect = ref(false);
+
 const items = ref([
 	{ id: 'btn1', label: 'Button 1' },
 	{ id: 'btn2', label: 'Button 2' },
 	{ id: 'btn3', label: 'Button 3' },
 ]);
 
-const handleSingleSelect = (index) => {
+function onSingleItemSelect(index) {
 	console.log('Single select - Index:', index);
 	console.log('Selected item:', items.value[index]);
-};
+}
 
-const handleMultiSelect = (indices) => {
+function onMultiSelect(indices) {
 	console.log('Multi select - Indices:', indices);
 	console.log(
 		'Selected items:',
 		indices.map((i) => items.value[i]),
 	);
-};
+}
 </script>
 ```
