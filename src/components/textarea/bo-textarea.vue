@@ -65,8 +65,8 @@
 				:maxlength="maxLength"
 				:aria-labelledby="label ? `${id}-label` : undefined"
 				:aria-describedby="ariaDescribedBy"
-				:aria-invalid="error || invalidField ? 'true' : 'false'"
-				:aria-required="required ? 'true' : 'false'"
+				:aria-invalid="!!error || invalidField"
+				:aria-required="required"
 				class="w-full resize-none rounded-md border-none bg-transparent text-base font-normal text-neutral-800 transition-all duration-200 outline-none"
 				:class="[
 					containerPadding,

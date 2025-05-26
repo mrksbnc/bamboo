@@ -2,7 +2,7 @@
 	<button
 		:class="itemClasses"
 		:disabled="disabled"
-		:aria-pressed="active ? 'true' : 'false'"
+		:aria-pressed="active"
 		:aria-label="computedAriaLabel"
 		:data-testid="constructAttribute(id, 'button-group-item')"
 		@click="onSelect"
@@ -76,7 +76,7 @@ const { constructAttribute } = useAttributes();
 const BUTTON_GROUP_ITEM_STYLE = {
 	layout: {
 		container:
-			/*tw*/ 'bo-button-group-item flex items-center justify-center max-h-fit duration-60 transition-colors',
+			/*tw*/ 'bo-button-group-item flex items-center justify-center max-h-fit duration-60 transition-colors gap-2',
 		prefixIcon: /*tw*/ 'bo-button-group-item__prefix-icon',
 		suffixIcon: /*tw*/ 'bo-button-group-item__suffix-icon',
 	},
