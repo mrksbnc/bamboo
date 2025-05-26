@@ -1,7 +1,7 @@
 <template>
 	<div
-		:class="orientationClasses"
-		:data-testid="`bo-checkbox-group-${name}`"
+		:class="containerClasses"
+		:data-testid="constructAttribute(name, 'checkbox-group')"
 		role="group"
 	>
 		<slot></slot>
@@ -9,13 +9,15 @@
 </template>
 
 <script setup lang="ts">
+import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
 import { InjectKey } from '@/shared/injection-key.js';
 import { computed, provide, reactive, ref, watch } from 'vue';
 import { BoCheckboxGroupOrientation, type BoCheckboxGroupProps } from './bo-checkbox-group.js';
 
 const props = withDefaults(defineProps<BoCheckboxGroupProps>(), {
-	name: () => IdentityService.instance.getComponentId('bo-checkbox-group'),
+	name: () => IdentityService.instance.getComponentId(),
 	disabled: false,
 	orientation: BoCheckboxGroupOrientation.vertical,
 });
@@ -30,19 +32,28 @@ const modelValue = defineModel<string[]>({
 	required: false,
 });
 
+const { constructAttribute } = useAttributes();
+
 const selectedValues = ref<string[]>(
 	modelValue.value?.slice() ?? (props.defaultValue ? props.defaultValue.slice() : []),
 );
 const registeredItems = ref<Set<string>>(new Set());
 
-const orientationClasses = computed<string>(() => {
-	switch (props.orientation) {
-		case BoCheckboxGroupOrientation.horizontal:
-			return 'bo-checkbox-group bo-checkbox-group--horizontal flex flex-row gap-2';
-		case BoCheckboxGroupOrientation.vertical:
-		default:
-			return 'bo-checkbox-group bo-checkbox-group--vertical flex flex-col gap-2';
-	}
+const CHECKBOX_GROUP_STYLE = {
+	layout: {
+		container: /*tw*/ 'bo-checkbox-group flex gap-2',
+	},
+	orientation: {
+		[BoCheckboxGroupOrientation.horizontal]: /*tw*/ 'bo-checkbox-group--horizontal flex-row',
+		[BoCheckboxGroupOrientation.vertical]: /*tw*/ 'bo-checkbox-group--vertical flex-col',
+	},
+} as const;
+
+const containerClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		CHECKBOX_GROUP_STYLE.layout.container,
+		CHECKBOX_GROUP_STYLE.orientation[props.orientation],
+	);
 });
 
 function registerItem(value: string): void {

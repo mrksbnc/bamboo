@@ -1,16 +1,33 @@
+/**
+ * Props for the checkbox component
+ */
 export interface BoCheckboxProps {
-	/** The checked state of the checkbox (v-model) */
+	/**
+	 * The checked state of the checkbox (v-model)
+	 */
 	modelValue?: boolean;
-	/** Unique ID for the checkbox */
+	/**
+	 * Unique ID for the checkbox
+	 */
 	id?: string;
-	/** Name attribute for the checkbox */
+	/**
+	 * Name attribute for the checkbox
+	 */
 	name?: string;
-	/** Value attribute for the checkbox */
+	/**
+	 * Value attribute for the checkbox
+	 */
 	value?: string;
-	/** Whether the checkbox is disabled */
+	/**
+	 * Whether the checkbox is disabled
+	 */
 	disabled?: boolean;
-	/** Text label for the checkbox */
+	/**
+	 * Text label for the checkbox
+	 */
 	label?: string;
-	/** Description for the checkbox */
+	/**
+	 * Description for the checkbox
+	 */
 	description?: string;
 }
