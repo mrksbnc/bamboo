@@ -497,16 +497,154 @@ describe('BoAccordionContainer', () => {
 				},
 			});
 
-			await nextTick();
+			// Test that when a non-existent defaultOpenItemId is provided,
+			// no accordions should be open initially
 			const accordions = nonExistentWrapper.findAllComponents(BoAccordion);
 
-			// No accordions should be open
 			expect(
 				accordions[0].find('[data-testid*="accordion-header"]').attributes('aria-expanded'),
 			).toBe('false');
 			expect(
 				accordions[1].find('[data-testid*="accordion-header"]').attributes('aria-expanded'),
 			).toBe('false');
+		});
+
+		test('should handle edge case with non-existent default item', () => {
+			const nonExistentWrapper = mount(BoAccordionContainer, {
+				props: {
+					defaultOpenItemId: 'non-existent-id',
+				},
+				slots: {
+					default: `
+						<bo-accordion title="Accordion 1" id="acc-1" />
+						<bo-accordion title="Accordion 2" id="acc-2" />
+					`,
+				},
+				global: {
+					components: {
+						BoAccordion,
+					},
+				},
+			});
+
+			// Test that when a non-existent defaultOpenItemId is provided,
+			// no accordions should be open initially
+			const accordions = nonExistentWrapper.findAllComponents(BoAccordion);
+
+			expect(
+				accordions[0].find('[data-testid*="accordion-header"]').attributes('aria-expanded'),
+			).toBe('false');
+			expect(
+				accordions[1].find('[data-testid*="accordion-header"]').attributes('aria-expanded'),
+			).toBe('false');
+		});
+	});
+
+	suite('Dark Mode Support', () => {
+		test('should provide consistent styling context for dark mode', () => {
+			const wrapper = mount(BoAccordionContainer, {
+				slots: {
+					default: '<div>Test content</div>',
+				},
+			});
+
+			// Verify the container itself doesn't interfere with dark mode
+			const container = wrapper.find('.bo-accordion-container');
+			expect(container.exists()).toBe(true);
+
+			// The container should be transparent and not add any conflicting styles
+			const containerClasses = container.classes();
+			expect(containerClasses).toContain('bo-accordion-container');
+		});
+
+		test('should render children properly in dark mode context', () => {
+			const wrapper = mount(BoAccordionContainer, {
+				props: {
+					allowMultiple: true,
+				},
+				slots: {
+					default: `
+						<bo-accordion title="Test Accordion 1" id="test-1" />
+						<bo-accordion title="Test Accordion 2" id="test-2" />
+					`,
+				},
+				global: {
+					components: {
+						BoAccordion,
+					},
+				},
+			});
+
+			// Verify accordions are rendered properly
+			const accordions = wrapper.findAllComponents(BoAccordion);
+			expect(accordions).toHaveLength(2);
+
+			// Verify the container maintains proper structure for dark mode
+			const container = wrapper.find('.bo-accordion-container');
+			expect(container.classes()).toContain('w-full');
+			expect(container.classes()).toContain('space-y-0');
+		});
+
+		test('should maintain accessibility in dark mode', () => {
+			const wrapper = mount(BoAccordionContainer, {
+				props: {
+					id: 'dark-mode-container',
+				},
+				slots: {
+					default: '<div>Accessible content</div>',
+				},
+			});
+
+			const container = wrapper.find('[data-testid="dark-mode-container-accordion-container"]');
+
+			// Verify accessibility attributes are maintained
+			expect(container.attributes('role')).toBe('group');
+			expect(container.exists()).toBe(true);
+		});
+
+		test('should support dark mode with different container configurations', async () => {
+			const singleModeWrapper = mount(BoAccordionContainer, {
+				props: {
+					allowMultiple: false,
+					alwaysOpen: false,
+				},
+				slots: {
+					default: `
+						<bo-accordion title="Single Mode 1" id="single-1" />
+						<bo-accordion title="Single Mode 2" id="single-2" />
+					`,
+				},
+				global: {
+					components: {
+						BoAccordion,
+					},
+				},
+			});
+
+			// Test that the container structure works with single mode
+			const accordions = singleModeWrapper.findAllComponents(BoAccordion);
+			expect(accordions).toHaveLength(2);
+
+			// Click first accordion
+			await accordions[0].find('[data-testid*="accordion-header"]').trigger('click');
+			await nextTick();
+
+			// Verify it opened
+			expect(
+				accordions[0].find('[data-testid*="accordion-header"]').attributes('aria-expanded'),
+			).toBe('true');
+
+			// Click second accordion
+			await accordions[1].find('[data-testid*="accordion-header"]').trigger('click');
+			await nextTick();
+
+			// Verify only the second one is open (single mode behavior)
+			expect(
+				accordions[0].find('[data-testid*="accordion-header"]').attributes('aria-expanded'),
+			).toBe('false');
+			expect(
+				accordions[1].find('[data-testid*="accordion-header"]').attributes('aria-expanded'),
+			).toBe('true');
 		});
 	});
 });

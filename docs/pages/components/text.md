@@ -297,3 +297,71 @@ Line breaks and     spaces     are preserved, but text wraps if needed."
 <bo-text :clickable="true" value="Clickable Text (cursor pointer)" />
 <bo-text :selectable="true" value="Selectable Text (can be selected)" />
 ```
+
+## Dark Mode
+
+The text component automatically adapts to dark mode with enhanced contrast and proper color adjustments for optimal readability.
+
+<div class="flex flex-col gap-6 my-4 dark p-6 bg-gray-900 rounded-lg">
+	<div class="flex items-center gap-4">
+		<div class="w-24 text-sm text-gray-400">Colors</div>
+		<div class="flex flex-col gap-3">
+			<bo-text :color="BoTextColor.default" value="Default Color" />
+			<bo-text :color="BoTextColor.primary" value="Primary Color" />
+			<bo-text :color="BoTextColor.secondary" value="Secondary Color" />
+			<bo-text :color="BoTextColor.success" value="Success Color" />
+			<bo-text :color="BoTextColor.warning" value="Warning Color" />
+			<bo-text :color="BoTextColor.danger" value="Danger Color" />
+			<bo-text :color="BoTextColor.light" value="Light Color" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-24 text-sm text-gray-400">Sizes</div>
+		<div class="flex flex-col gap-3">
+			<bo-text :size="BoFontSize.xs" value="Extra Small Text (xs)" />
+			<bo-text :size="BoFontSize.sm" value="Small Text (sm)" />
+			<bo-text :size="BoFontSize.base" value="Base Text (base)" />
+			<bo-text :size="BoFontSize.lg" value="Large Text (lg)" />
+			<bo-text :size="BoFontSize.xl" value="Extra Large Text (xl)" />
+			<bo-text :size="BoFontSize['2xl']" value="2XL Text (2xl)" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-24 text-sm text-gray-400">Weights</div>
+		<div class="flex flex-col gap-3">
+			<bo-text :weight="BoFontWeight.light" value="Light Weight" />
+			<bo-text :weight="BoFontWeight.regular" value="Regular Weight" />
+			<bo-text :weight="BoFontWeight.medium" value="Medium Weight" />
+			<bo-text :weight="BoFontWeight.semibold" value="Semibold Weight" />
+			<bo-text :weight="BoFontWeight.bold" value="Bold Weight" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-24 text-sm text-gray-400">Families</div>
+		<div class="flex flex-col gap-3">
+			<bo-text :font-family="BoFontFamily.sans" value="Sans-serif Font" />
+			<bo-text :font-family="BoFontFamily.serif" value="Serif Font" />
+			<bo-text :font-family="BoFontFamily.mono" value="Monospace Font" />
+		</div>
+	</div>
+</div>
+
+```vue
+<div class="dark">
+	<!-- Colors in dark mode -->
+	<bo-text :color="BoTextColor.default" value="Default Color" />
+	<bo-text :color="BoTextColor.primary" value="Primary Color" />
+	<bo-text :color="BoTextColor.secondary" value="Secondary Color" />
+	<bo-text :color="BoTextColor.success" value="Success Color" />
+	<bo-text :color="BoTextColor.warning" value="Warning Color" />
+	<bo-text :color="BoTextColor.danger" value="Danger Color" />
+	
+	<!-- Sizes in dark mode -->
+	<bo-text :size="BoFontSize.lg" value="Large Text" />
+	<bo-text :size="BoFontSize.xl" value="Extra Large Text" />
+	
+	<!-- Weights in dark mode -->
+	<bo-text :weight="BoFontWeight.medium" value="Medium Weight" />
+	<bo-text :weight="BoFontWeight.bold" value="Bold Weight" />
+</div>
+```

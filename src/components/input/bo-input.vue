@@ -172,7 +172,7 @@ const INPUT_STYLE = {
 		errorContainer: /*tw*/ 'flex items-center gap-1',
 		errorIcon: /*tw*/ 'mr-1',
 		input:
-			/*tw*/ 'flex w-full items-center justify-start rounded-md border bg-white shadow-[inset_-2px_-2px_6px_0px_rgba(245,245,245,0.25),0px_1px_2px_0px_rgba(16,16,16,0.05)] transition-all duration-200 dark:border-gray-700 dark:bg-gray-800 dark:shadow-[inset_-2px_-2px_6px_0px_rgba(0,0,0,0.25),0px_1px_2px_0px_rgba(0,0,0,0.05)]',
+			/*tw*/ 'flex w-full items-center justify-start rounded-md border bg-white text-neutral-900 placeholder:text-neutral-400 shadow-[inset_-2px_-2px_6px_0px_rgba(245,245,245,0.25),0px_1px_2px_0px_rgba(16,16,16,0.05)] transition-all duration-200 dark:border-gray-600 dark:bg-gray-800 dark:text-neutral-100 dark:placeholder:text-neutral-500 dark:shadow-[inset_-2px_-2px_6px_0px_rgba(0,0,0,0.25),0px_1px_2px_0px_rgba(0,0,0,0.05)]',
 	},
 	size: {
 		[BoInputSize.small]: /*tw*/ 'h-9 py-1.5 px-2 text-sm',
@@ -184,16 +184,16 @@ const INPUT_STYLE = {
 		suffixIcon: /*tw*/ 'pr-8',
 	},
 	state: {
-		default: /*tw*/ 'border-neutral-300 dark:border-gray-700',
-		error: /*tw*/ 'border-red-500 ring-red-500 dark:border-red-600 dark:ring-red-600',
-		success: /*tw*/ 'border-green-500 ring-green-500 dark:border-green-600 dark:ring-green-600',
-		warning: /*tw*/ 'border-yellow-500 ring-yellow-500 dark:border-yellow-600 dark:ring-yellow-600',
+		default: /*tw*/ 'border-neutral-300 dark:border-gray-600',
+		error: /*tw*/ 'border-red-500 ring-red-500 dark:border-red-400 dark:ring-red-400',
+		success: /*tw*/ 'border-green-500 ring-green-500 dark:border-green-400 dark:ring-green-400',
+		warning: /*tw*/ 'border-yellow-500 ring-yellow-500 dark:border-yellow-400 dark:ring-yellow-400',
 		focus:
-			/*tw*/ 'focus:border-blue-500 focus:ring-blue-500 dark:focus:border-blue-600 dark:focus:ring-blue-600',
+			/*tw*/ 'focus:border-blue-500 focus:ring-blue-500 dark:focus:border-blue-400 dark:focus:ring-blue-400',
 		disabled:
-			/*tw*/ 'disabled:border-neutral-200 disabled:bg-neutral-50 disabled:text-neutral-500 dark:disabled:border-gray-800 dark:disabled:bg-gray-900 dark:disabled:text-gray-400 disabled:cursor-not-allowed',
+			/*tw*/ 'disabled:border-neutral-200 disabled:bg-neutral-50 disabled:text-neutral-500 dark:disabled:border-gray-700 dark:disabled:bg-gray-900 dark:disabled:text-gray-500 disabled:cursor-not-allowed',
 		readonly:
-			/*tw*/ 'cursor-not-allowed border-neutral-200 bg-neutral-100 dark:border-gray-800 dark:bg-gray-900',
+			/*tw*/ 'cursor-not-allowed border-neutral-200 bg-neutral-100 dark:border-gray-700 dark:bg-gray-900',
 	},
 } as const;
 

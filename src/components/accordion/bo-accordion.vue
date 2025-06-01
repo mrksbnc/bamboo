@@ -102,15 +102,17 @@ const ACCORDION_STYLE = {
 		bodyBackground: /*tw*/ 'bg-white dark:bg-neutral-900',
 		contentText: /*tw*/ 'text-neutral-800 dark:text-neutral-100 text-sm sm:text-base',
 		border: /*tw*/ 'border-b border-neutral-200 dark:border-neutral-700 last:border-b-0',
+		shadow: /*tw*/ 'shadow-sm dark:shadow-neutral-900/50',
 	},
 	interactive: {
 		header:
-			/*tw*/ 'cursor-pointer transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-700',
+			/*tw*/ 'cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700',
 		disabled: /*tw*/ 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
 	},
 	animation: {
-		icon: /*tw*/ 'bo-accordion__collapse-icon transition-transform duration-200',
-		body: /*tw*/ 'transition-all duration-300 ',
+		icon: /*tw*/ 'bo-accordion__collapse-icon transition-transform duration-200 ease-in-out',
+		body: /*tw*/ 'transition-all duration-300 ease-in-out',
+		container: /*tw*/ 'transition-shadow duration-200',
 	},
 } as const;
 
@@ -122,6 +124,8 @@ const containerClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
 		ACCORDION_STYLE.layout.container,
 		ACCORDION_STYLE.appearance.border,
+		ACCORDION_STYLE.appearance.shadow,
+		ACCORDION_STYLE.animation.container,
 	);
 });
 

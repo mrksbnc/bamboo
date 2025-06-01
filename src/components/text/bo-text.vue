@@ -25,7 +25,7 @@ import {
 const props = withDefaults(defineProps<BoTextProps>(), {
 	id: () => IdentityService.instance.getComponentId('bo-text'),
 	size: () => BoFontSize.base,
-	color: () => BoTextColor.current,
+	color: () => BoTextColor.default,
 	textAlign: () => BoTextAlign.left,
 	weight: () => BoFontWeight.regular,
 	fontFamily: () => BoFontFamily.sans,
@@ -135,17 +135,17 @@ const fontColor = computed<string>(() => {
 		case BoTextColor.inherit:
 			return /*tw*/ 'text-inherit';
 		case BoTextColor.primary:
-			return /*tw*/ 'text-blue-600 dark:text-blue-500';
+			return /*tw*/ 'text-blue-600 dark:text-blue-400';
 		case BoTextColor.secondary:
-			return /*tw*/ 'text-neutral-500 dark:text-neutral-300';
+			return /*tw*/ 'text-neutral-600 dark:text-neutral-400';
 		case BoTextColor.success:
-			return /*tw*/ 'text-green-600 dark:text-green-500';
+			return /*tw*/ 'text-green-600 dark:text-green-400';
 		case BoTextColor.warning:
-			return /*tw*/ 'text-yellow-600 dark:text-yellow-500';
+			return /*tw*/ 'text-yellow-600 dark:text-yellow-400';
 		case BoTextColor.danger:
-			return /*tw*/ 'text-red-600 dark:text-red-500';
+			return /*tw*/ 'text-red-600 dark:text-red-400';
 		case BoTextColor.light:
-			return /*tw*/ 'text-white';
+			return /*tw*/ 'text-neutral-200 dark:text-neutral-300';
 		case BoTextColor.current:
 		default:
 			return /*tw*/ 'text-current';

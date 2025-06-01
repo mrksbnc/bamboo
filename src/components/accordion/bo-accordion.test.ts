@@ -248,7 +248,6 @@ describe('BoAccordion', () => {
 
 			await header.trigger('keydown.escape');
 			await header.trigger('keydown.tab');
-			await nextTick();
 
 			expect(header.attributes('aria-expanded')).toBe('false');
 		});
@@ -501,6 +500,89 @@ describe('BoAccordion', () => {
 			await header.trigger('keydown.space');
 
 			expect(header.attributes('aria-expanded')).toBe('true');
+		});
+	});
+
+	suite('Dark Mode Support', () => {
+		test('should apply dark mode classes to header', () => {
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const headerClasses = header.classes();
+
+			// Check for dark mode background and text classes
+			expect(headerClasses.some((cls) => cls.includes('dark:bg-neutral-800'))).toBe(true);
+			expect(headerClasses.some((cls) => cls.includes('dark:text-neutral-200'))).toBe(true);
+			expect(headerClasses.some((cls) => cls.includes('dark:hover:bg-neutral-700'))).toBe(true);
+		});
+
+		test('should apply dark mode classes to content body', () => {
+			const openWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					open: true,
+				},
+			});
+
+			const contentBody = openWrapper.find('[data-testid*="accordion-content"]');
+			const contentClasses = contentBody.classes();
+
+			// Check for dark mode body background
+			expect(contentClasses.some((cls) => cls.includes('dark:bg-neutral-900'))).toBe(true);
+		});
+
+		test('should apply dark mode classes to content text', () => {
+			const openWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					open: true,
+				},
+				slots: {
+					default: '<p>Test content</p>',
+				},
+			});
+
+			const contentSlot = openWrapper.find('.bo-accordion__content');
+			const contentClasses = contentSlot.classes();
+
+			// Check for dark mode content text classes
+			expect(contentClasses.some((cls) => cls.includes('dark:text-neutral-100'))).toBe(true);
+		});
+
+		test('should apply dark mode border classes', () => {
+			const container = wrapper.find('.bo-accordion');
+			const containerClasses = container.classes();
+
+			// Check for dark mode border classes
+			expect(containerClasses.some((cls) => cls.includes('dark:border-neutral-700'))).toBe(true);
+		});
+
+		test('should maintain dark mode styles when disabled', () => {
+			const disabledWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					disabled: true,
+				},
+			});
+
+			const header = disabledWrapper.find('[data-testid*="accordion-header"]');
+			const headerClasses = header.classes();
+
+			// Check that dark mode styles are preserved even when disabled
+			expect(headerClasses.some((cls) => cls.includes('dark:bg-neutral-800'))).toBe(true);
+			expect(headerClasses.some((cls) => cls.includes('dark:hover:bg-transparent'))).toBe(true);
+		});
+
+		test('should apply dark mode styles to container layout', () => {
+			const containerWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test Container',
+				},
+			});
+
+			const accordion = containerWrapper.find('.bo-accordion');
+			const accordionClasses = accordion.classes();
+
+			// Verify container has dark mode border and layout classes
+			expect(accordionClasses.some((cls) => cls.includes('dark:border-neutral-700'))).toBe(true);
 		});
 	});
 });

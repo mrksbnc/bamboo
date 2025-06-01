@@ -68,6 +68,29 @@ export default defineConfig({
 				src: 'https://cdn.tailwindcss.com',
 			},
 		],
+		[
+			'script',
+			{},
+			`
+			// Set initial dark mode class based on VitePress theme
+			if (typeof window !== 'undefined') {
+				const setDarkMode = () => {
+					const isDark = document.documentElement.classList.contains('dark');
+					document.documentElement.classList.toggle('dark', isDark);
+				};
+
+				// Set initial state
+				setDarkMode();
+
+				// Listen for theme changes
+				const observer = new MutationObserver(setDarkMode);
+				observer.observe(document.documentElement, {
+					attributes: true,
+					attributeFilter: ['class']
+				});
+			}
+			`,
+		],
 	],
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config

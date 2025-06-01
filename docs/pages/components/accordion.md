@@ -6,7 +6,7 @@ import BoAccordionContainer from '@/components/accordion/bo-accordion-container.
 
 # Accordion
 
-The Accordion component is a collapsible content panel that helps organize and present information in expandable sections. This pattern is especially useful when you want to provide users with the ability to show and hide related content, saving space and reducing visual clutter. For managing multiple accordion items with coordinated behavior, use the `BoAccordionContainer` component.
+The Accordion component is a collapsible content panel that helps organize and present information in expandable sections. This pattern is especially useful when you want to provide users with the ability to show and hide related content, saving space and reducing visual clutter. The component includes full dark mode support and seamless theming. For managing multiple accordion items with coordinated behavior, use the `BoAccordionContainer` component.
 
 ```js
 import { BoAccordion, BoAccordionContainer } from '@mrksbnc/bamboo';
@@ -354,6 +354,70 @@ import { BoAccordionContainer, BoAccordion } from '@mrksbnc/bamboo';
 	</div>
 </bo-accordion>
 ```
+
+## Dark Mode
+
+The accordion component automatically adapts to dark mode with optimized colors and contrast for better readability and visual hierarchy.
+
+<div class="flex flex-col gap-4 my-4 dark p-6 bg-gray-900 rounded-lg">
+	<div class="text-gray-300 text-sm mb-2">Dark Mode Examples:</div>
+	
+<bo-accordion title="Dark Mode Accordion">
+	<div class="space-y-3">
+		<p>This accordion automatically adapts to dark mode with proper contrast and colors.
+		</p>
+		<p>The header background becomes darker while maintaining good readability for the title text.
+		</p>
+	</div>
+	</bo-accordion>
+	<bo-accordion title="With Prefix Icon" :prefix-icon="Icon.star" :open="true">
+		<div class="space-y-3">
+			<p>Icons and text maintain proper contrast in dark mode.</p>
+			<p>The content area uses a darker background while keeping text readable.</p>
+		</div>
+	</bo-accordion>
+	<bo-accordion title="Custom Toggle Icon" :custom-toggle-icon="Icon.plus">
+		<p>All interactive elements work seamlessly in dark mode with hover states adapted for the darker theme.</p>
+	</bo-accordion>
+    <bo-accordion-container :allow-multiple="true">
+    	<bo-accordion title="Container Group - Item 1" :open="true">
+    		<p>Accordion containers maintain visual consistency in dark mode.</p>
+    	</bo-accordion>
+    	<bo-accordion title="Container Group - Item 2">
+    		<p>Border colors and spacing are optimized for dark backgrounds.</p>
+    	</bo-accordion>
+    </bo-accordion-container>
+</div>
+
+```vue
+<div class="dark">
+	<bo-accordion title="Dark Mode Accordion">
+		<p>Content automatically adapts to dark mode styling.</p>
+	</bo-accordion>
+	
+	<bo-accordion title="With Prefix Icon" :prefix-icon="Icon.star">
+		<p>Icons and text maintain proper contrast in dark mode.</p>
+	</bo-accordion>
+	
+	<bo-accordion-container :allow-multiple="true">
+		<bo-accordion title="Container Item 1">
+			<p>Container groups work seamlessly in dark mode.</p>
+		</bo-accordion>
+		<bo-accordion title="Container Item 2">
+			<p>Consistent styling across all variants.</p>
+		</bo-accordion>
+	</bo-accordion-container>
+</div>
+```
+
+### Dark Mode Features
+
+- **Automatic theming**: Headers use neutral-50/neutral-800 backgrounds
+- **Optimized contrast**: Text colors adapt from neutral-700 to neutral-200
+- **Content areas**: Body backgrounds transition from white to neutral-900
+- **Interactive states**: Hover effects use neutral-100/neutral-700
+- **Border adaptation**: Borders change from neutral-200 to neutral-700
+- **Icon visibility**: All icons maintain proper contrast ratios
 
 ## Event Handling
 
