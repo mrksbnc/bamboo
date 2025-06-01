@@ -24,7 +24,7 @@ function startLoading() {
 
 # Progress Bar
 
-Progress Bar is a component that displays the progress of a task or operation.
+A progress bar component that displays the progress of a task or operation. It can be used for various purposes, such as showing the progress of a file upload or displaying the progress of a long-running operation.
 
 ```js
 import { BoProgressBar } from '@mrksbnc/bamboo';

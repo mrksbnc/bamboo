@@ -6,7 +6,7 @@ import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo-loader';
 
 # Loading Spinner
 
-A customizable spinner component for indicating loading or processing states.
+A Loading Spinner is a component that displays a loading animation with a spinning effect. It can be used for various purposes, such as indicating that a task is in progress or displaying a loading state.
 
 ```js
 import { BoLoadingSpinner } from '@mrksbnc/bamboo';

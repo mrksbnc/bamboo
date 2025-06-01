@@ -6,7 +6,7 @@ import { BoSize } from '@/shared'
 
 # BoPopover
 
-A flexible popover component that displays rich content in a floating container triggered by user interaction.
+A popover is a floating container that displays rich content in a trigger element. It can be used for various purposes, such as displaying additional information or actions related to a specific element.
 
 ```js
 import { BoPopover } from '@mrksbnc/bamboo';

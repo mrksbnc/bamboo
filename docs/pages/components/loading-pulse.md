@@ -6,7 +6,7 @@ import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo-loader';
 
 # Loading Pulse
 
-A pulsating loader component for indicating loading or processing states with a different animation style.
+A loading pulse is a component that displays a loading animation with a pulsing effect. It can be used for various purposes, such as indicating that a task is in progress or displaying a loading state.
 
 ```js
 import { BoLoadingPulse } from '@mrksbnc/bamboo';

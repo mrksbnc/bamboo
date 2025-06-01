@@ -75,7 +75,7 @@ function openSlotModal() {
 
 # Modal
 
-A customizable modal dialog component for displaying content that requires user interaction.
+A modal is a dialog box that appears on top of the main content and is used to display important information or actions. It can be used for various purposes, such as displaying a form, prompting the user for input, or displaying a message.
 
 ```js
 import { BoModal } from '@mrksbnc/bamboo';

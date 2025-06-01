@@ -6,7 +6,7 @@ import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/bo-loader';
 
 # Loading Dots
 
-A loading indicator component that displays three bouncing dots with customizable appearance and text options. Supports dark mode and various styling options.
+A loading indicator component that displays three bouncing dots with customizable appearance and text options. It can be used for various purposes, such as indicating that a task is in progress or displaying a loading state.
 
 ```js
 import { BoLoadingDots } from '@mrksbnc/bamboo';

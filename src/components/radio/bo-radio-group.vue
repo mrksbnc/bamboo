@@ -1,15 +1,19 @@
 <template>
 	<div
-		:class="orientationClasses"
-		:data-testid="`bo-radio-group-${name}`"
+		:class="groupClasses"
+		:data-testid="constructAttribute(name, 'radio-group')"
 		role="radiogroup"
+		:aria-labelledby="ariaLabelledBy"
+		:aria-describedby="ariaDescribedBy"
 	>
 		<slot></slot>
 	</div>
 </template>
 
 <script setup lang="ts">
+import { useAttributes } from '@/composables/use-attributes.js';
 import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
 import { InjectKey } from '@/shared/injection-key.js';
 import { computed, provide, reactive, ref } from 'vue';
 import { BoRadioGroupOrientation, type BoRadioGroupProps } from './bo-radio-group.js';
@@ -25,6 +29,8 @@ const emit = defineEmits<{
 	(e: 'change', value: string): void;
 }>();
 
+const { constructAttribute } = useAttributes();
+
 const modelValue = defineModel<string>({
 	default: '',
 	required: false,
@@ -33,14 +39,29 @@ const modelValue = defineModel<string>({
 const selectedValue = ref<string>(modelValue.value ?? props.defaultValue);
 const registeredItems = ref<Set<string>>(new Set());
 
-const orientationClasses = computed<string>(() => {
-	switch (props.orientation) {
-		case BoRadioGroupOrientation.horizontal:
-			return 'bo-radio-group bo-radio-group--horizontal flex flex-row gap-2';
-		case BoRadioGroupOrientation.vertical:
-		default:
-			return 'bo-radio-group bo-radio-group--vertical flex flex-col gap-2';
-	}
+const RADIO_GROUP_STYLE = {
+	layout: {
+		base: /*tw*/ 'bo-radio-group',
+	},
+	orientation: {
+		[BoRadioGroupOrientation.horizontal]: /*tw*/ 'bo-radio-group--horizontal flex flex-row gap-2',
+		[BoRadioGroupOrientation.vertical]: /*tw*/ 'bo-radio-group--vertical flex flex-col gap-2',
+	},
+} as const;
+
+const groupClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		RADIO_GROUP_STYLE.layout.base,
+		RADIO_GROUP_STYLE.orientation[props.orientation],
+	);
+});
+
+const ariaLabelledBy = computed<string | undefined>(() => {
+	return props.ariaLabelledBy;
+});
+
+const ariaDescribedBy = computed<string | undefined>(() => {
+	return props.ariaDescribedBy;
 });
 
 function registerItem(value: string, isDefault: boolean): void {
