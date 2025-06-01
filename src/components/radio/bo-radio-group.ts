@@ -12,6 +12,10 @@ export interface BoRadioGroupProps {
 	defaultValue?: string;
 	/** The orientation of the radio buttons in the group */
 	orientation?: BoRadioGroupOrientation;
+	/** ARIA labelledby attribute for accessibility */
+	ariaLabelledBy?: string;
+	/** ARIA describedby attribute for accessibility */
+	ariaDescribedBy?: string;
 }
 
 export interface BoRadioGroup {
