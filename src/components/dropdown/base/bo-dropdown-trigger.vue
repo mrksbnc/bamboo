@@ -1,11 +1,11 @@
 <template>
 	<button
-		:class="buttonClasses"
-		:disabled="disabled"
-		:data-testid="constructAttribute(id, 'dropdown-trigger')"
-		:aria-expanded="isOpen"
-		:aria-haspopup="true"
 		role="button"
+		:disabled="disabled"
+		:aria-haspopup="true"
+		:aria-expanded="isOpen"
+		:class="buttonClasses"
+		:data-testid="constructAttribute(id, 'dropdown-trigger')"
 		@click="onTriggerClick"
 		@keydown="onKeyDown"
 	>
@@ -93,7 +93,7 @@ const DROPDOWN_TRIGGER_STYLE = {
 	},
 	state: {
 		disabled: /*tw*/ 'disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none',
-		open: /*tw*/ 'bo-dropdown-trigger--open border-blue-500 ring-2 ring-blue-500',
+		open: /*tw*/ 'bo-dropdown-trigger--open border-blue-500',
 		iconRotated: /*tw*/ 'rotate-180',
 	},
 } as const;
@@ -122,11 +122,11 @@ const iconSize = computed<BoSize>(() => {
 
 const buttonClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
-		DROPDOWN_TRIGGER_STYLE.layout.container,
-		DROPDOWN_TRIGGER_STYLE.size.container[props.size],
-		DROPDOWN_TRIGGER_STYLE.appearance.default,
-		DROPDOWN_TRIGGER_STYLE.appearance.hover,
 		DROPDOWN_TRIGGER_STYLE.state.disabled,
+		DROPDOWN_TRIGGER_STYLE.layout.container,
+		DROPDOWN_TRIGGER_STYLE.appearance.hover,
+		DROPDOWN_TRIGGER_STYLE.appearance.default,
+		DROPDOWN_TRIGGER_STYLE.size.container[props.size],
 		props.isOpen ? DROPDOWN_TRIGGER_STYLE.state.open : '',
 	);
 });

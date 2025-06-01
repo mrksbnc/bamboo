@@ -4,6 +4,7 @@ export * from '@/components/badge/index.js';
 export * from '@/components/button-group/index.js';
 export * from '@/components/button/index.js';
 export * from '@/components/checkbox/index.js';
+export * from '@/components/dropdown/index.js';
 export * from '@/components/icon/index.js';
 export * from '@/components/input/index.js';
 export * from '@/components/loading-pulse/index.js';

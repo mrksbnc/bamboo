@@ -97,7 +97,7 @@ describe('BoDropdown', () => {
 			const trigger = wrapper.find('[data-testid*="dropdown-trigger"]');
 			await trigger.trigger('click');
 
-			const items = wrapper.findAll('[data-testid*="dropdown-item"]');
+			const items = wrapper.findAll('[data-testid$="-dropdown-item"]');
 			expect(items).toHaveLength(4);
 		});
 
@@ -132,7 +132,7 @@ describe('BoDropdown', () => {
 			const trigger = wrapper.find('[data-testid*="dropdown-trigger"]');
 			await trigger.trigger('click');
 
-			const items = wrapper.findAll('[data-testid*="dropdown-item"]');
+			const items = wrapper.findAll('[data-testid$="-dropdown-item"]');
 			const disabledItem = items[2]; // Item 3 is disabled
 			expect(disabledItem.attributes('aria-disabled')).toBe('true');
 			expect(disabledItem.attributes('tabindex')).toBe('-1');
@@ -144,7 +144,7 @@ describe('BoDropdown', () => {
 			const trigger = wrapper.find('[data-testid*="dropdown-trigger"]');
 			await trigger.trigger('click');
 
-			const items = wrapper.findAll('[data-testid*="dropdown-item"]');
+			const items = wrapper.findAll('[data-testid$="-dropdown-item"]');
 			await items[0].trigger('click');
 
 			const events = wrapper.emitted('item-select');
@@ -156,7 +156,7 @@ describe('BoDropdown', () => {
 			const trigger = wrapper.find('[data-testid*="dropdown-trigger"]');
 			await trigger.trigger('click');
 
-			const items = wrapper.findAll('[data-testid*="dropdown-item"]');
+			const items = wrapper.findAll('[data-testid$="-dropdown-item"]');
 			await items[0].trigger('click');
 
 			// Check that the trigger text has been updated
@@ -170,7 +170,7 @@ describe('BoDropdown', () => {
 			const trigger = wrapper.find('[data-testid*="dropdown-trigger"]');
 			await trigger.trigger('click');
 
-			const items = wrapper.findAll('[data-testid*="dropdown-item"]');
+			const items = wrapper.findAll('[data-testid$="-dropdown-item"]');
 			await items[0].trigger('click');
 			await nextTick();
 
@@ -188,7 +188,7 @@ describe('BoDropdown', () => {
 			const trigger = noCloseWrapper.find('[data-testid*="dropdown-trigger"]');
 			await trigger.trigger('click');
 
-			const items = noCloseWrapper.findAll('[data-testid*="dropdown-item"]');
+			const items = noCloseWrapper.findAll('[data-testid$="-dropdown-item"]');
 			await items[0].trigger('click');
 			await nextTick();
 
@@ -199,7 +199,7 @@ describe('BoDropdown', () => {
 			const trigger = wrapper.find('[data-testid*="dropdown-trigger"]');
 			await trigger.trigger('click');
 
-			const items = wrapper.findAll('[data-testid*="dropdown-item"]');
+			const items = wrapper.findAll('[data-testid$="-dropdown-item"]');
 			await items[2].trigger('click'); // Disabled item
 
 			expect(wrapper.emitted('item-select')).toBeFalsy();
@@ -585,7 +585,7 @@ describe('BoDropdown', () => {
 			const trigger = noIdWrapper.find('[data-testid*="dropdown-trigger"]');
 			await trigger.trigger('click');
 
-			expect(noIdWrapper.findAll('[data-testid*="dropdown-item"]')).toHaveLength(2);
+			expect(noIdWrapper.findAll('[data-testid$="-dropdown-item"]')).toHaveLength(2);
 		});
 
 		test('should generate unique IDs', () => {

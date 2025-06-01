@@ -1,10 +1,10 @@
 <template>
 	<div
+		role="combobox"
+		:aria-label="ariaLabel"
+		:aria-expanded="showDropdown"
 		:class="containerClasses"
 		:data-testid="constructAttribute(id, 'dropdown')"
-		role="combobox"
-		:aria-expanded="showDropdown"
-		:aria-label="ariaLabel"
 		@keydown="onKeyDown"
 	>
 		<slot
@@ -12,9 +12,9 @@
 			v-bind="{ onDropdownToggle }"
 		>
 			<bo-dropdown-trigger
+				:size="size"
 				:label="triggerLabel"
 				:disabled="disabled"
-				:size="size"
 				:is-open="showDropdown"
 				:trigger-icon="props.triggerIcon"
 				:data-testid="constructAttribute(id, 'dropdown-trigger')"
@@ -32,9 +32,9 @@
 		>
 			<div
 				v-if="showDropdown"
+				role="menu"
 				ref="dropdownContentRef"
 				:class="contentClasses"
-				role="menu"
 				:data-testid="constructAttribute(id, 'dropdown-content')"
 				@keydown="onMenuKeyDown"
 			>
@@ -47,10 +47,10 @@
 							v-for="(item, index) in items"
 							:key="item.id"
 							:id="item.id"
-							:label="item.label"
-							:description="item.description"
 							:icon="item.icon"
+							:label="item.label"
 							:disabled="item.disabled"
+							:description="item.description"
 							:ref="(el) => setItemRef(el, index)"
 							@select="onDropdownItemSelect"
 						/>
@@ -104,10 +104,10 @@ const DROPDOWN_STYLE = {
 	},
 	size: {
 		[BoSize.extra_small]: /*tw*/ 'bo-dropdown--extra-small min-w-[120px]',
-		[BoSize.small]: /*tw*/ 'bo-dropdown--small min-w-[140px]',
-		[BoSize.default]: /*tw*/ 'bo-dropdown--default min-w-[160px]',
-		[BoSize.large]: /*tw*/ 'bo-dropdown--large min-w-[200px]',
-		[BoSize.extra_large]: /*tw*/ 'bo-dropdown--extra-large min-w-[240px]',
+		[BoSize.small]: /*tw*/ 'bo-dropdown--small min-w-[160px]',
+		[BoSize.default]: /*tw*/ 'bo-dropdown--default min-w-[200px]',
+		[BoSize.large]: /*tw*/ 'bo-dropdown--large min-w-[240px]',
+		[BoSize.extra_large]: /*tw*/ 'bo-dropdown--extra-large min-w-[280px]',
 	},
 	state: {
 		disabled: /*tw*/ 'bo-dropdown--disabled opacity-50 cursor-not-allowed',
@@ -182,12 +182,17 @@ function focusItem(index: number): void {
 }
 
 function onKeyDown(event: KeyboardEvent): void {
+	if (props.disabled) {
+		return;
+	}
+
 	if (event.key === 'Escape') {
 		event.preventDefault();
 		showDropdown.value = false;
 		emit('update:open', false);
 	} else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
 		event.preventDefault();
+
 		if (!showDropdown.value) {
 			showDropdown.value = true;
 			emit('update:open', true);
@@ -296,9 +301,9 @@ onClickOutside(dropdownContentRef, () => {
 });
 
 defineExpose({
-	onDropdownToggle,
 	showDropdown,
 	triggerLabel,
 	focusedItemIndex,
+	onDropdownToggle,
 });
 </script>

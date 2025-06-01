@@ -1,11 +1,11 @@
 <template>
 	<div
+		role="menuitem"
+		:aria-disabled="disabled"
+		:tabindex="disabled ? -1 : 0"
 		:class="itemClasses"
 		:data-testid="constructAttribute(id, 'dropdown-item')"
-		role="menuitem"
-		:tabindex="disabled ? -1 : 0"
-		:aria-disabled="disabled"
-		@click="onItemSelect(id)"
+		@click="onItemSelect"
 		@keydown="onKeyDown"
 	>
 		<bo-icon
@@ -85,11 +85,11 @@ const itemClasses = computed<string>(() => {
 	);
 });
 
-function onItemSelect(id: string): void {
+function onItemSelect(): void {
 	if (props.disabled) {
 		return;
 	}
-	emit('select', id);
+	emit('select', props.id!);
 }
 
 function onKeyDown(event: KeyboardEvent): void {
@@ -99,7 +99,7 @@ function onKeyDown(event: KeyboardEvent): void {
 
 	if (event.key === 'Enter' || event.key === ' ') {
 		event.preventDefault();
-		onItemSelect(props.id!);
+		onItemSelect();
 	}
 }
 </script>
