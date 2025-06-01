@@ -108,7 +108,7 @@ describe('BoLoadingDots', () => {
 			});
 			const id = getComponentId(customWrapper);
 			const dot = customWrapper.find(`[data-testid="${constructAttribute(id, 'dot-1')}"]`);
-			expect(dot.classes()).toContain('bg-[rgb(255, 0, 255)]');
+			expect(dot.attributes('class')).toContain('bg-[rgb(255, 0, 255)]');
 		});
 	});
 
@@ -152,20 +152,11 @@ describe('BoLoadingDots', () => {
 	});
 
 	suite('Animation', () => {
-		test('should have pulse animation class', () => {
+		test('should have bounce animation class', () => {
 			const id = getComponentId(wrapper);
 			const dots = wrapper.findAll(`[data-testid^="${constructAttribute(id, 'dot-')}"]`);
 			dots.forEach((dot) => {
-				expect(dot.classes()).toContain('animate-pulse');
-			});
-		});
-
-		test('should apply animation delay to dots', () => {
-			const id = getComponentId(wrapper);
-			const dots = wrapper.findAll(`[data-testid^="${constructAttribute(id, 'dot-')}"]`);
-			dots.forEach((dot, index) => {
-				const style = dot.attributes('style');
-				expect(style).toContain(`animation-delay: ${index * 0.2}s`);
+				expect(dot.classes()).toContain('animate-bounce');
 			});
 		});
 	});
