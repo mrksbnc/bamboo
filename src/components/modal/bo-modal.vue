@@ -112,12 +112,11 @@ import BoIcon from '@/components/icon/bo-icon.vue';
 import { BoFontSize, BoFontWeight, BoTextColor } from '@/components/text/bo-text.js';
 import BoText from '@/components/text/bo-text.vue';
 import { useAttributes } from '@/composables/use-attributes';
-import { useFocusTrap } from '@/composables/use-focus-trap';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { useEventListener } from '@vueuse/core';
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import { BoModalSize, FooterButtonOrientation, type BoModalProps } from './bo-modal.js';
 
 const props = withDefaults(defineProps<BoModalProps>(), {
@@ -135,7 +134,7 @@ const emit = defineEmits<{
 }>();
 
 const { constructAttribute } = useAttributes();
-const { activate, deactivate } = useFocusTrap();
+
 const modalRef = ref<HTMLElement | null>(null);
 
 const MODAL_STYLE = {
@@ -184,28 +183,4 @@ useEventListener(document, 'keydown', (e: KeyboardEvent) => {
 		onClose();
 	}
 });
-
-watch(
-	() => props.isOpen,
-	(isOpen) => {
-		if (isOpen && modalRef.value) {
-			const siblings = document.body.children;
-
-			Array.from(siblings).forEach((sibling) => {
-				if (sibling !== modalRef.value?.parentElement) {
-					sibling.setAttribute('aria-hidden', 'true');
-				}
-			});
-
-			activate(modalRef.value);
-		} else {
-			const siblings = document.body.children;
-			Array.from(siblings).forEach((sibling) => {
-				sibling.removeAttribute('aria-hidden');
-			});
-
-			deactivate();
-		}
-	},
-);
 </script>
