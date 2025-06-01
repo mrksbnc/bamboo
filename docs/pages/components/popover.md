@@ -1,16 +1,12 @@
 <script setup>
-import BoPopover from '@/components/popover/bo-popover.vue';
-import BoButton from '@/components/button/bo-button.vue';
-import { BoPopoverPlacement, BoPopoverTrigger } from '@/components/popover/bo-popover';
-import { BoSize } from '@/shared/bo-size';
-import { ref } from 'vue';
-
-const isOpen = ref(false);
+import { BoPopover, BoPopoverPlacement, BoPopoverTrigger } from '@/components/popover';
+import { BoButton } from '@/components/button';
+import { BoSize } from '@/shared'
 </script>
 
-# Popover
+# BoPopover
 
-A customizable popover component that displays floating content when triggered by a user interaction.
+A flexible popover component that displays rich content in a floating container triggered by user interaction.
 
 ```js
 import { BoPopover } from '@mrksbnc/bamboo';
@@ -20,69 +16,67 @@ import { BoPopover } from '@mrksbnc/bamboo';
 
 ```vue
 <template>
-	<BoPopover
+	<bo-popover
 		title="Popover Title"
 		content="This is the popover content."
 	>
 		<template #trigger>
-			<BoButton label="Click me" />
+			<bo-button label="Click me" />
 		</template>
-	</BoPopover>
+	</bo-popover>
 </template>
 
 <script setup>
-import { BoPopover, BoButton } from '@mrksbnc/bamboo';
+import { BoPopover } from '@mrksbnc/bamboo';
+import { BoButton } from '@mrksbnc/bamboo';
 </script>
 ```
 
 <hr />
 <div class="flex gap-4 items-center my-4">
-  <BoPopover title="Popover Title" content="This is the popover content.">
-    <template #trigger>
-      <BoButton label="Click me" />
-    </template>
-  </BoPopover>
+	<BoPopover title="Popover Title" content="This is the popover content.">
+		<template #trigger>
+			<BoButton label="Click me" />
+		</template>
+	</BoPopover>
 </div>
 
 ## Props
 
-| Name                  | Type                 | Default     | Description                                |
-| --------------------- | -------------------- | ----------- | ------------------------------------------ |
-| `id`                  | `string`             | `auto`      | Unique ID for the popover                  |
-| `placement`           | `BoPopoverPlacement` | `bottom`    | Position of the popover relative to target |
-| `offset`              | `number`             | `8`         | Distance from the target element (px)      |
-| `trigger`             | `BoPopoverTrigger`   | `click`     | Event that triggers the popover            |
-| `interactive`         | `boolean`            | `true`      | Allow interaction with popover content     |
-| `title`               | `string`             | `undefined` | Title text for the popover                 |
-| `content`             | `string`             | `undefined` | Content text for the popover               |
-| `size`                | `BoSize`             | `default`   | Size of the popover                        |
-| `popoverClass`        | `string`             | `''`        | Additional CSS classes for the popover     |
-| `arrow`               | `boolean`            | `true`      | Show arrow pointing to the target          |
-| `shadow`              | `boolean`            | `true`      | Add shadow to the popover                  |
-| `border`              | `boolean`            | `true`      | Add border to the popover                  |
-| `closeOnOutsideClick` | `boolean`            | `true`      | Close popover when clicking outside        |
-
-The component uses `defineModel` to manage the popover state. This means that you can use the `v-model` directive to bind the popover to a variable.
+| Name                  | Type                 | Default                     | Description                                   |
+| --------------------- | -------------------- | --------------------------- | --------------------------------------------- |
+| `id`                  | `string`             | `auto-generated`            | Unique identifier for the popover             |
+| `placement`           | `BoPopoverPlacement` | `BoPopoverPlacement.bottom` | Where the popover appears relative to trigger |
+| `offset`              | `number`             | `8`                         | Distance in pixels from trigger element       |
+| `trigger`             | `BoPopoverTrigger`   | `BoPopoverTrigger.click`    | Event that triggers the popover               |
+| `interactive`         | `boolean`            | `true`                      | Whether the popover content is interactive    |
+| `title`               | `string`             | `undefined`                 | Title text for the popover                    |
+| `content`             | `string`             | `undefined`                 | Body text for the popover                     |
+| `size`                | `BoSize`             | `BoSize.default`            | Size of the popover                           |
+| `popoverClass`        | `string`             | `undefined`                 | Custom CSS class for the popover              |
+| `arrow`               | `boolean`            | `true`                      | Whether to show the arrow pointing to trigger |
+| `shadow`              | `boolean`            | `true`                      | Whether the popover should have a shadow      |
+| `border`              | `boolean`            | `true`                      | Whether the popover should have a border      |
+| `closeOnOutsideClick` | `boolean`            | `true`                      | Whether to close when clicking outside        |
 
 ## Events
 
-| Name                | Payload   | Description                             |
-| ------------------- | --------- | --------------------------------------- |
-| `update:modelValue` | `boolean` | Emitted when popover visibility changes |
-| `opened`            | -         | Emitted when popover opens              |
-| `closed`            | -         | Emitted when popover closes             |
+| Name     | Payload | Description                 |
+| -------- | ------- | --------------------------- |
+| `opened` | `void`  | Emitted when popover opens  |
+| `closed` | `void`  | Emitted when popover closes |
 
 ## Slots
 
-| Name      | Description                       |
-| --------- | --------------------------------- |
-| `trigger` | Element that triggers the popover |
-| `default` | Custom popover content            |
+| Name      | Description                   |
+| --------- | ----------------------------- |
+| `trigger` | Element that triggers popover |
+| `default` | Custom popover content        |
 
 ## Types
 
 ```ts
-enum BoPopoverPlacement {
+export enum BoPopoverPlacement {
 	top = 'top',
 	top_start = 'top-start',
 	top_end = 'top-end',
@@ -97,310 +91,380 @@ enum BoPopoverPlacement {
 	left_end = 'left-end',
 }
 
-enum BoPopoverTrigger {
+export enum BoPopoverTrigger {
 	click = 'click',
 	hover = 'hover',
 	focus = 'focus',
 }
 
-enum BoPopoverAnimation {
-	fade = 'fade',
-	scale = 'scale',
-	shift = 'shift',
-}
-
-interface BoPopoverProps {
-	/** Id for the popover */
+export interface BoPopoverProps {
 	id?: string;
-	/** Placement of the popover */
 	placement?: BoPopoverPlacement;
-	/** Offset distance from the trigger element */
 	offset?: number;
-	/** The event that triggers the popover */
 	trigger?: BoPopoverTrigger;
-	/** Whether to disable interactive content inside the popover */
 	interactive?: boolean;
-	/** Title of the popover */
 	title?: string;
-	/** Content of the popover */
 	content?: string;
-	/** Size of the popover */
 	size?: BoSize;
-	/** CSS class to add to the popover */
 	popoverClass?: string;
-	/** Whether to show an arrow pointing to the trigger element */
 	arrow?: boolean;
-	/** Whether the popover should have a shadow */
 	shadow?: boolean;
-	/** Whether the popover should have a border */
 	border?: boolean;
-	/** Whether to close the popover when clicking outside */
 	closeOnOutsideClick?: boolean;
 }
 ```
 
 ## Placements
 
-<div class="flex flex-wrap gap-4 my-4">
-  <BoPopover 
-    :placement="BoPopoverPlacement.top" 
-    title="Top" 
-    content="Placement: top"
-  >
-    <template #trigger>
-      <BoButton label="Top" />
-    </template>
-  </BoPopover>
-  
-  <BoPopover 
-    :placement="BoPopoverPlacement.bottom" 
-    title="Bottom" 
-    content="Placement: bottom"
-  >
-    <template #trigger>
-      <BoButton label="Bottom" />
-    </template>
-  </BoPopover>
-  
-  <BoPopover 
-    :placement="BoPopoverPlacement.left" 
-    title="Left" 
-    content="Placement: left"
-  >
-    <template #trigger>
-      <BoButton label="Left" />
-    </template>
-  </BoPopover>
-  
-  <BoPopover 
-    :placement="BoPopoverPlacement.right" 
-    title="Right" 
-    content="Placement: right"
-  >
-    <template #trigger>
-      <BoButton label="Right" />
-    </template>
-  </BoPopover>
-</div>
-
-```vue
-<BoPopover :placement="BoPopoverPlacement.top" title="Top" content="Placement: top">
-  <template #trigger>
-    <BoButton label="Top" />
-  </template>
-</BoPopover>
-
-<BoPopover :placement="BoPopoverPlacement.bottom" title="Bottom" content="Placement: bottom">
-  <template #trigger>
-    <BoButton label="Bottom" />
-  </template>
-</BoPopover>
-
-<BoPopover :placement="BoPopoverPlacement.left" title="Left" content="Placement: left">
-  <template #trigger>
-    <BoButton label="Left" />
-  </template>
-</BoPopover>
-
-<BoPopover :placement="BoPopoverPlacement.right" title="Right" content="Placement: right">
-  <template #trigger>
-    <BoButton label="Right" />
-  </template>
-</BoPopover>
-```
-
-## Trigger Types
+### Basic Placements
 
 <div class="flex gap-4 items-center my-4">
-  <BoPopover 
-    :trigger="BoPopoverTrigger.click" 
-    title="Click Trigger" 
-    content="Click to open/close"
-  >
-    <template #trigger>
-      <BoButton label="Click" />
-    </template>
-  </BoPopover>
-  
-  <BoPopover 
-    :trigger="BoPopoverTrigger.hover" 
-    title="Hover Trigger" 
-    content="Hover to open/close"
-  >
-    <template #trigger>
-      <BoButton label="Hover" />
-    </template>
-  </BoPopover>
+	<BoPopover :placement="BoPopoverPlacement.top" title="Top" content="Popover positioned on top">
+		<template #trigger>
+			<BoButton label="Top" />
+		</template>
+	</BoPopover>
+	<BoPopover
+		:placement="BoPopoverPlacement.right"
+		title="Right"
+		content="Popover positioned on right"
+	>
+		<template #trigger>
+			<BoButton label="Right" />
+		</template>
+	</BoPopover>
+	<BoPopover
+		:placement="BoPopoverPlacement.bottom"
+		title="Bottom"
+		content="Popover positioned on bottom"
+	>
+		<template #trigger>
+			<BoButton label="Bottom" />
+		</template>
+	</BoPopover>
+	<BoPopover :placement="BoPopoverPlacement.left" title="Left" content="Popover positioned on left">
+		<template #trigger>
+			<BoButton label="Left" />
+		</template>
+	</BoPopover>
 </div>
 
 ```vue
-<BoPopover :trigger="BoPopoverTrigger.click" title="Click Trigger" content="Click to open/close">
-  <template #trigger>
-    <BoButton label="Click" />
-  </template>
-</BoPopover>
-
-<BoPopover :trigger="BoPopoverTrigger.hover" title="Hover Trigger" content="Hover to open/close">
-  <template #trigger>
-    <BoButton label="Hover" />
-  </template>
-</BoPopover>
-
-<BoPopover
-	:trigger="BoPopoverTrigger.focus"
-	title="Focus Trigger"
-	content="Focus to open, blur to close"
+<bo-popover :placement="BoPopoverPlacement.top" title="Top" content="Popover positioned on top">
+	<template #trigger>
+		<bo-button label="Top" />
+	</template>
+</bo-popover>
+<bo-popover
+	:placement="BoPopoverPlacement.right"
+	title="Right"
+	content="Popover positioned on right"
 >
-  <template #trigger>
-    <BoButton label="Focus" />
-  </template>
-</BoPopover>
+	<template #trigger>
+		<bo-button label="Right" />
+	</template>
+</bo-popover>
+<bo-popover
+	:placement="BoPopoverPlacement.bottom"
+	title="Bottom"
+	content="Popover positioned on bottom"
+>
+	<template #trigger>
+		<bo-button label="Bottom" />
+	</template>
+</bo-popover>
+<bo-popover :placement="BoPopoverPlacement.left" title="Left" content="Popover positioned on left">
+	<template #trigger>
+		<bo-button label="Left" />
+	</template>
+</bo-popover>
+```
+
+### Aligned Placements
+
+<div class="flex gap-4 items-center my-4">
+	<BoPopover :placement="BoPopoverPlacement.top_start" title="Top Start" content="Aligned to start">
+		<template #trigger>
+			<BoButton label="Top Start" />
+		</template>
+	</BoPopover>
+	<BoPopover :placement="BoPopoverPlacement.top_end" title="Top End" content="Aligned to end">
+		<template #trigger>
+			<BoButton label="Top End" />
+		</template>
+	</BoPopover>
+	<BoPopover :placement="BoPopoverPlacement.bottom_start" title="Bottom Start" content="Aligned to start">
+		<template #trigger>
+			<BoButton label="Bottom Start" />
+		</template>
+	</BoPopover>
+	<BoPopover :placement="BoPopoverPlacement.bottom_end" title="Bottom End" content="Aligned to end">
+		<template #trigger>
+			<BoButton label="Bottom End" />
+		</template>
+	</BoPopover>
+</div>
+
+```vue
+<bo-popover :placement="BoPopoverPlacement.top_start" title="Top Start" content="Aligned to start">
+	<template #trigger>
+		<bo-button label="Top Start" />
+	</template>
+</bo-popover>
+<bo-popover :placement="BoPopoverPlacement.top_end" title="Top End" content="Aligned to end">
+	<template #trigger>
+		<bo-button label="Top End" />
+	</template>
+</bo-popover>
+```
+
+## Triggers
+
+### Click Trigger
+
+<div class="flex gap-4 items-center my-4">
+	<BoPopover :trigger="BoPopoverTrigger.click" title="Click Trigger" content="Click to toggle">
+		<template #trigger>
+			<BoButton label="Click me" />
+		</template>
+	</BoPopover>
+</div>
+
+```vue
+<bo-popover :trigger="BoPopoverTrigger.click" title="Click Trigger" content="Click to toggle">
+	<template #trigger>
+		<bo-button label="Click me" />
+	</template>
+</bo-popover>
+```
+
+### Hover Trigger
+
+<div class="flex gap-4 items-center my-4">
+	<BoPopover :trigger="BoPopoverTrigger.hover" title="Hover Trigger" content="Hover to show">
+		<template #trigger>
+			<BoButton label="Hover me" />
+		</template>
+	</BoPopover>
+</div>
+
+```vue
+<bo-popover :trigger="BoPopoverTrigger.hover" title="Hover Trigger" content="Hover to show">
+	<template #trigger>
+		<bo-button label="Hover me" />
+	</template>
+</bo-popover>
 ```
 
 ## Sizes
 
-<div class="flex gap-4 items-center my-4">
-  <BoPopover 
-    :size="BoSize.small" 
-    title="Small" 
-    content="This is a small popover"
-  >
-    <template #trigger>
-      <BoButton label="Small" />
-    </template>
-  </BoPopover>
-  
-  <BoPopover 
-    :size="BoSize.default" 
-    title="Default" 
-    content="This is a default size popover"
-  >
-    <template #trigger>
-      <BoButton label="Default" />
-    </template>
-  </BoPopover>
-  
-  <BoPopover 
-    :size="BoSize.large" 
-    title="Large" 
-    content="This is a large popover with more content space"
-  >
-    <template #trigger>
-      <BoButton label="Large" />
-    </template>
-  </BoPopover>
+<div class="flex items-center gap-4 my-4">
+	<BoPopover :size="BoSize.small" title="Small" content="Small popover">
+		<template #trigger>
+			<BoButton label="Small" />
+		</template>
+	</BoPopover>
+	<BoPopover :size="BoSize.default" title="Default" content="Default popover">
+		<template #trigger>
+			<BoButton label="Default" />
+		</template>
+	</BoPopover>
+	<BoPopover :size="BoSize.large" title="Large" content="Large popover">
+		<template #trigger>
+			<BoButton label="Large" />
+		</template>
+	</BoPopover>
 </div>
 
 ```vue
-<BoPopover :size="BoSize.small" title="Small" content="This is a small popover">
-  <template #trigger>
-    <BoButton label="Small" />
-  </template>
-</BoPopover>
-
-<BoPopover :size="BoSize.default" title="Default" content="This is a default size popover">
-  <template #trigger>
-    <BoButton label="Default" />
-  </template>
-</BoPopover>
-
-<BoPopover
-	:size="BoSize.large"
-	title="Large"
-	content="This is a large popover with more content space"
->
-  <template #trigger>
-    <BoButton label="Large" />
-  </template>
-</BoPopover>
+<bo-popover :size="BoSize.small" title="Small" content="Small popover">
+	<template #trigger>
+		<bo-button label="Small" />
+	</template>
+</bo-popover>
+<bo-popover :size="BoSize.default" title="Default" content="Default popover">
+	<template #trigger>
+		<bo-button label="Default" />
+	</template>
+</bo-popover>
+<bo-popover :size="BoSize.large" title="Large" content="Large popover">
+	<template #trigger>
+		<bo-button label="Large" />
+	</template>
+</bo-popover>
 ```
 
-## Animation Types
+## Visual States
+
+### Without Arrow
 
 <div class="flex gap-4 items-center my-4">
-  <BoPopover 
-    animation="fade" 
-    title="Fade" 
-    content="Fade animation"
-  >
-    <template #trigger>
-      <BoButton label="Fade" />
-    </template>
-  </BoPopover>
-  
-  <BoPopover 
-    animation="scale" 
-    title="Scale" 
-    content="Scale animation"
-  >
-    <template #trigger>
-      <BoButton label="Scale" />
-    </template>
-  </BoPopover>
-  
-  <BoPopover 
-    animation="shift" 
-    title="Shift" 
-    content="Shift animation"
-  >
-    <template #trigger>
-      <BoButton label="Shift" />
-    </template>
-  </BoPopover>
+	<BoPopover :arrow="false" title="No Arrow" content="Popover without arrow">
+		<template #trigger>
+			<BoButton label="No Arrow" />
+		</template>
+	</BoPopover>
 </div>
 
 ```vue
-<BoPopover animation="fade" title="Fade" content="Fade animation">
-  <template #trigger>
-    <BoButton label="Fade" />
-  </template>
-</BoPopover>
+<bo-popover :arrow="false" title="No Arrow" content="Popover without arrow">
+	<template #trigger>
+		<bo-button label="No Arrow" />
+	</template>
+</bo-popover>
+```
 
-<BoPopover animation="scale" title="Scale" content="Scale animation">
-  <template #trigger>
-    <BoButton label="Scale" />
-  </template>
-</BoPopover>
+### Without Shadow
 
-<BoPopover animation="shift" title="Shift" content="Shift animation">
-  <template #trigger>
-    <BoButton label="Shift" />
-  </template>
-</BoPopover>
+<div class="flex gap-4 items-center my-4">
+	<BoPopover :shadow="false" title="No Shadow" content="Popover without shadow">
+		<template #trigger>
+			<BoButton label="No Shadow" />
+		</template>
+	</BoPopover>
+</div>
+
+```vue
+<bo-popover :shadow="false" title="No Shadow" content="Popover without shadow">
+	<template #trigger>
+		<bo-button label="No Shadow" />
+	</template>
+</bo-popover>
+```
+
+### Without Border
+
+<div class="flex gap-4 items-center my-4">
+	<BoPopover :border="false" title="No Border" content="Popover without border">
+		<template #trigger>
+			<BoButton label="No Border" />
+		</template>
+	</BoPopover>
+</div>
+
+```vue
+<bo-popover :border="false" title="No Border" content="Popover without border">
+	<template #trigger>
+		<bo-button label="No Border" />
+	</template>
+</bo-popover>
 ```
 
 ## Custom Content
 
 <div class="flex gap-4 items-center my-4">
-  <BoPopover>
-    <template #trigger>
-      <BoButton label="Custom Content" />
-    </template>
-    <template #default>
-        <div>
-      <h3 class="text-lg font-semibold mb-2">Custom Popover</h3>
-      <p class="mb-2">This popover has custom content.</p>
-      <div class="flex justify-end">
-        <BoButton label="Action" size="small" />
-      </div>
-    </div>
-    </template>
-  </BoPopover>
+	<BoPopover>
+		<template #trigger>
+			<BoButton label="Custom Content" />
+		</template>
+		<div class="p-4">
+			<h3 class="font-bold text-lg mb-2">Custom Popover</h3>
+			<p class="text-sm text-gray-600 mb-3">This popover contains custom HTML content.</p>
+			<BoButton label="Action Button" size="small" />
+		</div>
+	</BoPopover>
 </div>
 
 ```vue
-<BoPopover>
-  <template #trigger>
-    <BoButton label="Custom Content" />
-  </template>
-  <template #default>
-    <div>
-      <h3 class="text-lg font-semibold mb-2">Custom Popover</h3>
-      <p class="mb-2">This popover has custom content.</p>
-      <div class="flex justify-end">
-        <BoButton label="Action" size="small" />
-      </div>
-    </div>
-  </template>
-</BoPopover>
+<bo-popover>
+	<template #trigger>
+		<bo-button label="Custom Content" />
+	</template>
+	<div class="p-4">
+		<h3 class="font-bold text-lg mb-2">Custom Popover</h3>
+		<p class="text-sm text-gray-600 mb-3">This popover contains custom HTML content.</p>
+		<bo-button label="Action Button" size="small" />
+	</div>
+</bo-popover>
+```
+
+## Event Handling
+
+```vue
+<template>
+	<bo-popover
+		title="Event Popover"
+		content="This popover emits events"
+		@opened="handleOpened"
+		@closed="handleClosed"
+	>
+		<template #trigger>
+			<bo-button label="Event Demo" />
+		</template>
+	</bo-popover>
+</template>
+
+<script setup>
+const handleOpened = () => {
+	console.log('Popover opened');
+};
+
+const handleClosed = () => {
+	console.log('Popover closed');
+};
+</script>
+```
+
+## Advanced Usage
+
+### With Custom Offset
+
+<div class="flex gap-4 items-center my-4">
+	<BoPopover :offset="20" title="Custom Offset" content="20px offset from trigger">
+		<template #trigger>
+			<BoButton label="Custom Offset" />
+		</template>
+	</BoPopover>
+</div>
+
+```vue
+<bo-popover :offset="20" title="Custom Offset" content="20px offset from trigger">
+	<template #trigger>
+		<bo-button label="Custom Offset" />
+	</template>
+</bo-popover>
+```
+
+### Non-interactive Popover
+
+<div class="flex gap-4 items-center my-4">
+	<BoPopover :interactive="false" title="Non-interactive" content="This popover is not interactive">
+		<template #trigger>
+			<BoButton label="Non-interactive" />
+		</template>
+	</BoPopover>
+</div>
+
+```vue
+<bo-popover :interactive="false" title="Non-interactive" content="This popover is not interactive">
+	<template #trigger>
+		<bo-button label="Non-interactive" />
+	</template>
+</bo-popover>
+```
+
+### Custom Classes
+
+<div class="flex gap-4 items-center my-4">
+	<BoPopover
+		popover-class="bg-blue-100 border-blue-300"
+		title="Custom Style"
+		content="Custom styled popover"
+	>
+		<template #trigger>
+			<BoButton label="Custom Style" />
+		</template>
+	</BoPopover>
+</div>
+
+```vue
+<bo-popover
+	popover-class="bg-blue-100 border-blue-300"
+	title="Custom Style"
+	content="Custom styled popover"
+>
+	<template #trigger>
+		<bo-button label="Custom Style" />
+	</template>
+</bo-popover>
 ```
