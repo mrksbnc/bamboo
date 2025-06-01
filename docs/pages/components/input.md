@@ -348,3 +348,48 @@ const handleChange = (value) => {
 };
 </script>
 ```
+
+## Dark Mode
+
+The input component automatically adapts to dark mode with enhanced contrast and proper border adjustments.
+
+<div class="flex flex-col gap-6 my-4 dark p-6 bg-gray-900 rounded-lg">
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">States</div>
+		<div class="flex flex-col gap-3 flex-1">
+			<bo-input v-model="modelValue" :state="BoInputState.default" placeholder="Default state" />
+			<bo-input v-model="modelValue" :state="BoInputState.success" placeholder="Success state" />
+			<bo-input v-model="modelValue" :state="BoInputState.warning" placeholder="Warning state" />
+			<bo-input v-model="modelValue" :state="BoInputState.error" placeholder="Error state" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">Sizes</div>
+		<div class="flex flex-col gap-3 flex-1">
+			<bo-input v-model="modelValue" :size="BoInputSize.small" placeholder="Small input" />
+			<bo-input v-model="modelValue" :size="BoInputSize.default" placeholder="Default input" />
+			<bo-input v-model="modelValue" :size="BoInputSize.large" placeholder="Large input" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">With Icons</div>
+		<div class="flex flex-col gap-3 flex-1">
+			<bo-input v-model="modelValue" :prefix-icon="Icon.user" placeholder="Username" />
+			<bo-input v-model="modelValue" :suffix-icon="Icon.search" placeholder="Search..." />
+		</div>
+	</div>
+</div>
+
+```vue
+<div class="dark">
+	<!-- States in dark mode -->
+	<bo-input v-model="modelValue" :state="BoInputState.default" placeholder="Default state" />
+	<bo-input v-model="modelValue" :state="BoInputState.success" placeholder="Success state" />
+	<bo-input v-model="modelValue" :state="BoInputState.warning" placeholder="Warning state" />
+	<bo-input v-model="modelValue" :state="BoInputState.error" placeholder="Error state" />
+	
+	<!-- With icons in dark mode -->
+	<bo-input v-model="modelValue" :prefix-icon="Icon.user" placeholder="Username" />
+	<bo-input v-model="modelValue" :suffix-icon="Icon.search" placeholder="Search..." />
+</div>
+```

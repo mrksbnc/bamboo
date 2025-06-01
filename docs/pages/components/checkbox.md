@@ -271,3 +271,55 @@ You can render custom content in place of the label using the `label` slot. This
     <span style="font-weight: bold; color: #2563eb;">Custom <i>Label</i> Content</span>
   </template>
 </bo-checkbox>
+
+## Dark Mode
+
+The checkbox component automatically adapts to dark mode with proper contrast and visual adjustments.
+
+<div class="flex flex-col gap-6 my-4 dark p-6 bg-gray-900 rounded-lg">
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">Single</div>
+		<div class="flex flex-col gap-3">
+			<bo-checkbox v-model="checkedSingle" label="Normal checkbox" />
+			<bo-checkbox v-model="checkedSingle" label="With description" description="Additional information about this option." />
+			<bo-checkbox :model-value="true" disabled label="Disabled checked" />
+			<bo-checkbox :model-value="false" disabled label="Disabled unchecked" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">Group</div>
+		<div>
+			<bo-checkbox-group v-model="checked" orientation="vertical">
+				<bo-checkbox label="Option 1" value="option1" />
+				<bo-checkbox label="Option 2" value="option2" />
+				<bo-checkbox label="Option 3" value="option3" />
+			</bo-checkbox-group>
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">Horizontal</div>
+		<div>
+			<bo-checkbox-group v-model="checked" orientation="horizontal">
+				<bo-checkbox label="Left" value="left" />
+				<bo-checkbox label="Center" value="center" />
+				<bo-checkbox label="Right" value="right" />
+			</bo-checkbox-group>
+		</div>
+	</div>
+</div>
+
+```vue
+<div class="dark">
+	<!-- Single checkboxes in dark mode -->
+	<bo-checkbox v-model="checkedSingle" label="Normal checkbox" />
+	<bo-checkbox v-model="checkedSingle" label="With description" description="Additional information" />
+	<bo-checkbox :model-value="true" disabled label="Disabled checked" />
+	
+	<!-- Group in dark mode -->
+	<bo-checkbox-group v-model="checked">
+		<bo-checkbox label="Option 1" value="option1" />
+		<bo-checkbox label="Option 2" value="option2" />
+		<bo-checkbox label="Option 3" value="option3" />
+	</bo-checkbox-group>
+</div>
+```

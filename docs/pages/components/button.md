@@ -339,6 +339,55 @@ Icon-only buttons are created by providing an icon without a label. Always inclu
 </bo-button>
 ```
 
+## Dark Mode
+
+The button component automatically adapts to dark mode, with enhanced contrast and proper color adjustments.
+
+<div class="flex flex-col gap-6 my-4 dark p-6 bg-gray-900 rounded-lg">
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">Variants</div>
+		<div class="flex gap-3">
+			<bo-button :variant="BoButtonVariant.primary" label="Primary" />
+			<bo-button :variant="BoButtonVariant.secondary" label="Secondary" />
+			<bo-button :variant="BoButtonVariant.danger" label="Danger" />
+			<bo-button :variant="BoButtonVariant.light" label="Light" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">Shapes</div>
+		<div class="flex gap-3">
+			<bo-button :shape="BoButtonShape.default" label="Default" />
+			<bo-button :shape="BoButtonShape.outline" label="Outline" />
+			<bo-button :shape="BoButtonShape.pill" label="Pill" />
+			<bo-button :shape="BoButtonShape.link" label="Link" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">States</div>
+		<div class="flex gap-3">
+			<bo-button label="Normal" />
+			<bo-button disabled label="Disabled" />
+			<bo-button :is-loading="true" label="Loading" />
+		</div>
+	</div>
+</div>
+
+```vue
+<div class="dark">
+	<!-- Variants in dark mode -->
+	<bo-button :variant="BoButtonVariant.primary" label="Primary" />
+	<bo-button :variant="BoButtonVariant.secondary" label="Secondary" />
+	<bo-button :variant="BoButtonVariant.danger" label="Danger" />
+	<bo-button :variant="BoButtonVariant.light" label="Light" />
+	
+	<!-- Shapes in dark mode -->
+	<bo-button :shape="BoButtonShape.default" label="Default" />
+	<bo-button :shape="BoButtonShape.outline" label="Outline" />
+	<bo-button :shape="BoButtonShape.pill" label="Pill" />
+	<bo-button :shape="BoButtonShape.link" label="Link" />
+</div>
+```
+
 ## Event Handling
 
 ```vue

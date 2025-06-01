@@ -289,3 +289,63 @@ interface BoBadgeProps {
 	</div>
 </bo-badge>
 ```
+
+## Dark Mode
+
+The badge component automatically adapts to dark mode with proper contrast adjustments.
+
+<div class="flex flex-col gap-6 my-4 dark p-6 bg-gray-900 rounded-lg">
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">Variants</div>
+		<div class="flex gap-3 flex-wrap">
+			<bo-badge :variant="BoBadgeVariant.primary" label="Primary" />
+			<bo-badge :variant="BoBadgeVariant.secondary" label="Secondary" />
+			<bo-badge :variant="BoBadgeVariant.success" label="Success" />
+			<bo-badge :variant="BoBadgeVariant.danger" label="Danger" />
+			<bo-badge :variant="BoBadgeVariant.warning" label="Warning" />
+			<bo-badge :variant="BoBadgeVariant.light" label="Light" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">Types</div>
+		<div class="flex gap-3">
+			<bo-badge :type="BoBadgeType.default" label="Default" />
+			<bo-badge :type="BoBadgeType.outline" label="Outline" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">Shapes</div>
+		<div class="flex gap-3">
+			<bo-badge :shape="BoBadgeShape.default" label="Default" />
+			<bo-badge :shape="BoBadgeShape.pill" label="Pill" />
+			<bo-badge :shape="BoBadgeShape.flat" label="Flat" />
+			<bo-badge :shape="BoBadgeShape.circle" :icon="{ prefix: Icon.check }" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">With Icons</div>
+		<div class="flex gap-3">
+			<bo-badge label="New" :icon="{ prefix: Icon.bell }" />
+			<bo-badge label="Settings" :icon="{ suffix: Icon.settings }" />
+			<bo-badge :icon="{ prefix: Icon.bell }" />
+		</div>
+	</div>
+</div>
+
+```vue
+<div class="dark">
+	<!-- Variants in dark mode -->
+	<bo-badge :variant="BoBadgeVariant.primary" label="Primary" />
+	<bo-badge :variant="BoBadgeVariant.secondary" label="Secondary" />
+	<bo-badge :variant="BoBadgeVariant.success" label="Success" />
+	<bo-badge :variant="BoBadgeVariant.danger" label="Danger" />
+	
+	<!-- Types in dark mode -->
+	<bo-badge :type="BoBadgeType.default" label="Default" />
+	<bo-badge :type="BoBadgeType.outline" label="Outline" />
+	
+	<!-- With icons in dark mode -->
+	<bo-badge label="New" :icon="{ prefix: Icon.bell }" />
+	<bo-badge :shape="BoBadgeShape.circle" :icon="{ prefix: Icon.check }" />
+</div>
+```
