@@ -168,7 +168,6 @@ const modelValue = defineModel<string>({
 	default: '',
 });
 
-// Computed properties for consistent sizing with Flowbite
 const containerPadding = computed<string>(() => {
 	switch (props.size) {
 		case BoTextareaSize.small:
