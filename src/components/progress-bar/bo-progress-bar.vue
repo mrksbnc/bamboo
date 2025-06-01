@@ -55,7 +55,8 @@ const PROGRESS_BAR_STYLE = {
 	layout: {
 		container: /*tw*/ 'bo-progress-bar relative overflow-hidden',
 		fill: /*tw*/ 'bo-progress-bar__fill h-full transition-all duration-300 ease-out',
-		label: /*tw*/ 'bo-progress-bar__label absolute transform -translate-y-1/2 left-1/2 top-1/2',
+		label:
+			/*tw*/ 'bo-progress-bar__label absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 pointer-events-none',
 	},
 	size: {
 		container: {
