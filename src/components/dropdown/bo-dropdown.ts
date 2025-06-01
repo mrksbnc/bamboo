@@ -21,4 +21,6 @@ export interface BoDropdownProps<T = BoDropdownItemProps> {
 	closeOnClickOutside?: boolean;
 	/** Whether the dropdown menu should close when selecting an item */
 	closeOnSelect?: boolean;
+	/** ARIA label for accessibility */
+	ariaLabel?: string;
 }

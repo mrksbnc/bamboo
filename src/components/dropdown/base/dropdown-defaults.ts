@@ -29,4 +29,6 @@ export interface BoDropdownTriggerProps {
 	suffixIcon?: Icon;
 	/** Custom icon for the dropdown trigger */
 	triggerIcon?: Icon;
+	/** Whether the dropdown is currently open */
+	isOpen?: boolean;
 }

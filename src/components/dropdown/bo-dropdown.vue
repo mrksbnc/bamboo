@@ -1,8 +1,10 @@
 <template>
 	<div
-		class="bo-dropdown"
-		:data-testid="`bo-dropdown-${id}`"
+		:class="containerClasses"
+		:data-testid="constructAttribute(id, 'dropdown')"
 		role="combobox"
+		:aria-expanded="showDropdown"
+		:aria-label="ariaLabel"
 		@keydown="onKeyDown"
 	>
 		<slot
@@ -12,9 +14,10 @@
 			<bo-dropdown-trigger
 				:label="triggerLabel"
 				:disabled="disabled"
+				:size="size"
 				:is-open="showDropdown"
 				:trigger-icon="props.triggerIcon"
-				:data-testid="`bo-dropdown-trigger-${id}`"
+				:data-testid="constructAttribute(id, 'dropdown-trigger')"
 				@trigger-click="onDropdownToggle"
 			/>
 		</slot>
@@ -29,16 +32,16 @@
 		>
 			<div
 				v-if="showDropdown"
-				:class="dropdownContentClasses"
+				ref="dropdownContentRef"
+				:class="contentClasses"
 				role="menu"
-				:data-testid="`bo-dropdown-content-${id}`"
+				:data-testid="constructAttribute(id, 'dropdown-content')"
 				@keydown="onMenuKeyDown"
 			>
 				<slot name="default">
 					<div
-						ref="dropdownContentRef"
-						class="flex flex-col gap-1"
-						:data-testid="`bo-dropdown-items-${id}`"
+						:class="DROPDOWN_STYLE.layout.itemsContainer"
+						:data-testid="constructAttribute(id, 'dropdown-items')"
 					>
 						<BoDropdownItem
 							v-for="(item, index) in items"
@@ -59,22 +62,25 @@
 </template>
 
 <script setup lang="ts">
+import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { onClickOutside } from '@vueuse/core';
-import { nextTick, ref } from 'vue';
+import { computed, nextTick, ref } from 'vue';
 import BoDropdownItem from './base/bo-dropdown-item.vue';
 import BoDropdownTrigger from './base/bo-dropdown-trigger.vue';
 import { BoDropdownItemProps } from './base/dropdown-defaults.js';
 import { BoDropdownProps } from './bo-dropdown.js';
 
 const props = withDefaults(defineProps<BoDropdownProps<BoDropdownItemProps>>(), {
-	id: () => IdentityService.instance.getComponentId('bo-dropdown'),
+	id: () => IdentityService.instance.getComponentId(),
 	closeOnSelect: true,
 	closeOnClickOutside: true,
 	defaultTriggerText: 'Select',
 	items: () => [],
 	size: () => BoSize.default,
+	ariaLabel: 'Dropdown menu',
 });
 
 const emit = defineEmits<{
@@ -82,8 +88,32 @@ const emit = defineEmits<{
 	(e: 'item-select', id: string): void;
 }>();
 
-const dropdownContentClasses: string =
-	/*tw*/ 'bo-dropdown-menu absolute z-50 rounded-md bg-white border p-2 font-sans text-base font-normal text-gray-900 shadow-none outline-none transition-opacity dark:bg-gray-800 dark:text-white mt-1';
+const { constructAttribute } = useAttributes();
+
+const DROPDOWN_STYLE = {
+	layout: {
+		wrapper: /*tw*/ 'bo-dropdown relative inline-block',
+		content:
+			/*tw*/ 'bo-dropdown__content absolute z-50 rounded-md border p-2 font-sans text-base font-normal shadow-lg outline-none transition-opacity mt-1',
+		itemsContainer: /*tw*/ 'bo-dropdown__items flex flex-col gap-1',
+	},
+	appearance: {
+		background: /*tw*/ 'bg-white dark:bg-gray-800',
+		text: /*tw*/ 'text-gray-900 dark:text-white',
+		border: /*tw*/ 'border-gray-200 dark:border-gray-600',
+	},
+	size: {
+		[BoSize.extra_small]: /*tw*/ 'bo-dropdown--extra-small min-w-[120px]',
+		[BoSize.small]: /*tw*/ 'bo-dropdown--small min-w-[140px]',
+		[BoSize.default]: /*tw*/ 'bo-dropdown--default min-w-[160px]',
+		[BoSize.large]: /*tw*/ 'bo-dropdown--large min-w-[200px]',
+		[BoSize.extra_large]: /*tw*/ 'bo-dropdown--extra-large min-w-[240px]',
+	},
+	state: {
+		disabled: /*tw*/ 'bo-dropdown--disabled opacity-50 cursor-not-allowed',
+		open: /*tw*/ 'bo-dropdown--open',
+	},
+} as const;
 
 const showDropdown = ref<boolean>(props?.open ?? false);
 const triggerLabel = ref<string>(props.defaultTriggerText);
@@ -91,6 +121,28 @@ const focusedItemIndex = ref<number>(-1);
 const itemRefs = ref<any[]>([]);
 
 const dropdownContentRef = ref<HTMLDivElement>();
+
+const ariaLabel = computed<string>(() => {
+	return props.ariaLabel || 'Dropdown menu';
+});
+
+const containerClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		DROPDOWN_STYLE.layout.wrapper,
+		props.disabled ? DROPDOWN_STYLE.state.disabled : '',
+		showDropdown.value ? DROPDOWN_STYLE.state.open : '',
+	);
+});
+
+const contentClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		DROPDOWN_STYLE.layout.content,
+		DROPDOWN_STYLE.appearance.background,
+		DROPDOWN_STYLE.appearance.text,
+		DROPDOWN_STYLE.appearance.border,
+		DROPDOWN_STYLE.size[props.size],
+	);
+});
 
 function setItemRef(el: any, index: number) {
 	if (el) {
@@ -104,11 +156,11 @@ function onDropdownToggle(): void {
 	}
 
 	showDropdown.value = !showDropdown.value;
+	emit('update:open', showDropdown.value);
 
 	if (showDropdown.value) {
 		focusedItemIndex.value = -1;
 		nextTick(() => {
-			// Focus the first non-disabled item
 			focusFirstItem();
 		});
 	}
@@ -133,10 +185,12 @@ function onKeyDown(event: KeyboardEvent): void {
 	if (event.key === 'Escape') {
 		event.preventDefault();
 		showDropdown.value = false;
+		emit('update:open', false);
 	} else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
 		event.preventDefault();
 		if (!showDropdown.value) {
 			showDropdown.value = true;
+			emit('update:open', true);
 			nextTick(() => focusFirstItem());
 		}
 	}
@@ -149,6 +203,7 @@ function onMenuKeyDown(event: KeyboardEvent): void {
 		case 'Escape':
 			event.preventDefault();
 			showDropdown.value = false;
+			emit('update:open', false);
 			break;
 		case 'ArrowDown':
 			event.preventDefault();
@@ -227,6 +282,7 @@ function onDropdownItemSelect(id: string): void {
 
 	if (props.closeOnSelect) {
 		showDropdown.value = false;
+		emit('update:open', false);
 	}
 
 	emit('item-select', id);
@@ -235,10 +291,14 @@ function onDropdownItemSelect(id: string): void {
 onClickOutside(dropdownContentRef, () => {
 	if (props.closeOnClickOutside && showDropdown.value) {
 		showDropdown.value = false;
+		emit('update:open', false);
 	}
 });
 
 defineExpose({
 	onDropdownToggle,
+	showDropdown,
+	triggerLabel,
+	focusedItemIndex,
 });
 </script>
