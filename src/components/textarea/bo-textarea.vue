@@ -216,7 +216,6 @@ const iconSize = computed(() => {
 	}
 });
 
-// Computed property for aria-describedby
 const ariaDescribedBy = computed<string | undefined>(() => {
 	const describedBy: string[] = [];
 
