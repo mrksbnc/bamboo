@@ -10,9 +10,7 @@ const checkedSingle = ref(false);
 
 # Checkbox
 
-Checkbox is a customizable component built with Flowbite design patterns for handling boolean or multiple-choice selections. Use checkboxes for options where users can select one or more items from a list. For grouped checkboxes, use `BoCheckboxGroup` to manage the selection state.
-
-The component follows Flowbite's design system with proper styling, dark mode support, and accessibility features.
+A checkbox is a control that allows users to select one or more items from a list of options.
 
 ```js
 import { BoCheckbox, BoCheckboxGroup } from '@mrksbnc/bamboo';

@@ -6,7 +6,7 @@ import { Icon } from '@/components/icon/bo-icon';
 
 # Badge
 
-Badge is a lightweight component for highlighting status, labels, or small pieces of information.
+A badge is a small label or status indicator that is displayed next to or alongside other elements. It can be used to indicate the number of unread messages, the number of new items, or any other relevant information.
 
 ```js
 import { BoBadge } from '@mrksbnc/bamboo';

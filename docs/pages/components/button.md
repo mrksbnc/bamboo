@@ -9,7 +9,7 @@ import { Icon } from '@/components/icon/bo-icon';
 
 # Button
 
-Button is a component that allows users to trigger actions and navigate through interfaces. It supports various styles, sizes, states, and can include icons for enhanced user experience.
+A button is a control that allows users to perform an action, such as submitting a form or navigating to a new page.
 
 ```js
 import { BoButton } from '@mrksbnc/bamboo';

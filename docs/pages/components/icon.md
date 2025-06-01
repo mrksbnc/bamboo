@@ -6,7 +6,8 @@ import { BoSize } from '@/shared/bo-size';
 
 # Icon
 
-A versatile icon component that renders SVG icons with customizable size, color, accessibility features, and state management. Icons are loaded dynamically and support both decorative and semantic use cases.
+An icon is a graphical representation of a concept or object. It can be used to represent a product, service, or idea or to simply provide visual cues.
+Under the hood Bamboo uses [Feather Icons](https://feathericons.com/)
 
 ```js
 import { BoIcon, Icon } from '@mrksbnc/bamboo';

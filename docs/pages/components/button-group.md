@@ -8,7 +8,7 @@ import { BoSize } from '@/shared';
 
 # Button Group
 
-A customizable button group component for creating a set of related buttons with consistent styling and behavior. Supports single and multi-select modes, icons, accessibility features, and full dark mode support.
+Button groups are a group of buttons that are related to each other and are used to perform a common action. They can be used for various purposes, such as filtering options, selecting items, or navigating between pages.
 
 ```js
 import { BoButtonGroup } from '@mrksbnc/bamboo';

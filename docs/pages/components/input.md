@@ -10,7 +10,7 @@ const modelValue = ref('');
 
 # Input
 
-A versatile input component for collecting user data with various states, variants, and features.
+An input component is a control that allows users to enter and edit text. It can be used for various purposes, such as search bars, forms, and single-line text fields.
 
 ```js
 import { BoInput } from '@mrksbnc/bamboo';
@@ -248,41 +248,103 @@ To indicate that a field is required, use the `required` prop. This will display
 
 ## With Icons
 
-The input supports prefix and suffix icons using the `prefix-icon` and `suffix-icon` props. The icons values must be members of the `Icon` enum.
+The input component supports both prefix and suffix icons using the `prefixIcon` and `suffixIcon` props.
 
 <div class="flex flex-col gap-4 my-4">
-  <bo-input v-model="modelValue" :prefix-icon="Icon.search" placeholder="Search..." />
-  <bo-input v-model="modelValue" :suffix-icon="Icon.mail" placeholder="Enter email..." />
-  <bo-input v-model="modelValue" :prefix-icon="Icon.user" :suffix-icon="Icon.check" placeholder="Username" />
+  <bo-input
+    v-model="modelValue"
+    :prefix-icon="Icon.user"
+    placeholder="Enter username"
+  />
+  <bo-input
+    v-model="modelValue"
+    :suffix-icon="Icon.search"
+    placeholder="Search..."
+  />
+  <bo-input
+    v-model="modelValue"
+    :prefix-icon="Icon.user"
+    :suffix-icon="Icon.search"
+    placeholder="With both icons"
+  />
 </div>
 
 ```vue
-<bo-input v-model="modelValue" :prefix-icon="Icon.search" placeholder="Search..." />
-<bo-input v-model="modelValue" :suffix-icon="Icon.mail" placeholder="Enter email..." />
+<bo-input v-model="modelValue" :prefix-icon="Icon.user" placeholder="Enter username" />
+<bo-input v-model="modelValue" :suffix-icon="Icon.search" placeholder="Search..." />
 <bo-input
 	v-model="modelValue"
 	:prefix-icon="Icon.user"
-	:suffix-icon="Icon.check"
-	placeholder="Username"
+	:suffix-icon="Icon.search"
+	placeholder="With both icons"
 />
 ```
 
 ## Input Types
 
+The component supports various input types through the `type` prop:
+
 <div class="flex flex-col gap-4 my-4">
-  <bo-input v-model="modelValue" type="text" label="Text input" />
-  <bo-input v-model="modelValue" type="email" label="Email input" />
-  <bo-input v-model="modelValue" type="password" label="Password input" :reveal-password="true" />
-  <bo-input v-model="modelValue" type="number" label="Number input" />
-  <bo-input v-model="modelValue" type="search" label="Search input" :prefix-icon="Icon.search" />
-  <bo-input v-model="modelValue" type="tel" label="Phone input" />
+  <bo-input
+    v-model="modelValue"
+    type="text"
+    label="Text"
+    placeholder="Text input"
+  />
+  <bo-input
+    v-model="modelValue"
+    type="email"
+    label="Email"
+    placeholder="Email input"
+  />
+  <bo-input
+    v-model="modelValue"
+    type="password"
+    label="Password"
+    placeholder="Password input"
+  />
+  <bo-input
+    v-model="modelValue"
+    type="number"
+    label="Number"
+    placeholder="Number input"
+  />
 </div>
 
 ```vue
-<bo-input v-model="modelValue" type="text" label="Text input" />
-<bo-input v-model="modelValue" type="email" label="Email input" />
-<bo-input v-model="modelValue" type="password" label="Password input" :reveal-password="true" />
-<bo-input v-model="modelValue" type="number" label="Number input" />
-<bo-input v-model="modelValue" type="search" label="Search input" :prefix-icon="Icon.search" />
-<bo-input v-model="modelValue" type="tel" label="Phone input" />
+<bo-input v-model="modelValue" type="text" label="Text" placeholder="Text input" />
+<bo-input v-model="modelValue" type="email" label="Email" placeholder="Email input" />
+<bo-input v-model="modelValue" type="password" label="Password" placeholder="Password input" />
+<bo-input v-model="modelValue" type="number" label="Number" placeholder="Number input" />
+```
+
+## Event Handling
+
+The component emits various events that you can listen to:
+
+```vue
+<template>
+	<bo-input
+		v-model="inputValue"
+		@focus="handleFocus"
+		@blur="handleBlur"
+		@change="handleChange"
+	/>
+</template>
+
+<script setup>
+const inputValue = ref('');
+
+const handleFocus = () => {
+	console.log('Input focused');
+};
+
+const handleBlur = (event) => {
+	console.log('Input blurred:', event);
+};
+
+const handleChange = (value) => {
+	console.log('Value changed:', value);
+};
+</script>
 ```
