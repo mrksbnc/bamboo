@@ -7,6 +7,11 @@ textarea {
 	border: inherit;
 }
 
+/* .vitepress/theme/custom.css */
+@layer theme, base, components, utilities;
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 /**
  * Customize default theme styling by overriding CSS variables:
  * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css

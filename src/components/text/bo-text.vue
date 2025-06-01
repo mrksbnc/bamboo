@@ -25,7 +25,7 @@ import {
 const props = withDefaults(defineProps<BoTextProps>(), {
 	id: () => IdentityService.instance.getComponentId('bo-text'),
 	size: () => BoFontSize.base,
-	color: () => BoTextColor.default,
+	color: () => BoTextColor.inherit,
 	textAlign: () => BoTextAlign.left,
 	weight: () => BoFontWeight.regular,
 	fontFamily: () => BoFontFamily.sans,
