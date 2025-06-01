@@ -1,5 +1,10 @@
 import type { Icon } from '@/components/icon/bo-icon.js';
 
+export enum BoAccordionShape {
+	rounded = 'rounded',
+	square = 'square',
+}
+
 export interface BoAccordionProps {
 	/** Unique ID for the accordion, used for accessibility and testing */
 	id?: string;
@@ -11,6 +16,8 @@ export interface BoAccordionProps {
 	disabled?: boolean;
 	/** Prefix icon for the accordion item */
 	prefixIcon?: Icon;
+	/** Shape of the accordion item */
+	shape?: BoAccordionShape;
 	/**
 	 * Custom icon for the expand/collapse indicator
 	 * @default Icon.chevron_down
