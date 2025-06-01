@@ -321,4 +321,8 @@ export interface BoIconProps {
 	 * Accessibility definition for the icon
 	 */
 	accessibility?: AccessibilityDefinition;
+	/**
+	 * Whether the icon is disabled
+	 */
+	disabled?: boolean;
 }

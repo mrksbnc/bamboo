@@ -29,7 +29,7 @@ describe('BoIcon', () => {
 
 		test('should have correct test id', () => {
 			const icon = wrapper.find('i');
-			expect(icon.attributes('data-testid')).toBe('bo-icon-star');
+			expect(icon.attributes('data-testid')).toContain('icon-star');
 		});
 
 		test('should render with custom id', () => {
@@ -41,6 +41,7 @@ describe('BoIcon', () => {
 			});
 			const icon = customWrapper.find('i');
 			expect(icon.attributes('id')).toBe('custom-icon-id');
+			expect(icon.attributes('data-testid')).toBe('custom-icon-id-icon-heart');
 		});
 
 		test('should generate unique id when not provided', () => {
@@ -77,7 +78,7 @@ describe('BoIcon', () => {
 
 				await nextTick();
 				const iconElement = iconWrapper.find('i');
-				expect(iconElement.attributes('data-testid')).toBe(`bo-icon-${iconType}`);
+				expect(iconElement.attributes('data-testid')).toContain(`icon-${iconType}`);
 			}
 		});
 
@@ -88,7 +89,7 @@ describe('BoIcon', () => {
 
 			await nextTick();
 			const icon = noneWrapper.find('i');
-			expect(icon.attributes('data-testid')).toBe('bo-icon-none');
+			expect(icon.attributes('data-testid')).toContain('icon-none');
 		});
 
 		test('should log error for invalid icon', async () => {
@@ -508,10 +509,12 @@ describe('BoIcon', () => {
 
 	suite('Reactive Updates', () => {
 		test('should update icon when prop changes', async () => {
-			expect(wrapper.find('i').attributes('data-testid')).toBe('bo-icon-star');
+			expect(wrapper.find('i').attributes('data-testid')).toContain('icon-star');
 
 			await wrapper.setProps({ icon: Icon.heart });
-			expect(wrapper.find('i').attributes('data-testid')).toBe('bo-icon-heart');
+			await nextTick();
+
+			expect(wrapper.find('i').attributes('data-testid')).toContain('icon-heart');
 		});
 
 		test('should update size when prop changes', async () => {
@@ -664,11 +667,11 @@ describe('BoIcon', () => {
 		});
 
 		test('should handle rapid prop changes', async () => {
-			const icons = [Icon.star, Icon.heart, Icon.check, Icon.x];
+			const icons = [Icon.star, Icon.heart, Icon.check, Icon.x, Icon.settings];
 
 			for (const icon of icons) {
 				await wrapper.setProps({ icon });
-				expect(wrapper.find('i').attributes('data-testid')).toBe(`bo-icon-${icon}`);
+				expect(wrapper.find('i').attributes('data-testid')).toContain(`icon-${icon}`);
 			}
 		});
 	});

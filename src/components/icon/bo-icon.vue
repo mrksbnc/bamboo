@@ -3,15 +3,16 @@
 		v-html="svg"
 		:id="id"
 		:role="role"
-		:style="style"
+		:style="iconStyles"
 		:aria-label="ariaLabel"
 		:aria-hidden="ariaHidden"
-		:class="tailwindCssClasses"
-		:data-testid="`bo-icon-${icon}`"
+		:class="iconClasses"
+		:data-testid="constructAttribute(id, `icon-${icon}`)"
 	></i>
 </template>
 
 <script setup lang="ts">
+import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
@@ -29,8 +30,23 @@ const props = withDefaults(defineProps<BoIconProps>(), {
 });
 
 const attrs = useAttrs();
+const { constructAttribute } = useAttributes();
 
-const defaultClasses = /*tw*/ 'bo-icon block';
+const ICON_STYLE = {
+	layout: {
+		base: /*tw*/ 'bo-icon block',
+	},
+	size: {
+		[BoSize.extra_small]: /*tw*/ 'size-3',
+		[BoSize.small]: /*tw*/ 'size-3.5',
+		[BoSize.default]: /*tw*/ 'size-4',
+		[BoSize.large]: /*tw*/ 'size-5',
+		[BoSize.extra_large]: /*tw*/ 'size-6',
+	},
+	state: {
+		disabled: /*tw*/ 'opacity-50 cursor-not-allowed',
+	},
+} as const;
 
 const svg = ref<string>('');
 
@@ -50,30 +66,22 @@ const iconMap = Object.keys(icons).reduce(
 	{} as Record<string, () => Promise<string>>,
 );
 
-const sizeClasses = {
-	[BoSize.extra_small]: /*tw*/ 'size-3',
-	[BoSize.small]: /*tw*/ 'size-3.5',
-	[BoSize.default]: /*tw*/ 'size-4',
-	[BoSize.large]: /*tw*/ 'size-5',
-	[BoSize.extra_large]: /*tw*/ 'size-6',
-};
-
 const role = computed<string>(() => {
 	return props.accessibility.decorative ? 'presentation' : 'img';
 });
 
-const style = computed<StyleValue>(() => {
+const iconStyles = computed<StyleValue>(() => {
 	return {
 		color: props.color,
 	};
 });
 
-const tailwindCssSizeClasses = computed<string>(() => {
-	return sizeClasses[props.size];
-});
-
-const tailwindCssClasses = computed<string>(() => {
-	return TailwindService.instance.merge(defaultClasses, tailwindCssSizeClasses.value);
+const iconClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		ICON_STYLE.layout.base,
+		ICON_STYLE.size[props.size],
+		props.disabled ? ICON_STYLE.state.disabled : '',
+	);
 });
 
 const ariaLabel = computed<string | undefined>(() => {

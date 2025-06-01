@@ -6,7 +6,7 @@ import { BoSize } from '@/shared/bo-size';
 
 # Icon
 
-A versatile icon component that renders SVG icons with customizable size, color, and accessibility features. Icons are loaded dynamically and support both decorative and semantic use cases.
+A versatile icon component that renders SVG icons with customizable size, color, accessibility features, and state management. Icons are loaded dynamically and support both decorative and semantic use cases.
 
 ```js
 import { BoIcon, Icon } from '@mrksbnc/bamboo';
@@ -38,6 +38,7 @@ import { BoIcon, Icon } from '@mrksbnc/bamboo';
 | `size`          | `BoSize`                  | `BoSize.default`                      | Size of the icon                               |
 | `color`         | `string`                  | `'currentColor'`                      | Color of the icon (CSS color value)            |
 | `accessibility` | `AccessibilityDefinition` | `{ title: 'icon', decorative: true }` | Accessibility configuration for screen readers |
+| `disabled`      | `boolean`                 | `false`                               | Whether the icon is disabled                   |
 
 ## Types
 
@@ -88,10 +89,16 @@ export interface BoIconProps {
 	 * Accessibility definition for the icon
 	 */
 	accessibility?: AccessibilityDefinition;
+	/**
+	 * Whether the icon is disabled
+	 */
+	disabled?: boolean;
 }
 ```
 
 ## Sizes
+
+The icon component supports five different sizes:
 
 <div class="flex items-center gap-4 my-4">
   <bo-icon :icon="Icon.heart" :size="BoSize.extra_small" />
@@ -125,6 +132,23 @@ export interface BoIconProps {
 <bo-icon :icon="Icon.alert_circle" color="orange" />
 <bo-icon :icon="Icon.x" color="#FF0000" />
 <bo-icon :icon="Icon.star" color="var(--primary-color)" />
+```
+
+## Disabled State
+
+Icons can be disabled, which applies reduced opacity and a disabled cursor:
+
+<div class="flex gap-4 items-center my-4">
+  <bo-icon :icon="Icon.heart" />
+  <bo-icon :icon="Icon.heart" disabled />
+</div>
+
+```vue
+<!-- Normal icon -->
+<bo-icon :icon="Icon.heart" />
+
+<!-- Disabled icon -->
+<bo-icon :icon="Icon.heart" disabled />
 ```
 
 ## Accessibility
@@ -222,39 +246,8 @@ You can override the component's accessibility behavior using external attribute
 ## All Icons
 
 <div class="grid grid-cols-4 gap-4 my-4">
-  <div v-for="(value, key) in Icon" :key="key" class="flex flex-col items-center p-4 border rounded hover:bg-gray-50">
+  <div v-for="(value, key) in Icon" :key="key" class="flex flex-col items-center p-4 border rounded hover:bg-gray-50 dark:hover:bg-gray-800">
     <bo-icon :icon="value" />
     <span class="text-xs mt-1">{{ key }}</span>
   </div>
 </div>
-
-## Best Practices
-
-### When to Use Decorative vs Semantic
-
-**Use Decorative Icons (default) when:**
-
-- Icons accompany text that already describes the action/content
-- Icons are purely visual enhancements
-- Icons are used in buttons with descriptive labels
-
-**Use Semantic Icons when:**
-
-- Icons stand alone without descriptive text
-- Icons convey status or state information
-- Icons are the primary way to communicate information
-
-### Color Considerations
-
-- Use `currentColor` (default) to inherit text color
-- Provide sufficient color contrast for accessibility
-- Consider color-blind users when using color to convey meaning
-- Use semantic colors consistently (red for errors, green for success, etc.)
-
-### Size Guidelines
-
-- `extra_small` (12px): For inline text or very compact layouts
-- `small` (14px): For dense interfaces or secondary actions
-- `default` (16px): Standard size for most use cases
-- `large` (20px): For primary actions or emphasis
-- `extra_large` (24px): For headers or prominent features
