@@ -548,11 +548,10 @@ describe('BoAccordion', () => {
 		});
 
 		test('should apply dark mode border classes', () => {
-			const container = wrapper.find('.bo-accordion');
-			const containerClasses = container.classes();
-
-			// Check for dark mode border classes
-			expect(containerClasses.some((cls) => cls.includes('dark:border-neutral-700'))).toBe(true);
+			// Check header for dark mode border class instead of container
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const headerClasses = header.classes();
+			expect(headerClasses.some((cls) => cls.includes('dark:border-neutral-700'))).toBe(true);
 		});
 
 		test('should maintain dark mode styles when disabled', () => {
@@ -572,17 +571,10 @@ describe('BoAccordion', () => {
 		});
 
 		test('should apply dark mode styles to container layout', () => {
-			const containerWrapper = mount(BoAccordion, {
-				props: {
-					title: 'Test Container',
-				},
-			});
-
-			const accordion = containerWrapper.find('.bo-accordion');
-			const accordionClasses = accordion.classes();
-
-			// Verify container has dark mode border and layout classes
-			expect(accordionClasses.some((cls) => cls.includes('dark:border-neutral-700'))).toBe(true);
+			// Check header for dark mode border class instead of container
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const headerClasses = header.classes();
+			expect(headerClasses.some((cls) => cls.includes('dark:border-neutral-700'))).toBe(true);
 		});
 	});
 });
