@@ -264,7 +264,7 @@ interface BoButtonGroupProps<T = Record<string, unknown>> {
         { id: 'secondary2', label: 'Secondary 2' },
       ]"
     />
-</div>o
+</div>
   <div class="flex gap-4">
     <bo-button-group
       :variant="BoButtonVariant.success"
