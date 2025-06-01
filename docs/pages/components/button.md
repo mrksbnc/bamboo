@@ -41,8 +41,8 @@ import { BoButton } from '@mrksbnc/bamboo';
 | `variant`    | `BoButtonVariant` | `primary`   | Button appearance style                   |
 | `shape`      | `BoButtonShape`   | `default`   | Shape of the button                       |
 | `size`       | `BoSize`          | `default`   | Button size                               |
-| `prefixIcon` | `Icon`            | `Icon.none` | Icon to display before the label          |
-| `suffixIcon` | `Icon`            | `Icon.none` | Icon to display after the label           |
+| `prefixIcon` | `Icon`            | `undefined` | Icon to display before the label          |
+| `suffixIcon` | `Icon`            | `undefined` | Icon to display after the label           |
 | `disabled`   | `boolean`         | `false`     | Whether the button is disabled            |
 | `isLoading`  | `boolean`         | `false`     | Whether the button is in a loading state  |
 | `loaderType` | `BoLoaderType`    | `spinner`   | Type of loader to show when loading       |
