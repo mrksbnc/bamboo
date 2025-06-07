@@ -6,12 +6,8 @@
 		:class="avatarContainerClasses"
 		:aria-label="avatarAccessibility.container.ariaLabel"
 		:aria-describedby="avatarAccessibility.container.ariaDescribedBy"
-		:aria-pressed="avatarAccessibility.interactive.ariaPressed"
-		:tabindex="avatarAccessibility.container.tabIndex"
 		:data-testid="constructAttribute(id, 'avatar')"
 		@click="onClick"
-		@keydown.enter.prevent="onClick"
-		@keydown.space.prevent="onClick"
 	>
 		<div
 			v-if="showFallbackImage"
@@ -128,8 +124,7 @@ const AVATAR_STYLE = {
 		default: /*tw*/ 'cursor-default',
 		clickable:
 			/*tw*/ 'cursor-pointer hover:opacity-80 transition-all duration-200 transform hover:scale-105',
-		focus:
-			/*tw*/ 'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:shadow-lg',
+		focus: /*tw*/ 'focus:outline-none',
 		active: /*tw*/ 'active:scale-95 active:opacity-90',
 		disabled: /*tw*/ 'opacity-50 cursor-not-allowed',
 	},
@@ -242,7 +237,6 @@ const cursorClassConstruct = computed<string>(() => {
 
 	return TailwindService.instance.merge(
 		AVATAR_STYLE.interactive.clickable,
-		AVATAR_STYLE.interactive.focus,
 		AVATAR_STYLE.interactive.active,
 	);
 });
@@ -362,7 +356,6 @@ const avatarAccessibility = computed<BoAvatarAccessibilityConstruct>(() => {
 			role: props.clickable ? 'button' : 'img',
 			ariaLabel: props.ariaLabel || computedAriaLabel.value,
 			ariaDescribedBy: props.ariaDescribedBy,
-			tabIndex: props.clickable ? 0 : undefined,
 		},
 		image: {
 			alt: computedImageAlt.value,
@@ -371,7 +364,6 @@ const avatarAccessibility = computed<BoAvatarAccessibilityConstruct>(() => {
 		interactive: {
 			isClickable: Boolean(props.clickable),
 			hasKeyboardSupport: Boolean(props.clickable),
-			ariaPressed: props.clickable ? props.ariaPressed : undefined,
 		},
 	};
 });

@@ -1,6 +1,6 @@
 <script setup>
-import BoAvatar from '@/components/avatar/bo-avatar.vue';
-import {  BoAvatarShape, BoAvatarType, BoAvatarVariant } from '@/components/avatar/bo-avatar';
+import  BoAvatar  from '@/components/avatar/bo-avatar.vue';
+import { BoAvatarShape, BoAvatarVariant, BoAvatarType } from '@/components/avatar/bo-avatar';
 import { BoSize } from '@/shared/bo-size';
 import { Icon } from '@/components/icon/bo-icon';
 import BoIcon from '@/components/icon/bo-icon.vue';
@@ -8,7 +8,7 @@ import BoIcon from '@/components/icon/bo-icon.vue';
 
 # Avatar
 
-Avatar is a component used to represent users or entities with images or initials. It supports accessibility features, keyboard navigation, and click interactions.
+A versatile avatar component that supports both image and initials-based avatars with various shapes, sizes, and color variants.
 
 ```js
 import { BoAvatar } from '@mrksbnc/bamboo';
@@ -18,7 +18,10 @@ import { BoAvatar } from '@mrksbnc/bamboo';
 
 ```vue
 <template>
-	<bo-avatar :data="{ label: 'John Doe' }" />
+	<bo-avatar
+		type="image"
+		:data="{ src: 'https://example.com/avatar.jpg', alt: 'User avatar' }"
+	/>
 </template>
 
 <script setup>
@@ -122,224 +125,113 @@ import { BoAvatar } from '@mrksbnc/bamboo';
 
 ## Props
 
-| Name        | Type              | Default        | Description                                                  |
-| ----------- | ----------------- | -------------- | ------------------------------------------------------------ |
-| `id`        | `string`          | auto-generated | Unique ID for the avatar, used for accessibility and testing |
-| `data`      | `BoAvatarData`    | `undefined`    | Avatar data (image source or label)                          |
-| `type`      | `BoAvatarType`    | `initials`     | Type of avatar (image or initials)                           |
-| `shape`     | `BoAvatarShape`   | `rounded`      | Shape of the avatar                                          |
-| `size`      | `BoSize`          | `default`      | Size of the avatar                                           |
-| `clickable` | `boolean`         | `false`        | Whether the avatar is clickable and interactive              |
-| `variant`   | `BoAvatarVariant` | `primary`      | Color variant of the avatar                                  |
-| `color`     | `BoAvatarColor`   | `undefined`    | Custom colors for the avatar                                 |
+| Name              | Type              | Default   | Description                                   |
+| ----------------- | ----------------- | --------- | --------------------------------------------- |
+| `id`              | `string`          | -         | Unique ID for the avatar                      |
+| `size`            | `BoSize`          | `default` | Size of the avatar                            |
+| `data`            | `BoAvatarData`    | -         | Avatar data (image source or label)           |
+| `type`            | `BoAvatarType`    | `image`   | Type of avatar (image or initials)            |
+| `clickable`       | `boolean`         | `false`   | Whether the avatar is clickable               |
+| `shape`           | `BoAvatarShape`   | `circle`  | Shape of the avatar                           |
+| `color`           | `BoAvatarColor`   | -         | Custom colors for the avatar                  |
+| `variant`         | `BoAvatarVariant` | `primary` | Color variant of the avatar                   |
+| `ariaLabel`       | `string`          | -         | Custom ARIA label for accessibility           |
+| `ariaDescribedBy` | `string`          | -         | ID of element that describes this avatar      |
+| `ariaPressed`     | `boolean`         | -         | Whether the avatar represents a pressed state |
 
 ## Events
 
-| Name    | Payload          | Description                                       |
-| ------- | ---------------- | ------------------------------------------------- |
-| `click` | `{ id: string }` | Emitted when the avatar is clicked (if clickable) |
+| Name    | Payload      | Description          |
+| ------- | ------------ | -------------------- |
+| `click` | `MouseEvent` | Emitted when clicked |
 
 ## Types
 
-```ts
-enum BoAvatarShape {
-	circle = 'circle',
-	flat = 'flat',
-	rounded = 'rounded',
-	outline_flat = 'outline_flat',
-	outline_rounded = 'outline_rounded',
-	outline_circle = 'outline_circle',
-}
-
-enum BoAvatarVariant {
-	primary = 'primary',
-	secondary = 'secondary',
-	danger = 'danger',
-	warning = 'warning',
-	success = 'success',
-	dark = 'dark',
-}
-
-enum BoAvatarType {
-	image = 'image',
-	initials = 'initials',
-}
-
-interface BoAvatarData {
-	/**
-	 * Alternative text for the avatar image
-	 */
-	alt?: string;
-	/**
-	 * Source URL for the avatar image
-	 */
-	src?: string;
-	/**
-	 * Label text for initials avatar
-	 */
-	label?: string;
-}
-
-interface BoAvatarColor {
-	/**
-	 * Background color in hex format
-	 */
-	bgColorHex?: string;
-	/**
-	 * Text color in hex format
-	 */
-	colorHex?: string;
-}
-
-interface BoAvatarProps {
-	/**
-	 * Unique ID for the avatar, used for accessibility and testing
-	 */
-	id?: string;
-	/**
-	 * Size of the avatar
-	 */
-	size?: BoSize;
-	/**
-	 * Avatar data (image source or label)
-	 */
-	data?: BoAvatarData;
-	/**
-	 * Type of avatar (image or initials)
-	 */
-	type?: BoAvatarType;
-	/**
-	 * Whether the avatar is clickable and interactive
-	 */
-	clickable?: boolean;
-	/**
-	 * Shape of the avatar
-	 */
-	shape?: BoAvatarShape;
-	/**
-	 * Custom colors for the avatar
-	 */
-	color?: BoAvatarColor;
-	/**
-	 * Color variant of the avatar
-	 */
-	variant?: BoAvatarVariant;
-}
-```
-
-## Initials Avatar
-
-The avatar automatically generates initials from the provided label. For multiple words, it takes the first letter of each word (up to 2 letters).
+### Image Avatar
 
 <div class="flex gap-4 items-center my-4">
-  <bo-avatar :type="BoAvatarType.initials" :data="{ label: 'John Doe' }" />
-  <bo-avatar :type="BoAvatarType.initials" :data="{ label: 'Jane Smith' }" />
-  <bo-avatar :type="BoAvatarType.initials" :data="{ label: 'Alex' }" />
+	<bo-avatar
+		type="image"
+		:data="{ 
+			src: 'https://i.pravatar.cc/300?img=1', 
+			alt: 'User avatar' 
+		}"
+	/>
+	<bo-avatar
+		type="image"
+		:data="{ 
+			src: 'https://i.pravatar.cc/300?img=2', 
+			alt: 'User avatar' 
+		}"
+	/>
+	<bo-avatar
+		type="image"
+		:data="{ 
+			src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgM2MyLjY3IDAgNC44NCAyLjE3IDQuODQgNC44NCAwIDIuNjctMi4xNyA0Ljg0LTQuODQgNC44NC0yLjY3IDAtNC44NC0yLjE3LTQuODQtNC44NCAwLTIuNjcgMi4xNy00Ljg0IDQuODQtNC44NHptMCAxMmM0LjQyIDAgOC4xNy0yLjI4IDkuNTQtNS41N0gxMi4xM2MtMS4yOSAwLTIuNDctLjQ5LTMuMzYtMS4zLS44OS0uODEtMS4zOC0xLjkzLTEuMzgtMy4xM3YtLjA2YzAtMS4yLjQ5LTIuMzIgMS4zOC0zLjEzLjg5LS44MSAyLjA3LTEuMyAzLjM2LTEuM2g5LjQxYy0xLjM3LTMuMjktNS4xMi01LjU3LTkuNTQtNS41N0MyMi4yNCAyIDI0IDMuNzYgMjQgNnYxMmMwIDIuMjQtMS43NiA0LTQgNEg0Yy0yLjI0IDAtNC0xLjc2LTQtNFY2YzAtMi4yNCAxLjc2LTQgNC00eiIvPjwvc3ZnPg==',
+			alt: 'Base64 SVG avatar' 
+		}"
+	/>
 </div>
 
 ```vue
-<bo-avatar :type="BoAvatarType.initials" :data="{ label: 'John Doe' }" />
-<bo-avatar :type="BoAvatarType.initials" :data="{ label: 'Jane Smith' }" />
-<bo-avatar :type="BoAvatarType.initials" :data="{ label: 'Alex' }" />
-```
-
-## Image Avatar
-
-<div class="flex gap-4 items-center my-4">
-  <bo-avatar 
-    :type="BoAvatarType.image" 
-    :data="{ 
-      src: 'https://i.pravatar.cc/300', 
-      alt: 'Avatar image' 
-    }" 
-  />
-</div>
-
-```vue
+<!-- Using external image URL -->
 <bo-avatar
-	:type="BoAvatarType.image"
+	type="image"
 	:data="{
-		src: 'https://i.pravatar.cc/300',
-		alt: 'Avatar image',
+		src: 'https://i.pravatar.cc/300?img=1',
+		alt: 'User avatar',
+	}"
+/>
+
+<!-- Using base64 encoded image -->
+<bo-avatar
+	type="image"
+	:data="{
+		src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgM2MyLjY3IDAgNC44NCAyLjE3IDQuODQgNC44NCAwIDIuNjctMi4xNyA0Ljg0LTQuODQgNC44NC0yLjY3IDAtNC44NC0yLjE3LTQuODQtNC44NCAwLTIuNjcgMi4xNy00Ljg0IDQuODQtNC44NHptMCAxMmM0LjQyIDAgOC4xNy0yLjI4IDkuNTQtNS41N0gxMi4xM2MtMS4yOSAwLTIuNDctLjQ5LTMuMzYtMS4zLS44OS0uODEtMS4zOC0xLjkzLTEuMzgtMy4xM3YtLjA2YzAtMS4yLjQ5LTIuMzIgMS4zOC0zLjEzLjg5LS44MSAyLjA3LTEuMyAzLjM2LTEuM2g5LjQxYy0xLjM3LTMuMjktNS4xMi01LjU3LTkuNTQtNS41N0MyMi4yNCAyIDI0IDMuNzYgMjQgNnYxMmMwIDIuMjQtMS43NiA0LTQgNEg0Yy0yLjI0IDAtNC0xLjc2LTQtNFY2YzAtMi4yNCAxLjc2LTQgNC00eiIvPjwvc3ZnPg==',
+		alt: 'Base64 SVG avatar',
 	}"
 />
 ```
 
-## Clickable Avatar
-
-When the `clickable` prop is set to `true`, the avatar becomes interactive and emits click events. It supports both mouse clicks and keyboard navigation (Enter and Space keys).
+### Initials Avatar
 
 <div class="flex gap-4 items-center my-4">
-  <bo-avatar 
-    :clickable="true" 
-    :data="{ label: 'John Doe' }" 
-    @click="(payload) => console.log('Avatar clicked:', payload)"
-  />
-  <bo-avatar 
-    :clickable="true" 
-    :shape="BoAvatarShape.circle"
-    :data="{ label: 'Jane Smith' }" 
-    @click="(payload) => console.log('Avatar clicked:', payload)"
-  />
+	<bo-avatar
+		type="initials"
+		:data="{ label: 'JD' }"
+	/>
+	<bo-avatar
+		type="initials"
+		:data="{ label: 'JS' }"
+	/>
+	<bo-avatar
+		type="initials"
+		:data="{ label: 'AB' }"
+	/>
 </div>
 
 ```vue
-<bo-avatar :clickable="true" :data="{ label: 'John Doe' }" @click="handleAvatarClick" />
+<!-- Single initial -->
+<bo-avatar type="initials" :data="{ label: 'J' }" />
 
-<script setup>
-function handleAvatarClick(payload) {
-	console.log('Avatar clicked:', payload.id);
-}
-</script>
-```
+<!-- Two initials -->
+<bo-avatar type="initials" :data="{ label: 'JD' }" />
 
-## Shapes
-
-<div class="flex gap-4 items-center my-4">
-  <bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'JD' }" />
-  <bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'JD' }" />
-  <bo-avatar :shape="BoAvatarShape.flat" :data="{ label: 'JD' }" />
-  <bo-avatar :shape="BoAvatarShape.outline_rounded" :data="{ label: 'JD' }" />
-  <bo-avatar :shape="BoAvatarShape.outline_circle" :data="{ label: 'JD' }" />
-  <bo-avatar :shape="BoAvatarShape.outline_flat" :data="{ label: 'JD' }" />
-</div>
-
-```vue
-<bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'JD' }" />
-<bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'JD' }" />
-<bo-avatar :shape="BoAvatarShape.flat" :data="{ label: 'JD' }" />
-<bo-avatar :shape="BoAvatarShape.outline_rounded" :data="{ label: 'JD' }" />
-<bo-avatar :shape="BoAvatarShape.outline_circle" :data="{ label: 'JD' }" />
-<bo-avatar :shape="BoAvatarShape.outline_flat" :data="{ label: 'JD' }" />
-```
-
-## Sizes
-
-<div class="flex items-center gap-4 my-4">
-  <bo-avatar :size="BoSize.extra_small" :data="{ label: 'JD' }" />
-  <bo-avatar :size="BoSize.small" :data="{ label: 'JD' }" />
-  <bo-avatar :size="BoSize.default" :data="{ label: 'JD' }" />
-  <bo-avatar :size="BoSize.large" :data="{ label: 'JD' }" />
-  <bo-avatar :size="BoSize.extra_large" :data="{ label: 'JD' }" />
-</div>
-
-```vue
-<bo-avatar :size="BoSize.extra_small" :data="{ label: 'JD' }" />
-<bo-avatar :size="BoSize.small" :data="{ label: 'JD' }" />
-<bo-avatar :size="BoSize.default" :data="{ label: 'JD' }" />
-<bo-avatar :size="BoSize.large" :data="{ label: 'JD' }" />
-<bo-avatar :size="BoSize.extra_large" :data="{ label: 'JD' }" />
+<!-- Full name (will show first two initials) -->
+<bo-avatar type="initials" :data="{ label: 'John Doe' }" />
 ```
 
 ## Variants
 
+All variant values must be documented with visual examples:
+
 <div class="flex gap-4 items-center my-4">
-  <bo-avatar :variant="BoAvatarVariant.primary" :data="{ label: 'JD' }" />
-  <bo-avatar :variant="BoAvatarVariant.secondary" :data="{ label: 'JD' }" />
-  <bo-avatar :variant="BoAvatarVariant.danger" :data="{ label: 'JD' }" />
-  <bo-avatar :variant="BoAvatarVariant.warning" :data="{ label: 'JD' }" />
-  <bo-avatar :variant="BoAvatarVariant.success" :data="{ label: 'JD' }" />
-  <bo-avatar :variant="BoAvatarVariant.dark" :data="{ label: 'JD' }" />
+	<bo-avatar :variant="BoAvatarVariant.primary" :data="{ label: 'JD' }" />
+	<bo-avatar :variant="BoAvatarVariant.secondary" :data="{ label: 'JD' }" />
+	<bo-avatar :variant="BoAvatarVariant.danger" :data="{ label: 'JD' }" />
+	<bo-avatar :variant="BoAvatarVariant.warning" :data="{ label: 'JD' }" />
+	<bo-avatar :variant="BoAvatarVariant.success" :data="{ label: 'JD' }" />
+	<bo-avatar :variant="BoAvatarVariant.dark" :data="{ label: 'JD' }" />
 </div>
 
 ```vue
@@ -351,27 +243,145 @@ function handleAvatarClick(payload) {
 <bo-avatar :variant="BoAvatarVariant.dark" :data="{ label: 'JD' }" />
 ```
 
-## Custom Colors
+## Sizes
 
-You can override the default colors by providing custom hex colors.
+All size values must be documented with visual examples:
 
-<div class="flex gap-4 items-center my-4">
-  <bo-avatar 
-    :data="{ label: 'JD' }" 
-    :color="{ bgColorHex: '#ff6b6b', colorHex: '#ffffff' }"
-  />
-  <bo-avatar 
-    :data="{ label: 'JS' }" 
-    :color="{ bgColorHex: '#4ecdc4', colorHex: '#ffffff' }"
-  />
-  <bo-avatar 
-    :data="{ label: 'AB' }" 
-    :color="{ bgColorHex: '#45b7d1', colorHex: '#ffffff' }"
-  />
+<div class="flex items-center gap-4 my-4">
+	<bo-avatar :size="BoSize.extra_small" :data="{ label: 'JD' }" />
+	<bo-avatar :size="BoSize.small" :data="{ label: 'JD' }" />
+	<bo-avatar :size="BoSize.default" :data="{ label: 'JD' }" />
+	<bo-avatar :size="BoSize.large" :data="{ label: 'JD' }" />
+	<bo-avatar :size="BoSize.extra_large" :data="{ label: 'JD' }" />
 </div>
 
 ```vue
-<bo-avatar :data="{ label: 'JD' }" :color="{ bgColorHex: '#ff6b6b', colorHex: '#ffffff' }" />
-<bo-avatar :data="{ label: 'JS' }" :color="{ bgColorHex: '#4ecdc4', colorHex: '#ffffff' }" />
-<bo-avatar :data="{ label: 'AB' }" :color="{ bgColorHex: '#45b7d1', colorHex: '#ffffff' }" />
+<bo-avatar :size="BoSize.extra_small" :data="{ label: 'JD' }" />
+<bo-avatar :size="BoSize.small" :data="{ label: 'JD' }" />
+<bo-avatar :size="BoSize.default" :data="{ label: 'JD' }" />
+<bo-avatar :size="BoSize.large" :data="{ label: 'JD' }" />
+<bo-avatar :size="BoSize.extra_large" :data="{ label: 'JD' }" />
 ```
+
+## Shapes
+
+All shape values must be documented with visual examples:
+
+<div class="flex gap-4 items-center my-4">
+	<bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'JD' }" />
+	<bo-avatar :shape="BoAvatarShape.flat" :data="{ label: 'JD' }" />
+	<bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'JD' }" />
+	<bo-avatar :shape="BoAvatarShape.outline_flat" :data="{ label: 'JD' }" />
+	<bo-avatar :shape="BoAvatarShape.outline_rounded" :data="{ label: 'JD' }" />
+	<bo-avatar :shape="BoAvatarShape.outline_circle" :data="{ label: 'JD' }" />
+</div>
+
+```vue
+<bo-avatar :shape="BoAvatarShape.circle" :data="{ label: 'JD' }" />
+<bo-avatar :shape="BoAvatarShape.flat" :data="{ label: 'JD' }" />
+<bo-avatar :shape="BoAvatarShape.rounded" :data="{ label: 'JD' }" />
+<bo-avatar :shape="BoAvatarShape.outline_flat" :data="{ label: 'JD' }" />
+<bo-avatar :shape="BoAvatarShape.outline_rounded" :data="{ label: 'JD' }" />
+<bo-avatar :shape="BoAvatarShape.outline_circle" :data="{ label: 'JD' }" />
+```
+
+## States
+
+### Clickable
+
+<div class="flex gap-4 items-center my-4">
+	<bo-avatar
+		clickable
+		:data="{ label: 'JD' }"
+	/>
+</div>
+
+```vue
+<bo-avatar clickable :data="{ label: 'JD' }" />
+```
+
+### Custom Colors
+
+<div class="flex gap-4 items-center my-4">
+	<bo-avatar
+		:color="{ bgColorHex: '#FF5733', colorHex: '#FFFFFF' }"
+		:data="{ label: 'JD' }"
+	/>
+	<bo-avatar
+		:color="{ bgColorHex: '#4ECDC4', colorHex: '#FFFFFF' }"
+		:data="{ label: 'JD' }"
+	/>
+	<bo-avatar
+		:color="{ bgColorHex: '#45B7D1', colorHex: '#FFFFFF' }"
+		:data="{ label: 'JD' }"
+	/>
+	<bo-avatar
+		:color="{ bgColorHex: '#96CEB4', colorHex: '#FFFFFF' }"
+		:data="{ label: 'JD' }"
+	/>
+	<bo-avatar
+		:color="{ bgColorHex: '#FFEEAD', colorHex: '#000000' }"
+		:data="{ label: 'JD' }"
+	/>
+</div>
+
+```vue
+<!-- Orange background with white text -->
+<bo-avatar :color="{ bgColorHex: '#FF5733', colorHex: '#FFFFFF' }" :data="{ label: 'JD' }" />
+
+<!-- Teal background with white text -->
+<bo-avatar :color="{ bgColorHex: '#4ECDC4', colorHex: '#FFFFFF' }" :data="{ label: 'JD' }" />
+
+<!-- Blue background with white text -->
+<bo-avatar :color="{ bgColorHex: '#45B7D1', colorHex: '#FFFFFF' }" :data="{ label: 'JD' }" />
+
+<!-- Mint background with white text -->
+<bo-avatar :color="{ bgColorHex: '#96CEB4', colorHex: '#FFFFFF' }" :data="{ label: 'JD' }" />
+
+<!-- Yellow background with black text -->
+<bo-avatar :color="{ bgColorHex: '#FFEEAD', colorHex: '#000000' }" :data="{ label: 'JD' }" />
+```
+
+## Event Handling
+
+```vue
+<template>
+	<bo-avatar
+		clickable
+		:data="{ label: 'JD' }"
+		@click="handleClick"
+	/>
+</template>
+
+<script setup>
+const handleClick = (event) => {
+	console.log('Avatar clicked:', event);
+};
+</script>
+```
+
+## Accessibility
+
+### Features
+
+- Semantic HTML structure with proper roles
+- ARIA attributes for state and properties
+- Screen reader compatibility
+- Focus management
+
+### ARIA Attributes
+
+| Attribute          | Purpose               | Values          |
+| ------------------ | --------------------- | --------------- |
+| `role`             | Semantic role         | `img`, `button` |
+| `aria-label`       | Accessible name       | Custom string   |
+| `aria-describedby` | Description reference | Element ID      |
+| `aria-pressed`     | Pressed state         | `true`, `false` |
+
+### Accessibility Props
+
+| Name              | Type      | Default     | Description                               |
+| ----------------- | --------- | ----------- | ----------------------------------------- |
+| `ariaLabel`       | `string`  | `undefined` | Custom accessible name for screen readers |
+| `ariaDescribedBy` | `string`  | `undefined` | ID of element describing this component   |
+| `ariaPressed`     | `boolean` | `undefined` | Whether the avatar is in pressed state    |
