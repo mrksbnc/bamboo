@@ -1,0 +1,14 @@
+{
+	"$schema": "https://oxc-project.github.io/schemas/oxlint.json",
+	"files": {
+		"include": ["src/**/*.{js,jsx,ts,tsx,vue}"],
+		"ignore": ["**/dist/**", "**/node_modules/**", "**/coverage/**"]
+	},
+	"rules": {
+		"correctness": "error",
+		"suspicious": "error",
+		"complexity": "warn",
+		"style": "warn",
+		"nursery": "off"
+	}
+}
