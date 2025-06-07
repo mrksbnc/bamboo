@@ -8,15 +8,18 @@
 		<div
 			tabindex="0"
 			role="button"
+			:id="accessibility.headerId"
 			:class="headerClass"
-			:aria-expanded="isOpen"
-			:aria-disabled="disabled"
-			:id="constructAttribute(id, 'accordion-header')"
-			:aria-controls="constructAttribute(id, 'accordion-body')"
+			:aria-expanded="accessibility.ariaExpanded"
+			:aria-disabled="accessibility.ariaDisabled"
+			:aria-label="accessibility.ariaLabel"
+			:aria-controls="accessibility.ariaControls"
 			:data-testid="constructAttribute(id, 'accordion-header')"
 			@click="onAccordionToggle"
 			@keydown.enter="onAccordionToggle"
 			@keydown.space="onAccordionToggle"
+			@keydown.prevent.arrow-down="onArrowNavigation('down')"
+			@keydown.prevent.arrow-up="onArrowNavigation('up')"
 		>
 			<div class="flex items-center gap-2">
 				<bo-icon
@@ -48,9 +51,9 @@
 			role="region"
 			ref="accordionBodyRef"
 			:class="bodyClasses"
-			:id="constructAttribute(id, 'accordion-body')"
+			:id="accessibility.bodyId"
 			:data-testid="constructAttribute(id, 'accordion-content')"
-			:aria-labelledby="constructAttribute(id, 'accordion-header')"
+			:aria-labelledby="accessibility.ariaLabelledBy"
 		>
 			<div :class="slotClasses">
 				<slot></slot>
@@ -107,11 +110,12 @@ const ACCORDION_STYLE = {
 	},
 	interactive: {
 		header: TailwindService.instance.merge(
-			/*tw*/ 'cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700',
+			/*tw*/ 'cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-blue-400 dark:focus:ring-offset-neutral-800',
 			props.disabled ? /*tw*/ 'cursor-not-allowed opacity-50' : '',
 			props.open ? (props.shape === BoAccordionShape.rounded ? /*tw*/ 'rounded-t-lg' : '') : '',
 		),
-		disabled: /*tw*/ 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
+		disabled:
+			/*tw*/ 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent focus:ring-0',
 	},
 	animation: {
 		icon: /*tw*/ 'bo-accordion__collapse-icon transition-transform duration-200 ease-in-out',
@@ -123,6 +127,18 @@ const ACCORDION_STYLE = {
 const isOpen = ref<boolean>(props.open ?? false);
 const accordionRef = ref<HTMLElement>();
 const accordionBodyRef = ref<HTMLElement>();
+
+const accessibility = computed<AccessibilityConstruct>(() => {
+	return {
+		ariaExpanded: isOpen.value,
+		ariaDisabled: props.disabled,
+		ariaLabel: props.ariaLabel ?? props.title,
+		ariaControls: constructAttribute(props.id, 'accordion-body'),
+		ariaLabelledBy: constructAttribute(props.id, 'accordion-header'),
+		headerId: constructAttribute(props.id, 'accordion-header'),
+		bodyId: constructAttribute(props.id, 'accordion-body'),
+	};
+});
 
 const containerClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
@@ -178,6 +194,28 @@ function onAccordionToggle(): void {
 
 	isOpen.value = !isOpen.value;
 	emit('toggle', { id: props.id, open: isOpen.value });
+}
+
+function onArrowNavigation(direction: 'up' | 'down'): void {
+	if (!accordionGroup) return;
+
+	const accordionElements = document.querySelectorAll(
+		'[role="button"][aria-controls*="accordion-body"]',
+	);
+	const currentIndex = Array.from(accordionElements).findIndex(
+		(element) => element.id === accessibility.value.headerId,
+	);
+
+	if (currentIndex === -1) return;
+
+	let nextIndex: number;
+	if (direction === 'down') {
+		nextIndex = currentIndex === accordionElements.length - 1 ? 0 : currentIndex + 1;
+	} else {
+		nextIndex = currentIndex === 0 ? accordionElements.length - 1 : currentIndex - 1;
+	}
+
+	(accordionElements[nextIndex] as HTMLElement)?.focus();
 }
 
 watch(

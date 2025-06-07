@@ -10,7 +10,9 @@ export interface BoAccordionProps {
 	id?: string;
 	/** The title of the accordion item */
 	title?: string;
-	/** Whether the accordion is open by default */
+	/** Custom accessible label for screen readers (falls back to title) */
+	ariaLabel?: string;
+	/** Whether the accordion is opened by default */
 	open?: boolean;
 	/** Whether the accordion is disabled */
 	disabled?: boolean;

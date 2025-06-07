@@ -12,7 +12,6 @@ export * from '@/components/loading-spinner/index.js';
 export * from '@/components/modal/index.js';
 export * from '@/components/popover/index.js';
 export * from '@/components/progress-bar/index.js';
-
 export * from '@/components/radio/index.js';
 export * from '@/components/text/index.js';
 export * from '@/components/textarea/index.js';
