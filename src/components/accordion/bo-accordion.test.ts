@@ -906,6 +906,17 @@ describe('BoAccordion', () => {
 				registerItem: vi.fn(),
 			};
 
+			// Mount two accordions with different props
+			mount(BoAccordion, {
+				props: { id: 'acc-1', title: 'First', open: true },
+				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
+			});
+
+			mount(BoAccordion, {
+				props: { id: 'acc-2', title: 'Second' },
+				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
+			});
+
 			expect(mockGroup.registerItem).toHaveBeenCalledWith('acc-1', true);
 			expect(mockGroup.registerItem).toHaveBeenCalledWith('acc-2', false);
 		});
