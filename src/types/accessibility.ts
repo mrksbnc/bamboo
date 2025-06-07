@@ -71,7 +71,7 @@ export interface LandmarkAccessibilityConstruct {
  */
 export interface NavigationAccessibilityConstruct {
 	/** ARIA orientation for navigation direction */
-	ariaOrientation?: 'horizontal' | 'vertical';
+	ariaOrientation?: NavigationOrientation;
 	/** ARIA current state for current page/location */
 	ariaCurrent?: boolean | 'false' | 'true' | 'page' | 'step' | 'location' | 'date' | 'time';
 	/** ARIA expanded state for submenus */
@@ -209,6 +209,106 @@ export interface AccessibilityTesting {
 	accessibleName: string;
 	/** Accessibility tree description */
 	accessibleDescription?: string;
+}
+
+/**
+ * Accordion-specific accessibility interface
+ * Handles collapsible content accessibility patterns
+ */
+export interface AccordionAccessibilityConstruct {
+	/** Header element accessibility attributes */
+	header: {
+		id: string;
+		ariaExpanded: boolean;
+		ariaDisabled: boolean;
+		ariaLabel?: string;
+		ariaControls: string;
+		role: 'button';
+		tabIndex: number;
+	};
+	/** Content region accessibility attributes */
+	content: {
+		id: string;
+		ariaLabelledBy: string;
+		role: 'region';
+		isVisible: boolean;
+	};
+	/** Container group accessibility attributes */
+	container: {
+		role: 'group';
+		ariaLabel?: string;
+	};
+}
+
+/**
+ * Navigation direction enum for keyboard navigation
+ */
+export enum NavigationDirection {
+	UP = 'up',
+	DOWN = 'down',
+	LEFT = 'left',
+	RIGHT = 'right',
+}
+
+/**
+ * Navigation orientation enum for keyboard navigation
+ */
+export enum NavigationOrientation {
+	HORIZONTAL = 'horizontal',
+	VERTICAL = 'vertical',
+	BOTH = 'both',
+}
+
+/**
+ * Tab behavior enum for keyboard navigation
+ */
+export enum TabBehavior {
+	CYCLE = 'cycle',
+	EXIT = 'exit',
+	TRAP = 'trap',
+}
+
+/**
+ * Keyboard navigation patterns for interactive components
+ * Based on WAI-ARIA Authoring Practices Guide
+ */
+export interface KeyboardNavigationConstruct {
+	/** Current focused element index */
+	currentIndex: number;
+	/** Total number of navigable elements */
+	totalItems: number;
+	/** Navigation orientation */
+	orientation: NavigationOrientation;
+	/** Whether to wrap at boundaries */
+	wrap: boolean;
+	/** Home/End key support */
+	homeEndEnabled: boolean;
+	/** Arrow key navigation enabled */
+	arrowKeysEnabled: boolean;
+	/** Tab key navigation behavior */
+	tabBehavior: TabBehavior;
+}
+
+/**
+ * Grouped navigation accessibility for accordion containers
+ * Manages navigation between related interactive elements
+ */
+export interface GroupNavigationAccessibilityConstruct {
+	/** Group container attributes */
+	container: {
+		role: 'group';
+		ariaLabel?: string;
+		ariaLabelledBy?: string;
+	};
+	/** Navigation state management */
+	navigation: {
+		currentItem: string;
+		allItems: string[];
+		allowMultipleExpanded: boolean;
+		alwaysOneExpanded: boolean;
+	};
+	/** Keyboard interaction patterns */
+	keyboard: KeyboardNavigationConstruct;
 }
 
 /**
