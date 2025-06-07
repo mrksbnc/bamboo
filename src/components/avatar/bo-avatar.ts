@@ -39,6 +39,28 @@ export interface BoAvatarColor {
 	colorHex?: string;
 }
 
+export interface BoAvatarAccessibilityConstruct {
+	/** Container accessibility attributes */
+	container: {
+		id: string;
+		role: 'img' | 'button';
+		ariaLabel: string;
+		ariaDescribedBy?: string;
+		tabIndex?: number;
+	};
+	/** Image accessibility attributes */
+	image: {
+		alt: string;
+		ariaHidden?: boolean;
+	};
+	/** Interactive accessibility attributes */
+	interactive: {
+		isClickable: boolean;
+		hasKeyboardSupport: boolean;
+		ariaPressed?: boolean;
+	};
+}
+
 export interface BoAvatarProps {
 	/** Unique ID for the avatar, used for accessibility and testing */
 	id?: string;
@@ -56,4 +78,10 @@ export interface BoAvatarProps {
 	color?: BoAvatarColor;
 	/** Color variant of the avatar */
 	variant?: BoAvatarVariant;
+	/** Custom ARIA label for accessibility */
+	ariaLabel?: string;
+	/** ID of element that describes this avatar */
+	ariaDescribedBy?: string;
+	/** Whether the avatar represents a pressed state (for button-like avatars) */
+	ariaPressed?: boolean;
 }

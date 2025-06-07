@@ -1,15 +1,17 @@
 <template>
 	<div
-		role="img"
-		:id="id"
+		:role="avatarAccessibility.container.role"
+		:id="avatarAccessibility.container.id"
 		:style="containerStyle"
 		:class="avatarContainerClasses"
-		:aria-label="ariaLabel"
-		:tabindex="clickable ? 0 : undefined"
+		:aria-label="avatarAccessibility.container.ariaLabel"
+		:aria-describedby="avatarAccessibility.container.ariaDescribedBy"
+		:aria-pressed="avatarAccessibility.interactive.ariaPressed"
+		:tabindex="avatarAccessibility.container.tabIndex"
 		:data-testid="constructAttribute(id, 'avatar')"
 		@click="onClick"
-		@keydown.enter="onClick"
-		@keydown.space="onClick"
+		@keydown.enter.prevent="onClick"
+		@keydown.space.prevent="onClick"
 	>
 		<div
 			v-if="showFallbackImage"
@@ -17,7 +19,8 @@
 			:data-testid="constructAttribute(id, 'avatar-fallback')"
 		>
 			<img
-				alt="avatar"
+				:alt="avatarAccessibility.image.alt"
+				:aria-hidden="avatarAccessibility.image.ariaHidden"
 				ref="fallbackImage"
 				:src="DefaultAvatarSvg"
 				:class="AVATAR_STYLE.layout.image"
@@ -33,16 +36,19 @@
 			<img
 				ref="imageElement"
 				:src="data?.src"
-				:alt="data?.alt ?? 'avatar'"
+				:alt="avatarAccessibility.image.alt"
+				:aria-hidden="avatarAccessibility.image.ariaHidden"
 				:class="AVATAR_STYLE.layout.image"
 				:data-testid="constructAttribute(id, 'avatar-image')"
 				@error="onImageError"
+				@load="onImageLoad"
 			/>
 		</div>
 		<div
 			v-else
 			:class="[AVATAR_STYLE.layout.initialsContainer, textColorClass]"
 			:data-testid="constructAttribute(id, 'avatar-initials')"
+			:aria-hidden="!avatarAccessibility.interactive.isClickable"
 		>
 			<bo-text
 				:value="label"
@@ -65,7 +71,13 @@ import { StringService } from '@/services/string-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { BoSize } from '@/shared/bo-size.js';
 import { computed, ref, type StyleValue } from 'vue';
-import { BoAvatarShape, BoAvatarType, BoAvatarVariant, type BoAvatarProps } from './bo-avatar.js';
+import {
+	BoAvatarShape,
+	BoAvatarType,
+	BoAvatarVariant,
+	type BoAvatarAccessibilityConstruct,
+	type BoAvatarProps,
+} from './bo-avatar.js';
 
 const props = withDefaults(defineProps<BoAvatarProps>(), {
 	id: () => IdentityService.instance.getComponentId(),
@@ -77,11 +89,14 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 
 const emit = defineEmits<{
 	(e: 'click', payload: { id: string }): void;
+	(e: 'image-load', payload: { id: string; src: string }): void;
+	(e: 'image-error', payload: { id: string; error: Event }): void;
 }>();
 
 const { constructAttribute } = useAttributes();
 
 const imgError = ref<boolean>(false);
+const imgLoaded = ref<boolean>(false);
 const fallbackImage = ref<HTMLImageElement>();
 const imageElement = ref<HTMLImageElement>();
 
@@ -111,8 +126,12 @@ const AVATAR_STYLE = {
 	},
 	interactive: {
 		default: /*tw*/ 'cursor-default',
-		clickable: /*tw*/ 'cursor-pointer hover:opacity-80 transition-opacity duration-200',
-		focus: /*tw*/ 'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+		clickable:
+			/*tw*/ 'cursor-pointer hover:opacity-80 transition-all duration-200 transform hover:scale-105',
+		focus:
+			/*tw*/ 'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:shadow-lg',
+		active: /*tw*/ 'active:scale-95 active:opacity-90',
+		disabled: /*tw*/ 'opacity-50 cursor-not-allowed',
 	},
 	appearance: {
 		shadow: /*tw*/ 'shadow-md',
@@ -177,18 +196,6 @@ const label = computed<string>(() => {
 	return safeStr.toUpperCase();
 });
 
-const ariaLabel = computed<string>(() => {
-	if (props.type === BoAvatarType.image && props.data?.alt) {
-		return props.data.alt;
-	}
-
-	if (props.type === BoAvatarType.initials && props.data?.label) {
-		return `Avatar for ${props.data.label}`;
-	}
-
-	return 'Avatar';
-});
-
 const bgConstruct = computed<string>(() => {
 	if (
 		!StringService.instance.isEmptyStr(props?.color?.bgColorHex) ||
@@ -229,13 +236,15 @@ const textColorClass = computed<string>(() => {
 });
 
 const cursorClassConstruct = computed<string>(() => {
-	const baseClasses = props.clickable
-		? AVATAR_STYLE.interactive.clickable
-		: AVATAR_STYLE.interactive.default;
+	if (!props.clickable) {
+		return AVATAR_STYLE.interactive.default;
+	}
 
-	return props.clickable
-		? TailwindService.instance.merge(baseClasses, AVATAR_STYLE.interactive.focus)
-		: baseClasses;
+	return TailwindService.instance.merge(
+		AVATAR_STYLE.interactive.clickable,
+		AVATAR_STYLE.interactive.focus,
+		AVATAR_STYLE.interactive.active,
+	);
 });
 
 const labelSize = computed<BoFontSize>(() => {
@@ -308,7 +317,16 @@ function onImageError(e: Event): void {
 		imageElement.value.src = DefaultAvatarSvg;
 	}
 
+	emit('image-error', { id: props.id, error: e });
 	console.error('Error loading image', e);
+}
+
+function onImageLoad(e: Event): void {
+	imgLoaded.value = true;
+	const src = (e.target as HTMLImageElement)?.src;
+	if (src) {
+		emit('image-load', { id: props.id, src });
+	}
 }
 
 function getRandomColor(): string {
@@ -336,4 +354,55 @@ function getRandomOutlineColor(): string {
 
 	return colors[Math.floor(Math.random() * colors.length)];
 }
+
+const avatarAccessibility = computed<BoAvatarAccessibilityConstruct>(() => {
+	return {
+		container: {
+			id: props.id,
+			role: props.clickable ? 'button' : 'img',
+			ariaLabel: props.ariaLabel || computedAriaLabel.value,
+			ariaDescribedBy: props.ariaDescribedBy,
+			tabIndex: props.clickable ? 0 : undefined,
+		},
+		image: {
+			alt: computedImageAlt.value,
+			ariaHidden: props.clickable ? true : undefined,
+		},
+		interactive: {
+			isClickable: Boolean(props.clickable),
+			hasKeyboardSupport: Boolean(props.clickable),
+			ariaPressed: props.clickable ? props.ariaPressed : undefined,
+		},
+	};
+});
+
+const computedAriaLabel = computed<string>(() => {
+	if (props.type === BoAvatarType.image && props.data?.alt) {
+		return props.clickable ? `${props.data.alt} button` : props.data.alt;
+	}
+
+	if (props.type === BoAvatarType.initials && props.data?.label) {
+		const baseLabel = `Avatar for ${props.data.label}`;
+		return props.clickable ? `${baseLabel}, button` : baseLabel;
+	}
+
+	return props.clickable ? 'Avatar button' : 'Avatar';
+});
+
+const computedImageAlt = computed<string>(() => {
+	// When avatar is clickable, the alt text should be empty since the container has aria-label
+	if (props.clickable) {
+		return '';
+	}
+
+	if (props.type === BoAvatarType.image && props.data?.alt) {
+		return props.data.alt;
+	}
+
+	if (props.type === BoAvatarType.initials && props.data?.label) {
+		return `Avatar for ${props.data.label}`;
+	}
+
+	return 'avatar';
+});
 </script>

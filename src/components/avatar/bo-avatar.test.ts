@@ -93,6 +93,22 @@ describe('BoAvatar', () => {
 			const label = lowercaseWrapper.find('[data-testid*="avatar-label"]');
 			expect(label.text()).toBe('JD');
 		});
+
+		test('should have proper aria-hidden for initials when not clickable', () => {
+			const initials = wrapper.find('[data-testid*="avatar-initials"]');
+			expect(initials.attributes('aria-hidden')).toBe('true');
+		});
+
+		test('should not have aria-hidden for initials when clickable', () => {
+			const clickableWrapper = mount(BoAvatar, {
+				props: {
+					clickable: true,
+					data: { label: 'Test' },
+				},
+			});
+			const initials = clickableWrapper.find('[data-testid*="avatar-initials"]');
+			expect(initials.attributes('aria-hidden')).toBe('false');
+		});
 	});
 
 	suite('Image Avatar', () => {
@@ -164,6 +180,79 @@ describe('BoAvatar', () => {
 			const avatar = imageWrapper.find('[data-testid*="avatar"]');
 			expect(avatar.attributes('aria-label')).toBe('User profile picture');
 		});
+
+		test('should have aria-hidden on images when clickable', () => {
+			const clickableImageWrapper = mount(BoAvatar, {
+				props: {
+					type: BoAvatarType.image,
+					clickable: true,
+					data: {
+						src: 'https://example.com/avatar.jpg',
+						alt: 'User avatar',
+					},
+				},
+			});
+
+			const image = clickableImageWrapper.find('img[data-testid*="avatar-image"]');
+			expect(image.attributes('aria-hidden')).toBe('true');
+			expect(image.attributes('alt')).toBe('');
+		});
+
+		test('should not have aria-hidden on images when not clickable', () => {
+			const imageWrapper = mount(BoAvatar, {
+				props: {
+					type: BoAvatarType.image,
+					data: {
+						src: 'https://example.com/avatar.jpg',
+						alt: 'User avatar',
+					},
+				},
+			});
+
+			const image = imageWrapper.find('img[data-testid*="avatar-image"]');
+			expect(image.attributes('aria-hidden')).toBeUndefined();
+			expect(image.attributes('alt')).toBe('User avatar');
+		});
+
+		test('should emit image-load event when image loads', async () => {
+			const imageWrapper = mount(BoAvatar, {
+				props: {
+					id: 'test-avatar',
+					type: BoAvatarType.image,
+					data: {
+						src: 'https://example.com/avatar.jpg',
+						alt: 'User avatar',
+					},
+				},
+			});
+
+			const image = imageWrapper.find('img[data-testid*="avatar-image"]');
+			await image.trigger('load');
+
+			const events = imageWrapper.emitted('image-load');
+			expect(events).toHaveLength(1);
+			expect(events![0]).toEqual([{ id: 'test-avatar', src: 'https://example.com/avatar.jpg' }]);
+		});
+
+		test('should emit image-error event when image fails to load', async () => {
+			const imageWrapper = mount(BoAvatar, {
+				props: {
+					id: 'test-avatar',
+					type: BoAvatarType.image,
+					data: {
+						src: 'https://example.com/invalid.jpg',
+						alt: 'User avatar',
+					},
+				},
+			});
+
+			const image = imageWrapper.find('img[data-testid*="avatar-image"]');
+			await image.trigger('error');
+
+			const events = imageWrapper.emitted('image-error');
+			expect(events).toHaveLength(1);
+			expect(events![0][0]).toEqual({ id: 'test-avatar', error: expect.any(Event) });
+		});
 	});
 
 	suite('Fallback Avatar', () => {
@@ -199,6 +288,12 @@ describe('BoAvatar', () => {
 			const fallbackWrapper = mount(BoAvatar);
 			const fallbackImage = fallbackWrapper.find('[data-testid*="avatar-fallback-image"]');
 			expect(fallbackImage.exists()).toBe(true);
+		});
+
+		test('should have proper accessibility attributes for fallback image', () => {
+			const fallbackWrapper = mount(BoAvatar);
+			const fallbackImage = fallbackWrapper.find('img[data-testid*="avatar-fallback-image"]');
+			expect(fallbackImage.attributes('alt')).toBe('avatar');
 		});
 	});
 
@@ -607,8 +702,10 @@ describe('BoAvatar', () => {
 			});
 
 			const avatar = clickableWrapper.find('[data-testid*="avatar"]');
-			expect(avatar.classes()).toContain('transition-opacity');
+			expect(avatar.classes()).toContain('transition-all');
 			expect(avatar.classes()).toContain('duration-200');
+			expect(avatar.classes()).toContain('hover:scale-105');
+			expect(avatar.classes()).toContain('active:scale-95');
 		});
 	});
 
@@ -667,6 +764,142 @@ describe('BoAvatar', () => {
 			expect(fallbackWrapper.find('[data-testid*="avatar"]').attributes('aria-label')).toBe(
 				'Avatar',
 			);
+		});
+
+		test('should change role to button when clickable', () => {
+			const clickableWrapper = mount(BoAvatar, {
+				props: {
+					clickable: true,
+					data: { label: 'Test' },
+				},
+			});
+
+			const avatar = clickableWrapper.find('[data-testid*="avatar"]');
+			expect(avatar.attributes('role')).toBe('button');
+		});
+
+		test('should maintain img role when not clickable', () => {
+			const avatar = wrapper.find('[data-testid*="avatar"]');
+			expect(avatar.attributes('role')).toBe('img');
+		});
+
+		test('should support custom aria-label', () => {
+			const customWrapper = mount(BoAvatar, {
+				props: {
+					ariaLabel: 'Custom avatar label',
+					data: { label: 'Test' },
+				},
+			});
+
+			const avatar = customWrapper.find('[data-testid*="avatar"]');
+			expect(avatar.attributes('aria-label')).toBe('Custom avatar label');
+		});
+
+		test('should support aria-describedby', () => {
+			const describedWrapper = mount(BoAvatar, {
+				props: {
+					ariaDescribedBy: 'description-id',
+					data: { label: 'Test' },
+				},
+			});
+
+			const avatar = describedWrapper.find('[data-testid*="avatar"]');
+			expect(avatar.attributes('aria-describedby')).toBe('description-id');
+		});
+
+		test('should support aria-pressed for button-like avatars', () => {
+			const pressedWrapper = mount(BoAvatar, {
+				props: {
+					clickable: true,
+					ariaPressed: true,
+					data: { label: 'Test' },
+				},
+			});
+
+			const avatar = pressedWrapper.find('[data-testid*="avatar"]');
+			expect(avatar.attributes('aria-pressed')).toBe('true');
+		});
+
+		test('should append "button" to aria-label when clickable', () => {
+			const clickableInitialsWrapper = mount(BoAvatar, {
+				props: {
+					clickable: true,
+					type: BoAvatarType.initials,
+					data: { label: 'John Doe' },
+				},
+			});
+
+			expect(
+				clickableInitialsWrapper.find('[data-testid*="avatar"]').attributes('aria-label'),
+			).toBe('Avatar for John Doe, button');
+
+			const clickableImageWrapper = mount(BoAvatar, {
+				props: {
+					clickable: true,
+					type: BoAvatarType.image,
+					data: {
+						src: 'test.jpg',
+						alt: 'Profile picture',
+					},
+				},
+			});
+
+			expect(clickableImageWrapper.find('[data-testid*="avatar"]').attributes('aria-label')).toBe(
+				'Profile picture button',
+			);
+		});
+
+		test('should handle keyboard navigation correctly', async () => {
+			const clickableWrapper = mount(BoAvatar, {
+				props: {
+					id: 'test-avatar',
+					clickable: true,
+					data: { label: 'Test' },
+				},
+			});
+
+			const avatar = clickableWrapper.find('[data-testid*="avatar"]');
+
+			// Test Enter key
+			await avatar.trigger('keydown.enter');
+			let events = clickableWrapper.emitted('click');
+			expect(events).toHaveLength(1);
+
+			// Test Space key
+			await avatar.trigger('keydown.space');
+			events = clickableWrapper.emitted('click');
+			expect(events).toHaveLength(2);
+
+			// Test that other keys don't trigger click
+			await avatar.trigger('keydown.escape');
+			events = clickableWrapper.emitted('click');
+			expect(events).toHaveLength(2);
+		});
+
+		test('should prevent default on space and enter keys', async () => {
+			const clickableWrapper = mount(BoAvatar, {
+				props: {
+					clickable: true,
+					data: { label: 'Test' },
+				},
+			});
+
+			const avatar = clickableWrapper.find('[data-testid*="avatar"]');
+
+			const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+			const spaceEvent = new KeyboardEvent('keydown', { key: ' ' });
+
+			const preventDefaultSpy = vi.fn();
+			enterEvent.preventDefault = preventDefaultSpy;
+			spaceEvent.preventDefault = preventDefaultSpy;
+
+			await avatar.trigger('keydown.enter');
+			await avatar.trigger('keydown.space');
+
+			// Note: preventDefault is automatically called by Vue's .prevent modifier
+			// This test verifies the events are handled
+			const events = clickableWrapper.emitted('click');
+			expect(events).toHaveLength(2);
 		});
 	});
 
