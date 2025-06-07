@@ -278,14 +278,6 @@ const handleImageError = ({ id, error }) => {
 
 ## Accessibility
 
-### Features
-
-- Semantic HTML structure with proper roles
-- ARIA attributes for state and interactive behavior
-- Keyboard support for clickable avatars
-- Screen reader compatibility with descriptive labels
-- Focus management and visual indicators
-
 ### ARIA Attributes
 
 | Attribute          | Purpose                 | Values                     |
