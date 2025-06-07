@@ -29,6 +29,10 @@ export interface BoAccordionProps {
 	headerBackgroundColor?: string;
 	/** Custom background color for the body (accepts Tailwind or CSS classes) */
 	bodyBackgroundColor?: string;
+	/** Custom text color for the header (accepts Tailwind or CSS classes) */
+	headerTextColor?: string;
+	/** Custom text color for the body (accepts Tailwind or CSS classes) */
+	bodyTextColor?: string;
 	/** True if this accordion is the first in a group */
 	isFirst?: boolean;
 	/** True if this accordion is the last in a group */

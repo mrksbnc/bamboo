@@ -56,6 +56,8 @@ import { BoAccordion } from '@mrksbnc/bamboo';
 | `bodyBackgroundColor`   | `string`  |                     | Custom body background (Tailwind/CSS classes)                    |
 | `isFirst`               | `boolean` |                     | (Internal) True if this is the first item in a group             |
 | `isLast`                | `boolean` |                     | (Internal) True if this is the last item in a group              |
+| `headerTextColor`       | `string`  |                     | Custom text color for the header (Tailwind/CSS classes)          |
+| `bodyTextColor`         | `string`  |                     | Custom text color for the body (Tailwind/CSS classes)            |
 
 ### BoAccordionContainer Props
 
@@ -115,6 +117,10 @@ interface BoAccordionProps {
 	isFirst?: boolean;
 	/** True if this accordion is the last in a group */
 	isLast?: boolean;
+	/** Custom text color for the header (accepts Tailwind or CSS classes) */
+	headerTextColor?: string;
+	/** Custom text color for the body (accepts Tailwind or CSS classes) */
+	bodyTextColor?: string;
 }
 
 interface BoAccordionContainerProps {
@@ -186,6 +192,15 @@ All shape values must be documented with visual examples:
 
 ### Custom Header
 
+<div class="flex flex-col gap-4 my-4">
+	<bo-accordion title="Custom Header">
+		<template #header="{ isOpen, toggle, props }">
+			<div @click="toggle">Custom Header (Open: {{ isOpen }})</div>
+		</template>
+		Custom header content.
+	</bo-accordion>
+</div>
+
 ```vue
 <bo-accordion title="Custom Header">
 	<template #header="{ isOpen, toggle, props }">
@@ -196,6 +211,15 @@ All shape values must be documented with visual examples:
 ```
 
 ### With Icons
+
+<div class="flex flex-col gap-4 my-4">
+	<bo-accordion title="User Settings" :prefix-icon="Icon.user">
+		<p>Configure your user preferences and account settings.</p>
+	</bo-accordion>
+	<bo-accordion title="Security" :prefix-icon="Icon.shield">
+		<p>Manage your security settings and privacy options.</p>
+	</bo-accordion>
+</div>
 
 ```vue
 <bo-accordion title="User Settings" :prefix-icon="Icon.user">
@@ -208,6 +232,12 @@ All shape values must be documented with visual examples:
 
 ### Custom Toggle Icon
 
+<div class="flex flex-col gap-4 my-4">
+	<bo-accordion title="Expandable Section" :custom-toggle-icon="Icon.plus">
+		<p>This accordion uses a plus/minus icon instead of chevrons.</p>
+	</bo-accordion>
+</div>
+
 ```vue
 <bo-accordion title="Expandable Section" :custom-toggle-icon="Icon.plus">
 	<p>This accordion uses a plus/minus icon instead of chevrons.</p>
@@ -215,6 +245,15 @@ All shape values must be documented with visual examples:
 ```
 
 ### Custom Header & Colors
+
+<div class="flex flex-col gap-4 my-4">
+	<bo-accordion :header-background-color="'bg-blue-100'" :body-background-color="'bg-blue-50'">
+		<template #header="{ isOpen, toggle, props }">
+			<div @click="toggle">Custom Header (Open: {{ isOpen }})</div>
+		</template>
+		Custom colored content.
+	</bo-accordion>
+</div>
 
 ```vue
 <bo-accordion :header-background-color="'bg-blue-100'" :body-background-color="'bg-blue-50'">
@@ -225,11 +264,47 @@ All shape values must be documented with visual examples:
 </bo-accordion>
 ```
 
+### Custom Text Color
+
+<div class="flex flex-col gap-4 my-4">
+	<bo-accordion
+		title="Custom Text Colors"
+		:header-text-color="'text-blue-700'"
+		:body-text-color="'text-green-700'"
+	>
+		<p>This body text is green, and the header text is blue.</p>
+	</bo-accordion>
+</div>
+
+```vue
+<bo-accordion
+	title="Custom Text Colors"
+	:header-text-color="'text-blue-700'"
+	:body-text-color="'text-green-700'"
+>
+	<p>This body text is green, and the header text is blue.</p>
+</bo-accordion>
+```
+
 ## Accordion Container
 
 Use `BoAccordionContainer` to manage multiple accordion items with coordinated behavior.
 
 ### Basic Container
+
+<div class="flex flex-col gap-4 my-4">
+	<bo-accordion-container>
+		<bo-accordion title="What is Bamboo?">
+			Bamboo is a UI component library built with Vue 3 and Tailwind CSS.
+		</bo-accordion>
+		<bo-accordion title="How do I install it?">
+			You can install Bamboo using npm or yarn.
+		</bo-accordion>
+		<bo-accordion title="Is it customizable?">
+			Yes, every component is highly customizable using props and slots.
+		</bo-accordion>
+	</bo-accordion-container>
+</div>
 
 ```vue
 <bo-accordion-container>
@@ -247,6 +322,14 @@ Use `BoAccordionContainer` to manage multiple accordion items with coordinated b
 
 ### Allow Multiple Open
 
+<div class="flex flex-col gap-4 my-4">
+	<bo-accordion-container :allow-multiple="true">
+		<bo-accordion title="Section 1">Content 1</bo-accordion>
+		<bo-accordion title="Section 2">Content 2</bo-accordion>
+		<bo-accordion title="Section 3">Content 3</bo-accordion>
+	</bo-accordion-container>
+</div>
+
 ```vue
 <bo-accordion-container :allow-multiple="true">
 	<bo-accordion title="Section 1">Content 1</bo-accordion>
@@ -257,6 +340,14 @@ Use `BoAccordionContainer` to manage multiple accordion items with coordinated b
 
 ### Always Keep One Open
 
+<div class="flex flex-col gap-4 my-4">
+	<bo-accordion-container :always-open="true">
+		<bo-accordion title="Section 1" :open="true">Content 1</bo-accordion>
+		<bo-accordion title="Section 2">Content 2</bo-accordion>
+		<bo-accordion title="Section 3">Content 3</bo-accordion>
+	</bo-accordion-container>
+</div>
+
 ```vue
 <bo-accordion-container :always-open="true">
 	<bo-accordion title="Section 1" :open="true">Content 1</bo-accordion>
@@ -266,6 +357,14 @@ Use `BoAccordionContainer` to manage multiple accordion items with coordinated b
 ```
 
 ### Default Open Item
+
+<div class="flex flex-col gap-4 my-4">
+	<bo-accordion-container default-open-item-id="section-2">
+		<bo-accordion id="section-1" title="Section 1">Content 1</bo-accordion>
+		<bo-accordion id="section-2" title="Section 2">Content 2</bo-accordion>
+		<bo-accordion id="section-3" title="Section 3">Content 3</bo-accordion>
+	</bo-accordion-container>
+</div>
 
 ```vue
 <bo-accordion-container default-open-item-id="section-2">

@@ -91,6 +91,8 @@ const props = withDefaults(defineProps<BoAccordionProps>(), {
 	shape: () => BoAccordionShape.rounded,
 	headerBackgroundColor: '',
 	bodyBackgroundColor: '',
+	headerTextColor: '',
+	bodyTextColor: '',
 });
 
 const emit = defineEmits<{
@@ -164,6 +166,7 @@ const headerClass = computed<string>(() => {
 	let customBg = props.headerBackgroundColor
 		? props.headerBackgroundColor
 		: ACCORDION_STYLE.appearance.background;
+	let customText = props.headerTextColor ? props.headerTextColor : ACCORDION_STYLE.appearance.text;
 	let rounded = '';
 	if (props.shape === BoAccordionShape.rounded) {
 		if (accordionGroup) {
@@ -183,7 +186,7 @@ const headerClass = computed<string>(() => {
 	}
 	return TailwindService.instance.merge(
 		ACCORDION_STYLE.layout.header,
-		ACCORDION_STYLE.appearance.text,
+		customText,
 		ACCORDION_STYLE.interactive.header,
 		customBg,
 		rounded,
@@ -195,6 +198,9 @@ const bodyClasses = computed<string>(() => {
 	let customBg = props.bodyBackgroundColor
 		? props.bodyBackgroundColor
 		: ACCORDION_STYLE.appearance.bodyBackground;
+	let customText = props.bodyTextColor
+		? props.bodyTextColor
+		: ACCORDION_STYLE.appearance.contentText;
 	let rounded = '';
 	if (props.shape === BoAccordionShape.rounded) {
 		if (accordionGroup) {
@@ -209,6 +215,7 @@ const bodyClasses = computed<string>(() => {
 		ACCORDION_STYLE.layout.body,
 		ACCORDION_STYLE.animation.body,
 		customBg,
+		customText,
 		rounded,
 	);
 });
