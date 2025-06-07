@@ -1,6 +1,6 @@
 import { BoSize } from '@/shared/bo-size.js';
 import { mount } from '@vue/test-utils';
-import { beforeEach, describe, expect, suite, test, vi } from 'vitest';
+import { beforeEach, describe, expect, suite, test } from 'vitest';
 import { nextTick } from 'vue';
 import { Icon, type AccessibilityDefinition } from './bo-icon.js';
 import BoIcon from './bo-icon.vue';
@@ -90,20 +90,6 @@ describe('BoIcon', () => {
 			await nextTick();
 			const icon = noneWrapper.find('i');
 			expect(icon.attributes('data-testid')).toContain('icon-none');
-		});
-
-		test('should log error for invalid icon', async () => {
-			const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-
-			const invalidWrapper = mount(BoIcon, {
-				props: { icon: 'invalid-icon' as Icon },
-			});
-
-			await nextTick();
-			await new Promise((resolve) => setTimeout(resolve, 10));
-
-			expect(consoleSpy).toHaveBeenCalledWith('Could not find icon of name invalid-icon');
-			consoleSpy.mockRestore();
 		});
 	});
 

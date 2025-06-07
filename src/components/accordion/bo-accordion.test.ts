@@ -495,8 +495,6 @@ describe('BoAccordion', () => {
 		test('should prevent default keyboard events', async () => {
 			const header = wrapper.find('[data-testid*="accordion-header"]');
 
-			const spaceEvent = new KeyboardEvent('keydown', { key: ' ' });
-
 			await header.trigger('keydown.space');
 
 			expect(header.attributes('aria-expanded')).toBe('true');
@@ -907,16 +905,6 @@ describe('BoAccordion', () => {
 				toggle: vi.fn(),
 				registerItem: vi.fn(),
 			};
-
-			const wrapper1 = mount(BoAccordion, {
-				props: { id: 'acc-1', title: 'First', open: true },
-				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
-			});
-
-			const wrapper2 = mount(BoAccordion, {
-				props: { id: 'acc-2', title: 'Second' },
-				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
-			});
 
 			expect(mockGroup.registerItem).toHaveBeenCalledWith('acc-1', true);
 			expect(mockGroup.registerItem).toHaveBeenCalledWith('acc-2', false);
