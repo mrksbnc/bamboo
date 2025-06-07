@@ -14,6 +14,3 @@ export * from '@/components/popover/index.js';
 export * from '@/components/progress-bar/index.js';
 export * from '@/components/radio/index.js';
 export * from '@/components/text/index.js';
-export * from '@/components/textarea/index.js';
-export * from '@/components/timeline/index.js';
-export * from '@/components/toast/index.js';

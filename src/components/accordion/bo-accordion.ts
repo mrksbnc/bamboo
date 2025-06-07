@@ -1,177 +1,30 @@
 import type { Icon } from '@/components/icon/bo-icon.js';
 
-export enum BoAccordionTitlePosition {
-	start = 'start',
-	center = 'center',
-	end = 'end',
-}
-
 export enum BoAccordionShape {
 	rounded = 'rounded',
-	flat = 'flat',
+	square = 'square',
 }
 
-export type AccordionBorderStyles = {
-	standalone: {
-		header: {
-			first: string;
-			middle: string;
-			last: string;
-			single: string;
-		};
-		body: {
-			first: string;
-			middle: string;
-			last: string;
-			single: string;
-		};
-	};
-	container: {
-		header: {
-			first: string;
-			middle: string;
-			last: string;
-			single: string;
-		};
-		body: {
-			first: string;
-			middle: string;
-			last: string;
-			single: string;
-		};
-	};
-};
-
-export type AccordionShapeStyles = {
-	[BoAccordionShape.rounded]: {
-		header: {
-			first: string;
-			single: string;
-		};
-		body: {
-			last: string;
-			single: string;
-		};
-	};
-	[BoAccordionShape.flat]: {
-		header: Record<string, never>;
-		body: Record<string, never>;
-	};
-};
-
-export type AccordionStyles = {
-	layout: {
-		container: string;
-		header: string;
-		content: string;
-		body: string;
-		icon: string;
-		title: {
-			[key in BoAccordionTitlePosition]: string;
-		};
-		prefixIcon: string;
-		toggleIcon: string;
-	};
-	borders: AccordionBorderStyles;
-	shape: AccordionShapeStyles;
-	state: {
-		expanded: string;
-		collapsed: string;
-		disabled: string;
-	};
-	appearance: {
-		text: string;
-		background: string;
-		bodyBackground: string;
-		contentText: string;
-	};
-	interactive: {
-		header: string;
-		disabled: string;
-	};
-	animation: {
-		icon: string;
-		content: string;
-	};
-};
-
 export interface BoAccordionProps {
-	/**
-	 * The unique identifier for the accordion.
-	 * @default Generated UUID
-	 */
+	/** Unique ID for the accordion, used for accessibility and testing */
 	id?: string;
-
-	/**
-	 * The title of the accordion.
-	 */
-	title: string;
-
-	/**
-	 * The position of the title in the accordion header.
-	 * @default BoAccordionTitlePosition.start
-	 */
-	titlePosition?: BoAccordionTitlePosition;
-
-	/**
-	 * Custom background color for the accordion header.
-	 * @default undefined
-	 */
-	headerBackground?: string;
-
-	/**
-	 * Custom background color for the accordion body.
-	 * @default undefined
-	 */
-	bodyBackground?: string;
-
-	/**
-	 * The index of the accordion in a group.
-	 * Used for border styling and keyboard navigation.
-	 */
-	index?: number;
-
-	/**
-	 * The total number of accordions in the group.
-	 * Used for border styling and keyboard navigation.
-	 */
-	total?: number;
-
-	/**
-	 * Whether the accordion is disabled.
-	 * @default false
-	 */
-	disabled?: boolean;
-
-	/**
-	 * Whether the accordion is expanded.
-	 * @default false
-	 */
-	expanded?: boolean;
-
-	/**
-	 * The icon to display before the title.
-	 */
-	prefixIcon?: Icon;
-
-	/**
-	 * The icon to display after the title.
-	 */
-	suffixIcon?: Icon;
-
-	/**
-	 * Custom accessible label for screen readers.
-	 */
+	/** The title of the accordion item */
+	title?: string;
+	/** Custom accessible label for screen readers (falls back to title) */
 	ariaLabel?: string;
 	/** Whether the accordion is opened by default */
 	open?: boolean;
+	/** Whether the accordion is disabled */
+	disabled?: boolean;
 	/** Prefix icon for the accordion item */
-	customToggleIcon?: Icon;
-	/**
-	 * The shape of the accordion.
-	 * @default BoAccordionShape.flat
-	 */
+	prefixIcon?: Icon;
+	/** Shape of the accordion item */
 	shape?: BoAccordionShape;
+	/**
+	 * Custom icon for the expand/collapse indicator
+	 * @default Icon.chevron_down
+	 */
+	customToggleIcon?: Icon;
 }
 
 export interface BoAccordionContainerProps {
