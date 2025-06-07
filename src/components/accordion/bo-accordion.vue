@@ -21,30 +21,40 @@
 			@keydown.prevent.arrow-down="onArrowNavigation('down')"
 			@keydown.prevent.arrow-up="onArrowNavigation('up')"
 		>
-			<div class="flex items-center gap-2">
-				<bo-icon
-					v-if="prefixIcon !== Icon.none"
-					:icon="prefixIcon"
-					:aria-hidden="true"
-					class="bo-accordion__prefix-icon"
-					:data-testid="constructAttribute(id, 'accordion-prefix-icon')"
+			<template v-if="$slots.header">
+				<slot
+					name="header"
+					:is-open="isOpen"
+					:toggle="onAccordionToggle"
+					:props="props"
 				/>
-				<bo-text
-					v-if="title"
-					:value="title"
-					:size="BoFontSize.base"
-					:weight="BoFontWeight.semibold"
-					class="bo-accordion__title cursor-pointer"
-					:data-testid="constructAttribute(id, 'accordion-title')"
-				/>
-			</div>
-			<div :class="ACCORDION_STYLE.animation.icon">
-				<bo-icon
-					:icon="customIcon"
-					:aria-hidden="true"
-					:data-testid="constructAttribute(id, 'accordion-toggle-icon')"
-				/>
-			</div>
+			</template>
+			<template v-else>
+				<div class="flex items-center gap-2">
+					<bo-icon
+						v-if="prefixIcon !== Icon.none"
+						:icon="prefixIcon"
+						:aria-hidden="true"
+						class="bo-accordion__prefix-icon"
+						:data-testid="constructAttribute(id, 'accordion-prefix-icon')"
+					/>
+					<bo-text
+						v-if="title"
+						:value="title"
+						:size="BoFontSize.base"
+						:weight="BoFontWeight.semibold"
+						class="bo-accordion__title cursor-pointer"
+						:data-testid="constructAttribute(id, 'accordion-title')"
+					/>
+				</div>
+				<div :class="ACCORDION_STYLE.animation.icon">
+					<bo-icon
+						:icon="customIcon"
+						:aria-hidden="true"
+						:data-testid="constructAttribute(id, 'accordion-toggle-icon')"
+					/>
+				</div>
+			</template>
 		</div>
 		<div
 			v-show="isOpen"
@@ -79,6 +89,8 @@ const props = withDefaults(defineProps<BoAccordionProps>(), {
 	prefixIcon: () => Icon.none,
 	customToggleIcon: () => Icon.none,
 	shape: () => BoAccordionShape.rounded,
+	headerBackgroundColor: '',
+	bodyBackgroundColor: '',
 });
 
 const emit = defineEmits<{
@@ -150,20 +162,53 @@ const containerClasses = computed<string>(() => {
 });
 
 const headerClass = computed<string>(() => {
+	let customBg = props.headerBackgroundColor
+		? props.headerBackgroundColor
+		: ACCORDION_STYLE.appearance.background;
+	let rounded = '';
+	if (props.shape === BoAccordionShape.rounded) {
+		if (accordionGroup) {
+			if (props.isFirst) {
+				rounded = 'rounded-t-lg';
+			}
+			// No bottom rounding for header in group
+		} else {
+			if (isOpen.value) {
+				rounded = 'rounded-t-lg';
+			} else {
+				rounded = 'rounded-t-lg rounded-b-lg';
+			}
+		}
+	}
 	return TailwindService.instance.merge(
 		ACCORDION_STYLE.layout.header,
 		ACCORDION_STYLE.appearance.text,
 		ACCORDION_STYLE.interactive.header,
-		ACCORDION_STYLE.appearance.background,
+		customBg,
+		rounded,
 		props.disabled ? ACCORDION_STYLE.interactive.disabled : '',
 	);
 });
 
 const bodyClasses = computed<string>(() => {
+	let customBg = props.bodyBackgroundColor
+		? props.bodyBackgroundColor
+		: ACCORDION_STYLE.appearance.bodyBackground;
+	let rounded = '';
+	if (props.shape === BoAccordionShape.rounded) {
+		if (accordionGroup) {
+			if (props.isLast && isOpen.value) {
+				rounded = 'rounded-b-lg';
+			}
+		} else if (isOpen.value) {
+			rounded = 'rounded-b-lg';
+		}
+	}
 	return TailwindService.instance.merge(
 		ACCORDION_STYLE.layout.body,
 		ACCORDION_STYLE.animation.body,
-		ACCORDION_STYLE.appearance.bodyBackground,
+		customBg,
+		rounded,
 	);
 });
 

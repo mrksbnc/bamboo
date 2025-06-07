@@ -25,6 +25,14 @@ export interface BoAccordionProps {
 	 * @default Icon.chevron_down
 	 */
 	customToggleIcon?: Icon;
+	/** Custom background color for the header (accepts Tailwind or CSS classes) */
+	headerBackgroundColor?: string;
+	/** Custom background color for the body (accepts Tailwind or CSS classes) */
+	bodyBackgroundColor?: string;
+	/** True if this accordion is the first in a group */
+	isFirst?: boolean;
+	/** True if this accordion is the last in a group */
+	isLast?: boolean;
 }
 
 export interface BoAccordionContainerProps {

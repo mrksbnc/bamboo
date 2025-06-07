@@ -4,7 +4,28 @@
 		class="bo-accordion-container w-full max-w-full space-y-0 overflow-hidden border-0 bg-transparent dark:border-0 dark:bg-transparent"
 		:data-testid="constructAttribute(id, 'accordion-container')"
 	>
-		<slot></slot>
+		<template
+			v-for="(child, idx) in $slots.default?.() || []"
+			:key="child.key || idx"
+		>
+			<component
+				:is="child.type"
+				v-bind="child.props"
+				:isFirst="idx === 0"
+				:isLast="idx === $slots.default().length - 1"
+				v-on="child.props"
+			>
+				<template
+					v-for="(_, name) in child.children"
+					v-slot:[name]="slotProps"
+				>
+					<slot
+						:name="name"
+						v-bind="slotProps"
+					/>
+				</template>
+			</component>
+		</template>
 	</div>
 </template>
 
