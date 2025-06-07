@@ -2,14 +2,14 @@
 	<div
 		role="group"
 		ref="accordionRef"
-		:class="containerClasses"
+		:class="rootClasses"
 		:data-testid="constructAttribute(id, 'accordion')"
 	>
 		<div
 			tabindex="0"
 			role="button"
 			:id="accessibility.headerId"
-			:class="headerClass"
+			:class="headerClasses"
 			:aria-expanded="accessibility.ariaExpanded"
 			:aria-disabled="accessibility.ariaDisabled"
 			:aria-label="accessibility.ariaLabel"
@@ -30,12 +30,12 @@
 				/>
 			</template>
 			<template v-else>
-				<div class="flex items-center gap-2">
+				<div :class="headerContentClasses">
 					<bo-icon
 						v-if="prefixIcon !== Icon.none"
 						:icon="prefixIcon"
 						:aria-hidden="true"
-						class="bo-accordion__prefix-icon"
+						:class="prefixIconClasses"
 						:data-testid="constructAttribute(id, 'accordion-prefix-icon')"
 					/>
 					<bo-text
@@ -43,11 +43,11 @@
 						:value="title"
 						:size="BoFontSize.base"
 						:weight="BoFontWeight.semibold"
-						class="bo-accordion__title cursor-pointer"
+						:class="titleClasses"
 						:data-testid="constructAttribute(id, 'accordion-title')"
 					/>
 				</div>
-				<div :class="ACCORDION_STYLE.animation.icon">
+				<div :class="toggleIconClasses">
 					<bo-icon
 						:icon="customIcon"
 						:aria-hidden="true"
@@ -65,7 +65,7 @@
 			:data-testid="constructAttribute(id, 'accordion-content')"
 			:aria-labelledby="accessibility.ariaLabelledBy"
 		>
-			<div :class="slotClasses">
+			<div :class="contentClasses">
 				<slot></slot>
 			</div>
 		</div>
@@ -81,6 +81,7 @@ import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { InjectKey } from '@/shared/injection-key.js';
+import { type AccessibilityConstruct } from '@/types/accessibility';
 import { computed, inject, onMounted, ref, watch } from 'vue';
 import { BoAccordionShape, type AccordionGroup, type BoAccordionProps } from './bo-accordion.js';
 
@@ -89,10 +90,6 @@ const props = withDefaults(defineProps<BoAccordionProps>(), {
 	prefixIcon: () => Icon.none,
 	customToggleIcon: () => Icon.none,
 	shape: () => BoAccordionShape.rounded,
-	headerBackgroundColor: '',
-	bodyBackgroundColor: '',
-	headerTextColor: '',
-	bodyTextColor: '',
 });
 
 const emit = defineEmits<{
@@ -108,38 +105,46 @@ const { constructAttribute } = useAttributes();
 const accordionGroup = inject<AccordionGroup | null>(InjectKey.AccordionGroup, null);
 
 const ACCORDION_STYLE = {
-	layout: {
-		container: /*tw*/ 'bo-accordion w-full first:rounded-t-lg last:rounded-b-lg',
+	base: {
+		accordion: 'w-full',
 		header:
-			/*tw*/ 'bo-accordion__header flex items-center justify-between p-3 sm:p-4 border border-neutral-200 dark:border-neutral-700',
-		content: /*tw*/ 'bo-accordion__content p-3 sm:p-4 md:p-6',
-		body: /*tw*/ 'bo-accordion__body overflow-hidden border-x border-b border-neutral-200 dark:border-neutral-700',
+			'flex items-center justify-between border border-neutral-200 p-3 sm:p-4 dark:border-neutral-700',
+		headerContent: 'flex items-center gap-2',
+		title: 'cursor-pointer',
+		prefixIcon: 'flex-shrink-0',
+		toggleIcon: 'flex-shrink-0 transition-transform duration-200',
+		body: 'border-x border-b border-neutral-200 dark:border-neutral-700',
+		content: 'p-3 sm:p-4 md:p-6',
 	},
 	appearance: {
-		text: /*tw*/ 'text-neutral-700 dark:text-neutral-200',
-		background: /*tw*/ 'bg-neutral-50 dark:bg-neutral-800',
-		bodyBackground: /*tw*/ 'bg-white dark:bg-neutral-900',
-		contentText: /*tw*/ 'text-neutral-800 dark:text-neutral-100 text-sm sm:text-base',
-		shadow: /*tw*/ 'shadow-sm dark:shadow-neutral-900/50',
+		text: 'text-neutral-700 dark:text-neutral-200',
+		background: 'bg-neutral-50 dark:bg-neutral-800',
+		bodyBackground: 'bg-white dark:bg-neutral-900',
+		contentText: 'text-neutral-800 dark:text-neutral-100 text-sm sm:text-base',
 	},
-	interactive: {
-		header: TailwindService.instance.merge(
-			/*tw*/ 'cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700',
-			props.disabled ? /*tw*/ 'cursor-not-allowed opacity-50' : '',
-			props.open ? (props.shape === BoAccordionShape.rounded ? /*tw*/ 'rounded-t-lg' : '') : '',
-		),
-		disabled: /*tw*/ 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
-	},
-	animation: {
-		icon: /*tw*/ 'bo-accordion__collapse-icon transition-transform duration-200 ease-in-out',
-		body: /*tw*/ 'transition-all duration-300 ease-in-out',
-		container: /*tw*/ 'transition-shadow duration-200',
+	state: {
+		open: {
+			toggleIcon: 'rotate-180',
+			rounded: {
+				self: 'rounded-t-lg',
+				lastBody: 'rounded-b-lg',
+			},
+		},
+		disabled: {
+			accordion: 'cursor-not-allowed opacity-50',
+			header: 'hover:bg-transparent dark:hover:bg-transparent',
+		},
+		rounded: {
+			first: 'rounded-t-lg',
+			last: 'rounded-b-lg',
+		},
 	},
 } as const;
 
-const isOpen = ref<boolean>(props.open ?? false);
 const accordionRef = ref<HTMLElement>();
 const accordionBodyRef = ref<HTMLElement>();
+
+const isOpen = ref<boolean>(props.open ?? false);
 
 const accessibility = computed<AccessibilityConstruct>(() => {
 	return {
@@ -153,78 +158,88 @@ const accessibility = computed<AccessibilityConstruct>(() => {
 	};
 });
 
-const containerClasses = computed<string>(() => {
+const rootClasses = computed<string>(() => {
+	const classes = ['bo-accordion', ACCORDION_STYLE.base.accordion];
+
+	if (isOpen.value) {
+		classes.push('bo-accordion--open');
+		if (props.shape === BoAccordionShape.rounded) {
+			classes.push(ACCORDION_STYLE.state.open.rounded.self);
+		}
+	}
+
+	if (props.disabled) {
+		classes.push('bo-accordion--disabled');
+		classes.push(ACCORDION_STYLE.state.disabled.accordion);
+	}
+
+	if (props.shape === BoAccordionShape.rounded) {
+		classes.push('bo-accordion--rounded');
+		if (props.isFirst) {
+			classes.push(ACCORDION_STYLE.state.rounded.first);
+		}
+		if (props.isLast && !isOpen.value) {
+			classes.push(ACCORDION_STYLE.state.rounded.last);
+		}
+	}
+
+	return TailwindService.instance.merge(...classes);
+});
+
+const headerClasses = computed<string>(() => {
+	const customBg = props.headerBackgroundColor ?? ACCORDION_STYLE.appearance.background;
+	const customText = props.headerTextColor ?? ACCORDION_STYLE.appearance.text;
+	const classes = ['bo-accordion__header', ACCORDION_STYLE.base.header, customText, customBg];
+
+	if (props.disabled) {
+		classes.push(ACCORDION_STYLE.state.disabled.header);
+	}
+
+	return TailwindService.instance.merge(...classes);
+});
+
+const headerContentClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
-		ACCORDION_STYLE.layout.container,
-		ACCORDION_STYLE.appearance.border,
-		ACCORDION_STYLE.appearance.shadow,
-		ACCORDION_STYLE.animation.container,
+		'bo-accordion__header-content',
+		ACCORDION_STYLE.base.headerContent,
 	);
 });
 
-const headerClass = computed<string>(() => {
-	let customBg = props.headerBackgroundColor
-		? props.headerBackgroundColor
-		: ACCORDION_STYLE.appearance.background;
-	let customText = props.headerTextColor ? props.headerTextColor : ACCORDION_STYLE.appearance.text;
-	let rounded = '';
-	if (props.shape === BoAccordionShape.rounded) {
-		if (accordionGroup) {
-			if (props.isFirst) {
-				rounded = 'rounded-t-lg';
-			}
-			if (props.isLast && !isOpen.value) {
-				rounded += ' rounded-b-lg';
-			}
-		} else {
-			if (isOpen.value) {
-				rounded = 'rounded-t-lg';
-			} else {
-				rounded = 'rounded-t-lg rounded-b-lg';
-			}
-		}
-	}
+const titleClasses = computed<string>(() => {
+	return TailwindService.instance.merge('bo-accordion__title', ACCORDION_STYLE.base.title);
+});
+
+const prefixIconClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
-		ACCORDION_STYLE.layout.header,
-		customText,
-		ACCORDION_STYLE.interactive.header,
-		customBg,
-		rounded,
-		props.disabled ? ACCORDION_STYLE.interactive.disabled : '',
+		'bo-accordion__prefix-icon',
+		ACCORDION_STYLE.base.prefixIcon,
 	);
+});
+
+const toggleIconClasses = computed<string>(() => {
+	const classes = ['bo-accordion__toggle-icon', ACCORDION_STYLE.base.toggleIcon];
+
+	if (isOpen.value) {
+		classes.push(ACCORDION_STYLE.state.open.toggleIcon);
+	}
+
+	return TailwindService.instance.merge(...classes);
 });
 
 const bodyClasses = computed<string>(() => {
-	let customBg = props.bodyBackgroundColor
-		? props.bodyBackgroundColor
-		: ACCORDION_STYLE.appearance.bodyBackground;
-	let customText = props.bodyTextColor
-		? props.bodyTextColor
-		: ACCORDION_STYLE.appearance.contentText;
-	let rounded = '';
-	if (props.shape === BoAccordionShape.rounded) {
-		if (accordionGroup) {
-			if (props.isLast && isOpen.value) {
-				rounded = 'rounded-b-lg';
-			}
-		} else if (isOpen.value) {
-			rounded = 'rounded-b-lg';
-		}
+	const customBg = props.bodyBackgroundColor ?? ACCORDION_STYLE.appearance.bodyBackground;
+	const customText = props.bodyTextColor ?? ACCORDION_STYLE.appearance.contentText;
+	const classes = ['bo-accordion__body', ACCORDION_STYLE.base.body, customBg, customText];
+
+	if (props.shape === BoAccordionShape.rounded && props.isLast && isOpen.value) {
+		classes.push(ACCORDION_STYLE.state.open.rounded.lastBody);
 	}
-	return TailwindService.instance.merge(
-		ACCORDION_STYLE.layout.body,
-		ACCORDION_STYLE.animation.body,
-		customBg,
-		customText,
-		rounded,
-	);
+
+	return TailwindService.instance.merge(...classes);
 });
 
-const slotClasses = computed<string>(() => {
-	return TailwindService.instance.merge(
-		ACCORDION_STYLE.layout.content,
-		ACCORDION_STYLE.appearance.contentText,
-	);
+const contentClasses = computed<string>(() => {
+	return TailwindService.instance.merge('bo-accordion__content', ACCORDION_STYLE.base.content);
 });
 
 const customIcon = computed<Icon>(() => {
@@ -276,6 +291,7 @@ watch(
 	(val) => {
 		isOpen.value = val ?? false;
 	},
+	{ immediate: true },
 );
 
 watch(
@@ -285,7 +301,7 @@ watch(
 			isOpen.value = openItems.has(props.id);
 		}
 	},
-	{ deep: true },
+	{ deep: true, immediate: true },
 );
 
 onMounted(() => {

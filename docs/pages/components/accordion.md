@@ -380,3 +380,29 @@ Use `BoAccordionContainer` to manage multiple accordion items with coordinated b
 - Keyboard navigation support (arrow keys, enter, space)
 - Proper focus management
 - Dark mode support
+
+## BEM Class Names
+
+The following BEM class names are used in the accordion components:
+
+- `bo-accordion` — Root container
+- `bo-accordion__header` — Accordion header
+- `bo-accordion__body` — Accordion body/content wrapper
+- `bo-accordion__content` — Inner content area
+- `bo-accordion__prefix-icon` — Prefix icon in header
+- `bo-accordion__title` — Title text in header
+- `bo-accordion__collapse-icon` — Toggle/chevron icon
+
+## data-testid Attributes
+
+The following `data-testid` attributes are available for testing:
+
+- `accordion` — Root container (e.g. `data-testid="myid-accordion"`)
+- `accordion-header` — Header (e.g. `data-testid="myid-accordion-header"`)
+- `accordion-prefix-icon` — Prefix icon (e.g. `data-testid="myid-accordion-prefix-icon"`)
+- `accordion-title` — Title text (e.g. `data-testid="myid-accordion-title"`)
+- `accordion-toggle-icon` — Toggle/chevron icon (e.g. `data-testid="myid-accordion-toggle-icon"`)
+- `accordion-content` — Content/body (e.g. `data-testid="myid-accordion-content"`)
+- For containers: `accordion-container` (e.g. `data-testid="mycontainer-accordion-container"`)
+
+The `id` prop is used as a prefix for all test IDs for uniqueness.

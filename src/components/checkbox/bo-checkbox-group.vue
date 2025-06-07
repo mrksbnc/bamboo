@@ -77,12 +77,12 @@ function select(value: string): void {
 		return;
 	}
 
-	const idx = selectedValues.value.indexOf(value);
+	const index = selectedValues.value.indexOf(value);
 
-	if (idx === -1) {
+	if (index === -1) {
 		selectedValues.value.push(value);
 	} else {
-		selectedValues.value.splice(idx, 1);
+		selectedValues.value.splice(index, 1);
 	}
 
 	modelValue.value = selectedValues.value.slice();

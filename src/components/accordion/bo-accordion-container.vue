@@ -1,19 +1,21 @@
 <template>
 	<div
-		role="group"
-		class="bo-accordion-container w-full max-w-full space-y-0 overflow-hidden border-0 bg-transparent dark:border-0 dark:bg-transparent"
+		:class="rootClasses"
 		:data-testid="constructAttribute(id, 'accordion-container')"
 	>
 		<template
-			v-for="(child, idx) in $slots.default?.() || []"
-			:key="child.key || idx"
+			v-for="(child, index) in $slots.default?.() ?? []"
+			:key="child.key ?? IdentityService.instance.getComponentId()"
 		>
 			<component
 				:is="child.type"
-				v-bind="child.props"
-				:isFirst="idx === 0"
-				:isLast="idx === $slots.default().length - 1"
-				v-on="child.props"
+				v-bind="{
+					...child.props,
+					open: child.props?.id === props.defaultOpenItemId,
+					isFirst: index === 0,
+					isLast: index === ($slots.default?.() ?? []).length - 1,
+				}"
+				v-on="child.props?.['onVnodeBeforeMount'] ?? {}"
 			>
 				<template
 					v-for="(_, name) in child.children"
@@ -30,63 +32,54 @@
 </template>
 
 <script setup lang="ts">
-import { useAttributes } from '@/composables/use-attributes.js';
+import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
+import { TailwindService } from '@/services/tailwind-service.js';
 import { InjectKey } from '@/shared/injection-key.js';
-import { provide, reactive, ref } from 'vue';
-import type { BoAccordionContainerProps } from './bo-accordion.js';
+import { computed, provide, ref } from 'vue';
+import { type BoAccordionContainerProps } from './bo-accordion-container';
 
 const props = withDefaults(defineProps<BoAccordionContainerProps>(), {
 	id: () => IdentityService.instance.getComponentId(),
+	allowMultiple: false,
+	defaultOpenItemId: undefined,
 });
 
 const { constructAttribute } = useAttributes();
 
-const openItems = ref<Set<string>>(new Set());
-const registeredItems = ref<Set<string>>(new Set());
+const ACCORDION_CONTAINER_STYLE = {
+	base: {
+		container:
+			'flex flex-col gap-2 w-full max-w-full space-y-0 overflow-hidden border-0 bg-transparent dark:border-0 dark:bg-transparent',
+	},
+} as const;
 
-function registerItem(id: string, initialOpen: boolean): void {
-	if (registeredItems.value.has(id)) {
-		return;
-	}
+const openAccordions = ref<Set<string>>(new Set());
 
-	registeredItems.value.add(id);
+// Initialize with default open item if specified
+if (props.defaultOpenItemId) {
+	openAccordions.value.add(props.defaultOpenItemId);
+}
 
-	if (initialOpen || id === props.defaultOpenItemId) {
-		if (props.allowMultiple) {
-			openItems.value.add(id);
+provide(InjectKey.AccordionGroup, {
+	allowMultiple: props.allowMultiple,
+	openAccordions,
+	toggleAccordion: (id: string) => {
+		if (openAccordions.value.has(id)) {
+			openAccordions.value.delete(id);
 		} else {
-			openItems.value.clear();
-			openItems.value.add(id);
+			if (!props.allowMultiple) {
+				openAccordions.value.clear();
+			}
+			openAccordions.value.add(id);
 		}
-	}
-}
+	},
+});
 
-function toggle(id: string): void {
-	if (openItems.value.has(id)) {
-		if (props.alwaysOpen && openItems.value.size === 1) {
-			return;
-		}
-
-		openItems.value.delete(id);
-		return;
-	}
-
-	if (props.allowMultiple) {
-		openItems.value.add(id);
-		return;
-	}
-
-	openItems.value.clear();
-	openItems.value.add(id);
-}
-
-provide(
-	InjectKey.AccordionGroup,
-	reactive({
-		openItems,
-		toggle,
-		registerItem,
-	}),
-);
+const rootClasses = computed(() => {
+	return TailwindService.instance.merge(
+		'bo-accordion-container',
+		ACCORDION_CONTAINER_STYLE.base.container,
+	);
+});
 </script>
