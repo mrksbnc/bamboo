@@ -100,9 +100,9 @@ const AVATAR_STYLE = {
 	layout: {
 		container:
 			/*tw*/ 'bo-avatar relative flex items-center justify-center overflow-hidden object-cover',
-		fallbackContainer: /*tw*/ 'bo-avatar__fallback-img flex items-center justify-center',
-		imageContainer: /*tw*/ 'bo-avatar__image-container',
-		image: /*tw*/ 'bo-avatar__image object-cover',
+		fallbackContainer: /*tw*/ 'bo-avatar__fallback flex items-center justify-center',
+		imageContainer: /*tw*/ 'bo-avatar__image flex items-center justify-center',
+		image: /*tw*/ 'bo-avatar__image-content object-cover',
 		initialsContainer: /*tw*/ 'bo-avatar__initials flex items-center justify-center',
 	},
 	size: {
@@ -121,16 +121,16 @@ const AVATAR_STYLE = {
 		[BoAvatarShape.outline_flat]: /*tw*/ 'bo-avatar--outline-flat rounded-none border',
 	},
 	interactive: {
-		default: /*tw*/ 'cursor-default',
+		default: /*tw*/ 'bo-avatar--default cursor-default',
 		clickable:
-			/*tw*/ 'cursor-pointer hover:opacity-80 transition-all duration-200 transform hover:scale-105',
-		focus: /*tw*/ 'focus:outline-none',
-		active: /*tw*/ 'active:scale-95 active:opacity-90',
-		disabled: /*tw*/ 'opacity-50 cursor-not-allowed',
+			/*tw*/ 'bo-avatar--clickable cursor-pointer hover:opacity-80 transition-all duration-200 transform hover:scale-105',
+		focus: /*tw*/ 'bo-avatar--focus focus:outline-none',
+		active: /*tw*/ 'bo-avatar--active active:scale-95 active:opacity-90',
+		disabled: /*tw*/ 'bo-avatar--disabled opacity-50 cursor-not-allowed',
 	},
 	appearance: {
-		shadow: /*tw*/ 'shadow-md',
-		noShadow: /*tw*/ 'shadow-none',
+		shadow: /*tw*/ 'bo-avatar--shadow shadow-md',
+		noShadow: /*tw*/ 'bo-avatar--no-shadow shadow-none',
 	},
 	variant: {
 		[BoAvatarVariant.primary]: /*tw*/ 'bo-avatar--primary bg-blue-500 dark:bg-blue-700 text-white',
@@ -158,20 +158,25 @@ const AVATAR_STYLE = {
 			/*tw*/ 'bo-avatar--outline-dark bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-300',
 	},
 	variantText: {
-		[BoAvatarVariant.primary]: /*tw*/ 'text-white dark:text-white',
-		[BoAvatarVariant.secondary]: /*tw*/ 'text-white dark:text-white',
-		[BoAvatarVariant.danger]: /*tw*/ 'text-white dark:text-white',
-		[BoAvatarVariant.warning]: /*tw*/ 'text-white dark:text-white',
-		[BoAvatarVariant.success]: /*tw*/ 'text-white dark:text-white',
-		[BoAvatarVariant.dark]: /*tw*/ 'text-white dark:text-white',
+		[BoAvatarVariant.primary]: /*tw*/ 'bo-avatar__text--primary text-white dark:text-white',
+		[BoAvatarVariant.secondary]: /*tw*/ 'bo-avatar__text--secondary text-white dark:text-white',
+		[BoAvatarVariant.danger]: /*tw*/ 'bo-avatar__text--danger text-white dark:text-white',
+		[BoAvatarVariant.warning]: /*tw*/ 'bo-avatar__text--warning text-white dark:text-white',
+		[BoAvatarVariant.success]: /*tw*/ 'bo-avatar__text--success text-white dark:text-white',
+		[BoAvatarVariant.dark]: /*tw*/ 'bo-avatar__text--dark text-white dark:text-white',
 	},
 	outlineVariantText: {
-		[BoAvatarVariant.primary]: /*tw*/ 'text-blue-500 dark:text-blue-400',
-		[BoAvatarVariant.secondary]: /*tw*/ 'text-gray-500 dark:text-neutral-300',
-		[BoAvatarVariant.danger]: /*tw*/ 'text-red-500 dark:text-red-400',
-		[BoAvatarVariant.warning]: /*tw*/ 'text-yellow-500 dark:text-yellow-400',
-		[BoAvatarVariant.success]: /*tw*/ 'text-green-500 dark:text-green-400',
-		[BoAvatarVariant.dark]: /*tw*/ 'text-black dark:text-neutral-300',
+		[BoAvatarVariant.primary]:
+			/*tw*/ 'bo-avatar__text--outline-primary text-blue-500 dark:text-blue-400',
+		[BoAvatarVariant.secondary]:
+			/*tw*/ 'bo-avatar__text--outline-secondary text-gray-500 dark:text-neutral-300',
+		[BoAvatarVariant.danger]:
+			/*tw*/ 'bo-avatar__text--outline-danger text-red-500 dark:text-red-400',
+		[BoAvatarVariant.warning]:
+			/*tw*/ 'bo-avatar__text--outline-warning text-yellow-500 dark:text-yellow-400',
+		[BoAvatarVariant.success]:
+			/*tw*/ 'bo-avatar__text--outline-success text-green-500 dark:text-green-400',
+		[BoAvatarVariant.dark]: /*tw*/ 'bo-avatar__text--outline-dark text-black dark:text-neutral-300',
 	},
 } as const;
 

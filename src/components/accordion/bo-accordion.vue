@@ -22,24 +22,24 @@
 			@keydown.arrow-down.prevent="onArrowNavigation(NavigationDirection.down)"
 			@keydown.arrow-up.prevent="onArrowNavigation(NavigationDirection.up)"
 		>
-			<div class="flex items-center gap-2">
+			<div :class="ACCORDION_STYLE.layout.icon">
 				<bo-icon
 					v-if="prefixIcon !== Icon.none"
 					:icon="prefixIcon"
 					:aria-hidden="true"
-					class="bo-accordion__prefix-icon"
 					:data-testid="constructAttribute(id, 'accordion-prefix-icon')"
 				/>
+			</div>
+			<div :class="ACCORDION_STYLE.layout.title">
 				<bo-text
 					v-if="title"
 					:value="title"
 					:size="BoFontSize.base"
 					:weight="BoFontWeight.semibold"
-					class="bo-accordion__title cursor-pointer"
 					:data-testid="constructAttribute(id, 'accordion-title')"
 				/>
 			</div>
-			<div :class="ACCORDION_STYLE.animation.icon">
+			<div :class="ACCORDION_STYLE.layout.toggleIcon">
 				<bo-icon
 					:icon="customIcon"
 					:aria-hidden="true"
@@ -112,25 +112,31 @@ const ACCORDION_STYLE = {
 			/*tw*/ 'bo-accordion__header flex items-center justify-between p-3 sm:p-4 border border-neutral-200 dark:border-neutral-700',
 		content: /*tw*/ 'bo-accordion__content p-3 sm:p-4 md:p-6',
 		body: /*tw*/ 'bo-accordion__body overflow-hidden border-x border-b border-neutral-200 dark:border-neutral-700',
+		icon: /*tw*/ 'bo-accordion__icon flex items-center gap-2',
+		title: /*tw*/ 'bo-accordion__title cursor-pointer',
+		prefixIcon: /*tw*/ 'bo-accordion__prefix-icon',
+		toggleIcon: /*tw*/ 'bo-accordion__toggle-icon',
 	},
 	appearance: {
-		text: /*tw*/ 'text-neutral-700 dark:text-neutral-200',
-		background: /*tw*/ 'bg-neutral-50 dark:bg-neutral-800',
-		bodyBackground: /*tw*/ 'bg-white dark:bg-neutral-900',
-		contentText: /*tw*/ 'text-neutral-800 dark:text-neutral-100 text-sm sm:text-base',
-		shadow: /*tw*/ 'shadow-sm dark:shadow-neutral-900/50',
+		text: /*tw*/ 'bo-accordion__text text-neutral-700 dark:text-neutral-200',
+		background: /*tw*/ 'bo-accordion--background bg-neutral-50 dark:bg-neutral-800',
+		bodyBackground: /*tw*/ 'bo-accordion__body--background bg-white dark:bg-neutral-900',
+		contentText:
+			/*tw*/ 'bo-accordion__content--text text-neutral-800 dark:text-neutral-100 text-sm sm:text-base',
+		shadow: /*tw*/ 'bo-accordion--shadow shadow-sm dark:shadow-neutral-900/50',
 	},
 	interactive: {
 		header: TailwindService.instance.merge(
-			/*tw*/ 'cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none',
-			props.disabled ? /*tw*/ 'cursor-not-allowed opacity-50' : '',
+			/*tw*/ 'bo-accordion__header--interactive cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none',
+			props.disabled ? /*tw*/ 'bo-accordion__header--disabled cursor-not-allowed opacity-50' : '',
 		),
-		disabled: /*tw*/ 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
+		disabled:
+			/*tw*/ 'bo-accordion--disabled cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
 	},
 	animation: {
-		icon: /*tw*/ 'bo-accordion__collapse-icon transition-transform duration-200 ease-in-out',
-		body: /*tw*/ 'transition-all duration-300 ease-in-out',
-		container: /*tw*/ 'transition-shadow duration-200',
+		icon: /*tw*/ 'bo-accordion__icon--animated transition-transform duration-200 ease-in-out',
+		body: /*tw*/ 'bo-accordion__body--animated transition-all duration-300 ease-in-out',
+		container: /*tw*/ 'bo-accordion--animated transition-shadow duration-200',
 	},
 } as const;
 
