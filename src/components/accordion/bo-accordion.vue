@@ -69,6 +69,7 @@
 <script setup lang="ts">
 import { Icon } from '@/components/icon/bo-icon.js';
 import BoIcon from '@/components/icon/bo-icon.vue';
+import { BoFontSize, BoFontWeight } from '@/components/text/bo-text.js';
 import BoText from '@/components/text/bo-text.vue';
 import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
@@ -92,14 +93,10 @@ import {
 
 const props = withDefaults(defineProps<BoAccordionProps>(), {
 	id: () => IdentityService.instance.getComponentId(),
-	titlePosition: () => BoAccordionTitlePosition.start,
-	disabled: false,
-	expanded: false,
-	size: () => BoSize.default,
 	index: 0,
 	total: 1,
-	headerBackground: undefined,
-	bodyBackground: undefined,
+	size: () => BoSize.default,
+	titlePosition: () => BoAccordionTitlePosition.start,
 	prefixIcon: () => Icon.none,
 	customToggleIcon: () => Icon.none,
 });
