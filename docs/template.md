@@ -106,8 +106,6 @@ All size values must be documented with visual examples:
 
 ## States
 
-Document all component states with examples:
-
 ### Disabled
 
 <div class="flex gap-4 items-center my-4">
@@ -229,29 +227,6 @@ const handleUpdate = ({ value }) => {
 | `aria-describedby` | Description reference | Element ID         |
 | `aria-disabled`    | Disabled state        | `true`, `false`    |
 
-### Testing
-
-````markdown
-```javascript
-test('accessibility attributes', () => {
-	render(<ComponentName title="Test" />);
-	const element = screen.getByRole('button');
-	expect(element).toHaveAttribute('aria-expanded', 'false');
-	expect(element).toHaveAccessibleName('Test');
-});
-```
-````
-
-````
-
-### Manual Testing
-
-- [ ] Keyboard navigation works
-- [ ] Focus indicators visible
-- [ ] Screen reader announces changes
-- [ ] Color contrast meets WCAG AA
-- [ ] Works without mouse
-
 ### Accessibility Props
 
 | Name              | Type     | Default        | Description                               |
@@ -283,23 +258,7 @@ test('accessibility attributes', () => {
 ### Visual Examples Required
 
 Every prop that affects appearance must include:
+
 - Interactive demo
 - Code example
 - Visual comparison where applicable
-
-### Code Standards
-
-```vue
-<!-- ✅ Good: Complete prop documentation -->
-<component-name
-	:variant="ComponentEnum1.primary"
-	:size="SharedEnum.large"
-	:disabled="false"
-	aria-label="Custom label"
-	@click="handleClick"
-/>
-
-<!-- ❌ Bad: Undocumented props or states -->
-<component-name @click="toggle" />
-```
-````
