@@ -1,4 +1,5 @@
 import type { Icon } from '@/components/icon/bo-icon.js';
+import type { BoAriaLive } from '@/shared/bo-aria.js';
 import type { BoSize } from '@/shared/bo-size.js';
 
 export enum BoBadgeVariant {
@@ -21,6 +22,16 @@ export enum BoBadgeShape {
 	default = 'default',
 	flat = 'flat',
 	circle = 'circle',
+}
+
+export interface BoBadgeAccessibilityConstruct {
+	container: {
+		id: string;
+		role: 'status';
+		ariaLabel: string;
+		ariaLive: BoAriaLive;
+		ariaAtomic: boolean;
+	};
 }
 
 export interface BoBadgeProps {
@@ -66,4 +77,14 @@ export interface BoBadgeProps {
 		 */
 		suffix?: Icon;
 	};
+	/**
+	 * Custom ARIA label for the badge
+	 * @default Generated from label or 'Badge'
+	 */
+	ariaLabel?: string;
+	/**
+	 * ARIA live region politeness level
+	 * @default BoAriaLive.polite
+	 */
+	ariaLive?: BoAriaLive;
 }

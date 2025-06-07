@@ -80,13 +80,6 @@ interface FormAccessibilityConstruct {
 }
 ```
 
-**Best Practices:**
-
-- Always provide labels for form controls
-- Use `aria-describedby` for additional instructions
-- Link error messages with `aria-errormessage`
-- Indicate required fields with `aria-required`
-
 **Usage Example:**
 
 ```vue
@@ -335,13 +328,6 @@ interface FocusTrapOptions {
 	onEscape?: () => void;
 }
 ```
-
-**Focus Management Best Practices:**
-
-- Always restore focus when closing modals
-- Trap focus within modal dialogs
-- Provide clear focus indicators
-- Maintain logical tab order
 
 ## ARIA Enums
 

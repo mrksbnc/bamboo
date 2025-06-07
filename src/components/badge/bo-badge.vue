@@ -1,16 +1,19 @@
 <template>
 	<span
-		role="status"
-		:id="id"
+		:role="badgeAccessibility.container.role"
+		:id="badgeAccessibility.container.id"
 		:class="badgeContainerClasses"
-		:aria-label="ariaLabel"
-		:data-testid="constructAttribute(id, 'badge')"
+		:aria-label="badgeAccessibility.container.ariaLabel"
+		:aria-live="badgeAccessibility.container.ariaLive"
+		:aria-atomic="badgeAccessibility.container.ariaAtomic"
+		:data-testid="accessibilityTesting.testId"
 	>
 		<bo-icon
 			v-if="renderPrefixIcon"
 			:size="boBadgeIconSize"
 			:icon="prefixOrIconOnlySrc"
 			:class="BADGE_STYLE.layout.prefixIcon"
+			:aria-hidden="true"
 			:data-testid="constructAttribute(id, 'badge-prefix-icon')"
 		/>
 		<slot name="default">
@@ -32,6 +35,7 @@
 			:icon="icon.suffix"
 			:size="boBadgeIconSize"
 			:class="BADGE_STYLE.layout.suffixIcon"
+			:aria-hidden="true"
 			:data-testid="constructAttribute(id, 'badge-suffix-icon')"
 		/>
 	</span>
@@ -46,9 +50,17 @@ import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
 import { StringService } from '@/services/string-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
+import { BoAriaLive } from '@/shared/bo-aria.js';
 import { BoSize } from '@/shared/bo-size.js';
+import type { AccessibilityTesting } from '@/types/accessibility.js';
 import { computed } from 'vue';
-import { BoBadgeShape, BoBadgeType, BoBadgeVariant, type BoBadgeProps } from './bo-badge';
+import {
+	BoBadgeShape,
+	BoBadgeType,
+	BoBadgeVariant,
+	type BoBadgeAccessibilityConstruct,
+	type BoBadgeProps,
+} from './bo-badge';
 
 const props = withDefaults(defineProps<BoBadgeProps>(), {
 	id: () => IdentityService.instance.getComponentId(),
@@ -60,6 +72,7 @@ const props = withDefaults(defineProps<BoBadgeProps>(), {
 		prefix: Icon.none,
 		suffix: Icon.none,
 	}),
+	ariaLive: () => BoAriaLive.polite,
 });
 
 const { constructAttribute } = useAttributes();
@@ -194,7 +207,10 @@ const boBadgeVariantClasses = computed<string>(() => {
 
 const boBadgeSizeClasses = computed<string>(() => {
 	if (props.shape === BoBadgeShape.circle) {
-		return BADGE_STYLE.size.circle[props.size];
+		return TailwindService.instance.merge(
+			`bo-badge--${props.size}`,
+			BADGE_STYLE.size.circle[props.size],
+		);
 	}
 
 	return BADGE_STYLE.size.container[props.size];
@@ -237,5 +253,26 @@ const boBadgeIconSize = computed<BoSize>(() => {
 		case BoSize.extra_large:
 			return BoSize.large;
 	}
+});
+
+const badgeAccessibility = computed<BoBadgeAccessibilityConstruct>(() => {
+	return {
+		container: {
+			id: props.id,
+			role: 'status',
+			ariaLabel: props.ariaLabel ?? ariaLabel.value,
+			ariaLive: props.ariaLive,
+			ariaAtomic: true,
+		},
+	};
+});
+
+const accessibilityTesting = computed<AccessibilityTesting>(() => {
+	return {
+		testId: constructAttribute(props.id, 'badge'),
+		role: 'status',
+		accessibleName: props.ariaLabel ?? (props.label ? `Badge: ${props.label}` : 'Badge'),
+		accessibleDescription: `Badge with ${props.variant} variant`,
+	};
 });
 </script>

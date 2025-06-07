@@ -1,12 +1,12 @@
 <script setup>
 import { BoBadge, BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/badge';
-import { BoSize } from '@/shared'
+import { BoSize } from '@/shared';
 import { Icon } from '@/components/icon/bo-icon';
 </script>
 
 # Badge
 
-A badge is a small label or status indicator that is displayed next to or alongside other elements. It can be used to indicate the number of unread messages, the number of new items, or any other relevant information.
+The Badge component is used to highlight and display short pieces of information, such as status indicators, counts, or labels.
 
 ```js
 import { BoBadge } from '@mrksbnc/bamboo';
@@ -24,33 +24,28 @@ import { BoBadge } from '@mrksbnc/bamboo';
 </script>
 ```
 
-<hr />
 <div class="flex gap-4 items-center my-4">
 	<bo-badge label="New" />
 </div>
 
 ## Props
 
-| Name      | Type             | Default        | Description                  |
-| --------- | ---------------- | -------------- | ---------------------------- |
-| `id`      | `string`         | auto-generated | Unique ID for the badge      |
-| `label`   | `string`         | `undefined`    | Text content of the badge    |
-| `type`    | `BoBadgeType`    | `default`      | Visual style of the badge    |
-| `size`    | `BoSize`         | `default`      | Size of the badge            |
-| `shape`   | `BoBadgeShape`   | `default`      | Shape of the badge           |
-| `variant` | `BoBadgeVariant` | `primary`      | Color variant of the badge   |
-| `icon`    | `object`         | `{}`           | Icon configuration for badge |
-
-## Slots
-
-| Name      | Description          |
-| --------- | -------------------- |
-| `default` | Custom badge content |
+| Name        | Type                               | Default                                    | Description                                    |
+| ----------- | ---------------------------------- | ------------------------------------------ | ---------------------------------------------- |
+| `id`        | `string`                           | auto-generated                             | Unique identifier for the badge                |
+| `label`     | `string`                           | `undefined`                                | Text content of the badge                      |
+| `type`      | `BoBadgeType`                      | `'default'`                                | Visual style of the badge                      |
+| `size`      | `BoSize`                           | `'default'`                                | Size of the badge                              |
+| `shape`     | `BoBadgeShape`                     | `'default'`                                | Shape of the badge                             |
+| `variant`   | `BoBadgeVariant`                   | `'primary'`                                | Color variant                                  |
+| `icon`      | `{ prefix?: Icon, suffix?: Icon }` | `{ prefix: Icon.none, suffix: Icon.none }` | Icons to display before and/or after the label |
+| `ariaLabel` | `string`                           | Generated from label                       | Custom accessible name for screen readers      |
+| `ariaLive`  | `BoAriaLive`                       | `'polite'`                                 | ARIA live region politeness level              |
 
 ## Types
 
 ```ts
-enum BoBadgeVariant {
+export enum BoBadgeVariant {
 	primary = 'primary',
 	secondary = 'secondary',
 	danger = 'danger',
@@ -60,292 +55,112 @@ enum BoBadgeVariant {
 	dark = 'dark',
 }
 
-enum BoBadgeType {
+export enum BoBadgeType {
 	default = 'default',
 	outline = 'outline',
 }
 
-enum BoBadgeShape {
+export enum BoBadgeShape {
 	pill = 'pill',
 	default = 'default',
 	flat = 'flat',
 	circle = 'circle',
 }
 
-interface BoBadgeProps {
-	/**
-	 * Unique ID for the badge, used for accessibility and testing
-	 */
+export interface BoBadgeProps {
 	id?: string;
-	/**
-	 * Text content of the badge
-	 */
 	label?: string;
-	/**
-	 * Visual style of the badge
-	 * @default BoBadgeType.default
-	 */
 	type?: BoBadgeType;
-	/**
-	 * Size of the badge
-	 * @default BoSize.default
-	 */
 	size?: BoSize;
-	/**
-	 * Shape of the badge
-	 * @default BoBadgeShape.default
-	 */
 	shape?: BoBadgeShape;
-	/**
-	 * Color variant of the badge
-	 * @default BoBadgeVariant.primary
-	 */
 	variant?: BoBadgeVariant;
-	/**
-	 * Custom icon configuration for badge
-	 * @default { prefix: Icon.none, suffix: Icon.none }
-	 */
 	icon?: {
-		/**
-		 * Icon to display before the label
-		 */
 		prefix?: Icon;
-		/**
-		 * Icon to display after the label
-		 */
 		suffix?: Icon;
 	};
+	ariaLabel?: string;
+	ariaLive?: BoAriaLive;
 }
 ```
 
 ## Variants
 
 <div class="flex gap-4 items-center my-4">
-	<bo-badge :variant="BoBadgeVariant.primary" label="Primary" />
-	<bo-badge :variant="BoBadgeVariant.secondary" label="Secondary" />
-	<bo-badge :variant="BoBadgeVariant.danger" label="Danger" />
-	<bo-badge :variant="BoBadgeVariant.warning" label="Warning" />
-	<bo-badge :variant="BoBadgeVariant.success" label="Success" />
-	<bo-badge :variant="BoBadgeVariant.light" label="Light" />
-	<bo-badge :variant="BoBadgeVariant.dark" label="Dark" />
+	<bo-badge label="Primary" :variant="BoBadgeVariant.primary" />
+	<bo-badge label="Secondary" :variant="BoBadgeVariant.secondary" />
+	<bo-badge label="Danger" :variant="BoBadgeVariant.danger" />
+	<bo-badge label="Warning" :variant="BoBadgeVariant.warning" />
+	<bo-badge label="Success" :variant="BoBadgeVariant.success" />
+	<bo-badge label="Light" :variant="BoBadgeVariant.light" />
+	<bo-badge label="Dark" :variant="BoBadgeVariant.dark" />
 </div>
 
 ```vue
-<bo-badge :variant="BoBadgeVariant.primary" label="Primary" />
-<bo-badge :variant="BoBadgeVariant.secondary" label="Secondary" />
-<bo-badge :variant="BoBadgeVariant.danger" label="Danger" />
-<bo-badge :variant="BoBadgeVariant.warning" label="Warning" />
-<bo-badge :variant="BoBadgeVariant.success" label="Success" />
-<bo-badge :variant="BoBadgeVariant.light" label="Light" />
-<bo-badge :variant="BoBadgeVariant.dark" label="Dark" />
-```
-
-## Types
-
-<div class="flex gap-4 items-center my-4">
-	<bo-badge :type="BoBadgeType.default" label="Default" />
-	<bo-badge :type="BoBadgeType.outline" label="Outline" />
-</div>
-
-```vue
-<bo-badge :type="BoBadgeType.default" label="Default" />
-<bo-badge :type="BoBadgeType.outline" label="Outline" />
-```
-
-## Shapes
-
-<div class="flex gap-4 items-center my-4">
-	<bo-badge :shape="BoBadgeShape.default" label="Default" />
-	<bo-badge :shape="BoBadgeShape.pill" label="Pill" />
-	<bo-badge :shape="BoBadgeShape.flat" label="Flat" />
-	<bo-badge :shape="BoBadgeShape.circle" :icon="{ prefix: Icon.check }" />
-</div>
-
-```vue
-<bo-badge :shape="BoBadgeShape.default" label="Default" />
-<bo-badge :shape="BoBadgeShape.pill" label="Pill" />
-<bo-badge :shape="BoBadgeShape.flat" label="Flat" />
-<bo-badge :shape="BoBadgeShape.circle" :icon="{ prefix: Icon.check }" />
+<bo-badge label="Primary" :variant="BoBadgeVariant.primary" />
+<bo-badge label="Secondary" :variant="BoBadgeVariant.secondary" />
+<bo-badge label="Danger" :variant="BoBadgeVariant.danger" />
+<bo-badge label="Warning" :variant="BoBadgeVariant.warning" />
+<bo-badge label="Success" :variant="BoBadgeVariant.success" />
+<bo-badge label="Light" :variant="BoBadgeVariant.light" />
+<bo-badge label="Dark" :variant="BoBadgeVariant.dark" />
 ```
 
 ## Sizes
 
 <div class="flex items-center gap-4 my-4">
-	<bo-badge :size="BoSize.extra_small" label="XS" />
-	<bo-badge :size="BoSize.small" label="Small" />
-	<bo-badge :size="BoSize.default" label="Default" />
-	<bo-badge :size="BoSize.large" label="Large" />
-	<bo-badge :size="BoSize.extra_large" label="XL" />
+	<bo-badge label="Extra Small" :size="BoSize.extra_small" />
+	<bo-badge label="Small" :size="BoSize.small" />
+	<bo-badge label="Default" :size="BoSize.default" />
+	<bo-badge label="Large" :size="BoSize.large" />
+	<bo-badge label="Extra Large" :size="BoSize.extra_large" />
 </div>
 
 ```vue
-<bo-badge :size="BoSize.extra_small" label="XS" />
-<bo-badge :size="BoSize.small" label="Small" />
-<bo-badge :size="BoSize.default" label="Default" />
-<bo-badge :size="BoSize.large" label="Large" />
-<bo-badge :size="BoSize.extra_large" label="XL" />
+<bo-badge label="Extra Small" :size="BoSize.extra_small" />
+<bo-badge label="Small" :size="BoSize.small" />
+<bo-badge label="Default" :size="BoSize.default" />
+<bo-badge label="Large" :size="BoSize.large" />
+<bo-badge label="Extra Large" :size="BoSize.extra_large" />
 ```
 
-## With Icons
+## Content Variations
+
+### With Icons
 
 <div class="flex gap-4 items-center my-4">
-	<bo-badge 
-		label="New" 
-		:icon="{ prefix: Icon.bell }" 
-	/>
-	<bo-badge 
-		label="Settings" 
-		:icon="{ suffix: Icon.settings }" 
-	/>
-	<bo-badge 
-		label="Profile" 
-		:icon="{ 
-			prefix: Icon.user,
-			suffix: Icon.chevron_right 
-		}" 
-	/>
-	<bo-badge 
-		:icon="{ prefix: Icon.bell }" 
-	/>
+	<bo-badge label="With Prefix" :icon="{ prefix: Icon.star }" />
+	<bo-badge label="With Suffix" :icon="{ suffix: Icon.check }" />
+	<bo-badge label="Both Icons" :icon="{ prefix: Icon.star, suffix: Icon.check }" />
 </div>
 
 ```vue
-<bo-badge label="New" :icon="{ prefix: Icon.bell }" />
-<bo-badge label="Settings" :icon="{ suffix: Icon.settings }" />
-<bo-badge
-	label="Profile"
-	:icon="{
-		prefix: Icon.user,
-		suffix: Icon.chevron_right,
-	}"
-/>
-<bo-badge :icon="{ prefix: Icon.bell }" />
+<bo-badge label="With Prefix" :icon="{ prefix: Icon.star }" />
+<bo-badge label="With Suffix" :icon="{ suffix: Icon.check }" />
+<bo-badge label="Both Icons" :icon="{ prefix: Icon.star, suffix: Icon.check }" />
 ```
 
-## Circle Badges with Icons
+## Accessibility
 
-<div class="flex gap-4 items-center my-4">
-	<bo-badge 
-		:shape="BoBadgeShape.circle" 
-		:icon="{ prefix: Icon.check }" 
-		:variant="BoBadgeVariant.success" 
-	/>
-	<bo-badge 
-		:shape="BoBadgeShape.circle" 
-		:icon="{ prefix: Icon.x }" 
-		:variant="BoBadgeVariant.danger" 
-	/>
-	<bo-badge 
-		:shape="BoBadgeShape.circle" 
-		:icon="{ prefix: Icon.alert_triangle }" 
-		:variant="BoBadgeVariant.warning" 
-	/>
-	<bo-badge 
-		:shape="BoBadgeShape.circle" 
-		:icon="{ prefix: Icon.info }" 
-		:variant="BoBadgeVariant.primary" 
-	/>
-</div>
+### Features
 
-```vue
-<bo-badge
-	:shape="BoBadgeShape.circle"
-	:icon="{ prefix: Icon.check }"
-	:variant="BoBadgeVariant.success"
-/>
-<bo-badge
-	:shape="BoBadgeShape.circle"
-	:icon="{ prefix: Icon.x }"
-	:variant="BoBadgeVariant.danger"
-/>
-<bo-badge
-	:shape="BoBadgeShape.circle"
-	:icon="{ prefix: Icon.alert_triangle }"
-	:variant="BoBadgeVariant.warning"
-/>
-<bo-badge
-	:shape="BoBadgeShape.circle"
-	:icon="{ prefix: Icon.info }"
-	:variant="BoBadgeVariant.primary"
-/>
-```
+- Uses semantic `status` role for proper screen reader announcement
+- Includes descriptive ARIA labels
+- Configurable ARIA live regions for dynamic content updates
+- Icons are properly labeled and hidden from screen readers when decorative
+- Maintains WCAG 2.1 compliant color contrast ratios for all variants
 
-## Custom Content
+### ARIA Attributes
 
-<div class="flex gap-4 items-center my-4">
-	<bo-badge>
-		<div class="flex items-center gap-1">
-			<span class="text-xs">Verified</span>
-			💁🏻
-		</div>
-	</bo-badge>
-</div>
+| Attribute     | Purpose                     | Values                               |
+| ------------- | --------------------------- | ------------------------------------ |
+| `role`        | Semantic role               | `status`                             |
+| `aria-label`  | Accessible name             | Generated from label or custom value |
+| `aria-live`   | Live region update behavior | `polite`, `assertive`, `off`         |
+| `aria-atomic` | Update announcement style   | `true`                               |
 
-```vue
-<bo-badge>
-	<div class="flex items-center gap-1">
-		<span class="text-xs">Verified</span>
-		💁🏻
-	</div>
-</bo-badge>
-```
+### Accessibility Props
 
-## Dark Mode
-
-The badge component automatically adapts to dark mode with proper contrast adjustments.
-
-<div class="flex flex-col gap-6 my-4 dark p-6 bg-gray-900 rounded-lg">
-	<div class="flex items-center gap-4">
-		<div class="w-20 text-sm text-gray-400">Variants</div>
-		<div class="flex gap-3 flex-wrap">
-			<bo-badge :variant="BoBadgeVariant.primary" label="Primary" />
-			<bo-badge :variant="BoBadgeVariant.secondary" label="Secondary" />
-			<bo-badge :variant="BoBadgeVariant.success" label="Success" />
-			<bo-badge :variant="BoBadgeVariant.danger" label="Danger" />
-			<bo-badge :variant="BoBadgeVariant.warning" label="Warning" />
-			<bo-badge :variant="BoBadgeVariant.light" label="Light" />
-		</div>
-	</div>
-	<div class="flex items-center gap-4">
-		<div class="w-20 text-sm text-gray-400">Types</div>
-		<div class="flex gap-3">
-			<bo-badge :type="BoBadgeType.default" label="Default" />
-			<bo-badge :type="BoBadgeType.outline" label="Outline" />
-		</div>
-	</div>
-	<div class="flex items-center gap-4">
-		<div class="w-20 text-sm text-gray-400">Shapes</div>
-		<div class="flex gap-3">
-			<bo-badge :shape="BoBadgeShape.default" label="Default" />
-			<bo-badge :shape="BoBadgeShape.pill" label="Pill" />
-			<bo-badge :shape="BoBadgeShape.flat" label="Flat" />
-			<bo-badge :shape="BoBadgeShape.circle" :icon="{ prefix: Icon.check }" />
-		</div>
-	</div>
-	<div class="flex items-center gap-4">
-		<div class="w-20 text-sm text-gray-400">With Icons</div>
-		<div class="flex gap-3">
-			<bo-badge label="New" :icon="{ prefix: Icon.bell }" />
-			<bo-badge label="Settings" :icon="{ suffix: Icon.settings }" />
-			<bo-badge :icon="{ prefix: Icon.bell }" />
-		</div>
-	</div>
-</div>
-
-```vue
-<div class="dark">
-	<!-- Variants in dark mode -->
-	<bo-badge :variant="BoBadgeVariant.primary" label="Primary" />
-	<bo-badge :variant="BoBadgeVariant.secondary" label="Secondary" />
-	<bo-badge :variant="BoBadgeVariant.success" label="Success" />
-	<bo-badge :variant="BoBadgeVariant.danger" label="Danger" />
-	
-	<!-- Types in dark mode -->
-	<bo-badge :type="BoBadgeType.default" label="Default" />
-	<bo-badge :type="BoBadgeType.outline" label="Outline" />
-	
-	<!-- With icons in dark mode -->
-	<bo-badge label="New" :icon="{ prefix: Icon.bell }" />
-	<bo-badge :shape="BoBadgeShape.circle" :icon="{ prefix: Icon.check }" />
-</div>
-```
+| Name        | Type         | Default              | Description                               |
+| ----------- | ------------ | -------------------- | ----------------------------------------- |
+| `ariaLabel` | `string`     | Generated from label | Custom accessible name for screen readers |
+| `ariaLive`  | `BoAriaLive` | `polite`             | Controls live region announcement timing  |
