@@ -72,8 +72,7 @@ export class ThemeService implements BoThemeService {
 	}
 
 	private getThemeFromStorage(): Theme {
-		const theme = localStorage.getItem(THEME_KEY);
-		return theme ? (theme as Theme) : Theme.SYSTEM;
+		return (localStorage.getItem(THEME_KEY) as Theme) ?? Theme.SYSTEM;
 	}
 
 	private setThemeInStorage(theme: Theme): void {

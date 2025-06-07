@@ -1,3 +1,9 @@
+@import 'tailwindcss';
+
+@layer theme, base, components, utilities;
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 button,
 input,
 optgroup,

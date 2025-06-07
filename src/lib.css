@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+@layer theme, base, components, utilities;
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Screen reader only class - visually hides content while keeping it accessible to screen readers */
 .sr-only {
 	position: absolute;

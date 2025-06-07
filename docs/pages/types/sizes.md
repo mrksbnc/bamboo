@@ -1,7 +1,6 @@
 <script setup>
 import { BoSize } from '@/shared/bo-size';
-import { BoButton } from '@/components/bo-button';
-import { BoBadge } from '@/components/bo-badge';
+import { BoBadge } from '@/components/badge';
 </script>
 
 # Size System
@@ -13,11 +12,11 @@ The size system provides standardized sizing options for components throughout t
 Sizes are defined in the `BoSize` enum and can be imported and used in your components:
 
 ```typescript
-import { BoSize } from '@/shared/bo-size';
+import { BoSize } from '@/shared/bo-size.js';
 
 // Using a specific size
-const buttonSize = BoSize.md;
-const iconSize = BoSize.sm;
+const buttonSize = BoSize.large;
+const iconSize = BoSize.small;
 ```
 
 ## Available Sizes
@@ -27,114 +26,53 @@ The `BoSize` enum provides five standard size options:
 ```typescript
 export enum BoSize {
 	/** Extra small size - for compact UI elements */
-	xs = 'xs',
+	extra_small = 'extra-small',
 	/** Small size - for secondary or less prominent UI elements */
-	sm = 'sm',
+	small = 'small',
 	/** Default/medium size - for most standard UI elements */
-	md = 'md',
+	default = 'default',
 	/** Large size - for emphasized or important UI elements */
-	lg = 'lg',
+	large = 'large',
 	/** Extra large size - for highly prominent or focal UI elements */
-	xl = 'xl',
+	extra_large = 'extra-large',
 }
-```
-
-**Alias constants** are also available for more intuitive usage:
-
-```typescript
-// These constants provide aliases to the BoSize enum
-export const BoSize = {
-	xs: BoSize.xs,
-	sm: BoSize.sm,
-	md: BoSize.md,
-	lg: BoSize.lg,
-	xl: BoSize.xl,
-};
 ```
 
 ## Visual Comparison
 
 Here's how different sizes look when applied to components:
 
-### Buttons with Different Sizes
-
-<div class="flex flex-wrap items-center gap-4">
-  <bo-button label="Extra Small" :size="BoSize.xs" />
-  <bo-button label="Small" :size="BoSize.sm" />
-  <bo-button label="Default" :size="BoSize.md" />
-  <bo-button label="Large" :size="BoSize.lg" />
-  <bo-button label="Extra Large" :size="BoSize.xl" />
-</div>
-
-```html
-<bo-button
-	label="Extra Small"
-	:size="BoSize.xs"
-/>
-<bo-button
-	label="Small"
-	:size="BoSize.sm"
-/>
-<bo-button
-	label="Default"
-	:size="BoSize.md"
-/>
-<bo-button
-	label="Large"
-	:size="BoSize.lg"
-/>
-<bo-button
-	label="Extra Large"
-	:size="BoSize.xl"
-/>
-```
-
 ### Badges with Different Sizes
 
 <div class="flex flex-wrap items-center gap-4">
-  <bo-badge label="XS" :size="BoSize.xs" />
-  <bo-badge label="SM" :size="BoSize.sm" />
-  <bo-badge label="MD" :size="BoSize.md" />
-  <bo-badge label="LG" :size="BoSize.lg" />
-  <bo-badge label="XL" :size="BoSize.xl" />
+	<bo-badge label="XS" :size="BoSize.extra_small" />
+	<bo-badge label="Small" :size="BoSize.small" />
+	<bo-badge label="Default" :size="BoSize.default" />
+	<bo-badge label="Large" :size="BoSize.large" />
+	<bo-badge label="XL" :size="BoSize.extra_large" />
 </div>
 
-```html
-<bo-badge
-	label="XS"
-	:size="BoSize.xs"
-/>
-<bo-badge
-	label="SM"
-	:size="BoSize.sm"
-/>
-<bo-badge
-	label="MD"
-	:size="BoSize.md"
-/>
-<bo-badge
-	label="LG"
-	:size="BoSize.lg"
-/>
-<bo-badge
-	label="XL"
-	:size="BoSize.xl"
-/>
+```vue
+<bo-badge label="XS" :size="BoSize.extra_small" />
+<bo-badge label="Small" :size="BoSize.small" />
+<bo-badge label="Default" :size="BoSize.default" />
+<bo-badge label="Large" :size="BoSize.large" />
+<bo-badge label="XL" :size="BoSize.extra_large" />
 ```
 
 ## When to Use Each Size
 
 Different sizes serve different purposes in the UI:
 
-- **Extra Small (`xs`)**: Use for very compact interfaces, auxiliary elements, or when space is extremely limited. Good for dense information displays or badges.
+- **Extra Small (`extra_small`)**: Use for very compact interfaces, auxiliary elements, or when space is extremely limited. Good for dense information displays or small badges.
 
-- **Small (`sm`)**: Use for secondary actions, less important information, or when space is limited. Appropriate for form labels, secondary buttons, or supporting elements.
+- **Small (`small`)**: Use for secondary actions, less important information, or when space is limited. Appropriate for form labels, secondary buttons, or supporting elements.
 
-- **Default (`md`)**: The standard size for most UI elements. This is the go-to size for general purpose usage and should be the most common size in your interface.
+- **Default (`default`)**: The standard size for most UI elements. This is the go-to size for general purpose usage and should be the most common size in your interface.
 
-- **Large (`lg`)**: Use for emphasized elements, important calls to action, or when you want to draw more attention to a component. Good for primary actions or highlighted information.
+- **Large (`large`)**: Use for emphasized elements, important calls to action, or when you want to draw more attention to a component. Good for primary actions or highlighted information.
 
-- **Extra Large (`xl`)**: Use for the most prominent elements, key focal points, or hero sections of your interface. Reserve this size for truly important elements to maintain visual hierarchy.
+- **Extra Large (`extra_large`)**: Use for the most prominent elements, key focal points, or hero sections of your interface. Reserve this size for truly important elements to maintain visual hierarchy.
 
 ## Consistent Scaling
 
@@ -162,11 +100,3 @@ When using different sizes, remember:
 - Maintain sufficient contrast at all sizes
 - Don't make text too small to read (minimum 16px for body text)
 - Test with users who have motor or visual impairments
-
-## Best Practices
-
-- **Consistency**: Use the same size for similar types of components or actions
-- **Hierarchy**: Use size to establish visual hierarchy (larger = more important)
-- **Restraint**: Limit the number of different sizes on a single screen
-- **Context**: Consider the surrounding elements and available space when choosing sizes
-- **Purpose**: Let the component's purpose guide your size choice

@@ -4,7 +4,7 @@ import DefaultTheme from 'vitepress/theme';
 import { h } from 'vue';
 
 import './index.css';
-import './tailwind.css';
+import './lib.css';
 
 export default {
 	extends: DefaultTheme,
