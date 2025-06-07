@@ -1,7 +1,7 @@
 <template>
 	<div
 		role="group"
-		class="bo-accordion-container w-full max-w-full space-y-0 overflow-hidden border-0 bg-transparent dark:border-0 dark:bg-transparent"
+		class="bo-accordion-container w-full max-w-full space-y-0 overflow-hidden border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
 		:data-testid="constructAttribute(id, 'accordion-container')"
 	>
 		<slot></slot>

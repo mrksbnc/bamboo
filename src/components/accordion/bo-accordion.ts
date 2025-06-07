@@ -11,6 +11,90 @@ export enum BoAccordionShape {
 	flat = 'flat',
 }
 
+export type AccordionBorderStyles = {
+	standalone: {
+		header: {
+			first: string;
+			middle: string;
+			last: string;
+			single: string;
+		};
+		body: {
+			first: string;
+			middle: string;
+			last: string;
+			single: string;
+		};
+	};
+	container: {
+		header: {
+			first: string;
+			middle: string;
+			last: string;
+			single: string;
+		};
+		body: {
+			first: string;
+			middle: string;
+			last: string;
+			single: string;
+		};
+	};
+};
+
+export type AccordionShapeStyles = {
+	[BoAccordionShape.rounded]: {
+		header: {
+			first: string;
+			single: string;
+		};
+		body: {
+			last: string;
+			single: string;
+		};
+	};
+	[BoAccordionShape.flat]: {
+		header: Record<string, never>;
+		body: Record<string, never>;
+	};
+};
+
+export type AccordionStyles = {
+	layout: {
+		container: string;
+		header: string;
+		content: string;
+		body: string;
+		icon: string;
+		title: {
+			[key in BoAccordionTitlePosition]: string;
+		};
+		prefixIcon: string;
+		toggleIcon: string;
+	};
+	borders: AccordionBorderStyles;
+	shape: AccordionShapeStyles;
+	state: {
+		expanded: string;
+		collapsed: string;
+		disabled: string;
+	};
+	appearance: {
+		text: string;
+		background: string;
+		bodyBackground: string;
+		contentText: string;
+	};
+	interactive: {
+		header: string;
+		disabled: string;
+	};
+	animation: {
+		icon: string;
+		content: string;
+	};
+};
+
 export interface BoAccordionProps {
 	/**
 	 * The unique identifier for the accordion.

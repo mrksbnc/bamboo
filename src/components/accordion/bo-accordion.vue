@@ -88,6 +88,7 @@ import {
 	BoAccordionShape,
 	BoAccordionTitlePosition,
 	type AccordionGroup,
+	type AccordionStyles,
 	type BoAccordionProps,
 } from './bo-accordion.js';
 
@@ -117,7 +118,7 @@ const isOpen = ref<boolean>(props.open ?? false);
 const accordionRef = ref<HTMLElement>();
 const accordionBodyRef = ref<HTMLElement>();
 
-const ACCORDION_STYLE = {
+const ACCORDION_STYLE: AccordionStyles = {
 	layout: {
 		container: /*tw*/ 'bo-accordion w-full',
 		header:
@@ -137,17 +138,33 @@ const ACCORDION_STYLE = {
 		toggleIcon: /*tw*/ 'bo-accordion__icon bo-accordion__icon--toggle shrink-0',
 	},
 	borders: {
-		header: {
-			first: /*tw*/ 'border border-b-0 border-neutral-200 dark:border-neutral-700',
-			middle: /*tw*/ 'border border-t-0 border-b-0 border-neutral-200 dark:border-neutral-700',
-			last: /*tw*/ 'border border-t-0 border-neutral-200 dark:border-neutral-700',
-			single: /*tw*/ 'border border-neutral-200 dark:border-neutral-700',
+		standalone: {
+			header: {
+				first: /*tw*/ 'border border-b-0 border-neutral-200 dark:border-neutral-700',
+				middle: /*tw*/ 'border border-t-0 border-b-0 border-neutral-200 dark:border-neutral-700',
+				last: /*tw*/ 'border border-t-0 border-neutral-200 dark:border-neutral-700',
+				single: /*tw*/ 'border border-neutral-200 dark:border-neutral-700',
+			},
+			body: {
+				first: /*tw*/ 'border border-t-0 border-b-0 border-neutral-200 dark:border-neutral-700',
+				middle: /*tw*/ 'border border-t-0 border-b-0 border-neutral-200 dark:border-neutral-700',
+				last: /*tw*/ 'border border-t-0 border-neutral-200 dark:border-neutral-700',
+				single: /*tw*/ 'border border-t-0 border-neutral-200 dark:border-neutral-700',
+			},
 		},
-		body: {
-			first: /*tw*/ 'border border-t-0 border-b-0 border-neutral-200 dark:border-neutral-700',
-			middle: /*tw*/ 'border border-t-0 border-b-0 border-neutral-200 dark:border-neutral-700',
-			last: /*tw*/ 'border border-t-0 border-neutral-200 dark:border-neutral-700',
-			single: /*tw*/ 'border border-t-0 border-neutral-200 dark:border-neutral-700',
+		container: {
+			header: {
+				first: /*tw*/ 'border-b border-neutral-200 dark:border-neutral-700',
+				middle: /*tw*/ 'border-b border-neutral-200 dark:border-neutral-700',
+				last: /*tw*/ 'border-b border-neutral-200 dark:border-neutral-700',
+				single: /*tw*/ 'border-b border-neutral-200 dark:border-neutral-700',
+			},
+			body: {
+				first: /*tw*/ 'border-b border-neutral-200 dark:border-neutral-700',
+				middle: /*tw*/ 'border-b border-neutral-200 dark:border-neutral-700',
+				last: '',
+				single: '',
+			},
 		},
 	},
 	shape: {
@@ -182,7 +199,7 @@ const ACCORDION_STYLE = {
 		header:
 			/*tw*/ 'bo-accordion__header--interactive cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:outline-none',
 		disabled:
-			/*tw*/ 'bo-accordion--disabled cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
+			/*tw*/ 'bo-accordion__header--disabled cursor-not-allowed hover:bg-transparent dark:hover:bg-transparent',
 	},
 	animation: {
 		icon: /*tw*/ 'bo-accordion__icon--animated transition-transform duration-200 ease-in-out',
