@@ -6,7 +6,7 @@ import BoAccordionContainer from '@/components/accordion/bo-accordion-container.
 
 # Accordion
 
-The Accordion component is a collapsible content panel that helps organize and present information in expandable sections. This pattern is especially useful when you want to provide users with the ability to show and hide related content, saving space and reducing visual clutter. The component includes full dark mode support and seamless theming. For managing multiple accordion items with coordinated behavior, use the `BoAccordionContainer` component.
+The Accordion component is a collapsible content panel that helps organize and present information in expandable sections. This pattern is useful when you want to provide users with the ability to show and hide related content, saving space and reducing visual clutter. The component includes dark mode support and accessibility features. For managing multiple accordion items with coordinated behavior, use the `BoAccordionContainer` component.
 
 ```js
 import { BoAccordion, BoAccordionContainer } from '@mrksbnc/bamboo';
@@ -38,18 +38,130 @@ import { BoAccordion } from '@mrksbnc/bamboo';
 	</bo-accordion>
 </div>
 
+## Accessibility Features
+
+The Accordion component implements accessibility standards:
+
+### ARIA Implementation
+
+- Semantic structure with proper `role` attributes (`group`, `button`, `region`)
+- ARIA attributes including `aria-expanded`, `aria-disabled`, `aria-controls`, `aria-labelledby`
+- Accessible naming through `aria-label` or automatic fallback to title
+- Screen reader support with descriptive labels and state announcements
+
+### Testing Support
+
+- Test IDs for automated accessibility testing
+- Accessible name computation for screen reader verification
+- State tracking for dynamic content testing
+- Group behavior validation for complex interactions
+
+```vue
+<template>
+	<!-- Accessibility attributes are automatically applied -->
+	<bo-accordion
+		title="Accessible Accordion"
+		aria-label="Custom accessible label"
+	>
+		<p>This content is fully accessible to screen readers.</p>
+	</bo-accordion>
+</template>
+```
+
+## Keyboard Navigation
+
+The Accordion component supports keyboard navigation when used within an `BoAccordionContainer`:
+
+### Navigation Keys
+
+- **Tab/Shift+Tab**: Navigate between accordion headers and other focusable elements
+- **Enter/Space**: Toggle the focused accordion section
+- **Arrow Up/Down**: Navigate between accordion headers within a container group
+- **Boundary wrapping**: Arrow navigation wraps from last to first item and vice versa
+
+### Keyboard Accessibility Example
+
+<div class="flex flex-col gap-4 my-4">
+	<bo-accordion-container>
+		<bo-accordion title="Navigate with Tab or Arrow Keys">
+			<div class="space-y-2">
+				<p><strong>Keyboard Instructions:</strong></p>
+				<ul class="list-disc list-inside space-y-1">
+					<li>Use <kbd class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">Tab</kbd> to reach this accordion</li>
+					<li>Press <kbd class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">Enter</kbd> or <kbd class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">Space</kbd> to toggle</li>
+					<li>Use <kbd class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">↑</kbd>/<kbd class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">↓</kbd> arrow keys to navigate between sections</li>
+				</ul>
+			</div>
+		</bo-accordion>
+		<bo-accordion title="Focus Management">
+			<div class="space-y-2">
+				<p>Focus is managed during navigation:</p>
+				<ul class="list-disc list-inside space-y-1">
+					<li>Focus moves to the next/previous accordion header</li>
+					<li>Disabled accordions are skipped during navigation</li>
+					<li>Focus wraps around at boundaries for continuous navigation</li>
+				</ul>
+			</div>
+		</bo-accordion>
+		<bo-accordion title="Screen Reader Support">
+			<div class="space-y-2">
+				<p>Experience for assistive technologies:</p>
+				<ul class="list-disc list-inside space-y-1">
+					<li>State changes are announced (expanded/collapsed)</li>
+					<li>Relationships between headers and content are clear</li>
+					<li>Descriptive labels provide context for each section</li>
+				</ul>
+			</div>
+		</bo-accordion>
+	</bo-accordion-container>
+</div>
+
+```vue
+<template>
+	<bo-accordion-container>
+		<bo-accordion
+			title="Section 1"
+			aria-label="First navigation section"
+		>
+			<p>Use arrow keys to navigate between sections.</p>
+		</bo-accordion>
+		<bo-accordion
+			title="Section 2"
+			aria-label="Second navigation section"
+		>
+			<p>Focus management ensures smooth navigation experience.</p>
+		</bo-accordion>
+		<bo-accordion
+			title="Section 3"
+			aria-label="Third navigation section"
+		>
+			<p>Screen readers announce state changes clearly.</p>
+		</bo-accordion>
+	</bo-accordion-container>
+</template>
+```
+
+### Focus Management Features
+
+- Automatic tabindex management: Only the currently focused accordion header is tabbable
+- Visual focus indicators: Clear outline for keyboard users
+- Focus restoration: Focus returns to appropriate element after interactions
+- Disabled state handling: Disabled accordions are excluded from navigation
+
 ## Props
 
 ### BoAccordion Props
 
-| Name               | Type      | Default             | Description                                   |
-| ------------------ | --------- | ------------------- | --------------------------------------------- |
-| `id`               | `string`  | auto-generated      | Unique ID for the accordion item              |
-| `title`            | `string`  | `''`                | Title displayed in the accordion header       |
-| `open`             | `boolean` | `false`             | Whether the accordion is open by default      |
-| `disabled`         | `boolean` | `false`             | Disables the accordion                        |
-| `prefixIcon`       | `Icon`    | `Icon.none`         | Icon to display before the title              |
-| `customToggleIcon` | `Icon`    | `Icon.chevron_down` | Custom icon for the expand/collapse indicator |
+| Name               | Type               | Default             | Description                                   |
+| ------------------ | ------------------ | ------------------- | --------------------------------------------- |
+| `id`               | `string`           | auto-generated      | Unique ID for the accordion item              |
+| `title`            | `string`           | `''`                | Title displayed in the accordion header       |
+| `ariaLabel`        | `string`           | `undefined`         | Custom ARIA label for accessibility           |
+| `open`             | `boolean`          | `false`             | Whether the accordion is open by default      |
+| `disabled`         | `boolean`          | `false`             | Disables the accordion                        |
+| `prefixIcon`       | `Icon`             | `Icon.none`         | Icon to display before the title              |
+| `customToggleIcon` | `Icon`             | `Icon.chevron_down` | Custom icon for the expand/collapse indicator |
+| `shape`            | `BoAccordionShape` | `rounded`           | Visual shape variant of the accordion         |
 
 ### BoAccordionContainer Props
 
@@ -85,6 +197,10 @@ interface BoAccordionProps {
 	 */
 	title?: string;
 	/**
+	 * Custom ARIA label for enhanced accessibility
+	 */
+	ariaLabel?: string;
+	/**
 	 * Whether the accordion is open by default
 	 */
 	open?: boolean;
@@ -100,6 +216,10 @@ interface BoAccordionProps {
 	 * Custom icon for the expand/collapse indicator
 	 */
 	customToggleIcon?: Icon;
+	/**
+	 * Visual shape variant of the accordion
+	 */
+	shape?: BoAccordionShape;
 }
 
 interface BoAccordionContainerProps {
@@ -134,6 +254,11 @@ interface AccordionGroup {
 	 * Register an accordion item on the accordion group
 	 */
 	registerItem: (id: string, initialOpen: boolean) => void;
+}
+
+enum BoAccordionShape {
+	rounded = 'rounded',
+	square = 'square',
 }
 ```
 
@@ -320,16 +445,23 @@ import { BoAccordionContainer, BoAccordion } from '@mrksbnc/bamboo';
 <div class="flex flex-col gap-4 my-4">
 	<bo-accordion title="Rich Content Example">
 		<div class="space-y-4">
-			<h4 class="text-lg font-semibold">Advanced Features</h4>
+			<h4 class="text-lg font-semibold">Features</h4>
 			<ul class="list-disc list-inside space-y-2">
-				<li>Fully accessible with ARIA attributes</li>
-				<li>Keyboard navigation support</li>
+				<li>Accessible with ARIA attributes</li>
+				<li>Keyboard navigation support with arrow keys</li>
 				<li>Customizable icons and styling</li>
-				<li>Container management for groups</li>
+				<li>Container management for coordinated groups</li>
+				<li>Screen reader support</li>
+				<li>Accessibility testing support</li>
 			</ul>
 			<div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
 				<p class="text-blue-800 dark:text-blue-200">
-					💡 <strong>Tip:</strong> Use accordion containers to create coordinated groups of related content.
+					💡 <strong>Tip:</strong> Use `aria-label` props for better screen reader context, and wrap multiple accordions in an `BoAccordionContainer` for keyboard navigation.
+				</p>
+			</div>
+			<div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+				<p class="text-green-800 dark:text-green-200">
+					✅ <strong>Testing:</strong> All accordions include test IDs and accessibility attributes for automated testing with tools like axe-core or Playwright.
 				</p>
 			</div>
 		</div>
@@ -337,18 +469,18 @@ import { BoAccordionContainer, BoAccordion } from '@mrksbnc/bamboo';
 </div>
 
 ```vue
-<bo-accordion title="Rich Content Example">
+<bo-accordion title="Rich Content Example" aria-label="Demonstration of accordion features">
 	<div class="space-y-4">
-		<h4 class="text-lg font-semibold">Advanced Features</h4>
+		<h4 class="text-lg font-semibold">Features</h4>
 		<ul class="list-disc list-inside space-y-2">
-			<li>Fully accessible with ARIA attributes</li>
-			<li>Keyboard navigation support</li>
-			<li>Customizable icons and styling</li>
-			<li>Container management for groups</li>
+			<li>Accessible with ARIA attributes</li>
+			<li>Keyboard navigation support with arrow keys</li>
+			<li>Screen reader support</li>
+			<li>Accessibility testing support</li>
 		</ul>
 		<div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
 			<p class="text-blue-800 dark:text-blue-200">
-				💡 <strong>Tip:</strong> Use accordion containers to create coordinated groups.
+				💡 <strong>Tip:</strong> Use accordion containers for coordinated groups with keyboard navigation.
 			</p>
 		</div>
 	</div>
@@ -357,7 +489,7 @@ import { BoAccordionContainer, BoAccordion } from '@mrksbnc/bamboo';
 
 ## Dark Mode
 
-The accordion component automatically adapts to dark mode with optimized colors and contrast for better readability and visual hierarchy.
+The accordion component automatically adapts to dark mode with optimized colors and contrast.
 
 <div class="flex flex-col gap-4 my-4 dark p-6 bg-gray-900 rounded-lg">
 	<div class="text-gray-300 text-sm mb-2">Dark Mode Examples:</div>
@@ -377,7 +509,7 @@ The accordion component automatically adapts to dark mode with optimized colors 
 		</div>
 	</bo-accordion>
 	<bo-accordion title="Custom Toggle Icon" :custom-toggle-icon="Icon.plus">
-		<p>All interactive elements work seamlessly in dark mode with hover states adapted for the darker theme.</p>
+		<p>All interactive elements work in dark mode with hover states adapted for the darker theme.</p>
 	</bo-accordion>
     <bo-accordion-container :allow-multiple="true">
     	<bo-accordion title="Container Group - Item 1" :open="true">
@@ -401,7 +533,7 @@ The accordion component automatically adapts to dark mode with optimized colors 
 	
 	<bo-accordion-container :allow-multiple="true">
 		<bo-accordion title="Container Item 1">
-			<p>Container groups work seamlessly in dark mode.</p>
+			<p>Container groups work in dark mode.</p>
 		</bo-accordion>
 		<bo-accordion title="Container Item 2">
 			<p>Consistent styling across all variants.</p>
@@ -413,7 +545,7 @@ The accordion component automatically adapts to dark mode with optimized colors 
 ### Dark Mode Features
 
 - **Automatic theming**: Headers use neutral-50/neutral-800 backgrounds
-- **Optimized contrast**: Text colors adapt from neutral-700 to neutral-200
+- **Color adaptation**: Text colors adapt from neutral-700 to neutral-200
 - **Content areas**: Body backgrounds transition from white to neutral-900
 - **Interactive states**: Hover effects use neutral-100/neutral-700
 - **Border adaptation**: Borders change from neutral-200 to neutral-700

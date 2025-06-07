@@ -1,25 +1,26 @@
 <template>
 	<div
-		role="group"
+		:role="accordionAccessibility.container.role"
 		ref="accordionRef"
 		:class="containerClasses"
-		:data-testid="constructAttribute(id, 'accordion')"
+		:data-testid="accessibilityTesting.testId"
+		:aria-label="accordionAccessibility.container.ariaLabel"
 	>
 		<div
-			tabindex="0"
-			role="button"
-			:id="accessibility.headerId"
+			:tabindex="accordionAccessibility.header.tabIndex"
+			:role="accordionAccessibility.header.role"
+			:id="accordionAccessibility.header.id"
 			:class="headerClass"
-			:aria-expanded="accessibility.ariaExpanded"
-			:aria-disabled="accessibility.ariaDisabled"
-			:aria-label="accessibility.ariaLabel"
-			:aria-controls="accessibility.ariaControls"
+			:aria-expanded="accordionAccessibility.header.ariaExpanded"
+			:aria-disabled="accordionAccessibility.header.ariaDisabled"
+			:aria-label="accordionAccessibility.header.ariaLabel"
+			:aria-controls="accordionAccessibility.header.ariaControls"
 			:data-testid="constructAttribute(id, 'accordion-header')"
 			@click="onAccordionToggle"
-			@keydown.enter="onAccordionToggle"
-			@keydown.space="onAccordionToggle"
-			@keydown.prevent.arrow-down="onArrowNavigation('down')"
-			@keydown.prevent.arrow-up="onArrowNavigation('up')"
+			@keydown.enter.prevent="onAccordionToggle"
+			@keydown.space.prevent="onAccordionToggle"
+			@keydown.arrow-down.prevent="onArrowNavigation(NavigationDirection.DOWN)"
+			@keydown.arrow-up.prevent="onArrowNavigation(NavigationDirection.UP)"
 		>
 			<div class="flex items-center gap-2">
 				<bo-icon
@@ -47,13 +48,13 @@
 			</div>
 		</div>
 		<div
-			v-show="isOpen"
-			role="region"
+			v-show="accordionAccessibility.content.isVisible"
+			:role="accordionAccessibility.content.role"
 			ref="accordionBodyRef"
 			:class="bodyClasses"
-			:id="accessibility.bodyId"
+			:id="accordionAccessibility.content.id"
 			:data-testid="constructAttribute(id, 'accordion-content')"
-			:aria-labelledby="accessibility.ariaLabelledBy"
+			:aria-labelledby="accordionAccessibility.content.ariaLabelledBy"
 		>
 			<div :class="slotClasses">
 				<slot></slot>
@@ -71,6 +72,15 @@ import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { InjectKey } from '@/shared/injection-key.js';
+import {
+	NavigationDirection,
+	NavigationOrientation,
+	TabBehavior,
+	type AccessibilityTesting,
+	type AccordionAccessibilityConstruct,
+	type KeyboardNavigationConstruct,
+	type NavigationAccessibilityConstruct,
+} from '@/types/accessibility.js';
 import { computed, inject, onMounted, ref, watch } from 'vue';
 import { BoAccordionShape, type AccordionGroup, type BoAccordionProps } from './bo-accordion.js';
 
@@ -93,6 +103,10 @@ const { constructAttribute } = useAttributes();
  */
 const accordionGroup = inject<AccordionGroup | null>(InjectKey.AccordionGroup, null);
 
+const isOpen = ref<boolean>(props.open ?? false);
+const accordionRef = ref<HTMLElement>();
+const accordionBodyRef = ref<HTMLElement>();
+
 const ACCORDION_STYLE = {
 	layout: {
 		container: /*tw*/ 'bo-accordion w-full first:rounded-t-lg last:rounded-b-lg',
@@ -110,9 +124,9 @@ const ACCORDION_STYLE = {
 	},
 	interactive: {
 		header: TailwindService.instance.merge(
-			/*tw*/ 'cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700',
+			/*tw*/ 'cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none',
 			props.disabled ? /*tw*/ 'cursor-not-allowed opacity-50' : '',
-			props.open ? (props.shape === BoAccordionShape.rounded ? /*tw*/ 'rounded-t-lg' : '') : '',
+			isOpen.value ? (props.shape === BoAccordionShape.rounded ? /*tw*/ 'rounded-t-lg' : '') : '',
 		),
 		disabled: /*tw*/ 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
 	},
@@ -123,26 +137,66 @@ const ACCORDION_STYLE = {
 	},
 } as const;
 
-const isOpen = ref<boolean>(props.open ?? false);
-const accordionRef = ref<HTMLElement>();
-const accordionBodyRef = ref<HTMLElement>();
-
-const accessibility = computed<AccessibilityConstruct>(() => {
+const accordionAccessibility = computed<AccordionAccessibilityConstruct>(() => {
 	return {
+		header: {
+			id: constructAttribute(props.id, 'accordion-header'),
+			ariaExpanded: isOpen.value,
+			ariaDisabled: props.disabled,
+			ariaLabel: props.ariaLabel ?? props.title,
+			ariaControls: constructAttribute(props.id, 'accordion-body'),
+			role: 'button' as const,
+			tabIndex: props.disabled ? -1 : 0,
+		},
+		content: {
+			id: constructAttribute(props.id, 'accordion-body'),
+			ariaLabelledBy: constructAttribute(props.id, 'accordion-header'),
+			role: 'region' as const,
+			isVisible: isOpen.value,
+		},
+		container: {
+			role: 'group' as const,
+			ariaLabel: props.ariaLabel || props.title || 'Accordion',
+		},
+	};
+});
+
+const keyboardNavigation = computed<KeyboardNavigationConstruct>(() => {
+	return {
+		currentIndex: 0,
+		totalItems: 0,
+		orientation: NavigationOrientation.VERTICAL,
+		wrap: true,
+		homeEndEnabled: false,
+		arrowKeysEnabled: !!accordionGroup,
+		tabBehavior: TabBehavior.EXIT,
+	};
+});
+
+const navigationAccessibility = computed<NavigationAccessibilityConstruct>(() => {
+	return {
+		ariaCurrent: false,
+		ariaHasPopup: false,
+		ariaLevel: undefined,
+		ariaSetSize: undefined,
+		ariaPosInSet: undefined,
 		ariaExpanded: isOpen.value,
-		ariaDisabled: props.disabled,
-		ariaLabel: props.ariaLabel ?? props.title,
-		ariaControls: constructAttribute(props.id, 'accordion-body'),
-		ariaLabelledBy: constructAttribute(props.id, 'accordion-header'),
-		headerId: constructAttribute(props.id, 'accordion-header'),
-		bodyId: constructAttribute(props.id, 'accordion-body'),
+		ariaOrientation: NavigationOrientation.VERTICAL,
+	};
+});
+
+const accessibilityTesting = computed<AccessibilityTesting>(() => {
+	return {
+		testId: constructAttribute(props.id, 'accordion'),
+		role: 'group',
+		accessibleName: props.ariaLabel ?? props.title ?? 'Accordion',
+		accessibleDescription: `${isOpen.value ? 'Expanded' : 'Collapsed'} accordion section`,
 	};
 });
 
 const containerClasses = computed<string>(() => {
 	return TailwindService.instance.merge(
 		ACCORDION_STYLE.layout.container,
-		ACCORDION_STYLE.appearance.border,
 		ACCORDION_STYLE.appearance.shadow,
 		ACCORDION_STYLE.animation.container,
 	);
@@ -195,26 +249,60 @@ function onAccordionToggle(): void {
 	emit('toggle', { id: props.id, open: isOpen.value });
 }
 
-function onArrowNavigation(direction: 'up' | 'down'): void {
-	if (!accordionGroup) return;
+function onArrowNavigation(direction: NavigationDirection): void {
+	if (!keyboardNavigation.value.arrowKeysEnabled || !accordionGroup) return;
 
-	const accordionElements = document.querySelectorAll(
-		'[role="button"][aria-controls*="accordion-body"]',
-	);
+	// Validate that direction is a valid NavigationDirection enum value
+	if (!Object.values(NavigationDirection).includes(direction)) return;
+
+	const accordionSelector = '[role="button"][aria-controls*="accordion-body"]';
+	const accordionElements = document.querySelectorAll(accordionSelector);
+
 	const currentIndex = Array.from(accordionElements).findIndex(
-		(element) => element.id === accessibility.value.headerId,
+		(element) => element.id === accordionAccessibility.value.header.id,
 	);
 
-	if (currentIndex === -1) return;
-
-	let nextIndex: number;
-	if (direction === 'down') {
-		nextIndex = currentIndex === accordionElements.length - 1 ? 0 : currentIndex + 1;
-	} else {
-		nextIndex = currentIndex === 0 ? accordionElements.length - 1 : currentIndex - 1;
+	if (currentIndex === -1) {
+		return;
 	}
 
-	(accordionElements[nextIndex] as HTMLElement)?.focus();
+	let nextIndex: number;
+	const totalItems = accordionElements.length;
+
+	switch (direction) {
+		case NavigationDirection.DOWN:
+			nextIndex = keyboardNavigation.value.wrap
+				? currentIndex === totalItems - 1
+					? 0
+					: currentIndex + 1
+				: Math.min(currentIndex + 1, totalItems - 1);
+			break;
+		case NavigationDirection.UP:
+			nextIndex = keyboardNavigation.value.wrap
+				? currentIndex === 0
+					? totalItems - 1
+					: currentIndex - 1
+				: Math.max(currentIndex - 1, 0);
+			break;
+		default:
+			return;
+	}
+
+	const nextElement = accordionElements[nextIndex] as HTMLElement;
+	if (nextElement && typeof nextElement.focus === 'function') {
+		if (nextElement.getAttribute('tabindex') === '-1') {
+			nextElement.setAttribute('tabindex', '0');
+		}
+
+		nextElement.focus();
+
+		if (document.activeElement !== nextElement) {
+			if (typeof nextElement.scrollIntoView === 'function') {
+				nextElement.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+			}
+			setTimeout(() => nextElement.focus(), 100);
+		}
+	}
 }
 
 watch(
@@ -237,6 +325,10 @@ watch(
 onMounted(() => {
 	if (accordionGroup) {
 		accordionGroup.registerItem(props.id, props.open ?? false);
+	} else {
+		console.debug(
+			'Accordion is not member of a group. If you want to use keyboard navigation, please wrap the accordion in a BoAccordionContainer.',
+		);
 	}
 });
 </script>

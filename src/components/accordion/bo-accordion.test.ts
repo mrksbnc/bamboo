@@ -2,7 +2,7 @@ import { Icon } from '@/components/icon/bo-icon.js';
 import { InjectKey } from '@/shared/injection-key.js';
 import { mount } from '@vue/test-utils';
 import { beforeEach, describe, expect, suite, test, vi } from 'vitest';
-import { nextTick } from 'vue';
+import { nextTick, ref } from 'vue';
 import type { AccordionGroup } from './bo-accordion.js';
 import BoAccordion from './bo-accordion.vue';
 
@@ -575,6 +575,381 @@ describe('BoAccordion', () => {
 			const header = wrapper.find('[data-testid*="accordion-header"]');
 			const headerClasses = header.classes();
 			expect(headerClasses.some((cls) => cls.includes('dark:border-neutral-700'))).toBe(true);
+		});
+	});
+
+	suite('Advanced Accessibility Features', () => {
+		test('should have proper accessible name computation', () => {
+			const wrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test Accordion',
+					ariaLabel: 'Custom Accessible Name',
+				},
+			});
+
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			expect(header.attributes('aria-label')).toBe('Custom Accessible Name');
+		});
+
+		test('should fallback to title for accessible name', () => {
+			const wrapper = mount(BoAccordion, {
+				props: {
+					title: 'Fallback Title',
+				},
+			});
+
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			expect(header.attributes('aria-label')).toBe('Fallback Title');
+		});
+
+		test('should handle missing title and ariaLabel gracefully', () => {
+			const wrapper = mount(BoAccordion);
+			const container = wrapper.find('.bo-accordion');
+			expect(container.attributes('aria-label')).toBe('Accordion');
+		});
+
+		test('should have correct ARIA relationship between header and content', () => {
+			const wrapper = mount(BoAccordion, {
+				props: { title: 'Test' },
+			});
+
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const content = wrapper.find('[data-testid*="accordion-content"]');
+
+			const headerId = header.attributes('id');
+			const contentId = content.attributes('id');
+			const ariaControls = header.attributes('aria-controls');
+			const ariaLabelledBy = content.attributes('aria-labelledby');
+
+			expect(ariaControls).toBe(contentId);
+			expect(ariaLabelledBy).toBe(headerId);
+		});
+
+		test('should announce state changes for screen readers', async () => {
+			const wrapper = mount(BoAccordion, {
+				props: { title: 'Test' },
+			});
+
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+
+			expect(header.attributes('aria-expanded')).toBe('false');
+
+			await header.trigger('click');
+			await nextTick();
+
+			expect(header.attributes('aria-expanded')).toBe('true');
+		});
+
+		test('should have proper tabindex management', () => {
+			const enabledWrapper = mount(BoAccordion, {
+				props: { title: 'Enabled', disabled: false },
+			});
+			const disabledWrapper = mount(BoAccordion, {
+				props: { title: 'Disabled', disabled: true },
+			});
+
+			const enabledHeader = enabledWrapper.find('[data-testid*="accordion-header"]');
+			const disabledHeader = disabledWrapper.find('[data-testid*="accordion-header"]');
+
+			expect(enabledHeader.attributes('tabindex')).toBe('0');
+			expect(disabledHeader.attributes('tabindex')).toBe('-1');
+		});
+	});
+
+	suite('Keyboard Navigation', () => {
+		test('should handle arrow navigation with NavigationDirection enum', async () => {
+			const mockGroup: AccordionGroup = {
+				openItems: new Set(),
+				toggle: vi.fn(),
+				registerItem: vi.fn(),
+			};
+
+			const wrapper1 = mount(BoAccordion, {
+				props: { id: 'acc-1', title: 'First' },
+				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
+				attachTo: document.body,
+			});
+
+			const wrapper2 = mount(BoAccordion, {
+				props: { id: 'acc-2', title: 'Second' },
+				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
+				attachTo: document.body,
+			});
+
+			const header1 = wrapper1.find('[data-testid*="accordion-header"]');
+			const header2 = wrapper2.find('[data-testid*="accordion-header"]');
+
+			// Mock DOM query and focus method
+			const mockElements = [header1.element, header2.element];
+			const focusSpy = vi.fn();
+			Object.defineProperty(header2.element, 'focus', { value: focusSpy });
+			Object.defineProperty(header2.element, 'scrollIntoView', { value: vi.fn() });
+
+			vi.spyOn(document, 'querySelectorAll').mockReturnValue(mockElements as any);
+
+			await header1.trigger('keydown.arrow-down');
+
+			expect(focusSpy).toHaveBeenCalled();
+
+			wrapper1.unmount();
+			wrapper2.unmount();
+		});
+
+		test('should wrap navigation when at boundaries', async () => {
+			const mockGroup: AccordionGroup = {
+				openItems: new Set(),
+				toggle: vi.fn(),
+				registerItem: vi.fn(),
+			};
+
+			const wrapper = mount(BoAccordion, {
+				props: { id: 'last-acc', title: 'Last' },
+				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
+				attachTo: document.body,
+			});
+
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const focusSpy = vi.fn();
+			Object.defineProperty(header.element, 'focus', { value: focusSpy });
+			Object.defineProperty(header.element, 'scrollIntoView', { value: vi.fn() });
+
+			vi.spyOn(document, 'querySelectorAll').mockReturnValue([header.element] as any);
+
+			await header.trigger('keydown.arrow-down');
+
+			expect(focusSpy).toHaveBeenCalled();
+
+			wrapper.unmount();
+		});
+
+		test('should not navigate when not in accordion group', async () => {
+			const wrapper = mount(BoAccordion, {
+				props: { title: 'Standalone' },
+			});
+
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const querySelectorAllSpy = vi.spyOn(document, 'querySelectorAll');
+
+			await header.trigger('keydown.arrow-down');
+
+			expect(querySelectorAllSpy).not.toHaveBeenCalled();
+		});
+
+		test('should handle invalid navigation direction gracefully', () => {
+			const mockGroup: AccordionGroup = {
+				openItems: new Set(),
+				toggle: vi.fn(),
+				registerItem: vi.fn(),
+			};
+
+			const wrapper = mount(BoAccordion, {
+				props: { id: 'test-acc', title: 'Test' },
+				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
+			});
+
+			const component = wrapper.vm as any;
+			const querySelectorAllSpy = vi.spyOn(document, 'querySelectorAll');
+
+			// Test with completely invalid direction that's not in enum
+			component.onArrowNavigation('INVALID_DIRECTION' as any);
+
+			expect(querySelectorAllSpy).not.toHaveBeenCalled();
+		});
+	});
+
+	suite('Focus Management', () => {
+		test('should maintain focus after toggle', async () => {
+			const wrapper = mount(BoAccordion, {
+				props: { title: 'Test' },
+				attachTo: document.body,
+			});
+
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+
+			// Focus the element and verify it can be focused
+			(header.element as HTMLElement).focus();
+			await header.trigger('click');
+			await nextTick();
+
+			// The header should still be focusable
+			expect(header.element.getAttribute('tabindex')).toBe('0');
+
+			wrapper.unmount();
+		});
+
+		test('should have correct tabindex for disabled accordion', () => {
+			const wrapper = mount(BoAccordion, {
+				props: { title: 'Disabled', disabled: true },
+			});
+
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+
+			// Disabled elements should have tabindex="-1"
+			expect(header.attributes('tabindex')).toBe('-1');
+		});
+
+		test('should handle navigation focus management', async () => {
+			const mockGroup: AccordionGroup = {
+				openItems: new Set(),
+				toggle: vi.fn(),
+				registerItem: vi.fn(),
+			};
+
+			const wrapper = mount(BoAccordion, {
+				props: { id: 'test-acc', title: 'Test' },
+				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
+			});
+
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const mockElement = {
+				focus: vi.fn(),
+				getAttribute: vi.fn().mockReturnValue('0'),
+				scrollIntoView: vi.fn(),
+				setAttribute: vi.fn(),
+			};
+
+			vi.spyOn(document, 'querySelectorAll').mockReturnValue([header.element, mockElement] as any);
+			Object.defineProperty(document, 'activeElement', {
+				get: () => mockElement,
+				configurable: true,
+			});
+
+			await header.trigger('keydown.arrow-down');
+
+			expect(mockElement.focus).toHaveBeenCalled();
+		});
+
+		test('should handle unfocusable elements during navigation', async () => {
+			const mockGroup: AccordionGroup = {
+				openItems: new Set(),
+				toggle: vi.fn(),
+				registerItem: vi.fn(),
+			};
+
+			const wrapper = mount(BoAccordion, {
+				props: { id: 'test-acc', title: 'Test' },
+				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
+			});
+
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const mockElement = {
+				focus: vi.fn(),
+				getAttribute: vi.fn().mockReturnValue('-1'),
+				setAttribute: vi.fn(),
+				scrollIntoView: vi.fn(),
+			};
+
+			vi.spyOn(document, 'querySelectorAll').mockReturnValue([header.element, mockElement] as any);
+			Object.defineProperty(document, 'activeElement', {
+				get: () => mockElement,
+				configurable: true,
+			});
+
+			await header.trigger('keydown.arrow-down');
+
+			expect(mockElement.setAttribute).toHaveBeenCalledWith('tabindex', '0');
+			expect(mockElement.focus).toHaveBeenCalled();
+		});
+	});
+
+	suite('Screen Reader Support', () => {
+		test('should provide accessible description for testing', () => {
+			const closedWrapper = mount(BoAccordion, {
+				props: { title: 'Closed Accordion' },
+			});
+			const openWrapper = mount(BoAccordion, {
+				props: { title: 'Open Accordion', open: true },
+			});
+
+			// Test accessible descriptions through testing interface
+			const closedComponent = closedWrapper.vm as any;
+			const openComponent = openWrapper.vm as any;
+
+			expect(closedComponent.accessibilityTesting.accessibleDescription).toBe(
+				'Collapsed accordion section',
+			);
+			expect(openComponent.accessibilityTesting.accessibleDescription).toBe(
+				'Expanded accordion section',
+			);
+		});
+
+		test('should have proper role hierarchy', () => {
+			const wrapper = mount(BoAccordion, {
+				props: { title: 'Test' },
+			});
+
+			const container = wrapper.find('.bo-accordion');
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+			const content = wrapper.find('[data-testid*="accordion-content"]');
+
+			expect(container.attributes('role')).toBe('group');
+			expect(header.attributes('role')).toBe('button');
+			expect(content.attributes('role')).toBe('region');
+		});
+
+		test('should hide decorative icons from screen readers', () => {
+			const wrapper = mount(BoAccordion, {
+				props: { title: 'Test', prefixIcon: Icon.star },
+			});
+
+			const prefixIcon = wrapper.find('[data-testid*="accordion-prefix-icon"]');
+			const toggleIcon = wrapper.find('[data-testid*="accordion-toggle-icon"]');
+
+			expect(prefixIcon.attributes('aria-hidden')).toBe('true');
+			expect(toggleIcon.attributes('aria-hidden')).toBe('true');
+		});
+	});
+
+	suite('Multiple Accordion Group Behavior', () => {
+		test('should track multiple accordions in group', () => {
+			const mockGroup: AccordionGroup = {
+				openItems: new Set(['acc-1']),
+				toggle: vi.fn(),
+				registerItem: vi.fn(),
+			};
+
+			const wrapper1 = mount(BoAccordion, {
+				props: { id: 'acc-1', title: 'First', open: true },
+				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
+			});
+
+			const wrapper2 = mount(BoAccordion, {
+				props: { id: 'acc-2', title: 'Second' },
+				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
+			});
+
+			expect(mockGroup.registerItem).toHaveBeenCalledWith('acc-1', true);
+			expect(mockGroup.registerItem).toHaveBeenCalledWith('acc-2', false);
+		});
+
+		test('should respond to group state changes', async () => {
+			// Create reactive group state
+			const openItems = ref(new Set<string>());
+			const mockGroup: AccordionGroup = {
+				get openItems() {
+					return openItems.value;
+				},
+				toggle: vi.fn(),
+				registerItem: vi.fn(),
+			};
+
+			const wrapper = mount(BoAccordion, {
+				props: { id: 'acc-1', title: 'Test' },
+				global: { provide: { [InjectKey.AccordionGroup]: mockGroup } },
+			});
+
+			const header = wrapper.find('[data-testid*="accordion-header"]');
+
+			// Initially closed
+			expect(header.attributes('aria-expanded')).toBe('false');
+
+			// Simulate group opening this accordion by updating the reactive ref
+			openItems.value = new Set(['acc-1']);
+			await nextTick();
+			await wrapper.vm.$nextTick();
+
+			// Should react to group state change
+			expect(header.attributes('aria-expanded')).toBe('true');
 		});
 	});
 });
