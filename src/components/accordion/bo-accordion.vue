@@ -79,16 +79,14 @@ import {
 	type AccessibilityTesting,
 	type AccordionAccessibilityConstruct,
 	type KeyboardNavigationConstruct,
-	type NavigationAccessibilityConstruct,
 } from '@/types/accessibility.js';
 import { computed, inject, onMounted, ref, watch } from 'vue';
-import { BoAccordionShape, type AccordionGroup, type BoAccordionProps } from './bo-accordion.js';
+import { type AccordionGroup, type BoAccordionProps } from './bo-accordion.js';
 
 const props = withDefaults(defineProps<BoAccordionProps>(), {
 	id: () => IdentityService.instance.getComponentId(),
 	prefixIcon: () => Icon.none,
 	customToggleIcon: () => Icon.none,
-	shape: () => BoAccordionShape.rounded,
 });
 
 const emit = defineEmits<{
@@ -126,7 +124,6 @@ const ACCORDION_STYLE = {
 		header: TailwindService.instance.merge(
 			/*tw*/ 'cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none',
 			props.disabled ? /*tw*/ 'cursor-not-allowed opacity-50' : '',
-			isOpen.value ? (props.shape === BoAccordionShape.rounded ? /*tw*/ 'rounded-t-lg' : '') : '',
 		),
 		disabled: /*tw*/ 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
 	},
@@ -170,18 +167,6 @@ const keyboardNavigation = computed<KeyboardNavigationConstruct>(() => {
 		homeEndEnabled: false,
 		arrowKeysEnabled: !!accordionGroup,
 		tabBehavior: TabBehavior.EXIT,
-	};
-});
-
-const navigationAccessibility = computed<NavigationAccessibilityConstruct>(() => {
-	return {
-		ariaCurrent: false,
-		ariaHasPopup: false,
-		ariaLevel: undefined,
-		ariaSetSize: undefined,
-		ariaPosInSet: undefined,
-		ariaExpanded: isOpen.value,
-		ariaOrientation: NavigationOrientation.VERTICAL,
 	};
 });
 
