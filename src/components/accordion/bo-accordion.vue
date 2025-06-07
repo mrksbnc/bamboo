@@ -171,7 +171,9 @@ const headerClass = computed<string>(() => {
 			if (props.isFirst) {
 				rounded = 'rounded-t-lg';
 			}
-			// No bottom rounding for header in group
+			if (props.isLast && !isOpen.value) {
+				rounded += ' rounded-b-lg';
+			}
 		} else {
 			if (isOpen.value) {
 				rounded = 'rounded-t-lg';
