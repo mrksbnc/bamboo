@@ -1,22 +1,89 @@
 import type { Icon } from '@/components/icon/bo-icon.js';
+import { BoSize } from '@/shared/bo-size';
+
+export enum BoAccordionTitlePosition {
+	start = 'start',
+	center = 'center',
+	end = 'end',
+}
 
 export interface BoAccordionProps {
-	/** Unique ID for the accordion, used for accessibility and testing */
+	/**
+	 * The unique identifier for the accordion.
+	 * @default Generated UUID
+	 */
 	id?: string;
-	/** The title of the accordion item */
-	title?: string;
-	/** Custom accessible label for screen readers (falls back to title) */
+
+	/**
+	 * The title of the accordion.
+	 */
+	title: string;
+
+	/**
+	 * The position of the title in the accordion header.
+	 * @default BoAccordionTitlePosition.start
+	 */
+	titlePosition?: BoAccordionTitlePosition;
+
+	/**
+	 * Custom background color for the accordion header.
+	 * @default undefined
+	 */
+	headerBackground?: string;
+
+	/**
+	 * Custom background color for the accordion body.
+	 * @default undefined
+	 */
+	bodyBackground?: string;
+
+	/**
+	 * The index of the accordion in a group.
+	 * Used for border styling and keyboard navigation.
+	 */
+	index?: number;
+
+	/**
+	 * The total number of accordions in the group.
+	 * Used for border styling and keyboard navigation.
+	 */
+	total?: number;
+
+	/**
+	 * Whether the accordion is disabled.
+	 * @default false
+	 */
+	disabled?: boolean;
+
+	/**
+	 * Whether the accordion is expanded.
+	 * @default false
+	 */
+	expanded?: boolean;
+
+	/**
+	 * The size of the accordion.
+	 * @default BoSize.default
+	 */
+	size?: BoSize;
+
+	/**
+	 * The icon to display before the title.
+	 */
+	prefixIcon?: Icon;
+
+	/**
+	 * The icon to display after the title.
+	 */
+	suffixIcon?: Icon;
+
+	/**
+	 * Custom accessible label for screen readers.
+	 */
 	ariaLabel?: string;
 	/** Whether the accordion is opened by default */
 	open?: boolean;
-	/** Whether the accordion is disabled */
-	disabled?: boolean;
 	/** Prefix icon for the accordion item */
-	prefixIcon?: Icon;
-	/**
-	 * Custom icon for the expand/collapse indicator
-	 * @default Icon.chevron_down
-	 */
 	customToggleIcon?: Icon;
 }
 

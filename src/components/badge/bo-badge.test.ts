@@ -35,6 +35,15 @@ describe('BoBadge', () => {
 			});
 			expect(customWrapper.find('[data-testid="custom-badge-id-badge"]').exists()).toBe(true);
 		});
+
+		test('should have correct BEM classes for base elements', () => {
+			const badge = wrapper.find('.bo-badge');
+			const label = wrapper.find('.bo-badge__label');
+
+			expect(badge.classes()).toContain('bo-badge');
+			expect(label.exists()).toBe(true);
+			expect(label.classes()).toContain('bo-badge__label');
+		});
 	});
 
 	suite('Accessibility Features', () => {
@@ -100,11 +109,11 @@ describe('BoBadge', () => {
 
 	suite('Shape Variants', () => {
 		test.each([
-			[BoBadgeShape.default, ['bo-badge--default', 'rounded-md']],
-			[BoBadgeShape.pill, ['bo-badge--pill', 'rounded-full']],
-			[BoBadgeShape.flat, ['bo-badge--flat', 'rounded-none']],
-			[BoBadgeShape.circle, ['bo-badge--circle', 'rounded-full']],
-		])('should apply correct classes for %s shape', (shape, expectedClasses) => {
+			[BoBadgeShape.default, ['bo-badge--shape-default', 'rounded-md']],
+			[BoBadgeShape.pill, ['bo-badge--shape-pill', 'rounded-full']],
+			[BoBadgeShape.flat, ['bo-badge--shape-flat', 'rounded-none']],
+			[BoBadgeShape.circle, ['bo-badge--shape-circle', 'rounded-full']],
+		])('should apply correct BEM classes for %s shape', (shape, expectedClasses) => {
 			const shapeWrapper = mount(BoBadge, {
 				props: {
 					label: shape === BoBadgeShape.circle ? undefined : 'Test',
@@ -130,7 +139,7 @@ describe('BoBadge', () => {
 			});
 			const badge = circleWrapper.find('.bo-badge');
 			const label = circleWrapper.find('[data-testid*="badge-label"]');
-			expect(badge.classes()).toContain('bo-badge--circle');
+			expect(badge.classes()).toContain('bo-badge--shape-circle');
 			expect(label.exists()).toBe(true);
 		});
 	});
@@ -140,37 +149,50 @@ describe('BoBadge', () => {
 			[
 				BoBadgeType.default,
 				BoBadgeVariant.primary,
-				['bg-blue-600', 'text-white', 'dark:bg-blue-700'],
+				['bo-badge--variant-primary', 'bg-blue-600', 'text-white', 'dark:bg-blue-700'],
 			],
 			[
 				BoBadgeType.outline,
 				BoBadgeVariant.primary,
-				['bg-transparent', 'text-blue-600', 'dark:text-blue-500'],
+				[
+					'bo-badge--variant-outline-primary',
+					'bg-transparent',
+					'text-blue-600',
+					'dark:text-blue-500',
+				],
 			],
 			[
 				BoBadgeType.default,
 				BoBadgeVariant.secondary,
-				['bg-neutral-600', 'text-white', 'dark:bg-neutral-700'],
+				['bo-badge--variant-secondary', 'bg-neutral-600', 'text-white', 'dark:bg-neutral-700'],
 			],
-			[BoBadgeType.default, BoBadgeVariant.danger, ['bg-red-600', 'text-white', 'dark:bg-red-700']],
+			[
+				BoBadgeType.default,
+				BoBadgeVariant.danger,
+				['bo-badge--variant-danger', 'bg-red-600', 'text-white', 'dark:bg-red-700'],
+			],
 			[
 				BoBadgeType.default,
 				BoBadgeVariant.warning,
-				['bg-yellow-500', 'text-white', 'dark:bg-yellow-600'],
+				['bo-badge--variant-warning', 'bg-yellow-500', 'text-white', 'dark:bg-yellow-600'],
 			],
 			[
 				BoBadgeType.default,
 				BoBadgeVariant.success,
-				['bg-green-600', 'text-white', 'dark:bg-green-700'],
+				['bo-badge--variant-success', 'bg-green-600', 'text-white', 'dark:bg-green-700'],
 			],
 			[
 				BoBadgeType.default,
 				BoBadgeVariant.light,
-				['bg-neutral-100', 'text-neutral-800', 'dark:bg-neutral-200'],
+				['bo-badge--variant-light', 'bg-neutral-100', 'text-neutral-800', 'dark:bg-neutral-200'],
 			],
-			[BoBadgeType.default, BoBadgeVariant.dark, ['bg-neutral-800', 'text-white', 'dark:bg-black']],
+			[
+				BoBadgeType.default,
+				BoBadgeVariant.dark,
+				['bo-badge--variant-dark', 'bg-neutral-800', 'text-white', 'dark:bg-black'],
+			],
 		])(
-			'should apply correct classes for %s type and %s variant',
+			'should apply correct BEM classes for %s type and %s variant',
 			(type, variant, expectedClasses) => {
 				const variantWrapper = mount(BoBadge, {
 					props: {
@@ -189,12 +211,12 @@ describe('BoBadge', () => {
 
 	suite('Size Variants', () => {
 		test.each([
-			[BoSize.extra_small, 'bo-badge--extra-small'],
-			[BoSize.small, 'bo-badge--small'],
-			[BoSize.default, 'bo-badge--default'],
-			[BoSize.large, 'bo-badge--large'],
-			[BoSize.extra_large, 'bo-badge--extra-large'],
-		])('should apply correct classes for %s size', (size, expectedClass) => {
+			[BoSize.extra_small, 'bo-badge--size-extra-small'],
+			[BoSize.small, 'bo-badge--size-small'],
+			[BoSize.default, 'bo-badge--size-default'],
+			[BoSize.large, 'bo-badge--size-large'],
+			[BoSize.extra_large, 'bo-badge--size-extra-large'],
+		])('should apply correct BEM classes for %s size', (size, expectedClass) => {
 			const sizeWrapper = mount(BoBadge, {
 				props: {
 					label: 'Test',
@@ -205,7 +227,7 @@ describe('BoBadge', () => {
 			expect(badge.classes()).toContain(expectedClass);
 		});
 
-		test('should apply correct size classes for circle shape', () => {
+		test('should apply correct BEM size classes for circle shape', () => {
 			const sizes = [
 				BoSize.extra_small,
 				BoSize.small,
@@ -224,17 +246,17 @@ describe('BoBadge', () => {
 					},
 				});
 				const badge = wrapper.find('.bo-badge');
+				expect(badge.classes()).toContain(`bo-badge--size-circle-${size}`);
 				expect(badge.classes()).toContain(`bo-badge--${size}`);
 			});
 		});
 	});
 
 	suite('Icon Handling', () => {
-		test('should render prefix icon with correct size based on badge size', () => {
+		test('should render prefix icon with correct BEM classes', () => {
 			const iconWrapper = mount(BoBadge, {
 				props: {
 					label: 'Test',
-					size: BoSize.large,
 					icon: {
 						prefix: Icon.star,
 					},
@@ -242,9 +264,26 @@ describe('BoBadge', () => {
 			});
 			const prefixIcon = iconWrapper.find('[data-testid*="badge-prefix-icon"]');
 			expect(prefixIcon.exists()).toBe(true);
+			expect(prefixIcon.classes()).toContain('bo-badge__icon');
+			expect(prefixIcon.classes()).toContain('bo-badge__icon--prefix');
 		});
 
-		test('should handle both prefix and suffix icons', () => {
+		test('should render suffix icon with correct BEM classes', () => {
+			const iconWrapper = mount(BoBadge, {
+				props: {
+					label: 'Test',
+					icon: {
+						suffix: Icon.star,
+					},
+				},
+			});
+			const suffixIcon = iconWrapper.find('[data-testid*="badge-suffix-icon"]');
+			expect(suffixIcon.exists()).toBe(true);
+			expect(suffixIcon.classes()).toContain('bo-badge__icon');
+			expect(suffixIcon.classes()).toContain('bo-badge__icon--suffix');
+		});
+
+		test('should handle both prefix and suffix icons with correct BEM classes', () => {
 			const iconWrapper = mount(BoBadge, {
 				props: {
 					label: 'Test',
@@ -256,8 +295,28 @@ describe('BoBadge', () => {
 			});
 			const prefixIcon = iconWrapper.find('[data-testid*="badge-prefix-icon"]');
 			const suffixIcon = iconWrapper.find('[data-testid*="badge-suffix-icon"]');
+
 			expect(prefixIcon.exists()).toBe(true);
 			expect(suffixIcon.exists()).toBe(true);
+			expect(prefixIcon.classes()).toContain('bo-badge__icon--prefix');
+			expect(suffixIcon.classes()).toContain('bo-badge__icon--suffix');
+		});
+
+		test('should have correct aria-hidden on icons', () => {
+			const iconWrapper = mount(BoBadge, {
+				props: {
+					label: 'Test',
+					icon: {
+						prefix: Icon.star,
+						suffix: Icon.check,
+					},
+				},
+			});
+			const prefixIcon = iconWrapper.find('[data-testid*="badge-prefix-icon"]');
+			const suffixIcon = iconWrapper.find('[data-testid*="badge-suffix-icon"]');
+
+			expect(prefixIcon.attributes('aria-hidden')).toBe('true');
+			expect(suffixIcon.attributes('aria-hidden')).toBe('true');
 		});
 	});
 

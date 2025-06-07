@@ -335,4 +335,132 @@ describe('BoAvatar', () => {
 			expect(avatar.attributes('aria-describedby')).toBe('description-id');
 		});
 	});
+
+	describe('BEM Classes', () => {
+		test('should have base BEM classes', () => {
+			expect(wrapper.find('.bo-avatar').exists()).toBe(true);
+			expect(wrapper.find('.bo-avatar__fallback-img').exists()).toBe(false);
+			expect(wrapper.find('.bo-avatar__image-container').exists()).toBe(false);
+			expect(wrapper.find('.bo-avatar__image').exists()).toBe(false);
+			expect(wrapper.find('.bo-avatar__initials').exists()).toBe(true);
+		});
+
+		test('should have correct BEM classes for image type', () => {
+			const imageWrapper = mount(BoAvatar, {
+				props: {
+					type: BoAvatarType.image,
+					data: {
+						src: 'https://example.com/avatar.jpg',
+						alt: 'User avatar',
+					},
+				},
+			});
+
+			expect(imageWrapper.find('.bo-avatar__image-container').exists()).toBe(true);
+			expect(imageWrapper.find('.bo-avatar__image').exists()).toBe(true);
+			expect(imageWrapper.find('.bo-avatar__initials').exists()).toBe(false);
+		});
+
+		test('should have correct BEM classes for fallback image', async () => {
+			const imageWrapper = mount(BoAvatar, {
+				props: {
+					type: BoAvatarType.image,
+					data: {
+						src: 'https://example.com/invalid.jpg',
+						alt: 'User avatar',
+					},
+				},
+			});
+
+			const image = imageWrapper.find('img[data-testid*="avatar-image"]');
+			await image.trigger('error');
+			await nextTick();
+
+			expect(imageWrapper.find('.bo-avatar__fallback-img').exists()).toBe(true);
+			expect(imageWrapper.find('.bo-avatar__image').exists()).toBe(true);
+		});
+
+		test('should have correct BEM classes for interactive states', () => {
+			const clickableWrapper = mount(BoAvatar, {
+				props: {
+					clickable: true,
+					data: { label: 'Test' },
+				},
+			});
+
+			const avatar = clickableWrapper.find('.bo-avatar');
+			expect(avatar.classes()).toContain('cursor-pointer');
+			expect(avatar.classes()).toContain('hover:opacity-80');
+			expect(avatar.classes()).toContain('hover:scale-105');
+			expect(avatar.classes()).toContain('active:scale-95');
+			expect(avatar.classes()).toContain('active:opacity-90');
+		});
+
+		test('should have correct BEM classes for size variants', () => {
+			Object.values(BoSize).forEach((size) => {
+				const sizeWrapper = mount(BoAvatar, {
+					props: {
+						size,
+						data: { label: 'Test' },
+					},
+				});
+				expect(sizeWrapper.find(`.bo-avatar--${size}`).exists()).toBe(true);
+			});
+		});
+
+		test('should have correct BEM classes for shape variants', () => {
+			Object.values(BoAvatarShape).forEach((shape) => {
+				const shapeWrapper = mount(BoAvatar, {
+					props: {
+						shape,
+						data: { label: 'Test' },
+					},
+				});
+				const expectedClass = shape.replace(/_/g, '-');
+				expect(shapeWrapper.find(`.bo-avatar--${expectedClass}`).exists()).toBe(true);
+			});
+		});
+
+		test('should have correct BEM classes for variant colors', () => {
+			Object.values(BoAvatarVariant).forEach((variant) => {
+				const variantWrapper = mount(BoAvatar, {
+					props: {
+						variant,
+						data: { label: 'Test' },
+					},
+				});
+				expect(variantWrapper.find(`.bo-avatar--${variant}`).exists()).toBe(true);
+			});
+		});
+
+		test('should have correct BEM classes for outline shapes', () => {
+			const outlineShapes = [
+				BoAvatarShape.outline_circle,
+				BoAvatarShape.outline_rounded,
+				BoAvatarShape.outline_flat,
+			];
+
+			outlineShapes.forEach((shape) => {
+				const shapeWrapper = mount(BoAvatar, {
+					props: {
+						shape,
+						data: { label: 'Test' },
+					},
+				});
+				const expectedClass = shape.replace(/_/g, '-');
+				expect(shapeWrapper.find(`.bo-avatar--${expectedClass}`).exists()).toBe(true);
+				expect(shapeWrapper.find('.border').exists()).toBe(true);
+			});
+		});
+
+		test('should have correct BEM classes for shadow variants', () => {
+			const shadowWrapper = mount(BoAvatar, {
+				props: {
+					data: { label: 'Test' },
+				},
+			});
+			expect(shadowWrapper.find('.shadow-md').exists()).toBe(true);
+			expect(shadowWrapper.find('.dark\\:shadow-neutral-900\\/50').exists()).toBe(true);
+		});
+	});
 });

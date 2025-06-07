@@ -377,18 +377,33 @@ describe('BoAccordion', () => {
 	});
 
 	suite('CSS Classes', () => {
-		test('should have base accordion classes', () => {
+		test('should have base BEM classes', () => {
 			expect(wrapper.find('.bo-accordion').exists()).toBe(true);
 			expect(wrapper.find('.bo-accordion__header').exists()).toBe(true);
 			expect(wrapper.find('.bo-accordion__content').exists()).toBe(true);
+			expect(wrapper.find('.bo-accordion__title').exists()).toBe(true);
+			expect(wrapper.find('.bo-accordion__collapse-icon').exists()).toBe(true);
 		});
 
-		test('should have interactive classes on header', () => {
-			const header = wrapper.find('[data-testid*="accordion-header"]');
+		test('should have correct BEM classes for prefix icon', () => {
+			const prefixWrapper = mount(BoAccordion, {
+				props: {
+					title: 'Test',
+					prefixIcon: Icon.star,
+				},
+			});
+			const prefixIcon = prefixWrapper.find('.bo-accordion__prefix-icon');
+			expect(prefixIcon.exists()).toBe(true);
+		});
+
+		test('should have correct BEM classes for interactive states', () => {
+			const header = wrapper.find('.bo-accordion__header');
 			expect(header.classes()).toContain('cursor-pointer');
+			expect(header.classes()).toContain('hover:bg-neutral-100');
+			expect(header.classes()).toContain('dark:hover:bg-neutral-700');
 		});
 
-		test('should have disabled classes when disabled', () => {
+		test('should have correct BEM classes for disabled state', () => {
 			const disabledWrapper = mount(BoAccordion, {
 				props: {
 					title: 'Test',
@@ -396,11 +411,34 @@ describe('BoAccordion', () => {
 				},
 			});
 
-			const header = disabledWrapper.find('[data-testid*="accordion-header"]');
-			// The disabled classes are applied as a single string 'cursor-not-allowed opacity-50'
-			const headerClasses = header.classes().join(' ');
-			expect(headerClasses).toContain('cursor-not-allowed');
-			expect(headerClasses).toContain('opacity-50');
+			const header = disabledWrapper.find('.bo-accordion__header');
+			expect(header.classes()).toContain('cursor-not-allowed');
+			expect(header.classes()).toContain('opacity-50');
+			expect(header.classes()).toContain('hover:bg-transparent');
+			expect(header.classes()).toContain('dark:hover:bg-transparent');
+		});
+
+		test('should have correct BEM classes for open state', async () => {
+			await wrapper.setProps({ open: true });
+			const header = wrapper.find('.bo-accordion__header');
+			const content = wrapper.find('.bo-accordion__content');
+			const icon = wrapper.find('.bo-accordion__collapse-icon');
+
+			expect(content.isVisible()).toBe(true);
+			expect(icon.classes()).toContain('transition-transform');
+			expect(icon.classes()).toContain('duration-200');
+		});
+
+		test('should have correct BEM classes for animations', () => {
+			const content = wrapper.find('.bo-accordion__content');
+			const icon = wrapper.find('.bo-accordion__collapse-icon');
+
+			expect(content.classes()).toContain('transition-all');
+			expect(content.classes()).toContain('duration-300');
+			expect(content.classes()).toContain('ease-in-out');
+			expect(icon.classes()).toContain('transition-transform');
+			expect(icon.classes()).toContain('duration-200');
+			expect(icon.classes()).toContain('ease-in-out');
 		});
 	});
 

@@ -1,394 +1,375 @@
 <script setup>
+import { BoAccordion } from '@/components/accordion';
+import { BoAccordionTitlePosition } from '@/components/accordion/bo-accordion';
+import { BoSize } from '@/shared/bo-size';
 import { Icon } from '@/components/icon/bo-icon';
-import BoAccordion from '@/components/accordion/bo-accordion.vue';
-import BoAccordionContainer from '@/components/accordion/bo-accordion-container.vue';
+import BoIcon from '@/components/icon/bo-icon.vue';
 </script>
 
 # Accordion
 
-Collapsible content panel for organizing information in expandable sections.
+The Accordion component is used to create collapsible sections of content, helping to organize and present information in a compact way.
 
 ```js
-import { BoAccordion, BoAccordionContainer } from '@mrksbnc/bamboo';
+import { BoAccordion } from '@/components/accordion';
 ```
 
 ## Basic Usage
 
 ```vue
 <template>
-	<bo-accordion title="Frequently Asked Questions">
-		<p>The answers to all your questions can be found here.</p>
-	</bo-accordion>
+	<BoAccordion title="Basic Accordion">
+		<p>This is the content of the accordion.</p>
+	</BoAccordion>
 </template>
-
-<script setup>
-import { BoAccordion } from '@mrksbnc/bamboo';
-</script>
 ```
 
-<hr />
 <div class="flex flex-col gap-4 my-4">
-	<bo-accordion title="Frequently Asked Questions">
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. The answers to all your questions can be found here.</p>
-	</bo-accordion>
+	<BoAccordion title="Basic Accordion">
+		<p>This is the content of the accordion.</p>
+	</BoAccordion>
 </div>
 
-## Props
+## Title Positions
 
-### BoAccordion Props
-
-| Name               | Type      | Default             | Description                                   |
-| ------------------ | --------- | ------------------- | --------------------------------------------- |
-| `id`               | `string`  | auto-generated      | Unique ID for the accordion item              |
-| `title`            | `string`  | `''`                | Title displayed in the accordion header       |
-| `ariaLabel`        | `string`  | `undefined`         | Custom ARIA label for accessibility           |
-| `open`             | `boolean` | `false`             | Whether the accordion is open by default      |
-| `disabled`         | `boolean` | `false`             | Disables the accordion                        |
-| `prefixIcon`       | `Icon`    | `Icon.none`         | Icon to display before the title              |
-| `customToggleIcon` | `Icon`    | `Icon.chevron_down` | Custom icon for the expand/collapse indicator |
-
-### BoAccordionContainer Props
-
-| Name                | Type      | Default        | Description                                                 |
-| ------------------- | --------- | -------------- | ----------------------------------------------------------- |
-| `id`                | `string`  | auto-generated | Unique ID for the accordion container                       |
-| `allowMultiple`     | `boolean` | `false`        | Whether multiple accordion items can be open simultaneously |
-| `alwaysOpen`        | `boolean` | `false`        | Whether at least one accordion item must remain open        |
-| `defaultOpenItemId` | `string`  | `''`           | The ID of the accordion item that should be open by default |
-
-## Events
-
-| Name     | Payload                         | Description                                    |
-| -------- | ------------------------------- | ---------------------------------------------- |
-| `toggle` | `{ id: string, open: boolean }` | Emitted when the accordion is opened or closed |
-
-## Slots
-
-| Name      | Description                       |
-| --------- | --------------------------------- |
-| `default` | Content inside the accordion body |
-
-## Types
-
-```ts
-interface BoAccordionProps {
-	/** Unique ID for the accordion, used for accessibility and testing */
-	id?: string;
-	/** The title of the accordion item */
-	title?: string;
-	/** Custom accessible label for screen readers (falls back to title) */
-	ariaLabel?: string;
-	/** Whether the accordion is opened by default */
-	open?: boolean;
-	/** Whether the accordion is disabled */
-	disabled?: boolean;
-	/** Prefix icon for the accordion item */
-	prefixIcon?: Icon;
-	/**
-	 * Custom icon for the expand/collapse indicator
-	 * @default Icon.chevron_down
-	 */
-	customToggleIcon?: Icon;
-}
-
-interface BoAccordionContainerProps {
-	/** Unique ID for the accordion container, used for accessibility and testing */
-	id?: string;
-	/** Whether to allow multiple accordion items to be open at once */
-	allowMultiple?: boolean;
-	/** Whether to keep at least one accordion item open */
-	alwaysOpen?: boolean;
-	/** The initial open accordion item Id */
-	defaultOpenItemId?: string;
-}
-
-interface AccordionGroup {
-	/** The currently open accordion items */
-	openItems: Set<string>;
-	/** Toggle an accordion item */
-	toggle: (id: string) => void;
-	/** Register an accordion item on the accordion group */
-	registerItem: (id: string, initialOpen: boolean) => void;
-}
+```vue
+<template>
+	<BoAccordion
+		:titlePosition="BoAccordionTitlePosition.start"
+		title="Start Position"
+	>
+		<p>Title aligned to start (default)</p>
+	</BoAccordion>
+	<BoAccordion
+		:titlePosition="BoAccordionTitlePosition.center"
+		title="Center Position"
+	>
+		<p>Title aligned to center</p>
+	</BoAccordion>
+	<BoAccordion
+		:titlePosition="BoAccordionTitlePosition.end"
+		title="End Position"
+	>
+		<p>Title aligned to end</p>
+	</BoAccordion>
+</template>
 ```
+
+<div class="flex flex-col gap-4 my-4">
+	<BoAccordion :titlePosition="BoAccordionTitlePosition.start" title="Start Position">
+		<p>Title aligned to start (default)</p>
+	</BoAccordion>
+	<BoAccordion :titlePosition="BoAccordionTitlePosition.center" title="Center Position">
+		<p>Title aligned to center</p>
+	</BoAccordion>
+	<BoAccordion :titlePosition="BoAccordionTitlePosition.end" title="End Position">
+		<p>Title aligned to end</p>
+	</BoAccordion>
+</div>
+
+## Sizes
+
+```vue
+<template>
+	<BoAccordion
+		title="Small Size"
+		:size="BoSize.small"
+	>
+		<p>Small accordion content</p>
+	</BoAccordion>
+	<BoAccordion
+		title="Default Size"
+		:size="BoSize.default"
+	>
+		<p>Default accordion content</p>
+	</BoAccordion>
+	<BoAccordion
+		title="Large Size"
+		:size="BoSize.large"
+	>
+		<p>Large accordion content</p>
+	</BoAccordion>
+</template>
+```
+
+<div class="flex flex-col gap-4 my-4">
+	<BoAccordion title="Small Size" :size="BoSize.small">
+		<p>Small accordion content</p>
+	</BoAccordion>
+	<BoAccordion title="Default Size" :size="BoSize.default">
+		<p>Default accordion content</p>
+	</BoAccordion>
+	<BoAccordion title="Large Size" :size="BoSize.large">
+		<p>Large accordion content</p>
+	</BoAccordion>
+</div>
 
 ## States
 
-### Default (Closed)
-
-<div class="flex flex-col gap-4 my-4">
-	<bo-accordion title="Closed Accordion">
-		<p>This accordion starts in a closed state.</p>
-	</bo-accordion>
-</div>
-
-```vue
-<bo-accordion title="Closed Accordion">
-	<p>This accordion starts in a closed state.</p>
-</bo-accordion>
-```
-
-### Open
-
-<div class="flex flex-col gap-4 my-4">
-	<bo-accordion title="Open Accordion" :open="true">
-		<p>This accordion starts in an open state.</p>
-	</bo-accordion>
-</div>
-
-```vue
-<bo-accordion title="Open Accordion" :open="true">
-	<p>This accordion starts in an open state.</p>
-</bo-accordion>
-```
-
 ### Disabled
 
+```vue
+<template>
+	<BoAccordion
+		title="Disabled Accordion"
+		:disabled="true"
+	>
+		<p>This accordion is disabled</p>
+	</BoAccordion>
+</template>
+```
+
 <div class="flex flex-col gap-4 my-4">
-	<bo-accordion title="Disabled Accordion" disabled>
-		<p>This content cannot be accessed because the accordion is disabled.</p>
-	</bo-accordion>
+	<BoAccordion title="Disabled Accordion" :disabled="true">
+		<p>This accordion is disabled</p>
+	</BoAccordion>
 </div>
 
+### Expanded
+
 ```vue
-<bo-accordion title="Disabled Accordion" disabled>
-	<p>This content cannot be accessed because the accordion is disabled.</p>
-</bo-accordion>
+<template>
+	<BoAccordion
+		title="Expanded Accordion"
+		:expanded="true"
+	>
+		<p>This accordion starts expanded</p>
+	</BoAccordion>
+</template>
 ```
+
+<div class="flex flex-col gap-4 my-4">
+	<BoAccordion title="Expanded Accordion" :expanded="true">
+		<p>This accordion starts expanded</p>
+	</BoAccordion>
+</div>
 
 ## Content Variations
 
-### Custom Content
-
-<div class="flex flex-col gap-4 my-4">
-	<bo-accordion title="Rich Content Example">
-		<div class="space-y-4">
-			<h4 class="text-lg font-semibold">Features</h4>
-			<ul class="list-disc list-inside space-y-2">
-				<li>Accessible with ARIA attributes</li>
-				<li>Keyboard navigation support with arrow keys</li>
-				<li>Customizable icons and styling</li>
-				<li>Container management for coordinated groups</li>
-			</ul>
-			<div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-				<p class="text-blue-800 dark:text-blue-200">
-					💡 <strong>Tip:</strong> Use accordion containers for coordinated groups with keyboard navigation.
-				</p>
-			</div>
-		</div>
-	</bo-accordion>
-</div>
+### Custom Background Colors
 
 ```vue
-<bo-accordion title="Rich Content Example">
-	<div class="space-y-4">
-		<h4 class="text-lg font-semibold">Features</h4>
-		<ul class="list-disc list-inside space-y-2">
-			<li>Accessible with ARIA attributes</li>
-			<li>Keyboard navigation support</li>
-		</ul>
-	</div>
-</bo-accordion>
+<template>
+	<BoAccordion
+		title="Custom Colors"
+		headerBackground="#f0f9ff"
+		bodyBackground="#f8fafc"
+	>
+		<p>Accordion with custom background colors</p>
+	</BoAccordion>
+</template>
 ```
+
+<div class="flex flex-col gap-4 my-4">
+	<BoAccordion 
+		title="Custom Colors"
+		headerBackground="#f0f9ff"
+		bodyBackground="#f8fafc"
+	>
+		<p>Accordion with custom background colors</p>
+	</BoAccordion>
+</div>
 
 ### With Icons
 
-<div class="flex flex-col gap-4 my-4">
-	<bo-accordion title="User Settings" :prefix-icon="Icon.user">
-		<p>Configure your user preferences and account settings.</p>
-	</bo-accordion>
-	<bo-accordion title="Expandable Section" :custom-toggle-icon="Icon.plus">
-		<p>This accordion uses a plus/minus icon instead of chevrons.</p>
-	</bo-accordion>
-</div>
-
 ```vue
-<bo-accordion title="User Settings" :prefix-icon="Icon.user">
-	<p>Configure your user preferences and account settings.</p>
-</bo-accordion>
-<bo-accordion title="Expandable Section" :custom-toggle-icon="Icon.plus">
-	<p>This accordion uses a plus/minus icon instead of chevrons.</p>
-</bo-accordion>
+<template>
+	<BoAccordion
+		title="With Icons"
+		:prefixIcon="Icon.info"
+		:suffixIcon="Icon.chevron_down"
+	>
+		<p>Accordion with custom icons</p>
+	</BoAccordion>
+</template>
 ```
 
-## Container Usage
-
-### Basic Container
-
 <div class="flex flex-col gap-4 my-4">
-	<bo-accordion-container>
-		<bo-accordion title="What is Bamboo?">
-			Bamboo is a UI component library built with Vue 3 and Tailwind CSS.
-		</bo-accordion>
-		<bo-accordion title="How do I install it?">
-			You can install Bamboo using npm or yarn.
-		</bo-accordion>
-		<bo-accordion title="Is it customizable?">
-			Yes, every component is highly customizable using props and slots.
-		</bo-accordion>
-	</bo-accordion-container>
+	<BoAccordion 
+		title="With Icons"
+		:prefixIcon="Icon.info"
+		:suffixIcon="Icon.chevron_down"
+	>
+		<p>Accordion with custom icons</p>
+	</BoAccordion>
 </div>
 
-```vue
-<bo-accordion-container>
-	<bo-accordion title="What is Bamboo?">
-		Bamboo is a UI component library built with Vue 3 and Tailwind CSS.
-	</bo-accordion>
-	<bo-accordion title="How do I install it?">
-		You can install Bamboo using npm or yarn.
-	</bo-accordion>
-	<bo-accordion title="Is it customizable?">
-		Yes, every component is highly customizable using props and slots.
-	</bo-accordion>
-</bo-accordion-container>
-```
+### Custom Title Content
 
-### Allow Multiple Open
+```vue
+<template>
+	<BoAccordion>
+		<template #title>
+			<div class="flex items-center gap-2">
+				<BoIcon :icon="Icon.star" />
+				<span>Custom Title Content</span>
+			</div>
+		</template>
+		<p>Accordion with custom title content</p>
+	</BoAccordion>
+</template>
+```
 
 <div class="flex flex-col gap-4 my-4">
-	<bo-accordion-container :allow-multiple="true">
-		<bo-accordion title="Section 1">
-			<p>Content for section 1. Multiple sections can be open simultaneously.</p>
-		</bo-accordion>
-		<bo-accordion title="Section 2">
-			<p>Content for section 2. Try opening multiple sections at once.</p>
-		</bo-accordion>
-		<bo-accordion title="Section 3">
-			<p>Content for section 3. All sections can be open together.</p>
-		</bo-accordion>
-	</bo-accordion-container>
+	<BoAccordion>
+		<template #title>
+			<div class="flex items-center gap-2">
+				<BoIcon :icon="Icon.star" />
+				<span>Custom Title Content</span>
+			</div>
+		</template>
+		<p>Accordion with custom title content</p>
+	</BoAccordion>
 </div>
 
+### Grouped Accordions
+
 ```vue
-<bo-accordion-container :allow-multiple="true">
-	<bo-accordion title="Section 1">Content 1</bo-accordion>
-	<bo-accordion title="Section 2">Content 2</bo-accordion>
-	<bo-accordion title="Section 3">Content 3</bo-accordion>
-</bo-accordion-container>
+<template>
+	<div class="flex flex-col">
+		<BoAccordion
+			title="First Accordion"
+			:index="0"
+			:total="3"
+		>
+			<p>First accordion content</p>
+		</BoAccordion>
+		<BoAccordion
+			title="Second Accordion"
+			:index="1"
+			:total="3"
+		>
+			<p>Second accordion content</p>
+		</BoAccordion>
+		<BoAccordion
+			title="Third Accordion"
+			:index="2"
+			:total="3"
+		>
+			<p>Third accordion content</p>
+		</BoAccordion>
+	</div>
+</template>
 ```
 
-### Always Keep One Open
-
-<div class="flex flex-col gap-4 my-4">
-	<bo-accordion-container :always-open="true">
-		<bo-accordion title="Section 1" :open="true">
-			<p>At least one section must always remain open.</p>
-		</bo-accordion>
-		<bo-accordion title="Section 2">
-			<p>Try closing all sections - one will always stay open.</p>
-		</bo-accordion>
-		<bo-accordion title="Section 3">
-			<p>This ensures important content is always visible.</p>
-		</bo-accordion>
-	</bo-accordion-container>
+<div class="flex flex-col my-4">
+	<BoAccordion title="First Accordion" :index="0" :total="3">
+		<p>First accordion content</p>
+	</BoAccordion>
+	<BoAccordion title="Second Accordion" :index="1" :total="3">
+		<p>Second accordion content</p>
+	</BoAccordion>
+	<BoAccordion title="Third Accordion" :index="2" :total="3">
+		<p>Third accordion content</p>
+	</BoAccordion>
 </div>
-
-```vue
-<bo-accordion-container :always-open="true">
-	<bo-accordion title="Section 1" :open="true">Content 1</bo-accordion>
-	<bo-accordion title="Section 2">Content 2</bo-accordion>
-	<bo-accordion title="Section 3">Content 3</bo-accordion>
-</bo-accordion-container>
-```
 
 ## Event Handling
 
 ```vue
 <template>
-	<bo-accordion-container>
-		<bo-accordion
-			title="Section 1"
-			@toggle="onToggle"
-		>
-			Content 1
-		</bo-accordion>
-		<bo-accordion
-			title="Section 2"
-			@toggle="onToggle"
-		>
-			Content 2
-		</bo-accordion>
-	</bo-accordion-container>
+	<BoAccordion
+		title="Interactive Accordion"
+		@toggle="handleToggle"
+	>
+		<p>Click to toggle</p>
+	</BoAccordion>
 </template>
 
 <script setup>
-const onToggle = (event) => {
-	console.log(`Accordion ${event.id} is now ${event.open ? 'open' : 'closed'}`);
+const handleToggle = (isOpen) => {
+	console.log('Accordion toggled:', isOpen);
 };
 </script>
 ```
 
+## Props
+
+| Name               | Type                       | Default        | Description                             |
+| ------------------ | -------------------------- | -------------- | --------------------------------------- |
+| `id`               | `string`                   | Generated UUID | Unique identifier for the accordion     |
+| `title`            | `string`                   | Required       | The title text of the accordion         |
+| `titlePosition`    | `BoAccordionTitlePosition` | `'start'`      | Position of the title in the header     |
+| `headerBackground` | `string`                   | `undefined`    | Custom background color for the header  |
+| `bodyBackground`   | `string`                   | `undefined`    | Custom background color for the body    |
+| `index`            | `number`                   | `0`            | Index of the accordion in a group       |
+| `total`            | `number`                   | `1`            | Total number of accordions in the group |
+| `disabled`         | `boolean`                  | `false`        | Whether the accordion is disabled       |
+| `expanded`         | `boolean`                  | `false`        | Whether the accordion is expanded       |
+| `size`             | `BoSize`                   | `'default'`    | Size of the accordion                   |
+| `prefixIcon`       | `Icon`                     | `undefined`    | Icon to display before the title        |
+| `suffixIcon`       | `Icon`                     | `undefined`    | Icon to display after the title         |
+| `ariaLabel`        | `string`                   | `undefined`    | Custom accessible label                 |
+
+## Events
+
+| Event    | Type                        | Description                           |
+| -------- | --------------------------- | ------------------------------------- |
+| `toggle` | `(isOpen: boolean) => void` | Emitted when the accordion is toggled |
+
+## Slots
+
+| Name          | Description                           |
+| ------------- | ------------------------------------- |
+| `default`     | The content to be shown when expanded |
+| `title`       | Custom title content                  |
+| `prefix-icon` | Custom prefix icon content            |
+| `suffix-icon` | Custom suffix icon content            |
+
+## Types
+
+```ts
+export enum BoAccordionTitlePosition {
+	start = 'start',
+	center = 'center',
+	end = 'end',
+}
+
+export interface BoAccordionProps {
+	id?: string;
+	title: string;
+	titlePosition?: BoAccordionTitlePosition;
+	headerBackground?: string;
+	bodyBackground?: string;
+	index?: number;
+	total?: number;
+	disabled?: boolean;
+	expanded?: boolean;
+	size?: BoSize;
+	prefixIcon?: Icon;
+	suffixIcon?: Icon;
+	ariaLabel?: string;
+}
+```
+
 ## Accessibility
 
-### Features
-
-- Semantic HTML structure with proper roles (`group`, `button`, `region`)
-- ARIA attributes for state and relationships
-- Keyboard navigation support with arrow keys
-- Screen reader compatibility with state announcements
-- Focus management with tabindex control
+The accordion component follows WAI-ARIA guidelines for accordion patterns:
 
 ### Keyboard Navigation
 
-| Key           | Action                                                  |
-| ------------- | ------------------------------------------------------- |
-| Tab/Shift+Tab | Navigate between accordion headers and other elements   |
-| Enter/Space   | Toggle the focused accordion section                    |
-| Arrow Up/Down | Navigate between accordion headers in container groups  |
-| Home/End      | Not applicable (accordion pattern doesn't use Home/End) |
+| Key             | Action                                  |
+| --------------- | --------------------------------------- |
+| `Tab`           | Move focus to accordion header          |
+| `Enter`/`Space` | Toggle accordion expansion              |
+| `Arrow Down`    | Move focus to next accordion header     |
+| `Arrow Up`      | Move focus to previous accordion header |
+| `Home`          | Move focus to first accordion header    |
+| `End`           | Move focus to last accordion header     |
 
 ### ARIA Attributes
 
-| Attribute         | Purpose                     | Values                      |
-| ----------------- | --------------------------- | --------------------------- |
-| `role`            | Semantic role               | `group`, `button`, `region` |
-| `aria-expanded`   | Expansion state             | `true`, `false`             |
-| `aria-controls`   | References content region   | Element ID                  |
-| `aria-labelledby` | Header-content relationship | Element ID                  |
-| `aria-disabled`   | Disabled state              | `true`, `false`             |
-| `aria-label`      | Custom accessible name      | Custom string               |
+| Attribute       | Purpose                 | Values          |
+| --------------- | ----------------------- | --------------- |
+| `role`          | Semantic role           | `button`        |
+| `aria-expanded` | Expansion state         | `true`, `false` |
+| `aria-disabled` | Disabled state          | `true`, `false` |
+| `aria-controls` | Links header to content | Panel ID        |
+| `aria-label`    | Accessible name         | Custom string   |
 
-### Accessibility Props
+The component also provides:
 
-| Name        | Type     | Default        | Description                               |
-| ----------- | -------- | -------------- | ----------------------------------------- |
-| `ariaLabel` | `string` | `undefined`    | Custom accessible name for screen readers |
-| `title`     | `string` | `''`           | Fallback accessible name and visual title |
-| `id`        | `string` | auto-generated | Unique identifier for ARIA relationships  |
-
-### Keyboard Navigation Example
-
-<div class="flex flex-col gap-4 my-4">
-	<bo-accordion-container>
-		<bo-accordion title="Navigate with Tab or Arrow Keys">
-			<div class="space-y-2">
-				<p><strong>Keyboard Instructions:</strong></p>
-				<ul class="list-disc list-inside space-y-1">
-					<li>Use <kbd class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">Tab</kbd> to reach this accordion</li>
-					<li>Press <kbd class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">Enter</kbd> or <kbd class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">Space</kbd> to toggle</li>
-					<li>Use <kbd class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">↑</kbd>/<kbd class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">↓</kbd> arrow keys to navigate between sections</li>
-				</ul>
-			</div>
-		</bo-accordion>
-		<bo-accordion title="Focus Management">
-			<div class="space-y-2">
-				<p>Focus behavior during navigation:</p>
-				<ul class="list-disc list-inside space-y-1">
-					<li>Focus moves to next/previous accordion header</li>
-					<li>Disabled accordions are skipped during navigation</li>
-					<li>Focus wraps around at boundaries for continuous navigation</li>
-				</ul>
-			</div>
-		</bo-accordion>
-		<bo-accordion title="Screen Reader Support">
-			<div class="space-y-2">
-				<p>Experience for assistive technologies:</p>
-				<ul class="list-disc list-inside space-y-1">
-					<li>State changes are announced (expanded/collapsed)</li>
-					<li>Relationships between headers and content are clear</li>
-					<li>Descriptive labels provide context for each section</li>
-				</ul>
-			</div>
-		</bo-accordion>
-	</bo-accordion-container>
-</div>
+- Clear visual feedback for focus and hover states
+- Proper heading structure
+- Consistent keyboard navigation within accordion groups
+- Screen reader announcements for state changes

@@ -16,6 +16,7 @@
 			:aria-label="accordionAccessibility.header.ariaLabel"
 			:aria-controls="accordionAccessibility.header.ariaControls"
 			:data-testid="constructAttribute(id, 'accordion-header')"
+			:style="headerStyle"
 			@click="onAccordionToggle"
 			@keydown.enter.prevent="onAccordionToggle"
 			@keydown.space.prevent="onAccordionToggle"
@@ -44,6 +45,7 @@
 					:icon="customIcon"
 					:aria-hidden="true"
 					:data-testid="constructAttribute(id, 'accordion-toggle-icon')"
+					:style="{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }"
 				/>
 			</div>
 		</div>
@@ -55,6 +57,7 @@
 			:id="accordionAccessibility.content.id"
 			:data-testid="constructAttribute(id, 'accordion-content')"
 			:aria-labelledby="accordionAccessibility.content.ariaLabelledBy"
+			:style="bodyStyle"
 		>
 			<div :class="slotClasses">
 				<slot></slot>
@@ -67,10 +70,10 @@
 import { Icon } from '@/components/icon/bo-icon.js';
 import BoIcon from '@/components/icon/bo-icon.vue';
 import BoText from '@/components/text/bo-text.vue';
-import { BoFontSize, BoFontWeight } from '@/components/text/index.js';
 import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
+import { BoSize } from '@/shared/bo-size.js';
 import { InjectKey } from '@/shared/injection-key.js';
 import {
 	NavigationDirection,
@@ -81,10 +84,22 @@ import {
 	type KeyboardNavigationConstruct,
 } from '@/types/accessibility.js';
 import { computed, inject, onMounted, ref, watch } from 'vue';
-import { type AccordionGroup, type BoAccordionProps } from './bo-accordion.js';
+import {
+	BoAccordionTitlePosition,
+	type AccordionGroup,
+	type BoAccordionProps,
+} from './bo-accordion.js';
 
 const props = withDefaults(defineProps<BoAccordionProps>(), {
 	id: () => IdentityService.instance.getComponentId(),
+	titlePosition: () => BoAccordionTitlePosition.start,
+	disabled: false,
+	expanded: false,
+	size: () => BoSize.default,
+	index: 0,
+	total: 1,
+	headerBackground: undefined,
+	bodyBackground: undefined,
 	prefixIcon: () => Icon.none,
 	customToggleIcon: () => Icon.none,
 });
@@ -107,15 +122,33 @@ const accordionBodyRef = ref<HTMLElement>();
 
 const ACCORDION_STYLE = {
 	layout: {
-		container: /*tw*/ 'bo-accordion w-full first:rounded-t-lg last:rounded-b-lg',
+		container: /*tw*/ 'bo-accordion w-full',
 		header:
-			/*tw*/ 'bo-accordion__header flex items-center justify-between p-3 sm:p-4 border border-neutral-200 dark:border-neutral-700',
+			/*tw*/ 'bo-accordion__header flex items-center p-3 sm:p-4 border-x border-t border-neutral-200 dark:border-neutral-700',
 		content: /*tw*/ 'bo-accordion__content p-3 sm:p-4 md:p-6',
 		body: /*tw*/ 'bo-accordion__body overflow-hidden border-x border-b border-neutral-200 dark:border-neutral-700',
 		icon: /*tw*/ 'bo-accordion__icon flex items-center gap-2',
-		title: /*tw*/ 'bo-accordion__title cursor-pointer',
-		prefixIcon: /*tw*/ 'bo-accordion__prefix-icon',
-		toggleIcon: /*tw*/ 'bo-accordion__toggle-icon',
+		title: {
+			[BoAccordionTitlePosition.start]:
+				/*tw*/ 'bo-accordion__title bo-accordion__title--start justify-start flex-1',
+			[BoAccordionTitlePosition.center]:
+				/*tw*/ 'bo-accordion__title bo-accordion__title--center justify-center flex-1',
+			[BoAccordionTitlePosition.end]:
+				/*tw*/ 'bo-accordion__title bo-accordion__title--end justify-end flex-1',
+		},
+		prefixIcon: /*tw*/ 'bo-accordion__icon bo-accordion__icon--prefix',
+		toggleIcon: /*tw*/ 'bo-accordion__icon bo-accordion__icon--toggle ml-auto',
+	},
+	position: {
+		first: /*tw*/ 'rounded-t-lg',
+		middle: /*tw*/ 'border-t-0',
+		last: /*tw*/ 'rounded-b-lg',
+		single: /*tw*/ 'rounded-lg',
+	},
+	state: {
+		expanded: /*tw*/ 'bo-accordion--expanded',
+		collapsed: /*tw*/ 'bo-accordion--collapsed',
+		disabled: /*tw*/ 'bo-accordion--disabled cursor-not-allowed opacity-50',
 	},
 	appearance: {
 		text: /*tw*/ 'bo-accordion__text text-neutral-700 dark:text-neutral-200',
@@ -126,10 +159,8 @@ const ACCORDION_STYLE = {
 		shadow: /*tw*/ 'bo-accordion--shadow shadow-sm dark:shadow-neutral-900/50',
 	},
 	interactive: {
-		header: TailwindService.instance.merge(
+		header:
 			/*tw*/ 'bo-accordion__header--interactive cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none',
-			props.disabled ? /*tw*/ 'bo-accordion__header--disabled cursor-not-allowed opacity-50' : '',
-		),
 		disabled:
 			/*tw*/ 'bo-accordion--disabled cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
 	},
@@ -185,11 +216,25 @@ const accessibilityTesting = computed<AccessibilityTesting>(() => {
 	};
 });
 
+const accordionPositionClasses = computed<string>(() => {
+	if (props.total === 1) return ACCORDION_STYLE.position.single;
+	if (props.index === 0) return ACCORDION_STYLE.position.first;
+	if (props.index === props.total - 1) return ACCORDION_STYLE.position.last;
+	return ACCORDION_STYLE.position.middle;
+});
+
 const containerClasses = computed<string>(() => {
+	const stateClasses = [
+		isOpen.value ? ACCORDION_STYLE.state.expanded : ACCORDION_STYLE.state.collapsed,
+		props.disabled ? ACCORDION_STYLE.state.disabled : '',
+	].filter(Boolean);
+
 	return TailwindService.instance.merge(
 		ACCORDION_STYLE.layout.container,
-		ACCORDION_STYLE.appearance.shadow,
+		accordionPositionClasses.value,
 		ACCORDION_STYLE.animation.container,
+		ACCORDION_STYLE.appearance.shadow,
+		...stateClasses,
 	);
 });
 
@@ -224,6 +269,22 @@ const customIcon = computed<Icon>(() => {
 	}
 
 	return isOpen.value ? Icon.chevron_up : Icon.chevron_down;
+});
+
+const titleClasses = computed<string>(() => {
+	return TailwindService.instance.merge(
+		ACCORDION_STYLE.layout.title[props.titlePosition],
+		ACCORDION_STYLE.interactive.header,
+		props.disabled ? ACCORDION_STYLE.interactive.disabled : '',
+	);
+});
+
+const headerStyle = computed(() => {
+	return props.headerBackground ? { backgroundColor: props.headerBackground } : {};
+});
+
+const bodyStyle = computed(() => {
+	return props.bodyBackground ? { backgroundColor: props.bodyBackground } : {};
 });
 
 function onAccordionToggle(): void {

@@ -1,7 +1,7 @@
 <script setup>
-import { BoBadge, BoBadgeVariant, BoBadgeType, BoBadgeShape } from '@/components/badge';
+import { BoBadge, BoBadgeType, BoBadgeVariant, BoBadgeShape } from '@/components/badge';
 import { BoSize } from '@/shared';
-import { Icon } from '@/components/icon/bo-icon';
+import { Icon } from '@/components/icon';
 </script>
 
 # Badge
@@ -30,21 +30,26 @@ import { BoBadge } from '@mrksbnc/bamboo';
 
 ## Props
 
-| Name        | Type                               | Default                                    | Description                                    |
-| ----------- | ---------------------------------- | ------------------------------------------ | ---------------------------------------------- |
-| `id`        | `string`                           | auto-generated                             | Unique identifier for the badge                |
-| `label`     | `string`                           | `undefined`                                | Text content of the badge                      |
-| `type`      | `BoBadgeType`                      | `'default'`                                | Visual style of the badge                      |
-| `size`      | `BoSize`                           | `'default'`                                | Size of the badge                              |
-| `shape`     | `BoBadgeShape`                     | `'default'`                                | Shape of the badge                             |
-| `variant`   | `BoBadgeVariant`                   | `'primary'`                                | Color variant                                  |
-| `icon`      | `{ prefix?: Icon, suffix?: Icon }` | `{ prefix: Icon.none, suffix: Icon.none }` | Icons to display before and/or after the label |
-| `ariaLabel` | `string`                           | Generated from label                       | Custom accessible name for screen readers      |
-| `ariaLive`  | `BoAriaLive`                       | `'polite'`                                 | ARIA live region politeness level              |
+| Name        | Type             | Default                  | Description                      |
+| ----------- | ---------------- | ------------------------ | -------------------------------- |
+| `id`        | `string`         | `Generated UUID`         | Unique identifier for the badge  |
+| `label`     | `string`         | `undefined`              | Text content of the badge        |
+| `type`      | `BoBadgeType`    | `BoBadgeType.default`    | Visual style type of the badge   |
+| `variant`   | `BoBadgeVariant` | `BoBadgeVariant.primary` | Color variant of the badge       |
+| `shape`     | `BoBadgeShape`   | `BoBadgeShape.default`   | Shape of the badge               |
+| `size`      | `BoSize`         | `BoSize.default`         | Size of the badge                |
+| `icon`      | `BoBadgeIcon`    | `undefined`              | Icon configuration for the badge |
+| `ariaLabel` | `string`         | `undefined`              | Custom accessible label          |
+| `ariaLive`  | `BoAriaLive`     | `BoAriaLive.polite`      | ARIA live region behavior        |
 
 ## Types
 
 ```ts
+export enum BoBadgeType {
+	default = 'default',
+	outline = 'outline',
+}
+
 export enum BoBadgeVariant {
 	primary = 'primary',
 	secondary = 'secondary',
@@ -55,35 +60,46 @@ export enum BoBadgeVariant {
 	dark = 'dark',
 }
 
-export enum BoBadgeType {
+export enum BoBadgeShape {
 	default = 'default',
-	outline = 'outline',
+	circle = 'circle',
+	pill = 'pill',
+	flat = 'flat',
 }
 
-export enum BoBadgeShape {
-	pill = 'pill',
-	default = 'default',
-	flat = 'flat',
-	circle = 'circle',
+export interface BoBadgeIcon {
+	prefix?: Icon;
+	suffix?: Icon;
 }
 
 export interface BoBadgeProps {
 	id?: string;
 	label?: string;
 	type?: BoBadgeType;
-	size?: BoSize;
-	shape?: BoBadgeShape;
 	variant?: BoBadgeVariant;
-	icon?: {
-		prefix?: Icon;
-		suffix?: Icon;
-	};
+	shape?: BoBadgeShape;
+	size?: BoSize;
+	icon?: BoBadgeIcon;
 	ariaLabel?: string;
 	ariaLive?: BoAriaLive;
 }
 ```
 
 ## Variants
+
+### Types
+
+<div class="flex gap-4 items-center my-4">
+	<bo-badge label="Default" :type="BoBadgeType.default" />
+	<bo-badge label="Outline" :type="BoBadgeType.outline" />
+</div>
+
+```vue
+<bo-badge label="Default" :type="BoBadgeType.default" />
+<bo-badge label="Outline" :type="BoBadgeType.outline" />
+```
+
+### Colors
 
 <div class="flex gap-4 items-center my-4">
 	<bo-badge label="Primary" :variant="BoBadgeVariant.primary" />
@@ -103,6 +119,22 @@ export interface BoBadgeProps {
 <bo-badge label="Success" :variant="BoBadgeVariant.success" />
 <bo-badge label="Light" :variant="BoBadgeVariant.light" />
 <bo-badge label="Dark" :variant="BoBadgeVariant.dark" />
+```
+
+### Shapes
+
+<div class="flex gap-4 items-center my-4">
+	<bo-badge label="Default" :shape="BoBadgeShape.default" />
+	<bo-badge label="Circle" :shape="BoBadgeShape.circle" />
+	<bo-badge label="Pill" :shape="BoBadgeShape.pill" />
+	<bo-badge label="Flat" :shape="BoBadgeShape.flat" />
+</div>
+
+```vue
+<bo-badge label="Default" :shape="BoBadgeShape.default" />
+<bo-badge label="Circle" :shape="BoBadgeShape.circle" />
+<bo-badge label="Pill" :shape="BoBadgeShape.pill" />
+<bo-badge label="Flat" :shape="BoBadgeShape.flat" />
 ```
 
 ## Sizes
@@ -128,39 +160,73 @@ export interface BoBadgeProps {
 ### With Icons
 
 <div class="flex gap-4 items-center my-4">
-	<bo-badge label="With Prefix" :icon="{ prefix: Icon.star }" />
-	<bo-badge label="With Suffix" :icon="{ suffix: Icon.check }" />
-	<bo-badge label="Both Icons" :icon="{ prefix: Icon.star, suffix: Icon.check }" />
+	<bo-badge 
+		label="With Prefix" 
+		:icon="{ prefix: Icon.info }" 
+	/>
+	<bo-badge 
+		label="With Suffix" 
+		:icon="{ suffix: Icon.arrow_right }" 
+	/>
+	<bo-badge 
+		:icon="{ prefix: Icon.star }" 
+		:shape="BoBadgeShape.circle" 
+	/>
 </div>
 
 ```vue
-<bo-badge label="With Prefix" :icon="{ prefix: Icon.star }" />
-<bo-badge label="With Suffix" :icon="{ suffix: Icon.check }" />
-<bo-badge label="Both Icons" :icon="{ prefix: Icon.star, suffix: Icon.check }" />
+<bo-badge label="With Prefix" :icon="{ prefix: Icon.info }" />
+<bo-badge label="With Suffix" :icon="{ suffix: Icon.arrow_right }" />
+<bo-badge :icon="{ prefix: Icon.star }" :shape="BoBadgeShape.circle" />
+```
+
+### Custom Content
+
+<div class="flex gap-4 items-center my-4">
+	<bo-badge>
+		<template #default>
+			<div class="flex items-center gap-2">
+				<bo-icon :icon="Icon.star" />
+				<span>Custom Content</span>
+			</div>
+		</template>
+	</bo-badge>
+</div>
+
+```vue
+<bo-badge>
+	<template #default>
+		<div class="flex items-center gap-2">
+			<bo-icon :icon="Icon.star" />
+			<span>Custom Content</span>
+		</div>
+	</template>
+</bo-badge>
 ```
 
 ## Accessibility
 
 ### Features
 
-- Uses semantic `status` role for proper screen reader announcement
-- Includes descriptive ARIA labels
-- Configurable ARIA live regions for dynamic content updates
-- Icons are properly labeled and hidden from screen readers when decorative
-- Maintains WCAG 2.1 compliant color contrast ratios for all variants
+- Uses semantic HTML structure with proper ARIA roles
+- Supports ARIA live regions for dynamic updates
+- Screen reader compatibility with descriptive labels
+- Clear visual indicators for different states
+- High contrast color combinations for visibility
 
 ### ARIA Attributes
 
-| Attribute     | Purpose                     | Values                               |
-| ------------- | --------------------------- | ------------------------------------ |
-| `role`        | Semantic role               | `status`                             |
-| `aria-label`  | Accessible name             | Generated from label or custom value |
-| `aria-live`   | Live region update behavior | `polite`, `assertive`, `off`         |
-| `aria-atomic` | Update announcement style   | `true`                               |
+| Attribute     | Purpose             | Values                       |
+| ------------- | ------------------- | ---------------------------- |
+| `role`        | Semantic role       | `status`                     |
+| `aria-label`  | Accessible name     | Custom string                |
+| `aria-live`   | Update announcement | `polite`, `assertive`, `off` |
+| `aria-atomic` | Update behavior     | `true`                       |
 
 ### Accessibility Props
 
-| Name        | Type         | Default              | Description                               |
-| ----------- | ------------ | -------------------- | ----------------------------------------- |
-| `ariaLabel` | `string`     | Generated from label | Custom accessible name for screen readers |
-| `ariaLive`  | `BoAriaLive` | `polite`             | Controls live region announcement timing  |
+| Name        | Type         | Default             | Description                                |
+| ----------- | ------------ | ------------------- | ------------------------------------------ |
+| `ariaLabel` | `string`     | `undefined`         | Custom accessible name for screen readers  |
+| `ariaLive`  | `BoAriaLive` | `BoAriaLive.polite` | Controls live region announcement behavior |
+| `id`        | `string`     | Generated           | Unique identifier for ARIA relationships   |
