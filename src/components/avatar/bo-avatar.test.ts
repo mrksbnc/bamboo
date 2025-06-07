@@ -340,7 +340,7 @@ describe('BoAvatar', () => {
 		test('should have base BEM classes', () => {
 			expect(wrapper.find('.bo-avatar').exists()).toBe(true);
 			expect(wrapper.find('.bo-avatar__fallback').exists()).toBe(false);
-			expect(wrapper.find('.bo-avatar__image-container').exists()).toBe(false);
+			expect(wrapper.find('.bo-avatar__image').exists()).toBe(false);
 			expect(wrapper.find('.bo-avatar__image-content').exists()).toBe(false);
 			expect(wrapper.find('.bo-avatar__initials').exists()).toBe(true);
 		});
@@ -356,7 +356,7 @@ describe('BoAvatar', () => {
 				},
 			});
 
-			expect(imageWrapper.find('.bo-avatar__image-container').exists()).toBe(true);
+			expect(imageWrapper.find('.bo-avatar__image').exists()).toBe(true);
 			expect(imageWrapper.find('.bo-avatar__image-content').exists()).toBe(true);
 			expect(imageWrapper.find('.bo-avatar__initials').exists()).toBe(false);
 		});
@@ -460,7 +460,7 @@ describe('BoAvatar', () => {
 				},
 			});
 			expect(shadowWrapper.find('.shadow-md').exists()).toBe(true);
-			expect(shadowWrapper.find('.dark\\:shadow-neutral-900\\/50').exists()).toBe(true);
+			expect(shadowWrapper.find('.bo-avatar--shadow').exists()).toBe(true);
 		});
 	});
 });

@@ -1,10 +1,14 @@
 import type { Icon } from '@/components/icon/bo-icon.js';
-import { BoSize } from '@/shared/bo-size';
 
 export enum BoAccordionTitlePosition {
 	start = 'start',
 	center = 'center',
 	end = 'end',
+}
+
+export enum BoAccordionShape {
+	rounded = 'rounded',
+	flat = 'flat',
 }
 
 export interface BoAccordionProps {
@@ -62,12 +66,6 @@ export interface BoAccordionProps {
 	expanded?: boolean;
 
 	/**
-	 * The size of the accordion.
-	 * @default BoSize.default
-	 */
-	size?: BoSize;
-
-	/**
 	 * The icon to display before the title.
 	 */
 	prefixIcon?: Icon;
@@ -85,6 +83,11 @@ export interface BoAccordionProps {
 	open?: boolean;
 	/** Prefix icon for the accordion item */
 	customToggleIcon?: Icon;
+	/**
+	 * The shape of the accordion.
+	 * @default BoAccordionShape.flat
+	 */
+	shape?: BoAccordionShape;
 }
 
 export interface BoAccordionContainerProps {

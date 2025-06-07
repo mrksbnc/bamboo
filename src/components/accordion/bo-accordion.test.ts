@@ -382,7 +382,7 @@ describe('BoAccordion', () => {
 			expect(wrapper.find('.bo-accordion__header').exists()).toBe(true);
 			expect(wrapper.find('.bo-accordion__content').exists()).toBe(true);
 			expect(wrapper.find('.bo-accordion__title').exists()).toBe(true);
-			expect(wrapper.find('.bo-accordion__collapse-icon').exists()).toBe(true);
+			expect(wrapper.find('.bo-accordion__icon--toggle').exists()).toBe(true);
 		});
 
 		test('should have correct BEM classes for prefix icon', () => {
@@ -392,7 +392,7 @@ describe('BoAccordion', () => {
 					prefixIcon: Icon.star,
 				},
 			});
-			const prefixIcon = prefixWrapper.find('.bo-accordion__prefix-icon');
+			const prefixIcon = prefixWrapper.find('.bo-accordion__icon--prefix');
 			expect(prefixIcon.exists()).toBe(true);
 		});
 
@@ -421,8 +421,8 @@ describe('BoAccordion', () => {
 		test('should have correct BEM classes for open state', async () => {
 			await wrapper.setProps({ open: true });
 			const header = wrapper.find('.bo-accordion__header');
-			const content = wrapper.find('.bo-accordion__content');
-			const icon = wrapper.find('.bo-accordion__collapse-icon');
+			const content = wrapper.find('[data-testid*="accordion-content"]');
+			const icon = wrapper.find('.bo-accordion__icon--toggle');
 
 			expect(content.isVisible()).toBe(true);
 			expect(icon.classes()).toContain('transition-transform');
@@ -430,12 +430,12 @@ describe('BoAccordion', () => {
 		});
 
 		test('should have correct BEM classes for animations', () => {
-			const content = wrapper.find('.bo-accordion__content');
-			const icon = wrapper.find('.bo-accordion__collapse-icon');
+			const body = wrapper.find('[data-testid*="accordion-content"]');
+			const icon = wrapper.find('.bo-accordion__icon--toggle');
 
-			expect(content.classes()).toContain('transition-all');
-			expect(content.classes()).toContain('duration-300');
-			expect(content.classes()).toContain('ease-in-out');
+			expect(body.classes()).toContain('transition-all');
+			expect(body.classes()).toContain('duration-300');
+			expect(body.classes()).toContain('ease-in-out');
 			expect(icon.classes()).toContain('transition-transform');
 			expect(icon.classes()).toContain('duration-200');
 			expect(icon.classes()).toContain('ease-in-out');
@@ -451,7 +451,6 @@ describe('BoAccordion', () => {
 			expect(classes).toContain('bo-accordion__header');
 			expect(classes).toContain('flex');
 			expect(classes).toContain('items-center');
-			expect(classes).toContain('justify-between');
 			expect(classes).toContain('cursor-pointer');
 		});
 

@@ -23,7 +23,7 @@
 			@keydown.arrow-down.prevent="onArrowNavigation(NavigationDirection.down)"
 			@keydown.arrow-up.prevent="onArrowNavigation(NavigationDirection.up)"
 		>
-			<div :class="ACCORDION_STYLE.layout.icon">
+			<div :class="ACCORDION_STYLE.layout.prefixIcon">
 				<bo-icon
 					v-if="prefixIcon !== Icon.none"
 					:icon="prefixIcon"
@@ -31,7 +31,7 @@
 					:data-testid="constructAttribute(id, 'accordion-prefix-icon')"
 				/>
 			</div>
-			<div :class="ACCORDION_STYLE.layout.title">
+			<div :class="titleClasses">
 				<bo-text
 					v-if="title"
 					:value="title"
@@ -40,7 +40,7 @@
 					:data-testid="constructAttribute(id, 'accordion-title')"
 				/>
 			</div>
-			<div :class="ACCORDION_STYLE.layout.toggleIcon">
+			<div :class="[ACCORDION_STYLE.layout.toggleIcon, ACCORDION_STYLE.animation.icon]">
 				<bo-icon
 					:icon="customIcon"
 					:aria-hidden="true"
@@ -74,7 +74,6 @@ import BoText from '@/components/text/bo-text.vue';
 import { useAttributes } from '@/composables/use-attributes';
 import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
-import { BoSize } from '@/shared/bo-size.js';
 import { InjectKey } from '@/shared/injection-key.js';
 import {
 	NavigationDirection,
@@ -86,6 +85,7 @@ import {
 } from '@/types/accessibility.js';
 import { computed, inject, onMounted, ref, watch } from 'vue';
 import {
+	BoAccordionShape,
 	BoAccordionTitlePosition,
 	type AccordionGroup,
 	type BoAccordionProps,
@@ -95,10 +95,10 @@ const props = withDefaults(defineProps<BoAccordionProps>(), {
 	id: () => IdentityService.instance.getComponentId(),
 	index: 0,
 	total: 1,
-	size: () => BoSize.default,
 	titlePosition: () => BoAccordionTitlePosition.start,
 	prefixIcon: () => Icon.none,
 	customToggleIcon: () => Icon.none,
+	shape: () => BoAccordionShape.flat,
 });
 
 const emit = defineEmits<{
@@ -121,9 +121,9 @@ const ACCORDION_STYLE = {
 	layout: {
 		container: /*tw*/ 'bo-accordion w-full',
 		header:
-			/*tw*/ 'bo-accordion__header flex items-center p-3 sm:p-4 border-x border-t border-neutral-200 dark:border-neutral-700',
-		content: /*tw*/ 'bo-accordion__content p-3 sm:p-4 md:p-6',
-		body: /*tw*/ 'bo-accordion__body overflow-hidden border-x border-b border-neutral-200 dark:border-neutral-700',
+			/*tw*/ 'bo-accordion__header flex items-center justify-between p-5 w-full font-medium text-left',
+		content: /*tw*/ 'bo-accordion__content p-5',
+		body: /*tw*/ 'bo-accordion__body overflow-hidden',
 		icon: /*tw*/ 'bo-accordion__icon flex items-center gap-2',
 		title: {
 			[BoAccordionTitlePosition.start]:
@@ -134,13 +134,37 @@ const ACCORDION_STYLE = {
 				/*tw*/ 'bo-accordion__title bo-accordion__title--end justify-end flex-1',
 		},
 		prefixIcon: /*tw*/ 'bo-accordion__icon bo-accordion__icon--prefix',
-		toggleIcon: /*tw*/ 'bo-accordion__icon bo-accordion__icon--toggle ml-auto',
+		toggleIcon: /*tw*/ 'bo-accordion__icon bo-accordion__icon--toggle shrink-0',
 	},
-	position: {
-		first: /*tw*/ 'rounded-t-lg',
-		middle: /*tw*/ 'border-t-0',
-		last: /*tw*/ 'rounded-b-lg',
-		single: /*tw*/ 'rounded-lg',
+	borders: {
+		header: {
+			first: /*tw*/ 'border border-b-0 border-neutral-200 dark:border-neutral-700',
+			middle: /*tw*/ 'border border-t-0 border-b-0 border-neutral-200 dark:border-neutral-700',
+			last: /*tw*/ 'border border-t-0 border-neutral-200 dark:border-neutral-700',
+			single: /*tw*/ 'border border-neutral-200 dark:border-neutral-700',
+		},
+		body: {
+			first: /*tw*/ 'border border-t-0 border-b-0 border-neutral-200 dark:border-neutral-700',
+			middle: /*tw*/ 'border border-t-0 border-b-0 border-neutral-200 dark:border-neutral-700',
+			last: /*tw*/ 'border border-t-0 border-neutral-200 dark:border-neutral-700',
+			single: /*tw*/ 'border border-t-0 border-neutral-200 dark:border-neutral-700',
+		},
+	},
+	shape: {
+		[BoAccordionShape.rounded]: {
+			header: {
+				first: /*tw*/ 'rounded-t-xl',
+				single: /*tw*/ 'rounded-xl',
+			},
+			body: {
+				last: /*tw*/ 'rounded-b-xl',
+				single: /*tw*/ 'rounded-b-xl',
+			},
+		},
+		[BoAccordionShape.flat]: {
+			header: {},
+			body: {},
+		},
 	},
 	state: {
 		expanded: /*tw*/ 'bo-accordion--expanded',
@@ -148,23 +172,22 @@ const ACCORDION_STYLE = {
 		disabled: /*tw*/ 'bo-accordion--disabled cursor-not-allowed opacity-50',
 	},
 	appearance: {
-		text: /*tw*/ 'bo-accordion__text text-neutral-700 dark:text-neutral-200',
-		background: /*tw*/ 'bo-accordion--background bg-neutral-50 dark:bg-neutral-800',
+		text: /*tw*/ 'bo-accordion__text text-neutral-500 dark:text-neutral-400',
+		background: /*tw*/ 'bo-accordion--background bg-white dark:bg-neutral-900',
 		bodyBackground: /*tw*/ 'bo-accordion__body--background bg-white dark:bg-neutral-900',
 		contentText:
-			/*tw*/ 'bo-accordion__content--text text-neutral-800 dark:text-neutral-100 text-sm sm:text-base',
-		shadow: /*tw*/ 'bo-accordion--shadow shadow-sm dark:shadow-neutral-900/50',
+			/*tw*/ 'bo-accordion__content--text text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed',
 	},
 	interactive: {
 		header:
-			/*tw*/ 'bo-accordion__header--interactive cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none',
+			/*tw*/ 'bo-accordion__header--interactive cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:outline-none',
 		disabled:
 			/*tw*/ 'bo-accordion--disabled cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
 	},
 	animation: {
 		icon: /*tw*/ 'bo-accordion__icon--animated transition-transform duration-200 ease-in-out',
-		body: /*tw*/ 'bo-accordion__body--animated transition-all duration-300 ease-in-out',
-		container: /*tw*/ 'bo-accordion--animated transition-shadow duration-200',
+		body: /*tw*/ 'bo-accordion__body--animated',
+		container: /*tw*/ 'bo-accordion--animated',
 	},
 } as const;
 
@@ -213,11 +236,11 @@ const accessibilityTesting = computed<AccessibilityTesting>(() => {
 	};
 });
 
-const accordionPositionClasses = computed<string>(() => {
-	if (props.total === 1) return ACCORDION_STYLE.position.single;
-	if (props.index === 0) return ACCORDION_STYLE.position.first;
-	if (props.index === props.total - 1) return ACCORDION_STYLE.position.last;
-	return ACCORDION_STYLE.position.middle;
+const getPositionType = computed<'first' | 'middle' | 'last' | 'single'>(() => {
+	if (props.total === 1) return 'single';
+	if (props.index === 0) return 'first';
+	if (props.index === props.total - 1) return 'last';
+	return 'middle';
 });
 
 const containerClasses = computed<string>(() => {
@@ -228,16 +251,21 @@ const containerClasses = computed<string>(() => {
 
 	return TailwindService.instance.merge(
 		ACCORDION_STYLE.layout.container,
-		accordionPositionClasses.value,
 		ACCORDION_STYLE.animation.container,
-		ACCORDION_STYLE.appearance.shadow,
 		...stateClasses,
 	);
 });
 
 const headerClass = computed<string>(() => {
+	const positionType = getPositionType.value;
+	const headerBorderClasses = ACCORDION_STYLE.borders.header[positionType];
+	const shapeConfig = ACCORDION_STYLE.shape[props.shape!].header;
+	const headerShapeClasses = (shapeConfig as any)[positionType] || '';
+
 	return TailwindService.instance.merge(
 		ACCORDION_STYLE.layout.header,
+		headerBorderClasses,
+		headerShapeClasses,
 		ACCORDION_STYLE.appearance.text,
 		ACCORDION_STYLE.interactive.header,
 		ACCORDION_STYLE.appearance.background,
@@ -246,8 +274,15 @@ const headerClass = computed<string>(() => {
 });
 
 const bodyClasses = computed<string>(() => {
+	const positionType = getPositionType.value;
+	const bodyBorderClasses = ACCORDION_STYLE.borders.body[positionType];
+	const shapeConfig = ACCORDION_STYLE.shape[props.shape!].body;
+	const bodyShapeClasses = (shapeConfig as any)[positionType] || '';
+
 	return TailwindService.instance.merge(
 		ACCORDION_STYLE.layout.body,
+		bodyBorderClasses,
+		bodyShapeClasses,
 		ACCORDION_STYLE.animation.body,
 		ACCORDION_STYLE.appearance.bodyBackground,
 	);
