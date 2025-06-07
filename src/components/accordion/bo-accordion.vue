@@ -122,12 +122,11 @@ const ACCORDION_STYLE = {
 	},
 	interactive: {
 		header: TailwindService.instance.merge(
-			/*tw*/ 'cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-blue-400 dark:focus:ring-offset-neutral-800',
+			/*tw*/ 'cursor-pointer transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-700',
 			props.disabled ? /*tw*/ 'cursor-not-allowed opacity-50' : '',
 			props.open ? (props.shape === BoAccordionShape.rounded ? /*tw*/ 'rounded-t-lg' : '') : '',
 		),
-		disabled:
-			/*tw*/ 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent focus:ring-0',
+		disabled: /*tw*/ 'cursor-not-allowed opacity-50 hover:bg-transparent dark:hover:bg-transparent',
 	},
 	animation: {
 		icon: /*tw*/ 'bo-accordion__collapse-icon transition-transform duration-200 ease-in-out',
