@@ -139,48 +139,48 @@ export interface FocusManagementConstruct {
  * Standard ARIA roles for landmarks and regions
  */
 export enum LandmarkRole {
-	BANNER = 'banner',
-	NAVIGATION = 'navigation',
-	MAIN = 'main',
-	COMPLEMENTARY = 'complementary',
-	CONTENTINFO = 'contentinfo',
-	SEARCH = 'search',
-	FORM = 'form',
-	REGION = 'region',
-	APPLICATION = 'application',
-	DOCUMENT = 'document',
+	banner = 'banner',
+	navigation = 'navigation',
+	main = 'main',
+	complementary = 'complementary',
+	contentinfo = 'contentinfo',
+	search = 'search',
+	form = 'form',
+	region = 'region',
+	application = 'application',
+	document = 'document',
 }
 
 /**
  * ARIA live region politeness levels
  */
 export enum LiveRegionPoliteness {
-	OFF = 'off',
-	POLITE = 'polite',
-	ASSERTIVE = 'assertive',
+	off = 'off',
+	polite = 'polite',
+	assertive = 'assertive',
 }
 
 /**
  * ARIA current state values
  */
 export enum AriaCurrent {
-	FALSE = 'false',
-	TRUE = 'true',
-	PAGE = 'page',
-	STEP = 'step',
-	LOCATION = 'location',
-	DATE = 'date',
-	TIME = 'time',
+	false = 'false',
+	true = 'true',
+	page = 'page',
+	step = 'step',
+	location = 'location',
+	date = 'date',
+	time = 'time',
 }
 
 /**
  * ARIA invalid state values
  */
 export enum AriaInvalid {
-	FALSE = 'false',
-	TRUE = 'true',
-	GRAMMAR = 'grammar',
-	SPELLING = 'spelling',
+	false = 'false',
+	true = 'true',
+	grammar = 'grammar',
+	spelling = 'spelling',
 }
 
 /**
@@ -198,7 +198,8 @@ export interface FocusTrapOptions {
 }
 
 /**
- * Accessibility testing utilities interface
+ * Testing interface for accessibility validation
+ * Provides test IDs and accessible names for automated testing
  */
 export interface AccessibilityTesting {
 	/** Test ID for accessibility testing */
@@ -241,31 +242,34 @@ export interface AccordionAccessibilityConstruct {
 }
 
 /**
- * Navigation direction enum for keyboard navigation
+ * Navigation direction enumeration for keyboard interaction
+ * Defines directional movement for arrow key navigation
  */
 export enum NavigationDirection {
-	UP = 'up',
-	DOWN = 'down',
-	LEFT = 'left',
-	RIGHT = 'right',
+	up = 'up',
+	down = 'down',
+	left = 'left',
+	right = 'right',
 }
 
 /**
- * Navigation orientation enum for keyboard navigation
+ * Navigation orientation enumeration for keyboard behavior
+ * Defines the spatial orientation of navigation elements
  */
 export enum NavigationOrientation {
-	HORIZONTAL = 'horizontal',
-	VERTICAL = 'vertical',
-	BOTH = 'both',
+	horizontal = 'horizontal',
+	vertical = 'vertical',
+	both = 'both',
 }
 
 /**
- * Tab behavior enum for keyboard navigation
+ * Tab navigation behavior enumeration
+ * Defines how Tab key behaves in component contexts
  */
 export enum TabBehavior {
-	CYCLE = 'cycle',
-	EXIT = 'exit',
-	TRAP = 'trap',
+	cycle = 'cycle',
+	exit = 'exit',
+	trap = 'trap',
 }
 
 /**
@@ -312,8 +316,8 @@ export interface GroupNavigationAccessibilityConstruct {
 }
 
 /**
- * Color contrast accessibility interface
- * Ensures WCAG contrast requirements are met
+ * Color contrast accessibility construct
+ * Validates color combinations against WCAG standards
  */
 export interface ContrastAccessibilityConstruct {
 	/** Foreground color value */

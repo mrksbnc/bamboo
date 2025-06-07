@@ -19,8 +19,8 @@
 			@click="onAccordionToggle"
 			@keydown.enter.prevent="onAccordionToggle"
 			@keydown.space.prevent="onAccordionToggle"
-			@keydown.arrow-down.prevent="onArrowNavigation(NavigationDirection.DOWN)"
-			@keydown.arrow-up.prevent="onArrowNavigation(NavigationDirection.UP)"
+			@keydown.arrow-down.prevent="onArrowNavigation(NavigationDirection.down)"
+			@keydown.arrow-up.prevent="onArrowNavigation(NavigationDirection.up)"
 		>
 			<div class="flex items-center gap-2">
 				<bo-icon
@@ -162,11 +162,11 @@ const keyboardNavigation = computed<KeyboardNavigationConstruct>(() => {
 	return {
 		currentIndex: 0,
 		totalItems: 0,
-		orientation: NavigationOrientation.VERTICAL,
+		orientation: NavigationOrientation.vertical,
 		wrap: true,
 		homeEndEnabled: false,
 		arrowKeysEnabled: !!accordionGroup,
-		tabBehavior: TabBehavior.EXIT,
+		tabBehavior: TabBehavior.exit,
 	};
 });
 
@@ -255,14 +255,14 @@ function onArrowNavigation(direction: NavigationDirection): void {
 	const totalItems = accordionElements.length;
 
 	switch (direction) {
-		case NavigationDirection.DOWN:
+		case NavigationDirection.down:
 			nextIndex = keyboardNavigation.value.wrap
 				? currentIndex === totalItems - 1
 					? 0
 					: currentIndex + 1
 				: Math.min(currentIndex + 1, totalItems - 1);
 			break;
-		case NavigationDirection.UP:
+		case NavigationDirection.up:
 			nextIndex = keyboardNavigation.value.wrap
 				? currentIndex === 0
 					? totalItems - 1
