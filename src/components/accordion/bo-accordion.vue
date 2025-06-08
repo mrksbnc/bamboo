@@ -82,7 +82,7 @@ import { IdentityService } from '@/services/identity-service.js';
 import { TailwindService } from '@/services/tailwind-service.js';
 import { InjectKey } from '@/shared/injection-key.js';
 import { type AccessibilityConstruct } from '@/types/accessibility';
-import { computed, inject, onMounted, ref, watch } from 'vue';
+import { computed, inject, onMounted, ref, watchEffect } from 'vue';
 import { BoAccordionShape, type AccordionGroup, type BoAccordionProps } from './bo-accordion.js';
 
 const props = withDefaults(defineProps<BoAccordionProps>(), {
@@ -265,7 +265,9 @@ function onAccordionToggle(): void {
 }
 
 function onArrowNavigation(direction: 'up' | 'down'): void {
-	if (!accordionGroup) return;
+	if (!accordionGroup) {
+		return;
+	}
 
 	const accordionElements = document.querySelectorAll(
 		'[role="button"][aria-controls*="accordion-body"]',
@@ -274,7 +276,9 @@ function onArrowNavigation(direction: 'up' | 'down'): void {
 		(element) => element.id === accessibility.value.headerId,
 	);
 
-	if (currentIndex === -1) return;
+	if (currentIndex === -1) {
+		return;
+	}
 
 	let nextIndex: number;
 	if (direction === 'down') {
@@ -286,23 +290,13 @@ function onArrowNavigation(direction: 'up' | 'down'): void {
 	(accordionElements[nextIndex] as HTMLElement)?.focus();
 }
 
-watch(
-	() => props.open,
-	(val) => {
-		isOpen.value = val ?? false;
-	},
-	{ immediate: true },
-);
-
-watch(
-	() => accordionGroup?.openItems,
-	(openItems) => {
-		if (accordionGroup && openItems) {
-			isOpen.value = openItems.has(props.id);
-		}
-	},
-	{ deep: true, immediate: true },
-);
+watchEffect(() => {
+	if (accordionGroup?.openItems) {
+		isOpen.value = accordionGroup.openItems.has(props.id);
+	} else {
+		isOpen.value = props.open ?? false;
+	}
+});
 
 onMounted(() => {
 	if (accordionGroup) {
