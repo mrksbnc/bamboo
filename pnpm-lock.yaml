@@ -31,8 +31,8 @@ importers:
         specifier: ^22.15.19
         version: 22.15.19
       '@vitejs/plugin-vue':
-        specifier: ^5.2.3
-        version: 5.2.3(vite@6.3.5(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.29.2)(sass-embedded@1.86.3)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))
+        specifier: ^5.2.4
+        version: 5.2.4(vite@6.3.5(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.29.2)(sass-embedded@1.86.3)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))
       '@vitest/browser':
         specifier: ^3.1.1
         version: 3.1.1(playwright@1.52.0)(vite@6.3.5(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.29.2)(sass-embedded@1.86.3)(yaml@2.7.1))(vitest@3.1.1)
@@ -1461,8 +1461,8 @@ packages:
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
 
-  '@vitejs/plugin-vue@5.2.3':
-    resolution: {integrity: sha512-IYSLEQj4LgZZuoVpdSUCw3dIynTWQgPlaRP6iAvMle4My0HdYwr5g5wQAfwOeHQBmYwEkqF70nRpSilr6PoUDg==}
+  '@vitejs/plugin-vue@5.2.4':
+    resolution: {integrity: sha512-7Yx/SXSOcQq5HiiV3orevHUFn+pmMB4cgbEkDYgnkUWb0WfeQ/wa2yFv6D5ICiCQOVpjA7vYDXrC7AGO8yjDHA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       vite: ^5.0.0 || ^6.0.0
@@ -5281,12 +5281,12 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vitejs/plugin-vue@5.2.3(vite@5.4.19(@types/node@22.15.19)(lightningcss@1.29.2)(sass-embedded@1.86.3))(vue@3.5.13(typescript@5.8.3))':
+  '@vitejs/plugin-vue@5.2.4(vite@5.4.19(@types/node@22.15.19)(lightningcss@1.29.2)(sass-embedded@1.86.3))(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       vite: 5.4.19(@types/node@22.15.19)(lightningcss@1.29.2)(sass-embedded@1.86.3)
       vue: 3.5.13(typescript@5.8.3)
 
-  '@vitejs/plugin-vue@5.2.3(vite@6.3.5(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.29.2)(sass-embedded@1.86.3)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))':
+  '@vitejs/plugin-vue@5.2.4(vite@6.3.5(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.29.2)(sass-embedded@1.86.3)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       vite: 6.3.5(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.29.2)(sass-embedded@1.86.3)(yaml@2.7.1)
       vue: 3.5.13(typescript@5.8.3)
@@ -7700,7 +7700,7 @@ snapshots:
       '@shikijs/transformers': 2.5.0
       '@shikijs/types': 2.5.0
       '@types/markdown-it': 14.1.2
-      '@vitejs/plugin-vue': 5.2.3(vite@5.4.19(@types/node@22.15.19)(lightningcss@1.29.2)(sass-embedded@1.86.3))(vue@3.5.13(typescript@5.8.3))
+      '@vitejs/plugin-vue': 5.2.4(vite@5.4.19(@types/node@22.15.19)(lightningcss@1.29.2)(sass-embedded@1.86.3))(vue@3.5.13(typescript@5.8.3))
       '@vue/devtools-api': 7.7.5
       '@vue/shared': 3.5.13
       '@vueuse/core': 12.8.2(typescript@5.8.3)
