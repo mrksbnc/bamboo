@@ -305,20 +305,22 @@ function positionPopover(): void {
 				left = triggerRect.left + triggerRect.width / 2 - popoverRect.width / 2;
 		}
 
-		const viewportWidth = window.innerWidth;
-		const viewportHeight = window.innerHeight;
+		if (typeof window !== 'undefined') {
+			const viewportWidth = window.innerWidth;
+			const viewportHeight = window.innerHeight;
 
-		// Constrain to viewport with some padding
-		if (left < 10) {
-			left = 10;
-		} else if (left + popoverRect.width > viewportWidth - 10) {
-			left = viewportWidth - popoverRect.width - 10;
-		}
+			// Constrain to viewport with some padding
+			if (left < 10) {
+				left = 10;
+			} else if (left + popoverRect.width > viewportWidth - 10) {
+				left = viewportWidth - popoverRect.width - 10;
+			}
 
-		if (top < 10) {
-			top = 10;
-		} else if (top + popoverRect.height > viewportHeight - 10) {
-			top = viewportHeight - popoverRect.height - 10;
+			if (top < 10) {
+				top = 10;
+			} else if (top + popoverRect.height > viewportHeight - 10) {
+				top = viewportHeight - popoverRect.height - 10;
+			}
 		}
 
 		if (popoverRef.value) {
@@ -397,8 +399,11 @@ onClickOutside(popoverRef, () => {
 	}
 });
 
-useEventListener(window, 'resize', positionPopover);
-useEventListener(window, 'scroll', positionPopover);
+// Only add window event listeners in the browser
+if (typeof window !== 'undefined') {
+	useEventListener(window, 'resize', positionPopover);
+	useEventListener(window, 'scroll', positionPopover);
+}
 
 onBeforeUnmount(() => {
 	clearTimeout(hoverTimeout.value);

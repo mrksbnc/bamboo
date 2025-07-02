@@ -178,9 +178,11 @@ function onClose(): void {
 	}
 }
 
-useEventListener(document, 'keydown', (e: KeyboardEvent) => {
-	if (props.isOpen && e.key === 'Escape') {
-		onClose();
-	}
-});
+if (typeof document !== 'undefined') {
+	useEventListener(document, 'keydown', (e: KeyboardEvent) => {
+		if (props.isOpen && e.key === 'Escape') {
+			onClose();
+		}
+	});
+}
 </script>
