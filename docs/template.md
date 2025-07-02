@@ -5,7 +5,7 @@ import { SharedEnum } from '@/shared'
 
 # ComponentName
 
-Brief description of the component's purpose and functionality.
+Brief description of component purpose and functionality.
 
 ```js
 import { ComponentName } from '@mrksbnc/bamboo';
@@ -36,6 +36,7 @@ import { ComponentName } from '@mrksbnc/bamboo';
 | `prop2`   | `Type2`          | `value2`  | Description of prop2 |
 | `variant` | `ComponentEnum1` | `default` | Component appearance |
 | `size`    | `SharedEnum`     | `default` | Component size       |
+| .....     | .....            | .....     | .....                |
 
 ## Events
 
@@ -43,6 +44,7 @@ import { ComponentName } from '@mrksbnc/bamboo';
 | -------- | ---------------- | -------------------------- |
 | `click`  | `MouseEvent`     | Emitted when clicked       |
 | `update` | `{ value: any }` | Emitted when value changes |
+| .....    | .....            | .....                      |
 
 ## Slots
 
@@ -51,6 +53,7 @@ import { ComponentName } from '@mrksbnc/bamboo';
 | `default` | Main content   |
 | `header`  | Header content |
 | `footer`  | Footer content |
+| .....     | .....          |
 
 ## Types
 
@@ -71,6 +74,8 @@ export interface ComponentProps {
 
 ## Variants
 
+All variant values must be documented with visual examples:
+
 <div class="flex gap-4 items-center my-4">
 	<component-name :variant="ComponentEnum1.default" />
 	<component-name :variant="ComponentEnum1.primary" />
@@ -84,6 +89,8 @@ export interface ComponentProps {
 ```
 
 ## Sizes
+
+All size values must be documented with visual examples:
 
 <div class="flex items-center gap-4 my-4">
 	<component-name :size="SharedEnum.small" />
@@ -109,7 +116,41 @@ export interface ComponentProps {
 <component-name disabled />
 ```
 
-## Custom Content
+### Loading
+
+<div class="flex gap-4 items-center my-4">
+	<component-name loading />
+</div>
+
+```vue
+<component-name loading />
+```
+
+### Error
+
+<div class="flex gap-4 items-center my-4">
+	<component-name error />
+</div>
+
+```vue
+<component-name error />
+```
+
+### Active/Selected
+
+<div class="flex gap-4 items-center my-4">
+	<component-name active />
+	<component-name selected />
+</div>
+
+```vue
+<component-name active />
+<component-name selected />
+```
+
+## Content Variations
+
+### Custom Content
 
 <div class="flex gap-4 items-center my-4">
 	<component-name>
@@ -123,7 +164,7 @@ export interface ComponentProps {
 </component-name>
 ```
 
-## With Icons
+### With Icons
 
 <div class="flex gap-4 items-center my-4">
 	<component-name prefix-icon="icon-name" />
@@ -156,29 +197,68 @@ const handleUpdate = ({ value }) => {
 </script>
 ```
 
-## Usage Examples
+## Accessibility
 
-### Basic Form Example
+### Features
 
-```vue
-<form @submit.prevent="submitForm">
-	<component-name v-model="formData.value" />
-	<bo-button type="submit">Submit</bo-button>
-</form>
-```
+- Semantic HTML structure with proper roles
+- ARIA attributes for state and properties
+- Keyboard navigation support
+- Screen reader compatibility
+- Focus management
 
-### In a Layout
+### Keyboard Navigation
 
-```vue
-<bo-card>
-	<template #header>
-		<h3>Card Title</h3>
-	</template>
-	
-	<component-name />
-	
-	<template #footer>
-		<bo-button>Action</bo-button>
-	</template>
-</bo-card>
-```
+| Key           | Action                  |
+| ------------- | ----------------------- |
+| Tab/Shift+Tab | Navigate focus          |
+| Enter/Space   | Activate component      |
+| Arrow Keys    | Navigate between items  |
+| Escape        | Close/cancel            |
+| Home/End      | Jump to first/last item |
+
+### ARIA Attributes
+
+| Attribute          | Purpose               | Values             |
+| ------------------ | --------------------- | ------------------ |
+| `role`             | Semantic role         | `button`, `dialog` |
+| `aria-expanded`    | Expansion state       | `true`, `false`    |
+| `aria-label`       | Accessible name       | Custom string      |
+| `aria-describedby` | Description reference | Element ID         |
+| `aria-disabled`    | Disabled state        | `true`, `false`    |
+
+### Accessibility Props
+
+| Name              | Type     | Default        | Description                               |
+| ----------------- | -------- | -------------- | ----------------------------------------- |
+| `ariaLabel`       | `string` | `undefined`    | Custom accessible name for screen readers |
+| `ariaDescribedBy` | `string` | `undefined`    | ID of element describing this component   |
+| `role`            | `string` | automatic      | Override semantic role (use with caution) |
+| `testId`          | `string` | auto-generated | Data attribute for automated testing      |
+
+## Component Documentation Requirements
+
+### Mandatory Sections
+
+1. **All Variants**: Every enum value must have visual example
+2. **All Sizes**: Every size option must be documented
+3. **All States**: Disabled, loading, error, active states required
+4. **Accessibility**: Full ARIA and keyboard documentation
+5. **Event Handling**: All events with examples
+6. **Props Table**: Complete with types and defaults
+7. **Types**: All interfaces and enums defined
+
+### Optional Sections
+
+- Dark mode examples (if supported)
+- Complex usage patterns
+- Integration examples
+- Performance considerations
+
+### Visual Examples Required
+
+Every prop that affects appearance must include:
+
+- Interactive demo
+- Code example
+- Visual comparison where applicable
