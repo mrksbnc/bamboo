@@ -1,15 +1,33 @@
-import { config } from '@vue/test-utils';
-import { afterEach } from 'vitest';
+import { vi } from 'vitest';
 
-// Configure global test utilities
-config.global.stubs = {
-	transition: false,
-	'transition-group': false,
+global.ResizeObserver = class ResizeObserver {
+	observe() {}
+	unobserve() {}
+	disconnect() {}
 };
 
-// Clean up after tests if needed
-afterEach(() => {
-	// Any cleanup needed between tests
-});
+global.IntersectionObserver = class IntersectionObserver {
+	observe() {}
+	unobserve() {}
+	disconnect() {}
+	root: null;
+	rootMargin: '';
+	thresholds: [];
+	takeRecords(): IntersectionObserverEntry[] {
+		return [];
+	}
+};
 
-// Add any other global test configuration here
+Object.defineProperty(window, 'matchMedia', {
+	writable: true,
+	value: vi.fn().mockImplementation((query) => ({
+		matches: false,
+		media: query,
+		onchange: null,
+		addListener: vi.fn(),
+		removeListener: vi.fn(),
+		addEventListener: vi.fn(),
+		removeEventListener: vi.fn(),
+		dispatchEvent: vi.fn(),
+	})),
+});

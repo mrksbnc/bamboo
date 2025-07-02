@@ -6,8 +6,7 @@ title: Bamboo
 
 hero:
   name: Bamboo
-  text: Lightweight UI components for Vue 3
-  tagline: Modern, flexible, and type-safe component library. Bamboo is free and open source.
+  tagline: Modern, flexible, and type-safe component library 3 built with Vue and Tailwind CSS.
   actions:
     - theme: brand
       text: Get Started
@@ -20,7 +19,7 @@ hero:
     alt: Bamboo Logo
 
 features:
-  - title: Vue 3 Powered
+  - title: Vue 3
     details: Built with Composition API, script setup, and TypeScript integration for modern development workflows.
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="30" viewBox="0 0 256 220.8"><path fill="#41B883" d="M204.8 0H256L128 220.8 0 0h97.92L128 51.2 157.44 0h47.36Z"/><path fill="#41B883" d="m0 0 128 220.8L256 0h-51.2L128 132.48 50.56 0H0Z"/><path fill="#35495E" d="M50.56 0 128 133.12 204.8 0h-47.36L128 51.2 97.92 0H50.56Z"/></svg>
   - title: TypeScript First
@@ -32,10 +31,4 @@ features:
   - title: Dark Mode Ready
     details: Automatic dark mode that respects user preferences for a seamless visual experience.
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="30" viewBox="0 0 24 24"><path fill="#fbbf24" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
-  - title: SSR Compatible
-    details: Works with server-side rendering for SEO benefits and faster initial page loads.
-    icon: <svg xmlns="http://www.w3.org/2000/svg" width="30" viewBox="0 0 24 24"><path fill="#00dc82" d="M10.443 0c-.294.048-.5.237-.5.5a.504.504 0 0 0 .7.48L12.195.11a.303.303 0 0 1 .51.278V16.08a.305.305 0 0 1-.51.28l-1.952-.868a.505.505 0 0 0-.71.48.498.498 0 0 0 .5.5h8.506a.499.499 0 0 0 .5-.5.504.504 0 0 0-.7-.48l-1.952.868a.303.303 0 0 1-.51-.278V.388a.305.305 0 0 1 .51-.28l1.952.87a.505.505 0 0 0 .71-.48.5.5 0 0 0-.5-.5H10.443Z"/></svg>
-  - title: Rigorously Tested
-    details: Unit and component tests ensure stability and reliability in production.
-    icon: <svg xmlns="http://www.w3.org/2000/svg" width="30" viewBox="0 0 24 24"><path fill="#6366f1" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7.5 14c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm0-9c.83 0 1.5.67 1.5 1.5S12.33 11 11.5 11 10 10.33 10 9.5s.67-1.5 1.5-1.5zm5 9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zm0-4c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zm0-5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5z"/><path fill="#6366f1" d="M8 9.5c0 .83-.67 1.5-1.5 1.5S5 10.33 5 9.5 5.67 8 6.5 8 8 8.67 8 9.5zm-1.5 5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z"/><path fill="#10b981" d="m9 17 1.5-1.5 1.5 1.5 5-5-1.5-1.5-3.5 3.5L10.5 12 7 15.5z"/></svg>
 ---

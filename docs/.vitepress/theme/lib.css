@@ -1,0 +1,52 @@
+/* Screen reader only class - visually hides content while keeping it accessible to screen readers */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+/* Skip link - hidden until focused */
+.skip-link {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateY(-100%);
+	transition: transform 0.3s;
+	padding: 0.5rem;
+	background-color: #fff;
+	color: #000;
+	z-index: 9999;
+}
+
+.skip-link:focus {
+	transform: translateY(0);
+}
+
+/* Reduces motion for users who have indicated they prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* ARIA live region that's visually hidden */
+#aria-live-announcer {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}

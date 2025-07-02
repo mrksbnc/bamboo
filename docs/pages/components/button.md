@@ -1,11 +1,15 @@
 <script setup>
-import { BoButton, BoButtonVariant, BoButtonShape } from '@/components/bo-button';
-import { BoSize, BoLoaderType } from '@/shared';
+import BoButton from '@/components/button/bo-button.vue';
+import { BoButtonVariant, BoButtonShape } from '@/components/button/bo-button';
+import { BoSize } from '@/shared/bo-size';
+import { BoLoaderType } from '@/shared/bo-loader';
+import { HtmlButtonType } from '@/shared/html-button';
+import { Icon } from '@/components/icon/bo-icon';
 </script>
 
 # Button
 
-Buttons allow users to trigger actions with a single click or tap. They communicate calls to action and allow users to interact with pages.
+A button is a control that allows users to perform an action, such as submitting a form or navigating to a new page.
 
 ```js
 import { BoButton } from '@mrksbnc/bamboo';
@@ -15,7 +19,7 @@ import { BoButton } from '@mrksbnc/bamboo';
 
 ```vue
 <template>
-	<bo-button label="Button" />
+	<bo-button label="Click me" />
 </template>
 
 <script setup>
@@ -25,48 +29,44 @@ import { BoButton } from '@mrksbnc/bamboo';
 
 <hr />
 <div class="flex gap-4 items-center my-4">
-	<bo-button label="Button" />
+	<bo-button label="Click me" />
 </div>
 
 ## Props
 
-| Name         | Type              | Default     | Description                                           |
-| ------------ | ----------------- | ----------- | ----------------------------------------------------- |
-| `label`      | `string`          | `undefined` | Text displayed inside the button                      |
-| `variant`    | `BoButtonVariant` | `primary`   | Controls the button's color scheme                    |
-| `shape`      | `BoButtonShape`   | `default`   | Controls the button's appearance style                |
-| `loaderType` | `BoLoaderType`    | `spinner`   | Type of loader to show during loading state           |
-| `isLoading`  | `boolean`         | `false`     | Shows a loading indicator when true                   |
-| `size`       | `BoSize`          | `default`   | Controls the button's size                            |
-| `useSlot`    | `boolean`         | `false`     | Use slot content instead of label                     |
-| `prefixIcon` | `Icon`            | `undefined` | Icon to display before the label                      |
-| `suffixIcon` | `Icon`            | `undefined` | Icon to display after the label                       |
-| `autofocus`  | `boolean`         | `false`     | Sets autofocus attribute                              |
-| `disabled`   | `boolean`         | `false`     | Disables the button                                   |
-| `type`       | `HtmlButtonType`  | `button`    | HTML button type attribute                            |
-| `fullWidth`  | `boolean`         | `false`     | Makes the button take the full width of its container |
-| `pressed`    | `boolean`         | `false`     | For toggle buttons, indicates pressed state           |
-| `ariaLabel`  | `string`          | `undefined` | Accessible name for the button                        |
-| `id`         | `string`          | `undefined` | Unique ID for the button                              |
+| Name         | Type              | Default     | Description                               |
+| ------------ | ----------------- | ----------- | ----------------------------------------- |
+| `id`         | `string`          | `auto`      | Unique ID for the button                  |
+| `label`      | `string`          | `undefined` | Text content of the button                |
+| `variant`    | `BoButtonVariant` | `primary`   | Button appearance style                   |
+| `shape`      | `BoButtonShape`   | `default`   | Shape of the button                       |
+| `size`       | `BoSize`          | `default`   | Button size                               |
+| `prefixIcon` | `Icon`            | `undefined` | Icon to display before the label          |
+| `suffixIcon` | `Icon`            | `undefined` | Icon to display after the label           |
+| `disabled`   | `boolean`         | `false`     | Whether the button is disabled            |
+| `isLoading`  | `boolean`         | `false`     | Whether the button is in a loading state  |
+| `loaderType` | `BoLoaderType`    | `spinner`   | Type of loader to show when loading       |
+| `autofocus`  | `boolean`         | `false`     | Whether the button should be autofocused  |
+| `type`       | `HtmlButtonType`  | `button`    | HTML button type                          |
+| `fullWidth`  | `boolean`         | `false`     | Whether the button should take full width |
+| `ariaLabel`  | `string`          | `Button`    | Accessible name for the button            |
 
 ## Events
 
-| Name    | Payload      | Description                    |
-| ------- | ------------ | ------------------------------ |
-| `click` | `MouseEvent` | Emitted when button is clicked |
+| Name    | Payload      | Description          |
+| ------- | ------------ | -------------------- |
+| `click` | `MouseEvent` | Emitted when clicked |
 
 ## Slots
 
-| Name      | Description              |
-| --------- | ------------------------ |
-| `default` | Button content           |
-| `prefix`  | Content before the label |
-| `suffix`  | Content after the label  |
+| Name      | Description  |
+| --------- | ------------ |
+| `default` | Main content |
 
 ## Types
 
 ```ts
-export enum BoButtonVariant {
+enum BoButtonVariant {
 	primary = 'primary',
 	secondary = 'secondary',
 	danger = 'danger',
@@ -76,31 +76,80 @@ export enum BoButtonVariant {
 	dark = 'dark',
 }
 
-export enum BoButtonShape {
+enum BoButtonShape {
 	default = 'default',
 	pill = 'pill',
 	outline = 'outline',
 	link = 'link',
 }
 
-export type BoButtonProps = {
-	label?: string;
-	variant?: BoButtonVariant;
-	shape?: BoButtonShape;
-	loaderType?: BoLoaderType;
-	isLoading?: boolean;
-	size?: BoSize;
-	useSlot?: boolean;
-	prefixIcon?: Icon;
-	suffixIcon?: Icon;
-	autofocus?: boolean;
-	disabled?: boolean;
-	type?: HtmlButtonType;
-	fullWidth?: boolean;
-	pressed?: boolean;
-	ariaLabel?: string;
+interface BoButtonProps {
+	/**
+	 * Unique ID for the button, used for accessibility and testing
+	 */
 	id?: string;
-};
+	/**
+	 * Text content of the button
+	 */
+	label?: string;
+	/**
+	 * Button appearance style
+	 * @default BoButtonVariant.primary
+	 */
+	variant?: BoButtonVariant;
+	/**
+	 * Shape of the button
+	 * @default BoButtonShape.default
+	 */
+	shape?: BoButtonShape;
+	/**
+	 * Button size
+	 * @default BoSize.default
+	 */
+	size?: BoSize;
+	/**
+	 * The prefix icon to display before the label
+	 */
+	prefixIcon?: Icon;
+	/**
+	 * The suffix icon to display after the label
+	 */
+	suffixIcon?: Icon;
+	/**
+	 * Whether the button should be autofocused
+	 * @default false
+	 */
+	autofocus?: boolean;
+	/**
+	 * Whether the button is disabled
+	 * @default false
+	 */
+	disabled?: boolean;
+	/**
+	 * Whether the button is in a loading state
+	 */
+	isLoading?: boolean;
+	/**
+	 * Type of loader to show when loading
+	 * @default BoLoaderType.spinner
+	 */
+	loaderType?: BoLoaderType;
+	/**
+	 * HTML button type
+	 * @default 'button'
+	 */
+	type?: HtmlButtonType;
+	/**
+	 * Whether the button should take full width
+	 * @default false
+	 */
+	fullWidth?: boolean;
+	/**
+	 * Custom accessible name for the button, especially important for icon-only buttons
+	 * @see https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html
+	 */
+	ariaLabel?: string;
+}
 ```
 
 ## Variants
@@ -143,59 +192,94 @@ export type BoButtonProps = {
 
 ## Sizes
 
+Each size is shown with both a labeled button and an icon-only button to demonstrate the consistent height across different button types.
+
+<div class="flex items-center gap-4 my-4">
+	<bo-button :size="BoSize.extra_small" label="Extra Small" />
+	<bo-button :size="BoSize.extra_small" :prefix-icon="Icon.star" aria-label="Extra Small Icon Button" />
+</div>
+
 <div class="flex items-center gap-4 my-4">
 	<bo-button :size="BoSize.small" label="Small" />
+	<bo-button :size="BoSize.small" :prefix-icon="Icon.star" aria-label="Small Icon Button" />
+</div>
+
+<div class="flex items-center gap-4 my-4">
 	<bo-button :size="BoSize.default" label="Default" />
+	<bo-button :size="BoSize.default" :prefix-icon="Icon.star" aria-label="Default Icon Button" />
+</div>
+
+<div class="flex items-center gap-4 my-4">
 	<bo-button :size="BoSize.large" label="Large" />
+	<bo-button :size="BoSize.large" :prefix-icon="Icon.star" aria-label="Large Icon Button" />
+</div>
+
+<div class="flex items-center gap-4 my-4">
+	<bo-button :size="BoSize.extra_large" label="Extra Large" />
+	<bo-button :size="BoSize.extra_large" :prefix-icon="Icon.star" aria-label="Extra Large Icon Button" />
 </div>
 
 ```vue
+<!-- Extra Small -->
+<bo-button :size="BoSize.extra_small" label="Extra Small" />
+<bo-button
+	:size="BoSize.extra_small"
+	:prefix-icon="Icon.star"
+	aria-label="Extra Small Icon Button"
+/>
+
+<!-- Small -->
 <bo-button :size="BoSize.small" label="Small" />
+<bo-button :size="BoSize.small" :prefix-icon="Icon.star" aria-label="Small Icon Button" />
+
+<!-- Default -->
 <bo-button :size="BoSize.default" label="Default" />
+<bo-button :size="BoSize.default" :prefix-icon="Icon.star" aria-label="Default Icon Button" />
+
+<!-- Large -->
 <bo-button :size="BoSize.large" label="Large" />
+<bo-button :size="BoSize.large" :prefix-icon="Icon.star" aria-label="Large Icon Button" />
+
+<!-- Extra Large -->
+<bo-button :size="BoSize.extra_large" label="Extra Large" />
+<bo-button
+	:size="BoSize.extra_large"
+	:prefix-icon="Icon.star"
+	aria-label="Extra Large Icon Button"
+/>
 ```
 
 ## States
 
-### Loading
-
-<div class="flex gap-4 items-center my-4">
-	<bo-button isLoading label="Loading" />
-	<bo-button isLoading :loaderType="BoLoaderType.pulse" label="Loading with Pulse" />
-</div>
-
-```vue
-<bo-button isLoading label="Loading" />
-<bo-button isLoading :loaderType="BoLoaderType.pulse" label="Loading with Pulse" />
-```
-
 ### Disabled
 
 <div class="flex gap-4 items-center my-4">
-	<bo-button disabled label="Disabled" />
+	<bo-button disabled label="Disabled Button" />
+	<bo-button disabled :prefix-icon="Icon.star" aria-label="Disabled Icon Button" />
 </div>
 
 ```vue
-<bo-button disabled label="Disabled" />
+<bo-button disabled label="Disabled Button" />
+<bo-button disabled :prefix-icon="Icon.star" aria-label="Disabled Icon Button" />
 ```
 
-## With Icons
+### Loading
 
 <div class="flex gap-4 items-center my-4">
-	<bo-button prefix-icon="check" label="With Prefix Icon" />
-	<bo-button suffix-icon="arrow-right" label="With Suffix Icon" />
-	<bo-button prefix-icon="heart" suffix-icon="star" label="Both Icons" />
+	<bo-button :is-loading="true" label="Loading Button" />
+	<bo-button :is-loading="true" label="Loading Button" :loader-type="BoLoaderType.pulse" />
+	<bo-button :is-loading="true" :prefix-icon="Icon.star" aria-label="Loading Icon Button" />
 </div>
 
 ```vue
-<bo-button prefix-icon="check" label="With Prefix Icon" />
-<bo-button suffix-icon="arrow-right" label="With Suffix Icon" />
-<bo-button prefix-icon="heart" suffix-icon="star" label="Both Icons" />
+<bo-button :is-loading="true" label="Loading Button" />
+<bo-button :is-loading="true" label="Loading Button" :loader-type="BoLoaderType.pulse" />
+<bo-button :is-loading="true" :prefix-icon="Icon.star" aria-label="Loading Icon Button" />
 ```
 
 ## Full Width
 
-<div class="w-full my-4">
+<div class="my-4">
 	<bo-button full-width label="Full Width Button" />
 </div>
 
@@ -203,22 +287,105 @@ export type BoButtonProps = {
 <bo-button full-width label="Full Width Button" />
 ```
 
+## With Icons
+
+<div class="flex gap-4 items-center my-4">
+	<bo-button :prefix-icon="Icon.chevron_left" label="Previous" />
+	<bo-button :suffix-icon="Icon.chevron_right" label="Next" />
+	<bo-button :prefix-icon="Icon.check" :suffix-icon="Icon.chevron_down" label="Complete" />
+</div>
+
+```vue
+<bo-button :prefix-icon="Icon.chevron_left" label="Previous" />
+<bo-button :suffix-icon="Icon.chevron_right" label="Next" />
+<bo-button :prefix-icon="Icon.check" :suffix-icon="Icon.chevron_down" label="Complete" />
+```
+
+## Icon-Only Buttons
+
+Icon-only buttons are created by providing an icon without a label. Always include an `aria-label` for accessibility.
+
+<div class="flex gap-4 items-center my-4">
+	<bo-button :prefix-icon="Icon.check" aria-label="Confirm" />
+	<bo-button :prefix-icon="Icon.x" aria-label="Cancel" :variant="BoButtonVariant.danger" />
+	<bo-button :prefix-icon="Icon.settings" aria-label="Settings" :shape="BoButtonShape.outline" />
+	<bo-button :prefix-icon="Icon.heart" aria-label="Like" :shape="BoButtonShape.pill" />
+</div>
+
+```vue
+<bo-button :prefix-icon="Icon.check" aria-label="Confirm" />
+<bo-button :prefix-icon="Icon.x" aria-label="Cancel" :variant="BoButtonVariant.danger" />
+<bo-button :prefix-icon="Icon.settings" aria-label="Settings" :shape="BoButtonShape.outline" />
+<bo-button :prefix-icon="Icon.heart" aria-label="Like" :shape="BoButtonShape.pill" />
+```
+
 ## Custom Content
 
 <div class="flex gap-4 items-center my-4">
-	<bo-button use-slot>
-		<span class="flex items-center gap-2">
-			Custom <b>Content</b> 🎉
-		</span>
+	<bo-button>
+		<div class="flex items-center gap-2">
+			<span>🚀</span>
+			<span>Launch</span>
+		</div>
 	</bo-button>
 </div>
 
 ```vue
-<bo-button use-slot>
-	<span class="flex items-center gap-2">
-		Custom <b>Content</b> 🎉
-	</span>
+<bo-button>
+	<div class="flex items-center gap-2">
+		<span>🚀</span>
+		<span>Launch</span>
+	</div>
 </bo-button>
+```
+
+## Dark Mode
+
+The button component automatically adapts to dark mode, with enhanced contrast and proper color adjustments.
+
+<div class="flex flex-col gap-6 my-4 dark p-6 bg-gray-900 rounded-lg">
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">Variants</div>
+		<div class="flex gap-3">
+			<bo-button :variant="BoButtonVariant.primary" label="Primary" />
+			<bo-button :variant="BoButtonVariant.secondary" label="Secondary" />
+			<bo-button :variant="BoButtonVariant.danger" label="Danger" />
+			<bo-button :variant="BoButtonVariant.light" label="Light" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">Shapes</div>
+		<div class="flex gap-3">
+			<bo-button :shape="BoButtonShape.default" label="Default" />
+			<bo-button :shape="BoButtonShape.outline" label="Outline" />
+			<bo-button :shape="BoButtonShape.pill" label="Pill" />
+			<bo-button :shape="BoButtonShape.link" label="Link" />
+		</div>
+	</div>
+	<div class="flex items-center gap-4">
+		<div class="w-20 text-sm text-gray-400">States</div>
+		<div class="flex gap-3">
+			<bo-button label="Normal" />
+			<bo-button disabled label="Disabled" />
+			<bo-button :is-loading="true" label="Loading" />
+		</div>
+	</div>
+</div>
+
+```vue
+<div class="dark">
+	<!-- Variants in dark mode -->
+	<bo-button :variant="BoButtonVariant.primary" label="Primary" />
+	<bo-button :variant="BoButtonVariant.secondary" label="Secondary" />
+	<bo-button :variant="BoButtonVariant.danger" label="Danger" />
+	<bo-button :variant="BoButtonVariant.light" label="Light" />
+	
+	<!-- Shapes in dark mode -->
+	<bo-button :shape="BoButtonShape.default" label="Default" />
+	<bo-button :shape="BoButtonShape.outline" label="Outline" />
+	<bo-button :shape="BoButtonShape.pill" label="Pill" />
+	<bo-button :shape="BoButtonShape.link" label="Link" />
+</div>
 ```
 
 ## Event Handling
@@ -226,7 +393,7 @@ export type BoButtonProps = {
 ```vue
 <template>
 	<bo-button
-		label="Click Me"
+		label="Click me"
 		@click="handleClick"
 	/>
 </template>

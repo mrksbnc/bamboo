@@ -1,72 +1,156 @@
 # Bamboo
 
-[![npm version](https://badge.fury.io/js/@mrksbnc%2Fbamboo.svg)](https://badge.fury.io/js/@mrksbnc%2Fbamboo)
-[![Tests](https://github.com/mrksbnc/bamboo/actions/workflows/test.yml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/test.yml)
-[![CodeQL](https://github.com/mrksbnc/bamboo/actions/workflows/codeql.yml/badge.svg)](https://github.com/mrksbnc/bamboo/actions/workflows/codeql.yml)
-
-A lightweight UI component library for Vue 3 with TypeScript support and Tailwind CSS styling.
-
-## Quick Start
-
-```bash
-npm install @mrksbnc/bamboo
-```
-
-```js
-// Import styles
-import '@mrksbnc/bamboo/lib.css';
-
-// Use components
-import { BoButton } from '@mrksbnc/bamboo';
-```
-
-## Features
-
-- **Vue 3** - Built with Composition API
-- **TypeScript** - Full type definitions
-- **Tailwind CSS** - Responsive styling
-- **Dark Mode** - Automatic theme switching
-- **Lightweight** - Optimized bundles
+A modern, flexible, and type-safe Vue 3 component library built with Composition API and Tailwind CSS.
 
 ## Documentation
 
-Visit our [documentation site](https://mrksbnc.github.io/bamboo/) for detailed usage examples and API references.
+[Documentation - Bamboo](https://mrksbnc.github.io/bamboo)
+
+## Quick Start
+
+### Installation
+
+Install Bamboo using your preferred package manager:
+
+```bash
+# npm
+npm install @mrksbnc/bamboo
+
+# yarn
+yarn add @mrksbnc/bamboo
+
+# pnpm
+pnpm add @mrksbnc/bamboo
+```
+
+### Basic Usage
+
+```vue
+<template>
+	<div>
+		<bo-button
+			label="Primary Button"
+			@click="handleClick"
+		/>
+	</div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import { BoButton } from '@mrksbnc/bamboo';
+
+import '@mrksbnc/bamboo/lib.css';
+
+const handleClick = () => {
+	console.log('Button clicked!');
+};
+</script>
+```
 
 ## Development
 
-### Requirements
+### Prerequisites
 
-- Node.js 16+
-- npm, yarn, or pnpm
+- Node.js 16.x or higher
+- pnpm (recommended), npm, or yarn
 
 ### Setup
 
 ```bash
-# Clone repository
+# Clone the repository
 git clone https://github.com/mrksbnc/bamboo.git
 cd bamboo
 
 # Install dependencies
-npm install
+pnpm install
 
-# Start documentation server
-npm run docs:dev
+# Start development server for docs
+pnpm docs:dev
 ```
 
-### Commands
+### Available Scripts
 
-| Command              | Description                  |
-| -------------------- | ---------------------------- |
-| `npm run build`      | Build library for production |
-| `npm run docs:dev`   | Start documentation server   |
-| `npm run docs:build` | Build documentation          |
-| `npm run test`       | Run test suite               |
-| `npm run lint`       | Run code linter              |
+| Script              | Description                            |
+| ------------------- | -------------------------------------- |
+| `pnpm test`         | Run test suite with coverage           |
+| `pnpm type-check`   | Run TypeScript type checking           |
+| `pnpm lint`         | Lint and fix code issues               |
+| `pnpm format`       | Format code with Prettier              |
+| `pnpm build`        | Build library for production           |
+| `pnpm docs:dev`     | Start documentation development server |
+| `pnpm docs:build`   | Build documentation for production     |
+| `pnpm docs:preview` | Preview built documentation            |
+
+### Testing
+
+Bamboo uses Vitest for testing with comprehensive coverage:
+
+```bash
+# Run tests
+pnpm test
+
+# Run tests in watch mode
+pnpm test --watch
+
+# Generate coverage report
+pnpm test --coverage
+```
+
+### Building
+
+Build the library and documentation:
+
+```bash
+# Build library
+pnpm build
+
+# Build documentation
+pnpm docs:build
+```
+
+## Browser Support
+
+Bamboo supports modern browsers that support ES2015+:
+
+- Chrome ≥ 87
+- Firefox ≥ 78
+- Safari ≥ 14
+- Edge ≥ 88
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please read our contribution guidelines before getting started.
+
+### Development Process
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/new-component`
+3. Make your changes with tests
+4. Run tests: `pnpm test`
+5. Lint your code: `pnpm lint`
+6. Submit a pull request
+
+### Component Guidelines
+
+When creating new components:
+
+- Follow the existing naming convention (Bo prefix)
+- Include comprehensive TypeScript types
+- Add unit tests with good coverage
+- Update documentation
+- Follow accessibility best practices
+- Include dark mode support
 
 ## License
 
-[MIT](LICENSE)
+Bamboo is MIT licensed.
+
+## Support
+
+- [Documentation](https://mrksbnc.github.io/bamboo)
+- [Report Issues](https://github.com/mrksbnc/bamboo/issues)
+- [Discussions](https://github.com/mrksbnc/bamboo/discussions)
+
+---
+
+Built by [Bence Márkus](https://github.com/mrksbnc)

@@ -1,422 +1,406 @@
 <script setup>
-import { BoDropdown, BoDropdownPlacement, BoDropdownTriggerType } from '@/components/bo-dropdown';
-import { BoButtonVariant } from '@/components/bo-button';
-import { BoIcon, Icon } from '@/components/bo-icon';
+import BoDropdown from '@/components/dropdown/bo-dropdown.vue';
+import { Icon } from '@/components/icon/bo-icon';
+import { BoSize } from '@/shared/bo-size';
+import { ref } from 'vue';
+
+const items = [
+	{
+		id: 'item1',
+		label: 'Profile',
+		description: 'View and edit your profile',
+		icon: Icon.user,
+	},
+	{
+		id: 'item2',
+		label: 'Settings',
+		description: 'Manage your preferences',
+		icon: Icon.settings,
+	},
+	{
+		id: 'item3',
+		label: 'Logout',
+		description: 'Sign out of your account',
+		icon: Icon.log_out,
+	},
+];
+
+const itemsWithDisabled = [
+	{
+		id: 'item1',
+		label: 'Profile',
+		description: 'View and edit your profile',
+		icon: Icon.user,
+	},
+	{
+		id: 'item2',
+		label: 'Settings',
+		description: 'Manage your preferences',
+		icon: Icon.settings,
+		disabled: true,
+	},
+	{
+		id: 'item3',
+		label: 'Logout',
+		description: 'Sign out of your account',
+		icon: Icon.log_out,
+	},
+];
+
+const selectedItem = ref('');
+const dropdownOpen = ref(false);
+
+const handleItemSelect = (id) => {
+	selectedItem.value = id;
+	console.log('Selected item:', id);
+};
+
+const handleOpenChange = (isOpen) => {
+	dropdownOpen.value = isOpen;
+	console.log('Dropdown open state:', isOpen);
+};
 </script>
 
 # Dropdown
 
-Dropdowns display a list of options that can be selected from a toggle button. They're used to show selectable options or menus in a space-efficient way.
+Dropdown is a component that allows users to select an option from a predefined list. It provides keyboard navigation, accessibility features, and customizable styling.
 
 ```js
-import { BoDropdown, BoDropdownPlacement, BoDropdownTriggerType } from '@mrksbnc/bamboo';
+import { BoDropdown } from '@mrksbnc/bamboo';
 ```
 
 ## Basic Usage
 
+<bo-dropdown default-trigger-text="Select Option" :items="items"/>
+
 ```vue
 <template>
 	<bo-dropdown
-		:options="options"
-		:default-option="options[0]"
-		@select="handleSelect"
+		default-trigger-text="Select Option"
+		:items="items"
 	/>
 </template>
 
-<script setup>
-import { BoDropdown } from '@mrksbnc/bamboo';
-import { BoIcon, Icon } from '@mrksbnc/bamboo';
-import { ref } from 'vue';
+<script setup lang="ts">
+import { Icon } from '@/components/icon/bo-icon';
 
-const options = [
-	{ label: 'Option 1', icon: Icon.check },
-	{ label: 'Option 2', icon: Icon.user },
-	{ label: 'Option 3', icon: Icon.settings },
+const items = [
+	{
+		id: 'item1',
+		label: 'Profile',
+		description: 'View and edit your profile',
+		icon: Icon.user,
+	},
+	{
+		id: 'item2',
+		label: 'Settings',
+		description: 'Manage your preferences',
+		icon: Icon.settings,
+	},
+	{
+		id: 'item3',
+		label: 'Logout',
+		description: 'Sign out of your account',
+		icon: Icon.log_out,
+	},
 ];
-
-const handleSelect = (option) => {
-	console.log('Selected option:', option);
-};
 </script>
 ```
 
-<hr />
-<div class="flex gap-4 items-center my-4">
-	<bo-dropdown 
-		:options="[
-			{ label: 'Edit', icon: Icon.edit },
-			{ label: 'Delete', icon: Icon.trash },
-			{ label: 'Share', icon: Icon.share }
-		]" 
-		:default-option="{ label: 'Actions', icon: Icon.more_vertical }"
-	/>
-</div>
-
 ## Props
 
-| Name                  | Type                    | Default                           | Description                                              |
-| --------------------- | ----------------------- | --------------------------------- | -------------------------------------------------------- |
-| `id`                  | `string`                | Auto-generated                    | Unique identifier for the dropdown                       |
-| `options`             | `BaseDropdownOption[]`  | `[]`                              | Array of options to display in the dropdown              |
-| `component`           | `Component`             | `BoDefaultDropdownItem`           | Component used to render each dropdown item              |
-| `defaultOption`       | `BaseDropdownOption`    | `{ icon: Icon.none, label: '' }`  | The default item shown in the toggle                     |
-| `placement`           | `BoDropdownPlacement`   | `BoDropdownPlacement.bottomStart` | Placement of the dropdown relative to the toggle element |
-| `toggleVariant`       | `BoButtonVariant`       | `primary`                         | The variant of the toggle button                         |
-| `toggleIcon`          | `Icon`                  | `undefined`                       | Icon to display for the toggle button                    |
-| `header`              | `string`                | `undefined`                       | Optional header text for the dropdown                    |
-| `subheader`           | `string`                | `undefined`                       | Optional subheader text for the dropdown                 |
-| `defaultLabel`        | `string`                | `'Select option'`                 | Default label text when no option is selected            |
-| `width`               | `string`                | `''`                              | Set a fixed width for the dropdown menu (e.g., '200px')  |
-| `closeOnSelect`       | `boolean`               | `true`                            | Close the dropdown when an option is selected            |
-| `closeOnClickOutside` | `boolean`               | `true`                            | Close the dropdown when clicked outside                  |
-| `keyboardNav`         | `boolean`               | `true`                            | Allow keyboard navigation                                |
-| `search`              | `boolean`               | `false`                           | Enable search functionality                              |
-| `triggerType`         | `BoDropdownTriggerType` | `BoDropdownTriggerType.click`     | Trigger type: click or hover                             |
-| `delay`               | `number`                | `300`                             | Delay for hover trigger (ms)                             |
-| `maxHeight`           | `boolean`               | `false`                           | Max height with scrolling                                |
-| `toggleClasses`       | `string`                | `''`                              | CSS classes for the toggle button                        |
-
-## Types
-
-```ts
-export enum BoDropdownPlacement {
-	bottom = 'bottom',
-	bottomStart = 'bottom-start',
-	bottomEnd = 'bottom-end',
-	top = 'top',
-	topStart = 'top-start',
-	topEnd = 'top-end',
-	left = 'left',
-	leftStart = 'left-start',
-	leftEnd = 'left-end',
-	right = 'right',
-	rightStart = 'right-start',
-	rightEnd = 'right-end',
-}
-
-export enum BoDropdownTriggerType {
-	click = 'click',
-	hover = 'hover',
-}
-
-export interface BaseDropdownOption {
-	id?: string | number;
-	label: string;
-	icon?: Icon;
-	disabled?: boolean;
-	description?: string;
-	divider?: boolean;
-	[key: string]: any;
-}
-
-export interface BoDropdownProps {
-	id?: string;
-	options?: BaseDropdownOption[];
-	component?: Component;
-	defaultOption?: BaseDropdownOption;
-	placement?: BoDropdownPlacement;
-	toggleVariant?: BoButtonVariant;
-	toggleIcon?: Icon;
-	header?: string;
-	subheader?: string;
-	defaultLabel?: string;
-	width?: string;
-	closeOnSelect?: boolean;
-	closeOnClickOutside?: boolean;
-	keyboardNav?: boolean;
-	search?: boolean;
-	triggerType?: BoDropdownTriggerType;
-	delay?: number;
-	maxHeight?: boolean;
-	toggleClasses?: string;
-}
-```
+| Name                  | Type                        | Default           | Description                               |
+| --------------------- | --------------------------- | ----------------- | ----------------------------------------- |
+| `id`                  | `string`                    | `auto`            | Unique ID for the dropdown                |
+| `defaultTriggerText`  | `string`                    | `'Select'`        | Default text shown in the trigger button  |
+| `disabled`            | `boolean`                   | `false`           | Whether the dropdown is disabled          |
+| `size`                | `BoSize`                    | `default`         | Size of the dropdown                      |
+| `triggerIcon`         | `Icon`                      | `undefined`       | Custom icon for the trigger button        |
+| `open`                | `boolean`                   | `false`           | Controls the dropdown's open state        |
+| `items`               | `T = BoDropdownItemProps[]` | `[]`              | Array of items to display in the dropdown |
+| `closeOnClickOutside` | `boolean`                   | `true`            | Close dropdown when clicking outside      |
+| `closeOnSelect`       | `boolean`                   | `true`            | Close dropdown when selecting an item     |
+| `ariaLabel`           | `string`                    | `'Dropdown menu'` | ARIA label for accessibility              |
 
 ## Events
 
-| Name     | Payload              | Description                                        |
-| -------- | -------------------- | -------------------------------------------------- |
-| `select` | `BaseDropdownOption` | Emitted when an option is selected                 |
-| `open`   | `void`               | Emitted when the dropdown opens                    |
-| `close`  | `void`               | Emitted when the dropdown closes                   |
-| `search` | `string`             | Emitted when the search query changes (if enabled) |
+| Name          | Payload   | Description                            |
+| ------------- | --------- | -------------------------------------- |
+| `update:open` | `boolean` | Emitted when the dropdown opens/closes |
+| `item-select` | `string`  | Emitted when an item is selected       |
 
 ## Slots
 
-| Name     | Description                                                     |
-| -------- | --------------------------------------------------------------- |
-| `toggle` | Custom content for the toggle button. Overrides default button. |
-| `items`  | Custom content for dropdown items. Overrides default list.      |
-| `footer` | Custom content for the dropdown footer area.                    |
+| Name      | Description                             | Props                            |
+| --------- | --------------------------------------- | -------------------------------- |
+| `trigger` | Custom trigger element for the dropdown | `{ onDropdownToggle: Function }` |
+| `default` | Custom content for the dropdown menu    | -                                |
 
-## Exposes
+### Types
 
-| Name           | Type                      | Description                                       |
-| -------------- | ------------------------- | ------------------------------------------------- |
-| `isOpen`       | `Ref<boolean>`            | Reactive ref indicating if the dropdown is open.  |
-| `activeOption` | `Ref<BaseDropdownOption>` | Reactive ref of the currently active option.      |
-| `open`         | `() => void`              | Function to programmatically open the dropdown.   |
-| `close`        | `() => void`              | Function to programmatically close the dropdown.  |
-| `toggle`       | `() => void`              | Function to programmatically toggle the dropdown. |
-| `search`       | `Ref<string>`             | Reactive ref of the current search query.         |
+```ts
+interface BoDropdownItemProps {
+	/** Unique ID for the dropdown item */
+	id?: string;
+	/** Text label for the dropdown item */
+	label?: string;
+	/** Description for the dropdown item */
+	description?: string;
+	/** Icon for the dropdown item */
+	icon?: Icon;
+	/** Whether the dropdown item is disabled */
+	disabled?: boolean;
+}
 
-## Toggle Button Variants
+interface BoDropdownTriggerProps {
+	/** Unique ID for the dropdown trigger */
+	id?: string;
+	/** Whether the dropdown trigger is disabled */
+	disabled?: boolean;
+	/** Size of the dropdown trigger */
+	size?: BoSize;
+	/** Text label for the dropdown trigger */
+	label?: string;
+	/** Custom icon for the dropdown trigger */
+	prefixIcon?: Icon;
+	/** Custom icon for the dropdown trigger */
+	suffixIcon?: Icon;
+	/** Custom icon for the dropdown trigger */
+	triggerIcon?: Icon;
+	/** Whether the dropdown is currently open */
+	isOpen?: boolean;
+}
 
-<div class="flex gap-4 items-center my-4">
-	<bo-dropdown 
-		:options="[
-			{ label: 'Option 1' },
-			{ label: 'Option 2' },
-			{ label: 'Option 3' }
-		]" 
-		:toggle-variant="BoButtonVariant.primary"
-		:default-option="{ label: 'Primary' }"
-	/>
-	
-	<bo-dropdown 
-		:options="[
-			{ label: 'Option 1' },
-			{ label: 'Option 2' },
-			{ label: 'Option 3' }
-		]" 
-		:toggle-variant="BoButtonVariant.secondary"
-		:default-option="{ label: 'Secondary' }"
-	/>
-	
-	<bo-dropdown 
-		:options="[
-			{ label: 'Option 1' },
-			{ label: 'Option 2' },
-			{ label: 'Option 3' }
-		]" 
-		:toggle-variant="BoButtonVariant.danger"
-		:default-option="{ label: 'Danger' }"
-	/>
-</div>
-
-```vue
-<bo-dropdown
-	:options="options"
-	:toggle-variant="BoButtonVariant.primary"
-	:default-option="{ label: 'Primary' }"
-/>
-
-<bo-dropdown
-	:options="options"
-	:toggle-variant="BoButtonVariant.secondary"
-	:default-option="{ label: 'Secondary' }"
-/>
-
-<bo-dropdown
-	:options="options"
-	:toggle-variant="BoButtonVariant.danger"
-	:default-option="{ label: 'Danger' }"
-/>
+interface BoDropdownProps<T = BoDropdownItemProps> {
+	/** Unique ID for the dropdown */
+	id?: string;
+	/** Text to display in the trigger button */
+	defaultTriggerText?: string;
+	/** Whether the dropdown is disabled */
+	disabled?: boolean;
+	/** Size of the dropdown menu */
+	size?: BoSize;
+	/** Custom icon for the dropdown trigger */
+	triggerIcon?: Icon;
+	/** Whether the dropdown menu is open */
+	open?: boolean;
+	/** Items to display in the dropdown menu */
+	items?: T[];
+	/** Whether the dropdown menu should close when clicking outside */
+	closeOnClickOutside?: boolean;
+	/** Whether the dropdown menu should close when selecting an item */
+	closeOnSelect?: boolean;
+	/** ARIA label for accessibility */
+	ariaLabel?: string;
+}
 ```
 
-## Different Placements
+## Sizes
 
-<div class="grid grid-cols-2 gap-4 my-4">
-	<div>
-		<p class="mb-2">Bottom Start (Default)</p>
-		<bo-dropdown 
-			:options="[
-				{ label: 'Option 1' },
-				{ label: 'Option 2' },
-				{ label: 'Option 3' }
-			]" 
-			:default-option="{ label: 'Dropdown' }"
-			:placement="BoDropdownPlacement.bottomStart"
-		/>
-	</div>
-	
-	<div>
-		<p class="mb-2">Bottom End</p>
-		<bo-dropdown 
-			:options="[
-				{ label: 'Option 1' },
-				{ label: 'Option 2' },
-				{ label: 'Option 3' }
-			]" 
-			:default-option="{ label: 'Dropdown' }"
-			:placement="BoDropdownPlacement.bottomEnd"
-		/>
-	</div>
-	
-	<div>
-		<p class="mb-2">Bottom Center</p>
-		<bo-dropdown 
-			:options="[
-				{ label: 'Option 1' },
-				{ label: 'Option 2' },
-				{ label: 'Option 3' }
-			]" 
-			:default-option="{ label: 'Dropdown' }"
-			:placement="BoDropdownPlacement.bottom"
-		/>
-	</div>
+The dropdown component supports five different sizes:
+
+<div class="flex gap-4 flex-wrap items-center">
+	<bo-dropdown default-trigger-text="Extra Small" :items="items" :size="BoSize.extra_small" />
+	<bo-dropdown default-trigger-text="Small" :items="items" :size="BoSize.small" />
+	<bo-dropdown default-trigger-text="Default" :items="items" :size="BoSize.default" />
+	<bo-dropdown default-trigger-text="Large" :items="items" :size="BoSize.large" />
+	<bo-dropdown default-trigger-text="Extra Large" :items="items" :size="BoSize.extra_large" />
 </div>
 
 ```vue
-<bo-dropdown
-	:options="options"
-	:default-option="{ label: 'Dropdown' }"
-	:placement="BoDropdownPlacement.bottomStart"
-/>
-
-<bo-dropdown
-	:options="options"
-	:default-option="{ label: 'Dropdown' }"
-	:placement="BoDropdownPlacement.bottomEnd"
-/>
-
-<bo-dropdown
-	:options="options"
-	:default-option="{ label: 'Dropdown' }"
-	:placement="BoDropdownPlacement.bottom"
-/>
-```
-
-## With Icons
-
-<div class="flex gap-4 items-center my-4">
-	<bo-dropdown 
-		:options="[
-			{ label: 'Edit', icon: Icon.edit },
-			{ label: 'Duplicate', icon: Icon.copy },
-			{ label: 'Delete', icon: Icon.trash },
-			{ label: 'Share', icon: Icon.share }
-		]" 
-		:default-option="{ label: 'Actions', icon: Icon.more_vertical }"
+<template>
+	<bo-dropdown
+		default-trigger-text="Extra Small"
+		:items="items"
+		:size="BoSize.extra_small"
 	/>
-</div>
-
-```vue
-<bo-dropdown
-	:options="[
-		{ label: 'Edit', icon: Icon.edit },
-		{ label: 'Duplicate', icon: Icon.copy },
-		{ label: 'Delete', icon: Icon.trash },
-		{ label: 'Share', icon: Icon.share },
-	]"
-	:default-option="{ label: 'Actions', icon: Icon.more_vertical }"
-/>
-```
-
-## With Search
-
-<div class="flex gap-4 items-center my-4">
-	<bo-dropdown 
-		:options="[
-			{ label: 'Apple' },
-			{ label: 'Banana' },
-			{ label: 'Cherry' },
-			{ label: 'Date' },
-			{ label: 'Elderberry' },
-		]" 
-		search
-		default-label="Select Fruit"
-		width="200px"
+	<bo-dropdown
+		default-trigger-text="Small"
+		:items="items"
+		:size="BoSize.small"
 	/>
-</div>
-
-```vue
-<bo-dropdown :options="fruitOptions" search default-label="Select Fruit" width="200px" />
+	<bo-dropdown
+		default-trigger-text="Default"
+		:items="items"
+		:size="BoSize.default"
+	/>
+	<bo-dropdown
+		default-trigger-text="Large"
+		:items="items"
+		:size="BoSize.large"
+	/>
+	<bo-dropdown
+		default-trigger-text="Extra Large"
+		:items="items"
+		:size="BoSize.extra_large"
+	/>
+</template>
 ```
 
-## Custom Toggle
+## Disabled State
 
-<div class="flex gap-4 items-center my-4">
-	<bo-dropdown 
-		:options="[
-			{ label: 'Profile', icon: Icon.user },
-			{ label: 'Settings', icon: Icon.settings },
-			{ label: 'Logout', icon: Icon.log_out }
-		]" 
-	>
-		<template #toggle="{ toggle, isOpen }">
-			<div @click="toggle" class="flex cursor-pointer items-center gap-2 rounded-full bg-gray-100 px-3 py-2 hover:bg-gray-200">
-				<div class="h-8 w-8 overflow-hidden rounded-full bg-blue-500">
-					<img src="https://i.pravatar.cc/100" alt="User Avatar" />
-				</div>
-				<span>John Doe</span>
-				<bo-icon :icon="isOpen ? Icon.chevron_up : Icon.chevron_down" />
-			</div>
-		</template>
-	</bo-dropdown>
-</div>
+You can disable the entire dropdown or individual items:
+
+### Disabled Dropdown
+
+<bo-dropdown default-trigger-text="Disabled Dropdown" :items="items" disabled />
 
 ```vue
-<bo-dropdown
-	:options="[
-		{ label: 'Profile', icon: Icon.user },
-		{ label: 'Settings', icon: Icon.settings },
-		{ label: 'Logout', icon: Icon.log_out },
-	]"
->
-	<template #toggle="{ toggle, isOpen }">
-		<div @click="toggle" class="flex cursor-pointer items-center gap-2 rounded-full bg-gray-100 px-3 py-2 hover:bg-gray-200">
-			<div class="h-8 w-8 overflow-hidden rounded-full bg-blue-500">
-				<img src="https://i.pravatar.cc/100" alt="User Avatar" />
-			</div>
-			<span>John Doe</span>
-			<bo-icon :icon="isOpen ? Icon.chevron_up : Icon.chevron_down" />
-		</div>
-	</template>
-</bo-dropdown>
+<template>
+	<bo-dropdown
+		default-trigger-text="Disabled Dropdown"
+		:items="items"
+		disabled
+	/>
+</template>
+```
+
+### Disabled Items
+
+<bo-dropdown default-trigger-text="Select Option" :items="itemsWithDisabled" />
+
+```vue
+<template>
+	<bo-dropdown
+		default-trigger-text="Select Option"
+		:items="itemsWithDisabled"
+	/>
+</template>
+
+<script setup lang="ts">
+const itemsWithDisabled = [
+	{
+		id: 'item1',
+		label: 'Profile',
+		description: 'View and edit your profile',
+		icon: Icon.user,
+	},
+	{
+		id: 'item2',
+		label: 'Settings',
+		description: 'Manage your preferences',
+		icon: Icon.settings,
+		disabled: true,
+	},
+	{
+		id: 'item3',
+		label: 'Logout',
+		description: 'Sign out of your account',
+		icon: Icon.log_out,
+	},
+];
+</script>
 ```
 
 ## Event Handling
 
+<div class="space-y-2">
+	<bo-dropdown 
+		default-trigger-text="Select Option" 
+		:items="items"
+		@item-select="handleItemSelect"
+		@update:open="handleOpenChange"
+	/>
+	<p v-if="selectedItem" class="text-sm text-gray-600">Selected: {{ selectedItem }}</p>
+	<p class="text-sm text-gray-600">Dropdown is: {{ dropdownOpen ? 'Open' : 'Closed' }}</p>
+</div>
+
 ```vue
 <template>
 	<bo-dropdown
-		:options="options"
-		:default-option="selectedOption"
-		@select="onSelect"
-		@open="onOpen"
-		@close="onClose"
-		@search="onSearch"
+		default-trigger-text="Select Option"
+		:items="items"
+		@item-select="handleItemSelect"
+		@update:open="handleOpenChange"
 	/>
-
-	<p class="mt-4">Selected: {{ selectedOption.label }}</p>
-	<p>Dropdown state: {{ dropdownState }}</p>
-	<p>Search query: {{ currentSearchQuery }}</p>
+	<p v-if="selectedItem">Selected: {{ selectedItem }}</p>
+	<p>Dropdown is: {{ dropdownOpen ? 'Open' : 'Closed' }}</p>
 </template>
 
-<script setup>
-import { BoDropdown } from '@mrksbnc/bamboo';
-import { BoIcon, Icon } from '@mrksbnc/bamboo';
+<script setup lang="ts">
 import { ref } from 'vue';
 
-const options = [
-	{ label: 'Option 1', value: 1, icon: Icon.check },
-	{ label: 'Option 2', value: 2, icon: Icon.user },
-	{ label: 'Option 3', value: 3, icon: Icon.settings },
-];
+const selectedItem = ref('');
+const dropdownOpen = ref(false);
 
-const selectedOption = ref(options[0]);
-const dropdownState = ref('closed');
-const currentSearchQuery = ref('');
-
-const onSelect = (option) => {
-	selectedOption.value = option;
-	console.log('Selected value:', option.value);
+const handleItemSelect = (id: string) => {
+	selectedItem.value = id;
+	console.log('Selected item:', id);
 };
 
-const onOpen = () => {
-	dropdownState.value = 'open';
-	console.log('Dropdown opened');
-};
-
-const onClose = () => {
-	dropdownState.value = 'closed';
-	console.log('Dropdown closed');
-};
-
-const onSearch = (query) => {
-	currentSearchQuery.value = query;
-	console.log('Search query:', query);
+const handleOpenChange = (isOpen: boolean) => {
+	dropdownOpen.value = isOpen;
+	console.log('Dropdown open state:', isOpen);
 };
 </script>
 ```
+
+## Custom Trigger
+
+Use the `trigger` slot to customize the dropdown trigger:
+
+<bo-dropdown :items="items">
+	<template #trigger="{ onDropdownToggle }">
+		<button
+			class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+			@click="onDropdownToggle"
+		>
+			Custom Trigger
+		</button>
+	</template>
+</bo-dropdown>
+
+```vue
+<template>
+	<bo-dropdown :items="items">
+		<template #trigger="{ onDropdownToggle }">
+			<button
+				class="rounded-md bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
+				@click="onDropdownToggle"
+			>
+				Custom Trigger
+			</button>
+		</template>
+	</bo-dropdown>
+</template>
+```
+
+## Custom Content
+
+Use the default slot to provide custom content for the dropdown menu:
+
+<bo-dropdown default-trigger-text="Custom Content">
+	<div class="p-4">
+		<h3 class="text-lg font-semibold mb-2">Custom Menu</h3>
+		<p class="text-gray-600 dark:text-gray-400">This is a custom dropdown menu content.</p>
+		<div class="mt-3 flex gap-2">
+			<button class="px-3 py-1 bg-blue-500 text-white rounded">Action 1</button>
+			<button class="px-3 py-1 bg-gray-200 text-gray-700 rounded">Action 2</button>
+		</div>
+	</div>
+</bo-dropdown>
+
+```vue
+<template>
+	<bo-dropdown default-trigger-text="Custom Content">
+		<div class="p-4">
+			<h3 class="mb-2 text-lg font-semibold">Custom Menu</h3>
+			<p class="text-gray-600 dark:text-gray-400">This is a custom dropdown menu content.</p>
+			<div class="mt-3 flex gap-2">
+				<button class="rounded bg-blue-500 px-3 py-1 text-white">Action 1</button>
+				<button class="rounded bg-gray-200 px-3 py-1 text-gray-700">Action 2</button>
+			</div>
+		</div>
+	</bo-dropdown>
+</template>
+```
+
+## Keyboard Navigation
+
+The dropdown component supports comprehensive keyboard navigation:
+
+- **Arrow Down/Up**: Open the dropdown or navigate through items
+- **Enter/Space**: Select the focused item
+- **Escape**: Close the dropdown
+- **Home**: Focus the first item
+- **End**: Focus the last item

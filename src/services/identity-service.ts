@@ -1,10 +1,10 @@
-let instance: IdentityService | null = null;
+let instance: IdentityService;
 
 export interface BoIdentityService {
 	/**
 	 * Generates a unique identifier for an element
 	 */
-	generateId(prefix?: string): string;
+	getComponentId(prefix?: string): string;
 }
 
 export class IdentityService implements BoIdentityService {
@@ -15,7 +15,7 @@ export class IdentityService implements BoIdentityService {
 		return instance;
 	}
 
-	generateId(descriptor?: string): string {
+	getComponentId(descriptor?: string): string {
 		return descriptor ? `${descriptor}-${crypto.randomUUID()}` : crypto.randomUUID();
 	}
 }

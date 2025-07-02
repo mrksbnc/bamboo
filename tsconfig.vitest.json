@@ -1,11 +1,11 @@
 {
 	"extends": "./tsconfig.app.json",
 	"include": ["src/**/tests.*", "env.d.ts"],
-	"exclude": [],
+	"exclude": ["node_modules", "dist", "test"],
 	"compilerOptions": {
 		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",
 		"module": "ESNext",
-		"moduleResolution": "Bundler",
+		"moduleResolution": "bundler",
 		"lib": [],
 		"types": ["node", "jsdom"]
 	}
