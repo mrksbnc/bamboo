@@ -7,16 +7,22 @@
 
 ## Installation
 
-npm
+::: code-group
 
-```npm
+```bash [npm]
 npm install @mrksbnc/bamboo
 ```
 
-```pnpm
+```bash [yarn]
+yarn add @mrksbnc/bamboo
+```
+
+```bash [pnpm]
 pnpm add @mrksbnc/bamboo
 ```
 
-```yarn
-yarn add @mrksbnc/bamboo
+```bash [bun]
+bun add @mrksbnc/bamboo
 ```
+
+:::

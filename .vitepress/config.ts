@@ -9,7 +9,7 @@ export default defineConfig({
 	base: '/',
 	cleanUrls: true,
 	themeConfig: {
-		logo: '../docs/assets/logo.webp',
+		logo: '/logo.ico',
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [
 			{ text: 'Home', link: '/' },
