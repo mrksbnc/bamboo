@@ -196,17 +196,15 @@ const textColor = computed<CSSProperties>(() => {
 				color: `#${props.customColor}`,
 			};
 		} else {
-			console.warn(`
-				The custom color "${props.customColor}" is not a valid color definition.
-				Valid color definitions are:
-				- a variable name (e.g. --my-color)
-				- a hex color (e.g. #ff0000)
-				- an rgb color (e.g. rgb(255, 0, 0))
-				- an rgba color (e.g. rgba(255, 0, 0, 0.5))
-
-				The custom color will be ignored and currentColor will be used instead.
-			`);
-
+			console.warn(
+				`The custom color "${props.customColor}" is not a valid color definition.\n` +
+				"Valid color definitions are:\n" +
+				"- a variable name (e.g. --my-color)\n" +
+				"- a hex color (e.g. #ff0000)\n" +
+				"- an rgb color (e.g. rgb(255, 0, 0))\n" +
+				"- an rgba color (e.g. rgba(255, 0, 0, 0.5))\n" +
+				"\nThe custom color will be ignored and currentColor will be used instead."
+			);
 			return {
 				color: 'currentcolor',
 			};
