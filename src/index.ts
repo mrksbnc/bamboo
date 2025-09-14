@@ -1,5 +1,6 @@
 /** CSS files */
-import './css/lib.css';
+import './bamboo.css';
 
 export * from './components/index.js';
+export * from './lib/index';
 export * from './services/index.js';

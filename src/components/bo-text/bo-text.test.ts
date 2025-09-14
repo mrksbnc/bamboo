@@ -68,42 +68,42 @@ describe('BoText', async () => {
 	suite('fontSize', () => {
 		test('defaults to default', () => {
 			const component = mount(BoText, { props: { value: 'test' } });
-			expect(component.props('fontSize')).toBe(BoFontSize.Default);
+			expect(component.props('fontSize')).toBe(BoFontSize.default);
 		});
 
 		test('uses the prop fontSize if one is provided', () => {
 			const component = mount(BoText, {
-				props: { fontSize: BoFontSize.SM, value: 'test' },
+				props: { fontSize: BoFontSize.sm, value: 'test' },
 			});
-			expect(component.props('fontSize')).toBe(BoFontSize.SM);
+			expect(component.props('fontSize')).toBe(BoFontSize.sm);
 		});
 	});
 
 	suite('fontFamily', () => {
 		test('defaults to sans', () => {
 			const component = mount(BoText, { props: { value: 'test' } });
-			expect(component.props('fontFamily')).toBe(BoFontFamily.Sans);
+			expect(component.props('fontFamily')).toBe(BoFontFamily.sans);
 		});
 
 		test('uses the prop fontFamily if one is provided', () => {
 			const component = mount(BoText, {
-				props: { fontFamily: BoFontFamily.Mono, value: 'test' },
+				props: { fontFamily: BoFontFamily.mono, value: 'test' },
 			});
-			expect(component.props('fontFamily')).toBe(BoFontFamily.Mono);
+			expect(component.props('fontFamily')).toBe(BoFontFamily.mono);
 		});
 	});
 
 	suite('variant', () => {
 		test('defaults BoTextVariant.Default', () => {
 			const component = mount(BoText, { props: { value: 'test' } });
-			expect(component.props('variant')).toBe(BoTextVariant.Default);
+			expect(component.props('variant')).toBe(BoTextVariant.default);
 		});
 
 		test('uses the prop variant if one is provided', () => {
 			const component = mount(BoText, {
-				props: { variant: BoTextVariant.Primary, value: 'test' },
+				props: { variant: BoTextVariant.primary, value: 'test' },
 			});
-			expect(component.props('variant')).toBe(BoTextVariant.Primary);
+			expect(component.props('variant')).toBe(BoTextVariant.primary);
 		});
 	});
 
@@ -140,7 +140,7 @@ describe('BoText', async () => {
 
 		test('renders with aria-live="polite" if ariaLive is provided', () => {
 			const component = mount(BoText, {
-				props: { value: 'test', ariaLive: AriaLive.Assertive },
+				props: { value: 'test', ariaLive: AriaLive.assertive },
 			});
 			expect(component.props('ariaLive')).toBe('assertive');
 		});

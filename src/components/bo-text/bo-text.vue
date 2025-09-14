@@ -18,7 +18,7 @@
 <script lang="ts" setup>
 import { AriaLive } from '@/lib/bo-accessibility';
 import { IdentityService } from '@/services/identity-service.js';
-import { computed, StyleValue } from 'vue';
+import { computed, CSSProperties, StyleValue } from 'vue';
 import {
 	BoFontFamily,
 	BoFontSize,
@@ -34,34 +34,34 @@ const props = withDefaults(defineProps<BoTextProps>(), {
 	dataTestId: IdentityService.instance.getDataTestId('bo-text'),
 	lang: 'en',
 	maxLines: 'none',
-	fontSize: () => BoFontSize.Default,
-	fontFamily: () => BoFontFamily.Sans,
-	variant: () => BoTextVariant.Default,
-	fontWeight: () => BoFontWeight.Regular,
-	whiteSpace: () => BoTextWhiteSpace.Normal,
-	ariaLive: () => AriaLive.Polite,
+	fontSize: () => BoFontSize.default,
+	fontFamily: () => BoFontFamily.sans,
+	variant: () => BoTextVariant.default,
+	fontWeight: () => BoFontWeight.regular,
+	whiteSpace: () => BoTextWhiteSpace.normal,
+	ariaLive: () => AriaLive.polite,
 });
 
 const ariaLabel = computed<string>(() => props.ariaLabel || props.value);
 const role = computed<string>(() => props.role ?? 'text');
 
-const fontFamily = computed<StyleValue>(() => {
+const fontFamily = computed<CSSProperties>(() => {
 	switch (props.fontFamily) {
-		case BoFontFamily.Sans:
+		case BoFontFamily.sans:
 			return {
 				fontFamily:
 					"ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
 			};
-		case BoFontFamily.Mono:
+		case BoFontFamily.mono:
 			return {
 				fontFamily:
 					"ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
 			};
-		case BoFontFamily.Serif:
+		case BoFontFamily.serif:
 			return {
 				fontFamily: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
 			};
-		case BoFontFamily.Inherit:
+		case BoFontFamily.inherit:
 		default:
 			return {
 				fontFamily: 'inherit',
@@ -69,25 +69,24 @@ const fontFamily = computed<StyleValue>(() => {
 	}
 });
 
-const fontSize = computed<StyleValue>(() => {
+const fontSize = computed<CSSProperties>(() => {
 	switch (props.fontSize) {
-		case BoFontSize.XS:
+		case BoFontSize.xs:
 			return {
 				fontSize: '0.625rem' /* 10px */,
 				lineHeight: (1 / 0.625).toFixed(2),
 			};
-		case BoFontSize.SM:
+		case BoFontSize.sm:
 			return {
 				fontSize: '0.75rem' /* 12px */,
 				lineHeight: (1 / 0.75).toFixed(2),
 			};
-		case BoFontSize.LG:
+		case BoFontSize.lg:
 			return {
 				fontSize: '1rem' /* 16px */,
 				lineHeight: (1.5 / 1).toFixed(2),
 			};
-
-		case BoFontSize.XL:
+		case BoFontSize.xl:
 			return {
 				fontSize: '1.125rem' /* 18px */,
 				lineHeight: (1.75 / 1.125).toFixed(2),
@@ -122,7 +121,7 @@ const fontSize = computed<StyleValue>(() => {
 				fontSize: '3.75rem' /* 60px */,
 				lineHeight: 1,
 			};
-		case BoFontSize.Default:
+		case BoFontSize.default:
 		default:
 			return {
 				fontSize: '0.875rem' /* 14px */,
@@ -131,41 +130,41 @@ const fontSize = computed<StyleValue>(() => {
 	}
 });
 
-const fontWeight = computed<StyleValue>(() => {
+const fontWeight = computed<CSSProperties>(() => {
 	switch (props.fontWeight) {
-		case BoFontWeight.Thin:
+		case BoFontWeight.thin:
 			return {
 				fontWeight: 100,
 			};
-		case BoFontWeight.ExtraLight:
+		case BoFontWeight.extra_light:
 			return {
 				fontWeight: 200,
 			};
-		case BoFontWeight.Light:
+		case BoFontWeight.light:
 			return {
 				fontWeight: 300,
 			};
-		case BoFontWeight.Medium:
+		case BoFontWeight.medium:
 			return {
 				fontWeight: 500,
 			};
-		case BoFontWeight.Semibold:
+		case BoFontWeight.semibold:
 			return {
 				fontWeight: 600,
 			};
-		case BoFontWeight.Bold:
+		case BoFontWeight.bold:
 			return {
 				fontWeight: 700,
 			};
-		case BoFontWeight.Extrabold:
+		case BoFontWeight.extra_bold:
 			return {
 				fontWeight: 800,
 			};
-		case BoFontWeight.Black:
+		case BoFontWeight.black:
 			return {
 				fontWeight: 900,
 			};
-		case BoFontWeight.Regular:
+		case BoFontWeight.regular:
 		default:
 			return {
 				fontWeight: 400,
@@ -173,7 +172,7 @@ const fontWeight = computed<StyleValue>(() => {
 	}
 });
 
-const textColor = computed<StyleValue>(() => {
+const textColor = computed<CSSProperties>(() => {
 	if (props.customColor) {
 		if (
 			props.customColor.startsWith('var') ||
@@ -215,43 +214,43 @@ const textColor = computed<StyleValue>(() => {
 	}
 
 	switch (props.variant) {
-		case BoTextVariant.Default:
+		case BoTextVariant.default:
 			return {
 				color: 'var(--neutral-950)',
 			};
-		case BoTextVariant.Primary:
+		case BoTextVariant.primary:
 			return {
 				color: 'var(--blue-600)',
 			};
-		case BoTextVariant.Secondary:
+		case BoTextVariant.secondary:
 			return {
 				color: 'var(--neutral-600)',
 			};
-		case BoTextVariant.Disabled:
+		case BoTextVariant.disabled:
 			return {
 				color: 'var(--neutral-400)',
 			};
-		case BoTextVariant.Success:
+		case BoTextVariant.success:
 			return {
 				color: 'var(--green-600)',
 			};
-		case BoTextVariant.Warning:
+		case BoTextVariant.warning:
 			return {
 				color: 'var(--yellow-500)',
 			};
-		case BoTextVariant.Danger:
+		case BoTextVariant.danger:
 			return {
 				color: 'var(--red-600)',
 			};
-		case BoTextVariant.Light:
+		case BoTextVariant.light:
 			return {
 				color: 'var(--neutral-50)',
 			};
-		case BoTextVariant.Current:
+		case BoTextVariant.current:
 			return {
-				color: 'currentColor',
+				color: 'currentcolor',
 			};
-		case BoTextVariant.Inherit:
+		case BoTextVariant.inherit:
 		default:
 			return {
 				color: 'inherit',
@@ -259,21 +258,21 @@ const textColor = computed<StyleValue>(() => {
 	}
 });
 
-const textAlign = computed<StyleValue>(() => {
+const textAlign = computed<CSSProperties>(() => {
 	switch (props.textAlign) {
-		case BoTextAlign.Center:
+		case BoTextAlign.center:
 			return {
 				textAlign: 'center',
 			};
-		case BoTextAlign.Right:
+		case BoTextAlign.right:
 			return {
 				textAlign: 'right',
 			};
-		case BoTextAlign.Justify:
+		case BoTextAlign.justify:
 			return {
 				textAlign: 'justify',
 			};
-		case BoTextAlign.Left:
+		case BoTextAlign.left:
 		default:
 			return {
 				textAlign: 'left',
@@ -281,7 +280,7 @@ const textAlign = computed<StyleValue>(() => {
 	}
 });
 
-const cursor = computed<StyleValue>(() => {
+const cursor = computed<CSSProperties>(() => {
 	if (props.cursor) {
 		return {
 			cursor: props.cursor,
@@ -305,29 +304,29 @@ const cursor = computed<StyleValue>(() => {
 	};
 });
 
-const whiteSpace = computed<StyleValue>(() => {
+const whiteSpace = computed<CSSProperties>(() => {
 	switch (props.whiteSpace) {
-		case BoTextWhiteSpace.Nowrap:
+		case BoTextWhiteSpace.nowrap:
 			return {
 				whiteSpace: 'nowrap',
 			};
-		case BoTextWhiteSpace.Pre:
+		case BoTextWhiteSpace.pre:
 			return {
 				whiteSpace: 'pre',
 			};
-		case BoTextWhiteSpace.PreLine:
+		case BoTextWhiteSpace.pre_line:
 			return {
 				whiteSpace: 'pre-line',
 			};
-		case BoTextWhiteSpace.PreWrap:
+		case BoTextWhiteSpace.pre_wrap:
 			return {
 				whiteSpace: 'pre-wrap',
 			};
-		case BoTextWhiteSpace.BreakSpaces:
+		case BoTextWhiteSpace.break_spaces:
 			return {
 				whiteSpace: 'break-spaces',
 			};
-		case BoTextWhiteSpace.Normal:
+		case BoTextWhiteSpace.normal:
 		default:
 			return {
 				whiteSpace: 'normal',
@@ -335,7 +334,7 @@ const whiteSpace = computed<StyleValue>(() => {
 	}
 });
 
-const maxLines = computed<StyleValue>(() => {
+const maxLines = computed<CSSProperties>(() => {
 	if (typeof props.maxLines === 'number') {
 		return {
 			overflow: 'hidden',
@@ -349,15 +348,17 @@ const maxLines = computed<StyleValue>(() => {
 });
 
 const boTextStyle = computed<StyleValue>(() => {
-	return {
-		...fontFamily,
-		...fontSize,
-		...fontWeight,
-		...textColor,
-		...textAlign,
-		...whiteSpace,
-		...maxLines,
-		...cursor,
+	const style: StyleValue = {
+		...fontFamily.value,
+		...fontSize.value,
+		...fontWeight.value,
+		...textColor.value,
+		...textAlign.value,
+		...whiteSpace.value,
+		...maxLines.value,
+		...cursor.value,
 	};
+
+	return style;
 });
 </script>

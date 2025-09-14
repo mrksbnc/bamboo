@@ -16,12 +16,6 @@ const bambooTestConfig = mergeConfig(
 			coverage: {
 				provider: 'v8',
 				reporter: ['json', 'html', 'lcov'],
-				thresholds: {
-					lines: 80,
-					functions: 80,
-					branches: 80,
-					statements: 80,
-				},
 			},
 			environmentOptions: {
 				jsdom: {

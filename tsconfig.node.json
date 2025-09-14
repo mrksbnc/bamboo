@@ -1,5 +1,5 @@
 {
-	"include": ["vite.config.*", "vitest.config.*"],
+	"include": ["vite.config.*", "vitest.config.*", "docs/**/*.ts"],
 	"compilerOptions": {
 		"noEmit": true,
 		"strict": true,

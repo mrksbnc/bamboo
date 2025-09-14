@@ -1,5 +1,5 @@
 export enum AriaLive {
-	Polite = 'polite',
-	Assertive = 'assertive',
-	Off = 'off',
+	polite = 'polite',
+	assertive = 'assertive',
+	off = 'off',
 }

@@ -21,9 +21,10 @@
 		"build": "NODE_ENV=production run-p type-check \"build:only {@}\"",
 		"test": "vitest --coverage --silent=false",
 		"build:only": "vite build",
-		"docs:dev": "vitepress dev docs",
-		"docs:build": "vitepress build docs",
-		"docs:preview": "vitepress preview docs"
+		"docs:dev": "vitepress dev",
+		"docs:build": "vitepress build",
+		"docs:preview": "vitepress preview",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@vueuse/core": "^13.9.0",
@@ -41,13 +42,13 @@
 		"eslint": "^9.35.0",
 		"eslint-plugin-oxlint": "^1.15.0",
 		"eslint-plugin-vue": "^10.4.0",
+		"husky": "^9.1.7",
 		"jsdom": "^27.0.0",
 		"npm-run-all": "^4.1.5",
 		"oxlint": "^1.15.0",
 		"playwright": "^1.55.0",
 		"prettier": "^3.6.2",
 		"prettier-plugin-organize-imports": "^4.2.0",
-		"sass-embedded": "^1.92.1",
 		"typescript": "^5.9.2",
 		"vite": "^7.1.5",
 		"vite-plugin-dts": "^4.5.4",

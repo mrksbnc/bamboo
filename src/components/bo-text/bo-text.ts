@@ -2,36 +2,36 @@ import { AriaLive } from '@/lib/bo-accessibility';
 
 export enum BoFontWeight {
 	/** 100 */
-	Thin = 'thin',
+	thin = 'thin',
 	/** 200 */
-	ExtraLight = 'extraLight',
+	extra_light = 'extra-light',
 	/** 300 */
-	Light = 'light',
+	light = 'light',
 	/** 400 */
-	Regular = 'regular',
+	regular = 'regular',
 	/** 500 */
-	Medium = 'medium',
+	medium = 'medium',
 	/** 600 */
-	Semibold = 'semibold',
+	semibold = 'semibold',
 	/** 700 */
-	Bold = 'bold',
+	bold = 'bold',
 	/** 800 */
-	Extrabold = 'extrabold',
+	extra_bold = 'extra-bold',
 	/** 900 */
-	Black = 'black',
+	black = 'black',
 }
 
 export enum BoFontSize {
 	/** 10px */
-	XS = 'xs',
+	xs = 'xs',
 	/** 12px */
-	SM = 'sm',
+	sm = 'sm',
 	/** 14px */
-	Default = 'default',
+	default = 'default',
 	/** 16px */
-	LG = 'lg',
+	lg = 'lg',
 	/** 18px */
-	XL = 'xl',
+	xl = 'xl',
 	/** 20px */
 	'2xl' = '2xl',
 	/** 24px */
@@ -47,39 +47,39 @@ export enum BoFontSize {
 }
 
 export enum BoFontFamily {
-	Sans = 'sans',
-	Mono = 'mono',
-	Serif = 'serif',
-	Inherit = 'inherit',
+	sans = 'sans',
+	mono = 'mono',
+	serif = 'serif',
+	inherit = 'inherit',
 }
 
 export enum BoTextWhiteSpace {
-	Normal = 'normal',
-	Nowrap = 'nowrap',
-	Pre = 'pre',
-	PreLine = 'pre-line',
-	PreWrap = 'pre-wrap',
-	BreakSpaces = 'break-spaces',
+	normal = 'normal',
+	nowrap = 'nowrap',
+	pre = 'pre',
+	pre_line = 'pre-line',
+	pre_wrap = 'pre-wrap',
+	break_spaces = 'break-spaces',
 }
 
 export enum BoTextVariant {
-	Default = 'default',
-	Primary = 'primary',
-	Secondary = 'secondary',
-	Disabled = 'disabled',
-	Inherit = 'inherit',
-	Current = 'currentColor',
-	Success = 'success',
-	Warning = 'warning',
-	Danger = 'danger',
-	Light = 'light',
+	default = 'default',
+	primary = 'primary',
+	secondary = 'secondary',
+	disabled = 'disabled',
+	inherit = 'inherit',
+	current = 'currentColor',
+	success = 'success',
+	warning = 'warning',
+	danger = 'danger',
+	light = 'light',
 }
 
 export enum BoTextAlign {
-	Left = 'left',
-	Center = 'center',
-	Right = 'right',
-	Justify = 'justify',
+	left = 'left',
+	center = 'center',
+	right = 'right',
+	justify = 'justify',
 }
 
 export interface BoTextProps {
