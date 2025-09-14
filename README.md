@@ -1,3 +1,7 @@
+<div style="display: flex; align-items: center; justify-content: center; height: 200px;  margin-bottom: 1rem;">
+<img src="./docs/assets/logo.webp" alt="bamboo">
+</div>
+
 # Bamboo
 
 Bamboo is a lightweight and flexible UI library built with Vue.js
@@ -74,3 +78,22 @@ Then import the components you want to use in your Vue components:
 import { BoText } from '@mrksbnc/bamboo';
 </script>
 ```
+
+## Available Scripts
+
+| Script         | Description                                         |
+| -------------- | --------------------------------------------------- |
+| `type-check`   | Runs the type checker                               |
+| `lint`         | Runs the linter                                     |
+| `format`       | Formats the code using prettier                     |
+| `build`        | Builds the library                                  |
+| `build:only`   | Builds the library without running checks and tests |
+| `test`         | Runs the tests                                      |
+| `docs:dev`     | Starts the documentation development server         |
+| `docs:build`   | Builds the documentation                            |
+| `docs:preview` | Previews the documentation                          |
+| `prepare`      | Initializes the git hooks                           |
+
+## License
+
+[MIT](https://github.com/mrksbnc/bamboo/blob/main/LICENSE)
