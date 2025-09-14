@@ -7,6 +7,6 @@
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"lib": [],
-		"types": ["node", "jsdom"]
+		"types": ["node", "jsdom", "@vitest/browser/providers/playwright"],
 	}
 }

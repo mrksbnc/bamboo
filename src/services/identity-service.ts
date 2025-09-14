@@ -1,13 +1,6 @@
 let instance: IdentityService;
 
-export interface BoIdentityService {
-	/**
-	 * Generates a unique identifier for an element
-	 */
-	getComponentId(prefix?: string): string;
-}
-
-export class IdentityService implements BoIdentityService {
+export class IdentityService {
 	static get instance(): IdentityService {
 		if (!instance) {
 			instance = new IdentityService();
@@ -17,5 +10,9 @@ export class IdentityService implements BoIdentityService {
 
 	getComponentId(descriptor?: string): string {
 		return descriptor ? `${descriptor}-${crypto.randomUUID()}` : crypto.randomUUID();
+	}
+
+	getDataTestId(descriptor?: string): string {
+		return descriptor ? `test-${descriptor}-${crypto.randomUUID()}` : `test-${crypto.randomUUID()}`;
 	}
 }

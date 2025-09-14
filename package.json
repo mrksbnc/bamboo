@@ -6,10 +6,6 @@
 		".": {
 			"import": "./dist/bamboo.js",
 			"require": "./dist/bamboo.umd.cjs"
-		},
-		"./lib.css": {
-			"import": "./dist/lib.min.css",
-			"require": "./dist/lib.min.css"
 		}
 	},
 	"main": "./dist/bamboo.umd.cjs",
@@ -19,11 +15,11 @@
 		"dist"
 	],
 	"scripts": {
-		"test": "vitest --update --coverage --silent=false",
 		"type-check": "vue-tsc --noEmit",
 		"lint": "oxlint --fix --config .oxlintrc.json",
 		"format": "prettier --write src/",
-		"build": "NODE_ENV=production run-p type-check \"build:only {@}\" && pnpm run build:css:min",
+		"build": "NODE_ENV=production run-p type-check \"build:only {@}\"",
+		"test": "vitest --coverage --silent=false",
 		"build:only": "vite build",
 		"docs:dev": "vitepress dev docs",
 		"docs:build": "vitepress build docs",
@@ -38,8 +34,7 @@
 		"@tsconfig/node22": "^22.0.2",
 		"@types/node": "^24.3.1",
 		"@vitejs/plugin-vue": "^6.0.1",
-		"@vitest/coverage-v8": "^3.2.4",
-		"@vitest/ui": "3.2.4",
+		"@vitest/coverage-v8": "3.2.4",
 		"@vue/test-utils": "^2.4.6",
 		"@vue/tsconfig": "^0.8.1",
 		"autoprefixer": "^10.4.21",
@@ -49,6 +44,7 @@
 		"jsdom": "^26.1.0",
 		"npm-run-all": "^4.1.5",
 		"oxlint": "^1.15.0",
+		"playwright": "^1.55.0",
 		"prettier": "^3.6.2",
 		"prettier-plugin-organize-imports": "^4.2.0",
 		"sass-embedded": "^1.92.1",
@@ -56,7 +52,7 @@
 		"vite": "^7.1.5",
 		"vite-plugin-dts": "^4.5.4",
 		"vite-svg-loader": "^5.1.0",
-		"vitepress": "^1.6.4",
+		"vitepress": "2.0.0-alpha.12",
 		"vitest": "^3.2.4",
 		"vue-tsc": "^3.0.6"
 	}

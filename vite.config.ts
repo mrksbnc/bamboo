@@ -25,7 +25,7 @@ export default defineConfig({
 	resolve: {
 		external: ['vue'],
 		alias: {
-			'@': fileURLToPath(new URL('./src', import.meta.url)),
+			'@/*': fileURLToPath(new URL('./src', import.meta.url)),
 		},
 	},
 });

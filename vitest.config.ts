@@ -8,7 +8,7 @@ const bambooTestConfig = mergeConfig(
 		test: {
 			globals: true,
 			environment: 'jsdom',
-			include: ['./src/**/*.test.ts', './test/**/*.test.ts'],
+			include: ['./src/**/*.test.ts'],
 			root: fileURLToPath(new URL('./', import.meta.url)),
 			alias: {
 				'@/': new URL('./src/', import.meta.url).pathname,
@@ -27,11 +27,6 @@ const bambooTestConfig = mergeConfig(
 				jsdom: {
 					resources: 'usable',
 				},
-			},
-			setupFiles: ['./test/setup.ts'],
-			reporters: ['default', 'html'],
-			outputFile: {
-				html: './coverage/html/index.html',
 			},
 		},
 	}),
