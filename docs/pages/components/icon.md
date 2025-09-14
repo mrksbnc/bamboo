@@ -19,11 +19,18 @@ The icon component is a wrapper around the [Feather Icons](https://feathericons.
 
 ## Props
 
+### Required
+
+| Name   | Type   | Default | Description         |
+| ------ | ------ | ------- | ------------------- |
+| `icon` | `Icon` |         | The icon to display |
+
+### Optional
+
 | Name             | Type            | Default                 | Description                                 |
 | ---------------- | --------------- | ----------------------- | ------------------------------------------- |
 | `id`             | `string`        | `auto-generated`        | Unique identifier for the icon element      |
 | `data-testid`    | `string`        | `auto-generated`        | Unique data-test-id of the icon             |
-| `icon`           | `Icon`          | `required`              | The icon to display                         |
 | `size`           | `BoSize`        | `BoSize.default`        | The size of the icon                        |
 | `variant`        | `BoIconVariant` | `BoIconVariant.default` | The color of the icon                       |
 | `customColor`    | `string`        | `undefined`             | Custom color of the icon                    |

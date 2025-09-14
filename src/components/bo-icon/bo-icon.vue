@@ -1,5 +1,6 @@
 <template>
 	<i
+		v-if="svg"
 		v-html="svg"
 		:id="id"
 		:data-testid="dataTestId"
@@ -9,12 +10,12 @@
 		:aria-label="ariaLabel"
 		:aria-hidden="ariaHidden"
 		:title="title"
-	/>
+	></i>
 </template>
 
 <script lang="ts" setup>
-import { IdentityService } from '@/services';
-import { computed, CSSProperties, onMounted, ref, StyleValue, watchEffect } from 'vue';
+import { computed, CSSProperties, ref, StyleValue, watchEffect } from 'vue';
+import { IdentityService } from '../../services/identity-service';
 import { BoIconProps, BoIconVariant, Icon, icons } from './bo-icon';
 
 const props = withDefaults(defineProps<BoIconProps>(), {
@@ -153,8 +154,7 @@ const iconSize = computed<CSSProperties>(() => {
 
 const iconStyle = computed<StyleValue>(() => {
 	const style: StyleValue = {
-		display: 'inline-block',
-		verticalAlign: 'middle',
+		'box-sizing': 'border-box',
 		...iconSize.value,
 		...iconColor.value,
 		...cursor.value,
@@ -175,9 +175,5 @@ async function load(icon: Icon): Promise<void> {
 
 watchEffect(() => {
 	load(props.icon);
-});
-
-onMounted(() => {
-	console.log(iconStyle.value);
 });
 </script>

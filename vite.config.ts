@@ -6,26 +6,24 @@ import svgLoader from 'vite-svg-loader';
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [
-		vue(),
-		dts({
-			outDir: 'dist',
-			entryRoot: 'src/index.ts',
-		}),
-		svgLoader(),
-	],
+	plugins: [vue(), svgLoader(), dts()],
+	appType: 'custom',
 	build: {
+		minify: true,
 		cssMinify: true,
 		emptyOutDir: true,
 		lib: {
 			name: 'bamboo',
+			cssFileName: 'lib',
 			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 		},
 	},
+	assetsInclude: ['**/*.svg'],
+	mode: 'production',
 	resolve: {
 		external: ['vue'],
 		alias: {
-			'@/*': fileURLToPath(new URL('./src', import.meta.url)),
+			'@': fileURLToPath(new URL('./src', import.meta.url)),
 		},
 	},
 });

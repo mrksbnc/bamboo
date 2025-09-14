@@ -281,7 +281,7 @@ export enum Icon {
 	none = 'none',
 }
 
-export const icons = import.meta.glob('@/assets/icons/**/*.svg', {
+export const icons = import.meta.glob('../../assets/icons/**/*.svg', {
 	query: '?raw',
 	import: 'default',
 }) as Record<string, () => Promise<string>>;
