@@ -1,5 +1,5 @@
 <div style="display: flex; align-items: center; justify-content: center; height: 200px;  margin-bottom: 1rem;">
-<img src="./docs/assets/logo.webp" alt="bamboo">
+<img src="./public/logo.webp" alt="bamboo">
 </div>
 
 # Bamboo
