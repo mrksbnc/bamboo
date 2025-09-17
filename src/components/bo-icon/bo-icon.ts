@@ -1,285 +1,293 @@
 // Feather Icons - TypeScript Import File
-// Auto-generated imports for all Feather icons from @/assets/icon/*.svg
+// Auto-generated imports for all Feather icons from @/assets/icons/*.svg
 
-import ActivityIcon from '@/assets/icon/activity.svg?component'
-import AirplayIcon from '@/assets/icon/airplay.svg?component'
-import AlertCircleIcon from '@/assets/icon/alert-circle.svg?component'
-import AlertOctagonIcon from '@/assets/icon/alert-octagon.svg?component'
-import AlertTriangleIcon from '@/assets/icon/alert-triangle.svg?component'
-import AlignCenterIcon from '@/assets/icon/align-center.svg?component'
-import AlignJustifyIcon from '@/assets/icon/align-justify.svg?component'
-import AlignLeftIcon from '@/assets/icon/align-left.svg?component'
-import AlignRightIcon from '@/assets/icon/align-right.svg?component'
-import AnchorIcon from '@/assets/icon/anchor.svg?component'
-import ApertureIcon from '@/assets/icon/aperture.svg?component'
-import ArchiveIcon from '@/assets/icon/archive.svg?component'
-import ArrowDownCircleIcon from '@/assets/icon/arrow-down-circle.svg?component'
-import ArrowDownLeftIcon from '@/assets/icon/arrow-down-left.svg?component'
-import ArrowDownRightIcon from '@/assets/icon/arrow-down-right.svg?component'
-import ArrowDownIcon from '@/assets/icon/arrow-down.svg?component'
-import ArrowLeftCircleIcon from '@/assets/icon/arrow-left-circle.svg?component'
-import ArrowLeftIcon from '@/assets/icon/arrow-left.svg?component'
-import ArrowRightCircleIcon from '@/assets/icon/arrow-right-circle.svg?component'
-import ArrowRightIcon from '@/assets/icon/arrow-right.svg?component'
-import ArrowUpCircleIcon from '@/assets/icon/arrow-up-circle.svg?component'
-import ArrowUpLeftIcon from '@/assets/icon/arrow-up-left.svg?component'
-import ArrowUpRightIcon from '@/assets/icon/arrow-up-right.svg?component'
-import ArrowUpIcon from '@/assets/icon/arrow-up.svg?component'
-import AtSignIcon from '@/assets/icon/at-sign.svg?component'
-import AwardIcon from '@/assets/icon/award.svg?component'
-import BarChart2Icon from '@/assets/icon/bar-chart-2.svg?component'
-import BarChartIcon from '@/assets/icon/bar-chart.svg?component'
-import BatteryChargingIcon from '@/assets/icon/battery-charging.svg?component'
-import BatteryIcon from '@/assets/icon/battery.svg?component'
-import BellOffIcon from '@/assets/icon/bell-off.svg?component'
-import BellIcon from '@/assets/icon/bell.svg?component'
-import BluetoothIcon from '@/assets/icon/bluetooth.svg?component'
-import BoldIcon from '@/assets/icon/bold.svg?component'
-import BookOpenIcon from '@/assets/icon/book-open.svg?component'
-import BookIcon from '@/assets/icon/book.svg?component'
-import BookmarkIcon from '@/assets/icon/bookmark.svg?component'
-import BoxIcon from '@/assets/icon/box.svg?component'
-import BriefcaseIcon from '@/assets/icon/briefcase.svg?component'
-import CalendarIcon from '@/assets/icon/calendar.svg?component'
-import CameraOffIcon from '@/assets/icon/camera-off.svg?component'
-import CameraIcon from '@/assets/icon/camera.svg?component'
-import CastIcon from '@/assets/icon/cast.svg?component'
-import CheckCircleIcon from '@/assets/icon/check-circle.svg?component'
-import CheckSquareIcon from '@/assets/icon/check-square.svg?component'
-import CheckIcon from '@/assets/icon/check.svg?component'
-import ChevronDownIcon from '@/assets/icon/chevron-down.svg?component'
-import ChevronLeftIcon from '@/assets/icon/chevron-left.svg?component'
-import ChevronRightIcon from '@/assets/icon/chevron-right.svg?component'
-import ChevronUpIcon from '@/assets/icon/chevron-up.svg?component'
-import ChevronsDownIcon from '@/assets/icon/chevrons-down.svg?component'
-import ChevronsLeftIcon from '@/assets/icon/chevrons-left.svg?component'
-import ChevronsRightIcon from '@/assets/icon/chevrons-right.svg?component'
-import ChevronsUpIcon from '@/assets/icon/chevrons-up.svg?component'
-import ChromeIcon from '@/assets/icon/chrome.svg?component'
-import CircleIcon from '@/assets/icon/circle.svg?component'
-import ClipboardIcon from '@/assets/icon/clipboard.svg?component'
-import ClockIcon from '@/assets/icon/clock.svg?component'
-import CloudDrizzleIcon from '@/assets/icon/cloud-drizzle.svg?component'
-import CloudLightningIcon from '@/assets/icon/cloud-lightning.svg?component'
-import CloudOffIcon from '@/assets/icon/cloud-off.svg?component'
-import CloudRainIcon from '@/assets/icon/cloud-rain.svg?component'
-import CloudSnowIcon from '@/assets/icon/cloud-snow.svg?component'
-import CloudIcon from '@/assets/icon/cloud.svg?component'
-import CodeIcon from '@/assets/icon/code.svg?component'
-import CodepenIcon from '@/assets/icon/codepen.svg?component'
-import CodesandboxIcon from '@/assets/icon/codesandbox.svg?component'
-import CoffeeIcon from '@/assets/icon/coffee.svg?component'
-import ColumnsIcon from '@/assets/icon/columns.svg?component'
-import CommandIcon from '@/assets/icon/command.svg?component'
-import CompassIcon from '@/assets/icon/compass.svg?component'
-import CopyIcon from '@/assets/icon/copy.svg?component'
-import CornerDownLeftIcon from '@/assets/icon/corner-down-left.svg?component'
-import CornerDownRightIcon from '@/assets/icon/corner-down-right.svg?component'
-import CornerLeftDownIcon from '@/assets/icon/corner-left-down.svg?component'
-import CornerLeftUpIcon from '@/assets/icon/corner-left-up.svg?component'
-import CornerRightDownIcon from '@/assets/icon/corner-right-down.svg?component'
-import CornerRightUpIcon from '@/assets/icon/corner-right-up.svg?component'
-import CornerUpLeftIcon from '@/assets/icon/corner-up-left.svg?component'
-import CornerUpRightIcon from '@/assets/icon/corner-up-right.svg?component'
-import CpuIcon from '@/assets/icon/cpu.svg?component'
-import CreditCardIcon from '@/assets/icon/credit-card.svg?component'
-import CropIcon from '@/assets/icon/crop.svg?component'
-import CrosshairIcon from '@/assets/icon/crosshair.svg?component'
-import DatabaseIcon from '@/assets/icon/database.svg?component'
-import DeleteIcon from '@/assets/icon/delete.svg?component'
-import DiscIcon from '@/assets/icon/disc.svg?component'
-import DollarSignIcon from '@/assets/icon/dollar-sign.svg?component'
-import DownloadCloudIcon from '@/assets/icon/download-cloud.svg?component'
-import DownloadIcon from '@/assets/icon/download.svg?component'
-import DropletIcon from '@/assets/icon/droplet.svg?component'
-import Edit2Icon from '@/assets/icon/edit-2.svg?component'
-import Edit3Icon from '@/assets/icon/edit-3.svg?component'
-import EditIcon from '@/assets/icon/edit.svg?component'
-import ExternalLinkIcon from '@/assets/icon/external-link.svg?component'
-import EyeOffIcon from '@/assets/icon/eye-off.svg?component'
-import EyeIcon from '@/assets/icon/eye.svg?component'
-import FacebookIcon from '@/assets/icon/facebook.svg?component'
-import FastForwardIcon from '@/assets/icon/fast-forward.svg?component'
-import FeatherIcon from '@/assets/icon/feather.svg?component'
-import FigmaIcon from '@/assets/icon/figma.svg?component'
-import FileMinusIcon from '@/assets/icon/file-minus.svg?component'
-import FilePlusIcon from '@/assets/icon/file-plus.svg?component'
-import FileTextIcon from '@/assets/icon/file-text.svg?component'
-import FileIcon from '@/assets/icon/file.svg?component'
-import FilmIcon from '@/assets/icon/film.svg?component'
-import FilterIcon from '@/assets/icon/filter.svg?component'
-import FlagIcon from '@/assets/icon/flag.svg?component'
-import FolderMinusIcon from '@/assets/icon/folder-minus.svg?component'
-import FolderPlusIcon from '@/assets/icon/folder-plus.svg?component'
-import FolderIcon from '@/assets/icon/folder.svg?component'
-import FramerIcon from '@/assets/icon/framer.svg?component'
-import FrownIcon from '@/assets/icon/frown.svg?component'
-import GiftIcon from '@/assets/icon/gift.svg?component'
-import GitBranchIcon from '@/assets/icon/git-branch.svg?component'
-import GitCommitIcon from '@/assets/icon/git-commit.svg?component'
-import GitMergeIcon from '@/assets/icon/git-merge.svg?component'
-import GitPullRequestIcon from '@/assets/icon/git-pull-request.svg?component'
-import GithubIcon from '@/assets/icon/github.svg?component'
-import GitlabIcon from '@/assets/icon/gitlab.svg?component'
-import GlobeIcon from '@/assets/icon/globe.svg?component'
-import GridIcon from '@/assets/icon/grid.svg?component'
-import HardDriveIcon from '@/assets/icon/hard-drive.svg?component'
-import HashIcon from '@/assets/icon/hash.svg?component'
-import HeadphonesIcon from '@/assets/icon/headphones.svg?component'
-import HeartIcon from '@/assets/icon/heart.svg?component'
-import HelpCircleIcon from '@/assets/icon/help-circle.svg?component'
-import HexagonIcon from '@/assets/icon/hexagon.svg?component'
-import HomeIcon from '@/assets/icon/home.svg?component'
-import ImageIcon from '@/assets/icon/image.svg?component'
-import InboxIcon from '@/assets/icon/inbox.svg?component'
-import InfoIcon from '@/assets/icon/info.svg?component'
-import InstagramIcon from '@/assets/icon/instagram.svg?component'
-import ItalicIcon from '@/assets/icon/italic.svg?component'
-import KeyIcon from '@/assets/icon/key.svg?component'
-import LayersIcon from '@/assets/icon/layers.svg?component'
-import LayoutIcon from '@/assets/icon/layout.svg?component'
-import LifeBuoyIcon from '@/assets/icon/life-buoy.svg?component'
-import Link2Icon from '@/assets/icon/link-2.svg?component'
-import LinkIcon from '@/assets/icon/link.svg?component'
-import LinkedinIcon from '@/assets/icon/linkedin.svg?component'
-import ListIcon from '@/assets/icon/list.svg?component'
-import LoaderIcon from '@/assets/icon/loader.svg?component'
-import LockIcon from '@/assets/icon/lock.svg?component'
-import LogInIcon from '@/assets/icon/log-in.svg?component'
-import LogOutIcon from '@/assets/icon/log-out.svg?component'
-import MailIcon from '@/assets/icon/mail.svg?component'
-import MapPinIcon from '@/assets/icon/map-pin.svg?component'
-import MapIcon from '@/assets/icon/map.svg?component'
-import Maximize2Icon from '@/assets/icon/maximize-2.svg?component'
-import MaximizeIcon from '@/assets/icon/maximize.svg?component'
-import MehIcon from '@/assets/icon/meh.svg?component'
-import MenuIcon from '@/assets/icon/menu.svg?component'
-import MessageCircleIcon from '@/assets/icon/message-circle.svg?component'
-import MessageSquareIcon from '@/assets/icon/message-square.svg?component'
-import MicOffIcon from '@/assets/icon/mic-off.svg?component'
-import MicIcon from '@/assets/icon/mic.svg?component'
-import Minimize2Icon from '@/assets/icon/minimize-2.svg?component'
-import MinimizeIcon from '@/assets/icon/minimize.svg?component'
-import MinusCircleIcon from '@/assets/icon/minus-circle.svg?component'
-import MinusSquareIcon from '@/assets/icon/minus-square.svg?component'
-import MinusIcon from '@/assets/icon/minus.svg?component'
-import MonitorIcon from '@/assets/icon/monitor.svg?component'
-import MoonIcon from '@/assets/icon/moon.svg?component'
-import MoreHorizontalIcon from '@/assets/icon/more-horizontal.svg?component'
-import MoreVerticalIcon from '@/assets/icon/more-vertical.svg?component'
-import MousePointerIcon from '@/assets/icon/mouse-pointer.svg?component'
-import MoveIcon from '@/assets/icon/move.svg?component'
-import MusicIcon from '@/assets/icon/music.svg?component'
-import Navigation2Icon from '@/assets/icon/navigation-2.svg?component'
-import NavigationIcon from '@/assets/icon/navigation.svg?component'
-import OctagonIcon from '@/assets/icon/octagon.svg?component'
-import PackageIcon from '@/assets/icon/package.svg?component'
-import PaperclipIcon from '@/assets/icon/paperclip.svg?component'
-import PauseCircleIcon from '@/assets/icon/pause-circle.svg?component'
-import PauseIcon from '@/assets/icon/pause.svg?component'
-import PenToolIcon from '@/assets/icon/pen-tool.svg?component'
-import PercentIcon from '@/assets/icon/percent.svg?component'
-import PhoneCallIcon from '@/assets/icon/phone-call.svg?component'
-import PhoneForwardedIcon from '@/assets/icon/phone-forwarded.svg?component'
-import PhoneIncomingIcon from '@/assets/icon/phone-incoming.svg?component'
-import PhoneMissedIcon from '@/assets/icon/phone-missed.svg?component'
-import PhoneOffIcon from '@/assets/icon/phone-off.svg?component'
-import PhoneOutgoingIcon from '@/assets/icon/phone-outgoing.svg?component'
-import PhoneIcon from '@/assets/icon/phone.svg?component'
-import PieChartIcon from '@/assets/icon/pie-chart.svg?component'
-import PlayCircleIcon from '@/assets/icon/play-circle.svg?component'
-import PlayIcon from '@/assets/icon/play.svg?component'
-import PlusCircleIcon from '@/assets/icon/plus-circle.svg?component'
-import PlusSquareIcon from '@/assets/icon/plus-square.svg?component'
-import PlusIcon from '@/assets/icon/plus.svg?component'
-import PocketIcon from '@/assets/icon/pocket.svg?component'
-import PowerIcon from '@/assets/icon/power.svg?component'
-import PrinterIcon from '@/assets/icon/printer.svg?component'
-import RadioIcon from '@/assets/icon/radio.svg?component'
-import RefreshCcwIcon from '@/assets/icon/refresh-ccw.svg?component'
-import RefreshCwIcon from '@/assets/icon/refresh-cw.svg?component'
-import RepeatIcon from '@/assets/icon/repeat.svg?component'
-import RewindIcon from '@/assets/icon/rewind.svg?component'
-import RotateCcwIcon from '@/assets/icon/rotate-ccw.svg?component'
-import RotateCwIcon from '@/assets/icon/rotate-cw.svg?component'
-import RssIcon from '@/assets/icon/rss.svg?component'
-import SaveIcon from '@/assets/icon/save.svg?component'
-import ScissorsIcon from '@/assets/icon/scissors.svg?component'
-import SearchIcon from '@/assets/icon/search.svg?component'
-import SendIcon from '@/assets/icon/send.svg?component'
-import ServerIcon from '@/assets/icon/server.svg?component'
-import SettingsIcon from '@/assets/icon/settings.svg?component'
-import Share2Icon from '@/assets/icon/share-2.svg?component'
-import ShareIcon from '@/assets/icon/share.svg?component'
-import ShieldOffIcon from '@/assets/icon/shield-off.svg?component'
-import ShieldIcon from '@/assets/icon/shield.svg?component'
-import ShuffleIcon from '@/assets/icon/shuffle.svg?component'
-import SidebarIcon from '@/assets/icon/sidebar.svg?component'
-import SkipBackIcon from '@/assets/icon/skip-back.svg?component'
-import SkipForwardIcon from '@/assets/icon/skip-forward.svg?component'
-import SlackIcon from '@/assets/icon/slack.svg?component'
-import SlashIcon from '@/assets/icon/slash.svg?component'
-import SlidersIcon from '@/assets/icon/sliders.svg?component'
-import SmartphoneIcon from '@/assets/icon/smartphone.svg?component'
-import SmileIcon from '@/assets/icon/smile.svg?component'
-import SpeakerIcon from '@/assets/icon/speaker.svg?component'
-import SquareIcon from '@/assets/icon/square.svg?component'
-import StarIcon from '@/assets/icon/star.svg?component'
-import StopCircleIcon from '@/assets/icon/stop-circle.svg?component'
-import SunIcon from '@/assets/icon/sun.svg?component'
-import SunriseIcon from '@/assets/icon/sunrise.svg?component'
-import SunsetIcon from '@/assets/icon/sunset.svg?component'
-import TabletIcon from '@/assets/icon/tablet.svg?component'
-import TagIcon from '@/assets/icon/tag.svg?component'
-import TargetIcon from '@/assets/icon/target.svg?component'
-import TerminalIcon from '@/assets/icon/terminal.svg?component'
-import ThermometerIcon from '@/assets/icon/thermometer.svg?component'
-import ThumbsDownIcon from '@/assets/icon/thumbs-down.svg?component'
-import ThumbsUpIcon from '@/assets/icon/thumbs-up.svg?component'
-import ToggleLeftIcon from '@/assets/icon/toggle-left.svg?component'
-import ToggleRightIcon from '@/assets/icon/toggle-right.svg?component'
-import ToolIcon from '@/assets/icon/tool.svg?component'
-import Trash2Icon from '@/assets/icon/trash-2.svg?component'
-import TrashIcon from '@/assets/icon/trash.svg?component'
-import TrelloIcon from '@/assets/icon/trello.svg?component'
-import TrendingDownIcon from '@/assets/icon/trending-down.svg?component'
-import TrendingUpIcon from '@/assets/icon/trending-up.svg?component'
-import TriangleIcon from '@/assets/icon/triangle.svg?component'
-import TruckIcon from '@/assets/icon/truck.svg?component'
-import TvIcon from '@/assets/icon/tv.svg?component'
-import TwitchIcon from '@/assets/icon/twitch.svg?component'
-import TwitterIcon from '@/assets/icon/twitter.svg?component'
-import TypeIcon from '@/assets/icon/type.svg?component'
-import UmbrellaIcon from '@/assets/icon/umbrella.svg?component'
-import UnderlineIcon from '@/assets/icon/underline.svg?component'
-import UnlockIcon from '@/assets/icon/unlock.svg?component'
-import UploadCloudIcon from '@/assets/icon/upload-cloud.svg?component'
-import UploadIcon from '@/assets/icon/upload.svg?component'
-import UserCheckIcon from '@/assets/icon/user-check.svg?component'
-import UserMinusIcon from '@/assets/icon/user-minus.svg?component'
-import UserPlusIcon from '@/assets/icon/user-plus.svg?component'
-import UserIcon from '@/assets/icon/user.svg?component'
-import UsersIcon from '@/assets/icon/users.svg?component'
-import VideoOffIcon from '@/assets/icon/video-off.svg?component'
-import VideoIcon from '@/assets/icon/video.svg?component'
-import VoicemailIcon from '@/assets/icon/voicemail.svg?component'
-import Volume1Icon from '@/assets/icon/volume-1.svg?component'
-import Volume2Icon from '@/assets/icon/volume-2.svg?component'
-import VolumeXIcon from '@/assets/icon/volume-x.svg?component'
-import VolumeIcon from '@/assets/icon/volume.svg?component'
-import WatchIcon from '@/assets/icon/watch.svg?component'
-import WifiOffIcon from '@/assets/icon/wifi-off.svg?component'
-import WifiIcon from '@/assets/icon/wifi.svg?component'
-import WindIcon from '@/assets/icon/wind.svg?component'
-import XCircleIcon from '@/assets/icon/x-circle.svg?component'
-import XOctagonIcon from '@/assets/icon/x-octagon.svg?component'
-import XSquareIcon from '@/assets/icon/x-square.svg?component'
-import XIcon from '@/assets/icon/x.svg?component'
-import YoutubeIcon from '@/assets/icon/youtube.svg?component'
-import ZapOffIcon from '@/assets/icon/zap-off.svg?component'
-import ZapIcon from '@/assets/icon/zap.svg?component'
-import ZoomInIcon from '@/assets/icon/zoom-in.svg?component'
-import ZoomOutIcon from '@/assets/icon/zoom-out.svg?component'
+import ActivityIcon from '@/assets/icons/activity.svg?component'
+import AirplayIcon from '@/assets/icons/airplay.svg?component'
+import AlertCircleIcon from '@/assets/icons/alert-circle.svg?component'
+import AlertOctagonIcon from '@/assets/icons/alert-octagon.svg?component'
+import AlertTriangleIcon from '@/assets/icons/alert-triangle.svg?component'
+import AlignCenterIcon from '@/assets/icons/align-center.svg?component'
+import AlignJustifyIcon from '@/assets/icons/align-justify.svg?component'
+import AlignLeftIcon from '@/assets/icons/align-left.svg?component'
+import AlignRightIcon from '@/assets/icons/align-right.svg?component'
+import AnchorIcon from '@/assets/icons/anchor.svg?component'
+import ApertureIcon from '@/assets/icons/aperture.svg?component'
+import ArchiveIcon from '@/assets/icons/archive.svg?component'
+import ArrowDownIcon from '@/assets/icons/arrow-down.svg?component'
+import ArrowDownCircleIcon from '@/assets/icons/arrow-down-circle.svg?component'
+import ArrowDownLeftIcon from '@/assets/icons/arrow-down-left.svg?component'
+import ArrowDownRightIcon from '@/assets/icons/arrow-down-right.svg?component'
+import ArrowLeftIcon from '@/assets/icons/arrow-left.svg?component'
+import ArrowLeftCircleIcon from '@/assets/icons/arrow-left-circle.svg?component'
+import ArrowRightIcon from '@/assets/icons/arrow-right.svg?component'
+import ArrowRightCircleIcon from '@/assets/icons/arrow-right-circle.svg?component'
+import ArrowUpIcon from '@/assets/icons/arrow-up.svg?component'
+import ArrowUpCircleIcon from '@/assets/icons/arrow-up-circle.svg?component'
+import ArrowUpLeftIcon from '@/assets/icons/arrow-up-left.svg?component'
+import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg?component'
+import AtSignIcon from '@/assets/icons/at-sign.svg?component'
+import AwardIcon from '@/assets/icons/award.svg?component'
+import BarChartIcon from '@/assets/icons/bar-chart.svg?component'
+import BarChart2Icon from '@/assets/icons/bar-chart-2.svg?component'
+import BatteryIcon from '@/assets/icons/battery.svg?component'
+import BatteryChargingIcon from '@/assets/icons/battery-charging.svg?component'
+import BellIcon from '@/assets/icons/bell.svg?component'
+import BellOffIcon from '@/assets/icons/bell-off.svg?component'
+import BluetoothIcon from '@/assets/icons/bluetooth.svg?component'
+import BoldIcon from '@/assets/icons/bold.svg?component'
+import BookIcon from '@/assets/icons/book.svg?component'
+import BookOpenIcon from '@/assets/icons/book-open.svg?component'
+import BookmarkIcon from '@/assets/icons/bookmark.svg?component'
+import BoxIcon from '@/assets/icons/box.svg?component'
+import BriefcaseIcon from '@/assets/icons/briefcase.svg?component'
+import CalendarIcon from '@/assets/icons/calendar.svg?component'
+import CameraIcon from '@/assets/icons/camera.svg?component'
+import CameraOffIcon from '@/assets/icons/camera-off.svg?component'
+import CastIcon from '@/assets/icons/cast.svg?component'
+import CheckIcon from '@/assets/icons/check.svg?component'
+import CheckCircleIcon from '@/assets/icons/check-circle.svg?component'
+import CheckSquareIcon from '@/assets/icons/check-square.svg?component'
+import ChevronDownIcon from '@/assets/icons/chevron-down.svg?component'
+import ChevronLeftIcon from '@/assets/icons/chevron-left.svg?component'
+import ChevronRightIcon from '@/assets/icons/chevron-right.svg?component'
+import ChevronUpIcon from '@/assets/icons/chevron-up.svg?component'
+import ChevronsDownIcon from '@/assets/icons/chevrons-down.svg?component'
+import ChevronsLeftIcon from '@/assets/icons/chevrons-left.svg?component'
+import ChevronsRightIcon from '@/assets/icons/chevrons-right.svg?component'
+import ChevronsUpIcon from '@/assets/icons/chevrons-up.svg?component'
+import ChromeIcon from '@/assets/icons/chrome.svg?component'
+import CircleIcon from '@/assets/icons/circle.svg?component'
+import ClipboardIcon from '@/assets/icons/clipboard.svg?component'
+import ClockIcon from '@/assets/icons/clock.svg?component'
+import CloudIcon from '@/assets/icons/cloud.svg?component'
+import CloudDrizzleIcon from '@/assets/icons/cloud-drizzle.svg?component'
+import CloudLightningIcon from '@/assets/icons/cloud-lightning.svg?component'
+import CloudOffIcon from '@/assets/icons/cloud-off.svg?component'
+import CloudRainIcon from '@/assets/icons/cloud-rain.svg?component'
+import CloudSnowIcon from '@/assets/icons/cloud-snow.svg?component'
+import CodeIcon from '@/assets/icons/code.svg?component'
+import CodepenIcon from '@/assets/icons/codepen.svg?component'
+import CodesandboxIcon from '@/assets/icons/codesandbox.svg?component'
+import CoffeeIcon from '@/assets/icons/coffee.svg?component'
+import ColumnsIcon from '@/assets/icons/columns.svg?component'
+import CommandIcon from '@/assets/icons/command.svg?component'
+import CompassIcon from '@/assets/icons/compass.svg?component'
+import CopyIcon from '@/assets/icons/copy.svg?component'
+import CornerDownLeftIcon from '@/assets/icons/corner-down-left.svg?component'
+import CornerDownRightIcon from '@/assets/icons/corner-down-right.svg?component'
+import CornerLeftDownIcon from '@/assets/icons/corner-left-down.svg?component'
+import CornerLeftUpIcon from '@/assets/icons/corner-left-up.svg?component'
+import CornerRightDownIcon from '@/assets/icons/corner-right-down.svg?component'
+import CornerRightUpIcon from '@/assets/icons/corner-right-up.svg?component'
+import CornerUpLeftIcon from '@/assets/icons/corner-up-left.svg?component'
+import CornerUpRightIcon from '@/assets/icons/corner-up-right.svg?component'
+import CpuIcon from '@/assets/icons/cpu.svg?component'
+import CreditCardIcon from '@/assets/icons/credit-card.svg?component'
+import CropIcon from '@/assets/icons/crop.svg?component'
+import CrosshairIcon from '@/assets/icons/crosshair.svg?component'
+import DatabaseIcon from '@/assets/icons/database.svg?component'
+import DeleteIcon from '@/assets/icons/delete.svg?component'
+import DiscIcon from '@/assets/icons/disc.svg?component'
+import DivideIcon from '@/assets/icons/divide.svg?component'
+import DivideCircleIcon from '@/assets/icons/divide-circle.svg?component'
+import DivideSquareIcon from '@/assets/icons/divide-square.svg?component'
+import DollarSignIcon from '@/assets/icons/dollar-sign.svg?component'
+import DownloadIcon from '@/assets/icons/download.svg?component'
+import DownloadCloudIcon from '@/assets/icons/download-cloud.svg?component'
+import DribbbleIcon from '@/assets/icons/dribbble.svg?component'
+import DropletIcon from '@/assets/icons/droplet.svg?component'
+import EditIcon from '@/assets/icons/edit.svg?component'
+import Edit2Icon from '@/assets/icons/edit-2.svg?component'
+import Edit3Icon from '@/assets/icons/edit-3.svg?component'
+import ExternalLinkIcon from '@/assets/icons/external-link.svg?component'
+import EyeIcon from '@/assets/icons/eye.svg?component'
+import EyeOffIcon from '@/assets/icons/eye-off.svg?component'
+import FacebookIcon from '@/assets/icons/facebook.svg?component'
+import FastForwardIcon from '@/assets/icons/fast-forward.svg?component'
+import FeatherIcon from '@/assets/icons/feather.svg?component'
+import FigmaIcon from '@/assets/icons/figma.svg?component'
+import FileIcon from '@/assets/icons/file.svg?component'
+import FileMinusIcon from '@/assets/icons/file-minus.svg?component'
+import FilePlusIcon from '@/assets/icons/file-plus.svg?component'
+import FileTextIcon from '@/assets/icons/file-text.svg?component'
+import FilmIcon from '@/assets/icons/film.svg?component'
+import FilterIcon from '@/assets/icons/filter.svg?component'
+import FlagIcon from '@/assets/icons/flag.svg?component'
+import FolderIcon from '@/assets/icons/folder.svg?component'
+import FolderMinusIcon from '@/assets/icons/folder-minus.svg?component'
+import FolderPlusIcon from '@/assets/icons/folder-plus.svg?component'
+import FramerIcon from '@/assets/icons/framer.svg?component'
+import FrownIcon from '@/assets/icons/frown.svg?component'
+import GiftIcon from '@/assets/icons/gift.svg?component'
+import GitBranchIcon from '@/assets/icons/git-branch.svg?component'
+import GitCommitIcon from '@/assets/icons/git-commit.svg?component'
+import GitMergeIcon from '@/assets/icons/git-merge.svg?component'
+import GitPullRequestIcon from '@/assets/icons/git-pull-request.svg?component'
+import GithubIcon from '@/assets/icons/github.svg?component'
+import GitlabIcon from '@/assets/icons/gitlab.svg?component'
+import GlobeIcon from '@/assets/icons/globe.svg?component'
+import GridIcon from '@/assets/icons/grid.svg?component'
+import HardDriveIcon from '@/assets/icons/hard-drive.svg?component'
+import HashIcon from '@/assets/icons/hash.svg?component'
+import HeadphonesIcon from '@/assets/icons/headphones.svg?component'
+import HeartIcon from '@/assets/icons/heart.svg?component'
+import HelpCircleIcon from '@/assets/icons/help-circle.svg?component'
+import HexagonIcon from '@/assets/icons/hexagon.svg?component'
+import HomeIcon from '@/assets/icons/home.svg?component'
+import ImageIcon from '@/assets/icons/image.svg?component'
+import InboxIcon from '@/assets/icons/inbox.svg?component'
+import InfoIcon from '@/assets/icons/info.svg?component'
+import InstagramIcon from '@/assets/icons/instagram.svg?component'
+import ItalicIcon from '@/assets/icons/italic.svg?component'
+import KeyIcon from '@/assets/icons/key.svg?component'
+import LayersIcon from '@/assets/icons/layers.svg?component'
+import LayoutIcon from '@/assets/icons/layout.svg?component'
+import LifeBuoyIcon from '@/assets/icons/life-buoy.svg?component'
+import LinkIcon from '@/assets/icons/link.svg?component'
+import Link2Icon from '@/assets/icons/link-2.svg?component'
+import LinkedinIcon from '@/assets/icons/linkedin.svg?component'
+import ListIcon from '@/assets/icons/list.svg?component'
+import LoaderIcon from '@/assets/icons/loader.svg?component'
+import LockIcon from '@/assets/icons/lock.svg?component'
+import LogInIcon from '@/assets/icons/log-in.svg?component'
+import LogOutIcon from '@/assets/icons/log-out.svg?component'
+import MailIcon from '@/assets/icons/mail.svg?component'
+import MapIcon from '@/assets/icons/map.svg?component'
+import MapPinIcon from '@/assets/icons/map-pin.svg?component'
+import MaximizeIcon from '@/assets/icons/maximize.svg?component'
+import Maximize2Icon from '@/assets/icons/maximize-2.svg?component'
+import MehIcon from '@/assets/icons/meh.svg?component'
+import MenuIcon from '@/assets/icons/menu.svg?component'
+import MessageCircleIcon from '@/assets/icons/message-circle.svg?component'
+import MessageSquareIcon from '@/assets/icons/message-square.svg?component'
+import MicIcon from '@/assets/icons/mic.svg?component'
+import MicOffIcon from '@/assets/icons/mic-off.svg?component'
+import MinimizeIcon from '@/assets/icons/minimize.svg?component'
+import Minimize2Icon from '@/assets/icons/minimize-2.svg?component'
+import MinusIcon from '@/assets/icons/minus.svg?component'
+import MinusCircleIcon from '@/assets/icons/minus-circle.svg?component'
+import MinusSquareIcon from '@/assets/icons/minus-square.svg?component'
+import MonitorIcon from '@/assets/icons/monitor.svg?component'
+import MoonIcon from '@/assets/icons/moon.svg?component'
+import MoreHorizontalIcon from '@/assets/icons/more-horizontal.svg?component'
+import MoreVerticalIcon from '@/assets/icons/more-vertical.svg?component'
+import MousePointerIcon from '@/assets/icons/mouse-pointer.svg?component'
+import MoveIcon from '@/assets/icons/move.svg?component'
+import MusicIcon from '@/assets/icons/music.svg?component'
+import NavigationIcon from '@/assets/icons/navigation.svg?component'
+import Navigation2Icon from '@/assets/icons/navigation-2.svg?component'
+import OctagonIcon from '@/assets/icons/octagon.svg?component'
+import PackageIcon from '@/assets/icons/package.svg?component'
+import PaperclipIcon from '@/assets/icons/paperclip.svg?component'
+import PauseIcon from '@/assets/icons/pause.svg?component'
+import PauseCircleIcon from '@/assets/icons/pause-circle.svg?component'
+import PenToolIcon from '@/assets/icons/pen-tool.svg?component'
+import PercentIcon from '@/assets/icons/percent.svg?component'
+import PhoneIcon from '@/assets/icons/phone.svg?component'
+import PhoneCallIcon from '@/assets/icons/phone-call.svg?component'
+import PhoneForwardedIcon from '@/assets/icons/phone-forwarded.svg?component'
+import PhoneIncomingIcon from '@/assets/icons/phone-incoming.svg?component'
+import PhoneMissedIcon from '@/assets/icons/phone-missed.svg?component'
+import PhoneOffIcon from '@/assets/icons/phone-off.svg?component'
+import PhoneOutgoingIcon from '@/assets/icons/phone-outgoing.svg?component'
+import PieChartIcon from '@/assets/icons/pie-chart.svg?component'
+import PlayIcon from '@/assets/icons/play.svg?component'
+import PlayCircleIcon from '@/assets/icons/play-circle.svg?component'
+import PlusIcon from '@/assets/icons/plus.svg?component'
+import PlusCircleIcon from '@/assets/icons/plus-circle.svg?component'
+import PlusSquareIcon from '@/assets/icons/plus-square.svg?component'
+import PocketIcon from '@/assets/icons/pocket.svg?component'
+import PowerIcon from '@/assets/icons/power.svg?component'
+import PrinterIcon from '@/assets/icons/printer.svg?component'
+import RadioIcon from '@/assets/icons/radio.svg?component'
+import RefreshCcwIcon from '@/assets/icons/refresh-ccw.svg?component'
+import RefreshCwIcon from '@/assets/icons/refresh-cw.svg?component'
+import RepeatIcon from '@/assets/icons/repeat.svg?component'
+import RewindIcon from '@/assets/icons/rewind.svg?component'
+import RotateCcwIcon from '@/assets/icons/rotate-ccw.svg?component'
+import RotateCwIcon from '@/assets/icons/rotate-cw.svg?component'
+import RssIcon from '@/assets/icons/rss.svg?component'
+import SaveIcon from '@/assets/icons/save.svg?component'
+import ScissorsIcon from '@/assets/icons/scissors.svg?component'
+import SearchIcon from '@/assets/icons/search.svg?component'
+import SendIcon from '@/assets/icons/send.svg?component'
+import ServerIcon from '@/assets/icons/server.svg?component'
+import SettingsIcon from '@/assets/icons/settings.svg?component'
+import ShareIcon from '@/assets/icons/share.svg?component'
+import Share2Icon from '@/assets/icons/share-2.svg?component'
+import ShieldIcon from '@/assets/icons/shield.svg?component'
+import ShieldOffIcon from '@/assets/icons/shield-off.svg?component'
+import ShoppingBagIcon from '@/assets/icons/shopping-bag.svg?component'
+import ShoppingCartIcon from '@/assets/icons/shopping-cart.svg?component'
+import ShuffleIcon from '@/assets/icons/shuffle.svg?component'
+import SidebarIcon from '@/assets/icons/sidebar.svg?component'
+import SkipBackIcon from '@/assets/icons/skip-back.svg?component'
+import SkipForwardIcon from '@/assets/icons/skip-forward.svg?component'
+import SlackIcon from '@/assets/icons/slack.svg?component'
+import SlashIcon from '@/assets/icons/slash.svg?component'
+import SlidersIcon from '@/assets/icons/sliders.svg?component'
+import SmartphoneIcon from '@/assets/icons/smartphone.svg?component'
+import SmileIcon from '@/assets/icons/smile.svg?component'
+import SpeakerIcon from '@/assets/icons/speaker.svg?component'
+import SquareIcon from '@/assets/icons/square.svg?component'
+import StarIcon from '@/assets/icons/star.svg?component'
+import StopCircleIcon from '@/assets/icons/stop-circle.svg?component'
+import SunIcon from '@/assets/icons/sun.svg?component'
+import SunriseIcon from '@/assets/icons/sunrise.svg?component'
+import SunsetIcon from '@/assets/icons/sunset.svg?component'
+import TableIcon from '@/assets/icons/table.svg?component'
+import TabletIcon from '@/assets/icons/tablet.svg?component'
+import TagIcon from '@/assets/icons/tag.svg?component'
+import TargetIcon from '@/assets/icons/target.svg?component'
+import TerminalIcon from '@/assets/icons/terminal.svg?component'
+import ThermometerIcon from '@/assets/icons/thermometer.svg?component'
+import ThumbsDownIcon from '@/assets/icons/thumbs-down.svg?component'
+import ThumbsUpIcon from '@/assets/icons/thumbs-up.svg?component'
+import ToggleLeftIcon from '@/assets/icons/toggle-left.svg?component'
+import ToggleRightIcon from '@/assets/icons/toggle-right.svg?component'
+import ToolIcon from '@/assets/icons/tool.svg?component'
+import TrashIcon from '@/assets/icons/trash.svg?component'
+import Trash2Icon from '@/assets/icons/trash-2.svg?component'
+import TrelloIcon from '@/assets/icons/trello.svg?component'
+import TrendingDownIcon from '@/assets/icons/trending-down.svg?component'
+import TrendingUpIcon from '@/assets/icons/trending-up.svg?component'
+import TriangleIcon from '@/assets/icons/triangle.svg?component'
+import TruckIcon from '@/assets/icons/truck.svg?component'
+import TvIcon from '@/assets/icons/tv.svg?component'
+import TwitchIcon from '@/assets/icons/twitch.svg?component'
+import TwitterIcon from '@/assets/icons/twitter.svg?component'
+import TypeIcon from '@/assets/icons/type.svg?component'
+import UmbrellaIcon from '@/assets/icons/umbrella.svg?component'
+import UnderlineIcon from '@/assets/icons/underline.svg?component'
+import UnlockIcon from '@/assets/icons/unlock.svg?component'
+import UploadIcon from '@/assets/icons/upload.svg?component'
+import UploadCloudIcon from '@/assets/icons/upload-cloud.svg?component'
+import UserIcon from '@/assets/icons/user.svg?component'
+import UserCheckIcon from '@/assets/icons/user-check.svg?component'
+import UserMinusIcon from '@/assets/icons/user-minus.svg?component'
+import UserPlusIcon from '@/assets/icons/user-plus.svg?component'
+import UserXIcon from '@/assets/icons/user-x.svg?component'
+import UsersIcon from '@/assets/icons/users.svg?component'
+import VideoIcon from '@/assets/icons/video.svg?component'
+import VideoOffIcon from '@/assets/icons/video-off.svg?component'
+import VoicemailIcon from '@/assets/icons/voicemail.svg?component'
+import VolumeIcon from '@/assets/icons/volume.svg?component'
+import Volume1Icon from '@/assets/icons/volume-1.svg?component'
+import Volume2Icon from '@/assets/icons/volume-2.svg?component'
+import VolumeXIcon from '@/assets/icons/volume-x.svg?component'
+import WatchIcon from '@/assets/icons/watch.svg?component'
+import WifiIcon from '@/assets/icons/wifi.svg?component'
+import WifiOffIcon from '@/assets/icons/wifi-off.svg?component'
+import WindIcon from '@/assets/icons/wind.svg?component'
+import XIcon from '@/assets/icons/x.svg?component'
+import XCircleIcon from '@/assets/icons/x-circle.svg?component'
+import XOctagonIcon from '@/assets/icons/x-octagon.svg?component'
+import XSquareIcon from '@/assets/icons/x-square.svg?component'
+import YoutubeIcon from '@/assets/icons/youtube.svg?component'
+import ZapIcon from '@/assets/icons/zap.svg?component'
+import ZapOffIcon from '@/assets/icons/zap-off.svg?component'
+import ZoomInIcon from '@/assets/icons/zoom-in.svg?component'
+import ZoomOutIcon from '@/assets/icons/zoom-out.svg?component'
 import type { FunctionalComponent, SVGAttributes } from 'vue'
 
 export const NoneIconComponent: FunctionalComponent<SVGAttributes> = () => null
@@ -297,40 +305,40 @@ export enum Icon {
 	anchor = 'anchor',
 	aperture = 'aperture',
 	archive = 'archive',
+	arrow_down = 'arrow-down',
 	arrow_down_circle = 'arrow-down-circle',
 	arrow_down_left = 'arrow-down-left',
 	arrow_down_right = 'arrow-down-right',
-	arrow_down = 'arrow-down',
-	arrow_left_circle = 'arrow-left-circle',
 	arrow_left = 'arrow-left',
-	arrow_right_circle = 'arrow-right-circle',
+	arrow_left_circle = 'arrow-left-circle',
 	arrow_right = 'arrow-right',
+	arrow_right_circle = 'arrow-right-circle',
+	arrow_up = 'arrow-up',
 	arrow_up_circle = 'arrow-up-circle',
 	arrow_up_left = 'arrow-up-left',
 	arrow_up_right = 'arrow-up-right',
-	arrow_up = 'arrow-up',
 	at_sign = 'at-sign',
 	award = 'award',
-	bar_chart_2 = 'bar-chart-2',
 	bar_chart = 'bar-chart',
-	battery_charging = 'battery-charging',
+	bar_chart_2 = 'bar-chart-2',
 	battery = 'battery',
-	bell_off = 'bell-off',
+	battery_charging = 'battery-charging',
 	bell = 'bell',
+	bell_off = 'bell-off',
 	bluetooth = 'bluetooth',
 	bold = 'bold',
-	book_open = 'book-open',
 	book = 'book',
+	book_open = 'book-open',
 	bookmark = 'bookmark',
 	box = 'box',
 	briefcase = 'briefcase',
 	calendar = 'calendar',
-	camera_off = 'camera-off',
 	camera = 'camera',
+	camera_off = 'camera-off',
 	cast = 'cast',
+	check = 'check',
 	check_circle = 'check-circle',
 	check_square = 'check-square',
-	check = 'check',
 	chevron_down = 'chevron-down',
 	chevron_left = 'chevron-left',
 	chevron_right = 'chevron-right',
@@ -343,12 +351,12 @@ export enum Icon {
 	circle = 'circle',
 	clipboard = 'clipboard',
 	clock = 'clock',
+	cloud = 'cloud',
 	cloud_drizzle = 'cloud-drizzle',
 	cloud_lightning = 'cloud-lightning',
 	cloud_off = 'cloud-off',
 	cloud_rain = 'cloud-rain',
 	cloud_snow = 'cloud-snow',
-	cloud = 'cloud',
 	code = 'code',
 	codepen = 'codepen',
 	codesandbox = 'codesandbox',
@@ -372,30 +380,34 @@ export enum Icon {
 	database = 'database',
 	delete = 'delete',
 	disc = 'disc',
+	divide = 'divide',
+	divide_circle = 'divide-circle',
+	divide_square = 'divide-square',
 	dollar_sign = 'dollar-sign',
-	download_cloud = 'download-cloud',
 	download = 'download',
+	download_cloud = 'download-cloud',
+	dribbble = 'dribbble',
 	droplet = 'droplet',
+	edit = 'edit',
 	edit_2 = 'edit-2',
 	edit_3 = 'edit-3',
-	edit = 'edit',
 	external_link = 'external-link',
-	eye_off = 'eye-off',
 	eye = 'eye',
+	eye_off = 'eye-off',
 	facebook = 'facebook',
 	fast_forward = 'fast-forward',
 	feather = 'feather',
 	figma = 'figma',
+	file = 'file',
 	file_minus = 'file-minus',
 	file_plus = 'file-plus',
 	file_text = 'file-text',
-	file = 'file',
 	film = 'film',
 	filter = 'filter',
 	flag = 'flag',
+	folder = 'folder',
 	folder_minus = 'folder-minus',
 	folder_plus = 'folder-plus',
-	folder = 'folder',
 	framer = 'framer',
 	frown = 'frown',
 	gift = 'gift',
@@ -423,8 +435,8 @@ export enum Icon {
 	layers = 'layers',
 	layout = 'layout',
 	life_buoy = 'life-buoy',
-	link_2 = 'link-2',
 	link = 'link',
+	link_2 = 'link-2',
 	linkedin = 'linkedin',
 	list = 'list',
 	loader = 'loader',
@@ -432,21 +444,21 @@ export enum Icon {
 	log_in = 'log-in',
 	log_out = 'log-out',
 	mail = 'mail',
-	map_pin = 'map-pin',
 	map = 'map',
-	maximize_2 = 'maximize-2',
+	map_pin = 'map-pin',
 	maximize = 'maximize',
+	maximize_2 = 'maximize-2',
 	meh = 'meh',
 	menu = 'menu',
 	message_circle = 'message-circle',
 	message_square = 'message-square',
-	mic_off = 'mic-off',
 	mic = 'mic',
-	minimize_2 = 'minimize-2',
+	mic_off = 'mic-off',
 	minimize = 'minimize',
+	minimize_2 = 'minimize-2',
+	minus = 'minus',
 	minus_circle = 'minus-circle',
 	minus_square = 'minus-square',
-	minus = 'minus',
 	monitor = 'monitor',
 	moon = 'moon',
 	more_horizontal = 'more-horizontal',
@@ -454,28 +466,28 @@ export enum Icon {
 	mouse_pointer = 'mouse-pointer',
 	move = 'move',
 	music = 'music',
-	navigation_2 = 'navigation-2',
 	navigation = 'navigation',
+	navigation_2 = 'navigation-2',
 	octagon = 'octagon',
 	package = 'package',
 	paperclip = 'paperclip',
-	pause_circle = 'pause-circle',
 	pause = 'pause',
+	pause_circle = 'pause-circle',
 	pen_tool = 'pen-tool',
 	percent = 'percent',
+	phone = 'phone',
 	phone_call = 'phone-call',
 	phone_forwarded = 'phone-forwarded',
 	phone_incoming = 'phone-incoming',
 	phone_missed = 'phone-missed',
 	phone_off = 'phone-off',
 	phone_outgoing = 'phone-outgoing',
-	phone = 'phone',
 	pie_chart = 'pie-chart',
-	play_circle = 'play-circle',
 	play = 'play',
+	play_circle = 'play-circle',
+	plus = 'plus',
 	plus_circle = 'plus-circle',
 	plus_square = 'plus-square',
-	plus = 'plus',
 	pocket = 'pocket',
 	power = 'power',
 	printer = 'printer',
@@ -493,10 +505,12 @@ export enum Icon {
 	send = 'send',
 	server = 'server',
 	settings = 'settings',
-	share_2 = 'share-2',
 	share = 'share',
-	shield_off = 'shield-off',
+	share_2 = 'share-2',
 	shield = 'shield',
+	shield_off = 'shield-off',
+	shopping_bag = 'shopping-bag',
+	shopping_cart = 'shopping-cart',
 	shuffle = 'shuffle',
 	sidebar = 'sidebar',
 	skip_back = 'skip-back',
@@ -513,6 +527,7 @@ export enum Icon {
 	sun = 'sun',
 	sunrise = 'sunrise',
 	sunset = 'sunset',
+	table = 'table',
 	tablet = 'tablet',
 	tag = 'tag',
 	target = 'target',
@@ -523,8 +538,8 @@ export enum Icon {
 	toggle_left = 'toggle-left',
 	toggle_right = 'toggle-right',
 	tool = 'tool',
-	trash_2 = 'trash-2',
 	trash = 'trash',
+	trash_2 = 'trash-2',
 	trello = 'trello',
 	trending_down = 'trending-down',
 	trending_up = 'trending-up',
@@ -537,31 +552,32 @@ export enum Icon {
 	umbrella = 'umbrella',
 	underline = 'underline',
 	unlock = 'unlock',
-	upload_cloud = 'upload-cloud',
 	upload = 'upload',
+	upload_cloud = 'upload-cloud',
+	user = 'user',
 	user_check = 'user-check',
 	user_minus = 'user-minus',
 	user_plus = 'user-plus',
-	user = 'user',
+	user_x = 'user-x',
 	users = 'users',
-	video_off = 'video-off',
 	video = 'video',
+	video_off = 'video-off',
 	voicemail = 'voicemail',
+	volume = 'volume',
 	volume_1 = 'volume-1',
 	volume_2 = 'volume-2',
 	volume_x = 'volume-x',
-	volume = 'volume',
 	watch = 'watch',
-	wifi_off = 'wifi-off',
 	wifi = 'wifi',
+	wifi_off = 'wifi-off',
 	wind = 'wind',
+	x = 'x',
 	x_circle = 'x-circle',
 	x_octagon = 'x-octagon',
 	x_square = 'x-square',
-	x = 'x',
 	youtube = 'youtube',
-	zap_off = 'zap-off',
 	zap = 'zap',
+	zap_off = 'zap-off',
 	zoom_in = 'zoom-in',
 	zoom_out = 'zoom-out',
 	none = 'none',
@@ -580,40 +596,40 @@ export const IconToComponentConstruct: Record<Icon, FunctionalComponent<SVGAttri
 	anchor: AnchorIcon,
 	aperture: ApertureIcon,
 	archive: ArchiveIcon,
+	'arrow-down': ArrowDownIcon,
 	'arrow-down-circle': ArrowDownCircleIcon,
 	'arrow-down-left': ArrowDownLeftIcon,
 	'arrow-down-right': ArrowDownRightIcon,
-	'arrow-down': ArrowDownIcon,
-	'arrow-left-circle': ArrowLeftCircleIcon,
 	'arrow-left': ArrowLeftIcon,
-	'arrow-right-circle': ArrowRightCircleIcon,
+	'arrow-left-circle': ArrowLeftCircleIcon,
 	'arrow-right': ArrowRightIcon,
+	'arrow-right-circle': ArrowRightCircleIcon,
+	'arrow-up': ArrowUpIcon,
 	'arrow-up-circle': ArrowUpCircleIcon,
 	'arrow-up-left': ArrowUpLeftIcon,
 	'arrow-up-right': ArrowUpRightIcon,
-	'arrow-up': ArrowUpIcon,
 	'at-sign': AtSignIcon,
 	award: AwardIcon,
-	'bar-chart-2': BarChart2Icon,
 	'bar-chart': BarChartIcon,
-	'battery-charging': BatteryChargingIcon,
+	'bar-chart-2': BarChart2Icon,
 	battery: BatteryIcon,
-	'bell-off': BellOffIcon,
+	'battery-charging': BatteryChargingIcon,
 	bell: BellIcon,
+	'bell-off': BellOffIcon,
 	bluetooth: BluetoothIcon,
 	bold: BoldIcon,
-	'book-open': BookOpenIcon,
 	book: BookIcon,
+	'book-open': BookOpenIcon,
 	bookmark: BookmarkIcon,
 	box: BoxIcon,
 	briefcase: BriefcaseIcon,
 	calendar: CalendarIcon,
-	'camera-off': CameraOffIcon,
 	camera: CameraIcon,
+	'camera-off': CameraOffIcon,
 	cast: CastIcon,
+	check: CheckIcon,
 	'check-circle': CheckCircleIcon,
 	'check-square': CheckSquareIcon,
-	check: CheckIcon,
 	'chevron-down': ChevronDownIcon,
 	'chevron-left': ChevronLeftIcon,
 	'chevron-right': ChevronRightIcon,
@@ -626,12 +642,12 @@ export const IconToComponentConstruct: Record<Icon, FunctionalComponent<SVGAttri
 	circle: CircleIcon,
 	clipboard: ClipboardIcon,
 	clock: ClockIcon,
+	cloud: CloudIcon,
 	'cloud-drizzle': CloudDrizzleIcon,
 	'cloud-lightning': CloudLightningIcon,
 	'cloud-off': CloudOffIcon,
 	'cloud-rain': CloudRainIcon,
 	'cloud-snow': CloudSnowIcon,
-	cloud: CloudIcon,
 	code: CodeIcon,
 	codepen: CodepenIcon,
 	codesandbox: CodesandboxIcon,
@@ -655,30 +671,34 @@ export const IconToComponentConstruct: Record<Icon, FunctionalComponent<SVGAttri
 	database: DatabaseIcon,
 	delete: DeleteIcon,
 	disc: DiscIcon,
+	divide: DivideIcon,
+	'divide-circle': DivideCircleIcon,
+	'divide-square': DivideSquareIcon,
 	'dollar-sign': DollarSignIcon,
-	'download-cloud': DownloadCloudIcon,
 	download: DownloadIcon,
+	'download-cloud': DownloadCloudIcon,
+	dribbble: DribbbleIcon,
 	droplet: DropletIcon,
+	edit: EditIcon,
 	'edit-2': Edit2Icon,
 	'edit-3': Edit3Icon,
-	edit: EditIcon,
 	'external-link': ExternalLinkIcon,
-	'eye-off': EyeOffIcon,
 	eye: EyeIcon,
+	'eye-off': EyeOffIcon,
 	facebook: FacebookIcon,
 	'fast-forward': FastForwardIcon,
 	feather: FeatherIcon,
 	figma: FigmaIcon,
+	file: FileIcon,
 	'file-minus': FileMinusIcon,
 	'file-plus': FilePlusIcon,
 	'file-text': FileTextIcon,
-	file: FileIcon,
 	film: FilmIcon,
 	filter: FilterIcon,
 	flag: FlagIcon,
+	folder: FolderIcon,
 	'folder-minus': FolderMinusIcon,
 	'folder-plus': FolderPlusIcon,
-	folder: FolderIcon,
 	framer: FramerIcon,
 	frown: FrownIcon,
 	gift: GiftIcon,
@@ -706,8 +726,8 @@ export const IconToComponentConstruct: Record<Icon, FunctionalComponent<SVGAttri
 	layers: LayersIcon,
 	layout: LayoutIcon,
 	'life-buoy': LifeBuoyIcon,
-	'link-2': Link2Icon,
 	link: LinkIcon,
+	'link-2': Link2Icon,
 	linkedin: LinkedinIcon,
 	list: ListIcon,
 	loader: LoaderIcon,
@@ -715,21 +735,21 @@ export const IconToComponentConstruct: Record<Icon, FunctionalComponent<SVGAttri
 	'log-in': LogInIcon,
 	'log-out': LogOutIcon,
 	mail: MailIcon,
-	'map-pin': MapPinIcon,
 	map: MapIcon,
-	'maximize-2': Maximize2Icon,
+	'map-pin': MapPinIcon,
 	maximize: MaximizeIcon,
+	'maximize-2': Maximize2Icon,
 	meh: MehIcon,
 	menu: MenuIcon,
 	'message-circle': MessageCircleIcon,
 	'message-square': MessageSquareIcon,
-	'mic-off': MicOffIcon,
 	mic: MicIcon,
-	'minimize-2': Minimize2Icon,
+	'mic-off': MicOffIcon,
 	minimize: MinimizeIcon,
+	'minimize-2': Minimize2Icon,
+	minus: MinusIcon,
 	'minus-circle': MinusCircleIcon,
 	'minus-square': MinusSquareIcon,
-	minus: MinusIcon,
 	monitor: MonitorIcon,
 	moon: MoonIcon,
 	'more-horizontal': MoreHorizontalIcon,
@@ -737,28 +757,28 @@ export const IconToComponentConstruct: Record<Icon, FunctionalComponent<SVGAttri
 	'mouse-pointer': MousePointerIcon,
 	move: MoveIcon,
 	music: MusicIcon,
-	'navigation-2': Navigation2Icon,
 	navigation: NavigationIcon,
+	'navigation-2': Navigation2Icon,
 	octagon: OctagonIcon,
 	package: PackageIcon,
 	paperclip: PaperclipIcon,
-	'pause-circle': PauseCircleIcon,
 	pause: PauseIcon,
+	'pause-circle': PauseCircleIcon,
 	'pen-tool': PenToolIcon,
 	percent: PercentIcon,
+	phone: PhoneIcon,
 	'phone-call': PhoneCallIcon,
 	'phone-forwarded': PhoneForwardedIcon,
 	'phone-incoming': PhoneIncomingIcon,
 	'phone-missed': PhoneMissedIcon,
 	'phone-off': PhoneOffIcon,
 	'phone-outgoing': PhoneOutgoingIcon,
-	phone: PhoneIcon,
 	'pie-chart': PieChartIcon,
-	'play-circle': PlayCircleIcon,
 	play: PlayIcon,
+	'play-circle': PlayCircleIcon,
+	plus: PlusIcon,
 	'plus-circle': PlusCircleIcon,
 	'plus-square': PlusSquareIcon,
-	plus: PlusIcon,
 	pocket: PocketIcon,
 	power: PowerIcon,
 	printer: PrinterIcon,
@@ -776,10 +796,12 @@ export const IconToComponentConstruct: Record<Icon, FunctionalComponent<SVGAttri
 	send: SendIcon,
 	server: ServerIcon,
 	settings: SettingsIcon,
-	'share-2': Share2Icon,
 	share: ShareIcon,
-	'shield-off': ShieldOffIcon,
+	'share-2': Share2Icon,
 	shield: ShieldIcon,
+	'shield-off': ShieldOffIcon,
+	'shopping-bag': ShoppingBagIcon,
+	'shopping-cart': ShoppingCartIcon,
 	shuffle: ShuffleIcon,
 	sidebar: SidebarIcon,
 	'skip-back': SkipBackIcon,
@@ -796,6 +818,7 @@ export const IconToComponentConstruct: Record<Icon, FunctionalComponent<SVGAttri
 	sun: SunIcon,
 	sunrise: SunriseIcon,
 	sunset: SunsetIcon,
+	table: TableIcon,
 	tablet: TabletIcon,
 	tag: TagIcon,
 	target: TargetIcon,
@@ -806,8 +829,8 @@ export const IconToComponentConstruct: Record<Icon, FunctionalComponent<SVGAttri
 	'toggle-left': ToggleLeftIcon,
 	'toggle-right': ToggleRightIcon,
 	tool: ToolIcon,
-	'trash-2': Trash2Icon,
 	trash: TrashIcon,
+	'trash-2': Trash2Icon,
 	trello: TrelloIcon,
 	'trending-down': TrendingDownIcon,
 	'trending-up': TrendingUpIcon,
@@ -820,44 +843,53 @@ export const IconToComponentConstruct: Record<Icon, FunctionalComponent<SVGAttri
 	umbrella: UmbrellaIcon,
 	underline: UnderlineIcon,
 	unlock: UnlockIcon,
-	'upload-cloud': UploadCloudIcon,
 	upload: UploadIcon,
+	'upload-cloud': UploadCloudIcon,
+	user: UserIcon,
 	'user-check': UserCheckIcon,
 	'user-minus': UserMinusIcon,
 	'user-plus': UserPlusIcon,
-	user: UserIcon,
+	'user-x': UserXIcon,
 	users: UsersIcon,
-	'video-off': VideoOffIcon,
 	video: VideoIcon,
+	'video-off': VideoOffIcon,
 	voicemail: VoicemailIcon,
+	volume: VolumeIcon,
 	'volume-1': Volume1Icon,
 	'volume-2': Volume2Icon,
 	'volume-x': VolumeXIcon,
-	volume: VolumeIcon,
 	watch: WatchIcon,
-	'wifi-off': WifiOffIcon,
 	wifi: WifiIcon,
+	'wifi-off': WifiOffIcon,
 	wind: WindIcon,
+	x: XIcon,
 	'x-circle': XCircleIcon,
 	'x-octagon': XOctagonIcon,
 	'x-square': XSquareIcon,
-	x: XIcon,
 	youtube: YoutubeIcon,
-	'zap-off': ZapOffIcon,
 	zap: ZapIcon,
+	'zap-off': ZapOffIcon,
 	'zoom-in': ZoomInIcon,
 	'zoom-out': ZoomOutIcon,
 	none: NoneIconComponent,
 } as const
 
 export enum BoIconVariant {
+	/** currentColor */
 	default = 'default',
+	/** --blue-500 */
 	primary = 'primary',
+	/** --neutral-500 */
 	secondary = 'secondary',
+	/** --green-500 */
 	success = 'success',
+	/** --orange-500 */
 	warning = 'warning',
+	/** --red-500 */
 	danger = 'danger',
+	/** --neutral-100 */
 	light = 'light',
+	/** --neutral-950 */
 	dark = 'dark',
 }
 

@@ -1,5 +1,15 @@
 <template>
-	<component :is="iconComponent" v-bind="iconComponentPropConstruct" />
+	<component
+		v-if="iconComponent"
+		:is="iconComponent"
+		v-bind="iconComponentPropConstruct"
+		:class="[
+			customCssClass,
+			$style['bo-icon'],
+			$style[`bo-icon--${size}`],
+			$style[`bo-icon--${variant}`],
+		]"
+	/>
 </template>
 
 <script setup lang="ts">
@@ -76,41 +86,18 @@
 
 				The custom color will be ignored and currentColor will be used instead.
 			`)
-
-				return {
-					color: 'currentcolor',
-				}
-			}
-		} else {
-			return {
-				color: 'currentcolor',
 			}
 		}
-	})
 
-	const iconColorClass = computed<string>(() => {
-		/** Custom color is defined as a style so in case it's defined, variant classes are ignored */
-		if (props.customColor) {
-			return ''
+		return {
+			color: 'currentColor',
 		}
-
-		return `bo-icon--${props.variant}`
-	})
-
-	const iconClass = computed<string>(() => {
-		return (
-			['bo-icon', `bo-icon--${props.size}`, iconColorClass.value, props.customCssClass]
-				/* Remove empty strings */
-				.filter(Boolean)
-				.join(' ')
-		)
 	})
 
 	const iconComponentPropConstruct = {
 		id: props.id ?? IdentityService.instance.getComponentId('bo-icon'),
 		dataTestId: props.dataTestId,
 		role: role.value,
-		class: iconClass.value,
 		style: {
 			...cursor.value,
 			...iconColorStyle.value,
@@ -119,3 +106,43 @@
 		'aria-label': ariaLabel.value,
 	}
 </script>
+
+<style module>
+	.bo-icon {
+		display: inline-block;
+		box-sizing: border-box;
+		vertical-align: middle;
+	}
+
+	.bo-icon--default {
+		fill: currentColor;
+	}
+
+	.bo-icon--primary {
+		fill: var(--blue-500);
+	}
+
+	.bo-icon--secondary {
+		fill: var(--gray-500);
+	}
+
+	.bo-icon--success {
+		fill: var(--green-500);
+	}
+
+	.bo-icon--warning {
+		fill: var(--orange-500);
+	}
+
+	.bo-icon--danger {
+		fill: var(--red-500);
+	}
+
+	.bo-icon--light {
+		fill: var(--gray-100);
+	}
+
+	.bo-icon--dark {
+		fill: var(--gray-900);
+	}
+</style>
