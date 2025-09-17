@@ -1,61 +1,92 @@
-# lib
+<div style="display: flex; align-items: center; justify-content: center; height: 200px;  margin-bottom: 1rem;">
+<img src="./docs/assets/logo.webp" alt="bamboo">
+</div>
 
-This template should help get you started developing with Vue 3 in Vite.
+# Bamboo
 
-## Recommended IDE Setup
+Bamboo is a lightweight and flexible UI library built with Vue.js
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Prerequisites
 
-## Type Support for `.vue` Imports in TS
+- [Node.js](https://nodejs.org/en/) >=18.x
+- [npm](https://www.npmjs.com/), [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.io/)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Installation
 
-## Customize configuration
+To install the library, run the following command in your project directory:
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### npm
 
-## Project Setup
-
-```sh
-pnpm install
+```npm
+npm install @mrksbnc/bamboo
 ```
 
-### Compile and Hot-Reload for Development
+### pnpm
 
-```sh
-pnpm dev
+```pnpm
+pnpm install @mrksbnc/bamboo
 ```
 
-### Type-Check, Compile and Minify for Production
+### yarn
 
-```sh
-pnpm build
+```yarn
+yarn add @mrksbnc/bamboo
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Documentation
 
-```sh
-pnpm test:unit
+To access the documentation, visit [mrksbnc.github.io/bamboo](https://mrksbnc.github.io/bamboo) or run the local version
+with the following command:
+
+### npm
+
+```bash
+npm run docs:dev
 ```
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+### pnpm
 
-```sh
-pnpm test:e2e:dev
+```bash
+pnpm run docs:dev
 ```
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
+### yarn
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-pnpm build
-pnpm test:e2e
+```bash
+yarn docs:dev
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Usage
 
-```sh
-pnpm lint
+After installation import the library styles in your `main.ts` or equivalent file:
+
+```ts
+import '@mrksbnc/bamboo/lib.css'
 ```
+
+This will load the required css for the components and also enables the use of css variables from the library like
+colors.
+
+Then import the components you want to use in your Vue components:
+
+```vue
+<template>
+	<bo-text value="Hello World" />
+</template>
+
+<script setup lang="ts">
+	import { BoText } from '@mrksbnc/bamboo'
+</script>
+```
+
+## Available Scripts
+
+| Script       | Description                     |
+| ------------ | ------------------------------- |
+| `type-check` | Runs the type checker           |
+| `lint`       | Runs the linter                 |
+| `format`     | Formats the code using prettier |
+
+## License
+
+[MIT](https://github.com/mrksbnc/bamboo/blob/main/LICENSE)
