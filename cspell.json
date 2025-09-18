@@ -12,7 +12,7 @@
 	],
 	"dictionaryDefinitions": [],
 	"dictionaries": [],
-	"words": ["oklch", "Booleanish", "oxlint", "RGBA", "rgba", "esbuild", "evenodd"],
+	"words": ["oklch", "Booleanish", "oxlint", "RGBA", "rgba", "esbuild", "evenodd", "vite"],
 	"ignoreWords": [],
 	"import": [
 		"@cspell/dict-css/cspell-ext.json",
