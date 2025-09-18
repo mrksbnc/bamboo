@@ -73,6 +73,7 @@ export enum BoTextVariant {
 	warning = 'warning',
 	danger = 'danger',
 	light = 'light',
+	dark = 'dark',
 }
 
 export enum BoTextAlign {

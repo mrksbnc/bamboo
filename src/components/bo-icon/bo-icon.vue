@@ -1,17 +1,24 @@
 <template>
-	<component
-		v-if="iconComponent"
-		:is="iconComponent"
-		v-bind="iconComponentPropConstruct"
-		:class="[customCssClass, $style['bo-icon'], `bo-icon--${variant}`, `bo-icon__size--${size}`]"
-	/>
+	<i
+		v-if="svg"
+		v-html="svg"
+		:id="id"
+		:data-testid="dataTestId"
+		:role="role"
+		:style="iconStyle"
+		:class="[componentBaseClasses, customCssClass]"
+		:aria-label="ariaLabel"
+		:aria-hidden="ariaHidden"
+		:title="title"
+	></i>
 </template>
 
-<script setup lang="ts">
-	import { useColor } from '@/composables/useColor'
-	import { IdentityService } from '@/services'
-	import { computed, type CSSProperties, type FunctionalComponent, type SVGAttributes } from 'vue'
-	import { BoIconVariant, IconToComponentConstruct, type BoIconProps } from './bo-icon'
+<script lang="ts" setup>
+	import { useColor } from '@/composables'
+	import type { ConditionalCssProperties } from '@/lib'
+	import { IdentityService } from '@/services/identity-service'
+	import { computed, type CSSProperties, ref, type StyleValue, watchEffect } from 'vue'
+	import { type BoIconProps, BoIconVariant, Icon, LazyIconMap } from './bo-icon'
 
 	const props = withDefaults(defineProps<BoIconProps>(), {
 		id: IdentityService.instance.getComponentId('bo-icon'),
@@ -23,9 +30,22 @@
 
 	const { getCustomColorStyle } = useColor()
 
-	const iconComponent = computed<FunctionalComponent<SVGAttributes>>(() => {
-		return IconToComponentConstruct[props.icon] ?? IconToComponentConstruct.none
-	})
+	const svg = ref<string>('')
+	/**
+	 * This is a map of all the icons that are available in the library.
+	 *
+	 * - The key is the name of the icon and the value is the actual SVG.
+	 * - A promise which resolves to the SVG string
+	 */
+	const iconMap = Object.keys(LazyIconMap).reduce(
+		(acc, key) => {
+			const splitted = key.split('/')
+			const icon = splitted[splitted.length - 1].split('.')[0]
+			acc[icon] = LazyIconMap[key]
+			return acc
+		},
+		{} as Record<string, () => Promise<string>>,
+	)
 
 	const role = computed<string>(() => {
 		return props.role ?? 'img'
@@ -50,70 +70,105 @@
 			cursor: 'default',
 		}
 	})
-
 	const iconColorStyle = computed<CSSProperties>(() => {
 		if (props.customColor) {
 			return getCustomColorStyle(props.customColor)
 		}
 
+		// Don't set color here - let CSS variants handle it
+		return {}
+	})
+
+	const iconSize = computed<CSSProperties>(() => {
 		return {
-			color: 'currentColor',
+			width: `${props.size}px`,
+			height: `${props.size}px`,
 		}
 	})
 
-	const iconComponentPropConstruct = {
-		id: props.id ?? IdentityService.instance.getComponentId('bo-icon'),
-		dataTestId: props.dataTestId,
-		role: role.value,
-		style: {
-			...cursor.value,
+	const iconStyle = computed<StyleValue>(() => {
+		const style: StyleValue = {
+			...iconSize.value,
 			...iconColorStyle.value,
-		},
-		'aria-hidden': ariaHidden.value,
-		'aria-label': ariaLabel.value,
+			...cursor.value,
+		}
+
+		return style
+	})
+
+	const componentBaseClasses = computed<ConditionalCssProperties>(() => {
+		return {
+			'bo-icon': true,
+			[`bo-icon__size--${props.size}`]: true,
+			[`bo-icon__variant--${props.variant}`]: true,
+		}
+	})
+
+	async function load(icon: Icon): Promise<void> {
+		try {
+			await iconMap[icon]().then((val) => {
+				svg.value = val
+			})
+		} catch (e) {
+			console.error(`Could not find icon of name ${icon}`)
+		}
 	}
+
+	watchEffect(() => {
+		load(props.icon)
+	})
 </script>
 
-<style module lang="scss">
+<style scoped lang="scss">
 	.bo-icon {
 		display: inline-block;
 		box-sizing: border-box;
 		vertical-align: middle;
 
-		&--default {
-			fill: currentColor;
-		}
+		&__variant {
+			&--default {
+				color: currentColor;
+			}
 
-		&--primary {
-			fill: var(--blue-600);
-		}
+			&--primary {
+				color: var(--blue-600);
+			}
 
-		&--secondary {
-			fill: var(--neutral-600);
-		}
+			&--secondary {
+				color: var(--neutral-600);
+			}
 
-		&--disabled {
-			fill: var(--neutral-400);
-		}
+			&--disabled {
+				color: var(--neutral-400);
+			}
 
-		&--success {
-			fill: var(--green-600);
-		}
+			&--success {
+				color: var(--green-600);
+			}
 
-		&--warning {
-			fill: var(--yellow-500);
-		}
+			&--warning {
+				color: var(--yellow-500);
+			}
 
-		&--danger {
-			fill: var(--red-600);
-		}
+			&--danger {
+				color: var(--red-600);
+			}
 
-		&--light {
-			fill: var(--neutral-50);
-		}
+			&--light {
+				color: var(--neutral-50);
+			}
 
-		&--dark {
-			fill: var(--gray-950);
+			&--dark {
+				color: var(--gray-950);
+			}
+
+			&--current {
+				color: currentColor;
+			}
+
+			&--inherit {
+				color: inherit;
+			}
 		}
 	}
 </style>

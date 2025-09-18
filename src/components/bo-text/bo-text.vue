@@ -4,17 +4,7 @@
 		:role="role"
 		:lang="lang"
 		:style="boTextStyle"
-		:class="[
-			$style['bo-text'],
-			$style[`bo-text__color--${props.variant}`],
-			$style[`bo-text__size--${props.fontSize}`],
-			$style[`bo-text__align--${props.textAlign}`],
-			$style[`bo-text__weight--${props.fontWeight}`],
-			$style[`bo-text__whitespace--${props.whiteSpace}`],
-			$style[`bo--text__font-family--${props.fontFamily}`],
-			$style[`bo-text__transform--${props.textTransform}`],
-			customCssClass,
-		]"
+		:class="[componentBaseClasses, customCssClass]"
 		:aria-live="ariaLive"
 		:aria-label="ariaLabel"
 		:data-testid="dataTestId"
@@ -27,6 +17,7 @@
 
 <script lang="ts" setup>
 	import { useColor } from '@/composables'
+	import type { ConditionalCssProperties } from '@/lib'
 	import { AriaLive } from '@/lib/accessibility'
 	import { IdentityService } from '@/services/identity-service.js'
 	import { computed, type CSSProperties, type StyleValue } from 'vue'
@@ -78,9 +69,8 @@
 			return getCustomColorStyle(props.customColor)
 		}
 
-		return {
-			color: 'currentColor',
-		}
+		// Don't set color here - let CSS variants handle it
+		return {}
 	})
 
 	const cursor = computed<CSSProperties>(() => {
@@ -124,57 +114,68 @@
 
 		return style
 	})
+
+	const componentBaseClasses = computed<ConditionalCssProperties>(() => {
+		return {
+			'bo-text': true,
+			[`bo-text__variant--${props.variant}`]: true,
+			[`bo-text__size--${props.fontSize}`]: true,
+			[`bo-text__align--${props.textAlign}`]: true,
+			[`bo-text__weight--${props.fontWeight}`]: true,
+			[`bo-text__whitespace--${props.whiteSpace}`]: true,
+			[`bo-text__font-family--${props.fontFamily}`]: true,
+			[`bo-text__transform--${props.textTransform}`]: true,
+		}
+	})
 </script>
 
-<style module lang="scss">
+<style scoped lang="scss">
 	.bo-text {
 		box-sizing: border-box;
 		vertical-align: middle;
 
-		&__color {
-			&--default {
-				color: var(--neutral-900);
-			}
+		&__variant--default {
+			color: currentColor;
+		}
 
-			&--primary {
-				color: var(--blue-600);
-			}
+		&__variant--primary {
+			color: var(--blue-600);
+		}
 
-			&--secondary {
-				color: var(--neutral-600);
-			}
+		&__variant--secondary {
+			color: var(--neutral-600);
+		}
 
-			&--disabled {
-				color: var(--neutral-400);
-			}
+		&__variant--disabled {
+			color: var(--neutral-400);
+		}
 
-			&--success {
-				color: var(--green-600);
-			}
+		&__variant--success {
+			color: var(--green-600);
+		}
 
-			&--warning {
-				color: var(--yellow-500);
-			}
+		&__variant--warning {
+			color: var(--yellow-500);
+		}
 
-			&--danger {
-				color: var(--red-600);
-			}
+		&__variant--danger {
+			color: var(--red-600);
+		}
 
-			&--light {
-				color: var(--neutral-50);
-			}
+		&__variant--light {
+			color: var(--neutral-50);
+		}
 
-			&--dark {
-				color: var(--gray-950);
-			}
+		&__variant--dark {
+			color: var(--gray-950);
+		}
 
-			&--current {
-				color: currentColor;
-			}
+		&__variant--current {
+			color: currentColor;
+		}
 
-			&--inherit {
-				color: inherit;
-			}
+		&__variant--inherit {
+			color: inherit;
 		}
 
 		&__size {
