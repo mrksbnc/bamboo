@@ -1,156 +1,140 @@
+<!-- cspell:disable -->
+
+<div style="display: flex; align-items: center; justify-content: center; height: 200px;  margin-bottom: 1rem;">
+<img src="./public/logo.webp" alt="bamboo">
+</div>
+
 # Bamboo
 
-A modern, flexible, and type-safe Vue 3 component library built with Composition API and Tailwind CSS.
+Bamboo is a lightweight and flexible UI library built with Vue.js
 
-## Documentation
+## Prerequisites
 
-[Documentation - Bamboo](https://mrksbnc.github.io/bamboo)
+- [Node.js](https://nodejs.org/en/) >=18.x
+- [npm](https://www.npmjs.com/), [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.io/)
 
-## Quick Start
+## Installation
 
-### Installation
+To install the library, run the following command in your project directory:
 
-Install Bamboo using your preferred package manager:
+### npm
 
-```bash
-# npm
+```npm
 npm install @mrksbnc/bamboo
-
-# yarn
-yarn add @mrksbnc/bamboo
-
-# pnpm
-pnpm add @mrksbnc/bamboo
 ```
 
-### Basic Usage
+### pnpm
+
+```pnpm
+pnpm install @mrksbnc/bamboo
+```
+
+### yarn
+
+```yarn
+yarn add @mrksbnc/bamboo
+```
+
+## Usage
+
+After installation import the library styles in your `main.ts` or equivalent file:
+
+```ts
+import '@mrksbnc/bamboo/lib.css'
+```
+
+This will load the required css for the components and also enables the use of css variables from the library like
+colors.
+
+Then import the components you want to use in your Vue components:
 
 ```vue
 <template>
-	<div>
-		<bo-button
-			label="Primary Button"
-			@click="handleClick"
-		/>
-	</div>
+	<bo-text value="Hello World" />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { BoButton } from '@mrksbnc/bamboo';
-
-import '@mrksbnc/bamboo/lib.css';
-
-const handleClick = () => {
-	console.log('Button clicked!');
-};
+	import { BoText } from '@mrksbnc/bamboo'
 </script>
 ```
 
-## Development
+## Available Scripts
 
-### Prerequisites
+| Script       | Description                            |
+| ------------ | -------------------------------------- |
+| build        | Builds the library                     |
+| test         | Runs the unit tests                    |
+| lint         | Runs all linters                       |
+| lint:spell   | Runs the spell checker                 |
+| lint:eslint  | Runs linting using eslint              |
+| lint:oxlint  | Runs linting using oxlint              |
+| format       | Formats the code using prettier        |
+| prepare      | Initializes pre-commit hooks           |
+| docs:dev     | Starts the live dev server of the docs |
+| docs:build   | Builds the docs                        |
+| docs:preview | Previews the built docs bundle         |
 
-- Node.js 16.x or higher
-- pnpm (recommended), npm, or yarn
+## Documentation
 
-### Setup
+To access the documentation, visit [mrksbnc.github.io/bamboo](https://mrksbnc.github.io/bamboo) or run the local version
+with the following command:
 
-```bash
-# Clone the repository
-git clone https://github.com/mrksbnc/bamboo.git
-cd bamboo
-
-# Install dependencies
-pnpm install
-
-# Start development server for docs
-pnpm docs:dev
-```
-
-### Available Scripts
-
-| Script              | Description                            |
-| ------------------- | -------------------------------------- |
-| `pnpm test`         | Run test suite with coverage           |
-| `pnpm type-check`   | Run TypeScript type checking           |
-| `pnpm lint`         | Lint and fix code issues               |
-| `pnpm format`       | Format code with Prettier              |
-| `pnpm build`        | Build library for production           |
-| `pnpm docs:dev`     | Start documentation development server |
-| `pnpm docs:build`   | Build documentation for production     |
-| `pnpm docs:preview` | Preview built documentation            |
-
-### Testing
-
-Bamboo uses Vitest for testing with comprehensive coverage:
+### npm
 
 ```bash
-# Run tests
-pnpm test
-
-# Run tests in watch mode
-pnpm test --watch
-
-# Generate coverage report
-pnpm test --coverage
+npm run docs:dev
 ```
 
-### Building
-
-Build the library and documentation:
+### pnpm
 
 ```bash
-# Build library
-pnpm build
-
-# Build documentation
-pnpm docs:build
+pnpm run docs:dev
 ```
 
-## Browser Support
+### yarn
 
-Bamboo supports modern browsers that support ES2015+:
+```bash
+yarn docs:dev
+```
 
-- Chrome ≥ 87
-- Firefox ≥ 78
-- Safari ≥ 14
-- Edge ≥ 88
+This will spin up a local dev server where the documentation can be viewed.
 
-## Contributing
+Alternatively, you can build the documentation by running the following command:
 
-Contributions are welcome! Please read our contribution guidelines before getting started.
+::: code-group
 
-### Development Process
+```bash [npm]
+npm run docs:build
+```
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/new-component`
-3. Make your changes with tests
-4. Run tests: `pnpm test`
-5. Lint your code: `pnpm lint`
-6. Submit a pull request
+```bash [pnpm]
+pnpm run docs:build
+```
 
-### Component Guidelines
+```bash [yarn]
+yarn docs:build
+```
 
-When creating new components:
+:::
 
-- Follow the existing naming convention (Bo prefix)
-- Include comprehensive TypeScript types
-- Add unit tests with good coverage
-- Update documentation
-- Follow accessibility best practices
-- Include dark mode support
+and view it after running the preview command
+
+::: code-group
+
+```bash [npm]
+npm run docs:preview
+```
+
+```bash [pnpm]
+pnpm run docs:preview
+```
+
+```bash [yarn]
+yarn docs:preview
+```
+
+:::
 
 ## License
 
-Bamboo is MIT licensed.
-
-## Support
-
-- [Documentation](https://mrksbnc.github.io/bamboo)
-- [Report Issues](https://github.com/mrksbnc/bamboo/issues)
-- [Discussions](https://github.com/mrksbnc/bamboo/discussions)
-
----
-
-Built by [Bence Márkus](https://github.com/mrksbnc)
+[MIT](https://github.com/mrksbnc/bamboo/blob/main/LICENSE)

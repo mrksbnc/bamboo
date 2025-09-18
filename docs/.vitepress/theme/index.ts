@@ -1,14 +1,14 @@
 // https://vitepress.dev/guide/custom-theme
-import type { Theme } from 'vitepress';
-import DefaultTheme from 'vitepress/theme';
-import { h } from 'vue';
+import type { Theme } from 'vitepress'
+import DefaultTheme from 'vitepress/theme'
+import { h } from 'vue'
+import './index.css'
 
-import './index.css';
-import './lib.css';
+import '../../../src/lib.css'
 
 export default {
 	extends: DefaultTheme,
 	Layout: () => {
-		return h(DefaultTheme.Layout, null, {});
+		return h(DefaultTheme.Layout, null, {})
 	},
-} satisfies Theme;
+} satisfies Theme

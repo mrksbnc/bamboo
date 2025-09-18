@@ -1,65 +1,311 @@
-<script setup>
-import BoText from '@/components/text/bo-text.vue';
-import { BoFontSize, BoFontWeight, BoTextColor, BoTextAlign, BoFontFamily, BoTextWhiteSpace } from '@/components/text/bo-text';
+<script setup lang="ts">
+import { BoText, BoTextVariant, BoFontWeight, BoFontSize, BoFontFamily, BoTextAlign, BoTextTransform, BoTextWhiteSpace } from '@/components/bo-text';
 </script>
 
-# Text
+# bo-text
 
-A flexible text component for displaying and styling text with various properties.
-
-```js
-import { BoText } from '@mrksbnc/bamboo';
-```
-
-## Basic Usage
+The bo-text component is a wrapper around the HTML `<p>` element to provide a consistent styling for text elements. It offers comprehensive typography controls including font size, weight, family, alignment, and color variants.
 
 ```vue
-<template>
-	<bo-text value="Hello World" />
-</template>
-
-<script setup>
-import { BoText } from '@mrksbnc/bamboo';
-</script>
+<bo-text value="Hello World" />
 ```
-
-<hr />
-<div class="flex gap-4 items-center my-4">
-  <bo-text value="Hello World" />
-</div>
 
 ## Props
 
-| Name          | Type               | Default     | Description                    |
-| ------------- | ------------------ | ----------- | ------------------------------ |
-| `value`       | `string`           | Required    | Text content to display        |
-| `id`          | `string`           | `auto`      | Unique ID for the text element |
-| `size`        | `BoFontSize`       | `base`      | Font size                      |
-| `weight`      | `BoFontWeight`     | `regular`   | Font weight                    |
-| `fontFamily`  | `BoFontFamily`     | `sans`      | Font family                    |
-| `whiteSpace`  | `BoTextWhiteSpace` | `normal`    | White space handling           |
-| `color`       | `BoTextColor`      | `current`   | Text color                     |
-| `customColor` | `string`           | `undefined` | Custom color (HEX, RGB)        |
-| `cssClass`    | `string`           | `undefined` | Additional CSS classes         |
-| `clickable`   | `boolean`          | `false`     | Whether text is clickable      |
-| `textAlign`   | `BoTextAlign`      | `justify`   | Text alignment                 |
-| `selectable`  | `boolean`          | `false`     | Whether text is selectable     |
+### Required
 
-## Types
+| Name    | Type     | Default | Description             |
+| ------- | -------- | ------- | ----------------------- |
+| `value` | `string` |         | The text of the element |
+
+### Optional
+
+| Name              | Type               | Default                   | Description                                  |
+| ----------------- | ------------------ | ------------------------- | -------------------------------------------- |
+| `id`              | `string`           | `auto-generated`          | Unique identifier for the text element       |
+| `data-testid`     | `string`           | `auto-generated`          | Unique data-test-id of the text              |
+| `fontSize`        | `BoFontSize`       | `BoFontSize.default`      | The size of the text                         |
+| `fontWeight`      | `BoFontWeight`     | `BoFontWeight.regular`    | The weight of the text                       |
+| `fontFamily`      | `BoFontFamily`     | `BoFontFamily.sans`       | The font family of the text                  |
+| `whiteSpace`      | `BoTextWhiteSpace` | `BoTextWhiteSpace.normal` | The white space handling of the text         |
+| `variant`         | `BoTextVariant`    | `BoTextVariant.default`   | The color variant of the text                |
+| `customColor`     | `string`           | `undefined`               | Custom color of the text                     |
+| `customCssClass`  | `string`           | `undefined`               | Custom css class passed to the root element  |
+| `clickable`       | `boolean`          | `false`                   | Whether the text is clickable                |
+| `textAlign`       | `BoTextAlign`      | `BoTextAlign.left`        | The text alignment                           |
+| `textTransform`   | `BoTextTransform`  | `BoTextTransform.none`    | The text transformation                      |
+| `cursor`          | `string`           | `undefined`               | Cursor type of the element                   |
+| `maxLines`        | `number\|string`   | `"none"`                  | The max lines to render before truncating    |
+| `role`            | `string`           | `"text"`                  | The accessibility role of the element        |
+| `ariaLabel`       | `string`           | `undefined`               | The accessible label of the text             |
+| `ariaLabelledBy`  | `string`           | `undefined`               | Reference to an element that labels the text |
+| `ariaDescribedBy` | `string`           | `undefined`               | Identifies elements that describe the text   |
+| `ariaLive`        | `AriaLive`         | `AriaLive.polite`         | Live region behavior for dynamic content     |
+| `lang`            | `string`           | `"en"`                    | The language of the text                     |
+
+## Font Sizes
+
+The text component supports different font sizes with the `fontSize` prop. The default size is `14px`.
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
+  <bo-text value="Extra Small Text" :font-size="BoFontSize.xs" />
+  <bo-text value="Small Text" :font-size="BoFontSize.sm" />
+  <bo-text value="Default Text" :font-size="BoFontSize.default" />
+  <bo-text value="Large Text" :font-size="BoFontSize.lg" />
+  <bo-text value="Extra Large Text" :font-size="BoFontSize.xl" />
+  <bo-text value="2X Large Text" :font-size="BoFontSize['2xl']" />
+  <bo-text value="3X Large Text" :font-size="BoFontSize['3xl']" />
+  <bo-text value="4X Large Text" :font-size="BoFontSize['4xl']" />
+  <bo-text value="5X Large Text" :font-size="BoFontSize['5xl']" />
+  <bo-text value="6X Large Text" :font-size="BoFontSize['6xl']" />
+  <bo-text value="7X Large Text" :font-size="BoFontSize['7xl']" />
+</div>
+
+```vue
+<bo-text value="Extra Small Text" :font-size="BoFontSize.xs" />
+<bo-text value="Small Text" :font-size="BoFontSize.sm" />
+<bo-text value="Default Text" :font-size="BoFontSize.default" />
+<bo-text value="Large Text" :font-size="BoFontSize.lg" />
+<bo-text value="Extra Large Text" :font-size="BoFontSize.xl" />
+<bo-text value="2X Large Text" :font-size="BoFontSize['2xl']" />
+<bo-text value="3X Large Text" :font-size="BoFontSize['3xl']" />
+<bo-text value="4X Large Text" :font-size="BoFontSize['4xl']" />
+<bo-text value="5X Large Text" :font-size="BoFontSize['5xl']" />
+<bo-text value="6X Large Text" :font-size="BoFontSize['6xl']" />
+<bo-text value="7X Large Text" :font-size="BoFontSize['7xl']" />
+```
+
+## Font Weights The text component supports different font weights with the `fontWeight` prop.
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
+  <bo-text value="Thin Text" :font-weight="BoFontWeight.thin" />
+  <bo-text value="Extra Light Text" :font-weight="BoFontWeight.extra_light" />
+  <bo-text value="Light Text" :font-weight="BoFontWeight.light" />
+  <bo-text value="Regular Text" :font-weight="BoFontWeight.regular" />
+  <bo-text value="Medium Text" :font-weight="BoFontWeight.medium" />
+  <bo-text value="Semibold Text" :font-weight="BoFontWeight.semibold" />
+  <bo-text value="Bold Text" :font-weight="BoFontWeight.bold" />
+  <bo-text value="Extra Bold Text" :font-weight="BoFontWeight.extra_bold" />
+  <bo-text value="Black Text" :font-weight="BoFontWeight.black" />
+</div>
+
+```vue
+<bo-text value="Extra Small Text" :font-weight="BoFontWeight.thin" />
+<bo-text value="Small Text" :font-weight="BoFontWeight.extra_light" />
+<bo-text value="Default Text" :font-weight="BoFontWeight.light" />
+<bo-text value="Large Text" :font-weight="BoFontWeight.regular" />
+<bo-text value="Extra Large Text" :font-weight="BoFontWeight.medium" />
+<bo-text value="2X Large Text" :font-weight="BoFontWeight.semibold" />
+<bo-text value="3X Large Text" :font-weight="BoFontWeight.bold" />
+<bo-text value="4X Large Text" :font-weight="BoFontWeight.extra_bold" />
+<bo-text value="5X Large Text" :font-weight="BoFontWeight.black" />
+```
+
+## Font Families The text component supports different font families with the `fontFamily` prop.
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
+  <bo-text value="Sans Serif Text" :font-family="BoFontFamily.sans" />
+  <bo-text value="Monospace Text" :font-family="BoFontFamily.mono" />
+  <bo-text value="Serif Text" :font-family="BoFontFamily.serif" />
+  <bo-text value="Inherit Text" :font-family="BoFontFamily.inherit" />
+</div>
+
+```vue
+<bo-text value="Sans Serif Text" :font-family="BoFontFamily.sans" />
+<bo-text value="Monospace Text" :font-family="BoFontFamily.mono" />
+<bo-text value="Serif Text" :font-family="BoFontFamily.serif" />
+<bo-text value="Inherit Text" :font-family="BoFontFamily.inherit" />
+```
+
+## Text Alignment The text component supports different text alignments with the `textAlign` prop.
+
+<div
+	style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem; border: 1px solid #ccc; padding: 1rem;"
+>
+  <bo-text value="Left Aligned Text" :text-align="BoTextAlign.left" />
+  <bo-text value="Center Aligned Text" :text-align="BoTextAlign.center" />
+  <bo-text value="Right Aligned Text" :text-align="BoTextAlign.right" />
+  <bo-text 
+    value="Justified Text - The quick brown fox jumps over the lazy dog. The sky is big and blue"
+    :text-align="BoTextAlign.justify"
+  />
+</div>
+
+```vue
+<bo-text value="Left Aligned Text" :text-align="BoTextAlign.left" />
+<bo-text value="Center Aligned Text" :text-align="BoTextAlign.center" />
+<bo-text value="Right Aligned Text" :text-align="BoTextAlign.right" />
+
+<bo-text
+	value="Justified Text - The quick brown fox jumps over the lazy dog. The sky is big and blue"
+	:text-align="BoTextAlign.justify"
+/>
+```
+
+## Text Transform
+
+The text component supports different text transformations with the `textTransform` prop.
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
+  <bo-text value="Normal Text" :text-transform="BoTextTransform.none" />
+  <bo-text value="capitalized text" :text-transform="BoTextTransform.capitalize" />
+  <bo-text value="uppercase text" :text-transform="BoTextTransform.uppercase" />
+  <bo-text value="LOWERCASE TEXT" :text-transform="BoTextTransform.lowercase" />
+</div>
+
+```vue
+<bo-text value="Normal Text" :text-transform="BoTextTransform.none" />
+<bo-text value="capitalized text" :text-transform="BoTextTransform.capitalize" />
+<bo-text value="uppercase text" :text-transform="BoTextTransform.uppercase" />
+<bo-text value="LOWERCASE TEXT" :text-transform="BoTextTransform.lowercase" />
+```
+
+## Variants The text component supports different color variants with the `variant` prop.
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
+  <bo-text value="Default Text" :variant="BoTextVariant.default" />
+  <bo-text value="Primary Text" :variant="BoTextVariant.primary" />
+  <bo-text value="Secondary Text" :variant="BoTextVariant.secondary" />
+  <bo-text value="Success Text" :variant="BoTextVariant.success" />
+  <bo-text value="Warning Text" :variant="BoTextVariant.warning" />
+  <bo-text value="Danger Text" :variant="BoTextVariant.danger" />
+  <bo-text value="Disabled Text" :variant="BoTextVariant.disabled" />
+  <bo-text value="Light Text" :variant="BoTextVariant.light" style="background-color: #000; padding: 0.5rem;" />
+  <bo-text value="Dark Text" :variant="BoTextVariant.dark" />
+  <bo-text value="Current Color Text" :variant="BoTextVariant.current" />
+  <bo-text value="Inherit Text" :variant="BoTextVariant.inherit" />
+</div>
+
+```vue
+<bo-text value="Default Text" :variant="BoTextVariant.default" />
+<bo-text value="Primary Text" :variant="BoTextVariant.primary" />
+<bo-text value="Secondary Text" :variant="BoTextVariant.secondary" />
+<bo-text value="Success Text" :variant="BoTextVariant.success" />
+<bo-text value="Warning Text" :variant="BoTextVariant.warning" />
+<bo-text value="Danger Text" :variant="BoTextVariant.danger" />
+<bo-text value="Disabled Text" :variant="BoTextVariant.disabled" />
+<bo-text
+	value="Light Text"
+	:variant="BoTextVariant.light"
+	style="background-color: #000; padding: 0.5rem;"
+/>
+<bo-text value="Dark Text" :variant="BoTextVariant.dark" />
+<bo-text value="Current Color Text" :variant="BoTextVariant.current" />
+<bo-text value="Inherit Text" :variant="BoTextVariant.inherit" />
+```
+
+## Custom Colors
+
+You can customize the color of the text by passing a valid CSS color value to the `customColor` prop.
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
+  <bo-text value="Custom CSS Variable Text" custom-color="--teal-500" />
+  <bo-text value="Custom Hex Color Text" custom-color="#ff6b6b" />
+  <bo-text value="Custom RGB Color Text" custom-color="rgb(255, 107, 107)" />
+  <bo-text value="Custom RGBA Color Text" custom-color="rgba(255, 107, 107, 0.7)" />
+  <bo-text value="Custom OKLCH Color Text" custom-color="oklch(0.7 0.15 180)" />
+</div>
+
+```vue
+<bo-text value="Custom CSS Variable Text" custom-color="--teal-500" />
+<bo-text value="Custom Hex Color Text" custom-color="#ff6b6b" />
+<bo-text value="Custom RGB Color Text" custom-color="rgb(255, 107, 107)" />
+<bo-text value="Custom RGBA Color Text" custom-color="rgba(255, 107, 107, 0.7)" />
+<bo-text value="Custom OKLCH Color Text" custom-color="oklch(0.7 0.15 180)" />
+```
+
+## Text Truncation
+
+The text component supports text truncation with the `maxLines` prop.
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem; max-width: 300px;">
+  <bo-text value="This is a very long text that will be truncated after two lines to demonstrate the maxLines functionality." :max-lines="2" />
+  <bo-text value="This is another very long text that will be truncated after three lines to show different truncation behavior." :max-lines="3" />
+</div>
+
+```vue
+<bo-text
+	value="This is a very long text that will be truncated after two lines to demonstrate the maxLines functionality."
+	:max-lines="2"
+/>
+<bo-text
+	value="This is another very long text that will be truncated after three lines to show different truncation behavior."
+	:max-lines="3"
+/>
+```
+
+## White Space Handling
+
+The text component supports different white space handling with the `whiteSpace` prop.
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem; border: 1px solid #ccc; padding: 1rem;">
+  <bo-text value="Normal white space. Text will wrap normally." :white-space="BoTextWhiteSpace.normal" />
+  <bo-text value="No wrap text. This will not wrap and will be truncated if it exceeds the container width." :white-space="BoTextWhiteSpace.nowrap" />
+  <bo-text value="Pre-formatted text.
+  Line breaks and     spaces     are preserved." :white-space="BoTextWhiteSpace.pre" />
+  <bo-text value="Pre-line text.
+  Line breaks are preserved but spaces    are    collapsed." :white-space="BoTextWhiteSpace.pre_line" />
+  <bo-text value="Pre-wrap text.
+  Line breaks and     spaces     are preserved, but text wraps if needed." :white-space="BoTextWhiteSpace.pre_wrap" />
+</div>
+
+```vue
+<bo-text
+	value="Normal white space. Text will wrap normally."
+	:white-space="BoTextWhiteSpace.normal"
+/>
+<bo-text
+	value="No wrap text. This will not wrap and will be truncated if it exceeds the container width."
+	:white-space="BoTextWhiteSpace.nowrap"
+/>
+<bo-text
+	value="Pre-formatted text.
+  Line breaks and     spaces     are preserved."
+	:white-space="BoTextWhiteSpace.pre"
+/>
+<bo-text
+	value="Pre-line text.
+  Line breaks are preserved but spaces    are    collapsed."
+	:white-space="BoTextWhiteSpace.pre_line"
+/>
+<bo-text
+	value="Pre-wrap text.
+  Line breaks and     spaces     are preserved, but text wraps if needed."
+	:white-space="BoTextWhiteSpace.pre_wrap"
+/>
+```
+
+## Interactive Text
+
+The text component supports interactive features with the `clickable` prop.
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
+  <bo-text value="Clickable Text (cursor pointer)" :clickable="true" />
+</div>
+
+```vue
+<bo-text value="Clickable Text (cursor pointer)" :clickable="true" />
+```
+
+### Interfaces and constants
 
 ```ts
 enum BoFontWeight {
+	thin = 'thin',
+	extra_light = 'extra-light',
 	light = 'light',
 	regular = 'regular',
 	medium = 'medium',
 	semibold = 'semibold',
 	bold = 'bold',
+	extra_bold = 'extra-bold',
+	black = 'black',
 }
 
 enum BoFontSize {
 	xs = 'xs',
 	sm = 'sm',
-	base = 'base',
+	default = 'default',
 	lg = 'lg',
 	xl = 'xl',
 	'2xl' = '2xl',
@@ -68,14 +314,13 @@ enum BoFontSize {
 	'5xl' = '5xl',
 	'6xl' = '6xl',
 	'7xl' = '7xl',
-	'8xl' = '8xl',
-	'9xl' = '9xl',
 }
 
 enum BoFontFamily {
 	sans = 'sans',
 	mono = 'mono',
 	serif = 'serif',
+	inherit = 'inherit',
 }
 
 enum BoTextWhiteSpace {
@@ -87,16 +332,18 @@ enum BoTextWhiteSpace {
 	break_spaces = 'break-spaces',
 }
 
-enum BoTextColor {
+enum BoTextVariant {
 	default = 'default',
 	primary = 'primary',
 	secondary = 'secondary',
+	disabled = 'disabled',
 	inherit = 'inherit',
 	current = 'currentColor',
 	success = 'success',
 	warning = 'warning',
 	danger = 'danger',
 	light = 'light',
+	dark = 'dark',
 }
 
 enum BoTextAlign {
@@ -106,262 +353,55 @@ enum BoTextAlign {
 	justify = 'justify',
 }
 
+enum BoTextTransform {
+	none = 'none',
+	capitalize = 'capitalize',
+	uppercase = 'uppercase',
+	lowercase = 'lowercase',
+}
+
 interface BoTextProps {
 	/** The id of the element. */
-	id?: string;
+	id?: string
+	/** The data test id of the element. */
+	dataTestId?: string
 	/** The text of the element. */
-	value: string;
+	value: string
 	/** The size of the element. */
-	size?: BoFontSize;
+	fontSize?: BoFontSize
 	/** The weight of the element. */
-	weight?: BoFontWeight;
+	fontWeight?: BoFontWeight
 	/** The font family of the element. */
-	fontFamily?: BoFontFamily;
+	fontFamily?: BoFontFamily
 	/** The white space of the element. */
-	whiteSpace?: BoTextWhiteSpace;
-	/** The color of the element. */
-	color?: BoTextColor;
-	/** The custom color of the element. */
-	customColor?: string;
-	/** The css class of the element. */
-	cssClass?: string;
+	whiteSpace?: BoTextWhiteSpace
+	/** The variant of the element based on fixed enum values. */
+	variant?: BoTextVariant
+	/** Any custom color for the element. */
+	customColor?: string
+	/** One or multiple css classes to be used for overriding the default styles on the element. */
+	customCssClass?: string
 	/** The clickable of the element. */
-	clickable?: boolean;
+	clickable?: boolean
 	/** The text align of the element. */
-	textAlign?: BoTextAlign;
-	/** The selectable of the element. */
-	selectable?: boolean;
-	/** Cursor type of the element. This must be a valid Tailwindcss cursor value. */
-	cursor?: string;
+	textAlign?: BoTextAlign
+	/** The text transform of the element. */
+	textTransform?: BoTextTransform
+	/** Cursor type of the element. */
+	cursor?: string
+	/** The max lines of the element. */
+	maxLines?: number | string
+	/** The role of the element. */
+	role?: string
+	/** Defines a string value that labels the current element. */
+	ariaLabel?: string
+	/** Reference to an element that labels the current element. */
+	ariaLabelledBy?: string
+	/** Identifies the element (or elements) that describes the object. */
+	ariaDescribedBy?: string
+	/** Live region behavior for dynamic content. */
+	ariaLive?: AriaLive
+	/** The language of the element. */
+	lang?: string
 }
-```
-
-## Font Sizes
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-text :size="BoFontSize.xs" value="Extra Small Text (xs)" />
-  <bo-text :size="BoFontSize.sm" value="Small Text (sm)" />
-  <bo-text :size="BoFontSize.base" value="Base Text (base)" />
-  <bo-text :size="BoFontSize.lg" value="Large Text (lg)" />
-  <bo-text :size="BoFontSize.xl" value="Extra Large Text (xl)" />
-  <bo-text :size="BoFontSize['2xl']" value="2XL Text (2xl)" />
-  <bo-text :size="BoFontSize['3xl']" value="3XL Text (3xl)" />
-  <bo-text :size="BoFontSize['4xl']" value="4XL Text (4xl)" />
-  <bo-text :size="BoFontSize['5xl']" value="5XL Text (5xl)" />
-  <bo-text :size="BoFontSize['6xl']" value="6XL Text (6xl)" />
-  <bo-text :size="BoFontSize['7xl']" value="7XL Text (7xl)" />
-  <bo-text :size="BoFontSize['8xl']" value="8XL Text (8xl)" />
-  <bo-text :size="BoFontSize['9xl']" value="9XL Text (9xl)" />
-</div>
-
-```vue
-<bo-text :size="BoFontSize.xs" value="Extra Small Text (xs)" />
-<bo-text :size="BoFontSize.sm" value="Small Text (sm)" />
-<bo-text :size="BoFontSize.base" value="Base Text (base)" />
-<bo-text :size="BoFontSize.lg" value="Large Text (lg)" />
-<bo-text :size="BoFontSize.xl" value="Extra Large Text (xl)" />
-<bo-text :size="BoFontSize['2xl']" value="2XL Text (2xl)" />
-<bo-text :size="BoFontSize['3xl']" value="3XL Text (3xl)" />
-<bo-text :size="BoFontSize['4xl']" value="4XL Text (4xl)" />
-<bo-text :size="BoFontSize['5xl']" value="5XL Text (5xl)" />
-<bo-text :size="BoFontSize['6xl']" value="6XL Text (6xl)" />
-<bo-text :size="BoFontSize['7xl']" value="7XL Text (7xl)" />
-<bo-text :size="BoFontSize['8xl']" value="8XL Text (8xl)" />
-<bo-text :size="BoFontSize['9xl']" value="9XL Text (9xl)" />
-```
-
-## Font Weights
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-text :weight="BoFontWeight.light" value="Light Weight" />
-  <bo-text :weight="BoFontWeight.regular" value="Regular Weight" />
-  <bo-text :weight="BoFontWeight.medium" value="Medium Weight" />
-  <bo-text :weight="BoFontWeight.semibold" value="Semibold Weight" />
-  <bo-text :weight="BoFontWeight.bold" value="Bold Weight" />
-</div>
-
-```vue
-<bo-text :weight="BoFontWeight.light" value="Light Weight" />
-<bo-text :weight="BoFontWeight.regular" value="Regular Weight" />
-<bo-text :weight="BoFontWeight.medium" value="Medium Weight" />
-<bo-text :weight="BoFontWeight.semibold" value="Semibold Weight" />
-<bo-text :weight="BoFontWeight.bold" value="Bold Weight" />
-```
-
-## Colors
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-text :color="BoTextColor.default" value="Default Color" />
-  <bo-text :color="BoTextColor.primary" value="Primary Color" />
-  <bo-text :color="BoTextColor.secondary" value="Secondary Color" />
-  <bo-text :color="BoTextColor.success" value="Success Color" />
-  <bo-text :color="BoTextColor.warning" value="Warning Color" />
-  <bo-text :color="BoTextColor.danger" value="Danger Color" />
-  <span class="bg-black"> 
-  	<bo-text :color="BoTextColor.light" value="White Color" />
-  </span>
-  <bo-text custom-color="#8B5CF6" value="Custom Color (#8B5CF6)" />
-</div>
-
-```vue
-<bo-text :color="BoTextColor.default" value="Default Color" />
-<bo-text :color="BoTextColor.primary" value="Primary Color" />
-<bo-text :color="BoTextColor.secondary" value="Secondary Color" />
-<bo-text :color="BoTextColor.success" value="Success Color" />
-<bo-text :color="BoTextColor.warning" value="Warning Color" />
-<bo-text :color="BoTextColor.danger" value="Danger Color" />
-
-<bo-text custom-color="#8B5CF6" value="Custom Color (#8B5CF6)" />
-```
-
-## Font Families
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-text :font-family="BoFontFamily.sans" value="Sans-serif Font" />
-  <bo-text :font-family="BoFontFamily.serif" value="Serif Font" />
-  <bo-text :font-family="BoFontFamily.mono" value="Monospace Font" />
-</div>
-
-```vue
-<bo-text :font-family="BoFontFamily.sans" value="Sans-serif Font" />
-<bo-text :font-family="BoFontFamily.serif" value="Serif Font" />
-<bo-text :font-family="BoFontFamily.mono" value="Monospace Font" />
-```
-
-## Text Alignment
-
-<div class="flex flex-col gap-4 my-4 border border-gray-200 p-4">
-  <bo-text :text-align="BoTextAlign.left" value="Left Aligned Text" />
-  <bo-text :text-align="BoTextAlign.center" value="Center Aligned Text" />
-  <bo-text :text-align="BoTextAlign.right" value="Right Aligned Text" />
-  <bo-text :text-align="BoTextAlign.justify" value="Justified Text. This is a longer text to demonstrate how justified alignment works across multiple lines." />
-</div>
-
-```vue
-<bo-text :text-align="BoTextAlign.left" value="Left Aligned Text" />
-<bo-text :text-align="BoTextAlign.center" value="Center Aligned Text" />
-<bo-text :text-align="BoTextAlign.right" value="Right Aligned Text" />
-<bo-text
-	:text-align="BoTextAlign.justify"
-	value="Justified Text. This is a longer text to demonstrate how justified alignment works across multiple lines."
-/>
-```
-
-## White Space Handling
-
-<div class="flex flex-col gap-4 my-4 border border-gray-200 p-4">
-  <bo-text :white-space="BoTextWhiteSpace.normal" value="Normal white space. Text will wrap normally." />
-  <bo-text :white-space="BoTextWhiteSpace.nowrap" value="No wrap text. This will not wrap and will be truncated if it exceeds the container width." />
-  <bo-text :white-space="BoTextWhiteSpace.pre" value="Pre-formatted text.
-  Line breaks and     spaces     are preserved." />
-  <bo-text :white-space="BoTextWhiteSpace.pre_line" value="Pre-line text.
-  Line breaks are preserved but spaces    are    collapsed." />
-  <bo-text :white-space="BoTextWhiteSpace.pre_wrap" value="Pre-wrap text.
-  Line breaks and     spaces     are preserved, but text wraps if needed." />
-</div>
-
-```vue
-<bo-text
-	:white-space="BoTextWhiteSpace.normal"
-	value="Normal white space. Text will wrap normally."
-/>
-<bo-text
-	:white-space="BoTextWhiteSpace.nowrap"
-	value="No wrap text. This will not wrap and will be truncated if it exceeds the container width."
-/>
-<bo-text
-	:white-space="BoTextWhiteSpace.pre"
-	value="Pre-formatted text.
-Line breaks and     spaces     are preserved."
-/>
-<bo-text
-	:white-space="BoTextWhiteSpace.pre_line"
-	value="Pre-line text.
-Line breaks are preserved but spaces    are    collapsed."
-/>
-<bo-text
-	:white-space="BoTextWhiteSpace.pre_wrap"
-	value="Pre-wrap text.
-Line breaks and     spaces     are preserved, but text wraps if needed."
-/>
-```
-
-## Interactive Text
-
-<div class="flex flex-col gap-4 my-4">
-  <bo-text :clickable="true" value="Clickable Text (cursor pointer)" />
-  <bo-text :selectable="true" value="Selectable Text (can be selected)" />
-</div>
-
-```vue
-<bo-text :clickable="true" value="Clickable Text (cursor pointer)" />
-<bo-text :selectable="true" value="Selectable Text (can be selected)" />
-```
-
-## Dark Mode
-
-The text component automatically adapts to dark mode with enhanced contrast and proper color adjustments for optimal readability.
-
-<div class="flex flex-col gap-6 my-4 dark p-6 bg-gray-900 rounded-lg">
-	<div class="flex items-center gap-4">
-		<div class="w-24 text-sm text-gray-400">Colors</div>
-		<div class="flex flex-col gap-3">
-			<bo-text :color="BoTextColor.default" value="Default Color" />
-			<bo-text :color="BoTextColor.primary" value="Primary Color" />
-			<bo-text :color="BoTextColor.secondary" value="Secondary Color" />
-			<bo-text :color="BoTextColor.success" value="Success Color" />
-			<bo-text :color="BoTextColor.warning" value="Warning Color" />
-			<bo-text :color="BoTextColor.danger" value="Danger Color" />
-			<bo-text :color="BoTextColor.light" value="Light Color" />
-		</div>
-	</div>
-	<div class="flex items-center gap-4">
-		<div class="w-24 text-sm text-gray-400">Sizes</div>
-		<div class="flex flex-col gap-3">
-			<bo-text :size="BoFontSize.xs" value="Extra Small Text (xs)" />
-			<bo-text :size="BoFontSize.sm" value="Small Text (sm)" />
-			<bo-text :size="BoFontSize.base" value="Base Text (base)" />
-			<bo-text :size="BoFontSize.lg" value="Large Text (lg)" />
-			<bo-text :size="BoFontSize.xl" value="Extra Large Text (xl)" />
-			<bo-text :size="BoFontSize['2xl']" value="2XL Text (2xl)" />
-		</div>
-	</div>
-	<div class="flex items-center gap-4">
-		<div class="w-24 text-sm text-gray-400">Weights</div>
-		<div class="flex flex-col gap-3">
-			<bo-text :weight="BoFontWeight.light" value="Light Weight" />
-			<bo-text :weight="BoFontWeight.regular" value="Regular Weight" />
-			<bo-text :weight="BoFontWeight.medium" value="Medium Weight" />
-			<bo-text :weight="BoFontWeight.semibold" value="Semibold Weight" />
-			<bo-text :weight="BoFontWeight.bold" value="Bold Weight" />
-		</div>
-	</div>
-	<div class="flex items-center gap-4">
-		<div class="w-24 text-sm text-gray-400">Families</div>
-		<div class="flex flex-col gap-3">
-			<bo-text :font-family="BoFontFamily.sans" value="Sans-serif Font" />
-			<bo-text :font-family="BoFontFamily.serif" value="Serif Font" />
-			<bo-text :font-family="BoFontFamily.mono" value="Monospace Font" />
-		</div>
-	</div>
-</div>
-
-```vue
-<div class="dark">
-	<!-- Colors in dark mode -->
-	<bo-text :color="BoTextColor.default" value="Default Color" />
-	<bo-text :color="BoTextColor.primary" value="Primary Color" />
-	<bo-text :color="BoTextColor.secondary" value="Secondary Color" />
-	<bo-text :color="BoTextColor.success" value="Success Color" />
-	<bo-text :color="BoTextColor.warning" value="Warning Color" />
-	<bo-text :color="BoTextColor.danger" value="Danger Color" />
-	
-	<!-- Sizes in dark mode -->
-	<bo-text :size="BoFontSize.lg" value="Large Text" />
-	<bo-text :size="BoFontSize.xl" value="Extra Large Text" />
-	
-	<!-- Weights in dark mode -->
-	<bo-text :weight="BoFontWeight.medium" value="Medium Weight" />
-	<bo-text :weight="BoFontWeight.bold" value="Bold Weight" />
-</div>
 ```

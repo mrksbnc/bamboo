@@ -6,7 +6,7 @@ title: Bamboo
 
 hero:
   name: Bamboo
-  tagline: Modern, flexible, and type-safe component library 3 built with Vue and Tailwind CSS.
+  tagline: Flexible, and type-safe component library for Vue 3.
   actions:
     - theme: brand
       text: Get Started

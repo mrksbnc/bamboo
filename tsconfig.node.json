@@ -1,13 +1,18 @@
 {
-	"include": ["vite.config.*", "vitest.config.*"],
+	"extends": "@tsconfig/node22/tsconfig.json",
+	"include": [
+		"vite.config.*",
+		"vitest.config.*",
+		"cypress.config.*",
+		"nightwatch.conf.*",
+		"playwright.config.*",
+		"eslint.config.*"
+	],
 	"compilerOptions": {
 		"noEmit": true,
-		"strict": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true,
+		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
 		"module": "ESNext",
-		"moduleResolution": "bundler",
+		"moduleResolution": "Bundler",
 		"types": ["node"]
-	},
-	"exclude": ["node_modules", "dist", "test"]
+	}
 }
