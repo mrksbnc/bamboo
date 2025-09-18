@@ -2,8 +2,6 @@ import { globalIgnores } from 'eslint/config'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import pluginVue from 'eslint-plugin-vue'
 import pluginVitest from '@vitest/eslint-plugin'
-// @ts-expect-error - plugin cypress is not typed
-import pluginCypress from 'eslint-plugin-cypress'
 import pluginOxlint from 'eslint-plugin-oxlint'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 
@@ -13,6 +11,7 @@ import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 // More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
 export default defineConfigWithVueTs(
+	globalIgnores(['**/dist/**', '**/.vitepress/cache/**']),
 	{
 		name: 'bamboo',
 		files: ['**/*.{ts,mts,tsx,vue}'],

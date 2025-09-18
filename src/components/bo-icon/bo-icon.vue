@@ -113,7 +113,7 @@
 				svg.value = val
 			})
 		} catch (e) {
-			console.error(`Could not find icon of name ${icon}`)
+			console.error(`Could not find icon of name ${icon}\n${e}`)
 		}
 	}
 
