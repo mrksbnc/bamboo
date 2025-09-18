@@ -218,4 +218,27 @@ describe('BoIcon', () => {
 
 		expect(wrapper2.attributes('role')).toBe('img')
 	})
+
+	test('should apply the proper cursor style', () => {
+		const cursors = ['pointer', 'default', 'grab', 'grabbing', 'zoom-in', 'zoom-out']
+
+		for (const cursor of cursors) {
+			const wrapper = mount(BoIcon, {
+				props: {
+					icon: Icon.activity,
+					cursor,
+				},
+			})
+
+			expect(wrapper.attributes('style')).toContain(`cursor: ${cursor}`)
+		}
+
+		const wrapper2 = mount(BoIcon, {
+			props: {
+				icon: Icon.activity,
+			},
+		})
+
+		expect(wrapper2.attributes('style')).toContain('cursor: default')
+	})
 })

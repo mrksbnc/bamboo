@@ -310,4 +310,27 @@ describe('BoText', () => {
 		expect(wrapper.attributes('style')).toContain('-webkit-line-clamp: 1;')
 		expect(wrapper.attributes('style')).toContain('text-overflow: ellipsis;')
 	})
+
+	test('should apply the proper cursor style', () => {
+		const cursors = ['pointer', 'default', 'grab', 'grabbing', 'zoom-in', 'zoom-out']
+
+		for (const cursor of cursors) {
+			const wrapper = mount(BoText, {
+				props: {
+					value: 'Test',
+					cursor,
+				},
+			})
+
+			expect(wrapper.attributes('style')).toContain(`cursor: ${cursor}`)
+		}
+
+		const wrapper2 = mount(BoText, {
+			props: {
+				value: 'Test',
+			},
+		})
+
+		expect(wrapper2.attributes('style')).toContain('cursor: default')
+	})
 })
