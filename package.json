@@ -24,7 +24,8 @@
 		"lint:eslint": "eslint . --fix",
 		"lint": "run-s lint:*",
 		"format": "PRETTIER_EXPERIMENTAL_CLI=1 prettier --write src/",
-		"update:icons": "node scripts/update-icons.cjs"
+		"update:icons": "node scripts/update-icons.cjs",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"vue": "^3.5.18"
@@ -44,6 +45,7 @@
 		"eslint": "^9.31.0",
 		"eslint-plugin-oxlint": "~1.8.0",
 		"eslint-plugin-vue": "~10.3.0",
+		"husky": "^9.1.7",
 		"jiti": "^2.4.2",
 		"jsdom": "^26.1.0",
 		"npm-run-all2": "^8.0.4",
