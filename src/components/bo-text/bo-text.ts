@@ -117,7 +117,6 @@ export interface BoTextProps {
 	 * - an rgb color (e.g. rgb(255, 0, 0))
 	 * - an rgba color (e.g. rgba(255, 0, 0, 0.5))
 	 * - an oklch color (e.g. oklch(0.985 0.001 106.423))
-	 * - an oklcha color (e.g. oklcha(0.985 0.001 106.423 0.5))
 	 */
 	customColor?: string
 	/** One or multiple css classes to be used for overriding the default styles on the element. */

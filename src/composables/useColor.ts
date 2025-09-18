@@ -1,6 +1,6 @@
 const TEXT_REPLACE_PLACEHOLDER = '__BLANK__' as const
 
-const UNKOWN_COLOR_WARNING = [
+const UNKNOWN_COLOR_WARNING = [
 	`The custom color "__BLANK__" is not a valid color definition.`,
 	'Valid color definitions are:',
 	'\t- a variable name (e.g. --my-color)',
@@ -39,7 +39,7 @@ export function useColor(): UseColor {
 				color: `#${prop}`,
 			}
 		} else {
-			console.warn(UNKOWN_COLOR_WARNING.replace(TEXT_REPLACE_PLACEHOLDER, prop))
+			console.warn(UNKNOWN_COLOR_WARNING.replace(TEXT_REPLACE_PLACEHOLDER, prop))
 
 			return {
 				color: 'currentColor',

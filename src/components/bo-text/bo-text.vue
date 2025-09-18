@@ -53,6 +53,11 @@
 	const processedValue = computed<string>(() => {
 		switch (props.textTransform) {
 			case BoTextTransform.capitalize:
+				/**
+				 * The \b anchor ensures that the first character of the word is matched, and the \w anchor ensures
+				 * that the word boundary isn't crossed.
+				 * \g is used to replace all occurrences of the matched characters not just the first occurrence.
+				 */
 				return props.value.replace(/\b\w/g, (char) => char.toUpperCase())
 			case BoTextTransform.uppercase:
 				return props.value.toUpperCase()

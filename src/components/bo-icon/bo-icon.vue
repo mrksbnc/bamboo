@@ -55,7 +55,11 @@
 		return props.decorative ? true : undefined
 	})
 
-	const ariaLabel = computed<string>(() => {
+	const ariaLabel = computed<string | undefined>(() => {
+		// Only provide aria-label for non-decorative icons
+		if (props.decorative) {
+			return undefined
+		}
 		return props.title ?? props.icon
 	})
 
@@ -75,7 +79,6 @@
 			return getCustomColorStyle(props.customColor)
 		}
 
-		// Don't set color here - let CSS variants handle it
 		return {}
 	})
 

@@ -44,7 +44,7 @@ describe('BoText', () => {
 				},
 			})
 
-			expect(wrapper.classes().join(' ').includes(`bo-text__color--${variant}`)).toBe(true)
+			expect(wrapper.classes().join(' ').includes(`bo-text__variant--${variant}`)).toBe(true)
 		}
 	})
 
@@ -211,7 +211,7 @@ describe('BoText', () => {
 				},
 			})
 
-			expect(wrapper.classes().join(' ').includes(`bo--text__font-family--${family}`)).toBe(true)
+			expect(wrapper.classes().join(' ').includes(`bo-text__font-family--${family}`)).toBe(true)
 		}
 	})
 
@@ -303,7 +303,7 @@ describe('BoText', () => {
 		const wrapper = mount(BoText, {
 			props: {
 				maxLines: 1,
-				value: 'Test lkjsdklfjhskdj ksjhdfkjshdf kjsdhfkjsdhfskdjh kjsh dkj',
+				value: 'Test lorem ipsum dolor sit',
 			},
 		})
 
