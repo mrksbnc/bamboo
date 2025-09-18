@@ -13,6 +13,7 @@
 </template>
 
 <script setup lang="ts">
+	import { useColor } from '@/composables/useColor'
 	import { IdentityService } from '@/services'
 	import { computed, type CSSProperties, type FunctionalComponent, type SVGAttributes } from 'vue'
 	import { BoIconVariant, IconToComponentConstruct, type BoIconProps } from './bo-icon'
@@ -24,6 +25,8 @@
 		variant: () => BoIconVariant.default,
 		decorative: true,
 	})
+
+	const { getCustomColorFromComponentProp } = useColor()
 
 	const iconComponent = computed<FunctionalComponent<SVGAttributes>>(() => {
 		return IconToComponentConstruct[props.icon] ?? IconToComponentConstruct.none
@@ -55,38 +58,7 @@
 
 	const iconColorStyle = computed<CSSProperties>(() => {
 		if (props.customColor) {
-			if (
-				props.customColor.startsWith('var') ||
-				props.customColor.startsWith('#') ||
-				props.customColor.startsWith('oklch') ||
-				props.customColor.startsWith('oklcha') ||
-				props.customColor.startsWith('rgb') ||
-				props.customColor.startsWith('rgba')
-			) {
-				return {
-					color: props.customColor,
-				}
-			} else if (props.customColor.startsWith('--')) {
-				/** CSS variable */
-				return {
-					color: `var(${props.customColor})`,
-				}
-			} else if (props.customColor?.length === 6) {
-				/** Hex color without the leading # */
-				return {
-					color: `#${props.customColor}`,
-				}
-			} else {
-				console.warn(`The custom color "${props.customColor}" is not a valid color definition.
-				Valid color definitions are:
-				- a variable name (e.g. --my-color)
-				- a hex color (e.g. #ff0000)
-				- an rgb color (e.g. rgb(255, 0, 0))
-				- an rgba color (e.g. rgba(255, 0, 0, 0.5))
-
-				The custom color will be ignored and currentColor will be used instead.
-			`)
-			}
+			return getCustomColorFromComponentProp(props.customColor)
 		}
 
 		return {
@@ -107,42 +79,46 @@
 	}
 </script>
 
-<style module>
+<style module lang="scss">
 	.bo-icon {
 		display: inline-block;
 		box-sizing: border-box;
 		vertical-align: middle;
-	}
 
-	.bo-icon--default {
-		fill: currentColor;
-	}
+		&--default {
+			fill: currentColor;
+		}
 
-	.bo-icon--primary {
-		fill: var(--blue-500);
-	}
+		&--primary {
+			fill: var(--blue-600);
+		}
 
-	.bo-icon--secondary {
-		fill: var(--gray-500);
-	}
+		&--secondary {
+			fill: var(--neutral-600);
+		}
 
-	.bo-icon--success {
-		fill: var(--green-500);
-	}
+		&--disabled {
+			fill: var(--neutral-400);
+		}
 
-	.bo-icon--warning {
-		fill: var(--orange-500);
-	}
+		&--success {
+			fill: var(--green-600);
+		}
 
-	.bo-icon--danger {
-		fill: var(--red-500);
-	}
+		&--warning {
+			fill: var(--yellow-500);
+		}
 
-	.bo-icon--light {
-		fill: var(--gray-100);
-	}
+		&--danger {
+			fill: var(--red-600);
+		}
 
-	.bo-icon--dark {
-		fill: var(--gray-900);
+		&--light {
+			fill: var(--neutral-50);
+		}
+
+		&--dark {
+			fill: var(--gray-950);
+		}
 	}
 </style>
