@@ -28,6 +28,14 @@ jobs:
         run: |
           pnpm install
 
-      - name: Run tests
+      - name: Run Type Check
         run: |
-          pnpm test
+          pnpm type-check
+
+      - name: Run Lint
+        run: |
+          pnpm lint
+
+      - name: Run Spell Check
+        run: |
+          pnpm lint:spell
