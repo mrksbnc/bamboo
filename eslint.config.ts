@@ -28,10 +28,6 @@ export default defineConfigWithVueTs(
 		files: ['src/**/__tests__/*'],
 	},
 
-	{
-		...pluginCypress.configs.recommended,
-		files: ['cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}', 'cypress/support/**/*.{js,ts,jsx,tsx}'],
-	},
 	...pluginOxlint.configs['flat/recommended'],
 	skipFormatting,
 )
