@@ -3,12 +3,7 @@
 		v-if="iconComponent"
 		:is="iconComponent"
 		v-bind="iconComponentPropConstruct"
-		:class="[
-			customCssClass,
-			$style['bo-icon'],
-			$style[`bo-icon--${size}`],
-			$style[`bo-icon--${variant}`],
-		]"
+		:class="[customCssClass, $style['bo-icon'], `bo-icon--${variant}`, `bo-icon__size--${size}`]"
 	/>
 </template>
 

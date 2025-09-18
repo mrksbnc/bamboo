@@ -82,6 +82,16 @@ export enum BoTextAlign {
 	justify = 'justify',
 }
 
+export enum BoTextTransform {
+	none = 'none',
+	/** Capitalizes the first letter of each word. */
+	capitalize = 'capitalize',
+	/** Converts all characters to uppercase. */
+	uppercase = 'uppercase',
+	/** Converts all characters to lowercase. */
+	lowercase = 'lowercase',
+}
+
 export interface BoTextProps {
 	/** The id of the element. */
 	id?: string
@@ -115,8 +125,8 @@ export interface BoTextProps {
 	clickable?: boolean
 	/** The text align of the element. */
 	textAlign?: BoTextAlign
-	/** The selectable of the element. */
-	selectable?: boolean
+	/** The text transform of the element. */
+	textTransform?: BoTextTransform
 	/** Cursor type of the element. This must be a valid Tailwindcss cursor value. */
 	cursor?: string
 	/** The max lines of the element. */

@@ -12,6 +12,7 @@
 			$style[`bo-text__weight--${props.fontWeight}`],
 			$style[`bo-text__whitespace--${props.whiteSpace}`],
 			$style[`bo--text__font-family--${props.fontFamily}`],
+			$style[`bo-text__transform--${props.textTransform}`],
 			customCssClass,
 		]"
 		:aria-live="ariaLive"
@@ -20,11 +21,12 @@
 		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="ariaDescribedBy"
 	>
-		{{ value }}
+		{{ processedValue }}
 	</p>
 </template>
 
 <script lang="ts" setup>
+	import { useColor } from '@/composables'
 	import { AriaLive } from '@/lib/accessibility'
 	import { IdentityService } from '@/services/identity-service.js'
 	import { computed, type CSSProperties, type StyleValue } from 'vue'
@@ -33,6 +35,7 @@
 		BoFontSize,
 		BoFontWeight,
 		type BoTextProps,
+		BoTextTransform,
 		BoTextVariant,
 		BoTextWhiteSpace,
 	} from './bo-text'
@@ -46,51 +49,38 @@
 		fontFamily: () => BoFontFamily.sans,
 		variant: () => BoTextVariant.default,
 		fontWeight: () => BoFontWeight.regular,
+		textTransform: () => BoTextTransform.none,
 		whiteSpace: () => BoTextWhiteSpace.normal,
 		ariaLive: () => AriaLive.polite,
 	})
 
+	const { getCustomColorStyle } = useColor()
+
 	const ariaLabel = computed<string>(() => props.ariaLabel || props.value)
 	const role = computed<string>(() => props.role ?? 'text')
 
+	const processedValue = computed<string>(() => {
+		switch (props.textTransform) {
+			case BoTextTransform.capitalize:
+				return props.value.replace(/\b\w/g, (char) => char.toUpperCase())
+			case BoTextTransform.uppercase:
+				return props.value.toUpperCase()
+			case BoTextTransform.lowercase:
+				return props.value.toLowerCase()
+			case BoTextTransform.none:
+			default:
+				return props.value
+		}
+	})
+
 	const textColor = computed<CSSProperties>(() => {
 		if (props.customColor) {
-			if (
-				props.customColor.startsWith('var') ||
-				props.customColor.startsWith('#') ||
-				props.customColor.startsWith('oklch') ||
-				props.customColor.startsWith('oklcha') ||
-				props.customColor.startsWith('rgb') ||
-				props.customColor.startsWith('rgba')
-			) {
-				return {
-					color: props.customColor,
-				}
-			} else if (props.customColor.startsWith('--')) {
-				/** CSS variable */
-				return {
-					color: `var(${props.customColor})`,
-				}
-			} else if (props.customColor?.length === 6) {
-				/** Hex color without the leading # */
-				return {
-					color: `#${props.customColor}`,
-				}
-			} else {
-				console.warn(
-					`The custom color "${props.customColor}" is not a valid color definition.\n
-					Valid color definitions are:\n
-					- a variable name (e.g. --my-color)\n
-					- a hex color (e.g. #ff0000)\n
-					- an rgb color (e.g. rgb(255, 0, 0))\n
-					- an rgba color (e.g. rgba(255, 0, 0, 0.5))\n
-					\nThe custom color will be ignored and --neutral-950 will be used instead.`,
-				)
-				return {}
-			}
+			return getCustomColorStyle(props.customColor)
 		}
 
-		return {}
+		return {
+			color: 'currentColor',
+		}
 	})
 
 	const cursor = computed<CSSProperties>(() => {
@@ -106,12 +96,6 @@
 			}
 		}
 
-		if (props.selectable) {
-			return {
-				cursor: 'text',
-			}
-		}
-
 		return {
 			cursor: 'default',
 		}
@@ -122,6 +106,7 @@
 			return {
 				overflow: 'hidden',
 				display: '-webkit-box',
+				textOverflow: 'ellipsis',
 				WebkitBoxOrient: 'vertical',
 				WebkitLineClamp: props.maxLines,
 			}
@@ -341,6 +326,24 @@
 
 			&--inherit {
 				font-family: inherit;
+			}
+		}
+
+		&__transform {
+			&--none {
+				text-transform: none;
+			}
+
+			&--capitalize {
+				text-transform: capitalize;
+			}
+
+			&--uppercase {
+				text-transform: uppercase;
+			}
+
+			&--lowercase {
+				text-transform: lowercase;
 			}
 		}
 	}

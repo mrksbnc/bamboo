@@ -1,4 +1,3 @@
-// oxlint-disable consistent-function-scoping
 const TEXT_REPLACE_PLACEHOLDER = '__BLANK__' as const
 
 const UNKOWN_COLOR_WARNING = [
@@ -12,26 +11,20 @@ const UNKOWN_COLOR_WARNING = [
 ].join('\n')
 
 export interface UseColor {
-	isValidColorProp: (prop: string) => boolean
 	getCustomColorStyle: (prop: string) => {
 		color: string
 	}
 }
 
 export function useColor(): UseColor {
-	const isValidColorProp = (prop: string) => {
-		return (
+	const getCustomColorStyle = (prop: string) => {
+		if (
 			prop.startsWith('var') ||
 			prop.startsWith('#') ||
 			prop.startsWith('oklch') ||
-			prop.startsWith('oklcha') ||
 			prop.startsWith('rgb') ||
 			prop.startsWith('rgba')
-		)
-	}
-
-	const getCustomColorStyle = (prop: string) => {
-		if (isValidColorProp(prop)) {
+		) {
 			return {
 				color: prop,
 			}
@@ -55,7 +48,6 @@ export function useColor(): UseColor {
 	}
 
 	return {
-		isValidColorProp,
 		getCustomColorStyle,
 	}
 }
