@@ -1,5 +1,5 @@
 {
-  "name": "lib",
+  "name": "@mrksbnc/bamboo",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -14,17 +14,14 @@
     }
   },
   "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "test:unit": "vitest --coverage",
-    "build-only": "vite build",
+    "build": "vite build",
+    "test": "vitest --coverage",
     "type-check": "vue-tsc --build",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix",
+    "lint:spell": "cspell '**/*.{ts,vue,md}' --config cspell.json",
     "lint": "run-s lint:*",
     "format": "PRETTIER_EXPERIMENTAL_CLI=1 prettier --write src/",
-    "update:icons": "node scripts/update-icons.cjs",
     "prepare": "husky",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
@@ -34,6 +31,10 @@
     "vue": "^3.5.18"
   },
   "devDependencies": {
+    "@cspell/dict-css": "^4.0.18",
+    "@cspell/dict-html": "^4.0.12",
+    "@cspell/dict-typescript": "^3.2.3",
+    "@cspell/dict-vue": "^3.0.5",
     "@prettier/plugin-oxc": "^0.0.4",
     "@tsconfig/node22": "^22.0.2",
     "@types/jsdom": "^21.1.7",
@@ -45,6 +46,7 @@
     "@vue/eslint-config-typescript": "^14.6.0",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
+    "cspell": "^9.2.1",
     "eslint": "^9.31.0",
     "eslint-plugin-oxlint": "~1.8.0",
     "eslint-plugin-vue": "~10.3.0",

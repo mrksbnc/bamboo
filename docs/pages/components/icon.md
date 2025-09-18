@@ -122,9 +122,9 @@ You can customize the color of the icon by passing a valid CSS color value to th
 </div>
 
 ```vue
-<!-- If the lenght of the color is 7 characters, it will be interpreted as a CSS variable -->
+<!-- If the length of the color is 7 characters, it will be interpreted as a CSS variable -->
 <bo-icon :icon="Icon.heart" custom-color="--teal-500" />
-<!-- If the lenght of the color is 6 characters, it will be interpreted as a hex color -->
+<!-- If the length of the color is 6 characters, it will be interpreted as a hex color -->
 <bo-icon :icon="Icon.check" custom-color="345678" />
 <bo-icon :icon="Icon.alert_circle" custom-color="var(--orange-500)" />
 <bo-icon :icon="Icon.x" custom-color="#FF0000" />
@@ -133,6 +133,7 @@ You can customize the color of the icon by passing a valid CSS color value to th
 
 ## All available icons
 
+<!-- cspell:disable-next-line -->
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 1rem; margin-top: 2rem;">
   <div v-for="(value, key) in Icon" :key="key" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center; padding: 1rem; border: 1px solid #ccc; border-radius: 0.25rem;">
     <bo-icon :icon="value" />
@@ -209,7 +210,9 @@ enum Icon {
 	cloud_rain = 'cloud-rain',
 	cloud_snow = 'cloud-snow',
 	code = 'code',
+	// cspell:disable-next-line
 	codepen = 'codepen',
+	// cspell:disable-next-line
 	codesandbox = 'codesandbox',
 	coffee = 'coffee',
 	columns = 'columns',
@@ -237,6 +240,7 @@ enum Icon {
 	dollar_sign = 'dollar-sign',
 	download = 'download',
 	download_cloud = 'download-cloud',
+	// cspell:disable-next-line
 	dribbble = 'dribbble',
 	droplet = 'droplet',
 	edit = 'edit',

@@ -125,15 +125,19 @@ The text component supports different font sizes with the `fontSize` prop. The d
   <bo-text value="Left Aligned Text" :text-align="BoTextAlign.left" />
   <bo-text value="Center Aligned Text" :text-align="BoTextAlign.center" />
   <bo-text value="Right Aligned Text" :text-align="BoTextAlign.right" />
-  <bo-text value="Justified Text - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." :text-align="BoTextAlign.justify" />
+  <bo-text 
+    value="Justified Text - The quick brown fox jumps over the lazy dog. The sky is big and blue"
+    :text-align="BoTextAlign.justify"
+  />
 </div>
 
 ```vue
 <bo-text value="Left Aligned Text" :text-align="BoTextAlign.left" />
 <bo-text value="Center Aligned Text" :text-align="BoTextAlign.center" />
 <bo-text value="Right Aligned Text" :text-align="BoTextAlign.right" />
+
 <bo-text
-	value="Justified Text - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+	value="Justified Text - The quick brown fox jumps over the lazy dog. The sky is big and blue"
 	:text-align="BoTextAlign.justify"
 />
 ```

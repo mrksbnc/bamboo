@@ -64,7 +64,9 @@ export enum Icon {
 	cloud_rain = 'cloud-rain',
 	cloud_snow = 'cloud-snow',
 	code = 'code',
+	// cspell:disable-next-line
 	codepen = 'codepen',
+	// cspell:disable-next-line
 	codesandbox = 'codesandbox',
 	coffee = 'coffee',
 	columns = 'columns',
@@ -92,6 +94,7 @@ export enum Icon {
 	dollar_sign = 'dollar-sign',
 	download = 'download',
 	download_cloud = 'download-cloud',
+	// cspell:disable-next-line
 	dribbble = 'dribbble',
 	droplet = 'droplet',
 	edit = 'edit',

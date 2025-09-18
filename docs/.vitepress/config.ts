@@ -21,6 +21,10 @@ export default defineConfig({
 					{ text: 'Text', link: '/pages/components/text.md' },
 				],
 			},
+			{
+				text: 'Theme',
+				items: [{ text: 'Colors', link: '/pages/theme/colors.md' }],
+			},
 		],
 		socialLinks: [{ icon: 'github', link: 'https://github.com/mrksbnc/bamboo' }],
 		footer: {
