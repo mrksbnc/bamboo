@@ -5,7 +5,7 @@ repos:
         name: format
         language: system
         entry: pnpm format
-        stages: [pre-push, post-merge, post-checkout]
+        stages: [pre-push]
         pass_filenames: false
 
       - id: type-check
