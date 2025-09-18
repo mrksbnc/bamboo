@@ -1,3 +1,4 @@
+// oxlint-disable consistent-function-scoping
 const TEXT_REPLACE_PLACEHOLDER = '__BLANK__' as const
 
 const UNKOWN_COLOR_WARNING = [
@@ -10,20 +11,27 @@ const UNKOWN_COLOR_WARNING = [
 	'The custom color will be ignored and currentColor will be used instead.',
 ].join('\n')
 
-export function useColor() {
-	const generateWarningLog = (prop: string) => {
-		console.warn(UNKOWN_COLOR_WARNING.replace(TEXT_REPLACE_PLACEHOLDER, prop))
+export interface UseColor {
+	isValidColorProp: (prop: string) => boolean
+	getCustomColorStyle: (prop: string) => {
+		color: string
 	}
+}
 
-	const getCustomColorFromComponentProp = (prop: string) => {
-		if (
+export function useColor(): UseColor {
+	const isValidColorProp = (prop: string) => {
+		return (
 			prop.startsWith('var') ||
 			prop.startsWith('#') ||
 			prop.startsWith('oklch') ||
 			prop.startsWith('oklcha') ||
 			prop.startsWith('rgb') ||
 			prop.startsWith('rgba')
-		) {
+		)
+	}
+
+	const getCustomColorStyle = (prop: string) => {
+		if (isValidColorProp(prop)) {
 			return {
 				color: prop,
 			}
@@ -38,7 +46,7 @@ export function useColor() {
 				color: `#${prop}`,
 			}
 		} else {
-			console.warn(generateWarningLog(prop))
+			console.warn(UNKOWN_COLOR_WARNING.replace(TEXT_REPLACE_PLACEHOLDER, prop))
 
 			return {
 				color: 'currentColor',
@@ -47,6 +55,7 @@ export function useColor() {
 	}
 
 	return {
-		getCustomColorFromComponentProp,
+		isValidColorProp,
+		getCustomColorStyle,
 	}
 }

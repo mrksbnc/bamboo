@@ -26,7 +26,7 @@
 		decorative: true,
 	})
 
-	const { getCustomColorFromComponentProp } = useColor()
+	const { getCustomColorStyle } = useColor()
 
 	const iconComponent = computed<FunctionalComponent<SVGAttributes>>(() => {
 		return IconToComponentConstruct[props.icon] ?? IconToComponentConstruct.none
@@ -58,7 +58,7 @@
 
 	const iconColorStyle = computed<CSSProperties>(() => {
 		if (props.customColor) {
-			return getCustomColorFromComponentProp(props.customColor)
+			return getCustomColorStyle(props.customColor)
 		}
 
 		return {
