@@ -7,9 +7,7 @@ const iconList = Object.values(Icon);
 
 # bo-icon
 
-An icon is a graphical representation of a concept or object. It can be used to represent a product, service, or idea or to simply provide visual cues.
-
-The icon component is a wrapper around the [Feather Icons](https://feathericons.com/) library.
+`bo-icon` is an `svg` wrapper around files from the [Feather Icons](https://feathericons.com/) library.
 
 ### Basic Usage
 

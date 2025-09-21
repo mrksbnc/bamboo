@@ -9,7 +9,7 @@ hero:
   tagline: Flexible, and type-safe component library for Vue 3.
   actions:
     - theme: brand
-      text: Get Started
+      text: Quick start
       link: /pages/get-started
     - theme: alt
       text: GitHub

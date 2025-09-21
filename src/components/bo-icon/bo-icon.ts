@@ -343,7 +343,7 @@ export interface BoIconProps {
 	decorative?: boolean
 }
 
-export const LazyIconMap = import.meta.glob('../../assets/icons/**/*.svg', {
+export const LazyIconMap = import.meta.glob('@/assets/icons/**/*.svg', {
 	query: '?raw',
 	import: 'default',
 }) as Record<string, () => Promise<string>>

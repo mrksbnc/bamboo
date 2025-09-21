@@ -15,6 +15,14 @@ export default defineConfig({
 
 		sidebar: [
 			{
+				text: 'Introduction',
+				items: [
+					{ text: 'What is Bamboo?', link: '/pages/introduction/introduction.md' },
+					{ text: 'Getting Started', link: '/pages/introduction/get-started.md' },
+					{ text: 'Installation', link: '/pages/introduction/installation.md' },
+				],
+			},
+			{
 				text: 'Components',
 				items: [
 					{ text: 'Icon', link: '/pages/components/icon.md' },
