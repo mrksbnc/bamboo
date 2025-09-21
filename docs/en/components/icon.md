@@ -5,11 +5,15 @@ import { BoSize } from "@/lib/bo-size";
 const iconList = Object.values(Icon);
 </script>
 
+---
+
+## title: Icon
+
 # bo-icon
 
 `bo-icon` is an `svg` wrapper around files from the [Feather Icons](https://feathericons.com/) library.
 
-### Basic Usage
+### Basic usage
 
 ```vue
 <bo-icon :icon="Icon.heart" />
@@ -107,7 +111,7 @@ The available variants are the following:
   </span>
 </div>
 
-## Custom Colors
+## Custom colors
 
 You can customize the color of the icon by passing a valid CSS color value to the `customColor` prop.
 
@@ -141,7 +145,9 @@ You can customize the color of the icon by passing a valid CSS color value to th
 
 ### Interfaces and constants
 
-```ts
+::: code-group
+
+```ts [bo-icon.ts]
 enum Icon {
 	activity = 'activity',
 	airplay = 'airplay',
@@ -483,3 +489,5 @@ interface BoIconProps {
 	decorative?: boolean
 }
 ```
+
+:::

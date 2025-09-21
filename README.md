@@ -6,134 +6,75 @@
 
 # Bamboo
 
-Bamboo is a lightweight and flexible UI library built with Vue.js
+Lightweight, type‑safe UI components for Vue 3.
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/en/) >=18.x
-- [npm](https://www.npmjs.com/), [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.io/)
+- Node.js 18+
+- npm, pnpm, yarn, or bun
 
-## Installation
+## Install
 
-To install the library, run the following command in your project directory:
+- npm: `npm install @mrksbnc/bamboo`
+- pnpm: `pnpm add @mrksbnc/bamboo`
+- yarn: `yarn add @mrksbnc/bamboo`
+- bun: `bun add @mrksbnc/bamboo`
 
-### npm
+## Quick Start
 
-```npm
-npm install @mrksbnc/bamboo
-```
-
-### pnpm
-
-```pnpm
-pnpm install @mrksbnc/bamboo
-```
-
-### yarn
-
-```yarn
-yarn add @mrksbnc/bamboo
-```
-
-## Usage
-
-After installation import the library styles in your `main.ts` or equivalent file:
+Import the library base css file.
 
 ```ts
-import '@mrksbnc/bamboo/lib.css'
+// main.ts
+import { createApp } from 'vue'
+import App from './App.vue'
+
+// Import the main library CSS file
+import '@mrksbnc/bamboo/style.css'
+
+createApp(App).use(Bamboo).mount('#app')
 ```
 
-This will load the required css for the components and also enables the use of css variables from the library like
-colors.
-
-Then import the components you want to use in your Vue components:
+Use a component.
 
 ```vue
 <template>
-	<bo-text value="Hello World" />
+	<bo-text value="Hello Bamboo" />
+	<bo-icon :icon="Icon.heart" />
+	<bo-icon :icon="Icon.star" custom-color="var(--blue-600)" />
 </template>
 
 <script setup lang="ts">
-	import { BoText } from '@mrksbnc/bamboo'
+	import { BoIcon, Icon } from '@mrksbnc/bamboo'
 </script>
 ```
 
-## Available Scripts
+## Scripts
 
-| Script       | Description                            |
-| ------------ | -------------------------------------- |
-| build        | Builds the library                     |
-| test         | Runs the unit tests                    |
-| lint         | Runs all linters                       |
-| lint:spell   | Runs the spell checker                 |
-| lint:eslint  | Runs linting using eslint              |
-| lint:oxlint  | Runs linting using oxlint              |
-| format       | Formats the code using prettier        |
-| prepare      | Initializes pre-commit hooks           |
-| docs:dev     | Starts the live dev server of the docs |
-| docs:build   | Builds the docs                        |
-| docs:preview | Previews the built docs bundle         |
+- build: Builds the library
+- test: Runs unit tests (vitest)
+- lint: Runs all linters
+- lint:spell: Runs the spell checker
+- lint:eslint: ESLint
+- lint:oxlint: Oxlint
+- format: Prettier
+- prepare: Initializes pre-commit hooks
+- docs:dev: Starts the docs dev server
+- docs:build: Builds the docs
+- docs:preview: Previews the built docs
 
-## Documentation
+## Docs
 
-To access the documentation, visit [mrksbnc.github.io/bamboo](https://mrksbnc.github.io/bamboo) or run the local version
-with the following command:
+- Website: https://mrksbnc.github.io/bamboo
+- Local dev: `pnpm docs:dev` (or `npm run docs:dev`, `yarn docs:dev`)
+- Build/preview: `pnpm docs:build && pnpm docs:preview`
 
-### npm
+See:
 
-```bash
-npm run docs:dev
-```
+- Components: `docs/en/components`
+- Styles: `docs/en/styles/colors.md`, `docs/en/styles/typography.md`
 
-### pnpm
-
-```bash
-pnpm run docs:dev
-```
-
-### yarn
-
-```bash
-yarn docs:dev
-```
-
-This will spin up a local dev server where the documentation can be viewed.
-
-Alternatively, you can build the documentation by running the following command:
-
-::: code-group
-
-```bash [npm]
-npm run docs:build
-```
-
-```bash [pnpm]
-pnpm run docs:build
-```
-
-```bash [yarn]
-yarn docs:build
-```
-
-:::
-
-and view it after running the preview command
-
-::: code-group
-
-```bash [npm]
-npm run docs:preview
-```
-
-```bash [pnpm]
-pnpm run docs:preview
-```
-
-```bash [yarn]
-yarn docs:preview
-```
-
-:::
+Tip: Color tokens live in `src/lib.css` and are available via CSS variables, e.g. `var(--blue-600)`.
 
 ## License
 

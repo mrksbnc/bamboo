@@ -289,7 +289,9 @@ The text component supports interactive features with the `clickable` prop.
 
 ### Interfaces and constants
 
-```ts
+::: code-group
+
+```ts [bo-text.ts]
 enum BoFontWeight {
 	thin = 'thin',
 	extra_light = 'extra-light',
@@ -405,3 +407,5 @@ interface BoTextProps {
 	lang?: string
 }
 ```
+
+:::

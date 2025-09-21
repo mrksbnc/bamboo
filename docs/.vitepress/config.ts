@@ -6,32 +6,36 @@ export default defineConfig({
 	title: 'Bamboo',
 	description: 'Lightweight, and flexible UI library for Vue.',
 	themeConfig: {
-		logo: '../assets/logo.webp',
+		logo: '/logo.webp',
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [
 			{ text: 'Home', link: '/' },
-			{ text: 'Components', link: '/pages/components/default.md' },
+			{ text: 'Guide', link: '/en/guide/what-is-bamboo' },
+			{ text: 'Components', link: '/en/components/default' },
 		],
 
 		sidebar: [
 			{
-				text: 'Introduction',
+				text: 'Guide',
 				items: [
-					{ text: 'What is Bamboo?', link: '/pages/introduction/introduction.md' },
-					{ text: 'Getting Started', link: '/pages/introduction/get-started.md' },
-					{ text: 'Installation', link: '/pages/introduction/installation.md' },
+					{ text: 'What is Bamboo?', link: '/en/guide/what-is-bamboo' },
+					{ text: 'Getting Started', link: '/en/guide/getting-started' },
 				],
 			},
 			{
 				text: 'Components',
 				items: [
-					{ text: 'Icon', link: '/pages/components/icon.md' },
-					{ text: 'Text', link: '/pages/components/text.md' },
+					{ text: 'Overview', link: '/en/components/default' },
+					{ text: 'Icon', link: '/en/components/icon' },
+					{ text: 'Text', link: '/en/components/text' },
 				],
 			},
 			{
-				text: 'Theme',
-				items: [{ text: 'Colors', link: '/pages/theme/colors.md' }],
+				text: 'Styles',
+				items: [
+					{ text: 'Colors', link: '/en/styles/colors' },
+					{ text: 'Typography', link: '/en/styles/typography' },
+				],
 			},
 		],
 		socialLinks: [{ icon: 'github', link: 'https://github.com/mrksbnc/bamboo' }],
