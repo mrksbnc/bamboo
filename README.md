@@ -6,7 +6,7 @@
 
 # Bamboo
 
-Lightweight, type‑safe UI components for Vue 3.
+Lightweight, flexible, and type‑safe UI components for Vue 3.
 
 ## Prerequisites
 

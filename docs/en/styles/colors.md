@@ -21,21 +21,6 @@ These map to component props like `variant="primary|secondary|success|warning|da
 | `light`     | `--neutral-50`  |
 | `dark`      | `--gray-950`    |
 
-:::
-
-## Full palette (excerpt)
-
-The project ships a full OKLCH palette similar to Tailwind v4. Here are the families referenced by components. For complete values, see `src/lib.css`.
-
-::: tip
-Use tokens via `var(--token)` or pass a token to component props that support custom colors, for example:
-
-```vue
-<bo-icon :icon="Icon.alert_circle" custom-color="var(--yellow-500)" />
-```
-
-:::
-
 ## Swatches
 
 Each color is available as a CSS variable like `--blue-500`.
