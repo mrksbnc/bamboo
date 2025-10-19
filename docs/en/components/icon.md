@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { BoIcon, Icon, BoIconVariant } from "@/components/bo-icon/index";
-import { BoSize } from "@/core/bo-size";
+import { BoIcon, Icon, BoIconVariant } from "@/components/bo-icon";
 
 const iconList = Object.values(Icon);
 </script>
@@ -19,21 +18,23 @@ const iconList = Object.values(Icon);
 <bo-icon :icon="Icon.heart" />
 ```
 
+<bo-icon :icon="Icon.heart" />
+
 ## Props
 
 ### Required
 
-| Name   | Type   | Default | Description         |
-| ------ | ------ | ------- | ------------------- |
-| `icon` | `Icon` |         | The icon to display |
+| Name   | Type   | Default   | Description         |
+| ------ | ------ | --------- | ------------------- |
+| `icon` | `Icon` | Icon.none | The icon to display |
 
 ### Optional
 
 | Name             | Type            | Default                 | Description                                 |
 | ---------------- | --------------- | ----------------------- | ------------------------------------------- |
 | `id`             | `string`        | `auto-generated`        | Unique identifier for the icon element      |
-| `data-testid`    | `string`        | `auto-generated`        | Unique data-test-id of the icon             |
-| `size`           | `BoSize`        | `BoSize.default`        | The size of the icon                        |
+| `dataTestId`     | `string`        | `auto-generated`        | Unique data-test-id of the icon             |
+| `size`           | `number`        | `24`                    | Pixel size of the icon                      |
 | `variant`        | `BoIconVariant` | `BoIconVariant.default` | The color of the icon                       |
 | `customColor`    | `string`        | `undefined`             | Custom color of the icon                    |
 | `customCssClass` | `string`        | `undefined`             | Custom css class passed to the root element |
@@ -46,11 +47,28 @@ const iconList = Object.values(Icon);
 
 The icon component supports different sizes with the `size` prop. The default size is `24px`.
 
+<bo-icon :icon="Icon.heart" :size="24" />
+
+```vue
+// default
+<bo-icon :icon="Icon.heart" :size="24" />
+```
+
+---
+
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
   <bo-icon :icon="Icon.heart" :size="16" />
   <bo-icon :icon="Icon.heart" :size="32" />
   <bo-icon :icon="Icon.heart" :size="64" />
 </div>
+
+```vue
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+  <bo-icon :icon="Icon.heart" :size="16" />
+  <bo-icon :icon="Icon.heart" :size="32" />
+  <bo-icon :icon="Icon.heart" :size="64" />
+</div>
+```
 
 ## Variants
 
@@ -459,6 +477,10 @@ enum BoIconVariant {
 	light = 'light',
 	/** --neutral-950 */
 	dark = 'dark',
+	/** currentColor */
+	current = 'current',
+	/** inherit */
+	inherit = 'inherit',
 }
 
 interface BoIconProps {

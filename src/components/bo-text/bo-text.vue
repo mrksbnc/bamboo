@@ -135,6 +135,10 @@
 </script>
 
 <style scoped lang="scss">
+	p {
+		margin: 0;
+	}
+
 	.bo-text {
 		box-sizing: border-box;
 		vertical-align: middle;
