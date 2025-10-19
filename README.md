@@ -78,7 +78,7 @@ See:
 - [Colors](/src-docs/en/styles/colors.md)
 - [Typography](/src-docs/en/styles/typography.md)
 
-Tip: Color tokens live in `src/lib.css` and are available via CSS variables, e.g. `var(--blue-600)`.
+Color tokens are located under `src/lib.css` and are available via CSS variables, e.g. `var(--blue-600)`.
 
 ## License
 
