@@ -83,7 +83,9 @@ The text component supports different font sizes with the `fontSize` prop. The d
 <bo-text value="7X Large Text" :font-size="BoFontSize['7xl']" />
 ```
 
-## Font Weights The text component supports different font weights with the `fontWeight` prop.
+## Font Weights
+
+The text component supports different font weights with the `fontWeight` prop.
 
 <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
   <bo-text value="Thin Text" :font-weight="BoFontWeight.thin" />
@@ -109,7 +111,9 @@ The text component supports different font sizes with the `fontSize` prop. The d
 <bo-text value="5X Large Text" :font-weight="BoFontWeight.black" />
 ```
 
-## Font Families The text component supports different font families with the `fontFamily` prop.
+## Font Families
+
+The text component supports different font families with the `fontFamily` prop.
 
 <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
   <bo-text value="Sans Serif Text" :font-family="BoFontFamily.sans" />
@@ -125,7 +129,9 @@ The text component supports different font sizes with the `fontSize` prop. The d
 <bo-text value="Inherit Text" :font-family="BoFontFamily.inherit" />
 ```
 
-## Text Alignment The text component supports different text alignments with the `textAlign` prop.
+## Text Alignment
+
+The text component supports different text alignments with the `textAlign` prop.
 
 <div
 	style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem; border: 1px solid #ccc; padding: 1rem;"
@@ -168,7 +174,9 @@ The text component supports different text transformations with the `textTransfo
 <bo-text value="LOWERCASE TEXT" :text-transform="BoTextTransform.lowercase" />
 ```
 
-## Variants The text component supports different color variants with the `variant` prop.
+## Variants
+
+The text component supports different color variants with the `variant` prop.
 
 <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
   <bo-text value="Default Text" :variant="BoTextVariant.default" />

@@ -39,9 +39,9 @@
     "lint": "run-s lint:*",
     "format": "PRETTIER_EXPERIMENTAL_CLI=1 prettier --write src/",
     "prepare": "husky",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:dev": "vitepress dev src-docs",
+    "docs:build": "vitepress build src-docs",
+    "docs:preview": "vitepress preview src-docs"
   },
   "dependencies": {
     "vue": "^3.5.22"
