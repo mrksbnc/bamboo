@@ -1,6 +1,6 @@
 <!-- cspell:disable -->
 
-<div style="display: flex; align-items: center; justify-content: center; height: 200px;  margin-bottom: 1rem;">
+<div style="display: flex; align-items: center; justify-content: center; height: 100px;  margin-bottom: 1rem;">
 <img src="./public/logo.webp" alt="bamboo">
 </div>
 
