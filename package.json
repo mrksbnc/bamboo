@@ -5,19 +5,23 @@
   "exports": {
     "./components": {
       "import": "./dist/components.js",
-      "require": "./dist/components.umd.cjs"
+      "require": "./dist/components.umd.cjs",
+      "types": "./dist/components/index.d.ts"
     },
     "./core": {
       "import": "./dist/core.js",
-      "require": "./dist/core.umd.cjs"
+      "require": "./dist/core.umd.cjs",
+      "types": "./dist/core/index.d.ts"
     },
     "./services": {
       "import": "./dist/services.js",
-      "require": "./dist/services.umd.cjs"
+      "require": "./dist/services.umd.cjs",
+      "types": "./dist/services/index.d.ts"
     },
     "./shared": {
       "import": "./dist/shared.js",
-      "require": "./dist/shared.umd.cjs"
+      "require": "./dist/shared.umd.cjs",
+      "types": "./dist/shared/index.d.ts"
     },
     "./lib.css": {
       "import": "./dist/lib.css",
@@ -72,6 +76,7 @@
     "start-server-and-test": "^2.1.2",
     "typescript": "~5.9.3",
     "vite": "npm:rolldown-vite@latest",
+    "vite-plugin-dts": "^4.5.4",
     "vite-plugin-vue-devtools": "^8.0.3",
     "vite-svg-loader": "^5.1.0",
     "vitepress": "2.0.0-alpha.12",

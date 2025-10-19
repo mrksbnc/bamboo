@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import svgLoader from 'vite-svg-loader'
+import dts from 'vite-plugin-dts'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -18,6 +19,7 @@ export default defineConfig({
 				datauri: 'base64',
 			},
 		}),
+		dts({ tsconfigPath: './tsconfig.app.json' }),
 	],
 	build: {
 		minify: true,
@@ -28,7 +30,6 @@ export default defineConfig({
 			cssFileName: 'lib',
 			entry: [
 				fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
-				fileURLToPath(new URL('./src/composables/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/shared/index.ts', import.meta.url)),
@@ -40,7 +41,6 @@ export default defineConfig({
 			cwd: process.cwd(),
 			input: {
 				components: fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
-				composables: fileURLToPath(new URL('./src/composables/index.ts', import.meta.url)),
 				core: fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
 				services: fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
 				shared: fileURLToPath(new URL('./src/shared/index.ts', import.meta.url)),
