@@ -1,7 +1,12 @@
-[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue}]
+root = true
+
+[*]
 charset = utf-8
-tab_width = 2
 indent_size = 2
-indent_style = tab
+indent_style = space
+end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
+
+[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue}]
+indent_style = tab
