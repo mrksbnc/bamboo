@@ -20,6 +20,10 @@
       "import": "./dist/services.js",
       "require": "./dist/services.umd.cjs"
     },
+    "./shared": {
+      "import": "./dist/shared.js",
+      "require": "./dist/shared.umd.cjs"
+    },
     "./lib.css": {
       "import": "./dist/lib.css",
       "require": "./dist/lib.css"

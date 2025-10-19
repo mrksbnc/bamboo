@@ -7,7 +7,7 @@
 		:aria-label="ariaLabel"
 		:aria-busy="ariaBusy"
 	>
-		<span :class="[spinnerClass, customSpinnerCssClass]"></span>
+		<span :class="[spinnerClass, customRingClass]" :style="spinnerStyle"></span>
 		<slot>
 			<bo-text
 				v-if="loaderText"
@@ -20,18 +20,18 @@
 </template>
 
 <script lang="ts" setup>
-	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js'
 	import BoText from '@/components/bo-text/bo-text.vue'
 	import type { ConditionalCssProperties } from '@/core/css.js'
 	import { IdentityService } from '@/services/identity-service.js'
 	import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/index.js'
 	import { BoSize } from '@/shared/size.js'
 	import { computed } from 'vue'
-	import { type BoLoadingSpinnerProps } from './bo-loading-spinner.js'
+	import { BoFontSize, BoTextVariant } from '../bo-text/bo-text.js'
+	import { type BoLoaderRingProps } from './bo-loading-ring.js'
 
-	const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
+	const props = withDefaults(defineProps<BoLoaderRingProps>(), {
 		id: IdentityService.instance.getComponentId(),
-		dataTestId: IdentityService.instance.getDataTestId('bo-loading-spinner'),
+		dataTestId: IdentityService.instance.getDataTestId('bo-loader-ring'),
 		size: BoSize.default,
 		variant: BoLoaderVariant.primary,
 		textPosition: BoLoaderTextPosition.after,
@@ -55,22 +55,29 @@
 
 	const containerClass = computed<ConditionalCssProperties>(() => {
 		return {
-			'bo-loader': true,
-			[`bo-loader__${props.textPosition}`]: true,
+			'bo-loader-ring': true,
+			[`bo-loader-ring__${props.textPosition}`]: true,
 		}
 	})
 
 	const spinnerClass = computed<ConditionalCssProperties>(() => {
 		return {
-			'bo-loader__spinner': true,
-			[`bo-loader__spinner__${props.size}`]: true,
-			[`bo-loader__spinner__${props.variant}`]: true,
+			'bo-loader-ring__spinner': true,
+			[`bo-loader-ring__spinner__${props.size}`]: true,
+			[`bo-loader-ring__spinner__${props.variant}`]: true,
 		}
+	})
+
+	const spinnerStyle = computed(() => {
+		if (props.customColor) {
+			return { color: props.customColor }
+		}
+		return {}
 	})
 </script>
 
 <style scoped lang="scss">
-	.bo-loader {
+	.bo-loader-ring {
 		gap: 0.75rem;
 		display: flex;
 		align-items: center;
@@ -94,80 +101,143 @@
 		}
 
 		&__spinner {
-			border-radius: 50%;
 			display: inline-block;
-			box-sizing: border-box;
-			border: 0.15rem solid;
-			animation: rotation 1s linear infinite;
+			position: relative;
+			transform: rotateZ(45deg);
+			perspective: 1000px;
+			border-radius: 50%;
+			color: currentColor;
 
 			&__extra-small {
 				width: 0.625rem;
 				height: 0.625rem;
+
+				&::before,
+				&::after {
+					width: 0.625rem;
+					height: 0.625rem;
+				}
 			}
 
 			&__small {
 				width: 0.75rem;
 				height: 0.75rem;
+
+				&::before,
+				&::after {
+					width: 0.75rem;
+					height: 0.75rem;
+				}
 			}
 
 			&__default {
 				width: 1rem;
 				height: 1rem;
+
+				&::before,
+				&::after {
+					width: 1rem;
+					height: 1rem;
+				}
 			}
 
 			&__large {
 				width: 1.125rem;
 				height: 1.125rem;
+
+				&::before,
+				&::after {
+					width: 1.125rem;
+					height: 1.125rem;
+				}
 			}
 
 			&__extra-large {
 				width: 1.25rem;
 				height: 1.25rem;
+
+				&::before,
+				&::after {
+					width: 1.25rem;
+					height: 1.25rem;
+				}
+			}
+
+			&::before,
+			&::after {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: inherit;
+				height: inherit;
+				border-radius: 50%;
+				transform: rotateX(70deg);
+				animation: spin 1s linear infinite;
+				box-sizing: border-box;
+			}
+
+			&::after {
+				transform: rotateY(70deg);
+				animation-delay: 0.4s;
 			}
 
 			&__primary {
-				border-color: var(--blue-600);
-				border-bottom-color: transparent;
+				color: var(--blue-600);
 			}
 
 			&__secondary {
-				border-color: var(--gray-400);
-				border-bottom-color: transparent;
+				color: var(--gray-400);
 			}
 
 			&__success {
-				border-color: var(--green-600);
-				border-bottom-color: transparent;
+				color: var(--green-600);
 			}
 
 			&__warning {
-				border-color: var(--yellow-600);
-				border-bottom-color: transparent;
+				color: var(--yellow-600);
 			}
 
 			&__danger {
-				border-color: var(--red-600);
-				border-bottom-color: transparent;
+				color: var(--red-600);
 			}
 
 			&__dark {
-				border-color: var(--gray-800);
-				border-bottom-color: var(--neutral-100);
+				color: var(--gray-800);
 			}
 
 			&__light {
-				border-color: var(--neutral-50);
-				border-bottom-color: var(--gray-800);
+				color: var(--neutral-50);
 			}
 		}
 	}
 
-	@keyframes rotation {
-		0% {
-			transform: rotate(0deg);
-		}
+	@keyframes spin {
+		0%,
 		100% {
-			transform: rotate(360deg);
+			box-shadow: 0.2em 0 0 0 currentcolor;
+		}
+		12% {
+			box-shadow: 0.2em 0.2em 0 0 currentcolor;
+		}
+		25% {
+			box-shadow: 0 0.2em 0 0 currentcolor;
+		}
+		37% {
+			box-shadow: -0.2em 0.2em 0 0 currentcolor;
+		}
+		50% {
+			box-shadow: -0.2em 0 0 0 currentcolor;
+		}
+		62% {
+			box-shadow: -0.2em -0.2em 0 0 currentcolor;
+		}
+		75% {
+			box-shadow: 0 -0.2em 0 0 currentcolor;
+		}
+		87% {
+			box-shadow: 0.2em -0.2em 0 0 currentcolor;
 		}
 	}
 </style>

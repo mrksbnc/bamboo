@@ -18,8 +18,8 @@
 <script lang="ts" setup>
 	import { useColor } from '@/composables'
 	import type { ConditionalCssProperties } from '@/core'
-	import { AriaLive } from '@/core/accessibility'
 	import { IdentityService } from '@/services/identity-service.js'
+	import { AriaLive } from '@/shared/accessibility'
 	import { computed, type CSSProperties, type StyleValue } from 'vue'
 	import {
 		BoFontFamily,

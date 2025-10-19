@@ -27,7 +27,7 @@
 	import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/index.js'
 	import { BoSize } from '@/shared/size.js'
 	import { computed } from 'vue'
-	import { type BoLoadingSpinnerProps } from './bo-loading-spinner.js'
+	import { type BoLoadingSpinnerProps } from './bo-loader-spinner.js'
 
 	const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 		id: IdentityService.instance.getComponentId(),

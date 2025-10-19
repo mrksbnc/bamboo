@@ -31,6 +31,7 @@ export default defineConfig({
 				fileURLToPath(new URL('./src/composables/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
+				fileURLToPath(new URL('./src/shared/index.ts', import.meta.url)),
 			],
 		},
 		rolldownOptions: {
@@ -42,6 +43,7 @@ export default defineConfig({
 				composables: fileURLToPath(new URL('./src/composables/index.ts', import.meta.url)),
 				core: fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
 				services: fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
+				shared: fileURLToPath(new URL('./src/shared/index.ts', import.meta.url)),
 			},
 		},
 	},
