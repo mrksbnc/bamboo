@@ -8,7 +8,7 @@ textarea {
 }
 
 p {
-	margin: inherit !important;
+	margin: none !important;
 }
 
 /**

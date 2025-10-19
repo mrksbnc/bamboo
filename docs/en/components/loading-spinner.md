@@ -83,7 +83,7 @@ Adjust `textPosition` to control where the supporting text appears.
 
 ## Custom text
 
-Provide richer markup via the default slot. The slot replaces the `loaderText` prop entirely, allowing typography or iconography.
+The component ships with a slot for custom text content.
 
 ```vue
 <bo-loading-spinner>
