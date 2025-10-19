@@ -65,8 +65,18 @@ Use a component.
 
 See:
 
-- Components: `docs/en/components`
-- Styles: `docs/en/styles/colors.md`, `docs/en/styles/typography.md`
+- [Getting started](/src-docs/en/guide/getting-started.md)
+- [Component overview](/src-docs/en/components/default.md)
+
+### Services
+
+- [Color service](/src-docs/en/services/color-service.md)
+- [Identity service](/src-docs/en/services/identity-service.md)
+
+### Colors and Typography
+
+- [Colors](/src-docs/en/styles/colors.md)
+- [Typography](/src-docs/en/styles/typography.md)
 
 Tip: Color tokens live in `src/lib.css` and are available via CSS variables, e.g. `var(--blue-600)`.
 
