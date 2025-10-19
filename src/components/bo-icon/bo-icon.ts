@@ -322,7 +322,7 @@ export interface BoIconProps {
 	dataTestId?: string
 	/** The icon to display */
 	icon: Icon
-	/** The size of the icon */
+	/** The size of the icon (in px)*/
 	size?: number
 	/** The color of the icon defined by the enum BoIconColor */
 	variant?: BoIconVariant

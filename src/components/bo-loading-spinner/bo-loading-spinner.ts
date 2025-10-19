@@ -15,13 +15,14 @@ export enum BoLoaderVariant {
 	/** --neutral-950 */
 	dark = 'dark',
 	/** --neutral-50 */
-	white = 'white',
+	light = 'light',
 }
 
 export enum BoLoaderTextPosition {
 	top = 'top',
 	bottom = 'bottom',
-	side = 'side',
+	before = 'before',
+	after = 'after',
 }
 
 export interface BoLoadingSpinnerProps {

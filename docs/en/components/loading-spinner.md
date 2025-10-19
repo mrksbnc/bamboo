@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { BoLoadingSpinner, BoLoaderVariant, BoLoaderTextPosition } from "@/components/bo-loading-spinner";
-import { BoSize } from "@/core/bo-size";
+
 </script>
 
 ---
@@ -13,53 +13,31 @@ import { BoSize } from "@/core/bo-size";
 
 ### Basic usage
 
+<div style="margin: 1rem 0;">
+  <bo-loading-spinner loader-text="Loading data..." />
+</div>
+
 ```vue
-<bo-loading-spinner loader-text="Loading data" />
+<bo-loading-spinner loader-text="Loading data..." />
 ```
 
 ## Props
 
-### Required
-
-| Name   | Type | Default | Description                                 |
-| ------ | ---- | ------- | ------------------------------------------- |
-| _none_ |      |         | The component works with sensible defaults. |
-
 ### Optional
 
-| Name             | Type                   | Default                       | Description                                                        |
-| ---------------- | ---------------------- | ----------------------------- | ------------------------------------------------------------------ |
-| `id`             | `string`               | `auto-generated`              | Unique identifier for the root element.                            |
-| `dataTestId`     | `string`               | `auto-generated`              | Deterministic data test id for end-to-end tests.                   |
-| `size`           | `BoSize`               | `BoSize.default`              | The visual size of the spinner.                                    |
-| `variant`        | `BoLoaderVariant`      | `BoLoaderVariant.primary`     | Predefined color palette for the spinner.                          |
-| `customColor`    | `string`               | `undefined`                   | Custom CSS color for the spinner (hex, rgb(a), oklch, or CSS var). |
-| `loaderText`     | `string`               | `undefined`                   | Optional text describing the loading state.                        |
-| `textPosition`   | `BoLoaderTextPosition` | `BoLoaderTextPosition.bottom` | Placement of the text relative to the spinner.                     |
-| `ariaLive`       | `AriaLive`             | `AriaLive.polite`             | Screen reader politeness for live updates.                         |
-| `ariaLabel`      | `string`               | `loaderText`                  | Accessible label describing the loading state.                     |
-| `ariaBusy`       | `boolean`              | `true`                        | Marks the region as busy while loading.                            |
-| `customCssClass` | `string`               | `undefined`                   | Additional CSS classes appended to the root element.               |
-
-## Sizes
-
-The spinner supports the same sizing scale as the rest of the design system via `BoSize`.
-
-<div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-  <bo-loading-spinner :size="BoSize.extra_small" loader-text="extra small" />
-  <bo-loading-spinner :size="BoSize.small" loader-text="small" />
-  <bo-loading-spinner :size="BoSize.default" loader-text="default" />
-  <bo-loading-spinner :size="BoSize.large" loader-text="large" />
-  <bo-loading-spinner :size="BoSize.extra_large" loader-text="extra large" />
-</div>
-
-```vue
-<bo-loading-spinner :size="BoSize.extra_small" loader-text="extra small" />
-<bo-loading-spinner :size="BoSize.small" loader-text="small" />
-<bo-loading-spinner :size="BoSize.default" loader-text="default" />
-<bo-loading-spinner :size="BoSize.large" loader-text="large" />
-<bo-loading-spinner :size="BoSize.extra_large" loader-text="extra large" />
-```
+| Name             | Type                   | Default                      | Description                                                        |
+| ---------------- | ---------------------- | ---------------------------- | ------------------------------------------------------------------ |
+| `id`             | `string`               | `auto-generated`             | Unique identifier for the root element.                            |
+| `dataTestId`     | `string`               | `auto-generated`             | Deterministic data test id for end-to-end tests.                   |
+| `size`           | `BoSize`               | `BoSize.default`             | The visual size of the spinner.                                    |
+| `variant`        | `BoLoaderVariant`      | `BoLoaderVariant.primary`    | Predefined color palette for the spinner.                          |
+| `customColor`    | `string`               | `undefined`                  | Custom CSS color for the spinner (hex, rgb(a), oklch, or CSS var). |
+| `loaderText`     | `string`               | `undefined`                  | Optional text describing the loading state.                        |
+| `textPosition`   | `BoLoaderTextPosition` | `BoLoaderTextPosition.after` | Placement of the text relative to the spinner.                     |
+| `ariaLive`       | `AriaLive`             | `AriaLive.polite`            | Screen reader politeness for live updates.                         |
+| `ariaLabel`      | `string`               | `loaderText`                 | Accessible label describing the loading state.                     |
+| `ariaBusy`       | `boolean`              | `true`                       | Marks the region as busy while loading.                            |
+| `customCssClass` | `string`               | `undefined`                  | Additional CSS classes appended to the root element.               |
 
 ## Variants
 
@@ -72,7 +50,7 @@ Use `variant` to switch between predefined color palettes. For custom brand colo
   <bo-loading-spinner :variant="BoLoaderVariant.warning" loader-text="warning" />
   <bo-loading-spinner :variant="BoLoaderVariant.danger" loader-text="danger" />
   <bo-loading-spinner :variant="BoLoaderVariant.dark" loader-text="dark" />
-  <bo-loading-spinner :variant="BoLoaderVariant.white" loader-text="white" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
+  <bo-loading-spinner :variant="BoLoaderVariant.light" loader-text="light" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
 </div>
 
 ```vue
@@ -82,23 +60,25 @@ Use `variant` to switch between predefined color palettes. For custom brand colo
 <bo-loading-spinner :variant="BoLoaderVariant.warning" loader-text="warning" />
 <bo-loading-spinner :variant="BoLoaderVariant.danger" loader-text="danger" />
 <bo-loading-spinner :variant="BoLoaderVariant.dark" loader-text="dark" />
-<bo-loading-spinner :variant="BoLoaderVariant.white" loader-text="white" />
+<bo-loading-spinner :variant="BoLoaderVariant.light" loader-text="light" />
 ```
 
 ## Text positions
 
 Adjust `textPosition` to control where the supporting text appears.
 
-<div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+<div style="display: flex; gap: 3rem; flex-wrap: wrap; align-items: center; margin-top: 1rem;">
   <bo-loading-spinner :text-position="BoLoaderTextPosition.top" loader-text="Top" />
   <bo-loading-spinner :text-position="BoLoaderTextPosition.bottom" loader-text="Bottom" />
-  <bo-loading-spinner :text-position="BoLoaderTextPosition.side" loader-text="Side" />
+  <bo-loading-spinner :text-position="BoLoaderTextPosition.before" loader-text="Before" />
+  <bo-loading-spinner :text-position="BoLoaderTextPosition.after" loader-text="After (default)" />
 </div>
 
 ```vue
 <bo-loading-spinner :text-position="BoLoaderTextPosition.top" loader-text="Top" />
 <bo-loading-spinner :text-position="BoLoaderTextPosition.bottom" loader-text="Bottom" />
-<bo-loading-spinner :text-position="BoLoaderTextPosition.side" loader-text="Side" />
+<bo-loading-spinner :text-position="BoLoaderTextPosition.before" loader-text="Before" />
+<bo-loading-spinner :text-position="BoLoaderTextPosition.after" loader-text="After (default)" />
 ```
 
 ## Custom text
@@ -134,13 +114,14 @@ export enum BoLoaderVariant {
 	warning = 'warning',
 	danger = 'danger',
 	dark = 'dark',
-	white = 'white',
+	light = 'light',
 }
 
 export enum BoLoaderTextPosition {
 	top = 'top',
 	bottom = 'bottom',
-	side = 'side',
+	before = 'before',
+	after = 'after',
 }
 ```
 
