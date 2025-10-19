@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+	srcDir: 'src-docs',
 	title: 'Bamboo',
 	description: 'Lightweight, and flexible UI library for Vue.',
 	themeConfig: {
@@ -13,7 +14,6 @@ export default defineConfig({
 			{ text: 'Guide', link: '/en/guide/what-is-bamboo' },
 			{ text: 'Components', link: '/en/components/default' },
 		],
-
 		sidebar: [
 			{
 				text: 'Guide',
