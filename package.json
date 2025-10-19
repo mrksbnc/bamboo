@@ -34,7 +34,7 @@
     "test": "vitest --coverage",
     "type-check": "vue-tsc --build",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
-    "lint:eslint": "eslint . --fix",
+    "lint:eslint": "eslint . --fix --ignore-pattern .gitignore",
     "lint:spell": "cspell '**/*.{ts,vue,md}' --config cspell.json",
     "lint": "run-s lint:*",
     "format": "PRETTIER_EXPERIMENTAL_CLI=1 prettier --write src/",
