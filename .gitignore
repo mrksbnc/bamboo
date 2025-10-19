@@ -22,3 +22,4 @@ coverage
 
 # Vitepress
 docs
+src-docs/.vitepress/cache
