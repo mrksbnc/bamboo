@@ -424,4 +424,12 @@ interface BoTextProps {
 }
 ```
 
+```ts [shared/accessibility.ts]
+export enum AriaLive {
+	polite = 'polite',
+	assertive = 'assertive',
+	off = 'off',
+}
+```
+
 :::
