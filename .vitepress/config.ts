@@ -2,8 +2,12 @@ import { fileURLToPath } from 'url'
 import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
+const base = process.env.VP_BASE ?? '/'
+
 export default defineConfig({
+	base,
 	srcDir: 'src-docs',
+	outDir: '.vitepress/dist',
 	title: 'Bamboo',
 	description: 'Lightweight, and flexible UI library for Vue.',
 	themeConfig: {

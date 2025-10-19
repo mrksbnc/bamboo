@@ -42,12 +42,12 @@ jobs:
         run: pnpm install
 
       - name: Build with VitePress
-        run: pnpm docs:build
+        run: VP_BASE=/bamboo/ pnpm docs:build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: src-docs/.vitepress/dist
+          path: .vitepress/dist
 
   deploy:
     environment:
