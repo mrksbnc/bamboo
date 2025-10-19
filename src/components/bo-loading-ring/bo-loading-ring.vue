@@ -7,7 +7,7 @@
 		:aria-label="ariaLabel"
 		:aria-busy="ariaBusy"
 	>
-		<span :class="[spinnerClass, customRingClass]" :style="spinnerStyle"></span>
+		<span :class="[ringClass, customRingClass]" :style="spinnerStyle"></span>
 		<slot>
 			<bo-text
 				v-if="loaderText"
@@ -20,13 +20,13 @@
 </template>
 
 <script lang="ts" setup>
+	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js'
 	import BoText from '@/components/bo-text/bo-text.vue'
 	import type { ConditionalCssProperties } from '@/core/css.js'
 	import { IdentityService } from '@/services/identity-service.js'
 	import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/index.js'
 	import { BoSize } from '@/shared/size.js'
 	import { computed } from 'vue'
-	import { BoFontSize, BoTextVariant } from '../bo-text/bo-text.js'
 	import { type BoLoaderRingProps } from './bo-loading-ring.js'
 
 	const props = withDefaults(defineProps<BoLoaderRingProps>(), {
@@ -60,7 +60,7 @@
 		}
 	})
 
-	const spinnerClass = computed<ConditionalCssProperties>(() => {
+	const ringClass = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-loader-ring__spinner': true,
 			[`bo-loader-ring__spinner__${props.size}`]: true,
