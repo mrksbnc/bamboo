@@ -5,22 +5,18 @@
   "exports": {
     "./components": {
       "import": "./dist/components.js",
-      "require": "./dist/components.umd.cjs",
       "types": "./dist/components/index.d.ts"
     },
     "./core": {
       "import": "./dist/core.js",
-      "require": "./dist/core.umd.cjs",
       "types": "./dist/core/index.d.ts"
     },
     "./services": {
       "import": "./dist/services.js",
-      "require": "./dist/services.umd.cjs",
       "types": "./dist/services/index.d.ts"
     },
     "./shared": {
       "import": "./dist/shared.js",
-      "require": "./dist/shared.umd.cjs",
       "types": "./dist/shared/index.d.ts"
     },
     "./lib.css": {
