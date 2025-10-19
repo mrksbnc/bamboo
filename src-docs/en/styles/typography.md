@@ -7,7 +7,7 @@ title: typography
 Bamboo ships with a set of typographic styles like font-size, font-weight, and font-family.
 To access these predefined styles, use the `bo-text` component.
 
-These values can be overridden with supplying a custom CSS class or inline style
+These values can be overridden by supplying a custom CSS class or inline style
 to the component.
 
 Below is a table of the available custom properties used to influence the typography.
