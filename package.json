@@ -1,16 +1,11 @@
 {
   "name": "@mrksbnc/bamboo",
   "version": "0.0.0",
-  "private": true,
   "type": "module",
   "exports": {
     "./components": {
       "import": "./dist/components.js",
       "require": "./dist/components.umd.cjs"
-    },
-    "./composables": {
-      "import": "./dist/composables.js",
-      "require": "./dist/composables.umd.cjs"
     },
     "./core": {
       "import": "./dist/core.js",

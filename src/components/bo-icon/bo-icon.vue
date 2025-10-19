@@ -14,8 +14,8 @@
 </template>
 
 <script lang="ts" setup>
-	import { useColor } from '@/composables'
 	import type { ConditionalCssProperties } from '@/core'
+	import { ColorService } from '@/services'
 	import { IdentityService } from '@/services/identity-service'
 	import { computed, type CSSProperties, ref, type StyleValue, watchEffect } from 'vue'
 	import { type BoIconProps, BoIconVariant, Icon, svgPromiseRecord } from './bo-icon'
@@ -27,8 +27,6 @@
 		variant: () => BoIconVariant.default,
 		decorative: true,
 	})
-
-	const { getCustomColorStyle } = useColor()
 
 	const svg = ref<string>('')
 	/**
@@ -81,7 +79,7 @@
 	})
 	const iconColorStyle = computed<CSSProperties>(() => {
 		if (props.customColor) {
-			return getCustomColorStyle(props.customColor)
+			return ColorService.instance.getCustomColorStyle(props.customColor)
 		}
 
 		return {}

@@ -16,8 +16,8 @@
 </template>
 
 <script lang="ts" setup>
-	import { useColor } from '@/composables'
 	import type { ConditionalCssProperties } from '@/core'
+	import { ColorService } from '@/services'
 	import { IdentityService } from '@/services/identity-service.js'
 	import { AriaLive } from '@/shared/accessibility'
 	import { computed, type CSSProperties, type StyleValue } from 'vue'
@@ -45,8 +45,6 @@
 		ariaLive: () => AriaLive.polite,
 	})
 
-	const { getCustomColorStyle } = useColor()
-
 	const ariaLabel = computed<string>(() => props.ariaLabel || props.value)
 	const role = computed<string>(() => props.role ?? 'text')
 
@@ -71,7 +69,7 @@
 
 	const textColor = computed<CSSProperties>(() => {
 		if (props.customColor) {
-			return getCustomColorStyle(props.customColor)
+			return ColorService.instance.getCustomColorStyle(props.customColor)
 		}
 
 		// Don't set color here - let CSS variants handle it

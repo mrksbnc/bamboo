@@ -12,8 +12,6 @@ export default defineConfig({
 			{ text: 'Home', link: '/' },
 			{ text: 'Guide', link: '/en/guide/what-is-bamboo' },
 			{ text: 'Components', link: '/en/components/default' },
-			{ text: 'Services', link: '/en/services/default' },
-			{ text: 'Globals', link: '/en/globals/default' },
 		],
 
 		sidebar: [
@@ -37,17 +35,8 @@ export default defineConfig({
 			{
 				text: 'Services',
 				items: [
-					{ text: 'Overview', link: '/en/services/default' },
 					{ text: 'Identity Service', link: '/en/services/identity-service' },
-					{ text: 'String Service', link: '/en/services/string-service' },
-				],
-			},
-			{
-				text: 'Globals',
-				items: [
-					{ text: 'Overview', link: '/en/globals/default' },
-					{ text: 'useColor', link: '/en/globals/use-color' },
-					{ text: 'useCss', link: '/en/globals/use-css' },
+					{ text: 'Color Service', link: '/en/services/color-service' },
 				],
 			},
 			{

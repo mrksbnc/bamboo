@@ -1,5 +1,5 @@
 ---
-title: Colors
+title: colors
 ---
 
 # Colors
@@ -9,7 +9,7 @@ the main `src/lib.css` file and are available as CSS variables on `:root`.
 
 ## Semantic variants used by components
 
-These map to component props like `variant="primary|secondary|success|warning|danger|light|dark"`.
+These map to component props like
 
 | Variant     | Color           |
 | ----------- | --------------- |

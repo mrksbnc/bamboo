@@ -1,5 +1,5 @@
 ---
-title: Typography
+title: typography
 ---
 
 # Typography
@@ -60,6 +60,6 @@ The following font families are available:
 <bo-text value="Hello, World!" font-family="sans" />
 ```
 
-## Reference
+## Reference
 
 To see the full list of available custom properties view the `bo-text` documentation.

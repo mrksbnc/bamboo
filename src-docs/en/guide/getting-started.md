@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: getting started
 ---
 
 <!-- cspell:disable -->
@@ -34,10 +34,6 @@ bun add @mrksbnc/bamboo
 :::
 
 ## Usage
-
-::: tip
-Components are tree‑shakeable. Import on demand to end up with a smaller bundle size.
-:::
 
 1. Register the library `css` file in your root entry.
 
