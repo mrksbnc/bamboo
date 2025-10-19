@@ -18,7 +18,7 @@
 	import type { ConditionalCssProperties } from '@/core'
 	import { IdentityService } from '@/services/identity-service'
 	import { computed, type CSSProperties, ref, type StyleValue, watchEffect } from 'vue'
-	import { type BoIconProps, BoIconVariant, Icon, LazyIconMap } from './bo-icon'
+	import { type BoIconProps, BoIconVariant, Icon, svgPromiseRecord } from './bo-icon'
 
 	const props = withDefaults(defineProps<BoIconProps>(), {
 		id: IdentityService.instance.getComponentId(),
@@ -37,11 +37,16 @@
 	 * - The key is the name of the icon and the value is the actual SVG.
 	 * - A promise which resolves to the SVG string
 	 */
-	const iconMap = Object.keys(LazyIconMap).reduce(
+	const iconMap = Object.keys(svgPromiseRecord).reduce(
 		(acc, key) => {
 			const splitted = key.split('/')
-			const icon = splitted[splitted.length - 1].split('.')[0]
-			acc[icon] = LazyIconMap[key]
+			const icon = splitted[splitted.length - 1]?.split('.')[0]
+
+			if (!icon || !svgPromiseRecord[key]) {
+				return acc
+			}
+
+			acc[icon] = svgPromiseRecord[key]
 			return acc
 		},
 		{} as Record<string, () => Promise<string>>,
@@ -109,7 +114,7 @@
 
 	async function load(icon: Icon): Promise<void> {
 		try {
-			await iconMap[icon]().then((val) => {
+			await iconMap[icon]?.().then((val) => {
 				svg.value = val
 			})
 		} catch (e) {
