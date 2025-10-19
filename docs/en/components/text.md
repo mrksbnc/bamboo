@@ -1,3 +1,7 @@
+---
+title: bo-text
+---
+
 <script setup lang="ts">
 import { BoText, BoTextVariant, BoFontWeight, BoFontSize, BoFontFamily, BoTextAlign, BoTextTransform, BoTextWhiteSpace } from '@/components/bo-text';
 </script>
@@ -14,34 +18,34 @@ The bo-text component is a wrapper around the HTML `<p>` element to provide a co
 
 ### Required
 
-| Name    | Type     | Default | Description             |
-| ------- | -------- | ------- | ----------------------- |
-| `value` | `string` |         | The text of the element |
+| Name    | Type     | Description             |
+| ------- | -------- | ----------------------- |
+| `value` | `string` | The text of the element |
 
 ### Optional
 
-| Name              | Type               | Default                   | Description                                  |
-| ----------------- | ------------------ | ------------------------- | -------------------------------------------- |
-| `id`              | `string`           | `auto-generated`          | Unique identifier for the text element       |
-| `data-testid`     | `string`           | `auto-generated`          | Unique data-test-id of the text              |
-| `fontSize`        | `BoFontSize`       | `BoFontSize.default`      | The size of the text                         |
-| `fontWeight`      | `BoFontWeight`     | `BoFontWeight.regular`    | The weight of the text                       |
-| `fontFamily`      | `BoFontFamily`     | `BoFontFamily.sans`       | The font family of the text                  |
-| `whiteSpace`      | `BoTextWhiteSpace` | `BoTextWhiteSpace.normal` | The white space handling of the text         |
-| `variant`         | `BoTextVariant`    | `BoTextVariant.default`   | The color variant of the text                |
-| `customColor`     | `string`           | `undefined`               | Custom color of the text                     |
-| `customCssClass`  | `string`           | `undefined`               | Custom css class passed to the root element  |
-| `clickable`       | `boolean`          | `false`                   | Whether the text is clickable                |
-| `textAlign`       | `BoTextAlign`      | `BoTextAlign.left`        | The text alignment                           |
-| `textTransform`   | `BoTextTransform`  | `BoTextTransform.none`    | The text transformation                      |
-| `cursor`          | `string`           | `undefined`               | Cursor type of the element                   |
-| `maxLines`        | `number\|string`   | `"none"`                  | The max lines to render before truncating    |
-| `role`            | `string`           | `"text"`                  | The accessibility role of the element        |
-| `ariaLabel`       | `string`           | `undefined`               | The accessible label of the text             |
-| `ariaLabelledBy`  | `string`           | `undefined`               | Reference to an element that labels the text |
-| `ariaDescribedBy` | `string`           | `undefined`               | Identifies elements that describe the text   |
-| `ariaLive`        | `AriaLive`         | `AriaLive.polite`         | Live region behavior for dynamic content     |
-| `lang`            | `string`           | `"en"`                    | The language of the text                     |
+| Name              | Type               | Description                                  |
+| ----------------- | ------------------ | -------------------------------------------- |
+| `id`              | `string`           | Unique identifier for the text element       |
+| `data-testid`     | `string`           | Unique data-test-id of the text              |
+| `fontSize`        | `BoFontSize`       | The size of the text                         |
+| `fontWeight`      | `BoFontWeight`     | The weight of the text                       |
+| `fontFamily`      | `BoFontFamily`     | The font family of the text                  |
+| `whiteSpace`      | `BoTextWhiteSpace` | The white space handling of the text         |
+| `variant`         | `BoTextVariant`    | The color variant of the text                |
+| `customColor`     | `string`           | Custom color of the text                     |
+| `customCssClass`  | `string`           | Custom css class passed to the root element  |
+| `clickable`       | `boolean`          | Whether the text is clickable                |
+| `textAlign`       | `BoTextAlign`      | The text alignment                           |
+| `textTransform`   | `BoTextTransform`  | The text transformation                      |
+| `cursor`          | `string`           | Cursor type of the element                   |
+| `maxLines`        | `number\|string`   | The max lines to render before truncating    |
+| `role`            | `string`           | The accessibility role of the element        |
+| `ariaLabel`       | `string`           | The accessible label of the text             |
+| `ariaLabelledBy`  | `string`           | Reference to an element that labels the text |
+| `ariaDescribedBy` | `string`           | Identifies elements that describe the text   |
+| `ariaLive`        | `AriaLive`         | Live region behavior for dynamic content     |
+| `lang`            | `string`           | The language of the text                     |
 
 ## Font Sizes
 
@@ -125,7 +129,7 @@ The text component supports different font sizes with the `fontSize` prop. The d
   <bo-text value="Left Aligned Text" :text-align="BoTextAlign.left" />
   <bo-text value="Center Aligned Text" :text-align="BoTextAlign.center" />
   <bo-text value="Right Aligned Text" :text-align="BoTextAlign.right" />
-  <bo-text 
+  <bo-text
     value="Justified Text - The quick brown fox jumps over the lazy dog. The sky is big and blue"
     :text-align="BoTextAlign.justify"
   />

@@ -1,3 +1,7 @@
+---
+title: bo-loading-spinner
+---
+
 <script setup lang="ts">
 import { BoLoadingSpinner } from "@/components/bo-loading-spinner";
 import { AriaLive } from "@/shared/accessibility";
@@ -7,7 +11,7 @@ import { BoLoaderVariant, BoLoaderTextPosition } from "@/shared/loader"
 
 # bo-loading-spinner
 
-`bo-loading-spinner` provides an accessible progress indicator with optional status text. It supports semantic defaults out of the box and allows custom styling through variants, sizes, and CSS overrides.
+`bo-loading-spinner` provides an accessible progress indicator with optional status text.
 
 ### Basic usage
 
@@ -15,26 +19,28 @@ import { BoLoaderVariant, BoLoaderTextPosition } from "@/shared/loader"
 <bo-loading-spinner loader-text="Loading data" />
 ```
 
-<bo-loading-spinner loader-text="Loading data" />
+<div style="margin: 1rem 0;">
+  <bo-loading-spinner loader-text="Loading data" />
+</div>
 
 ## Props
 
 ### Optional
 
-| Name                      | Type                   | Default                      | Description                                                        |
-| ------------------------- | ---------------------- | ---------------------------- | ------------------------------------------------------------------ |
-| `id`                      | `string`               | `auto-generated`             | Unique identifier for the root element.                            |
-| `dataTestId`              | `string`               | `auto-generated`             | Deterministic data test id for end-to-end tests.                   |
-| `size`                    | `BoSize`               | `BoSize.default`             | The visual size of the spinner.                                    |
-| `variant`                 | `BoLoaderVariant`      | `BoLoaderVariant.primary`    | Predefined color palette for the spinner.                          |
-| `customColor`             | `string`               | `undefined`                  | Custom CSS color for the spinner (hex, rgb(a), oklch, or CSS var). |
-| `loaderText`              | `string`               | `undefined`                  | Optional text describing the loading state.                        |
-| `textPosition`            | `BoLoaderTextPosition` | `BoLoaderTextPosition.after` | Placement of the text relative to the spinner.                     |
-| `ariaLive`                | `AriaLive`             | `undefined`                  | Screen reader politeness for live updates.                         |
-| `ariaLabel`               | `string`               | `undefined`                  | Accessible label describing the loading state.                     |
-| `ariaBusy`                | `boolean`              | `undefined`                  | Marks the region as busy while loading.                            |
-| `customContainerCssClass` | `string`               | `undefined`                  | Additional CSS classes appended to the root element.               |
-| `customSpinnerCssClass`   | `string`               | `undefined`                  | Additional CSS classes appended to the spinner element.            |
+| Name                      | Type                   | Description                                                        |
+| ------------------------- | ---------------------- | ------------------------------------------------------------------ |
+| `id`                      | `string`               | Unique identifier for the root element.                            |
+| `dataTestId`              | `string`               | Deterministic data test id for end-to-end tests.                   |
+| `size`                    | `BoSize`               | The visual size of the spinner.                                    |
+| `variant`                 | `BoLoaderVariant`      | Predefined color palette for the spinner.                          |
+| `customColor`             | `string`               | Custom CSS color for the spinner (hex, rgb(a), oklch, or CSS var). |
+| `loaderText`              | `string`               | Optional text describing the loading state.                        |
+| `textPosition`            | `BoLoaderTextPosition` | Placement of the text relative to the spinner.                     |
+| `ariaLive`                | `AriaLive`             | Screen reader politeness for live updates.                         |
+| `ariaLabel`               | `string`               | Accessible label describing the loading state.                     |
+| `ariaBusy`                | `boolean`              | Marks the region as busy while loading.                            |
+| `customContainerCssClass` | `string`               | Additional CSS classes appended to the root element.               |
+| `customSpinnerCssClass`   | `string`               | Additional CSS classes appended to the spinner element.            |
 
 ## Sizes
 
@@ -104,13 +110,30 @@ Provide richer markup via the default slot. The slot replaces the `loaderText` p
 
 ```vue
 <bo-loading-spinner>
-	<template #default>
-		<span style="display: inline-flex; align-items: center; gap: 0.5rem;">
-			<bo-icon :icon="Icon.cloud" />
-			<span>Syncing files…</span>
-		</span>
-	</template>
+	<span>Syncing files…</span>
 </bo-loading-spinner>
+```
+
+<bo-loading-spinner>
+	<span>Syncing files…</span>
+</bo-loading-spinner>
+
+## Custom colors
+
+You can customize the color of the ring by passing a valid CSS color value to the `customColor` prop.
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+  <bo-loading-spinner custom-color="--teal-500" loader-text="CSS Variable" />
+  <bo-loading-spinner custom-color="#ff6b6b" loader-text="Hex Color" />
+  <bo-loading-spinner custom-color="rgb(255, 107, 107)" loader-text="RGB Color" />
+  <bo-loading-spinner custom-color="oklch(0.7 0.15 180)" loader-text="OKLCH Color" />
+</div>
+
+```vue
+<bo-loading-spinner custom-color="--teal-500" loader-text="CSS Variable" />
+<bo-loading-spinner custom-color="#ff6b6b" loader-text="Hex Color" />
+<bo-loading-spinner custom-color="rgb(255, 107, 107)" loader-text="RGB Color" />
+<bo-loading-spinner custom-color="oklch(0.7 0.15 180)" loader-text="OKLCH Color" />
 ```
 
 ## Accessibility

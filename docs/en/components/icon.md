@@ -1,12 +1,12 @@
+---
+title: bo-icon
+---
+
 <script setup lang="ts">
 import { BoIcon, Icon, BoIconVariant } from "@/components/bo-icon";
 
 const iconList = Object.values(Icon);
 </script>
-
----
-
-## title: Icon
 
 # bo-icon
 
@@ -24,24 +24,24 @@ const iconList = Object.values(Icon);
 
 ### Required
 
-| Name   | Type   | Default   | Description         |
-| ------ | ------ | --------- | ------------------- |
-| `icon` | `Icon` | Icon.none | The icon to display |
+| Name   | Type   | Description         |
+| ------ | ------ | ------------------- |
+| `icon` | `Icon` | The icon to display |
 
 ### Optional
 
-| Name             | Type            | Default                 | Description                                 |
-| ---------------- | --------------- | ----------------------- | ------------------------------------------- |
-| `id`             | `string`        | `auto-generated`        | Unique identifier for the icon element      |
-| `dataTestId`     | `string`        | `auto-generated`        | Unique data-test-id of the icon             |
-| `size`           | `number`        | `24`                    | Pixel size of the icon                      |
-| `variant`        | `BoIconVariant` | `BoIconVariant.default` | The color of the icon                       |
-| `customColor`    | `string`        | `undefined`             | Custom color of the icon                    |
-| `customCssClass` | `string`        | `undefined`             | Custom css class passed to the root element |
-| `cursor`         | `string`        | `undefined`             | Cursor type of the element.                 |
-| `title`          | `string`        | `undefined`             | The accessible title of the icon.           |
-| `role`           | `string`        | `img`                   | The accessibility role of the icon.         |
-| `decorative`     | `boolean`       | `true`                  | Whether the icon is decorative.             |
+| Name             | Type            | Description                                 |
+| ---------------- | --------------- | ------------------------------------------- |
+| `id`             | `string`        | Unique identifier for the icon element      |
+| `dataTestId`     | `string`        | Unique data-test-id of the icon             |
+| `size`           | `number`        | Pixel size of the icon                      |
+| `variant`        | `BoIconVariant` | The color of the icon                       |
+| `customColor`    | `string`        | Custom color of the icon                    |
+| `customCssClass` | `string`        | Custom css class passed to the root element |
+| `cursor`         | `string`        | Cursor type of the element.                 |
+| `title`          | `string`        | The accessible title of the icon.           |
+| `role`           | `string`        | The accessibility role of the icon.         |
+| `decorative`     | `boolean`       | Whether the icon is decorative.             |
 
 ## Sizes
 

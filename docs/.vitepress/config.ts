@@ -29,8 +29,8 @@ export default defineConfig({
 				items: [
 					{ text: 'Overview', link: '/en/components/default' },
 					{ text: 'Icon', link: '/en/components/icon' },
-					{ text: 'Loading Spinner', link: '/en/components/loading-spinner' },
 					{ text: 'Loading Ring', link: '/en/components/loading-ring' },
+					{ text: 'Loading Spinner', link: '/en/components/loading-spinner' },
 					{ text: 'Text', link: '/en/components/text' },
 				],
 			},

@@ -1,3 +1,7 @@
+---
+title: bo-loading-ring
+---
+
 <script setup lang="ts">
 import { BoLoadingRing } from "@/components/bo-loading-ring";
 import { AriaLive } from "@/shared/accessibility";
@@ -7,36 +11,36 @@ import { BoLoaderVariant, BoLoaderTextPosition } from "@/shared/loader"
 
 # bo-loading-ring
 
-`bo-loading-ring` provides an accessible progress indicator with a unique 3D ring animation and optional status text. It supports semantic defaults out of the box and allows custom styling through variants, sizes, and CSS overrides.
+`bo-loading-ring` provides an accessible progress indicator with a 3D ring animation and optional status text.
 
 ### Basic usage
-
-<div style="margin: 1rem 0;">
-  <bo-loading-ring loader-text="Loading data" />
-</div>
 
 ```vue
 <bo-loading-ring loader-text="Loading data" />
 ```
 
+<div style="margin: 1rem 0;">
+  <bo-loading-ring loader-text="Loading data" />
+</div>
+
 ## Props
 
 ### Optional
 
-| Name                      | Type                   | Default                      | Description                                                     |
-| ------------------------- | ---------------------- | ---------------------------- | --------------------------------------------------------------- |
-| `id`                      | `string`               | `auto-generated`             | Unique identifier for the loader ring container.                |
-| `dataTestId`              | `string`               | `auto-generated`             | Deterministic data test id for end-to-end tests.                |
-| `size`                    | `BoSize`               | `BoSize.default`             | The visual size of the ring.                                    |
-| `variant`                 | `BoLoaderVariant`      | `BoLoaderVariant.primary`    | Predefined color palette for the ring.                          |
-| `customColor`             | `string`               | `undefined`                  | Custom CSS color for the ring (hex, rgb(a), oklch, or CSS var). |
-| `loaderText`              | `string`               | `undefined`                  | Optional text describing the loading state.                     |
-| `textPosition`            | `BoLoaderTextPosition` | `BoLoaderTextPosition.after` | Placement of the text relative to the ring.                     |
-| `ariaLive`                | `AriaLive`             | `undefined`                  | Screen reader politeness for live updates.                      |
-| `ariaLabel`               | `string`               | `undefined`                  | Accessible label describing the loading state.                  |
-| `ariaBusy`                | `boolean`              | `undefined`                  | Marks the region as busy while the ring is visible.             |
-| `customContainerCssClass` | `string`               | `undefined`                  | Additional CSS classes appended to the container element.       |
-| `customRingClass`         | `string`               | `undefined`                  | Additional CSS classes appended to the ring element.            |
+| Name                      | Type                   | Description                                                     |
+| ------------------------- | ---------------------- | --------------------------------------------------------------- |
+| `id`                      | `string`               | Unique identifier for the loader ring container.                |
+| `dataTestId`              | `string`               | Deterministic data test id for end-to-end tests.                |
+| `size`                    | `BoSize`               | The visual size of the ring.                                    |
+| `variant`                 | `BoLoaderVariant`      | Predefined color palette for the ring.                          |
+| `customColor`             | `string`               | Custom CSS color for the ring (hex, rgb(a), oklch, or CSS var). |
+| `loaderText`              | `string`               | Optional text describing the loading state.                     |
+| `textPosition`            | `BoLoaderTextPosition` | Placement of the text relative to the ring.                     |
+| `ariaLive`                | `AriaLive`             | Screen reader politeness for live updates.                      |
+| `ariaLabel`               | `string`               | Accessible label describing the loading state.                  |
+| `ariaBusy`                | `boolean`              | Marks the region as busy while the ring is visible.             |
+| `customContainerCssClass` | `string`               | Additional CSS classes appended to the container element.       |
+| `customRingClass`         | `string`               | Additional CSS classes appended to the ring element.            |
 
 ## Sizes
 
@@ -106,14 +110,13 @@ Provide richer markup via the default slot. The slot replaces the `loaderText` p
 
 ```vue
 <bo-loading-ring>
-	<template #default>
-		<span style="display: inline-flex; align-items: center; gap: 0.5rem;">
-			<bo-icon :icon="Icon.cloud" />
-			<span>Syncing files…</span>
-		</span>
-	</template>
+	<span>Syncing files…</span>
 </bo-loading-ring>
 ```
+
+<bo-loading-ring>
+	<span>Syncing files…</span>
+</bo-loading-ring>
 
 ## Custom colors
 

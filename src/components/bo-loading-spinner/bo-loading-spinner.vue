@@ -7,7 +7,7 @@
 		:aria-label="ariaLabel"
 		:aria-busy="ariaBusy"
 	>
-		<span :class="[spinnerClass, customSpinnerCssClass]"></span>
+		<span :class="[spinnerClass, customSpinnerCssClass]" :style="spinnerStyle"></span>
 		<slot>
 			<bo-text
 				v-if="loaderText"
@@ -26,7 +26,7 @@
 	import { IdentityService } from '@/services/identity-service.js'
 	import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/index.js'
 	import { BoSize } from '@/shared/size.js'
-	import { computed } from 'vue'
+	import { computed, type StyleValue } from 'vue'
 	import { type BoLoadingSpinnerProps } from './bo-loading-spinner.js'
 
 	const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
@@ -66,6 +66,16 @@
 			[`bo-loader__spinner__${props.size}`]: true,
 			[`bo-loader__spinner__${props.variant}`]: true,
 		}
+	})
+
+	const spinnerStyle = computed<StyleValue>(() => {
+		if (props.customColor) {
+			return {
+				color: props.customColor,
+			}
+		}
+
+		return {}
 	})
 </script>
 
