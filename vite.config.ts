@@ -9,7 +9,16 @@ import svgLoader from 'vite-svg-loader'
 export default defineConfig({
 	appType: 'custom',
 	mode: 'production',
-	plugins: [vue(), vueDevTools(), svgLoader()],
+	plugins: [
+		vue(),
+		vueDevTools(),
+		svgLoader({
+			svgo: true,
+			svgoConfig: {
+				datauri: 'base64',
+			},
+		}),
+	],
 	build: {
 		minify: true,
 		cssMinify: true,
@@ -22,7 +31,6 @@ export default defineConfig({
 				fileURLToPath(new URL('./src/composables/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
-				fileURLToPath(new URL('./src/lib.css', import.meta.url)),
 			],
 		},
 		rolldownOptions: {

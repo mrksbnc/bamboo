@@ -30,7 +30,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 // Import the main library CSS file
-import '@mrksbnc/bamboo/style.css'
+import '@mrksbnc/bamboo/lib.css'
 
 createApp(App).use(Bamboo).mount('#app')
 ```
