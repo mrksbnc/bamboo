@@ -62,4 +62,4 @@ The following font families are available:
 
 ## Reference
 
-To see the full list of available custom properties view the [bo-text](/src-docs/en/components/text.md) documentation.
+To see the full list of available custom properties view the [bo-text](../components/text.md) documentation.
