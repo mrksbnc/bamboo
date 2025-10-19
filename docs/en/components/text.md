@@ -8,11 +8,15 @@ import { BoText, BoTextVariant, BoFontWeight, BoFontSize, BoFontFamily, BoTextAl
 
 # bo-text
 
-The bo-text component is a wrapper around the HTML `<p>` element to provide a consistent styling for text elements. It offers comprehensive typography controls including font size, weight, family, alignment, and color variants.
+Simple wrapper around a `<p>` element providing a consistent styling for text elements.
+
+### Basic usage
 
 ```vue
 <bo-text value="Hello World" />
 ```
+
+<bo-text value="Hello World" />
 
 ## Props
 
@@ -283,13 +287,13 @@ The text component supports different white space handling with the `whiteSpace`
 
 The text component supports interactive features with the `clickable` prop.
 
-<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
-  <bo-text value="Clickable Text (cursor pointer)" :clickable="true" />
-</div>
-
 ```vue
 <bo-text value="Clickable Text (cursor pointer)" :clickable="true" />
 ```
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
+  <bo-text value="Clickable Text (cursor pointer)" :clickable="true" />
+</div>
 
 ### Interfaces and constants
 

@@ -71,7 +71,8 @@
 	const spinnerStyle = computed<StyleValue>(() => {
 		if (props.customColor) {
 			return {
-				color: props.customColor,
+				'border-color': props.customColor,
+				'border-bottom-color': 'transparent',
 			}
 		}
 

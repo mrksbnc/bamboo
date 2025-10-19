@@ -68,6 +68,6 @@ createApp(App).mount('#app')
 </template>
 
 <script setup lang="ts">
-	import { BoIcon, Icon } from '@mrksbnc/bamboo'
+	import { BoText, BoIcon, Icon } from '@mrksbnc/bamboo'
 </script>
 ```
