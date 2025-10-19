@@ -1,31 +1,55 @@
-import vue from '@vitejs/plugin-vue';
-import { fileURLToPath, URL } from 'node:url';
-import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
-import svgLoader from 'vite-svg-loader';
+import { fileURLToPath, URL } from 'node:url'
+
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+import vueDevTools from 'vite-plugin-vue-devtools'
+import svgLoader from 'vite-svg-loader'
+import dts from 'vite-plugin-dts'
 
 // https://vite.dev/config/
 export default defineConfig({
+	appType: 'custom',
+	mode: 'production',
 	plugins: [
 		vue(),
-		dts({
-			outDir: 'dist',
-			entryRoot: 'src/index.ts',
+		vueDevTools(),
+		svgLoader({
+			svgo: true,
+			svgoConfig: {
+				datauri: 'base64',
+			},
 		}),
-		svgLoader(),
+		dts({ tsconfigPath: './tsconfig.app.json' }),
 	],
 	build: {
+		minify: true,
 		cssMinify: true,
 		emptyOutDir: true,
 		lib: {
 			name: 'bamboo',
-			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+			cssFileName: 'lib',
+			entry: [
+				fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
+				fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
+				fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
+				fileURLToPath(new URL('./src/shared/index.ts', import.meta.url)),
+			],
+		},
+		rolldownOptions: {
+			treeshake: true,
+			external: ['vue'],
+			cwd: process.cwd(),
+			input: {
+				components: fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
+				core: fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
+				services: fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
+				shared: fileURLToPath(new URL('./src/shared/index.ts', import.meta.url)),
+			},
 		},
 	},
 	resolve: {
-		external: ['vue'],
 		alias: {
 			'@': fileURLToPath(new URL('./src', import.meta.url)),
 		},
 	},
-});
+})

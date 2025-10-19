@@ -3,16 +3,20 @@
 	"explorer.fileNesting.patterns": {
 		"tsconfig.json": "tsconfig.*.json, env.d.ts",
 		"vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
-		"package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .editorconfig"
+		"package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig"
 	},
 	"editor.codeActionsOnSave": {
 		"source.fixAll": "explicit"
 	},
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"css.customData": [".vscode/tailwind.json"],
-	"tailwindCSS.experimental.classRegex": [
-		"/\\*\\s*tw\\s*\\*/\\s*'([^']*)'",
-		"/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\""
-	]
+	"cSpell.customDictionaries": {
+		"custom-dictionary-workspace": {
+			"name": "custom-dictionary-workspace",
+			"path": "${workspaceFolder:bamboo}/.cspell/custom-dictionary-workspace.txt",
+			"addWords": true,
+			"scope": "workspace"
+		}
+	},
+	"cSpell.words": ["njsproj"]
 }
