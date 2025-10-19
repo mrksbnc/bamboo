@@ -131,26 +131,30 @@ The available variants are the following:
 
 ## Custom colors
 
-You can customize the color of the icon by passing a valid CSS color value to the `customColor` prop.
+You can customize the color of the icon by passing any valid CSS color value to the `customColor` prop.
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-  <bo-icon :icon="Icon.heart" custom-color="--teal-500" />
-  <bo-icon :icon="Icon.check" custom-color="345678" />
+  <bo-icon :icon="Icon.heart" custom-color="var(--teal-500)" />
+  <bo-icon :icon="Icon.check" custom-color="#345678" />
   <bo-icon :icon="Icon.alert_circle" custom-color="var(--orange-500)" />
   <bo-icon :icon="Icon.x" custom-color="#FF0000" />
   <bo-icon :icon="Icon.star" custom-color="oklch(0.591 0.293 322.896)" />
 </div>
 
 ```vue
-<!-- If the length of the color is 7 characters, it will be interpreted as a CSS variable -->
-<bo-icon :icon="Icon.heart" custom-color="--teal-500" />
-<!-- If the length of the color is 6 characters, it will be interpreted as a hex color -->
-<bo-icon :icon="Icon.check" custom-color="345678" />
+<!-- CSS variable -->
+<bo-icon :icon="Icon.heart" custom-color="var(--teal-500)" />
+<!-- Hex color -->
+<bo-icon :icon="Icon.check" custom-color="#345678" />
+<!-- CSS variable -->
 <bo-icon :icon="Icon.alert_circle" custom-color="var(--orange-500)" />
+<!-- Hex color -->
 <bo-icon :icon="Icon.x" custom-color="#FF0000" />
+<!-- oklch color -->
 <bo-icon :icon="Icon.star" custom-color="oklch(0.591 0.293 322.896)" />
-```
-
+<!-- rgb/rgba color -->
+<bo-icon :icon="Icon.heart" custom-color="rgb(255, 0, 0)" />
+<bo-icon :icon="Icon.heart" custom-color="rgba(0, 128, 0, 0.5)" />
 ## All available icons
 
 <!-- cspell:disable-next-line -->
