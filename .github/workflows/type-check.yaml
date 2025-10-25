@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+
 jobs:
   type-check:
     runs-on: ubuntu-latest
