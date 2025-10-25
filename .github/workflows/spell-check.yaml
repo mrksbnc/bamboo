@@ -1,4 +1,4 @@
-name: 'code quality / spell check'
+name: 'spell check'
 on:
   pull_request:
     branches:
@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  run-spell-check:
+  run-cspell:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

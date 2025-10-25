@@ -1,4 +1,4 @@
-name: 'code quality / type check'
+name: 'type check'
 on:
   pull_request:
     branches:
@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  run-type-check:
+  run-vue-tsc:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

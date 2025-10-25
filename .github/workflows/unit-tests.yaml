@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  run-unit-tests:
+  run-vitest:
     runs-on: ubuntu-latest
 
     permissions:
