@@ -1,0 +1,44 @@
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+version: '0.2'
+useGitignore: true
+language: en-gb,en-us
+
+ignorePaths:
+  - 'node_modules/**'
+  - 'dist/**'
+  - 'build/**'
+  - 'coverage/**'
+  - '*.svg'
+  - 'pnpm-lock.yaml'
+  - 'config/cspell/**'
+
+dictionaryDefinitions:
+  - name: common-terms
+    path: ./config/cspell/common-terms.txt
+    addWords: true
+  - name: javascript-terms
+    path: ./config/cspell/javascript-terms.txt
+    addWords: true
+  - name: project-terms
+    path: ./config/cspell/project-terms.txt
+    addWords: true
+
+dictionaries:
+  - common-terms
+  - css
+  - en_US
+  - html
+  - javascript-terms
+  - project-terms
+  - typescript
+  - vue
+
+languageSettings:
+  - languageId: markdown
+    caseSensitive: true
+
+import:
+  - '@cspell/dict-css/cspell-ext.json'
+  - '@cspell/dict-html/cspell-ext.json'
+  - '@cspell/dict-typescript/cspell-ext.json'
+  - '@cspell/dict-vue/cspell-ext.json'

@@ -32,7 +32,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 'lts/*'
           cache: pnpm
 
       - name: Setup Pages

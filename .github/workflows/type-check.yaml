@@ -1,4 +1,4 @@
-name: 'code quality - lint'
+name: 'code quality - type-check'
 on:
   pull_request:
     branches:
@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  lint:
+  type-check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,10 +27,6 @@ jobs:
         run: |
           pnpm install
 
-      - name: Run oxlint
+      - name: Run type-check
         run: |
-          pnpm lint:oxlint
-
-      - name: Run eslint
-        run: |
-          pnpm lint:eslint
+          pnpm type-check

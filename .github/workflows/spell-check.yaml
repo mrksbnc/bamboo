@@ -1,4 +1,4 @@
-name: 'code quality - lint'
+name: 'code quality - spell check'
 on:
   pull_request:
     branches:
@@ -27,10 +27,6 @@ jobs:
         run: |
           pnpm install
 
-      - name: Run oxlint
+      - name: Run spell check
         run: |
-          pnpm lint:oxlint
-
-      - name: Run eslint
-        run: |
-          pnpm lint:eslint
+          pnpm lint:spell
