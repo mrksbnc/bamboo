@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  unit:
+  vitest:
     runs-on: ubuntu-latest
 
     permissions:
