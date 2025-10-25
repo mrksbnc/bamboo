@@ -20,63 +20,63 @@
 </template>
 
 <script lang="ts" setup>
-	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js'
-	import BoText from '@/components/bo-text/bo-text.vue'
-	import type { ConditionalCssProperties } from '@/core/css.js'
-	import { IdentityService } from '@/services/identity-service.js'
-	import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/index.js'
-	import { BoSize } from '@/shared/size.js'
-	import { computed, type StyleValue } from 'vue'
-	import { type BoLoaderRingProps } from './bo-loading-ring.js'
+	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js';
+	import BoText from '@/components/bo-text/bo-text.vue';
+	import type { ConditionalCssProperties } from '@/core/css.js';
+	import { IdentityService } from '@/services/identity-service.js';
+	import { BoLoaderTextPosition, BoVariant } from '@/shared/index.js';
+	import { BoSize } from '@/shared/size.js';
+	import { computed, type StyleValue } from 'vue';
+	import { type BoLoaderRingProps } from './bo-loading-ring.js';
 
 	const props = withDefaults(defineProps<BoLoaderRingProps>(), {
 		id: IdentityService.instance.getComponentId(),
 		dataTestId: IdentityService.instance.getDataTestId('bo-loader-ring'),
 		size: BoSize.default,
-		variant: BoLoaderVariant.primary,
+		variant: BoVariant.primary,
 		textPosition: BoLoaderTextPosition.after,
-	})
+	});
 
 	const boFontSize = computed<BoFontSize>(() => {
 		switch (props.size) {
 			case BoSize.extra_small:
-				return BoFontSize.xs
+				return BoFontSize.xs;
 			case BoSize.small:
-				return BoFontSize.sm
+				return BoFontSize.sm;
 			case BoSize.large:
-				return BoFontSize.xl
+				return BoFontSize.xl;
 			case BoSize.extra_large:
-				return BoFontSize['2xl']
+				return BoFontSize['2xl'];
 			case BoSize.default:
 			default:
-				return BoFontSize.lg
+				return BoFontSize.lg;
 		}
-	})
+	});
 
 	const containerClass = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-loader-ring': true,
 			[`bo-loader-ring__${props.textPosition}`]: true,
-		}
-	})
+		};
+	});
 
 	const ringClass = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-loader-ring__spinner': true,
 			[`bo-loader-ring__spinner__${props.size}`]: true,
 			[`bo-loader-ring__spinner__${props.variant}`]: true,
-		}
-	})
+		};
+	});
 
 	const ringStyle = computed<StyleValue>(() => {
 		if (props.customColor) {
 			return {
 				color: props.customColor,
-			}
+			};
 		}
 
-		return {}
-	})
+		return {};
+	});
 </script>
 
 <style scoped lang="scss">
