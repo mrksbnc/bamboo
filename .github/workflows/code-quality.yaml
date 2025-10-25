@@ -1,4 +1,4 @@
-name: 'lint'
+name: 'code quality'
 on:
   pull_request:
     branches:
@@ -11,7 +11,30 @@ permissions:
   contents: read
 
 jobs:
-  run-eslint:
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup LTS Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 'lts/*'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      - name: Run type-check
+        run: |
+          pnpm type-check
+
+  eslint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,7 +57,7 @@ jobs:
         run: |
           pnpm lint:eslint
 
-  run-oxlint:
+  oxlint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -56,3 +79,26 @@ jobs:
       - name: Run oxlint
         run: |
           pnpm lint:oxlint
+
+  cspell:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup LTS Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 'lts/*'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      - name: Run cspell
+        run: |
+          pnpm lint:spell
