@@ -2,8 +2,8 @@
 	<i
 		v-if="svg"
 		v-html="svg"
-		:id="resolvedId"
-		:data-testid="resolvedDataTestId"
+		:id="id"
+		:data-testid="dataTestId"
 		:role="role"
 		:style="iconStyle"
 		:class="[componentBaseClasses, customCssClass]"
@@ -21,19 +21,11 @@
 	import { type BoIconProps, BoIconVariant, Icon, svgPromiseRecord } from './bo-icon';
 
 	const props = withDefaults(defineProps<BoIconProps>(), {
+		id: IdentityService.instance.getComponentId(),
+		dataTestId: IdentityService.instance.getDataTestId('bo-icon'),
 		size: 24,
 		variant: () => BoIconVariant.default,
 		decorative: true,
-	});
-	const generatedId = IdentityService.instance.getComponentId();
-	const generatedDataTestId = IdentityService.instance.getDataTestId('bo-icon');
-
-	const resolvedId = computed<string>(() => {
-		return props.id ?? generatedId;
-	});
-
-	const resolvedDataTestId = computed<string>(() => {
-		return props.dataTestId ?? generatedDataTestId;
 	});
 
 	const svg = ref<string>('');
