@@ -1,4 +1,4 @@
-import { AriaLive } from '@/shared/accessibility'
+import { AriaLive } from '@/shared/accessibility';
 
 export enum BoFontWeight {
 	/** 100 */
@@ -95,21 +95,21 @@ export enum BoTextTransform {
 
 export interface BoTextProps {
 	/** The id of the element. */
-	id?: string
+	id?: string;
 	/** The data test id of the element. */
-	dataTestId?: string
+	dataTestId?: string;
 	/** The text of the element. */
-	value: string
+	value: string;
 	/** The size of the element. */
-	fontSize?: BoFontSize
+	fontSize?: BoFontSize;
 	/** The weight of the element. */
-	fontWeight?: BoFontWeight
+	fontWeight?: BoFontWeight;
 	/** The font family of the element. */
-	fontFamily?: BoFontFamily
+	fontFamily?: BoFontFamily;
 	/** The white space of the element. */
-	whiteSpace?: BoTextWhiteSpace
+	whiteSpace?: BoTextWhiteSpace;
 	/** The variant of the element based on fixed enum values. */
-	variant?: BoTextVariant
+	variant?: BoTextVariant;
 	/** Any custom color for the element. This prop supports the following formats:
 	 *
 	 * - a variable name (e.g. --my-color)
@@ -118,17 +118,17 @@ export interface BoTextProps {
 	 * - an rgba color (e.g. rgba(255, 0, 0, 0.5))
 	 * - an oklch color (e.g. oklch(0.985 0.001 106.423))
 	 */
-	customColor?: string
+	customColor?: string;
 	/** One or multiple css classes to be used for overriding the default styles on the element. */
-	customCssClass?: string
+	customCssClass?: string;
 	/** The clickable of the element. */
-	clickable?: boolean
+	clickable?: boolean;
 	/** The text align of the element. */
-	textAlign?: BoTextAlign
+	textAlign?: BoTextAlign;
 	/** The text transform of the element. */
-	textTransform?: BoTextTransform
+	textTransform?: BoTextTransform;
 	/** Cursor type of the element. This must be a valid Tailwindcss cursor value. */
-	cursor?: string
+	cursor?: string;
 	/** The max lines of the element. */
 	maxLines?:
 		| '-moz-initial'
@@ -139,15 +139,15 @@ export interface BoTextProps {
 		| 'unset'
 		| 'none'
 		| (number & {})
-		| (string & {})
+		| (string & {});
 	/** The role of the element. */
-	role?: string
+	role?: string;
 	/** Defines a string value that labels the current element. */
-	ariaLabel?: string
+	ariaLabel?: string;
 	/** Reference to an element that labels the current element. */
-	ariaLabelledBy?: string
+	ariaLabelledBy?: string;
 	/** Identifies the element (or elements) that describes the object. */
-	ariaDescribedBy?: string
+	ariaDescribedBy?: string;
 	/** Indicates that an element will be updated, and describes the types of updates the user agents,
 	 * assistive technologies, and user can expect from the live region.
 	 *
@@ -155,7 +155,7 @@ export interface BoTextProps {
 	 * - polite: The element is exposed to an assistive technology that "actively" indicates that user input will occur.
 	 * - assertive: The element is exposed to an assistive technology that "passively" indicates that user input will occur.
 	 */
-	ariaLive?: AriaLive
+	ariaLive?: AriaLive;
 	/** The language of the element. */
-	lang?: string
+	lang?: string;
 }
