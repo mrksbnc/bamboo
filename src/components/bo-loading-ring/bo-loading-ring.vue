@@ -25,8 +25,8 @@
 	import type { ConditionalCssProperties } from '@/core/css.js';
 	import { IdentityService } from '@/services/identity-service.js';
 	import { BoLoaderTextPosition } from '@/shared/loader.js';
-	import { BoVariant } from '@/shared/variant.js';
 	import { BoSize } from '@/shared/size.js';
+	import { BoVariant } from '@/shared/variant.js';
 	import { computed, type StyleValue } from 'vue';
 	import { type BoLoaderRingProps } from './bo-loading-ring.js';
 

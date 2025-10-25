@@ -11,3 +11,4 @@ rgba
 testid
 tsgolint
 vite
+vitest
