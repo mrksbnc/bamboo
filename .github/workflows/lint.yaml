@@ -1,4 +1,4 @@
-name: 'code quality - lint'
+name: 'code quality / lint'
 on:
   pull_request:
     branches:
@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  lint:
+  run-lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
