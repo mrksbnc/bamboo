@@ -110,7 +110,7 @@
 			transform: rotateZ(45deg);
 			perspective: 1000px;
 			border-radius: 50%;
-			color: currentColor;
+			color: currentcolor;
 
 			&__extra-small {
 				width: 0.625rem;
@@ -222,24 +222,31 @@
 		100% {
 			box-shadow: 0.2em 0 0 0 currentcolor;
 		}
+
 		12% {
 			box-shadow: 0.2em 0.2em 0 0 currentcolor;
 		}
+
 		25% {
 			box-shadow: 0 0.2em 0 0 currentcolor;
 		}
+
 		37% {
 			box-shadow: -0.2em 0.2em 0 0 currentcolor;
 		}
+
 		50% {
 			box-shadow: -0.2em 0 0 0 currentcolor;
 		}
+
 		62% {
 			box-shadow: -0.2em -0.2em 0 0 currentcolor;
 		}
+
 		75% {
 			box-shadow: 0 -0.2em 0 0 currentcolor;
 		}
+
 		87% {
 			box-shadow: 0.2em -0.2em 0 0 currentcolor;
 		}

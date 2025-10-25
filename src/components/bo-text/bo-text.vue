@@ -21,6 +21,7 @@
 	import { IdentityService } from '@/services/identity-service.js';
 	import { AriaLive } from '@/shared/accessibility';
 	import { computed, type CSSProperties, type StyleValue } from 'vue';
+
 	import {
 		BoFontFamily,
 		BoFontSize,
@@ -142,7 +143,7 @@
 		vertical-align: middle;
 
 		&__variant--default {
-			color: currentColor;
+			color: currentcolor;
 		}
 
 		&__variant--primary {
@@ -178,7 +179,7 @@
 		}
 
 		&__variant--current {
-			color: currentColor;
+			color: currentcolor;
 		}
 
 		&__variant--inherit {
@@ -329,7 +330,7 @@
 			}
 
 			&--serif {
-				font-family: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif";
+				font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
 			}
 
 			&--inherit {

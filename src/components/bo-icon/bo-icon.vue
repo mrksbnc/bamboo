@@ -133,7 +133,7 @@
 
 		&__variant {
 			&--default {
-				color: currentColor;
+				color: currentcolor;
 			}
 
 			&--primary {
@@ -169,7 +169,7 @@
 			}
 
 			&--current {
-				color: currentColor;
+				color: currentcolor;
 			}
 
 			&--inherit {
