@@ -77,7 +77,7 @@
     "vite-svg-loader": "^5.1.0",
     "vitepress": "2.0.0-alpha.12",
     "vitest": "^3.2.4",
-    "vue-tsc": "^3.1.1"
+    "vue-tsc": "^3.1.2"
   },
   "engines": {
     "node": ">=18 <19 || >=20 <21 || >=22"
