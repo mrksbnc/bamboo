@@ -1,2 +1,2 @@
-export * from './color-service.js'
-export * from './identity-service.js'
+export * from './color-service.js';
+export * from './identity-service.js';
