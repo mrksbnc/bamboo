@@ -1,30 +1,31 @@
-import { AriaLive } from '@/shared/accessibility.js'
-import type { BoSize } from '@/shared/size.js'
-import { BoLoaderVariant, BoLoaderTextPosition } from '@/shared/loader.js'
+import { AriaLive } from '@/shared/accessibility.js';
+import type { BoSize } from '@/shared/size.js';
+import { BoLoaderTextPosition } from '@/shared/loader.js';
+import type { BoVariant } from '@/shared/variant.js';
 
 export interface BoLoadingSpinnerProps {
 	/** Unique id for the loading spinner */
-	id?: string
+	id?: string;
 	/** Unique data-test-id for the spinner container */
-	dataTestId?: string
+	dataTestId?: string;
 	/** The size of the loading spinner */
-	size?: BoSize
+	size?: BoSize;
 	/** Predefined color variant of the spinner */
-	variant?: BoLoaderVariant
+	variant?: BoVariant;
 	/** Optional loader text to display */
-	loaderText?: string
+	loaderText?: string;
 	/** Position of the text relative to the spinner */
-	textPosition?: BoLoaderTextPosition
+	textPosition?: BoLoaderTextPosition;
 	/** Custom color of the loading spinner in CSS compatible format */
-	customColor?: string
+	customColor?: string;
 	/** Accessibility live region politeness setting */
-	ariaLive?: AriaLive
+	ariaLive?: AriaLive;
 	/** Accessible label describing the spinner state */
-	ariaLabel?: string
+	ariaLabel?: string;
 	/** Mark the region as busy while the spinner is visible */
-	ariaBusy?: boolean
+	ariaBusy?: boolean;
 	/** Optional custom classes appended to the spinner wrapper */
-	customContainerCssClass?: string
+	customContainerCssClass?: string;
 	/** Optional custom classes appended to the spinner element */
-	customSpinnerCssClass?: string
+	customSpinnerCssClass?: string;
 }

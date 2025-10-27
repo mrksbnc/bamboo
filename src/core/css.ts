@@ -1,7 +1,7 @@
-export type Booleanish = boolean | 'true' | 'false'
+export type Booleanish = boolean | 'true' | 'false';
 
 export interface ConditionalCssProperties {
-	[key: string]: Booleanish
+	[key: string]: Booleanish;
 }
 
 export enum BoColor {

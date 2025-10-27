@@ -14,11 +14,11 @@
 </template>
 
 <script lang="ts" setup>
-	import type { ConditionalCssProperties } from '@/core'
-	import { ColorService } from '@/services'
-	import { IdentityService } from '@/services/identity-service'
-	import { computed, type CSSProperties, ref, type StyleValue, watchEffect } from 'vue'
-	import { type BoIconProps, BoIconVariant, Icon, svgPromiseRecord } from './bo-icon'
+	import type { ConditionalCssProperties } from '@/core';
+	import { ColorService } from '@/services';
+	import { IdentityService } from '@/services/identity-service';
+	import { computed, type CSSProperties, ref, type StyleValue, watchEffect } from 'vue';
+	import { type BoIconProps, BoIconVariant, Icon, svgPromiseRecord } from './bo-icon';
 
 	const props = withDefaults(defineProps<BoIconProps>(), {
 		id: IdentityService.instance.getComponentId(),
@@ -26,9 +26,9 @@
 		size: 24,
 		variant: () => BoIconVariant.default,
 		decorative: true,
-	})
+	});
 
-	const svg = ref<string>('')
+	const svg = ref<string>('');
 	/**
 	 * This is a map of all the icons that are available in the library.
 	 *
@@ -37,92 +37,92 @@
 	 */
 	const iconMap = Object.keys(svgPromiseRecord).reduce(
 		(acc, key) => {
-			const splitted = key.split('/')
-			const icon = splitted[splitted.length - 1]?.split('.')[0]
+			const splitted = key.split('/');
+			const icon = splitted[splitted.length - 1]?.split('.')[0];
 
 			if (!icon || !svgPromiseRecord[key]) {
-				return acc
+				return acc;
 			}
 
-			acc[icon] = svgPromiseRecord[key]
-			return acc
+			acc[icon] = svgPromiseRecord[key];
+			return acc;
 		},
 		{} as Record<string, () => Promise<string>>,
-	)
+	);
 
 	const role = computed<string>(() => {
-		return props.role ?? 'img'
-	})
+		return props.role ?? 'img';
+	});
 
 	const ariaHidden = computed<boolean | undefined>(() => {
-		return props.decorative ? true : undefined
-	})
+		return props.decorative ? true : undefined;
+	});
 
 	const ariaLabel = computed<string | undefined>(() => {
 		// Only provide aria-label for non-decorative icons
 		if (props.decorative) {
-			return undefined
+			return undefined;
 		}
-		return props.title ?? props.icon
-	})
+		return props.title ?? props.icon;
+	});
 
 	const cursor = computed<CSSProperties>(() => {
 		if (props.cursor) {
 			return {
 				cursor: props.cursor,
-			}
+			};
 		}
 
 		return {
 			cursor: 'default',
-		}
-	})
+		};
+	});
 	const iconColorStyle = computed<CSSProperties>(() => {
 		if (props.customColor) {
-			return ColorService.instance.getCustomColorStyle(props.customColor)
+			return ColorService.instance.getCustomColorStyle(props.customColor);
 		}
 
-		return {}
-	})
+		return {};
+	});
 
 	const iconSize = computed<CSSProperties>(() => {
 		return {
 			width: `${props.size}px`,
 			height: `${props.size}px`,
-		}
-	})
+		};
+	});
 
 	const iconStyle = computed<StyleValue>(() => {
 		const style: StyleValue = {
 			...iconSize.value,
 			...iconColorStyle.value,
 			...cursor.value,
-		}
+		};
 
-		return style
-	})
+		return style;
+	});
 
 	const componentBaseClasses = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-icon': true,
 			[`bo-icon__size--${props.size}`]: true,
 			[`bo-icon__variant--${props.variant}`]: true,
-		}
-	})
+		};
+	});
 
 	async function load(icon: Icon): Promise<void> {
 		try {
 			await iconMap[icon]?.().then((val) => {
-				svg.value = val
-			})
+				svg.value = val;
+			});
 		} catch (e) {
-			console.error(`Could not find icon of name ${icon}\n${e}`)
+			console.error(`Could not find icon of name ${icon}\n${e}`);
 		}
 	}
 
 	watchEffect(() => {
-		load(props.icon)
-	})
+		load(props.icon);
+	});
 </script>
 
 <style scoped lang="scss">
@@ -133,7 +133,7 @@
 
 		&__variant {
 			&--default {
-				color: currentColor;
+				color: currentcolor;
 			}
 
 			&--primary {
@@ -169,7 +169,7 @@
 			}
 
 			&--current {
-				color: currentColor;
+				color: currentcolor;
 			}
 
 			&--inherit {
