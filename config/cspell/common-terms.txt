@@ -1,0 +1,10 @@
+Booleanish
+facebook
+figma
+gitlab
+instagram
+linkedin
+minmax
+trello
+wifi
+youtube

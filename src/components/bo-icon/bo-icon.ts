@@ -317,33 +317,33 @@ export enum BoIconVariant {
 
 export interface BoIconProps {
 	/** The unique ID for the icon */
-	id?: string
+	id?: string;
 	/** The data-test-id of the icon */
-	dataTestId?: string
+	dataTestId?: string;
 	/** The icon to display */
-	icon: Icon
+	icon: Icon;
 	/** The size of the icon (in px)*/
-	size?: number
+	size?: number;
 	/** The color of the icon defined by the enum BoIconColor */
-	variant?: BoIconVariant
+	variant?: BoIconVariant;
 	/** The color of the icon */
-	customColor?: string
+	customColor?: string;
 	/** Custom css class passed to the root element */
-	customCssClass?: string
+	customCssClass?: string;
 	/** cursor type of the element. This must be a valid cursor value. */
-	cursor?: string
+	cursor?: string;
 	/** The accessible title of the icon. */
-	title?: string
+	title?: string;
 	/** The accessibility role of the icon. */
-	role?: string
+	role?: string;
 	/**
 	 * Whether the icon is decorative which means that the icon is not
 	 * a part of the UI and is only used to convey information.
 	 */
-	decorative?: boolean
+	decorative?: boolean;
 }
 
 export const svgPromiseRecord = import.meta.glob('@/assets/icons/**/*.svg', {
 	query: '?raw',
 	import: 'default',
-}) as Record<string, () => Promise<string>>
+}) as Record<string, () => Promise<string>>;

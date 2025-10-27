@@ -1,14 +1,16 @@
-let instance: ColorService | null = null
+import type { CSSProperties } from 'vue';
+
+let instance: ColorService | null = null;
 
 export class ColorService {
 	static get instance(): ColorService {
 		if (!instance) {
-			instance = new ColorService()
+			instance = new ColorService();
 		}
-		return instance
+		return instance;
 	}
 
-	private readonly TEXT_REPLACE_PLACEHOLDER = '__BLANK__'
+	private readonly TEXT_REPLACE_PLACEHOLDER = '__BLANK__';
 
 	private readonly UNKNOWN_COLOR_WARNING = [
 		`The custom color "__BLANK__" is not a valid color definition.`,
@@ -18,9 +20,9 @@ export class ColorService {
 		'\t- an rgb color (e.g. rgb(255, 0, 0))',
 		'\t- an rgba color (e.g. rgba(255, 0, 0, 0.5))',
 		'The custom color will be ignored and currentColor will be used instead.',
-	].join('\n')
+	].join('\n');
 
-	getCustomColorStyle = (prop: string) => {
+	getCustomColorStyle(prop: string): CSSProperties {
 		if (
 			prop.startsWith('var') ||
 			prop.startsWith('#') ||
@@ -30,23 +32,23 @@ export class ColorService {
 		) {
 			return {
 				color: prop,
-			}
+			};
 		} else if (prop.startsWith('--')) {
 			/** CSS variable */
 			return {
 				color: `var(${prop})`,
-			}
+			};
 		} else if (prop?.length === 6) {
 			/** Hex color without the leading # */
 			return {
 				color: `#${prop}`,
-			}
+			};
 		} else {
-			console.warn(this.UNKNOWN_COLOR_WARNING.replace(this.TEXT_REPLACE_PLACEHOLDER, prop))
+			console.warn(this.UNKNOWN_COLOR_WARNING.replace(this.TEXT_REPLACE_PLACEHOLDER, prop));
 
 			return {
 				color: 'currentColor',
-			}
+			};
 		}
 	}
 }

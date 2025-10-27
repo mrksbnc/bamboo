@@ -20,63 +20,64 @@
 </template>
 
 <script lang="ts" setup>
-	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js'
-	import BoText from '@/components/bo-text/bo-text.vue'
-	import type { ConditionalCssProperties } from '@/core/css.js'
-	import { IdentityService } from '@/services/identity-service.js'
-	import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/index.js'
-	import { BoSize } from '@/shared/size.js'
-	import { computed, type StyleValue } from 'vue'
-	import { type BoLoaderRingProps } from './bo-loading-ring.js'
+	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js';
+	import BoText from '@/components/bo-text/bo-text.vue';
+	import type { ConditionalCssProperties } from '@/core/css.js';
+	import { IdentityService } from '@/services/identity-service.js';
+	import { BoLoaderTextPosition } from '@/shared/loader.js';
+	import { BoSize } from '@/shared/size.js';
+	import { BoVariant } from '@/shared/variant.js';
+	import { computed, type StyleValue } from 'vue';
+	import { type BoLoaderRingProps } from './bo-loading-ring.js';
 
 	const props = withDefaults(defineProps<BoLoaderRingProps>(), {
 		id: IdentityService.instance.getComponentId(),
 		dataTestId: IdentityService.instance.getDataTestId('bo-loader-ring'),
 		size: BoSize.default,
-		variant: BoLoaderVariant.primary,
+		variant: BoVariant.primary,
 		textPosition: BoLoaderTextPosition.after,
-	})
+	});
 
 	const boFontSize = computed<BoFontSize>(() => {
 		switch (props.size) {
 			case BoSize.extra_small:
-				return BoFontSize.xs
+				return BoFontSize.xs;
 			case BoSize.small:
-				return BoFontSize.sm
+				return BoFontSize.sm;
 			case BoSize.large:
-				return BoFontSize.xl
+				return BoFontSize.xl;
 			case BoSize.extra_large:
-				return BoFontSize['2xl']
+				return BoFontSize['2xl'];
 			case BoSize.default:
 			default:
-				return BoFontSize.lg
+				return BoFontSize.lg;
 		}
-	})
+	});
 
 	const containerClass = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-loader-ring': true,
 			[`bo-loader-ring__${props.textPosition}`]: true,
-		}
-	})
+		};
+	});
 
 	const ringClass = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-loader-ring__spinner': true,
 			[`bo-loader-ring__spinner__${props.size}`]: true,
 			[`bo-loader-ring__spinner__${props.variant}`]: true,
-		}
-	})
+		};
+	});
 
 	const ringStyle = computed<StyleValue>(() => {
 		if (props.customColor) {
 			return {
 				color: props.customColor,
-			}
+			};
 		}
 
-		return {}
-	})
+		return {};
+	});
 </script>
 
 <style scoped lang="scss">
@@ -109,7 +110,7 @@
 			transform: rotateZ(45deg);
 			perspective: 1000px;
 			border-radius: 50%;
-			color: currentColor;
+			color: currentcolor;
 
 			&__extra-small {
 				width: 0.625rem;
@@ -221,24 +222,31 @@
 		100% {
 			box-shadow: 0.2em 0 0 0 currentcolor;
 		}
+
 		12% {
 			box-shadow: 0.2em 0.2em 0 0 currentcolor;
 		}
+
 		25% {
 			box-shadow: 0 0.2em 0 0 currentcolor;
 		}
+
 		37% {
 			box-shadow: -0.2em 0.2em 0 0 currentcolor;
 		}
+
 		50% {
 			box-shadow: -0.2em 0 0 0 currentcolor;
 		}
+
 		62% {
 			box-shadow: -0.2em -0.2em 0 0 currentcolor;
 		}
+
 		75% {
 			box-shadow: 0 -0.2em 0 0 currentcolor;
 		}
+
 		87% {
 			box-shadow: 0.2em -0.2em 0 0 currentcolor;
 		}
