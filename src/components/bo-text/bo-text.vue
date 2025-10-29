@@ -16,11 +16,12 @@
 </template>
 
 <script lang="ts" setup>
-	import type { ConditionalCssProperties } from '@/core'
-	import { ColorService } from '@/services'
-	import { IdentityService } from '@/services/identity-service.js'
-	import { AriaLive } from '@/shared/accessibility'
-	import { computed, type CSSProperties, type StyleValue } from 'vue'
+	import type { ConditionalCssProperties } from '@/core';
+	import { ColorService } from '@/services';
+	import { IdentityService } from '@/services/identity-service.js';
+	import { AriaLive } from '@/shared/accessibility';
+	import { computed, type CSSProperties, type StyleValue } from 'vue';
+
 	import {
 		BoFontFamily,
 		BoFontSize,
@@ -29,7 +30,7 @@
 		BoTextTransform,
 		BoTextVariant,
 		BoTextWhiteSpace,
-	} from './bo-text'
+	} from './bo-text';
 
 	const props = withDefaults(defineProps<BoTextProps>(), {
 		id: IdentityService.instance.getComponentId(),
@@ -43,10 +44,10 @@
 		textTransform: () => BoTextTransform.none,
 		whiteSpace: () => BoTextWhiteSpace.normal,
 		ariaLive: () => AriaLive.polite,
-	})
+	});
 
-	const ariaLabel = computed<string>(() => props.ariaLabel || props.value)
-	const role = computed<string>(() => props.role ?? 'text')
+	const ariaLabel = computed<string>(() => props.ariaLabel || props.value);
+	const role = computed<string>(() => props.role ?? 'text');
 
 	const processedValue = computed<string>(() => {
 		switch (props.textTransform) {
@@ -56,43 +57,43 @@
 				 * that the word boundary isn't crossed.
 				 * \g is used to replace all occurrences of the matched characters not just the first occurrence.
 				 */
-				return props.value.replace(/\b\w/g, (char) => char.toUpperCase())
+				return props.value.replace(/\b\w/g, (char) => char.toUpperCase());
 			case BoTextTransform.uppercase:
-				return props.value.toUpperCase()
+				return props.value.toUpperCase();
 			case BoTextTransform.lowercase:
-				return props.value.toLowerCase()
+				return props.value.toLowerCase();
 			case BoTextTransform.none:
 			default:
-				return props.value
+				return props.value;
 		}
-	})
+	});
 
 	const textColor = computed<CSSProperties>(() => {
 		if (props.customColor) {
-			return ColorService.instance.getCustomColorStyle(props.customColor)
+			return ColorService.instance.getCustomColorStyle(props.customColor);
 		}
 
 		// Don't set color here - let CSS variants handle it
-		return {}
-	})
+		return {};
+	});
 
 	const cursor = computed<CSSProperties>(() => {
 		if (props.cursor) {
 			return {
 				cursor: props.cursor,
-			}
+			};
 		}
 
 		if (props.clickable) {
 			return {
 				cursor: 'pointer',
-			}
+			};
 		}
 
 		return {
 			cursor: 'default',
-		}
-	})
+		};
+	});
 
 	const maxLines = computed<CSSProperties>(() => {
 		if (typeof props.maxLines === 'number') {
@@ -102,21 +103,21 @@
 				textOverflow: 'ellipsis',
 				WebkitBoxOrient: 'vertical',
 				WebkitLineClamp: props.maxLines,
-			}
+			};
 		}
 
-		return {}
-	})
+		return {};
+	});
 
 	const boTextStyle = computed<StyleValue>(() => {
 		const style: StyleValue = {
 			...textColor.value,
 			...maxLines.value,
 			...cursor.value,
-		}
+		};
 
-		return style
-	})
+		return style;
+	});
 
 	const componentBaseClasses = computed<ConditionalCssProperties>(() => {
 		return {
@@ -128,8 +129,8 @@
 			[`bo-text__whitespace--${props.whiteSpace}`]: true,
 			[`bo-text__font-family--${props.fontFamily}`]: true,
 			[`bo-text__transform--${props.textTransform}`]: true,
-		}
-	})
+		};
+	});
 </script>
 
 <style scoped lang="scss">
@@ -142,7 +143,7 @@
 		vertical-align: middle;
 
 		&__variant--default {
-			color: currentColor;
+			color: currentcolor;
 		}
 
 		&__variant--primary {
@@ -178,7 +179,7 @@
 		}
 
 		&__variant--current {
-			color: currentColor;
+			color: currentcolor;
 		}
 
 		&__variant--inherit {
@@ -329,7 +330,7 @@
 			}
 
 			&--serif {
-				font-family: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif";
+				font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
 			}
 
 			&--inherit {

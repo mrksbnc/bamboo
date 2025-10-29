@@ -20,64 +20,65 @@
 </template>
 
 <script lang="ts" setup>
-	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js'
-	import BoText from '@/components/bo-text/bo-text.vue'
-	import type { ConditionalCssProperties } from '@/core/css.js'
-	import { IdentityService } from '@/services/identity-service.js'
-	import { BoLoaderTextPosition, BoLoaderVariant } from '@/shared/index.js'
-	import { BoSize } from '@/shared/size.js'
-	import { computed, type StyleValue } from 'vue'
-	import { type BoLoadingSpinnerProps } from './bo-loading-spinner.js'
+	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js';
+	import BoText from '@/components/bo-text/bo-text.vue';
+	import type { ConditionalCssProperties } from '@/core/css.js';
+	import { IdentityService } from '@/services/identity-service.js';
+	import { BoLoaderTextPosition } from '@/shared/index.js';
+	import { BoSize } from '@/shared/size.js';
+	import { BoVariant } from '@/shared/variant.js';
+	import { computed, type StyleValue } from 'vue';
+	import { type BoLoadingSpinnerProps } from './bo-loading-spinner.js';
 
 	const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 		id: IdentityService.instance.getComponentId(),
 		dataTestId: IdentityService.instance.getDataTestId('bo-loading-spinner'),
 		size: BoSize.default,
-		variant: BoLoaderVariant.primary,
+		variant: BoVariant.primary,
 		textPosition: BoLoaderTextPosition.after,
-	})
+	});
 
 	const boFontSize = computed<BoFontSize>(() => {
 		switch (props.size) {
 			case BoSize.extra_small:
-				return BoFontSize.xs
+				return BoFontSize.xs;
 			case BoSize.small:
-				return BoFontSize.sm
+				return BoFontSize.sm;
 			case BoSize.large:
-				return BoFontSize.xl
+				return BoFontSize.xl;
 			case BoSize.extra_large:
-				return BoFontSize['2xl']
+				return BoFontSize['2xl'];
 			case BoSize.default:
 			default:
-				return BoFontSize.lg
+				return BoFontSize.lg;
 		}
-	})
+	});
 
 	const containerClass = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-loader': true,
 			[`bo-loader__${props.textPosition}`]: true,
-		}
-	})
+		};
+	});
 
 	const spinnerClass = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-loader__spinner': true,
 			[`bo-loader__spinner__${props.size}`]: true,
 			[`bo-loader__spinner__${props.variant}`]: true,
-		}
-	})
+		};
+	});
 
 	const spinnerStyle = computed<StyleValue>(() => {
 		if (props.customColor) {
 			return {
 				'border-color': props.customColor,
 				'border-bottom-color': 'transparent',
-			}
+			};
 		}
 
-		return {}
-	})
+		return {};
+	});
 </script>
 
 <style scoped lang="scss">
@@ -177,6 +178,7 @@
 		0% {
 			transform: rotate(0deg);
 		}
+
 		100% {
 			transform: rotate(360deg);
 		}
