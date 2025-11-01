@@ -6,7 +6,8 @@ title: bo-loading-spinner
 import { BoLoadingSpinner } from "@/components/bo-loading-spinner";
 import { AriaLive } from "@/shared/accessibility";
 import { BoSize } from "@/shared/size";
-import { BoLoaderVariant, BoLoaderTextPosition } from "@/shared/loader"
+import { BoLoaderTextPosition } from "@/shared/loader"
+import { BoVariant } from "@/shared/variant"
 </script>
 
 # bo-loading-spinner
@@ -32,7 +33,7 @@ import { BoLoaderVariant, BoLoaderTextPosition } from "@/shared/loader"
 | `id`                      | `string`               | Unique identifier for the root element.                            |
 | `dataTestId`              | `string`               | Deterministic data test id for end-to-end tests.                   |
 | `size`                    | `BoSize`               | The visual size of the spinner.                                    |
-| `variant`                 | `BoLoaderVariant`      | Predefined color palette for the spinner.                          |
+| `variant`                 | `BoVariant`            | Predefined color palette for the spinner.                          |
 | `customColor`             | `string`               | Custom CSS color for the spinner (hex, rgb(a), oklch, or CSS var). |
 | `loaderText`              | `string`               | Optional text describing the loading state.                        |
 | `textPosition`            | `BoLoaderTextPosition` | Placement of the text relative to the spinner.                     |
@@ -67,23 +68,23 @@ The spinner supports the same sizing scale as the rest of the design system via 
 Use `variant` to switch between predefined color palettes. For custom brand colors, pass a valid CSS color string to `customColor`.
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-  <bo-loading-spinner :variant="BoLoaderVariant.primary" loader-text="primary" />
-  <bo-loading-spinner :variant="BoLoaderVariant.secondary" loader-text="secondary" />
-  <bo-loading-spinner :variant="BoLoaderVariant.success" loader-text="success" />
-  <bo-loading-spinner :variant="BoLoaderVariant.warning" loader-text="warning" />
-  <bo-loading-spinner :variant="BoLoaderVariant.danger" loader-text="danger" />
-  <bo-loading-spinner :variant="BoLoaderVariant.dark" loader-text="dark" />
-  <bo-loading-spinner :variant="BoLoaderVariant.light" loader-text="light" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
+  <bo-loading-spinner :variant="BoVariant.primary" loader-text="primary" />
+  <bo-loading-spinner :variant="BoVariant.secondary" loader-text="secondary" />
+  <bo-loading-spinner :variant="BoVariant.success" loader-text="success" />
+  <bo-loading-spinner :variant="BoVariant.warning" loader-text="warning" />
+  <bo-loading-spinner :variant="BoVariant.danger" loader-text="danger" />
+  <bo-loading-spinner :variant="BoVariant.dark" loader-text="dark" />
+  <bo-loading-spinner :variant="BoVariant.light" loader-text="light" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
 </div>
 
 ```vue
-<bo-loading-spinner :variant="BoLoaderVariant.primary" loader-text="primary" />
-<bo-loading-spinner :variant="BoLoaderVariant.secondary" loader-text="secondary" />
-<bo-loading-spinner :variant="BoLoaderVariant.success" loader-text="success" />
-<bo-loading-spinner :variant="BoLoaderVariant.warning" loader-text="warning" />
-<bo-loading-spinner :variant="BoLoaderVariant.danger" loader-text="danger" />
-<bo-loading-spinner :variant="BoLoaderVariant.dark" loader-text="dark" />
-<bo-loading-spinner :variant="BoLoaderVariant.light" loader-text="light" />
+<bo-loading-spinner :variant="BoVariant.primary" loader-text="primary" />
+<bo-loading-spinner :variant="BoVariant.secondary" loader-text="secondary" />
+<bo-loading-spinner :variant="BoVariant.success" loader-text="success" />
+<bo-loading-spinner :variant="BoVariant.warning" loader-text="warning" />
+<bo-loading-spinner :variant="BoVariant.danger" loader-text="danger" />
+<bo-loading-spinner :variant="BoVariant.dark" loader-text="dark" />
+<bo-loading-spinner :variant="BoVariant.light" loader-text="light" />
 ```
 
 ## Text positions
@@ -148,18 +149,18 @@ You can customize the color of the ring by passing a valid CSS color value to th
 
 ```ts [bo-loading-spinner.ts]
 export interface BoLoadingSpinnerProps {
-	id?: string
-	dataTestId?: string
-	size?: BoSize
-	variant?: BoLoaderVariant
-	customColor?: string
-	loaderText?: string
-	textPosition?: BoLoaderTextPosition
-	ariaLive?: AriaLive
-	ariaLabel?: string
-	ariaBusy?: boolean
-	customContainerCssClass?: string
-	customSpinnerCssClass?: string
+	id?: string;
+	dataTestId?: string;
+	size?: BoSize;
+	variant?: BoVariant;
+	customColor?: string;
+	loaderText?: string;
+	textPosition?: BoLoaderTextPosition;
+	ariaLive?: AriaLive;
+	ariaLabel?: string;
+	ariaBusy?: boolean;
+	customContainerCssClass?: string;
+	customSpinnerCssClass?: string;
 }
 ```
 
@@ -172,7 +173,7 @@ export enum AriaLive {
 ```
 
 ```ts [shared/loader.ts]
-export enum BoLoaderVariant {
+export enum BoVariant {
 	primary = 'primary',
 	secondary = 'secondary',
 	success = 'success',
