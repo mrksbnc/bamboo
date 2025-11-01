@@ -6,7 +6,8 @@ title: bo-loading-ring
 import { BoLoadingRing } from "@/components/bo-loading-ring";
 import { AriaLive } from "@/shared/accessibility";
 import { BoSize } from "@/shared/size";
-import { BoLoaderVariant, BoLoaderTextPosition } from "@/shared/loader"
+import { BoLoaderTextPosition } from "@/shared/loader"
+import { BoVariant } from "@/shared/variant"
 </script>
 
 # bo-loading-ring
@@ -32,7 +33,7 @@ import { BoLoaderVariant, BoLoaderTextPosition } from "@/shared/loader"
 | `id`                      | `string`               | Unique identifier for the loader ring container.                |
 | `dataTestId`              | `string`               | Deterministic data test id for end-to-end tests.                |
 | `size`                    | `BoSize`               | The visual size of the ring.                                    |
-| `variant`                 | `BoLoaderVariant`      | Predefined color palette for the ring.                          |
+| `variant`                 | `BoVariant`            | Predefined color palette for the ring.                          |
 | `customColor`             | `string`               | Custom CSS color for the ring (hex, rgb(a), oklch, or CSS var). |
 | `loaderText`              | `string`               | Optional text describing the loading state.                     |
 | `textPosition`            | `BoLoaderTextPosition` | Placement of the text relative to the ring.                     |
@@ -67,23 +68,23 @@ The ring supports the same sizing scale as the rest of the design system via `Bo
 Use `variant` to switch between predefined color palettes. For custom brand colors, pass a valid CSS color string to `customColor`.
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-  <bo-loading-ring :variant="BoLoaderVariant.primary" loader-text="primary" />
-  <bo-loading-ring :variant="BoLoaderVariant.secondary" loader-text="secondary" />
-  <bo-loading-ring :variant="BoLoaderVariant.success" loader-text="success" />
-  <bo-loading-ring :variant="BoLoaderVariant.warning" loader-text="warning" />
-  <bo-loading-ring :variant="BoLoaderVariant.danger" loader-text="danger" />
-  <bo-loading-ring :variant="BoLoaderVariant.dark" loader-text="dark" />
-  <bo-loading-ring :variant="BoLoaderVariant.light" loader-text="light" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
+  <bo-loading-ring :variant="BoVariant.primary" loader-text="primary" />
+  <bo-loading-ring :variant="BoVariant.secondary" loader-text="secondary" />
+  <bo-loading-ring :variant="BoVariant.success" loader-text="success" />
+  <bo-loading-ring :variant="BoVariant.warning" loader-text="warning" />
+  <bo-loading-ring :variant="BoVariant.danger" loader-text="danger" />
+  <bo-loading-ring :variant="BoVariant.dark" loader-text="dark" />
+  <bo-loading-ring :variant="BoVariant.light" loader-text="light" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
 </div>
 
 ```vue
-<bo-loading-ring :variant="BoLoaderVariant.primary" loader-text="primary" />
-<bo-loading-ring :variant="BoLoaderVariant.secondary" loader-text="secondary" />
-<bo-loading-ring :variant="BoLoaderVariant.success" loader-text="success" />
-<bo-loading-ring :variant="BoLoaderVariant.warning" loader-text="warning" />
-<bo-loading-ring :variant="BoLoaderVariant.danger" loader-text="danger" />
-<bo-loading-ring :variant="BoLoaderVariant.dark" loader-text="dark" />
-<bo-loading-ring :variant="BoLoaderVariant.light" loader-text="light" />
+<bo-loading-ring :variant="BoVariant.primary" loader-text="primary" />
+<bo-loading-ring :variant="BoVariant.secondary" loader-text="secondary" />
+<bo-loading-ring :variant="BoVariant.success" loader-text="success" />
+<bo-loading-ring :variant="BoVariant.warning" loader-text="warning" />
+<bo-loading-ring :variant="BoVariant.danger" loader-text="danger" />
+<bo-loading-ring :variant="BoVariant.dark" loader-text="dark" />
+<bo-loading-ring :variant="BoVariant.light" loader-text="light" />
 ```
 
 ## Text positions
@@ -150,29 +151,29 @@ You can customize the color of the ring by passing a valid CSS color value to th
 ```ts [bo-loading-ring.ts]
 export interface BoLoaderRingProps {
 	/** Unique id for the loader ring */
-	id?: string
+	id?: string;
 	/** Unique data-test-id for the loader ring container */
-	dataTestId?: string
+	dataTestId?: string;
 	/** The size of the loader ring */
-	size?: BoSize
+	size?: BoSize;
 	/** Predefined color variant of the loader ring */
-	variant?: BoLoaderVariant
+	variant?: BoVariant;
 	/** Optional loader text to display */
-	loaderText?: string
+	loaderText?: string;
 	/** Position of the text relative to the loader ring */
-	textPosition?: BoLoaderTextPosition
+	textPosition?: BoLoaderTextPosition;
 	/** Custom color of the loader ring in CSS compatible format */
-	customColor?: string
+	customColor?: string;
 	/** Accessibility live region politeness setting */
-	ariaLive?: AriaLive
+	ariaLive?: AriaLive;
 	/** Accessible label describing the loader ring state */
-	ariaLabel?: string
+	ariaLabel?: string;
 	/** Mark the region as busy while the loader ring is visible */
-	ariaBusy?: boolean
+	ariaBusy?: boolean;
 	/** Optional custom classes appended to the loader ring wrapper */
-	customContainerCssClass?: string
+	customContainerCssClass?: string;
 	/** Optional custom classes appended to the loader ring element */
-	customRingClass?: string
+	customRingClass?: string;
 }
 ```
 
@@ -185,7 +186,7 @@ export enum AriaLive {
 ```
 
 ```ts [shared/loader.ts]
-export enum BoLoaderVariant {
+export enum BoVariant {
 	primary = 'primary',
 	secondary = 'secondary',
 	success = 'success',
