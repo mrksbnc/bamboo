@@ -1,10 +1,12 @@
-import { globalIgnores } from 'eslint/config';
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
-import pluginVue from 'eslint-plugin-vue';
-import pluginVitest from '@vitest/eslint-plugin';
-// @ts-expect-error -- No types available
-import pluginOxlint from 'eslint-plugin-oxlint';
-import skipFormatting from '@vue/eslint-config-prettier/skip-formatting';
+import { globalIgnores } from "eslint/config";
+import {
+  defineConfigWithVueTs,
+  vueTsConfigs,
+} from "@vue/eslint-config-typescript";
+import pluginVue from "eslint-plugin-vue";
+import pluginVitest from "@vitest/eslint-plugin";
+import pluginOxlint from "eslint-plugin-oxlint";
+import skipFormatting from "@vue/eslint-config-prettier/skip-formatting";
 
 // To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
 // import { configureVueProject } from '@vue/eslint-config-typescript'
@@ -12,27 +14,27 @@ import skipFormatting from '@vue/eslint-config-prettier/skip-formatting';
 // More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
 export default defineConfigWithVueTs(
-	{
-		name: 'app/files-to-lint',
-		files: ['**/*.{ts,mts,tsx,vue}'],
-	},
+  {
+    name: "app/files-to-lint",
+    files: ["**/*.{ts,mts,tsx,vue}"],
+  },
 
-	globalIgnores([
-		'**/dist/**',
-		'**/dist-ssr/**',
-		'**/coverage/**',
-		'**/node_modules/**',
-		'**/.vitepress/cache/**',
-		'**/docs/.vitepress/**',
-	]),
+  globalIgnores([
+    "**/dist/**",
+    "**/dist-ssr/**",
+    "**/coverage/**",
+    "**/node_modules/**",
+    "**/.vitepress/cache/**",
+    "**/docs/.vitepress/**",
+  ]),
 
-	pluginVue.configs['flat/essential'],
-	vueTsConfigs.recommended,
+  pluginVue.configs["flat/essential"],
+  vueTsConfigs.recommended,
 
-	{
-		...pluginVitest.configs.recommended,
-		files: ['src/**/__tests__/*'],
-	},
-	...pluginOxlint.configs['flat/recommended'],
-	skipFormatting,
+  {
+    ...pluginVitest.configs.recommended,
+    files: ["src/**/__tests__/*"],
+  },
+  ...pluginOxlint.configs["flat/recommended"],
+  skipFormatting,
 );
