@@ -57,15 +57,15 @@
 	const containerClass = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-loader-ring': true,
-			[`bo-loader-ring__${props.textPosition}`]: true,
+			[`bo-loader-ring--${props.textPosition}`]: true,
 		};
 	});
 
 	const ringClass = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-loader-ring__spinner': true,
-			[`bo-loader-ring__spinner__${props.size}`]: true,
-			[`bo-loader-ring__spinner__${props.variant}`]: true,
+			[`bo-loader-ring__spinner--${props.size}`]: true,
+			[`bo-loader-ring__spinner--${props.variant}`]: true,
 		};
 	});
 
@@ -88,19 +88,19 @@
 		max-width: fit-content;
 		justify-content: center;
 
-		&__top {
+		&--top {
 			flex-direction: column;
 		}
 
-		&__bottom {
+		&--bottom {
 			flex-direction: column-reverse;
 		}
 
-		&__before {
+		&--before {
 			flex-direction: row-reverse;
 		}
 
-		&__after {
+		&--after {
 			flex-direction: row;
 		}
 
@@ -112,58 +112,58 @@
 			border-radius: 50%;
 			color: currentcolor;
 
-			&__extra-small {
-				width: 0.625rem;
-				height: 0.625rem;
+			&--extra-small {
+				width: var(--size-xs);
+				height: var(--size-xs);
 
 				&::before,
 				&::after {
-					width: 0.625rem;
-					height: 0.625rem;
+					width: var(--size-xs);
+					height: var(--size-xs);
 				}
 			}
 
-			&__small {
-				width: 0.75rem;
-				height: 0.75rem;
+			&--small {
+				width: var(--size-sm);
+				height: var(--size-sm);
 
 				&::before,
 				&::after {
-					width: 0.75rem;
-					height: 0.75rem;
+					width: var(--size-sm);
+					height: var(--size-sm);
 				}
 			}
 
-			&__default {
-				width: 1rem;
-				height: 1rem;
+			&--default {
+				width: var(--size-md);
+				height: var(--size-md);
 
 				&::before,
 				&::after {
-					width: 1rem;
-					height: 1rem;
+					width: var(--size-md);
+					height: var(--size-md);
 				}
 			}
 
-			&__large {
-				width: 1.125rem;
-				height: 1.125rem;
+			&--large {
+				width: var(--size-lg);
+				height: var(--size-lg);
 
 				&::before,
 				&::after {
-					width: 1.125rem;
-					height: 1.125rem;
+					width: var(--size-lg);
+					height: var(--size-lg);
 				}
 			}
 
-			&__extra-large {
-				width: 1.25rem;
-				height: 1.25rem;
+			&--extra-large {
+				width: var(--size-xl);
+				height: var(--size-xl);
 
 				&::before,
 				&::after {
-					width: 1.25rem;
-					height: 1.25rem;
+					width: var(--size-xl);
+					height: var(--size-xl);
 				}
 			}
 
@@ -187,31 +187,31 @@
 				animation-delay: 0.4s;
 			}
 
-			&__primary {
+			&--primary {
 				color: var(--blue-600);
 			}
 
-			&__secondary {
+			&--secondary {
 				color: var(--gray-400);
 			}
 
-			&__success {
+			&--success {
 				color: var(--green-600);
 			}
 
-			&__warning {
+			&--warning {
 				color: var(--yellow-600);
 			}
 
-			&__danger {
+			&--danger {
 				color: var(--red-600);
 			}
 
-			&__dark {
+			&--dark {
 				color: var(--gray-800);
 			}
 
-			&__light {
+			&--light {
 				color: var(--neutral-50);
 			}
 		}

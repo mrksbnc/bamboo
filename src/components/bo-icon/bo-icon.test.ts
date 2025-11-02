@@ -34,7 +34,6 @@ describe('BoIcon', () => {
 		await new Promise((resolve) => setTimeout(resolve, 100));
 
 		expect(wrapper.find('i').exists()).toBe(true);
-		expect(wrapper.classes().join(' ').includes('bo-icon__size--32')).toBe(true);
 		expect(wrapper.classes().join(' ').includes('bo-icon__variant--primary')).toBe(true);
 		expect(wrapper.classes().join(' ').includes('my-custom-class')).toBe(true);
 		expect(wrapper.attributes('style')).toContain('color: rgb(255, 0, 0)');
@@ -199,7 +198,7 @@ describe('BoIcon', () => {
 		}
 	});
 
-	test('should apply correct size', async () => {
+	test('should apply correct size via inline styles', async () => {
 		const sizes = [16, 24, 32, 48, 64, 96, 128, 256];
 
 		for (const size of sizes) {
@@ -214,7 +213,8 @@ describe('BoIcon', () => {
 			await wrapper.vm.$nextTick();
 			await new Promise((resolve) => setTimeout(resolve, 100));
 
-			expect(wrapper.classes().join(' ').includes(`bo-icon__size--${size}`)).toBe(true);
+			expect(wrapper.attributes('style')).toContain(`width: ${size}px`);
+			expect(wrapper.attributes('style')).toContain(`height: ${size}px`);
 		}
 	});
 

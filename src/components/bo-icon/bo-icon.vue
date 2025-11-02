@@ -105,7 +105,6 @@
 	const componentBaseClasses = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-icon': true,
-			[`bo-icon__size--${props.size}`]: true,
 			[`bo-icon__variant--${props.variant}`]: true,
 		};
 	});

@@ -35,13 +35,13 @@ describe('bo-loading-ring', () => {
 				const wrapper = mount(BoLoadingRing, {
 					props: { size },
 				});
-				expect(wrapper.find(`.bo-loader-ring__spinner__${size}`).exists()).toBe(true);
+				expect(wrapper.find(`.bo-loader-ring__spinner--${size}`).exists()).toBe(true);
 			},
 		);
 
 		it('should default to BoSize.default', () => {
 			const wrapper = mount(BoLoadingRing);
-			expect(wrapper.find('.bo-loader-ring__spinner__default').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader-ring__spinner--default').exists()).toBe(true);
 		});
 	});
 
@@ -50,12 +50,12 @@ describe('bo-loading-ring', () => {
 			const wrapper = mount(BoLoadingRing, {
 				props: { variant },
 			});
-			expect(wrapper.find(`.bo-loader-ring__spinner__${variant}`).exists()).toBe(true);
+			expect(wrapper.find(`.bo-loader-ring__spinner--${variant}`).exists()).toBe(true);
 		});
 
 		it('should default to BoVariant.primary', () => {
 			const wrapper = mount(BoLoadingRing);
-			expect(wrapper.find('.bo-loader-ring__spinner__primary').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader-ring__spinner--primary').exists()).toBe(true);
 		});
 	});
 
@@ -66,13 +66,13 @@ describe('bo-loading-ring', () => {
 				const wrapper = mount(BoLoadingRing, {
 					props: { textPosition: position },
 				});
-				expect(wrapper.find(`.bo-loader-ring__${position}`).exists()).toBe(true);
+				expect(wrapper.find(`.bo-loader-ring--${position}`).exists()).toBe(true);
 			},
 		);
 
 		it('should default to BoLoaderTextPosition.after', () => {
 			const wrapper = mount(BoLoadingRing);
-			expect(wrapper.find('.bo-loader-ring__after').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader-ring--after').exists()).toBe(true);
 		});
 	});
 
@@ -244,9 +244,9 @@ describe('bo-loading-ring', () => {
 
 			expect(wrapper.attributes('id')).toBe('loader-1');
 			expect(wrapper.attributes('data-testid')).toBe('loader-test-1');
-			expect(wrapper.find('.bo-loader-ring__spinner__large').exists()).toBe(true);
-			expect(wrapper.find('.bo-loader-ring__spinner__success').exists()).toBe(true);
-			expect(wrapper.find('.bo-loader-ring__top').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader-ring__spinner--large').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader-ring__spinner--success').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader-ring--top').exists()).toBe(true);
 			expect(wrapper.find('.my-container').exists()).toBe(true);
 			expect(wrapper.find('.my-ring').exists()).toBe(true);
 			expect(wrapper.attributes('aria-label')).toBe('Please wait');
