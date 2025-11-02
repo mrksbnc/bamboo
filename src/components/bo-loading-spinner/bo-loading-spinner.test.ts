@@ -33,12 +33,12 @@ describe('bo-loading-spinner', () => {
 			const wrapper = mount(BoLoadingSpinner, {
 				props: { size },
 			});
-			expect(wrapper.find(`.bo-loader__spinner__${size}`).exists()).toBe(true);
+			expect(wrapper.find(`.bo-loader__spinner--${size}`).exists()).toBe(true);
 		});
 
 		it('should default to BoSize.default if no size is provided', () => {
 			const wrapper = mount(BoLoadingSpinner);
-			expect(wrapper.find('.bo-loader__spinner__default').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader__spinner--default').exists()).toBe(true);
 		});
 	});
 
@@ -47,12 +47,12 @@ describe('bo-loading-spinner', () => {
 			const wrapper = mount(BoLoadingSpinner, {
 				props: { variant },
 			});
-			expect(wrapper.find(`.bo-loader__spinner__${variant}`).exists()).toBe(true);
+			expect(wrapper.find(`.bo-loader__spinner--${variant}`).exists()).toBe(true);
 		});
 
 		it('should default to BoVariant.primary if no variant is provided', () => {
 			const wrapper = mount(BoLoadingSpinner);
-			expect(wrapper.find('.bo-loader__spinner__primary').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader__spinner--primary').exists()).toBe(true);
 		});
 	});
 
@@ -63,13 +63,13 @@ describe('bo-loading-spinner', () => {
 				const wrapper = mount(BoLoadingSpinner, {
 					props: { textPosition: position },
 				});
-				expect(wrapper.find(`.bo-loader__${position}`).exists()).toBe(true);
+				expect(wrapper.find(`.bo-loader--${position}`).exists()).toBe(true);
 			},
 		);
 
 		it('should default to BoLoaderTextPosition.after if no textPosition is provided', () => {
 			const wrapper = mount(BoLoadingSpinner);
-			expect(wrapper.find('.bo-loader__after').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader--after').exists()).toBe(true);
 		});
 	});
 
@@ -99,24 +99,24 @@ describe('bo-loading-spinner', () => {
 	});
 
 	describe('custom loader color', () => {
-		it('should apply custom color to border-color style', () => {
+		it('should apply custom color to border-bottom-color style', () => {
 			const customColor = '#ff0000';
 			const wrapper = mount(BoLoadingSpinner, {
 				props: { customColor },
 			});
 			const spinner = wrapper.find('.bo-loader__spinner');
 			const style = spinner.attributes('style');
-			expect(style).toContain(`border-color: rgb(255, 0, 0) rgb(255, 0, 0) transparent;`);
+			expect(style).toContain(`border-bottom-color: rgb(255, 0, 0);`);
 		});
 
-		it('should set border-bottom-color to transparent when customColor is provided', () => {
+		it('should set border-bottom-color when customColor is provided', () => {
 			const customColor = '#ff0000';
 			const wrapper = mount(BoLoadingSpinner, {
 				props: { customColor },
 			});
 			const spinner = wrapper.find('.bo-loader__spinner');
 			const style = spinner.attributes('style');
-			expect(style).toContain('border-color: rgb(255, 0, 0) rgb(255, 0, 0) transparent;');
+			expect(style).toContain('border-bottom-color: rgb(255, 0, 0);');
 		});
 
 		it('should not apply color style when customColor is not provided', () => {
@@ -260,9 +260,9 @@ describe('bo-loading-spinner', () => {
 
 			expect(wrapper.attributes('id')).toBe('spinner-1');
 			expect(wrapper.attributes('data-testid')).toBe('spinner-test-1');
-			expect(wrapper.find('.bo-loader__spinner__large').exists()).toBe(true);
-			expect(wrapper.find('.bo-loader__spinner__success').exists()).toBe(true);
-			expect(wrapper.find('.bo-loader__top').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader__spinner--large').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader__spinner--success').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader--top').exists()).toBe(true);
 			expect(wrapper.find('.my-container').exists()).toBe(true);
 			expect(wrapper.find('.my-spinner').exists()).toBe(true);
 			expect(wrapper.attributes('aria-label')).toBe('Please wait');
