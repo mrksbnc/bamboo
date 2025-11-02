@@ -308,4 +308,24 @@ html {
 
 	/** White */
 	--white: #fff;
+
+	/* 12px */
+	--size-xs: 0.75rem;
+
+	/* 16px */
+	--size-sm: 1rem;
+
+	/* 20px */
+	--size-md: 1.25rem;
+
+	/* 24px */
+	--size-lg: 1.5rem;
+
+	/* 32px */
+	--size-xl: 2rem;
+	--bo-lib-text-color: var(--neutral-800);
+}
+
+[data-theme='dark'] {
+	--bo-lib-text-color: var(--neutral-50);
 }
