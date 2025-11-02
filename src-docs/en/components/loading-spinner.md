@@ -73,7 +73,7 @@ Use `variant` to switch between predefined color palettes. For custom brand colo
   <bo-loading-spinner :variant="BoVariant.success" loader-text="success" />
   <bo-loading-spinner :variant="BoVariant.warning" loader-text="warning" />
   <bo-loading-spinner :variant="BoVariant.danger" loader-text="danger" />
-  <bo-loading-spinner :variant="BoVariant.dark" loader-text="dark" />
+  <bo-loading-spinner :variant="BoVariant.dark" loader-text="dark" style="background-color: var(--neutral-100); padding: 0.5rem; border-radius: 0.5rem;"/>
   <bo-loading-spinner :variant="BoVariant.light" loader-text="light" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
 </div>
 
@@ -124,7 +124,7 @@ Provide richer markup via the default slot. The slot replaces the `loaderText` p
 You can customize the color of the ring by passing a valid CSS color value to the `customColor` prop.
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-  <bo-loading-spinner custom-color="--teal-500" loader-text="CSS Variable" />
+  <bo-loading-spinner custom-color="var(--teal-500)" loader-text="CSS Variable" />
   <bo-loading-spinner custom-color="#ff6b6b" loader-text="Hex Color" />
   <bo-loading-spinner custom-color="rgb(255, 107, 107)" loader-text="RGB Color" />
   <bo-loading-spinner custom-color="oklch(0.7 0.15 180)" loader-text="OKLCH Color" />

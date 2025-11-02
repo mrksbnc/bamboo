@@ -57,23 +57,22 @@
 	const containerClass = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-loader': true,
-			[`bo-loader__${props.textPosition}`]: true,
+			[`bo-loader--${props.textPosition}`]: true,
 		};
 	});
 
 	const spinnerClass = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-loader__spinner': true,
-			[`bo-loader__spinner__${props.size}`]: true,
-			[`bo-loader__spinner__${props.variant}`]: true,
+			[`bo-loader__spinner--${props.size}`]: true,
+			[`bo-loader__spinner--${props.variant}`]: true,
 		};
 	});
 
 	const spinnerStyle = computed<StyleValue>(() => {
 		if (props.customColor) {
 			return {
-				'border-color': props.customColor,
-				'border-bottom-color': 'transparent',
+				'border-bottom-color': props.customColor,
 			};
 		}
 
@@ -84,97 +83,88 @@
 <style scoped lang="scss">
 	.bo-loader {
 		gap: 0.75rem;
-		display: flex;
 		align-items: center;
-		max-width: fit-content;
-		justify-content: center;
+		display: inline-flex;
 
-		&__top {
+		&--top {
 			flex-direction: column;
 		}
 
-		&__bottom {
+		&--bottom {
 			flex-direction: column-reverse;
 		}
 
-		&__before {
+		&--before {
 			flex-direction: row-reverse;
 		}
 
-		&__after {
+		&--after {
 			flex-direction: row;
 		}
 
 		&__spinner {
+			display: inline;
 			border-radius: 50%;
-			display: inline-block;
-			box-sizing: border-box;
-			border: 0.15rem solid;
-			animation: rotation 1s linear infinite;
+			border: 0.2rem solid;
+			border-color: transparent;
+			animation: bo-loader-rotation 1s linear infinite;
 
-			&__extra-small {
-				width: 0.625rem;
-				height: 0.625rem;
+			&--extra-small {
+				width: var(--size-xs);
+				height: var(--size-xs);
 			}
 
-			&__small {
-				width: 0.75rem;
-				height: 0.75rem;
+			&--small {
+				width: var(--size-sm);
+				height: var(--size-sm);
 			}
 
-			&__default {
-				width: 1rem;
-				height: 1rem;
+			&--default {
+				width: var(--size-md);
+				height: var(--size-md);
 			}
 
-			&__large {
-				width: 1.125rem;
-				height: 1.125rem;
+			&--large {
+				width: var(--size-lg);
+				height: var(--size-lg);
 			}
 
-			&__extra-large {
-				width: 1.25rem;
-				height: 1.25rem;
+			&--extra-large {
+				width: var(--size-xl);
+				height: var(--size-xl);
 			}
 
-			&__primary {
-				border-color: var(--blue-600);
-				border-bottom-color: transparent;
+			&--primary {
+				border-bottom-color: var(--blue-600);
 			}
 
-			&__secondary {
-				border-color: var(--gray-400);
-				border-bottom-color: transparent;
+			&--secondary {
+				border-bottom-color: var(--gray-400);
 			}
 
-			&__success {
-				border-color: var(--green-600);
-				border-bottom-color: transparent;
+			&--success {
+				border-bottom-color: var(--green-600);
 			}
 
-			&__warning {
-				border-color: var(--yellow-600);
-				border-bottom-color: transparent;
+			&--warning {
+				border-bottom-color: var(--yellow-600);
 			}
 
-			&__danger {
-				border-color: var(--red-600);
-				border-bottom-color: transparent;
+			&--danger {
+				border-bottom-color: var(--red-600);
 			}
 
-			&__dark {
-				border-color: var(--gray-800);
-				border-bottom-color: var(--neutral-100);
+			&--dark {
+				border-bottom-color: var(--neutral-900);
 			}
 
-			&__light {
-				border-color: var(--neutral-50);
-				border-bottom-color: var(--gray-800);
+			&--light {
+				border-bottom-color: var(--gray-100);
 			}
 		}
 	}
 
-	@keyframes rotation {
+	@keyframes bo-loader-rotation {
 		0% {
 			transform: rotate(0deg);
 		}
