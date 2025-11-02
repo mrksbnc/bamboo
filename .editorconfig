@@ -3,10 +3,10 @@ root = true
 [*]
 charset = utf-8
 indent_size = 2
-indent_style = space
 end_of_line = lf
+indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue}]
+[*.{js,mjs,ts,mts,vue}]
 indent_style = tab

@@ -143,7 +143,7 @@
 		vertical-align: middle;
 
 		&__variant--default {
-			color: currentcolor;
+			color: var(--bo-lib-text-color);
 		}
 
 		&__variant--primary {
