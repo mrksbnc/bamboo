@@ -38,8 +38,8 @@
 		dataTestId: IdentityService.instance.getDataTestId('bo-avatar'),
 		size: BoSize.md,
 		shape: BoAvatarShape.circle,
-		indicatorPosition: BoAvatarIndicatorPosition.topRight,
 		indicatorVariant: BoVariant.secondary,
+		indicatorPosition: BoAvatarIndicatorPosition.topRight,
 	});
 
 	const textFontSize = computed<BoFontSize>(() => {
@@ -160,8 +160,6 @@
 		}
 
 		&__text {
-			font-size: inherit;
-			line-height: 1;
 			border-radius: inherit;
 		}
 
@@ -169,8 +167,8 @@
 			position: absolute;
 			min-width: var(--spacing-3);
 			min-height: var(--spacing-3);
-			border: 2px solid var(--border-on-color);
 			border-radius: var(--radius-full);
+			border: 2px solid var(--border-on-color);
 
 			&--primary {
 				background-color: var(--variant-primary-bg);
