@@ -44,7 +44,7 @@
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
-    "vue": "^3.5.22"
+    "vue": "^3.5.24"
   },
   "devDependencies": {
     "@cspell/dict-css": "^4.0.18",
@@ -52,26 +52,26 @@
     "@cspell/dict-typescript": "^3.2.3",
     "@cspell/dict-vue": "^3.0.5",
     "@prettier/plugin-oxc": "^0.0.4",
-    "@tsconfig/node22": "^22.0.2",
+    "@tsconfig/node22": "^22.0.4",
     "@types/jsdom": "^27.0.0",
-    "@types/node": "^24.9.2",
+    "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.1",
-    "@vitest/coverage-v8": "4.0.6",
-    "@vitest/eslint-plugin": "^1.4.0",
+    "@vitest/coverage-v8": "4.0.9",
+    "@vitest/eslint-plugin": "^1.4.2",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.6.0",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.8.1",
-    "cspell": "^9.2.2",
-    "eslint": "^9.39.0",
-    "eslint-plugin-oxlint": "~1.25.0",
+    "cspell": "^9.3.2",
+    "eslint": "^9.39.1",
+    "eslint-plugin-oxlint": "~1.28.0",
     "eslint-plugin-vue": "~10.5.1",
     "husky": "^9.1.7",
     "jiti": "^2.6.1",
-    "jsdom": "^27.1.0",
+    "jsdom": "^27.2.0",
     "npm-run-all2": "^8.0.4",
-    "oxlint": "~1.25.0",
-    "oxlint-tsgolint": "^0.4.0",
+    "oxlint": "~1.28.0",
+    "oxlint-tsgolint": "^0.6.0",
     "postcss-html": "^1.8.0",
     "prettier": "3.6.2",
     "prettier-plugin-organize-imports": "^4.3.0",
@@ -87,10 +87,10 @@
     "vite-plugin-vue-devtools": "^8.0.3",
     "vite-svg-loader": "^5.1.0",
     "vitepress": "2.0.0-alpha.12",
-    "vitest": "^4.0.6",
-    "vue-tsc": "^3.1.2"
+    "vitest": "^4.0.9",
+    "vue-tsc": "^3.1.4"
   },
-  "packageManager": "pnpm@10.20.0",
+  "packageManager": "pnpm@10.22.0",
   "engines": {
     "node": ">=20 <21 || >=22"
   }
