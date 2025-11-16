@@ -1,8 +1,8 @@
-import { fileURLToPath } from 'url'
-import { defineConfig } from 'vitepress'
+import { fileURLToPath } from 'url';
+import { defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
-const base = process.env.VP_BASE ?? '/'
+const base = process.env.VP_BASE ?? '/';
 
 export default defineConfig({
 	base,
@@ -30,7 +30,6 @@ export default defineConfig({
 				text: 'Components',
 				items: [
 					{ text: 'Overview', link: '/en/components/default' },
-					{ text: 'Button', link: '/en/components/button' },
 					{ text: 'Icon', link: '/en/components/icon' },
 					{ text: 'Loading Ring', link: '/en/components/loading-ring' },
 					{ text: 'Loading Spinner', link: '/en/components/loading-spinner' },
@@ -65,4 +64,4 @@ export default defineConfig({
 			},
 		},
 	},
-})
+});
