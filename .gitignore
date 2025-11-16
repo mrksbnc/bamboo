@@ -19,6 +19,7 @@ coverage
 # Typescript
 *.tsbuildinfo
 
+.kiro
 
 # Vitepress
 docs
