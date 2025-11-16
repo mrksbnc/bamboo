@@ -12,7 +12,7 @@ const iconList = Object.values(Icon);
 
 `bo-icon` is an `svg` wrapper around files from the [Feather Icons](https://feathericons.com/) library.
 
-### Basic usage
+## Basic usage
 
 ```vue
 <bo-icon :icon="Icon.heart" />
@@ -86,47 +86,92 @@ The available variants are the following:
 - `current`
 - `inherit`
 
-<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; ">
-  <span style="display: flex; gap: 1rem; align-items: center; flex-direction: column;  padding: 0.5rem">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.default" />
-	<span style="font-weight: bold; font-size: 0.875rem;">default</span>
-  </span>
-  <span style="display: flex; gap: 1rem; align-items: center; flex-direction: column;  padding: 0.5rem">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.primary" />
-	<span style="font-weight: bold; font-size: 0.875rem;">primary</span>
-  </span>
-  <span style="display: flex; gap: 1rem; align-items: center; flex-direction: column; padding: 0.5rem">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.secondary" />
-	<span style="font-weight: bold; font-size: 0.875rem;">secondary</span>
-  </span>
-  <span style="display: flex; gap: 1rem; align-items: center; flex-direction: column; padding: 0.5rem">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.success" />
-	<span style="font-weight: bold; font-size: 0.875rem;">success</span>
-  </span>
-  <span style="display: flex; gap: 1rem; align-items: center; flex-direction: column; padding: 0.5rem">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.warning" />
-	<span style="font-weight: bold; font-size: 0.875rem;">warning</span>
-  </span>
-  <span style="display: flex; gap: 1rem; align-items: center; flex-direction: column; padding: 0.5rem">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.danger" />
-	<span style="font-weight: bold; font-size: 0.875rem;">danger</span>
-  </span>
-  <span style="display: flex; gap: 1rem; align-items: center; flex-direction: column; padding: 0.5rem; background-color: #000;">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.light" />
-	<span style="font-weight: bold; font-size: 0.875rem; color: #fff;">light</span>
-  </span>
-  <span style="display: flex; gap: 1rem; align-items: center; flex-direction: column; background-color: #fff; padding: 0.5rem">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.dark" />
-	<span style="font-weight: bold; font-size: 0.875rem; color: #000;">dark</span>
-  </span>
-  <span style="display: flex; gap: 1rem; align-items: center; flex-direction: column; padding: 0.5rem">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.current" />
-	<span style="font-weight: bold; font-size: 0.875rem;">current</span>
-  </span>
-  <span style="display: flex; gap: 1rem; align-items: center; flex-direction: column; padding: 0.5rem">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.inherit" />
-	<span style="font-weight: bold; font-size: 0.875rem;">inherit</span>
-  </span>
+<style scoped>
+.icon-variant-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.icon-variant-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  min-width: 100px;
+}
+
+.icon-variant-label {
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--vp-c-text-2);
+}
+
+.icon-variant-item--light {
+  background-color: var(--vp-c-black);
+  border-color: var(--vp-c-black);
+}
+
+.icon-variant-item--light .icon-variant-label {
+  color: var(--vp-c-white);
+}
+
+.icon-variant-item--dark {
+  background-color: var(--vp-c-white);
+  border-color: var(--vp-c-divider-light);
+}
+
+.icon-variant-item--dark .icon-variant-label {
+  color: var(--vp-c-black);
+}
+</style>
+
+<div class="icon-variant-grid">
+  <div class="icon-variant-item">
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.default" :size="32" />
+	<span class="icon-variant-label">default</span>
+  </div>
+  <div class="icon-variant-item">
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.primary" :size="32" />
+	<span class="icon-variant-label">primary</span>
+  </div>
+  <div class="icon-variant-item">
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.secondary" :size="32" />
+	<span class="icon-variant-label">secondary</span>
+  </div>
+  <div class="icon-variant-item">
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.success" :size="32" />
+	<span class="icon-variant-label">success</span>
+  </div>
+  <div class="icon-variant-item">
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.warning" :size="32" />
+	<span class="icon-variant-label">warning</span>
+  </div>
+  <div class="icon-variant-item">
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.danger" :size="32" />
+	<span class="icon-variant-label">danger</span>
+  </div>
+  <div class="icon-variant-item icon-variant-item--light">
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.light" :size="32" />
+	<span class="icon-variant-label">light</span>
+  </div>
+  <div class="icon-variant-item icon-variant-item--dark">
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.dark" :size="32" />
+	<span class="icon-variant-label">dark</span>
+  </div>
+  <div class="icon-variant-item">
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.current" :size="32" />
+	<span class="icon-variant-label">current</span>
+  </div>
+  <div class="icon-variant-item">
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.inherit" :size="32" />
+	<span class="icon-variant-label">inherit</span>
+  </div>
 </div>
 
 ## Custom colors
@@ -155,13 +200,50 @@ You can customize the color of the icon by passing any valid CSS color value to 
 <!-- rgb/rgba color -->
 <bo-icon :icon="Icon.heart" custom-color="rgb(255, 0, 0)" />
 <bo-icon :icon="Icon.heart" custom-color="rgba(0, 128, 0, 0.5)" />
+```
+
 ## All available icons
 
-<!-- cspell:disable-next-line -->
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 1rem; margin-top: 2rem;">
-  <div v-for="(value, key) in Icon" :key="key" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center; padding: 1rem; border: 1px solid #ccc; border-radius: 0.25rem;">
-    <bo-icon :icon="value" />
-	<span style="font-weight: bold; font-size: 0.875rem;">{{ key }}</span>
+<style scoped>
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.icon-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 0.5rem;
+  background-color: var(--vp-c-bg-soft);
+  transition: all 0.2s ease;
+}
+
+.icon-card:hover {
+  border-color: var(--vp-c-brand-1);
+  background-color: var(--vp-c-bg-alt);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon-name {
+  font-size: 0.75rem;
+  text-align: center;
+  word-break: break-word;
+  color: var(--vp-c-text-2);
+}
+</style>
+
+<div class="icon-grid">
+  <div v-for="value in Object.values(Icon)" :key="value" class="icon-card">
+    <bo-icon :icon="value" :size="32" />
+    <span class="icon-name">{{ value }}</span>
   </div>
 </div>
 
@@ -236,9 +318,7 @@ enum Icon {
 	cloud_rain = 'cloud-rain',
 	cloud_snow = 'cloud-snow',
 	code = 'code',
-	// cspell:disable-next-line
 	codepen = 'codepen',
-	// cspell:disable-next-line
 	codesandbox = 'codesandbox',
 	coffee = 'coffee',
 	columns = 'columns',
@@ -266,7 +346,6 @@ enum Icon {
 	dollar_sign = 'dollar-sign',
 	download = 'download',
 	download_cloud = 'download-cloud',
-	// cspell:disable-next-line
 	dribbble = 'dribbble',
 	droplet = 'droplet',
 	edit = 'edit',
@@ -489,30 +568,30 @@ enum BoIconVariant {
 
 interface BoIconProps {
 	/** The unique ID for the icon */
-	id?: string
+	id?: string;
 	/** The data-test-id of the icon */
-	dataTestId?: string
+	dataTestId?: string;
 	/** The icon to display */
-	icon: Icon
+	icon: Icon;
 	/** The size of the icon (in px)*/
-	size?: number
+	size?: number;
 	/** The color of the icon defined by the enum BoIconColor */
-	variant?: BoIconVariant
+	variant?: BoIconVariant;
 	/** The color of the icon */
-	customColor?: string
+	customColor?: string;
 	/** Custom css class passed to the root element */
-	customCssClass?: string
+	customCssClass?: string;
 	/** cursor type of the element. This must be a valid cursor value. */
-	cursor?: string
+	cursor?: string;
 	/** The accessible title of the icon. */
-	title?: string
+	title?: string;
 	/** The accessibility role of the icon. */
-	role?: string
+	role?: string;
 	/**
 	 * Whether the icon is decorative which means that the icon is not
 	 * a part of the UI and is only used to convey information.
 	 */
-	decorative?: boolean
+	decorative?: boolean;
 }
 ```
 
