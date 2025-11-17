@@ -14,6 +14,74 @@ Lightweight, flexible, and type‑safe UI components for Vue 3.
 - yarn: `yarn add @mrksbnc/bamboo`
 - bun: `bun add @mrksbnc/bamboo`
 
+## Project Structure
+
+Bamboo is organized as a modular component library where each component is a self-contained module.
+
+```
+bamboo/
+├── src/
+│   ├── components/          # UI Components (each component is a module)
+│   │   ├── bo-text/
+│   │   │   ├── bo-text.vue       # Component template
+│   │   │   ├── bo-text.ts        # Types, interfaces, constants and logic
+│   │   │   ├── bo-text.test.ts   # Unit tests
+│   │   │   └── index.ts          # Module exports
+│   │   ├── bo-icon/
+│   │   ├── bo-loading-ring/
+│   │   ├── bo-loading-spinner/
+│   │   └── index.ts              # Component barrel exports
+│   │
+│   ├── composables/         # Vue 3 Composition API utilities
+│   │   └── index.ts
+│   │
+│   ├── core/                # Core types and utilities
+│   │   ├── css.ts                # CSS types (ConditionalCssProperties, BoColor)
+│   │   └── index.ts
+│   │
+│   ├── services/            # Business logic services
+│   │   ├── color-service.ts      # Color manipulation utilities
+│   │   ├── identity-service.ts   # Unique ID generation
+│   │   └── index.ts
+│   │
+│   ├── shared/              # Shared utilities and helpers
+│   │   ├── accessibility.ts      # Accessibility utilities (AriaLive)
+│   │   └── index.ts
+│   │
+│   ├── assets/              # Static assets (icons, images)
+│   │
+│   └── lib.css              # Global styles and CSS variables
+│
+├── src-docs/                # VitePress documentation
+│   ├── en/
+│   │   ├── components/           # Component documentation
+│   │   ├── guide/                # User guides
+│   │   ├── services/             # Service documentation
+│   │   └── styles/               # Style documentation
+│   └── public/
+│
+└── dist/                    # Build output (generated)
+    ├── components.js
+    ├── composables.js
+    ├── core.js
+    ├── services.js
+    ├── shared.js
+    └── lib.css
+```
+
+### Module Exports
+
+Each top-level directory is exported as a separate module:
+
+```ts
+import '@mrksbnc/bamboo/lib.css';
+import { BoText, BoIcon } from '@mrksbnc/bamboo/components';
+import { useComposable } from '@mrksbnc/bamboo/composables';
+import { ConditionalCssProperties } from '@mrksbnc/bamboo/core';
+import { ColorService } from '@mrksbnc/bamboo/services';
+import { AriaLive } from '@mrksbnc/bamboo/shared';
+```
+
 ## Quick Start
 
 Import the library base css file.
