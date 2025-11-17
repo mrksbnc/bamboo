@@ -44,7 +44,7 @@ describe('BoText', () => {
 				},
 			});
 
-			expect(wrapper.classes().join(' ').includes(`bo-text__variant--${variant}`)).toBe(true);
+			expect(wrapper.classes().join(' ').includes(`bo-text--${variant}`)).toBe(true);
 		}
 	});
 
@@ -166,7 +166,7 @@ describe('BoText', () => {
 				},
 			});
 
-			expect(wrapper.classes().join(' ').includes(`bo-text__size--${size}`)).toBe(true);
+			expect(wrapper.classes().join(' ').includes(`bo-text--size-${size}`)).toBe(true);
 		}
 	});
 
@@ -191,7 +191,7 @@ describe('BoText', () => {
 				},
 			});
 
-			expect(wrapper.classes().join(' ').includes(`bo-text__weight--${weight}`)).toBe(true);
+			expect(wrapper.classes().join(' ').includes(`bo-text--weight-${weight}`)).toBe(true);
 		}
 	});
 
@@ -211,7 +211,7 @@ describe('BoText', () => {
 				},
 			});
 
-			expect(wrapper.classes().join(' ').includes(`bo-text__font-family--${family}`)).toBe(true);
+			expect(wrapper.classes().join(' ').includes(`bo-text--font-${family}`)).toBe(true);
 		}
 	});
 
@@ -231,7 +231,7 @@ describe('BoText', () => {
 				},
 			});
 
-			expect(wrapper.classes().join(' ').includes(`bo-text__align--${alignment}`)).toBe(true);
+			expect(wrapper.classes().join(' ').includes(`bo-text--align-${alignment}`)).toBe(true);
 		}
 	});
 
@@ -251,7 +251,7 @@ describe('BoText', () => {
 				},
 			});
 
-			expect(wrapper.classes().join(' ').includes(`bo-text__transform--${transform}`)).toBe(true);
+			expect(wrapper.classes().join(' ').includes(`bo-text--transform-${transform}`)).toBe(true);
 		}
 	});
 
