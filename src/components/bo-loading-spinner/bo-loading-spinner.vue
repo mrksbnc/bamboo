@@ -56,16 +56,16 @@
 
 	const containerClass = computed<ConditionalCssProperties>(() => {
 		return {
-			'bo-loader': true,
-			[`bo-loader--${props.textPosition}`]: true,
+			'bo-loading-spinner': true,
+			[`bo-loading-spinner--${props.textPosition}`]: true,
 		};
 	});
 
 	const spinnerClass = computed<ConditionalCssProperties>(() => {
 		return {
-			'bo-loader__spinner': true,
-			[`bo-loader__spinner--${props.size}`]: true,
-			[`bo-loader__spinner--${props.variant}`]: true,
+			'bo-loading-spinner__spinner': true,
+			[`bo-loading-spinner__spinner--${props.size}`]: true,
+			[`bo-loading-spinner__spinner--${props.variant}`]: true,
 		};
 	});
 
@@ -81,7 +81,7 @@
 </script>
 
 <style scoped lang="scss">
-	.bo-loader {
+	.bo-loading-spinner {
 		gap: 0.75rem;
 		align-items: center;
 		display: inline-flex;
@@ -107,7 +107,7 @@
 			border-radius: 50%;
 			border: 0.2rem solid;
 			border-color: transparent;
-			animation: bo-loader-rotation 1s linear infinite;
+			animation: bo-loading-spinner-rotation 1s linear infinite;
 
 			&--extra-small {
 				width: var(--size-xs);
@@ -164,7 +164,7 @@
 		}
 	}
 
-	@keyframes bo-loader-rotation {
+	@keyframes bo-loading-spinner-rotation {
 		0% {
 			transform: rotate(0deg);
 		}

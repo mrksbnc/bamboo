@@ -63,9 +63,9 @@
 
 	const ringClass = computed<ConditionalCssProperties>(() => {
 		return {
-			'bo-loader-ring__spinner': true,
-			[`bo-loader-ring__spinner--${props.size}`]: true,
-			[`bo-loader-ring__spinner--${props.variant}`]: true,
+			'bo-loader-ring__ring': true,
+			[`bo-loader-ring__ring--${props.size}`]: true,
+			[`bo-loader-ring__ring--${props.variant}`]: true,
 		};
 	});
 
@@ -104,13 +104,33 @@
 			flex-direction: row;
 		}
 
-		&__spinner {
+		&__ring {
 			display: inline-block;
 			position: relative;
 			transform: rotateZ(45deg);
 			perspective: 1000px;
 			border-radius: 50%;
 			color: currentcolor;
+
+			&::before,
+			&::after {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: inherit;
+				height: inherit;
+				border-radius: 50%;
+				transform: rotateX(70deg);
+				animation: spin 1s linear infinite;
+				box-sizing: border-box;
+			}
+
+			&::after {
+				transform: rotateY(70deg);
+				animation-delay: 0.4s;
+			}
 
 			&--extra-small {
 				width: var(--size-xs);
@@ -165,26 +185,6 @@
 					width: var(--size-xl);
 					height: var(--size-xl);
 				}
-			}
-
-			&::before,
-			&::after {
-				content: '';
-				display: block;
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: inherit;
-				height: inherit;
-				border-radius: 50%;
-				transform: rotateX(70deg);
-				animation: spin 1s linear infinite;
-				box-sizing: border-box;
-			}
-
-			&::after {
-				transform: rotateY(70deg);
-				animation-delay: 0.4s;
 			}
 
 			&--primary {

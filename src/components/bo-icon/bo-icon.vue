@@ -105,7 +105,7 @@
 	const componentBaseClasses = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-icon': true,
-			[`bo-icon__variant--${props.variant}`]: true,
+			[`bo-icon--${props.variant}`]: true,
 		};
 	});
 
@@ -130,50 +130,48 @@
 		box-sizing: border-box;
 		vertical-align: middle;
 
-		&__variant {
-			&--default {
-				color: currentcolor;
-			}
+		&--default {
+			color: currentcolor;
+		}
 
-			&--primary {
-				color: var(--blue-600);
-			}
+		&--primary {
+			color: var(--blue-600);
+		}
 
-			&--secondary {
-				color: var(--neutral-600);
-			}
+		&--secondary {
+			color: var(--neutral-600);
+		}
 
-			&--disabled {
-				color: var(--neutral-400);
-			}
+		&--disabled {
+			color: var(--neutral-400);
+		}
 
-			&--success {
-				color: var(--green-600);
-			}
+		&--success {
+			color: var(--green-600);
+		}
 
-			&--warning {
-				color: var(--yellow-500);
-			}
+		&--warning {
+			color: var(--yellow-500);
+		}
 
-			&--danger {
-				color: var(--red-600);
-			}
+		&--danger {
+			color: var(--red-600);
+		}
 
-			&--light {
-				color: var(--neutral-50);
-			}
+		&--light {
+			color: var(--neutral-50);
+		}
 
-			&--dark {
-				color: var(--gray-950);
-			}
+		&--dark {
+			color: var(--gray-950);
+		}
 
-			&--current {
-				color: currentcolor;
-			}
+		&--current {
+			color: currentcolor;
+		}
 
-			&--inherit {
-				color: inherit;
-			}
+		&--inherit {
+			color: inherit;
 		}
 	}
 </style>
