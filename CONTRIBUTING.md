@@ -1,6 +1,6 @@
 # Contributing to Bamboo
 
-Thank you for your interest in contributing to Bamboo! This guide will help you get started with contributing to our Vue 3 UI component library.
+Thank you for your interest in contributing to Bamboo! This guide will help you get started with contributing.
 
 ## Table of Contents
 
@@ -29,7 +29,7 @@ Before you begin, ensure you have the following installed:
 
 ### Setting Up Your Development Environment
 
-1. Fork and clone the repository:
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/bamboo.git
