@@ -122,13 +122,13 @@
 	const componentBaseClasses = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-text': true,
-			[`bo-text__variant--${props.variant}`]: true,
-			[`bo-text__size--${props.fontSize}`]: true,
-			[`bo-text__align--${props.textAlign}`]: true,
-			[`bo-text__weight--${props.fontWeight}`]: true,
-			[`bo-text__whitespace--${props.whiteSpace}`]: true,
-			[`bo-text__font-family--${props.fontFamily}`]: true,
-			[`bo-text__transform--${props.textTransform}`]: true,
+			[`bo-text--${props.variant}`]: true,
+			[`bo-text--size-${props.fontSize}`]: true,
+			[`bo-text--align-${props.textAlign}`]: props.textAlign !== undefined,
+			[`bo-text--weight-${props.fontWeight}`]: true,
+			[`bo-text--whitespace-${props.whiteSpace}`]: true,
+			[`bo-text--font-${props.fontFamily}`]: true,
+			[`bo-text--transform-${props.textTransform}`]: true,
 		};
 	});
 </script>
@@ -142,218 +142,206 @@
 		box-sizing: border-box;
 		vertical-align: middle;
 
-		&__variant--default {
+		&--default {
 			color: var(--bo-lib-text-color);
 		}
 
-		&__variant--primary {
+		&--primary {
 			color: var(--blue-600);
 		}
 
-		&__variant--secondary {
+		&--secondary {
 			color: var(--neutral-600);
 		}
 
-		&__variant--disabled {
+		&--disabled {
 			color: var(--neutral-400);
 		}
 
-		&__variant--success {
+		&--success {
 			color: var(--green-600);
 		}
 
-		&__variant--warning {
+		&--warning {
 			color: var(--yellow-500);
 		}
 
-		&__variant--danger {
+		&--danger {
 			color: var(--red-600);
 		}
 
-		&__variant--light {
+		&--light {
 			color: var(--neutral-50);
 		}
 
-		&__variant--dark {
+		&--dark {
 			color: var(--gray-950);
 		}
 
-		&__variant--current {
+		&--current {
 			color: currentcolor;
 		}
 
-		&__variant--inherit {
+		&--inherit {
 			color: inherit;
 		}
 
-		&__size {
-			&--xs {
-				font-size: 0.625rem;
-				line-height: 1.25;
-			}
-
-			&--sm {
-				font-size: 0.75rem;
-				line-height: 1.25;
-			}
-
-			&--lg {
-				font-size: 1rem;
-				line-height: 1.5;
-			}
-
-			&--xl {
-				font-size: 1.125rem;
-				line-height: 1.75;
-			}
-
-			&--2xl {
-				font-size: 1.25rem;
-				line-height: 1.75;
-			}
-
-			&--3xl {
-				font-size: 1.5rem;
-				line-height: 2;
-			}
-
-			&--4xl {
-				font-size: 1.875rem;
-				line-height: 2.25;
-			}
-
-			&--5xl {
-				font-size: 2.25rem;
-				line-height: 2.5;
-			}
-
-			&--6xl {
-				font-size: 3rem;
-				line-height: 1;
-			}
-
-			&--7xl {
-				font-size: 3.75rem;
-				line-height: 1;
-			}
+		&--size-xs {
+			font-size: 0.625rem;
+			line-height: 1.25;
 		}
 
-		&__weight {
-			&--thin {
-				font-weight: 100;
-			}
-
-			&--extra-light {
-				font-weight: 200;
-			}
-
-			&--light {
-				font-weight: 300;
-			}
-
-			&--medium {
-				font-weight: 500;
-			}
-
-			&--semibold {
-				font-weight: 600;
-			}
-
-			&--bold {
-				font-weight: 700;
-			}
-
-			&--extra-bold {
-				font-weight: 800;
-			}
-
-			&--black {
-				font-weight: 900;
-			}
+		&--size-sm {
+			font-size: 0.75rem;
+			line-height: 1.25;
 		}
 
-		&__align {
-			&--center {
-				text-align: center;
-			}
-
-			&--right {
-				text-align: right;
-			}
-
-			&--justify {
-				text-align: justify;
-			}
-
-			&--left {
-				text-align: left;
-			}
+		&--size-lg {
+			font-size: 1rem;
+			line-height: 1.5;
 		}
 
-		&__whitespace {
-			&--normal {
-				white-space: normal;
-			}
-
-			&--nowrap {
-				white-space: nowrap;
-			}
-
-			&--pre {
-				white-space: pre;
-			}
-
-			&--pre-line {
-				white-space: pre-line;
-			}
-
-			&--pre-wrap {
-				white-space: pre-wrap;
-			}
-
-			&--break-spaces {
-				white-space: break-spaces;
-			}
+		&--size-xl {
+			font-size: 1.125rem;
+			line-height: 1.75;
 		}
 
-		&__font-family {
-			&--sans {
-				font-family:
-					ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-					'Segoe UI Symbol', 'Noto Color Emoji';
-			}
-
-			&--mono {
-				font-family:
-					ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-					monospace;
-			}
-
-			&--serif {
-				font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-			}
-
-			&--inherit {
-				font-family: inherit;
-			}
+		&--size-2xl {
+			font-size: 1.25rem;
+			line-height: 1.75;
 		}
 
-		&__transform {
-			&--none {
-				text-transform: none;
-			}
+		&--size-3xl {
+			font-size: 1.5rem;
+			line-height: 2;
+		}
 
-			&--capitalize {
-				text-transform: capitalize;
-			}
+		&--size-4xl {
+			font-size: 1.875rem;
+			line-height: 2.25;
+		}
 
-			&--uppercase {
-				text-transform: uppercase;
-			}
+		&--size-5xl {
+			font-size: 2.25rem;
+			line-height: 2.5;
+		}
 
-			&--lowercase {
-				text-transform: lowercase;
-			}
+		&--size-6xl {
+			font-size: 3rem;
+			line-height: 1;
+		}
+
+		&--size-7xl {
+			font-size: 3.75rem;
+			line-height: 1;
+		}
+
+		&--weight-thin {
+			font-weight: 100;
+		}
+
+		&--weight-extra-light {
+			font-weight: 200;
+		}
+
+		&--weight-light {
+			font-weight: 300;
+		}
+
+		&--weight-medium {
+			font-weight: 500;
+		}
+
+		&--weight-semibold {
+			font-weight: 600;
+		}
+
+		&--weight-bold {
+			font-weight: 700;
+		}
+
+		&--weight-extra-bold {
+			font-weight: 800;
+		}
+
+		&--weight-black {
+			font-weight: 900;
+		}
+
+		&--align-center {
+			text-align: center;
+		}
+
+		&--align-right {
+			text-align: right;
+		}
+
+		&--align-justify {
+			text-align: justify;
+		}
+
+		&--align-left {
+			text-align: left;
+		}
+
+		&--whitespace-normal {
+			white-space: normal;
+		}
+
+		&--whitespace-nowrap {
+			white-space: nowrap;
+		}
+
+		&--whitespace-pre {
+			white-space: pre;
+		}
+
+		&--whitespace-pre-line {
+			white-space: pre-line;
+		}
+
+		&--whitespace-pre-wrap {
+			white-space: pre-wrap;
+		}
+
+		&--whitespace-break-spaces {
+			white-space: break-spaces;
+		}
+
+		&--font-sans {
+			font-family:
+				ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+				'Segoe UI Symbol', 'Noto Color Emoji';
+		}
+
+		&--font-mono {
+			font-family:
+				ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+				monospace;
+		}
+
+		&--font-serif {
+			font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+		}
+
+		&--font-inherit {
+			font-family: inherit;
+		}
+
+		&--transform-none {
+			text-transform: none;
+		}
+
+		&--transform-capitalize {
+			text-transform: capitalize;
+		}
+
+		&--transform-uppercase {
+			text-transform: uppercase;
+		}
+
+		&--transform-lowercase {
+			text-transform: lowercase;
 		}
 	}
 </style>
