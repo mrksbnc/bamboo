@@ -228,7 +228,7 @@ describe('BoYourComponent', () => {
 
 ```typescript
 export { default as BoYourComponent } from './bo-your-component.vue';
-export * from './bo-your-component'; // * exports are prefered over individuel ones
+export * from './bo-your-component'; // * exports are preferred over individual ones
 ```
 
 ### 3. CSS Styling with BEM
