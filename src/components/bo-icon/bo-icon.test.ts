@@ -34,7 +34,7 @@ describe('BoIcon', () => {
 		await new Promise((resolve) => setTimeout(resolve, 100));
 
 		expect(wrapper.find('i').exists()).toBe(true);
-		expect(wrapper.classes().join(' ').includes('bo-icon__variant--primary')).toBe(true);
+		expect(wrapper.classes().join(' ').includes('bo-icon--primary')).toBe(true);
 		expect(wrapper.classes().join(' ').includes('my-custom-class')).toBe(true);
 		expect(wrapper.attributes('style')).toContain('color: rgb(255, 0, 0)');
 		expect(wrapper.attributes('style')).toContain('cursor: pointer');
@@ -194,7 +194,7 @@ describe('BoIcon', () => {
 			await wrapper.vm.$nextTick();
 			await new Promise((resolve) => setTimeout(resolve, 100));
 
-			expect(wrapper.classes().join(' ').includes(`bo-icon__variant--${variant}`)).toBe(true);
+			expect(wrapper.classes().join(' ').includes(`bo-icon--${variant}`)).toBe(true);
 		}
 	});
 
