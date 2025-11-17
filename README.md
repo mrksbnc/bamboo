@@ -20,13 +20,13 @@ Import the library base css file.
 
 ```ts
 // main.ts
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 
 // Import the main library CSS file
-import '@mrksbnc/bamboo/lib.css'
+import '@mrksbnc/bamboo/lib.css';
 
-createApp(App).use(Bamboo).mount('#app')
+createApp(App).use(Bamboo).mount('#app');
 ```
 
 Use a component.
@@ -39,23 +39,25 @@ Use a component.
 </template>
 
 <script setup lang="ts">
-	import { BoText, BoIcon, Icon } from '@mrksbnc/bamboo/components'
+	import { BoText, BoIcon, Icon } from '@mrksbnc/bamboo/components';
 </script>
 ```
 
 ## Scripts
 
-- build: Builds the library
-- test: Runs unit tests (vitest)
-- lint: Runs all linters
-- lint:spell: Runs the spell checker
-- lint:eslint: ESLint
-- lint:oxlint: Oxlint
-- format: Prettier
-- prepare: Initializes pre-commit hooks
-- docs:dev: Starts the docs dev server
-- docs:build: Builds the docs
-- docs:preview: Previews the built docs
+| Command             | Description                  |
+| ------------------- | ---------------------------- |
+| `pnpm build`        | Builds the library           |
+| `pnpm test`         | Runs unit tests (vitest)     |
+| `pnpm lint`         | Runs all linters             |
+| `pnpm lint:spell`   | Runs the spell checker       |
+| `pnpm lint:eslint`  | ESLint                       |
+| `pnpm lint:oxlint`  | Oxlint                       |
+| `pnpm format`       | Prettier                     |
+| `pnpm prepare`      | Initializes pre-commit hooks |
+| `pnpm docs:dev`     | Starts the docs dev server   |
+| `pnpm docs:build`   | Builds the docs              |
+| `pnpm docs:preview` | Previews the built docs      |
 
 ## Docs
 
