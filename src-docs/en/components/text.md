@@ -380,47 +380,47 @@ enum BoTextTransform {
 
 interface BoTextProps {
 	/** The id of the element. */
-	id?: string
+	id?: string;
 	/** The data test id of the element. */
-	dataTestId?: string
+	dataTestId?: string;
 	/** The text of the element. */
-	value: string
+	value: string;
 	/** The size of the element. */
-	fontSize?: BoFontSize
+	fontSize?: BoFontSize;
 	/** The weight of the element. */
-	fontWeight?: BoFontWeight
+	fontWeight?: BoFontWeight;
 	/** The font family of the element. */
-	fontFamily?: BoFontFamily
+	fontFamily?: BoFontFamily;
 	/** The white space of the element. */
-	whiteSpace?: BoTextWhiteSpace
+	whiteSpace?: BoTextWhiteSpace;
 	/** The variant of the element based on fixed enum values. */
-	variant?: BoTextVariant
+	variant?: BoTextVariant;
 	/** Any custom color for the element. */
-	customColor?: string
+	customColor?: string;
 	/** One or multiple css classes to be used for overriding the default styles on the element. */
-	customCssClass?: string
+	customCssClass?: string;
 	/** The clickable of the element. */
-	clickable?: boolean
+	clickable?: boolean;
 	/** The text align of the element. */
-	textAlign?: BoTextAlign
+	textAlign?: BoTextAlign;
 	/** The text transform of the element. */
-	textTransform?: BoTextTransform
+	textTransform?: BoTextTransform;
 	/** Cursor type of the element. */
-	cursor?: string
+	cursor?: string;
 	/** The max lines of the element. */
-	maxLines?: number | string
+	maxLines?: number | string;
 	/** The role of the element. */
-	role?: string
+	role?: string;
 	/** Defines a string value that labels the current element. */
-	ariaLabel?: string
+	ariaLabel?: string;
 	/** Reference to an element that labels the current element. */
-	ariaLabelledBy?: string
+	ariaLabelledBy?: string;
 	/** Identifies the element (or elements) that describes the object. */
-	ariaDescribedBy?: string
+	ariaDescribedBy?: string;
 	/** Live region behavior for dynamic content. */
-	ariaLive?: AriaLive
+	ariaLive?: AriaLive;
 	/** The language of the element. */
-	lang?: string
+	lang?: string;
 }
 ```
 

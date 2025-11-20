@@ -20,11 +20,11 @@ Internally for component ids the service uses `useId` from `vue`, for `data-test
 
 ```vue
 <script lang="ts" setup>
-	import { IdentityService } from '@mrksbnc/bamboo'
+	import { IdentityService } from '@mrksbnc/bamboo';
 
 	const props = withDefaults(defineProps<{ id?: string; dataTestId?: string }>(), {
 		id: IdentityService.instance.getComponentId(),
 		dataTestId: IdentityService.instance.getDataTestId('bo-component'),
-	})
+	});
 </script>
 ```
