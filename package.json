@@ -35,7 +35,6 @@
     "lint:oxlint": "oxlint . --fix --config .oxlintrc.json",
     "lint:eslint": "eslint . --fix --ignore-pattern .gitignore",
     "lint:spell": "cspell . --config cspell.yaml",
-    "lint:style": "stylelint 'src/**/*.{css,scss,vue}' --fix",
     "lint": "run-s lint:*",
     "format": "prettier --write src/",
     "prepare": "husky",
