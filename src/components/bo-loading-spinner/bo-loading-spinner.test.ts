@@ -10,12 +10,12 @@ import { BoFontSize } from '@/components/bo-text/bo-text.js';
 describe('bo-loading-spinner', () => {
 	it('should render the loading spinner component', () => {
 		const wrapper = mount(BoLoadingSpinner);
-		expect(wrapper.find('[class*="bo-loading-spinner"]').exists()).toBe(true);
+		expect(wrapper.find('[class*="bo-loader"]').exists()).toBe(true);
 	});
 
 	it('should render the spinner element', () => {
 		const wrapper = mount(BoLoadingSpinner);
-		expect(wrapper.find('.bo-loading-spinner__spinner').exists()).toBe(true);
+		expect(wrapper.find('.bo-loader__spinner').exists()).toBe(true);
 	});
 
 	it('should have a default id', () => {
@@ -33,12 +33,12 @@ describe('bo-loading-spinner', () => {
 			const wrapper = mount(BoLoadingSpinner, {
 				props: { size },
 			});
-			expect(wrapper.find(`.bo-loading-spinner__spinner--${size}`).exists()).toBe(true);
+			expect(wrapper.find(`.bo-loader__spinner--${size}`).exists()).toBe(true);
 		});
 
-		it('should default to BoSize.default if no size is provided', () => {
+		it('should default to BoSize.md if no size is provided', () => {
 			const wrapper = mount(BoLoadingSpinner);
-			expect(wrapper.find('.bo-loading-spinner__spinner--default').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader__spinner--md').exists()).toBe(true);
 		});
 	});
 
@@ -47,12 +47,12 @@ describe('bo-loading-spinner', () => {
 			const wrapper = mount(BoLoadingSpinner, {
 				props: { variant },
 			});
-			expect(wrapper.find(`.bo-loading-spinner__spinner--${variant}`).exists()).toBe(true);
+			expect(wrapper.find(`.bo-loader__spinner--${variant}`).exists()).toBe(true);
 		});
 
 		it('should default to BoVariant.primary if no variant is provided', () => {
 			const wrapper = mount(BoLoadingSpinner);
-			expect(wrapper.find('.bo-loading-spinner__spinner--primary').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader__spinner--primary').exists()).toBe(true);
 		});
 	});
 
@@ -63,13 +63,13 @@ describe('bo-loading-spinner', () => {
 				const wrapper = mount(BoLoadingSpinner, {
 					props: { textPosition: position },
 				});
-				expect(wrapper.find(`.bo-loading-spinner--${position}`).exists()).toBe(true);
+				expect(wrapper.find(`.bo-loader--${position}`).exists()).toBe(true);
 			},
 		);
 
 		it('should default to BoLoaderTextPosition.after if no textPosition is provided', () => {
 			const wrapper = mount(BoLoadingSpinner);
-			expect(wrapper.find('.bo-loading-spinner--after').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader--after').exists()).toBe(true);
 		});
 	});
 
@@ -104,7 +104,7 @@ describe('bo-loading-spinner', () => {
 			const wrapper = mount(BoLoadingSpinner, {
 				props: { customColor },
 			});
-			const spinner = wrapper.find('.bo-loading-spinner__spinner');
+			const spinner = wrapper.find('.bo-loader__spinner');
 			const style = spinner.attributes('style');
 			expect(style).toContain(`border-bottom-color: rgb(255, 0, 0);`);
 		});
@@ -114,14 +114,14 @@ describe('bo-loading-spinner', () => {
 			const wrapper = mount(BoLoadingSpinner, {
 				props: { customColor },
 			});
-			const spinner = wrapper.find('.bo-loading-spinner__spinner');
+			const spinner = wrapper.find('.bo-loader__spinner');
 			const style = spinner.attributes('style');
 			expect(style).toContain('border-bottom-color: rgb(255, 0, 0);');
 		});
 
 		it('should not apply color style when customColor is not provided', () => {
 			const wrapper = mount(BoLoadingSpinner);
-			const spinner = wrapper.find('.bo-loading-spinner__spinner');
+			const spinner = wrapper.find('.bo-loader__spinner');
 			const style = spinner.attributes('style');
 			expect(style).toBeUndefined();
 		});
@@ -189,11 +189,11 @@ describe('bo-loading-spinner', () => {
 
 	describe('props - BoText font size mapping', () => {
 		const sizeMapping = [
-			{ size: BoSize.extra_small, expectedFontSize: BoFontSize.xs },
-			{ size: BoSize.small, expectedFontSize: BoFontSize.sm },
-			{ size: BoSize.default, expectedFontSize: BoFontSize.lg },
-			{ size: BoSize.large, expectedFontSize: BoFontSize.xl },
-			{ size: BoSize.extra_large, expectedFontSize: BoFontSize['2xl'] },
+			{ size: BoSize.xs, expectedFontSize: BoFontSize.xs },
+			{ size: BoSize.sm, expectedFontSize: BoFontSize.sm },
+			{ size: BoSize.md, expectedFontSize: BoFontSize.lg },
+			{ size: BoSize.lg, expectedFontSize: BoFontSize.xl },
+			{ size: BoSize.xl, expectedFontSize: BoFontSize['2xl'] },
 		];
 
 		it.each(sizeMapping)(
@@ -244,7 +244,7 @@ describe('bo-loading-spinner', () => {
 		it('should work with multiple props combined', () => {
 			const wrapper = mount(BoLoadingSpinner, {
 				props: {
-					size: BoSize.large,
+					size: BoSize.lg,
 					variant: BoVariant.success,
 					textPosition: BoLoaderTextPosition.top,
 					loaderText: 'Loading...',
@@ -260,9 +260,9 @@ describe('bo-loading-spinner', () => {
 
 			expect(wrapper.attributes('id')).toBe('spinner-1');
 			expect(wrapper.attributes('data-testid')).toBe('spinner-test-1');
-			expect(wrapper.find('.bo-loading-spinner__spinner--large').exists()).toBe(true);
-			expect(wrapper.find('.bo-loading-spinner__spinner--success').exists()).toBe(true);
-			expect(wrapper.find('.bo-loading-spinner--top').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader__spinner--lg').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader__spinner--success').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader--top').exists()).toBe(true);
 			expect(wrapper.find('.my-container').exists()).toBe(true);
 			expect(wrapper.find('.my-spinner').exists()).toBe(true);
 			expect(wrapper.attributes('aria-label')).toBe('Please wait');

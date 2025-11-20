@@ -1,0 +1,2 @@
+var arrow_down_circle_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-arrow-down-circle\" width=\"100%\" height=\"100%\">\n  <circle cx=\"12\" cy=\"12\" r=\"10\"></circle>\n  <polyline points=\"8 12 12 16 16 12\"></polyline>\n  <line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"16\"></line>\n</svg>";
+export { arrow_down_circle_default as default };

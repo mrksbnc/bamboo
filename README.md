@@ -14,74 +14,6 @@ Lightweight, flexible, and type‑safe UI components for Vue 3.
 - yarn: `yarn add @mrksbnc/bamboo`
 - bun: `bun add @mrksbnc/bamboo`
 
-## Project Structure
-
-Bamboo is organized as a modular component library where each component is a self-contained module.
-
-```
-bamboo/
-├── src/
-│   ├── components/          # UI Components (each component is a module)
-│   │   ├── bo-text/
-│   │   │   ├── bo-text.vue       # Component template
-│   │   │   ├── bo-text.ts        # Types, interfaces, constants and logic
-│   │   │   ├── bo-text.test.ts   # Unit tests
-│   │   │   └── index.ts          # Module exports
-│   │   ├── bo-icon/
-│   │   ├── bo-loading-ring/
-│   │   ├── bo-loading-spinner/
-│   │   └── index.ts              # Component barrel exports
-│   │
-│   ├── composables/         # Vue 3 Composition API utilities
-│   │   └── index.ts
-│   │
-│   ├── core/                # Core types and utilities
-│   │   ├── css.ts                # CSS types (ConditionalCssProperties, BoColor)
-│   │   └── index.ts
-│   │
-│   ├── services/            # Business logic services
-│   │   ├── color-service.ts      # Color manipulation utilities
-│   │   ├── identity-service.ts   # Unique ID generation
-│   │   └── index.ts
-│   │
-│   ├── shared/              # Shared utilities and helpers
-│   │   ├── accessibility.ts      # Accessibility utilities (AriaLive)
-│   │   └── index.ts
-│   │
-│   ├── assets/              # Static assets (icons, images)
-│   │
-│   └── lib.css              # Global styles and CSS variables
-│
-├── src-docs/                # VitePress documentation
-│   ├── en/
-│   │   ├── components/           # Component documentation
-│   │   ├── guide/                # User guides
-│   │   ├── services/             # Service documentation
-│   │   └── styles/               # Style documentation
-│   └── public/
-│
-└── dist/                    # Build output (generated)
-    ├── components.js
-    ├── composables.js
-    ├── core.js
-    ├── services.js
-    ├── shared.js
-    └── lib.css
-```
-
-### Module Exports
-
-Each top-level directory is exported as a separate module:
-
-```ts
-import '@mrksbnc/bamboo/lib.css';
-import { BoText, BoIcon } from '@mrksbnc/bamboo/components';
-import { useComposable } from '@mrksbnc/bamboo/composables';
-import { ConditionalCssProperties } from '@mrksbnc/bamboo/core';
-import { ColorService } from '@mrksbnc/bamboo/services';
-import { AriaLive } from '@mrksbnc/bamboo/shared';
-```
-
 ## Quick Start
 
 Import the library base css file.
@@ -107,25 +39,23 @@ Use a component.
 </template>
 
 <script setup lang="ts">
-	import { BoText, BoIcon, Icon } from '@mrksbnc/bamboo/components';
+	import { BoText, Icon, Icon } from '@mrksbnc/bamboo/components';
 </script>
 ```
 
 ## Scripts
 
-| Command             | Description                  |
-| ------------------- | ---------------------------- |
-| `pnpm build`        | Builds the library           |
-| `pnpm test`         | Runs unit tests (vitest)     |
-| `pnpm lint`         | Runs all linters             |
-| `pnpm lint:spell`   | Runs the spell checker       |
-| `pnpm lint:eslint`  | ESLint                       |
-| `pnpm lint:oxlint`  | Oxlint                       |
-| `pnpm format`       | Prettier                     |
-| `pnpm prepare`      | Initializes pre-commit hooks |
-| `pnpm docs:dev`     | Starts the docs dev server   |
-| `pnpm docs:build`   | Builds the docs              |
-| `pnpm docs:preview` | Previews the built docs      |
+- build: Builds the library
+- test: Runs unit tests (vitest)
+- lint: Runs all linters
+- lint:spell: Runs the spell checker
+- lint:eslint: ESLint
+- lint:oxlint: Oxlint
+- format: Prettier
+- prepare: Initializes pre-commit hooks
+- docs:dev: Starts the docs dev server
+- docs:build: Builds the docs
+- docs:preview: Previews the built docs
 
 ## Docs
 
@@ -135,20 +65,68 @@ Use a component.
 
 See:
 
-- [Getting started](/src-docs/en/guide/getting-started.md)
-- [Component overview](/src-docs/en/components/default.md)
+- [Getting started](/src-doc/en/guide/getting-started.md)
+- [Component overview](/src-doc/en/components/default.md)
 
 ### Services
 
-- [Color service](/src-docs/en/services/color-service.md)
-- [Identity service](/src-docs/en/services/identity-service.md)
+- [Color service](/src-doc/en/services/color-service.md)
+- [Identity service](/src-doc/en/services/identity-service.md)
 
 ### Colors and Typography
 
-- [Colors](/src-docs/en/styles/colors.md)
-- [Typography](/src-docs/en/styles/typography.md)
+- [Colors](/src-doc/en/styles/colors.md)
+- [Typography](/src-doc/en/styles/typography.md)
 
 Color tokens are located under `src/lib.css` and are available via CSS variables, e.g. `var(--blue-600)`.
+
+## Architecture
+
+Bamboo is organized into modular packages for optimal tree-shaking:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     Bamboo Library                          │
+│                                                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐    │
+│  │  Components  │  │  Composables │  │   Services   │    │
+│  │              │  │              │  │              │    │
+│  │  BoButton    │  │  useTheme    │  │  ColorSvc    │    │
+│  │  BoInput     │  │              │  │  IdentitySvc │    │
+│  │  BoIcon      │  │              │  │  TooltipSvc  │    │
+│  │  ...         │  │              │  │              │    │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘    │
+│         │                 │                 │             │
+│         └─────────────────┼─────────────────┘             │
+│                           │                               │
+│                    ┌──────▼───────┐                       │
+│                    │    Shared    │                       │
+│                    │              │                       │
+│                    │  Types       │                       │
+│                    │  Utilities   │                       │
+│                    │  Constants   │                       │
+│                    └──────────────┘                       │
+│                                                            │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │         Styles (CSS Cascade Layers)              │    │
+│  │                                                  │    │
+│  │  tokens → colors → components → utilities       │    │
+│  └──────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## Documentation
+
+### Project Documentation
+
+- [Project Structure](./docs/PROJECT_STRUCTURE.md) - Module organization and architecture
+- [CSS Layers Architecture](./docs/CSS_LAYERS.md) - CSS cascade layers implementation
+- [Testing Approach](./docs/TESTING.md) - Testing strategy and patterns
+- [Contributing Guide](./CONTRIBUTING.md) - How to contribute to Bamboo
+
+### Component Documentation
+
+See the [documentation site](https://mrksbnc.github.io/bamboo) for detailed component documentation.
 
 ## License
 

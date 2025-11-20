@@ -31,7 +31,7 @@ export default defineConfig({
 			entry: [
 				fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/composables/index.ts', import.meta.url)),
-				fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
+				fileURLToPath(new URL('./src/plugins/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/shared/index.ts', import.meta.url)),
 			],
@@ -43,7 +43,7 @@ export default defineConfig({
 			input: {
 				components: fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
 				composables: fileURLToPath(new URL('./src/composables/index.ts', import.meta.url)),
-				core: fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
+				plugin: fileURLToPath(new URL('./src/plugins/index.ts', import.meta.url)),
 				services: fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
 				shared: fileURLToPath(new URL('./src/shared/index.ts', import.meta.url)),
 			},

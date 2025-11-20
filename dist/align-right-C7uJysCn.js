@@ -1,0 +1,2 @@
+var align_right_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-align-right\" width=\"100%\" height=\"100%\">\n  <line x1=\"21\" y1=\"10\" x2=\"7\" y2=\"10\"></line>\n  <line x1=\"21\" y1=\"6\" x2=\"3\" y2=\"6\"></line>\n  <line x1=\"21\" y1=\"14\" x2=\"3\" y2=\"14\"></line>\n  <line x1=\"21\" y1=\"18\" x2=\"7\" y2=\"18\"></line>\n</svg>";
+export { align_right_default as default };

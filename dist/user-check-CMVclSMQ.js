@@ -1,0 +1,2 @@
+var user_check_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-user-check\" width=\"100%\" height=\"100%\">\n  <path d=\"M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"></path>\n  <circle cx=\"8.5\" cy=\"7\" r=\"4\"></circle>\n  <polyline points=\"17 11 19 13 23 9\"></polyline>\n</svg>";
+export { user_check_default as default };

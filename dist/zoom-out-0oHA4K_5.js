@@ -1,0 +1,2 @@
+var zoom_out_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-zoom-out\" width=\"100%\" height=\"100%\">\n  <circle cx=\"11\" cy=\"11\" r=\"8\"></circle>\n  <line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"></line>\n  <line x1=\"8\" y1=\"11\" x2=\"14\" y2=\"11\"></line>\n</svg>";
+export { zoom_out_default as default };

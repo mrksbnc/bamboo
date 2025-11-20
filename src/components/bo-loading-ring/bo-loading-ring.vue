@@ -22,8 +22,8 @@
 <script lang="ts" setup>
 	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js';
 	import BoText from '@/components/bo-text/bo-text.vue';
-	import type { ConditionalCssProperties } from '@/core/css.js';
 	import { IdentityService } from '@/services/identity-service.js';
+	import type { ConditionalCssProperties } from '@/shared/css.js';
 	import { BoLoaderTextPosition } from '@/shared/loader.js';
 	import { BoSize } from '@/shared/size.js';
 	import { BoVariant } from '@/shared/variant.js';
@@ -33,22 +33,22 @@
 	const props = withDefaults(defineProps<BoLoaderRingProps>(), {
 		id: IdentityService.instance.getComponentId(),
 		dataTestId: IdentityService.instance.getDataTestId('bo-loader-ring'),
-		size: BoSize.default,
+		size: BoSize.md,
 		variant: BoVariant.primary,
 		textPosition: BoLoaderTextPosition.after,
 	});
 
 	const boFontSize = computed<BoFontSize>(() => {
 		switch (props.size) {
-			case BoSize.extra_small:
+			case BoSize.xs:
 				return BoFontSize.xs;
-			case BoSize.small:
+			case BoSize.sm:
 				return BoFontSize.sm;
-			case BoSize.large:
+			case BoSize.lg:
 				return BoFontSize.xl;
-			case BoSize.extra_large:
+			case BoSize.xl:
 				return BoFontSize['2xl'];
-			case BoSize.default:
+			case BoSize.md:
 			default:
 				return BoFontSize.lg;
 		}
@@ -63,9 +63,9 @@
 
 	const ringClass = computed<ConditionalCssProperties>(() => {
 		return {
-			'bo-loader-ring__ring': true,
-			[`bo-loader-ring__ring--${props.size}`]: true,
-			[`bo-loader-ring__ring--${props.variant}`]: true,
+			'bo-loader-ring__spinner': true,
+			[`bo-loader-ring__spinner--${props.size}`]: true,
+			[`bo-loader-ring__spinner--${props.variant}`]: true,
 		};
 	});
 
@@ -104,13 +104,68 @@
 			flex-direction: row;
 		}
 
-		&__ring {
+		&__spinner {
 			display: inline-block;
 			position: relative;
 			transform: rotateZ(45deg);
 			perspective: 1000px;
 			border-radius: 50%;
 			color: currentcolor;
+
+			&--xs {
+				width: 1rem;
+				height: 1rem;
+
+				&::before,
+				&::after {
+					width: 1rem;
+					height: 1rem;
+				}
+			}
+
+			&--sm {
+				width: 1.5rem;
+				height: 1.5rem;
+
+				&::before,
+				&::after {
+					width: 1.5rem;
+					height: 1.5rem;
+				}
+			}
+
+			&--md {
+				width: 2rem;
+				height: 2rem;
+
+				&::before,
+				&::after {
+					width: 2rem;
+					height: 2rem;
+				}
+			}
+
+			&--lg {
+				width: 2.5rem;
+				height: 2.5rem;
+
+				&::before,
+				&::after {
+					width: 2.5rem;
+					height: 2.5rem;
+				}
+			}
+
+			&--xl {
+				width: 3rem;
+				height: 3rem;
+
+				&::before,
+				&::after {
+					width: 3rem;
+					height: 3rem;
+				}
+			}
 
 			&::before,
 			&::after {
@@ -132,87 +187,32 @@
 				animation-delay: 0.4s;
 			}
 
-			&--extra-small {
-				width: var(--size-xs);
-				height: var(--size-xs);
-
-				&::before,
-				&::after {
-					width: var(--size-xs);
-					height: var(--size-xs);
-				}
-			}
-
-			&--small {
-				width: var(--size-sm);
-				height: var(--size-sm);
-
-				&::before,
-				&::after {
-					width: var(--size-sm);
-					height: var(--size-sm);
-				}
-			}
-
-			&--default {
-				width: var(--size-md);
-				height: var(--size-md);
-
-				&::before,
-				&::after {
-					width: var(--size-md);
-					height: var(--size-md);
-				}
-			}
-
-			&--large {
-				width: var(--size-lg);
-				height: var(--size-lg);
-
-				&::before,
-				&::after {
-					width: var(--size-lg);
-					height: var(--size-lg);
-				}
-			}
-
-			&--extra-large {
-				width: var(--size-xl);
-				height: var(--size-xl);
-
-				&::before,
-				&::after {
-					width: var(--size-xl);
-					height: var(--size-xl);
-				}
-			}
-
 			&--primary {
-				color: var(--blue-600);
+				color: var(--loading-ring-primary);
 			}
 
 			&--secondary {
-				color: var(--gray-400);
+				color: var(--loading-ring-secondary);
 			}
 
 			&--success {
-				color: var(--green-600);
+				color: var(--loading-ring-success);
 			}
 
 			&--warning {
-				color: var(--yellow-600);
+				color: var(--loading-ring-warning);
 			}
 
 			&--danger {
-				color: var(--red-600);
+				color: var(--loading-ring-danger);
 			}
 
 			&--dark {
-				color: var(--gray-800);
+				color: var(--loading-ring-dark);
 			}
 
 			&--light {
-				color: var(--neutral-50);
+				color: var(--loading-ring-light);
 			}
 		}
 	}

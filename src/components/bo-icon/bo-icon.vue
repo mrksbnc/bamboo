@@ -14,7 +14,6 @@
 </template>
 
 <script lang="ts" setup>
-	import type { ConditionalCssProperties } from '@/core';
 	import { ColorService } from '@/services';
 	import { IdentityService } from '@/services/identity-service';
 	import { computed, type CSSProperties, ref, type StyleValue, watchEffect } from 'vue';
@@ -29,6 +28,7 @@
 	});
 
 	const svg = ref<string>('');
+
 	/**
 	 * This is a map of all the icons that are available in the library.
 	 *
@@ -38,7 +38,7 @@
 	const iconMap = Object.keys(svgPromiseRecord).reduce(
 		(acc, key) => {
 			const splitted = key.split('/');
-			const icon = splitted[splitted.length - 1]?.split('.')[0];
+			const icon = splitted[splitted.length - 1]?.split('.')?.[0];
 
 			if (!icon || !svgPromiseRecord[key]) {
 				return acc;
@@ -50,11 +50,16 @@
 		{} as Record<string, () => Promise<string>>,
 	);
 
-	const role = computed<string>(() => {
+	const role = computed<string | undefined>(() => {
+		// Decorative icons should not have a role
+		if (props.decorative) {
+			return undefined;
+		}
 		return props.role ?? 'img';
 	});
 
 	const ariaHidden = computed<boolean | undefined>(() => {
+		// Decorative icons should be hidden from screen readers
 		return props.decorative ? true : undefined;
 	});
 
@@ -63,6 +68,11 @@
 		if (props.decorative) {
 			return undefined;
 		}
+
+		if (props.ariaLabel) {
+			return props.ariaLabel;
+		}
+
 		return props.title ?? props.icon;
 	});
 
@@ -77,9 +87,12 @@
 			cursor: 'default',
 		};
 	});
+
 	const iconColorStyle = computed<CSSProperties>(() => {
 		if (props.customColor) {
-			return ColorService.instance.getCustomColorStyle(props.customColor);
+			return {
+				color: ColorService.instance.getValidCssColor(props.customColor),
+			};
 		}
 
 		return {};
@@ -102,18 +115,16 @@
 		return style;
 	});
 
-	const componentBaseClasses = computed<ConditionalCssProperties>(() => {
-		return {
-			'bo-icon': true,
-			[`bo-icon--${props.variant}`]: true,
-		};
+	const componentBaseClasses = computed<string>(() => {
+		return ['bo-icon', `bo-icon--variant-${props.variant}`].filter(Boolean).join(' ');
 	});
 
 	async function load(icon: Icon): Promise<void> {
 		try {
-			await iconMap[icon]?.().then((val) => {
-				svg.value = val;
-			});
+			const svgContent = await iconMap[icon]?.();
+			if (svgContent) {
+				svg.value = svgContent;
+			}
 		} catch (e) {
 			console.error(`Could not find icon of name ${icon}\n${e}`);
 		}
@@ -130,47 +141,47 @@
 		box-sizing: border-box;
 		vertical-align: middle;
 
-		&--default {
+		&--variant-default {
 			color: currentcolor;
 		}
 
-		&--primary {
-			color: var(--blue-600);
+		&--variant-primary {
+			color: var(--icon-primary);
 		}
 
-		&--secondary {
-			color: var(--neutral-600);
+		&--variant-secondary {
+			color: var(--icon-secondary);
 		}
 
-		&--disabled {
-			color: var(--neutral-400);
+		&--variant-disabled {
+			color: var(--icon-disabled);
 		}
 
-		&--success {
-			color: var(--green-600);
+		&--variant-success {
+			color: var(--icon-success);
 		}
 
-		&--warning {
-			color: var(--yellow-500);
+		&--variant-warning {
+			color: var(--icon-warning);
 		}
 
-		&--danger {
-			color: var(--red-600);
+		&--variant-danger {
+			color: var(--icon-danger);
 		}
 
-		&--light {
-			color: var(--neutral-50);
+		&--variant-light {
+			color: var(--icon-light);
 		}
 
-		&--dark {
-			color: var(--gray-950);
+		&--variant-dark {
+			color: var(--icon-dark);
 		}
 
-		&--current {
+		&--variant-current {
 			color: currentcolor;
 		}
 
-		&--inherit {
+		&--variant-inherit {
 			color: inherit;
 		}
 	}

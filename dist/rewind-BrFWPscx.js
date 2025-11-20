@@ -1,0 +1,2 @@
+var rewind_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-rewind\" width=\"100%\" height=\"100%\">\n  <polygon points=\"11 19 2 12 11 5 11 19\"></polygon>\n  <polygon points=\"22 19 13 12 22 5 22 19\"></polygon>\n</svg>";
+export { rewind_default as default };

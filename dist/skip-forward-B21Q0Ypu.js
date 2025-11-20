@@ -1,0 +1,2 @@
+var skip_forward_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-skip-forward\" width=\"100%\" height=\"100%\">\n  <polygon points=\"5 4 15 12 5 20 5 4\"></polygon>\n  <line x1=\"19\" y1=\"5\" x2=\"19\" y2=\"19\"></line>\n</svg>";
+export { skip_forward_default as default };

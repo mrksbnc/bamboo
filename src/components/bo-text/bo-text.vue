@@ -4,22 +4,22 @@
 		:role="role"
 		:lang="lang"
 		:style="boTextStyle"
-		:class="[componentBaseClasses, customCssClass]"
+		:class="componentClasses"
 		:aria-live="ariaLive"
 		:aria-label="ariaLabel"
 		:data-testid="dataTestId"
 		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="ariaDescribedBy"
 	>
-		{{ processedValue }}
+		{{ formattedStr }}
 	</p>
 </template>
 
 <script lang="ts" setup>
-	import type { ConditionalCssProperties } from '@/core';
-	import { ColorService } from '@/services';
+	import { ColorService } from '@/services/color-service';
 	import { IdentityService } from '@/services/identity-service.js';
 	import { AriaLive } from '@/shared/accessibility';
+	import type { ConditionalCssProperties } from '@/shared/css';
 	import { computed, type CSSProperties, type StyleValue } from 'vue';
 
 	import {
@@ -49,7 +49,7 @@
 	const ariaLabel = computed<string>(() => props.ariaLabel || props.value);
 	const role = computed<string>(() => props.role ?? 'text');
 
-	const processedValue = computed<string>(() => {
+	const formattedStr = computed<string>(() => {
 		switch (props.textTransform) {
 			case BoTextTransform.capitalize:
 				/**
@@ -70,7 +70,9 @@
 
 	const textColor = computed<CSSProperties>(() => {
 		if (props.customColor) {
-			return ColorService.instance.getCustomColorStyle(props.customColor);
+			return {
+				color: ColorService.instance.getValidCssColor(props.customColor),
+			};
 		}
 
 		// Don't set color here - let CSS variants handle it
@@ -119,15 +121,15 @@
 		return style;
 	});
 
-	const componentBaseClasses = computed<ConditionalCssProperties>(() => {
+	const componentClasses = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-text': true,
-			[`bo-text--${props.variant}`]: true,
+			[`bo-text--variant-${props.variant}`]: true,
 			[`bo-text--size-${props.fontSize}`]: true,
-			[`bo-text--align-${props.textAlign}`]: props.textAlign !== undefined,
+			[`bo-text--align-${props.textAlign}`]: true,
 			[`bo-text--weight-${props.fontWeight}`]: true,
 			[`bo-text--whitespace-${props.whiteSpace}`]: true,
-			[`bo-text--font-${props.fontFamily}`]: true,
+			[`bo-text--font-family-${props.fontFamily}`]: true,
 			[`bo-text--transform-${props.textTransform}`]: true,
 		};
 	});
@@ -142,100 +144,118 @@
 		box-sizing: border-box;
 		vertical-align: middle;
 
-		&--default {
-			color: var(--bo-lib-text-color);
+		/* Color variants - using tokens from components.css */
+		&--variant-default {
+			color: var(--text-default);
 		}
 
-		&--primary {
-			color: var(--blue-600);
+		&--variant-primary {
+			color: var(--text-primary);
 		}
 
-		&--secondary {
-			color: var(--neutral-600);
+		&--variant-secondary {
+			color: var(--text-secondary);
 		}
 
-		&--disabled {
-			color: var(--neutral-400);
+		&--variant-disabled {
+			color: var(--text-muted);
 		}
 
-		&--success {
-			color: var(--green-600);
+		&--variant-success {
+			color: var(--text-success);
 		}
 
-		&--warning {
-			color: var(--yellow-500);
+		&--variant-warning {
+			color: var(--text-warning);
 		}
 
-		&--danger {
-			color: var(--red-600);
+		&--variant-danger {
+			color: var(--text-danger);
 		}
 
-		&--light {
-			color: var(--neutral-50);
+		&--variant-light {
+			color: var(--text-light);
 		}
 
-		&--dark {
-			color: var(--gray-950);
+		&--variant-dark {
+			color: var(--text-dark);
 		}
 
-		&--current {
+		&--variant-current {
 			color: currentcolor;
 		}
 
-		&--inherit {
+		&--variant-inherit {
 			color: inherit;
 		}
 
+		/* Font sizes with line heights - direct values */
 		&--size-xs {
-			font-size: 0.625rem;
-			line-height: 1.25;
+			font-size: 0.75rem; /* 12px */
+			line-height: 1.33;
 		}
 
 		&--size-sm {
-			font-size: 0.75rem;
-			line-height: 1.25;
+			font-size: 0.875rem; /* 14px */
+			line-height: 1.43;
 		}
 
-		&--size-lg {
-			font-size: 1rem;
+		&--size-default {
+			font-size: 1rem; /* 16px */
 			line-height: 1.5;
 		}
 
+		&--size-lg {
+			font-size: 1.125rem; /* 18px */
+			line-height: 1.56;
+		}
+
 		&--size-xl {
-			font-size: 1.125rem;
-			line-height: 1.75;
+			font-size: 1.25rem; /* 20px */
+			line-height: 1.4;
 		}
 
 		&--size-2xl {
-			font-size: 1.25rem;
-			line-height: 1.75;
+			font-size: 1.5rem; /* 24px */
+			line-height: 1.33;
 		}
 
 		&--size-3xl {
-			font-size: 1.5rem;
-			line-height: 2;
+			font-size: 1.875rem; /* 30px */
+			line-height: 1.2;
 		}
 
 		&--size-4xl {
-			font-size: 1.875rem;
-			line-height: 2.25;
+			font-size: 2.25rem; /* 36px */
+			line-height: 1.11;
 		}
 
 		&--size-5xl {
-			font-size: 2.25rem;
-			line-height: 2.5;
+			font-size: 3rem; /* 48px */
+			line-height: 1;
 		}
 
 		&--size-6xl {
-			font-size: 3rem;
+			font-size: 3.75rem; /* 60px */
 			line-height: 1;
 		}
 
 		&--size-7xl {
-			font-size: 3.75rem;
+			font-size: 4.5rem; /* 72px */
 			line-height: 1;
 		}
 
+		&--size-8xl {
+			font-size: 6rem; /* 96px */
+			line-height: 1;
+		}
+
+		&--size-9xl {
+			font-size: 8rem; /* 128px */
+			line-height: 1;
+		}
+
+		/* Font weights - direct values */
 		&--weight-thin {
 			font-weight: 100;
 		}
@@ -268,6 +288,7 @@
 			font-weight: 900;
 		}
 
+		/* Text alignment */
 		&--align-center {
 			text-align: center;
 		}
@@ -284,6 +305,7 @@
 			text-align: left;
 		}
 
+		/* White space */
 		&--whitespace-normal {
 			white-space: normal;
 		}
@@ -308,26 +330,28 @@
 			white-space: break-spaces;
 		}
 
-		&--font-sans {
+		/* Font families */
+		&--font-family-sans {
 			font-family:
 				ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
 				'Segoe UI Symbol', 'Noto Color Emoji';
 		}
 
-		&--font-mono {
+		&--font-family-mono {
 			font-family:
 				ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
 				monospace;
 		}
 
-		&--font-serif {
+		&--font-family-serif {
 			font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
 		}
 
-		&--font-inherit {
+		&--font-family-inherit {
 			font-family: inherit;
 		}
 
+		/* Text transform */
 		&--transform-none {
 			text-transform: none;
 		}

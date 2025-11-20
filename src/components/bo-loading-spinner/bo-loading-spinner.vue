@@ -22,8 +22,8 @@
 <script lang="ts" setup>
 	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js';
 	import BoText from '@/components/bo-text/bo-text.vue';
-	import type { ConditionalCssProperties } from '@/core/css.js';
 	import { IdentityService } from '@/services/identity-service.js';
+	import type { ConditionalCssProperties } from '@/shared/css.js';
 	import { BoLoaderTextPosition } from '@/shared/index.js';
 	import { BoSize } from '@/shared/size.js';
 	import { BoVariant } from '@/shared/variant.js';
@@ -33,22 +33,22 @@
 	const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 		id: IdentityService.instance.getComponentId(),
 		dataTestId: IdentityService.instance.getDataTestId('bo-loading-spinner'),
-		size: BoSize.default,
+		size: BoSize.md,
 		variant: BoVariant.primary,
 		textPosition: BoLoaderTextPosition.after,
 	});
 
 	const boFontSize = computed<BoFontSize>(() => {
 		switch (props.size) {
-			case BoSize.extra_small:
+			case BoSize.xs:
 				return BoFontSize.xs;
-			case BoSize.small:
+			case BoSize.sm:
 				return BoFontSize.sm;
-			case BoSize.large:
+			case BoSize.lg:
 				return BoFontSize.xl;
-			case BoSize.extra_large:
+			case BoSize.xl:
 				return BoFontSize['2xl'];
-			case BoSize.default:
+			case BoSize.md:
 			default:
 				return BoFontSize.lg;
 		}
@@ -56,16 +56,16 @@
 
 	const containerClass = computed<ConditionalCssProperties>(() => {
 		return {
-			'bo-loading-spinner': true,
-			[`bo-loading-spinner--${props.textPosition}`]: true,
+			'bo-loader': true,
+			[`bo-loader--${props.textPosition}`]: true,
 		};
 	});
 
 	const spinnerClass = computed<ConditionalCssProperties>(() => {
 		return {
-			'bo-loading-spinner__spinner': true,
-			[`bo-loading-spinner__spinner--${props.size}`]: true,
-			[`bo-loading-spinner__spinner--${props.variant}`]: true,
+			'bo-loader__spinner': true,
+			[`bo-loader__spinner--${props.size}`]: true,
+			[`bo-loader__spinner--${props.variant}`]: true,
 		};
 	});
 
@@ -81,7 +81,7 @@
 </script>
 
 <style scoped lang="scss">
-	.bo-loading-spinner {
+	.bo-loader {
 		gap: 0.75rem;
 		align-items: center;
 		display: inline-flex;
@@ -107,64 +107,64 @@
 			border-radius: 50%;
 			border: 0.2rem solid;
 			border-color: transparent;
-			animation: bo-loading-spinner-rotation 1s linear infinite;
+			animation: bo-loader-rotation 1s linear infinite;
 
-			&--extra-small {
-				width: var(--size-xs);
-				height: var(--size-xs);
+			&--xs {
+				width: 1rem;
+				height: 1rem;
 			}
 
-			&--small {
-				width: var(--size-sm);
-				height: var(--size-sm);
+			&--sm {
+				width: 1.5rem;
+				height: 1.5rem;
 			}
 
-			&--default {
-				width: var(--size-md);
-				height: var(--size-md);
+			&--md {
+				width: 2rem;
+				height: 2rem;
 			}
 
-			&--large {
-				width: var(--size-lg);
-				height: var(--size-lg);
+			&--lg {
+				width: 2.5rem;
+				height: 2.5rem;
 			}
 
-			&--extra-large {
-				width: var(--size-xl);
-				height: var(--size-xl);
+			&--xl {
+				width: 3rem;
+				height: 3rem;
 			}
 
 			&--primary {
-				border-bottom-color: var(--blue-600);
+				border-bottom-color: var(--loading-spinner-primary);
 			}
 
 			&--secondary {
-				border-bottom-color: var(--gray-400);
+				border-bottom-color: var(--loading-spinner-secondary);
 			}
 
 			&--success {
-				border-bottom-color: var(--green-600);
+				border-bottom-color: var(--loading-spinner-success);
 			}
 
 			&--warning {
-				border-bottom-color: var(--yellow-600);
+				border-bottom-color: var(--loading-spinner-warning);
 			}
 
 			&--danger {
-				border-bottom-color: var(--red-600);
+				border-bottom-color: var(--loading-spinner-danger);
 			}
 
 			&--dark {
-				border-bottom-color: var(--neutral-900);
+				border-bottom-color: var(--loading-spinner-dark);
 			}
 
 			&--light {
-				border-bottom-color: var(--gray-100);
+				border-bottom-color: var(--loading-spinner-light);
 			}
 		}
 	}
 
-	@keyframes bo-loading-spinner-rotation {
+	@keyframes bo-loader-rotation {
 		0% {
 			transform: rotate(0deg);
 		}

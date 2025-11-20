@@ -1,0 +1,2 @@
+var truck_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-truck\" width=\"100%\" height=\"100%\">\n  <rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"></rect>\n  <polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"></polygon>\n  <circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"></circle>\n  <circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"></circle>\n</svg>";
+export { truck_default as default };

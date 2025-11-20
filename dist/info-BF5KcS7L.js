@@ -1,0 +1,2 @@
+var info_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-info\" width=\"100%\" height=\"100%\">\n  <circle cx=\"12\" cy=\"12\" r=\"10\"></circle>\n  <line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line>\n  <line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line>\n</svg>";
+export { info_default as default };

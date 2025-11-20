@@ -13,7 +13,7 @@ export interface UseTheme {
 	initTheme(): void;
 }
 
-export function useTheme() {
+export function useTheme(): UseTheme {
 	const activeTheme = ref<BoTheme>(BoTheme.light);
 
 	function setTheme(theme: BoTheme): void {
@@ -22,7 +22,7 @@ export function useTheme() {
 		}
 
 		activeTheme.value = theme;
-		document.documentElement.setAttribute('data-them', activeTheme.value);
+		document.documentElement.setAttribute('data-theme', activeTheme.value);
 		localStorage.setItem(BoLocalStorageKey.data_theme, activeTheme.value);
 	}
 

@@ -1,0 +1,2 @@
+var log_out_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-log-out\" width=\"100%\" height=\"100%\">\n  <path d=\"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4\"></path>\n  <polyline points=\"16 17 21 12 16 7\"></polyline>\n  <line x1=\"21\" y1=\"12\" x2=\"9\" y2=\"12\"></line>\n</svg>";
+export { log_out_default as default };

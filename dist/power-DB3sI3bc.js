@@ -1,0 +1,2 @@
+var power_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-power\" width=\"100%\" height=\"100%\">\n  <path d=\"M18.36 6.64a9 9 0 1 1-12.73 0\"></path>\n  <line x1=\"12\" y1=\"2\" x2=\"12\" y2=\"12\"></line>\n</svg>";
+export { power_default as default };

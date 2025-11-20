@@ -1,0 +1,2 @@
+var toggle_left_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-toggle-left\" width=\"100%\" height=\"100%\">\n  <rect x=\"1\" y=\"5\" width=\"22\" height=\"14\" rx=\"7\" ry=\"7\"></rect>\n  <circle cx=\"8\" cy=\"12\" r=\"3\"></circle>\n</svg>";
+export { toggle_left_default as default };

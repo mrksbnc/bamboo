@@ -1,0 +1,2 @@
+var pie_chart_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-pie-chart\" width=\"100%\" height=\"100%\">\n  <path d=\"M21.21 15.89A10 10 0 1 1 8 2.83\"></path>\n  <path d=\"M22 12A10 10 0 0 0 12 2v10z\"></path>\n</svg>";
+export { pie_chart_default as default };

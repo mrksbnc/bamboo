@@ -1,0 +1,2 @@
+var git_commit_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-git-commit\" width=\"100%\" height=\"100%\">\n  <circle cx=\"12\" cy=\"12\" r=\"4\"></circle>\n  <line x1=\"1.05\" y1=\"12\" x2=\"7\" y2=\"12\"></line>\n  <line x1=\"17.01\" y1=\"12\" x2=\"22.96\" y2=\"12\"></line>\n</svg>";
+export { git_commit_default as default };

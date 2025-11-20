@@ -1,0 +1,2 @@
+var log_in_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-log-in\" width=\"100%\" height=\"100%\">\n  <path d=\"M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4\"></path>\n  <polyline points=\"10 17 15 12 10 7\"></polyline>\n  <line x1=\"15\" y1=\"12\" x2=\"3\" y2=\"12\"></line>\n</svg>";
+export { log_in_default as default };

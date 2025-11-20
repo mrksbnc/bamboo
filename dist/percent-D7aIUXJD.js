@@ -1,0 +1,2 @@
+var percent_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-percent\" width=\"100%\" height=\"100%\">\n  <line x1=\"19\" y1=\"5\" x2=\"5\" y2=\"19\"></line>\n  <circle cx=\"6.5\" cy=\"6.5\" r=\"2.5\"></circle>\n  <circle cx=\"17.5\" cy=\"17.5\" r=\"2.5\"></circle>\n</svg>";
+export { percent_default as default };

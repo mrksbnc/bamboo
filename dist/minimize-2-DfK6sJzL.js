@@ -1,0 +1,2 @@
+var minimize_2_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-minimize-2\" width=\"100%\" height=\"100%\">\n  <polyline points=\"4 14 10 14 10 20\"></polyline>\n  <polyline points=\"20 10 14 10 14 4\"></polyline>\n  <line x1=\"14\" y1=\"10\" x2=\"21\" y2=\"3\"></line>\n  <line x1=\"3\" y1=\"21\" x2=\"10\" y2=\"14\"></line>\n</svg>";
+export { minimize_2_default as default };

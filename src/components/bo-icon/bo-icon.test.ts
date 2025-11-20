@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils';
 import BoIcon from './bo-icon.vue';
 import { Icon, BoIconVariant } from './bo-icon';
 
-describe('BoIcon', () => {
+describe('Icon', () => {
 	test('should render with required props', () => {
 		const wrapper = mount(BoIcon, {
 			props: {
@@ -33,14 +33,15 @@ describe('BoIcon', () => {
 		await wrapper.vm.$nextTick();
 		await new Promise((resolve) => setTimeout(resolve, 100));
 
-		expect(wrapper.find('i').exists()).toBe(true);
-		expect(wrapper.classes().join(' ').includes('bo-icon--primary')).toBe(true);
-		expect(wrapper.classes().join(' ').includes('my-custom-class')).toBe(true);
-		expect(wrapper.attributes('style')).toContain('color: rgb(255, 0, 0)');
-		expect(wrapper.attributes('style')).toContain('cursor: pointer');
-		expect(wrapper.attributes('aria-label')).toBeUndefined();
-		expect(wrapper.attributes('role')).toBe('button');
-		expect(wrapper.attributes('aria-hidden')).toBe('true');
+		const icon = wrapper.find('i');
+		expect(icon.exists()).toBe(true);
+		expect(icon.classes().join(' ').includes('bo-icon--variant-primary')).toBe(true);
+		expect(icon.classes().join(' ').includes('my-custom-class')).toBe(true);
+		expect(icon.attributes('style')).toContain('color: rgb(255, 0, 0)');
+		expect(icon.attributes('style')).toContain('cursor: pointer');
+		expect(icon.attributes('aria-label')).toBeUndefined();
+		expect(icon.attributes('role')).toBeUndefined(); // decorative icons don't have role
+		expect(icon.attributes('aria-hidden')).toBe('true');
 	});
 
 	test('should apply custom color for valid hex colors', async () => {
@@ -194,7 +195,7 @@ describe('BoIcon', () => {
 			await wrapper.vm.$nextTick();
 			await new Promise((resolve) => setTimeout(resolve, 100));
 
-			expect(wrapper.classes().join(' ').includes(`bo-icon--${variant}`)).toBe(true);
+			expect(wrapper.classes().join(' ').includes(`bo-icon--variant-${variant}`)).toBe(true);
 		}
 	});
 
@@ -275,6 +276,7 @@ describe('BoIcon', () => {
 				props: {
 					icon: Icon.activity,
 					role,
+					decorative: false, // role only applies to non-decorative icons
 				},
 			});
 
@@ -282,12 +284,14 @@ describe('BoIcon', () => {
 			await wrapper.vm.$nextTick();
 			await new Promise((resolve) => setTimeout(resolve, 100));
 
-			expect(wrapper.attributes('role')).toBe(role);
+			const icon = wrapper.find('i');
+			expect(icon.attributes('role')).toBe(role);
 		}
 
 		const wrapper2 = mount(BoIcon, {
 			props: {
 				icon: Icon.activity,
+				decorative: false, // role only applies to non-decorative icons
 			},
 		});
 
@@ -295,7 +299,8 @@ describe('BoIcon', () => {
 		await wrapper2.vm.$nextTick();
 		await new Promise((resolve) => setTimeout(resolve, 100));
 
-		expect(wrapper2.attributes('role')).toBe('img');
+		const icon2 = wrapper2.find('i');
+		expect(icon2.attributes('role')).toBe('img');
 	});
 
 	test('should apply the proper cursor style', async () => {

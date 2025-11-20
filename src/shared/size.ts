@@ -1,7 +1,7 @@
 export enum BoSize {
-	extra_small = 'extra-small',
-	small = 'small',
-	default = 'default',
-	large = 'large',
-	extra_large = 'extra-large',
+	xs = 'xs',
+	sm = 'sm',
+	md = 'md',
+	lg = 'lg',
+	xl = 'xl',
 }

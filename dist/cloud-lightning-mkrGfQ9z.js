@@ -1,0 +1,2 @@
+var cloud_lightning_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-cloud-lightning\" width=\"100%\" height=\"100%\">\n  <path d=\"M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9\"></path>\n  <polyline points=\"13 11 9 17 15 17 11 23\"></polyline>\n</svg>";
+export { cloud_lightning_default as default };

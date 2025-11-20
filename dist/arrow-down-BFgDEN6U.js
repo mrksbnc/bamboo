@@ -1,0 +1,2 @@
+var arrow_down_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-arrow-down\" width=\"100%\" height=\"100%\">\n  <line x1=\"12\" y1=\"5\" x2=\"12\" y2=\"19\"></line>\n  <polyline points=\"19 12 12 19 5 12\"></polyline>\n</svg>";
+export { arrow_down_default as default };

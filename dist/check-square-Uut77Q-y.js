@@ -1,0 +1,2 @@
+var check_square_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-check-square\" width=\"100%\" height=\"100%\">\n  <polyline points=\"9 11 12 14 22 4\"></polyline>\n  <path d=\"M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11\"></path>\n</svg>";
+export { check_square_default as default };

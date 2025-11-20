@@ -1,5 +1,3 @@
-import type { CSSProperties } from 'vue';
-
 let instance: ColorService | null = null;
 
 export class ColorService {
@@ -19,10 +17,10 @@ export class ColorService {
 		'\t- a hex color (e.g. #ff0000)',
 		'\t- an rgb color (e.g. rgb(255, 0, 0))',
 		'\t- an rgba color (e.g. rgba(255, 0, 0, 0.5))',
-		'The custom color will be ignored and currentColor will be used instead.',
+		'The custom color will be ignored and currentColor will be returned instead.',
 	].join('\n');
 
-	getCustomColorStyle(prop: string): CSSProperties {
+	getValidCssColor(prop: string): string {
 		if (
 			prop.startsWith('var') ||
 			prop.startsWith('#') ||
@@ -30,25 +28,17 @@ export class ColorService {
 			prop.startsWith('rgb') ||
 			prop.startsWith('rgba')
 		) {
-			return {
-				color: prop,
-			};
+			return prop;
 		} else if (prop.startsWith('--')) {
 			/** CSS variable */
-			return {
-				color: `var(${prop})`,
-			};
+			return `var(${prop})`;
 		} else if (prop?.length === 6) {
 			/** Hex color without the leading # */
-			return {
-				color: `#${prop}`,
-			};
+			return `#${prop}`;
 		} else {
 			console.warn(this.UNKNOWN_COLOR_WARNING.replace(this.TEXT_REPLACE_PLACEHOLDER, prop));
 
-			return {
-				color: 'currentColor',
-			};
+			return 'currentColor';
 		}
 	}
 }

@@ -64,9 +64,7 @@ export enum Icon {
 	cloud_rain = 'cloud-rain',
 	cloud_snow = 'cloud-snow',
 	code = 'code',
-	// cspell:disable-next-line
 	codepen = 'codepen',
-	// cspell:disable-next-line
 	codesandbox = 'codesandbox',
 	coffee = 'coffee',
 	columns = 'columns',
@@ -94,7 +92,6 @@ export enum Icon {
 	dollar_sign = 'dollar-sign',
 	download = 'download',
 	download_cloud = 'download-cloud',
-	// cspell:disable-next-line
 	dribbble = 'dribbble',
 	droplet = 'droplet',
 	edit = 'edit',
@@ -336,9 +333,13 @@ export interface BoIconProps {
 	title?: string;
 	/** The accessibility role of the icon. */
 	role?: string;
+	/** The aria-label for the icon (for non-decorative icons). */
+	ariaLabel?: string;
 	/**
 	 * Whether the icon is decorative which means that the icon is not
 	 * a part of the UI and is only used to convey information.
+	 * Decorative icons are hidden from screen readers.
+	 * @default true
 	 */
 	decorative?: boolean;
 }

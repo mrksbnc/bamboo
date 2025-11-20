@@ -1,0 +1,2 @@
+var arrow_up_left_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-arrow-up-left\" width=\"100%\" height=\"100%\">\n  <line x1=\"17\" y1=\"17\" x2=\"7\" y2=\"7\"></line>\n  <polyline points=\"7 17 7 7 17 7\"></polyline>\n</svg>";
+export { arrow_up_left_default as default };

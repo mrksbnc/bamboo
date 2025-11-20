@@ -1,0 +1,2 @@
+var upload_cloud_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-upload-cloud\" width=\"100%\" height=\"100%\">\n  <polyline points=\"16 16 12 12 8 16\"></polyline>\n  <line x1=\"12\" y1=\"12\" x2=\"12\" y2=\"21\"></line>\n  <path d=\"M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3\"></path>\n  <polyline points=\"16 16 12 12 8 16\"></polyline>\n</svg>";
+export { upload_cloud_default as default };

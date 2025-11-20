@@ -1,0 +1,2 @@
+var layers_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-layers\" width=\"100%\" height=\"100%\">\n  <polygon points=\"12 2 2 7 12 12 22 7 12 2\"></polygon>\n  <polyline points=\"2 17 12 22 22 17\"></polyline>\n  <polyline points=\"2 12 12 17 22 12\"></polyline>\n</svg>";
+export { layers_default as default };

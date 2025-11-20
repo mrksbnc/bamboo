@@ -1,0 +1,2 @@
+var slash_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-slash\" width=\"100%\" height=\"100%\">\n  <circle cx=\"12\" cy=\"12\" r=\"10\"></circle>\n  <line x1=\"4.93\" y1=\"4.93\" x2=\"19.07\" y2=\"19.07\"></line>\n</svg>";
+export { slash_default as default };

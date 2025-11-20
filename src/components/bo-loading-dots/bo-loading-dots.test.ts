@@ -1,0 +1,263 @@
+import { describe, it, expect } from 'vitest';
+import { mount } from '@vue/test-utils';
+import BoLoadingDots from './bo-loading-dots.vue';
+import { BoLoaderTextPosition } from '@/shared/loader.js';
+import { BoVariant } from '@/shared/variant.js';
+import { BoSize } from '@/shared/size.js';
+import { AriaLive } from '@/shared/accessibility.js';
+import { BoFontSize } from '@/components/bo-text/bo-text.js';
+
+describe('bo-loading-dots', () => {
+	it('should render the loading dots component', () => {
+		const wrapper = mount(BoLoadingDots);
+		expect(wrapper.find('[class*="bo-loader"]').exists()).toBe(true);
+	});
+
+	it('should render the dots element', () => {
+		const wrapper = mount(BoLoadingDots);
+		expect(wrapper.find('.bo-loader__dots').exists()).toBe(true);
+	});
+
+	it('should have a default id', () => {
+		const wrapper = mount(BoLoadingDots);
+		expect(wrapper.attributes('id')).toBeDefined();
+	});
+
+	it('should have a default data-testid', () => {
+		const wrapper = mount(BoLoadingDots);
+		expect(wrapper.attributes('data-testid')).toBeDefined();
+	});
+
+	describe('loader size', () => {
+		it.each(Object.values(BoSize))('should apply size class for %s', (size) => {
+			const wrapper = mount(BoLoadingDots, {
+				props: { size },
+			});
+			expect(wrapper.find(`.bo-loader__dots--${size}`).exists()).toBe(true);
+		});
+
+		it('should default to BoSize.md if no size is provided', () => {
+			const wrapper = mount(BoLoadingDots);
+			expect(wrapper.find('.bo-loader__dots--md').exists()).toBe(true);
+		});
+	});
+
+	describe('loader variants', () => {
+		it.each(Object.values(BoVariant))('should apply variant class for %s', (variant) => {
+			const wrapper = mount(BoLoadingDots, {
+				props: { variant },
+			});
+			expect(wrapper.find(`.bo-loader__dots--${variant}`).exists()).toBe(true);
+		});
+
+		it('should default to BoVariant.primary if no variant is provided', () => {
+			const wrapper = mount(BoLoadingDots);
+			expect(wrapper.find('.bo-loader__dots--primary').exists()).toBe(true);
+		});
+	});
+
+	describe('loader text position', () => {
+		it.each(Object.values(BoLoaderTextPosition))(
+			'should apply text position class for %s',
+			(position) => {
+				const wrapper = mount(BoLoadingDots, {
+					props: { textPosition: position },
+				});
+				expect(wrapper.find(`.bo-loader--${position}`).exists()).toBe(true);
+			},
+		);
+
+		it('should default to BoLoaderTextPosition.after if no textPosition is provided', () => {
+			const wrapper = mount(BoLoadingDots);
+			expect(wrapper.find('.bo-loader--after').exists()).toBe(true);
+		});
+	});
+
+	describe('loader text', () => {
+		it('should render BoText component when loaderText is provided', () => {
+			const wrapper = mount(BoLoadingDots, {
+				props: { loaderText: 'Loading...' },
+			});
+			const boText = wrapper.findComponent({ name: 'BoText' });
+			expect(boText.exists()).toBe(true);
+		});
+
+		it('should not render BoText component when loaderText is not provided', () => {
+			const wrapper = mount(BoLoadingDots);
+			const boText = wrapper.findComponent({ name: 'BoText' });
+			expect(boText.exists()).toBe(false);
+		});
+
+		it('should pass loaderText to BoText component', () => {
+			const text = 'Loading...';
+			const wrapper = mount(BoLoadingDots, {
+				props: { loaderText: text },
+			});
+			const boText = wrapper.findComponent({ name: 'BoText' });
+			expect(boText.props('value')).toBe(text);
+		});
+	});
+
+	describe('custom loader color', () => {
+		it('should apply custom color to background and CSS variable', () => {
+			const customColor = '#ff0000';
+			const wrapper = mount(BoLoadingDots, {
+				props: { customColor },
+			});
+			const dots = wrapper.find('.bo-loader__dots');
+			const style = dots.attributes('style');
+			expect(style).toContain('--custom-dot-color:');
+			expect(style).toContain('background: rgb(255, 0, 0);');
+		});
+
+		it('should not apply color style when customColor is not provided', () => {
+			const wrapper = mount(BoLoadingDots);
+			const dots = wrapper.find('.bo-loader__dots');
+			const style = dots.attributes('style');
+			expect(style).toBeUndefined();
+		});
+	});
+
+	describe('custom CSS classes', () => {
+		it('should apply custom container CSS class', () => {
+			const customClass = 'custom-container-class';
+			const wrapper = mount(BoLoadingDots, {
+				props: { customContainerCssClass: customClass },
+			});
+			expect(wrapper.find(`.${customClass}`).exists()).toBe(true);
+		});
+
+		it('should apply custom dots CSS class', () => {
+			const customClass = 'custom-dots-class';
+			const wrapper = mount(BoLoadingDots, {
+				props: { customDotsCssClass: customClass },
+			});
+			expect(wrapper.find(`.${customClass}`).exists()).toBe(true);
+		});
+	});
+
+	describe('custom id and data-testid', () => {
+		it('should apply custom id', () => {
+			const customId = 'my-dots-id';
+			const wrapper = mount(BoLoadingDots, {
+				props: { id: customId },
+			});
+			expect(wrapper.attributes('id')).toBe(customId);
+		});
+
+		it('should apply custom data-testid', () => {
+			const customTestId = 'my-dots-testid';
+			const wrapper = mount(BoLoadingDots, {
+				props: { dataTestId: customTestId },
+			});
+			expect(wrapper.attributes('data-testid')).toBe(customTestId);
+		});
+	});
+
+	describe('loader accessibility', () => {
+		it('should apply aria-live attribute', () => {
+			const wrapper = mount(BoLoadingDots, {
+				props: { ariaLive: AriaLive.polite },
+			});
+			expect(wrapper.attributes('aria-live')).toBe(AriaLive.polite);
+		});
+
+		it('should apply aria-label attribute', () => {
+			const label = 'Loading content';
+			const wrapper = mount(BoLoadingDots, {
+				props: { ariaLabel: label },
+			});
+			expect(wrapper.attributes('aria-label')).toBe(label);
+		});
+
+		it('should apply aria-busy attribute', () => {
+			const wrapper = mount(BoLoadingDots, {
+				props: { ariaBusy: true },
+			});
+			expect(wrapper.attributes('aria-busy')).toBe('true');
+		});
+	});
+
+	describe('props - BoText font size mapping', () => {
+		const sizeMapping = [
+			{ size: BoSize.xs, expectedFontSize: BoFontSize.xs },
+			{ size: BoSize.sm, expectedFontSize: BoFontSize.sm },
+			{ size: BoSize.md, expectedFontSize: BoFontSize.lg },
+			{ size: BoSize.lg, expectedFontSize: BoFontSize.xl },
+			{ size: BoSize.xl, expectedFontSize: BoFontSize['2xl'] },
+		];
+
+		it.each(sizeMapping)(
+			'should map size $size to BoText font size $expectedFontSize',
+			({ size, expectedFontSize }) => {
+				const wrapper = mount(BoLoadingDots, {
+					props: { size, loaderText: 'Loading...' },
+				});
+				const boText = wrapper.findComponent({ name: 'BoText' });
+				expect(boText.props('fontSize')).toBe(expectedFontSize);
+			},
+		);
+	});
+
+	describe('bo-text variant', () => {
+		it('should always render BoText with secondary variant', () => {
+			const wrapper = mount(BoLoadingDots, {
+				props: { loaderText: 'Loading...' },
+			});
+			const boText = wrapper.findComponent({ name: 'BoText' });
+			expect(boText.props('variant')).toBe(BoVariant.secondary);
+		});
+	});
+
+	describe('slot', () => {
+		it('should render default slot when provided', () => {
+			const wrapper = mount(BoLoadingDots, {
+				slots: {
+					default: '<span class="custom-slot">Custom Content</span>',
+				},
+			});
+			expect(wrapper.find('.custom-slot').exists()).toBe(true);
+			expect(wrapper.text()).toContain('Custom Content');
+		});
+
+		it('should use default slot over loaderText', () => {
+			const wrapper = mount(BoLoadingDots, {
+				props: { loaderText: 'Loading...' },
+				slots: {
+					default: '<span class="slot-content">Slot Content</span>',
+				},
+			});
+			expect(wrapper.find('.slot-content').exists()).toBe(true);
+		});
+	});
+
+	describe('combined props', () => {
+		it('should work with multiple props combined', () => {
+			const wrapper = mount(BoLoadingDots, {
+				props: {
+					size: BoSize.lg,
+					variant: BoVariant.success,
+					textPosition: BoLoaderTextPosition.top,
+					loaderText: 'Loading...',
+					customColor: '#00ff00',
+					customContainerCssClass: 'my-container',
+					customDotsCssClass: 'my-dots',
+					id: 'dots-1',
+					dataTestId: 'dots-test-1',
+					ariaLabel: 'Please wait',
+					ariaBusy: true,
+				},
+			});
+
+			expect(wrapper.attributes('id')).toBe('dots-1');
+			expect(wrapper.attributes('data-testid')).toBe('dots-test-1');
+			expect(wrapper.find('.bo-loader__dots--lg').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader__dots--success').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader--top').exists()).toBe(true);
+			expect(wrapper.find('.my-container').exists()).toBe(true);
+			expect(wrapper.find('.my-dots').exists()).toBe(true);
+			expect(wrapper.attributes('aria-label')).toBe('Please wait');
+			expect(wrapper.attributes('aria-busy')).toBe('true');
+		});
+	});
+});

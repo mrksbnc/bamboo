@@ -44,7 +44,7 @@ describe('BoText', () => {
 				},
 			});
 
-			expect(wrapper.classes().join(' ').includes(`bo-text--${variant}`)).toBe(true);
+			expect(wrapper.classes().join(' ').includes(`bo-text--variant-${variant}`)).toBe(true);
 		}
 	});
 
@@ -211,7 +211,7 @@ describe('BoText', () => {
 				},
 			});
 
-			expect(wrapper.classes().join(' ').includes(`bo-text--font-${family}`)).toBe(true);
+			expect(wrapper.classes().join(' ').includes(`bo-text--font-family-${family}`)).toBe(true);
 		}
 	});
 

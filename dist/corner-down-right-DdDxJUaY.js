@@ -1,0 +1,2 @@
+var corner_down_right_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-corner-down-right\" width=\"100%\" height=\"100%\">\n  <polyline points=\"15 10 20 15 15 20\"></polyline>\n  <path d=\"M4 4v7a4 4 0 0 0 4 4h12\"></path>\n</svg>";
+export { corner_down_right_default as default };

@@ -1,0 +1,2 @@
+var corner_up_left_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-corner-up-left\" width=\"100%\" height=\"100%\">\n  <polyline points=\"9 14 4 9 9 4\"></polyline>\n  <path d=\"M20 20v-7a4 4 0 0 0-4-4H4\"></path>\n</svg>";
+export { corner_up_left_default as default };

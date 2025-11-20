@@ -22,28 +22,32 @@ export enum BoFontWeight {
 }
 
 export enum BoFontSize {
-	/** 10px */
-	xs = 'xs',
 	/** 12px */
-	sm = 'sm',
+	xs = 'xs',
 	/** 14px */
-	default = 'default',
+	sm = 'sm',
 	/** 16px */
-	lg = 'lg',
+	default = 'default',
 	/** 18px */
-	xl = 'xl',
+	lg = 'lg',
 	/** 20px */
-	'2xl' = '2xl',
+	xl = 'xl',
 	/** 24px */
-	'3xl' = '3xl',
+	'2xl' = '2xl',
 	/** 30px */
-	'4xl' = '4xl',
+	'3xl' = '3xl',
 	/** 36px */
-	'5xl' = '5xl',
+	'4xl' = '4xl',
 	/** 48px */
-	'6xl' = '6xl',
+	'5xl' = '5xl',
 	/** 60px */
+	'6xl' = '6xl',
+	/** 72px */
 	'7xl' = '7xl',
+	/** 96px */
+	'8xl' = '8xl',
+	/** 128px */
+	'9xl' = '9xl',
 }
 
 export enum BoFontFamily {
@@ -119,8 +123,6 @@ export interface BoTextProps {
 	 * - an oklch color (e.g. oklch(0.985 0.001 106.423))
 	 */
 	customColor?: string;
-	/** One or multiple css classes to be used for overriding the default styles on the element. */
-	customCssClass?: string;
 	/** The clickable of the element. */
 	clickable?: boolean;
 	/** The text align of the element. */

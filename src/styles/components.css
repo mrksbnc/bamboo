@@ -59,7 +59,6 @@
 	/* ========================================
 	   Component: bo-badge
 	   ======================================== */
-
 	/* Default style variants */
 	--badge-bg-primary: var(--blue-600);
 	--badge-text-primary: var(--white);
@@ -277,7 +276,6 @@
 	/* ========================================
 	   Component: bo-link
 	   ======================================== */
-
 	/* Primary variant */
 	--link-primary: var(--blue-600);
 	--link-primary-hover: var(--blue-700);
@@ -508,7 +506,6 @@
 	/* ========================================
 	   Component: bo-tabs
 	   ======================================== */
-
 	/* Underline variant (default) */
 	--tabs-border: var(--neutral-200);
 	--tabs-tab-text: var(--neutral-600);
@@ -698,7 +695,6 @@
 	/* ========================================
 	   Component: bo-badge
 	   ======================================== */
-
 	/* Default style variants */
 	--badge-bg-primary: var(--blue-500);
 	--badge-text-primary: var(--white);
@@ -916,7 +912,6 @@
 	/* ========================================
 	   Component: bo-link
 	   ======================================== */
-
 	/* Primary variant */
 	--link-primary: var(--blue-400);
 	--link-primary-hover: var(--blue-300);
@@ -1147,7 +1142,6 @@
 	/* ========================================
 	   Component: bo-tabs
 	   ======================================== */
-
 	/* Underline variant (default) */
 	--tabs-border: var(--neutral-700);
 	--tabs-tab-text: var(--neutral-400);

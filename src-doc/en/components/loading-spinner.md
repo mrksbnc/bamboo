@@ -1,0 +1,212 @@
+---
+title: Loading Spinner
+description: An accessible loading spinner component with customizable colors, sizes, and optional status text.
+outline: deep
+---
+
+<script setup lang="ts">
+import { BoLoadingSpinner } from "@/components/bo-loading-spinner";
+import { AriaLive } from "@/shared/accessibility";
+import { BoSize } from "@/shared/size";
+import { BoLoaderTextPosition } from "@/shared/loader"
+import { BoVariant } from "@/shared/variant"
+</script>
+
+# Loading Spinner
+
+An accessible progress indicator with a spinning animation and optional status text for showing loading states.
+
+## Basic Usage
+
+::: tip
+The loading spinner component provides an accessible progress indicator with comprehensive ARIA support.
+:::
+
+```vue
+<bo-loading-spinner loader-text="Loading data" />
+```
+
+<div style="margin-top: 1rem;">
+  <bo-loading-spinner loader-text="Loading data" />
+</div>
+
+## API Reference
+
+### Props
+
+| Name                      | Type                   | Description                                                        |
+| ------------------------- | ---------------------- | ------------------------------------------------------------------ |
+| `id`                      | `string`               | Unique identifier for the root element.                            |
+| `dataTestId`              | `string`               | Deterministic data test id for end-to-end tests.                   |
+| `size`                    | `BoSize`               | The visual size of the spinner.                                    |
+| `variant`                 | `BoVariant`            | Predefined color palette for the spinner.                          |
+| `customColor`             | `string`               | Custom CSS color for the spinner (hex, rgb(a), oklch, or CSS var). |
+| `loaderText`              | `string`               | Optional text describing the loading state.                        |
+| `textPosition`            | `BoLoaderTextPosition` | Placement of the text relative to the spinner.                     |
+| `ariaLive`                | `AriaLive`             | Screen reader politeness for live updates.                         |
+| `ariaLabel`               | `string`               | Accessible label describing the loading state.                     |
+| `ariaBusy`                | `boolean`              | Marks the region as busy while loading.                            |
+| `customContainerCssClass` | `string`               | Additional CSS classes appended to the root element.               |
+| `customSpinnerCssClass`   | `string`               | Additional CSS classes appended to the spinner element.            |
+
+## Sizes
+
+The spinner supports the same sizing scale as the rest of the design system via `BoSize`.
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+  <bo-loading-spinner :size="BoSize.xs" loader-text="extra small" />
+  <bo-loading-spinner :size="BoSize.sm" loader-text="small" />
+  <bo-loading-spinner :size="BoSize.md" loader-text="default" />
+  <bo-loading-spinner :size="BoSize.lg" loader-text="large" />
+  <bo-loading-spinner :size="BoSize.xl" loader-text="extra large" />
+</div>
+
+```vue
+<bo-loading-spinner :size="BoSize.xs" loader-text="extra small" />
+<bo-loading-spinner :size="BoSize.sm" loader-text="small" />
+<bo-loading-spinner :size="BoSize.md" loader-text="default" />
+<bo-loading-spinner :size="BoSize.lg" loader-text="large" />
+<bo-loading-spinner :size="BoSize.xl" loader-text="extra large" />
+```
+
+## Variants
+
+Use `variant` to switch between predefined color palettes. For custom brand colors, pass a valid CSS color string to `customColor`.
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+  <bo-loading-spinner :variant="BoVariant.primary" loader-text="primary" />
+  <bo-loading-spinner :variant="BoVariant.secondary" loader-text="secondary" />
+  <bo-loading-spinner :variant="BoVariant.success" loader-text="success" />
+  <bo-loading-spinner :variant="BoVariant.warning" loader-text="warning" />
+  <bo-loading-spinner :variant="BoVariant.danger" loader-text="danger" />
+  <bo-loading-spinner :variant="BoVariant.dark" loader-text="dark" style="background-color: var(--neutral-100); padding: 0.5rem; border-radius: 0.5rem;"/>
+  <bo-loading-spinner :variant="BoVariant.light" loader-text="light" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
+</div>
+
+```vue
+<bo-loading-spinner :variant="BoVariant.primary" loader-text="primary" />
+<bo-loading-spinner :variant="BoVariant.secondary" loader-text="secondary" />
+<bo-loading-spinner :variant="BoVariant.success" loader-text="success" />
+<bo-loading-spinner :variant="BoVariant.warning" loader-text="warning" />
+<bo-loading-spinner :variant="BoVariant.danger" loader-text="danger" />
+<bo-loading-spinner :variant="BoVariant.dark" loader-text="dark" />
+<bo-loading-spinner :variant="BoVariant.light" loader-text="light" />
+```
+
+## Text positions
+
+Adjust `textPosition` to control where the supporting text appears.
+
+<div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+  <bo-loading-spinner :text-position="BoLoaderTextPosition.top" loader-text="Top" />
+  <bo-loading-spinner :text-position="BoLoaderTextPosition.bottom" loader-text="Bottom" />
+  <bo-loading-spinner :text-position="BoLoaderTextPosition.before" loader-text="Before" />
+  <bo-loading-spinner :text-position="BoLoaderTextPosition.after" loader-text="After" />
+</div>
+
+```vue
+<bo-loading-spinner :text-position="BoLoaderTextPosition.top" loader-text="Top" />
+<bo-loading-spinner :text-position="BoLoaderTextPosition.bottom" loader-text="Bottom" />
+<bo-loading-spinner :text-position="BoLoaderTextPosition.before" loader-text="Before" />
+<bo-loading-spinner :text-position="BoLoaderTextPosition.after" loader-text="After" />
+```
+
+## Using Slots
+
+Provide richer markup via the default slot. The slot replaces the `loaderText` prop entirely, allowing typography or iconography.
+
+<div style="margin-top: 2rem;">
+  <bo-loading-spinner>
+    <span>Syncing files…</span>
+  </bo-loading-spinner>
+</div>
+
+```vue
+<bo-loading-spinner>
+	<span>Syncing files…</span>
+</bo-loading-spinner>
+```
+
+## Custom colors
+
+You can customize the color of the ring by passing a valid CSS color value to the `customColor` prop.
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+  <bo-loading-spinner custom-color="var(--teal-500)" loader-text="CSS Variable" />
+  <bo-loading-spinner custom-color="#ff6b6b" loader-text="Hex Color" />
+  <bo-loading-spinner custom-color="rgb(255, 107, 107)" loader-text="RGB Color" />
+  <bo-loading-spinner custom-color="oklch(0.7 0.15 180)" loader-text="OKLCH Color" />
+</div>
+
+```vue
+<bo-loading-spinner custom-color="--teal-500" loader-text="CSS Variable" />
+<bo-loading-spinner custom-color="#ff6b6b" loader-text="Hex Color" />
+<bo-loading-spinner custom-color="rgb(255, 107, 107)" loader-text="RGB Color" />
+<bo-loading-spinner custom-color="oklch(0.7 0.15 180)" loader-text="OKLCH Color" />
+```
+
+## Accessibility
+
+- Use `aria-live` with the `AriaLive` enum when updates should be announced to screen readers.
+- Pass `aria-busy="true"` while the surrounding region updates so assistive tech understands the pending state.
+- Provide `loaderText`, an `aria-label`, or slot content so the loading state remains descriptive.
+
+## Type Definitions
+
+::: code-group
+
+```ts [bo-loading-spinner.ts]
+export interface BoLoadingSpinnerProps {
+	id?: string;
+	dataTestId?: string;
+	size?: BoSize;
+	variant?: BoVariant;
+	customColor?: string;
+	loaderText?: string;
+	textPosition?: BoLoaderTextPosition;
+	ariaLive?: AriaLive;
+	ariaLabel?: string;
+	ariaBusy?: boolean;
+	customContainerCssClass?: string;
+	customSpinnerCssClass?: string;
+}
+```
+
+```ts [shared/accessibility.ts]
+export enum AriaLive {
+	polite = 'polite',
+	assertive = 'assertive',
+	off = 'off',
+}
+```
+
+```ts [shared/loader.ts]
+export enum BoVariant {
+	primary = 'primary',
+	secondary = 'secondary',
+	success = 'success',
+	warning = 'warning',
+	danger = 'danger',
+	dark = 'dark',
+	light = 'light',
+}
+
+export enum BoLoaderTextPosition {
+	top = 'top',
+	bottom = 'bottom',
+	before = 'before',
+	after = 'after',
+}
+```
+
+```ts [shared/size.ts]
+export enum BoSize {
+	extra_small = 'extra-small',
+	small = 'small',
+	default = 'default',
+	large = 'large',
+	extra_large = 'extra-large',
+}
+```
+
+:::

@@ -1,5 +1,3 @@
-import { useId } from 'vue';
-
 let instance: IdentityService;
 
 export class IdentityService {
@@ -9,13 +7,9 @@ export class IdentityService {
 		}
 		return instance;
 	}
-	/**
-	 * Simple wrapper around vue's new `useId` function which can be used to
-	 * generate unique-per-application IDs that are guaranteed to be stable
-	 * across the server and client renders.
-	 */
-	getComponentId(): string {
-		return useId();
+
+	getComponentId(id?: string): string {
+		return id ? `id-${Date.now()}` : `${crypto.randomUUID()}-${Date.now()}`;
 	}
 	/**
 	 * Return a new unique data-test-id in the form of `test-${descriptor}-${uuid}`.

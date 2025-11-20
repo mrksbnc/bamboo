@@ -1,0 +1,2 @@
+var voicemail_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-voicemail\" width=\"100%\" height=\"100%\">\n  <circle cx=\"5.5\" cy=\"11.5\" r=\"4.5\"></circle>\n  <circle cx=\"18.5\" cy=\"11.5\" r=\"4.5\"></circle>\n  <line x1=\"5.5\" y1=\"16\" x2=\"18.5\" y2=\"16\"></line>\n</svg>";
+export { voicemail_default as default };

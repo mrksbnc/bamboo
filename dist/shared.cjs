@@ -1,0 +1,1 @@
+const e=require(`./shared-S-ed87Ts.cjs`);exports.AriaLive=e.o,exports.BoLoaderTextPosition=e.n,exports.BoLoaderType=e.r,exports.BoLocalStorageKey=e.t,exports.BoSize=e.i,exports.BoVariant=e.a;

@@ -1,0 +1,2 @@
+var rotate_ccw_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-rotate-ccw\" width=\"100%\" height=\"100%\">\n  <polyline points=\"1 4 1 10 7 10\"></polyline>\n  <path d=\"M3.51 15a9 9 0 1 0 2.13-9.36L1 10\"></path>\n</svg>";
+export { rotate_ccw_default as default };

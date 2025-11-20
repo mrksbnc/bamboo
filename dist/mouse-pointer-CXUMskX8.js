@@ -1,0 +1,2 @@
+var mouse_pointer_default = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"\n  stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"bamboo bamboo-mouse-pointer\" width=\"100%\" height=\"100%\">\n  <path d=\"M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z\"></path>\n  <path d=\"M13 13l6 6\"></path>\n</svg>";
+export { mouse_pointer_default as default };
