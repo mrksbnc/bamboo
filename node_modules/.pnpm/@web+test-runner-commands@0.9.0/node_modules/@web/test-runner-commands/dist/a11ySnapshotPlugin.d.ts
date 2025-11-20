@@ -1,6 +1,0 @@
-import { TestRunnerPlugin } from '@web/test-runner-core';
-export type A11ySnapshotPayload = {
-    selector?: string;
-};
-export declare function a11ySnapshotPlugin(): TestRunnerPlugin<A11ySnapshotPayload>;
-//# sourceMappingURL=a11ySnapshotPlugin.d.ts.map
