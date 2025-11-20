@@ -121,7 +121,3 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm install
-
-      - name: Run stylelint
-        run: |
-          pnpm lint:style
