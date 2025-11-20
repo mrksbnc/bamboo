@@ -114,7 +114,6 @@ pnpm test              # Run tests with coverage
 pnpm lint              # Run all linters (ESLint, Oxlint, Stylelint, CSpell)
 pnpm lint:eslint       # Run ESLint only
 pnpm lint:oxlint       # Run Oxlint only
-pnpm lint:style        # Run Stylelint only
 pnpm lint:spell        # Run spell checker only
 pnpm format            # Format code with Prettier
 pnpm type-check        # Run TypeScript type checking
@@ -498,11 +497,7 @@ Bamboo uses multiple tools to maintain code quality. All checks must pass before
    - Config: `.oxlintrc.json`
    - Run: `pnpm lint:oxlint`
 
-3. **Stylelint**: CSS/SCSS linting
-   - Config: `stylelint.config.mjs`
-   - Run: `pnpm lint:style`
-
-4. **CSpell**: Spell checking
+3. **CSpell**: Spell checking
    - Config: `cspell.yaml`
    - Run: `pnpm lint:spell`
    - Add project-specific words to `config/cspell/project-words.txt`
