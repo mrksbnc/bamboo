@@ -54,7 +54,7 @@
     "@tsconfig/node22": "^22.0.4",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^24.10.1",
-    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitejs/plugin-vue": "^6.0.2",
     "@vitest/coverage-v8": "4.0.9",
     "@vitest/eslint-plugin": "^1.4.2",
     "@vue/eslint-config-prettier": "^10.2.0",
