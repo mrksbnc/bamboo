@@ -42,6 +42,7 @@ export default defineConfig({
 				items: [
 					{ text: 'Identity Service', link: '/en/services/identity-service' },
 					{ text: 'Color Service', link: '/en/services/color-service' },
+					{ text: 'Theme Service', link: '/en/services/theme-service' },
 				],
 			},
 			{

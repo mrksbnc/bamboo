@@ -76,7 +76,6 @@ Each top-level directory is exported as a separate module:
 ```ts
 import '@mrksbnc/bamboo/lib.css';
 import { BoText, BoIcon } from '@mrksbnc/bamboo/components';
-import { useComposable } from '@mrksbnc/bamboo/composables';
 import { ConditionalCssProperties } from '@mrksbnc/bamboo/core';
 import { ColorService } from '@mrksbnc/bamboo/services';
 import { AriaLive } from '@mrksbnc/bamboo/shared';
