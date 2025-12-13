@@ -15,22 +15,23 @@
 
 <script lang="ts" setup>
 	import type { ConditionalCssProperties } from '@/core';
+	import { BoSize } from '@/core/size';
 	import { iconRegistry } from '@/core/svg';
 	import { ColorService } from '@/services';
 	import { IdentityService } from '@/services/identity-service';
 	import { computed, type CSSProperties, type StyleValue } from 'vue';
-	import { type BoIconProps, BoIconVariant } from './bo-icon';
+	import { type BoIconProps, BoIconVariant, Icon } from './bo-icon';
 
 	const props = withDefaults(defineProps<BoIconProps>(), {
 		id: IdentityService.instance.getComponentId(),
 		dataTestId: IdentityService.instance.getDataTestId('bo-icon'),
-		size: 24,
+		size: BoSize.default,
 		variant: () => BoIconVariant.default,
 		decorative: true,
 	});
 
 	const svg = computed<string>(() => {
-		return iconRegistry[props.icon];
+		return iconRegistry[props.icon] || iconRegistry[Icon.none]!;
 	});
 
 	const role = computed<string>(() => {
@@ -69,10 +70,26 @@
 		return {};
 	});
 
+	const sizeToPixels = computed<number>(() => {
+		switch (props.size) {
+			case BoSize.extra_small:
+				return 16;
+			case BoSize.small:
+				return 20;
+			case BoSize.large:
+				return 32;
+			case BoSize.extra_large:
+				return 40;
+			case BoSize.default:
+			default:
+				return 24;
+		}
+	});
+
 	const iconSize = computed<CSSProperties>(() => {
 		return {
-			width: `${props.size}px`,
-			height: `${props.size}px`,
+			width: `${sizeToPixels.value}px`,
+			height: `${sizeToPixels.value}px`,
 		};
 	});
 
