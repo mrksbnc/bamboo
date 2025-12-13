@@ -10,3 +10,5 @@ WCAG
 xmark
 futbol
 vcard
+powerpoint
+spock
