@@ -178,7 +178,7 @@ export enum AriaLive {
 }
 ```
 
-```ts [shared/loader.ts]
+```ts [core/loader.ts]
 export enum BoVariant {
 	primary = 'primary',
 	secondary = 'secondary',
@@ -197,7 +197,7 @@ export enum BoLoaderTextPosition {
 }
 ```
 
-```ts [shared/size.ts]
+```ts [core/size.ts]
 export enum BoSize {
 	extra_small = 'extra-small',
 	small = 'small',

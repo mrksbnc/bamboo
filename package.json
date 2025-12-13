@@ -7,10 +7,6 @@
       "types": "./dist/components/index.d.ts",
       "import": "./dist/components.js"
     },
-    "./composables": {
-      "types": "./dist/composables/index.d.ts",
-      "import": "./dist/composables.js"
-    },
     "./core": {
       "types": "./dist/core/index.d.ts",
       "import": "./dist/core.js"

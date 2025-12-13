@@ -27,26 +27,30 @@ bamboo/
 │   │   │   ├── bo-text.ts        # Types, interfaces, constants and logic
 │   │   │   ├── bo-text.test.ts   # Unit tests
 │   │   │   └── index.ts          # Module exports
+│   │   ├── bo-button/
 │   │   ├── bo-icon/
 │   │   ├── bo-loading-ring/
 │   │   ├── bo-loading-spinner/
 │   │   └── index.ts              # Component barrel exports
 │   │
-│   ├── composables/         # Vue 3 Composition API utilities
-│   │   └── index.ts
-│   │
 │   ├── core/                # Core types and utilities
+│   │   ├── accessibility.ts      # Accessibility utilities (AriaLive)
 │   │   ├── css.ts                # CSS types (ConditionalCssProperties, BoColor)
+│   │   ├── loader.ts             # Loader types
+│   │   ├── size.ts               # Size types
+│   │   ├── variant.ts            # Variant types
 │   │   └── index.ts
 │   │
 │   ├── services/            # Business logic services
 │   │   ├── color-service.ts      # Color manipulation utilities
 │   │   ├── identity-service.ts   # Unique ID generation
+│   │   ├── theme-service.ts      # Theme management
 │   │   └── index.ts
 │   │
-│   ├── shared/              # Shared utilities and helpers
-│   │   ├── accessibility.ts      # Accessibility utilities (AriaLive)
-│   │   └── index.ts
+│   ├── styles/              # Global styles
+│   │   ├── colors.css
+│   │   ├── components.css
+│   │   └── tokens.css
 │   │
 │   ├── assets/              # Static assets (icons, images)
 │   │
@@ -62,10 +66,8 @@ bamboo/
 │
 └── dist/                    # Build output (generated)
     ├── components.js
-    ├── composables.js
     ├── core.js
     ├── services.js
-    ├── shared.js
     └── lib.css
 ```
 
@@ -76,9 +78,8 @@ Each top-level directory is exported as a separate module:
 ```ts
 import '@mrksbnc/bamboo/lib.css';
 import { BoText, BoIcon } from '@mrksbnc/bamboo/components';
-import { ConditionalCssProperties } from '@mrksbnc/bamboo/core';
+import { ConditionalCssProperties, AriaLive } from '@mrksbnc/bamboo/core';
 import { ColorService } from '@mrksbnc/bamboo/services';
-import { AriaLive } from '@mrksbnc/bamboo/shared';
 ```
 
 ## Quick Start
@@ -141,11 +142,13 @@ See:
 
 - [Color service](/src-docs/en/services/color-service.md)
 - [Identity service](/src-docs/en/services/identity-service.md)
+- [Theme service](/src-docs/en/services/theme-service.md)
 
-### Colors and Typography
+### Styles
 
 - [Colors](/src-docs/en/styles/colors.md)
 - [Typography](/src-docs/en/styles/typography.md)
+- [Design Tokens](/src-docs/en/styles/tokens.md)
 
 Color tokens are located under `src/lib.css` and are available via CSS variables, e.g. `var(--blue-600)`.
 

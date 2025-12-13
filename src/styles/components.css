@@ -147,8 +147,8 @@
 
 	/* Primary Variant */
 	--button-text-primary: var(--white);
-	--button-bg-primary: var(--blue-500);
-	--button-border-primary: var(--blue-500);
+	--button-bg-primary: var(--blue-600);
+	--button-border-primary: var(--blue-700);
 	--button-bg-primary-hover: var(--blue-400);
 	--button-bg-primary-active: var(--blue-300);
 

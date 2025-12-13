@@ -50,6 +50,7 @@ export default defineConfig({
 				items: [
 					{ text: 'Colors', link: '/en/styles/colors' },
 					{ text: 'Typography', link: '/en/styles/typography' },
+					{ text: 'Design Tokens', link: '/en/styles/tokens' },
 				],
 			},
 		],

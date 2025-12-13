@@ -81,6 +81,10 @@
 	});
 
 	const ariaLabel = computed<string | undefined>(() => {
+		if (props.ariaLabelledBy) {
+			return undefined;
+		}
+
 		if (props.ariaLabel) {
 			return props.ariaLabel;
 		}
@@ -89,20 +93,16 @@
 			return props.label;
 		}
 
-		if (props.ariaLabelledBy) {
-			return undefined;
-		}
-
 		return undefined;
 	});
 
 	const tabIndex = computed<number | undefined>(() => {
-		if (props.tabIndex !== undefined) {
-			return props.tabIndex;
-		}
-
 		if (props.disabled || props.isLoading) {
 			return -1;
+		}
+
+		if (props.tabIndex !== undefined) {
+			return props.tabIndex;
 		}
 
 		return undefined;

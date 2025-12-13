@@ -270,14 +270,14 @@ interface BoButtonProps {
 }
 ```
 
-```ts [shared/loader.ts]
+```ts [core/loader.ts]
 export enum BoLoaderType {
 	spinner = 'spinner',
 	ring = 'ring',
 }
 ```
 
-```ts [shared/size.ts]
+```ts [core/size.ts]
 export enum BoSize {
 	extra_small = 'extra-small',
 	small = 'small',
@@ -287,7 +287,7 @@ export enum BoSize {
 }
 ```
 
-```ts [shared/variant.ts]
+```ts [core/variant.ts]
 export enum BoVariant {
 	primary = 'primary',
 	secondary = 'secondary',
