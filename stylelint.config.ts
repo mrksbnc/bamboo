@@ -6,7 +6,7 @@ const config: Config = {
 		'stylelint-config-standard-scss',
 		'stylelint-config-standard-vue',
 	],
-
+	ignoreFiles: ['**/node_modules/**', '**/dist/**', '**/.git/**', '**/coverage/**'],
 	rules: {
 		/**
 		 * BEM naming
