@@ -51,4 +51,25 @@ export class ColorService {
 			};
 		}
 	}
+
+	getValidCssColor(prop: string): string {
+		if (
+			prop.startsWith('var') ||
+			prop.startsWith('#') ||
+			prop.startsWith('oklch') ||
+			prop.startsWith('rgb') ||
+			prop.startsWith('rgba')
+		) {
+			return prop;
+		} else if (prop.startsWith('--')) {
+			/** CSS variable */
+			return `var(${prop})`;
+		} else if (prop?.length === 6) {
+			/** Hex color without the leading # */
+			return `#${prop}`;
+		} else {
+			console.warn(this.UNKNOWN_COLOR_WARNING.replace(this.TEXT_REPLACE_PLACEHOLDER, prop));
+			return 'currentColor';
+		}
+	}
 }

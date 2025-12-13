@@ -23,10 +23,10 @@
 	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js';
 	import BoText from '@/components/bo-text/bo-text.vue';
 	import type { ConditionalCssProperties } from '@/core/css.js';
+	import { BoLoaderTextPosition } from '@/core/index.js';
+	import { BoSize } from '@/core/size.js';
+	import { BoVariant } from '@/core/variant.js';
 	import { IdentityService } from '@/services/identity-service.js';
-	import { BoLoaderTextPosition } from '@/shared/index.js';
-	import { BoSize } from '@/shared/size.js';
-	import { BoVariant } from '@/shared/variant.js';
 	import { computed, type StyleValue } from 'vue';
 	import { type BoLoadingSpinnerProps } from './bo-loading-spinner.js';
 

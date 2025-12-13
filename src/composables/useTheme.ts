@@ -1,4 +1,4 @@
-import { BoLocalStorageKey } from '@/shared';
+import { BoLocalStorageKey } from '@/core';
 import { ref, type ShallowRef } from 'vue';
 
 export enum BoTheme {

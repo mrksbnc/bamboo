@@ -17,9 +17,9 @@
 
 <script lang="ts" setup>
 	import type { ConditionalCssProperties } from '@/core';
+	import { AriaLive } from '@/core/accessibility';
 	import { ColorService } from '@/services';
 	import { IdentityService } from '@/services/identity-service.js';
-	import { AriaLive } from '@/shared/accessibility';
 	import { computed, type CSSProperties, type StyleValue } from 'vue';
 
 	import {

@@ -1,4 +1,4 @@
-import { AriaLive } from '@/shared/accessibility';
+import { AriaLive } from '@/core/accessibility';
 
 export enum BoFontWeight {
 	/** 100 */

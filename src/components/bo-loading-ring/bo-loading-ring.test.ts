@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import BoLoadingRing from './bo-loading-ring.vue';
-import { BoLoaderTextPosition } from '@/shared/loader.js';
-import { BoVariant } from '@/shared/variant.js';
-import { BoSize } from '@/shared/size.js';
-import { AriaLive } from '@/shared/accessibility.js';
+import { BoLoaderTextPosition } from '@/core/loader.js';
+import { BoVariant } from '@/core/variant.js';
+import { BoSize } from '@/core/size.js';
+import { AriaLive } from '@/core/accessibility.js';
 import { BoFontSize } from '@/components/bo-text/bo-text.js';
 
 describe('bo-loading-ring', () => {
