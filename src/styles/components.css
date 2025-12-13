@@ -44,7 +44,8 @@
 	--bo-loading-spinner-color-light: var(--gray-100);
 }
 
-:root[data-theme='dark'] {
+:root[data-theme='dark'],
+.dark {
 	/* bo-icon */
 	--bo-icon-color-default: currentcolor;
 	--bo-icon-color-primary: var(--blue-400);
