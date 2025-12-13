@@ -1,6 +1,6 @@
-@import url('./styles/tokens.css');
-@import url('./styles/colors.css');
-@import url('./styles/components.css');
+@import './styles/tokens.css';
+@import './styles/colors.css';
+@import './styles/components.css';
 
 * {
 	margin: 0;
