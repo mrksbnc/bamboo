@@ -7,3 +7,6 @@ hoverable
 Márkus
 mrksbnc
 WCAG
+xmark
+futbol
+vcard

@@ -73,7 +73,6 @@
 			return ColorService.instance.getCustomColorStyle(props.customColor);
 		}
 
-		// Don't set color here - let CSS variants handle it
 		return {};
 	});
 
@@ -143,47 +142,47 @@
 		vertical-align: middle;
 
 		&--default {
-			color: var(--bo-lib-text-color);
+			color: var(--bo-text-color-default);
 		}
 
 		&--primary {
-			color: var(--blue-600);
+			color: var(--bo-text-color-primary);
 		}
 
 		&--secondary {
-			color: var(--neutral-600);
+			color: var(--bo-text-color-secondary);
 		}
 
 		&--disabled {
-			color: var(--neutral-400);
+			color: var(--bo-text-color-disabled);
 		}
 
 		&--success {
-			color: var(--green-600);
+			color: var(--bo-text-color-success);
 		}
 
 		&--warning {
-			color: var(--yellow-500);
+			color: var(--bo-text-color-warning);
 		}
 
 		&--danger {
-			color: var(--red-600);
+			color: var(--bo-text-color-danger);
 		}
 
 		&--light {
-			color: var(--neutral-50);
+			color: var(--bo-text-color-light);
 		}
 
 		&--dark {
-			color: var(--gray-950);
+			color: var(--bo-text-color-dark);
 		}
 
 		&--current {
-			color: currentcolor;
+			color: var(--bo-text-color-current);
 		}
 
 		&--inherit {
-			color: inherit;
+			color: var(--bo-text-color-inherit);
 		}
 
 		&--size-xs {

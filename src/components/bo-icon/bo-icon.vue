@@ -15,10 +15,11 @@
 
 <script lang="ts" setup>
 	import type { ConditionalCssProperties } from '@/core';
+	import { iconRegistry } from '@/core/svg';
 	import { ColorService } from '@/services';
 	import { IdentityService } from '@/services/identity-service';
-	import { computed, type CSSProperties, ref, type StyleValue, watchEffect } from 'vue';
-	import { type BoIconProps, BoIconVariant, Icon, svgPromiseRecord } from './bo-icon';
+	import { computed, type CSSProperties, type StyleValue } from 'vue';
+	import { type BoIconProps, BoIconVariant } from './bo-icon';
 
 	const props = withDefaults(defineProps<BoIconProps>(), {
 		id: IdentityService.instance.getComponentId(),
@@ -28,27 +29,9 @@
 		decorative: true,
 	});
 
-	const svg = ref<string>('');
-	/**
-	 * This is a map of all the icons that are available in the library.
-	 *
-	 * - The key is the name of the icon and the value is the actual SVG.
-	 * - A promise which resolves to the SVG string
-	 */
-	const iconMap = Object.keys(svgPromiseRecord).reduce(
-		(acc, key) => {
-			const splitted = key.split('/');
-			const icon = splitted[splitted.length - 1]?.split('.')[0];
-
-			if (!icon || !svgPromiseRecord[key]) {
-				return acc;
-			}
-
-			acc[icon] = svgPromiseRecord[key];
-			return acc;
-		},
-		{} as Record<string, () => Promise<string>>,
-	);
+	const svg = computed<string>(() => {
+		return iconRegistry[props.icon];
+	});
 
 	const role = computed<string>(() => {
 		return props.role ?? 'img';
@@ -77,6 +60,7 @@
 			cursor: 'default',
 		};
 	});
+
 	const iconColorStyle = computed<CSSProperties>(() => {
 		if (props.customColor) {
 			return ColorService.instance.getCustomColorStyle(props.customColor);
@@ -108,20 +92,6 @@
 			[`bo-icon--${props.variant}`]: true,
 		};
 	});
-
-	async function load(icon: Icon): Promise<void> {
-		try {
-			await iconMap[icon]?.().then((val) => {
-				svg.value = val;
-			});
-		} catch (e) {
-			console.error(`Could not find icon of name ${icon}\n${e}`);
-		}
-	}
-
-	watchEffect(() => {
-		load(props.icon);
-	});
 </script>
 
 <style scoped lang="scss">
@@ -131,47 +101,47 @@
 		vertical-align: middle;
 
 		&--default {
-			color: currentcolor;
+			color: var(--bo-icon-color-default);
 		}
 
 		&--primary {
-			color: var(--blue-600);
+			color: var(--bo-icon-color-primary);
 		}
 
 		&--secondary {
-			color: var(--neutral-600);
+			color: var(--bo-icon-color-secondary);
 		}
 
 		&--disabled {
-			color: var(--neutral-400);
+			color: var(--bo-icon-color-disabled);
 		}
 
 		&--success {
-			color: var(--green-600);
+			color: var(--bo-icon-color-success);
 		}
 
 		&--warning {
-			color: var(--yellow-500);
+			color: var(--bo-icon-color-warning);
 		}
 
 		&--danger {
-			color: var(--red-600);
+			color: var(--bo-icon-color-danger);
 		}
 
 		&--light {
-			color: var(--neutral-50);
+			color: var(--bo-icon-color-light);
 		}
 
 		&--dark {
-			color: var(--gray-950);
+			color: var(--bo-icon-color-dark);
 		}
 
 		&--current {
-			color: currentcolor;
+			color: var(--bo-icon-color-current);
 		}
 
 		&--inherit {
-			color: inherit;
+			color: var(--bo-icon-color-inherit);
 		}
 	}
 </style>

@@ -188,31 +188,31 @@
 			}
 
 			&--primary {
-				color: var(--blue-600);
+				color: var(--bo-loading-ring-color-primary);
 			}
 
 			&--secondary {
-				color: var(--gray-400);
+				color: var(--bo-loading-ring-color-secondary);
 			}
 
 			&--success {
-				color: var(--green-600);
+				color: var(--bo-loading-ring-color-success);
 			}
 
 			&--warning {
-				color: var(--yellow-600);
+				color: var(--bo-loading-ring-color-warning);
 			}
 
 			&--danger {
-				color: var(--red-600);
+				color: var(--bo-loading-ring-color-danger);
 			}
 
 			&--dark {
-				color: var(--gray-800);
+				color: var(--bo-loading-ring-color-dark);
 			}
 
 			&--light {
-				color: var(--neutral-50);
+				color: var(--bo-loading-ring-color-light);
 			}
 		}
 	}
