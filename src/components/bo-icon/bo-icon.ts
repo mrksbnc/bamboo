@@ -532,10 +532,10 @@ export enum BoIconVariant {
 	warning = 'warning',
 	/** --red-500 */
 	danger = 'danger',
-	/** --neutral-100 */
-	light = 'light',
-	/** --neutral-950 */
-	dark = 'dark',
+	/** --white */
+	white = 'white',
+	/** --black */
+	black = 'black',
 	/** currentColor */
 	current = 'current',
 	/** inherit */

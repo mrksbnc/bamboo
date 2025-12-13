@@ -4,10 +4,10 @@ title: bo-loading-ring
 
 <script setup lang="ts">
 import { BoLoadingRing } from "@/components/bo-loading-ring";
-import { AriaLive } from "@/shared/accessibility";
-import { BoSize } from "@/shared/size";
-import { BoLoaderTextPosition } from "@/shared/loader"
-import { BoVariant } from "@/shared/variant"
+import { AriaLive } from "@/core/accessibility";
+import { BoSize } from "@/core/size";
+import { BoLoaderTextPosition } from "@/core/loader"
+import { BoVariant } from "@/core/variant"
 </script>
 
 # bo-loading-ring
@@ -177,7 +177,7 @@ export interface BoLoaderRingProps {
 }
 ```
 
-```ts [shared/accessibility.ts]
+```ts [core/accessibility.ts]
 export enum AriaLive {
 	polite = 'polite',
 	assertive = 'assertive',

@@ -154,12 +154,12 @@
 				border-bottom-color: var(--bo-loading-spinner-color-danger);
 			}
 
-			&--dark {
-				border-bottom-color: var(--bo-loading-spinner-color-dark);
+			&--black {
+				border-bottom-color: var(--bo-loading-spinner-color-black);
 			}
 
-			&--light {
-				border-bottom-color: var(--bo-loading-spinner-color-light);
+			&--white {
+				border-bottom-color: var(--bo-loading-spinner-color-white);
 			}
 		}
 	}

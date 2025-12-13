@@ -4,10 +4,10 @@ title: bo-loading-spinner
 
 <script setup lang="ts">
 import { BoLoadingSpinner } from "@/components/bo-loading-spinner";
-import { AriaLive } from "@/shared/accessibility";
-import { BoSize } from "@/shared/size";
-import { BoLoaderTextPosition } from "@/shared/loader"
-import { BoVariant } from "@/shared/variant"
+import { AriaLive } from "@/core/accessibility";
+import { BoSize } from "@/core/size";
+import { BoLoaderTextPosition } from "@/core/loader"
+import { BoVariant } from "@/core/variant"
 </script>
 
 # bo-loading-spinner
@@ -164,7 +164,7 @@ export interface BoLoadingSpinnerProps {
 }
 ```
 
-```ts [shared/accessibility.ts]
+```ts [core/accessibility.ts]
 export enum AriaLive {
 	polite = 'polite',
 	assertive = 'assertive',

@@ -305,7 +305,7 @@ export enum BoVariant {
 }
 ```
 
-```ts [shared/accessibility.ts]
+```ts [core/accessibility.ts]
 export enum AriaLive {
 	polite = 'polite',
 	assertive = 'assertive',

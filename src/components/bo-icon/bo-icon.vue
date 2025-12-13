@@ -128,12 +128,12 @@
 			color: var(--bo-icon-color-danger);
 		}
 
-		&--light {
-			color: var(--bo-icon-color-light);
+		&--white {
+			color: var(--bo-icon-color-white);
 		}
 
-		&--dark {
-			color: var(--bo-icon-color-dark);
+		&--black {
+			color: var(--bo-icon-color-black);
 		}
 
 		&--current {

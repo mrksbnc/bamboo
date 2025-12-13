@@ -169,12 +169,12 @@
 			color: var(--bo-text-color-danger);
 		}
 
-		&--light {
-			color: var(--bo-text-color-light);
+		&--white {
+			color: var(--bo-text-color-white);
 		}
 
-		&--dark {
-			color: var(--bo-text-color-dark);
+		&--black {
+			color: var(--bo-text-color-black);
 		}
 
 		&--current {
@@ -186,52 +186,67 @@
 		}
 
 		&--size-xs {
-			font-size: 0.625rem;
-			line-height: 1.25;
+			font-size: 0.75rem; /* 12px */
+			line-height: 1rem; /* 16px */
 		}
 
 		&--size-sm {
-			font-size: 0.75rem;
-			line-height: 1.25;
+			font-size: 0.875rem; /* 14px */
+			line-height: 1.25rem; /* 20px */
+		}
+
+		&--size-default {
+			font-size: 1rem; /* 16px */
+			line-height: 1.5rem; /* 24px */
 		}
 
 		&--size-lg {
-			font-size: 1rem;
-			line-height: 1.5;
+			font-size: 1.125rem; /* 18px */
+			line-height: 1.75rem; /* 28px */
 		}
 
 		&--size-xl {
-			font-size: 1.125rem;
-			line-height: 1.75;
+			font-size: 1.25rem; /* 20px */
+			line-height: 1.75rem; /* 28px */
 		}
 
 		&--size-2xl {
-			font-size: 1.25rem;
-			line-height: 1.75;
+			font-size: 1.5rem; /* 24px */
+			line-height: 2rem; /* 32px */
 		}
 
 		&--size-3xl {
-			font-size: 1.5rem;
-			line-height: 2;
+			font-size: 1.875rem; /* 30px */
+			line-height: 2.25rem; /* 36px */
 		}
 
 		&--size-4xl {
-			font-size: 1.875rem;
-			line-height: 2.25;
+			font-size: 2.25rem; /* 36px */
+			line-height: 2.5rem; /* 40px */
 		}
 
 		&--size-5xl {
-			font-size: 2.25rem;
-			line-height: 2.5;
+			font-size: 3rem; /* 48px */
+			line-height: 1;
 		}
 
 		&--size-6xl {
-			font-size: 3rem;
+			font-size: 3.75rem; /* 60px */
 			line-height: 1;
 		}
 
 		&--size-7xl {
-			font-size: 3.75rem;
+			font-size: 4.5rem; /* 72px */
+			line-height: 1;
+		}
+
+		&--size-8xl {
+			font-size: 6rem; /* 96px */
+			line-height: 1;
+		}
+
+		&--size-9xl {
+			font-size: 8rem; /* 128px */
 			line-height: 1;
 		}
 
@@ -245,6 +260,10 @@
 
 		&--weight-light {
 			font-weight: 300;
+		}
+
+		&--weight-regular {
+			font-weight: 400;
 		}
 
 		&--weight-medium {

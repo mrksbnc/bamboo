@@ -207,12 +207,12 @@
 				color: var(--bo-loading-ring-color-danger);
 			}
 
-			&--dark {
-				color: var(--bo-loading-ring-color-dark);
+			&--black {
+				color: var(--bo-loading-ring-color-black);
 			}
 
-			&--light {
-				color: var(--bo-loading-ring-color-light);
+			&--white {
+				color: var(--bo-loading-ring-color-white);
 			}
 		}
 	}
