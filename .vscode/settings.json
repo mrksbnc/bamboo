@@ -1,5 +1,6 @@
 {
   "explorer.fileNesting.enabled": true,
+  "typescript.experimental.useTsgo": true,
   "explorer.fileNesting.patterns": {
     "tsconfig.json": "tsconfig.*.json, env.d.ts",
     "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",

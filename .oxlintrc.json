@@ -1,10 +1,31 @@
 {
-	"$schema": "./node_modules/oxlint/configuration_schema.json",
-	"plugins": ["unicorn", "typescript", "oxc"],
-	"categories": {
-		"correctness": "error",
-		"suspicious": "warn"
-	},
-	"rules": {},
-	"ignorePatterns": ["dist/", "node_modules/"]
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "unicorn",
+    "typescript",
+    "oxc",
+    "vue"
+  ],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "pedantic": "off"
+  },
+  "rules": {
+    "typescript/no-explicit-any": "warn",
+    "unicorn/filename-case": "off"
+  },
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    "dist/",
+    "dist-ssr/",
+    "coverage/",
+    "node_modules/",
+    ".vitepress/cache/",
+    "docs/.vitepress/"
+  ]
 }
