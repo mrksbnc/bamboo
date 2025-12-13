@@ -42,6 +42,58 @@
 	--bo-loading-spinner-color-danger: var(--red-600);
 	--bo-loading-spinner-color-dark: var(--neutral-900);
 	--bo-loading-spinner-color-light: var(--gray-100);
+
+	/* bo-button */
+	--button-focus-ring: var(--blue-500);
+
+	/* Primary Variant */
+	--button-text-primary: var(--white);
+	--button-bg-primary: var(--blue-600);
+	--button-border-primary: var(--blue-600);
+	--button-bg-primary-hover: var(--blue-700);
+	--button-bg-primary-active: var(--blue-800);
+
+	/* Secondary Variant */
+	--button-text-secondary: var(--gray-700);
+	--button-bg-secondary: var(--white);
+	--button-border-secondary: var(--gray-300);
+	--button-bg-secondary-hover: var(--gray-50);
+	--button-bg-secondary-active: var(--gray-100);
+
+	/* Success Variant */
+	--button-text-success: var(--white);
+	--button-bg-success: var(--green-600);
+	--button-border-success: var(--green-600);
+	--button-bg-success-hover: var(--green-700);
+	--button-bg-success-active: var(--green-800);
+
+	/* Warning Variant */
+	--button-text-warning: var(--white);
+	--button-bg-warning: var(--amber-500);
+	--button-border-warning: var(--amber-500);
+	--button-bg-warning-hover: var(--amber-600);
+	--button-bg-warning-active: var(--amber-700);
+
+	/* Danger Variant */
+	--button-text-danger: var(--white);
+	--button-bg-danger: var(--red-600);
+	--button-border-danger: var(--red-600);
+	--button-bg-danger-hover: var(--red-700);
+	--button-bg-danger-active: var(--red-800);
+
+	/* Light Variant */
+	--button-text-light: var(--gray-700);
+	--button-bg-light: var(--gray-50);
+	--button-border-light: var(--gray-200);
+	--button-bg-light-hover: var(--gray-100);
+	--button-bg-light-active: var(--gray-200);
+
+	/* Dark Variant */
+	--button-text-dark: var(--white);
+	--button-bg-dark: var(--gray-900);
+	--button-border-dark: var(--gray-900);
+	--button-bg-dark-hover: var(--gray-800);
+	--button-bg-dark-active: var(--gray-700);
 }
 
 :root[data-theme='dark'],
@@ -89,4 +141,56 @@
 	--bo-loading-spinner-color-danger: var(--red-400);
 	--bo-loading-spinner-color-dark: var(--gray-200);
 	--bo-loading-spinner-color-light: var(--neutral-900);
+
+	/* bo-button */
+	--button-focus-ring: var(--blue-400);
+
+	/* Primary Variant */
+	--button-text-primary: var(--white);
+	--button-bg-primary: var(--blue-500);
+	--button-border-primary: var(--blue-500);
+	--button-bg-primary-hover: var(--blue-400);
+	--button-bg-primary-active: var(--blue-300);
+
+	/* Secondary Variant */
+	--button-text-secondary: var(--gray-200);
+	--button-bg-secondary: var(--gray-800);
+	--button-border-secondary: var(--gray-600);
+	--button-bg-secondary-hover: var(--gray-700);
+	--button-bg-secondary-active: var(--gray-600);
+
+	/* Success Variant */
+	--button-text-success: var(--white);
+	--button-bg-success: var(--green-500);
+	--button-border-success: var(--green-500);
+	--button-bg-success-hover: var(--green-400);
+	--button-bg-success-active: var(--green-300);
+
+	/* Warning Variant */
+	--button-text-warning: var(--black);
+	--button-bg-warning: var(--amber-400);
+	--button-border-warning: var(--amber-400);
+	--button-bg-warning-hover: var(--amber-300);
+	--button-bg-warning-active: var(--amber-200);
+
+	/* Danger Variant */
+	--button-text-danger: var(--white);
+	--button-bg-danger: var(--red-500);
+	--button-border-danger: var(--red-500);
+	--button-bg-danger-hover: var(--red-400);
+	--button-bg-danger-active: var(--red-300);
+
+	/* Light Variant */
+	--button-text-light: var(--gray-900);
+	--button-bg-light: var(--gray-100);
+	--button-border-light: var(--gray-300);
+	--button-bg-light-hover: var(--gray-200);
+	--button-bg-light-active: var(--gray-300);
+
+	/* Dark Variant */
+	--button-text-dark: var(--white);
+	--button-bg-dark: var(--gray-950);
+	--button-border-dark: var(--gray-950);
+	--button-bg-dark-hover: var(--gray-900);
+	--button-bg-dark-active: var(--gray-800);
 }

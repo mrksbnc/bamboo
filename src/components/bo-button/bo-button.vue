@@ -184,10 +184,10 @@
 	const componentBaseClasses = computed<ConditionalCssProperties>(() => ({
 		'bo-button': true,
 		'bo-button--loading': props.isLoading,
-		'bo-button--full-width': props.fullWidth,
-		'bo-button--disabled': props.disabled || props.isLoading,
 		[`bo-button--size-${props.size}`]: true,
+		'bo-button--full-width': props.fullWidth,
 		[`bo-button--variant-${props.variant}`]: true,
+		'bo-button--disabled': props.disabled || props.isLoading,
 	}));
 
 	const buttonClasses = computed<HTMLAttributes['class']>(() => {
