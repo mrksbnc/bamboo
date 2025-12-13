@@ -34,29 +34,6 @@ jobs:
         run: |
           pnpm type-check
 
-  eslint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup LTS Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 'lts/*'
-          cache: pnpm
-
-      - name: Install dependencies
-        run: |
-          pnpm install
-
-      - name: Run eslint
-        run: |
-          pnpm lint:eslint
-
   oxlint:
     runs-on: ubuntu-latest
     steps:
@@ -121,3 +98,7 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm install
+
+      - name: Run stylelint
+        run: |
+          pnpm lint:style
