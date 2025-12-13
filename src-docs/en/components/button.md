@@ -55,12 +55,6 @@ The button component automatically handles accessibility, keyboard navigation, a
 | `prefixIcon`      | `Icon`                            | -              | Icon to display before label             |
 | `suffixIcon`      | `Icon`                            | -              | Icon to display after label              |
 
-### Events
-
-| Event   | Payload      | Description                    |
-| ------- | ------------ | ------------------------------ |
-| `click` | `MouseEvent` | Emitted when button is clicked |
-
 ### Slots
 
 | Name      | Description                         |
@@ -72,19 +66,19 @@ The button component automatically handles accessibility, keyboard navigation, a
 The button component supports different sizes with the `size` prop. The default size is `default`. The sizes match the library's size system (`BoSize`).
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 2rem;">
-  <bo-button label="Extra Small" :size="BoSize.xs" />
-  <bo-button label="Small" :size="BoSize.sm" />
-  <bo-button label="Default" :size="BoSize.md" />
-  <bo-button label="Large" :size="BoSize.lg" />
-  <bo-button label="Extra Large" :size="BoSize.xl" />
+  <bo-button label="Extra Small" :size="BoSize.extra_small" />
+  <bo-button label="Small" :size="BoSize.small" />
+  <bo-button label="Default" :size="BoSize.default" />
+  <bo-button label="Large" :size="BoSize.large" />
+  <bo-button label="Extra Large" :size="BoSize.extra_large" />
 </div>
 
 ```vue
-<bo-button label="Extra Small" :size="BoSize.xs" />
-<bo-button label="Small" :size="BoSize.sm" />
-<bo-button label="Default" :size="BoSize.md" />
-<bo-button label="Large" :size="BoSize.lg" />
-<bo-button label="Extra Large" :size="BoSize.xl" />
+<bo-button label="Extra Small" :size="BoSize.extra_small" />
+<bo-button label="Small" :size="BoSize.small" />
+<bo-button label="Default" :size="BoSize.default" />
+<bo-button label="Large" :size="BoSize.large" />
+<bo-button label="Extra Large" :size="BoSize.extra_large" />
 ```
 
 ## Button Types
@@ -113,8 +107,8 @@ The button component supports different variants with the `variant` prop. The de
   <bo-button label="Success" :variant="BoVariant.success" />
   <bo-button label="Warning" :variant="BoVariant.warning" />
   <bo-button label="Danger" :variant="BoVariant.danger" />
-  <bo-button label="Light" :variant="BoVariant.light" />
-  <bo-button label="Dark" :variant="BoVariant.dark" />
+  <bo-button label="White" :variant="BoVariant.white" />
+  <bo-button label="Black" :variant="BoVariant.black" />
 </div>
 
 ```vue
@@ -123,8 +117,8 @@ The button component supports different variants with the `variant` prop. The de
 <bo-button label="Success" :variant="BoVariant.success" />
 <bo-button label="Warning" :variant="BoVariant.warning" />
 <bo-button label="Danger" :variant="BoVariant.danger" />
-<bo-button label="Light" :variant="BoVariant.light" />
-<bo-button label="Dark" :variant="BoVariant.dark" />
+<bo-button label="White" :variant="BoVariant.white" />
+<bo-button label="Black" :variant="BoVariant.black" />
 ```
 
 ## Disabled State

@@ -13,7 +13,7 @@
 	--bo-icon-color-inherit: inherit;
 
 	/* bo-text */
-	--bo-text-color-default: var(--gray-900);
+	--bo-text-color-default: var(--neutral-900);
 	--bo-text-color-primary: var(--blue-600);
 	--bo-text-color-secondary: var(--neutral-600);
 	--bo-text-color-disabled: var(--neutral-400);
@@ -27,7 +27,7 @@
 
 	/* bo-loading-ring */
 	--bo-loading-ring-color-primary: var(--blue-600);
-	--bo-loading-ring-color-secondary: var(--gray-400);
+	--bo-loading-ring-color-secondary: var(--neutral-400);
 	--bo-loading-ring-color-success: var(--green-600);
 	--bo-loading-ring-color-warning: var(--yellow-600);
 	--bo-loading-ring-color-danger: var(--red-600);
@@ -36,7 +36,7 @@
 
 	/* bo-loading-spinner */
 	--bo-loading-spinner-color-primary: var(--blue-600);
-	--bo-loading-spinner-color-secondary: var(--gray-400);
+	--bo-loading-spinner-color-secondary: var(--neutral-400);
 	--bo-loading-spinner-color-success: var(--green-600);
 	--bo-loading-spinner-color-warning: var(--yellow-600);
 	--bo-loading-spinner-color-danger: var(--red-600);
@@ -54,11 +54,11 @@
 	--button-bg-primary-active: var(--blue-800);
 
 	/* Secondary Variant */
-	--button-text-secondary: var(--gray-700);
-	--button-bg-secondary: var(--white);
-	--button-border-secondary: var(--gray-300);
-	--button-bg-secondary-hover: var(--gray-50);
-	--button-bg-secondary-active: var(--gray-100);
+	--button-text-secondary: var(--neutral-700);
+	--button-bg-secondary: var(--neutral-100);
+	--button-border-secondary: var(--neutral-300);
+	--button-bg-secondary-hover: var(--neutral-300);
+	--button-bg-secondary-active: var(--neutral-100);
 
 	/* Success Variant */
 	--button-text-success: var(--white);
@@ -82,18 +82,18 @@
 	--button-bg-danger-active: var(--red-800);
 
 	/* White Variant */
-	--button-text-white: var(--gray-700);
+	--button-text-white: var(--neutral-700);
 	--button-bg-white: var(--white);
-	--button-border-white: var(--gray-200);
-	--button-bg-white-hover: var(--gray-50);
-	--button-bg-white-active: var(--gray-100);
+	--button-border-white: var(--neutral-200);
+	--button-bg-white-hover: var(--neutral-50);
+	--button-bg-white-active: var(--neutral-100);
 
 	/* Black Variant */
 	--button-text-black: var(--white);
 	--button-bg-black: var(--black);
 	--button-border-black: var(--black);
-	--button-bg-black-hover: var(--gray-900);
-	--button-bg-black-active: var(--gray-800);
+	--button-bg-black-hover: var(--neutral-900);
+	--button-bg-black-active: var(--neutral-800);
 }
 
 :root[data-theme='dark'],
@@ -112,7 +112,7 @@
 	--bo-icon-color-inherit: inherit;
 
 	/* bo-text */
-	--bo-text-color-default: var(--gray-50);
+	--bo-text-color-default: var(--neutral-50);
 	--bo-text-color-primary: var(--blue-400);
 	--bo-text-color-secondary: var(--neutral-400);
 	--bo-text-color-disabled: var(--neutral-600);
@@ -126,7 +126,7 @@
 
 	/* bo-loading-ring */
 	--bo-loading-ring-color-primary: var(--blue-400);
-	--bo-loading-ring-color-secondary: var(--gray-500);
+	--bo-loading-ring-color-secondary: var(--neutral-500);
 	--bo-loading-ring-color-success: var(--green-400);
 	--bo-loading-ring-color-warning: var(--yellow-400);
 	--bo-loading-ring-color-danger: var(--red-400);
@@ -135,7 +135,7 @@
 
 	/* bo-loading-spinner */
 	--bo-loading-spinner-color-primary: var(--blue-400);
-	--bo-loading-spinner-color-secondary: var(--gray-500);
+	--bo-loading-spinner-color-secondary: var(--neutral-500);
 	--bo-loading-spinner-color-success: var(--green-400);
 	--bo-loading-spinner-color-warning: var(--yellow-400);
 	--bo-loading-spinner-color-danger: var(--red-400);
@@ -153,11 +153,11 @@
 	--button-bg-primary-active: var(--blue-300);
 
 	/* Secondary Variant */
-	--button-text-secondary: var(--gray-200);
-	--button-bg-secondary: var(--gray-800);
-	--button-border-secondary: var(--gray-600);
-	--button-bg-secondary-hover: var(--gray-700);
-	--button-bg-secondary-active: var(--gray-600);
+	--button-text-secondary: var(--neutral-200);
+	--button-bg-secondary: var(--neutral-800);
+	--button-border-secondary: var(--neutral-600);
+	--button-bg-secondary-hover: var(--neutral-700);
+	--button-bg-secondary-active: var(--neutral-600);
 
 	/* Success Variant */
 	--button-text-success: var(--white);
@@ -181,16 +181,16 @@
 	--button-bg-danger-active: var(--red-300);
 
 	/* White Variant */
-	--button-text-white: var(--gray-900);
+	--button-text-white: var(--neutral-900);
 	--button-bg-white: var(--white);
-	--button-border-white: var(--gray-300);
-	--button-bg-white-hover: var(--gray-100);
-	--button-bg-white-active: var(--gray-200);
+	--button-border-white: var(--neutral-300);
+	--button-bg-white-hover: var(--neutral-100);
+	--button-bg-white-active: var(--neutral-200);
 
 	/* Black Variant */
 	--button-text-black: var(--white);
 	--button-bg-black: var(--black);
 	--button-border-black: var(--black);
-	--button-bg-black-hover: var(--gray-900);
-	--button-bg-black-active: var(--gray-800);
+	--button-bg-black-hover: var(--neutral-900);
+	--button-bg-black-active: var(--neutral-800);
 }

@@ -2,13 +2,13 @@
 	<button
 		:id="id"
 		:type="type"
-		:disabled="disabled || isLoading"
 		:role="role"
+		:class="classes"
+		:disabled="disabled"
+		:tabindex="tabIndex"
 		:style="buttonStyle"
-		:class="buttonClasses"
-		:tabindex="computedTabIndex"
 		:aria-live="ariaLive"
-		:aria-label="computedAriaLabel"
+		:aria-label="ariaLabel"
 		:data-testid="dataTestId"
 		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="ariaDescribedBy"
@@ -18,27 +18,27 @@
 				<bo-loading-spinner
 					v-if="isLoading && loaderType === BoLoaderType.spinner"
 					:size="loadingSpinnerSize"
-					:variant="variant"
-					:custom-container-css-class="'bo-button__loader'"
+					:variant="loadingSpinnerVariant"
+					custom-container-css-class="bo-button__loader"
 				/>
 				<bo-loading-ring
 					v-else-if="isLoading && loaderType === BoLoaderType.ring"
 					:size="loadingSpinnerSize"
-					:variant="variant"
-					:custom-container-css-class="'bo-button__loader'"
+					:variant="loadingSpinnerVariant"
+					custom-container-css-class="bo-button__loader"
 				/>
 				<bo-icon
 					v-if="prefixIcon && !isLoading"
 					:icon="prefixIcon"
 					:size="iconSize"
-					:cursor="componentCursorState"
+					:cursor="cursor"
 					custom-css-class="bo-button__icon bo-button__icon--prefix"
 				/>
 				<bo-text
 					v-if="label"
 					:value="label"
-					:cursor="componentCursorState"
-					:font-size="textFontSize"
+					:font-size="fontSize"
+					:cursor="cursor"
 					:variant="BoTextVariant.current"
 					:font-weight="BoFontWeight.medium"
 					custom-css-class="bo-button__label"
@@ -47,7 +47,7 @@
 					v-if="suffixIcon"
 					:icon="suffixIcon"
 					:size="iconSize"
-					:cursor="componentCursorState"
+					:cursor="cursor"
 					custom-css-class="bo-button__icon bo-button__icon--suffix"
 				/>
 			</div>
@@ -80,11 +80,7 @@
 		ariaLive: AriaLive.polite,
 	});
 
-	const emit = defineEmits<{
-		click: [event: MouseEvent];
-	}>();
-
-	const computedAriaLabel = computed<string | undefined>(() => {
+	const ariaLabel = computed<string | undefined>(() => {
 		if (props.ariaLabel) {
 			return props.ariaLabel;
 		}
@@ -100,7 +96,7 @@
 		return undefined;
 	});
 
-	const computedTabIndex = computed<number | undefined>(() => {
+	const tabIndex = computed<number | undefined>(() => {
 		if (props.tabIndex !== undefined) {
 			return props.tabIndex;
 		}
@@ -112,7 +108,7 @@
 		return undefined;
 	});
 
-	const componentCursorState = computed<string>(() => {
+	const cursor = computed<string>(() => {
 		if (props.disabled) {
 			return 'not-allowed';
 		}
@@ -124,7 +120,7 @@
 		return 'pointer';
 	});
 
-	const textFontSize = computed<BoFontSize>(() => {
+	const fontSize = computed<BoFontSize>(() => {
 		switch (props.size) {
 			case BoSize.extra_small:
 				return BoFontSize.xs;
@@ -170,6 +166,22 @@
 		}
 	});
 
+	const loadingSpinnerVariant = computed<BoVariant>(() => {
+		switch (props.variant) {
+			case BoVariant.secondary:
+				return BoVariant.secondary;
+			case BoVariant.white:
+				return BoVariant.white;
+			case BoVariant.success:
+			case BoVariant.warning:
+			case BoVariant.danger:
+			case BoVariant.black:
+			case BoVariant.primary:
+			default:
+				return BoVariant.white;
+		}
+	});
+
 	const buttonStyle = computed<StyleValue>(() => {
 		if (props.customColor) {
 			const colorStyle = ColorService.instance.getValidCssColor(props.customColor);
@@ -184,13 +196,13 @@
 	const componentBaseClasses = computed<ConditionalCssProperties>(() => ({
 		'bo-button': true,
 		'bo-button--loading': props.isLoading,
+		'bo-button--disabled': props.disabled,
 		[`bo-button--size-${props.size}`]: true,
 		'bo-button--full-width': props.fullWidth,
 		[`bo-button--variant-${props.variant}`]: true,
-		'bo-button--disabled': props.disabled || props.isLoading,
 	}));
 
-	const buttonClasses = computed<HTMLAttributes['class']>(() => {
+	const classes = computed<HTMLAttributes['class']>(() => {
 		return [componentBaseClasses.value, props.customCssClass];
 	});
 </script>
@@ -228,28 +240,59 @@
 		}
 
 		&--disabled {
-			opacity: 0.5;
+			opacity: 0.8;
 			cursor: not-allowed;
-			pointer-events: none;
 		}
 
 		&--loading {
 			cursor: wait;
-		}
-
-		&__loader {
-			margin-right: 0.5rem;
+			opacity: 0.8;
 		}
 
 		&__content {
+			gap: inherit;
 			display: inline-flex;
 			align-items: center;
-			gap: inherit;
 		}
 
 		&__icon {
-			display: inline-flex;
 			align-items: center;
+			display: inline-flex;
+		}
+
+		&--size-extra-small {
+			height: 1.75rem;
+			padding: 0 0.5rem;
+			border-radius: 0.25rem;
+			gap: 0.25rem;
+		}
+
+		&--size-small {
+			height: 2rem;
+			padding: 0 0.75rem;
+			border-radius: 0.375rem;
+			gap: 0.375rem;
+		}
+
+		&--size-default {
+			height: 2.5rem;
+			padding: 0 0.85rem;
+			border-radius: 0.375rem;
+			gap: 0.5rem;
+		}
+
+		&--size-large {
+			height: 3rem;
+			padding: 0 1rem;
+			border-radius: 0.5rem;
+			gap: 0.5rem;
+		}
+
+		&--size-extra-large {
+			height: 3.5rem;
+			padding: 0 1.25rem;
+			border-radius: 0.5rem;
+			gap: 0.625rem;
 		}
 
 		&--variant-primary {
@@ -348,41 +391,6 @@
 			&:active:not(.bo-button--disabled) {
 				background-color: var(--button-bg-black-active);
 			}
-		}
-
-		&--size-extra-small {
-			height: 1.75rem;
-			padding: 0 0.5rem;
-			border-radius: 0.25rem;
-			gap: 0.25rem;
-		}
-
-		&--size-small {
-			height: 2rem;
-			padding: 0 0.75rem;
-			border-radius: 0.375rem;
-			gap: 0.375rem;
-		}
-
-		&--size-default {
-			height: 2.5rem;
-			padding: 0 1rem;
-			border-radius: 0.375rem;
-			gap: 0.5rem;
-		}
-
-		&--size-large {
-			height: 3rem;
-			padding: 0 1.25rem;
-			border-radius: 0.5rem;
-			gap: 0.5rem;
-		}
-
-		&--size-extra-large {
-			height: 3.5rem;
-			padding: 0 1.5rem;
-			border-radius: 0.5rem;
-			gap: 0.625rem;
 		}
 	}
 </style>

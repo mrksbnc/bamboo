@@ -7,27 +7,22 @@
 		:aria-label="ariaLabel"
 		:aria-busy="ariaBusy"
 	>
-		<span :class="[spinnerClass, customSpinnerCssClass]" :style="spinnerStyle"></span>
+		<span :class="spinnerClasses" :style="spinnerStyle"></span>
 		<slot>
-			<bo-text
-				v-if="loaderText"
-				:value="loaderText"
-				:font-size="boFontSize"
-				:variant="BoTextVariant.secondary"
-			/>
+			<bo-text v-if="loaderText" :value="loaderText" :font-size="fontSize" />
 		</slot>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js';
+	import { BoFontSize } from '@/components/bo-text/bo-text.js';
 	import BoText from '@/components/bo-text/bo-text.vue';
 	import type { ConditionalCssProperties } from '@/core/css.js';
 	import { BoLoaderTextPosition } from '@/core/index.js';
 	import { BoSize } from '@/core/size.js';
 	import { BoVariant } from '@/core/variant.js';
 	import { IdentityService } from '@/services/identity-service.js';
-	import { computed, type StyleValue } from 'vue';
+	import { computed, type HTMLAttributes, type StyleValue } from 'vue';
 	import { type BoLoadingSpinnerProps } from './bo-loading-spinner.js';
 
 	const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
@@ -38,7 +33,7 @@
 		textPosition: BoLoaderTextPosition.after,
 	});
 
-	const boFontSize = computed<BoFontSize>(() => {
+	const fontSize = computed<BoFontSize>(() => {
 		switch (props.size) {
 			case BoSize.extra_small:
 				return BoFontSize.xs;
@@ -67,6 +62,10 @@
 			[`bo-loading-spinner__spinner--${props.size}`]: true,
 			[`bo-loading-spinner__spinner--${props.variant}`]: true,
 		};
+	});
+
+	const spinnerClasses = computed<HTMLAttributes['class']>(() => {
+		return [spinnerClass.value, props.customSpinnerCssClass];
 	});
 
 	const spinnerStyle = computed<StyleValue>(() => {
@@ -105,7 +104,7 @@
 		&__spinner {
 			display: inline;
 			border-radius: 50%;
-			border: 0.2rem solid;
+			border: 0.125rem solid;
 			border-color: transparent;
 			animation: bo-loading-spinner-rotation 1s linear infinite;
 

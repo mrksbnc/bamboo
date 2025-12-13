@@ -10,7 +10,7 @@ const iconList = Object.values(Icon);
 
 # bo-icon
 
-`bo-icon` is an `svg` wrapper around files from the [Feather Icons](https://feathericons.com/) library.
+`bo-icon` is an `svg` wrapper various icons from the [Feather Icons](https://feathericons.com/) and [Font Awesome](https://fontawesome.com/) libraries.
 
 ## Basic usage
 

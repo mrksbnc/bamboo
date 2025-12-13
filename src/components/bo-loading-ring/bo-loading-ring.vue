@@ -7,27 +7,27 @@
 		:aria-label="ariaLabel"
 		:aria-busy="ariaBusy"
 	>
-		<span :class="[ringClass, customRingClass]" :style="ringStyle"></span>
+		<span :class="ringClasses" :style="ringStyle"></span>
 		<slot>
 			<bo-text
 				v-if="loaderText"
 				:value="loaderText"
-				:font-size="boFontSize"
-				:variant="BoTextVariant.secondary"
+				:font-size="fontSize"
+				:font-weight="BoFontWeight.medium"
 			/>
 		</slot>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js';
+	import { BoFontSize, BoFontWeight } from '@/components/bo-text/bo-text.js';
 	import BoText from '@/components/bo-text/bo-text.vue';
 	import type { ConditionalCssProperties } from '@/core/css.js';
 	import { BoLoaderTextPosition } from '@/core/loader.js';
 	import { BoSize } from '@/core/size.js';
 	import { BoVariant } from '@/core/variant.js';
 	import { IdentityService } from '@/services/identity-service.js';
-	import { computed, type StyleValue } from 'vue';
+	import { computed, type HTMLAttributes, type StyleValue } from 'vue';
 	import { type BoLoaderRingProps } from './bo-loading-ring.js';
 
 	const props = withDefaults(defineProps<BoLoaderRingProps>(), {
@@ -38,19 +38,18 @@
 		textPosition: BoLoaderTextPosition.after,
 	});
 
-	const boFontSize = computed<BoFontSize>(() => {
+	const fontSize = computed<BoFontSize>(() => {
 		switch (props.size) {
 			case BoSize.extra_small:
 				return BoFontSize.xs;
 			case BoSize.small:
 				return BoFontSize.sm;
 			case BoSize.large:
-				return BoFontSize.xl;
 			case BoSize.extra_large:
-				return BoFontSize['2xl'];
+				return BoFontSize.lg;
 			case BoSize.default:
 			default:
-				return BoFontSize.lg;
+				return BoFontSize.default;
 		}
 	});
 
@@ -67,6 +66,10 @@
 			[`bo-loader-ring__ring--${props.size}`]: true,
 			[`bo-loader-ring__ring--${props.variant}`]: true,
 		};
+	});
+
+	const ringClasses = computed<HTMLAttributes['class']>(() => {
+		return [ringClass.value, props.customRingClass];
 	});
 
 	const ringStyle = computed<StyleValue>(() => {
