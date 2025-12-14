@@ -42,7 +42,7 @@ jobs:
       - name: Setup LTS Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 'lts/*'
+          node-version-file: '.node-version'
           cache: pnpm
 
       - name: Install dependencies
@@ -68,7 +68,7 @@ jobs:
       - name: Setup LTS Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 'lts/*'
+          node-version-file: '.node-version'
           cache: pnpm
 
       - name: Install dependencies
@@ -94,7 +94,7 @@ jobs:
       - name: Setup LTS Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 'lts/*'
+          node-version-file: '.node-version'
           cache: pnpm
 
       - name: Install dependencies
@@ -120,7 +120,7 @@ jobs:
       - name: Setup LTS Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 'lts/*'
+          node-version-file: '.node-version'
           cache: pnpm
 
       - name: Install dependencies
@@ -146,7 +146,7 @@ jobs:
       - name: Setup LTS Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 'lts/*'
+          node-version-file: '.node-version'
           cache: pnpm
 
       - name: Install dependencies
