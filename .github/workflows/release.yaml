@@ -1,0 +1,94 @@
+name: 'release'
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup LTS Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 'lts/*'
+          cache: pnpm
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Run linting
+        run: pnpm lint
+
+      - name: Run type check
+        run: pnpm type-check
+
+      - name: Build package
+        run: pnpm build
+
+      - name: Extract tag version
+        id: tag
+        run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Update package version
+        run: |
+          pnpm version ${{ steps.tag.outputs.version }} --no-git-tag-version
+
+      - name: Publish to GitHub Packages
+        run: pnpm publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ steps.tag.outputs.version }}
+          body: |
+            ## Changes in ${{ steps.tag.outputs.version }}
+
+            This release was automatically generated from tag `${{ github.ref_name }}`.
+
+            ### Package Information
+            - **Package**: `@mrksbnc/bamboo@${{ steps.tag.outputs.version }}`
+            - **Registry**: GitHub Packages
+
+            ### Installation
+            ```bash
+            npm install @mrksbnc/bamboo@${{ steps.tag.outputs.version }}
+            ```
+
+            For more details, see the [CHANGELOG](./CHANGELOG.md) or check the commits since the last release.
+          draft: false
+          prerelease: ${{ contains(steps.tag.outputs.version, 'alpha') || contains(steps.tag.outputs.version, 'beta') || contains(steps.tag.outputs.version, 'rc') }}
