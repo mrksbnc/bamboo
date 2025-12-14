@@ -37,7 +37,7 @@
     "lint:style": "stylelint \"**/*.{vue,css,scss,sass}\" --fix --config stylelint.config.js",
     "lint": "run-s lint:*",
     "format": "prettier --write \"src/**/*.{js,ts,vue,css,scss,json,md}\"",
-    "prepare": "husky install",
+    "prepare": "husky",
     "prepublishOnly": "pnpm build",
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
