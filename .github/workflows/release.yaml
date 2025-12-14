@@ -63,8 +63,17 @@ jobs:
         run: |
           pnpm version ${{ steps.tag.outputs.version }} --no-git-tag-version
 
+      - name: Determine npm tag
+        id: npm-tag
+        run: |
+          if [[ "${{ steps.tag.outputs.version }}" =~ (alpha|beta|rc) ]]; then
+            echo "tag=next" >> $GITHUB_OUTPUT
+          else
+            echo "tag=latest" >> $GITHUB_OUTPUT
+          fi
+
       - name: Publish to GitHub Packages
-        run: pnpm publish --no-git-checks
+        run: pnpm publish --no-git-checks --tag ${{ steps.npm-tag.outputs.tag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
