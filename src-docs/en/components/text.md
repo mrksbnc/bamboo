@@ -53,34 +53,38 @@ Simple wrapper around a `<p>` element providing a consistent styling for text el
 
 ## Font Sizes
 
-The text component supports different font sizes with the `fontSize` prop. The default size is `14px`.
+The text component supports different font sizes with the `fontSize` prop. The default size is `16px`. All sizes match Tailwind CSS font sizing.
 
 <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem;">
-  <bo-text value="Extra Small Text" :font-size="BoFontSize.xs" />
-  <bo-text value="Small Text" :font-size="BoFontSize.sm" />
-  <bo-text value="Default Text" :font-size="BoFontSize.default" />
-  <bo-text value="Large Text" :font-size="BoFontSize.lg" />
-  <bo-text value="Extra Large Text" :font-size="BoFontSize.xl" />
-  <bo-text value="2X Large Text" :font-size="BoFontSize['2xl']" />
-  <bo-text value="3X Large Text" :font-size="BoFontSize['3xl']" />
-  <bo-text value="4X Large Text" :font-size="BoFontSize['4xl']" />
-  <bo-text value="5X Large Text" :font-size="BoFontSize['5xl']" />
-  <bo-text value="6X Large Text" :font-size="BoFontSize['6xl']" />
-  <bo-text value="7X Large Text" :font-size="BoFontSize['7xl']" />
+  <bo-text value="Extra Small Text (12px)" :font-size="BoFontSize.xs" />
+  <bo-text value="Small Text (14px)" :font-size="BoFontSize.sm" />
+  <bo-text value="Default Text (16px)" :font-size="BoFontSize.default" />
+  <bo-text value="Large Text (18px)" :font-size="BoFontSize.lg" />
+  <bo-text value="Extra Large Text (20px)" :font-size="BoFontSize.xl" />
+  <bo-text value="2X Large Text (24px)" :font-size="BoFontSize['2xl']" />
+  <bo-text value="3X Large Text (30px)" :font-size="BoFontSize['3xl']" />
+  <bo-text value="4X Large Text (36px)" :font-size="BoFontSize['4xl']" />
+  <bo-text value="5X Large Text (48px)" :font-size="BoFontSize['5xl']" />
+  <bo-text value="6X Large Text (60px)" :font-size="BoFontSize['6xl']" />
+  <bo-text value="7X Large Text (72px)" :font-size="BoFontSize['7xl']" />
+  <bo-text value="8X Large Text (96px)" :font-size="BoFontSize['8xl']" />
+  <bo-text value="9X Large Text (128px)" :font-size="BoFontSize['9xl']" />
 </div>
 
 ```vue
-<bo-text value="Extra Small Text" :font-size="BoFontSize.xs" />
-<bo-text value="Small Text" :font-size="BoFontSize.sm" />
-<bo-text value="Default Text" :font-size="BoFontSize.default" />
-<bo-text value="Large Text" :font-size="BoFontSize.lg" />
-<bo-text value="Extra Large Text" :font-size="BoFontSize.xl" />
-<bo-text value="2X Large Text" :font-size="BoFontSize['2xl']" />
-<bo-text value="3X Large Text" :font-size="BoFontSize['3xl']" />
-<bo-text value="4X Large Text" :font-size="BoFontSize['4xl']" />
-<bo-text value="5X Large Text" :font-size="BoFontSize['5xl']" />
-<bo-text value="6X Large Text" :font-size="BoFontSize['6xl']" />
-<bo-text value="7X Large Text" :font-size="BoFontSize['7xl']" />
+<bo-text value="Extra Small Text (12px)" :font-size="BoFontSize.xs" />
+<bo-text value="Small Text (14px)" :font-size="BoFontSize.sm" />
+<bo-text value="Default Text (16px)" :font-size="BoFontSize.default" />
+<bo-text value="Large Text (18px)" :font-size="BoFontSize.lg" />
+<bo-text value="Extra Large Text (20px)" :font-size="BoFontSize.xl" />
+<bo-text value="2X Large Text (24px)" :font-size="BoFontSize['2xl']" />
+<bo-text value="3X Large Text (30px)" :font-size="BoFontSize['3xl']" />
+<bo-text value="4X Large Text (36px)" :font-size="BoFontSize['4xl']" />
+<bo-text value="5X Large Text (48px)" :font-size="BoFontSize['5xl']" />
+<bo-text value="6X Large Text (60px)" :font-size="BoFontSize['6xl']" />
+<bo-text value="7X Large Text (72px)" :font-size="BoFontSize['7xl']" />
+<bo-text value="8X Large Text (96px)" :font-size="BoFontSize['8xl']" />
+<bo-text value="9X Large Text (128px)" :font-size="BoFontSize['9xl']" />
 ```
 
 ## Font Weights
@@ -332,6 +336,8 @@ enum BoFontSize {
 	'5xl' = '5xl',
 	'6xl' = '6xl',
 	'7xl' = '7xl',
+	'8xl' = '8xl',
+	'9xl' = '9xl',
 }
 
 enum BoFontFamily {
@@ -424,7 +430,7 @@ interface BoTextProps {
 }
 ```
 
-```ts [shared/accessibility.ts]
+```ts [core/accessibility.ts]
 export enum AriaLive {
 	polite = 'polite',
 	assertive = 'assertive',

@@ -27,10 +27,6 @@ yarn add @mrksbnc/bamboo
 pnpm add @mrksbnc/bamboo
 ```
 
-```bash [bun]
-bun add @mrksbnc/bamboo
-```
-
 :::
 
 ## Usage
@@ -64,6 +60,6 @@ createApp(App).mount('#app');
 </template>
 
 <script setup lang="ts">
-	import { BoText, BoIcon, Icon } from '@mrksbnc/bamboo'
+	import { BoText, BoIcon, Icon } from '@mrksbnc/bamboo/components'
 </script>
 ```

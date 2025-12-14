@@ -1,256 +1,337 @@
-import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
-import BoLoadingRing from './bo-loading-ring.vue';
-import { BoLoaderTextPosition } from '@/shared/loader.js';
-import { BoVariant } from '@/shared/variant.js';
-import { BoSize } from '@/shared/size.js';
-import { AriaLive } from '@/shared/accessibility.js';
-import { BoFontSize } from '@/components/bo-text/bo-text.js';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import BoLoaderRing from './bo-loading-ring.vue';
+import BoText from '@/components/bo-text/bo-text.vue';
+import { BoSize } from '@/core/size.js';
+import { BoVariant } from '@/core/variant.js';
+import { BoLoaderTextPosition } from '@/core/loader.js';
+import { AriaLive } from '@/core/accessibility.js';
+import { BoFontSize, BoFontWeight } from '@/components/bo-text/bo-text.js';
 
-describe('bo-loading-ring', () => {
-	it('should render the loader ring component', () => {
-		const wrapper = mount(BoLoadingRing);
-		expect(wrapper.find('[class*="bo-loader-ring"]').exists()).toBe(true);
+vi.mock('@/services/identity-service.js', () => ({
+	IdentityService: {
+		instance: {
+			getComponentId: vi.fn((prefix: string) => `${prefix}-test-id`),
+			getDataTestId: vi.fn((prefix: string) => `${prefix}-test-data-id`),
+		},
+	},
+}));
+
+describe('BoLoaderRing', () => {
+	beforeEach(() => {
+		vi.clearAllMocks();
 	});
 
-	it('should render the ring element', () => {
-		const wrapper = mount(BoLoadingRing);
-		expect(wrapper.find('.bo-loader-ring__ring').exists()).toBe(true);
-	});
+	describe('default props', () => {
+		it('should render with default props', () => {
+			const wrapper = mount(BoLoaderRing);
 
-	it('should have a default id', () => {
-		const wrapper = mount(BoLoadingRing);
-		expect(wrapper.attributes('id')).toBeDefined();
-	});
+			expect(wrapper.exists()).toBe(true);
+			expect(wrapper.attributes('id')).toBe('bo-loader-ring-test-id');
+			expect(wrapper.attributes('data-testid')).toBe('bo-loader-ring-test-data-id');
+		});
 
-	it('should have a default data-testid', () => {
-		const wrapper = mount(BoLoadingRing);
-		expect(wrapper.attributes('data-testid')).toBeDefined();
-	});
+		it('should apply default size class', () => {
+			const wrapper = mount(BoLoaderRing);
+			const ring = wrapper.find('.bo-loader-ring__ring');
 
-	describe('loader size', () => {
-		it.each([BoSize.extra_small, BoSize.small, BoSize.default, BoSize.large, BoSize.extra_large])(
-			'should apply size class for %s',
-			(size) => {
-				const wrapper = mount(BoLoadingRing, {
-					props: { size },
-				});
-				expect(wrapper.find(`.bo-loader-ring__ring--${size}`).exists()).toBe(true);
-			},
-		);
+			expect(ring.classes()).toContain('bo-loader-ring__ring--default');
+		});
 
-		it('should default to BoSize.default', () => {
-			const wrapper = mount(BoLoadingRing);
-			expect(wrapper.find('.bo-loader-ring__ring--default').exists()).toBe(true);
+		it('should apply default variant class', () => {
+			const wrapper = mount(BoLoaderRing);
+			const ring = wrapper.find('.bo-loader-ring__ring');
+
+			expect(ring.classes()).toContain('bo-loader-ring__ring--primary');
+		});
+
+		it('should apply default text position class', () => {
+			const wrapper = mount(BoLoaderRing);
+
+			expect(wrapper.classes()).toContain('bo-loader-ring--after');
 		});
 	});
 
-	describe('loader variants', () => {
-		it.each(Object.values(BoVariant))('should apply variant class for %s', (variant) => {
-			const wrapper = mount(BoLoadingRing, {
+	describe('id and data test id', () => {
+		it('should accept custom id', () => {
+			const wrapper = mount(BoLoaderRing, {
+				props: { id: 'custom-id' },
+			});
+
+			expect(wrapper.attributes('id')).toBe('custom-id');
+		});
+
+		it('should accept custom dataTestId', () => {
+			const wrapper = mount(BoLoaderRing, {
+				props: { dataTestId: 'custom-test-id' },
+			});
+
+			expect(wrapper.attributes('data-testid')).toBe('custom-test-id');
+		});
+	});
+
+	describe('size variants', () => {
+		it.each([
+			[BoSize.extra_small, 'bo-loader-ring__ring--extra-small'],
+			[BoSize.small, 'bo-loader-ring__ring--small'],
+			[BoSize.default, 'bo-loader-ring__ring--default'],
+			[BoSize.large, 'bo-loader-ring__ring--large'],
+			[BoSize.extra_large, 'bo-loader-ring__ring--extra-large'],
+		])('should apply %s size class', (size, expectedClass) => {
+			const wrapper = mount(BoLoaderRing, {
+				props: { size },
+			});
+			const ring = wrapper.find('.bo-loader-ring__ring');
+
+			expect(ring.classes()).toContain(expectedClass);
+		});
+	});
+
+	describe('color variants', () => {
+		it.each([
+			[BoVariant.primary, 'bo-loader-ring__ring--primary'],
+			[BoVariant.secondary, 'bo-loader-ring__ring--secondary'],
+			[BoVariant.success, 'bo-loader-ring__ring--success'],
+			[BoVariant.warning, 'bo-loader-ring__ring--warning'],
+			[BoVariant.danger, 'bo-loader-ring__ring--danger'],
+		])('should apply %s variant class', (variant, expectedClass) => {
+			const wrapper = mount(BoLoaderRing, {
 				props: { variant },
 			});
-			expect(wrapper.find(`.bo-loader-ring__ring--${variant}`).exists()).toBe(true);
-		});
+			const ring = wrapper.find('.bo-loader-ring__ring');
 
-		it('should default to BoVariant.primary', () => {
-			const wrapper = mount(BoLoadingRing);
-			expect(wrapper.find('.bo-loader-ring__ring--primary').exists()).toBe(true);
-		});
-	});
-
-	describe('loader text position', () => {
-		it.each(Object.values(BoLoaderTextPosition))(
-			'should apply text position class for %s',
-			(position) => {
-				const wrapper = mount(BoLoadingRing, {
-					props: { textPosition: position },
-				});
-				expect(wrapper.find(`.bo-loader-ring--${position}`).exists()).toBe(true);
-			},
-		);
-
-		it('should default to BoLoaderTextPosition.after', () => {
-			const wrapper = mount(BoLoadingRing);
-			expect(wrapper.find('.bo-loader-ring--after').exists()).toBe(true);
+			expect(ring.classes()).toContain(expectedClass);
 		});
 	});
 
 	describe('loader text', () => {
-		it('should render BoText component when loaderText is provided', () => {
-			const wrapper = mount(BoLoadingRing, {
+		it('should not render text when loaderText is not provided', () => {
+			const wrapper = mount(BoLoaderRing);
+
+			expect(wrapper.findComponent(BoText).exists()).toBe(false);
+		});
+
+		it('should render text when loaderText is provided', () => {
+			const wrapper = mount(BoLoaderRing, {
 				props: { loaderText: 'Loading...' },
 			});
-			const boText = wrapper.findComponent({ name: 'BoText' });
-			expect(boText.exists()).toBe(true);
+			const textComponent = wrapper.findComponent(BoText);
+
+			expect(textComponent.exists()).toBe(true);
+			expect(textComponent.props('value')).toBe('Loading...');
 		});
 
-		it('should not render BoText component when loaderText is not provided', () => {
-			const wrapper = mount(BoLoadingRing);
-			const boText = wrapper.findComponent({ name: 'BoText' });
-			expect(boText.exists()).toBe(false);
-		});
-
-		it('should pass loaderText to BoText component', () => {
-			const text = 'Loading...';
-			const wrapper = mount(BoLoadingRing, {
-				props: { loaderText: text },
+		it('should pass correct font weight to text component', () => {
+			const wrapper = mount(BoLoaderRing, {
+				props: { loaderText: 'Loading...' },
 			});
-			const boText = wrapper.findComponent({ name: 'BoText' });
-			expect(boText.props('value')).toBe(text);
+			const textComponent = wrapper.findComponent(BoText);
+
+			expect(textComponent.props('fontWeight')).toBe(BoFontWeight.medium);
+		});
+
+		it.each([
+			[BoSize.extra_small, BoFontSize.xs],
+			[BoSize.small, BoFontSize.sm],
+			[BoSize.default, BoFontSize.default],
+			[BoSize.large, BoFontSize.lg],
+			[BoSize.extra_large, BoFontSize.lg],
+		])('should use %s font size for %s loader size', (size, expectedFontSize) => {
+			const wrapper = mount(BoLoaderRing, {
+				props: {
+					size,
+					loaderText: 'Loading...',
+				},
+			});
+			const textComponent = wrapper.findComponent(BoText);
+
+			expect(textComponent.props('fontSize')).toBe(expectedFontSize);
+		});
+	});
+
+	describe('text position', () => {
+		it.each([
+			[BoLoaderTextPosition.top, 'bo-loader-ring--top'],
+			[BoLoaderTextPosition.bottom, 'bo-loader-ring--bottom'],
+			[BoLoaderTextPosition.before, 'bo-loader-ring--before'],
+			[BoLoaderTextPosition.after, 'bo-loader-ring--after'],
+		])('should apply %s text position class', (position, expectedClass) => {
+			const wrapper = mount(BoLoaderRing, {
+				props: { textPosition: position },
+			});
+
+			expect(wrapper.classes()).toContain(expectedClass);
 		});
 	});
 
 	describe('custom color', () => {
-		it('should apply custom color as inline style', () => {
+		it('should apply custom color style when provided', () => {
 			const customColor = '#ff0000';
-			const wrapper = mount(BoLoadingRing, {
+			const wrapper = mount(BoLoaderRing, {
 				props: { customColor },
 			});
 			const ring = wrapper.find('.bo-loader-ring__ring');
-			expect(ring.attributes('style')).toContain('color: rgb(255, 0, 0);');
+
+			expect(ring.attributes('style')).toContain(`color: rgb(255, 0, 0);`);
 		});
 
-		it('should not apply color style when customColor is not provided', () => {
-			const wrapper = mount(BoLoadingRing);
+		it('should not apply custom color style when not provided', () => {
+			const wrapper = mount(BoLoaderRing);
 			const ring = wrapper.find('.bo-loader-ring__ring');
-			const style = ring.attributes('style');
-			expect(style).toBeUndefined();
+
+			expect(ring.attributes('style')).toBeUndefined();
 		});
 	});
 
-	describe('custom css', () => {
-		it('should apply custom container CSS class', () => {
-			const customClass = 'custom-container-class';
-			const wrapper = mount(BoLoadingRing, {
-				props: { customContainerCssClass: customClass },
-			});
-			expect(wrapper.find(`.${customClass}`).exists()).toBe(true);
-		});
-
-		it('should apply custom ring CSS class', () => {
-			const customClass = 'custom-ring-class';
-			const wrapper = mount(BoLoadingRing, {
-				props: { customRingClass: customClass },
-			});
-			expect(wrapper.find(`.${customClass}`).exists()).toBe(true);
-		});
-	});
-
-	describe('id and data-testid', () => {
-		it('should apply custom id', () => {
-			const customId = 'my-loader-id';
-			const wrapper = mount(BoLoadingRing, {
-				props: { id: customId },
-			});
-			expect(wrapper.attributes('id')).toBe(customId);
-		});
-
-		it('should apply custom data-testid', () => {
-			const customTestId = 'my-loader-testid';
-			const wrapper = mount(BoLoadingRing, {
-				props: { dataTestId: customTestId },
-			});
-			expect(wrapper.attributes('data-testid')).toBe(customTestId);
-		});
-	});
-
-	describe('accessibility', () => {
-		it('should apply aria-live attribute', () => {
-			const wrapper = mount(BoLoadingRing, {
+	describe('accessibility props', () => {
+		it('should apply ariaLive attribute', () => {
+			const wrapper = mount(BoLoaderRing, {
 				props: { ariaLive: AriaLive.polite },
 			});
+
 			expect(wrapper.attributes('aria-live')).toBe(AriaLive.polite);
 		});
 
-		it('should apply aria-label attribute', () => {
-			const label = 'Loading content';
-			const wrapper = mount(BoLoadingRing, {
-				props: { ariaLabel: label },
+		it('should apply ariaLabel attribute', () => {
+			const wrapper = mount(BoLoaderRing, {
+				props: { ariaLabel: 'Loading content' },
 			});
-			expect(wrapper.attributes('aria-label')).toBe(label);
+
+			expect(wrapper.attributes('aria-label')).toBe('Loading content');
 		});
 
-		it('should apply aria-busy attribute', () => {
-			const wrapper = mount(BoLoadingRing, {
+		it('should apply ariaBusy attribute when true', () => {
+			const wrapper = mount(BoLoaderRing, {
 				props: { ariaBusy: true },
 			});
+
 			expect(wrapper.attributes('aria-busy')).toBe('true');
 		});
-	});
 
-	describe('font size mapping depending on loader size', () => {
-		const sizeMapping = [
-			{ size: BoSize.extra_small, expectedFontSize: BoFontSize.xs },
-			{ size: BoSize.small, expectedFontSize: BoFontSize.sm },
-			{ size: BoSize.default, expectedFontSize: BoFontSize.lg },
-			{ size: BoSize.large, expectedFontSize: BoFontSize.xl },
-			{ size: BoSize.extra_large, expectedFontSize: BoFontSize['2xl'] },
-		];
-
-		it.each(sizeMapping)(
-			'should map size $size to BoText font size $expectedFontSize',
-			({ size, expectedFontSize }) => {
-				const wrapper = mount(BoLoadingRing, {
-					props: { size, loaderText: 'Loading...' },
-				});
-				const boText = wrapper.findComponent({ name: 'BoText' });
-				expect(boText.props('fontSize')).toBe(expectedFontSize);
-			},
-		);
-	});
-
-	describe('slot', () => {
-		it('should render default slot when provided', () => {
-			const wrapper = mount(BoLoadingRing, {
-				slots: {
-					default: '<span class="custom-slot">Custom Content</span>',
-				},
+		it('should apply ariaBusy attribute when false', () => {
+			const wrapper = mount(BoLoaderRing, {
+				props: { ariaBusy: false },
 			});
-			expect(wrapper.find('.custom-slot').exists()).toBe(true);
-			expect(wrapper.text()).toContain('Custom Content');
+
+			expect(wrapper.attributes('aria-busy')).toBe('false');
+		});
+	});
+
+	describe('custom css classes', () => {
+		it('should apply custom container CSS class', () => {
+			const wrapper = mount(BoLoaderRing, {
+				props: { customContainerCssClass: 'custom-container' },
+			});
+
+			expect(wrapper.classes()).toContain('custom-container');
+			expect(wrapper.classes()).toContain('bo-loader-ring');
 		});
 
-		it('should use default slot over loaderText', () => {
-			const wrapper = mount(BoLoadingRing, {
-				props: { loaderText: 'Loading...' },
-				slots: {
-					default: '<span class="slot-content">Slot Content</span>',
+		it('should apply custom ring class', () => {
+			const wrapper = mount(BoLoaderRing, {
+				props: { customRingClass: 'custom-ring' },
+			});
+			const ring = wrapper.find('.bo-loader-ring__ring');
+
+			expect(ring.classes()).toContain('custom-ring');
+			expect(ring.classes()).toContain('bo-loader-ring__ring');
+		});
+
+		it('should apply multiple custom classes', () => {
+			const wrapper = mount(BoLoaderRing, {
+				props: {
+					customContainerCssClass: 'custom-container another-class',
+					customRingClass: 'custom-ring ring-modifier',
 				},
 			});
+
+			expect(wrapper.classes()).toContain('custom-container');
+			expect(wrapper.classes()).toContain('another-class');
+
+			const ring = wrapper.find('.bo-loader-ring__ring');
+			expect(ring.classes()).toContain('custom-ring');
+			expect(ring.classes()).toContain('ring-modifier');
+		});
+	});
+
+	describe('slot content', () => {
+		it('should render default slot content when provided', () => {
+			const wrapper = mount(BoLoaderRing, {
+				slots: {
+					default: '<div class="custom-content">Custom Loading Text</div>',
+				},
+			});
+
+			expect(wrapper.find('.custom-content').exists()).toBe(true);
+			expect(wrapper.text()).toContain('Custom Loading Text');
+		});
+
+		it('should prioritize slot content over loaderText prop', () => {
+			const wrapper = mount(BoLoaderRing, {
+				props: { loaderText: 'Prop Text' },
+				slots: {
+					default: '<div class="slot-content">Slot Text</div>',
+				},
+			});
+
 			expect(wrapper.find('.slot-content').exists()).toBe(true);
-			expect(wrapper.text()).toContain('Slot Content');
-			expect(wrapper.text()).not.toContain('Loading...');
+			expect(wrapper.text()).toContain('Slot Text');
+			expect(wrapper.text()).not.toContain('Prop Text');
 		});
 	});
 
 	describe('combined props', () => {
-		it('should work with multiple props combined', () => {
-			const wrapper = mount(BoLoadingRing, {
+		it('should handle multiple props simultaneously', () => {
+			const wrapper = mount(BoLoaderRing, {
 				props: {
+					id: 'loader-1',
 					size: BoSize.large,
 					variant: BoVariant.success,
+					loaderText: 'Processing...',
 					textPosition: BoLoaderTextPosition.top,
-					loaderText: 'Loading...',
 					customColor: '#00ff00',
+					ariaLabel: 'Processing data',
+					ariaBusy: true,
 					customContainerCssClass: 'my-container',
 					customRingClass: 'my-ring',
-					id: 'loader-1',
-					dataTestId: 'loader-test-1',
-					ariaLabel: 'Please wait',
-					ariaBusy: true,
 				},
 			});
 
 			expect(wrapper.attributes('id')).toBe('loader-1');
-			expect(wrapper.attributes('data-testid')).toBe('loader-test-1');
-			expect(wrapper.find('.bo-loader-ring__ring--large').exists()).toBe(true);
-			expect(wrapper.find('.bo-loader-ring__ring--success').exists()).toBe(true);
-			expect(wrapper.find('.bo-loader-ring--top').exists()).toBe(true);
-			expect(wrapper.find('.my-container').exists()).toBe(true);
-			expect(wrapper.find('.my-ring').exists()).toBe(true);
-			expect(wrapper.attributes('aria-label')).toBe('Please wait');
+			expect(wrapper.classes()).toContain('bo-loader-ring--top');
+			expect(wrapper.classes()).toContain('my-container');
+			expect(wrapper.attributes('aria-label')).toBe('Processing data');
 			expect(wrapper.attributes('aria-busy')).toBe('true');
+
+			const ring = wrapper.find('.bo-loader-ring__ring');
+			expect(ring.classes()).toContain('bo-loader-ring__ring--large');
+			expect(ring.classes()).toContain('bo-loader-ring__ring--success');
+			expect(ring.classes()).toContain('my-ring');
+			expect(ring.attributes('style')).toContain('color: rgb(0, 255, 0);');
+
+			const textComponent = wrapper.findComponent(BoText);
+			expect(textComponent.exists()).toBe(true);
+			expect(textComponent.props('value')).toBe('Processing...');
+			expect(textComponent.props('fontSize')).toBe(BoFontSize.lg);
+		});
+	});
+
+	describe('component structure', () => {
+		it('should have correct DOM structure', () => {
+			const wrapper = mount(BoLoaderRing, {
+				props: { loaderText: 'Loading...' },
+			});
+
+			expect(wrapper.find('.bo-loader-ring').exists()).toBe(true);
+			expect(wrapper.find('.bo-loader-ring__ring').exists()).toBe(true);
+			expect(wrapper.findComponent(BoText).exists()).toBe(true);
+		});
+
+		it('should render ring as a span element', () => {
+			const wrapper = mount(BoLoaderRing);
+			const ring = wrapper.find('.bo-loader-ring__ring');
+
+			expect(ring.element.tagName).toBe('SPAN');
 		});
 	});
 });

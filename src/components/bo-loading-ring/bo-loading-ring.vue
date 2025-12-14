@@ -2,55 +2,54 @@
 	<div
 		:id="id"
 		:data-testid="dataTestId"
-		:class="[containerClass, customContainerCssClass]"
+		:class="ringContainerClass"
 		:aria-live="ariaLive"
 		:aria-label="ariaLabel"
 		:aria-busy="ariaBusy"
 	>
-		<span :class="[ringClass, customRingClass]" :style="ringStyle"></span>
+		<span :class="ringClasses" :style="ringStyle"></span>
 		<slot>
 			<bo-text
 				v-if="loaderText"
 				:value="loaderText"
-				:font-size="boFontSize"
-				:variant="BoTextVariant.secondary"
+				:font-size="fontSize"
+				:font-weight="BoFontWeight.medium"
 			/>
 		</slot>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	import { BoFontSize, BoTextVariant } from '@/components/bo-text/bo-text.js';
+	import { BoFontSize, BoFontWeight } from '@/components/bo-text/bo-text.js';
 	import BoText from '@/components/bo-text/bo-text.vue';
-	import type { ConditionalCssProperties } from '@/core/css.js';
+	import { type ConditionalCssProperties } from '@/core/css.js';
+	import { BoLoaderTextPosition } from '@/core/loader.js';
+	import { BoSize } from '@/core/size.js';
+	import { BoVariant } from '@/core/variant.js';
 	import { IdentityService } from '@/services/identity-service.js';
-	import { BoLoaderTextPosition } from '@/shared/loader.js';
-	import { BoSize } from '@/shared/size.js';
-	import { BoVariant } from '@/shared/variant.js';
-	import { computed, type StyleValue } from 'vue';
+	import { computed, type HTMLAttributes, type StyleValue } from 'vue';
 	import { type BoLoaderRingProps } from './bo-loading-ring.js';
 
 	const props = withDefaults(defineProps<BoLoaderRingProps>(), {
-		id: IdentityService.instance.getComponentId(),
-		dataTestId: IdentityService.instance.getDataTestId('bo-loader-ring'),
-		size: BoSize.default,
-		variant: BoVariant.primary,
-		textPosition: BoLoaderTextPosition.after,
+		id: () => IdentityService.instance.getComponentId('bo-loader-ring'),
+		dataTestId: () => IdentityService.instance.getDataTestId('bo-loader-ring'),
+		size: () => BoSize.default,
+		variant: () => BoVariant.primary,
+		textPosition: () => BoLoaderTextPosition.after,
 	});
 
-	const boFontSize = computed<BoFontSize>(() => {
+	const fontSize = computed<BoFontSize>(() => {
 		switch (props.size) {
 			case BoSize.extra_small:
 				return BoFontSize.xs;
 			case BoSize.small:
 				return BoFontSize.sm;
 			case BoSize.large:
-				return BoFontSize.xl;
 			case BoSize.extra_large:
-				return BoFontSize['2xl'];
+				return BoFontSize.lg;
 			case BoSize.default:
 			default:
-				return BoFontSize.lg;
+				return BoFontSize.default;
 		}
 	});
 
@@ -67,6 +66,14 @@
 			[`bo-loader-ring__ring--${props.size}`]: true,
 			[`bo-loader-ring__ring--${props.variant}`]: true,
 		};
+	});
+
+	const ringContainerClass = computed<HTMLAttributes['class']>(() => {
+		return [containerClass.value, props.customContainerCssClass];
+	});
+
+	const ringClasses = computed<HTMLAttributes['class']>(() => {
+		return [ringClass.value, props.customRingClass];
 	});
 
 	const ringStyle = computed<StyleValue>(() => {
@@ -105,26 +112,26 @@
 		}
 
 		&__ring {
-			display: inline-block;
 			position: relative;
-			transform: rotateZ(45deg);
-			perspective: 1000px;
 			border-radius: 50%;
 			color: currentcolor;
+			perspective: 1000px;
+			display: inline-block;
+			transform: rotateZ(45deg);
 
 			&::before,
 			&::after {
-				content: '';
-				display: block;
-				position: absolute;
 				top: 0;
 				left: 0;
+				content: '';
 				width: inherit;
+				display: block;
 				height: inherit;
+				position: absolute;
 				border-radius: 50%;
+				box-sizing: border-box;
 				transform: rotateX(70deg);
 				animation: spin 1s linear infinite;
-				box-sizing: border-box;
 			}
 
 			&::after {
@@ -207,12 +214,12 @@
 				color: var(--bo-loading-ring-color-danger);
 			}
 
-			&--dark {
-				color: var(--bo-loading-ring-color-dark);
+			&--black {
+				color: var(--bo-loading-ring-color-black);
 			}
 
-			&--light {
-				color: var(--bo-loading-ring-color-light);
+			&--white {
+				color: var(--bo-loading-ring-color-white);
 			}
 		}
 	}
@@ -220,35 +227,35 @@
 	@keyframes spin {
 		0%,
 		100% {
-			box-shadow: 0.2em 0 0 0 currentcolor;
+			box-shadow: 0.2em 0 0 0 currentColor;
 		}
 
 		12% {
-			box-shadow: 0.2em 0.2em 0 0 currentcolor;
+			box-shadow: 0.2em 0.2em 0 0 currentColor;
 		}
 
 		25% {
-			box-shadow: 0 0.2em 0 0 currentcolor;
+			box-shadow: 0 0.2em 0 0 currentColor;
 		}
 
 		37% {
-			box-shadow: -0.2em 0.2em 0 0 currentcolor;
+			box-shadow: -0.2em 0.2em 0 0 currentColor;
 		}
 
 		50% {
-			box-shadow: -0.2em 0 0 0 currentcolor;
+			box-shadow: -0.2em 0 0 0 currentColor;
 		}
 
 		62% {
-			box-shadow: -0.2em -0.2em 0 0 currentcolor;
+			box-shadow: -0.2em -0.2em 0 0 currentColor;
 		}
 
 		75% {
-			box-shadow: 0 -0.2em 0 0 currentcolor;
+			box-shadow: 0 -0.2em 0 0 currentColor;
 		}
 
 		87% {
-			box-shadow: 0.2em -0.2em 0 0 currentcolor;
+			box-shadow: 0.2em -0.2em 0 0 currentColor;
 		}
 	}
 </style>

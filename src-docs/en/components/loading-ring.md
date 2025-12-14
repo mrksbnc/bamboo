@@ -4,17 +4,17 @@ title: bo-loading-ring
 
 <script setup lang="ts">
 import { BoLoadingRing } from "@/components/bo-loading-ring";
-import { AriaLive } from "@/shared/accessibility";
-import { BoSize } from "@/shared/size";
-import { BoLoaderTextPosition } from "@/shared/loader"
-import { BoVariant } from "@/shared/variant"
+import { AriaLive } from "@/core/accessibility";
+import { BoSize } from "@/core/size";
+import { BoLoaderTextPosition } from "@/core/loader"
+import { BoVariant } from "@/core/variant"
 </script>
 
 # bo-loading-ring
 
 `bo-loading-ring` provides an accessible progress indicator with a 3D ring animation and optional status text.
 
-### Basic usage
+## Basic usage
 
 ```vue
 <bo-loading-ring loader-text="Loading data" />
@@ -42,6 +42,12 @@ import { BoVariant } from "@/shared/variant"
 | `ariaBusy`                | `boolean`              | Marks the region as busy while the ring is visible.             |
 | `customContainerCssClass` | `string`               | Additional CSS classes appended to the container element.       |
 | `customRingClass`         | `string`               | Additional CSS classes appended to the ring element.            |
+
+### Slots
+
+| Name      | Description                         |
+| --------- | ----------------------------------- |
+| `default` | Custom content to replace the label |
 
 ## Sizes
 
@@ -73,8 +79,8 @@ Use `variant` to switch between predefined color palettes. For custom brand colo
   <bo-loading-ring :variant="BoVariant.success" loader-text="success" />
   <bo-loading-ring :variant="BoVariant.warning" loader-text="warning" />
   <bo-loading-ring :variant="BoVariant.danger" loader-text="danger" />
-  <bo-loading-ring :variant="BoVariant.dark" loader-text="dark" />
-  <bo-loading-ring :variant="BoVariant.light" loader-text="light" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
+  <bo-loading-ring :variant="BoVariant.white" loader-text="white" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
+  <bo-loading-ring :variant="BoVariant.black" loader-text="black" />
 </div>
 
 ```vue
@@ -83,8 +89,8 @@ Use `variant` to switch between predefined color palettes. For custom brand colo
 <bo-loading-ring :variant="BoVariant.success" loader-text="success" />
 <bo-loading-ring :variant="BoVariant.warning" loader-text="warning" />
 <bo-loading-ring :variant="BoVariant.danger" loader-text="danger" />
-<bo-loading-ring :variant="BoVariant.dark" loader-text="dark" />
-<bo-loading-ring :variant="BoVariant.light" loader-text="light" />
+<bo-loading-ring :variant="BoVariant.white" loader-text="white" />
+<bo-loading-ring :variant="BoVariant.black" loader-text="black" />
 ```
 
 ## Text positions
@@ -177,7 +183,7 @@ export interface BoLoaderRingProps {
 }
 ```
 
-```ts [shared/accessibility.ts]
+```ts [core/accessibility.ts]
 export enum AriaLive {
 	polite = 'polite',
 	assertive = 'assertive',
@@ -185,7 +191,7 @@ export enum AriaLive {
 }
 ```
 
-```ts [shared/loader.ts]
+```ts [core/loader.ts]
 export enum BoVariant {
 	primary = 'primary',
 	secondary = 'secondary',
@@ -204,7 +210,7 @@ export enum BoLoaderTextPosition {
 }
 ```
 
-```ts [shared/size.ts]
+```ts [core/size.ts]
 export enum BoSize {
 	extra_small = 'extra-small',
 	small = 'small',

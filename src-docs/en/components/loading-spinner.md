@@ -4,17 +4,17 @@ title: bo-loading-spinner
 
 <script setup lang="ts">
 import { BoLoadingSpinner } from "@/components/bo-loading-spinner";
-import { AriaLive } from "@/shared/accessibility";
-import { BoSize } from "@/shared/size";
-import { BoLoaderTextPosition } from "@/shared/loader"
-import { BoVariant } from "@/shared/variant"
+import { AriaLive } from "@/core/accessibility";
+import { BoSize } from "@/core/size";
+import { BoLoaderTextPosition } from "@/core/loader"
+import { BoVariant } from "@/core/variant"
 </script>
 
 # bo-loading-spinner
 
 `bo-loading-spinner` provides an accessible progress indicator with optional status text.
 
-### Basic usage
+## Basic usage
 
 ```vue
 <bo-loading-spinner loader-text="Loading data" />
@@ -42,6 +42,12 @@ import { BoVariant } from "@/shared/variant"
 | `ariaBusy`                | `boolean`              | Marks the region as busy while loading.                            |
 | `customContainerCssClass` | `string`               | Additional CSS classes appended to the root element.               |
 | `customSpinnerCssClass`   | `string`               | Additional CSS classes appended to the spinner element.            |
+
+### Slots
+
+| Name      | Description                         |
+| --------- | ----------------------------------- |
+| `default` | Custom content to replace the label |
 
 ## Sizes
 
@@ -73,8 +79,8 @@ Use `variant` to switch between predefined color palettes. For custom brand colo
   <bo-loading-spinner :variant="BoVariant.success" loader-text="success" />
   <bo-loading-spinner :variant="BoVariant.warning" loader-text="warning" />
   <bo-loading-spinner :variant="BoVariant.danger" loader-text="danger" />
-  <bo-loading-spinner :variant="BoVariant.dark" loader-text="dark" style="background-color: var(--neutral-100); padding: 0.5rem; border-radius: 0.5rem;"/>
-  <bo-loading-spinner :variant="BoVariant.light" loader-text="light" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
+  <bo-loading-spinner :variant="BoVariant.black" loader-text="black" />
+  <bo-loading-spinner :variant="BoVariant.white" loader-text="white" style="background-color: #111; padding: 0.5rem; border-radius: 0.5rem;" />
 </div>
 
 ```vue
@@ -83,8 +89,8 @@ Use `variant` to switch between predefined color palettes. For custom brand colo
 <bo-loading-spinner :variant="BoVariant.success" loader-text="success" />
 <bo-loading-spinner :variant="BoVariant.warning" loader-text="warning" />
 <bo-loading-spinner :variant="BoVariant.danger" loader-text="danger" />
-<bo-loading-spinner :variant="BoVariant.dark" loader-text="dark" />
-<bo-loading-spinner :variant="BoVariant.light" loader-text="light" />
+<bo-loading-spinner :variant="BoVariant.black" loader-text="black" />
+<bo-loading-spinner :variant="BoVariant.white" loader-text="white" />
 ```
 
 ## Text positions
@@ -164,7 +170,7 @@ export interface BoLoadingSpinnerProps {
 }
 ```
 
-```ts [shared/accessibility.ts]
+```ts [core/accessibility.ts]
 export enum AriaLive {
 	polite = 'polite',
 	assertive = 'assertive',
@@ -172,7 +178,7 @@ export enum AriaLive {
 }
 ```
 
-```ts [shared/loader.ts]
+```ts [core/loader.ts]
 export enum BoVariant {
 	primary = 'primary',
 	secondary = 'secondary',
@@ -191,7 +197,7 @@ export enum BoLoaderTextPosition {
 }
 ```
 
-```ts [shared/size.ts]
+```ts [core/size.ts]
 export enum BoSize {
 	extra_small = 'extra-small',
 	small = 'small',

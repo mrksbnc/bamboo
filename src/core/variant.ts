@@ -4,6 +4,6 @@ export enum BoVariant {
 	success = 'success',
 	warning = 'warning',
 	danger = 'danger',
-	light = 'light',
-	dark = 'dark',
+	white = 'white',
+	black = 'black',
 }
