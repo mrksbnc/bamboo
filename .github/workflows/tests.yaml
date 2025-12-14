@@ -3,9 +3,25 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'tsconfig*.json'
+      - 'vite.config.ts'
+      - 'vitest.config.ts'
+      - '.github/workflows/tests.yaml'
   push:
     branches:
       - main
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'tsconfig*.json'
+      - 'vite.config.ts'
+      - 'vitest.config.ts'
+      - '.github/workflows/tests.yaml'
 
 permissions:
   contents: read
@@ -13,6 +29,7 @@ permissions:
 jobs:
   vitest:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     permissions:
       # Required to checkout the code
@@ -26,6 +43,8 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 10.25.0
 
       - name: Setup LTS Node.js
         uses: actions/setup-node@v6

@@ -12,9 +12,7 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18, 20, 22, 24]
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -23,19 +21,13 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-
-      - name: Cache pnpm packages
-        uses: actions/cache@v3
         with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          version: 10.25.0
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 'lts/*'
           cache: pnpm
           registry-url: 'https://npm.pkg.github.com'
 

@@ -3,6 +3,12 @@ name: deploy docs to github pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'src-docs/**'
+      - '.vitepress/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/deploy-docs.yaml'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -20,6 +26,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -28,6 +35,8 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 10.25.0
 
       - name: Setup Node
         uses: actions/setup-node@v6
@@ -55,6 +64,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: Deploy
     steps:
       - name: Deploy to GitHub Pages
