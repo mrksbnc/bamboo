@@ -69,12 +69,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Release
-        uses: actions/create-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ steps.tag.outputs.version }}
+          name: Release ${{ steps.tag.outputs.version }}
           body: |
             ## Changes in ${{ steps.tag.outputs.version }}
 
@@ -92,3 +89,4 @@ jobs:
             For more details, see the [CHANGELOG](./CHANGELOG.md) or check the commits since the last release.
           draft: false
           prerelease: ${{ contains(steps.tag.outputs.version, 'alpha') || contains(steps.tag.outputs.version, 'beta') || contains(steps.tag.outputs.version, 'rc') }}
+          token: ${{ secrets.GITHUB_TOKEN }}
