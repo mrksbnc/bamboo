@@ -227,35 +227,35 @@
 	@keyframes spin {
 		0%,
 		100% {
-			box-shadow: 0.2em 0 0 0 currentColor;
+			box-shadow: 0.2em 0 0 0 currentcolor;
 		}
 
 		12% {
-			box-shadow: 0.2em 0.2em 0 0 currentColor;
+			box-shadow: 0.2em 0.2em 0 0 currentcolor;
 		}
 
 		25% {
-			box-shadow: 0 0.2em 0 0 currentColor;
+			box-shadow: 0 0.2em 0 0 currentcolor;
 		}
 
 		37% {
-			box-shadow: -0.2em 0.2em 0 0 currentColor;
+			box-shadow: -0.2em 0.2em 0 0 currentcolor;
 		}
 
 		50% {
-			box-shadow: -0.2em 0 0 0 currentColor;
+			box-shadow: -0.2em 0 0 0 currentcolor;
 		}
 
 		62% {
-			box-shadow: -0.2em -0.2em 0 0 currentColor;
+			box-shadow: -0.2em -0.2em 0 0 currentcolor;
 		}
 
 		75% {
-			box-shadow: 0 -0.2em 0 0 currentColor;
+			box-shadow: 0 -0.2em 0 0 currentcolor;
 		}
 
 		87% {
-			box-shadow: 0.2em -0.2em 0 0 currentColor;
+			box-shadow: 0.2em -0.2em 0 0 currentcolor;
 		}
 	}
 </style>
