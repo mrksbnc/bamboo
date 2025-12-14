@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
 
 permissions:
   contents: write
@@ -12,6 +12,9 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20, 22, 24, 26]
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -21,29 +24,42 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
+      - name: Cache pnpm packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: "lts/*"
+          node-version: ${{ matrix.node-version }}
           cache: pnpm
-          registry-url: "https://npm.pkg.github.com"
+          registry-url: 'https://npm.pkg.github.com'
 
       - name: Install dependencies
         run: pnpm install
 
       - name: Run tests
-        run: |
-          pnpm test
+        run: pnpm test
 
       - name: Run linters
-        run: |
-          pnpm lint
+        run: pnpm lint
 
       - name: Build library
-        run: |
-          pnpm build
+        run: pnpm build
+
+      - name: Validate package before publishing
+        run: pnpm pack --dry-run
 
       - name: Publish to GitHub Packages
-        run: pnpm publish --no-git-checks
+        run: |
+          if [[ "${{ github.ref_name }}" == *"alpha"* ]] || [[ "${{ github.ref_name }}" == *"beta"* ]] || [[ "${{ github.ref_name }}" == *"rc"* ]]; then
+            pnpm publish --no-git-checks --tag next
+          else
+            pnpm publish --no-git-checks
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
