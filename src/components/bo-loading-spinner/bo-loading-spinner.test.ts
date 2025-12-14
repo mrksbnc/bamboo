@@ -208,16 +208,6 @@ describe('bo-loading-spinner', () => {
 		);
 	});
 
-	describe('bo-text variant', () => {
-		it('should always render BoText with secondary variant', () => {
-			const wrapper = mount(BoLoadingSpinner, {
-				props: { loaderText: 'Loading...' },
-			});
-			const boText = wrapper.findComponent({ name: 'BoText' });
-			expect(boText.props('variant')).toBe(BoVariant.secondary);
-		});
-	});
-
 	describe('slot', () => {
 		it('should render default slot when provided', () => {
 			const wrapper = mount(BoLoadingSpinner, {

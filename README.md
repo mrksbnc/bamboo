@@ -5,14 +5,13 @@ Lightweight, flexible, and type‑safe UI components for Vue 3.
 ## Prerequisites
 
 - Node.js 18+
-- npm, pnpm, yarn, or bun
+- npm, pnpm or yarn
 
 ## Install
 
 - npm: `npm install @mrksbnc/bamboo`
 - pnpm: `pnpm add @mrksbnc/bamboo`
 - yarn: `yarn add @mrksbnc/bamboo`
-- bun: `bun add @mrksbnc/bamboo`
 
 ## Project Structure
 

@@ -1,13 +1,13 @@
 <template>
 	<p
 		:id="id"
+		:data-testid="dataTestId"
 		:role="role"
 		:lang="lang"
-		:style="boTextStyle"
-		:class="[componentBaseClasses, customCssClass]"
+		:style="textStyle"
+		:class="textClasses"
 		:aria-live="ariaLive"
 		:aria-label="ariaLabel"
-		:data-testid="dataTestId"
 		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="ariaDescribedBy"
 	>
@@ -16,12 +16,11 @@
 </template>
 
 <script lang="ts" setup>
-	import type { ConditionalCssProperties } from '@/core';
-	import { AriaLive } from '@/core/accessibility';
-	import { ColorService } from '@/services';
+	import { AriaLive } from '@/core/accessibility.js';
+	import type { ConditionalCssProperties } from '@/core/css';
+	import { ColorService } from '@/services/color-service.js';
 	import { IdentityService } from '@/services/identity-service.js';
-	import { computed, type CSSProperties, type StyleValue } from 'vue';
-
+	import { computed, type CSSProperties, type HTMLAttributes, type StyleValue } from 'vue';
 	import {
 		BoFontFamily,
 		BoFontSize,
@@ -30,11 +29,11 @@
 		BoTextTransform,
 		BoTextVariant,
 		BoTextWhiteSpace,
-	} from './bo-text';
+	} from './bo-text.js';
 
 	const props = withDefaults(defineProps<BoTextProps>(), {
-		id: IdentityService.instance.getComponentId(),
-		dataTestId: IdentityService.instance.getDataTestId('bo-text'),
+		id: () => IdentityService.instance.getComponentId('bo-text'),
+		dataTestId: () => IdentityService.instance.getDataTestId('bo-text'),
 		lang: 'en',
 		maxLines: 'none',
 		fontSize: () => BoFontSize.default,
@@ -46,8 +45,13 @@
 		ariaLive: () => AriaLive.polite,
 	});
 
-	const ariaLabel = computed<string>(() => props.ariaLabel || props.value);
-	const role = computed<string>(() => props.role ?? 'text');
+	const ariaLabel = computed<string>(() => {
+		return props.ariaLabel || props.value;
+	});
+
+	const role = computed<string>(() => {
+		return props.role ?? 'text';
+	});
 
 	const processedValue = computed<string>(() => {
 		switch (props.textTransform) {
@@ -108,7 +112,7 @@
 		return {};
 	});
 
-	const boTextStyle = computed<StyleValue>(() => {
+	const textStyle = computed<StyleValue>(() => {
 		const style: StyleValue = {
 			...textColor.value,
 			...maxLines.value,
@@ -118,17 +122,21 @@
 		return style;
 	});
 
-	const componentBaseClasses = computed<ConditionalCssProperties>(() => {
+	const conditionalClasses = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-text': true,
 			[`bo-text--${props.variant}`]: true,
 			[`bo-text--size-${props.fontSize}`]: true,
-			[`bo-text--align-${props.textAlign}`]: props.textAlign !== undefined,
+			[`bo-text--font-${props.fontFamily}`]: true,
 			[`bo-text--weight-${props.fontWeight}`]: true,
 			[`bo-text--whitespace-${props.whiteSpace}`]: true,
-			[`bo-text--font-${props.fontFamily}`]: true,
 			[`bo-text--transform-${props.textTransform}`]: true,
+			[`bo-text--align-${props.textAlign}`]: props.textAlign !== undefined,
 		};
+	});
+
+	const textClasses = computed<HTMLAttributes['class']>(() => {
+		return [conditionalClasses.value, props.customCssClass];
 	});
 </script>
 

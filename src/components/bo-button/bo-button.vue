@@ -1,6 +1,7 @@
 <template>
 	<button
 		:id="id"
+		:data-testid="dataTestId"
 		:type="type"
 		:role="role"
 		:class="classes"
@@ -9,7 +10,6 @@
 		:style="buttonStyle"
 		:aria-live="ariaLive"
 		:aria-label="ariaLabel"
-		:data-testid="dataTestId"
 		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="ariaDescribedBy"
 	>
@@ -39,8 +39,8 @@
 					:value="label"
 					:font-size="fontSize"
 					:cursor="cursor"
-					:variant="BoTextVariant.current"
-					:font-weight="BoFontWeight.medium"
+					:variant="BoTextVariant.inherit"
+					:font-weight="BoFontWeight.semibold"
 					custom-css-class="bo-button__label"
 				/>
 				<bo-icon
@@ -59,25 +59,26 @@
 	import BoIcon from '@/components/bo-icon/bo-icon.vue';
 	import BoLoadingRing from '@/components/bo-loading-ring/bo-loading-ring.vue';
 	import BoLoadingSpinner from '@/components/bo-loading-spinner/bo-loading-spinner.vue';
-	import { BoFontSize, BoFontWeight, BoText, BoTextVariant } from '@/components/bo-text';
-	import { AriaLive } from '@/core/accessibility';
+	import { BoFontSize, BoFontWeight, BoTextVariant } from '@/components/bo-text/bo-text.js';
+	import boText from '@/components/bo-text/bo-text.vue';
+	import { AriaLive } from '@/core/accessibility.js';
 	import type { ConditionalCssProperties } from '@/core/css';
-	import { BoLoaderType } from '@/core/loader';
-	import { BoSize } from '@/core/size';
-	import { BoVariant } from '@/core/variant';
-	import { ColorService } from '@/services/color-service';
-	import { IdentityService } from '@/services/identity-service';
+	import { BoLoaderType } from '@/core/loader.js';
+	import { BoSize } from '@/core/size.js';
+	import { BoVariant } from '@/core/variant.js';
+	import { ColorService } from '@/services/color-service.js';
+	import { IdentityService } from '@/services/identity-service.js';
 	import { computed, type HTMLAttributes, type StyleValue } from 'vue';
-	import { BoButtonType, type BoButtonProps } from './bo-button';
+	import { BoButtonType, type BoButtonProps } from './bo-button.js';
 
 	const props = withDefaults(defineProps<BoButtonProps>(), {
-		id: IdentityService.instance.getComponentId(),
-		dataTestId: IdentityService.instance.getDataTestId('bo-button'),
-		size: BoSize.default,
-		variant: BoVariant.primary,
-		type: BoButtonType.button,
-		loaderType: BoLoaderType.spinner,
-		ariaLive: AriaLive.polite,
+		id: () => IdentityService.instance.getComponentId(),
+		dataTestId: () => IdentityService.instance.getDataTestId('bo-button'),
+		size: () => BoSize.default,
+		variant: () => BoVariant.primary,
+		type: () => BoButtonType.button,
+		loaderType: () => BoLoaderType.spinner,
+		ariaLive: () => AriaLive.polite,
 	});
 
 	const ariaLabel = computed<string | undefined>(() => {
@@ -150,19 +151,17 @@
 		}
 	});
 
-	const iconSize = computed<number>(() => {
+	const iconSize = computed<BoSize>(() => {
 		switch (props.size) {
 			case BoSize.extra_small:
-				return 12;
-			case BoSize.small:
-				return 14;
+				return BoSize.extra_small;
 			case BoSize.large:
-				return 20;
 			case BoSize.extra_large:
-				return 24;
-			case BoSize.default:
+				return BoSize.default;
 			default:
-				return 16;
+			case BoSize.small:
+			case BoSize.default:
+				return BoSize.small;
 		}
 	});
 

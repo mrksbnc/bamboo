@@ -167,7 +167,7 @@
 	--button-bg-success-active: var(--green-300);
 
 	/* Warning Variant */
-	--button-text-warning: var(--black);
+	--button-text-warning: var(--white);
 	--button-bg-warning: var(--amber-400);
 	--button-border-warning: var(--amber-400);
 	--button-bg-warning-hover: var(--amber-300);

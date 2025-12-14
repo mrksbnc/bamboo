@@ -36,7 +36,7 @@ The button component automatically handles accessibility, keyboard navigation, a
 | Name              | Type                              | Default        | Description                              |
 | ----------------- | --------------------------------- | -------------- | ---------------------------------------- |
 | `id`              | `string`                          | auto-generated | Unique identifier for the button element |
-| `dataTestId`      | `string`                          | `'bo-button'`  | Data test ID for testing                 |
+| `dataTestId`      | `string`                          | auto-generated | Data test ID for testing                 |
 | `size`            | `BoSize`                          | `'default'`    | Size of the button                       |
 | `variant`         | `BoVariant`                       | `'primary'`    | Visual variant of the button             |
 | `disabled`        | `boolean`                         | `false`        | Whether the button is disabled           |
@@ -45,6 +45,9 @@ The button component automatically handles accessibility, keyboard navigation, a
 | `type`            | `'button' \| 'submit' \| 'reset'` | `'button'`     | HTML button type                         |
 | `label`           | `string`                          | -              | Text content of the button               |
 | `fullWidth`       | `boolean`                         | `false`        | Whether button takes full width          |
+| `prefixIcon`      | `Icon`                            | -              | Icon to display before label             |
+| `suffixIcon`      | `Icon`                            | -              | Icon to display after label              |
+| `customColor`     | `string`                          | -              | Custom color for button background       |
 | `customCssClass`  | `string`                          | -              | Custom CSS class for styling             |
 | `tabIndex`        | `number`                          | -              | Tab index for keyboard navigation        |
 | `role`            | `string`                          | -              | ARIA role attribute                      |
@@ -52,8 +55,6 @@ The button component automatically handles accessibility, keyboard navigation, a
 | `ariaLabelledBy`  | `string`                          | -              | ID of element that labels the button     |
 | `ariaDescribedBy` | `string`                          | -              | ID of element that describes the button  |
 | `ariaLive`        | `AriaLive`                        | `'polite'`     | Live region behavior                     |
-| `prefixIcon`      | `Icon`                            | -              | Icon to display before label             |
-| `suffixIcon`      | `Icon`                            | -              | Icon to display after label              |
 
 ### Slots
 
@@ -123,7 +124,7 @@ The button component supports different variants with the `variant` prop. The de
 
 ## Disabled State
 
-The button can be disabled using the `disabled` prop.
+The button can be disabled using the `disabled` prop. When disabled, the button has reduced opacity and the cursor changes to `not-allowed`. The tab index is automatically set to `-1` to remove it from keyboard navigation.
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
   <bo-button label="Enabled Button" />
@@ -137,7 +138,7 @@ The button can be disabled using the `disabled` prop.
 
 ## Loading State
 
-The button can display a loading indicator using the `isLoading` prop. When loading, the button is automatically disabled.
+The button can display a loading indicator using the `isLoading` prop. When loading, the button is automatically disabled and the cursor changes to `wait`. The tab index is set to `-1` to prevent interaction.
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
   <bo-button label="Loading Spinner" :is-loading="true" />
@@ -163,18 +164,27 @@ The button can take the full width of its container using the `fullWidth` prop.
 
 ## Icons
 
-The button supports prefix and suffix icons. Icons are automatically sized based on the button size.
+The button supports prefix and suffix icons. Icons are automatically sized based on the button size. Icons are hidden when the button is in a loading state (prefix icon only).
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-  <bo-button label="With Icon" prefix-icon="heart" />
-  <bo-button label="With Suffix" suffix-icon="arrow-right" />
+  <bo-button label="With Prefix Icon" prefix-icon="heart" />
+  <bo-button label="With Suffix Icon" suffix-icon="fa_solid_virus" />
   <bo-button label="Both Icons" prefix-icon="star" suffix-icon="check" />
 </div>
 
 ```vue
-<bo-button label="With Icon" prefix-icon="heart" />
-<bo-button label="With Suffix" suffix-icon="arrow-right" />
+<bo-button label="With Prefix Icon" prefix-icon="heart" />
+<bo-button label="With Suffix Icon" suffix-icon="check" />
 <bo-button label="Both Icons" prefix-icon="star" suffix-icon="check" />
+```
+
+## Custom Colors
+
+You can customize the button's background color using the `customColor` prop. This accepts CSS color values including CSS variables, hex, rgb, and rgba.
+
+```vue
+<bo-button label="Custom Color" custom-color="#ff6b6b" />
+<bo-button label="CSS Variable" custom-color="var(--my-custom-color)" />
 ```
 
 ## Using Slots
@@ -195,7 +205,7 @@ You can use slots to customize the button content instead of using the `label` p
 
 ## Click Events
 
-The button emits a `click` event when clicked (unless disabled).
+The button emits a `click` event when clicked (unless disabled or loading).
 
 ```vue
 <bo-button label="Click me" @click="handleClick" />
@@ -203,16 +213,20 @@ The button emits a `click` event when clicked (unless disabled).
 
 ## Accessibility
 
-The button component supports various accessibility attributes:
+The button component includes comprehensive accessibility features:
 
-- `ariaLabel`: Provides an accessible label
-- `ariaLabelledBy`: References an element that labels the button
-- `ariaDescribedBy`: References elements that describe the button
-- `role`: Allows customization of the button's role
-- `lang`: Specifies the language of the button content
+- **Automatic ARIA label**: If no `ariaLabel` or `ariaLabelledBy` is provided, the component automatically uses the `label` prop as the aria-label
+- **Tab index management**: Tab index is automatically set to `-1` when the button is disabled or loading
+- **Cursor feedback**: The cursor automatically changes based on state (`pointer`, `not-allowed`, or `wait`)
+- **Focus visible**: The button displays a focus ring when focused via keyboard navigation
 
 ```vue
-<bo-button label="Accessible Button" aria-label="This is an accessible button" role="button" />
+<bo-button
+	label="Accessible Button"
+	aria-label="This is an accessible button"
+	role="button"
+	aria-describedby="button-description"
+/>
 ```
 
 ## Type Definitions
@@ -247,6 +261,12 @@ interface BoButtonProps {
 	label?: string;
 	/** Whether the button is full width or not. */
 	fullWidth?: boolean;
+	/** The prefix icon to render */
+	prefixIcon?: Icon;
+	/** The suffix icon to render */
+	suffixIcon?: Icon;
+	/** Custom color for the button background (CSS variable, hex, rgb, rgba). */
+	customColor?: string;
 	/** One or multiple css classes to be used for overriding the default styles on the element. */
 	customCssClass?: string;
 	/** The role of the element. */
@@ -294,8 +314,8 @@ export enum BoVariant {
 	success = 'success',
 	warning = 'warning',
 	danger = 'danger',
-	light = 'light',
-	dark = 'dark',
+	white = 'white',
+	black = 'black',
 }
 ```
 

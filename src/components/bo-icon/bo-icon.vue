@@ -1,12 +1,11 @@
 <template>
 	<i
-		v-if="svg"
 		v-html="svg"
 		:id="id"
 		:data-testid="dataTestId"
 		:role="role"
 		:style="iconStyle"
-		:class="[componentBaseClasses, customCssClass]"
+		:class="iconClass"
 		:aria-label="ariaLabel"
 		:aria-hidden="ariaHidden"
 		:title="title"
@@ -14,18 +13,18 @@
 </template>
 
 <script lang="ts" setup>
-	import type { ConditionalCssProperties } from '@/core';
-	import { BoSize } from '@/core/size';
-	import { iconRegistry } from '@/core/svg';
-	import { ColorService } from '@/services';
-	import { IdentityService } from '@/services/identity-service';
-	import { computed, type CSSProperties, type StyleValue } from 'vue';
-	import { type BoIconProps, BoIconVariant, Icon } from './bo-icon';
+	import type { ConditionalCssProperties } from '@/core/css.js';
+	import { BoSize } from '@/core/size.js';
+	import { iconRegistry } from '@/core/svg.js';
+	import { ColorService } from '@/services/color-service.js';
+	import { IdentityService } from '@/services/identity-service.js';
+	import { computed, type CSSProperties, type HTMLAttributes, type StyleValue } from 'vue';
+	import { type BoIconProps, BoIconVariant, Icon } from './bo-icon.js';
 
 	const props = withDefaults(defineProps<BoIconProps>(), {
-		id: IdentityService.instance.getComponentId(),
-		dataTestId: IdentityService.instance.getDataTestId('bo-icon'),
-		size: BoSize.default,
+		id: () => IdentityService.instance.getComponentId('bo-icon'),
+		dataTestId: () => IdentityService.instance.getDataTestId('bo-icon'),
+		size: () => BoSize.default,
 		variant: () => BoIconVariant.default,
 		decorative: true,
 	});
@@ -70,32 +69,8 @@
 		return {};
 	});
 
-	const sizeToPixels = computed<number>(() => {
-		switch (props.size) {
-			case BoSize.extra_small:
-				return 16;
-			case BoSize.small:
-				return 20;
-			case BoSize.large:
-				return 32;
-			case BoSize.extra_large:
-				return 40;
-			case BoSize.default:
-			default:
-				return 24;
-		}
-	});
-
-	const iconSize = computed<CSSProperties>(() => {
-		return {
-			width: `${sizeToPixels.value}px`,
-			height: `${sizeToPixels.value}px`,
-		};
-	});
-
 	const iconStyle = computed<StyleValue>(() => {
 		const style: StyleValue = {
-			...iconSize.value,
 			...iconColorStyle.value,
 			...cursor.value,
 		};
@@ -107,7 +82,12 @@
 		return {
 			'bo-icon': true,
 			[`bo-icon--${props.variant}`]: true,
+			[`bo-icon--size-${props.size}`]: true,
 		};
+	});
+
+	const iconClass = computed<HTMLAttributes['class']>(() => {
+		return [componentBaseClasses.value, props.customCssClass];
 	});
 </script>
 
@@ -159,6 +139,31 @@
 
 		&--inherit {
 			color: var(--bo-icon-color-inherit);
+		}
+
+		&--size-extra-small {
+			width: var(--size-xs);
+			height: var(--size-xs);
+		}
+
+		&--size-small {
+			width: var(--size-sm);
+			height: var(--size-sm);
+		}
+
+		&--size-default {
+			width: var(--size-md);
+			height: var(--size-md);
+		}
+
+		&--size-large {
+			width: var(--size-lg);
+			height: var(--size-lg);
+		}
+
+		&--size-extra-large {
+			width: var(--size-xl);
+			height: var(--size-xl);
 		}
 	}
 </style>

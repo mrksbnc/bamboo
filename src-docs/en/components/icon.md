@@ -4,8 +4,11 @@ title: bo-icon
 
 <script setup lang="ts">
 import { BoIcon, Icon, BoIconVariant } from "@/components/bo-icon";
+import { BoSize } from "@/core/size";
 
 const iconList = Object.values(Icon);
+
+const size = Object.values(BoSize);
 </script>
 
 # bo-icon
@@ -45,28 +48,28 @@ const iconList = Object.values(Icon);
 
 ## Sizes
 
-The icon component supports different sizes with the `size` prop. The default size is `24px`.
+The icon component supports different sizes with the `size` prop.
 
-<bo-icon :icon="Icon.heart" :size="24" />
+<bo-icon :icon="Icon.heart" :size="BoSize.default" />
 
 ```vue
 // default
-<bo-icon :icon="Icon.heart" :size="24" />
+<bo-icon :icon="Icon.heart" />
 ```
 
 ---
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-  <bo-icon :icon="Icon.heart" :size="16" />
-  <bo-icon :icon="Icon.heart" :size="32" />
-  <bo-icon :icon="Icon.heart" :size="64" />
+  <bo-icon v-for="size in size" :key="size" :icon="Icon.heart" :size="size" />
 </div>
 
 ```vue
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-  <bo-icon :icon="Icon.heart" :size="16" />
-  <bo-icon :icon="Icon.heart" :size="32" />
-  <bo-icon :icon="Icon.heart" :size="64" />
+  <bo-icon :icon="Icon.heart" :size="BoSize.extra_small" />
+  <bo-icon :icon="Icon.heart" :size="BoSize.small" />
+  <bo-icon :icon="Icon.heart" :size="BoSize.default" />
+  <bo-icon :icon="Icon.heart" :size="BoSize.large" />
+  <bo-icon :icon="Icon.heart" :size="BoSize.extra_large" />
 </div>
 ```
 
@@ -133,43 +136,43 @@ The available variants are the following:
 
 <div class="icon-variant-grid">
   <div class="icon-variant-item">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.default" :size="32" />
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.default" />
 	<span class="icon-variant-label">default</span>
   </div>
   <div class="icon-variant-item">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.primary" :size="32" />
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.primary" />
 	<span class="icon-variant-label">primary</span>
   </div>
   <div class="icon-variant-item">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.secondary" :size="32" />
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.secondary" />
 	<span class="icon-variant-label">secondary</span>
   </div>
   <div class="icon-variant-item">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.success" :size="32" />
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.success" />
 	<span class="icon-variant-label">success</span>
   </div>
   <div class="icon-variant-item">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.warning" :size="32" />
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.warning" />
 	<span class="icon-variant-label">warning</span>
   </div>
   <div class="icon-variant-item">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.danger" :size="32" />
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.danger" />
 	<span class="icon-variant-label">danger</span>
   </div>
   <div class="icon-variant-item icon-variant-item--light">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.light" :size="32" />
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.light" />
 	<span class="icon-variant-label">light</span>
   </div>
   <div class="icon-variant-item icon-variant-item--dark">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.dark" :size="32" />
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.dark" />
 	<span class="icon-variant-label">dark</span>
   </div>
   <div class="icon-variant-item">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.current" :size="32" />
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.current" />
 	<span class="icon-variant-label">current</span>
   </div>
   <div class="icon-variant-item">
-	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.inherit" :size="32" />
+	<bo-icon :icon="Icon.heart" :variant="BoIconVariant.inherit" />
 	<span class="icon-variant-label">inherit</span>
   </div>
 </div>
@@ -242,7 +245,7 @@ You can customize the color of the icon by passing any valid CSS color value to 
 
 <div class="icon-grid">
   <div v-for="value in Object.values(Icon)" :key="value" class="icon-card">
-    <bo-icon :icon="value" :size="32" />
+    <bo-icon :icon="value" />
     <span class="icon-name">{{ value }}</span>
   </div>
 </div>

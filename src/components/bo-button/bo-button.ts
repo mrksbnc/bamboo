@@ -1,8 +1,8 @@
-import type { BoLoaderType } from '@/core';
-import { AriaLive } from '@/core/accessibility';
-import { BoSize } from '@/core/size';
-import { BoVariant } from '@/core/variant';
-import type { Icon } from '@/components/bo-icon';
+import type { BoLoaderType } from '@/core/loader.js';
+import { AriaLive } from '@/core/accessibility.js';
+import { BoSize } from '@/core/size.js';
+import { BoVariant } from '@/core/variant.js';
+import type { Icon } from '@/components/bo-icon/bo-icon.js';
 
 export enum BoButtonType {
 	button = 'button',

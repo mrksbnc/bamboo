@@ -26,11 +26,11 @@
 	import { type BoLoadingSpinnerProps } from './bo-loading-spinner.js';
 
 	const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
-		id: IdentityService.instance.getComponentId(),
-		dataTestId: IdentityService.instance.getDataTestId('bo-loading-spinner'),
-		size: BoSize.default,
-		variant: BoVariant.primary,
-		textPosition: BoLoaderTextPosition.after,
+		id: () => IdentityService.instance.getComponentId(),
+		dataTestId: () => IdentityService.instance.getDataTestId('bo-loading-spinner'),
+		size: () => BoSize.default,
+		variant: () => BoVariant.primary,
+		textPosition: () => BoLoaderTextPosition.after,
 	});
 
 	const fontSize = computed<BoFontSize>(() => {

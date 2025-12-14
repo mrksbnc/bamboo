@@ -27,10 +27,6 @@ yarn add @mrksbnc/bamboo
 pnpm add @mrksbnc/bamboo
 ```
 
-```bash [bun]
-bun add @mrksbnc/bamboo
-```
-
 :::
 
 ## Usage
