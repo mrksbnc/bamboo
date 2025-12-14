@@ -649,7 +649,7 @@ Bamboo is committed to creating accessible components. Follow these guidelines:
 ### ARIA Attributes
 
 - Use appropriate ARIA roles, labels, and descriptions
-- Reference `src/shared/accessibility.ts` for ARIA utilities
+- Reference `src/core/accessibility.ts` for ARIA utilities
 - Available: `AriaLive` enum (polite, assertive, off)
 
 ### Keyboard Navigation

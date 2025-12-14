@@ -1,13 +1,13 @@
 <template>
 	<p
 		:id="id"
+		:data-testid="dataTestId"
 		:role="role"
 		:lang="lang"
-		:style="boTextStyle"
-		:class="[componentBaseClasses, customCssClass]"
+		:style="textStyle"
+		:class="textClasses"
 		:aria-live="ariaLive"
 		:aria-label="ariaLabel"
-		:data-testid="dataTestId"
 		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="ariaDescribedBy"
 	>
@@ -16,12 +16,11 @@
 </template>
 
 <script lang="ts" setup>
-	import type { ConditionalCssProperties } from '@/core';
-	import { ColorService } from '@/services';
+	import { AriaLive } from '@/core/accessibility.js';
+	import type { ConditionalCssProperties } from '@/core/css';
+	import { ColorService } from '@/services/color-service.js';
 	import { IdentityService } from '@/services/identity-service.js';
-	import { AriaLive } from '@/shared/accessibility';
-	import { computed, type CSSProperties, type StyleValue } from 'vue';
-
+	import { computed, type CSSProperties, type HTMLAttributes, type StyleValue } from 'vue';
 	import {
 		BoFontFamily,
 		BoFontSize,
@@ -30,11 +29,11 @@
 		BoTextTransform,
 		BoTextVariant,
 		BoTextWhiteSpace,
-	} from './bo-text';
+	} from './bo-text.js';
 
 	const props = withDefaults(defineProps<BoTextProps>(), {
-		id: IdentityService.instance.getComponentId(),
-		dataTestId: IdentityService.instance.getDataTestId('bo-text'),
+		id: () => IdentityService.instance.getComponentId('bo-text'),
+		dataTestId: () => IdentityService.instance.getDataTestId('bo-text'),
 		lang: 'en',
 		maxLines: 'none',
 		fontSize: () => BoFontSize.default,
@@ -46,8 +45,13 @@
 		ariaLive: () => AriaLive.polite,
 	});
 
-	const ariaLabel = computed<string>(() => props.ariaLabel || props.value);
-	const role = computed<string>(() => props.role ?? 'text');
+	const ariaLabel = computed<string>(() => {
+		return props.ariaLabel || props.value;
+	});
+
+	const role = computed<string>(() => {
+		return props.role ?? 'text';
+	});
 
 	const processedValue = computed<string>(() => {
 		switch (props.textTransform) {
@@ -108,7 +112,7 @@
 		return {};
 	});
 
-	const boTextStyle = computed<StyleValue>(() => {
+	const textStyle = computed<StyleValue>(() => {
 		const style: StyleValue = {
 			...textColor.value,
 			...maxLines.value,
@@ -118,17 +122,21 @@
 		return style;
 	});
 
-	const componentBaseClasses = computed<ConditionalCssProperties>(() => {
+	const conditionalClasses = computed<ConditionalCssProperties>(() => {
 		return {
 			'bo-text': true,
 			[`bo-text--${props.variant}`]: true,
 			[`bo-text--size-${props.fontSize}`]: true,
-			[`bo-text--align-${props.textAlign}`]: props.textAlign !== undefined,
+			[`bo-text--font-${props.fontFamily}`]: true,
 			[`bo-text--weight-${props.fontWeight}`]: true,
 			[`bo-text--whitespace-${props.whiteSpace}`]: true,
-			[`bo-text--font-${props.fontFamily}`]: true,
 			[`bo-text--transform-${props.textTransform}`]: true,
+			[`bo-text--align-${props.textAlign}`]: props.textAlign !== undefined,
 		};
+	});
+
+	const textClasses = computed<HTMLAttributes['class']>(() => {
+		return [conditionalClasses.value, props.customCssClass];
 	});
 </script>
 
@@ -169,12 +177,12 @@
 			color: var(--bo-text-color-danger);
 		}
 
-		&--light {
-			color: var(--bo-text-color-light);
+		&--white {
+			color: var(--bo-text-color-white);
 		}
 
-		&--dark {
-			color: var(--bo-text-color-dark);
+		&--black {
+			color: var(--bo-text-color-black);
 		}
 
 		&--current {
@@ -186,52 +194,67 @@
 		}
 
 		&--size-xs {
-			font-size: 0.625rem;
-			line-height: 1.25;
+			font-size: 0.75rem; /* 12px */
+			line-height: 1rem; /* 16px */
 		}
 
 		&--size-sm {
-			font-size: 0.75rem;
-			line-height: 1.25;
+			font-size: 0.875rem; /* 14px */
+			line-height: 1.25rem; /* 20px */
+		}
+
+		&--size-default {
+			font-size: 1rem; /* 16px */
+			line-height: 1.5rem; /* 24px */
 		}
 
 		&--size-lg {
-			font-size: 1rem;
-			line-height: 1.5;
+			font-size: 1.125rem; /* 18px */
+			line-height: 1.75rem; /* 28px */
 		}
 
 		&--size-xl {
-			font-size: 1.125rem;
-			line-height: 1.75;
+			font-size: 1.25rem; /* 20px */
+			line-height: 1.75rem; /* 28px */
 		}
 
 		&--size-2xl {
-			font-size: 1.25rem;
-			line-height: 1.75;
+			font-size: 1.5rem; /* 24px */
+			line-height: 2rem; /* 32px */
 		}
 
 		&--size-3xl {
-			font-size: 1.5rem;
-			line-height: 2;
+			font-size: 1.875rem; /* 30px */
+			line-height: 2.25rem; /* 36px */
 		}
 
 		&--size-4xl {
-			font-size: 1.875rem;
-			line-height: 2.25;
+			font-size: 2.25rem; /* 36px */
+			line-height: 2.5rem; /* 40px */
 		}
 
 		&--size-5xl {
-			font-size: 2.25rem;
-			line-height: 2.5;
+			font-size: 3rem; /* 48px */
+			line-height: 1;
 		}
 
 		&--size-6xl {
-			font-size: 3rem;
+			font-size: 3.75rem; /* 60px */
 			line-height: 1;
 		}
 
 		&--size-7xl {
-			font-size: 3.75rem;
+			font-size: 4.5rem; /* 72px */
+			line-height: 1;
+		}
+
+		&--size-8xl {
+			font-size: 6rem; /* 96px */
+			line-height: 1;
+		}
+
+		&--size-9xl {
+			font-size: 8rem; /* 128px */
 			line-height: 1;
 		}
 
@@ -245,6 +268,10 @@
 
 		&--weight-light {
 			font-weight: 300;
+		}
+
+		&--weight-regular {
+			font-weight: 400;
 		}
 
 		&--weight-medium {

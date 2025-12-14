@@ -1,5 +1,3 @@
-import { useId } from 'vue';
-
 let instance: IdentityService;
 
 export class IdentityService {
@@ -14,8 +12,8 @@ export class IdentityService {
 	 * generate unique-per-application IDs that are guaranteed to be stable
 	 * across the server and client renders.
 	 */
-	getComponentId(): string {
-		return useId();
+	getComponentId(descriptor?: string): string {
+		return descriptor ? `bo-${descriptor}-${crypto.randomUUID()}` : `bo-${crypto.randomUUID()}`;
 	}
 	/**
 	 * Return a new unique data-test-id in the form of `test-${descriptor}-${uuid}`.

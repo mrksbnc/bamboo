@@ -30,6 +30,7 @@ export default defineConfig({
 				text: 'Components',
 				items: [
 					{ text: 'Overview', link: '/en/components/default' },
+					{ text: 'Button', link: '/en/components/button' },
 					{ text: 'Icon', link: '/en/components/icon' },
 					{ text: 'Loading Ring', link: '/en/components/loading-ring' },
 					{ text: 'Loading Spinner', link: '/en/components/loading-spinner' },
@@ -41,6 +42,7 @@ export default defineConfig({
 				items: [
 					{ text: 'Identity Service', link: '/en/services/identity-service' },
 					{ text: 'Color Service', link: '/en/services/color-service' },
+					{ text: 'Theme Service', link: '/en/services/theme-service' },
 				],
 			},
 			{
@@ -48,6 +50,7 @@ export default defineConfig({
 				items: [
 					{ text: 'Colors', link: '/en/styles/colors' },
 					{ text: 'Typography', link: '/en/styles/typography' },
+					{ text: 'Design Tokens', link: '/en/styles/tokens' },
 				],
 			},
 		],

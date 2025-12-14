@@ -1,6 +1,7 @@
 datauri
 esbuild
 evenodd
+fontawesome
 nonconstructor
 nonoctal
 oklch

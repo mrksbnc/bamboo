@@ -30,10 +30,8 @@ export default defineConfig({
 			cssFileName: 'lib',
 			entry: [
 				fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
-				fileURLToPath(new URL('./src/composables/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
-				fileURLToPath(new URL('./src/shared/index.ts', import.meta.url)),
 			],
 		},
 		rolldownOptions: {
@@ -42,10 +40,8 @@ export default defineConfig({
 			cwd: process.cwd(),
 			input: {
 				components: fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
-				composables: fileURLToPath(new URL('./src/composables/index.ts', import.meta.url)),
 				core: fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
 				services: fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
-				shared: fileURLToPath(new URL('./src/shared/index.ts', import.meta.url)),
 			},
 		},
 	},
