@@ -203,14 +203,6 @@ You can use slots to customize the button content instead of using the `label` p
 </bo-button>
 ```
 
-## Click Events
-
-The button emits a `click` event when clicked (unless disabled or loading).
-
-```vue
-<bo-button label="Click me" @click="handleClick" />
-```
-
 ## Accessibility
 
 The button component includes comprehensive accessibility features:
