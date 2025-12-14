@@ -1,6 +1,5 @@
-import type { Config } from 'stylelint';
-
-const config: Config = {
+/** @type {import('stylelint').Config} */
+export default {
 	extends: [
 		'stylelint-config-standard',
 		'stylelint-config-standard-scss',
@@ -81,5 +80,3 @@ const config: Config = {
 		],
 	},
 };
-
-export default config;
