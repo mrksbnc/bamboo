@@ -1,5 +1,6 @@
 facebook
 figma
+fontawesome
 gitlab
 instagram
 linkedin

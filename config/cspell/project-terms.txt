@@ -41,9 +41,9 @@ cloudscale
 cloudsmith
 cloudversify
 cmplid
+codiepie
 codepen
 codesandbox
-codiepie
 connectdevelop
 contao
 covid
@@ -89,8 +89,8 @@ freebsd
 frontmatter
 futbol
 gantt
-gitkraken
 gitter
+gitkraken
 gofore
 goodreads
 gopuram
@@ -161,6 +161,7 @@ napster
 navicon
 neos
 nimblr
+nonoctal
 nordic
 notdef
 nutritionix
@@ -214,8 +215,8 @@ shopify
 shopware
 simplybuilt
 sistrix
-sith
 sitrox
+sith
 skyatlas
 skype
 slideshare
