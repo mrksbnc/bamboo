@@ -2,10 +2,10 @@ import { mount } from '@vue/test-utils';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import BoLoaderRing from './bo-loading-ring.vue';
 import BoText from '@/components/bo-text/bo-text.vue';
-import { BoSize } from '@/core/size.js';
-import { BoVariant } from '@/core/variant.js';
-import { BoLoaderTextPosition } from '@/core/loader.js';
-import { AriaLive } from '@/core/accessibility.js';
+import { BoSize } from '@/core/constants/size.js';
+import { BoVariant } from '@/core/constants/variant.js';
+import { BoLoaderTextPosition } from '@/core/constants/loader.js';
+import { AriaLive } from '@/core/constants/accessibility.js';
 import { BoFontSize, BoFontWeight } from '@/components/bo-text/bo-text.js';
 
 vi.mock('@/services/identity-service.js', () => ({

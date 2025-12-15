@@ -10,7 +10,7 @@ import {
 	BoTextVariant,
 	BoTextWhiteSpace,
 } from './bo-text';
-import { AriaLive } from '@/core/accessibility';
+import { AriaLive } from '@/core/constants/accessibility';
 
 describe('BoText', () => {
 	test('should render with required props', () => {

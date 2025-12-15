@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
 import { BoIconVariant, Icon } from './bo-icon';
-import { BoSize } from '@/core/size';
+import { BoSize } from '@/core/constants/size.js';
 import BoIcon from './bo-icon.vue';
-import { ColorService } from '@/services';
+import { ColorService } from '@/core/services/color-service.js';
 
 vi.mock('@/services/color-service', () => ({
 	ColorService: {

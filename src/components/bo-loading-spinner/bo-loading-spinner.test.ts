@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import BoLoadingSpinner from './bo-loading-spinner.vue';
-import { BoLoaderTextPosition } from '@/core/loader.js';
-import { BoVariant } from '@/core/variant.js';
-import { BoSize } from '@/core/size.js';
-import { AriaLive } from '@/core/accessibility.js';
+import { BoLoaderTextPosition } from '@/core/constants/loader.js';
+import { BoVariant } from '@/core/constants/variant.js';
+import { BoSize } from '@/core/constants/size.js';
+import { AriaLive } from '@/core/constants/accessibility.js';
 import { BoFontSize } from '@/components/bo-text/bo-text.js';
 
 describe('bo-loading-spinner', () => {

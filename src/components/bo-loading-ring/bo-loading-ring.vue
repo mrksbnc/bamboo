@@ -22,11 +22,11 @@
 <script lang="ts" setup>
 	import { BoFontSize, BoFontWeight } from '@/components/bo-text/bo-text.js';
 	import BoText from '@/components/bo-text/bo-text.vue';
-	import { type ConditionalCssProperties } from '@/core/css.js';
-	import { BoLoaderTextPosition } from '@/core/loader.js';
-	import { BoSize } from '@/core/size.js';
-	import { BoVariant } from '@/core/variant.js';
-	import { IdentityService } from '@/services/identity-service.js';
+	import { type ConditionalCssProperties } from '@/core/constants/css.js';
+	import { BoLoaderTextPosition } from '@/core/constants/loader.js';
+	import { BoSize } from '@/core/constants/size.js';
+	import { BoVariant } from '@/core/constants/variant.js';
+	import { IdentityService } from '@/core/services/identity-service.js';
 	import { computed, type HTMLAttributes, type StyleValue } from 'vue';
 	import { type BoLoaderRingProps } from './bo-loading-ring.js';
 
