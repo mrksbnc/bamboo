@@ -41,9 +41,9 @@ cloudscale
 cloudsmith
 cloudversify
 cmplid
-codiepie
 codepen
 codesandbox
+codiepie
 connectdevelop
 contao
 covid
@@ -89,8 +89,8 @@ freebsd
 frontmatter
 futbol
 gantt
-gitter
 gitkraken
+gitter
 gofore
 goodreads
 gopuram
@@ -132,9 +132,9 @@ laravel
 lastfm
 leanpub
 letterboxd
+linktree
 linode
 linux
-linktree
 litecoin
 lumon
 lyft
@@ -214,8 +214,8 @@ shopify
 shopware
 simplybuilt
 sistrix
-sitrox
 sith
+sitrox
 skyatlas
 skype
 slideshare
@@ -252,6 +252,7 @@ uikit
 umbraco
 uniregistry
 unsplash
+untappd
 untapped
 upwork
 usps
@@ -265,8 +266,8 @@ viber
 vihara
 vimeo
 vsco
-wcag
 waze
+wcag
 webflow
 weebly
 weibo
