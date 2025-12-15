@@ -12,7 +12,7 @@ import { BoVariant } from '@/core/constants/variant';
 import { BoButtonType } from './bo-button';
 import { Icon } from '@/components/bo-icon/bo-icon';
 
-vi.mock('@/services/identity-service', () => ({
+vi.mock('@/core/services/identity-service', () => ({
 	IdentityService: {
 		instance: {
 			getComponentId: () => 'test-id',
@@ -21,7 +21,7 @@ vi.mock('@/services/identity-service', () => ({
 	},
 }));
 
-vi.mock('@/services/color-service', () => ({
+vi.mock('@/core/services/color-service', () => ({
 	ColorService: {
 		instance: {
 			getValidCssColor: (color: string) => color,

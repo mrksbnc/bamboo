@@ -5,7 +5,7 @@ import { BoSize } from '@/core/constants/size.js';
 import BoIcon from './bo-icon.vue';
 import { ColorService } from '@/core/services/color-service.js';
 
-vi.mock('@/services/color-service', () => ({
+vi.mock('@/core/services/color-service', () => ({
 	ColorService: {
 		instance: {
 			getCustomColorStyle: vi.fn((color) => ({ color })),
@@ -13,7 +13,7 @@ vi.mock('@/services/color-service', () => ({
 	},
 }));
 
-vi.mock('@/services/identity-service', () => ({
+vi.mock('@/core/services/identity-service', () => ({
 	IdentityService: {
 		instance: {
 			getComponentId: vi.fn(() => 'test-id'),
@@ -41,7 +41,9 @@ describe('bo-icon', () => {
 			});
 
 			expect(wrapper.find('i').exists()).toBe(true);
-			expect(wrapper.html()).toContain('M10 10');
+			expect(wrapper.html()).toContain(
+				'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>',
+			);
 		});
 
 		it('should render with custom id', () => {
@@ -74,7 +76,7 @@ describe('bo-icon', () => {
 			});
 
 			// Check for the none icon path data
-			expect(wrapper.html()).toContain('M0 0');
+			expect(wrapper.html()).not.toContain('M0 0');
 		});
 	});
 

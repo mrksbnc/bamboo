@@ -8,7 +8,7 @@ import { BoLoaderTextPosition } from '@/core/constants/loader.js';
 import { AriaLive } from '@/core/constants/accessibility.js';
 import { BoFontSize, BoFontWeight } from '@/components/bo-text/bo-text.js';
 
-vi.mock('@/services/identity-service.js', () => ({
+vi.mock('@/core/services/identity-service.js', () => ({
 	IdentityService: {
 		instance: {
 			getComponentId: vi.fn((prefix: string) => `${prefix}-test-id`),
