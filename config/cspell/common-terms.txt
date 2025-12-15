@@ -1,12 +1,8 @@
-Booleanish
 facebook
 figma
-frontmatter
-Frontmatter
 gitlab
 instagram
 linkedin
-minmax
 trello
 wifi
 youtube
