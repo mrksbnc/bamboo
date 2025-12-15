@@ -86,6 +86,7 @@ flickr
 fonticons
 forumbee
 freebsd
+frontmatter
 futbol
 gantt
 gitter
@@ -149,6 +150,7 @@ medrt
 megaport
 mendeley
 microblog
+minmax
 mintbit
 mixcloud
 mizuni
@@ -250,7 +252,7 @@ uikit
 umbraco
 uniregistry
 unsplash
-untappd
+untapped
 upwork
 usps
 ussunnah
