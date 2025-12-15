@@ -1,15 +1,12 @@
 Booleanish
 datauri
 esbuild
-evenodd
-fontawesome
 nonconstructor
-nonoctal
 oklch
 oxlint
 oxlintrc
-rgba
 RGBA
+rgba
 testid
 tsgolint
 typescriptlang
