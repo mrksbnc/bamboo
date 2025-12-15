@@ -16,10 +16,10 @@
 </template>
 
 <script lang="ts" setup>
-	import { AriaLive } from '@/core/accessibility.js';
-	import type { ConditionalCssProperties } from '@/core/css';
-	import { ColorService } from '@/services/color-service.js';
-	import { IdentityService } from '@/services/identity-service.js';
+	import { AriaLive } from '@/core/constants/accessibility.js';
+	import type { ConditionalCssProperties } from '@/core/constants/css.js';
+	import { ColorService } from '@/core/services/color-service.js';
+	import { IdentityService } from '@/core/services/identity-service.js';
 	import { computed, type CSSProperties, type HTMLAttributes, type StyleValue } from 'vue';
 	import {
 		BoFontFamily,

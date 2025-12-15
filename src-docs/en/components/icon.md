@@ -4,7 +4,7 @@ title: bo-icon
 
 <script setup lang="ts">
 import { BoIcon, Icon, BoIconVariant } from "@/components/bo-icon";
-import { BoSize } from "@/core/size";
+import { BoSize } from "@/core/constants/size";
 
 const iconList = Object.values(Icon);
 

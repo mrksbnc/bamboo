@@ -5,14 +5,14 @@ import BoIcon from '@/components/bo-icon/bo-icon.vue';
 import BoLoadingRing from '@/components/bo-loading-ring/bo-loading-ring.vue';
 import BoLoadingSpinner from '@/components/bo-loading-spinner/bo-loading-spinner.vue';
 import { BoText } from '@/components/bo-text';
-import { AriaLive } from '@/core/accessibility';
-import { BoLoaderType } from '@/core/loader';
-import { BoSize } from '@/core/size';
-import { BoVariant } from '@/core/variant';
+import { AriaLive } from '@/core/constants/accessibility';
+import { BoLoaderType } from '@/core/constants/loader';
+import { BoSize } from '@/core/constants/size';
+import { BoVariant } from '@/core/constants/variant';
 import { BoButtonType } from './bo-button';
 import { Icon } from '@/components/bo-icon/bo-icon';
 
-vi.mock('@/services/identity-service', () => ({
+vi.mock('@/core/services/identity-service', () => ({
 	IdentityService: {
 		instance: {
 			getComponentId: () => 'test-id',
@@ -21,7 +21,7 @@ vi.mock('@/services/identity-service', () => ({
 	},
 }));
 
-vi.mock('@/services/color-service', () => ({
+vi.mock('@/core/services/color-service', () => ({
 	ColorService: {
 		instance: {
 			getValidCssColor: (color: string) => color,
