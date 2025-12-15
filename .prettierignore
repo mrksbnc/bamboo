@@ -1,0 +1,10 @@
+node_modules
+dist
+coverage
+.cache
+.cspellcache
+.github
+.husky
+.vscode
+public
+pnpm-lock.yaml
