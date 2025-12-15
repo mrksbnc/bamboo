@@ -13,11 +13,11 @@
 </template>
 
 <script lang="ts" setup>
-	import type { ConditionalCssProperties } from '@/core/css.js';
-	import { BoSize } from '@/core/size.js';
-	import { iconRegistry } from '@/core/svg.js';
-	import { ColorService } from '@/services/color-service.js';
-	import { IdentityService } from '@/services/identity-service.js';
+	import type { ConditionalCssProperties } from '@/core/constants/css.js';
+	import { BoSize } from '@/core/constants/size.js';
+	import { iconRegistry } from '@/core/constants/svg.js';
+	import { ColorService } from '@/core/services/color-service.js';
+	import { IdentityService } from '@/core/services/identity-service.js';
 	import { computed, type CSSProperties, type HTMLAttributes, type StyleValue } from 'vue';
 	import { type BoIconProps, BoIconVariant, Icon } from './bo-icon.js';
 

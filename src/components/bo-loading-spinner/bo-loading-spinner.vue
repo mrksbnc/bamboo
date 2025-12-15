@@ -17,11 +17,11 @@
 <script lang="ts" setup>
 	import { BoFontSize } from '@/components/bo-text/bo-text.js';
 	import BoText from '@/components/bo-text/bo-text.vue';
-	import type { ConditionalCssProperties } from '@/core/css.js';
+	import type { ConditionalCssProperties } from '@/core/constants/css.js';
+	import { BoSize } from '@/core/constants/size.js';
+	import { BoVariant } from '@/core/constants/variant.js';
 	import { BoLoaderTextPosition } from '@/core/index.js';
-	import { BoSize } from '@/core/size.js';
-	import { BoVariant } from '@/core/variant.js';
-	import { IdentityService } from '@/services/identity-service.js';
+	import { IdentityService } from '@/core/services/identity-service.js';
 	import { computed, type HTMLAttributes, type StyleValue } from 'vue';
 	import { type BoLoadingSpinnerProps } from './bo-loading-spinner.js';
 

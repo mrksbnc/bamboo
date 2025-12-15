@@ -5,10 +5,11 @@ nonconstructor
 oklch
 oxlint
 oxlintrc
-RGBA
 rgba
+RGBA
 testid
 tsgolint
 typescriptlang
 vite
+vitepress
 vitest

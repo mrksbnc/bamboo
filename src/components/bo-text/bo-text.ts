@@ -1,4 +1,4 @@
-import { AriaLive } from '@/core/accessibility.js';
+import { AriaLive } from '@/core/constants/accessibility.js';
 
 export enum BoFontWeight {
 	/** 100 */

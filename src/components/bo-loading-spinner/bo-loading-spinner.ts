@@ -1,7 +1,7 @@
-import { AriaLive } from '@/core/accessibility.js';
-import type { BoSize } from '@/core/size.js';
-import { BoLoaderTextPosition } from '@/core/loader.js';
-import type { BoVariant } from '@/core/variant.js';
+import { AriaLive } from '@/core/constants/accessibility.js';
+import type { BoSize } from '@/core/constants/size.js';
+import { BoLoaderTextPosition } from '@/core/constants/loader.js';
+import type { BoVariant } from '@/core/constants/variant.js';
 
 export interface BoLoadingSpinnerProps {
 	/** Unique id for the loading spinner */

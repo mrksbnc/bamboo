@@ -6,9 +6,9 @@ outline: deep
 
 <script setup lang="ts">
 import { BoButton, BoButtonProps, BoButtonType } from '@/components/bo-button';
-import { BoSize } from '@/core/size';
-import { BoVariant } from '@/core/variant';
-import { BoLoaderType } from '@/core/loader';
+import { BoSize } from '@/core/constants/size';
+import { BoVariant } from '@/core/constants/variant';
+import { BoLoaderType } from '@/core/constants/loader';
 </script>
 
 # Button

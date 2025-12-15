@@ -9,7 +9,6 @@ import dts from 'vite-plugin-dts';
 // https://vite.dev/config/
 export default defineConfig({
 	appType: 'custom',
-	mode: 'production',
 	plugins: [
 		vue(),
 		vueDevTools(),
@@ -31,7 +30,6 @@ export default defineConfig({
 			entry: [
 				fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
 				fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
-				fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
 			],
 		},
 		rolldownOptions: {
@@ -41,7 +39,6 @@ export default defineConfig({
 			input: {
 				components: fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
 				core: fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
-				services: fileURLToPath(new URL('./src/services/index.ts', import.meta.url)),
 			},
 		},
 	},

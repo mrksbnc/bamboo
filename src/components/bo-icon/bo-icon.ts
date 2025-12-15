@@ -1,4 +1,4 @@
-import { BoSize } from '@/core/size.js';
+import { BoSize } from '@/core/constants/size.js';
 
 export enum BoIconVariant {
 	/** currentColor */
