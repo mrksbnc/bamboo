@@ -20,11 +20,11 @@ Thank you for your interest in contributing to Bamboo! This guide will help you 
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js**: Version 20 or 22 (as specified in `package.json` engines)
+- **Node.js**: Using the LTS with `nvm` is recommended
   - Download from [nodejs.org](https://nodejs.org/)
   - Verify installation: `node --version`
-- **pnpm**: Version 10.22.0 (required package manager)
-  - Install: `npm install -g pnpm@10.22.0`
+- **pnpm**: Install using `corepack` and use the version specified in `package.json`
+  - Install: `corepack enable && corepack prepare pnpm@latest --activate`
   - Verify installation: `pnpm --version`
 
 ### Setting Up Your Development Environment
