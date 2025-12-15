@@ -1,18 +1,16 @@
-name: 'code quality (docs)'
+name: 'publish'
+
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
       - main
 
-permissions:
-  contents: read
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -30,6 +28,8 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
 
-      - name: Run docs build
-        run: |
-          pnpm docs:build
+      - name: Create release PR or publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm build
