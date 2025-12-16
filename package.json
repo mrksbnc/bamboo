@@ -86,8 +86,5 @@
 		"vitest": "^4.0.15",
 		"vue-tsc": "^3.1.8"
 	},
-	"packageManager": "pnpm@10.26.0",
-	"engines": {
-		"node": "lts/*"
-	}
+	"packageManager": "pnpm@10.26.0"
 }
