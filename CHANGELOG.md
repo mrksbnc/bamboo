@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/mrksbnc/bamboo/compare/v1.0.0...v1.0.1) (2025-12-16)
+
+### 🔧 Chores
+
+* **deps:** dependency update ([4165fc4](https://github.com/mrksbnc/bamboo/commit/4165fc403c8dff0bfb5fb7c7fc5551dcf3f4ea2a))
+
 ## 1.0.0 (2025-12-16)
 
 ### ✨ Features
