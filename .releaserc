@@ -1,0 +1,132 @@
+{
+	"branches": [
+		"main"
+	],
+	"repositoryUrl": "https://github.com/mrksbnc/bamboo",
+	"plugins": [
+		[
+			"@semantic-release/commit-analyzer",
+			{
+				"preset": "conventionalcommits",
+				"releaseRules": [
+					{
+						"type": "breaking",
+						"release": "major"
+					},
+					{
+						"type": "feat",
+						"release": "minor"
+					},
+					{
+						"type": "fix",
+						"release": "patch"
+					},
+					{
+						"type": "perf",
+						"release": "patch"
+					},
+					{
+						"type": "revert",
+						"release": "patch"
+					},
+					{
+						"type": "style",
+						"release": "patch"
+					},
+					{
+						"type": "chore",
+						"release": "patch"
+					},
+					{
+						"type": "refactor",
+						"release": "patch"
+					},
+					{
+						"type": "docs",
+						"release": false
+					},
+					{
+						"type": "test",
+						"release": false
+					},
+					{
+						"type": "ci",
+						"release": false
+					},
+					{
+						"type": "build",
+						"release": false
+					}
+				]
+			}
+		],
+		[
+			"@semantic-release/release-notes-generator",
+			{
+				"preset": "conventionalcommits",
+				"presetConfig": {
+					"types": [
+						{
+							"type": "breaking",
+							"section": "💥 BREAKING CHANGES"
+						},
+						{
+							"type": "feat",
+							"section": "✨ Features"
+						},
+						{
+							"type": "fix",
+							"section": "🐛 Bug Fixes"
+						},
+						{
+							"type": "perf",
+							"section": "⚡ Performance Improvements"
+						},
+						{
+							"type": "revert",
+							"section": "⏪ Reverts"
+						},
+						{
+							"type": "refactor",
+							"section": "♻️ Code Refactoring"
+						}
+					]
+				}
+			}
+		],
+		[
+			"@semantic-release/changelog",
+			{
+				"changelogFile": "CHANGELOG.md"
+			}
+		],
+		[
+			"@semantic-release/npm",
+			{
+				"npmPublish": true,
+				"tarballDir": "dist"
+			}
+		],
+		[
+			"@semantic-release/git",
+			{
+				"assets": [
+					"CHANGELOG.md",
+					"package.json"
+				],
+				"message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+			}
+		],
+		[
+			"@semantic-release/github",
+			{
+				"assets": [
+					{
+						"path": "dist/*.tgz",
+						"label": "Distribution package"
+					}
+				]
+			}
+		]
+	]
+}
