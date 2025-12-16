@@ -34,12 +34,16 @@
 						"release": "patch"
 					},
 					{
+						"type": "refactor",
+						"release": "patch"
+					},
+					{
 						"type": "chore",
 						"release": "patch"
 					},
 					{
-						"type": "refactor",
-						"release": "patch"
+						"type": "task",
+						"release": false
 					},
 					{
 						"type": "docs",
