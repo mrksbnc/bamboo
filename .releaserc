@@ -89,6 +89,14 @@
 						{
 							"type": "refactor",
 							"section": "♻️ Code Refactoring"
+						},
+						{
+							"type": "style",
+							"section": "🎨 Styles"
+						},
+						{
+							"type": "chore",
+							"section": "🔧 Chores"
 						}
 					]
 				}
