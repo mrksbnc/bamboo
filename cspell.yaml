@@ -15,6 +15,7 @@ ignorePaths:
   - 'pnpm-lock.yaml'
   - 'pnpm-workspace.yaml'
   - 'config/cspell/**'
+  - 'CHANGELOG.md'
 
 dictionaryDefinitions:
   - name: common-terms
