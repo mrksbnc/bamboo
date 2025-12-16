@@ -1,3 +1,9 @@
+## [1.0.4](https://github.com/mrksbnc/bamboo/compare/v1.0.3...v1.0.4) (2025-12-16)
+
+### 🔧 Chores
+
+* changelog added to prettierIgnore ([17bb4e1](https://github.com/mrksbnc/bamboo/commit/17bb4e1e0a471a0bb57d26c66db23365133608f8))
+
 ## [1.0.3](https://github.com/mrksbnc/bamboo/compare/v1.0.2...v1.0.3) (2025-12-16)
 
 ### 🔧 Chores
