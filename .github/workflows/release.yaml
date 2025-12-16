@@ -5,43 +5,41 @@ on:
     branches:
       - main
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
-
 permissions:
-  contents: write
-  pull-requests: write
-  packages: write
-  id-token: write
+  contents: read # for checkout
 
 jobs:
   release:
-    name: Release
     runs-on: ubuntu-latest
+
     permissions:
-      contents: write
-      pull-requests: write
-      packages: write
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for trusted publishing
+      packages: write # to be able to publish to GitHub Packages
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'
-          cache: pnpm
+          node-version: "lts/*"
+          cache: 'pnpm'
           registry-url: 'https://npm.pkg.github.com'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Create Release Pull Request or Publish
-        uses: changesets/action@v1
-        with:
-          publish: pnpm changeset publish
+      - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm dlx semantic-release
