@@ -31,7 +31,7 @@
 		"test": "vitest --coverage",
 		"type-check": "vue-tsc --noEmit",
 		"lint:oxlint": "oxlint . --fix --config .oxlintrc.json",
-		"lint:spell": "cspell . --config cspell.yaml",
+		"lint:spell": "cspell . --cache --config cspell.yaml",
 		"lint:style": "stylelint \"**/*.{vue,css,scss}\" --fix --config stylelint.config.js",
 		"lint": "run-s lint:*",
 		"format": "prettier --write .",
