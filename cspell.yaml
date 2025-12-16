@@ -8,8 +8,12 @@ ignorePaths:
   - 'dist/**'
   - 'build/**'
   - 'coverage/**'
-  - '*.svg'
+  - '.github/**'
+  - '.husky/**'
+  - '.vscode/**'
+  - '.vitepress/**'
   - 'pnpm-lock.yaml'
+  - 'pnpm-workspace.yaml'
   - 'config/cspell/**'
 
 dictionaryDefinitions:
