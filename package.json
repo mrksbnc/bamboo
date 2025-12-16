@@ -59,6 +59,7 @@
 		"@vitest/coverage-v8": "4.0.15",
 		"@vue/test-utils": "^2.4.6",
 		"@vue/tsconfig": "^0.8.1",
+		"conventional-changelog-conventionalcommits": "^9.1.0",
 		"cspell": "^9.4.0",
 		"husky": "^9.1.7",
 		"jiti": "^2.6.1",
