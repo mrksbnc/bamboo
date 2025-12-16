@@ -1,6 +1,5 @@
 onlyBuiltDependencies:
   - '@parcel/watcher'
-  - cypress
   - esbuild
 
 overrides:
