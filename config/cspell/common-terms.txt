@@ -3,6 +3,7 @@ figma
 fontawesome
 gitlab
 instagram
+Kiro
 linkedin
 trello
 wifi
