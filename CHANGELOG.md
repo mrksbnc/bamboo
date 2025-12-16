@@ -2,14 +2,14 @@
 
 ### 🔧 Chores
 
-* **lint:** oxlint config updates ([da34a90](https://github.com/mrksbnc/bamboo/commit/da34a9008ffb3750e21e8fca85906e56d9e042a7))
-* **lint:** oxlint config updates ([e14d917](https://github.com/mrksbnc/bamboo/commit/e14d91715db075a1043e6a52f6f52a76a3c50452))
+- **lint:** oxlint config updates ([da34a90](https://github.com/mrksbnc/bamboo/commit/da34a9008ffb3750e21e8fca85906e56d9e042a7))
+- **lint:** oxlint config updates ([e14d917](https://github.com/mrksbnc/bamboo/commit/e14d91715db075a1043e6a52f6f52a76a3c50452))
 
 ## [1.0.1](https://github.com/mrksbnc/bamboo/compare/v1.0.0...v1.0.1) (2025-12-16)
 
 ### 🔧 Chores
 
-* **deps:** dependency update ([4165fc4](https://github.com/mrksbnc/bamboo/commit/4165fc403c8dff0bfb5fb7c7fc5551dcf3f4ea2a))
+- **deps:** dependency update ([4165fc4](https://github.com/mrksbnc/bamboo/commit/4165fc403c8dff0bfb5fb7c7fc5551dcf3f4ea2a))
 
 ## 1.0.0 (2025-12-16)
 
