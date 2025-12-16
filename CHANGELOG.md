@@ -1,3 +1,11 @@
+## [1.0.3](https://github.com/mrksbnc/bamboo/compare/v1.0.2...v1.0.3) (2025-12-16)
+
+### 🔧 Chores
+
+* **config:** config file updates and latest lts set in node-version and nvmrc ([5f49180](https://github.com/mrksbnc/bamboo/commit/5f491809d68f85d60975f94bb4697281cad45596))
+* **config:** engine prop removed ([7b5ad0a](https://github.com/mrksbnc/bamboo/commit/7b5ad0a41fd4dac56e597a1487506a221e2a136d))
+* **format:** changelog formatted by prettier ([3c7874f](https://github.com/mrksbnc/bamboo/commit/3c7874f4ddef60484e889a97a50d6ded6739db16))
+
 ## [1.0.2](https://github.com/mrksbnc/bamboo/compare/v1.0.1...v1.0.2) (2025-12-16)
 
 ### 🔧 Chores
