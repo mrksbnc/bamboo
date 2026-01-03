@@ -4,10 +4,28 @@
 	"license": "MIT",
 	"version": "0.0.1",
 	"type": "module",
-	"publishConfig": {
-		"access": "public"
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"scripts": {
+		"build": "vite build",
+		"type-check": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"vitest": "^4.0.15"
+		"vitest": "^4.0.15",
+		"vue": "^3.5.25"
+	},
+	"peerDependencies": {
+		"vue": "^3.5.25"
 	}
 }
