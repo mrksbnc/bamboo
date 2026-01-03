@@ -1,34 +1,25 @@
 {
-    "$schema": "../../node_modules/oxlint/configuration_schema.json",
-    "plugins": [
-        "eslint",
-        "jsdoc",
-        "jsx-a11y",
-        "oxc",
-        "typescript",
-        "unicorn",
-        "vitest",
-        "vue"
-    ],
-    "categories": {
-        "correctness": "error",
-        "suspicious": "warn",
-        "pedantic": "off"
-    },
-    "rules": {
-        "typescript/no-explicit-any": "warn",
-        "unicorn/filename-case": "off"
-    },
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
-    },
-    "ignorePatterns": [
-        "**/dist/",
-        "**/coverage/",
-        "node_modules/",
-        "**/docs/.vitepress/",
-        "**/.vitepress/cache/"
-    ]
+	"$schema": "../../node_modules/oxlint/configuration_schema.json",
+	"plugins": ["eslint", "jsdoc", "jsx-a11y", "oxc", "typescript", "unicorn", "vitest", "vue"],
+	"categories": {
+		"correctness": "error",
+		"suspicious": "warn",
+		"pedantic": "off"
+	},
+	"rules": {
+		"typescript/no-explicit-any": "warn",
+		"unicorn/filename-case": "off"
+	},
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+	"ignorePatterns": [
+		"**/dist/",
+		"**/coverage/",
+		"node_modules/",
+		"**/docs/.vitepress/",
+		"**/.vitepress/cache/"
+	]
 }
