@@ -75,10 +75,10 @@ bamboo/
 Each top-level directory is exported as a separate module:
 
 ```ts
-import '@mrksbnc/bamboo/lib.css';
-import { BoText, BoIcon } from '@mrksbnc/bamboo/components';
-import { ConditionalCssProperties, AriaLive } from '@mrksbnc/bamboo/core';
-import { ColorService } from '@mrksbnc/bamboo/services';
+import "@mrksbnc/bamboo/lib.css";
+import { BoText, BoIcon } from "@mrksbnc/bamboo/components";
+import { ConditionalCssProperties, AriaLive } from "@mrksbnc/bamboo/core";
+import { ColorService } from "@mrksbnc/bamboo/services";
 ```
 
 ## Quick Start
@@ -87,26 +87,26 @@ Import the library base css file.
 
 ```ts
 // main.ts
-import { createApp } from 'vue';
-import App from './App.vue';
+import { createApp } from "vue";
+import App from "./App.vue";
 
 // Import the main library CSS file
-import '@mrksbnc/bamboo/lib.css';
+import "@mrksbnc/bamboo/lib.css";
 
-createApp(App).use(Bamboo).mount('#app');
+createApp(App).use(Bamboo).mount("#app");
 ```
 
 Use a component.
 
 ```vue
 <template>
-	<bo-text value="Hello Bamboo" />
-	<bo-icon :icon="Icon.heart" />
-	<bo-icon :icon="Icon.star" custom-color="var(--blue-600)" />
+  <bo-text value="Hello Bamboo" />
+  <bo-icon :icon="Icon.heart" />
+  <bo-icon :icon="Icon.star" custom-color="var(--blue-600)" />
 </template>
 
 <script setup lang="ts">
-	import { BoText, BoIcon, Icon } from '@mrksbnc/bamboo/components';
+import { BoText, BoIcon, Icon } from "@mrksbnc/bamboo/components";
 </script>
 ```
 

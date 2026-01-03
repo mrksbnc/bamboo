@@ -4,18 +4,18 @@ useGitignore: true
 language: en-gb,en-us,lorem,lorem-ipsum
 
 ignorePaths:
-  - "node_modules/**"
-  - "dist/**"
-  - "build/**"
-  - "coverage/**"
-  - ".github/**"
-  - ".husky/**"
-  - ".vscode/**"
-  - ".vitepress/**"
-  - "pnpm-lock.yaml"
-  - "pnpm-workspace.yaml"
-  - "config/cspell/**"
-  - "CHANGELOG.md"
+  - "**/node_modules/**"
+  - "**/dist/**"
+  - "**/build/**"
+  - "**/coverage/**"
+  - "**/.github/**"
+  - "**/.husky/**"
+  - "**/.vscode/**"
+  - "**/.vitepress/**"
+  - "**/pnpm-lock.yaml"
+  - "**/pnpm-workspace.yaml"
+  - "**/config/cspell/**"
+  - "**/CHANGELOG.md"
 
 dictionaryDefinitions:
   - name: common-terms

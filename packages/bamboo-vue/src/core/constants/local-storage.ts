@@ -1,3 +1,3 @@
 export enum BoLocalStorageKey {
-	data_theme = 'data-theme',
+  data_theme = "data-theme",
 }

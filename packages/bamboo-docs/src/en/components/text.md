@@ -155,8 +155,8 @@ The text component supports different text alignments with the `textAlign` prop.
 <bo-text value="Right Aligned Text" :text-align="BoTextAlign.right" />
 
 <bo-text
-	value="Justified Text - The quick brown fox jumps over the lazy dog. The sky is big and blue"
-	:text-align="BoTextAlign.justify"
+  value="Justified Text - The quick brown fox jumps over the lazy dog. The sky is big and blue"
+  :text-align="BoTextAlign.justify"
 />
 ```
 
@@ -173,7 +173,10 @@ The text component supports different text transformations with the `textTransfo
 
 ```vue
 <bo-text value="Normal Text" :text-transform="BoTextTransform.none" />
-<bo-text value="capitalized text" :text-transform="BoTextTransform.capitalize" />
+<bo-text
+  value="capitalized text"
+  :text-transform="BoTextTransform.capitalize"
+/>
 <bo-text value="uppercase text" :text-transform="BoTextTransform.uppercase" />
 <bo-text value="LOWERCASE TEXT" :text-transform="BoTextTransform.lowercase" />
 ```
@@ -205,9 +208,9 @@ The text component supports different color variants with the `variant` prop.
 <bo-text value="Danger Text" :variant="BoTextVariant.danger" />
 <bo-text value="Disabled Text" :variant="BoTextVariant.disabled" />
 <bo-text
-	value="Light Text"
-	:variant="BoTextVariant.light"
-	style="background-color: #000; padding: 0.5rem;"
+  value="Light Text"
+  :variant="BoTextVariant.light"
+  style="background-color: #000; padding: 0.5rem;"
 />
 <bo-text value="Dark Text" :variant="BoTextVariant.dark" />
 <bo-text value="Current Color Text" :variant="BoTextVariant.current" />
@@ -230,7 +233,10 @@ You can customize the color of the text by passing a valid CSS color value to th
 <bo-text value="Custom CSS Variable Text" custom-color="--teal-500" />
 <bo-text value="Custom Hex Color Text" custom-color="#ff6b6b" />
 <bo-text value="Custom RGB Color Text" custom-color="rgb(255, 107, 107)" />
-<bo-text value="Custom RGBA Color Text" custom-color="rgba(255, 107, 107, 0.7)" />
+<bo-text
+  value="Custom RGBA Color Text"
+  custom-color="rgba(255, 107, 107, 0.7)"
+/>
 <bo-text value="Custom OKLCH Color Text" custom-color="oklch(0.7 0.15 180)" />
 ```
 
@@ -245,12 +251,12 @@ The text component supports text truncation with the `maxLines` prop.
 
 ```vue
 <bo-text
-	value="This is a very long text that will be truncated after two lines to demonstrate the maxLines functionality."
-	:max-lines="2"
+  value="This is a very long text that will be truncated after two lines to demonstrate the maxLines functionality."
+  :max-lines="2"
 />
 <bo-text
-	value="This is another very long text that will be truncated after three lines to show different truncation behavior."
-	:max-lines="3"
+  value="This is another very long text that will be truncated after three lines to show different truncation behavior."
+  :max-lines="3"
 />
 ```
 
@@ -271,27 +277,27 @@ The text component supports different white space handling with the `whiteSpace`
 
 ```vue
 <bo-text
-	value="Normal white space. Text will wrap normally."
-	:white-space="BoTextWhiteSpace.normal"
+  value="Normal white space. Text will wrap normally."
+  :white-space="BoTextWhiteSpace.normal"
 />
 <bo-text
-	value="No wrap text. This will not wrap and will be truncated if it exceeds the container width."
-	:white-space="BoTextWhiteSpace.nowrap"
+  value="No wrap text. This will not wrap and will be truncated if it exceeds the container width."
+  :white-space="BoTextWhiteSpace.nowrap"
 />
 <bo-text
-	value="Pre-formatted text.
+  value="Pre-formatted text.
   Line breaks and     spaces     are preserved."
-	:white-space="BoTextWhiteSpace.pre"
+  :white-space="BoTextWhiteSpace.pre"
 />
 <bo-text
-	value="Pre-line text.
+  value="Pre-line text.
   Line breaks are preserved but spaces    are    collapsed."
-	:white-space="BoTextWhiteSpace.pre_line"
+  :white-space="BoTextWhiteSpace.pre_line"
 />
 <bo-text
-	value="Pre-wrap text.
+  value="Pre-wrap text.
   Line breaks and     spaces     are preserved, but text wraps if needed."
-	:white-space="BoTextWhiteSpace.pre_wrap"
+  :white-space="BoTextWhiteSpace.pre_wrap"
 />
 ```
 
@@ -313,128 +319,128 @@ The text component supports interactive features with the `clickable` prop.
 
 ```ts [bo-text.ts]
 enum BoFontWeight {
-	thin = 'thin',
-	extra_light = 'extra-light',
-	light = 'light',
-	regular = 'regular',
-	medium = 'medium',
-	semibold = 'semibold',
-	bold = 'bold',
-	extra_bold = 'extra-bold',
-	black = 'black',
+  thin = "thin",
+  extra_light = "extra-light",
+  light = "light",
+  regular = "regular",
+  medium = "medium",
+  semibold = "semibold",
+  bold = "bold",
+  extra_bold = "extra-bold",
+  black = "black",
 }
 
 enum BoFontSize {
-	xs = 'xs',
-	sm = 'sm',
-	default = 'default',
-	lg = 'lg',
-	xl = 'xl',
-	'2xl' = '2xl',
-	'3xl' = '3xl',
-	'4xl' = '4xl',
-	'5xl' = '5xl',
-	'6xl' = '6xl',
-	'7xl' = '7xl',
-	'8xl' = '8xl',
-	'9xl' = '9xl',
+  xs = "xs",
+  sm = "sm",
+  default = "default",
+  lg = "lg",
+  xl = "xl",
+  "2xl" = "2xl",
+  "3xl" = "3xl",
+  "4xl" = "4xl",
+  "5xl" = "5xl",
+  "6xl" = "6xl",
+  "7xl" = "7xl",
+  "8xl" = "8xl",
+  "9xl" = "9xl",
 }
 
 enum BoFontFamily {
-	sans = 'sans',
-	mono = 'mono',
-	serif = 'serif',
-	inherit = 'inherit',
+  sans = "sans",
+  mono = "mono",
+  serif = "serif",
+  inherit = "inherit",
 }
 
 enum BoTextWhiteSpace {
-	normal = 'normal',
-	nowrap = 'nowrap',
-	pre = 'pre',
-	pre_line = 'pre-line',
-	pre_wrap = 'pre-wrap',
-	break_spaces = 'break-spaces',
+  normal = "normal",
+  nowrap = "nowrap",
+  pre = "pre",
+  pre_line = "pre-line",
+  pre_wrap = "pre-wrap",
+  break_spaces = "break-spaces",
 }
 
 enum BoTextVariant {
-	default = 'default',
-	primary = 'primary',
-	secondary = 'secondary',
-	disabled = 'disabled',
-	inherit = 'inherit',
-	current = 'currentColor',
-	success = 'success',
-	warning = 'warning',
-	danger = 'danger',
-	light = 'light',
-	dark = 'dark',
+  default = "default",
+  primary = "primary",
+  secondary = "secondary",
+  disabled = "disabled",
+  inherit = "inherit",
+  current = "currentColor",
+  success = "success",
+  warning = "warning",
+  danger = "danger",
+  light = "light",
+  dark = "dark",
 }
 
 enum BoTextAlign {
-	left = 'left',
-	center = 'center',
-	right = 'right',
-	justify = 'justify',
+  left = "left",
+  center = "center",
+  right = "right",
+  justify = "justify",
 }
 
 enum BoTextTransform {
-	none = 'none',
-	capitalize = 'capitalize',
-	uppercase = 'uppercase',
-	lowercase = 'lowercase',
+  none = "none",
+  capitalize = "capitalize",
+  uppercase = "uppercase",
+  lowercase = "lowercase",
 }
 
 interface BoTextProps {
-	/** The id of the element. */
-	id?: string;
-	/** The data test id of the element. */
-	dataTestId?: string;
-	/** The text of the element. */
-	value: string;
-	/** The size of the element. */
-	fontSize?: BoFontSize;
-	/** The weight of the element. */
-	fontWeight?: BoFontWeight;
-	/** The font family of the element. */
-	fontFamily?: BoFontFamily;
-	/** The white space of the element. */
-	whiteSpace?: BoTextWhiteSpace;
-	/** The variant of the element based on fixed enum values. */
-	variant?: BoTextVariant;
-	/** Any custom color for the element. */
-	customColor?: string;
-	/** One or multiple css classes to be used for overriding the default styles on the element. */
-	customCssClass?: string;
-	/** The clickable of the element. */
-	clickable?: boolean;
-	/** The text align of the element. */
-	textAlign?: BoTextAlign;
-	/** The text transform of the element. */
-	textTransform?: BoTextTransform;
-	/** Cursor type of the element. */
-	cursor?: string;
-	/** The max lines of the element. */
-	maxLines?: number | string;
-	/** The role of the element. */
-	role?: string;
-	/** Defines a string value that labels the current element. */
-	ariaLabel?: string;
-	/** Reference to an element that labels the current element. */
-	ariaLabelledBy?: string;
-	/** Identifies the element (or elements) that describes the object. */
-	ariaDescribedBy?: string;
-	/** Live region behavior for dynamic content. */
-	ariaLive?: AriaLive;
-	/** The language of the element. */
-	lang?: string;
+  /** The id of the element. */
+  id?: string;
+  /** The data test id of the element. */
+  dataTestId?: string;
+  /** The text of the element. */
+  value: string;
+  /** The size of the element. */
+  fontSize?: BoFontSize;
+  /** The weight of the element. */
+  fontWeight?: BoFontWeight;
+  /** The font family of the element. */
+  fontFamily?: BoFontFamily;
+  /** The white space of the element. */
+  whiteSpace?: BoTextWhiteSpace;
+  /** The variant of the element based on fixed enum values. */
+  variant?: BoTextVariant;
+  /** Any custom color for the element. */
+  customColor?: string;
+  /** One or multiple css classes to be used for overriding the default styles on the element. */
+  customCssClass?: string;
+  /** The clickable of the element. */
+  clickable?: boolean;
+  /** The text align of the element. */
+  textAlign?: BoTextAlign;
+  /** The text transform of the element. */
+  textTransform?: BoTextTransform;
+  /** Cursor type of the element. */
+  cursor?: string;
+  /** The max lines of the element. */
+  maxLines?: number | string;
+  /** The role of the element. */
+  role?: string;
+  /** Defines a string value that labels the current element. */
+  ariaLabel?: string;
+  /** Reference to an element that labels the current element. */
+  ariaLabelledBy?: string;
+  /** Identifies the element (or elements) that describes the object. */
+  ariaDescribedBy?: string;
+  /** Live region behavior for dynamic content. */
+  ariaLive?: AriaLive;
+  /** The language of the element. */
+  lang?: string;
 }
 ```
 
 ```ts [core/accessibility.ts]
 export enum AriaLive {
-	polite = 'polite',
-	assertive = 'assertive',
-	off = 'off',
+  polite = "polite",
+  assertive = "assertive",
+  off = "off",
 }
 ```
 
