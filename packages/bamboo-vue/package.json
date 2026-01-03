@@ -1,6 +1,9 @@
 {
   "name": "@mrksbnc/bamboo-vue",
   "version": "0.0.1",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "type": "module",
   "exports": {
     "./components": {
@@ -20,18 +23,16 @@
   },
   "files": [
     "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*",
     "README.md",
     "LICENSE"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "build": "vite build --mode production",
     "test": "vitest --coverage",
     "type-check": "vue-tsc --noEmit",
     "lint:oxlint": "oxlint . --fix --config .oxlintrc.json",
-    
     "lint": "run-s lint:*",
     "format": "prettier --write .",
     "prepare": "husky",

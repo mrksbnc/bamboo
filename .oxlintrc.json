@@ -26,10 +26,9 @@
   },
   "ignorePatterns": [
     "**/dist/",
-    "**/dist-ssr/",
     "**/coverage/",
-    "**/node_modules/",
-    "**/.vitepress/cache/",
-    "**/docs/.vitepress/"
+    "node_modules/",
+    "**/docs/.vitepress/",
+    "**/.vitepress/cache/"
   ]
 }

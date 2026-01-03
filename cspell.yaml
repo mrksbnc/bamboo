@@ -8,14 +8,16 @@ ignorePaths:
   - "**/dist/**"
   - "**/build/**"
   - "**/coverage/**"
-  - "**/.github/**"
-  - "**/.husky/**"
-  - "**/.vscode/**"
   - "**/.vitepress/**"
   - "**/pnpm-lock.yaml"
   - "**/pnpm-workspace.yaml"
   - "**/config/cspell/**"
-  - "**/CHANGELOG.md"
+  - "CHANGELOG.md"
+  - "CONTRIBUTING.md"
+  - "CODE_OF_CONDUCT.md"
+  - ".github/**"
+  - ".husky/**"
+  - ".vscode/**"
 
 dictionaryDefinitions:
   - name: common-terms

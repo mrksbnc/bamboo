@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.5",
     "@vue/tsconfig": "^0.8.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
