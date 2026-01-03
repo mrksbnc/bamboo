@@ -23,7 +23,6 @@ coverage
 .kiro
 
 # Vitepress
-docs
 .vitepress/dist
 .vitepress/cache
 
