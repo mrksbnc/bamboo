@@ -42,6 +42,7 @@
 		"vue": "^3.5.25"
 	},
 	"devDependencies": {
+		"@bamboo/core": "workspace:*",
 		"@types/node": "^25.0.2",
 		"@vitejs/plugin-vue": "^6.0.3",
 		"@vue/test-utils": "^2.4.6",
@@ -49,9 +50,9 @@
 		"husky": "^9.1.7",
 		"jiti": "^2.6.1",
 		"npm-run-all2": "^8.0.4",
-		"vite-plugin-vue-devtools": "^8.0.5",
 		"oxlint": "~1.36.0",
 		"oxlint-tsgolint": "^0.10.1",
+		"vite-plugin-vue-devtools": "^8.0.5",
 		"vue-tsc": "^3.1.8"
 	}
 }
