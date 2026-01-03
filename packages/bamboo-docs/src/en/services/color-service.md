@@ -17,12 +17,12 @@ title: color service
 
 ```vue
 <script lang="ts" setup>
-	import { ColorService } from '@mrksbnc/bamboo';
+import { ColorService } from "@mrksbnc/bamboo";
 
-	const props = defineProps<{ customCssColor: string }>();
+const props = defineProps<{ customCssColor: string }>();
 
-	const validatedColor = computed<StyleValue>(() => {
-		return ColorService.instance.getCustomColorStyle(props.customCssColor);
-	});
+const validatedColor = computed<StyleValue>(() => {
+  return ColorService.instance.getCustomColorStyle(props.customCssColor);
+});
 </script>
 ```
