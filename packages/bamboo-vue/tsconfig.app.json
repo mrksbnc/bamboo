@@ -1,11 +1,15 @@
 {
+	"extends": "@vue/tsconfig/tsconfig.dom.json",
 	"compilerOptions": {
+		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"lib": ["dom", "esnext"],
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"]
 		}
 	},
 	"exclude": ["src/**/__tests__/*"],
-	"extends": "@bamboo/tsconfig/tsconfig.app.json",
 	"include": ["env.d.ts", "src/**/*", "src/**/*.vue"]
 }

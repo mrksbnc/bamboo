@@ -8,7 +8,6 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@bamboo/tsconfig": "workspace:*",
 		"vitest": "^4.0.15"
 	}
 }

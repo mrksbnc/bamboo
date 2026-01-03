@@ -32,7 +32,6 @@
 		"test:unit": "vitest"
 	},
 	"devDependencies": {
-		"@bamboo/tsconfig": "workspace:*",
 		"@eslint/compat": "^2.0.0",
 		"@eslint/js": "^9.39.1",
 		"@sveltejs/adapter-auto": "^7.0.0",

@@ -9,7 +9,6 @@
 	},
 	"devDependencies": {
 		"@mrksbnc/bamboo-vue": "workspace:*",
-		"@bamboo/tsconfig": "workspace:*",
 		"@types/node": "^25.0.2",
 		"typescript": "~5.9.3",
 		"vitepress": "2.0.0-alpha.15"

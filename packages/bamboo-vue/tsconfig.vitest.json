@@ -1,4 +1,11 @@
 {
-	"extends": "@bamboo/tsconfig/tsconfig.vitest.json",
+	"extends": "./tsconfig.app.json",
+	"compilerOptions": {
+		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"lib": [],
+		"types": ["node", "jsdom"]
+	},
 	"include": ["src/**/*.test.ts", "env.d.ts"]
 }
