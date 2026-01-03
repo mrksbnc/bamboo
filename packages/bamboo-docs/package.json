@@ -8,6 +8,7 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
+    "@mrksbnc/bamboo-vue": "workspace:*",
     "@types/node": "^25.0.2",
     "typescript": "~5.9.3",
     "vitepress": "2.0.0-alpha.15"
