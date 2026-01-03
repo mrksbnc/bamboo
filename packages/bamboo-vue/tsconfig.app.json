@@ -1,19 +1,11 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
-  },
-  "exclude": [
-    "src/**/__tests__/*"
-  ],
-  "extends": "@bamboo/typescript-config/tsconfig.app.json",
-  "include": [
-    "env.d.ts",
-    "src/**/*",
-    "src/**/*.vue"
-  ]
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	},
+	"exclude": ["src/**/__tests__/*"],
+	"extends": "@bamboo/tsconfig/tsconfig.app.json",
+	"include": ["env.d.ts", "src/**/*", "src/**/*.vue"]
 }

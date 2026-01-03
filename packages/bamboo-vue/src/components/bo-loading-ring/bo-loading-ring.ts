@@ -1,31 +1,31 @@
-import { AriaLive } from "@/core/constants/accessibility.js";
-import type { BoSize } from "@/core/constants/size.js";
-import type { BoLoaderTextPosition } from "@/core/constants/loader.js";
-import type { BoVariant } from "@/core/constants/variant.js";
+import { AriaLive } from '@/core/constants/accessibility.js';
+import type { BoSize } from '@/core/constants/size.js';
+import type { BoLoaderTextPosition } from '@/core/constants/loader.js';
+import type { BoVariant } from '@/core/constants/variant.js';
 
 export interface BoLoaderRingProps {
-  /** Unique id for the loader ring */
-  id?: string;
-  /** Unique data-test-id for the loader ring container */
-  dataTestId?: string;
-  /** The size of the loader ring */
-  size?: BoSize;
-  /** Predefined color variant of the loader ring */
-  variant?: BoVariant;
-  /** Optional loader text to display */
-  loaderText?: string;
-  /** Position of the text relative to the loader ring */
-  textPosition?: BoLoaderTextPosition;
-  /** Custom color of the loader ring in CSS compatible format */
-  customColor?: string;
-  /** Accessibility live region politeness setting */
-  ariaLive?: AriaLive;
-  /** Accessible label describing the loader ring state */
-  ariaLabel?: string;
-  /** Mark the region as busy while the loader ring is visible */
-  ariaBusy?: boolean;
-  /** Optional custom classes appended to the loader ring wrapper */
-  customContainerCssClass?: string;
-  /** Optional custom classes appended to the loader ring element */
-  customRingClass?: string;
+	/** Unique id for the loader ring */
+	id?: string;
+	/** Unique data-test-id for the loader ring container */
+	dataTestId?: string;
+	/** The size of the loader ring */
+	size?: BoSize;
+	/** Predefined color variant of the loader ring */
+	variant?: BoVariant;
+	/** Optional loader text to display */
+	loaderText?: string;
+	/** Position of the text relative to the loader ring */
+	textPosition?: BoLoaderTextPosition;
+	/** Custom color of the loader ring in CSS compatible format */
+	customColor?: string;
+	/** Accessibility live region politeness setting */
+	ariaLive?: AriaLive;
+	/** Accessible label describing the loader ring state */
+	ariaLabel?: string;
+	/** Mark the region as busy while the loader ring is visible */
+	ariaBusy?: boolean;
+	/** Optional custom classes appended to the loader ring wrapper */
+	customContainerCssClass?: string;
+	/** Optional custom classes appended to the loader ring element */
+	customRingClass?: string;
 }

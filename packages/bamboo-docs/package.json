@@ -1,16 +1,17 @@
 {
-  "name": "@bamboo/docs",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "docs:build": "vitepress build",
-    "docs:dev": "vitepress dev",
-    "docs:preview": "vitepress preview"
-  },
-  "devDependencies": {
-    "@mrksbnc/bamboo-vue": "workspace:*",
-    "@types/node": "^25.0.2",
-    "typescript": "~5.9.3",
-    "vitepress": "2.0.0-alpha.15"
-  }
+	"name": "@bamboo/docs",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"docs:build": "vitepress build",
+		"docs:dev": "vitepress dev",
+		"docs:preview": "vitepress preview"
+	},
+	"devDependencies": {
+		"@mrksbnc/bamboo-vue": "workspace:*",
+		"@bamboo/tsconfig": "workspace:*",
+		"@types/node": "^25.0.2",
+		"typescript": "~5.9.3",
+		"vitepress": "2.0.0-alpha.15"
+	}
 }

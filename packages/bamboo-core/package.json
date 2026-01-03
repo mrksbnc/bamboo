@@ -1,0 +1,14 @@
+{
+	"name": "@bamboo/core",
+	"private": true,
+	"license": "MIT",
+	"version": "0.0.1",
+	"type": "module",
+	"publishConfig": {
+		"access": "public"
+	},
+	"devDependencies": {
+		"@bamboo/tsconfig": "workspace:*",
+		"vitest": "^4.0.15"
+	}
+}

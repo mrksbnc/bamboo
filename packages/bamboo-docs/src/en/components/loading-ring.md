@@ -106,18 +106,9 @@ Adjust `textPosition` to control where the supporting text appears.
 
 ```vue
 <bo-loading-ring :text-position="BoLoaderTextPosition.top" loader-text="Top" />
-<bo-loading-ring
-  :text-position="BoLoaderTextPosition.bottom"
-  loader-text="Bottom"
-/>
-<bo-loading-ring
-  :text-position="BoLoaderTextPosition.before"
-  loader-text="Before"
-/>
-<bo-loading-ring
-  :text-position="BoLoaderTextPosition.after"
-  loader-text="After"
-/>
+<bo-loading-ring :text-position="BoLoaderTextPosition.bottom" loader-text="Bottom" />
+<bo-loading-ring :text-position="BoLoaderTextPosition.before" loader-text="Before" />
+<bo-loading-ring :text-position="BoLoaderTextPosition.after" loader-text="After" />
 ```
 
 ## Custom text
@@ -165,67 +156,67 @@ You can customize the color of the ring by passing a valid CSS color value to th
 
 ```ts [bo-loading-ring.ts]
 export interface BoLoaderRingProps {
-  /** Unique id for the loader ring */
-  id?: string;
-  /** Unique data-test-id for the loader ring container */
-  dataTestId?: string;
-  /** The size of the loader ring */
-  size?: BoSize;
-  /** Predefined color variant of the loader ring */
-  variant?: BoVariant;
-  /** Optional loader text to display */
-  loaderText?: string;
-  /** Position of the text relative to the loader ring */
-  textPosition?: BoLoaderTextPosition;
-  /** Custom color of the loader ring in CSS compatible format */
-  customColor?: string;
-  /** Accessibility live region politeness setting */
-  ariaLive?: AriaLive;
-  /** Accessible label describing the loader ring state */
-  ariaLabel?: string;
-  /** Mark the region as busy while the loader ring is visible */
-  ariaBusy?: boolean;
-  /** Optional custom classes appended to the loader ring wrapper */
-  customContainerCssClass?: string;
-  /** Optional custom classes appended to the loader ring element */
-  customRingClass?: string;
+	/** Unique id for the loader ring */
+	id?: string;
+	/** Unique data-test-id for the loader ring container */
+	dataTestId?: string;
+	/** The size of the loader ring */
+	size?: BoSize;
+	/** Predefined color variant of the loader ring */
+	variant?: BoVariant;
+	/** Optional loader text to display */
+	loaderText?: string;
+	/** Position of the text relative to the loader ring */
+	textPosition?: BoLoaderTextPosition;
+	/** Custom color of the loader ring in CSS compatible format */
+	customColor?: string;
+	/** Accessibility live region politeness setting */
+	ariaLive?: AriaLive;
+	/** Accessible label describing the loader ring state */
+	ariaLabel?: string;
+	/** Mark the region as busy while the loader ring is visible */
+	ariaBusy?: boolean;
+	/** Optional custom classes appended to the loader ring wrapper */
+	customContainerCssClass?: string;
+	/** Optional custom classes appended to the loader ring element */
+	customRingClass?: string;
 }
 ```
 
 ```ts [core/accessibility.ts]
 export enum AriaLive {
-  polite = "polite",
-  assertive = "assertive",
-  off = "off",
+	polite = 'polite',
+	assertive = 'assertive',
+	off = 'off',
 }
 ```
 
 ```ts [core/loader.ts]
 export enum BoVariant {
-  primary = "primary",
-  secondary = "secondary",
-  success = "success",
-  warning = "warning",
-  danger = "danger",
-  dark = "dark",
-  light = "light",
+	primary = 'primary',
+	secondary = 'secondary',
+	success = 'success',
+	warning = 'warning',
+	danger = 'danger',
+	dark = 'dark',
+	light = 'light',
 }
 
 export enum BoLoaderTextPosition {
-  top = "top",
-  bottom = "bottom",
-  before = "before",
-  after = "after",
+	top = 'top',
+	bottom = 'bottom',
+	before = 'before',
+	after = 'after',
 }
 ```
 
 ```ts [core/size.ts]
 export enum BoSize {
-  extra_small = "extra-small",
-  small = "small",
-  default = "default",
-  large = "large",
-  extra_large = "extra-large",
+	extra_small = 'extra-small',
+	small = 'small',
+	default = 'default',
+	large = 'large',
+	extra_large = 'extra-large',
 }
 ```
 

@@ -1,0 +1,4 @@
+{
+	"extends": "@bamboo/tsconfig/tsconfig.node.json",
+	"include": ["src/**/*.ts", "src/**/*.d.ts"]
+}

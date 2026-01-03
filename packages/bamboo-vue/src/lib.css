@@ -1,6 +1,4 @@
-@import './styles/tokens.css';
-@import './styles/colors.css';
-@import './styles/components.css';
+@import 'tailwindcss';
 
 * {
 	margin: 0;

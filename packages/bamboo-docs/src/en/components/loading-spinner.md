@@ -105,22 +105,10 @@ Adjust `textPosition` to control where the supporting text appears.
 </div>
 
 ```vue
-<bo-loading-spinner
-  :text-position="BoLoaderTextPosition.top"
-  loader-text="Top"
-/>
-<bo-loading-spinner
-  :text-position="BoLoaderTextPosition.bottom"
-  loader-text="Bottom"
-/>
-<bo-loading-spinner
-  :text-position="BoLoaderTextPosition.before"
-  loader-text="Before"
-/>
-<bo-loading-spinner
-  :text-position="BoLoaderTextPosition.after"
-  loader-text="After"
-/>
+<bo-loading-spinner :text-position="BoLoaderTextPosition.top" loader-text="Top" />
+<bo-loading-spinner :text-position="BoLoaderTextPosition.bottom" loader-text="Bottom" />
+<bo-loading-spinner :text-position="BoLoaderTextPosition.before" loader-text="Before" />
+<bo-loading-spinner :text-position="BoLoaderTextPosition.after" loader-text="After" />
 ```
 
 ## Custom text
@@ -152,10 +140,7 @@ You can customize the color of the ring by passing a valid CSS color value to th
 <bo-loading-spinner custom-color="--teal-500" loader-text="CSS Variable" />
 <bo-loading-spinner custom-color="#ff6b6b" loader-text="Hex Color" />
 <bo-loading-spinner custom-color="rgb(255, 107, 107)" loader-text="RGB Color" />
-<bo-loading-spinner
-  custom-color="oklch(0.7 0.15 180)"
-  loader-text="OKLCH Color"
-/>
+<bo-loading-spinner custom-color="oklch(0.7 0.15 180)" loader-text="OKLCH Color" />
 ```
 
 ## Accessibility
@@ -170,55 +155,55 @@ You can customize the color of the ring by passing a valid CSS color value to th
 
 ```ts [bo-loading-spinner.ts]
 export interface BoLoadingSpinnerProps {
-  id?: string;
-  dataTestId?: string;
-  size?: BoSize;
-  variant?: BoVariant;
-  customColor?: string;
-  loaderText?: string;
-  textPosition?: BoLoaderTextPosition;
-  ariaLive?: AriaLive;
-  ariaLabel?: string;
-  ariaBusy?: boolean;
-  customContainerCssClass?: string;
-  customSpinnerCssClass?: string;
+	id?: string;
+	dataTestId?: string;
+	size?: BoSize;
+	variant?: BoVariant;
+	customColor?: string;
+	loaderText?: string;
+	textPosition?: BoLoaderTextPosition;
+	ariaLive?: AriaLive;
+	ariaLabel?: string;
+	ariaBusy?: boolean;
+	customContainerCssClass?: string;
+	customSpinnerCssClass?: string;
 }
 ```
 
 ```ts [core/accessibility.ts]
 export enum AriaLive {
-  polite = "polite",
-  assertive = "assertive",
-  off = "off",
+	polite = 'polite',
+	assertive = 'assertive',
+	off = 'off',
 }
 ```
 
 ```ts [core/loader.ts]
 export enum BoVariant {
-  primary = "primary",
-  secondary = "secondary",
-  success = "success",
-  warning = "warning",
-  danger = "danger",
-  dark = "dark",
-  light = "light",
+	primary = 'primary',
+	secondary = 'secondary',
+	success = 'success',
+	warning = 'warning',
+	danger = 'danger',
+	dark = 'dark',
+	light = 'light',
 }
 
 export enum BoLoaderTextPosition {
-  top = "top",
-  bottom = "bottom",
-  before = "before",
-  after = "after",
+	top = 'top',
+	bottom = 'bottom',
+	before = 'before',
+	after = 'after',
 }
 ```
 
 ```ts [core/size.ts]
 export enum BoSize {
-  extra_small = "extra-small",
-  small = "small",
-  default = "default",
-  large = "large",
-  extra_large = "extra-large",
+	extra_small = 'extra-small',
+	small = 'small',
+	default = 'default',
+	large = 'large',
+	extra_large = 'extra-large',
 }
 ```
 
