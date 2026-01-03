@@ -7,5 +7,5 @@
 		"moduleResolution": "bundler",
 		"types": ["node"]
 	},
-	"include": ["vite.config.ts", "vitest.config.ts", "playwright.config.ts", "eslint.config.ts"]
+	"include": ["vite.config.ts", "vitest.config.ts"]
 }

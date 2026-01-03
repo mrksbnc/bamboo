@@ -1,4 +1,7 @@
 {
-	"extends": "@bamboo/tsconfig/tsconfig.app.json",
+	"compilerOptions": {
+		"types": ["node"],
+		"target": "esnext"
+	},
 	"include": [".vitepress/**/*.ts"]
 }
