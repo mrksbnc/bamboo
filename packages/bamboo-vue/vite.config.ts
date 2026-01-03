@@ -2,25 +2,13 @@ import { fileURLToPath, URL } from 'node:url';
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
-import svgLoader from 'vite-svg-loader';
 import dts from 'vite-plugin-dts';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
 	appType: 'custom',
-	plugins: [
-		vue(),
-		tailwindcss(),
-		vueDevTools(),
-		svgLoader({
-			svgo: true,
-			svgoConfig: {
-				datauri: 'base64',
-			},
-		}),
-		dts({ tsconfigPath: './tsconfig.app.json' }),
-	],
+	plugins: [vue(), tailwindcss(), vueDevTools(), dts({ tsconfigPath: './tsconfig.app.json' })],
 	build: {
 		minify: true,
 		cssMinify: true,
