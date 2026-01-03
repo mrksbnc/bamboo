@@ -12,6 +12,12 @@ dist
 coverage
 *.local
 
+# Output
+.output
+**/.svelte-kit
+**/build
+**/dist
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -28,3 +34,10 @@ coverage
 
 # Cspell
 .cspellcache
+
+# Turbo
+.turbo
+
+# Vite
+**/vite.config.js.timestamp-*
+**/vite.config.ts.timestamp-*
