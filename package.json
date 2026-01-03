@@ -5,7 +5,8 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev",
 		"format": "prettier --write \"**/*.{ts,tsx,md,json,html,css,scss,yml,yaml,js,jsx,cjs,mjs,cjs,svelte,vue,html}\"",
-		"lint": "turbo run lint"
+		"lint": "turbo run lint",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@cspell/dict-vue": "^3.0.5",
@@ -18,6 +19,7 @@
 		"@vitest/coverage-v8": "4.0.16",
 		"cspell": "^9.4.0",
 		"globals": "^17.0.0",
+		"husky": "^9.1.7",
 		"jsdom": "^27.3.0",
 		"playwright": "^1.57.0",
 		"prettier": "^3.7.4",

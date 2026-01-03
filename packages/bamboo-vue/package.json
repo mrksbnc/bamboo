@@ -35,7 +35,6 @@
 		"lint:oxlint": "oxlint . --fix --config .oxlintrc.json",
 		"lint": "run-s lint:*",
 		"format": "prettier --write .",
-		"prepare": "husky",
 		"prepublishOnly": "pnpm build"
 	},
 	"dependencies": {
@@ -47,7 +46,6 @@
 		"@vitejs/plugin-vue": "^6.0.3",
 		"@vue/test-utils": "^2.4.6",
 		"@vue/tsconfig": "^0.8.1",
-		"husky": "^9.1.7",
 		"jiti": "^2.6.1",
 		"npm-run-all2": "^8.0.4",
 		"oxlint": "~1.36.0",
