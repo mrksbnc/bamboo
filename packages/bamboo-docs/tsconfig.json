@@ -1,6 +1,4 @@
 {
-  "extends": "@bamboo/typescript-config/tsconfig.app.json",
-  "include": [
-    ".vitepress/**/*.ts"
-  ]
+	"extends": "@bamboo/tsconfig/tsconfig.app.json",
+	"include": [".vitepress/**/*.ts"]
 }

@@ -18,16 +18,16 @@ title: theme service
 
 ```ts
 export enum Theme {
-  LIGHT = "light",
-  DARK = "dark",
-  SYSTEM = "system",
+	LIGHT = 'light',
+	DARK = 'dark',
+	SYSTEM = 'system',
 }
 ```
 
 ## Usage
 
 ```ts
-import { ThemeService, Theme } from "@mrksbnc/bamboo/services";
+import { ThemeService, Theme } from '@mrksbnc/bamboo/services';
 
 const themeService = new ThemeService();
 ```

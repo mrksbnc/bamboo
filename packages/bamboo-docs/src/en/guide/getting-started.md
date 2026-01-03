@@ -37,13 +37,13 @@ pnpm add @mrksbnc/bamboo
 
 ```ts [main.ts]
 // main.ts
-import { createApp } from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue';
+import App from './App.vue';
 
 // Import the main library CSS file
-import "@mrksbnc/bamboo/lib.css";
+import '@mrksbnc/bamboo/lib.css';
 
-createApp(App).mount("#app");
+createApp(App).mount('#app');
 ```
 
 :::

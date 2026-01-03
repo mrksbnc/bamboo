@@ -22,8 +22,8 @@ Spacing tokens are used for consistent sizing and spacing throughout the library
 
 ```css
 .container {
-  padding: var(--size-md);
-  gap: var(--size-sm);
+	padding: var(--size-md);
+	gap: var(--size-sm);
 }
 ```
 
@@ -42,7 +42,7 @@ Transition tokens define animation durations and timing functions for consistent
 
 ```css
 .element {
-  transition: all var(--transition-base) var(--transition-timing);
+	transition: all var(--transition-base) var(--transition-timing);
 }
 ```
 
@@ -66,12 +66,12 @@ Z-index tokens establish a consistent stacking order for layered components.
 
 ```css
 .modal {
-  position: fixed;
-  z-index: var(--z-modal);
+	position: fixed;
+	z-index: var(--z-modal);
 }
 
 .tooltip {
-  z-index: var(--z-tooltip);
+	z-index: var(--z-tooltip);
 }
 ```
 
@@ -92,11 +92,11 @@ Shadow tokens provide consistent elevation and depth throughout the design syste
 
 ```css
 .card {
-  box-shadow: var(--shadow-md);
+	box-shadow: var(--shadow-md);
 }
 
 .elevated-card {
-  box-shadow: var(--shadow-lg);
+	box-shadow: var(--shadow-lg);
 }
 ```
 

@@ -19,12 +19,12 @@ yarn add @mrksbnc/bamboo-vue
 
 ```ts
 // main.ts
-import { createApp } from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue';
+import App from './App.vue';
 
-import "@mrksbnc/bamboo-vue/lib.css";
+import '@mrksbnc/bamboo-vue/lib.css';
 
-createApp(App).use(Bamboo).mount("#app");
+createApp(App).use(Bamboo).mount('#app');
 ```
 
 ```ts
