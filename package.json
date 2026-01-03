@@ -14,7 +14,9 @@
     "cspell": "^9.4.0",
     "prettier": "^3.7.4",
     "turbo": "^2.7.2",
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "@prettier/plugin-oxc": "^0.1.3",
+    "prettier-plugin-organize-imports": "^4.3.0"
   },
   "packageManager": "pnpm@10.27.0"
 }
