@@ -60,14 +60,16 @@
 	import BoLoadingRing from '@/components/bo-loading-ring/bo-loading-ring.vue';
 	import BoLoadingSpinner from '@/components/bo-loading-spinner/bo-loading-spinner.vue';
 	import { BoFontSize, BoFontWeight, BoTextVariant } from '@/components/bo-text/bo-text.js';
-	import boText from '@/components/bo-text/bo-text.vue';
-	import { AriaLive } from '@/core/constants/accessibility.js';
-	import type { ConditionalCssProperties } from '@/core/constants/css.js';
-	import { BoLoaderType } from '@/core/constants/loader.js';
-	import { BoSize } from '@/core/constants/size.js';
-	import { BoVariant } from '@/core/constants/variant.js';
-	import { ColorService } from '@/core/services/color-service.js';
-	import { IdentityService } from '@/core/services/identity-service.js';
+	import BoText from '@/components/bo-text/bo-text.vue';
+	import {
+		AriaLive,
+		BoButtonVariant,
+		BoLoaderType,
+		BoSize,
+		ColorService,
+		IdentityService,
+		type ConditionalCssProperties,
+	} from '@bamboo/core';
 	import { computed, type HTMLAttributes, type StyleValue } from 'vue';
 	import { BoButtonType, type BoButtonProps } from './bo-button.js';
 
@@ -75,7 +77,7 @@
 		id: () => IdentityService.instance.getComponentId(),
 		dataTestId: () => IdentityService.instance.getDataTestId('bo-button'),
 		size: () => BoSize.default,
-		variant: () => BoVariant.primary,
+		variant: () => BoButtonVariant.primary,
 		type: () => BoButtonType.button,
 		loaderType: () => BoLoaderType.spinner,
 		ariaLive: () => AriaLive.polite,
