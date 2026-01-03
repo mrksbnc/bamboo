@@ -1,4 +1,7 @@
 {
   "extends": "@bamboo/typescript-config/tsconfig.vitest.json",
-  "include": ["src/**/*.test.ts", "env.d.ts"]
+  "include": [
+    "src/**/*.test.ts",
+    "env.d.ts"
+  ]
 }
