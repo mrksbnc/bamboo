@@ -1,7 +1,15 @@
 {
+	"extends": "@tsconfig/node22/tsconfig.json",
 	"compilerOptions": {
 		"types": ["node"],
-		"target": "esnext"
+		"target": "esnext",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
 	},
-	"include": [".vitepress/**/*.ts"]
+	"include": [".vitepress/**/*.ts", "src/**/*.ts", "**/*.d.ts"],
+	"exclude": ["node_modules", "dist"]
 }
