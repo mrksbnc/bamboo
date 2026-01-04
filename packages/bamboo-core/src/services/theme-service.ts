@@ -1,17 +1,17 @@
 export enum Theme {
-	LIGHT = 'light',
-	DARK = 'dark',
-	SYSTEM = 'system',
+	light = 'light',
+	dark = 'dark',
+	system = 'system',
 }
 
 export class ThemeService {
-	private internalTheme: Theme = Theme.SYSTEM;
+	private internalTheme: Theme = Theme.system;
 	private static instance: ThemeService | null = null;
 
 	private constructor() {
 		this.applyTheme();
 		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-			if (this.internalTheme === Theme.SYSTEM) {
+			if (this.internalTheme === Theme.system) {
 				this.applyTheme();
 			}
 		});
@@ -26,8 +26,8 @@ export class ThemeService {
 
 	private applyTheme(): void {
 		const isDark =
-			this.internalTheme === Theme.DARK ||
-			(this.internalTheme === Theme.SYSTEM &&
+			this.internalTheme === Theme.dark ||
+			(this.internalTheme === Theme.system &&
 				window.matchMedia('(prefers-color-scheme: dark)').matches);
 		document.documentElement.classList.toggle('dark', isDark);
 	}
@@ -42,11 +42,11 @@ export class ThemeService {
 	}
 
 	onThemeToggle(): void {
-		if (this.internalTheme === Theme.SYSTEM) {
+		if (this.internalTheme === Theme.system) {
 			const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			this.internalTheme = isDark ? Theme.LIGHT : Theme.DARK;
+			this.internalTheme = isDark ? Theme.light : Theme.dark;
 		} else {
-			this.internalTheme = this.internalTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
+			this.internalTheme = this.internalTheme === Theme.light ? Theme.dark : Theme.light;
 		}
 		this.applyTheme();
 	}

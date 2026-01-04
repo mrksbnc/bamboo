@@ -1,12 +1,13 @@
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'vitepress';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vitepress.dev/reference/site-config
 const base = process.env.VP_BASE ?? '/';
 
 export default defineConfig({
 	base,
-	srcDir: 'src-docs',
+	srcDir: 'src',
 	outDir: '.vitepress/dist',
 	title: 'Bamboo',
 	description: 'Lightweight, and flexible UI library for Vue.',
@@ -61,6 +62,10 @@ export default defineConfig({
 		},
 	},
 	vite: {
+		plugins: [
+			// @ts-ignore
+			tailwindcss(),
+		],
 		resolve: {
 			alias: {
 				'@': fileURLToPath(new URL('../src/', import.meta.url)),
