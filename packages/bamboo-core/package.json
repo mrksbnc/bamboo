@@ -20,9 +20,7 @@
 	"scripts": {
 		"build": "vite build",
 		"type-check": "tsc --noEmit",
-		"lint:oxlint": "oxlint . --fix --config .oxlintrc.json",
-		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\"",
-		"lint": "run-s lint:*"
+		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\""
 	},
 	"devDependencies": {
 		"vue": "^3.5.25"
