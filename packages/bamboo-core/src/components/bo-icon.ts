@@ -2,14 +2,6 @@ export type BoIconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type BoIconSizeMap = Record<BoIconSize, string>;
 
-export const BO_ICON_SIZE_MAP: BoIconSizeMap = {
-	xs: /*tw*/ 'size-xs',
-	sm: /*tw*/ 'size-sm',
-	md: /*tw*/ 'size-md',
-	lg: /*tw*/ 'size-lg',
-	xl: /*tw*/ 'size-xl',
-};
-
 export type Icon =
 	| 'activity'
 	| 'airplay'
@@ -3105,3 +3097,11 @@ export type Icon =
 	| 'zap_off'
 	| 'zoom_in'
 	| 'zoom_out';
+
+export const BO_ICON_SIZE_MAP: BoIconSizeMap = {
+	xs: /*tw*/ 'size-xs',
+	sm: /*tw*/ 'size-sm',
+	md: /*tw*/ 'size-md',
+	lg: /*tw*/ 'size-lg',
+	xl: /*tw*/ 'size-xl',
+};

@@ -22,6 +22,8 @@ export class IdentityService {
 	 * used as a prefix for the data-test-id. This is useful for debugging.
 	 */
 	getDataTestId(descriptor?: string): string {
-		return descriptor ? `test-${descriptor}-${crypto.randomUUID()}` : `test-${crypto.randomUUID()}`;
+		return descriptor
+			? `test-bo-${descriptor}-${crypto.randomUUID()}`
+			: `test-bo-${crypto.randomUUID()}`;
 	}
 }
