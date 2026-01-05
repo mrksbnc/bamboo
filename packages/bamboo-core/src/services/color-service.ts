@@ -1,6 +1,4 @@
-import type { CSSProperties } from 'vue';
-
-let instance: ColorService | null = null;
+let instance: ColorService;
 
 export class ColorService {
 	static get instance(): ColorService {
@@ -22,37 +20,7 @@ export class ColorService {
 		'The custom color will be ignored and currentColor will be used instead.',
 	].join('\n');
 
-	getCustomColorStyle(prop: string): CSSProperties {
-		if (
-			prop.startsWith('var') ||
-			prop.startsWith('#') ||
-			prop.startsWith('oklch') ||
-			prop.startsWith('rgb') ||
-			prop.startsWith('rgba')
-		) {
-			return {
-				color: prop,
-			};
-		} else if (prop.startsWith('--')) {
-			/** CSS variable */
-			return {
-				color: `var(${prop})`,
-			};
-		} else if (prop?.length === 6) {
-			/** Hex color without the leading # */
-			return {
-				color: `#${prop}`,
-			};
-		} else {
-			console.warn(this.UNKNOWN_COLOR_WARNING.replace(this.TEXT_REPLACE_PLACEHOLDER, prop));
-
-			return {
-				color: 'currentColor',
-			};
-		}
-	}
-
-	getValidCssColor(prop: string): string {
+	getValidOrFallbackColorFromStr(prop: string): string {
 		if (
 			prop.startsWith('var') ||
 			prop.startsWith('#') ||

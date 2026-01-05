@@ -1,26 +1,25 @@
-import { BoButtonProps, BoButtonSizeStyle, BoButtonVariantStyle } from '../components/bo-button';
-import { BoTailwindClassFactory } from '../core/bo-style';
+import { computed, StyleValue } from 'vue';
+import { ComponentStyleComposable } from './types';
+import { useTailwind } from './use-tailwind';
+import { BoButtonProps } from '../components/bo-button';
 
-export interface UseBoButton {
-	construct: () => string;
-}
+export interface UseBoButton extends ComponentStyleComposable {}
 
 export const useBoButton = (props: BoButtonProps): UseBoButton => {
-	const factory = new BoTailwindClassFactory();
+	const { merge } = useTailwind();
 
-	function generateClasses(props: BoButtonProps): void {
-		const variant = BoButtonVariantStyle[props.variant ?? 'primary'];
-		const size = BoButtonSizeStyle[props.size ?? 'md'];
+	const classValues = computed<string>(() => {
+		return '';
+	});
 
-		factory.add(variant, size);
-	}
+	const styleValues = computed<StyleValue>(() => {
+		const style: StyleValue = {};
 
-	function construct(): string {
-		generateClasses(props);
-		return factory.build();
-	}
+		return style;
+	});
 
 	return {
-		construct,
+		classValues,
+		styleValues,
 	};
 };
