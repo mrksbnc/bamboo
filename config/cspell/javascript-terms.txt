@@ -1,6 +1,7 @@
 Booleanish
 datauri
 esbuild
+extralight
 nonconstructor
 oklch
 oxlint

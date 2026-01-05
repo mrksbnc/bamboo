@@ -1,8 +1,22 @@
 {
 	"explorer.fileNesting.enabled": true,
 	"typescript.experimental.useTsgo": true,
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+	"editor.quickSuggestions": {
+		"strings": "on"
+	},
+	"tailwindCSS.classAttributes": [
+		"class",
+		"className",
+		"tw"
+	],
 	"tailwindCSS.experimental.classRegex": [
-		"/\\*\\s*tw\\s*\\*/\\s*['\"]([^'\"]*)['\"]",
-		"['\"]([^'\"]*)['\"]\\s*/\\*\\s*tw\\s*\\*/"
-	]
+		"/\\*tw\\*/\\s*['\"`]([^'\"`]*)['\"`]"
+	],
+	"tailwindCSS.includeLanguages": {
+		"typescript": "javascript",
+		"typescriptreact": "javascript"
+	}
 }
