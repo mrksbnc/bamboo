@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/mrksbnc/bamboo/compare/v1.0.5...v1.0.6) (2026-01-06)
+
+### 🔧 Chores
+
+* **deps-dev:** bump sass-embedded from 1.96.0 to 1.97.1 ([#429](https://github.com/mrksbnc/bamboo/issues/429)) ([6ccd7b8](https://github.com/mrksbnc/bamboo/commit/6ccd7b8fbc3dec04e1fd04421f71ba84e396319d))
+* **deps-dev:** bump vue-tsc from 3.1.8 to 3.2.1 ([#427](https://github.com/mrksbnc/bamboo/issues/427)) ([290cc07](https://github.com/mrksbnc/bamboo/commit/290cc07f2540555b659a6e265ca98ae33aa02d77))
+
 ## [1.0.5](https://github.com/mrksbnc/bamboo/compare/v1.0.4...v1.0.5) (2026-01-06)
 
 ### 🔧 Chores
