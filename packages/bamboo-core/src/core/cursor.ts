@@ -1,4 +1,4 @@
-type BoCursor =
+export type BoCursor =
 	| 'cursor-auto'
 	| 'cursor-default'
 	| 'cursor-pointer'
