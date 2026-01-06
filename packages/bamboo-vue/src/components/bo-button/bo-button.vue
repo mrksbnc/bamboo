@@ -61,7 +61,7 @@
 		type BoLoaderVariant,
 	} from '@bamboo/core';
 	import { computed, type HTMLAttributes } from 'vue';
-import { BoText } from '../bo-text';
+	import { BoText } from '../bo-text';
 
 	const props = withDefaults(defineProps<BoButtonProps>(), {
 		id: () => IdentityService.instance.getComponentId('bo-button'),
