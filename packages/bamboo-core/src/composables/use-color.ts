@@ -1,10 +1,9 @@
-
 export interface UseColor {
-    getValidOrFallbackColorFromStr(prop: string): string;
+	getValidOrFallbackColorFromStr(prop: string): string;
 }
 
 export const useColor = (): UseColor => {
- 	const TEXT_REPLACE_PLACEHOLDER = '__BLANK__';
+	const TEXT_REPLACE_PLACEHOLDER = '__BLANK__';
 
 	const UNKNOWN_COLOR_WARNING = [
 		`The custom color "__BLANK__" is not a valid color definition.`,
@@ -36,8 +35,8 @@ export const useColor = (): UseColor => {
 			return 'currentColor';
 		}
 	}
- 
-    return {
-        getValidOrFallbackColorFromStr
-    }
-}
+
+	return {
+		getValidOrFallbackColorFromStr,
+	};
+};

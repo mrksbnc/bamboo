@@ -11,6 +11,7 @@
 	},
 	"devDependencies": {
 		"@mrksbnc/bamboo-vue": "workspace:*",
-		"vitepress": "2.0.0-alpha.15"
+		"vitepress": "2.0.0-alpha.15",
+		"vue": "^3.5.25"
 	}
 }

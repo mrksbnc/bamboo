@@ -4,12 +4,16 @@ export {
 	type BoButtonSize,
 	type BoButtonVariant,
 	type BoButtonProps,
-	type BoButtonType,
 	type BoButtonSizeStyleMap,
 	type BoVariantStyleMap,
 } from './components/bo-button.js';
 
-export { type BoIconSize, type BoIconSizeStyleMap } from './components/bo-icon.js';
+export {
+	type BoIconSize,
+	type BoIconSizeStyleMap,
+	type BoIconVariant,
+	type BoIconProps,
+} from './components/bo-icon.js';
 
 export { type Icon, ICON_REGISTRY, type IconRegistry } from './components/bo-icon-registry.js';
 
@@ -23,7 +27,16 @@ export {
 	type BoLoadingSpinnerProps,
 } from './components/bo-loader.js';
 
-export { type BoInputSize, type BoInputType } from './components/bo-input.js';
+export {
+	type BoInputSize,
+	type BoInputType,
+	type BoInputState,
+	type BoInputProps,
+	type BoInputSizeStyleMap,
+	type BoInputVariantStyleMap,
+} from './components/bo-input.js';
+
+export { useBoInput, type UseBoInput } from './composables/use-input.js';
 
 export {
 	type BoTextAlign,

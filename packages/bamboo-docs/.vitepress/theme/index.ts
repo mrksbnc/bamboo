@@ -12,14 +12,14 @@ export default {
 			// https://vitepress.dev/guide/extending-default-theme#layout-slots
 		});
 	},
-	// oxlint-disable-next-line no-unused-vars
-	enhanceApp({ app, router, siteData }) {
+
+	enhanceApp({ app }) {
 		if (typeof window !== 'undefined') {
 			app.mixin({
 				setup() {
 					const { isDark } = useData();
 
-					const updateTheme = () => {
+					const updateTheme = (): void => {
 						const html = document.documentElement;
 						if (isDark.value) {
 							html.setAttribute('data-theme', 'dark');
