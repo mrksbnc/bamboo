@@ -22,17 +22,17 @@
 		id: () => IdentityService.instance.getComponentId('text'),
 		dataTestId: () => IdentityService.instance.getDataTestId('text'),
 		lang: 'en',
+		role: 'text',
 		maxLines: 'none',
-		fontSize: 'default',
-		fontFamily: 'sans',
+		textAlign: 'left',
 		variant: 'default',
+		ariaLive: 'polite',
+		fontFamily: 'sans',
+		fontSize: 'default',
+		whiteSpace: 'normal',
 		fontWeight: 'regular',
 		textTransform: 'none',
-		whiteSpace: 'normal',
-		role: 'text',
-		textAlign: 'left',
 		cursor: 'cursor-auto',
-		ariaLive: 'polite',
 	});
 
 	const { classValues, styleValues, formattedValue, ariaLabel, role } = useBoText(props);

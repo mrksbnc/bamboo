@@ -3477,7 +3477,7 @@ interface BoIconProps {
 	/** The accessible title of the icon. */
 	title?: string;
 	/** The accessibility role of the icon. */
-	role?: string;
+	role?: HTMLAttributes['role'];
 	/**
 	 * Whether the icon is decorative which means that the icon is not
 	 * a part of the UI and is only used to convey information.
