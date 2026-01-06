@@ -1,3 +1,11 @@
+## [1.0.5](https://github.com/mrksbnc/bamboo/compare/v1.0.4...v1.0.5) (2026-01-06)
+
+### 🔧 Chores
+
+* **deps:** bump actions/checkout from 4 to 6 ([#433](https://github.com/mrksbnc/bamboo/issues/433)) ([d93545a](https://github.com/mrksbnc/bamboo/commit/d93545a9af5aae7c1d94167d21f8964c20ab0b0f))
+* **deps:** bump actions/setup-node from 4 to 6 ([#432](https://github.com/mrksbnc/bamboo/issues/432)) ([d76bd4f](https://github.com/mrksbnc/bamboo/commit/d76bd4ff1e4167dc5345f4c5492d54853b0229c9))
+* **deps:** bump vue from 3.5.25 to 3.5.26 ([#431](https://github.com/mrksbnc/bamboo/issues/431)) ([b21acc1](https://github.com/mrksbnc/bamboo/commit/b21acc104658e54fc2031ae1cd7a0a411d89fed6))
+
 ## [1.0.4](https://github.com/mrksbnc/bamboo/compare/v1.0.3...v1.0.4) (2025-12-16)
 
 ### 🔧 Chores
