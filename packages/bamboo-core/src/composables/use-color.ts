@@ -1,16 +1,12 @@
-let instance: ColorService;
 
-export class ColorService {
-	static get instance(): ColorService {
-		if (!instance) {
-			instance = new ColorService();
-		}
-		return instance;
-	}
+export interface UseColor {
+    getValidOrFallbackColorFromStr(prop: string): string;
+}
 
-	private readonly TEXT_REPLACE_PLACEHOLDER = '__BLANK__';
+export const useColor = (): UseColor => {
+ 	const TEXT_REPLACE_PLACEHOLDER = '__BLANK__';
 
-	private readonly UNKNOWN_COLOR_WARNING = [
+	const UNKNOWN_COLOR_WARNING = [
 		`The custom color "__BLANK__" is not a valid color definition.`,
 		'Valid color definitions are:',
 		'\t- a variable name (e.g. --my-color)',
@@ -20,7 +16,7 @@ export class ColorService {
 		'The custom color will be ignored and currentColor will be used instead.',
 	].join('\n');
 
-	getValidOrFallbackColorFromStr(prop: string): string {
+	function getValidOrFallbackColorFromStr(prop: string): string {
 		if (
 			prop.startsWith('var') ||
 			prop.startsWith('#') ||
@@ -36,8 +32,12 @@ export class ColorService {
 			/** Hex color without the leading # */
 			return `#${prop}`;
 		} else {
-			console.warn(this.UNKNOWN_COLOR_WARNING.replace(this.TEXT_REPLACE_PLACEHOLDER, prop));
+			console.warn(UNKNOWN_COLOR_WARNING.replace(TEXT_REPLACE_PLACEHOLDER, prop));
 			return 'currentColor';
 		}
 	}
+ 
+    return {
+        getValidOrFallbackColorFromStr
+    }
 }

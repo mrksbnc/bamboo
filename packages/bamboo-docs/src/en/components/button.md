@@ -262,7 +262,7 @@ interface BoButtonProps {
 	/** One or multiple css classes to be used for overriding the default styles on the element. */
 	customCssClass?: string;
 	/** The role of the element. */
-	role?: string;
+	role?: HTMLAttributes['role'];
 	/** Defines a string value that labels the current element. */
 	ariaLabel?: string;
 	/** Reference to an element that labels the current element. */
