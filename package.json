@@ -7,7 +7,8 @@
 		"dev": "turbo run dev",
 		"format": "prettier --write \"**/*.{ts,tsx,md,json,html,css,scss,yml,yaml,js,jsx,cjs,mjs,cjs,svelte,vue,html}\"",
 		"lint": "turbo run lint",
-		"prepare": "husky"
+		"prepare": "husky",
+		"ib": "pnpm install && pnpm build"
 	},
 	"devDependencies": {
 		"@cspell/dict-vue": "^3.0.5",
@@ -23,17 +24,19 @@
 		"jiti": "^2.6.1",
 		"jsdom": "^27.3.0",
 		"npm-run-all2": "^8.0.4",
-		"oxlint": "~1.36.0",
+		"oxlint": "~1.38.0",
 		"oxlint-tsgolint": "^0.10.1",
 		"prettier": "^3.7.4",
 		"prettier-plugin-organize-imports": "^4.3.0",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"tailwindcss": "^4.1.17",
 		"turbo": "^2.7.2",
-		"typescript": "5.9.2",
+		"typescript": "^5.9.3",
 		"vite": "npm:rolldown-vite@latest",
 		"vite-plugin-dts": "^4.5.4",
-		"vitest": "^4.0.16"
+		"vitest": "^4.0.16",
+		"@vitest/browser-playwright": "^4.0.15",
+		"playwright": "^1.57.0"
 	},
 	"packageManager": "pnpm@10.27.0"
 }
