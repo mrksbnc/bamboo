@@ -2,6 +2,12 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
+	plugins: [
+		dts({
+			insertTypesEntry: true,
+			exclude: ['**/*.test.ts', '**/*.spec.ts'],
+		}),
+	],
 	build: {
 		lib: {
 			entry: 'src/index.ts',
@@ -18,10 +24,4 @@ export default defineConfig({
 		sourcemap: true,
 		minify: false,
 	},
-	plugins: [
-		dts({
-			insertTypesEntry: true,
-			exclude: ['**/*.test.ts', '**/*.spec.ts'],
-		}),
-	],
 });

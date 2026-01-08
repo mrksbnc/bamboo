@@ -1,22 +1,20 @@
 {
+	"editor.formatOnSave": true,
 	"explorer.fileNesting.enabled": true,
 	"typescript.experimental.useTsgo": true,
-	"files.associations": {
-		"*.css": "tailwindcss"
-	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"tailwindCSS.classAttributes": ["class", "className", "tw"],
+	"tailwindCSS.experimental.classRegex": ["/\\*tw\\*/\\s*['\"`]([^'\"`]*)['\"`]"],
 	"editor.quickSuggestions": {
-		"strings": "on"
+		"other": "on",
+		"strings": "on",
+		"comments": "off"
 	},
-	"tailwindCSS.classAttributes": [
-		"class",
-		"className",
-		"tw"
-	],
-	"tailwindCSS.experimental.classRegex": [
-		"/\\*tw\\*/\\s*['\"`]([^'\"`]*)['\"`]"
-	],
 	"tailwindCSS.includeLanguages": {
 		"typescript": "javascript",
 		"typescriptreact": "javascript"
+	},
+	"files.associations": {
+		"*.css": "tailwindcss"
 	}
 }
