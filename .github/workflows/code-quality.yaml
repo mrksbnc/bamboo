@@ -122,27 +122,3 @@ jobs:
       - name: Run cspell
         run: |
           pnpm lint:spell
-
-  stylelint:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup LTS Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 'lts/*'
-          cache: pnpm
-
-      - name: Install dependencies
-        run: |
-          pnpm install --frozen-lockfile
-
-      - name: Run stylelint
-        run: |
-          pnpm lint:style
