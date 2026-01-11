@@ -1,2 +1,2 @@
+export { type BoButtonSize, type BoButtonVariant, type BoButtonProps } from '@bamboo/core';
 export { default as BoButton } from './bo-button.vue';
-export { type BoButtonVariant, type BoButtonProps, type BoButtonSize } from '@bamboo/core';

@@ -1,10 +1,10 @@
 import { HTMLAttributes } from 'vue';
 
-export type BoLoaderType = 'spinner' | 'ring';
-
 export type BoLoaderTextPosition = 'top' | 'bottom' | 'before' | 'after';
 
-export type BoLoaderSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type BoLoaderType = 'spinner' | 'ring';
+
+export type BoLoaderSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
 export type BoLoaderVariant =
 	| 'primary'
@@ -31,6 +31,8 @@ export interface BoLoadingSpinnerProps {
 	 * @default 'primary'
 	 */
 	variant?: BoLoaderVariant;
+	/** Whether the to show the default loader text */
+	showDefaultLoaderText?: boolean;
 	/** Optional loader text to display */
 	loaderText?: string;
 	/**

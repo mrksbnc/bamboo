@@ -3,13 +3,18 @@ import { ComponentStyleComposable } from './types';
 import { BoLoadingSpinnerProps } from '../components/bo-loader';
 import { useTailwind } from './use-tailwind';
 import { useColor } from './use-color';
-import { BoFontSize } from '../components/bo-text';
 
-export interface UseBoLoadingSpinner extends ComponentStyleComposable {}
+export interface UseBoLoadingSpinner extends ComponentStyleComposable {
+	containerClassValues: ShallowRef<string>;
+}
 
 export const useBoLoadingSpinner = (props: BoLoadingSpinnerProps): UseBoLoadingSpinner => {
 	const { merge } = useTailwind();
 	const { getValidOrFallbackColorFromStr } = useColor();
+
+	const containerClassValues = computed<string>(() => {
+		return merge();
+	});
 
 	const classValues = computed<string>(() => {
 		return merge();
@@ -26,6 +31,7 @@ export const useBoLoadingSpinner = (props: BoLoadingSpinnerProps): UseBoLoadingS
 	});
 
 	return {
+		containerClassValues,
 		classValues,
 		styleValues,
 	};

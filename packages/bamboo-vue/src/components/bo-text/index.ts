@@ -1,12 +1,12 @@
 export {
-	type BoTextAlign,
-	type BoTextTransform,
-	type BoTextVariant,
-	type BoFontSize,
 	type BoFontWeight,
-	type BoTextProps,
-	type BoTextMaxLines,
+	type BoFontSize,
 	type BoFontFamily,
 	type BoTextWhiteSpace,
+	type BoTextVariant,
+	type BoTextAlign,
+	type BoTextTransform,
+	type BoTextLineClamp,
+	type BoTextProps,
 } from '@bamboo/core';
 export { default as BoText } from './bo-text.vue';

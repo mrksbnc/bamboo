@@ -1,0 +1,18 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": ["jsdoc", "vitest", "vue"],
+	"categories": {
+		"correctness": "error",
+		"suspicious": "warn",
+		"pedantic": "off"
+	},
+	"rules": {
+		"typescript/no-explicit-any": "warn",
+		"unicorn/filename-case": "off"
+	},
+	"env": {
+		"node": true,
+		"browser": true
+	},
+	"ignorePatterns": ["dist/**/*", "coverage/**/*", "node_modules/**/*"]
+}

@@ -403,8 +403,6 @@ interface BoTextProps {
 	variant?: BoTextVariant;
 	/** Any custom color for the element. */
 	customColor?: string;
-	/** One or multiple css classes to be used for overriding the default styles on the element. */
-	customCssClass?: string;
 	/** The clickable of the element. */
 	clickable?: boolean;
 	/** The text align of the element. */

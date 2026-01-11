@@ -1,4 +1,6 @@
-export type IconRegistry = Readonly<Record<Icon, string>>;
+export type IconRegistry = Readonly<{
+	[K in Icon]: string;
+}>;
 
 // #region Icons
 export type Icon =

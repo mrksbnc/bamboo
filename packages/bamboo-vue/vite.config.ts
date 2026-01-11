@@ -8,26 +8,34 @@ import tailwindcss from '@tailwindcss/vite';
 // https://vite.dev/config/
 export default defineConfig({
 	appType: 'custom',
-	plugins: [vue(), tailwindcss(), vueDevTools(), dts({ tsconfigPath: './tsconfig.app.json' })],
+	plugins: [
+		vue(),
+		tailwindcss(),
+		vueDevTools(),
+		dts({
+			exclude: ['**/*.test.ts'],
+			tsconfigPath: './tsconfig.app.json',
+		}),
+	],
 	build: {
 		minify: true,
 		cssMinify: true,
 		emptyOutDir: true,
+		reportCompressedSize: true,
 		lib: {
 			name: 'bamboo',
 			cssFileName: 'lib',
-			entry: [
-				fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
-				fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
-			],
+			fileName: (format) => `index.${format}.js`,
+			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 		},
 		rolldownOptions: {
-			treeshake: true,
 			external: ['vue'],
-			cwd: process.cwd(),
-			input: {
-				components: fileURLToPath(new URL('./src/components/index.ts', import.meta.url)),
-				core: fileURLToPath(new URL('./src/core/index.ts', import.meta.url)),
+			platform: 'neutral',
+			input: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+			optimization: {
+				inlineConst: {
+					mode: 'smart',
+				},
 			},
 		},
 	},
