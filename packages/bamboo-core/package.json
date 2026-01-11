@@ -19,7 +19,6 @@
 	],
 	"scripts": {
 		"build": "vite build",
-		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\"",
 		"type-check": "tsc --noEmit"
 	},
 	"devDependencies": {

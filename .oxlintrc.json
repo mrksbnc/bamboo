@@ -14,5 +14,5 @@
 		"node": true,
 		"browser": true
 	},
-	"ignorePatterns": ["dist/**/*", "coverage/**/*", "node_modules/**/*"]
+	"ignorePatterns": ["dist/**/*", "coverage/**/*", "node_modules/**/*", "**/.vitepress/cache/**/*"]
 }

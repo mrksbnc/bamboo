@@ -26,7 +26,6 @@
 		"build": "vite build --mode production",
 		"format": "prettier --write .",
 		"prepublishOnly": "pnpm build",
-		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{ts,vue,md}\"",
 		"test": "vitest --coverage",
 		"type-check": "vue-tsc --noEmit"
 	},
