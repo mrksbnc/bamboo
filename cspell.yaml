@@ -1,23 +1,21 @@
 $schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
 version: '0.2'
 useGitignore: true
-language: en-gb,en-us,lorem,lorem-ipsum
+language: en-gb,en-us,lorem-ipsum
 
 ignorePaths:
-  - '**/node_modules/**'
+  - '.husky/**'
+  - '.github/**'
+  - '.vscode/**'
   - '**/dist/**'
   - '**/build/**'
+  - 'CHANGELOG.md'
   - '**/coverage/**'
   - '**/.vitepress/**'
   - '**/pnpm-lock.yaml'
-  - '**/pnpm-workspace.yaml'
+  - '**/node_modules/**'
   - '**/config/cspell/**'
-  - 'CHANGELOG.md'
-  - 'CONTRIBUTING.md'
-  - 'CODE_OF_CONDUCT.md'
-  - '.github/**'
-  - '.husky/**'
-  - '.vscode/**'
+  - '**/pnpm-workspace.yaml'
 
 dictionaryDefinitions:
   - name: common-terms
@@ -32,17 +30,15 @@ dictionaryDefinitions:
 
 dictionaries:
   - common-terms
-  - css
-  - en_US
-  - html
-  - javascript-terms
   - project-terms
-  - typescript
-  - vue
+  - javascript-terms
 
 languageSettings:
   - languageId: markdown
     caseSensitive: true
+    dictionaries:
+      - vue
+      - typescript
 
 import:
   - '@cspell/dict-vue/cspell-ext.json'
