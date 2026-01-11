@@ -1,35 +1,34 @@
-import { computed, CSSProperties, ShallowRef, StyleValue } from 'vue';
+import { computed, ShallowRef, StyleValue } from 'vue';
 import {
-	BoFontSizeStyle,
+	BoFontFamily,
+	BoFontSize,
+	BoFontWeight,
+	BoTextAlign,
 	BoTextProps,
-	BoTextVariantStyle,
-	BoTextWeightStyle,
+	BoTextTransform,
+	BoTextVariant,
+	BoTextWhiteSpace,
 } from '../components/bo-text';
 import { useTailwind } from './use-tailwind';
 import { ComponentStyleComposable } from './types';
 import { useColor } from './use-color';
 
-export interface UseBoText extends ComponentStyleComposable {
-	formattedValue: ShallowRef<string>;
-	ariaLabel: ShallowRef<string>;
-	role: ShallowRef<string>;
-}
+type BoFontSizeStyleMap = Record<BoFontSize, string>;
+type BoTextAlignStyleMap = Record<BoTextAlign, string>;
+type BoFontFamilyStyleMap = Record<BoFontFamily, string>;
+type BoTextWeightStyleMap = Record<BoFontWeight, string>;
+type BoTextVariantStyleMap = Record<BoTextVariant, string>;
+type BoTextTransformStyleMap = Record<BoTextTransform, string>;
+type BoTextWhiteSpaceStyleMap = Record<BoTextWhiteSpace, string>;
 
-export const BO_TEXT_VARIANT_STYLE = {
-	default: /*tw*/ 'text-neutral-800 dark:text-neutral-200',
-	primary: /*tw*/ 'text-blue-600 dark:text-blue-400',
-	secondary: /*tw*/ 'text-neutral-600 dark:text-neutral-400',
-	disabled: /*tw*/ 'text-neutral-400 dark:text-neutral-600',
-	success: /*tw*/ 'text-green-600 dark:text-green-400',
-	warning: /*tw*/ 'text-yellow-600 dark:text-yellow-400',
-	danger: /*tw*/ 'text-red-600 dark:text-red-400',
-	white: /*tw*/ 'text-white',
-	black: /*tw*/ 'text-black',
-	inherit: /*tw*/ 'text-inherit',
-	currentColor: /*tw*/ 'text-current',
-} as const satisfies BoTextVariantStyle;
+const FONT_FAMILY_STYLE_MAP = {
+	inherit: /*tw*/ 'font-inherit',
+	sans: /*tw*/ 'font-sans',
+	mono: /*tw*/ 'font-mono',
+	serif: /*tw*/ 'font-serif',
+} as const satisfies BoFontFamilyStyleMap;
 
-export const BO_FONT_SIZE_STYLE = {
+const FONT_SIZE_STYLE_MAP = {
 	xs: /*tw*/ 'text-xs',
 	sm: /*tw*/ 'text-sm',
 	default: /*tw*/ 'text-base',
@@ -43,9 +42,16 @@ export const BO_FONT_SIZE_STYLE = {
 	'7xl': /*tw*/ 'text-7xl',
 	'8xl': /*tw*/ 'text-8xl',
 	'9xl': /*tw*/ 'text-9xl',
-} as const satisfies BoFontSizeStyle;
+} as const satisfies BoFontSizeStyleMap;
 
-export const BO_FONT_WEIGHT_STYLE = {
+const TEXT_ALIGN_STYLE_MAP = {
+	left: /*tw*/ 'text-left',
+	center: /*tw*/ 'text-center',
+	right: /*tw*/ 'text-right',
+	justify: /*tw*/ 'text-justify',
+} as const satisfies BoTextAlignStyleMap;
+
+const FONT_WEIGHT_STYLE_MAP = {
 	thin: /*tw*/ 'font-thin',
 	'extra-light': /*tw*/ 'font-extralight',
 	light: /*tw*/ 'font-light',
@@ -55,7 +61,42 @@ export const BO_FONT_WEIGHT_STYLE = {
 	bold: /*tw*/ 'font-bold',
 	'extra-bold': /*tw*/ 'font-extrabold',
 	black: /*tw*/ 'font-black',
-} as const satisfies BoTextWeightStyle;
+} as const satisfies BoTextWeightStyleMap;
+
+const TEXT_VARIANT_STYLE_MAP = {
+	default: /*tw*/ 'text-neutral-900 dark:text-neutral-300',
+	inherit: /*tw*/ 'text-inherit',
+	currentColor: /*tw*/ 'text-current',
+	primary: /*tw*/ 'text-blue-600 dark:text-blue-500',
+	secondary: /*tw*/ 'text-neutral-600 dark:text-neutral-500',
+	disabled: /*tw*/ 'text-neutral-400 dark:text-neutral-500',
+	success: /*tw*/ 'text-green-600 dark:text-green-500',
+	warning: /*tw*/ 'text-yellow-600 dark:text-yellow-500',
+	danger: /*tw*/ 'text-red-600 dark:text-red-500',
+	white: /*tw*/ 'text-white',
+	black: /*tw*/ 'text-black',
+} as const satisfies BoTextVariantStyleMap;
+
+const TEXT_TRANSFORM_STYLE_MAP = {
+	none: /*tw*/ 'text-none',
+	capitalize: /*tw*/ 'text-capitalize',
+	uppercase: /*tw*/ 'text-uppercase',
+	lowercase: /*tw*/ 'text-lowercase',
+} as const satisfies BoTextTransformStyleMap;
+
+const TEXT_WHITESPACE_STYLE_MAP = {
+	normal: /*tw*/ 'whitespace-normal',
+	nowrap: /*tw*/ 'whitespace-nowrap',
+	pre: /*tw*/ 'whitespace-pre',
+	'pre-line': /*tw*/ 'whitespace-pre-line',
+	'pre-wrap': /*tw*/ 'whitespace-pre-wrap',
+	'break-spaces': /*tw*/ 'whitespace-break-spaces',
+} as const satisfies BoTextWhiteSpaceStyleMap;
+
+export interface UseBoText extends ComponentStyleComposable {
+	role: ShallowRef<string>;
+	ariaLabel: ShallowRef<string>;
+}
 
 export const useBoText = (props: BoTextProps): UseBoText => {
 	const { merge } = useTailwind();
@@ -73,7 +114,45 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 		return /*tw*/ 'cursor-default';
 	});
 
-	const textColor = computed<CSSProperties>(() => {
+	const ariaLabel = computed<string>(() => {
+		return props.ariaLabel || props.value;
+	});
+
+	const role = computed<string>(() => {
+		return props.role ?? 'text';
+	});
+
+	const lineClamp = computed<string>(() => {
+		if (typeof props.lineClamp === 'number') {
+			return /*tw*/ `line-clamp-${props.lineClamp}`;
+		}
+
+		if (typeof props.lineClamp === 'string') {
+			if (props.lineClamp.startsWith('--')) {
+				return /*tw*/ `line-clamp-var(${props.lineClamp})`;
+			}
+
+			return /*tw*/ `line-clamp-[${props.lineClamp}]`;
+		}
+
+		return /*tw*/ 'line-clamp-none';
+	});
+
+	const classValues = computed<string>(() => {
+		return merge(
+			cursor.value,
+			lineClamp.value,
+			TEXT_ALIGN_STYLE_MAP[props.textAlign || 'left'],
+			FONT_SIZE_STYLE_MAP[props.fontSize || 'default'],
+			TEXT_VARIANT_STYLE_MAP[props.variant || 'default'],
+			FONT_FAMILY_STYLE_MAP[props.fontFamily || 'inherit'],
+			FONT_WEIGHT_STYLE_MAP[props.fontWeight || 'regular'],
+			TEXT_WHITESPACE_STYLE_MAP[props.whiteSpace || 'normal'],
+			TEXT_TRANSFORM_STYLE_MAP[props.textTransform || 'none'],
+		);
+	});
+
+	const styleValues = computed<StyleValue>(() => {
 		if (props.customColor) {
 			return {
 				color: getValidOrFallbackColorFromStr(props.customColor),
@@ -83,70 +162,10 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 		return {};
 	});
 
-	const maxLines = computed<CSSProperties>(() => {
-		if (typeof props.maxLines === 'number') {
-			return {
-				overflow: 'hidden',
-				display: '-webkit-box',
-				textOverflow: 'ellipsis',
-				WebkitBoxOrient: 'vertical',
-				WebkitLineClamp: props.maxLines,
-			};
-		}
-
-		return {};
-	});
-
-	const ariaLabel = computed<string>(() => {
-		return props.ariaLabel || props.value;
-	});
-
-	const role = computed<string>(() => {
-		return props.role ?? 'text';
-	});
-
-	const formattedValue = computed<string>(() => {
-		switch (props.textTransform) {
-			case 'capitalize':
-				/**
-				 * The \b anchor ensures that the first character of the word is matched, and the \w anchor ensures
-				 * that the word boundary isn't crossed.
-				 * \g is used to replace all occurrences of the matched characters not just the first occurrence.
-				 */
-				return props.value.replace(/\b\w/g, (char) => char.toUpperCase());
-			case 'uppercase':
-				return props.value.toUpperCase();
-			case 'lowercase':
-				return props.value.toLowerCase();
-			case 'none':
-			default:
-				return props.value;
-		}
-	});
-
-	const classValues = computed<string>(() => {
-		return merge(
-			cursor.value,
-			BO_FONT_SIZE_STYLE[props.fontSize ?? 'default'],
-			BO_FONT_WEIGHT_STYLE[props.fontWeight ?? 'regular'],
-		);
-	});
-
-	const styleValues = computed<StyleValue>(() => {
-		const style: StyleValue = {
-			...textColor.value,
-			...maxLines.value,
-			margin: 0,
-		};
-
-		return style;
-	});
-
 	return {
-		classValues,
-		styleValues,
-		formattedValue,
 		ariaLabel,
 		role,
+		classValues,
+		styleValues,
 	};
 };

@@ -1,7 +1,9 @@
 Booleanish
 datauri
+describedby
 esbuild
 extralight
+labelledby
 nonconstructor
 oklch
 oxlint

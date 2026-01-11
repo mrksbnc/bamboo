@@ -62,22 +62,15 @@ export type BoTextTransform =
 	/** Converts all characters to lowercase. */
 	| 'lowercase';
 
-export type BoTextMaxLines =
-	| '-moz-initial'
-	| 'inherit'
-	| 'initial'
-	| 'revert'
-	| 'revert-layer'
-	| 'unset'
-	| 'none'
-	| (number & {})
-	| (string & {});
-
-export type BoTextVariantStyle = Record<BoTextVariant, string>;
-
-export type BoFontSizeStyle = Record<BoFontSize, string>;
-
-export type BoTextWeightStyle = Record<BoFontWeight, string>;
+/**
+ * The max lines of the element.  This will be
+ * translated to CSS line-clamp property.
+ *
+ * @see https://tailwindcss.com/docs/line-clamp
+ *
+ * @default 'none'
+ */
+export type BoTextLineClamp = number | string | 'none';
 
 export interface BoTextProps {
 	/** The id of the element. */
@@ -120,9 +113,11 @@ export interface BoTextProps {
 	 * - an oklch color (e.g. oklch(0.985 0.001 106.423))
 	 */
 	customColor?: string;
-	/** One or multiple css classes to be used for overriding the default styles on the element. */
-	customCssClass?: string;
-	/** The clickable of the element. */
+	/**
+	 * Whether the element is clickable. In case a custom
+	 * cursor is provided, that will take precedence and this
+	 * value will be ignored.
+	 */
 	clickable?: boolean;
 	/**
 	 * The text align of the element.
@@ -143,7 +138,7 @@ export interface BoTextProps {
 	 * The max lines of the element.
 	 * @default 'none'
 	 */
-	maxLines?: BoTextMaxLines;
+	lineClamp?: BoTextLineClamp;
 	/** The role of the element. */
 	role?: HTMLAttributes['role'];
 	/** Defines a string value that labels the current element. */
