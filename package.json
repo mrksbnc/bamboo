@@ -5,6 +5,7 @@
 	"scripts": {
 		"build": "turbo run build",
 		"dev": "turbo run dev",
+		"type-check": "turbo run type-check",
 		"format": "prettier --write \"**/*.{ts,md,json,html,css,scss,yml,yaml,js,cjs,mjs,vue}\"",
 		"lint": "run-p lint:*",
 		"lint:spell": "cspell --config ./cspell.yaml \"**/*.{ts,md,json,html,css,scss,yml,yaml,js,cjs,mjs,vue}\" --verbose --show-perf-summary",
