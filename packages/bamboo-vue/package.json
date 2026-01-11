@@ -11,16 +11,6 @@
 			"require": "./dist/components.cjs",
 			"import": "./dist/components.js"
 		},
-		"./components": {
-			"types": "./dist/components/index.d.ts",
-			"require": "./dist/components.cjs",
-			"import": "./dist/components.js"
-		},
-		"./core": {
-			"types": "./dist/core/index.d.ts",
-			"require": "./dist/core.cjs",
-			"import": "./dist/core.js"
-		},
 		"./lib.css": {
 			"import": "./dist/lib.css",
 			"require": "./dist/lib.css"
@@ -28,10 +18,9 @@
 	},
 	"files": [
 		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*",
+		"LICENSE",
 		"README.md",
-		"LICENSE"
+		"!dist/**/*.test.*"
 	],
 	"scripts": {
 		"build": "vite build --mode production",

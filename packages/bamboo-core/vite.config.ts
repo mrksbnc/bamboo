@@ -5,6 +5,7 @@ export default defineConfig({
 	plugins: [
 		dts({
 			insertTypesEntry: true,
+			tsconfigPath: './tsconfig.json',
 			exclude: ['**/*.test.ts', '**/*.spec.ts'],
 		}),
 	],

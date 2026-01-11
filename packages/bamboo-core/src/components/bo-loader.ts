@@ -16,12 +16,6 @@ export type BoLoaderVariant =
 	| 'black'
 	| 'current';
 
-export type BoLoaderSizeStyleMap = Record<BoLoaderSize, string>;
-
-export type BoLoaderVariantStyleMap = Record<BoLoaderVariant, string>;
-
-export type BoLoaderTextPositionStyleMap = Record<BoLoaderTextPosition, string>;
-
 export interface BoLoadingSpinnerProps {
 	/** Unique id for the loading spinner */
 	id?: string;
