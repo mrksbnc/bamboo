@@ -64,7 +64,7 @@ const FONT_WEIGHT_STYLE_MAP = {
 } as const satisfies BoTextWeightStyleMap;
 
 const TEXT_VARIANT_STYLE_MAP = {
-	default: /*tw*/ 'text-neutral-900 dark:text-neutral-300',
+	default: /*tw*/ 'text-neutral-900 dark:text-neutral-200',
 	inherit: /*tw*/ 'text-inherit',
 	currentColor: /*tw*/ 'text-current',
 	primary: /*tw*/ 'text-blue-600 dark:text-blue-500',
