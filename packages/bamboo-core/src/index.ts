@@ -7,6 +7,7 @@ export {
 	type BoButtonSizeStyleMap,
 	type BoVariantStyleMap,
 } from './components/bo-button.js';
+export { useBoButton, type UseBoButton } from './composables/use-button.js';
 
 export {
 	type BoIconSize,
@@ -61,7 +62,7 @@ export { IdentityService } from './services/identity-service.js';
 
 export { useColor, type UseColor } from './composables/use-color.js';
 export { useBoText, type UseBoText } from './composables/use-text.js';
-export { useBoButton, type UseBoButton } from './composables/use-button.js';
+
 export { useBoIcon, type UseBoIcon } from './composables/use-icon.js';
 export {
 	useBoLoadingSpinner,

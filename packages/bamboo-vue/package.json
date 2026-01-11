@@ -6,6 +6,11 @@
 	],
 	"type": "module",
 	"exports": {
+		".": {
+			"types": "./dist/components/index.d.ts",
+			"require": "./dist/components.cjs",
+			"import": "./dist/components.js"
+		},
 		"./components": {
 			"types": "./dist/components/index.d.ts",
 			"require": "./dist/components.cjs",

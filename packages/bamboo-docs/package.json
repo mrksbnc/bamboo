@@ -6,8 +6,8 @@
 		"docs:build": "vitepress build",
 		"docs:dev": "vitepress dev",
 		"docs:preview": "vitepress preview",
-		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\"",
-		"lint": "run-s lint:*"
+		"lint": "run-s lint:*",
+		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\""
 	},
 	"devDependencies": {
 		"@mrksbnc/bamboo-vue": "workspace:*",
