@@ -16,7 +16,6 @@ const BO_ICON_SIZE_STYLE: BoIconSizeStyleMap = {
 };
 
 const BO_ICON_VARIANT_STYLE: BoIconVariantStyleMap = {
-	default: /*tw*/ 'text-current',
 	current: /*tw*/ 'text-current',
 	inherit: /*tw*/ 'text-inherit',
 	primary: /*tw*/ 'text-blue-500 dark:text-blue-400',
@@ -27,6 +26,8 @@ const BO_ICON_VARIANT_STYLE: BoIconVariantStyleMap = {
 	white: /*tw*/ 'text-white',
 	black: /*tw*/ 'text-black',
 };
+
+const DEFAULT_BO_ICON_CLASS_VALUES: string = /*tw*/ 'inline-flex items-center justify-center';
 
 export interface UseBoIcon extends ComponentStyleComposable {
 	role: ShallowRef<HTMLAttributes['role']>;
@@ -42,9 +43,12 @@ export const useBoIcon = (props: BoIconProps): UseBoIcon => {
 
 	const classValues = computed<string>(() => {
 		return merge(
-			/*tw*/ 'inline-flex items-center justify-center',
-			BO_ICON_SIZE_STYLE[props.size || 'default'],
-			BO_ICON_VARIANT_STYLE[props.variant || 'default'],
+			DEFAULT_BO_ICON_CLASS_VALUES,
+			props.cursor ?? 'cursor-auto',
+			BO_ICON_VARIANT_STYLE[props.variant || 'current'],
+			typeof props.size === 'number'
+				? `size-[${props.size}px]`
+				: BO_ICON_SIZE_STYLE[props.size || 'default'],
 		);
 	});
 

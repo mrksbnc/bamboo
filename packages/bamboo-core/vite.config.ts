@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
@@ -5,24 +6,28 @@ export default defineConfig({
 	plugins: [
 		dts({
 			insertTypesEntry: true,
+			exclude: ['**/*.test.ts'],
 			tsconfigPath: './tsconfig.json',
-			exclude: ['**/*.test.ts', '**/*.spec.ts'],
 		}),
 	],
 	build: {
+		minify: true,
+		sourcemap: true,
 		lib: {
-			entry: 'src/index.ts',
-			name: 'bamboo-core',
-			fileName: 'index',
 			formats: ['es'],
+			fileName: 'index',
+			name: 'bamboo-core',
+			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 		},
-		rollupOptions: {
-			external: [],
-			output: {
-				preserveModules: false,
+		rolldownOptions: {
+			external: ['vue'],
+			platform: 'neutral',
+			input: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+			optimization: {
+				inlineConst: {
+					mode: 'smart',
+				},
 			},
 		},
-		sourcemap: true,
-		minify: false,
 	},
 });

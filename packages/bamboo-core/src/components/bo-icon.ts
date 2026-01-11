@@ -2,13 +2,9 @@ import { HTMLAttributes } from 'vue';
 import { type Icon } from './bo-icon-registry.js';
 import { BoCursor } from '../core/cursor.js';
 
-export type BoIconSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
-
-export type BoIconSizeStyleMap = Record<BoIconSize, string>;
+export type BoIconSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl' | number;
 
 export type BoIconVariant =
-	/** currentColor */
-	| 'default'
 	/** blue-500 | dark:blue-400 */
 	| 'primary'
 	/** neutral-500 | dark:neutral-400 */
@@ -41,9 +37,7 @@ export interface BoIconProps {
 	dataTestId?: string;
 	/**
 	 * The icon to display as a string from the
-	 * `Icon` string literal type.
-	 *
-	 * @required
+	 * `Icon` type.
 	 */
 	icon: Icon;
 	/**

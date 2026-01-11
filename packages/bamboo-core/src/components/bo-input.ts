@@ -57,8 +57,6 @@ export interface BoInputProps {
 	prefixIcon?: Icon;
 	/** The suffix icon to render */
 	suffixIcon?: Icon;
-	/** One or multiple css classes to be used for overriding the default styles on the element. */
-	customCssClass?: string;
 	/** The role of the element. */
 	role?: HTMLAttributes['role'];
 }
