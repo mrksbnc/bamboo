@@ -1,7 +1,7 @@
 import { computed, StyleValue } from 'vue';
 import { ComponentStyleComposable } from './types';
 import { useTailwind } from './use-tailwind';
-import { BoButtonProps, BoButtonSizeStyleMap, BoVariantStyleMap } from '../components/bo-button';
+import { BoButtonProps } from '../components/bo-button';
 import { useColor } from './use-color';
 
 export interface UseBoButton extends ComponentStyleComposable {}

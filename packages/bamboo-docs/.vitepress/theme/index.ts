@@ -3,7 +3,6 @@ import { h, onMounted, watch } from 'vue';
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import { useData } from 'vitepress';
-import '@/lib.css';
 
 export default {
 	extends: DefaultTheme,

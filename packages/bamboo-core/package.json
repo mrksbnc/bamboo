@@ -1,17 +1,17 @@
 {
 	"name": "@bamboo/core",
+	"version": "0.0.1",
 	"private": true,
 	"license": "MIT",
-	"version": "0.0.1",
 	"type": "module",
-	"main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.js"
 		}
 	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"files": [
 		"dist",
 		"!dist/**/*.test.*",
@@ -19,8 +19,8 @@
 	],
 	"scripts": {
 		"build": "vite build",
-		"type-check": "tsc --noEmit",
-		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\""
+		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\"",
+		"type-check": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"vue": "^3.5.25"
