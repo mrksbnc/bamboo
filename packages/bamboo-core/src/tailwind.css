@@ -1,0 +1,6 @@
+/**
+ * This file is used to force the tailwindcss plugin to load
+ * `bamboo-core` as a project hence allowing the plugin to
+ * detect the `tw` comments in the code.
+ */
+@import 'tailwindcss';

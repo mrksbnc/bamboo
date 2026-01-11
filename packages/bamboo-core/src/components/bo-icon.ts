@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'vue';
 import { type Icon } from './bo-icon-registry.js';
 import { BoCursor } from '../core/cursor.js';
 
-export type BoIconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number;
+export type BoIconSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
 export type BoIconSizeStyleMap = Record<BoIconSize, string>;
 

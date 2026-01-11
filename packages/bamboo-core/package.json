@@ -14,8 +14,8 @@
 	"types": "./dist/index.d.ts",
 	"files": [
 		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
+		"LICENSE",
+		"!dist/**/*.test.*"
 	],
 	"scripts": {
 		"build": "vite build",

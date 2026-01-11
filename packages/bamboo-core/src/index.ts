@@ -22,8 +22,6 @@ export {
 	type BoLoaderTextPosition,
 	type BoLoaderType,
 	type BoLoaderSize,
-	type BoLoaderVariantStyleMap,
-	type BoLoaderSizeStyleMap,
 	type BoLoaderVariant,
 	type BoLoadingSpinnerProps,
 } from './components/bo-loader.js';
@@ -46,11 +44,8 @@ export {
 	type BoFontSize,
 	type BoFontWeight,
 	type BoTextProps,
-	type BoTextVariantStyle,
-	type BoFontSizeStyle,
-	type BoTextWeightStyle,
-	type BoTextMaxLines,
 	type BoFontFamily,
+	type BoTextLineClamp,
 	type BoTextWhiteSpace,
 } from './components/bo-text.js';
 
