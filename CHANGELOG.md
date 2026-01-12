@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/mrksbnc/bamboo/compare/v1.0.6...v1.0.7) (2026-01-12)
+
+### 🔧 Chores
+
+* **deps-dev:** bump @types/node from 25.0.2 to 25.0.3 ([#430](https://github.com/mrksbnc/bamboo/issues/430)) ([771d09f](https://github.com/mrksbnc/bamboo/commit/771d09f8627fa833e11595dbe1d276de361d76c6))
+* **deps-dev:** bump oxlint-tsgolint from 0.9.1 to 0.10.0 ([#428](https://github.com/mrksbnc/bamboo/issues/428)) ([dc4a121](https://github.com/mrksbnc/bamboo/commit/dc4a121f7222984d5d5096db34639a934ead8ead))
+
 ## [1.0.6](https://github.com/mrksbnc/bamboo/compare/v1.0.5...v1.0.6) (2026-01-06)
 
 ### 🔧 Chores
