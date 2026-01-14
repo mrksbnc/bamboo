@@ -4,46 +4,65 @@
 		:data-testid="dataTestId"
 		:type="type"
 		:role="role"
-		class=""
+		:class="classValues"
 		:style="styleValues"
-		:disabled="disabled"
+		:disabled="isDisabled"
 		:tabindex="tabIndex"
+		:aria-busy="isLoading"
+		:aria-disabled="isDisabled"
 		:aria-live="ariaLive"
-		:aria-label="computedAriaLabel"
+		:aria-label="ariaLabel"
 		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="ariaDescribedBy"
 	>
 		<slot>
-			<div class="bo-button__content flex items-center justify-center gap-2">
-				<!-- <bo-loading-spinner
-					v-if="isLoading && loaderType === 'spinner'"
-					:size="loadingSpinnerSize"
-					:variant="loadingSpinnerVariant"
-					custom-container-css-class="bo-button__loader"
-				/>
+			<span class="bo-button-content inline-flex items-center justify-center gap-3">
 				<bo-icon
-					v-if="prefixIcon && !isLoading"
-					:icon="prefixIcon"
+					v-if="renderPrefixIcon"
+					:icon="iconOnlyIcon"
 					:size="iconSize"
-					variant="inherit"
-					class="bo-button__icon bo-button__icon--prefix"
+					class="bo-button-prefix-icon"
+					aria-hidden="true"
 				/>
-				<bo-text v-if="label" :value="label" font-size="sm" />
+				<span
+					v-if="!!label && !isIconOnlyButton"
+					class="bo-button-label flex items-center justify-center"
+				>
+					<bo-text :value="label" :clickable="true" weight="semibold" :font-size="buttonFontSize" />
+				</span>
 				<bo-icon
-					v-if="suffixIcon"
+					v-if="suffixIcon && suffixIcon !== 'none' && !isLoading && !isIconOnlyButton"
 					:icon="suffixIcon"
 					:size="iconSize"
-					variant="inherit"
-					class="bo-button__icon bo-button__icon--suffix"
-					/> -->
-			</div>
+					class="bo-button-suffix-icon"
+					aria-hidden="true"
+				/>
+				<bo-loading-spinner
+					v-if="isLoading && loaderType === 'spinner'"
+					:size="loaderSize"
+					:variant="loaderVariant"
+					class="bo-button-loader ml-2"
+					aria-hidden="true"
+				/>
+				<bo-loading-pulse
+					v-if="isLoading && loaderType === 'pulse'"
+					:size="loaderSize"
+					:variant="loaderVariant"
+					class="bo-button-loader ml-2"
+					aria-hidden="true"
+				/>
+			</span>
 		</slot>
 	</button>
 </template>
 
 <script lang="ts" setup>
-	import { IdentityService, useBoButton, useTailwind, type BoButtonProps } from '@bamboo/core';
-	import { computed, type HTMLAttributes } from 'vue';
+	import { IdentityService, useBoButton, type BoButtonProps } from '@bamboo/core';
+	import { computed } from 'vue';
+	import { BoIcon } from '../bo-icon';
+	import { BoLoadingPulse } from '../bo-loading-pulse';
+	import { BoLoadingSpinner } from '../bo-loading-spinner';
+	import { BoText } from '../bo-text';
 
 	const props = withDefaults(defineProps<BoButtonProps>(), {
 		id: () => IdentityService.instance.getComponentId('bo-button'),
@@ -51,87 +70,29 @@
 		size: 'default',
 		type: 'button',
 		variant: 'primary',
+		shape: 'default',
 		loaderType: 'spinner',
+		prefixIcon: 'none',
+		suffixIcon: 'none',
 		ariaLive: 'polite',
 	});
 
-	const { classValues, styleValues } = useBoButton(props);
-	const { merge } = useTailwind();
+	const {
+		isDisabled,
+		isIconOnlyButton,
+		iconOnlyIcon,
+		buttonFontSize,
+		iconSize,
+		loaderSize,
+		loaderVariant,
+		classValues,
+		styleValues,
+	} = useBoButton(props);
 
-	const computedAriaLabel = computed<string | undefined>(() => {
-		if (props.ariaLabelledBy) {
-			return undefined;
-		}
-		if (props.ariaLabel) {
-			return props.ariaLabel;
-		}
-		if (props.label) {
-			return props.label;
-		}
-		return undefined;
+	const renderPrefixIcon = computed<boolean>(() => {
+		return (
+			(!!props.prefixIcon && props.prefixIcon !== 'none') ||
+			(isIconOnlyButton.value && !props.isLoading)
+		);
 	});
-
-	const tabIndex = computed<HTMLAttributes['tabindex']>(() => {
-		if (props.disabled || props.isLoading) {
-			return -1;
-		}
-		if (props.tabIndex !== undefined) {
-			return props.tabIndex;
-		}
-		return undefined;
-	});
-
-	// const cursorClass = computed<BoCursor>(() => {
-	// 	if (props.disabled) {
-	// 		return 'cursor-not-allowed';
-	// 	}
-	// 	if (props.isLoading) {
-	// 		return 'cursor-wait';
-	// 	}
-	// 	return 'cursor-pointer';
-	// });
-
-	// const loadingSpinnerSize = computed<BoLoaderSize>(() => {
-	// 	if (props.size === 'xs') {
-	// 		return 'xs';
-	// 	}
-	// 	if (props.size === 'lg' || props.size === 'xl') {
-	// 		return 'md';
-	// 	}
-	// 	return 'sm';
-	// });
-
-	// const iconSize = computed<BoIconSize>(() => {
-	// 	switch (props.size) {
-	// 		case 'xs':
-	// 			return 'xs';
-	// 		case 'lg':
-	// 		case 'xl':
-	// 			return 'md';
-	// 		default:
-	// 			return 'sm';
-	// 	}
-	// });
-
-	// const loadingSpinnerVariant = computed<BoLoaderVariant>(() => {
-	// 	switch (props.variant) {
-	// 		case 'secondary':
-	// 			return 'secondary';
-	// 		default:
-	// 			return 'white';
-	// 	}
-	// });
-
-	// const buttonClasses = computed<string>(() => {
-	// 	return merge(
-	// 		'bo-button',
-	// 		'inline-flex items-center justify-center rounded-md font-medium transition-colors',
-	// 		'focus:outline-none focus:ring-2 focus:ring-offset-2',
-	// 		'disabled:opacity-50 disabled:pointer-events-none',
-	// 		props.fullWidth ? 'w-full' : '',
-	// 		cursorClass.value,
-	// 		classValues.value,
-	// 		props.customCssClass ?? '',
-	// 	);
-	// });
 </script>

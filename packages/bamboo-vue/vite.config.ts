@@ -1,7 +1,6 @@
 import { fileURLToPath, URL } from 'node:url';
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
-import vueDevTools from 'vite-plugin-vue-devtools';
 import dts from 'vite-plugin-dts';
 import tailwindcss from '@tailwindcss/vite';
 
@@ -11,7 +10,6 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		tailwindcss(),
-		vueDevTools(),
 		dts({
 			exclude: ['**/*.test.ts'],
 			tsconfigPath: './tsconfig.app.json',
@@ -25,7 +23,6 @@ export default defineConfig({
 		lib: {
 			name: 'bamboo',
 			cssFileName: 'lib',
-			fileName: (format) => `index.${format}.js`,
 			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 		},
 		rolldownOptions: {

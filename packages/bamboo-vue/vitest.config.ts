@@ -10,11 +10,8 @@ export default mergeConfig(
 				provider: 'v8',
 				reporter: ['text', 'json-summary', 'json'],
 			},
-			alias: {
-				'@/': new URL('./src/', import.meta.url).pathname,
-			},
 			environment: 'jsdom',
-			exclude: [...configDefaults.exclude, 'e2e/**'],
+			exclude: [...configDefaults.exclude],
 			root: fileURLToPath(new URL('./', import.meta.url)),
 		},
 	}),

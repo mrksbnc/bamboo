@@ -93,6 +93,8 @@ const TEXT_WHITESPACE_STYLE_MAP = {
 	'break-spaces': /*tw*/ 'whitespace-break-spaces',
 } as const satisfies BoTextWhiteSpaceStyleMap;
 
+const TEXT_CLASS_VALUES: string = /*tw*/ 'box-border';
+
 export interface UseBoText extends ComponentStyleComposable {
 	role: ShallowRef<string>;
 	ariaLabel: ShallowRef<string>;
@@ -129,7 +131,7 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 
 		if (typeof props.lineClamp === 'string') {
 			if (props.lineClamp.startsWith('--')) {
-				return /*tw*/ `line-clamp-var(${props.lineClamp})`;
+				return /*tw*/ `line-clamp-(${props.lineClamp})`;
 			}
 
 			return /*tw*/ `line-clamp-[${props.lineClamp}]`;
@@ -142,6 +144,7 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 		return merge(
 			cursor.value,
 			lineClamp.value,
+			TEXT_CLASS_VALUES,
 			TEXT_ALIGN_STYLE_MAP[props.textAlign || 'left'],
 			FONT_SIZE_STYLE_MAP[props.fontSize || 'default'],
 			TEXT_VARIANT_STYLE_MAP[props.variant || 'default'],

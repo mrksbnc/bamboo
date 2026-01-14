@@ -11,7 +11,9 @@
 		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="ariaDescribedBy"
 	>
-		{{ value }}
+		<slot>
+			{{ value }}
+		</slot>
 	</p>
 </template>
 

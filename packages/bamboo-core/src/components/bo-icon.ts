@@ -52,8 +52,6 @@ export interface BoIconProps {
 	variant?: BoIconVariant;
 	/** The color of the icon */
 	customColor?: string;
-	/** Custom css class passed to the root element */
-	customCssClass?: string;
 	/**
 	 * Cursor type of the element. This must be a valid tailwind
 	 * cursor value.
@@ -62,7 +60,7 @@ export interface BoIconProps {
 	 */
 	cursor?: BoCursor;
 	/** The accessible title of the icon. */
-	title?: string;
+	title?: HTMLAttributes['title'];
 	/**
 	 * The accessibility role of the icon.
 	 * @default 'img'

@@ -1,22 +1,16 @@
 <template>
 	<div :id="id" :data-testid="dataTestId" :role="role" :class="containerClassValues">
 		<div :class="classValues" :style="styleValues"></div>
-		<div v-if="showDefaultLoaderText || $slots.default" class="bo-loading-spinner__text">
+		<div v-if="loaderText || $slots.default" class="bo-loading-spinner-text">
 			<slot>
-				<bo-text :value="loaderText" :font-size="fontSize" />
+				<bo-text v-if="loaderText" :value="loaderText" :font-size="spinnerLabelFontSize" />
 			</slot>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	import {
-		IdentityService,
-		useBoLoadingSpinner,
-		type BoFontSize,
-		type BoLoadingSpinnerProps,
-	} from '@bamboo/core';
-	import { computed } from 'vue';
+	import { IdentityService, useBoLoadingSpinner, type BoLoadingSpinnerProps } from '@bamboo/core';
 	import { BoText } from '../bo-text';
 
 	const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
@@ -28,27 +22,6 @@
 		textPosition: 'after',
 	});
 
-	const { containerClassValues, classValues, styleValues } = useBoLoadingSpinner(props);
-
-	const loaderText = computed<string>(() => {
-		if (props.loaderText) {
-			return props.loaderText;
-		}
-
-		return 'Loading...';
-	});
-
-	const fontSize = computed<BoFontSize>(() => {
-		switch (props.size) {
-			case 'xs':
-				return 'xs';
-			case 'lg':
-			case 'xl':
-				return 'default';
-			case 'sm':
-			case 'default':
-			default:
-				return 'sm';
-		}
-	});
+	const { containerClassValues, classValues, styleValues, spinnerLabelFontSize } =
+		useBoLoadingSpinner(props);
 </script>
