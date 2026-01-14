@@ -15,8 +15,8 @@ export default defineConfig({
 		sourcemap: true,
 		lib: {
 			formats: ['es'],
-			fileName: 'index',
 			name: 'bamboo-core',
+			fileName: (format) => `index.${format}.js`,
 			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 		},
 		rolldownOptions: {

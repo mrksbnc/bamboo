@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { IdentityService, useBoBadge, type BoBadgeProps } from '@bamboo/core';
+	import { IdentityService, useBoBadge, type BoBadgeProps } from '@mrksbnc/bamboo-core';
 	import { computed } from 'vue';
 	import { BoIcon } from '../bo-icon';
 	import { BoText } from '../bo-text';

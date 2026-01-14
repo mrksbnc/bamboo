@@ -4,5 +4,5 @@ export {
 	type BoLoaderSize,
 	type BoLoaderVariant,
 	type BoLoadingSpinnerProps,
-} from '@bamboo/core';
+} from '@mrksbnc/bamboo-core';
 export { default as BoLoadingSpinner } from './bo-loading-spinner.vue';

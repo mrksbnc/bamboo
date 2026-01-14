@@ -13,7 +13,12 @@
 </template>
 
 <script lang="ts" setup>
-	import { ICON_REGISTRY, IdentityService, useBoIcon, type BoIconProps } from '@bamboo/core';
+	import {
+		ICON_REGISTRY,
+		IdentityService,
+		useBoIcon,
+		type BoIconProps,
+	} from '@mrksbnc/bamboo-core';
 	import { computed } from 'vue';
 
 	const props = withDefaults(defineProps<BoIconProps>(), {

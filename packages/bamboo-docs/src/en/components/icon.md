@@ -3,8 +3,7 @@ title: bo-icon
 ---
 
 <script setup lang="ts">
-import { BoIcon, Icon, BoIconVariant } from "@/components/bo-icon";
-import { BoSize } from "@/core/constants/size";
+import { BoIcon, Icon } from "@mrksbnc/bamboo-vue";
 
 const iconList = Object.values(Icon);
 

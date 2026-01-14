@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { IdentityService, useBoPulseLoader, type BoPulseLoaderProps } from '@bamboo/core';
+	import { IdentityService, useBoPulseLoader, type BoPulseLoaderProps } from '@mrksbnc/bamboo-core';
 	import { BoText } from '../bo-text';
 
 	const props = withDefaults(defineProps<BoPulseLoaderProps>(), {

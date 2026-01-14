@@ -1,5 +1,5 @@
 {
-	"name": "@bamboo/core",
+	"name": "@mrksbnc/bamboo-core",
 	"version": "0.0.1",
 	"private": true,
 	"license": "MIT",
@@ -7,7 +7,7 @@
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js"
+			"import": "./dist/index.es.js"
 		}
 	},
 	"main": "./dist/index.js",

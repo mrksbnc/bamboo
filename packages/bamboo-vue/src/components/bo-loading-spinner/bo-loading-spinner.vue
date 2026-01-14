@@ -10,7 +10,11 @@
 </template>
 
 <script lang="ts" setup>
-	import { IdentityService, useBoLoadingSpinner, type BoLoadingSpinnerProps } from '@bamboo/core';
+	import {
+		IdentityService,
+		useBoLoadingSpinner,
+		type BoLoadingSpinnerProps,
+	} from '@mrksbnc/bamboo-core';
 	import { BoText } from '../bo-text';
 
 	const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
