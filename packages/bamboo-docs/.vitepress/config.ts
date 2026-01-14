@@ -31,11 +31,15 @@ export default defineConfig({
 				text: 'Components',
 				items: [
 					{ text: 'Overview', link: '/en/components/default' },
+					{ text: 'Avatar', link: '/en/components/avatar' },
+					{ text: 'Badge', link: '/en/components/badge' },
 					{ text: 'Button', link: '/en/components/button' },
 					{ text: 'Icon', link: '/en/components/icon' },
+					{ text: 'Input', link: '/en/components/input' },
 					{ text: 'Loading Ring', link: '/en/components/loading-ring' },
 					{ text: 'Loading Spinner', link: '/en/components/loading-spinner' },
 					{ text: 'Text', link: '/en/components/text' },
+					{ text: 'Textarea', link: '/en/components/textarea' },
 				],
 			},
 			{

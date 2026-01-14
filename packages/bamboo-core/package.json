@@ -18,7 +18,7 @@
 		"!dist/**/*.test.*"
 	],
 	"scripts": {
-		"build": "vite build",
+		"build": "pnpm type-check && vite build --mode production",
 		"type-check": "tsc --noEmit"
 	},
 	"devDependencies": {

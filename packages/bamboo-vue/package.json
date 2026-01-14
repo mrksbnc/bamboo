@@ -23,7 +23,7 @@
 		"!dist/**/*.test.*"
 	],
 	"scripts": {
-		"build": "vite build --mode production",
+		"build": "pnpm type-check && vite build --mode production",
 		"format": "prettier --write .",
 		"prepublishOnly": "pnpm build",
 		"test": "vitest --coverage",
@@ -37,7 +37,6 @@
 		"@vitejs/plugin-vue": "^6.0.3",
 		"@vue/test-utils": "^2.4.6",
 		"@vue/tsconfig": "^0.8.1",
-		"vite-plugin-vue-devtools": "^8.0.5",
 		"vue-tsc": "^3.1.8"
 	}
 }

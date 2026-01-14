@@ -74,7 +74,7 @@ export type BoTextLineClamp = number | string | 'none';
 
 export interface BoTextProps {
 	/** The id of the element. */
-	id?: string;
+	id?: HTMLAttributes['id'];
 	/** The data test id of the element. */
 	dataTestId?: string;
 	/** The text of the element. */
