@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { IdentityService, useBoText, type BoTextProps } from '@bamboo/core';
+	import { IdentityService, useBoText, type BoTextProps } from '@mrksbnc/bamboo-core';
 
 	const props = withDefaults(defineProps<BoTextProps>(), {
 		id: () => IdentityService.instance.getComponentId('text'),

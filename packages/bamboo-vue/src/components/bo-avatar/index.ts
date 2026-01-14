@@ -9,5 +9,5 @@ export {
 	type BoAvatarColor,
 	type BoAvatarIndicator,
 	type BoAvatarProps,
-} from '@bamboo/core';
+} from '@mrksbnc/bamboo-core';
 export { default as BoAvatar } from './bo-avatar.vue';

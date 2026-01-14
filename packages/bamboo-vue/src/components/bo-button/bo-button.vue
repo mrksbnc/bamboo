@@ -57,7 +57,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { IdentityService, useBoButton, type BoButtonProps } from '@bamboo/core';
+	import { IdentityService, useBoButton, type BoButtonProps } from '@mrksbnc/bamboo-core';
 	import { computed } from 'vue';
 	import { BoIcon } from '../bo-icon';
 	import { BoLoadingPulse } from '../bo-loading-pulse';

@@ -1,5 +1,7 @@
 packages:
-  - packages/*
+  - packages/bamboo-core
+  - packages/bamboo-docs
+  - packages/bamboo-vue
 
 onlyBuiltDependencies:
   - '@parcel/watcher'

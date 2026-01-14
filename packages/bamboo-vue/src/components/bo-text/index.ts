@@ -8,5 +8,5 @@ export {
 	type BoTextTransform,
 	type BoTextLineClamp,
 	type BoTextProps,
-} from '@bamboo/core';
+} from '@mrksbnc/bamboo-core';
 export { default as BoText } from './bo-text.vue';

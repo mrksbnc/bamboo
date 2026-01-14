@@ -20,7 +20,7 @@
 				:clickable="clickable"
 				:class="textColorClass"
 				font-weight="medium"
-				:custom-color="color?.colorHex"
+				:custom-color="color?.textColor"
 			/>
 		</span>
 
@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { IdentityService, useBoAvatar, type BoAvatarProps } from '@bamboo/core';
+	import { IdentityService, useBoAvatar, type BoAvatarProps } from '@mrksbnc/bamboo-core';
 	import { ref } from 'vue';
 	import defaultAvatarImage from '../../assets/avatar.png';
 	import { BoText } from '../bo-text';

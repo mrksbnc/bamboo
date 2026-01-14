@@ -23,6 +23,7 @@ export default defineConfig({
 		lib: {
 			name: 'bamboo',
 			cssFileName: 'lib',
+			fileName: (format) => `index.${format}.js`,
 			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 		},
 		rolldownOptions: {

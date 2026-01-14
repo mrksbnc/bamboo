@@ -47,7 +47,6 @@ export {
 	type BoInputPill,
 	type BoInputProps,
 	BoInput,
-	BoInputPill as BoInputPillComponent,
 } from './components/bo-input/index.js';
 
 export {

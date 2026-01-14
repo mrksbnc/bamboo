@@ -3,5 +3,5 @@ export {
 	type BoButtonVariant,
 	type BoButtonShape,
 	type BoButtonProps,
-} from '@bamboo/core';
+} from '@mrksbnc/bamboo-core';
 export { default as BoButton } from './bo-button.vue';
