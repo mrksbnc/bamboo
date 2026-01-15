@@ -11,6 +11,9 @@
 		},
 		"type-check": {
 			"dependsOn": ["^type-check"]
+		},
+		"docs:dev": {
+			"dependsOn": ["^docs:dev"]
 		}
 	},
 	"ui": "tui"

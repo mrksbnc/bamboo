@@ -93,7 +93,7 @@ const TEXT_WHITESPACE_STYLE_MAP = {
 	'break-spaces': /*tw*/ 'whitespace-break-spaces',
 } as const satisfies BoTextWhiteSpaceStyleMap;
 
-const TEXT_CLASS_VALUES: string = /*tw*/ 'box-border';
+const TEXT_CLASS_VALUES: string = /*tw*/ 'box-border m-0';
 
 export interface UseBoText extends ComponentStyleComposable {
 	role: ShallowRef<string>;

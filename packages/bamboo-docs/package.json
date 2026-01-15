@@ -11,6 +11,8 @@
 	},
 	"devDependencies": {
 		"@mrksbnc/bamboo-vue": "workspace:*",
+		"@tailwindcss/vite": "^4.1.17",
+		"tailwindcss": "^4.1.17",
 		"vitepress": "2.0.0-alpha.15",
 		"vue": "^3.5.25"
 	}
