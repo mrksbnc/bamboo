@@ -117,14 +117,18 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 	});
 
 	const ariaLabel = computed<string>(() => {
-		return props.ariaLabel || props.value;
+		return props.ariaLabel || props.value || '';
 	});
 
 	const role = computed<string>(() => {
-		return props.role ?? 'text';
+		return props.role || 'text';
 	});
 
 	const lineClamp = computed<string>(() => {
+		if (!props.lineClamp || props.lineClamp === 'none') {
+			return /*tw*/ 'line-clamp-none';
+		}
+
 		if (typeof props.lineClamp === 'number') {
 			return /*tw*/ `line-clamp-${props.lineClamp}`;
 		}
@@ -141,22 +145,30 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 	});
 
 	const classValues = computed<string>(() => {
+		const textAlign = props.textAlign || 'left';
+		const fontSize = props.fontSize || 'default';
+		const variant = props.variant || 'default';
+		const fontFamily = props.fontFamily || 'inherit';
+		const fontWeight = props.fontWeight || 'regular';
+		const whiteSpace = props.whiteSpace || 'normal';
+		const textTransform = props.textTransform || 'none';
+
 		return merge(
 			cursor.value,
 			lineClamp.value,
 			TEXT_CLASS_VALUES,
-			TEXT_ALIGN_STYLE_MAP[props.textAlign || 'left'],
-			FONT_SIZE_STYLE_MAP[props.fontSize || 'default'],
-			TEXT_VARIANT_STYLE_MAP[props.variant || 'default'],
-			FONT_FAMILY_STYLE_MAP[props.fontFamily || 'inherit'],
-			FONT_WEIGHT_STYLE_MAP[props.fontWeight || 'regular'],
-			TEXT_WHITESPACE_STYLE_MAP[props.whiteSpace || 'normal'],
-			TEXT_TRANSFORM_STYLE_MAP[props.textTransform || 'none'],
+			TEXT_ALIGN_STYLE_MAP[textAlign],
+			FONT_SIZE_STYLE_MAP[fontSize],
+			TEXT_VARIANT_STYLE_MAP[variant],
+			FONT_FAMILY_STYLE_MAP[fontFamily],
+			FONT_WEIGHT_STYLE_MAP[fontWeight],
+			TEXT_WHITESPACE_STYLE_MAP[whiteSpace],
+			TEXT_TRANSFORM_STYLE_MAP[textTransform],
 		);
 	});
 
 	const styleValues = computed<StyleValue>(() => {
-		if (props.customColor) {
+		if (props.customColor && typeof props.customColor === 'string') {
 			return {
 				color: getValidOrFallbackColorFromStr(props.customColor),
 			};

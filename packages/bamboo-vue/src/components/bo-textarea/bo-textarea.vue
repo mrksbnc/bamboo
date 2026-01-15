@@ -47,7 +47,7 @@
 
 		<!-- Error message -->
 		<div v-if="error" :class="errorContainerClassValues">
-			<bo-icon icon="alert-circle" size="sm" variant="danger" />
+			<bo-icon icon="alert_circle" size="sm" variant="danger" />
 			<bo-text :value="error" :font-size="hintFontSize" variant="danger" />
 		</div>
 
@@ -64,7 +64,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { IdentityService, useBoTextarea, type BoTextareaProps } from '@bamboo/core';
+	import { IdentityService, useBoTextarea, type BoTextareaProps } from '@mrksbnc/bamboo-core';
 	import { computed, onMounted, ref } from 'vue';
 	import { BoIcon } from '../bo-icon';
 	import { BoText } from '../bo-text';

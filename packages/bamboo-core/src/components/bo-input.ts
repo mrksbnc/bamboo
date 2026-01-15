@@ -61,6 +61,10 @@ export interface BoInputProps {
 	description?: string;
 	/** Error message to display when in invalid state. */
 	error?: string;
+	/** Hint message to display below the input. */
+	hint?: string;
+	/** Whether the input is required. */
+	required?: boolean;
 	/** The name of the input. */
 	name?: HTMLInputElement['name'];
 	/** Whether the input is disabled. */

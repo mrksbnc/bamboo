@@ -4,10 +4,6 @@ description: Basic text component with support for different sizes, variants, an
 outline: deep
 ---
 
-<script setup lang="ts">
-import { BoText } from '@mrksbnc/bamboo-vue';
-</script>
-
 # BoText
 
 A basic text component with support for different sizes, variants, and colors.
@@ -17,7 +13,3 @@ A basic text component with support for different sizes, variants, and colors.
 <div class="flex flex-col gap-y-4 mt-4">
   <bo-text font-size="xl">Default text</bo-text>
 </div>
-
-```vue
-<bo-text>Default text</bo-text>
-```
