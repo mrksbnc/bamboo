@@ -63,7 +63,7 @@
 				/>
 				<bo-icon
 					v-if="showPasswordToggle"
-					:icon="passwordVisible ? 'eye-off' : 'eye'"
+					:icon="passwordVisible ? 'eye_off' : 'eye'"
 					:size="iconSize"
 					class="cursor-pointer"
 					@click.stop="togglePasswordVisibility"
@@ -74,7 +74,7 @@
 		<!-- Helper text/error container -->
 		<div v-if="error || hint" :class="helperContainerClassValues">
 			<div v-if="error" :class="errorContainerClassValues">
-				<bo-icon size="sm" icon="alert-circle" variant="danger" />
+				<bo-icon size="sm" icon="alert_circle" variant="danger" />
 				<bo-text :id="helperTextId" :font-size="hintFontSize" variant="danger" :value="error" />
 			</div>
 			<bo-text
@@ -89,7 +89,8 @@
 </template>
 
 <script lang="ts" setup>
-	import { IdentityService, useBoInput, type BoInputProps } from '@bamboo/core';
+	import { IdentityService, useBoInput, type BoInputProps } from '@mrksbnc/bamboo-core';
+	import { useDebounceFn, useResizeObserver } from '@vueuse/core';
 
 	import { computed, onMounted, ref } from 'vue';
 	import { BoIcon } from '../bo-icon';

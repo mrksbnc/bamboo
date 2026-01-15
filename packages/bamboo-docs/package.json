@@ -2,17 +2,17 @@
 	"name": "@mrksbnc/bamboo-docs",
 	"version": "0.0.1",
 	"private": true,
+	"type": "module",
 	"scripts": {
-		"build:docs": "vitepress build",
+		"build": "vitepress build",
 		"docs:dev": "vitepress dev",
 		"docs:preview": "vitepress preview",
 		"lint": "run-s lint:*",
 		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\""
 	},
 	"devDependencies": {
+		"@mrksbnc/bamboo-core": "workspace:*",
 		"@mrksbnc/bamboo-vue": "workspace:*",
-		"@tailwindcss/vite": "^4.1.17",
-		"tailwindcss": "^4.1.17",
 		"vitepress": "2.0.0-alpha.15",
 		"vue": "^3.5.25"
 	}

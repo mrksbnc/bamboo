@@ -35,6 +35,10 @@ export interface BoTextareaProps {
 	description?: string;
 	/** Error message to display when in invalid state. */
 	error?: string;
+	/** Hint message to display below the textarea. */
+	hint?: string;
+	/** Whether the textarea is required. */
+	required?: boolean;
 	/** The name of the textarea. */
 	name?: HTMLTextAreaElement['name'];
 	/** Whether the textarea is disabled. */

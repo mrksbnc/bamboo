@@ -8,8 +8,8 @@ nonconstructor
 oklch
 oxlint
 oxlintrc
-rgba
 RGBA
+rgba
 testid
 tsgolint
 typescriptlang

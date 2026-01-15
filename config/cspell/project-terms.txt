@@ -268,6 +268,7 @@ viber
 vihara
 vimeo
 vsco
+vueuse
 waze
 wcag
 webflow
@@ -290,4 +291,5 @@ xmark
 xmarks
 yandex
 yoast
+yxxx
 zhihu

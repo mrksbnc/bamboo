@@ -3,6 +3,9 @@ import { h, onMounted, watch } from 'vue';
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import { useData } from 'vitepress';
+
+import { BoText, BoButton } from '@mrksbnc/bamboo-vue';
+
 import '@mrksbnc/bamboo-vue/lib.css';
 import './style.css';
 
@@ -16,6 +19,8 @@ export default {
 
 	enhanceApp({ app }) {
 		if (typeof window !== 'undefined') {
+			app.component('BoText', BoText);
+			app.component('BoButton', BoButton);
 			app.mixin({
 				setup() {
 					const { isDark } = useData();

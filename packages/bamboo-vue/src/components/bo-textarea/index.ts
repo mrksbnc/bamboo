@@ -3,5 +3,5 @@ export {
 	type BoTextareaState,
 	type BoTextareaVariant,
 	type BoTextareaProps,
-} from '@bamboo/core';
+} from '@mrksbnc/bamboo-core';
 export { default as BoTextarea } from './bo-textarea.vue';

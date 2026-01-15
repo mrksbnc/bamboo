@@ -23,6 +23,14 @@
 	const props = withDefaults(defineProps<BoTextProps>(), {
 		id: () => IdentityService.instance.getComponentId('text'),
 		dataTestId: () => IdentityService.instance.getDataTestId('text'),
+		fontSize: 'default',
+		fontWeight: 'regular',
+		fontFamily: 'inherit',
+		whiteSpace: 'normal',
+		variant: 'default',
+		role: 'text',
+		value: '',
+		ariaLive: 'polite',
 	});
 
 	const { classValues, styleValues, ariaLabel, role } = useBoText(props);
