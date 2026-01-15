@@ -5,6 +5,7 @@
 	"scripts": {
 		"build": "turbo run build",
 		"dev": "turbo run dev",
+		"docs:dev": "turbo run docs:dev",
 		"type-check": "turbo run type-check",
 		"format": "prettier --write \"**/*.{ts,md,json,html,css,scss,yml,yaml,js,cjs,mjs,vue}\"",
 		"lint": "run-p lint:*",
@@ -41,5 +42,9 @@
 		"vite-plugin-dts": "^4.5.4",
 		"vitest": "^4.0.16"
 	},
-	"packageManager": "pnpm@10.28.0"
+	"packageManager": "pnpm@10.28.0",
+	"dependencies": {
+		"@tailwindcss/postcss": "^4.1.18",
+		"postcss": "^8.5.6"
+	}
 }
