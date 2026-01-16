@@ -1,32 +1,31 @@
 import { defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
-const base = process.env.VP_BASE ?? '/';
-
 export default defineConfig({
-	base,
-	srcDir: 'src',
-	outDir: '.vitepress/dist',
 	title: 'Bamboo',
-	description: 'Lightweight, and flexible UI library for Vue.',
+	srcDir: './src',
+	outDir: '.vitepress/dist',
+	base: process.env.VP_BASE || '/',
+	description: 'Lightweight and flexible design system for the web.',
 	head: [['script', { src: 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4' }]],
 	themeConfig: {
 		logo: '/logo.webp',
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [
 			{ text: 'Home', link: '/' },
-			{ text: 'Guide', link: '/en/guide/what-is-bamboo' },
-			{ text: 'Components', link: '/en/components/default' },
+			{ text: 'Examples', link: '/markdown-examples' },
 		],
+
 		sidebar: [
 			{
-				text: 'Components',
+				text: 'Examples',
 				items: [
-					{ text: 'Overview', link: '/en/components/default' },
-					{ text: 'Button', link: '/en/components/button' },
+					{ text: 'Markdown Examples', link: '/markdown-examples' },
+					{ text: 'Runtime API Examples', link: '/api-examples' },
 				],
 			},
 		],
+
 		socialLinks: [{ icon: 'github', link: 'https://github.com/mrksbnc/bamboo' }],
 		footer: {
 			message:

@@ -41,3 +41,9 @@ coverage
 # Vite
 **/vite.config.js.timestamp-*
 **/vite.config.ts.timestamp-*
+
+# Vitepress
+
+**/.vitepress/cache
+
+
