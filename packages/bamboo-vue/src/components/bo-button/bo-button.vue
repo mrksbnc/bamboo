@@ -16,39 +16,36 @@
 		:aria-describedby="ariaDescribedBy"
 	>
 		<slot>
-			<span class="bo-button-content inline-flex items-center justify-center gap-3">
+			<span :class="contentClasses.container">
 				<bo-icon
 					v-if="renderPrefixIcon"
 					:icon="iconOnlyIcon"
 					:size="iconSize"
-					class="bo-button-prefix-icon"
+					:class="contentClasses.prefixIcon"
 					aria-hidden="true"
 				/>
-				<span
-					v-if="!!label && !isIconOnlyButton"
-					class="bo-button-label flex items-center justify-center"
-				>
+				<span v-if="!!label && !isIconOnlyButton" :class="contentClasses.label">
 					<bo-text :value="label" :clickable="true" weight="semibold" :font-size="buttonFontSize" />
 				</span>
 				<bo-icon
 					v-if="suffixIcon && suffixIcon !== 'none' && !isLoading && !isIconOnlyButton"
 					:icon="suffixIcon"
 					:size="iconSize"
-					class="bo-button-suffix-icon"
+					:class="contentClasses.suffixIcon"
 					aria-hidden="true"
 				/>
 				<bo-loading-spinner
 					v-if="isLoading && loaderType === 'spinner'"
 					:size="loaderSize"
 					:variant="loaderVariant"
-					class="bo-button-loader ml-2"
+					:class="contentClasses.loader"
 					aria-hidden="true"
 				/>
 				<bo-loading-pulse
 					v-if="isLoading && loaderType === 'pulse'"
 					:size="loaderSize"
 					:variant="loaderVariant"
-					class="bo-button-loader ml-2"
+					:class="contentClasses.loader"
 					aria-hidden="true"
 				/>
 			</span>
@@ -87,6 +84,7 @@
 		loaderVariant,
 		classValues,
 		styleValues,
+		contentClasses,
 	} = useBoButton(props);
 
 	const renderPrefixIcon = computed<boolean>(() => {

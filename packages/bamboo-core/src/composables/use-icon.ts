@@ -1,33 +1,9 @@
 import { computed, HTMLAttributes, ShallowRef, StyleValue } from 'vue';
-import { BoIconProps, BoIconSize, BoIconVariant } from '../components/bo-icon';
+import { BoIconProps } from '../components/bo-icon';
 import { ComponentStyleComposable } from './types';
 import { useColor } from './use-color';
 import { useTailwind } from './use-tailwind';
-
-type BoIconSizeStyleMap = Record<BoIconSize, string>;
-type BoIconVariantStyleMap = Record<BoIconVariant, string>;
-
-const BO_ICON_SIZE_STYLE_VALUES = {
-	xs: /*tw*/ 'size-3',
-	sm: /*tw*/ 'size-3.5',
-	default: /*tw*/ 'size-4',
-	lg: /*tw*/ 'size-5',
-	xl: /*tw*/ 'size-6',
-} as const satisfies BoIconSizeStyleMap;
-
-const BO_ICON_VARIANT_STYLE_VALUES = {
-	current: /*tw*/ 'text-current',
-	inherit: /*tw*/ 'text-inherit',
-	primary: /*tw*/ 'text-blue-500 dark:text-blue-400',
-	secondary: /*tw*/ 'text-neutral-500 dark:text-neutral-400',
-	success: /*tw*/ 'text-green-500 dark:text-green-400',
-	warning: /*tw*/ 'text-yellow-500 dark:text-yellow-400',
-	danger: /*tw*/ 'text-red-500 dark:text-red-400',
-	white: /*tw*/ 'text-white',
-	black: /*tw*/ 'text-black',
-} as const satisfies BoIconVariantStyleMap;
-
-const BO_ICON_CLASS_VALUES: string = /*tw*/ 'box-border inline-flex items-center justify-center';
+import { ICON_MANIFEST } from '../manifests/icon.manifest';
 
 export interface UseBoIcon extends ComponentStyleComposable {
 	role: ShallowRef<HTMLAttributes['role']>;
@@ -41,15 +17,26 @@ export const useBoIcon = (props: BoIconProps): UseBoIcon => {
 		return props.decorative ? 'presentation' : 'img';
 	});
 
+	const sizeClass = computed<string>(() => {
+		if (typeof props.size === 'number') {
+			return `size-[${props.size}px]`;
+		}
+		return ICON_MANIFEST.size[props.size || 'default'];
+	});
+
+	const variantClass = computed<string>(() => {
+		return ICON_MANIFEST.variant[props.variant || 'current'];
+	});
+
+	const cursorClass = computed<string>(() => {
+		if (props.cursor) {
+			return props.cursor;
+		}
+		return ICON_MANIFEST.cursor.default;
+	});
+
 	const classValues = computed<string>(() => {
-		return merge(
-			BO_ICON_CLASS_VALUES,
-			props.cursor ?? 'cursor-auto',
-			BO_ICON_VARIANT_STYLE_VALUES[props.variant || 'current'],
-			typeof props.size === 'number'
-				? `size-[${props.size}px]`
-				: BO_ICON_SIZE_STYLE_VALUES[props.size || 'default'],
-		);
+		return merge(ICON_MANIFEST.base, sizeClass.value, variantClass.value, cursorClass.value);
 	});
 
 	const styleValues = computed<StyleValue>(() => {

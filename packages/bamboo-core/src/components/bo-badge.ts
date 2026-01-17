@@ -1,5 +1,7 @@
 import { HTMLAttributes } from 'vue';
 import { Icon } from './bo-icon-registry';
+import { BoFontSize } from './bo-text';
+import { BoIconSize } from './bo-icon';
 
 export type BoBadgeVariant =
 	| 'primary'
@@ -52,4 +54,27 @@ export interface BoBadgeProps {
 	role?: HTMLAttributes['role'];
 	/** Defines a string value that labels the current element. */
 	ariaLabel?: HTMLAttributes['aria-label'];
+}
+
+type BoBadgeSizeStyleMap = Record<BoBadgeSize, string>;
+type BoBadgeShapeStyleMap = Record<BoBadgeShape, string>;
+type BoBadgeVariantStyleMap = Record<BoBadgeVariant, string>;
+
+export interface BadgeManifest {
+	base: string;
+	shape: BoBadgeShapeStyleMap;
+	size: {
+		default: BoBadgeSizeStyleMap;
+		circle: BoBadgeSizeStyleMap;
+	};
+	variants: {
+		default: BoBadgeVariantStyleMap;
+		outline: BoBadgeVariantStyleMap;
+	};
+	fontSize: Record<BoBadgeSize, BoFontSize>;
+	iconSize: Record<BoBadgeSize, BoIconSize>;
+	containers: {
+		prefixIcon: string;
+		suffixIcon: string;
+	};
 }

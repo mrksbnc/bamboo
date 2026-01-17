@@ -1,5 +1,5 @@
 {
-	"name": "@mrksbnc/bamboo",
+	"name": "bamboo-monorepo",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -7,9 +7,9 @@
 		"dev": "turbo run dev",
 		"docs:dev": "turbo run docs:dev",
 		"type-check": "turbo run type-check",
-		"format": "prettier --write \"**/*.{ts,md,json,html,css,scss,yml,yaml,js,cjs,mjs,vue}\"",
+		"format": "prettier --write \"**/*.{ts,md,json,vue}\"",
 		"lint": "run-p lint:*",
-		"lint:spell": "cspell --config ./cspell.yaml \"**/*.{ts,md,json,html,css,scss,yml,yaml,js,cjs,mjs,vue}\" --verbose --show-perf-summary",
+		"lint:spell": "cspell --config ./cspell.yaml \"**/*.{ts,md,json,vue}\" --verbose --show-perf-summary",
 		"lint:oxlint": "pnpm oxlint . --fix",
 		"prepare": "husky",
 		"ib": "pnpm install && pnpm build"

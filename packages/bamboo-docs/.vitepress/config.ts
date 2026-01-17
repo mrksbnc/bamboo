@@ -8,20 +8,31 @@ export default defineConfig({
 	base: process.env.VP_BASE || '/',
 	description: 'Lightweight and flexible design system for the web.',
 	head: [['script', { src: 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4' }]],
+	vite: {
+		ssr: {
+			noExternal: ['@mrksbnc/bamboo-vue', '@mrksbnc/bamboo-core'],
+		},
+	},
 	themeConfig: {
-		logo: '/logo.webp',
+		logo: '/assets/logo.webp',
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [
 			{ text: 'Home', link: '/' },
 			{ text: 'Examples', link: '/markdown-examples' },
 		],
-
 		sidebar: [
 			{
-				text: 'Examples',
+				text: 'Components',
 				items: [
-					{ text: 'Markdown Examples', link: '/markdown-examples' },
-					{ text: 'Runtime API Examples', link: '/api-examples' },
+					{ text: 'Avatar', link: '/en/components/avatar' },
+					{ text: 'Badge', link: '/en/components/badge' },
+					{ text: 'Button', link: '/en/components/button' },
+					{ text: 'Icon', link: '/en/components/icon' },
+					{ text: 'Input', link: '/en/components/input' },
+					{ text: 'Loading Pulse', link: '/en/components/loading-pulse' },
+					{ text: 'Loading Spinner', link: '/en/components/loading-spinner' },
+					{ text: 'Text', link: '/en/components/text' },
+					{ text: 'Textarea', link: '/en/components/textarea' },
 				],
 			},
 		],

@@ -1,7 +1,15 @@
 <template>
-	<div :id="id" :data-testid="dataTestId" :role="role" :class="containerClassValues">
+	<div
+		:id="id"
+		:data-testid="dataTestId"
+		:role="role"
+		:class="containerClassValues"
+		:aria-label="ariaLabel"
+		:aria-live="ariaLive"
+		:aria-busy="ariaBusy"
+	>
 		<div :class="classValues" :style="styleValues"></div>
-		<div v-if="loaderText || $slots.default" class="bo-loading-spinner-text">
+		<div v-if="loaderText || $slots.default" :class="textClassValues">
 			<slot>
 				<bo-text v-if="loaderText" :value="loaderText" :font-size="spinnerLabelFontSize" />
 			</slot>
@@ -26,6 +34,6 @@
 		textPosition: 'after',
 	});
 
-	const { containerClassValues, classValues, styleValues, spinnerLabelFontSize } =
+	const { containerClassValues, textClassValues, classValues, styleValues, spinnerLabelFontSize } =
 		useBoLoadingSpinner(props);
 </script>

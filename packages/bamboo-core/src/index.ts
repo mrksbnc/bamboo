@@ -5,9 +5,11 @@ export {
 	type BoButtonProps,
 } from './components/bo-button.js';
 export { useBoButton, type UseBoButton } from './composables/use-button.js';
+export { BUTTON_MANIFEST } from './manifests/button.manifest';
 
 export { type BoIconSize, type BoIconVariant, type BoIconProps } from './components/bo-icon.js';
 export { useBoIcon, type UseBoIcon } from './composables/use-icon.js';
+export { ICON_MANIFEST } from './manifests/icon.manifest';
 export { type Icon, ICON_REGISTRY, type IconRegistry } from './components/bo-icon-registry.js';
 
 export {
@@ -22,7 +24,9 @@ export {
 	useBoLoadingSpinner,
 	type UseBoLoadingSpinner,
 } from './composables/use-loading-spinner.js';
+export { LOADING_SPINNER_MANIFEST } from './manifests/loading-spinner.manifest';
 export { useBoPulseLoader, type UseBoPulseLoader } from './composables/use-loading-pulse.js';
+export { LOADING_PULSE_MANIFEST } from './manifests/loading-pulse.manifest';
 
 export {
 	type BoInputSize,
@@ -33,6 +37,7 @@ export {
 	type BoInputProps,
 } from './components/bo-input.js';
 export { useBoInput, type UseBoInput } from './composables/use-input.js';
+export { INPUT_MANIFEST } from './manifests/input.manifest';
 
 export {
 	type BoTextareaSize,
@@ -41,6 +46,7 @@ export {
 	type BoTextareaProps,
 } from './components/bo-textarea.js';
 export { useBoTextarea, type UseBoTextarea } from './composables/use-textarea.js';
+export { TEXTAREA_MANIFEST } from './manifests/textarea.manifest';
 
 export {
 	type BoAvatarSize,
@@ -55,6 +61,7 @@ export {
 	type BoAvatarProps,
 } from './components/bo-avatar.js';
 export { useBoAvatar, type UseBoAvatar } from './composables/use-avatar.js';
+export { AVATAR_MANIFEST } from './manifests/avatar.manifest';
 
 export {
 	type BoBadgeVariant,
@@ -64,6 +71,7 @@ export {
 	type BoBadgeProps,
 } from './components/bo-badge.js';
 export { useBoBadge, type UseBoBadge } from './composables/use-badge.js';
+export { BADGE_MANIFEST } from './manifests/badge.manifest';
 
 export {
 	type BoFontWeight,
@@ -77,6 +85,7 @@ export {
 	type BoTextProps,
 } from './components/bo-text.js';
 export { useBoText, type UseBoText } from './composables/use-text.js';
+export { TEXT_MANIFEST } from './manifests/text.manifest';
 
 export { IdentityService } from './services/identity-service.js';
 

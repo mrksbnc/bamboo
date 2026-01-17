@@ -46,7 +46,7 @@ export type BoTextVariant =
 	| 'currentColor'
 	| 'success'
 	| 'warning'
-	| 'danger'
+	| 'destructive'
 	| 'white'
 	| 'black';
 
@@ -159,4 +159,31 @@ export interface BoTextProps {
 	ariaLive?: HTMLAttributes['aria-live'];
 	/** The language of the element. */
 	lang?: string;
+}
+
+type BoFontSizeStyleMap = Record<BoFontSize, string>;
+type BoTextAlignStyleMap = Record<BoTextAlign, string>;
+type BoFontFamilyStyleMap = Record<BoFontFamily, string>;
+type BoTextWeightStyleMap = Record<BoFontWeight, string>;
+type BoTextVariantStyleMap = Record<BoTextVariant, string>;
+type BoTextTransformStyleMap = Record<BoTextTransform, string>;
+type BoTextWhiteSpaceStyleMap = Record<BoTextWhiteSpace, string>;
+
+export interface TextManifest {
+	base: string;
+	fontFamily: BoFontFamilyStyleMap;
+	fontSize: BoFontSizeStyleMap;
+	textAlign: BoTextAlignStyleMap;
+	fontWeight: BoTextWeightStyleMap;
+	variant: BoTextVariantStyleMap;
+	textTransform: BoTextTransformStyleMap;
+	whiteSpace: BoTextWhiteSpaceStyleMap;
+	cursor: {
+		default: string;
+		clickable: string;
+	};
+	lineClamp: {
+		none: string;
+		template: string;
+	};
 }
