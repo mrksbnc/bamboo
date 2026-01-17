@@ -1,5 +1,5 @@
 import { HTMLAttributes, InputHTMLAttributes } from 'vue';
-import { Icon } from './bo-icon-registry';
+import { Icon } from './bo-icon.js';
 
 export type BoInputSize = 'sm' | 'md' | 'lg';
 

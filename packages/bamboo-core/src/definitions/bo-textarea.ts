@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'vue';
-import { Icon } from './bo-icon-registry';
+import { Icon } from './bo-icon.js';
 
 export type BoTextareaSize = 'sm' | 'md' | 'lg';
 

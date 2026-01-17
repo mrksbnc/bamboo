@@ -1,6 +1,6 @@
-import { BoInputSize, BoInputState, BoInputVariant } from '../components/bo-input';
-import { BoFontSize } from '../components/bo-text';
-import { BoIconSize } from '../components/bo-icon';
+import { BoInputSize, BoInputState, BoInputVariant } from '../definitions/bo-input';
+import { BoFontSize } from '../definitions/bo-text';
+import { BoIconSize } from '../definitions/bo-icon';
 
 type BoInputSizeStyleMap = Record<BoInputSize, string>;
 type BoInputStateStyleMap = Record<BoInputState, string>;
@@ -45,7 +45,7 @@ interface InputManifest {
 	};
 }
 
-export const INPUT_MANIFEST: InputManifest = {
+const inputStyles: InputManifest = {
 	base: /*tw*/ 'relative flex w-full flex-col transition-all duration-200',
 
 	container: {
@@ -113,5 +113,22 @@ export const INPUT_MANIFEST: InputManifest = {
 		container: /*tw*/ 'mt-1 flex flex-col gap-1',
 		error: /*tw*/ 'flex items-center gap-1 text-sm text-red-600',
 		fontSize: 'sm',
+	},
+} as const;
+
+export const INPUT_MANIFEST = {
+	meta: {
+		name: 'Input',
+		version: '1.0.0',
+		description: 'Text input field component with support for icons, validation states, and pills',
+		category: 'form' as const,
+		tags: ['input', 'form', 'text', 'field', 'validation', 'pills'],
+	},
+	styles: inputStyles,
+	defaults: {
+		size: 'md' as const,
+		state: 'default' as const,
+		variant: 'default' as const,
+		type: 'text' as const,
 	},
 } as const;

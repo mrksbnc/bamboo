@@ -48,7 +48,7 @@
 		<!-- Error message -->
 		<div v-if="error" :class="errorContainerClassValues">
 			<bo-icon icon="alert_circle" size="sm" variant="danger" />
-			<bo-text :value="error" :font-size="hintFontSize" variant="danger" />
+			<bo-text :value="error" :font-size="hintFontSize" variant="destructive" />
 		</div>
 
 		<!-- Hint message -->

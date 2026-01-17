@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'vue';
-import { BoCursor } from '../core/cursor';
+import { BoCursor } from './component-types.js';
 
 export type BoFontWeight =
 	| 'thin'

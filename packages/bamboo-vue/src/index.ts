@@ -5,12 +5,7 @@ import './lib.css';
 
 /** Component exports */
 
-export {
-	type BoButtonSize,
-	type BoButtonVariant,
-	type BoButtonProps,
-	BoButton,
-} from './components/bo-button/index.js';
+export * from './components/bo-button/index.js';
 
 export {
 	type BoLoaderSize,

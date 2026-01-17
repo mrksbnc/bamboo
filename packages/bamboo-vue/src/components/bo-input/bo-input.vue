@@ -75,7 +75,12 @@
 		<div v-if="error || hint" :class="helperContainerClassValues">
 			<div v-if="error" :class="errorContainerClassValues">
 				<bo-icon size="sm" icon="alert_circle" variant="danger" />
-				<bo-text :id="helperTextId" :font-size="hintFontSize" variant="danger" :value="error" />
+				<bo-text
+					:id="helperTextId"
+					:font-size="hintFontSize"
+					variant="destructive"
+					:value="error"
+				/>
 			</div>
 			<bo-text
 				v-if="hint && !error"

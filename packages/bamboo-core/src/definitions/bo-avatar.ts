@@ -1,5 +1,6 @@
 import { HTMLAttributes } from 'vue';
-import { BoFontSize } from './bo-text';
+import { BoFontSize } from '../definitions/index.js';
+import { ComponentManifest } from '../manifests/index.js';
 
 export type BoAvatarSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
@@ -89,7 +90,7 @@ type BoAvatarVariantStyleMap = Record<BoAvatarVariant, string>;
 type BoAvatarIndicatorStatusStyleMap = Record<BoAvatarIndicatorStatus, string>;
 type BoAvatarIndicatorPositionStyleMap = Record<BoAvatarIndicatorPosition, string>;
 
-export interface AvatarManifest {
+export interface AvatarStyleManifest {
 	base: string;
 	size: BoAvatarSizeStyleMap;
 	shape: BoAvatarShapeStyleMap;
@@ -113,3 +114,8 @@ export interface AvatarManifest {
 		image: string;
 	};
 }
+
+export type AvatarManifest = ComponentManifest<
+	AvatarStyleManifest,
+	Pick<BoAvatarProps, 'size' | 'shape' | 'variant' | 'type' | 'indicator' | 'role'>
+>;

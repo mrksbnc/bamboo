@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress';
+import { fileURLToPath, URL } from 'node:url';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -9,6 +10,19 @@ export default defineConfig({
 	description: 'Lightweight and flexible design system for the web.',
 	head: [['script', { src: 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4' }]],
 	vite: {
+		resolve: {
+			alias: {
+				'@mrksbnc/bamboo-vue': fileURLToPath(
+					new URL('../../bamboo-vue/src/index.ts', import.meta.url),
+				),
+				'@mrksbnc/bamboo-vue/lib.css': fileURLToPath(
+					new URL('../../bamboo-vue/src/lib.css', import.meta.url),
+				),
+				'@mrksbnc/bamboo-core': fileURLToPath(
+					new URL('../../bamboo-core/src/index.ts', import.meta.url),
+				),
+			},
+		},
 		ssr: {
 			noExternal: ['@mrksbnc/bamboo-vue', '@mrksbnc/bamboo-core'],
 		},

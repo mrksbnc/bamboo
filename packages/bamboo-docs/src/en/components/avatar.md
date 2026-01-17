@@ -1,8 +1,16 @@
+<script setup>
+import { BoAvatar } from '@mrksbnc/bamboo-vue';
+</script>
+
 # Avatar
 
 The Avatar component displays user profile pictures, initials, or default images in various shapes and sizes.
 
 ## Basic Usage
+
+<div>
+	<bo-avatar :data="{ label: 'John Doe' }" type="initials" />
+</div>
 
 ```vue
 <template>

@@ -1,10 +1,10 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoBadgeProps } from '../components/bo-badge';
+import { BoBadgeProps } from '../definitions/bo-badge';
 import { ComponentStyleComposable } from './types';
 import { useTailwind } from './use-tailwind';
-import { BoFontSize } from '../components/bo-text';
-import { BoIconSize } from '../components/bo-icon';
-import { Icon } from '../components/bo-icon-registry';
+import { BoFontSize } from '../definitions/bo-text';
+import { BoIconSize } from '../definitions/bo-icon';
+import { Icon } from '../definitions/bo-icon-registry';
 import { BADGE_MANIFEST } from '../manifests/badge.manifest';
 
 export interface UseBoBadge extends ComponentStyleComposable {
@@ -48,26 +48,26 @@ export const useBoBadge = (props: BoBadgeProps): UseBoBadge => {
 	});
 
 	const badgeFontSize = computed<BoFontSize>(() => {
-		return BADGE_MANIFEST.fontSize[props.size || 'default'];
+		return BADGE_MANIFEST.styles.fontSize[props.size || 'default'];
 	});
 
 	const iconSize = computed<BoIconSize>(() => {
-		return BADGE_MANIFEST.iconSize[props.size || 'default'];
+		return BADGE_MANIFEST.styles.iconSize[props.size || 'default'];
 	});
 
 	const sizeClasses = computed<string>(() => {
 		if (props.shape === 'circle') {
-			return BADGE_MANIFEST.size.circle[props.size || 'default'];
+			return BADGE_MANIFEST.styles.size.circle[props.size || 'default'];
 		}
-		return BADGE_MANIFEST.size.default[props.size || 'default'];
+		return BADGE_MANIFEST.styles.size.default[props.size || 'default'];
 	});
 
 	const prefixIconContainerClassValues = computed<string>(() => {
-		return merge(BADGE_MANIFEST.containers.prefixIcon);
+		return merge(BADGE_MANIFEST.styles.containers.prefixIcon);
 	});
 
 	const suffixIconContainerClassValues = computed<string>(() => {
-		return merge(BADGE_MANIFEST.containers.suffixIcon);
+		return merge(BADGE_MANIFEST.styles.containers.suffixIcon);
 	});
 
 	const classValues = computed<string>(() => {
@@ -76,10 +76,10 @@ export const useBoBadge = (props: BoBadgeProps): UseBoBadge => {
 		const shape = props.shape || 'default';
 
 		return merge(
-			BADGE_MANIFEST.base,
+			BADGE_MANIFEST.styles.base,
 			sizeClasses.value,
-			BADGE_MANIFEST.shape[shape],
-			BADGE_MANIFEST.variants[type][variant],
+			BADGE_MANIFEST.styles.shape[shape],
+			BADGE_MANIFEST.styles.variants[type][variant],
 		);
 	});
 

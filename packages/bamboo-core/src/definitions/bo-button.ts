@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'vue';
-import { Icon } from './bo-icon-registry';
-import { BoLoaderType } from './bo-loader';
+import { Icon } from './bo-icon.js';
+import { BoLoaderType } from './bo-loader.js';
 
 export type BoButtonVariant =
 	| 'primary'

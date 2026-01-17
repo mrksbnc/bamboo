@@ -43,7 +43,8 @@ coverage
 **/vite.config.ts.timestamp-*
 
 # Vitepress
-
 **/.vitepress/cache
 
-
+# Storybook
+*storybook.log
+storybook-static

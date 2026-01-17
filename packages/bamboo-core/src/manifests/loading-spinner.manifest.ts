@@ -1,5 +1,5 @@
-import { BoLoaderSize, BoLoaderTextPosition, BoLoaderVariant } from '../components/bo-loader';
-import { BoFontSize } from '../components/bo-text';
+import { BoLoaderSize, BoLoaderTextPosition, BoLoaderVariant } from '../definitions/bo-loader';
+import { BoFontSize } from '../definitions/bo-text';
 
 type BoLoadingSpinnerSizeStyleMap = Record<BoLoaderSize, string>;
 type BoLoadingSpinnerVariantStyleMap = Record<BoLoaderVariant, string>;
@@ -15,13 +15,10 @@ interface LoadingSpinnerManifest {
 	labelFontSize: Record<BoLoaderSize, BoFontSize>;
 }
 
-export const LOADING_SPINNER_MANIFEST: LoadingSpinnerManifest = {
+const loadingSpinnerStyles: LoadingSpinnerManifest = {
 	base: /*tw*/ 'inline-flex animate-spin rounded-full border-2 border-current border-t-transparent',
-
 	container: /*tw*/ 'flex content-center items-center justify-center gap-2 [&>span]:sr-only',
-
 	text: /*tw*/ '',
-
 	size: {
 		xs: /*tw*/ 'size-3',
 		sm: /*tw*/ 'size-3.5',
@@ -29,7 +26,6 @@ export const LOADING_SPINNER_MANIFEST: LoadingSpinnerManifest = {
 		lg: /*tw*/ 'size-5',
 		xl: /*tw*/ 'size-6',
 	} as const satisfies BoLoadingSpinnerSizeStyleMap,
-
 	variant: {
 		primary: /*tw*/ 'text-blue-600',
 		secondary: /*tw*/ 'text-gray-600',
@@ -40,14 +36,12 @@ export const LOADING_SPINNER_MANIFEST: LoadingSpinnerManifest = {
 		black: /*tw*/ 'text-black',
 		current: /*tw*/ 'text-current',
 	} as const satisfies BoLoadingSpinnerVariantStyleMap,
-
 	textPosition: {
 		top: /*tw*/ 'flex-col-reverse',
 		bottom: /*tw*/ 'flex-col',
 		before: /*tw*/ 'flex-row-reverse',
 		after: /*tw*/ 'flex-row',
 	} as const satisfies BoLoadingSpinnerTextPositionStyleMap,
-
 	labelFontSize: {
 		xs: 'xs',
 		sm: 'sm',
@@ -55,4 +49,20 @@ export const LOADING_SPINNER_MANIFEST: LoadingSpinnerManifest = {
 		lg: 'default',
 		xl: 'default',
 	} as const,
+} as const;
+
+export const LOADING_SPINNER_MANIFEST = {
+	meta: {
+		name: 'LoadingSpinner',
+		version: '1.0.0',
+		description: 'Animated spinner component for indicating loading states',
+		category: 'feedback' as const,
+		tags: ['loading', 'spinner', 'loader', 'progress', 'waiting'],
+	},
+	styles: loadingSpinnerStyles,
+	defaults: {
+		size: 'default' as const,
+		variant: 'primary' as const,
+		textPosition: 'after' as const,
+	},
 } as const;
