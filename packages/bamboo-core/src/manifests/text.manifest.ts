@@ -1,6 +1,6 @@
-import { TextManifest } from '../components/bo-text';
+import { TextManifest } from '../definitions/bo-text';
 
-export const TEXT_MANIFEST = {
+const textStyles = {
 	base: /*tw*/ 'box-border m-0',
 
 	fontFamily: {
@@ -82,6 +82,24 @@ export const TEXT_MANIFEST = {
 
 	lineClamp: {
 		none: /*tw*/ 'line-clamp-none',
-		template: /*tw*/ 'line-clamp-', // Used with dynamic values
+		template: /*tw*/ 'line-clamp-',
 	},
 } as const satisfies TextManifest;
+
+export const TEXT_MANIFEST = {
+	meta: {
+		name: 'Text',
+		version: '1.0.0',
+		description:
+			'Typography component for rendering text with various styles and formatting options',
+		category: 'display' as const,
+		tags: ['text', 'typography', 'paragraph', 'heading', 'label'],
+	},
+	styles: textStyles,
+	defaults: {
+		as: 'span' as const,
+		fontSize: 'default' as const,
+		fontWeight: 'regular' as const,
+		variant: 'default' as const,
+	},
+} as const;

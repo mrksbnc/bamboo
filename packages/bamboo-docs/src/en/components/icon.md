@@ -203,10 +203,10 @@ type BoCursor = string; // Tailwind CSS cursor class
 The component uses an icon registry system. You can register custom icons:
 
 ```typescript
-import { ICON_REGISTRY } from '@bamboo/core';
+import { BO_ICON_REGISTRY } from '@bamboo/core';
 
 // Register a custom icon
-ICON_REGISTRY.register('my-icon', {
+BO_ICON_REGISTRY.register('my-icon', {
 	viewBox: '0 0 24 24',
 	path: 'M12 2L2 7v10c0 5.55 3.84 9.95 9 11 5.16-1.05 9-5.45 9-11V7l-10-5z',
 });

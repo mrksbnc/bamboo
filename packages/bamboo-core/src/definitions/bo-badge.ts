@@ -1,7 +1,8 @@
 import { HTMLAttributes } from 'vue';
-import { Icon } from './bo-icon-registry';
-import { BoFontSize } from './bo-text';
-import { BoIconSize } from './bo-icon';
+import { Icon } from './bo-icon.js';
+import { BoFontSize } from './bo-text.js';
+import { BoIconSize } from './bo-icon.js';
+import { ComponentManifest } from '../manifests/types.js';
 
 export type BoBadgeVariant =
 	| 'primary'
@@ -60,7 +61,7 @@ type BoBadgeSizeStyleMap = Record<BoBadgeSize, string>;
 type BoBadgeShapeStyleMap = Record<BoBadgeShape, string>;
 type BoBadgeVariantStyleMap = Record<BoBadgeVariant, string>;
 
-export interface BadgeManifest {
+export interface BadgeStyleManifest {
 	base: string;
 	shape: BoBadgeShapeStyleMap;
 	size: {
@@ -78,3 +79,8 @@ export interface BadgeManifest {
 		suffixIcon: string;
 	};
 }
+
+export type BadgeManifest = ComponentManifest<
+	BadgeStyleManifest,
+	Pick<BoBadgeProps, 'size' | 'shape' | 'variant' | 'role' | 'type'>
+>;

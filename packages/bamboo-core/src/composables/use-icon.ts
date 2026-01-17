@@ -1,11 +1,13 @@
 import { computed, HTMLAttributes, ShallowRef, StyleValue } from 'vue';
-import { BoIconProps } from '../components/bo-icon';
+import { BoIconProps } from '../definitions/bo-icon';
 import { ComponentStyleComposable } from './types';
 import { useColor } from './use-color';
 import { useTailwind } from './use-tailwind';
 import { ICON_MANIFEST } from '../manifests/icon.manifest';
+import { BO_ICON_REGISTRY } from '../components/bo-icon-registry';
 
 export interface UseBoIcon extends ComponentStyleComposable {
+	component: ShallowRef<string>;
 	role: ShallowRef<HTMLAttributes['role']>;
 }
 
@@ -13,30 +15,23 @@ export const useBoIcon = (props: BoIconProps): UseBoIcon => {
 	const { merge } = useTailwind();
 	const { getValidOrFallbackColorFromStr } = useColor();
 
+	const component = computed<string>(() => {
+		return BO_ICON_REGISTRY[props.icon];
+	});
+
 	const role = computed<HTMLAttributes['role']>(() => {
 		return props.decorative ? 'presentation' : 'img';
 	});
 
-	const sizeClass = computed<string>(() => {
-		if (typeof props.size === 'number') {
-			return `size-[${props.size}px]`;
-		}
-		return ICON_MANIFEST.size[props.size || 'default'];
-	});
-
-	const variantClass = computed<string>(() => {
-		return ICON_MANIFEST.variant[props.variant || 'current'];
-	});
-
-	const cursorClass = computed<string>(() => {
-		if (props.cursor) {
-			return props.cursor;
-		}
-		return ICON_MANIFEST.cursor.default;
-	});
-
 	const classValues = computed<string>(() => {
-		return merge(ICON_MANIFEST.base, sizeClass.value, variantClass.value, cursorClass.value);
+		return merge(
+			ICON_MANIFEST.styles.base,
+			ICON_MANIFEST.styles.variant[props.variant || 'current'],
+			props.cursor ? props.cursor : ICON_MANIFEST.styles.cursor.default,
+			typeof props.size === 'number'
+				? `size-[${props.size}px]`
+				: ICON_MANIFEST.styles.size[props.size || 'default'],
+		);
 	});
 
 	const styleValues = computed<StyleValue>(() => {
@@ -50,6 +45,7 @@ export const useBoIcon = (props: BoIconProps): UseBoIcon => {
 	});
 
 	return {
+		component,
 		role,
 		classValues,
 		styleValues,

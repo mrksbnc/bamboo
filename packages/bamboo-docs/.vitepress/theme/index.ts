@@ -27,13 +27,12 @@ export default {
 	},
 
 	enhanceApp({ app }) {
-		// Register Bamboo Vue components globally
+		app.component('BoAvatar', BoAvatar);
 		app.component('BoButton', BoButton);
 		app.component('BoIcon', BoIcon);
 		app.component('BoText', BoText);
 		app.component('BoInput', BoInput);
 		app.component('BoTextarea', BoTextarea);
-		app.component('BoAvatar', BoAvatar);
 		app.component('BoBadge', BoBadge);
 		app.component('BoLoadingSpinner', BoLoadingSpinner);
 		app.component('BoLoadingPulse', BoLoadingPulse);

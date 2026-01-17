@@ -1,13 +1,13 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoButtonProps } from '../components/bo-button';
+import { BoButtonProps } from '../definitions/bo-button';
 import { ComponentStyleComposable } from './types';
 import { useTailwind } from './use-tailwind';
 import { useColor } from './use-color';
 import { BUTTON_MANIFEST } from '../manifests/button.manifest';
-import { BoIconSize } from '../components/bo-icon';
-import { Icon } from '../components/bo-icon-registry';
-import { BoFontSize } from '../components/bo-text';
-import { BoLoaderSize, BoLoaderVariant } from '../components/bo-loader';
+import { BoIconSize } from '../definitions/bo-icon';
+import { Icon } from '../definitions/bo-icon-registry';
+import { BoFontSize } from '../definitions/bo-text';
+import { BoLoaderSize, BoLoaderVariant } from '../definitions/bo-loader';
 
 export interface UseBoButton extends ComponentStyleComposable {
 	isDisabled: ShallowRef<boolean>;
@@ -98,11 +98,11 @@ export const useBoButton = (props: BoButtonProps): UseBoButton => {
 	});
 
 	const contentClasses = {
-		container: BUTTON_MANIFEST.content.container,
-		label: BUTTON_MANIFEST.content.label,
-		prefixIcon: BUTTON_MANIFEST.content.prefixIcon,
-		suffixIcon: BUTTON_MANIFEST.content.suffixIcon,
-		loader: BUTTON_MANIFEST.content.loader,
+		container: BUTTON_MANIFEST.styles.content.container,
+		label: BUTTON_MANIFEST.styles.content.label,
+		prefixIcon: BUTTON_MANIFEST.styles.content.prefixIcon,
+		suffixIcon: BUTTON_MANIFEST.styles.content.suffixIcon,
+		loader: BUTTON_MANIFEST.styles.content.loader,
 	};
 
 	const classValues = computed<string>(() => {
@@ -112,33 +112,33 @@ export const useBoButton = (props: BoButtonProps): UseBoButton => {
 		const width = props.fullWidth ? 'fullWidth' : 'default';
 
 		// Determine which variant style to use based on shape
-		const variantType = BUTTON_MANIFEST.shapeVariants[
+		const variantType = BUTTON_MANIFEST.styles.shapeVariants[
 			shape
-		] as keyof typeof BUTTON_MANIFEST.variants;
-		const variantClass = BUTTON_MANIFEST.variants[variantType][variant];
+		] as keyof typeof BUTTON_MANIFEST.styles.variants;
+		const variantClass = BUTTON_MANIFEST.styles.variants[variantType][variant];
 
 		const classes: string[] = [
-			BUTTON_MANIFEST.base,
-			BUTTON_MANIFEST.width[width],
-			BUTTON_MANIFEST.shape[shape],
-			BUTTON_MANIFEST.shadow[shape],
+			BUTTON_MANIFEST.styles.base,
+			BUTTON_MANIFEST.styles.width[width],
+			BUTTON_MANIFEST.styles.shape[shape],
+			BUTTON_MANIFEST.styles.shadow[shape],
 			variantClass,
 		];
 
 		// Add size class - use iconOnlySize if it's an icon-only button
 		if (isIconOnlyButton.value) {
-			classes.push(BUTTON_MANIFEST.iconOnlySize[size]);
+			classes.push(BUTTON_MANIFEST.styles.iconOnlySize[size]);
 		} else {
-			classes.push(BUTTON_MANIFEST.size[size]);
+			classes.push(BUTTON_MANIFEST.styles.size[size]);
 		}
 
 		// Add state classes
 		if (props.isLoading) {
-			classes.push(BUTTON_MANIFEST.states.loading);
+			classes.push(BUTTON_MANIFEST.styles.states.loading);
 		}
 
 		if (props.pressed) {
-			classes.push(BUTTON_MANIFEST.states.pressed);
+			classes.push(BUTTON_MANIFEST.styles.states.pressed);
 		}
 
 		return merge(...classes);

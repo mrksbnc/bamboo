@@ -1,5 +1,5 @@
-import { BoLoaderSize, BoLoaderTextPosition, BoLoaderVariant } from '../components/bo-loader';
-import { BoFontSize } from '../components/bo-text';
+import { BoLoaderSize, BoLoaderTextPosition, BoLoaderVariant } from '../definitions/bo-loader';
+import { BoFontSize } from '../definitions/bo-text';
 
 type BoLoadingPulseSizeStyleMap = Record<BoLoaderSize, string>;
 type BoLoadingPulseVariantStyleMap = Record<BoLoaderVariant, string>;
@@ -20,13 +20,10 @@ interface LoadingPulseManifest {
 	};
 }
 
-export const LOADING_PULSE_MANIFEST: LoadingPulseManifest = {
+const loadingPulseStyles: LoadingPulseManifest = {
 	base: /*tw*/ 'flex items-center justify-center gap-1',
-
 	container: /*tw*/ 'flex content-center items-center justify-center gap-2',
-
 	dot: /*tw*/ 'rounded-full animate-pulse',
-
 	size: {
 		xs: /*tw*/ 'size-1',
 		sm: /*tw*/ 'size-1.5',
@@ -34,7 +31,6 @@ export const LOADING_PULSE_MANIFEST: LoadingPulseManifest = {
 		lg: /*tw*/ 'size-2.5',
 		xl: /*tw*/ 'size-3',
 	} as const satisfies BoLoadingPulseSizeStyleMap,
-
 	variant: {
 		primary: /*tw*/ 'bg-blue-600',
 		secondary: /*tw*/ 'bg-gray-600',
@@ -45,14 +41,12 @@ export const LOADING_PULSE_MANIFEST: LoadingPulseManifest = {
 		black: /*tw*/ 'bg-black',
 		current: /*tw*/ 'bg-current',
 	} as const satisfies BoLoadingPulseVariantStyleMap,
-
 	textPosition: {
 		top: /*tw*/ 'flex-col-reverse',
 		bottom: /*tw*/ 'flex-col',
 		before: /*tw*/ 'flex-row-reverse',
 		after: /*tw*/ 'flex-row',
 	} as const satisfies BoLoadingPulseTextPositionStyleMap,
-
 	labelFontSize: {
 		xs: 'xs',
 		sm: 'sm',
@@ -60,10 +54,25 @@ export const LOADING_PULSE_MANIFEST: LoadingPulseManifest = {
 		lg: 'default',
 		xl: 'default',
 	} as const,
-
 	animation: {
 		dot1: /*tw*/ 'animate-pulse [animation-delay:0ms]',
 		dot2: /*tw*/ 'animate-pulse [animation-delay:150ms]',
 		dot3: /*tw*/ 'animate-pulse [animation-delay:300ms]',
+	},
+} as const;
+
+export const LOADING_PULSE_MANIFEST = {
+	meta: {
+		name: 'LoadingPulse',
+		version: '1.0.0',
+		description: 'Animated pulsing dots component for indicating loading states',
+		category: 'feedback' as const,
+		tags: ['loading', 'pulse', 'dots', 'loader', 'progress', 'waiting'],
+	},
+	styles: loadingPulseStyles,
+	defaults: {
+		size: 'default' as const,
+		variant: 'primary' as const,
+		textPosition: 'after' as const,
 	},
 } as const;

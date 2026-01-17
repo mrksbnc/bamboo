@@ -1,9 +1,9 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoTextareaProps } from '../components/bo-textarea';
+import { BoTextareaProps } from '../definitions/bo-textarea';
 import { ComponentStyleComposable } from './types';
 import { useTailwind } from './use-tailwind';
-import { BoIconSize } from '../components/bo-icon';
-import { BoFontSize } from '../components/bo-text';
+import { BoIconSize } from '../definitions/bo-icon';
+import { BoFontSize } from '../definitions/bo-text';
 import { TEXTAREA_MANIFEST } from '../manifests/textarea.manifest';
 
 export interface UseBoTextarea extends ComponentStyleComposable {
@@ -24,38 +24,38 @@ export const useBoTextarea = (props: BoTextareaProps): UseBoTextarea => {
 	const { merge } = useTailwind();
 
 	const iconSize = computed<BoIconSize>(() => {
-		return TEXTAREA_MANIFEST.icons.size[props.size || 'md'];
+		return TEXTAREA_MANIFEST.styles.icons.size[props.size || 'md'];
 	});
 
 	const labelFontSize = computed<BoFontSize>(() => {
-		return TEXTAREA_MANIFEST.labels.fontSize;
+		return TEXTAREA_MANIFEST.styles.labels.fontSize;
 	});
 
 	const hintFontSize = computed<BoFontSize>(() => {
-		return TEXTAREA_MANIFEST.helpers.fontSize;
+		return TEXTAREA_MANIFEST.styles.helpers.fontSize;
 	});
 
 	const iconPositionClasses = computed<string>(() => {
-		return merge(TEXTAREA_MANIFEST.icons.prefix[props.size || 'md']);
+		return merge(TEXTAREA_MANIFEST.styles.icons.prefix[props.size || 'md']);
 	});
 
 	const suffixIconPositionClasses = computed<string>(() => {
-		return merge(TEXTAREA_MANIFEST.icons.suffix[props.size || 'md']);
+		return merge(TEXTAREA_MANIFEST.styles.icons.suffix[props.size || 'md']);
 	});
 
 	const containerClassValues = computed<string>(() => {
 		const baseClasses = [
-			TEXTAREA_MANIFEST.container.base,
-			TEXTAREA_MANIFEST.variant[props.variant || 'default'],
-			TEXTAREA_MANIFEST.state[props.state || 'default'],
+			TEXTAREA_MANIFEST.styles.container.base,
+			TEXTAREA_MANIFEST.styles.variant[props.variant || 'default'],
+			TEXTAREA_MANIFEST.styles.state[props.state || 'default'],
 		];
 
 		if (props.disabled) {
-			baseClasses.push(TEXTAREA_MANIFEST.container.disabled);
+			baseClasses.push(TEXTAREA_MANIFEST.styles.container.disabled);
 		}
 
 		if (props.expand) {
-			baseClasses.push(TEXTAREA_MANIFEST.container.expand);
+			baseClasses.push(TEXTAREA_MANIFEST.styles.container.expand);
 		}
 
 		return merge(...baseClasses);
@@ -63,47 +63,47 @@ export const useBoTextarea = (props: BoTextareaProps): UseBoTextarea => {
 
 	const textareaClassValues = computed<string>(() => {
 		const classes = [
-			TEXTAREA_MANIFEST.textarea.base,
-			TEXTAREA_MANIFEST.padding[props.size || 'md'],
+			TEXTAREA_MANIFEST.styles.textarea.base,
+			TEXTAREA_MANIFEST.styles.padding[props.size || 'md'],
 		];
 
 		if (props.prefixIcon && props.prefixIcon !== 'none') {
-			classes.push(TEXTAREA_MANIFEST.textarea.withPrefixIcon);
+			classes.push(TEXTAREA_MANIFEST.styles.textarea.withPrefixIcon);
 		}
 
 		if (props.suffixIcon && props.suffixIcon !== 'none') {
-			classes.push(TEXTAREA_MANIFEST.textarea.withSuffixIcon);
+			classes.push(TEXTAREA_MANIFEST.styles.textarea.withSuffixIcon);
 		}
 
 		if (props.expand) {
-			classes.push(TEXTAREA_MANIFEST.textarea.expand);
+			classes.push(TEXTAREA_MANIFEST.styles.textarea.expand);
 		}
 
 		if (props.resizable) {
-			classes.push(TEXTAREA_MANIFEST.textarea.resizable);
+			classes.push(TEXTAREA_MANIFEST.styles.textarea.resizable);
 		}
 
 		return merge(...classes);
 	});
 
 	const labelContainerClassValues = computed<string>(() => {
-		return merge(TEXTAREA_MANIFEST.labels.container);
+		return merge(TEXTAREA_MANIFEST.styles.labels.container);
 	});
 
 	const requiredIndicatorClassValues = computed<string>(() => {
-		return merge(TEXTAREA_MANIFEST.labels.required);
+		return merge(TEXTAREA_MANIFEST.styles.labels.required);
 	});
 
 	const errorContainerClassValues = computed<string>(() => {
-		return merge(TEXTAREA_MANIFEST.helpers.error);
+		return merge(TEXTAREA_MANIFEST.styles.helpers.error);
 	});
 
 	const hintClassValues = computed<string>(() => {
-		return merge(TEXTAREA_MANIFEST.helpers.hint);
+		return merge(TEXTAREA_MANIFEST.styles.helpers.hint);
 	});
 
 	const classValues = computed<string>(() => {
-		return merge(TEXTAREA_MANIFEST.base);
+		return merge(TEXTAREA_MANIFEST.styles.base);
 	});
 
 	const styleValues = computed<StyleValue>(() => {

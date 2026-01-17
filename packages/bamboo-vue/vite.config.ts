@@ -23,17 +23,22 @@ export default defineConfig({
 		lib: {
 			name: 'bamboo',
 			cssFileName: 'lib',
-			fileName: (format) => `index.${format}.js`,
+			fileName: (format) => `index.${format === 'es' ? 'es.js' : 'umd.cjs'}`,
 			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+			formats: ['es', 'umd'],
 		},
-		rolldownOptions: {
-			external: ['vue'],
-			platform: 'neutral',
-			input: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-			optimization: {
-				inlineConst: {
-					mode: 'smart',
+		rollupOptions: {
+			external: ['vue', '@vueuse/core'],
+			output: {
+				exports: 'named',
+				globals: {
+					vue: 'Vue',
+					'@vueuse/core': 'VueUse',
 				},
+				// Preserve modules for better tree-shaking
+				preserveModules: false,
+				// Optimize chunk size
+				chunkFileNames: '[name]-[hash].js',
 			},
 		},
 	},

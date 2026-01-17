@@ -1,5 +1,5 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoTextProps } from '../components/bo-text';
+import { BoTextProps } from '../definitions/bo-text';
 import { useTailwind } from './use-tailwind';
 import { ComponentStyleComposable } from './types';
 import { useColor } from './use-color';
@@ -20,10 +20,10 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 		}
 
 		if (props.clickable) {
-			return TEXT_MANIFEST.cursor.clickable;
+			return TEXT_MANIFEST.styles.cursor.clickable;
 		}
 
-		return TEXT_MANIFEST.cursor.default;
+		return TEXT_MANIFEST.styles.cursor.default;
 	});
 
 	const ariaLabel = computed<string>(() => {
@@ -36,11 +36,11 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 
 	const lineClamp = computed<string>(() => {
 		if (!props.lineClamp || props.lineClamp === 'none') {
-			return TEXT_MANIFEST.lineClamp.none;
+			return TEXT_MANIFEST.styles.lineClamp.none;
 		}
 
 		if (typeof props.lineClamp === 'number') {
-			return `${TEXT_MANIFEST.lineClamp.template}${props.lineClamp}`;
+			return `${TEXT_MANIFEST.styles.lineClamp.template}${props.lineClamp}`;
 		}
 
 		if (typeof props.lineClamp === 'string') {
@@ -51,7 +51,7 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 			return `line-clamp-[${props.lineClamp}]`;
 		}
 
-		return TEXT_MANIFEST.lineClamp.none;
+		return TEXT_MANIFEST.styles.lineClamp.none;
 	});
 
 	const classValues = computed<string>(() => {
@@ -66,14 +66,14 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 		return merge(
 			cursor.value,
 			lineClamp.value,
-			TEXT_MANIFEST.base,
-			TEXT_MANIFEST.textAlign[textAlign],
-			TEXT_MANIFEST.fontSize[fontSize],
-			TEXT_MANIFEST.variant[variant],
-			TEXT_MANIFEST.fontFamily[fontFamily],
-			TEXT_MANIFEST.fontWeight[fontWeight],
-			TEXT_MANIFEST.whiteSpace[whiteSpace],
-			TEXT_MANIFEST.textTransform[textTransform],
+			TEXT_MANIFEST.styles.base,
+			TEXT_MANIFEST.styles.textAlign[textAlign],
+			TEXT_MANIFEST.styles.fontSize[fontSize],
+			TEXT_MANIFEST.styles.variant[variant],
+			TEXT_MANIFEST.styles.fontFamily[fontFamily],
+			TEXT_MANIFEST.styles.fontWeight[fontWeight],
+			TEXT_MANIFEST.styles.whiteSpace[whiteSpace],
+			TEXT_MANIFEST.styles.textTransform[textTransform],
 		);
 	});
 

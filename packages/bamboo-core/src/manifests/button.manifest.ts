@@ -1,6 +1,6 @@
-import { ButtonManifest } from '../components/bo-button';
+import { ButtonManifest } from '../definitions/bo-button';
 
-export const BUTTON_MANIFEST = {
+const buttonStyles = {
 	base: /*tw*/ 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*="size-"])]:size-4',
 
 	width: {
@@ -119,3 +119,20 @@ export const BUTTON_MANIFEST = {
 		loading: 'data-loading',
 	},
 } as const satisfies ButtonManifest;
+
+export const BUTTON_MANIFEST = {
+	meta: {
+		name: 'Button',
+		version: '1.0.0',
+		description: 'Interactive button component with multiple variants, sizes, and states',
+		category: 'form' as const,
+		tags: ['button', 'action', 'interactive', 'form', 'cta'],
+	},
+	styles: buttonStyles,
+	defaults: {
+		variant: 'primary' as const,
+		shape: 'default' as const,
+		size: 'default' as const,
+		type: 'button' as const,
+	},
+} as const;

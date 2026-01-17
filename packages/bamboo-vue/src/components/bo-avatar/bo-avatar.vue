@@ -65,7 +65,7 @@
 	});
 
 	const imgError = ref(false);
-	const defaultAvatarSrc = defaultAvatarImage;
+	const defaultAvatarSrc = defaultAvatarImage as string;
 
 	const {
 		indicatorClassValues,

@@ -1,8 +1,8 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoAvatarProps } from '../components/bo-avatar';
+import { BoAvatarProps } from '../definitions/bo-avatar';
 import { ComponentStyleComposable } from './types';
 import { useTailwind } from './use-tailwind';
-import { BoFontSize } from '../components/bo-text';
+import { BoFontSize } from '../definitions/bo-text';
 import { AVATAR_MANIFEST } from '../manifests/avatar.manifest';
 
 export interface UseBoAvatar extends ComponentStyleComposable {
@@ -16,14 +16,6 @@ export interface UseBoAvatar extends ComponentStyleComposable {
 	imageContainerClassValues: ShallowRef<string>;
 }
 
-const isEmptyStr = (str?: string): boolean => {
-	return str === undefined || str === null || str.trim() === '';
-};
-
-const safeString = (str?: string): string => {
-	return str ?? '';
-};
-
 export const useBoAvatar = (
 	props: BoAvatarProps,
 	options?: { imgError?: boolean },
@@ -35,7 +27,7 @@ export const useBoAvatar = (
 	});
 
 	const label = computed<string>(() => {
-		const safeStr = safeString(props.data?.label);
+		const safeStr = props.data?.label || '';
 		if (safeStr.length > 2) {
 			return safeStr.slice(0, 2).toUpperCase();
 		}
@@ -43,14 +35,14 @@ export const useBoAvatar = (
 	});
 
 	const labelFontSize = computed<BoFontSize>(() => {
-		return AVATAR_MANIFEST.labelSize[props.size || 'default'];
+		return AVATAR_MANIFEST.styles.labelSize[props.size || 'default'];
 	});
 
 	const showDefaultAvatar = computed<boolean>(() => {
 		if (props.withDefaultImage || options?.imgError) {
 			return true;
 		}
-		return props.data?.src === undefined && isEmptyStr(props.data?.label);
+		return props.data?.src === undefined && !!props.data?.label;
 	});
 
 	const textColorClass = computed<string>(() => {
@@ -61,10 +53,10 @@ export const useBoAvatar = (
 		const variant = props.variant || 'primary';
 
 		if (isOutlineShape.value) {
-			return AVATAR_MANIFEST.textColor.outline[variant];
+			return AVATAR_MANIFEST.styles.textColor.outline[variant];
 		}
 
-		return AVATAR_MANIFEST.textColor.filled[variant];
+		return AVATAR_MANIFEST.styles.textColor.filled[variant];
 	});
 
 	const bgConstruct = computed<string>(() => {
@@ -79,10 +71,10 @@ export const useBoAvatar = (
 		const variant = props.variant || 'primary';
 
 		if (isOutlineShape.value) {
-			return AVATAR_MANIFEST.variants.outline[variant];
+			return AVATAR_MANIFEST.styles.variants.outline[variant];
 		}
 
-		return AVATAR_MANIFEST.variants.filled[variant];
+		return AVATAR_MANIFEST.styles.variants.filled[variant];
 	});
 
 	const indicatorClassValues = computed<string>(() => {
@@ -92,22 +84,22 @@ export const useBoAvatar = (
 
 		return merge(
 			'absolute rounded-full border-2 border-white',
-			AVATAR_MANIFEST.indicator.size[props.size || 'default'],
-			AVATAR_MANIFEST.indicator.status[props.indicator.status || 'none'],
-			AVATAR_MANIFEST.indicator.position[props.indicator.position || 'bottom-right'],
+			AVATAR_MANIFEST.styles.indicator.size[props.size || 'default'],
+			AVATAR_MANIFEST.styles.indicator.status[props.indicator.status || 'none'],
+			AVATAR_MANIFEST.styles.indicator.position[props.indicator.position || 'bottom-right'],
 		);
 	});
 
 	const defaultAvatarClassValues = computed<string>(() => {
-		return merge(AVATAR_MANIFEST.containers.default);
+		return merge(AVATAR_MANIFEST.styles.containers.default);
 	});
 
 	const initialsContainerClassValues = computed<string>(() => {
-		return merge(AVATAR_MANIFEST.containers.initials);
+		return merge(AVATAR_MANIFEST.styles.containers.initials);
 	});
 
 	const imageContainerClassValues = computed<string>(() => {
-		return merge(AVATAR_MANIFEST.containers.image);
+		return merge(AVATAR_MANIFEST.styles.containers.image);
 	});
 
 	const classValues = computed<string>(() => {
@@ -115,9 +107,9 @@ export const useBoAvatar = (
 		const shadowClass = !isOutlineShape.value ? 'shadow-sm dark:shadow-gray-800' : '';
 
 		return merge(
-			AVATAR_MANIFEST.base,
-			AVATAR_MANIFEST.size[props.size || 'default'],
-			AVATAR_MANIFEST.shape[props.shape || 'rounded'],
+			AVATAR_MANIFEST.styles.base,
+			AVATAR_MANIFEST.styles.size[props.size || 'default'],
+			AVATAR_MANIFEST.styles.shape[props.shape || 'rounded'],
 			bgConstruct.value,
 			cursorClass,
 			shadowClass,

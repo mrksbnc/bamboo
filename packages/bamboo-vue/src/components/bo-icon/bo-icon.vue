@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
 	import {
-		ICON_REGISTRY,
+		BO_ICON_REGISTRY,
 		IdentityService,
 		useBoIcon,
 		type BoIconProps,
@@ -30,7 +30,7 @@
 	const { classValues, styleValues } = useBoIcon(props);
 
 	const svg = computed<string>(() => {
-		return ICON_REGISTRY[props.icon] || ICON_REGISTRY['circle'] || '';
+		return BO_ICON_REGISTRY[props.icon] || BO_ICON_REGISTRY['circle'] || '';
 	});
 
 	const computedRole = computed<string>(() => {

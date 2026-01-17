@@ -1,6 +1,6 @@
-import { BoTextareaSize, BoTextareaState, BoTextareaVariant } from '../components/bo-textarea';
-import { BoFontSize } from '../components/bo-text';
-import { BoIconSize } from '../components/bo-icon';
+import { BoTextareaSize, BoTextareaState, BoTextareaVariant } from '../definitions/bo-textarea';
+import { BoFontSize } from '../definitions/bo-text';
+import { BoIconSize } from '../definitions/bo-icon';
 
 type BoTextareaSizeStyleMap = Record<BoTextareaSize, string>;
 type BoTextareaStateStyleMap = Record<BoTextareaState, string>;
@@ -40,7 +40,7 @@ interface TextareaManifest {
 	};
 }
 
-export const TEXTAREA_MANIFEST: TextareaManifest = {
+const textareaStyles: TextareaManifest = {
 	base: /*tw*/ 'flex flex-col transition-all duration-200',
 
 	container: {
@@ -106,5 +106,23 @@ export const TEXTAREA_MANIFEST: TextareaManifest = {
 		error: /*tw*/ 'mt-1 flex items-center gap-1 text-sm text-red-600',
 		hint: /*tw*/ 'mt-1 text-sm text-gray-600',
 		fontSize: 'sm',
+	},
+} as const;
+
+export const TEXTAREA_MANIFEST = {
+	meta: {
+		name: 'Textarea',
+		version: '1.0.0',
+		description:
+			'Multi-line text input component with support for icons, validation, and auto-resize',
+		category: 'form' as const,
+		tags: ['textarea', 'form', 'text', 'multiline', 'input', 'validation'],
+	},
+	styles: textareaStyles,
+	defaults: {
+		size: 'md' as const,
+		state: 'default' as const,
+		variant: 'default' as const,
+		rows: 3,
 	},
 } as const;

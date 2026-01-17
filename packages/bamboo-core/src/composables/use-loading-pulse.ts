@@ -1,12 +1,12 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoPulseLoaderProps } from '../components/bo-loader';
+import { BoPulseLoaderProps } from '../definitions/bo-loader';
 import { ComponentStyleComposable } from './types';
 import { useColor } from './use-color';
 import { useTailwind } from './use-tailwind';
-import { BoFontSize } from '../components/bo-text';
+import { BoFontSize } from '../definitions/bo-text';
 import { LOADING_PULSE_MANIFEST } from '../manifests/loading-pulse.manifest';
 
-export interface UseBoPulseLoader extends ComponentStyleComposable {
+export interface UseBoLoadingPulse extends ComponentStyleComposable {
 	pulseLabelFontSize: ShallowRef<BoFontSize>;
 	containerClassValues: ShallowRef<string>;
 	outerPulseContainerClassValues: ShallowRef<string>;
@@ -14,46 +14,49 @@ export interface UseBoPulseLoader extends ComponentStyleComposable {
 	innerPulseClassValues: ShallowRef<string>;
 }
 
-export const useBoPulseLoader = (props: BoPulseLoaderProps): UseBoPulseLoader => {
+export const useBoLoadingPulse = (props: BoPulseLoaderProps): UseBoLoadingPulse => {
 	const { merge } = useTailwind();
 	const { getValidOrFallbackColorFromStr } = useColor();
 
 	const pulseLabelFontSize = computed<BoFontSize>(() => {
-		return LOADING_PULSE_MANIFEST.labelFontSize[props.size || 'default'];
+		return LOADING_PULSE_MANIFEST.styles.labelFontSize[props.size || 'default'];
 	});
 
 	const containerClassValues = computed<string>(() => {
 		return merge(
-			LOADING_PULSE_MANIFEST.container,
-			LOADING_PULSE_MANIFEST.textPosition[props.textPosition || 'after'],
+			LOADING_PULSE_MANIFEST.styles.container,
+			LOADING_PULSE_MANIFEST.styles.textPosition[props.textPosition || 'after'],
 		);
 	});
 
 	const outerPulseContainerClassValues = computed<string>(() => {
-		return merge(LOADING_PULSE_MANIFEST.base, LOADING_PULSE_MANIFEST.size[props.size || 'default']);
+		return merge(
+			LOADING_PULSE_MANIFEST.styles.base,
+			LOADING_PULSE_MANIFEST.styles.size[props.size || 'default'],
+		);
 	});
 
 	const outerPulseClassValues = computed<string>(() => {
 		if (props.customColor) {
-			return LOADING_PULSE_MANIFEST.dot;
+			return LOADING_PULSE_MANIFEST.styles.dot;
 		}
 		return merge(
-			LOADING_PULSE_MANIFEST.dot,
-			LOADING_PULSE_MANIFEST.variant[props.variant || 'primary'],
+			LOADING_PULSE_MANIFEST.styles.dot,
+			LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
 		);
 	});
 
 	const innerPulseClassValues = computed<string>(() => {
 		if (props.customColor) {
 			return merge(
-				LOADING_PULSE_MANIFEST.dot,
-				LOADING_PULSE_MANIFEST.size[props.size || 'default'],
+				LOADING_PULSE_MANIFEST.styles.dot,
+				LOADING_PULSE_MANIFEST.styles.size[props.size || 'default'],
 			);
 		}
 		return merge(
-			LOADING_PULSE_MANIFEST.dot,
-			LOADING_PULSE_MANIFEST.size[props.size || 'default'],
-			LOADING_PULSE_MANIFEST.variant[props.variant || 'primary'],
+			LOADING_PULSE_MANIFEST.styles.dot,
+			LOADING_PULSE_MANIFEST.styles.size[props.size || 'default'],
+			LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
 		);
 	});
 

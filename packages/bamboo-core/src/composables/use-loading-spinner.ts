@@ -1,9 +1,9 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
 import { ComponentStyleComposable } from './types';
-import { BoLoadingSpinnerProps } from '../components/bo-loader';
+import { BoLoadingSpinnerProps } from '../definitions/bo-loader';
 import { useTailwind } from './use-tailwind';
 import { useColor } from './use-color';
-import { BoFontSize } from '../components/bo-text';
+import { BoFontSize } from '../definitions/bo-text';
 import { LOADING_SPINNER_MANIFEST } from '../manifests/loading-spinner.manifest';
 
 export interface UseBoLoadingSpinner extends ComponentStyleComposable {
@@ -17,24 +17,24 @@ export const useBoLoadingSpinner = (props: BoLoadingSpinnerProps): UseBoLoadingS
 	const { getValidOrFallbackColorFromStr } = useColor();
 
 	const spinnerLabelFontSize = computed<BoFontSize>(() => {
-		return LOADING_SPINNER_MANIFEST.labelFontSize[props.size || 'default'];
+		return LOADING_SPINNER_MANIFEST.styles.labelFontSize[props.size || 'default'];
 	});
 
 	const containerClassValues = computed<string>(() => {
 		return merge(
-			LOADING_SPINNER_MANIFEST.container,
-			LOADING_SPINNER_MANIFEST.size[props.size || 'default'],
-			LOADING_SPINNER_MANIFEST.variant[props.variant || 'primary'],
-			LOADING_SPINNER_MANIFEST.textPosition[props.textPosition || 'after'],
+			LOADING_SPINNER_MANIFEST.styles.container,
+			LOADING_SPINNER_MANIFEST.styles.size[props.size || 'default'],
+			LOADING_SPINNER_MANIFEST.styles.variant[props.variant || 'primary'],
+			LOADING_SPINNER_MANIFEST.styles.textPosition[props.textPosition || 'after'],
 		);
 	});
 
 	const textClassValues = computed<string>(() => {
-		return LOADING_SPINNER_MANIFEST.text;
+		return LOADING_SPINNER_MANIFEST.styles.text;
 	});
 
 	const classValues = computed<string>(() => {
-		return merge(LOADING_SPINNER_MANIFEST.base);
+		return merge(LOADING_SPINNER_MANIFEST.styles.base);
 	});
 
 	const styleValues = computed<StyleValue>(() => {
