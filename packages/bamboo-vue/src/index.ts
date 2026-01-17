@@ -1,3 +1,5 @@
+import type { App, Plugin } from 'vue';
+
 /** Force vite to bundle the base css with the component styles */
 import './lib.css';
 
@@ -79,3 +81,41 @@ export {
 	type BoBadgeProps,
 	BoBadge,
 } from './components/bo-badge/index.js';
+
+export { type BoPulseLoaderProps, BoLoadingPulse } from './components/bo-loading-pulse/index.js';
+
+/** Plugin installation */
+import { BoAvatar } from './components/bo-avatar/index.js';
+import { BoBadge } from './components/bo-badge/index.js';
+import { BoButton } from './components/bo-button/index.js';
+import { BoIcon } from './components/bo-icon/index.js';
+import { BoInput } from './components/bo-input/index.js';
+import { BoLoadingPulse } from './components/bo-loading-pulse/index.js';
+import { BoLoadingSpinner } from './components/bo-loading-spinner/index.js';
+import { BoText } from './components/bo-text/index.js';
+import { BoTextarea } from './components/bo-textarea/index.js';
+
+const components = [
+	BoAvatar,
+	BoBadge,
+	BoButton,
+	BoIcon,
+	BoInput,
+	BoLoadingPulse,
+	BoLoadingSpinner,
+	BoText,
+	BoTextarea,
+];
+
+export const BambooVue: Plugin = {
+	install(app: App) {
+		components.forEach((component) => {
+			const name = component.name || component.__name;
+			if (name) {
+				app.component(name, component);
+			}
+		});
+	},
+};
+
+export default BambooVue;

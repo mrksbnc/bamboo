@@ -1,4 +1,5 @@
 import { HTMLAttributes } from 'vue';
+import { BoFontSize } from './bo-text';
 
 export type BoAvatarSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
@@ -80,4 +81,35 @@ export interface BoAvatarProps {
 	role?: HTMLAttributes['role'];
 	/** Defines a string value that labels the current element. */
 	ariaLabel?: HTMLAttributes['aria-label'];
+}
+
+type BoAvatarSizeStyleMap = Record<BoAvatarSize, string>;
+type BoAvatarShapeStyleMap = Record<BoAvatarShape, string>;
+type BoAvatarVariantStyleMap = Record<BoAvatarVariant, string>;
+type BoAvatarIndicatorStatusStyleMap = Record<BoAvatarIndicatorStatus, string>;
+type BoAvatarIndicatorPositionStyleMap = Record<BoAvatarIndicatorPosition, string>;
+
+export interface AvatarManifest {
+	base: string;
+	size: BoAvatarSizeStyleMap;
+	shape: BoAvatarShapeStyleMap;
+	variants: {
+		filled: BoAvatarVariantStyleMap;
+		outline: BoAvatarVariantStyleMap;
+	};
+	textColor: {
+		filled: BoAvatarVariantStyleMap;
+		outline: BoAvatarVariantStyleMap;
+	};
+	indicator: {
+		status: BoAvatarIndicatorStatusStyleMap;
+		position: BoAvatarIndicatorPositionStyleMap;
+		size: BoAvatarSizeStyleMap;
+	};
+	labelSize: Record<BoAvatarSize, BoFontSize>;
+	containers: {
+		default: string;
+		initials: string;
+		image: string;
+	};
 }

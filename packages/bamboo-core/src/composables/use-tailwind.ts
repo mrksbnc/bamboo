@@ -7,7 +7,7 @@ export const useTailwind = (): UseTailwind => {
 		return Array.from(
 			new Set<string>(
 				classes
-					.filter(Boolean) // Filter out undefined/null values first
+					.filter(Boolean)
 					.map((c) => c?.split(' ') ?? [])
 					.flat(),
 			).values(),

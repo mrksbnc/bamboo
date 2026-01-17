@@ -11,6 +11,6 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": [".vitepress/**/*.ts", "src/**/*.ts", "env.d.ts"],
+	"include": [".vitepress/**/*.ts", "src/**/*.ts"],
 	"exclude": ["node_modules", "dist"]
 }

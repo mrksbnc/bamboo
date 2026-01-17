@@ -7,7 +7,7 @@ export type BoButtonVariant =
 	| 'secondary'
 	| 'success'
 	| 'warning'
-	| 'danger'
+	| 'destructive'
 	| 'light'
 	| 'dark';
 
@@ -17,6 +17,7 @@ export type BoButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
  * - default: A filled button with a background color.
  * - pill: A filled button with fully rounded corners.
  * - outline: A button with a border and no background color.
+ * - ghost: A button with subtle hover effects and no background.
  * - link: A button styled as a link with no background color or border.
  */
 export type BoButtonShape = 'default' | 'pill' | 'outline' | 'link';
@@ -34,7 +35,7 @@ export interface BoButtonProps {
 	dataTestId?: string;
 	/**
 	 * The size of the button.
-	 * @default 'md'
+	 * @default 'default'
 	 */
 	size?: BoButtonSize;
 	/**
@@ -67,6 +68,7 @@ export interface BoButtonProps {
 	 * - default: A filled button with a background color.
 	 * - pill: A filled button with fully rounded corners.
 	 * - outline: A button with a border and no background color.
+	 * - ghost: A button with subtle hover effects and no background.
 	 * - link: A button styled as a link with no background color or border.
 	 *
 	 * @default 'default'
@@ -74,11 +76,12 @@ export interface BoButtonProps {
 	shape?: BoButtonShape;
 	/**
 	 * Whether the button is pressed (for toggle buttons).
+	 * Sets aria-pressed attribute for accessibility.
 	 */
 	pressed?: boolean;
 	/**
 	 * The type of the button.
-	 * @default button
+	 * @default 'button'
 	 */
 	type?: HTMLButtonElement['type'];
 	/** The text content of the button. */
@@ -103,6 +106,29 @@ export interface BoButtonProps {
 	ariaLabelledBy?: HTMLAttributes['aria-labelledby'];
 	/** Identifies the element (or elements) that describes the object. */
 	ariaDescribedBy?: HTMLAttributes['aria-describedby'];
+	/**
+	 * Indicates the current "expanded" state of control.
+	 * Used for buttons that control collapsible content.
+	 */
+	ariaExpanded?: HTMLAttributes['aria-expanded'];
+	/**
+	 * Indicates that the element has a popup context menu or sub-level menu.
+	 */
+	ariaHasPopup?: HTMLAttributes['aria-haspopup'];
+	/**
+	 * Indicates the current "pressed" state of toggle buttons.
+	 * @default undefined
+	 */
+	ariaPressed?: HTMLAttributes['aria-pressed'];
+	/**
+	 * Indicates whether the element is currently selected.
+	 */
+	ariaSelected?: HTMLAttributes['aria-selected'];
+	/**
+	 * Indicates if the element is currently disabled.
+	 * Prefer using the disabled prop instead.
+	 */
+	ariaDisabled?: HTMLAttributes['aria-disabled'];
 	/** Indicates that an element will be updated, and describes the types of updates the user agents,
 	 * assistive technologies, and user can expect from the live region.
 	 *
@@ -115,4 +141,50 @@ export interface BoButtonProps {
 	ariaLive?: HTMLAttributes['aria-live'];
 	/** Tab index of the element. */
 	tabIndex?: HTMLAttributes['tabindex'];
+	/**
+	 * Keyboard shortcut to activate or focus the element.
+	 */
+	accessKey?: HTMLAttributes['accesskey'];
+}
+
+type BoButtonSizeStyleMap = Record<BoButtonSize, string>;
+type BoButtonVariantStyleMap = Record<BoButtonVariant, string>;
+type BoButtonShapeStyleMap = Record<BoButtonShape, string>;
+
+export interface ButtonManifest {
+	base: string;
+	width: {
+		default: string;
+		fullWidth: string;
+	};
+	shape: BoButtonShapeStyleMap;
+	shadow: BoButtonShapeStyleMap;
+	size: BoButtonSizeStyleMap;
+	iconOnlySize: BoButtonSizeStyleMap;
+	variants: {
+		filled: BoButtonVariantStyleMap;
+		outline: BoButtonVariantStyleMap;
+		ghost: BoButtonVariantStyleMap;
+		link: BoButtonVariantStyleMap;
+	};
+	shapeVariants: Record<BoButtonShape, keyof ButtonManifest['variants']>;
+	states: {
+		loading: string;
+		pressed: string;
+		focus: string;
+	};
+	content: {
+		container: string;
+		label: string;
+		prefixIcon: string;
+		suffixIcon: string;
+		loader: string;
+	};
+	dataAttributes: {
+		slot: string;
+		variant: string;
+		size: string;
+		disabled: string;
+		loading: string;
+	};
 }
