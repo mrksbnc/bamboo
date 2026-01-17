@@ -1,6 +1,6 @@
 {
 	"name": "@mrksbnc/bamboo",
-	"version": "1.0.7",
+	"version": "1.0.0",
 	"type": "module",
 	"exports": {
 		"./components": {
