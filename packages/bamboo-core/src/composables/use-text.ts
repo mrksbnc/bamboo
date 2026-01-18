@@ -1,14 +1,11 @@
-import { computed, ShallowRef, StyleValue } from 'vue';
+import { computed, StyleValue } from 'vue';
 import { BoTextProps } from '../definitions/bo-text';
 import { mergeTwClasses } from '../utils/tailwind-utils';
 import { ComponentStyleComposable } from './types';
 import { useColor } from './use-color';
 import { TEXT_MANIFEST } from '../manifests/text.manifest';
 
-export interface UseBoText extends ComponentStyleComposable {
-	role: ShallowRef<string>;
-	ariaLabel: ShallowRef<string>;
-}
+export interface UseBoText extends ComponentStyleComposable {}
 
 export const useBoText = (props: BoTextProps): UseBoText => {
 	const { getValidOrFallbackColorFromStr } = useColor();
@@ -23,14 +20,6 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 		}
 
 		return TEXT_MANIFEST.styles.cursor.default;
-	});
-
-	const ariaLabel = computed<string>(() => {
-		return props.ariaLabel || props.value || '';
-	});
-
-	const role = computed<string>(() => {
-		return props.role || 'text';
 	});
 
 	const lineClamp = computed<string>(() => {
@@ -54,25 +43,17 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 	});
 
 	const classValues = computed<string>(() => {
-		const textAlign = props.textAlign || 'left';
-		const fontSize = props.fontSize || 'default';
-		const variant = props.variant || 'default';
-		const fontFamily = props.fontFamily || 'inherit';
-		const fontWeight = props.fontWeight || 'regular';
-		const whiteSpace = props.whiteSpace || 'normal';
-		const textTransform = props.textTransform || 'none';
-
 		return mergeTwClasses(
 			cursor.value,
 			lineClamp.value,
 			TEXT_MANIFEST.styles.base,
-			TEXT_MANIFEST.styles.textAlign[textAlign],
-			TEXT_MANIFEST.styles.fontSize[fontSize],
-			TEXT_MANIFEST.styles.variant[variant],
-			TEXT_MANIFEST.styles.fontFamily[fontFamily],
-			TEXT_MANIFEST.styles.fontWeight[fontWeight],
-			TEXT_MANIFEST.styles.whiteSpace[whiteSpace],
-			TEXT_MANIFEST.styles.textTransform[textTransform],
+			TEXT_MANIFEST.styles.variant[props.variant || 'default'],
+			TEXT_MANIFEST.styles.textAlign[props.textAlign || 'left'],
+			TEXT_MANIFEST.styles.fontSize[props.fontSize || 'default'],
+			TEXT_MANIFEST.styles.whiteSpace[props.whiteSpace || 'normal'],
+			TEXT_MANIFEST.styles.fontFamily[props.fontFamily || 'inherit'],
+			TEXT_MANIFEST.styles.fontWeight[props.fontWeight || 'regular'],
+			TEXT_MANIFEST.styles.textTransform[props.textTransform || 'none'],
 		);
 	});
 
@@ -87,8 +68,6 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 	});
 
 	return {
-		ariaLabel,
-		role,
 		classValues,
 		styleValues,
 	};

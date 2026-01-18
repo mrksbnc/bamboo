@@ -1,33 +1,42 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoAvatarProps, BoAvatarType } from '../definitions/bo-avatar';
+import { BoAvatarProps } from '../definitions/bo-avatar';
 import { ComponentStyleComposable } from './types';
 import { mergeTwClasses } from '../utils/tailwind-utils';
 import { BoFontSize } from '../definitions/bo-text';
 import { AVATAR_MANIFEST } from '../manifests/avatar.manifest';
 
 export interface UseBoAvatar extends ComponentStyleComposable {
-	indicatorClassValues: ShallowRef<string>;
-	labelFontSize: ShallowRef<BoFontSize>;
 	label: ShallowRef<string>;
-	showDefaultAvatar: ShallowRef<boolean>;
-	textColorClass: ShallowRef<string>;
-	containerClassValues: ShallowRef<Record<BoAvatarType, string>>;
+	renderWithImage: ShallowRef<boolean>;
+	labelFontSize: ShallowRef<BoFontSize>;
+	containerClassValues: ShallowRef<string>;
+	indicatorClassValues: ShallowRef<string>;
+	renderWithAbbreviatedLabel: ShallowRef<boolean>;
 }
 
 export interface UseBoAvatarOptions {
 	props: BoAvatarProps;
-	imgError?: boolean;
+	imgError: ShallowRef<boolean>;
 }
 
 export const useBoAvatar = (args: UseBoAvatarOptions): UseBoAvatar => {
 	const { props, imgError } = args;
 
-	const isOutlineShape = computed<boolean>(() => {
-		return props.shape?.includes('outline') ?? false;
+	const isOutlineKind = computed<boolean>(() => {
+		return props.kind?.includes('outline') ?? false;
+	});
+
+	const renderWithImage = computed<boolean>(() => {
+		return !!props.src && !imgError.value;
+	});
+
+	const renderWithAbbreviatedLabel = computed<boolean>(() => {
+		return !!props.label && !renderWithImage.value;
 	});
 
 	const label = computed<string>(() => {
-		const safeStr = props.data?.label || '';
+		const safeStr = props?.label || '';
+
 		if (safeStr.length > 2) {
 			return safeStr.slice(0, 2).toUpperCase();
 		}
@@ -38,35 +47,28 @@ export const useBoAvatar = (args: UseBoAvatarOptions): UseBoAvatar => {
 		return AVATAR_MANIFEST.styles.labelSize[props.size || 'default'];
 	});
 
-	const showDefaultAvatar = computed<boolean>(() => {
-		if (props.withDefaultImage || imgError) {
-			return true;
-		}
-		return props.data?.src === undefined && !!props.data?.label;
-	});
-
-	const textColorClass = computed<string>(() => {
+	const fontColor = computed<string>(() => {
 		if (props.color?.textColor) {
 			return '';
 		}
 
 		const variant = props.variant || 'primary';
 
-		if (isOutlineShape.value) {
+		if (isOutlineKind.value) {
 			return AVATAR_MANIFEST.styles.textColor.outline[variant];
 		}
 
 		return AVATAR_MANIFEST.styles.textColor.filled[variant];
 	});
 
-	const bgConstruct = computed<string>(() => {
-		if (props.color?.bgColor || props.withDefaultImage || (props.type === 'image' && !imgError)) {
-			return 'bg-transparent';
+	const backgroundClassValues = computed<string>(() => {
+		if (props.color?.bgColor) {
+			return '';
 		}
 
 		const variant = props.variant || 'primary';
 
-		if (isOutlineShape.value) {
+		if (isOutlineKind.value) {
 			return AVATAR_MANIFEST.styles.variants.outline[variant];
 		}
 
@@ -74,41 +76,34 @@ export const useBoAvatar = (args: UseBoAvatarOptions): UseBoAvatar => {
 	});
 
 	const indicatorClassValues = computed<string>(() => {
-		if (!props.indicator || props.indicator.status === 'none') {
+		if (!props.indicatorKind || props.indicatorKind === 'none') {
 			return '';
 		}
 
 		return mergeTwClasses(
 			/*tw*/ 'absolute rounded-full border-2 border-white',
 			AVATAR_MANIFEST.styles.indicator.size[props.size || 'default'],
-			AVATAR_MANIFEST.styles.indicator.status[props.indicator.status || 'none'],
-			AVATAR_MANIFEST.styles.indicator.position[props.indicator.position || 'bottom-right'],
+			AVATAR_MANIFEST.styles.indicator.status[props.indicatorKind || 'none'],
+			AVATAR_MANIFEST.styles.indicator.position[props.indicatorPosition || 'top-right'],
 		);
 	});
 
-	const containerClassValues = computed<Record<BoAvatarType, string>>(() => {
-		return {
-			image: AVATAR_MANIFEST.styles.container.image,
-			default: AVATAR_MANIFEST.styles.container.default,
-			initials: AVATAR_MANIFEST.styles.container.initials,
-		};
-	});
-
-	const classValues = computed<string>(() => {
+	const containerClassValues = computed<string>(() => {
 		const cursorClass = props.clickable
 			? /* tw*/ 'cursor-pointer hover:opacity-80'
 			: /* tw*/ 'cursor-default';
-		const shadowClass = !isOutlineShape.value
-			? /* tw*/ 'shadow-sm dark:shadow-gray-800'
+		const shadowClass = !isOutlineKind.value
+			? /* tw*/ 'shadow-xs dark:shadow-gray-800'
 			: /* tw*/ '';
 
 		return mergeTwClasses(
 			cursorClass,
 			shadowClass,
-			bgConstruct.value,
+			fontColor.value,
 			AVATAR_MANIFEST.styles.base,
+			backgroundClassValues.value,
 			AVATAR_MANIFEST.styles.size[props.size || 'default'],
-			AVATAR_MANIFEST.styles.shape[props.shape || 'rounded'],
+			AVATAR_MANIFEST.styles.kind[props.kind || 'default'],
 		);
 	});
 
@@ -120,13 +115,12 @@ export const useBoAvatar = (args: UseBoAvatarOptions): UseBoAvatar => {
 	});
 
 	return {
-		indicatorClassValues,
-		labelFontSize,
 		label,
-		showDefaultAvatar,
-		textColorClass,
-		containerClassValues,
-		classValues,
 		styleValues,
+		labelFontSize,
+		renderWithImage,
+		containerClassValues,
+		indicatorClassValues,
+		renderWithAbbreviatedLabel,
 	};
 };

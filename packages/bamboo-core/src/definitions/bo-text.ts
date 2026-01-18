@@ -200,6 +200,8 @@ type TextComponentDefaults = Pick<
 	| 'fontFamily'
 	| 'whiteSpace'
 	| 'lineClamp'
+	| 'ariaLive'
+	| 'textTransform'
 >;
 
 export type TextManifest = ComponentManifest<TextStyleManifest, TextComponentDefaults>;

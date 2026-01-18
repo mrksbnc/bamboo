@@ -26,4 +26,4 @@ export { TEXT_MANIFEST } from './text.manifest';
 export { TEXTAREA_MANIFEST } from './textarea.manifest';
 
 // # Types
-export type { ComponentManifest, TStyles } from './types';
+export type { ComponentManifest } from './types';

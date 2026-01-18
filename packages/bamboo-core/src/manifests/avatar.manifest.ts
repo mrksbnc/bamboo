@@ -10,7 +10,7 @@ export const AVATAR_MANIFEST = {
 			'Avatar component for displaying user profile pictures, initials, or default images with support for indicators, sizes, and more',
 	},
 	styles: {
-		base: /*tw*/ 'relative inline-flex overflow-hidden select-none',
+		base: /*tw*/ 'relative inline-flex overflow-hidden select-none justify-center items-center',
 		size: {
 			xs: /*tw*/ 'w-6 h-6',
 			sm: /*tw*/ 'w-8 h-8',
@@ -18,35 +18,35 @@ export const AVATAR_MANIFEST = {
 			lg: /*tw*/ 'w-12 h-12',
 			xl: /*tw*/ 'w-36 h-36',
 		},
-		shape: {
+		kind: {
 			circle: /*tw*/ 'rounded-full',
-			rounded: /*tw*/ 'rounded-md',
+			default: /*tw*/ 'rounded-md',
 			flat: /*tw*/ 'rounded-none',
-			'outline-circle': /*tw*/ 'rounded-full border',
-			'outline-rounded': /*tw*/ 'rounded-md border',
 			'outline-flat': /*tw*/ 'rounded-none border',
+			'outline-default': /*tw*/ 'rounded-md border',
+			'outline-circle': /*tw*/ 'rounded-full border',
 		},
 		variants: {
 			filled: {
-				primary: /*tw*/ 'bg-blue-500 dark:bg-blue-700 text-white',
+				primary: /*tw*/ 'bg-blue-600 dark:bg-blue-700 text-white',
 				secondary: /*tw*/ 'bg-gray-400 dark:bg-gray-700 text-white',
-				danger: /*tw*/ 'bg-red-500 dark:bg-red-700 text-white',
-				warning: /*tw*/ 'bg-yellow-500 dark:bg-yellow-600 text-white',
+				danger: /*tw*/ 'bg-red-600 dark:bg-red-700 text-white',
+				warning: /*tw*/ 'bg-yellow-600 dark:bg-yellow-600 text-white',
 				success: /*tw*/ 'bg-green-600 dark:bg-green-700 text-white',
 				dark: /*tw*/ 'bg-black dark:bg-black text-white',
 			},
 			outline: {
 				primary:
-					/*tw*/ 'bg-transparent border-blue-500 text-blue-500 dark:border-blue-400 dark:text-blue-400',
+					/*tw*/ 'bg-transparent border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-500',
 				secondary:
-					/*tw*/ 'bg-transparent border-gray-500 text-gray-500 dark:border-neutral-300 dark:text-neutral-300',
+					/*tw*/ 'bg-transparent border-gray-600 text-gray-600 dark:border-neutral-400 dark:text-neutral-400',
 				danger:
-					/*tw*/ 'bg-transparent border-red-500 text-red-500 dark:border-red-400 dark:text-red-400',
+					/*tw*/ 'bg-transparent border-red-600 text-red-600 dark:border-red-500 dark:text-red-500',
 				warning:
-					/*tw*/ 'bg-transparent border-yellow-500 text-yellow-500 dark:border-yellow-400 dark:text-yellow-400',
+					/*tw*/ 'bg-transparent border-yellow-600 text-yellow-600 dark:border-yellow-500 dark:text-yellow-500',
 				success:
-					/*tw*/ 'bg-transparent border-green-500 text-green-500 dark:border-green-400 dark:text-green-400',
-				dark: /*tw*/ 'bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-300',
+					/*tw*/ 'bg-transparent border-green-600 text-green-600 dark:border-green-500 dark:text-green-500',
+				dark: /*tw*/ 'bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-400',
 			},
 		},
 		textColor: {
@@ -59,12 +59,12 @@ export const AVATAR_MANIFEST = {
 				dark: /*tw*/ 'text-white dark:text-white',
 			},
 			outline: {
-				primary: /*tw*/ 'text-blue-500 dark:text-blue-400',
-				secondary: /*tw*/ 'text-gray-500 dark:text-neutral-300',
-				danger: /*tw*/ 'text-red-500 dark:text-red-400',
-				warning: /*tw*/ 'text-yellow-500 dark:text-yellow-400',
-				success: /*tw*/ 'text-green-500 dark:text-green-400',
-				dark: /*tw*/ 'text-black dark:text-neutral-300',
+				primary: /*tw*/ 'text-blue-600 dark:text-blue-500',
+				secondary: /*tw*/ 'text-gray-600 dark:text-neutral-400',
+				danger: /*tw*/ 'text-red-600 dark:text-red-500',
+				warning: /*tw*/ 'text-yellow-600 dark:text-yellow-500',
+				success: /*tw*/ 'text-green-600 dark:text-green-500',
+				dark: /*tw*/ 'text-black dark:text-neutral-400',
 			},
 		},
 		indicator: {
@@ -96,20 +96,14 @@ export const AVATAR_MANIFEST = {
 			lg: 'lg',
 			xl: 'xl',
 		},
-		container: {
-			default: /*tw*/ 'relative overflow-hidden',
-			initials: /*tw*/ 'flex h-full w-full items-center justify-center',
-			image: /*tw*/ 'relative h-full w-full overflow-hidden',
-		},
 	},
 	defaults: {
+		role: 'img',
+		alt: 'avatar',
 		size: 'default',
-		type: 'default',
-		shape: 'rounded',
+		kind: 'default',
 		variant: 'primary',
-		indicator: {
-			status: 'none',
-			position: 'bottom-right',
-		},
+		indicatorKind: 'none',
+		indicatorPosition: 'top-right',
 	},
 } as const satisfies AvatarManifest;

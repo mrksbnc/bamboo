@@ -17,7 +17,6 @@ export const useColor = (): UseColor => {
 
 	function getValidOrFallbackColorFromStr(prop: string): string {
 		if (
-			prop.startsWith('var') ||
 			prop.startsWith('#') ||
 			prop.startsWith('oklch') ||
 			prop.startsWith('rgb') ||
@@ -32,7 +31,7 @@ export const useColor = (): UseColor => {
 			return `#${prop}`;
 		} else {
 			console.warn(UNKNOWN_COLOR_WARNING.replace(TEXT_REPLACE_PLACEHOLDER, prop));
-			return 'currentColor';
+			return 'inherit';
 		}
 	}
 

@@ -1,5 +1,3 @@
-export type TStyles = Record<string, string>;
-
 export interface ComponentManifest<T, D> {
 	meta: {
 		name: string;

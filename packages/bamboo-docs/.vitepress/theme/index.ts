@@ -6,17 +6,7 @@ import { useData } from 'vitepress';
 
 import './style.css';
 
-import {
-	BoButton,
-	BoIcon,
-	BoText,
-	BoInput,
-	BoTextarea,
-	BoAvatar,
-	BoBadge,
-	BoLoadingSpinner,
-	BoLoadingPulse,
-} from '@mrksbnc/bamboo-vue';
+import { BoAvatar } from '@mrksbnc/bamboo-vue';
 
 export default {
 	extends: DefaultTheme,
@@ -28,14 +18,6 @@ export default {
 
 	enhanceApp({ app }) {
 		app.component('BoAvatar', BoAvatar);
-		app.component('BoButton', BoButton);
-		app.component('BoIcon', BoIcon);
-		app.component('BoText', BoText);
-		app.component('BoInput', BoInput);
-		app.component('BoTextarea', BoTextarea);
-		app.component('BoBadge', BoBadge);
-		app.component('BoLoadingSpinner', BoLoadingSpinner);
-		app.component('BoLoadingPulse', BoLoadingPulse);
 
 		if (typeof window !== 'undefined') {
 			app.mixin({
