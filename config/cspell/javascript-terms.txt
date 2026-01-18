@@ -7,7 +7,9 @@ Flexbox
 haspopup
 labelledby
 nonconstructor
+nums
 oklch
+oldstyle
 oxlint
 oxlintrc
 rgba
