@@ -5,5 +5,5 @@ import { BoAvatar } from '@mrksbnc/bamboo-vue';
 ## Basic Usage
 
 <div>
-	<bo-avatar label="John Doe"  kind="outline-circle" />
+	<bo-avatar label="John Doe"  variant="warning" size="xl" />
 </div>

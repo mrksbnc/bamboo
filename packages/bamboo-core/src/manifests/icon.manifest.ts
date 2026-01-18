@@ -24,7 +24,7 @@ export const ICON_MANIFEST = {
 			secondary: /*tw*/ 'text-gray-500 dark:text-gray-400',
 			success: /*tw*/ 'text-green-500 dark:text-green-400',
 			warning: /*tw*/ 'text-yellow-500 dark:text-yellow-400',
-			danger: /*tw*/ 'text-red-500 dark:text-red-400',
+			destructive: /*tw*/ 'text-red-500 dark:text-red-400',
 			white: /*tw*/ 'text-white',
 			black: /*tw*/ 'text-black',
 		},

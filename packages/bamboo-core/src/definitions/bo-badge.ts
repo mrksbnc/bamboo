@@ -7,7 +7,7 @@ import { ComponentManifest } from '../manifests/types.js';
 export type BoBadgeVariant =
 	| 'primary'
 	| 'secondary'
-	| 'danger'
+	| 'destructive'
 	| 'warning'
 	| 'success'
 	| 'light'

@@ -30,7 +30,7 @@ export const AVATAR_MANIFEST = {
 			filled: {
 				primary: /*tw*/ 'bg-blue-600 dark:bg-blue-700 text-white',
 				secondary: /*tw*/ 'bg-gray-400 dark:bg-gray-700 text-white',
-				danger: /*tw*/ 'bg-red-600 dark:bg-red-700 text-white',
+				destructive: /*tw*/ 'bg-red-600 dark:bg-red-700 text-white',
 				warning: /*tw*/ 'bg-yellow-600 dark:bg-yellow-600 text-white',
 				success: /*tw*/ 'bg-green-600 dark:bg-green-700 text-white',
 				dark: /*tw*/ 'bg-black dark:bg-black text-white',
@@ -40,7 +40,7 @@ export const AVATAR_MANIFEST = {
 					/*tw*/ 'bg-transparent border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-500',
 				secondary:
 					/*tw*/ 'bg-transparent border-gray-600 text-gray-600 dark:border-neutral-400 dark:text-neutral-400',
-				danger:
+				destructive:
 					/*tw*/ 'bg-transparent border-red-600 text-red-600 dark:border-red-500 dark:text-red-500',
 				warning:
 					/*tw*/ 'bg-transparent border-yellow-600 text-yellow-600 dark:border-yellow-500 dark:text-yellow-500',
@@ -53,7 +53,7 @@ export const AVATAR_MANIFEST = {
 			filled: {
 				primary: /*tw*/ 'text-white dark:text-white',
 				secondary: /*tw*/ 'text-white dark:text-white',
-				danger: /*tw*/ 'text-white dark:text-white',
+				destructive: /*tw*/ 'text-white dark:text-white',
 				warning: /*tw*/ 'text-white dark:text-white',
 				success: /*tw*/ 'text-white dark:text-white',
 				dark: /*tw*/ 'text-white dark:text-white',
@@ -61,7 +61,7 @@ export const AVATAR_MANIFEST = {
 			outline: {
 				primary: /*tw*/ 'text-blue-600 dark:text-blue-500',
 				secondary: /*tw*/ 'text-gray-600 dark:text-neutral-400',
-				danger: /*tw*/ 'text-red-600 dark:text-red-500',
+				destructive: /*tw*/ 'text-red-600 dark:text-red-500',
 				warning: /*tw*/ 'text-yellow-600 dark:text-yellow-500',
 				success: /*tw*/ 'text-green-600 dark:text-green-500',
 				dark: /*tw*/ 'text-black dark:text-neutral-400',
@@ -93,8 +93,8 @@ export const AVATAR_MANIFEST = {
 			xs: 'xs',
 			sm: 'sm',
 			default: 'default',
-			lg: 'lg',
-			xl: 'xl',
+			lg: 'xl',
+			xl: '4xl',
 		},
 	},
 	defaults: {

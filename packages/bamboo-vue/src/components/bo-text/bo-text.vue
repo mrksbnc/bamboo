@@ -1,5 +1,5 @@
 <template>
-	<p
+	<span
 		:id="id"
 		:data-testid="dataTestId"
 		:role="role"
@@ -14,7 +14,7 @@
 		<slot>
 			{{ value }}
 		</slot>
-	</p>
+	</span>
 </template>
 
 <script lang="ts" setup>

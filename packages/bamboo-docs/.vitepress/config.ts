@@ -34,7 +34,16 @@ export default defineConfig({
 		sidebar: [
 			{
 				text: 'Components',
-				items: [{ text: 'Avatar', link: '/en/components/avatar' }],
+				items: [
+					{
+						text: 'Avatar',
+						link: '/en/components/avatar',
+					},
+					{
+						text: 'Text',
+						link: '/en/components/text',
+					},
+				],
 			},
 		],
 

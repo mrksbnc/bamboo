@@ -12,7 +12,13 @@ export type BoAvatarKind =
 	| 'outline-default'
 	| 'outline-circle';
 
-export type BoAvatarVariant = 'primary' | 'secondary' | 'danger' | 'warning' | 'success' | 'dark';
+export type BoAvatarVariant =
+	| 'primary'
+	| 'secondary'
+	| 'destructive'
+	| 'warning'
+	| 'success'
+	| 'dark';
 
 export type BoAvatarIndicatorPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 

@@ -9,7 +9,7 @@ export type BoLoaderVariant =
 	| 'secondary'
 	| 'success'
 	| 'warning'
-	| 'danger'
+	| 'destructive'
 	| 'white'
 	| 'black'
 	| 'current';
