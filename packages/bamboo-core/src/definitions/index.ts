@@ -43,13 +43,37 @@ export {
 } from './bo-icon.js';
 
 // # bo-input
-export {} from './bo-input.js';
+export {
+	type BoInputSize,
+	type BoInputType,
+	type BoInputState,
+	type BoInputVariant,
+	type BoInputPill,
+	type BoInputProps,
+	type InputManifest,
+} from './bo-input.js';
+
+// # bo-loader
+export {
+	type BoLoaderSize,
+	type BoLoaderType,
+	type BoLoaderTextPosition,
+	type BoLoaderVariant,
+} from './bo-loader.js';
 
 // # bo-loading-pulse
-export {} from './bo-loading-pulse.js';
+export {
+	type LoadingPulseStyleManifest,
+	type LoadingPulseManifest,
+	type BoLoadingPulseProps,
+} from './bo-loading-pulse.js';
 
 // # bo-loading-spinner
-export {} from './bo-loading-spinner.js';
+export {
+	type BoLoadingSpinnerProps,
+	type LoadingSpinnerStyleManifest,
+	type LoadingSpinnerManifest,
+} from './bo-loading-spinner.js';
 
 // # bo-text
 export {
@@ -66,7 +90,17 @@ export {
 } from './bo-text.js';
 
 // # bo-textarea
-export {} from './bo-textarea.js';
+export {
+	type BoTextareaSize,
+	type BoTextareaState,
+	type BoTextareaVariant,
+	type BoTextareaProps,
+	type TextareaManifest,
+} from './bo-textarea.js';
 
 // # component-types
-export {} from './component-types.js';
+export {
+	type Booleanish,
+	type ConditionalCssProperties,
+	type BoCursor,
+} from './component-types.js';

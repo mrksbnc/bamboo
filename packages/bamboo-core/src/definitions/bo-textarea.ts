@@ -1,5 +1,6 @@
 import { HTMLAttributes } from 'vue';
-import { Icon } from './bo-icon.js';
+import { BoFontSize, BoIconSize, Icon } from './index.js';
+import { ComponentManifest } from '../manifests/types.js';
 
 export type BoTextareaSize = 'sm' | 'md' | 'lg';
 
@@ -66,3 +67,61 @@ export interface BoTextareaProps {
 	/** Defines a string value that labels the current element. */
 	ariaLabel?: HTMLAttributes['aria-label'];
 }
+
+type BoTextareaSizeStyleMap = Record<BoTextareaSize, string>;
+type BoTextareaStateStyleMap = Record<BoTextareaState, string>;
+type BoTextareaVariantStyleMap = Record<BoTextareaVariant, string>;
+
+interface TextareaStyleManifest {
+	base: string;
+	container: {
+		base: string;
+		disabled: string;
+		expand: string;
+	};
+	textarea: {
+		base: string;
+		withPrefixIcon: string;
+		withSuffixIcon: string;
+		expand: string;
+		resizable: string;
+	};
+	padding: BoTextareaSizeStyleMap;
+	state: BoTextareaStateStyleMap;
+	variant: BoTextareaVariantStyleMap;
+	icons: {
+		prefix: BoTextareaSizeStyleMap;
+		suffix: BoTextareaSizeStyleMap;
+		size: Record<BoTextareaSize, BoIconSize>;
+	};
+	labels: {
+		container: string;
+		required: string;
+		fontSize: BoFontSize;
+	};
+	helpers: {
+		error: string;
+		hint: string;
+		fontSize: BoFontSize;
+	};
+}
+
+type BoTextareaComponentDefaults = Pick<
+	BoTextareaProps,
+	| 'size'
+	| 'state'
+	| 'variant'
+	| 'rows'
+	| 'disabled'
+	| 'readOnly'
+	| 'required'
+	| 'autofocus'
+	| 'expand'
+	| 'maxLength'
+	| 'resizable'
+>;
+
+export type TextareaManifest = ComponentManifest<
+	TextareaStyleManifest,
+	BoTextareaComponentDefaults
+>;

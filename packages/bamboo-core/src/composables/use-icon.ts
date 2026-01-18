@@ -2,7 +2,7 @@ import { computed, HTMLAttributes, ShallowRef, StyleValue } from 'vue';
 import { BoIconProps } from '../definitions/bo-icon';
 import { ComponentStyleComposable } from './types';
 import { useColor } from './use-color';
-import { useTailwind } from './use-tailwind';
+import { mergeTwClasses } from '../utils/tailwind-utils';
 import { ICON_MANIFEST } from '../manifests/icon.manifest';
 import { BO_ICON_REGISTRY } from '../components/bo-icon-registry';
 
@@ -12,7 +12,6 @@ export interface UseBoIcon extends ComponentStyleComposable {
 }
 
 export const useBoIcon = (props: BoIconProps): UseBoIcon => {
-	const { merge } = useTailwind();
 	const { getValidOrFallbackColorFromStr } = useColor();
 
 	const component = computed<string>(() => {
@@ -24,7 +23,7 @@ export const useBoIcon = (props: BoIconProps): UseBoIcon => {
 	});
 
 	const classValues = computed<string>(() => {
-		return merge(
+		return mergeTwClasses(
 			ICON_MANIFEST.styles.base,
 			ICON_MANIFEST.styles.variant[props.variant || 'current'],
 			props.cursor ? props.cursor : ICON_MANIFEST.styles.cursor.default,

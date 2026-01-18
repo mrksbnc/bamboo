@@ -1,10 +1,7 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
-import { ComponentStyleComposable } from './types';
-import { BoLoadingSpinnerProps } from '../definitions/bo-loader';
-import { useTailwind } from './use-tailwind';
-import { useColor } from './use-color';
-import { BoFontSize } from '../definitions/bo-text';
-import { LOADING_SPINNER_MANIFEST } from '../manifests/loading-spinner.manifest';
+import { BoLoadingSpinnerProps, BoFontSize } from '../definitions/index.js';
+import { useColor, useTailwind, type ComponentStyleComposable } from './index.js';
+import { LOADING_SPINNER_MANIFEST } from '../manifests/index.js';
 
 export interface UseBoLoadingSpinner extends ComponentStyleComposable {
 	spinnerLabelFontSize: ShallowRef<BoFontSize>;

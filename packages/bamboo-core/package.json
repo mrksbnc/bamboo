@@ -1,5 +1,5 @@
 {
-	"name": "@mrksbnc/bamboo-core",
+	"name": "@workspace/bamboo-core",
 	"version": "0.0.1",
 	"private": true,
 	"license": "MIT",
@@ -21,6 +21,7 @@
 	],
 	"scripts": {
 		"build": "pnpm type-check && vite build --mode production",
+		"test": "vitest --coverage",
 		"type-check": "tsc --noEmit"
 	},
 	"peerDependencies": {

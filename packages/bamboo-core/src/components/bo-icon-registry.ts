@@ -1,4 +1,4 @@
-import { BoIconRegistry } from '../definitions';
+import { BoIconRegistry } from '../definitions/index.js';
 
 export const BO_ICON_REGISTRY: BoIconRegistry = {
 	activity: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" linecap="round" linejoin="round" class="bamboo bamboo-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>`,

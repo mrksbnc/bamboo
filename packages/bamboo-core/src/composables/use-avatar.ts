@@ -1,7 +1,7 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoAvatarProps } from '../definitions/bo-avatar';
+import { BoAvatarProps, BoAvatarType } from '../definitions/bo-avatar';
 import { ComponentStyleComposable } from './types';
-import { useTailwind } from './use-tailwind';
+import { mergeTwClasses } from '../utils/tailwind-utils';
 import { BoFontSize } from '../definitions/bo-text';
 import { AVATAR_MANIFEST } from '../manifests/avatar.manifest';
 
@@ -11,16 +11,16 @@ export interface UseBoAvatar extends ComponentStyleComposable {
 	label: ShallowRef<string>;
 	showDefaultAvatar: ShallowRef<boolean>;
 	textColorClass: ShallowRef<string>;
-	defaultAvatarClassValues: ShallowRef<string>;
-	initialsContainerClassValues: ShallowRef<string>;
-	imageContainerClassValues: ShallowRef<string>;
+	containerClassValues: ShallowRef<Record<BoAvatarType, string>>;
 }
 
-export const useBoAvatar = (
-	props: BoAvatarProps,
-	options?: { imgError?: boolean },
-): UseBoAvatar => {
-	const { merge } = useTailwind();
+export interface UseBoAvatarOptions {
+	props: BoAvatarProps;
+	imgError?: boolean;
+}
+
+export const useBoAvatar = (args: UseBoAvatarOptions): UseBoAvatar => {
+	const { props, imgError } = args;
 
 	const isOutlineShape = computed<boolean>(() => {
 		return props.shape?.includes('outline') ?? false;
@@ -39,7 +39,7 @@ export const useBoAvatar = (
 	});
 
 	const showDefaultAvatar = computed<boolean>(() => {
-		if (props.withDefaultImage || options?.imgError) {
+		if (props.withDefaultImage || imgError) {
 			return true;
 		}
 		return props.data?.src === undefined && !!props.data?.label;
@@ -60,11 +60,7 @@ export const useBoAvatar = (
 	});
 
 	const bgConstruct = computed<string>(() => {
-		if (
-			props.color?.bgColor ||
-			props.withDefaultImage ||
-			(props.type === 'image' && !options?.imgError)
-		) {
+		if (props.color?.bgColor || props.withDefaultImage || (props.type === 'image' && !imgError)) {
 			return 'bg-transparent';
 		}
 
@@ -82,44 +78,44 @@ export const useBoAvatar = (
 			return '';
 		}
 
-		return merge(
-			'absolute rounded-full border-2 border-white',
+		return mergeTwClasses(
+			/*tw*/ 'absolute rounded-full border-2 border-white',
 			AVATAR_MANIFEST.styles.indicator.size[props.size || 'default'],
 			AVATAR_MANIFEST.styles.indicator.status[props.indicator.status || 'none'],
 			AVATAR_MANIFEST.styles.indicator.position[props.indicator.position || 'bottom-right'],
 		);
 	});
 
-	const defaultAvatarClassValues = computed<string>(() => {
-		return merge(AVATAR_MANIFEST.styles.containers.default);
-	});
-
-	const initialsContainerClassValues = computed<string>(() => {
-		return merge(AVATAR_MANIFEST.styles.containers.initials);
-	});
-
-	const imageContainerClassValues = computed<string>(() => {
-		return merge(AVATAR_MANIFEST.styles.containers.image);
+	const containerClassValues = computed<Record<BoAvatarType, string>>(() => {
+		return {
+			image: AVATAR_MANIFEST.styles.container.image,
+			default: AVATAR_MANIFEST.styles.container.default,
+			initials: AVATAR_MANIFEST.styles.container.initials,
+		};
 	});
 
 	const classValues = computed<string>(() => {
-		const cursorClass = props.clickable ? 'cursor-pointer hover:opacity-80' : 'cursor-default';
-		const shadowClass = !isOutlineShape.value ? 'shadow-sm dark:shadow-gray-800' : '';
+		const cursorClass = props.clickable
+			? /* tw*/ 'cursor-pointer hover:opacity-80'
+			: /* tw*/ 'cursor-default';
+		const shadowClass = !isOutlineShape.value
+			? /* tw*/ 'shadow-sm dark:shadow-gray-800'
+			: /* tw*/ '';
 
-		return merge(
+		return mergeTwClasses(
+			cursorClass,
+			shadowClass,
+			bgConstruct.value,
 			AVATAR_MANIFEST.styles.base,
 			AVATAR_MANIFEST.styles.size[props.size || 'default'],
 			AVATAR_MANIFEST.styles.shape[props.shape || 'rounded'],
-			bgConstruct.value,
-			cursorClass,
-			shadowClass,
 		);
 	});
 
 	const styleValues = computed<StyleValue>(() => {
 		return {
-			backgroundColor: props.color?.bgColor,
 			color: props.color?.textColor,
+			backgroundColor: props.color?.bgColor,
 		};
 	});
 
@@ -129,9 +125,7 @@ export const useBoAvatar = (
 		label,
 		showDefaultAvatar,
 		textColorClass,
-		defaultAvatarClassValues,
-		initialsContainerClassValues,
-		imageContainerClassValues,
+		containerClassValues,
 		classValues,
 		styleValues,
 	};

@@ -14,7 +14,7 @@ export type BoAvatarShape =
 
 export type BoAvatarVariant = 'primary' | 'secondary' | 'danger' | 'warning' | 'success' | 'dark';
 
-export type BoAvatarType = 'image' | 'initials';
+export type BoAvatarType = 'image' | 'initials' | 'default';
 
 export type BoAvatarIndicatorPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
@@ -108,7 +108,7 @@ export interface AvatarStyleManifest {
 		size: BoAvatarSizeStyleMap;
 	};
 	labelSize: Record<BoAvatarSize, BoFontSize>;
-	containers: {
+	container: {
 		default: string;
 		initials: string;
 		image: string;
