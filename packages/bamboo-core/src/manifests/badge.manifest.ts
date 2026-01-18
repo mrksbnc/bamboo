@@ -7,7 +7,7 @@ export const BADGE_MANIFEST = {
 		category: 'display',
 		tags: ['badge', 'label', 'tag', 'status', 'indicator', 'chip'],
 		description:
-			'A badge is a component used to indicate status or other information related to an element using color, icon, or text.',
+			'Simple badge component for displaying status indicators, tags, and more with support for icons, variants, and sizes',
 	},
 	styles: {
 		base: /*tw*/ 'inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 shadow-sm cursor-default font-medium transition-colors',

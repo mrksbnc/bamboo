@@ -38,7 +38,7 @@
 		"tailwindcss": "^4.1.18",
 		"turbo": "^2.7.4",
 		"typescript": "^5.9.3",
-		"vite": "^7.3.1",
+		"vite": "npm:rolldown-vite@latest",
 		"vite-plugin-dts": "^4.5.4",
 		"vitest": "^4.0.17",
 		"vue": "^3.5.26",

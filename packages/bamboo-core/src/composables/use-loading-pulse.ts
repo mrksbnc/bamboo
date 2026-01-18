@@ -1,10 +1,8 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoPulseLoaderProps } from '../definitions/bo-loader';
-import { ComponentStyleComposable } from './types';
-import { useColor } from './use-color';
-import { useTailwind } from './use-tailwind';
-import { BoFontSize } from '../definitions/bo-text';
-import { LOADING_PULSE_MANIFEST } from '../manifests/loading-pulse.manifest';
+import { BoLoadingPulseProps, BoFontSize } from '../definitions/index.js';
+import { useColor, ComponentStyleComposable } from './index.js';
+import { mergeTwClasses } from '../utils/index.js';
+import { LOADING_PULSE_MANIFEST } from '../manifests/index.js';
 
 export interface UseBoLoadingPulse extends ComponentStyleComposable {
 	pulseLabelFontSize: ShallowRef<BoFontSize>;
@@ -14,8 +12,7 @@ export interface UseBoLoadingPulse extends ComponentStyleComposable {
 	innerPulseClassValues: ShallowRef<string>;
 }
 
-export const useBoLoadingPulse = (props: BoPulseLoaderProps): UseBoLoadingPulse => {
-	const { merge } = useTailwind();
+export const useBoLoadingPulse = (props: BoLoadingPulseProps): UseBoLoadingPulse => {
 	const { getValidOrFallbackColorFromStr } = useColor();
 
 	const pulseLabelFontSize = computed<BoFontSize>(() => {
@@ -23,14 +20,14 @@ export const useBoLoadingPulse = (props: BoPulseLoaderProps): UseBoLoadingPulse 
 	});
 
 	const containerClassValues = computed<string>(() => {
-		return merge(
+		return mergeTwClasses(
 			LOADING_PULSE_MANIFEST.styles.container,
 			LOADING_PULSE_MANIFEST.styles.textPosition[props.textPosition || 'after'],
 		);
 	});
 
 	const outerPulseContainerClassValues = computed<string>(() => {
-		return merge(
+		return mergeTwClasses(
 			LOADING_PULSE_MANIFEST.styles.base,
 			LOADING_PULSE_MANIFEST.styles.size[props.size || 'default'],
 		);
@@ -40,7 +37,7 @@ export const useBoLoadingPulse = (props: BoPulseLoaderProps): UseBoLoadingPulse 
 		if (props.customColor) {
 			return LOADING_PULSE_MANIFEST.styles.dot;
 		}
-		return merge(
+		return mergeTwClasses(
 			LOADING_PULSE_MANIFEST.styles.dot,
 			LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
 		);
@@ -48,12 +45,12 @@ export const useBoLoadingPulse = (props: BoPulseLoaderProps): UseBoLoadingPulse 
 
 	const innerPulseClassValues = computed<string>(() => {
 		if (props.customColor) {
-			return merge(
+			return mergeTwClasses(
 				LOADING_PULSE_MANIFEST.styles.dot,
 				LOADING_PULSE_MANIFEST.styles.size[props.size || 'default'],
 			);
 		}
-		return merge(
+		return mergeTwClasses(
 			LOADING_PULSE_MANIFEST.styles.dot,
 			LOADING_PULSE_MANIFEST.styles.size[props.size || 'default'],
 			LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],

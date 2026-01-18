@@ -1,6 +1,6 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
 import { BoTextProps } from '../definitions/bo-text';
-import { useTailwind } from './use-tailwind';
+import { mergeTwClasses } from '../utils/tailwind-utils';
 import { ComponentStyleComposable } from './types';
 import { useColor } from './use-color';
 import { TEXT_MANIFEST } from '../manifests/text.manifest';
@@ -11,7 +11,6 @@ export interface UseBoText extends ComponentStyleComposable {
 }
 
 export const useBoText = (props: BoTextProps): UseBoText => {
-	const { merge } = useTailwind();
 	const { getValidOrFallbackColorFromStr } = useColor();
 
 	const cursor = computed<string>(() => {
@@ -63,7 +62,7 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 		const whiteSpace = props.whiteSpace || 'normal';
 		const textTransform = props.textTransform || 'none';
 
-		return merge(
+		return mergeTwClasses(
 			cursor.value,
 			lineClamp.value,
 			TEXT_MANIFEST.styles.base,

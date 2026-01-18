@@ -1,5 +1,6 @@
 import { HTMLAttributes, InputHTMLAttributes } from 'vue';
-import { Icon } from './bo-icon.js';
+import { BoFontSize, BoIconSize, Icon } from './index.js';
+import { ComponentManifest } from '../manifests/index.js';
 
 export type BoInputSize = 'sm' | 'md' | 'lg';
 
@@ -9,16 +10,14 @@ export type BoInputState = 'default' | 'valid' | 'invalid';
 
 export type BoInputVariant = 'default' | 'filled';
 
-export type BoInputSizeStyleMap = Record<BoInputSize, string>;
-
-export type BoInputVariantStyleMap = Record<BoInputState, string>;
-
 export interface BoInputPill {
 	/** Unique identifier for the pill */
 	id: string;
-	/** Text to display on the pill */
+	/** Data test ID for the pill */
+	dataTestId: string;
+	/** The label text to display on the pill */
 	text: string;
-	/** Optional icon to display before pill text */
+	/** Optional icon to display before pill label */
 	icon?: Icon;
 }
 
@@ -90,3 +89,73 @@ export interface BoInputProps {
 	/** Defines a string value that labels the current element. */
 	ariaLabel?: HTMLAttributes['aria-label'];
 }
+
+type BoInputSizeStyleMap = Record<BoInputSize, string>;
+type BoInputStateStyleMap = Record<BoInputState, string>;
+type BoInputVariantStyleMap = Record<BoInputVariant, string>;
+
+interface InputStyleManifest {
+	base: string;
+	container: {
+		base: string;
+		disabled: string;
+	};
+	input: {
+		base: string;
+		withPills: string;
+	};
+	size: BoInputSizeStyleMap;
+	padding: BoInputSizeStyleMap;
+	state: BoInputStateStyleMap;
+	variant: BoInputVariantStyleMap;
+	icons: {
+		prefix: string;
+		suffix: string;
+		size: Record<BoInputSize, BoIconSize>;
+	};
+	inputContainer: {
+		base: string;
+		horizontalScroll: string;
+		flexWrap: string;
+		withPrefixIcon: string;
+		withSuffixIcon: string;
+	};
+	labels: {
+		container: string;
+		label: string;
+		required: string;
+		fontSize: BoFontSize;
+	};
+	helpers: {
+		container: string;
+		error: string;
+		fontSize: BoFontSize;
+	};
+}
+
+type BoInputComponentDefaults = Pick<
+	BoInputProps,
+	| 'size'
+	| 'state'
+	| 'variant'
+	| 'type'
+	| 'placeholder'
+	| 'label'
+	| 'description'
+	| 'error'
+	| 'hint'
+	| 'required'
+	| 'name'
+	| 'disabled'
+	| 'readOnly'
+	| 'fullWidth'
+	| 'prefixIcon'
+	| 'suffixIcon'
+	| 'autofocus'
+	| 'horizontalScroll'
+	| 'revealPassword'
+	| 'role'
+	| 'ariaLabel'
+>;
+
+export type InputManifest = ComponentManifest<InputStyleManifest, BoInputComponentDefaults>;

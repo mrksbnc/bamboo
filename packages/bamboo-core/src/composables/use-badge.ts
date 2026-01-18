@@ -1,42 +1,30 @@
-import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoBadgeProps } from '../definitions/bo-badge';
+import { computed, ShallowRef } from 'vue';
 import { ComponentStyleComposable } from './types';
-import { useTailwind } from './use-tailwind';
-import { BoFontSize } from '../definitions/bo-text';
-import { BoIconSize } from '../definitions/bo-icon';
-import { Icon } from '../definitions/bo-icon-registry';
-import { BADGE_MANIFEST } from '../manifests/badge.manifest';
+import { mergeTwClasses } from '../utils/tailwind-utils.js';
+import { Icon, type BoBadgeProps, type BoFontSize, type BoIconSize } from '../definitions/index.js';
+import { BADGE_MANIFEST } from '../manifests/index.js';
 
 export interface UseBoBadge extends ComponentStyleComposable {
-	badgeFontSize: ShallowRef<BoFontSize>;
-	iconSize: ShallowRef<BoIconSize>;
-	isIconOnly: ShallowRef<boolean>;
 	isCircle: ShallowRef<boolean>;
+	isIconOnly: ShallowRef<boolean>;
+	iconSize: ShallowRef<BoIconSize>;
 	renderLabel: ShallowRef<boolean>;
-	prefixOrIconOnlySrc: ShallowRef<Icon>;
+	iconOnlyComponent: ShallowRef<Icon>;
+	badgeFontSize: ShallowRef<BoFontSize>;
 	prefixIconContainerClassValues: ShallowRef<string>;
 	suffixIconContainerClassValues: ShallowRef<string>;
 }
 
-const isEmptyStr = (str?: string): boolean => {
-	return str === undefined || str === null || str.trim() === '';
-};
-
 export const useBoBadge = (props: BoBadgeProps): UseBoBadge => {
-	const { merge } = useTailwind();
-
 	const isIconOnly = computed<boolean>(() => {
 		const hasIcon =
 			(props.icon?.prefix && props.icon.prefix !== 'none') ||
 			(props.icon?.suffix && props.icon.suffix !== 'none');
-		return (hasIcon ?? false) && isEmptyStr(props.label);
+		return (hasIcon ?? false) && !!props.label;
 	});
 
-	const prefixOrIconOnlySrc = computed<Icon>(() => {
-		if (isIconOnly.value) {
-			return props.icon?.prefix ?? props.icon?.suffix ?? 'none';
-		}
-		return props.icon?.prefix ?? 'none';
+	const iconOnlyComponent = computed<Icon>(() => {
+		return props.icon?.prefix ?? props.icon?.suffix ?? 'none';
 	});
 
 	const isCircle = computed<boolean>(() => {
@@ -44,7 +32,7 @@ export const useBoBadge = (props: BoBadgeProps): UseBoBadge => {
 	});
 
 	const renderLabel = computed<boolean>(() => {
-		return !isEmptyStr(props.label) && !isIconOnly.value;
+		return !!props.label && !isIconOnly.value;
 	});
 
 	const badgeFontSize = computed<BoFontSize>(() => {
@@ -56,47 +44,37 @@ export const useBoBadge = (props: BoBadgeProps): UseBoBadge => {
 	});
 
 	const sizeClasses = computed<string>(() => {
-		if (props.shape === 'circle') {
-			return BADGE_MANIFEST.styles.size.circle[props.size || 'default'];
-		}
-		return BADGE_MANIFEST.styles.size.default[props.size || 'default'];
+		return props.shape === 'circle'
+			? BADGE_MANIFEST.styles.size.circle[props.size || 'default']
+			: BADGE_MANIFEST.styles.size.default[props.size || 'default'];
 	});
 
 	const prefixIconContainerClassValues = computed<string>(() => {
-		return merge(BADGE_MANIFEST.styles.containers.prefixIcon);
+		return BADGE_MANIFEST.styles.containers.prefixIcon;
 	});
 
 	const suffixIconContainerClassValues = computed<string>(() => {
-		return merge(BADGE_MANIFEST.styles.containers.suffixIcon);
+		return BADGE_MANIFEST.styles.containers.suffixIcon;
 	});
 
 	const classValues = computed<string>(() => {
-		const type = props.type || 'default';
-		const variant = props.variant || 'primary';
-		const shape = props.shape || 'default';
-
-		return merge(
-			BADGE_MANIFEST.styles.base,
+		return mergeTwClasses(
 			sizeClasses.value,
-			BADGE_MANIFEST.styles.shape[shape],
-			BADGE_MANIFEST.styles.variants[type][variant],
+			BADGE_MANIFEST.styles.base,
+			BADGE_MANIFEST.styles.shape[props.shape || 'default'],
+			BADGE_MANIFEST.styles.variants[props.type || 'default'][props.variant || 'primary'],
 		);
 	});
 
-	const styleValues = computed<StyleValue>(() => {
-		return {};
-	});
-
 	return {
-		badgeFontSize,
-		iconSize,
 		isIconOnly,
+		iconOnlyComponent,
+		iconSize,
 		isCircle,
 		renderLabel,
-		prefixOrIconOnlySrc,
+		classValues,
+		badgeFontSize,
 		prefixIconContainerClassValues,
 		suffixIconContainerClassValues,
-		classValues,
-		styleValues,
 	};
 };

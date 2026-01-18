@@ -9,7 +9,6 @@ export {
 	useBoText,
 	useBoTextarea,
 	useColor,
-	useTailwind,
 	type ComponentStyleComposable,
 	type UseBoAvatar,
 	type UseBoBadge,
@@ -21,10 +20,91 @@ export {
 	type UseBoText,
 	type UseBoTextarea,
 	type UseColor,
-	type UseTailwind,
 } from './composables/index.js';
 
-export {} from './definitions/index.js';
-export {} from './manifests/index.js';
-export {} from './services/index.js';
-export { generateComponentId, generateDataTestId } from './utils/index.js';
+export {
+	// Avatar
+	type BoAvatarSize,
+	type BoAvatarShape,
+	type BoAvatarVariant,
+	type BoAvatarType,
+	type BoAvatarIndicatorPosition,
+	type BoAvatarIndicatorStatus,
+	type BoAvatarData,
+	type BoAvatarColor,
+	type BoAvatarIndicator,
+	type BoAvatarProps,
+	type AvatarManifest,
+
+	// Badge
+	type BoBadgeVariant,
+	type BoBadgeType,
+	type BoBadgeShape,
+	type BoBadgeSize,
+	type BoBadgeProps,
+	type BadgeManifest,
+
+	// Button
+	type BoButtonVariant,
+	type BoButtonSize,
+	type BoButtonShape,
+	type BoButtonProps,
+	type ButtonManifest,
+
+	// Icon
+	type Icon,
+	type BoIconSize,
+	type BoIconVariant,
+	type BoIconProps,
+	type BoIconRegistry,
+	type IconManifest,
+
+	// Input
+	type BoInputSize,
+	type BoInputType,
+	type BoInputState,
+	type BoInputVariant,
+	type BoInputPill,
+	type BoInputProps,
+
+	// Loader
+	type BoLoaderSize,
+	type BoLoaderType,
+	type BoLoaderTextPosition,
+	type BoLoaderVariant,
+
+	// Loading Pulse
+	type LoadingPulseStyleManifest,
+	type LoadingPulseManifest,
+	type BoLoadingPulseProps,
+
+	// Loading Spinner
+	type BoLoadingSpinnerProps,
+	type LoadingSpinnerStyleManifest,
+	type LoadingSpinnerManifest,
+
+	// Text
+	type BoFontFamily,
+	type BoFontSize,
+	type BoFontWeight,
+	type BoTextAlign,
+	type BoTextTransform,
+	type BoTextLineClamp,
+	type BoTextVariant,
+	type BoTextWhiteSpace,
+	type BoTextProps,
+	type TextManifest,
+
+	// Textarea
+	type BoTextareaSize,
+	type BoTextareaState,
+	type BoTextareaVariant,
+	type BoTextareaProps,
+
+	// Component Types
+	type Booleanish,
+	type ConditionalCssProperties,
+	type BoCursor,
+} from './definitions/index.js';
+
+export { generateComponentId, generateDataTestId, mergeTwClasses } from './utils/index.js';

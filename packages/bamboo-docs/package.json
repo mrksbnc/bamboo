@@ -1,5 +1,5 @@
 {
-	"name": "@mrksbnc/bamboo-docs",
+	"name": "@workspace/bamboo-docs",
 	"version": "0.0.1",
 	"private": true,
 	"type": "module",

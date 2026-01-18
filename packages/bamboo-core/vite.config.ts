@@ -19,7 +19,7 @@ export default defineConfig({
 			fileName: (format) => `index.${format}.js`,
 			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 		},
-		rolldownOptions: {
+		rollupOptions: {
 			external: ['vue'],
 			platform: 'neutral',
 			input: fileURLToPath(new URL('./src/index.ts', import.meta.url)),

@@ -1,3 +1,4 @@
+// # Types
 export { type ComponentStyleComposable } from './types';
 
 // # Avatar
@@ -23,9 +24,6 @@ export { useBoLoadingPulse, type UseBoLoadingPulse } from './use-loading-pulse.j
 
 // # Loading Spinner
 export { useBoLoadingSpinner, type UseBoLoadingSpinner } from './use-loading-spinner.js';
-
-// # Tailwind
-export { useTailwind, type UseTailwind } from './use-tailwind.js';
 
 // # Text
 export { useBoText, type UseBoText } from './use-text.js';

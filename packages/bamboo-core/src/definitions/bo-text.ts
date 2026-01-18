@@ -1,5 +1,6 @@
 import { HTMLAttributes } from 'vue';
-import { BoCursor } from './component-types.js';
+import { BoCursor } from './index.js';
+import { ComponentManifest } from '../manifests/types.js';
 
 export type BoFontWeight =
 	| 'thin'
@@ -169,7 +170,7 @@ type BoTextVariantStyleMap = Record<BoTextVariant, string>;
 type BoTextTransformStyleMap = Record<BoTextTransform, string>;
 type BoTextWhiteSpaceStyleMap = Record<BoTextWhiteSpace, string>;
 
-export interface TextManifest {
+interface TextStyleManifest {
 	base: string;
 	fontFamily: BoFontFamilyStyleMap;
 	fontSize: BoFontSizeStyleMap;
@@ -187,3 +188,18 @@ export interface TextManifest {
 		template: string;
 	};
 }
+
+type TextComponentDefaults = Pick<
+	BoTextProps,
+	| 'cursor'
+	| 'role'
+	| 'fontSize'
+	| 'fontWeight'
+	| 'variant'
+	| 'textAlign'
+	| 'fontFamily'
+	| 'whiteSpace'
+	| 'lineClamp'
+>;
+
+export type TextManifest = ComponentManifest<TextStyleManifest, TextComponentDefaults>;

@@ -7,7 +7,7 @@ export const AVATAR_MANIFEST = {
 		category: 'media',
 		tags: ['avatar', 'profile', 'user', 'image', 'initials', 'status'],
 		description:
-			'An avatar is a component that displays a user profile picture, initials, or default images in various shapes and sizes.',
+			'Avatar component for displaying user profile pictures, initials, or default images with support for indicators, sizes, and more',
 	},
 	styles: {
 		base: /*tw*/ 'relative inline-flex overflow-hidden select-none',
@@ -69,10 +69,10 @@ export const AVATAR_MANIFEST = {
 		},
 		indicator: {
 			status: {
-				online: /*tw*/ 'bg-green-500',
-				offline: /*tw*/ 'bg-gray-400',
-				busy: /*tw*/ 'bg-red-500',
-				away: /*tw*/ 'bg-yellow-500',
+				online: /*tw*/ 'bg-green-500 dark:bg-green-400',
+				offline: /*tw*/ 'bg-gray-400 dark:bg-gray-500',
+				busy: /*tw*/ 'bg-red-500 dark:bg-red-400',
+				away: /*tw*/ 'bg-yellow-500 dark:bg-yellow-400',
 				none: '',
 			},
 			position: {
@@ -96,7 +96,7 @@ export const AVATAR_MANIFEST = {
 			lg: 'lg',
 			xl: 'xl',
 		},
-		containers: {
+		container: {
 			default: /*tw*/ 'relative overflow-hidden',
 			initials: /*tw*/ 'flex h-full w-full items-center justify-center',
 			image: /*tw*/ 'relative h-full w-full overflow-hidden',
@@ -104,9 +104,9 @@ export const AVATAR_MANIFEST = {
 	},
 	defaults: {
 		size: 'default',
+		type: 'default',
 		shape: 'rounded',
 		variant: 'primary',
-		type: 'initials',
 		indicator: {
 			status: 'none',
 			position: 'bottom-right',

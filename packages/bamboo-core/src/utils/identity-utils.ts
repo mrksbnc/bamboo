@@ -1,7 +1,7 @@
 export function generateComponentId(descriptor?: string): string {
-	return `id__bo-${descriptor}-${Date.now()}`;
+	return `${descriptor ? descriptor : 'bo-component'}-${Math.random().toString(36).slice(2, 11)}`;
 }
 
 export function generateDataTestId(descriptor?: string): string {
-	return `data-testid__bo-${descriptor}-${Date.now()}`;
+	return `data-testid-${descriptor ? descriptor : 'bo-component'}-${Math.random().toString(36).slice(2, 11)}`;
 }

@@ -1,6 +1,7 @@
 import { HTMLAttributes } from 'vue';
 import { Icon } from './bo-icon.js';
 import { BoLoaderType } from './bo-loader.js';
+import { ComponentManifest } from '../manifests/types.js';
 
 export type BoButtonVariant =
 	| 'primary'
@@ -13,14 +14,9 @@ export type BoButtonVariant =
 
 export type BoButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
-/**
- * - default: A filled button with a background color.
- * - pill: A filled button with fully rounded corners.
- * - outline: A button with a border and no background color.
- * - ghost: A button with subtle hover effects and no background.
- * - link: A button styled as a link with no background color or border.
- */
-export type BoButtonShape = 'default' | 'pill' | 'outline' | 'link';
+export type BoButtonKind = 'filled' | 'outline' | 'ghost' | 'link';
+
+export type BoButtonShape = 'default' | 'pill' | 'flat';
 
 export interface BoButtonProps {
 	/**
@@ -62,16 +58,25 @@ export interface BoButtonProps {
 	 */
 	loaderType?: BoLoaderType;
 	/**
-	 * This determines the visual appearance
-	 * of the element.
+	 * The kind of the button.
 	 *
-	 * - default: A filled button with a background color.
-	 * - pill: A filled button with fully rounded corners.
+	 * - filled: A button with a background color.
 	 * - outline: A button with a border and no background color.
 	 * - ghost: A button with subtle hover effects and no background.
 	 * - link: A button styled as a link with no background color or border.
 	 *
+	 * @default 'filled'
+	 */
+	kind?: BoButtonKind;
+	/**
+	 * The shape of the button.
+	 *
+	 * - default: A button with slightly rounded corners.
+	 * - pill: A button with fully rounded corners.
+	 * - flat: A button with no rounded corners.
+	 *
 	 * @default 'default'
+	 *
 	 */
 	shape?: BoButtonShape;
 	/**
@@ -111,18 +116,11 @@ export interface BoButtonProps {
 	 * Used for buttons that control collapsible content.
 	 */
 	ariaExpanded?: HTMLAttributes['aria-expanded'];
-	/**
-	 * Indicates that the element has a popup context menu or sub-level menu.
-	 */
+	/** Indicates that the element has a popup context menu or sub-level menu. */
 	ariaHasPopup?: HTMLAttributes['aria-haspopup'];
-	/**
-	 * Indicates the current "pressed" state of toggle buttons.
-	 * @default undefined
-	 */
+	/** Indicates the current "pressed" state of toggle buttons. */
 	ariaPressed?: HTMLAttributes['aria-pressed'];
-	/**
-	 * Indicates whether the element is currently selected.
-	 */
+	/** Indicates whether the element is currently selected. */
 	ariaSelected?: HTMLAttributes['aria-selected'];
 	/**
 	 * Indicates if the element is currently disabled.
@@ -151,7 +149,7 @@ type BoButtonSizeStyleMap = Record<BoButtonSize, string>;
 type BoButtonVariantStyleMap = Record<BoButtonVariant, string>;
 type BoButtonShapeStyleMap = Record<BoButtonShape, string>;
 
-export interface ButtonManifest {
+export interface ButtonStyleManifest {
 	base: string;
 	width: {
 		default: string;
@@ -167,7 +165,6 @@ export interface ButtonManifest {
 		ghost: BoButtonVariantStyleMap;
 		link: BoButtonVariantStyleMap;
 	};
-	shapeVariants: Record<BoButtonShape, keyof ButtonManifest['variants']>;
 	states: {
 		loading: string;
 		pressed: string;
@@ -188,3 +185,11 @@ export interface ButtonManifest {
 		loading: string;
 	};
 }
+
+export type ButtonManifest = ComponentManifest<
+	ButtonStyleManifest,
+	Pick<
+		BoButtonProps,
+		'size' | 'variant' | 'shape' | 'disabled' | 'isLoading' | 'loaderType' | 'role' | 'type'
+	>
+>;

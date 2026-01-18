@@ -1,7 +1,7 @@
 import { computed, ShallowRef, StyleValue } from 'vue';
 import { BoInputProps } from '../definitions/bo-input';
 import { ComponentStyleComposable } from './types';
-import { useTailwind } from './use-tailwind';
+import { mergeTwClasses } from '../utils/tailwind-utils';
 import { BoIconSize } from '../definitions/bo-icon';
 import { BoFontSize } from '../definitions/bo-text';
 import { INPUT_MANIFEST } from '../manifests/input.manifest';
@@ -27,11 +27,9 @@ export const useBoInput = (
 	props: BoInputProps,
 	options?: { modelValue?: string; passwordVisible?: boolean },
 ): UseBoInput => {
-	const { merge } = useTailwind();
-
-	const hasPills = computed<boolean>(() => {
-		return !!props.pills && props.pills.length > 0;
-	});
+	// const hasPills = computed<boolean>(() => {
+	// 	return !!props.pills && props.pills.length > 0;
+	// });
 
 	const iconSize = computed<BoIconSize>(() => {
 		return INPUT_MANIFEST.styles.icons.size[props.size || 'md'];
@@ -61,27 +59,27 @@ export const useBoInput = (
 			INPUT_MANIFEST.styles.state[props.state || 'default'],
 		];
 
-		if (props.disabled) {
-			baseClasses.push(INPUT_MANIFEST.styles.container.disabled);
-		}
+		// if (props.disabled) {
+		// 	baseClasses.push(INPUT_MANIFEST.styles.container.disabled);
+		// }
 
-		if (!hasPills.value) {
-			baseClasses.push(INPUT_MANIFEST.styles.size[props.size || 'md']);
-		} else {
-			baseClasses.push('h-auto min-h-10');
-		}
+		// if (!hasPills.value) {
+		// 	baseClasses.push(INPUT_MANIFEST.styles.size[props.size || 'md']);
+		// } else {
+		// 	baseClasses.push('h-auto min-h-10');
+		// }
 
-		return merge(...baseClasses);
+		return mergeTwClasses(...baseClasses);
 	});
 
 	const inputClassValues = computed<string>(() => {
 		const classes = [INPUT_MANIFEST.styles.input.base];
 
-		if (hasPills.value) {
-			classes.push(INPUT_MANIFEST.styles.input.withPills);
-		}
+		// if (hasPills.value) {
+		// 	classes.push(INPUT_MANIFEST.styles.input.withPills);
+		// }
 
-		return merge(...classes);
+		return mergeTwClasses(...classes);
 	});
 
 	const inputContainerClassValues = computed<string>(() => {
@@ -90,53 +88,53 @@ export const useBoInput = (
 			INPUT_MANIFEST.styles.padding[props.size || 'md'],
 		];
 
-		if (props.horizontalScroll) {
-			classes.push(INPUT_MANIFEST.styles.inputContainer.horizontalScroll);
-		} else {
-			classes.push(INPUT_MANIFEST.styles.inputContainer.flexWrap);
-		}
+		// if (props.horizontalScroll) {
+		// 	classes.push(INPUT_MANIFEST.styles.inputContainer.horizontalScroll);
+		// } else {
+		// 	classes.push(INPUT_MANIFEST.styles.inputContainer.flexWrap);
+		// }
 
-		if (props.prefixIcon && props.prefixIcon !== 'none') {
-			classes.push(INPUT_MANIFEST.styles.inputContainer.withPrefixIcon);
-		}
+		// if (props.prefixIcon && props.prefixIcon !== 'none') {
+		// 	classes.push(INPUT_MANIFEST.styles.inputContainer.withPrefixIcon);
+		// }
 
-		if ((props.suffixIcon && props.suffixIcon !== 'none') || showPasswordToggle.value) {
-			classes.push(INPUT_MANIFEST.styles.inputContainer.withSuffixIcon);
-		}
+		// if ((props.suffixIcon && props.suffixIcon !== 'none') || showPasswordToggle.value) {
+		// 	classes.push(INPUT_MANIFEST.styles.inputContainer.withSuffixIcon);
+		// }
 
-		return merge(...classes);
+		return mergeTwClasses(...classes);
 	});
 
 	const prefixIconClassValues = computed<string>(() => {
-		return merge(INPUT_MANIFEST.styles.icons.prefix);
+		return mergeTwClasses(INPUT_MANIFEST.styles.icons.prefix);
 	});
 
 	const suffixIconClassValues = computed<string>(() => {
-		return merge(INPUT_MANIFEST.styles.icons.suffix);
+		return mergeTwClasses(INPUT_MANIFEST.styles.icons.suffix);
 	});
 
 	const labelContainerClassValues = computed<string>(() => {
-		return merge(INPUT_MANIFEST.styles.labels.container);
+		return mergeTwClasses(INPUT_MANIFEST.styles.labels.container);
 	});
 
 	const labelClassValues = computed<string>(() => {
-		return merge(INPUT_MANIFEST.styles.labels.label);
+		return mergeTwClasses(INPUT_MANIFEST.styles.labels.label);
 	});
 
 	const requiredIndicatorClassValues = computed<string>(() => {
-		return merge(INPUT_MANIFEST.styles.labels.required);
+		return mergeTwClasses(INPUT_MANIFEST.styles.labels.required);
 	});
 
 	const helperContainerClassValues = computed<string>(() => {
-		return merge(INPUT_MANIFEST.styles.helpers.container);
+		return mergeTwClasses(INPUT_MANIFEST.styles.helpers.container);
 	});
 
 	const errorContainerClassValues = computed<string>(() => {
-		return merge(INPUT_MANIFEST.styles.helpers.error);
+		return mergeTwClasses(INPUT_MANIFEST.styles.helpers.error);
 	});
 
 	const classValues = computed<string>(() => {
-		return merge(INPUT_MANIFEST.styles.base);
+		return mergeTwClasses(INPUT_MANIFEST.styles.base);
 	});
 
 	const styleValues = computed<StyleValue>(() => {

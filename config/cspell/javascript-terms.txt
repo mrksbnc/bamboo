@@ -3,13 +3,15 @@ datauri
 describedby
 esbuild
 extralight
+Flexbox
+haspopup
 labelledby
 nonconstructor
 oklch
 oxlint
 oxlintrc
-RGBA
 rgba
+RGBA
 testid
 tsgolint
 typescriptlang
