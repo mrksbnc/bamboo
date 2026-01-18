@@ -1,24 +1,22 @@
 {
 	"editor.formatOnSave": true,
 	"explorer.fileNesting.enabled": true,
+	"tailwindCSS.classAttributes": ["tw"],
 	"typescript.experimental.useTsgo": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"tailwindCSS.classAttributes": [
-		"tw"
-	],
+	"explorer.fileNesting.patterns": {
+		"tsconfig.json": "tsconfig.*.json, env.d.ts",
+		"vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
+		"package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig",
+		"README.md": "CODE_OF_CONDUCT.md, CONTRIBUTING.md, CHANGELOG.md, SECURITY.md",
+		".gitignore": ".gitattributes",
+		".nvmrc": ".node-version"
+	},
+
 	"tailwindCSS.experimental.classRegex": [
-		[
-			"/\\*\\s*tw\\s*\\*/\\s*`([^`]*)`",
-			"([^`]*)"
-		],
-		[
-			"/\\*\\s*tw\\s*\\*/\\s*'([^']*)'",
-			"([^']*)"
-		],
-		[
-			"/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"",
-			"([^\"]*)"
-		]
+		["/\\*\\s*tw\\s*\\*/\\s*`([^`]*)`", "([^`]*)"],
+		["/\\*\\s*tw\\s*\\*/\\s*'([^']*)'", "([^']*)"],
+		["/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"", "([^\"]*)"]
 	],
 	"editor.quickSuggestions": {
 		"other": "on",
