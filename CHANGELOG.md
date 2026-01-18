@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/mrksbnc/bamboo/compare/v1.0.0...v1.0.1) (2026-01-18)
+
+### 🔧 Chores
+
+* **deps-dev:** bump @types/node from 25.0.3 to 25.0.6 ([#438](https://github.com/mrksbnc/bamboo/issues/438)) ([c647fa2](https://github.com/mrksbnc/bamboo/commit/c647fa2c465c300e01414bf974c5f28fc10a4b60))
+* **deps-dev:** bump cspell from 9.4.0 to 9.6.0 ([#435](https://github.com/mrksbnc/bamboo/issues/435)) ([71a5c5d](https://github.com/mrksbnc/bamboo/commit/71a5c5dd2942a1194094243f15589aaacb2fabf4))
+* **deps-dev:** bump oxlint from 1.33.0 to 1.39.0 ([#439](https://github.com/mrksbnc/bamboo/issues/439)) ([d4bacd5](https://github.com/mrksbnc/bamboo/commit/d4bacd55d454f7376d24ea1d20059c57ccf4bf50))
+
 ## 1.0.0 (2026-01-17)
 
 ### ✨ Features
