@@ -46,7 +46,6 @@ export default defineConfig({
 				],
 			},
 		],
-
 		socialLinks: [{ icon: 'github', link: 'https://github.com/mrksbnc/bamboo' }],
 		footer: {
 			message:

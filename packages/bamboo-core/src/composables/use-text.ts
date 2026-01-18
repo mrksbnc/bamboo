@@ -1,4 +1,4 @@
-import { computed, StyleValue } from 'vue';
+import { computed, SetupContext, StyleValue } from 'vue';
 import { BoTextProps } from '../definitions/bo-text';
 import { mergeTwClasses } from '../utils/tailwind-utils';
 import { ComponentStyleComposable } from './types';
@@ -67,8 +67,15 @@ export const useBoText = (props: BoTextProps): UseBoText => {
 		return {};
 	});
 
+	function validateComponentOnMount(slots: SetupContext['slots'] = {}): void {
+		if (!slots['default'] && props.value) {
+			throw new Error('[ERROR]: bo-text component requires either children or value prop');
+		}
+	}
+
 	return {
 		classValues,
 		styleValues,
+		validateComponentOnMount,
 	};
 };

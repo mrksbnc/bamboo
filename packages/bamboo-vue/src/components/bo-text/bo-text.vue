@@ -21,26 +21,30 @@
 	import {
 		generateComponentId,
 		generateDataTestId,
-		TEXT_MANIFEST,
 		useBoText,
 		type BoTextProps,
 	} from '@workspace/bamboo-core';
+	import { onMounted, useSlots } from 'vue';
 
 	const props = withDefaults(defineProps<BoTextProps>(), {
 		id: () => generateComponentId('text'),
 		dataTestId: () => generateDataTestId('text'),
-		role: () => TEXT_MANIFEST.defaults.role,
-		cursor: () => TEXT_MANIFEST.defaults.cursor,
-		variant: () => TEXT_MANIFEST.defaults.variant,
-		fontSize: () => TEXT_MANIFEST.defaults.fontSize,
-		ariaLive: () => TEXT_MANIFEST.defaults.ariaLive,
-		lineClamp: () => TEXT_MANIFEST.defaults.lineClamp,
-		textAlign: () => TEXT_MANIFEST.defaults.textAlign,
-		fontWeight: () => TEXT_MANIFEST.defaults.fontWeight,
-		fontFamily: () => TEXT_MANIFEST.defaults.fontFamily,
-		whiteSpace: () => TEXT_MANIFEST.defaults.whiteSpace,
-		textTransform: () => TEXT_MANIFEST.defaults.textTransform,
+		lineClamp: 'none',
+		textAlign: 'left',
+		variant: 'default',
+		fontSize: 'default',
+		textTransform: 'none',
+		fontFamily: 'inherit',
+		fontWeight: 'regular',
+		cursor: 'cursor-auto',
+		whiteSpace: 'normal',
+		role: 'paragraph',
+		ariaLive: 'polite',
 	});
 
-	const { classValues, styleValues } = useBoText(props);
+	const slots = useSlots();
+
+	const { classValues, styleValues, validateComponentOnMount } = useBoText(props);
+
+	onMounted(() => validateComponentOnMount?.(slots));
 </script>
