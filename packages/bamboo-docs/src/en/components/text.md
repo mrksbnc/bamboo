@@ -62,8 +62,6 @@ The `variant` prop is used to change the appearance of the component. The `varia
 
 The `text-align` prop accepts a string value from the following list: `left`, `center`, `right`, `justify`. It is used to align the text within the component.
 
-
-
 ## Font Size
 
 The `font-size` prop accepts a string value from the following list: `xs`, `sm`, `default`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, `6xl`, `7xl`, `8xl`, `9xl`.
@@ -82,7 +80,7 @@ The `font-size` prop accepts a string value from the following list: `xs`, `sm`,
 - `8xl` - 6rem (96px)
 - `9xl` - 8rem (128px)
 
-## 
+##
 
 ### Usage
 
@@ -149,21 +147,21 @@ The `cursor` prop is used to control the cursor within the component. The `curso
 
 ### Props
 
-| Name | Type | Required | Default | Description |
-| --- | --- | --- | --- | --- |
-| `value` | `string` | - | `-` | The text content to display |
-| `variant` | `'default' \| 'inherit' \| 'currentColor' \| 'primary' \| 'secondary' \| 'disabled' \| 'success' \| 'warning' \| 'destructive' \| 'white' \| 'black'` | - | `default` | The color variant of the text |
-| `fontSize` | `'xs' \| 'sm' \| 'default' \| 'lg' \| 'xl' \| '2xl' \| '3xl' \| '4xl' \| '5xl' \| '6xl' \| '7xl' \| '8xl' \| '9xl'` | - | `default` | The font size of the text |
-| `textAlign` | `'left' \| 'center' \| 'right' \| 'justify'` | - | `-` | The text alignment |
-| `textTransform` | `'none' \| 'capitalize' \| 'uppercase' \| 'lowercase'` | - | `-` | The text transformation |
-| `whiteSpace` | `'normal' \| 'nowrap' \| 'pre' \| 'pre-line' \| 'pre-wrap' \| 'break-spaces'` | - | `-` | The whitespace handling |
-| `cursor` | `'default' \| 'clickable'` | - | `default` | The cursor style |
+| Name            | Type                                                                                                                                                  | Required | Default   | Description                   |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- | ----------------------------- |
+| `value`         | `string`                                                                                                                                              | -        | `-`       | The text content to display   |
+| `variant`       | `'default' \| 'inherit' \| 'currentColor' \| 'primary' \| 'secondary' \| 'disabled' \| 'success' \| 'warning' \| 'destructive' \| 'white' \| 'black'` | -        | `default` | The color variant of the text |
+| `fontSize`      | `'xs' \| 'sm' \| 'default' \| 'lg' \| 'xl' \| '2xl' \| '3xl' \| '4xl' \| '5xl' \| '6xl' \| '7xl' \| '8xl' \| '9xl'`                                   | -        | `default` | The font size of the text     |
+| `textAlign`     | `'left' \| 'center' \| 'right' \| 'justify'`                                                                                                          | -        | `-`       | The text alignment            |
+| `textTransform` | `'none' \| 'capitalize' \| 'uppercase' \| 'lowercase'`                                                                                                | -        | `-`       | The text transformation       |
+| `whiteSpace`    | `'normal' \| 'nowrap' \| 'pre' \| 'pre-line' \| 'pre-wrap' \| 'break-spaces'`                                                                         | -        | `-`       | The whitespace handling       |
+| `cursor`        | `'default' \| 'clickable'`                                                                                                                            | -        | `default` | The cursor style              |
 
 ### Slots
 
-| Name | Props | Description |
-| --- | --- | --- |
-| `default` | `-` | The default slot for text content |
+| Name      | Props | Description                       |
+| --------- | ----- | --------------------------------- |
+| `default` | `-`   | The default slot for text content |
 
 ### Type Definitions
 
