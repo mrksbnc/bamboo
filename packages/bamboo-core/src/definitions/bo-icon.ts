@@ -14,7 +14,7 @@ export type BoIconVariant =
 	/** orange-500 | dark:orange-400 */
 	| 'warning'
 	/** red-500 | dark:red-400 */
-	| 'danger'
+	| 'destructive'
 	/** white */
 	| 'white'
 	/** black */

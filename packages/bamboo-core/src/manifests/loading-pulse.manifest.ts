@@ -24,7 +24,7 @@ export const LOADING_PULSE_MANIFEST = {
 			secondary: /*tw*/ 'bg-gray-600 dark:bg-gray-500',
 			success: /*tw*/ 'bg-green-600 dark:bg-green-500',
 			warning: /*tw*/ 'bg-yellow-600 dark:bg-yellow-500',
-			danger: /*tw*/ 'bg-red-600 dark:bg-red-500',
+			destructive: /*tw*/ 'bg-red-600 dark:bg-red-500',
 			white: /*tw*/ 'bg-white',
 			black: /*tw*/ 'bg-black dark:bg-white',
 			current: /*tw*/ 'bg-current',

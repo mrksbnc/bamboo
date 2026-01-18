@@ -24,7 +24,7 @@ export const LOADING_SPINNER_MANIFEST = {
 			secondary: /*tw*/ 'text-gray-600 dark:text-gray-500',
 			success: /*tw*/ 'text-green-600 dark:text-green-500',
 			warning: /*tw*/ 'text-yellow-600 dark:text-yellow-500',
-			danger: /*tw*/ 'text-red-600 dark:text-red-500',
+			destructive: /*tw*/ 'text-red-600 dark:text-red-500',
 			white: /*tw*/ 'text-white',
 			black: /*tw*/ 'text-black dark:text-white',
 			current: /*tw*/ 'text-current',

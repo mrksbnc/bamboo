@@ -42,7 +42,7 @@ export const BADGE_MANIFEST = {
 					/*tw*/ 'bg-blue-600 text-white border border-blue-700 dark:bg-blue-700 dark:text-white',
 				secondary:
 					/*tw*/ 'bg-neutral-600 text-white border border-neutral-700 dark:bg-neutral-700 dark:text-white',
-				danger:
+				destructive:
 					/*tw*/ 'bg-red-600 text-white border border-red-700 dark:bg-red-700 dark:text-white',
 				warning:
 					/*tw*/ 'bg-yellow-600 text-white border border-yellow-700 dark:bg-yellow-600 dark:text-white',
@@ -58,7 +58,7 @@ export const BADGE_MANIFEST = {
 					/*tw*/ 'bg-transparent border border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-400',
 				secondary:
 					/*tw*/ 'bg-transparent border border-neutral-600 text-neutral-600 dark:border-neutral-400 dark:text-neutral-400',
-				danger:
+				destructive:
 					/*tw*/ 'bg-transparent border border-red-600 text-red-600 dark:border-red-500 dark:text-red-400',
 				warning:
 					/*tw*/ 'bg-transparent border border-yellow-600 text-yellow-600 dark:border-yellow-500 dark:text-yellow-400',
