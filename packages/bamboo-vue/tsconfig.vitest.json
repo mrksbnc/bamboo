@@ -1,7 +1,6 @@
 {
 	"extends": "./tsconfig.app.json",
 	"compilerOptions": {
-		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"lib": [],

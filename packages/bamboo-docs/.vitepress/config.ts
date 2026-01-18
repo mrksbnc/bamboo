@@ -23,9 +23,6 @@ export default defineConfig({
 				),
 			},
 		},
-		ssr: {
-			noExternal: ['@mrksbnc/bamboo-vue', '@workspace/bamboo-core'],
-		},
 	},
 	themeConfig: {
 		logo: '/assets/logo.webp',
@@ -37,17 +34,7 @@ export default defineConfig({
 		sidebar: [
 			{
 				text: 'Components',
-				items: [
-					{ text: 'Avatar', link: '/en/components/avatar' },
-					{ text: 'Badge', link: '/en/components/badge' },
-					{ text: 'Button', link: '/en/components/button' },
-					{ text: 'Icon', link: '/en/components/icon' },
-					{ text: 'Input', link: '/en/components/input' },
-					{ text: 'Loading Pulse', link: '/en/components/loading-pulse' },
-					{ text: 'Loading Spinner', link: '/en/components/loading-spinner' },
-					{ text: 'Text', link: '/en/components/text' },
-					{ text: 'Textarea', link: '/en/components/textarea' },
-				],
+				items: [{ text: 'Avatar', link: '/en/components/avatar' }],
 			},
 		],
 

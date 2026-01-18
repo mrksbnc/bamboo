@@ -1,15 +1,13 @@
 // # bo-avatar
 export {
 	type BoAvatarSize,
-	type BoAvatarShape,
-	type BoAvatarVariant,
-	type BoAvatarType,
-	type BoAvatarIndicatorPosition,
-	type BoAvatarIndicatorStatus,
-	type BoAvatarData,
-	type BoAvatarColor,
-	type BoAvatarIndicator,
 	type BoAvatarProps,
+	type BoAvatarKind,
+	type BoAvatarColor,
+	type BoAvatarVariant,
+	type BoAvatarIndicator,
+	type BoAvatarIndicatorKind,
+	type BoAvatarIndicatorPosition,
 	type AvatarManifest,
 } from './bo-avatar.js';
 

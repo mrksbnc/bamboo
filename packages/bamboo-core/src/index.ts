@@ -25,12 +25,10 @@ export {
 export {
 	// Avatar
 	type BoAvatarSize,
-	type BoAvatarShape,
+	type BoAvatarKind,
 	type BoAvatarVariant,
-	type BoAvatarType,
 	type BoAvatarIndicatorPosition,
-	type BoAvatarIndicatorStatus,
-	type BoAvatarData,
+	type BoAvatarIndicatorKind,
 	type BoAvatarColor,
 	type BoAvatarIndicator,
 	type BoAvatarProps,
@@ -106,5 +104,18 @@ export {
 	type ConditionalCssProperties,
 	type BoCursor,
 } from './definitions/index.js';
+
+export {
+	AVATAR_MANIFEST,
+	TEXT_MANIFEST,
+	TEXTAREA_MANIFEST,
+	INPUT_MANIFEST,
+	BADGE_MANIFEST,
+	BUTTON_MANIFEST,
+	ICON_MANIFEST,
+	LOADING_PULSE_MANIFEST,
+	LOADING_SPINNER_MANIFEST,
+	type ComponentManifest,
+} from './manifests/index.js';
 
 export { generateComponentId, generateDataTestId, mergeTwClasses } from './utils/index.js';
