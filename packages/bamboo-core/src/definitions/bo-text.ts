@@ -189,19 +189,4 @@ interface TextStyleManifest {
 	};
 }
 
-type TextComponentDefaults = Pick<
-	BoTextProps,
-	| 'cursor'
-	| 'role'
-	| 'fontSize'
-	| 'fontWeight'
-	| 'variant'
-	| 'textAlign'
-	| 'fontFamily'
-	| 'whiteSpace'
-	| 'lineClamp'
-	| 'ariaLive'
-	| 'textTransform'
->;
-
-export type TextManifest = ComponentManifest<TextStyleManifest, TextComponentDefaults>;
+export type TextManifest = ComponentManifest<TextStyleManifest>;

@@ -55,17 +55,18 @@ export const TEXT_MANIFEST = {
 		},
 
 		variant: {
-			default: /*tw*/ 'text-gray-900 dark:text-gray-100',
+			default: /*tw*/ 'text-neutral-900 dark:text-neutral-100',
 			inherit: /*tw*/ 'text-inherit',
 			currentColor: /*tw*/ 'text-current',
-			primary: /*tw*/ 'text-blue-600 dark:text-blue-400',
-			secondary: /*tw*/ 'text-gray-600 dark:text-gray-400',
-			disabled: /*tw*/ 'text-gray-600 dark:text-gray-500 opacity-50 cursor-not-allowed select-none',
+			primary: /*tw*/ 'text-blue-600 dark:text-blue-500',
+			secondary: /*tw*/ 'text-neutral-00 dark:text-neutral-400',
+			disabled:
+				/*tw*/ 'text-neutral-500 dark:text-neutral-300 opacity-50 cursor-not-allowed select-none',
 			success: /*tw*/ 'text-green-600 dark:text-green-500',
 			warning: /*tw*/ 'text-yellow-600 dark:text-yellow-500',
-			destructive: /*tw*/ 'text-red-600 dark:text-red-400',
+			destructive: /*tw*/ 'text-red-600 dark:text-red-500',
 			white: /*tw*/ 'text-white',
-			black: /*tw*/ 'text-black dark:text-white',
+			black: /*tw*/ 'text-black',
 		},
 
 		textTransform: {
@@ -93,18 +94,5 @@ export const TEXT_MANIFEST = {
 			none: /*tw*/ 'line-clamp-none',
 			template: /*tw*/ 'line-clamp-',
 		},
-	},
-	defaults: {
-		role: 'paragraph',
-		lineClamp: 'none',
-		textAlign: 'left',
-		variant: 'default',
-		ariaLive: 'polite',
-		fontSize: 'default',
-		whiteSpace: 'normal',
-		cursor: 'cursor-auto',
-		textTransform: 'none',
-		fontFamily: 'inherit',
-		fontWeight: 'regular',
 	},
 } as const satisfies TextManifest;

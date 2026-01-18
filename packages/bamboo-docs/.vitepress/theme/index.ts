@@ -4,9 +4,10 @@ import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import { useData } from 'vitepress';
 
-import './style.css';
+// Import all Bamboo components
+import * as BambooComponents from '@mrksbnc/bamboo-vue';
 
-import { BoAvatar } from '@mrksbnc/bamboo-vue';
+import './style.css';
 
 export default {
 	extends: DefaultTheme,
@@ -17,7 +18,12 @@ export default {
 	},
 
 	enhanceApp({ app }) {
-		app.component('BoAvatar', BoAvatar);
+		// Register all Bamboo components globally
+		Object.entries(BambooComponents).forEach(([name, component]) => {
+			if (name.startsWith('Bo') && typeof component === 'object') {
+				app.component(name, component);
+			}
+		});
 
 		if (typeof window !== 'undefined') {
 			app.mixin({

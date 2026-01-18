@@ -7,6 +7,7 @@
 		"build": "vitepress build",
 		"docs:dev": "vitepress dev",
 		"docs:preview": "vitepress preview",
+		"generate:docs": "tsx scripts/generate-docs-enhanced.ts",
 		"lint": "run-s lint:*",
 		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\""
 	},
@@ -14,6 +15,8 @@
 		"@workspace/bamboo-core": "workspace:*",
 		"@mrksbnc/bamboo-vue": "workspace:*",
 		"@vueuse/core": "^14.1.0",
+		"tsx": "^4.19.2",
+		"typescript": "^5.7.3",
 		"vitepress": "2.0.0-alpha.15",
 		"vue": "^3.5.26"
 	}
