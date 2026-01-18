@@ -18,13 +18,13 @@ export default defineConfig({
 				'@mrksbnc/bamboo-vue/lib.css': fileURLToPath(
 					new URL('../../bamboo-vue/src/lib.css', import.meta.url),
 				),
-				'@mrksbnc/bamboo-core': fileURLToPath(
+				'@workspace/bamboo-core': fileURLToPath(
 					new URL('../../bamboo-core/src/index.ts', import.meta.url),
 				),
 			},
 		},
 		ssr: {
-			noExternal: ['@mrksbnc/bamboo-vue', '@mrksbnc/bamboo-core'],
+			noExternal: ['@mrksbnc/bamboo-vue', '@workspace/bamboo-core'],
 		},
 	},
 	themeConfig: {

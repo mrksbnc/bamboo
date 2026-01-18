@@ -22,7 +22,7 @@
 		IdentityService,
 		useBoLoadingSpinner,
 		type BoLoadingSpinnerProps,
-	} from '@mrksbnc/bamboo-core';
+	} from '@workspace/bamboo-core';
 	import { BoText } from '../bo-text';
 
 	const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {

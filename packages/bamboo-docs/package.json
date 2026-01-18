@@ -11,7 +11,7 @@
 		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\""
 	},
 	"devDependencies": {
-		"@mrksbnc/bamboo-core": "workspace:*",
+		"@workspace/bamboo-core": "workspace:*",
 		"@mrksbnc/bamboo-vue": "workspace:*",
 		"@vueuse/core": "^14.1.0",
 		"vitepress": "2.0.0-alpha.15",

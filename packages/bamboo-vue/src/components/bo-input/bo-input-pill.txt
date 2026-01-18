@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-	import type { BoInputPill } from '@mrksbnc/bamboo-core';
+	import type { BoInputPill } from '@workspace/bamboo-core';
 	import { BoIcon } from '../bo-icon';
 	import { BoText } from '../bo-text';
 

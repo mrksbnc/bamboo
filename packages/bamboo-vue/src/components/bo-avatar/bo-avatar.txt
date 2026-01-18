@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { IdentityService, useBoAvatar, type BoAvatarProps } from '@mrksbnc/bamboo-core';
+	import { IdentityService, useBoAvatar, type BoAvatarProps } from '@workspace/bamboo-core';
 	import { ref } from 'vue';
 	import defaultAvatarImage from '../../assets/avatar.png';
 	import { BoText } from '../bo-text';

@@ -94,7 +94,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { IdentityService, useBoInput, type BoInputProps } from '@mrksbnc/bamboo-core';
+	import { IdentityService, useBoInput, type BoInputProps } from '@workspace/bamboo-core';
 	import { useDebounceFn, useResizeObserver } from '@vueuse/core';
 
 	import { computed, onMounted, ref } from 'vue';
