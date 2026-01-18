@@ -38,7 +38,7 @@
 		"type-check": "vue-tsc --noEmit"
 	},
 	"dependencies": {
-		"@mrksbnc/bamboo-core": "workspace:*",
+		"@workspace/bamboo-core": "workspace:*",
 		"@vueuse/core": "^14.1.0"
 	},
 	"devDependencies": {
