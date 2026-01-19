@@ -1,34 +1,22 @@
 // https://vitepress.dev/guide/custom-theme
-import { h, onMounted, watch } from 'vue';
+import { onMounted, watch, watchEffect } from 'vue';
 import type { Theme } from 'vitepress';
-import DefaultTheme from 'vitepress/theme';
-import { useData } from 'vitepress';
 
-// Import all Bamboo components
-import * as BambooComponents from '@mrksbnc/bamboo-vue';
+import { useData, inBrowser } from 'vitepress';
+import Layout from './Layout.vue';
+import DefaultTheme from 'vitepress/theme';
 
 import './style.css';
 
 export default {
 	extends: DefaultTheme,
-	Layout: () => {
-		return h(DefaultTheme.Layout, null, {
-			// https://vitepress.dev/guide/extending-default-theme#layout-slots
-		});
-	},
+	Layout,
 
 	enhanceApp({ app }) {
-		// Register all Bamboo components globally
-		Object.entries(BambooComponents).forEach(([name, component]) => {
-			if (name.startsWith('Bo') && typeof component === 'object') {
-				app.component(name, component);
-			}
-		});
-
 		if (typeof window !== 'undefined') {
 			app.mixin({
 				setup() {
-					const { isDark } = useData();
+					const { isDark, lang } = useData();
 
 					const updateTheme = (): void => {
 						const html = document.documentElement;
@@ -38,6 +26,13 @@ export default {
 							html.setAttribute('data-theme', 'light');
 						}
 					};
+
+					// Persist language preference
+					watchEffect(() => {
+						if (inBrowser) {
+							document.cookie = `bamboo_lang=${lang.value}; expires=Mon, 1 Jan 2030 00:00:00 UTC; path=/`;
+						}
+					});
 
 					onMounted(() => {
 						updateTheme();
