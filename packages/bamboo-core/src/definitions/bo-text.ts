@@ -162,6 +162,20 @@ export interface BoTextProps {
 	lang?: string;
 }
 
+type BoTextManifestDefaults = Pick<
+	BoTextProps,
+	| 'role'
+	| 'variant'
+	| 'fontSize'
+	| 'textAlign'
+	| 'fontFamily'
+	| 'fontWeight'
+	| 'cursor'
+	| 'whiteSpace'
+	| 'lineClamp'
+	| 'textTransform'
+>;
+
 type BoFontSizeStyleMap = Record<BoFontSize, string>;
 type BoTextAlignStyleMap = Record<BoTextAlign, string>;
 type BoFontFamilyStyleMap = Record<BoFontFamily, string>;
@@ -170,7 +184,7 @@ type BoTextVariantStyleMap = Record<BoTextVariant, string>;
 type BoTextTransformStyleMap = Record<BoTextTransform, string>;
 type BoTextWhiteSpaceStyleMap = Record<BoTextWhiteSpace, string>;
 
-interface TextStyleManifest {
+interface BoTextStyleManifest {
 	base: string;
 	fontFamily: BoFontFamilyStyleMap;
 	fontSize: BoFontSizeStyleMap;
@@ -189,18 +203,4 @@ interface TextStyleManifest {
 	};
 }
 
-export type TextManifest = ComponentManifest<
-	TextStyleManifest,
-	Omit<
-		BoTextProps,
-		| 'id'
-		| 'dataTestId'
-		| 'value'
-		| 'customColor'
-		| 'clickable'
-		| 'ariaLabel'
-		| 'ariaLabelledBy'
-		| 'ariaDescribedBy'
-		| 'lang'
-	>
->;
+export type TextManifest = ComponentManifest<BoTextStyleManifest, BoTextManifestDefaults>;

@@ -52,12 +52,12 @@ type BoLoadingPulseSizeStyleMap = Record<BoLoaderSize, string>;
 type BoLoadingPulseVariantStyleMap = Record<BoLoaderVariant, string>;
 type BoLoadingPulseTextPositionStyleMap = Record<BoLoaderTextPosition, string>;
 
-type BoLoadingPulseComponentDefaults = Pick<
+type BoLoadingPulseManifestDefaults = Pick<
 	BoLoadingPulseProps,
 	'size' | 'variant' | 'textPosition' | 'role'
 >;
 
-export interface LoadingPulseStyleManifest {
+export interface BoLoadingPulseStyleManifest {
 	base: string;
 	container: string;
 	dot: string;
@@ -70,6 +70,6 @@ export interface LoadingPulseStyleManifest {
 }
 
 export type LoadingPulseManifest = ComponentManifest<
-	LoadingPulseStyleManifest,
-	BoLoadingPulseComponentDefaults
+	BoLoadingPulseStyleManifest,
+	BoLoadingPulseManifestDefaults
 >;

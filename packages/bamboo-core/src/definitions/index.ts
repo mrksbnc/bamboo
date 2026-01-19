@@ -61,7 +61,7 @@ export {
 
 // # bo-loading-pulse
 export {
-	type LoadingPulseStyleManifest,
+	type BoLoadingPulseStyleManifest,
 	type LoadingPulseManifest,
 	type BoLoadingPulseProps,
 } from './bo-loading-pulse.js';
@@ -69,7 +69,7 @@ export {
 // # bo-loading-spinner
 export {
 	type BoLoadingSpinnerProps,
-	type LoadingSpinnerStyleManifest,
+	type BoLoadingSpinnerStyleManifest,
 	type LoadingSpinnerManifest,
 } from './bo-loading-spinner.js';
 

@@ -44,6 +44,7 @@ export const LOADING_SPINNER_MANIFEST = {
 		},
 	},
 	defaults: {
+		role: 'status',
 		size: 'default',
 		variant: 'primary',
 		textPosition: 'after',

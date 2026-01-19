@@ -48,5 +48,10 @@ export const LOADING_PULSE_MANIFEST = {
 			/*tw*/ 'animate-pulse [animation-delay:300ms]',
 		],
 	},
-	defaults: {},
+	defaults: {
+		role: 'status',
+		size: 'default',
+		variant: 'primary',
+		textPosition: 'after',
+	},
 } as const satisfies LoadingPulseManifest;

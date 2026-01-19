@@ -79,10 +79,5 @@ export const TEXTAREA_MANIFEST = {
 			fontSize: 'sm',
 		},
 	},
-	defaults: {
-		size: 'md',
-		state: 'default',
-		variant: 'default',
-		rows: 3,
-	},
+	defaults: {},
 } as const satisfies TextareaManifest;

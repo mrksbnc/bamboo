@@ -56,12 +56,12 @@ type BoLoadingSpinnerSizeStyleMap = Record<BoLoaderSize, string>;
 type BoLoadingSpinnerVariantStyleMap = Record<BoLoaderVariant, string>;
 type BoLoadingSpinnerTextPositionStyleMap = Record<BoLoaderTextPosition, string>;
 
-type BoLoadingSpinnerComponentDefaults = Pick<
+type BoLoadingSpinnerManifestDefaults = Pick<
 	BoLoadingSpinnerProps,
 	'size' | 'variant' | 'textPosition' | 'role'
 >;
 
-export interface LoadingSpinnerStyleManifest {
+export interface BoLoadingSpinnerStyleManifest {
 	base: string;
 	container: string;
 	text: string;
@@ -72,6 +72,6 @@ export interface LoadingSpinnerStyleManifest {
 }
 
 export type LoadingSpinnerManifest = ComponentManifest<
-	LoadingSpinnerStyleManifest,
-	BoLoadingSpinnerComponentDefaults
+	BoLoadingSpinnerStyleManifest,
+	BoLoadingSpinnerManifestDefaults
 >;
