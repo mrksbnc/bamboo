@@ -1,32 +1,34 @@
-import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoButtonProps } from '../definitions/bo-button';
-import { ComponentStyleComposable } from './types';
-import { mergeTwClasses } from '../utils/tailwind-utils';
-import { useColor } from './use-color';
-import { BUTTON_MANIFEST } from '../manifests/button.manifest';
-import { BoIconSize, Icon } from '../definitions/index.js';
-import { BoFontSize } from '../definitions/bo-text';
-import { BoLoaderSize, BoLoaderVariant } from '../definitions/bo-loader';
+<template>
+	<button></button>
+</template>
 
-export interface UseBoButton extends ComponentStyleComposable {
-	isDisabled: ShallowRef<boolean>;
-	isIconOnlyButton: ShallowRef<boolean>;
-	iconOnlyIcon: ShallowRef<Icon>;
-	buttonFontSize: ShallowRef<BoFontSize>;
-	iconSize: ShallowRef<BoIconSize>;
-	loaderSize: ShallowRef<BoLoaderSize>;
-	loaderVariant: ShallowRef<BoLoaderVariant>;
-	contentClasses: {
-		container: string;
-		label: string;
-		prefixIcon: string;
-		suffixIcon: string;
-		loader: string;
-	};
-}
+<script lang="ts" setup>
+	import {
+		BUTTON_MANIFEST,
+		generateComponentId,
+		generateDataTestId,
+		getValidOrFallbackColorFromStr,
+		mergeTwClasses,
+		type BoButtonProps,
+		type BoFontSize,
+		type BoIconSize,
+		type BoLoaderSize,
+		type BoLoaderVariant,
+		type Icon,
+	} from '@workspace/bamboo-core';
+	import { computed, type StyleValue } from 'vue';
 
-export const useBoButton = (props: BoButtonProps): UseBoButton => {
-	const { getValidOrFallbackColorFromStr } = useColor();
+	const props = withDefaults(defineProps<BoButtonProps>(), {
+		id: () => generateComponentId('button'),
+		dataTestId: () => generateDataTestId('button'),
+		type: () => BUTTON_MANIFEST.defaults.type,
+		role: () => BUTTON_MANIFEST.defaults.role,
+		kind: () => BUTTON_MANIFEST.defaults.kind,
+		size: () => BUTTON_MANIFEST.defaults.size,
+		shape: () => BUTTON_MANIFEST.defaults.shape,
+		variant: () => BUTTON_MANIFEST.defaults.variant,
+		loaderType: () => BUTTON_MANIFEST.defaults.loaderType,
+	});
 
 	const isDisabled = computed<boolean>(() => {
 		return props.disabled || props.isLoading || false;
@@ -103,9 +105,9 @@ export const useBoButton = (props: BoButtonProps): UseBoButton => {
 
 	const classValues = computed<string>(() => {
 		const size = props.size || 'default';
-		const variant = props.variant || 'primary';
+		const kind = props.kind || 'default';
 		const shape = props.shape || 'default';
-		const kind = props.kind || 'filled';
+		const variant = props.variant || 'primary';
 		const width = props.fullWidth ? 'fullWidth' : 'default';
 
 		const variantClass = BUTTON_MANIFEST.styles.variants[kind][variant];
@@ -159,17 +161,4 @@ export const useBoButton = (props: BoButtonProps): UseBoButton => {
 
 		return {};
 	});
-
-	return {
-		isDisabled,
-		isIconOnlyButton,
-		iconOnlyIcon,
-		buttonFontSize,
-		iconSize,
-		loaderSize,
-		loaderVariant,
-		contentClasses,
-		classValues,
-		styleValues,
-	};
-};
+</script>

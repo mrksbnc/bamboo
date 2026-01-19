@@ -73,6 +73,11 @@ export interface BoIconProps {
 	decorative?: boolean;
 }
 
+type BoIconManifestDefaults = Pick<
+	BoIconProps,
+	'cursor' | 'size' | 'variant' | 'role' | 'decorative'
+>;
+
 export type BoIconRegistry = Readonly<{
 	[K in Icon]: string;
 }>;
@@ -3179,7 +3184,7 @@ export type Icon =
 type BoIconSizeStyleMap = Record<BoIconSize, string>;
 type BoIconVariantStyleMap = Record<BoIconVariant, string>;
 
-interface IconStyleManifest {
+interface BoIconStyleManifest {
 	base: string;
 	size: BoIconSizeStyleMap;
 	variant: BoIconVariantStyleMap;
@@ -3189,7 +3194,4 @@ interface IconStyleManifest {
 	};
 }
 
-export type IconManifest = ComponentManifest<
-	IconStyleManifest,
-	Pick<BoIconProps, 'size' | 'decorative' | 'role' | 'variant' | 'cursor'>
->;
+export type IconManifest = ComponentManifest<BoIconStyleManifest, BoIconManifestDefaults>;

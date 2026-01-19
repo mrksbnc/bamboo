@@ -14,7 +14,7 @@ export type BoButtonVariant =
 
 export type BoButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
-export type BoButtonKind = 'filled' | 'outline' | 'ghost' | 'link';
+export type BoButtonKind = 'default' | 'outline' | 'ghost' | 'link';
 
 export type BoButtonShape = 'default' | 'pill' | 'flat';
 
@@ -145,11 +145,16 @@ export interface BoButtonProps {
 	accessKey?: HTMLAttributes['accesskey'];
 }
 
+type BoButtonManifestDefaults = Pick<
+	BoButtonProps,
+	'kind' | 'size' | 'variant' | 'shape' | 'loaderType' | 'type' | 'role'
+>;
+
 type BoButtonSizeStyleMap = Record<BoButtonSize, string>;
 type BoButtonVariantStyleMap = Record<BoButtonVariant, string>;
 type BoButtonShapeStyleMap = Record<BoButtonShape, string>;
 
-export interface ButtonStyleManifest {
+export interface BoButtonStyleManifest {
 	base: string;
 	width: {
 		default: string;
@@ -159,12 +164,7 @@ export interface ButtonStyleManifest {
 	shadow: BoButtonShapeStyleMap;
 	size: BoButtonSizeStyleMap;
 	iconOnlySize: BoButtonSizeStyleMap;
-	variants: {
-		filled: BoButtonVariantStyleMap;
-		outline: BoButtonVariantStyleMap;
-		ghost: BoButtonVariantStyleMap;
-		link: BoButtonVariantStyleMap;
-	};
+	variants: Record<BoButtonKind, BoButtonVariantStyleMap>;
 	states: {
 		loading: string;
 		pressed: string;
@@ -186,10 +186,4 @@ export interface ButtonStyleManifest {
 	};
 }
 
-export type ButtonManifest = ComponentManifest<
-	ButtonStyleManifest,
-	Pick<
-		BoButtonProps,
-		'size' | 'variant' | 'shape' | 'disabled' | 'isLoading' | 'loaderType' | 'role' | 'type'
-	>
->;
+export type ButtonManifest = ComponentManifest<BoButtonStyleManifest, BoButtonManifestDefaults>;

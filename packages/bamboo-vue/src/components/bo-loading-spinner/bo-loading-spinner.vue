@@ -1,18 +1,6 @@
-import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoLoadingSpinnerProps, BoFontSize } from '../definitions/index.js';
-import { useColor, type ComponentStyleComposable } from './index.js';
-import { LOADING_SPINNER_MANIFEST } from '../manifests/index.js';
-import { mergeTwClasses } from '../utils/tailwind-utils.js';
+<template></template>
 
-export interface UseBoLoadingSpinner extends ComponentStyleComposable {
-	spinnerLabelFontSize: ShallowRef<BoFontSize>;
-	containerClassValues: ShallowRef<string>;
-	textClassValues: ShallowRef<string>;
-}
-
-export const useBoLoadingSpinner = (props: BoLoadingSpinnerProps): UseBoLoadingSpinner => {
-	const { getValidOrFallbackColorFromStr } = useColor();
-
+<script lang="ts" setup>
 	const spinnerLabelFontSize = computed<BoFontSize>(() => {
 		return LOADING_SPINNER_MANIFEST.styles.labelFontSize[props.size || 'default'];
 	});
@@ -43,12 +31,4 @@ export const useBoLoadingSpinner = (props: BoLoadingSpinnerProps): UseBoLoadingS
 
 		return {};
 	});
-
-	return {
-		spinnerLabelFontSize,
-		containerClassValues,
-		textClassValues,
-		classValues,
-		styleValues,
-	};
-};
+</script>

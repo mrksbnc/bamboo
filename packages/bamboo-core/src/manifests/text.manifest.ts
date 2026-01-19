@@ -95,4 +95,17 @@ export const TEXT_MANIFEST = {
 			template: /*tw*/ 'line-clamp-',
 		},
 	},
+	defaults: {
+		lineClamp: 'none',
+		textAlign: 'left',
+		variant: 'default',
+		fontSize: 'default',
+		textTransform: 'none',
+		fontFamily: 'inherit',
+		fontWeight: 'regular',
+		cursor: 'cursor-auto',
+		whiteSpace: 'normal',
+		role: 'paragraph',
+		ariaLive: 'polite',
+	},
 } as const satisfies TextManifest;

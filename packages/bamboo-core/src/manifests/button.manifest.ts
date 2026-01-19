@@ -7,7 +7,7 @@ export const BUTTON_MANIFEST = {
 		category: 'form',
 		description:
 			'Button component for submitting forms and triggering actions with support for icons, variants, and more',
-		tags: ['button', 'action', 'interactive', 'form', 'cta'],
+		tags: ['button', 'action', 'interactive', 'form'],
 	},
 	styles: {
 		base: /*tw*/ 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-blue-400 dark:focus-visible:ring-offset-gray-900 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*="size-"])]:size-4',
@@ -40,7 +40,7 @@ export const BUTTON_MANIFEST = {
 			xl: /*tw*/ 'size-11',
 		},
 		variants: {
-			filled: {
+			default: {
 				primary:
 					/*tw*/ 'bg-blue-600 text-white shadow hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800',
 				secondary:
@@ -113,13 +113,12 @@ export const BUTTON_MANIFEST = {
 		},
 	},
 	defaults: {
-		variant: 'primary',
-		shape: 'default',
-		size: 'default',
 		type: 'button',
 		role: 'button',
-		disabled: false,
-		isLoading: false,
+		kind: 'default',
+		size: 'default',
+		shape: 'default',
+		variant: 'primary',
 		loaderType: 'spinner',
 	},
 } as const satisfies ButtonManifest;
