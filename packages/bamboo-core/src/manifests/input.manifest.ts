@@ -24,13 +24,13 @@ export const INPUT_MANIFEST = {
 
 		size: {
 			sm: /*tw*/ 'h-8 px-3 py-1 text-xs',
-			md: /*tw*/ 'h-9 px-3 py-1',
+			default: /*tw*/ 'h-9 px-3 py-1',
 			lg: /*tw*/ 'h-10 px-3 py-2',
 		},
 
 		padding: {
 			sm: /*tw*/ 'py-1 px-3',
-			md: /*tw*/ 'py-1 px-3',
+			default: /*tw*/ 'py-1 px-3',
 			lg: /*tw*/ 'py-2 px-3',
 		},
 
@@ -53,7 +53,7 @@ export const INPUT_MANIFEST = {
 			suffix: /*tw*/ 'absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400',
 			size: {
 				sm: 'sm',
-				md: 'default',
+				default: 'default',
 				lg: 'lg',
 			},
 		},
@@ -81,9 +81,10 @@ export const INPUT_MANIFEST = {
 		},
 	},
 	defaults: {
-		size: 'md',
+		type: 'text',
+		role: 'textbox',
+		size: 'default',
 		state: 'default',
 		variant: 'default',
-		type: 'text',
 	},
 } as const satisfies InputManifest;

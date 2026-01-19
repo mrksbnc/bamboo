@@ -68,11 +68,26 @@ export interface BoTextareaProps {
 	ariaLabel?: HTMLAttributes['aria-label'];
 }
 
+type BoTextareaManifestDefaults = Pick<
+	BoTextareaProps,
+	| 'size'
+	| 'state'
+	| 'variant'
+	| 'rows'
+	| 'disabled'
+	| 'readOnly'
+	| 'required'
+	| 'autofocus'
+	| 'expand'
+	| 'maxLength'
+	| 'resizable'
+>;
+
 type BoTextareaSizeStyleMap = Record<BoTextareaSize, string>;
 type BoTextareaStateStyleMap = Record<BoTextareaState, string>;
 type BoTextareaVariantStyleMap = Record<BoTextareaVariant, string>;
 
-interface TextareaStyleManifest {
+interface BoTextareaStyleManifest {
 	base: string;
 	container: {
 		base: string;
@@ -106,22 +121,7 @@ interface TextareaStyleManifest {
 	};
 }
 
-type BoTextareaComponentDefaults = Pick<
-	BoTextareaProps,
-	| 'size'
-	| 'state'
-	| 'variant'
-	| 'rows'
-	| 'disabled'
-	| 'readOnly'
-	| 'required'
-	| 'autofocus'
-	| 'expand'
-	| 'maxLength'
-	| 'resizable'
->;
-
 export type TextareaManifest = ComponentManifest<
-	TextareaStyleManifest,
-	BoTextareaComponentDefaults
+	BoTextareaStyleManifest,
+	BoTextareaManifestDefaults
 >;

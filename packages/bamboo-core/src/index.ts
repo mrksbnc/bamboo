@@ -48,13 +48,13 @@ export {
 	type BoLoaderVariant,
 
 	// Loading Pulse
-	type LoadingPulseStyleManifest,
+	type BoLoadingPulseStyleManifest,
 	type LoadingPulseManifest,
 	type BoLoadingPulseProps,
 
 	// Loading Spinner
 	type BoLoadingSpinnerProps,
-	type LoadingSpinnerStyleManifest,
+	type BoLoadingSpinnerStyleManifest,
 	type LoadingSpinnerManifest,
 
 	// Text

@@ -2,7 +2,7 @@ import { HTMLAttributes, InputHTMLAttributes } from 'vue';
 import { BoFontSize, BoIconSize, Icon } from './index.js';
 import { ComponentManifest } from '../manifests/index.js';
 
-export type BoInputSize = 'sm' | 'md' | 'lg';
+export type BoInputSize = 'sm' | 'default' | 'lg';
 
 export type BoInputType = InputHTMLAttributes['type'];
 
@@ -90,11 +90,13 @@ export interface BoInputProps {
 	ariaLabel?: HTMLAttributes['aria-label'];
 }
 
+type BoInputManifestDefaults = Pick<BoInputProps, 'size' | 'state' | 'variant' | 'type' | 'role'>;
+
 type BoInputSizeStyleMap = Record<BoInputSize, string>;
 type BoInputStateStyleMap = Record<BoInputState, string>;
 type BoInputVariantStyleMap = Record<BoInputVariant, string>;
 
-interface InputStyleManifest {
+interface BoInputStyleManifest {
 	base: string;
 	container: {
 		base: string;
@@ -133,29 +135,4 @@ interface InputStyleManifest {
 	};
 }
 
-type BoInputComponentDefaults = Pick<
-	BoInputProps,
-	| 'size'
-	| 'state'
-	| 'variant'
-	| 'type'
-	| 'placeholder'
-	| 'label'
-	| 'description'
-	| 'error'
-	| 'hint'
-	| 'required'
-	| 'name'
-	| 'disabled'
-	| 'readOnly'
-	| 'fullWidth'
-	| 'prefixIcon'
-	| 'suffixIcon'
-	| 'autofocus'
-	| 'horizontalScroll'
-	| 'revealPassword'
-	| 'role'
-	| 'ariaLabel'
->;
-
-export type InputManifest = ComponentManifest<InputStyleManifest, BoInputComponentDefaults>;
+export type InputManifest = ComponentManifest<BoInputStyleManifest, BoInputManifestDefaults>;
