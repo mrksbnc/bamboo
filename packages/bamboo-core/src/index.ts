@@ -1,28 +1,4 @@
 export {
-	useBoAvatar,
-	useBoBadge,
-	useBoButton,
-	useBoIcon,
-	useBoInput,
-	useBoLoadingPulse,
-	useBoLoadingSpinner,
-	useBoText,
-	useBoTextarea,
-	useColor,
-	type ComponentStyleComposable,
-	type UseBoAvatar,
-	type UseBoBadge,
-	type UseBoButton,
-	type UseBoIcon,
-	type UseBoInput,
-	type UseBoLoadingPulse,
-	type UseBoLoadingSpinner,
-	type UseBoText,
-	type UseBoTextarea,
-	type UseColor,
-} from './composables/index.js';
-
-export {
 	// Avatar
 	type BoAvatarSize,
 	type BoAvatarKind,
@@ -107,15 +83,20 @@ export {
 
 export {
 	AVATAR_MANIFEST,
-	TEXT_MANIFEST,
-	TEXTAREA_MANIFEST,
-	INPUT_MANIFEST,
 	BADGE_MANIFEST,
 	BUTTON_MANIFEST,
 	ICON_MANIFEST,
+	TEXT_MANIFEST,
+	TEXTAREA_MANIFEST,
+	INPUT_MANIFEST,
 	LOADING_PULSE_MANIFEST,
 	LOADING_SPINNER_MANIFEST,
 	type ComponentManifest,
 } from './manifests/index.js';
 
-export { generateComponentId, generateDataTestId, mergeTwClasses } from './utils/index.js';
+export {
+	generateComponentId,
+	generateDataTestId,
+	mergeTwClasses,
+	getValidOrFallbackColorFromStr,
+} from './utils/index.js';

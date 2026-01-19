@@ -1,18 +1,8 @@
-import { computed, HTMLAttributes, ShallowRef, StyleValue } from 'vue';
-import { BoIconProps } from '../definitions/bo-icon';
-import { ComponentStyleComposable } from './types';
-import { useColor } from './use-color';
-import { mergeTwClasses } from '../utils/tailwind-utils';
-import { ICON_MANIFEST } from '../manifests/icon.manifest';
-import { BO_ICON_REGISTRY } from '../components/bo-icon-registry';
+<template></template>
 
-export interface UseBoIcon extends ComponentStyleComposable {
-	component: ShallowRef<string>;
-	role: ShallowRef<HTMLAttributes['role']>;
-}
-
-export const useBoIcon = (props: BoIconProps): UseBoIcon => {
-	const { getValidOrFallbackColorFromStr } = useColor();
+<script lang="ts" setup>
+	import { BO_ICON_REGISTRY, ICON_MANIFEST } from '@workspace/bamboo-core';
+	import { computed, type HTMLAttributes } from 'vue';
 
 	const component = computed<string>(() => {
 		return BO_ICON_REGISTRY[props.icon];
@@ -42,11 +32,4 @@ export const useBoIcon = (props: BoIconProps): UseBoIcon => {
 
 		return {};
 	});
-
-	return {
-		component,
-		role,
-		classValues,
-		styleValues,
-	};
-};
+</script>

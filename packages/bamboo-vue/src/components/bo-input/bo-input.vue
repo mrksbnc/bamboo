@@ -1,36 +1,6 @@
-import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoInputProps } from '../definitions/bo-input';
-import { ComponentStyleComposable } from './types';
-import { mergeTwClasses } from '../utils/tailwind-utils';
-import { BoIconSize } from '../definitions/bo-icon';
-import { BoFontSize } from '../definitions/bo-text';
-import { INPUT_MANIFEST } from '../manifests/input.manifest';
+<template></template>
 
-export interface UseBoInput extends ComponentStyleComposable {
-	containerClassValues: ShallowRef<string>;
-	inputClassValues: ShallowRef<string>;
-	inputContainerClassValues: ShallowRef<string>;
-	prefixIconClassValues: ShallowRef<string>;
-	suffixIconClassValues: ShallowRef<string>;
-	labelContainerClassValues: ShallowRef<string>;
-	labelClassValues: ShallowRef<string>;
-	requiredIndicatorClassValues: ShallowRef<string>;
-	helperContainerClassValues: ShallowRef<string>;
-	errorContainerClassValues: ShallowRef<string>;
-	iconSize: ShallowRef<BoIconSize>;
-	labelFontSize: ShallowRef<BoFontSize>;
-	hintFontSize: ShallowRef<BoFontSize>;
-	showPasswordToggle: ShallowRef<boolean>;
-}
-
-export const useBoInput = (
-	props: BoInputProps,
-	options?: { modelValue?: string; passwordVisible?: boolean },
-): UseBoInput => {
-	// const hasPills = computed<boolean>(() => {
-	// 	return !!props.pills && props.pills.length > 0;
-	// });
-
+<script lang="ts" setup>
 	const iconSize = computed<BoIconSize>(() => {
 		return INPUT_MANIFEST.styles.icons.size[props.size || 'md'];
 	});
@@ -140,23 +110,4 @@ export const useBoInput = (
 	const styleValues = computed<StyleValue>(() => {
 		return {};
 	});
-
-	return {
-		containerClassValues,
-		inputClassValues,
-		inputContainerClassValues,
-		prefixIconClassValues,
-		suffixIconClassValues,
-		labelContainerClassValues,
-		labelClassValues,
-		requiredIndicatorClassValues,
-		helperContainerClassValues,
-		errorContainerClassValues,
-		iconSize,
-		labelFontSize,
-		hintFontSize,
-		showPasswordToggle,
-		classValues,
-		styleValues,
-	};
-};
+</script>

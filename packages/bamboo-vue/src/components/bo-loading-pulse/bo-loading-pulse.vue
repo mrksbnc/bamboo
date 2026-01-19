@@ -1,19 +1,13 @@
-import { computed, ShallowRef, StyleValue } from 'vue';
-import { BoLoadingPulseProps, BoFontSize } from '../definitions/index.js';
-import { useColor, ComponentStyleComposable } from './index.js';
-import { mergeTwClasses } from '../utils/index.js';
-import { LOADING_PULSE_MANIFEST } from '../manifests/index.js';
+<template></template>
 
-export interface UseBoLoadingPulse extends ComponentStyleComposable {
-	pulseLabelFontSize: ShallowRef<BoFontSize>;
-	containerClassValues: ShallowRef<string>;
-	outerPulseContainerClassValues: ShallowRef<string>;
-	outerPulseClassValues: ShallowRef<string>;
-	innerPulseClassValues: ShallowRef<string>;
-}
-
-export const useBoLoadingPulse = (props: BoLoadingPulseProps): UseBoLoadingPulse => {
-	const { getValidOrFallbackColorFromStr } = useColor();
+<script lang="ts" setup>
+	import {
+		getValidOrFallbackColorFromStr,
+		LOADING_PULSE_MANIFEST,
+		mergeTwClasses,
+		type BoFontSize,
+	} from '@workspace/bamboo-core';
+	import { computed, type StyleValue } from 'vue';
 
 	const pulseLabelFontSize = computed<BoFontSize>(() => {
 		return LOADING_PULSE_MANIFEST.styles.labelFontSize[props.size || 'default'];
@@ -69,14 +63,4 @@ export const useBoLoadingPulse = (props: BoLoadingPulseProps): UseBoLoadingPulse
 		}
 		return {};
 	});
-
-	return {
-		pulseLabelFontSize,
-		containerClassValues,
-		outerPulseContainerClassValues,
-		outerPulseClassValues,
-		innerPulseClassValues,
-		classValues,
-		styleValues,
-	};
-};
+</script>

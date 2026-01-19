@@ -189,4 +189,18 @@ interface TextStyleManifest {
 	};
 }
 
-export type TextManifest = ComponentManifest<TextStyleManifest>;
+export type TextManifest = ComponentManifest<
+	TextStyleManifest,
+	Omit<
+		BoTextProps,
+		| 'id'
+		| 'dataTestId'
+		| 'value'
+		| 'customColor'
+		| 'clickable'
+		| 'ariaLabel'
+		| 'ariaLabelledBy'
+		| 'ariaDescribedBy'
+		| 'lang'
+	>
+>;

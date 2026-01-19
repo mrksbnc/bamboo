@@ -5,9 +5,9 @@ import { ComponentManifest } from '../manifests/index.js';
 export type BoAvatarSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
 export type BoAvatarKind =
+	| 'default'
 	| 'flat'
 	| 'circle'
-	| 'default'
 	| 'outline-flat'
 	| 'outline-default'
 	| 'outline-circle';
@@ -67,7 +67,7 @@ export interface BoAvatarProps {
 	 */
 	variant?: BoAvatarVariant;
 	/** Custom color configuration. */
-	color?: BoAvatarColor;
+	customColor?: BoAvatarColor;
 	/**
 	 * The status of the indicator.
 	 *
@@ -91,13 +91,18 @@ export interface BoAvatarProps {
 	ariaLabel?: HTMLAttributes['aria-label'];
 }
 
+type BoAvatarManifestDefaults = Pick<
+	BoAvatarProps,
+	'kind' | 'size' | 'variant' | 'role' | 'indicatorKind' | 'indicatorPosition' | 'alt'
+>;
+
 type BoAvatarSizeStyleMap = Record<BoAvatarSize, string>;
 type BoAvatarKindStyleMap = Record<BoAvatarKind, string>;
 type BoAvatarVariantStyleMap = Record<BoAvatarVariant, string>;
 type BoAvatarIndicatorStatusStyleMap = Record<BoAvatarIndicatorKind, string>;
 type BoAvatarIndicatorPositionStyleMap = Record<BoAvatarIndicatorPosition, string>;
 
-export interface AvatarStyleManifest {
+export interface BoAvatarStyleManifest {
 	base: string;
 	size: BoAvatarSizeStyleMap;
 	kind: BoAvatarKindStyleMap;
@@ -117,10 +122,4 @@ export interface AvatarStyleManifest {
 	labelSize: Record<BoAvatarSize, BoFontSize>;
 }
 
-export type AvatarManifest = ComponentManifest<
-	AvatarStyleManifest,
-	Pick<
-		BoAvatarProps,
-		'alt' | 'size' | 'role' | 'kind' | 'variant' | 'indicatorKind' | 'indicatorPosition'
-	>
->;
+export type AvatarManifest = ComponentManifest<BoAvatarStyleManifest, BoAvatarManifestDefaults>;

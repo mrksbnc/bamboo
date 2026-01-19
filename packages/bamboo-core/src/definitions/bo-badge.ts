@@ -57,11 +57,13 @@ export interface BoBadgeProps {
 	ariaLabel?: HTMLAttributes['aria-label'];
 }
 
+type BoBadgeManifestDefaults = Pick<BoBadgeProps, 'type' | 'size' | 'shape' | 'variant' | 'role'>;
+
 type BoBadgeSizeStyleMap = Record<BoBadgeSize, string>;
 type BoBadgeShapeStyleMap = Record<BoBadgeShape, string>;
 type BoBadgeVariantStyleMap = Record<BoBadgeVariant, string>;
 
-export interface BadgeStyleManifest {
+export interface BoBadgeStyleManifest {
 	base: string;
 	shape: BoBadgeShapeStyleMap;
 	size: {
@@ -80,7 +82,4 @@ export interface BadgeStyleManifest {
 	};
 }
 
-export type BadgeManifest = ComponentManifest<
-	BadgeStyleManifest,
-	Pick<BoBadgeProps, 'size' | 'shape' | 'variant' | 'role' | 'type'>
->;
+export type BadgeManifest = ComponentManifest<BoBadgeStyleManifest, BoBadgeManifestDefaults>;

@@ -100,8 +100,8 @@ export const AVATAR_MANIFEST = {
 	defaults: {
 		role: 'img',
 		alt: 'avatar',
-		size: 'default',
 		kind: 'default',
+		size: 'default',
 		variant: 'primary',
 		indicatorKind: 'none',
 		indicatorPosition: 'top-right',

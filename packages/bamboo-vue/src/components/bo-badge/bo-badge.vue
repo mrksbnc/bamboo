@@ -1,21 +1,29 @@
-import { computed, ShallowRef } from 'vue';
-import { ComponentStyleComposable } from './types';
-import { mergeTwClasses } from '../utils/tailwind-utils.js';
-import { Icon, type BoBadgeProps, type BoFontSize, type BoIconSize } from '../definitions/index.js';
-import { BADGE_MANIFEST } from '../manifests/index.js';
+<template>
+	<span> </span>
+</template>
 
-export interface UseBoBadge extends ComponentStyleComposable {
-	isCircle: ShallowRef<boolean>;
-	isIconOnly: ShallowRef<boolean>;
-	iconSize: ShallowRef<BoIconSize>;
-	renderLabel: ShallowRef<boolean>;
-	iconOnlyComponent: ShallowRef<Icon>;
-	badgeFontSize: ShallowRef<BoFontSize>;
-	prefixIconContainerClassValues: ShallowRef<string>;
-	suffixIconContainerClassValues: ShallowRef<string>;
-}
+<script lang="ts" setup>
+	import {
+		BADGE_MANIFEST,
+		generateComponentId,
+		generateDataTestId,
+		mergeTwClasses,
+		type BoBadgeProps,
+		type BoFontSize,
+		type BoIconSize,
+		type Icon,
+	} from '@workspace/bamboo-core';
+	import { computed } from 'vue';
 
-export const useBoBadge = (props: BoBadgeProps): UseBoBadge => {
+	const props = withDefaults(defineProps<BoBadgeProps>(), {
+		id: () => generateComponentId('badge'),
+		dataTestId: () => generateDataTestId('badge'),
+		variant: () => BADGE_MANIFEST.defaults.variant,
+		type: () => BADGE_MANIFEST.defaults.type,
+		shape: () => BADGE_MANIFEST.defaults.shape,
+		size: () => BADGE_MANIFEST.defaults.size,
+	});
+
 	const isIconOnly = computed<boolean>(() => {
 		const hasIcon =
 			(props.icon?.prefix && props.icon.prefix !== 'none') ||
@@ -65,16 +73,4 @@ export const useBoBadge = (props: BoBadgeProps): UseBoBadge => {
 			BADGE_MANIFEST.styles.variants[props.type || 'default'][props.variant || 'primary'],
 		);
 	});
-
-	return {
-		isIconOnly,
-		iconOnlyComponent,
-		iconSize,
-		isCircle,
-		renderLabel,
-		classValues,
-		badgeFontSize,
-		prefixIconContainerClassValues,
-		suffixIconContainerClassValues,
-	};
-};
+</script>

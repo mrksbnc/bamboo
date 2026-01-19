@@ -34,10 +34,11 @@
 		AVATAR_MANIFEST,
 		generateComponentId,
 		generateDataTestId,
-		useBoAvatar,
+		mergeTwClasses,
 		type BoAvatarProps,
+		type BoFontSize,
 	} from '@workspace/bamboo-core';
-	import { ref } from 'vue';
+	import { computed, ref, type StyleValue } from 'vue';
 	import { BoText } from '../bo-text';
 
 	const props = withDefaults(defineProps<BoAvatarProps>(), {
@@ -54,20 +55,99 @@
 
 	const imgError = ref<boolean>(false);
 
-	const {
-		label,
-		styleValues,
-		labelFontSize,
-		renderWithImage,
-		indicatorClassValues,
-		containerClassValues,
-		renderWithAbbreviatedLabel,
-	} = useBoAvatar({
-		props,
-		imgError,
+	const isOutlineKind = computed<boolean>(() => {
+		return props.kind?.includes('outline') ?? false;
 	});
 
-	function onImageError() {
+	const renderWithImage = computed<boolean>(() => {
+		return !!props.src && !imgError.value;
+	});
+
+	const renderWithAbbreviatedLabel = computed<boolean>(() => {
+		return !!props.label && !renderWithImage.value;
+	});
+
+	const label = computed<string>(() => {
+		const safeStr = props?.label || '';
+
+		if (safeStr.length > 2) {
+			return safeStr.slice(0, 2).toUpperCase();
+		}
+		return safeStr.toUpperCase();
+	});
+
+	const labelFontSize = computed<BoFontSize>(() => {
+		return AVATAR_MANIFEST.styles.labelSize[props.size || 'default'];
+	});
+
+	const fontColor = computed<string>(() => {
+		if (props.customColor?.textColor) {
+			return '';
+		}
+
+		const variant = props.variant || 'primary';
+
+		if (isOutlineKind.value) {
+			return AVATAR_MANIFEST.styles.textColor.outline[variant];
+		}
+
+		return AVATAR_MANIFEST.styles.textColor.filled[variant];
+	});
+
+	const backgroundClassValues = computed<string>(() => {
+		if (props.customColor?.bgColor) {
+			return '';
+		}
+
+		const variant = props.variant || 'primary';
+
+		if (isOutlineKind.value) {
+			return AVATAR_MANIFEST.styles.variants.outline[variant];
+		}
+
+		return AVATAR_MANIFEST.styles.variants.filled[variant];
+	});
+
+	const indicatorClassValues = computed<string>(() => {
+		if (!props.indicatorKind || props.indicatorKind === 'none') {
+			return '';
+		}
+
+		return mergeTwClasses(
+			/*tw*/ 'absolute rounded-full border-2 border-white',
+			AVATAR_MANIFEST.styles.indicator.size[props.size || 'default'],
+			AVATAR_MANIFEST.styles.indicator.status[props.indicatorKind || 'none'],
+			AVATAR_MANIFEST.styles.indicator.position[props.indicatorPosition || 'top-right'],
+		);
+	});
+
+	const containerClassValues = computed<string>(() => {
+		const cursorClass = props.clickable
+			? /* tw*/ 'cursor-pointer hover:opacity-80'
+			: /* tw*/ 'cursor-default';
+		const shadowClass = !isOutlineKind.value
+			? /* tw*/ 'shadow-xs dark:shadow-gray-800'
+			: /* tw*/ '';
+
+		return mergeTwClasses(
+			cursorClass,
+			shadowClass,
+			fontColor.value,
+			AVATAR_MANIFEST.styles.base,
+			backgroundClassValues.value,
+			AVATAR_MANIFEST.styles.size[props.size || 'default'],
+			AVATAR_MANIFEST.styles.kind[props.kind || 'default'],
+		);
+	});
+
+	const styleValues = computed<StyleValue>(() => {
+		return {
+			color: props.customColor?.textColor,
+			backgroundColor: props.customColor?.bgColor,
+		};
+	});
+
+	function onImageError(): void {
 		imgError.value = true;
 	}
 </script>
