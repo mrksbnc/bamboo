@@ -1,3 +1,5 @@
+export { BO_ICON_REGISTRY } from './components/index.js';
+
 export {
 	// Avatar
 	type BoAvatarSize,
