@@ -14,7 +14,7 @@ export {
 // # bo-badge
 export {
 	type BoBadgeVariant,
-	type BoBadgeType,
+	type BoBadgeKind,
 	type BoBadgeShape,
 	type BoBadgeSize,
 	type BoBadgeProps,

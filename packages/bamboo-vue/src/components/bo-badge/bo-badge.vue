@@ -3,29 +3,17 @@
 		:id="id"
 		:data-testid="dataTestId"
 		:class="classValues"
+		:style="styleValues"
 		:role="role"
 		:aria-label="ariaLabel"
 	>
-		<!-- Prefix icon or icon-only icon -->
-		<span v-if="showPrefixIcon" :class="prefixIconContainerClassValues">
-			<bo-icon :size="iconSize" :icon="getSafeIcon(prefixIcon)" class="bo-badge__prefix-icon" />
-		</span>
-
-		<!-- Label -->
-		<slot name="default">
-			<bo-text
-				v-if="renderLabel && label"
-				:value="label"
-				:font-size="badgeFontSize"
-				font-weight="semibold"
-				class="bo-badge__label"
-			/>
+		<bo-icon v-if="showPrefixIcon" :size="iconSize" :icon="getSafeIcon(prefixIcon)" />
+		<slot>
+			<span v-if="label && !isCircle" :class="textClasses">
+				{{ label }}
+			</span>
 		</slot>
-
-		<!-- Suffix icon -->
-		<span v-if="showSuffixIcon" :class="suffixIconContainerClassValues">
-			<bo-icon :icon="getSafeIcon(suffixIcon)" :size="iconSize" class="bo-badge__suffix-icon" />
-		</span>
+		<bo-icon v-if="showSuffixIcon" :icon="getSafeIcon(suffixIcon)" :size="iconSize" />
 	</span>
 </template>
 
@@ -34,22 +22,22 @@
 		BADGE_MANIFEST,
 		generateComponentId,
 		generateDataTestId,
+		getValidOrFallbackColorFromStr,
 		mergeTwClasses,
 		type BoBadgeProps,
-		type BoFontSize,
 		type BoIconSize,
 		type Icon,
 	} from '@workspace/bamboo-core';
-	import { computed } from 'vue';
+	import { computed, type StyleValue } from 'vue';
 	import { BoIcon } from '../bo-icon';
 
 	const props = withDefaults(defineProps<BoBadgeProps>(), {
 		id: () => generateComponentId('badge'),
 		dataTestId: () => generateDataTestId('badge'),
-		variant: () => BADGE_MANIFEST.defaults.variant,
-		type: () => BADGE_MANIFEST.defaults.type,
-		shape: () => BADGE_MANIFEST.defaults.shape,
 		size: () => BADGE_MANIFEST.defaults.size,
+		type: () => BADGE_MANIFEST.defaults.kind,
+		shape: () => BADGE_MANIFEST.defaults.shape,
+		variant: () => BADGE_MANIFEST.defaults.variant,
 	});
 
 	const isIconOnly = computed<boolean>(() => {
@@ -57,7 +45,7 @@
 			(props.prefixIcon && props.prefixIcon !== 'none') ||
 			(props.suffixIcon && props.suffixIcon !== 'none');
 
-		return (hasIcon ?? false) && !!props.label;
+		return !!hasIcon && !props.label;
 	});
 
 	const showPrefixIcon = computed<boolean>(() => {
@@ -74,39 +62,41 @@
 		return props.shape === 'circle' && isIconOnly.value;
 	});
 
-	const renderLabel = computed<boolean>(() => {
-		return !!props.label && !isIconOnly.value;
-	});
-
-	const badgeFontSize = computed<BoFontSize>(() => {
-		return BADGE_MANIFEST.styles.fontSize[props.size || 'default'];
-	});
-
 	const iconSize = computed<BoIconSize>(() => {
 		return BADGE_MANIFEST.styles.iconSize[props.size || 'default'];
 	});
 
-	const sizeClasses = computed<string>(() => {
-		return props.shape === 'circle'
-			? BADGE_MANIFEST.styles.size.circle[props.size || 'default']
-			: BADGE_MANIFEST.styles.size.default[props.size || 'default'];
-	});
-
-	const prefixIconContainerClassValues = computed<string>(() => {
-		return BADGE_MANIFEST.styles.containers.prefixIcon;
-	});
-
-	const suffixIconContainerClassValues = computed<string>(() => {
-		return BADGE_MANIFEST.styles.containers.suffixIcon;
+	const textClasses = computed<string>(() => {
+		return mergeTwClasses(
+			'font-semibold leading-none',
+			BADGE_MANIFEST.styles.fontSize[props.size || 'default'],
+			isCircle.value
+				? BADGE_MANIFEST.styles.size.circle[props.size || 'default']
+				: BADGE_MANIFEST.styles.size.default[props.size || 'default'],
+		);
 	});
 
 	const classValues = computed<string>(() => {
 		return mergeTwClasses(
-			sizeClasses.value,
 			BADGE_MANIFEST.styles.base,
+			props.prefixIcon || props.suffixIcon ? 'gap-1.5' : '',
 			BADGE_MANIFEST.styles.shape[props.shape || 'default'],
-			BADGE_MANIFEST.styles.variants[props.type || 'default'][props.variant || 'primary'],
+			BADGE_MANIFEST.styles.variants[props.kind || 'default'][props.variant || 'primary'],
 		);
+	});
+
+	const styleValues = computed<StyleValue>(() => {
+		const style: StyleValue = {};
+
+		if (props.customBgColor) {
+			style.backgroundColor = getValidOrFallbackColorFromStr(props.customBgColor);
+		}
+
+		if (props.customTextColor) {
+			style.color = getValidOrFallbackColorFromStr(props.customTextColor);
+		}
+
+		return style;
 	});
 
 	function getSafeIcon(icon?: Icon): Icon {

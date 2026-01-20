@@ -1,19 +1,5 @@
 @import 'tailwindcss';
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family:
-		ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-		'Noto Color Emoji';
-}
-
-html {
-	font-size: 1rem;
-	line-height: 1.5;
-}
-
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,

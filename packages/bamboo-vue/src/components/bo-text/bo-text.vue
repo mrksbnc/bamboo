@@ -103,3 +103,10 @@
 		return {};
 	});
 </script>
+
+<style scoped>
+	p {
+		margin: 0;
+		padding: 0;
+	}
+</style>

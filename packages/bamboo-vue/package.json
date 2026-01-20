@@ -18,8 +18,7 @@
 		"./lib.css": {
 			"import": "./dist/lib.css",
 			"require": "./dist/lib.css"
-		},
-		"./package.json": "./package.json"
+		}
 	},
 	"main": "./dist/index.umd.cjs",
 	"module": "./dist/index.es.js",

@@ -13,7 +13,7 @@ export type BoBadgeVariant =
 	| 'light'
 	| 'dark';
 
-export type BoBadgeType = 'default' | 'outline';
+export type BoBadgeKind = 'default' | 'outline';
 
 export type BoBadgeShape = 'default' | 'pill' | 'flat' | 'circle';
 
@@ -30,7 +30,7 @@ export interface BoBadgeProps {
 	 * The type of the badge (filled or outline).
 	 * @default 'default'
 	 */
-	type?: BoBadgeType;
+	kind?: BoBadgeKind;
 	/**
 	 * The size of the badge.
 	 * @default 'default'
@@ -46,6 +46,10 @@ export interface BoBadgeProps {
 	 * @default 'primary'
 	 */
 	variant?: BoBadgeVariant;
+	/** The custom background color for the badge. */
+	customBgColor?: string;
+	/** The custom text color for the badge. */
+	customTextColor?: string;
 	/** The prefix icon of the badge. */
 	prefixIcon?: Icon;
 	/** The suffix icon of the badge. */
@@ -56,7 +60,7 @@ export interface BoBadgeProps {
 	ariaLabel?: HTMLAttributes['aria-label'];
 }
 
-type BoBadgeManifestDefaults = Pick<BoBadgeProps, 'type' | 'size' | 'shape' | 'variant' | 'role'>;
+type BoBadgeManifestDefaults = Pick<BoBadgeProps, 'kind' | 'size' | 'shape' | 'variant' | 'role'>;
 
 type BoBadgeSizeStyleMap = Record<BoBadgeSize, string>;
 type BoBadgeShapeStyleMap = Record<BoBadgeShape, string>;
@@ -75,10 +79,6 @@ export interface BoBadgeStyleManifest {
 	};
 	fontSize: Record<BoBadgeSize, BoFontSize>;
 	iconSize: Record<BoBadgeSize, BoIconSize>;
-	containers: {
-		prefixIcon: string;
-		suffixIcon: string;
-	};
 }
 
 export type BadgeManifest = ComponentManifest<BoBadgeStyleManifest, BoBadgeManifestDefaults>;
