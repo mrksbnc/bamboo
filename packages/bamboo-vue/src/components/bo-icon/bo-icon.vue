@@ -5,7 +5,9 @@
 		:data-testid="dataTestId"
 		:role="role"
 		:class="classValues"
+		:style="styleValues"
 		:title="title"
+		:aria-hidden="decorative"
 	>
 	</span>
 </template>
@@ -20,7 +22,7 @@
 		mergeTwClasses,
 		type BoIconProps,
 	} from '@workspace/bamboo-core';
-	import { computed, type HTMLAttributes } from 'vue';
+	import { computed, type HTMLAttributes, type StyleValue } from 'vue';
 
 	const props = withDefaults(defineProps<BoIconProps>(), {
 		id: () => generateComponentId('icon'),
@@ -42,15 +44,22 @@
 
 	const classValues = computed<string>(() => {
 		return mergeTwClasses(
+			props.cursor,
 			ICON_MANIFEST.styles.base,
 			ICON_MANIFEST.styles.variant[props.variant || 'current'],
-			props.cursor ? props.cursor : ICON_MANIFEST.styles.cursor.default,
 			typeof props.size === 'number'
 				? `size-[${props.size}px]`
 				: ICON_MANIFEST.styles.size[props.size || 'default'],
-			props.customColor
-				? /* tw*/ `text-[${getValidOrFallbackColorFromStr(props.customColor)}]`
-				: '',
 		);
+	});
+
+	const styleValues = computed<StyleValue>(() => {
+		if (props.customColor) {
+			return {
+				color: getValidOrFallbackColorFromStr(props.customColor),
+			};
+		}
+
+		return {};
 	});
 </script>

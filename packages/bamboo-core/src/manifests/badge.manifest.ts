@@ -10,7 +10,7 @@ export const BADGE_MANIFEST = {
 			'Simple badge component for displaying status indicators, tags, and more with support for icons, variants, and sizes',
 	},
 	styles: {
-		base: /*tw*/ 'inline-flex max-h-fit items-center justify-center text-center select-none gap-1.5 shadow-sm cursor-default font-medium transition-colors',
+		base: /*tw*/ 'flex items-center justify-center text-center select-none shadow-sm cursor-default font-medium transition-colors',
 		shape: {
 			default: /*tw*/ 'rounded-md',
 			circle: /*tw*/ 'rounded-full',
@@ -20,18 +20,17 @@ export const BADGE_MANIFEST = {
 
 		size: {
 			default: {
-				xs: /*tw*/ 'px-1 py-0',
+				xs: /*tw*/ 'px-1.5 py-0.5',
 				sm: /*tw*/ 'px-1.5 py-0.5',
-				default: /*tw*/ 'px-2 py-0.75',
-				lg: /*tw*/ 'px-2.5 py-1',
-				xl: /*tw*/ 'px-3 py-1.5',
+				default: /*tw*/ 'px-2.5 py-0.5',
+				lg: /*tw*/ 'px-2.5 py-0.5',
+				xl: /*tw*/ 'px-3 py-0.5',
 			},
-
 			circle: {
-				xs: /*tw*/ 'p-0',
-				sm: /*tw*/ 'p-0.5',
-				default: /*tw*/ 'p-0.75',
-				lg: /*tw*/ 'p-1.25',
+				xs: /*tw*/ 'p-1',
+				sm: /*tw*/ 'p-1',
+				default: /*tw*/ 'p-1.5',
+				lg: /*tw*/ 'p-1.5',
 				xl: /*tw*/ 'p-2',
 			},
 		},
@@ -85,15 +84,10 @@ export const BADGE_MANIFEST = {
 			lg: 'lg',
 			xl: 'lg',
 		},
-
-		containers: {
-			prefixIcon: /*tw*/ 'inline-flex',
-			suffixIcon: /*tw*/ 'inline-flex',
-		},
 	},
 	defaults: {
 		role: 'status',
-		type: 'default',
+		kind: 'default',
 		size: 'default',
 		shape: 'default',
 		variant: 'primary',

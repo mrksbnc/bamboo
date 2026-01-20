@@ -49,10 +49,10 @@ The `variant` prop is used to change the appearance of the icon. It accepts a st
   <bo-icon icon="home" variant="success" />
   <bo-icon icon="home" variant="warning" />
   <bo-icon icon="home" variant="destructive" />
-  <span class="bg-neutral-600 rounded-md" style="padding:  0.5rem; display: inline-flex; align-items: center; min-height: 1.5rem;">
+  <span class="bg-neutral-600 rounded-md py-1.5 px-1 justify-center items-center flex" >
     <bo-icon icon="home" variant="white" />
   </span>
-  <span class="bg-neutral-300 rounded-md" style="padding:  0.5rem; display: inline-flex; align-items: center; min-height: 1.5rem;">
+  <span class="bg-neutral-300 rounded-md py-1.5 px-1 justify-center items-center flex" >
     <bo-icon icon="home" variant="black" />
   </span>
   
@@ -109,6 +109,26 @@ The `cursor` prop is used to control the cursor style of the icon. The values ar
 <bo-icon icon="home" cursor="cursor-not-allowed" />
 ```
 
+## Custom Colors
+
+To set a custom color for the icon, you can use the `customColor` prop. The value can be a string representing a color, a CSS variable,
+hex, or an RGB/RGBA color.
+
+<div class="flex gap-4">
+  <bo-icon icon="home" custom-color="violet" />
+  <bo-icon icon="home" custom-color="#ff0000" />
+  <bo-icon icon="home" custom-color="oklch(79.5% 0.184 86.047)" />
+  <bo-icon icon="home" custom-color="rgba(255, 0, 0, 0.5)" />
+</div>
+
+```vue
+<!-- With custom color -->
+<bo-icon icon="home" custom-color="violet" />
+<bo-icon icon="home" custom-color="#ff0000" />
+<bo-icon icon="home" custom-color="oklch(79.5% 0.184 86.047)" />
+<bo-icon icon="home" custom-color="rgba(255, 0, 0, 0.5)" />
+```
+
 ## API Reference
 
 ### Props
@@ -130,7 +150,7 @@ The `cursor` prop is used to control the cursor style of the icon. The values ar
 The following icons are available in bamboo:
 
 <div class="grid grid-cols-3 gap-4">
-  <div v-for="icon in iconNames" :key="icon" class="flex flex-col gap-2 items-center border rounded-md hover:border-blue-700 hover:text-blue-700" style="padding: 1.5rem 0.5rem;">
+  <div v-for="icon in iconNames" :key="icon" class="flex flex-col gap-2 items-center border rounded-md hover:border-blue-700 px-4 py-2">
     <bo-icon :icon="icon" size="xl"/>
     <span class="font-semibold text-xs cursor-default">{{ icon }}</span>
   </div>
