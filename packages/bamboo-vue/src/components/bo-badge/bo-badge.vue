@@ -1,5 +1,32 @@
 <template>
-	<span> </span>
+	<span
+		:id="id"
+		:data-testid="dataTestId"
+		:class="classValues"
+		:role="role"
+		:aria-label="ariaLabel"
+	>
+		<!-- Prefix icon or icon-only icon -->
+		<span v-if="showPrefixIcon" :class="prefixIconContainerClassValues">
+			<bo-icon :size="iconSize" :icon="getSafeIcon(prefixIcon)" class="bo-badge__prefix-icon" />
+		</span>
+
+		<!-- Label -->
+		<slot name="default">
+			<bo-text
+				v-if="renderLabel && label"
+				:value="label"
+				:font-size="badgeFontSize"
+				font-weight="semibold"
+				class="bo-badge__label"
+			/>
+		</slot>
+
+		<!-- Suffix icon -->
+		<span v-if="showSuffixIcon" :class="suffixIconContainerClassValues">
+			<bo-icon :icon="getSafeIcon(suffixIcon)" :size="iconSize" class="bo-badge__suffix-icon" />
+		</span>
+	</span>
 </template>
 
 <script lang="ts" setup>
@@ -14,6 +41,7 @@
 		type Icon,
 	} from '@workspace/bamboo-core';
 	import { computed } from 'vue';
+	import { BoIcon } from '../bo-icon';
 
 	const props = withDefaults(defineProps<BoBadgeProps>(), {
 		id: () => generateComponentId('badge'),
@@ -26,13 +54,20 @@
 
 	const isIconOnly = computed<boolean>(() => {
 		const hasIcon =
-			(props.icon?.prefix && props.icon.prefix !== 'none') ||
-			(props.icon?.suffix && props.icon.suffix !== 'none');
+			(props.prefixIcon && props.prefixIcon !== 'none') ||
+			(props.suffixIcon && props.suffixIcon !== 'none');
+
 		return (hasIcon ?? false) && !!props.label;
 	});
 
-	const iconOnlyComponent = computed<Icon>(() => {
-		return props.icon?.prefix ?? props.icon?.suffix ?? 'none';
+	const showPrefixIcon = computed<boolean>(() => {
+		return (props.prefixIcon && props.prefixIcon !== 'none') || isIconOnly.value || isCircle.value;
+	});
+
+	const showSuffixIcon = computed<boolean>(() => {
+		return (
+			!!props.suffixIcon && props.suffixIcon !== 'none' && !isIconOnly.value && !isCircle.value
+		);
 	});
 
 	const isCircle = computed<boolean>(() => {
@@ -73,4 +108,8 @@
 			BADGE_MANIFEST.styles.variants[props.type || 'default'][props.variant || 'primary'],
 		);
 	});
+
+	function getSafeIcon(icon?: Icon): Icon {
+		return icon ?? 'none';
+	}
 </script>

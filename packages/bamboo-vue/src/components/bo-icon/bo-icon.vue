@@ -1,12 +1,13 @@
 <template>
-	<component
-		:is="component"
+	<span
+		v-html="component"
 		:id="id"
 		:data-testid="dataTestId"
 		:role="role"
 		:class="classValues"
 		:title="title"
-	></component>
+	>
+	</span>
 </template>
 
 <script lang="ts" setup>
@@ -19,7 +20,7 @@
 		mergeTwClasses,
 		type BoIconProps,
 	} from '@workspace/bamboo-core';
-	import { computed, defineComponent, type Component, type HTMLAttributes } from 'vue';
+	import { computed, type HTMLAttributes } from 'vue';
 
 	const props = withDefaults(defineProps<BoIconProps>(), {
 		id: () => generateComponentId('icon'),
@@ -31,11 +32,8 @@
 		variant: () => ICON_MANIFEST.defaults.variant,
 	});
 
-	const component = computed<Component>(() => {
-		return defineComponent({
-			name: props.icon,
-			template: BO_ICON_REGISTRY[props.icon],
-		});
+	const component = computed<string>(() => {
+		return BO_ICON_REGISTRY[props.icon];
 	});
 
 	const role = computed<HTMLAttributes['role']>(() => {
