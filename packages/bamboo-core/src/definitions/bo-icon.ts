@@ -3190,10 +3190,6 @@ interface BoIconStyleManifest {
 	base: string;
 	size: BoIconSizeStyleMap;
 	variant: BoIconVariantStyleMap;
-	cursor: {
-		default: string;
-		clickable: string;
-	};
 }
 
 export type IconManifest = ComponentManifest<BoIconStyleManifest, BoIconManifestDefaults>;
