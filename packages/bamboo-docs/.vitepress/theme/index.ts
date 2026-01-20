@@ -1,10 +1,10 @@
 // https://vitepress.dev/guide/custom-theme
 import { onMounted, watch, watchEffect } from 'vue';
 import type { Theme } from 'vitepress';
-
 import { useData, inBrowser } from 'vitepress';
 import Layout from './Layout.vue';
 import DefaultTheme from 'vitepress/theme';
+import 'virtual:group-icons.css';
 
 import './style.css';
 

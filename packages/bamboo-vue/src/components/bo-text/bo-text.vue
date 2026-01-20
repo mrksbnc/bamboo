@@ -1,5 +1,6 @@
 <template>
-	<span
+	<p
+		v-if="value || $slots['default']"
 		:id="id"
 		:data-testid="dataTestId"
 		:role="role"
@@ -14,7 +15,7 @@
 		<slot>
 			{{ value }}
 		</slot>
-	</span>
+	</p>
 </template>
 
 <script lang="ts" setup>
@@ -26,7 +27,7 @@
 		TEXT_MANIFEST,
 		type BoTextProps,
 	} from '@workspace/bamboo-core';
-	import { computed, onMounted, useSlots, type SetupContext, type StyleValue } from 'vue';
+	import { computed, useSlots, type StyleValue } from 'vue';
 
 	const props = withDefaults(defineProps<BoTextProps>(), {
 		id: () => generateComponentId('text'),
@@ -41,7 +42,6 @@
 		fontFamily: () => TEXT_MANIFEST.defaults.fontFamily,
 		textTransform: () => TEXT_MANIFEST.defaults.textTransform,
 		role: () => TEXT_MANIFEST.defaults.role,
-		ariaLive: () => TEXT_MANIFEST.defaults.ariaLive,
 	});
 
 	const slots = useSlots();
@@ -102,12 +102,4 @@
 
 		return {};
 	});
-
-	function validateComponentOnMount(slots: SetupContext['slots'] = {}): void {
-		if (!slots['default'] && props.value) {
-			throw new Error('[ERROR]: bo-text component requires either children or value prop');
-		}
-	}
-
-	onMounted(() => validateComponentOnMount?.(slots));
 </script>

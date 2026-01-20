@@ -1,44 +1,7 @@
-# Bamboo Vue
+# Bamboo - Vue Package
 
-Lightweight, and flexible component library for Vue.
+## What is bamboo-vue?
 
-## Installation
+`bamboo-vue` is a collection of lightweight and flexible components for Vue 3. It is designed to be easy to use and type-safe, providing a solid foundation for building modern, responsive web applications.
 
-```bash
-# npm
-npm install @mrksbnc/bamboo-vue
-
-# pnpm
-pnpm add @mrksbnc/bamboo-vue
-
-# yarn
-yarn add @mrksbnc/bamboo-vue
-```
-
-## Usage
-
-```ts
-// main.ts
-import { createApp } from 'vue';
-import App from './App.vue';
-
-import '@mrksbnc/bamboo-vue/lib.css';
-
-createApp(App).use(Bamboo).mount('#app');
-```
-
-```ts
-// Your vue component
-
-<script setup lang="ts">
-import { BoButton } from "@mrksbnc/bamboo-vue";
-</script>
-
-<template>
-  <bo-button>Hello, World!</bo-button>
-</template>
-```
-
-## License
-
-[MIT](https://github.com/mrksbnc/bamboo/blob/main/LICENSE)
+The package uses the [`bamboo-core`](https://github.com/mrksbnc/bamboo/tree/main/packages/bamboo-core/README.md) package as it's core dependency and re-exports all the necessary values and types meant to be used by the package consumers.

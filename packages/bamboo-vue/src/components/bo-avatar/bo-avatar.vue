@@ -7,7 +7,7 @@
 		:class="containerClassValues"
 		:style="styleValues"
 	>
-		<span v-if="renderWithAbbreviatedLabel">
+		<span v-if="renderWithLabel">
 			<bo-text
 				:value="label"
 				variant="inherit"
@@ -17,11 +17,11 @@
 			/>
 		</span>
 
-		<span v-else-if="renderWithImage">
-			<img :src="src" :alt="alt" class="h-full w-full object-cover" @error="onImageError" />
+		<span v-if="renderWithImage">
+			<img :src="src" :alt="alt" class="h-full w-full aspect-auto" @error="onImageError" />
 		</span>
 
-		<span v-else>
+		<span v-if="!renderWithImage && !renderWithLabel">
 			<img alt="avatar" src="./avatar.png" class="h-full w-full object-cover" />
 		</span>
 
@@ -63,8 +63,8 @@
 		return !!props.src && !imgError.value;
 	});
 
-	const renderWithAbbreviatedLabel = computed<boolean>(() => {
-		return !!props.label && !renderWithImage.value;
+	const renderWithLabel = computed<boolean>(() => {
+		return props.label !== undefined && props.label.length > 0 && !props.src;
 	});
 
 	const label = computed<string>(() => {
@@ -147,7 +147,8 @@
 		};
 	});
 
-	function onImageError(): void {
+	function onImageError($event: Event): void {
 		imgError.value = true;
+		console.error('[bo-avatar]: failed to load image', $event);
 	}
 </script>

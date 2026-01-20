@@ -6,7 +6,7 @@ title: Bamboo
 
 hero:
   name: Bamboo
-  tagline: Flexible and type-safe component library for Vue 3.
+  tagline: Flexible and type-safe component library for the web.
   actions:
     - theme: brand
       text: Quick start

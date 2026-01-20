@@ -7,8 +7,10 @@ export const en: LocaleSpecificConfig<DefaultTheme.Config> = {
 	themeConfig: {
 		nav: nav(),
 		sidebar: {
-			'/en/guide/': { base: '/en/guide/', items: sidebarGuide() },
-			'/en/components/': { base: '/en/components/', items: sidebarComponents() },
+			'/en': {
+				base: '/en/',
+				items: [...sidebarGuide(), ...sidebarComponents(), ...sidebarResources()],
+			},
 		},
 
 		editLink: {
@@ -47,26 +49,18 @@ function nav(): DefaultTheme.NavItem[] {
 	return [
 		{
 			text: 'Guide',
-			link: '/en/guide/what-is-bamboo',
+			link: '/en/guide/getting-started',
 			activeMatch: '/en/guide/',
 		},
 		{
 			text: 'Components',
-			link: '/en/components/',
+			link: '/en/components/index',
 			activeMatch: '/en/components/',
 		},
 		{
 			text: 'Resources',
-			items: [
-				{
-					text: 'Changelog',
-					link: 'https://github.com/mrksbnc/bamboo/blob/main/CHANGELOG.md',
-				},
-				{
-					text: 'Contributing',
-					link: 'https://github.com/mrksbnc/bamboo/blob/main/CONTRIBUTING.md',
-				},
-			],
+			link: '/en/resources/index',
+			activeMatch: '/en/resources/',
 		},
 	];
 }
@@ -74,12 +68,9 @@ function nav(): DefaultTheme.NavItem[] {
 function sidebarGuide(): DefaultTheme.SidebarItem[] {
 	return [
 		{
-			text: 'Introduction',
 			collapsed: false,
-			items: [
-				{ text: 'What is Bamboo?', link: 'what-is-bamboo' },
-				{ text: 'Getting Started', link: 'getting-started' },
-			],
+			text: 'Introduction',
+			items: [{ text: 'Getting Started', link: '/guide/getting-started' }],
 		},
 	];
 }
@@ -88,8 +79,22 @@ function sidebarComponents(): DefaultTheme.SidebarItem[] {
 	return [
 		{
 			text: 'Components',
+			link: '/components/index',
 			items: [
-				// Add your components here
+				{ text: 'Avatar', link: '/components/avatar' },
+				{ text: 'Text', link: '/components/text' },
+			],
+		},
+	];
+}
+
+function sidebarResources(): DefaultTheme.SidebarItem[] {
+	return [
+		{
+			text: 'Resources',
+			link: '/resources/index',
+			items: [
+				{ text: 'Changelog', link: 'https://github.com/mrksbnc/bamboo/blob/main/CHANGELOG.md' },
 			],
 		},
 	];
