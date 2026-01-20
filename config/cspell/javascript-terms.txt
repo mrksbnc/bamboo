@@ -18,6 +18,7 @@ darkorange
 darkorchid
 darkred
 darksalmon
+darkgreen
 darkseagreen
 darkslateblue
 darkslategray
