@@ -9,7 +9,7 @@ export type BoAvatarKind =
 	| 'flat'
 	| 'circle'
 	| 'outline-flat'
-	| 'outline-default'
+	| 'outline'
 	| 'outline-circle';
 
 export type BoAvatarVariant =
@@ -67,7 +67,7 @@ export interface BoAvatarProps {
 	 */
 	variant?: BoAvatarVariant;
 	/** Custom background color for the avatar. */
-	customBgColor?: string;
+	customColor?: string;
 	/** Custom text color for the avatar. */
 	customTextColor?: string;
 	/**

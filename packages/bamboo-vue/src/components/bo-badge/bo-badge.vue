@@ -101,16 +101,20 @@
 	const styleValues = computed<StyleValue>(() => {
 		const style: StyleValue = {};
 
-		if (props.customBgColor) {
-			style.backgroundColor = getValidOrFallbackColorFromStr(props.customBgColor);
-		}
-
 		if (props.customTextColor) {
-			style.color = getValidOrFallbackColorFromStr(props.customTextColor);
+			style.color = getValidOrFallbackColorFromStr(props.customTextColor) || undefined;
 		}
 
-		if (props.customBorderColor) {
-			style.borderColor = getValidOrFallbackColorFromStr(props.customBorderColor);
+		if (props.customColor && props.kind.includes('outline')) {
+			style.borderColor = getValidOrFallbackColorFromStr(props.customColor) || undefined;
+
+			if (!props.customTextColor) {
+				style.color = getValidOrFallbackColorFromStr(props.customColor) || undefined;
+			}
+		}
+
+		if (props.customColor && !props.kind.includes('outline')) {
+			style.backgroundColor = getValidOrFallbackColorFromStr(props.customColor) || undefined;
 		}
 
 		return style;

@@ -115,7 +115,7 @@ The `kind` prop allows you to customize the shape of the avatar. The default sha
   <bo-avatar label="Flat" kind="flat" />
   <bo-avatar label="Circle" kind="circle" />
   <bo-avatar label="Outline Flat" kind="outline-flat" />
-  <bo-avatar label="Outline Default" kind="outline-default" />
+  <bo-avatar label="Outline Default" kind="outline" />
   <bo-avatar label="Outline Circle" kind="outline-circle" />
 </div>
 
@@ -124,7 +124,7 @@ The `kind` prop allows you to customize the shape of the avatar. The default sha
 <bo-avatar label="Flat" kind="flat" />
 <bo-avatar label="Circle" kind="circle" />
 <bo-avatar label="Outline Flat" kind="outline-flat" />
-<bo-avatar label="Outline Default" kind="outline-default" />
+<bo-avatar label="Outline Default" kind="outline" />
 <bo-avatar label="Outline Circle" kind="outline-circle" />
 ```
 
@@ -171,20 +171,16 @@ The `indicatorPosition` prop allows you to customize the position of the indicat
 The avatar background and text colors can be customized using the `customBgColor` and `customTextColor` props. You can use hex colors, RGB/RGBA, OKLCH, or CSS variables.
 
 <div class="flex gap-4">
-  <bo-avatar label="CB" custom-bg-color="#880808" custom-text-color="#FFFFFF" />
-  <bo-avatar label="CB" custom-bg-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
-  <bo-avatar label="CB" custom-bg-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
+  <bo-avatar label="CB" custom-color="#880808" custom-text-color="#FFFFFF" />
+  <bo-avatar label="CB" custom-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
+  <bo-avatar label="CB" custom-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
+  <bo-avatar label="OL" kind="outline" custom-color="oklch(84.5% 0.143 164.978)" />
 </div>
 
 ```vue
-<!-- Hex color -->
-<bo-avatar label="CB" custom-bg-color="#880808" custom-text-color="#FFFFFF" />
-
-<!-- RGB color -->
-<bo-avatar label="CB" custom-bg-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
-
-<!-- OKLCH color -->
-<bo-avatar label="CB" custom-bg-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
+<bo-avatar label="CB" custom-color="#880808" custom-text-color="#FFFFFF" />
+<bo-avatar label="CB" custom-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
+<bo-avatar label="CB" custom-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
 ```
 
 ## Cursor

@@ -23,33 +23,29 @@ The component is called `bo-badge` and can be used as follows:
 
 <div class="flex gap-4 items-center">
   <bo-badge label="Badge" />
-  <bo-badge label="Badge" variant="warning" />
-  <bo-badge label="Badge" variant="success" />
-  <bo-badge label="Badge" variant="destructive" />
 </div>
 
 ```vue
-<!-- With label -->
 <bo-badge label="Badge" />
+```
 
-<!-- With label and variant -->
-<bo-badge label="Badge" variant="warning" />
+or with a slot:
 
-<!-- With label and variant -->
-<bo-badge label="Badge" variant="success" />
+<div class="flex gap-4 items-center">
+  <bo-badge>
+     apple
+  </bo-badge>
+</div>
 
-<!-- With label and variant -->
-<bo-badge label="Badge" variant="destructive" />
+```vue
+<bo-badge> apple </bo-badge>
 ```
 
 ## Kinds
 
 Badges come in different kinds to fit various use cases. The default kind is `default`.
-
-Available kinds are:
-
-- `default`: A filled badge with background color
-- `outline`: An outline badge with border and text color
+Available kinds are: - `default`: A filled badge with background color - `outline`: An outline badge
+with border and text color
 
 <div class="flex gap-4 items-center">
   <bo-badge label="Default" kind="default" />
@@ -220,16 +216,16 @@ The badge supports displaying icons with the `prefixIcon` and `suffixIcon` props
 To set a custom color for the badge, you can use the `customBgColor`, `customTextColor`, and `customBorderColor` props. You can use hex colors, RGB/RGBA, OKLCH, or CSS variables.
 
 <div class="flex gap-4 items-center">
-  <bo-badge label="CB" custom-bg-color="#880808" />
-  <bo-badge label="CB" custom-bg-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
-  <bo-badge label="CB" custom-bg-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
+  <bo-badge label="CB" custom-color="#880808" />
+  <bo-badge label="CB" custom-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
+  <bo-badge label="CB" custom-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
   <bo-badge label="CB" kind="outline" custom-text-color="#FFFFFF" custom-border-color="oklch(84.5% 0.143 164.978)" />
 </div>
 
 ```vue
-<bo-badge label="CB" custom-bg-color="#880808" />
-<bo-badge label="CB" custom-bg-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
-<bo-badge label="CB" custom-bg-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
+<bo-badge label="CB" custom-color="#880808" />
+<bo-badge label="CB" custom-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
+<bo-badge label="CB" custom-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
 <bo-badge
 	label="CB"
 	kind="outline"

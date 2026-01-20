@@ -50,11 +50,9 @@ export interface BoBadgeProps {
 	/** The cursor style of the badge. */
 	cursor?: BoCursor;
 	/** The custom background color for the badge. */
-	customBgColor?: string;
+	customColor?: string;
 	/** The custom text color for the badge. */
 	customTextColor?: string;
-	/** Custom border color for the badge. */
-	customBorderColor?: string;
 	/** The prefix icon of the badge. */
 	prefixIcon?: Icon;
 	/** The suffix icon of the badge. */
