@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { fileURLToPath, URL } from 'node:url';
+import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 
 // Import locale-specific configs
 import { en } from './locales/en';
@@ -28,19 +29,9 @@ export default defineConfig({
 		hostname: 'https://mrksbnc.github.io/bamboo/',
 	},
 
-	vite: {
-		resolve: {
-			alias: {
-				'@mrksbnc/bamboo-vue': fileURLToPath(
-					new URL('../../bamboo-vue/src/index.ts', import.meta.url),
-				),
-				'@mrksbnc/bamboo-vue/lib.css': fileURLToPath(
-					new URL('../../bamboo-vue/src/lib.css', import.meta.url),
-				),
-				'@workspace/bamboo-core': fileURLToPath(
-					new URL('../../bamboo-core/src/index.ts', import.meta.url),
-				),
-			},
+	markdown: {
+		config(md) {
+			md.use(groupIconMdPlugin);
 		},
 	},
 
@@ -59,5 +50,22 @@ export default defineConfig({
 			link: '/en/',
 			...en,
 		},
+	},
+
+	vite: {
+		resolve: {
+			alias: {
+				'@mrksbnc/bamboo-vue': fileURLToPath(
+					new URL('../../bamboo-vue/src/index.ts', import.meta.url),
+				),
+				'@mrksbnc/bamboo-vue/lib.css': fileURLToPath(
+					new URL('../../bamboo-vue/src/lib.css', import.meta.url),
+				),
+				'@workspace/bamboo-core': fileURLToPath(
+					new URL('../../bamboo-core/src/index.ts', import.meta.url),
+				),
+			},
+		},
+		plugins: [groupIconVitePlugin()],
 	},
 });

@@ -12,12 +12,13 @@
 		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\""
 	},
 	"devDependencies": {
-		"@workspace/bamboo-core": "workspace:*",
 		"@mrksbnc/bamboo-vue": "workspace:*",
 		"@vueuse/core": "^14.1.0",
+		"@workspace/bamboo-core": "workspace:*",
 		"tsx": "^4.19.2",
 		"typescript": "^5.7.3",
 		"vitepress": "2.0.0-alpha.15",
+		"vitepress-plugin-group-icons": "^1.7.1",
 		"vue": "^3.5.26"
 	}
 }

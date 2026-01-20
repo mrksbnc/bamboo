@@ -1,7 +1,7 @@
 {
 	"editor.formatOnSave": true,
 	"explorer.fileNesting.enabled": true,
-	"tailwindCSS.classAttributes": ["tw"],
+	"tailwindCSS.classAttributes": ["tw", "class"],
 	"typescript.experimental.useTsgo": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"explorer.fileNesting.patterns": {
@@ -12,11 +12,12 @@
 		".gitignore": ".gitattributes",
 		".nvmrc": ".node-version"
 	},
-
 	"tailwindCSS.experimental.classRegex": [
 		["/\\*\\s*tw\\s*\\*/\\s*`([^`]*)`", "([^`]*)"],
 		["/\\*\\s*tw\\s*\\*/\\s*'([^']*)'", "([^']*)"],
-		["/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"", "([^\"]*)"]
+		["/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"", "([^\"]*)"],
+		["/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"", "([^\"]*)"],
+		["class:\\s*['\"`]([^'\"`]*)['\"`]", "([^'\"`]*)"]
 	],
 	"editor.quickSuggestions": {
 		"other": "on",
@@ -25,7 +26,9 @@
 	},
 	"tailwindCSS.includeLanguages": {
 		"typescript": "javascript",
-		"typescriptreact": "javascript"
+		"typescriptreact": "javascript",
+		"vue": "html",
+		"vue-html": "html"
 	},
 	"files.associations": {
 		"*.css": "tailwindcss"
