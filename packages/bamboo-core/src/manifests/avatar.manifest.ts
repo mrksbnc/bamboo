@@ -4,10 +4,6 @@ export const AVATAR_MANIFEST = {
 	meta: {
 		name: 'Avatar',
 		version: '1.0.0',
-		category: 'media',
-		tags: ['avatar', 'profile', 'user', 'image', 'initials', 'status'],
-		description:
-			'Avatar component for displaying user profile pictures, initials, or default images with support for indicators, sizes, and more',
 	},
 	styles: {
 		base: /*tw*/ 'inline-flex overflow-hidden select-none justify-center items-center',

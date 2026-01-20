@@ -4,9 +4,6 @@ export const ICON_MANIFEST = {
 	meta: {
 		name: 'Icon',
 		version: '1.0.0',
-		category: 'display',
-		tags: ['icon', 'svg', 'graphic', 'symbol'],
-		description: 'SVG icon component with multiple sizes and color variants',
 	},
 	styles: {
 		base: /*tw*/ 'box-border inline-flex items-center justify-center shrink-0',

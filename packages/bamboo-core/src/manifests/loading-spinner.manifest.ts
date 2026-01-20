@@ -4,9 +4,6 @@ export const LOADING_SPINNER_MANIFEST = {
 	meta: {
 		name: 'LoadingSpinner',
 		version: '1.0.0',
-		description: 'Animated spinner component for indicating loading states',
-		category: 'feedback',
-		tags: ['loading', 'spinner', 'loader', 'progress', 'waiting'],
 	},
 	styles: {
 		base: /*tw*/ 'inline-flex animate-spin rounded-full border-2 border-current border-t-transparent',

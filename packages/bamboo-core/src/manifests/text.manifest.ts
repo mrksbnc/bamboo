@@ -4,10 +4,6 @@ export const TEXT_MANIFEST = {
 	meta: {
 		name: 'Text',
 		version: '1.0.0',
-		description:
-			'Typography component for rendering text with various styles and formatting options',
-		category: 'display',
-		tags: ['text', 'typography', 'paragraph', 'heading', 'label'],
 	},
 	styles: {
 		base: /*tw*/ 'box-border m-0',

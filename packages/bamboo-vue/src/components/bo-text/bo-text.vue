@@ -1,5 +1,5 @@
 <template>
-	<p
+	<span
 		v-if="value || $slots['default']"
 		:id="id"
 		:data-testid="dataTestId"
@@ -15,7 +15,7 @@
 		<slot>
 			{{ value }}
 		</slot>
-	</p>
+	</span>
 </template>
 
 <script lang="ts" setup>
@@ -104,9 +104,4 @@
 	});
 </script>
 
-<style scoped>
-	p {
-		margin: 0;
-		padding: 0;
-	}
-</style>
+<style scoped lang="css"></style>

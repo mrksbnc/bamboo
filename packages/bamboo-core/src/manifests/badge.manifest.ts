@@ -4,13 +4,9 @@ export const BADGE_MANIFEST = {
 	meta: {
 		name: 'Badge',
 		version: '1.0.0',
-		category: 'display',
-		tags: ['badge', 'label', 'tag', 'status', 'indicator', 'chip'],
-		description:
-			'Simple badge component for displaying status indicators, tags, and more with support for icons, variants, and sizes',
 	},
 	styles: {
-		base: /*tw*/ 'flex items-center justify-center text-center select-none shadow-sm cursor-default font-medium transition-colors',
+		base: /*tw*/ 'flex items-center justify-center text-center select-none shadow-sm cursor-default font-medium transition-colors leading-none',
 		shape: {
 			default: /*tw*/ 'rounded-md',
 			circle: /*tw*/ 'rounded-full',
@@ -20,18 +16,14 @@ export const BADGE_MANIFEST = {
 
 		size: {
 			default: {
-				xs: /*tw*/ 'px-1.5 py-0.5',
-				sm: /*tw*/ 'px-1.5 py-0.5',
-				default: /*tw*/ 'px-2.5 py-0.5',
-				lg: /*tw*/ 'px-2.5 py-0.5',
-				xl: /*tw*/ 'px-3 py-0.5',
+				sm: /*tw*/ 'px-1 py-0.5',
+				default: /*tw*/ 'px-2 py-1',
+				lg: /*tw*/ 'px-2.5 py-1.5',
 			},
 			circle: {
-				xs: /*tw*/ 'p-1',
-				sm: /*tw*/ 'p-1',
-				default: /*tw*/ 'p-1.5',
-				lg: /*tw*/ 'p-1.5',
-				xl: /*tw*/ 'p-2',
+				sm: /*tw*/ 'size-5.5',
+				default: /*tw*/ 'size-6.5',
+				lg: /*tw*/ 'size-8.5',
 			},
 		},
 
@@ -44,45 +36,43 @@ export const BADGE_MANIFEST = {
 				destructive:
 					/*tw*/ 'bg-red-600 text-white border border-red-700 dark:bg-red-700 dark:text-white',
 				warning:
-					/*tw*/ 'bg-yellow-600 text-white border border-yellow-700 dark:bg-yellow-600 dark:text-white',
+					/*tw*/ 'bg-yellow-600 text-white border border-yellow-600 dark:bg-yellow-600 dark:text-white',
 				success:
 					/*tw*/ 'bg-green-600 text-white border border-green-700 dark:bg-green-700 dark:text-white',
 				light:
 					/*tw*/ 'bg-neutral-100 text-neutral-800 border border-neutral-200 dark:bg-neutral-200 dark:border-neutral-300 dark:text-neutral-800',
-				dark: /*tw*/ 'bg-neutral-800 text-white border border-neutral-900 dark:bg-black dark:text-white',
+				black:
+					/*tw*/ 'bg-neutral-800 text-white border border-neutral-700 dark:bg-neutral-800 dark:text-white',
 			},
 
 			outline: {
 				primary:
-					/*tw*/ 'bg-transparent border border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-400',
+					/*tw*/ 'bg-transparent border border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-500',
 				secondary:
-					/*tw*/ 'bg-transparent border border-neutral-600 text-neutral-600 dark:border-neutral-400 dark:text-neutral-400',
+					/*tw*/ 'bg-transparent border border-neutral-600 text-neutral-600 dark:border-neutral-500 dark:text-neutral-500',
 				destructive:
-					/*tw*/ 'bg-transparent border border-red-600 text-red-600 dark:border-red-500 dark:text-red-400',
+					/*tw*/ 'bg-transparent border border-red-600 text-red-600 dark:border-red-500 dark:text-red-500',
 				warning:
-					/*tw*/ 'bg-transparent border border-yellow-600 text-yellow-600 dark:border-yellow-500 dark:text-yellow-400',
+					/*tw*/ 'bg-transparent border border-yellow-600 text-yellow-600 dark:border-yellow-500 dark:text-yellow-500',
 				success:
-					/*tw*/ 'bg-transparent border border-green-600 text-green-600 dark:border-green-500 dark:text-green-400',
+					/*tw*/ 'bg-transparent border border-green-600 text-green-600 dark:border-green-500 dark:text-green-500',
 				light:
-					/*tw*/ 'bg-transparent border border-neutral-400 text-neutral-400 dark:border-neutral-400 dark:text-neutral-300',
-				dark: /*tw*/ 'bg-transparent border border-black text-black dark:border-white dark:text-white',
+					/*tw*/ 'bg-transparent border border-neutral-400 text-neutral-400 dark:border-neutral-400 dark:text-neutral-400',
+				black:
+					/*tw*/ 'bg-transparent border border-black text-black dark:border-neutral-600 dark:text-neutral-400',
 			},
 		},
 
 		fontSize: {
-			xs: 'xs',
 			sm: 'xs',
 			default: 'xs',
-			lg: 'default',
-			xl: 'lg',
+			lg: 'sm',
 		},
 
 		iconSize: {
-			xs: 'sm',
 			sm: 'sm',
-			default: 'default',
-			lg: 'lg',
-			xl: 'lg',
+			default: 'sm',
+			lg: 'default',
 		},
 	},
 	defaults: {
@@ -91,5 +81,6 @@ export const BADGE_MANIFEST = {
 		size: 'default',
 		shape: 'default',
 		variant: 'primary',
+		cursor: 'cursor-auto',
 	},
 } as const satisfies BadgeManifest;

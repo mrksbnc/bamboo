@@ -4,9 +4,6 @@ export const INPUT_MANIFEST = {
 	meta: {
 		name: 'Input',
 		version: '1.0.0',
-		description: 'Text input field component with support for icons, validation states, and pills',
-		category: 'form',
-		tags: ['input', 'form', 'text', 'field', 'validation', 'pills'],
 	},
 	styles: {
 		base: /*tw*/ 'relative flex w-full flex-col transition-all duration-200',
