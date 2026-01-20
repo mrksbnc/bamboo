@@ -46,11 +46,10 @@ export interface BoBadgeProps {
 	 * @default 'primary'
 	 */
 	variant?: BoBadgeVariant;
-	/** Icon configuration for prefix and suffix icons. */
-	icon?: {
-		prefix?: Icon;
-		suffix?: Icon;
-	};
+	/** The prefix icon of the badge. */
+	prefixIcon?: Icon;
+	/** The suffix icon of the badge. */
+	suffixIcon?: Icon;
 	/** The role of the element. */
 	role?: HTMLAttributes['role'];
 	/** Defines a string value that labels the current element. */

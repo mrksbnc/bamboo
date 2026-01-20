@@ -9,7 +9,7 @@ export const ICON_MANIFEST = {
 		description: 'SVG icon component with multiple sizes and color variants',
 	},
 	styles: {
-		base: /*tw*/ 'box-border inline-flex items-center justify-center',
+		base: /*tw*/ 'box-border inline-flex items-center justify-center shrink-0',
 		size: {
 			xs: /*tw*/ 'size-3',
 			sm: /*tw*/ 'size-3.5',
@@ -20,11 +20,11 @@ export const ICON_MANIFEST = {
 		variant: {
 			current: /*tw*/ 'text-current',
 			inherit: /*tw*/ 'text-inherit',
-			primary: /*tw*/ 'text-blue-500 dark:text-blue-400',
-			secondary: /*tw*/ 'text-gray-500 dark:text-gray-400',
-			success: /*tw*/ 'text-green-500 dark:text-green-400',
-			warning: /*tw*/ 'text-yellow-500 dark:text-yellow-400',
-			destructive: /*tw*/ 'text-red-500 dark:text-red-400',
+			primary: /*tw*/ 'text-blue-600 dark:text-blue-500',
+			secondary: /*tw*/ 'text-gray-600 dark:text-gray-500',
+			success: /*tw*/ 'text-green-600 dark:text-green-500',
+			warning: /*tw*/ 'text-yellow-600 dark:text-yellow-500',
+			destructive: /*tw*/ 'text-red-600 dark:text-red-500',
 			white: /*tw*/ 'text-white',
 			black: /*tw*/ 'text-black',
 		},

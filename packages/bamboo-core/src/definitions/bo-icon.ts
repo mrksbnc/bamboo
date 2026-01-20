@@ -50,7 +50,9 @@ export interface BoIconProps {
 	 * @default 'current'
 	 */
 	variant?: BoIconVariant;
-	/** The color of the icon */
+	/**
+	 * The color of the icon
+	 */
 	customColor?: string;
 	/**
 	 * Cursor type of the element. This must be a valid tailwind

@@ -1,6 +1,6 @@
 ---
 title: Avatar
-description: Avatar component for displaying user profile pictures, initials, or default images with support for indicators, sizes, and more
+description: An avatar is a graphical representation of an individual or entity. It can be used to represent a user, a product, or any other entity. Avatars are commonly used in web applications to provide visual cues and enhance the user experience.
 category: display
 tags:
   - avatar
@@ -8,7 +8,6 @@ tags:
   - user
   - image
   - initials
-  - status
 outline: deep
 ---
 
@@ -18,13 +17,15 @@ import { BoAvatar } from '@mrksbnc/bamboo-vue';
 
 # Avatar
 
-An avatar component for displaying user profile pictures, initials, or default images with support for indicators, sizes, and different shapes.
+An avatar is a graphical representation of an individual or entity. It can be used to represent a user, a product, or any other entity. Avatars are commonly used in web applications to provide visual cues and enhance the user experience.
 
 ::: tip
 In case neither `src` nor `label` is provided, the component will render a default image.
 :::
 
 ## Basic Usage
+
+The component is called `bo-avatar` and can be used as follows:
 
 <div class="flex gap-4">
   <bo-avatar label="Avatar" />

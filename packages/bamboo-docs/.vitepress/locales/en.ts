@@ -82,6 +82,8 @@ function sidebarComponents(): DefaultTheme.SidebarItem[] {
 			link: '/components/index',
 			items: [
 				{ text: 'Avatar', link: '/components/avatar' },
+				{ text: 'Badge', link: '/components/badge' },
+				{ text: 'Icon', link: '/components/icon' },
 				{ text: 'Text', link: '/components/text' },
 			],
 		},
