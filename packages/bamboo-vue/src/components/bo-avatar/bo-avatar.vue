@@ -1,31 +1,33 @@
 <template>
-	<div
-		:id="id"
-		:data-testid="dataTestId"
-		:role="role"
-		:aria-label="ariaLabel"
-		:class="containerClassValues"
-		:style="styleValues"
-	>
-		<span v-if="renderWithLabel">
-			<bo-text
-				:value="label"
-				variant="inherit"
-				font-weight="semibold"
-				:clickable="clickable"
-				:font-size="labelFontSize"
-			/>
-		</span>
+	<div class="relative inline-flex">
+		<div
+			:id="id"
+			:data-testid="dataTestId"
+			:role="role"
+			:aria-label="ariaLabel"
+			:class="containerClassValues"
+			:style="styleValues"
+		>
+			<span v-if="renderWithLabel">
+				<bo-text
+					:value="label"
+					:cursor="cursor"
+					variant="inherit"
+					font-weight="semibold"
+					:font-size="labelFontSize"
+				/>
+			</span>
 
-		<span v-if="renderWithImage">
-			<img :src="src" :alt="alt" class="h-full w-full aspect-auto" @error="onImageError" />
-		</span>
+			<span v-if="renderWithImage">
+				<img :src="src" :alt="alt" class="h-full w-full aspect-auto" @error="onImageError" />
+			</span>
 
-		<span v-if="!renderWithImage && !renderWithLabel">
-			<img alt="avatar" src="./avatar.png" class="h-full w-full object-cover" />
-		</span>
+			<span v-if="!renderWithImage && !renderWithLabel">
+				<img alt="avatar" src="./avatar.png" class="h-full w-full object-cover" />
+			</span>
+		</div>
 
-		<span v-if="indicatorKind !== 'none'" :class="indicatorClassValues"></span>
+		<div v-if="indicatorKind !== 'none'" :class="indicatorClassValues"></div>
 	</div>
 </template>
 
@@ -34,6 +36,7 @@
 		AVATAR_MANIFEST,
 		generateComponentId,
 		generateDataTestId,
+		getValidOrFallbackColorFromStr,
 		mergeTwClasses,
 		type BoAvatarProps,
 		type BoFontSize,
@@ -48,6 +51,7 @@
 		size: () => AVATAR_MANIFEST.defaults.size,
 		kind: () => AVATAR_MANIFEST.defaults.kind,
 		role: () => AVATAR_MANIFEST.defaults.role,
+		cursor: () => AVATAR_MANIFEST.defaults.cursor,
 		variant: () => AVATAR_MANIFEST.defaults.variant,
 		indicatorKind: () => AVATAR_MANIFEST.defaults.indicatorKind,
 		indicatorPosition: () => AVATAR_MANIFEST.defaults.indicatorPosition,
@@ -81,7 +85,7 @@
 	});
 
 	const fontColor = computed<string>(() => {
-		if (props.customColor?.textColor) {
+		if (props.customTextColor) {
 			return '';
 		}
 
@@ -95,7 +99,7 @@
 	});
 
 	const backgroundClassValues = computed<string>(() => {
-		if (props.customColor?.bgColor) {
+		if (props.customBgColor) {
 			return '';
 		}
 
@@ -114,7 +118,7 @@
 		}
 
 		return mergeTwClasses(
-			/*tw*/ 'absolute rounded-full border-2 border-white',
+			AVATAR_MANIFEST.styles.indicator.base,
 			AVATAR_MANIFEST.styles.indicator.size[props.size || 'default'],
 			AVATAR_MANIFEST.styles.indicator.status[props.indicatorKind || 'none'],
 			AVATAR_MANIFEST.styles.indicator.position[props.indicatorPosition || 'top-right'],
@@ -122,29 +126,32 @@
 	});
 
 	const containerClassValues = computed<string>(() => {
-		const cursorClass = props.clickable
-			? /* tw*/ 'cursor-pointer hover:opacity-80'
-			: /* tw*/ 'cursor-default';
 		const shadowClass = !isOutlineKind.value
 			? /* tw*/ 'shadow-xs dark:shadow-gray-800'
 			: /* tw*/ '';
 
 		return mergeTwClasses(
-			cursorClass,
 			shadowClass,
 			fontColor.value,
 			AVATAR_MANIFEST.styles.base,
 			backgroundClassValues.value,
+			props.cursor || 'cursor-auto',
 			AVATAR_MANIFEST.styles.size[props.size || 'default'],
 			AVATAR_MANIFEST.styles.kind[props.kind || 'default'],
 		);
 	});
 
 	const styleValues = computed<StyleValue>(() => {
-		return {
-			color: props.customColor?.textColor,
-			backgroundColor: props.customColor?.bgColor,
+		const style: StyleValue = {
+			color: props.customTextColor
+				? getValidOrFallbackColorFromStr(props.customTextColor)
+				: undefined,
+			backgroundColor: props.customBgColor
+				? getValidOrFallbackColorFromStr(props.customBgColor)
+				: undefined,
 		};
+
+		return style;
 	});
 
 	function onImageError($event: Event): void {

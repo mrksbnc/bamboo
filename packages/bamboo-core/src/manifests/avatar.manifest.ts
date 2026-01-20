@@ -10,7 +10,7 @@ export const AVATAR_MANIFEST = {
 			'Avatar component for displaying user profile pictures, initials, or default images with support for indicators, sizes, and more',
 	},
 	styles: {
-		base: /*tw*/ 'relative inline-flex overflow-hidden select-none justify-center items-center',
+		base: /*tw*/ 'inline-flex overflow-hidden select-none justify-center items-center',
 		size: {
 			xs: /*tw*/ 'w-6 h-6',
 			sm: /*tw*/ 'w-8 h-8',
@@ -68,7 +68,7 @@ export const AVATAR_MANIFEST = {
 			},
 		},
 		indicator: {
-			base: /*tw*/ 'absolute rounded-full border border-white z-10',
+			base: /*tw*/ 'absolute rounded-full border-2 border-white dark:border-gray-800 z-10',
 			status: {
 				online: /*tw*/ 'bg-green-500 dark:bg-green-400',
 				offline: /*tw*/ 'bg-gray-400 dark:bg-gray-500',
@@ -79,15 +79,15 @@ export const AVATAR_MANIFEST = {
 			position: {
 				'top-left': /*tw*/ '-top-0.5 -left-0.5',
 				'top-right': /*tw*/ '-top-0.5 -right-0.5',
-				'bottom-left': /*tw*/ 'bottom-0 left-0',
-				'bottom-right': /*tw*/ 'bottom-0 right-0',
+				'bottom-left': /*tw*/ '-bottom-0.5 -left-0.5',
+				'bottom-right': /*tw*/ '-bottom-0.5 -right-0.5',
 			},
 			size: {
-				xs: /*tw*/ 'w-1.5 h-1.5',
-				sm: /*tw*/ 'w-2 h-2',
-				default: /*tw*/ 'w-2.5 h-2.5',
-				lg: /*tw*/ 'w-3.5 h-3.5',
-				xl: /*tw*/ 'w-5 h-5',
+				xs: /*tw*/ 'w-2 h-2',
+				sm: /*tw*/ 'w-2.5 h-2.5',
+				default: /*tw*/ 'w-3 h-3',
+				lg: /*tw*/ 'w-4 h-4',
+				xl: /*tw*/ 'w-6 h-6',
 			},
 		},
 		labelSize: {
@@ -104,6 +104,7 @@ export const AVATAR_MANIFEST = {
 		kind: 'default',
 		size: 'default',
 		variant: 'primary',
+		cursor: 'cursor-auto',
 		indicatorKind: 'none',
 		indicatorPosition: 'top-right',
 	},
