@@ -220,7 +220,7 @@ The `cursor` prop is used to control the cursor style of the avatar. The values 
 | `size`              | `BoAvatarSize`                 | `'default'`   | The size of the avatar.                                 |
 | `cursor`            | `BoCursor`                     | `cursor-auto` | The cursor style of the avatar.                         |
 | `variant`           | `BoAvatarVariant`              | `'primary'`   | The color variant of the avatar.                        |
-| `customColor`     | `string`                       | -             | Custom background color for the avatar.                 |
+| `customColor`       | `string`                       | -             | Custom background color for the avatar.                 |
 | `customTextColor`   | `string`                       | -             | Custom text color for the avatar.                       |
 | `indicatorKind`     | `BoAvatarIndicatorKind`        | `'none'`      | The status of the indicator.                            |
 | `indicatorPosition` | `BoAvatarIndicatorPosition`    | `'top-right'` | The position of the indicator.                          |
