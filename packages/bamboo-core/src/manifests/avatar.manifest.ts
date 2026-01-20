@@ -11,15 +11,15 @@ export const AVATAR_MANIFEST = {
 			xs: /*tw*/ 'w-6 h-6',
 			sm: /*tw*/ 'w-8 h-8',
 			default: /*tw*/ 'w-10 h-10',
-			lg: /*tw*/ 'w-12 h-12',
-			xl: /*tw*/ 'w-36 h-36',
+			lg: /*tw*/ 'w-14 h-14',
+			xl: /*tw*/ 'w-20 h-20',
 		},
 		kind: {
 			circle: /*tw*/ 'rounded-full',
 			default: /*tw*/ 'rounded-md',
 			flat: /*tw*/ 'rounded-none',
 			'outline-flat': /*tw*/ 'rounded-none border',
-			'outline-default': /*tw*/ 'rounded-md border',
+			'outline': /*tw*/ 'rounded-md border',
 			'outline-circle': /*tw*/ 'rounded-full border',
 		},
 		variants: {

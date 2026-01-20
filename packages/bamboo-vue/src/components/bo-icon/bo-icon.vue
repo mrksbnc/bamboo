@@ -1,5 +1,5 @@
 <template>
-	<span
+	<p
 		v-html="component"
 		:id="id"
 		:data-testid="dataTestId"
@@ -8,8 +8,7 @@
 		:style="styleValues"
 		:title="title"
 		:aria-hidden="decorative"
-	>
-	</span>
+	></p>
 </template>
 
 <script lang="ts" setup>
@@ -54,12 +53,17 @@
 	});
 
 	const styleValues = computed<StyleValue>(() => {
-		if (props.customColor) {
-			return {
-				color: getValidOrFallbackColorFromStr(props.customColor),
-			};
-		}
+		const color = props.customColor ? getValidOrFallbackColorFromStr(props.customColor) : undefined;
 
-		return {};
+		return {
+			color,
+		};
 	});
 </script>
+
+<style lang="css" scoped>
+	p {
+		margin: 0;
+		padding: 0;
+	}
+</style>

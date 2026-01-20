@@ -99,7 +99,7 @@
 	});
 
 	const backgroundClassValues = computed<string>(() => {
-		if (props.customBgColor) {
+		if (props.customColor) {
 			return '';
 		}
 
@@ -142,14 +142,23 @@
 	});
 
 	const styleValues = computed<StyleValue>(() => {
-		const style: StyleValue = {
-			color: props.customTextColor
-				? getValidOrFallbackColorFromStr(props.customTextColor)
-				: undefined,
-			backgroundColor: props.customBgColor
-				? getValidOrFallbackColorFromStr(props.customBgColor)
-				: undefined,
-		};
+		const style: StyleValue = {};
+
+		if (props.customTextColor) {
+			style.color = getValidOrFallbackColorFromStr(props.customTextColor) || undefined;
+		}
+
+		if (props.customColor && props.kind.includes('outline')) {
+			style.borderColor = getValidOrFallbackColorFromStr(props.customColor) || undefined;
+
+			if (!props.customTextColor) {
+				style.color = getValidOrFallbackColorFromStr(props.customColor) || undefined;
+			}
+		}
+
+		if (props.customColor && !props.kind.includes('outline')) {
+			style.backgroundColor = getValidOrFallbackColorFromStr(props.customColor) || undefined;
+		}
 
 		return style;
 	});
