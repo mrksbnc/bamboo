@@ -19,7 +19,7 @@ export const AVATAR_MANIFEST = {
 			default: /*tw*/ 'rounded-md',
 			flat: /*tw*/ 'rounded-none',
 			'outline-flat': /*tw*/ 'rounded-none border',
-			'outline': /*tw*/ 'rounded-md border',
+			outline: /*tw*/ 'rounded-md border',
 			'outline-circle': /*tw*/ 'rounded-full border',
 		},
 		variants: {

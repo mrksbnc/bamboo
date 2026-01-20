@@ -85,13 +85,61 @@
 			: '';
 	});
 
+	const isOutlineKind = computed<boolean>(() => {
+		return props.kind === 'outline';
+	});
+
+	const fontColor = computed<string>(() => {
+		if (props.customTextColor) {
+			return '';
+		}
+
+		const variant = props.variant || 'primary';
+
+		if (isOutlineKind.value) {
+			return BADGE_MANIFEST.styles.textColor.outline[variant];
+		}
+
+		return BADGE_MANIFEST.styles.textColor.filled[variant];
+	});
+
+	const backgroundClassValues = computed<string>(() => {
+		if (props.customColor) {
+			return '';
+		}
+
+		const variant = props.variant || 'primary';
+
+		if (isOutlineKind.value) {
+			return BADGE_MANIFEST.styles.variants.outline[variant];
+		}
+
+		return BADGE_MANIFEST.styles.variants.filled[variant];
+	});
+
+	const borderColorClassValues = computed<string>(() => {
+		if (props.customColor) {
+			return '';
+		}
+
+		const variant = props.variant || 'primary';
+
+		if (isOutlineKind.value) {
+			return BADGE_MANIFEST.styles.variants.outline[variant];
+		}
+
+		return '';
+	});
+
 	const classValues = computed<string>(() => {
 		return mergeTwClasses(
 			gap.value,
+			fontColor.value,
 			props.cursor,
 			BADGE_MANIFEST.styles.base,
 			BADGE_MANIFEST.styles.shape[props.shape || 'default'],
-			BADGE_MANIFEST.styles.variants[props.kind || 'default'][props.variant || 'primary'],
+			backgroundClassValues.value,
+			borderColorClassValues.value,
 			isCircle.value
 				? BADGE_MANIFEST.styles.size.circle[props.size || 'default']
 				: BADGE_MANIFEST.styles.size.default[props.size || 'default'],
@@ -102,19 +150,19 @@
 		const style: StyleValue = {};
 
 		if (props.customTextColor) {
-			style.color = getValidOrFallbackColorFromStr(props.customTextColor) || undefined;
+			style.color = getValidOrFallbackColorFromStr(props.customTextColor);
 		}
 
-		if (props.customColor && props.kind.includes('outline')) {
-			style.borderColor = getValidOrFallbackColorFromStr(props.customColor) || undefined;
+		if (props.customColor && props.kind === 'outline') {
+			style.border = `1px solid ${getValidOrFallbackColorFromStr(props.customColor)}`;
 
 			if (!props.customTextColor) {
-				style.color = getValidOrFallbackColorFromStr(props.customColor) || undefined;
+				style.color = getValidOrFallbackColorFromStr(props.customColor);
 			}
 		}
 
-		if (props.customColor && !props.kind.includes('outline')) {
-			style.backgroundColor = getValidOrFallbackColorFromStr(props.customColor) || undefined;
+		if (props.customColor && props.kind !== 'outline') {
+			style.backgroundColor = getValidOrFallbackColorFromStr(props.customColor);
 		}
 
 		return style;

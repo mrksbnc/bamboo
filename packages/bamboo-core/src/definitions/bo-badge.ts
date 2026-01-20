@@ -80,7 +80,11 @@ export interface BoBadgeStyleManifest {
 		circle: BoBadgeSizeStyleMap;
 	};
 	variants: {
-		default: BoBadgeVariantStyleMap;
+		filled: BoBadgeVariantStyleMap;
+		outline: BoBadgeVariantStyleMap;
+	};
+	textColor: {
+		filled: BoBadgeVariantStyleMap;
 		outline: BoBadgeVariantStyleMap;
 	};
 	fontSize: Record<BoBadgeSize, BoFontSize>;

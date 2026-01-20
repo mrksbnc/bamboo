@@ -168,7 +168,7 @@ The `indicatorPosition` prop allows you to customize the position of the indicat
 
 ## Custom Colors
 
-The avatar background and text colors can be customized using the `customBgColor` and `customTextColor` props. You can use hex colors, RGB/RGBA, OKLCH, or CSS variables.
+The avatar background and text colors can be customized using the `customColor` and `customTextColor` props. You can use hex colors, RGB/RGBA, OKLCH, or CSS variables.
 
 <div class="flex gap-4">
   <bo-avatar label="CB" custom-color="#880808" custom-text-color="#FFFFFF" />
@@ -181,6 +181,7 @@ The avatar background and text colors can be customized using the `customBgColor
 <bo-avatar label="CB" custom-color="#880808" custom-text-color="#FFFFFF" />
 <bo-avatar label="CB" custom-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
 <bo-avatar label="CB" custom-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
+<bo-avatar label="OL" kind="outline" custom-color="oklch(84.5% 0.143 164.978)" />
 ```
 
 ## Cursor
@@ -219,7 +220,7 @@ The `cursor` prop is used to control the cursor style of the avatar. The values 
 | `size`              | `BoAvatarSize`                 | `'default'`   | The size of the avatar.                                 |
 | `cursor`            | `BoCursor`                     | `cursor-auto` | The cursor style of the avatar.                         |
 | `variant`           | `BoAvatarVariant`              | `'primary'`   | The color variant of the avatar.                        |
-| `customBgColor`     | `string`                       | -             | Custom background color for the avatar.                 |
+| `customColor`     | `string`                       | -             | Custom background color for the avatar.                 |
 | `customTextColor`   | `string`                       | -             | Custom text color for the avatar.                       |
 | `indicatorKind`     | `BoAvatarIndicatorKind`        | `'none'`      | The status of the indicator.                            |
 | `indicatorPosition` | `BoAvatarIndicatorPosition`    | `'top-right'` | The position of the indicator.                          |
