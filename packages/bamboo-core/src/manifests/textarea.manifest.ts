@@ -4,10 +4,6 @@ export const TEXTAREA_MANIFEST = {
 	meta: {
 		name: 'Textarea',
 		version: '1.0.0',
-		category: 'form',
-		description:
-			'Multi-line text input component with support for icons, validation, and auto-resize',
-		tags: ['textarea', 'form', 'text', 'multiline', 'input', 'validation'],
 	},
 	styles: {
 		base: /*tw*/ 'flex flex-col transition-all duration-200',

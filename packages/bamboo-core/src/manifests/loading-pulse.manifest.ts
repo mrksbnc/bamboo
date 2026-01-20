@@ -4,9 +4,6 @@ export const LOADING_PULSE_MANIFEST = {
 	meta: {
 		name: 'LoadingPulse',
 		version: '1.0.0',
-		description: 'Animated pulsing dots component for indicating loading states',
-		category: 'feedback',
-		tags: ['loading', 'pulse', 'dots', 'loader', 'progress', 'waiting'],
 	},
 	styles: {
 		base: /*tw*/ 'flex items-center justify-center gap-1',
