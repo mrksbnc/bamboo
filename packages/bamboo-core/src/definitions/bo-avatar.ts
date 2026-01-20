@@ -66,8 +66,10 @@ export interface BoAvatarProps {
 	 * @default 'primary'
 	 */
 	variant?: BoAvatarVariant;
-	/** Custom color configuration. */
-	customColor?: BoAvatarColor;
+	/** Custom background color for the avatar. */
+	customBgColor?: string;
+	/** Custom text color for the avatar. */
+	customTextColor?: string;
 	/**
 	 * The status of the indicator.
 	 *
@@ -115,6 +117,7 @@ export interface BoAvatarStyleManifest {
 		outline: BoAvatarVariantStyleMap;
 	};
 	indicator: {
+		base: string;
 		status: BoAvatarIndicatorStatusStyleMap;
 		position: BoAvatarIndicatorPositionStyleMap;
 		size: BoAvatarSizeStyleMap;
