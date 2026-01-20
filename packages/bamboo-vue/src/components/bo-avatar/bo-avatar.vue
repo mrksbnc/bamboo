@@ -149,7 +149,7 @@
 		}
 
 		if (props.customColor && props.kind.includes('outline')) {
-			style.borderColor = getValidOrFallbackColorFromStr(props.customColor) || undefined;
+			style.border = `1px solid ${getValidOrFallbackColorFromStr(props.customColor)}`;
 
 			if (!props.customTextColor) {
 				style.color = getValidOrFallbackColorFromStr(props.customColor) || undefined;

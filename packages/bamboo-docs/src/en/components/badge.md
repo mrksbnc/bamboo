@@ -213,25 +213,21 @@ The badge supports displaying icons with the `prefixIcon` and `suffixIcon` props
 
 ## Custom Colors
 
-To set a custom color for the badge, you can use the `customBgColor`, `customTextColor`, and `customBorderColor` props. You can use hex colors, RGB/RGBA, OKLCH, or CSS variables.
+To set a custom color for the badge, you can use the `customColor`, `customTextColor`, and `customBorderColor` props. You can use hex colors, RGB/RGBA, OKLCH, or CSS variables.
 
 <div class="flex gap-4 items-center">
   <bo-badge label="CB" custom-color="#880808" />
   <bo-badge label="CB" custom-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
   <bo-badge label="CB" custom-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
-  <bo-badge label="CB" kind="outline" custom-text-color="#FFFFFF" custom-border-color="oklch(84.5% 0.143 164.978)" />
+  <bo-badge label="CB" kind="outline" custom-color="oklch(84.5% 0.143 164.978)" />
 </div>
 
 ```vue
 <bo-badge label="CB" custom-color="#880808" />
 <bo-badge label="CB" custom-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
 <bo-badge label="CB" custom-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
-<bo-badge
-	label="CB"
-	kind="outline"
-	custom-text-color="#FFFFFF"
-	custom-border-color="oklch(84.5% 0.143 164.978)"
-/>
+<bo-badge label="CB" custom-color="oklch(84.5% 0.143 164.978)" />
+<bo-badge label="CB" kind="outline" custom-color="oklch(84.5% 0.143 164.978)" />
 ```
 
 ## Cursor
@@ -269,7 +265,7 @@ The `cursor` prop is used to control the cursor style of the badge. The values a
 | `shape`           | `BoBadgeShape`                 | `default`     | The shape of the badge.                                 |
 | `variant`         | `BoBadgeVariant`               | `primary`     | The color variant of the badge.                         |
 | `cursor`          | `BoCursor`                     | `cursor-auto` | The cursor style of the badge.                          |
-| `customBgColor`   | `string`                       | -             | The custom background color for the badge.              |
+| `customColor`     | `string`                       | -             | The custom background color for the badge.              |
 | `customTextColor` | `string`                       | -             | The custom text color for the badge.                    |
 | `prefixIcon`      | `Icon`                         | -             | The prefix icon of the badge.                           |
 | `suffixIcon`      | `Icon`                         | -             | The suffix icon of the badge.                           |
