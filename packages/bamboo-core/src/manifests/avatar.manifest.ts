@@ -68,6 +68,7 @@ export const AVATAR_MANIFEST = {
 			},
 		},
 		indicator: {
+			base: /*tw*/ 'absolute rounded-full border border-white z-10',
 			status: {
 				online: /*tw*/ 'bg-green-500 dark:bg-green-400',
 				offline: /*tw*/ 'bg-gray-400 dark:bg-gray-500',
@@ -76,8 +77,8 @@ export const AVATAR_MANIFEST = {
 				none: '',
 			},
 			position: {
-				'top-left': /*tw*/ 'top-0 left-0',
-				'top-right': /*tw*/ 'top-0 right-0',
+				'top-left': /*tw*/ '-top-0.5 -left-0.5',
+				'top-right': /*tw*/ '-top-0.5 -right-0.5',
 				'bottom-left': /*tw*/ 'bottom-0 left-0',
 				'bottom-right': /*tw*/ 'bottom-0 right-0',
 			},
