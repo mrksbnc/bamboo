@@ -49,8 +49,10 @@ The `variant` prop is used to change the appearance of the icon. It accepts a st
   <bo-icon icon="home" variant="success" />
   <bo-icon icon="home" variant="warning" />
   <bo-icon icon="home" variant="destructive" />
-  <bo-icon icon="home" variant="white" />
-  <span class="bg-neutral-400 rounded-md" style="padding: 0 0.5rem; display: inline-flex; align-items: center; min-height: 1.5rem;">
+  <span class="bg-neutral-600 rounded-md" style="padding:  0.5rem; display: inline-flex; align-items: center; min-height: 1.5rem;">
+    <bo-icon icon="home" variant="white" />
+  </span>
+  <span class="bg-neutral-300 rounded-md" style="padding:  0.5rem; display: inline-flex; align-items: center; min-height: 1.5rem;">
     <bo-icon icon="home" variant="black" />
   </span>
   
@@ -77,7 +79,7 @@ The `size` prop is used to change the size of the icon. It accepts a string valu
   <bo-icon icon="home" size="default" />
   <bo-icon icon="home" size="lg" />
   <bo-icon icon="home" size="xl" />
-  <bo-icon icon="home" :size="50" />
+  <bo-icon icon="home" :size="100" />
 </div>
 
 ```vue
@@ -87,7 +89,7 @@ The `size` prop is used to change the size of the icon. It accepts a string valu
 <bo-icon icon="home" size="default" />
 <bo-icon icon="home" size="lg" />
 <bo-icon icon="home" size="xl" />
-<bo-icon icon="home" :size="50" />
+<bo-icon icon="home" :size="100" />
 ```
 
 ## Cursor
@@ -128,8 +130,8 @@ The `cursor` prop is used to control the cursor style of the icon. The values ar
 The following icons are available in bamboo:
 
 <div class="grid grid-cols-3 gap-4">
-  <div v-for="icon in iconNames" :key="icon" class="flex flex-col gap-2 items-center border rounded-md" style="padding: 1.5rem 0.5rem;">
+  <div v-for="icon in iconNames" :key="icon" class="flex flex-col gap-2 items-center border rounded-md hover:border-blue-700 hover:text-blue-700" style="padding: 1.5rem 0.5rem;">
     <bo-icon :icon="icon" size="xl"/>
-    <span class="text-neutral-800 dark:text-neutral-200 text-xs">{{ icon }}</span>
+    <span class="font-semibold text-xs cursor-default">{{ icon }}</span>
   </div>
 </div>
