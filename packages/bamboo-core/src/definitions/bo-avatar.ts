@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'vue';
-import { BoFontSize } from '../definitions/index.js';
+import { BoCursor, BoFontSize } from '../definitions/index.js';
 import { ComponentManifest } from '../manifests/index.js';
 
 export type BoAvatarSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
@@ -59,8 +59,8 @@ export interface BoAvatarProps {
 	 * @default 'default'
 	 */
 	size?: BoAvatarSize;
-	/** Whether the avatar is clickable. */
-	clickable?: boolean;
+	/** The cursor style of the avatar. */
+	cursor?: BoCursor;
 	/**
 	 * The color variant of the avatar.
 	 * @default 'primary'
@@ -95,7 +95,7 @@ export interface BoAvatarProps {
 
 type BoAvatarManifestDefaults = Pick<
 	BoAvatarProps,
-	'kind' | 'size' | 'variant' | 'role' | 'indicatorKind' | 'indicatorPosition' | 'alt'
+	'kind' | 'cursor' | 'size' | 'variant' | 'role' | 'indicatorKind' | 'indicatorPosition' | 'alt'
 >;
 
 type BoAvatarSizeStyleMap = Record<BoAvatarSize, string>;
