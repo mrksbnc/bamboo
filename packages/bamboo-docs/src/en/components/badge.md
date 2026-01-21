@@ -180,23 +180,6 @@ To render a circle shaped badge, the `shape` prop must be set to `circle` and yo
 <bo-badge prefix-icon="x_octagon" shape="circle" />
 ```
 
-## Sizes
-
-To change the size of the badge, use the `size` prop. The default size is `default`.
-The available sizes are `sm`, `default`, and `lg`.
-
-<div class="flex gap-4 items-center">
-  <bo-badge label="SM Badge" size="sm" />
-  <bo-badge label="Default Badge" size="default" />
-  <bo-badge label="LG Badge" size="lg" />
-</div>
-
-```vue
-<bo-badge label="SM Badge" size="sm" />
-<bo-badge label="Default Badge" size="default" />
-<bo-badge label="LG Badge" size="lg" />
-```
-
 ## Icons
 
 The badge supports displaying icons with the `prefixIcon` and `suffixIcon` props. The `prefixIcon` prop will be displayed on the left side of the badge, while the `suffixIcon` prop will be displayed on the right side of the badge so before or after the label.
