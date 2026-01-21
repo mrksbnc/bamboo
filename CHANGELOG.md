@@ -4,6 +4,18 @@
 
 * **deps-dev:** bump jsdom from 27.3.0 to 27.4.0 ([#437](https://github.com/mrksbnc/bamboo/issues/437)) ([bd97307](https://github.com/mrksbnc/bamboo/commit/bd97307550488a37be69963eb8947bd36b9bc96f))
 * **deps-dev:** bump oxlint-tsgolint from 0.10.1 to 0.11.0 ([#436](https://github.com/mrksbnc/bamboo/issues/436)) ([a082c9b](https://github.com/mrksbnc/bamboo/commit/a082c9bd1ccc934d7bd2daaff7a5c56d98f93dfd))
+* **deps-dev:** bump postcss-html from 1.8.0 to 1.8.1 ([#443](https://github.com/mrksbnc/bamboo/issues/443)) ([4fdd745](https://github.com/mrksbnc/bamboo/commit/4fdd745e8e0ece775ae8f69b0d3cb4f6505287bd))
+* **deps-dev:** bump prettier from 3.7.4 to 3.8.0 ([#441](https://github.com/mrksbnc/bamboo/issues/441)) ([2800112](https://github.com/mrksbnc/bamboo/commit/2800112d1212e1aeea4afa4c6c6239a38dd781b9))
+* **deps:** bump diff from 8.0.2 to 8.0.3 ([#444](https://github.com/mrksbnc/bamboo/issues/444)) ([b67aa0f](https://github.com/mrksbnc/bamboo/commit/b67aa0fb6e26731a66c23b83acea77f5d91a3888))
+* **deps:** bump vue from 3.5.26 to 3.5.27 ([#442](https://github.com/mrksbnc/bamboo/issues/442)) ([5a5acf5](https://github.com/mrksbnc/bamboo/commit/5a5acf54b98d6787b60067350ffe5f4044c6ab1b))
+* **release:** 1.0.2 [skip ci] ([9248736](https://github.com/mrksbnc/bamboo/commit/9248736867762987224e145931c5ca51c551da83))
+
+## [1.0.2](https://github.com/mrksbnc/bamboo/compare/v1.0.1...v1.0.2) (2026-01-21)
+
+### 🔧 Chores
+
+* **deps-dev:** bump jsdom from 27.3.0 to 27.4.0 ([#437](https://github.com/mrksbnc/bamboo/issues/437)) ([bd97307](https://github.com/mrksbnc/bamboo/commit/bd97307550488a37be69963eb8947bd36b9bc96f))
+* **deps-dev:** bump oxlint-tsgolint from 0.10.1 to 0.11.0 ([#436](https://github.com/mrksbnc/bamboo/issues/436)) ([a082c9b](https://github.com/mrksbnc/bamboo/commit/a082c9bd1ccc934d7bd2daaff7a5c56d98f93dfd))
 * **deps-dev:** bump prettier from 3.7.4 to 3.8.0 ([#441](https://github.com/mrksbnc/bamboo/issues/441)) ([2800112](https://github.com/mrksbnc/bamboo/commit/2800112d1212e1aeea4afa4c6c6239a38dd781b9))
 * **deps:** bump diff from 8.0.2 to 8.0.3 ([#444](https://github.com/mrksbnc/bamboo/issues/444)) ([b67aa0f](https://github.com/mrksbnc/bamboo/commit/b67aa0fb6e26731a66c23b83acea77f5d91a3888))
 
