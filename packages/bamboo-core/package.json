@@ -2,12 +2,24 @@
 	"name": "@workspace/bamboo-core",
 	"version": "0.0.1",
 	"private": true,
+	"description": "Core utilities and definitions for Bamboo Vue component library",
+	"homepage": "https://github.com/mrksbnc/bamboo#readme",
+	"bugs": {
+		"url": "https://github.com/mrksbnc/bamboo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mrksbnc/bamboo.git/packages/bamboo-core",
+		"directory": "packages/bamboo-core"
+	},
 	"license": "MIT",
+	"author": "Bence Markus",
 	"type": "module",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"import": "./dist/index.es.js"
+			"import": "./dist/index.es.js",
+			"default": "./dist/index.es.js"
 		},
 		"./package.json": "./package.json"
 	},
@@ -17,12 +29,15 @@
 	"files": [
 		"dist",
 		"LICENSE",
+		"README.md",
 		"!dist/**/*.test.*"
 	],
 	"scripts": {
 		"build": "pnpm type-check && vite build --mode production",
+		"dev": "vite build --watch",
 		"test": "vitest --coverage",
-		"type-check": "tsc --noEmit"
+		"type-check": "tsc --noEmit",
+		"clean": "rm -rf dist .turbo coverage"
 	},
 	"peerDependencies": {
 		"vue": "^3.5.25"

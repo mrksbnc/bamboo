@@ -1,6 +1,6 @@
 {
-	"extends": "@tsconfig/node22/tsconfig.json",
 	"files": [],
+	"extends": "@tsconfig/node22/tsconfig.json",
 	"references": [
 		{
 			"path": "./packages/bamboo-core"

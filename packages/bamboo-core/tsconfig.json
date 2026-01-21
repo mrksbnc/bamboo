@@ -1,15 +1,28 @@
 {
-	"extends": "../../tsconfig.json",
 	"compilerOptions": {
 		"declaration": true,
 		"declarationMap": true,
 		"outDir": "./dist",
 		"module": "esnext",
 		"moduleResolution": "bundler",
-		"types": ["node"],
+		"types": [
+			"node"
+		],
 		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-		"lib": ["DOM", "DOM.Iterable", "ESNext"]
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext"
+		]
 	},
-	"include": ["./src/**/*.ts", "**/*.d.ts"],
-	"exclude": ["./src/**/*.test.ts", "./src/**/*.spec.ts", "./dist"]
+	"exclude": [
+		"./src/**/*.test.ts",
+		"./src/**/*.spec.ts",
+		"./dist"
+	],
+	"extends": "../../tsconfig.json",
+	"include": [
+		"./src/**/*.ts",
+		"**/*.d.ts"
+	]
 }
