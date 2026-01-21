@@ -13,7 +13,7 @@
 		"lint:spell": "cspell --config ./cspell.yaml \"**/*.{ts,md,json,vue}\" --verbose --show-perf-summary",
 		"lint:oxlint": "pnpm oxlint . --fix",
 		"test": "turbo run test",
-		"clean": "turbo run clean && rm -rf node_modules .turbo",
+		"purge": "turbo run purge && rm -rf node_modules .turbo",
 		"prepare": "husky",
 		"ib": "pnpm install && pnpm build"
 	},

@@ -46,7 +46,7 @@
 			"inputs": ["**/*.{ts,md,json,vue}"],
 			"outputLogs": "new-only"
 		},
-		"clean": {
+		"purge": {
 			"cache": false
 		},
 		"docs:dev": {

@@ -37,7 +37,7 @@
 		"dev": "vite build --watch",
 		"test": "vitest --coverage",
 		"type-check": "tsc --noEmit",
-		"clean": "rm -rf dist .turbo coverage"
+		"purge": "rm -rf dist .turbo coverage"
 	},
 	"peerDependencies": {
 		"vue": "^3.5.25"
