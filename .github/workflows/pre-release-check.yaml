@@ -1,0 +1,53 @@
+name: Pre-Release Check
+
+on:
+  pull_request:
+    paths:
+      - 'packages/bamboo-vue/**'
+      - '.github/workflows/release-please.yaml'
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build bamboo-vue
+        working-directory: packages/bamboo-vue
+        run: pnpm build
+
+      - name: Check dist folder
+        working-directory: packages/bamboo-vue
+        run: |
+          echo "Checking build artifacts..."
+          ls -la dist/
+          test -f dist/index.es.js || (echo "Missing index.es.js" && exit 1)
+          test -f dist/index.umd.cjs || (echo "Missing index.umd.cjs" && exit 1)
+          test -f dist/index.d.ts || (echo "Missing index.d.ts" && exit 1)
+          test -f dist/lib.css || (echo "Missing lib.css" && exit 1)
+          echo "✓ All required files present"
+
+      - name: Test package.json exports
+        working-directory: packages/bamboo-vue
+        run: |
+          echo "Verifying package.json configuration..."
+          node -e "
+            const pkg = require('./package.json');
+            if (!pkg.exports) throw new Error('Missing exports field');
+            if (!pkg.exports['.']) throw new Error('Missing main export');
+            if (!pkg.exports['./lib.css']) throw new Error('Missing CSS export');
+            console.log('✓ Package exports configured correctly');
+          "

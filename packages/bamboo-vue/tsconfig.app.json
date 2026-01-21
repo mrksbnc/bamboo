@@ -1,0 +1,10 @@
+{
+	"extends": "@vue/tsconfig/tsconfig.dom.json",
+	"compilerOptions": {
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"lib": ["dom", "esnext"]
+	},
+	"exclude": ["src/**/__tests__/*"],
+	"include": ["env.d.ts", "src/**/*", "src/**/*.vue"]
+}

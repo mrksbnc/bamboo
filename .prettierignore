@@ -1,11 +1,10 @@
-node_modules
-dist
-coverage
-.cache
-.cspellcache
-.github
-.husky
-.vscode
-public
+# Package Managers
+package-lock.json
 pnpm-lock.yaml
-CHANGELOG.md
+yarn.lock
+
+# Miscellaneous
+**/static/
+
+**/.vitepress/cache/
+

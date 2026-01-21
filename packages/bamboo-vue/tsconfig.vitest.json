@@ -1,0 +1,10 @@
+{
+	"extends": "./tsconfig.app.json",
+	"compilerOptions": {
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"lib": [],
+		"types": ["node", "jsdom"]
+	},
+	"include": ["src/**/*.test.ts", "env.d.ts"]
+}

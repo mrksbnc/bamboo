@@ -5,6 +5,8 @@ useTabs: true
 printWidth: 100
 singleQuote: true
 vueIndentScriptAndStyle: true
+
 plugins:
-  - prettier-plugin-organize-imports
   - '@prettier/plugin-oxc'
+  - prettier-plugin-tailwindcss
+  - prettier-plugin-organize-imports
