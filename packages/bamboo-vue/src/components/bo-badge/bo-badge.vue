@@ -47,6 +47,7 @@
 		kind: () => BADGE_MANIFEST.defaults.kind,
 		shape: () => BADGE_MANIFEST.defaults.shape,
 		variant: () => BADGE_MANIFEST.defaults.variant,
+		cursor: () => BADGE_MANIFEST.defaults.cursor,
 	});
 
 	const isIconOnly = computed<boolean>(() => {
