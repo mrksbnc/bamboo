@@ -1,0 +1,24 @@
+# Source files
+src/
+
+# Config files
+*.config.ts
+*.config.js
+tsconfig*.json
+.npmrc
+env.d.ts
+
+# Development files
+.turbo/
+node_modules/
+coverage/
+
+# Test files
+**/*.test.*
+**/*.spec.*
+
+# Documentation
+*.txt
+
+# OS files
+.DS_Store
