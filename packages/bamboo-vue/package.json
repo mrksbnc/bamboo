@@ -51,7 +51,8 @@
 		"prepublishOnly": "pnpm build",
 		"test": "vitest --coverage",
 		"type-check": "vue-tsc --noEmit",
-		"clean": "rm -rf dist .turbo coverage"
+		"clean": "rm -rf dist .turbo coverage",
+		"prepack": "pnpm build"
 	},
 	"dependencies": {
 		"@vueuse/core": "^14.1.0",
@@ -64,7 +65,12 @@
 	"peerDependencies": {
 		"vue": "^3.5.25"
 	},
+	"engines": {
+		"node": ">=18.0.0",
+		"pnpm": ">=9.0.0"
+	},
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
 	}
 }
