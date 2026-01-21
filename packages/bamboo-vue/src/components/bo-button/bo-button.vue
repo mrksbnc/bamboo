@@ -1,5 +1,66 @@
 <template>
-	<button></button>
+	<button
+		:id="id"
+		:data-testid="dataTestId"
+		:type="type"
+		:role="role"
+		:class="classValues"
+		:style="styleValues"
+		:disabled="isDisabled"
+		:tabindex="tabIndex"
+		:aria-busy="isLoading"
+		:aria-disabled="isDisabled"
+		:aria-live="ariaLive"
+		:aria-label="ariaLabel"
+		:aria-labelledby="ariaLabelledBy"
+		:aria-describedby="ariaDescribedBy"
+		:aria-expanded="ariaExpanded"
+		:aria-haspopup="ariaHasPopup"
+		:aria-pressed="ariaPressed"
+		:aria-selected="ariaSelected"
+		:accesskey="accessKey"
+	>
+		<slot>
+			<span :class="contentClasses.container">
+				<bo-icon
+					v-if="renderPrefixIcon"
+					:icon="iconOnlyIcon"
+					:size="iconSize"
+					:class="contentClasses.prefixIcon"
+					aria-hidden="true"
+				/>
+				<span v-if="!!label && !isIconOnlyButton" :class="contentClasses.label">
+					<bo-text
+						:value="label"
+						:clickable="true"
+						font-weight="semibold"
+						:font-size="buttonFontSize"
+					/>
+				</span>
+				<bo-icon
+					v-if="suffixIcon && suffixIcon !== 'none' && !isLoading && !isIconOnlyButton"
+					:icon="suffixIcon"
+					:size="iconSize"
+					:class="contentClasses.suffixIcon"
+					aria-hidden="true"
+				/>
+				<bo-loading-spinner
+					v-if="isLoading && loaderType === 'spinner'"
+					:size="loaderSize"
+					:variant="loaderVariant"
+					:class="contentClasses.loader"
+					aria-hidden="true"
+				/>
+				<bo-loading-pulse
+					v-if="isLoading && loaderType === 'pulse'"
+					:size="loaderSize"
+					:variant="loaderVariant"
+					:class="contentClasses.loader"
+					aria-hidden="true"
+				/>
+			</span>
+		</slot>
+	</button>
 </template>
 
 <script lang="ts" setup>
@@ -10,6 +71,7 @@
 		getValidOrFallbackColorFromStr,
 		mergeTwClasses,
 		type BoButtonProps,
+		type BoButtonSize,
 		type BoFontSize,
 		type BoIconSize,
 		type BoLoaderSize,
@@ -17,6 +79,10 @@
 		type Icon,
 	} from '@workspace/bamboo-core';
 	import { computed, type StyleValue } from 'vue';
+	import { BoIcon } from '../bo-icon';
+	import { BoLoadingPulse } from '../bo-loading-pulse';
+	import { BoLoadingSpinner } from '../bo-loading-spinner';
+	import { BoText } from '../bo-text';
 
 	const props = withDefaults(defineProps<BoButtonProps>(), {
 		id: () => generateComponentId('button'),
@@ -51,37 +117,38 @@
 		return 'none' as Icon;
 	});
 
+	const renderPrefixIcon = computed<boolean>(() => {
+		return (
+			isIconOnlyButton.value ||
+			(!!props.prefixIcon && props.prefixIcon !== 'none' && !isIconOnlyButton.value)
+		);
+	});
+
 	const buttonFontSize = computed<BoFontSize>(() => {
-		const sizeMap: Record<string, BoFontSize> = {
-			xs: 'xs',
-			sm: 'sm',
-			default: 'default',
-			lg: 'lg',
-			xl: 'xl',
+		const sizeMap: Record<BoButtonSize, BoFontSize> = {
+			sm: 'xs',
+			default: 'sm',
+			lg: 'sm',
 		};
-		return sizeMap[props.size || 'default'] || 'default';
+		return sizeMap[props.size || 'default'];
 	});
 
 	const iconSize = computed<BoIconSize>(() => {
-		const sizeMap: Record<string, BoIconSize> = {
-			xs: 'xs',
+		const sizeMap: Record<BoButtonSize, BoIconSize> = {
 			sm: 'sm',
 			default: 'default',
-			lg: 'lg',
-			xl: 'xl',
+			lg: 'default',
 		};
-		return sizeMap[props.size || 'default'] || 'default';
+		return sizeMap[props.size || 'default'];
 	});
 
 	const loaderSize = computed<BoLoaderSize>(() => {
-		const sizeMap: Record<string, BoLoaderSize> = {
-			xs: 'xs',
-			sm: 'sm',
+		const sizeMap: Record<BoButtonSize, BoLoaderSize> = {
+			sm: 'xs',
 			default: 'sm',
-			lg: 'default',
-			xl: 'lg',
+			lg: 'sm',
 		};
-		return sizeMap[props.size || 'default'] || 'sm';
+		return sizeMap[props.size || 'default'];
 	});
 
 	const loaderVariant = computed<BoLoaderVariant>(() => {
@@ -105,23 +172,17 @@
 
 	const classValues = computed<string>(() => {
 		const size = props.size || 'default';
-		const kind = props.kind || 'default';
+		const kind = props.kind || 'filled';
 		const shape = props.shape || 'default';
 		const variant = props.variant || 'primary';
 		const width = props.fullWidth ? 'fullWidth' : 'default';
-
-		const variantClass = BUTTON_MANIFEST.styles.variants[kind][variant];
 
 		const classes: string[] = [
 			BUTTON_MANIFEST.styles.base,
 			BUTTON_MANIFEST.styles.width[width],
 			BUTTON_MANIFEST.styles.shape[shape],
-			variantClass,
+			BUTTON_MANIFEST.styles.variants[kind][variant],
 		];
-
-		if (BUTTON_MANIFEST.styles.shadow[shape]) {
-			classes.push(BUTTON_MANIFEST.styles.shadow[shape]);
-		}
 
 		if (isIconOnlyButton.value) {
 			classes.push(BUTTON_MANIFEST.styles.iconOnlySize[size]);
