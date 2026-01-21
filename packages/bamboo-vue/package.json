@@ -1,6 +1,27 @@
 {
 	"name": "@mrksbnc/bamboo-vue",
 	"version": "0.0.1",
+	"description": "Lightweight and flexible Vue 3 components built for the modern web",
+	"keywords": [
+		"vue",
+		"vue3",
+		"components",
+		"ui",
+		"tailwind",
+		"component library",
+		"typescript"
+	],
+	"homepage": "https://github.com/mrksbnc/bamboo#readme",
+	"bugs": {
+		"url": "https://github.com/mrksbnc/bamboo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mrksbnc/bamboo.git",
+		"directory": "packages/bamboo-vue"
+	},
+	"license": "MIT",
+	"author": "Bence Markus",
 	"sideEffects": [
 		"**/*.css"
 	],
@@ -9,16 +30,10 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"require": "./dist/index.umd.cjs",
-			"import": "./dist/index.es.js"
+			"import": "./dist/index.es.js",
+			"default": "./dist/index.es.js"
 		},
-		"./components/*": {
-			"types": "./dist/components/*/index.d.ts",
-			"import": "./dist/components/*/index.js"
-		},
-		"./lib.css": {
-			"import": "./dist/lib.css",
-			"require": "./dist/lib.css"
-		}
+		"./lib.css": "./dist/lib.css"
 	},
 	"main": "./dist/index.umd.cjs",
 	"module": "./dist/index.es.js",
@@ -31,14 +46,16 @@
 	],
 	"scripts": {
 		"build": "pnpm type-check && vite build --mode production",
+		"dev": "vite build --watch",
 		"format": "prettier --write .",
 		"prepublishOnly": "pnpm build",
 		"test": "vitest --coverage",
-		"type-check": "vue-tsc --noEmit"
+		"type-check": "vue-tsc --noEmit",
+		"clean": "rm -rf dist .turbo coverage"
 	},
 	"dependencies": {
-		"@workspace/bamboo-core": "workspace:*",
-		"@vueuse/core": "^14.1.0"
+		"@vueuse/core": "^14.1.0",
+		"@workspace/bamboo-core": "workspace:*"
 	},
 	"devDependencies": {
 		"@vitejs/plugin-vue": "^6.0.3",
@@ -46,5 +63,8 @@
 	},
 	"peerDependencies": {
 		"vue": "^3.5.25"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

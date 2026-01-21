@@ -8,9 +8,12 @@
 		"docs:dev": "turbo run docs:dev",
 		"type-check": "turbo run type-check",
 		"format": "prettier --write \"**/*.{ts,md,json,vue}\"",
+		"format:check": "prettier --check \"**/*.{ts,md,json,vue}\"",
 		"lint": "run-p lint:*",
 		"lint:spell": "cspell --config ./cspell.yaml \"**/*.{ts,md,json,vue}\" --verbose --show-perf-summary",
 		"lint:oxlint": "pnpm oxlint . --fix",
+		"test": "turbo run test",
+		"clean": "turbo run clean && rm -rf node_modules .turbo",
 		"prepare": "husky",
 		"ib": "pnpm install && pnpm build"
 	},
