@@ -18,7 +18,7 @@
 		"generate:docs": "tsx scripts/generate-docs-enhanced.ts",
 		"lint": "run-s lint:*",
 		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\"",
-		"clean": "rm -rf .vitepress/dist .vitepress/cache .turbo"
+		"purge": "rm -rf .vitepress/dist .vitepress/cache .turbo"
 	},
 	"devDependencies": {
 		"@mrksbnc/bamboo-vue": "workspace:*",
