@@ -4,6 +4,5 @@ export interface ComponentManifest<T, D> {
 		version: string;
 	};
 	styles: T;
-	dataAttributes?: Record<string, string>;
-	defaults?: D;
+	defaults: D;
 }

@@ -10,12 +10,13 @@
 		>
 			<span v-if="renderWithLabel">
 				<bo-text
-					:value="label"
 					:cursor="cursor"
 					variant="inherit"
 					font-weight="semibold"
 					:font-size="labelFontSize"
-				/>
+				>
+					{{ label }}
+				</bo-text>
 			</span>
 
 			<span v-if="renderWithImage">
@@ -126,12 +127,7 @@
 	});
 
 	const containerClassValues = computed<string>(() => {
-		const shadowClass = !isOutlineKind.value
-			? /* tw*/ 'shadow-xs dark:shadow-gray-800'
-			: /* tw*/ '';
-
 		return mergeTwClasses(
-			shadowClass,
 			fontColor.value,
 			AVATAR_MANIFEST.styles.base,
 			backgroundClassValues.value,

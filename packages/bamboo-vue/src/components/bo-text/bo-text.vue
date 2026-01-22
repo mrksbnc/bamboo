@@ -1,6 +1,5 @@
 <template>
 	<span
-		v-if="value || $slots['default']"
 		:id="id"
 		:data-testid="dataTestId"
 		:role="role"
@@ -12,13 +11,11 @@
 		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="ariaDescribedBy"
 	>
-		<slot>
-			{{ value }}
-		</slot>
+		<slot></slot>
 	</span>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 	import {
 		generateComponentId,
 		generateDataTestId,

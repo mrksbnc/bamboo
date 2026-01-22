@@ -8,15 +8,16 @@ export type BoButtonVariant =
 	| 'secondary'
 	| 'success'
 	| 'warning'
-	| 'destructive'
-	| 'light'
-	| 'dark';
+	| 'danger'
+	| 'dark'
+	| 'purple'
+	| 'teal';
 
 export type BoButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
-export type BoButtonKind = 'default' | 'outline' | 'ghost' | 'link';
+export type BoButtonKind = 'default' | 'outline' | 'pill';
 
-export type BoButtonShape = 'default' | 'pill' | 'flat';
+export type BoButtonShape = 'default' | 'pill' | 'outline';
 
 export interface BoButtonProps {
 	/**
@@ -60,23 +61,22 @@ export interface BoButtonProps {
 	/**
 	 * The kind of the button.
 	 *
-	 * - filled: A button with a background color.
+	 * - default: A button with a background color and rounded corners.
 	 * - outline: A button with a border and no background color.
-	 * - ghost: A button with subtle hover effects and no background.
-	 * - link: A button styled as a link with no background color or border.
+	 * - pill: A button with a background color and fully rounded corners.
 	 *
-	 * @default 'filled'
+	 * @default 'default'
 	 */
 	kind?: BoButtonKind;
 	/**
-	 * The shape of the button.
+	 * The shape of the button (deprecated - use kind instead).
 	 *
 	 * - default: A button with slightly rounded corners.
 	 * - pill: A button with fully rounded corners.
-	 * - flat: A button with no rounded corners.
+	 * - outline: A button with a border.
 	 *
 	 * @default 'default'
-	 *
+	 * @deprecated Use kind prop instead
 	 */
 	shape?: BoButtonShape;
 	/**
@@ -103,6 +103,8 @@ export interface BoButtonProps {
 		border?: string;
 		text?: string;
 	};
+	/** The name of the button. */
+	name?: HTMLButtonElement['name'];
 	/** The role of the element. */
 	role?: HTMLAttributes['role'];
 	/** Defines a string value that labels the current element. */
@@ -118,10 +120,6 @@ export interface BoButtonProps {
 	ariaExpanded?: HTMLAttributes['aria-expanded'];
 	/** Indicates that the element has a popup context menu or sub-level menu. */
 	ariaHasPopup?: HTMLAttributes['aria-haspopup'];
-	/** Indicates the current "pressed" state of toggle buttons. */
-	ariaPressed?: HTMLAttributes['aria-pressed'];
-	/** Indicates whether the element is currently selected. */
-	ariaSelected?: HTMLAttributes['aria-selected'];
 	/**
 	 * Indicates if the element is currently disabled.
 	 * Prefer using the disabled prop instead.
@@ -156,34 +154,13 @@ type BoButtonShapeStyleMap = Record<BoButtonShape, string>;
 
 export interface BoButtonStyleManifest {
 	base: string;
-	width: {
-		default: string;
-		fullWidth: string;
-	};
 	shape: BoButtonShapeStyleMap;
-	shadow: BoButtonShapeStyleMap;
 	size: BoButtonSizeStyleMap;
 	iconOnlySize: BoButtonSizeStyleMap;
 	variants: Record<BoButtonKind, BoButtonVariantStyleMap>;
-	states: {
-		loading: string;
-		pressed: string;
-		focus: string;
-	};
-	content: {
-		container: string;
-		label: string;
-		prefixIcon: string;
-		suffixIcon: string;
-		loader: string;
-	};
-	dataAttributes: {
-		slot: string;
-		variant: string;
-		size: string;
-		disabled: string;
-		loading: string;
-	};
+	textColor: Record<BoButtonKind, BoButtonVariantStyleMap>;
+	fontSize: Record<BoButtonSize, string>;
+	iconSize: Record<BoButtonSize, string>;
 }
 
 export type ButtonManifest = ComponentManifest<BoButtonStyleManifest, BoButtonManifestDefaults>;
