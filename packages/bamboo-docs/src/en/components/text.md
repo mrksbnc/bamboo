@@ -23,11 +23,14 @@ The `bo-text` component is used to render text with various styles and formattin
 
 The component is called `bo-text` and can be used as follows:
 
-<div class="flex p-4 border rounded-md">
-  <bo-text value="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
-</div>
+::: raw
+<bo-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</bo-text>
+:::
 
 ```vue
+<bo-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</bo-text>
+```
+
 <bo-text value="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
 ```
 

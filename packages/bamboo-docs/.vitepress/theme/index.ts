@@ -5,6 +5,7 @@ import { useData, inBrowser } from 'vitepress';
 import Layout from './Layout.vue';
 import DefaultTheme from 'vitepress/theme';
 import 'virtual:group-icons.css';
+import '@mrksbnc/bamboo-vue/lib.css';
 
 import './style.css';
 

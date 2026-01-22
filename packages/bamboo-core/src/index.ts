@@ -23,6 +23,7 @@ export {
 	// Button
 	type BoButtonVariant,
 	type BoButtonSize,
+	type BoButtonKind,
 	type BoButtonShape,
 	type BoButtonProps,
 	type ButtonManifest,

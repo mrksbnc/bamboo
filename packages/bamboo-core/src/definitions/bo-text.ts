@@ -78,8 +78,6 @@ export interface BoTextProps {
 	id?: HTMLAttributes['id'];
 	/** The data test id of the element. */
 	dataTestId?: string;
-	/** The text of the element. */
-	value: string;
 	/**
 	 * The size of the element.
 	 * @default 'default'

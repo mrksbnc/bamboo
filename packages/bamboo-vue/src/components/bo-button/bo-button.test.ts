@@ -66,7 +66,7 @@ describe('BoButton', () => {
 			'warning',
 			'success',
 			'light',
-			'dark',
+			'black',
 		] as const;
 		variants.forEach((variant) => {
 			const wrapper = mount(BoButton, {
@@ -81,7 +81,7 @@ describe('BoButton', () => {
 	});
 
 	it('applies correct kind classes', () => {
-		const kinds = ['filled', 'outline', 'ghost', 'link'] as const;
+		const kinds = ['filled', 'outline', 'ghost'] as const;
 		kinds.forEach((kind) => {
 			const wrapper = mount(BoButton, {
 				props: { label: 'Test', kind },

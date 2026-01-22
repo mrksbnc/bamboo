@@ -1,69 +1,42 @@
 <template>
 	<button
 		:id="id"
-		:data-testid="dataTestId"
 		:type="type"
-		:role="role"
-		:class="classValues"
-		:style="styleValues"
-		:disabled="isDisabled"
-		:tabindex="tabIndex"
-		:aria-busy="isLoading"
-		:aria-disabled="isDisabled"
-		:aria-live="ariaLive"
+		:name="name"
+		:disabled="disabled || isLoading"
 		:aria-label="ariaLabel"
 		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="ariaDescribedBy"
+		:aria-disabled="disabled || isLoading ? 'true' : undefined"
+		:aria-pressed="pressed"
 		:aria-expanded="ariaExpanded"
 		:aria-haspopup="ariaHasPopup"
-		:aria-pressed="ariaPressed"
-		:aria-selected="ariaSelected"
+		:aria-live="ariaLive"
+		:aria-busy="isLoading ? 'true' : undefined"
+		:role="role"
+		:tabindex="tabIndex"
 		:accesskey="accessKey"
+		:data-testid="dataTestId"
+		:class="buttonClasses"
+		:style="styleValues"
 	>
-		<slot>
-			<span :class="contentClasses.container">
-				<bo-icon
-					v-if="renderPrefixIcon"
-					:icon="iconOnlyIcon"
-					:size="iconSize"
-					:class="contentClasses.prefixIcon"
-					aria-hidden="true"
-				/>
-				<span v-if="!!label && !isIconOnlyButton" :class="contentClasses.label">
-					<bo-text
-						:value="label"
-						:clickable="true"
-						font-weight="semibold"
-						:font-size="buttonFontSize"
-					/>
-				</span>
-				<bo-icon
-					v-if="suffixIcon && suffixIcon !== 'none' && !isLoading && !isIconOnlyButton"
-					:icon="suffixIcon"
-					:size="iconSize"
-					:class="contentClasses.suffixIcon"
-					aria-hidden="true"
-				/>
-				<bo-loading-spinner
-					v-if="isLoading && loaderType === 'spinner'"
-					:size="loaderSize"
-					:variant="loaderVariant"
-					:class="contentClasses.loader"
-					aria-hidden="true"
-				/>
-				<bo-loading-pulse
-					v-if="isLoading && loaderType === 'pulse'"
-					:size="loaderSize"
-					:variant="loaderVariant"
-					:class="contentClasses.loader"
-					aria-hidden="true"
-				/>
-			</span>
-		</slot>
+		<span v-if="isLoading" class="bo-button__loader">
+			<bo-loading-spinner v-if="loaderType === 'spinner'" :size="loaderSizeValue" />
+			<bo-loading-pulse v-else :size="loaderSizeValue" />
+		</span>
+		<span v-if="prefixIcon && !isLoading" class="bo-button__prefix">
+			<bo-icon :icon="prefixIcon" :size="iconSizeValue" />
+		</span>
+		<span v-if="label || $slots.default" class="bo-button__label">
+			<slot>{{ label }}</slot>
+		</span>
+		<span v-if="suffixIcon" class="bo-button__suffix">
+			<bo-icon :icon="suffixIcon" :size="iconSizeValue" />
+		</span>
 	</button>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 	import {
 		BUTTON_MANIFEST,
 		generateComponentId,
@@ -71,155 +44,107 @@
 		getValidOrFallbackColorFromStr,
 		mergeTwClasses,
 		type BoButtonProps,
-		type BoButtonSize,
-		type BoFontSize,
 		type BoIconSize,
 		type BoLoaderSize,
-		type BoLoaderVariant,
-		type Icon,
 	} from '@workspace/bamboo-core';
-	import { computed, type StyleValue } from 'vue';
+	import { computed, useSlots, type StyleValue } from 'vue';
 	import { BoIcon } from '../bo-icon';
 	import { BoLoadingPulse } from '../bo-loading-pulse';
 	import { BoLoadingSpinner } from '../bo-loading-spinner';
-	import { BoText } from '../bo-text';
 
 	const props = withDefaults(defineProps<BoButtonProps>(), {
 		id: () => generateComponentId('button'),
 		dataTestId: () => generateDataTestId('button'),
-		type: () => BUTTON_MANIFEST.defaults.type,
-		role: () => BUTTON_MANIFEST.defaults.role,
-		kind: () => BUTTON_MANIFEST.defaults.kind,
-		size: () => BUTTON_MANIFEST.defaults.size,
-		shape: () => BUTTON_MANIFEST.defaults.shape,
-		variant: () => BUTTON_MANIFEST.defaults.variant,
-		loaderType: () => BUTTON_MANIFEST.defaults.loaderType,
+		size: 'default',
+		variant: 'primary',
+		kind: 'default',
+		shape: 'default',
+		type: 'button',
+		role: 'button',
+		loaderType: 'spinner',
+		disabled: false,
+		isLoading: false,
+		fullWidth: false,
+		ariaLive: 'polite',
 	});
 
-	const isDisabled = computed<boolean>(() => {
-		return props.disabled || props.isLoading || false;
-	});
+	const slots = useSlots();
 
-	const isIconOnlyButton = computed<boolean>(() => {
-		return Boolean(
-			!props.label &&
-			((props.prefixIcon && props.prefixIcon !== 'none') ||
-				(props.suffixIcon && props.suffixIcon !== 'none')),
-		);
-	});
-
-	const iconOnlyIcon = computed<Icon>(() => {
-		if (isIconOnlyButton.value) {
-			const icon =
-				props.prefixIcon && props.prefixIcon !== 'none' ? props.prefixIcon : props.suffixIcon;
-			return (icon || 'none') as Icon;
+	// Determine the actual kind to use (shape takes precedence for backward compatibility)
+	const effectiveKind = computed(() => {
+		if (props.shape && props.shape !== 'default') {
+			return props.shape as 'outline' | 'pill';
 		}
-		return 'none' as Icon;
+		return props.kind || 'default';
 	});
 
-	const renderPrefixIcon = computed<boolean>(() => {
-		return (
-			isIconOnlyButton.value ||
-			(!!props.prefixIcon && props.prefixIcon !== 'none' && !isIconOnlyButton.value)
-		);
+	// Determine if button is icon-only
+	const isIconOnly = computed(() => {
+		return !props.label && !slots?.default && (props.prefixIcon || props.suffixIcon);
 	});
 
-	const buttonFontSize = computed<BoFontSize>(() => {
-		const sizeMap: Record<BoButtonSize, BoFontSize> = {
-			sm: 'xs',
-			default: 'sm',
-			lg: 'sm',
-		};
-		return sizeMap[props.size || 'default'];
-	});
-
-	const iconSize = computed<BoIconSize>(() => {
-		const sizeMap: Record<BoButtonSize, BoIconSize> = {
-			sm: 'sm',
-			default: 'default',
-			lg: 'default',
-		};
-		return sizeMap[props.size || 'default'];
-	});
-
-	const loaderSize = computed<BoLoaderSize>(() => {
-		const sizeMap: Record<BoButtonSize, BoLoaderSize> = {
-			sm: 'xs',
-			default: 'sm',
-			lg: 'sm',
-		};
-		return sizeMap[props.size || 'default'];
-	});
-
-	const loaderVariant = computed<BoLoaderVariant>(() => {
-		const variant = props.variant || 'primary';
-		const shape = props.shape || 'default';
-
-		if (shape === 'default' || shape === 'pill') {
-			return variant === 'light' ? 'black' : 'white';
-		}
-
-		return variant as BoLoaderVariant;
-	});
-
-	const contentClasses = {
-		container: BUTTON_MANIFEST.styles.content.container,
-		label: BUTTON_MANIFEST.styles.content.label,
-		prefixIcon: BUTTON_MANIFEST.styles.content.prefixIcon,
-		suffixIcon: BUTTON_MANIFEST.styles.content.suffixIcon,
-		loader: BUTTON_MANIFEST.styles.content.loader,
-	};
-
-	const classValues = computed<string>(() => {
+	// Get icon size based on button size
+	const iconSizeValue = computed<BoIconSize>(() => {
 		const size = props.size || 'default';
-		const kind = props.kind || 'filled';
-		const shape = props.shape || 'default';
-		const variant = props.variant || 'primary';
-		const width = props.fullWidth ? 'fullWidth' : 'default';
+		return BUTTON_MANIFEST.styles.iconSize[size] as BoIconSize;
+	});
 
-		const classes: string[] = [
+	// Get loader size (convert from icon size string to loader size)
+	const loaderSizeValue = computed<BoLoaderSize>(() => {
+		const size = props.size || 'default';
+		return BUTTON_MANIFEST.styles.iconSize[size] as BoLoaderSize;
+	});
+
+	// Build button classes
+	const buttonClasses = computed(() => {
+		const classes = [
 			BUTTON_MANIFEST.styles.base,
-			BUTTON_MANIFEST.styles.width[width],
-			BUTTON_MANIFEST.styles.shape[shape],
-			BUTTON_MANIFEST.styles.variants[kind][variant],
+			BUTTON_MANIFEST.styles.shape[effectiveKind.value],
+			isIconOnly.value
+				? BUTTON_MANIFEST.styles.iconOnlySize[props.size || 'default']
+				: BUTTON_MANIFEST.styles.size[props.size || 'default'],
+			BUTTON_MANIFEST.styles.variants[effectiveKind.value][props.variant || 'primary'],
+			BUTTON_MANIFEST.styles.textColor[effectiveKind.value][props.variant || 'primary'],
 		];
 
-		if (isIconOnlyButton.value) {
-			classes.push(BUTTON_MANIFEST.styles.iconOnlySize[size]);
-		} else {
-			classes.push(BUTTON_MANIFEST.styles.size[size]);
-		}
-
-		if (props.isLoading) {
-			classes.push(BUTTON_MANIFEST.styles.states.loading);
-		}
-
-		if (props.pressed) {
-			classes.push(BUTTON_MANIFEST.styles.states.pressed);
+		if (props.fullWidth) {
+			classes.push('w-full');
 		}
 
 		return mergeTwClasses(...classes);
 	});
 
+	// Custom styles for custom colors
 	const styleValues = computed<StyleValue>(() => {
-		if (props.customColor) {
-			const styles: StyleValue = {};
+		if (!props.customColor) return {};
 
-			if (props.customColor.background) {
-				styles.backgroundColor = getValidOrFallbackColorFromStr(props.customColor.background);
-			}
+		const style: StyleValue = {};
 
-			if (props.customColor.border) {
-				styles.borderColor = getValidOrFallbackColorFromStr(props.customColor.border);
-			}
-
-			if (props.customColor.text) {
-				styles.color = getValidOrFallbackColorFromStr(props.customColor.text);
-			}
-
-			return styles;
+		if (props.customColor.background) {
+			style.backgroundColor = getValidOrFallbackColorFromStr(props.customColor.background);
+		}
+		if (props.customColor.border) {
+			style.borderColor = getValidOrFallbackColorFromStr(props.customColor.border);
+		}
+		if (props.customColor.text) {
+			style.color = getValidOrFallbackColorFromStr(props.customColor.text);
 		}
 
-		return {};
+		return style;
 	});
 </script>
+
+<style scoped>
+	.bo-button__loader,
+	.bo-button__prefix,
+	.bo-button__suffix {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.bo-button__label {
+		display: inline-flex;
+		align-items: center;
+	}
+</style>

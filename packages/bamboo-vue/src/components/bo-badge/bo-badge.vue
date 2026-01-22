@@ -9,16 +9,15 @@
 	>
 		<bo-icon v-if="showPrefixIcon" :size="iconSize" :icon="getSafeIcon(prefixIcon)" />
 		<slot>
-			<span>
-				<bo-text
-					v-if="label && !isCircle"
-					:value="label"
-					:cursor="cursor"
-					:font-size="fontSize"
-					font-weight="semibold"
-					variant="currentColor"
-				/>
-			</span>
+			<bo-text
+				v-if="label && !isCircle"
+				:cursor="cursor"
+				:font-size="fontSize"
+				font-weight="semibold"
+				variant="currentColor"
+			>
+				{{ label }}
+			</bo-text>
 		</slot>
 		<bo-icon v-if="showSuffixIcon" :icon="getSafeIcon(suffixIcon)" :size="iconSize" />
 	</span>

@@ -4,3 +4,5 @@
  * detect the `tw` comments in the code.
  */
 @import 'tailwindcss';
+
+@source '../**/*.ts';

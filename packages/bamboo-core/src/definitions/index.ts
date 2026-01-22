@@ -27,6 +27,7 @@ export {
 	type BoButtonSize,
 	type BoButtonShape,
 	type BoButtonProps,
+	type BoButtonKind,
 	type ButtonManifest,
 } from './bo-button.js';
 
