@@ -43,7 +43,8 @@ export {
 // # bo-divider
 export {
 	type BoDividerVariant,
-	type BoDividerType,
+	type BoDividerOrientation,
+	type BoDividerPlacement,
 	type BoDividerProps,
 	type DividerManifest,
 } from './bo-divider.js';
@@ -113,6 +114,41 @@ export {
 	type BoTextareaProps,
 	type TextareaManifest,
 } from './bo-textarea.js';
+
+// # bo-modal
+export {
+	type BoModalSize,
+	type BoModalPosition,
+	type BoModalProps,
+	type ModalManifest,
+} from './bo-modal.js';
+
+// # bo-checkbox
+export {
+	type BoCheckboxSize,
+	type BoCheckboxState,
+	type BoCheckboxProps,
+	type CheckboxManifest,
+} from './bo-checkbox.js';
+
+// # bo-radio
+export {
+	type BoRadioSize,
+	type BoRadioState,
+	type BoRadioProps,
+	type RadioManifest,
+} from './bo-radio.js';
+
+// # bo-table
+export {
+	type BoTableSize,
+	type BoTableVariant,
+	type BoTableColumn,
+	type BoTableRow,
+	type BoTableSort,
+	type BoTableProps,
+	type TableManifest,
+} from './bo-table.js';
 
 // # component-types
 export {

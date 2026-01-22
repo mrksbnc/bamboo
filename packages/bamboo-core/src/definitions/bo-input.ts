@@ -2,7 +2,7 @@ import { HTMLAttributes, InputHTMLAttributes } from 'vue';
 import { BoFontSize, BoIconSize, Icon } from './index.js';
 import { ComponentManifest } from '../manifests/types.js';
 
-export type BoInputSize = 'sm' | 'default' | 'lg';
+export type BoInputSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
 export type BoInputType = InputHTMLAttributes['type'];
 

@@ -37,7 +37,8 @@ export {
 
 	// Divider
 	type BoDividerVariant,
-	type BoDividerType,
+	type BoDividerOrientation,
+	type BoDividerPlacement,
 	type BoDividerProps,
 	type DividerManifest,
 
@@ -91,6 +92,33 @@ export {
 	type BoTextareaVariant,
 	type BoTextareaProps,
 
+	// Modal
+	type BoModalSize,
+	type BoModalPosition,
+	type BoModalProps,
+	type ModalManifest,
+
+	// Checkbox
+	type BoCheckboxSize,
+	type BoCheckboxState,
+	type BoCheckboxProps,
+	type CheckboxManifest,
+
+	// Radio
+	type BoRadioSize,
+	type BoRadioState,
+	type BoRadioProps,
+	type RadioManifest,
+
+	// Table
+	type BoTableSize,
+	type BoTableVariant,
+	type BoTableColumn,
+	type BoTableRow,
+	type BoTableSort,
+	type BoTableProps,
+	type TableManifest,
+
 	// Component Types
 	type Booleanish,
 	type ConditionalCssProperties,
@@ -109,6 +137,10 @@ export {
 	INPUT_MANIFEST,
 	LOADING_PULSE_MANIFEST,
 	LOADING_SPINNER_MANIFEST,
+	MODAL_MANIFEST,
+	CHECKBOX_MANIFEST,
+	RADIO_MANIFEST,
+	TABLE_MANIFEST,
 	type ComponentManifest,
 } from './manifests/index.js';
 

@@ -78,6 +78,10 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 function sidebarComponents(): DefaultTheme.SidebarItem[] {
 	return [
 		{
+			text: 'Design System',
+			items: [{ text: 'Sizing System', link: '/design/sizing-system' }],
+		},
+		{
 			text: 'Components',
 			link: '/components/index',
 			items: [

@@ -58,9 +58,9 @@ export interface BoBadgeProps {
 	/** The suffix icon of the badge. */
 	suffixIcon?: Icon;
 	/** The role of the element. */
-	role?: HTMLSpanElement['role'];
+	role?: HTMLAttributes['role'];
 	/** Defines a string value that labels the current element. */
-	ariaLabel?: HTMLSpanElement['ariaLabel'];
+	ariaLabel?: HTMLAttributes['aria-label'];
 }
 
 type BoBadgeManifestDefaults = Pick<
