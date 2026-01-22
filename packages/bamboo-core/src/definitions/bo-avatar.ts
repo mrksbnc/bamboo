@@ -1,6 +1,7 @@
 import { HTMLAttributes } from 'vue';
-import { BoCursor, BoFontSize } from '../definitions/index.js';
-import { ComponentManifest } from '../manifests/index.js';
+import { BoCursor } from './component-types.js';
+import { BoFontSize } from './bo-text.js';
+import { ComponentManifest } from '../manifests/types.js';
 
 export type BoAvatarSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 

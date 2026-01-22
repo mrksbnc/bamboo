@@ -25,7 +25,7 @@ export const TEXTAREA_MANIFEST = {
 
 		padding: {
 			sm: /*tw*/ 'p-2',
-			md: /*tw*/ 'p-3',
+			default: /*tw*/ 'p-3',
 			lg: /*tw*/ 'p-4',
 		},
 
@@ -46,19 +46,19 @@ export const TEXTAREA_MANIFEST = {
 		icons: {
 			prefix: {
 				sm: /*tw*/ 'absolute left-3 top-2.5 text-gray-500 dark:text-gray-400',
-				md: /*tw*/ 'absolute left-3 top-3 text-gray-500 dark:text-gray-400',
+				default: /*tw*/ 'absolute left-3 top-3 text-gray-500 dark:text-gray-400',
 				lg: /*tw*/ 'absolute left-3.5 top-4 text-gray-500 dark:text-gray-400',
 			},
 
 			suffix: {
 				sm: /*tw*/ 'absolute right-3 top-2.5 h-full text-gray-500 dark:text-gray-400',
-				md: /*tw*/ 'absolute right-3 top-3 h-full text-gray-500 dark:text-gray-400',
+				default: /*tw*/ 'absolute right-3 top-3 h-full text-gray-500 dark:text-gray-400',
 				lg: /*tw*/ 'absolute right-3.5 top-4 h-full text-gray-500 dark:text-gray-400',
 			},
 
 			size: {
 				sm: 'sm',
-				md: 'default',
+				default: 'default',
 				lg: 'lg',
 			},
 		},

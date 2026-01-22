@@ -31,6 +31,23 @@ export {
 	type ButtonManifest,
 } from './bo-button.js';
 
+// # bo-card
+export {
+	type BoCardVariant,
+	type BoCardSize,
+	type BoCardPadding,
+	type BoCardProps,
+	type CardManifest,
+} from './bo-card.js';
+
+// # bo-divider
+export {
+	type BoDividerVariant,
+	type BoDividerType,
+	type BoDividerProps,
+	type DividerManifest,
+} from './bo-divider.js';
+
 // # bo-icon
 export {
 	type Icon,

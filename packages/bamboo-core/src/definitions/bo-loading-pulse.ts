@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'vue';
-import { ComponentManifest } from '../manifests';
+import { ComponentManifest } from '../manifests/types.js';
 import { BoLoaderSize, BoLoaderTextPosition, BoLoaderVariant } from './bo-loader';
 import { BoFontSize } from './bo-text';
 
@@ -10,7 +10,7 @@ export interface BoLoadingPulseProps {
 	dataTestId?: string;
 	/**
 	 * The size of the loading spinner
-	 * @default 'md'
+	 * @default 'default'
 	 */
 	size?: BoLoaderSize;
 	/**

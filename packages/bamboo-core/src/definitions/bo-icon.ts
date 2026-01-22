@@ -42,7 +42,7 @@ export interface BoIconProps {
 	icon: Icon;
 	/**
 	 * The size of the icon
-	 * @default 'md'
+	 * @default 'default'
 	 */
 	size?: BoIconSize;
 	/**

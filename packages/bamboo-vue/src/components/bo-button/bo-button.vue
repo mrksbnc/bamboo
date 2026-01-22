@@ -57,7 +57,7 @@
 		dataTestId: () => generateDataTestId('button'),
 		size: 'default',
 		variant: 'primary',
-		kind: 'default',
+		kind: 'filled',
 		shape: 'default',
 		type: 'button',
 		role: 'button',
@@ -65,6 +65,7 @@
 		disabled: false,
 		isLoading: false,
 		fullWidth: false,
+		linkVariantWithShadow: false,
 		ariaLive: 'polite',
 	});
 
@@ -73,9 +74,12 @@
 	// Determine the actual kind to use (shape takes precedence for backward compatibility)
 	const effectiveKind = computed(() => {
 		if (props.shape && props.shape !== 'default') {
-			return props.shape as 'outline' | 'pill';
+			// Map shape to kind for backward compatibility
+			if (props.shape === 'outline') return 'outline';
+			if (props.shape === 'pill') return 'pill';
+			if (props.shape === 'flat') return 'ghost';
 		}
-		return props.kind || 'default';
+		return props.kind || 'filled';
 	});
 
 	// Determine if button is icon-only
@@ -99,13 +103,30 @@
 	const buttonClasses = computed(() => {
 		const classes = [
 			BUTTON_MANIFEST.styles.base,
-			BUTTON_MANIFEST.styles.shape[effectiveKind.value],
+			BUTTON_MANIFEST.styles.shape[props.shape || 'default'],
 			isIconOnly.value
 				? BUTTON_MANIFEST.styles.iconOnlySize[props.size || 'default']
 				: BUTTON_MANIFEST.styles.size[props.size || 'default'],
 			BUTTON_MANIFEST.styles.variants[effectiveKind.value][props.variant || 'primary'],
 			BUTTON_MANIFEST.styles.textColor[effectiveKind.value][props.variant || 'primary'],
 		];
+
+		// Add shadow classes
+		const variant = props.variant || 'primary';
+		const isLinkVariant = variant.startsWith('link');
+
+		if (isLinkVariant && props.linkVariantWithShadow) {
+			classes.push('shadow-md');
+		} else if (!isLinkVariant) {
+			classes.push(BUTTON_MANIFEST.styles.shadow[effectiveKind.value][variant]);
+		} else {
+			classes.push(BUTTON_MANIFEST.styles.shadow[effectiveKind.value][variant]);
+		}
+
+		// Add pressed state
+		if (props.pressed) {
+			classes.push(BUTTON_MANIFEST.styles.pressed);
+		}
 
 		if (props.fullWidth) {
 			classes.push('w-full');

@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'vue';
 import { BoFontSize, BoIconSize, Icon } from './index.js';
 import { ComponentManifest } from '../manifests/types.js';
 
-export type BoTextareaSize = 'sm' | 'md' | 'lg';
+export type BoTextareaSize = 'sm' | 'default' | 'lg';
 
 export type BoTextareaState = 'default' | 'valid' | 'invalid';
 
@@ -15,7 +15,7 @@ export interface BoTextareaProps {
 	dataTestId?: string;
 	/**
 	 * The size of the textarea.
-	 * @default 'md'
+	 * @default 'default'
 	 */
 	size?: BoTextareaSize;
 	/**

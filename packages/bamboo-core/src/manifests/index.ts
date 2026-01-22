@@ -7,6 +7,12 @@ export { BADGE_MANIFEST } from './badge.manifest';
 // # Button
 export { BUTTON_MANIFEST } from './button.manifest';
 
+// # Card
+export { CARD_MANIFEST } from './card.manifest';
+
+// # Divider
+export { DIVIDER_MANIFEST } from './divider.manifest';
+
 // # Icon
 export { ICON_MANIFEST } from './icon.manifest';
 
