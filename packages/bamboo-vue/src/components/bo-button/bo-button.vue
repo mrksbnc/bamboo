@@ -76,8 +76,9 @@
 		if (props.shape && props.shape !== 'default') {
 			// Map shape to kind for backward compatibility
 			if (props.shape === 'outline') return 'outline';
-			if (props.shape === 'pill') return 'pill';
 			if (props.shape === 'flat') return 'ghost';
+			// pill shape uses filled kind
+			if (props.shape === 'pill') return 'filled';
 		}
 		return props.kind || 'filled';
 	});

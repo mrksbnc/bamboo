@@ -42,6 +42,23 @@ export interface BoCardProps {
 	 * The description of the card.
 	 */
 	description?: string;
+	/**
+	 * Whether the card is clickable.
+	 * @default false
+	 */
+	clickable?: boolean;
+	/**
+	 * Custom width as a Tailwind CSS class.
+	 */
+	widthAsTailwindClass?: string;
+	/**
+	 * Custom width in pixels.
+	 */
+	widthInPx?: number;
+	/**
+	 * Custom width as a percentage.
+	 */
+	widthInPercent?: number;
 	/** The cursor to use when hovering over the card. */
 	cursor?: BoCursor;
 	/**
@@ -58,7 +75,7 @@ export interface BoCardProps {
 	ariaDescribedBy?: HTMLAttributes['aria-describedby'];
 }
 
-type BoCardManifestDefaults = Pick<BoCardProps, 'variant' | 'size'>;
+type BoCardManifestDefaults = Pick<BoCardProps, 'variant' | 'size' | 'clickable'>;
 
 type BoCardVariantStyleMap = Record<BoCardVariant, string>;
 type BoCardSizeStyleMap = Record<BoCardSize, string>;

@@ -1,13 +1,17 @@
 <template>
-	<hr
+	<div
 		:id="id"
 		:data-testid="dataTestId"
-		:role="role"
+		:role="role || 'separator'"
 		:aria-label="ariaLabel"
 		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="ariaDescribedBy"
 		:class="dividerClasses"
-	/>
+	>
+		<span v-if="text || $slots.default" class="px-4">
+			<slot>{{ text }}</slot>
+		</span>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -23,16 +27,18 @@
 	const props = withDefaults(defineProps<BoDividerProps>(), {
 		id: () => generateComponentId('divider'),
 		dataTestId: () => generateDataTestId('divider'),
-		variant: 'secondary',
-		type: 'default',
+		variant: 'neutral',
+		orientation: 'vertical',
+		placement: 'center',
 	});
 
 	// Build divider classes
 	const dividerClasses = computed(() => {
 		const classes = [
 			DIVIDER_MANIFEST.styles.base,
-			DIVIDER_MANIFEST.styles.variants[props.variant || 'secondary'],
-			DIVIDER_MANIFEST.styles.types[props.type || 'default'],
+			DIVIDER_MANIFEST.styles.variants[props.variant || 'neutral'],
+			DIVIDER_MANIFEST.styles.orientations[props.orientation || 'vertical'],
+			DIVIDER_MANIFEST.styles.placements[props.placement || 'center'],
 		];
 
 		return mergeTwClasses(...classes);

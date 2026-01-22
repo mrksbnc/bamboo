@@ -104,7 +104,7 @@
 	import { BoIcon } from '../bo-icon';
 	import { BoText } from '../bo-text';
 
-	interface Props extends BoInputProps {
+	interface Props extends /* @vue-ignore */ BoInputProps {
 		modelValue?: string;
 	}
 

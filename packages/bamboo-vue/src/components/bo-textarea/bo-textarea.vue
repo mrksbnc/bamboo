@@ -67,14 +67,14 @@
 	import { BoIcon } from '../bo-icon';
 	import { BoText } from '../bo-text';
 
-	interface Props extends BoTextareaProps {
+	interface Props extends /* @vue-ignore */ BoTextareaProps {
 		modelValue?: string;
 	}
 
 	const props = withDefaults(defineProps<Props>(), {
 		id: () => generateComponentId('textarea'),
 		dataTestId: () => generateDataTestId('textarea'),
-		size: 'md',
+		size: 'default',
 		state: 'default',
 		variant: 'default',
 		rows: 4,
@@ -91,7 +91,7 @@
 	const textareaRef = ref<HTMLTextAreaElement | null>(null);
 
 	const iconSize = computed<BoIconSize>(() => {
-		return TEXTAREA_MANIFEST.styles.icons.size[props.size || 'md'];
+		return TEXTAREA_MANIFEST.styles.icons.size[props.size || 'default'];
 	});
 
 	const labelFontSize = computed<BoFontSize>(() => {
@@ -125,7 +125,7 @@
 	const textareaClassValues = computed<string>(() => {
 		const classes: string[] = [
 			TEXTAREA_MANIFEST.styles.textarea.base,
-			TEXTAREA_MANIFEST.styles.padding[props.size || 'md'],
+			TEXTAREA_MANIFEST.styles.padding[props.size || 'default'],
 		];
 
 		if (props.prefixIcon && props.prefixIcon !== 'none') {
@@ -148,11 +148,11 @@
 	});
 
 	const prefixIconClassValues = computed<string>(() => {
-		return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.prefix[props.size || 'md']);
+		return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.prefix[props.size || 'default']);
 	});
 
 	const suffixIconClassValues = computed<string>(() => {
-		return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.suffix[props.size || 'md']);
+		return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.suffix[props.size || 'default']);
 	});
 
 	const labelContainerClassValues = computed<string>(() => {

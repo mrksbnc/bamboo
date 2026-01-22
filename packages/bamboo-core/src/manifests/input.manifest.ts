@@ -20,15 +20,19 @@ export const INPUT_MANIFEST = {
 		},
 
 		size: {
-			sm: /*tw*/ 'h-8 px-3 py-1 text-xs',
-			default: /*tw*/ 'h-9 px-3 py-1',
-			lg: /*tw*/ 'h-10 px-3 py-2',
+			xs: /*tw*/ 'h-6 px-2 py-1 text-xs',
+			sm: /*tw*/ 'h-8 px-3 py-2 text-sm',
+			default: /*tw*/ 'h-10 px-4 py-2 text-sm',
+			lg: /*tw*/ 'h-12 px-4 py-3 text-base',
+			xl: /*tw*/ 'h-16 px-6 py-4 text-lg',
 		},
 
 		padding: {
-			sm: /*tw*/ 'py-1 px-3',
-			default: /*tw*/ 'py-1 px-3',
-			lg: /*tw*/ 'py-2 px-3',
+			xs: /*tw*/ 'py-1 px-2',
+			sm: /*tw*/ 'py-2 px-3',
+			default: /*tw*/ 'py-2 px-4',
+			lg: /*tw*/ 'py-3 px-4',
+			xl: /*tw*/ 'py-4 px-6',
 		},
 
 		state: {
@@ -49,9 +53,11 @@ export const INPUT_MANIFEST = {
 			prefix: /*tw*/ 'absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400',
 			suffix: /*tw*/ 'absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400',
 			size: {
+				xs: 'xs',
 				sm: 'sm',
 				default: 'default',
 				lg: 'lg',
+				xl: 'xl',
 			},
 		},
 

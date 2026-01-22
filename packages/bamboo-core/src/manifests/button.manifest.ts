@@ -18,35 +18,45 @@ export const BUTTON_MANIFEST: ButtonManifest = {
 		},
 
 		size: {
-			xs: /*tw*/ 'h-7 px-2 gap-1 text-xs',
-			sm: /*tw*/ 'h-8 px-3 gap-1.5 text-xs',
-			default: /*tw*/ 'h-9 px-3 gap-2 text-sm',
-			lg: /*tw*/ 'h-10 px-5 gap-2 text-base',
-			xl: /*tw*/ 'h-14 px-6 gap-2.5 text-lg',
+			xs: /*tw*/ 'h-6 px-2 gap-1 text-xs',
+			sm: /*tw*/ 'h-8 px-3 gap-1.5 text-sm',
+			default: /*tw*/ 'h-10 px-4 gap-2 text-sm',
+			lg: /*tw*/ 'h-12 px-6 gap-2 text-base',
+			xl: /*tw*/ 'h-16 px-8 gap-2.5 text-lg',
 		},
 
 		iconOnlySize: {
-			xs: /*tw*/ 'size-7',
+			xs: /*tw*/ 'size-6',
 			sm: /*tw*/ 'size-8',
-			default: /*tw*/ 'size-9',
-			lg: /*tw*/ 'size-10',
-			xl: /*tw*/ 'size-14',
+			default: /*tw*/ 'size-10',
+			lg: /*tw*/ 'size-12',
+			xl: /*tw*/ 'size-16',
 		},
 
 		variants: {
 			filled: {
-				primary: /*tw*/ 'bg-blue-600 hover:bg-blue-700',
-				secondary: /*tw*/ 'bg-gray-400 hover:bg-gray-700',
-				destructive: /*tw*/ 'bg-red-600 hover:bg-red-700',
-				warning: /*tw*/ 'bg-yellow-500 hover:bg-yellow-700',
-				success: /*tw*/ 'bg-green-600 hover:bg-green-700',
-				dark: /*tw*/ 'bg-black hover:bg-black/50',
-				link: /*tw*/ 'bg-transparent hover:bg-transparent',
-				'link-secondary': /*tw*/ 'bg-transparent hover:bg-transparent',
-				'link-destructive': /*tw*/ 'bg-transparent hover:bg-transparent',
-				'link-warning': /*tw*/ 'bg-transparent hover:bg-transparent',
-				'link-success': /*tw*/ 'bg-transparent hover:bg-transparent',
-				'link-dark': /*tw*/ 'bg-transparent hover:bg-transparent',
+				primary:
+					/*tw*/ 'bg-blue-600 text-white hover:bg-blue-700 border-blue-600 dark:bg-blue-500 dark:hover:bg-blue-600',
+				secondary:
+					/*tw*/ 'bg-gray-600 text-white hover:bg-gray-700 border-gray-600 dark:bg-gray-500 dark:hover:bg-gray-600',
+				destructive:
+					/*tw*/ 'bg-red-600 text-white hover:bg-red-700 border-red-600 dark:bg-red-500 dark:hover:bg-red-600',
+				warning:
+					/*tw*/ 'bg-yellow-500 text-white hover:bg-yellow-600 border-yellow-500 dark:bg-yellow-400 dark:hover:bg-yellow-500',
+				success:
+					/*tw*/ 'bg-green-600 text-white hover:bg-green-700 border-green-600 dark:bg-green-500 dark:hover:bg-green-600',
+				dark: /*tw*/ 'bg-gray-900 text-white hover:bg-gray-800 border-gray-900 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200',
+				link: /*tw*/ 'bg-transparent text-blue-600 hover:text-blue-700 border-transparent dark:text-blue-400 dark:hover:text-blue-300',
+				'link-secondary':
+					/*tw*/ 'bg-transparent text-gray-600 hover:text-gray-700 border-transparent dark:text-gray-400 dark:hover:text-gray-300',
+				'link-destructive':
+					/*tw*/ 'bg-transparent text-red-600 hover:text-red-700 border-transparent dark:text-red-400 dark:hover:text-red-300',
+				'link-warning':
+					/*tw*/ 'bg-transparent text-yellow-600 hover:text-yellow-700 border-transparent dark:text-yellow-400 dark:hover:text-yellow-300',
+				'link-success':
+					/*tw*/ 'bg-transparent text-green-600 hover:text-green-700 border-transparent dark:text-green-400 dark:hover:text-green-300',
+				'link-dark':
+					/*tw*/ 'bg-transparent text-gray-900 hover:text-gray-800 border-transparent dark:text-gray-100 dark:hover:text-gray-200',
 			},
 
 			outline: {

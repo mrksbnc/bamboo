@@ -31,5 +31,17 @@ export { TEXT_MANIFEST } from './text.manifest';
 // # Textarea
 export { TEXTAREA_MANIFEST } from './textarea.manifest';
 
+// # Modal
+export { MODAL_MANIFEST } from './modal.manifest';
+
+// # Checkbox
+export { CHECKBOX_MANIFEST } from './checkbox.manifest';
+
+// # Radio
+export { RADIO_MANIFEST } from './radio.manifest';
+
+// # Table
+export { TABLE_MANIFEST } from './table.manifest';
+
 // # Types
 export type { ComponentManifest } from './types';
