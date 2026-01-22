@@ -8,16 +8,20 @@ export type BoButtonVariant =
 	| 'secondary'
 	| 'success'
 	| 'warning'
-	| 'danger'
+	| 'destructive'
 	| 'dark'
-	| 'purple'
-	| 'teal';
+	| 'link'
+	| 'link-secondary'
+	| 'link-destructive'
+	| 'link-warning'
+	| 'link-success'
+	| 'link-dark';
 
 export type BoButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
-export type BoButtonKind = 'default' | 'outline' | 'pill';
+export type BoButtonKind = 'filled' | 'outline' | 'ghost';
 
-export type BoButtonShape = 'default' | 'pill' | 'outline';
+export type BoButtonShape = 'default' | 'pill' | 'outline' | 'flat';
 
 export interface BoButtonProps {
 	/**
@@ -61,11 +65,12 @@ export interface BoButtonProps {
 	/**
 	 * The kind of the button.
 	 *
-	 * - default: A button with a background color and rounded corners.
+	 * - filled: A button with a background color and rounded corners.
 	 * - outline: A button with a border and no background color.
+	 * - ghost: A button with no background or border.
 	 * - pill: A button with a background color and fully rounded corners.
 	 *
-	 * @default 'default'
+	 * @default 'filled'
 	 */
 	kind?: BoButtonKind;
 	/**
@@ -93,6 +98,8 @@ export interface BoButtonProps {
 	label?: string;
 	/** Whether the button is full width or not. */
 	fullWidth?: boolean;
+	/** Whether link variants should have shadow. */
+	linkVariantWithShadow?: boolean;
 	/** The prefix icon to render */
 	prefixIcon?: Icon;
 	/** The suffix icon to render */
@@ -154,11 +161,13 @@ type BoButtonShapeStyleMap = Record<BoButtonShape, string>;
 
 export interface BoButtonStyleManifest {
 	base: string;
+	pressed: string;
 	shape: BoButtonShapeStyleMap;
 	size: BoButtonSizeStyleMap;
 	iconOnlySize: BoButtonSizeStyleMap;
 	variants: Record<BoButtonKind, BoButtonVariantStyleMap>;
 	textColor: Record<BoButtonKind, BoButtonVariantStyleMap>;
+	shadow: Record<BoButtonKind, BoButtonVariantStyleMap>;
 	fontSize: Record<BoButtonSize, string>;
 	iconSize: Record<BoButtonSize, string>;
 }

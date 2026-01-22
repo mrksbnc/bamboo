@@ -5,7 +5,7 @@ import {
 	type BoLoaderSize,
 	type BoLoaderVariant,
 } from './index.js';
-import { ComponentManifest } from '../manifests/index.js';
+import { ComponentManifest } from '../manifests/types.js';
 
 export interface BoLoadingSpinnerProps {
 	/** Unique id for the loading spinner */
@@ -14,7 +14,7 @@ export interface BoLoadingSpinnerProps {
 	dataTestId?: string;
 	/**
 	 * The size of the loading spinner
-	 * @default 'md'
+	 * @default 'default'
 	 */
 	size?: BoLoaderSize;
 	/**

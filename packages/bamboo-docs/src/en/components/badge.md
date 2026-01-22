@@ -63,13 +63,13 @@ The badge component supports comes with a variety of predefined color variants. 
 
 Available variants are:
 
-- primary: A blue badge
-- secondary: A neutral badge
-- success: A green badge
-- warning: A yellow badge
-- destructive: A red badge
-- light: A light themed badge
-- dark: A dark themed badge
+- `primary`: A blue badge
+- `secondary`: A neutral badge
+- `destructive`: A red badge
+- `warning`: A yellow badge
+- `success`: A green badge
+- `light`: A light themed badge
+- `black`: A dark themed badge
 
 ### Default kind variants (filled)
 
@@ -80,7 +80,7 @@ Available variants are:
   <bo-badge label="Warning" variant="warning" />
   <bo-badge label="Destructive" variant="destructive" />
   <bo-badge label="Light" variant="light" />
-  <bo-badge label="Dark" variant="black" />
+  <bo-badge label="Black" variant="black" />
 </div>
 
 ```vue
@@ -90,7 +90,7 @@ Available variants are:
 <bo-badge label="Warning" variant="warning" />
 <bo-badge label="Destructive" variant="destructive" />
 <bo-badge label="Light" variant="light" />
-<bo-badge label="Dark" variant="black" />
+<bo-badge label="Black" variant="black" />
 ```
 
 ### Outline kind variants (outline)
@@ -102,7 +102,7 @@ Available variants are:
   <bo-badge label="Warning" kind="outline" variant="warning" />
   <bo-badge label="Destructive" kind="outline" variant="destructive" />
   <bo-badge label="Light" kind="outline" variant="light" />
-  <bo-badge label="Dark" kind="outline" variant="black" />
+  <bo-badge label="Black" kind="outline" variant="black" />
 </div>
 
 ```vue
@@ -112,7 +112,7 @@ Available variants are:
 <bo-badge label="Warning" kind="outline" variant="warning" />
 <bo-badge label="Destructive" kind="outline" variant="destructive" />
 <bo-badge label="Light" kind="outline" variant="light" />
-<bo-badge label="Dark" kind="outline" variant="black" />
+<bo-badge label="Black" kind="outline" variant="black" />
 ```
 
 ## Sizes
@@ -138,7 +138,7 @@ Badges can have an outline style:
   <bo-badge label="Warning" kind="outline" variant="warning" />
   <bo-badge label="Destructive" kind="outline" variant="destructive" />
   <bo-badge label="Light" kind="outline" variant="light" />
-  <bo-badge label="Dark" kind="outline" variant="black" />
+  <bo-badge label="Black" kind="outline" variant="black" />
 </div>
 
 ```vue
@@ -252,7 +252,7 @@ The `cursor` prop is used to control the cursor style of the badge. The values a
 | `customTextColor` | `string`                       | -               | The custom text color for the badge.                    |
 | `prefixIcon`      | `Icon`                         | -               | The prefix icon of the badge.                           |
 | `suffixIcon`      | `Icon`                         | -               | The suffix icon of the badge.                           |
-| `role`            | `HTMLAttributes['role']`       | `status`        | The role of the element.                                |
+| `role`            | `HTMLAttributes['role']`       | -               | The role of the element.                                |
 | `ariaLabel`       | `HTMLAttributes['aria-label']` | -               | Defines a string value that labels the current element. |
 
 ### Slots

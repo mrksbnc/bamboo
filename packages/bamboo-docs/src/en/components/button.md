@@ -39,10 +39,8 @@ The `variant` prop allows you to customize the color of the button. The default 
   <bo-button variant="secondary">Secondary</bo-button>
   <bo-button variant="success">Success</bo-button>
   <bo-button variant="warning">Warning</bo-button>
-  <bo-button variant="danger">Danger</bo-button>
+  <bo-button variant="destructive">Destructive</bo-button>
   <bo-button variant="dark">Dark</bo-button>
-  <bo-button variant="purple">Purple</bo-button>
-  <bo-button variant="teal">Teal</bo-button>
 </div>
 :::
 
@@ -51,10 +49,8 @@ The `variant` prop allows you to customize the color of the button. The default 
 <bo-button variant="secondary">Secondary</bo-button>
 <bo-button variant="success">Success</bo-button>
 <bo-button variant="warning">Warning</bo-button>
-<bo-button variant="danger">Danger</bo-button>
+<bo-button variant="destructive">Destructive</bo-button>
 <bo-button variant="dark">Dark</bo-button>
-<bo-button variant="purple">Purple</bo-button>
-<bo-button variant="teal">Teal</bo-button>
 ```
 
 ## Sizes
@@ -82,21 +78,21 @@ The `size` prop allows you to customize the size of the button. The default size
 
 ## Kinds
 
-The `kind` prop allows you to customize the style of the button. The default kind is `default`.
+The `kind` prop allows you to customize the style of the button. The default kind is `filled`.
 
 ::: raw
 
 <div class="flex gap-4 flex-wrap">
-  <bo-button kind="default">Default</bo-button>
+  <bo-button kind="filled">Filled</bo-button>
   <bo-button kind="outline">Outline</bo-button>
-  <bo-button kind="pill">Pill</bo-button>
+  <bo-button kind="ghost">Ghost</bo-button>
 </div>
 :::
 
 ```vue
-<bo-button kind="default">Default</bo-button>
+<bo-button kind="filled">Filled</bo-button>
 <bo-button kind="outline">Outline</bo-button>
-<bo-button kind="pill">Pill</bo-button>
+<bo-button kind="ghost">Ghost</bo-button>
 ```
 
 ## With Icons

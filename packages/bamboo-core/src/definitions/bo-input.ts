@@ -1,6 +1,6 @@
 import { HTMLAttributes, InputHTMLAttributes } from 'vue';
 import { BoFontSize, BoIconSize, Icon } from './index.js';
-import { ComponentManifest } from '../manifests/index.js';
+import { ComponentManifest } from '../manifests/types.js';
 
 export type BoInputSize = 'sm' | 'default' | 'lg';
 
@@ -34,7 +34,7 @@ export interface BoInputProps {
 	dataTestId?: string;
 	/**
 	 * The size of the input.
-	 * @default 'md'
+	 * @default 'default'
 	 */
 	size?: BoInputSize;
 	/**

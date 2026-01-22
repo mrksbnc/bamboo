@@ -28,6 +28,19 @@ export {
 	type BoButtonProps,
 	type ButtonManifest,
 
+	// Card
+	type BoCardVariant,
+	type BoCardSize,
+	type BoCardPadding,
+	type BoCardProps,
+	type CardManifest,
+
+	// Divider
+	type BoDividerVariant,
+	type BoDividerType,
+	type BoDividerProps,
+	type DividerManifest,
+
 	// Icon
 	type Icon,
 	type BoIconSize,
@@ -88,6 +101,8 @@ export {
 	AVATAR_MANIFEST,
 	BADGE_MANIFEST,
 	BUTTON_MANIFEST,
+	CARD_MANIFEST,
+	DIVIDER_MANIFEST,
 	ICON_MANIFEST,
 	TEXT_MANIFEST,
 	TEXTAREA_MANIFEST,

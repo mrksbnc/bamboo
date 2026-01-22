@@ -54,17 +54,20 @@ export default defineConfig({
 
 	vite: {
 		resolve: {
-			alias: {
-				'@mrksbnc/bamboo-vue': fileURLToPath(
-					new URL('../../bamboo-vue/src/index.ts', import.meta.url),
-				),
-				'@mrksbnc/bamboo-vue/lib.css': fileURLToPath(
-					new URL('../../bamboo-vue/src/lib.css', import.meta.url),
-				),
-				'@workspace/bamboo-core': fileURLToPath(
-					new URL('../../bamboo-core/src/index.ts', import.meta.url),
-				),
-			},
+			alias: [
+				{
+					find: '@mrksbnc/bamboo-vue/lib.css',
+					replacement: fileURLToPath(new URL('../../bamboo-vue/dist/lib.css', import.meta.url)),
+				},
+				{
+					find: '@mrksbnc/bamboo-vue',
+					replacement: fileURLToPath(new URL('../../bamboo-vue/src/index.ts', import.meta.url)),
+				},
+				{
+					find: '@workspace/bamboo-core',
+					replacement: fileURLToPath(new URL('../../bamboo-core/src/index.ts', import.meta.url)),
+				},
+			],
 		},
 		plugins: [groupIconVitePlugin()],
 	},
