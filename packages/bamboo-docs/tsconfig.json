@@ -1,16 +1,7 @@
 {
+	"extends": "@workspace/config/tsconfig.vue.json",
 	"compilerOptions": {
-		"types": ["node"],
-		"target": "esnext",
-		"module": "esnext",
-		"moduleResolution": "bundler",
-		"lib": ["DOM"],
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["./src/*"]
-		}
+		"types": ["node"]
 	},
-	"exclude": ["node_modules", "dist"],
-	"extends": "@tsconfig/node22/tsconfig.json",
 	"include": [".vitepress/**/*.ts", "src/**/*.ts"]
 }

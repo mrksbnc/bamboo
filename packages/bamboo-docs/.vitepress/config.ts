@@ -53,22 +53,22 @@ export default defineConfig({
 	},
 
 	vite: {
-		resolve: {
-			alias: [
-				{
-					find: '@mrksbnc/bamboo-vue/lib.css',
-					replacement: fileURLToPath(new URL('../../bamboo-vue/dist/lib.css', import.meta.url)),
-				},
-				{
-					find: '@mrksbnc/bamboo-vue',
-					replacement: fileURLToPath(new URL('../../bamboo-vue/src/index.ts', import.meta.url)),
-				},
-				{
-					find: '@workspace/bamboo-core',
-					replacement: fileURLToPath(new URL('../../bamboo-core/src/index.ts', import.meta.url)),
-				},
-			],
-		},
+		// resolve: {
+		// 	alias: [
+		// 		{
+		// 			find: '@mrksbnc/bamboo-vue/lib.css',
+		// 			replacement: fileURLToPath(new URL('../../bamboo-vue/dist/lib.css', import.meta.url)),
+		// 		},
+		// 		{
+		// 			find: '@mrksbnc/bamboo-vue',
+		// 			replacement: fileURLToPath(new URL('../../bamboo-vue/src/index.ts', import.meta.url)),
+		// 		},
+		// 		{
+		// 			find: '@workspace/bamboo-core',
+		// 			replacement: fileURLToPath(new URL('../../bamboo-core/src/index.ts', import.meta.url)),
+		// 		},
+		// 	],
+		// },
 		plugins: [groupIconVitePlugin()],
 	},
 });
