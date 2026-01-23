@@ -23,11 +23,8 @@
 	"devDependencies": {
 		"@mrksbnc/bamboo-vue": "workspace:*",
 		"@vueuse/core": "^14.1.0",
-		"@whyframe/core": "^0.1.14",
-		"@whyframe/vue": "^0.1.9",
 		"@workspace/bamboo-core": "workspace:*",
-		"tsx": "^4.19.2",
-		"typescript": "^5.7.3",
+		"@workspace/config": "workspace:*",
 		"vitepress": "2.0.0-alpha.15",
 		"vitepress-plugin-group-icons": "^1.7.1",
 		"vue": "^3.5.26"
