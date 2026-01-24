@@ -55,14 +55,14 @@ export const TEXT_MANIFEST = {
 			inherit: /*tw*/ 'text-inherit',
 			currentColor: /*tw*/ 'text-current',
 			primary: /*tw*/ 'text-blue-600 dark:text-blue-500',
-			secondary: /*tw*/ 'text-neutral-00 dark:text-neutral-400',
+			secondary: /*tw*/ 'text-neutral-600 dark:text-neutral-500',
 			disabled:
 				/*tw*/ 'text-neutral-500 dark:text-neutral-300 opacity-50 cursor-not-allowed select-none',
 			success: /*tw*/ 'text-green-600 dark:text-green-500',
 			warning: /*tw*/ 'text-yellow-600 dark:text-yellow-500',
 			destructive: /*tw*/ 'text-red-600 dark:text-red-500',
 			white: /*tw*/ 'text-white',
-			black: /*tw*/ 'text-black',
+			black: /*tw*/ 'text-neutral-800 dark:text-neutral-400',
 		},
 
 		textTransform: {

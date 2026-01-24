@@ -1,3 +1,4 @@
+export { default as BoAlert } from './bo-alert/bo-alert.vue';
 export { default as BoAvatar } from './bo-avatar/bo-avatar.vue';
 export { default as BoBadge } from './bo-badge/bo-badge.vue';
 export { default as BoButton } from './bo-button/bo-button.vue';
@@ -13,3 +14,4 @@ export { default as BoRadio } from './bo-radio/bo-radio.vue';
 export { default as BoTable } from './bo-table/bo-table.vue';
 export { default as BoText } from './bo-text/bo-text.vue';
 export { default as BoTextarea } from './bo-textarea/bo-textarea.vue';
+export { default as BoToggle } from './bo-toggle/bo-toggle.vue';

@@ -5,9 +5,18 @@ import { useRouter } from 'vitepress'
 const router = useRouter()
 
 onMounted(() => {
-  // Redirect to /en/ on mount
   if (typeof window !== 'undefined') {
-    window.location.href = '/en/'
+    const availableLocales = ['en'];
+
+
+    const userLocale = window.navigator.language || window.navigator.userLanguage
+
+    if (availableLocales.includes(userLocale)) {
+      router.push(`/${userLocale}/`);
+      return;
+    }
+
+    window.location.href = '/en/';
   }
 })
 </script>

@@ -18,12 +18,12 @@ export const LOADING_SPINNER_MANIFEST = {
 		},
 		variant: {
 			primary: /*tw*/ 'text-blue-600 dark:text-blue-500',
-			secondary: /*tw*/ 'text-gray-600 dark:text-gray-500',
+			secondary: /*tw*/ 'text-neutral-600 dark:text-neutral-500',
 			success: /*tw*/ 'text-green-600 dark:text-green-500',
 			warning: /*tw*/ 'text-yellow-600 dark:text-yellow-500',
 			destructive: /*tw*/ 'text-red-600 dark:text-red-500',
 			white: /*tw*/ 'text-white',
-			black: /*tw*/ 'text-black dark:text-white',
+			black: /*tw*/ 'text-neutral-800 dark:text-neutral-400',
 			current: /*tw*/ 'text-current',
 		},
 		textPosition: {

@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitepress';
-import { fileURLToPath, URL } from 'node:url';
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 
 // Import locale-specific configs
@@ -9,32 +8,24 @@ import { en } from './locales/en';
 export default defineConfig({
 	title: 'Bamboo',
 	description: 'Lightweight and flexible design system for the web.',
-
 	srcDir: './src',
-
 	cleanUrls: true,
 	metaChunk: true,
 	lastUpdated: true,
-
 	outDir: '.vitepress/dist',
-
-	base: process.env.VP_BASE || '/',
-
+	base: process.env['VP_BASE'] || '/',
 	head: [
 		['script', { src: 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4' }],
 		['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
 	],
-
 	sitemap: {
 		hostname: 'https://mrksbnc.github.io/bamboo/',
 	},
-
 	markdown: {
 		config(md) {
 			md.use(groupIconMdPlugin);
 		},
 	},
-
 	themeConfig: {
 		logo: '/assets/logo.webp',
 		socialLinks: [{ icon: 'github', link: 'https://github.com/mrksbnc/bamboo' }],
@@ -42,7 +33,6 @@ export default defineConfig({
 			provider: 'local',
 		},
 	},
-
 	locales: {
 		en: {
 			label: 'English',
@@ -51,24 +41,7 @@ export default defineConfig({
 			...en,
 		},
 	},
-
 	vite: {
-		// resolve: {
-		// 	alias: [
-		// 		{
-		// 			find: '@mrksbnc/bamboo-vue/lib.css',
-		// 			replacement: fileURLToPath(new URL('../../bamboo-vue/dist/lib.css', import.meta.url)),
-		// 		},
-		// 		{
-		// 			find: '@mrksbnc/bamboo-vue',
-		// 			replacement: fileURLToPath(new URL('../../bamboo-vue/src/index.ts', import.meta.url)),
-		// 		},
-		// 		{
-		// 			find: '@workspace/bamboo-core',
-		// 			replacement: fileURLToPath(new URL('../../bamboo-core/src/index.ts', import.meta.url)),
-		// 		},
-		// 	],
-		// },
 		plugins: [groupIconVitePlugin()],
 	},
 });

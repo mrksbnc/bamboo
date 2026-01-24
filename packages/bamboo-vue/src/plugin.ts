@@ -15,6 +15,7 @@ import {
 	BoTable,
 	BoText,
 	BoTextarea,
+	BoToggle,
 } from './components/index.js';
 
 const BambooComponents = {
@@ -33,6 +34,7 @@ const BambooComponents = {
 	BoTable,
 	BoText,
 	BoTextarea,
+	BoToggle,
 };
 
 export const BambooVue = {

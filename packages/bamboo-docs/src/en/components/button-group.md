@@ -17,7 +17,7 @@ import { BoButtonGroup, BoButton } from '@mrksbnc/bamboo-vue'
 
 # Button Group
 
-The `bo-button-group` component is used to group related buttons together, providing a cohesive visual appearance and consistent spacing.
+The `bo-button-group` component is used to group related buttons together, providing a cohesive visual appearance, consistent spacing, and optional selection state management.
 
 ## Basic Usage
 
@@ -34,6 +34,109 @@ The `bo-button-group` component is used to group related buttons together, provi
   <bo-button>First</bo-button>
   <bo-button>Second</bo-button>
   <bo-button>Third</bo-button>
+</bo-button-group>
+```
+
+## Selection State
+
+Button groups can manage selection state with `v-model`. Use the `data-value` attribute on buttons to specify their values.
+
+### Single Selection
+
+::: raw
+<bo-button-group v-model="selectedValue">
+<bo-button data-value="option1">Option 1</bo-button>
+<bo-button data-value="option2">Option 2</bo-button>
+<bo-button data-value="option3">Option 3</bo-button>
+</bo-button-group>
+:::
+
+```vue
+<script setup>
+	import { ref } from 'vue';
+	const selectedValue = ref('option1');
+</script>
+
+<bo-button-group v-model="selectedValue">
+  <bo-button data-value="option1">Option 1</bo-button>
+  <bo-button data-value="option2">Option 2</bo-button>
+  <bo-button data-value="option3">Option 3</bo-button>
+</bo-button-group>
+```
+
+### Multiple Selection
+
+Enable multiple selection with the `multiple` prop.
+
+::: raw
+<bo-button-group v-model="selectedValues" :multiple="true">
+<bo-button data-value="bold">Bold</bo-button>
+<bo-button data-value="italic">Italic</bo-button>
+<bo-button data-value="underline">Underline</bo-button>
+</bo-button-group>
+:::
+
+```vue
+<script setup>
+	import { ref } from 'vue';
+	const selectedValues = ref(['bold', 'italic']);
+</script>
+
+<bo-button-group v-model="selectedValues" :multiple="true">
+  <bo-button data-value="bold">Bold</bo-button>
+  <bo-button data-value="italic">Italic</bo-button>
+  <bo-button data-value="underline">Underline</bo-button>
+</bo-button-group>
+```
+
+### Required Selection
+
+Use the `required` prop to ensure at least one button remains selected.
+
+::: raw
+<bo-button-group v-model="requiredValue" :required="true">
+<bo-button data-value="left">Left</bo-button>
+<bo-button data-value="center">Center</bo-button>
+<bo-button data-value="right">Right</bo-button>
+</bo-button-group>
+:::
+
+```vue
+<script setup>
+	import { ref } from 'vue';
+	const requiredValue = ref('center');
+</script>
+
+<bo-button-group v-model="requiredValue" :required="true">
+  <bo-button data-value="left">Left</bo-button>
+  <bo-button data-value="center">Center</bo-button>
+  <bo-button data-value="right">Right</bo-button>
+</bo-button-group>
+```
+
+## Scalability
+
+Button groups can handle any number of buttons, not just three. The component automatically applies appropriate styling for first, middle, and last buttons.
+
+::: raw
+<bo-button-group>
+<bo-button data-value="1">One</bo-button>
+<bo-button data-value="2">Two</bo-button>
+<bo-button data-value="3">Three</bo-button>
+<bo-button data-value="4">Four</bo-button>
+<bo-button data-value="5">Five</bo-button>
+<bo-button data-value="6">Six</bo-button>
+</bo-button-group>
+:::
+
+```vue
+<bo-button-group>
+  <bo-button data-value="1">One</bo-button>
+  <bo-button data-value="2">Two</bo-button>
+  <bo-button data-value="3">Three</bo-button>
+  <bo-button data-value="4">Four</bo-button>
+  <bo-button data-value="5">Five</bo-button>
+  <bo-button data-value="6">Six</bo-button>
 </bo-button-group>
 ```
 

@@ -1,91 +1,69 @@
 <template>
-	<div :class="classValues">
+	<div :class="baseClasses">
 		<!-- Label section -->
-		<div v-if="label || required || $slots.topRightContent" :class="labelContainerClassValues">
-			<div :class="labelClassValues">
-				<bo-text v-if="label" :value="label" :font-size="labelFontSize" />
-				<span v-if="required" :class="requiredIndicatorClassValues">*</span>
+		<div v-if="label || required || $slots.topRightContent" :class="labelContainerClasses">
+			<div :class="labelClasses">
+				<span v-if="label">{{ label }}</span>
+				<span v-if="required" :class="requiredClasses">*</span>
 			</div>
 			<slot name="topRightContent"></slot>
 		</div>
 
 		<!-- Input container -->
-		<div :class="containerClassValues">
+		<div :class="containerClasses">
 			<!-- Prefix icon -->
-			<div
-				v-if="prefixIcon && prefixIcon !== 'none'"
-				:class="prefixIconClassValues"
-				@click="emit('prefixIconClick')"
-			>
-				<bo-icon :icon="prefixIcon" :size="iconSize" aria-hidden="true" />
+			<div v-if="prefixIcon" :class="prefixIconClasses" @click="emit('prefixIconClick')">
+				<bo-icon :icon="prefixIcon" size="sm" aria-hidden="true" />
 			</div>
 
-			<!-- Input field and pills container -->
-			<div ref="inputContainerRef" :class="inputContainerClassValues">
-				<!-- Input field -->
-				<input
-					ref="inputRef"
-					:id="id"
-					:data-testid="dataTestId"
-					:name="name"
-					:type="inputType"
-					:value="modelValue"
-					:disabled="disabled"
-					:readonly="readOnly"
-					:required="required"
-					:autofocus="autofocus"
-					:placeholder="placeholder"
-					:class="inputClassValues"
-					:aria-label="ariaLabel"
-					:aria-describedby="helperTextId"
-					:aria-invalid="state === 'invalid'"
-					@input="onInput"
-					@focus="emit('focus')"
-					@blur="onBlur"
-					@change="onChange"
-				/>
-			</div>
+			<!-- Input field -->
+			<input
+				ref="inputRef"
+				:id="id"
+				:data-testid="dataTestId"
+				:name="name"
+				:type="inputType"
+				v-model="model"
+				:disabled="disabled"
+				:readonly="readOnly"
+				:required="required"
+				:autofocus="autofocus"
+				:placeholder="placeholder"
+				:class="inputClasses"
+				:aria-label="ariaLabel"
+				:aria-describedby="helperTextId"
+				:aria-invalid="state === 'invalid'"
+				@focus="emit('focus')"
+				@blur="emit('blur', $event)"
+				@change="emit('change', $event)"
+			/>
 
 			<!-- Suffix/action icons -->
-			<div
-				v-if="(suffixIcon && suffixIcon !== 'none') || showPasswordToggle"
-				:class="suffixIconClassValues"
-				@click="emit('suffixIconClick')"
-			>
+			<div v-if="suffixIcon || showPasswordToggle" :class="suffixIconClasses">
 				<bo-icon
-					v-if="suffixIcon && suffixIcon !== 'none' && !showPasswordToggle"
+					v-if="suffixIcon && !showPasswordToggle"
 					:icon="suffixIcon"
-					:size="iconSize"
+					size="sm"
 					aria-hidden="true"
 				/>
 				<bo-icon
 					v-if="showPasswordToggle"
 					:icon="passwordVisible ? 'eye_off' : 'eye'"
-					:size="iconSize"
-					class="cursor-pointer"
+					size="sm"
 					@click.stop="togglePasswordVisibility"
 				/>
 			</div>
 		</div>
 
 		<!-- Helper text/error container -->
-		<div v-if="error || hint" :class="helperContainerClassValues">
-			<div v-if="error" :class="errorContainerClassValues">
-				<bo-icon size="sm" icon="alert_circle" variant="destructive" />
-				<bo-text
-					:id="helperTextId"
-					:font-size="hintFontSize"
-					variant="destructive"
-					:value="error"
-				/>
+		<div v-if="error || hint" :class="helperContainerClasses">
+			<div v-if="error" :class="errorClasses">
+				<bo-icon size="sm" icon="alert_circle" />
+				<span :id="helperTextId">{{ error }}</span>
 			</div>
-			<bo-text
-				v-if="hint && !error"
-				:id="helperTextId"
-				:value="hint"
-				:font-size="hintFontSize"
-				variant="secondary"
-			/>
+			<span v-else-if="hint" :id="helperTextId" class="text-sm text-gray-600 dark:text-gray-400">
+				{{ hint }}
+			</span>
 		</div>
 	</div>
 </template>
@@ -96,57 +74,35 @@
 		generateDataTestId,
 		INPUT_MANIFEST,
 		mergeTwClasses,
-		type BoFontSize,
-		type BoIconSize,
 		type BoInputProps,
 	} from '@workspace/bamboo-core';
-	import { computed, onMounted, ref, type StyleValue } from 'vue';
+	import { computed, onMounted, ref } from 'vue';
 	import { BoIcon } from '../bo-icon';
-	import { BoText } from '../bo-text';
 
-	interface Props extends /* @vue-ignore */ BoInputProps {
-		modelValue?: string;
-	}
-
-	const props = withDefaults(defineProps<Props>(), {
+	const props = withDefaults(defineProps<BoInputProps>(), {
 		id: () => generateComponentId('input'),
 		dataTestId: () => generateDataTestId('input'),
 		role: () => INPUT_MANIFEST.defaults.role,
-		size: () => INPUT_MANIFEST.defaults.size,
 		state: () => INPUT_MANIFEST.defaults.state,
-		variant: () => INPUT_MANIFEST.defaults.variant,
 		type: () => INPUT_MANIFEST.defaults.type,
 	});
 
 	const emit = defineEmits<{
-		'update:modelValue': [value: string];
 		focus: [];
 		blur: [event: FocusEvent];
-		change: [value: string];
+		change: [event: Event];
 		prefixIconClick: [];
 		suffixIconClick: [];
 	}>();
 
+	// Use defineModel for v-model
+	const model = defineModel<string>({ default: '' });
+
 	const inputRef = ref<HTMLInputElement | null>(null);
-	const inputContainerRef = ref<HTMLDivElement | null>(null);
 	const passwordVisible = ref(false);
 
-	const iconSize = computed<BoIconSize>(() => {
-		return INPUT_MANIFEST.styles.icons.size[props.size || 'default'];
-	});
-
-	const labelFontSize = computed<BoFontSize>(() => {
-		return INPUT_MANIFEST.styles.labels.fontSize;
-	});
-
-	const hintFontSize = computed<BoFontSize>(() => {
-		return INPUT_MANIFEST.styles.helpers.fontSize;
-	});
-
 	const showPasswordToggle = computed<boolean>(() => {
-		return (
-			props.type === 'password' && !props.disabled && !!props.modelValue && !!props.revealPassword
-		);
+		return props.type === 'password' && !props.disabled && !!model.value && !!props.revealPassword;
 	});
 
 	const helperTextId = computed<string>(() => `${props.id}-helper`);
@@ -158,93 +114,54 @@
 		return props.type || 'text';
 	});
 
-	const containerClassValues = computed<string>(() => {
-		const baseClasses: string[] = [
+	const baseClasses = computed<string>(() => {
+		return mergeTwClasses(INPUT_MANIFEST.styles.base, props.fullWidth ? 'w-full' : '');
+	});
+
+	const containerClasses = computed<string>(() => {
+		const classes = [
 			INPUT_MANIFEST.styles.container.base,
-			INPUT_MANIFEST.styles.variant[props.variant || 'default'],
 			INPUT_MANIFEST.styles.state[props.state || 'default'],
-			INPUT_MANIFEST.styles.size[props.size || 'default'],
 		];
 
 		if (props.disabled) {
-			baseClasses.push(INPUT_MANIFEST.styles.container.disabled as string);
-		}
-
-		return mergeTwClasses(...baseClasses);
-	});
-
-	const inputClassValues = computed<string>(() => {
-		return mergeTwClasses(INPUT_MANIFEST.styles.input.base);
-	});
-
-	const inputContainerClassValues = computed<string>(() => {
-		const classes: string[] = [
-			INPUT_MANIFEST.styles.inputContainer.base,
-			INPUT_MANIFEST.styles.padding[props.size || 'default'],
-		];
-
-		if (props.prefixIcon && props.prefixIcon !== 'none') {
-			classes.push(INPUT_MANIFEST.styles.inputContainer.withPrefixIcon as string);
-		}
-
-		if ((props.suffixIcon && props.suffixIcon !== 'none') || showPasswordToggle.value) {
-			classes.push(INPUT_MANIFEST.styles.inputContainer.withSuffixIcon as string);
+			classes.push(INPUT_MANIFEST.styles.container.disabled);
 		}
 
 		return mergeTwClasses(...classes);
 	});
 
-	const prefixIconClassValues = computed<string>(() => {
+	const inputClasses = computed<string>(() => {
+		return mergeTwClasses(INPUT_MANIFEST.styles.input.base);
+	});
+
+	const prefixIconClasses = computed<string>(() => {
 		return mergeTwClasses(INPUT_MANIFEST.styles.icons.prefix);
 	});
 
-	const suffixIconClassValues = computed<string>(() => {
+	const suffixIconClasses = computed<string>(() => {
 		return mergeTwClasses(INPUT_MANIFEST.styles.icons.suffix);
 	});
 
-	const labelContainerClassValues = computed<string>(() => {
+	const labelContainerClasses = computed<string>(() => {
 		return mergeTwClasses(INPUT_MANIFEST.styles.labels.container);
 	});
 
-	const labelClassValues = computed<string>(() => {
+	const labelClasses = computed<string>(() => {
 		return mergeTwClasses(INPUT_MANIFEST.styles.labels.label);
 	});
 
-	const requiredIndicatorClassValues = computed<string>(() => {
+	const requiredClasses = computed<string>(() => {
 		return mergeTwClasses(INPUT_MANIFEST.styles.labels.required);
 	});
 
-	const helperContainerClassValues = computed<string>(() => {
+	const helperContainerClasses = computed<string>(() => {
 		return mergeTwClasses(INPUT_MANIFEST.styles.helpers.container);
 	});
 
-	const errorContainerClassValues = computed<string>(() => {
+	const errorClasses = computed<string>(() => {
 		return mergeTwClasses(INPUT_MANIFEST.styles.helpers.error);
 	});
-
-	const classValues = computed<string>(() => {
-		return mergeTwClasses(INPUT_MANIFEST.styles.base);
-	});
-
-	const styleValues = computed<StyleValue>(() => {
-		return {};
-	});
-
-	function onInput(event: Event) {
-		if (event.target instanceof HTMLInputElement) {
-			emit('update:modelValue', event.target.value);
-		}
-	}
-
-	function onBlur(event: FocusEvent) {
-		emit('blur', event);
-	}
-
-	function onChange(event: Event) {
-		if (event.target instanceof HTMLInputElement) {
-			emit('change', event.target.value);
-		}
-	}
 
 	function togglePasswordVisibility() {
 		passwordVisible.value = !passwordVisible.value;
@@ -262,17 +179,3 @@
 		}
 	});
 </script>
-
-<style>
-	input[type='search']::-webkit-search-decoration,
-	input[type='search']::-webkit-search-cancel-button,
-	input[type='search']::-webkit-search-results-button,
-	input[type='search']::-webkit-search-results-decoration {
-		display: none;
-	}
-
-	input[type='password']::-ms-reveal,
-	input[type='password']::-ms-clear {
-		display: none;
-	}
-</style>

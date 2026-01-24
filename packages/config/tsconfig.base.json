@@ -1,0 +1,21 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "@tsconfig/node22/tsconfig.json",
+	"compilerOptions": {
+		"strict": true,
+		"skipLibCheck": true,
+		"isolatedModules": true,
+		"resolveJsonModule": true,
+		"verbatimModuleSyntax": false,
+		"forceConsistentCasingInFileNames": true,
+		"allowUnusedLabels": false,
+		"allowUnreachableCode": false,
+		"noUnusedLocals": false,
+		"noImplicitReturns": true,
+		"noUnusedParameters": true,
+		"noImplicitOverride": true,
+		"noUncheckedIndexedAccess": false,
+		"noFallthroughCasesInSwitch": true,
+		"noPropertyAccessFromIndexSignature": true
+	}
+}

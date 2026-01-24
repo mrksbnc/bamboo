@@ -18,12 +18,12 @@ export const LOADING_PULSE_MANIFEST = {
 		},
 		variant: {
 			primary: /*tw*/ 'bg-blue-600 dark:bg-blue-500',
-			secondary: /*tw*/ 'bg-gray-600 dark:bg-gray-500',
+			secondary: /*tw*/ 'bg-neutral-600 dark:bg-neutral-500',
 			success: /*tw*/ 'bg-green-600 dark:bg-green-500',
 			warning: /*tw*/ 'bg-yellow-600 dark:bg-yellow-500',
 			destructive: /*tw*/ 'bg-red-600 dark:bg-red-500',
 			white: /*tw*/ 'bg-white',
-			black: /*tw*/ 'bg-black dark:bg-white',
+			black: /*tw*/ 'bg-neutral-800 dark:bg-neutral-400',
 			current: /*tw*/ 'bg-current',
 		},
 		textPosition: {

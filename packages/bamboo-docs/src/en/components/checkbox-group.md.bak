@@ -58,12 +58,15 @@ v-model="fruits"
 label="Select your favorite fruits"
 description="Choose one or more options from the list below"
 
-> <bo-checkbox value="apple">Apple</bo-checkbox>
-> <bo-checkbox value="banana">Banana</bo-checkbox>
-> <bo-checkbox value="orange">Orange</bo-checkbox>
-> <bo-checkbox value="grape">Grape</bo-checkbox>
-> </bo-checkbox-group>
-> :::
+>
+
+    <bo-checkbox value="apple">Apple</bo-checkbox>
+    <bo-checkbox value="banana">Banana</bo-checkbox>
+    <bo-checkbox value="orange">Orange</bo-checkbox>
+    <bo-checkbox value="grape">Grape</bo-checkbox>
+
+</bo-checkbox-group>
+:::
 
 ```vue
 <bo-checkbox-group

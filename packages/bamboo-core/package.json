@@ -39,6 +39,9 @@
 		"type-check": "tsc --noEmit",
 		"purge": "rm -rf dist .turbo coverage"
 	},
+	"devDependencies": {
+		"@workspace/config": "workspace:*"
+	},
 	"peerDependencies": {
 		"vue": "^3.5.25"
 	}

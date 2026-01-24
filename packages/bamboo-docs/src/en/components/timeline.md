@@ -256,6 +256,7 @@ Timeline items can contain rich HTML content and custom layouts.
 <bo-timeline-item icon="user-plus" variant="primary">
 <template #title>New User Registration</template>
 <template #content>
+
 <div class="space-y-2">
 <p class="text-sm text-gray-600">John Doe registered for an account</p>
 <div class="flex gap-2">
