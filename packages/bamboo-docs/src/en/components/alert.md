@@ -56,18 +56,18 @@ Alerts can include icons to enhance visual communication and make the message ty
 ::: raw
 
 <div class="space-y-4">
-  <bo-alert variant="info" icon="info-circle">Information with icon</bo-alert>
-  <bo-alert variant="success" icon="check-circle">Success with icon</bo-alert>
-  <bo-alert variant="warning" icon="exclamation-triangle">Warning with icon</bo-alert>
-  <bo-alert variant="error" icon="x-circle">Error with icon</bo-alert>
+  <bo-alert variant="info" icon="info">Information with icon</bo-alert>
+  <bo-alert variant="success" icon="check_circle">Success with icon</bo-alert>
+  <bo-alert variant="warning" icon="alert_triangle">Warning with icon</bo-alert>
+  <bo-alert variant="error" icon="alert_circle">Error with icon</bo-alert>
 </div>
 :::
 
 ```vue
-<bo-alert variant="info" icon="info-circle">Information with icon</bo-alert>
-<bo-alert variant="success" icon="check-circle">Success with icon</bo-alert>
-<bo-alert variant="warning" icon="exclamation-triangle">Warning with icon</bo-alert>
-<bo-alert variant="error" icon="x-circle">Error with icon</bo-alert>
+<bo-alert variant="info" icon="info">Information with icon</bo-alert>
+<bo-alert variant="success" icon="check_circle">Success with icon</bo-alert>
+<bo-alert variant="warning" icon="alert_triangle">Warning with icon</bo-alert>
+<bo-alert variant="error" icon="alert_circle">Error with icon</bo-alert>
 ```
 
 ## Dismissible
@@ -78,7 +78,7 @@ Alerts can be made dismissible by adding a close button that allows users to hid
 
 <div class="space-y-4">
   <bo-alert variant="info" :dismissible="true">This alert can be dismissed</bo-alert>
-  <bo-alert variant="warning" :dismissible="true" icon="exclamation-triangle">Dismissible warning alert</bo-alert>
+  <bo-alert variant="warning" :dismissible="true" icon="alert_triangle">Dismissible warning alert</bo-alert>
 </div>
 :::
 
@@ -87,7 +87,7 @@ Alerts can be made dismissible by adding a close button that allows users to hid
 <bo-alert
 	variant="warning"
 	:dismissible="true"
-	icon="exclamation-triangle"
+	icon="alert_triangle"
 >Dismissible warning alert</bo-alert>
 ```
 
@@ -98,20 +98,20 @@ Alerts can include a title to provide additional context or hierarchy to the mes
 ::: raw
 
 <div class="space-y-4">
-  <bo-alert variant="success" title="Success!" icon="check-circle">
+  <bo-alert variant="success" title="Success!" icon="check_circle">
     Your changes have been saved successfully.
   </bo-alert>
-  <bo-alert variant="error" title="Error occurred" icon="x-circle" :dismissible="true">
+  <bo-alert variant="error" title="Error occurred" icon="alert_circle" :dismissible="true">
     There was a problem processing your request. Please try again.
   </bo-alert>
 </div>
 :::
 
 ```vue
-<bo-alert variant="success" title="Success!" icon="check-circle">
+<bo-alert variant="success" title="Success!" icon="check_circle">
   Your changes have been saved successfully.
 </bo-alert>
-<bo-alert variant="error" title="Error occurred" icon="x-circle" :dismissible="true">
+<bo-alert variant="error" title="Error occurred" icon="alert_circle" :dismissible="true">
   There was a problem processing your request. Please try again.
 </bo-alert>
 ```

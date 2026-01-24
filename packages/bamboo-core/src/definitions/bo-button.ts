@@ -1,7 +1,8 @@
 import { HTMLAttributes } from 'vue';
-import { Icon } from './bo-icon.js';
-import { BoLoaderType } from './bo-loader.js';
+import { BoIconSize, Icon } from './bo-icon.js';
+import { BoLoaderSize } from './bo-loader.js';
 import { ComponentManifest } from '../manifests/types.js';
+import { BoCursor } from './component-types.js';
 
 export type BoButtonVariant =
 	| 'primary'
@@ -9,19 +10,14 @@ export type BoButtonVariant =
 	| 'success'
 	| 'warning'
 	| 'destructive'
-	| 'dark'
-	| 'link'
-	| 'link-secondary'
-	| 'link-destructive'
-	| 'link-warning'
-	| 'link-success'
-	| 'link-dark';
+	| 'light'
+	| 'dark';
 
 export type BoButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
-export type BoButtonKind = 'filled' | 'outline' | 'ghost';
+export type BoButtonKind = 'default' | 'outline' | 'ghost' | 'link';
 
-export type BoButtonShape = 'default' | 'pill' | 'outline' | 'flat';
+export type BoButtonShape = 'default' | 'pill' | 'flat';
 
 export interface BoButtonProps {
 	/**
@@ -58,11 +54,6 @@ export interface BoButtonProps {
 	 */
 	isLoading?: boolean;
 	/**
-	 * Determines the type of loader to display when the button is loading.
-	 * @default 'spinner'
-	 */
-	loaderType?: BoLoaderType;
-	/**
 	 * The kind of the button.
 	 *
 	 * - filled: A button with a background color and rounded corners.
@@ -81,7 +72,6 @@ export interface BoButtonProps {
 	 * - outline: A button with a border.
 	 *
 	 * @default 'default'
-	 * @deprecated Use kind prop instead
 	 */
 	shape?: BoButtonShape;
 	/**
@@ -94,8 +84,6 @@ export interface BoButtonProps {
 	 * @default 'button'
 	 */
 	type?: HTMLButtonElement['type'];
-	/** The text content of the button. */
-	label?: string;
 	/** Whether the button is full width or not. */
 	fullWidth?: boolean;
 	/** Whether link variants should have shadow. */
@@ -106,9 +94,9 @@ export interface BoButtonProps {
 	suffixIcon?: Icon;
 	/** Custom color for the button background (CSS variable, hex, rgb, rgba). */
 	customColor?: {
-		background?: string;
-		border?: string;
 		text?: string;
+		border?: string;
+		background?: string;
 	};
 	/** The name of the button. */
 	name?: HTMLButtonElement['name'];
@@ -150,26 +138,53 @@ export interface BoButtonProps {
 	accessKey?: HTMLAttributes['accesskey'];
 }
 
-type BoButtonManifestDefaults = Pick<
-	BoButtonProps,
-	'kind' | 'size' | 'variant' | 'shape' | 'loaderType' | 'type' | 'role'
+type BoButtonManifestDefaults = Required<
+	Pick<BoButtonProps, 'kind' | 'size' | 'variant' | 'shape' | 'type' | 'role'>
 >;
 
 type BoButtonSizeStyleMap = Record<BoButtonSize, string>;
+
 type BoButtonVariantStyleMap = Record<BoButtonVariant, string>;
+
+type BoButtonVariantByKindStyleMap = Record<BoButtonKind, BoButtonVariantStyleMap>;
+
 type BoButtonShapeStyleMap = Record<BoButtonShape, string>;
+
+type BoButtonIconSizeStyleMap = Record<BoIconSize, string>;
+
+type BoButtonFontSizeStyleMap = Record<BoButtonSize, string>;
+
+type BoButtonLoaderSizeStyleMap = Record<BoLoaderSize, string>;
+
+type BoButtonShadowStyleMap = Record<BoButtonKind, BoButtonVariantStyleMap>;
+
+type BoButtonTextColorStyleMap = Record<BoButtonKind, BoButtonVariantStyleMap>;
+
+type BoButtonCursorStyleMap = {
+	default: BoCursor;
+	disabled: BoCursor;
+	loading: BoCursor;
+};
+
+type BoButtonWidthStyleMap = {
+	default: string;
+	full: string;
+};
 
 export interface BoButtonStyleManifest {
 	base: string;
 	pressed: string;
-	shape: BoButtonShapeStyleMap;
 	size: BoButtonSizeStyleMap;
+	shape: BoButtonShapeStyleMap;
+	shadow: BoButtonShadowStyleMap;
 	iconOnlySize: BoButtonSizeStyleMap;
-	variants: Record<BoButtonKind, BoButtonVariantStyleMap>;
-	textColor: Record<BoButtonKind, BoButtonVariantStyleMap>;
-	shadow: Record<BoButtonKind, BoButtonVariantStyleMap>;
-	fontSize: Record<BoButtonSize, string>;
-	iconSize: Record<BoButtonSize, string>;
+	iconSize: BoButtonIconSizeStyleMap;
+	fontSize: BoButtonFontSizeStyleMap;
+	textColor: BoButtonTextColorStyleMap;
+	loaderSize: BoButtonLoaderSizeStyleMap;
+	variants: BoButtonVariantByKindStyleMap;
+	cursor: BoButtonCursorStyleMap;
+	width: BoButtonWidthStyleMap;
 }
 
 export type ButtonManifest = ComponentManifest<BoButtonStyleManifest, BoButtonManifestDefaults>;

@@ -1,7 +1,10 @@
 {
 	"editor.formatOnSave": true,
 	"explorer.fileNesting.enabled": true,
-	"tailwindCSS.classAttributes": ["tw", "class"],
+	"tailwindCSS.classAttributes": [
+		"tw",
+		"class"
+	],
 	"typescript.experimental.useTsgo": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"explorer.fileNesting.patterns": {
@@ -13,11 +16,26 @@
 		".nvmrc": ".node-version"
 	},
 	"tailwindCSS.experimental.classRegex": [
-		["/\\*\\s*tw\\s*\\*/\\s*`([^`]*)`", "([^`]*)"],
-		["/\\*\\s*tw\\s*\\*/\\s*'([^']*)'", "([^']*)"],
-		["/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"", "([^\"]*)"],
-		["/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"", "([^\"]*)"],
-		["class:\\s*['\"`]([^'\"`]*)['\"`]", "([^'\"`]*)"]
+		[
+			"/\\*\\s*tw\\s*\\*/\\s*`([^`]*)`",
+			"([^`]*)"
+		],
+		[
+			"/\\*\\s*tw\\s*\\*/\\s*'([^']*)'",
+			"([^']*)"
+		],
+		[
+			"/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"",
+			"([^\"]*)"
+		],
+		[
+			"/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"",
+			"([^\"]*)"
+		],
+		[
+			"class:\\s*['\"`]([^'\"`]*)['\"`]",
+			"([^'\"`]*)"
+		]
 	],
 	"editor.quickSuggestions": {
 		"other": "on",
@@ -33,5 +51,7 @@
 	"files.associations": {
 		"*.css": "tailwindcss"
 	},
-	"cSpell.words": ["darkgreen"]
+	"cSpell.words": [
+		"darkgreen"
+	]
 }

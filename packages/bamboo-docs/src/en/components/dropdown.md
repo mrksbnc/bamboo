@@ -27,6 +27,7 @@ The `bo-dropdown` component provides a dropdown menu interface for displaying a 
 <bo-button suffix-icon="chevron-down">Options</bo-button>
 </template>
 <template #content>
+
 <div class="p-2 space-y-1">
 <div class="px-3 py-2 hover:bg-gray-100 cursor-pointer rounded">Option 1</div>
 <div class="px-3 py-2 hover:bg-gray-100 cursor-pointer rounded">Option 2</div>
@@ -190,6 +191,7 @@ Organize dropdown content with dividers and logical groups.
 <bo-button suffix-icon="chevron-down">Actions</bo-button>
 </template>
 <template #content>
+
 <div class="p-2">
 <div class="px-3 py-2 hover:bg-gray-100 cursor-pointer rounded">Edit</div>
 <div class="px-3 py-2 hover:bg-gray-100 cursor-pointer rounded">Duplicate</div>
@@ -228,6 +230,7 @@ Dropdowns can be disabled to prevent user interaction.
 <bo-button :disabled="true" suffix-icon="chevron-down">Disabled</bo-button>
 </template>
 <template #content>
+
 <div class="p-2 space-y-1">
 <div class="px-3 py-2 hover:bg-gray-100 cursor-pointer rounded">Option 1</div>
 <div class="px-3 py-2 hover:bg-gray-100 cursor-pointer rounded">Option 2</div>

@@ -25,24 +25,24 @@ export const AVATAR_MANIFEST = {
 		variants: {
 			filled: {
 				primary: /*tw*/ 'bg-blue-600 dark:bg-blue-700 text-white',
-				secondary: /*tw*/ 'bg-gray-400 dark:bg-gray-700 text-white',
+				secondary: /*tw*/ 'bg-neutral-600 dark:bg-neutral-700 text-white',
 				destructive: /*tw*/ 'bg-red-600 dark:bg-red-700 text-white',
 				warning: /*tw*/ 'bg-yellow-600 dark:bg-yellow-600 text-white',
 				success: /*tw*/ 'bg-green-600 dark:bg-green-700 text-white',
-				dark: /*tw*/ 'bg-black dark:bg-black text-white',
+				dark: /*tw*/ 'bg-neutral-800 dark:bg-neutral-800 text-white',
 			},
 			outline: {
 				primary:
 					/*tw*/ 'bg-transparent border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-500',
 				secondary:
-					/*tw*/ 'bg-transparent border-gray-600 text-gray-600 dark:border-neutral-400 dark:text-neutral-400',
+					/*tw*/ 'bg-transparent border-neutral-600 text-neutral-600 dark:border-neutral-500 dark:text-neutral-500',
 				destructive:
 					/*tw*/ 'bg-transparent border-red-600 text-red-600 dark:border-red-500 dark:text-red-500',
 				warning:
 					/*tw*/ 'bg-transparent border-yellow-600 text-yellow-600 dark:border-yellow-500 dark:text-yellow-500',
 				success:
 					/*tw*/ 'bg-transparent border-green-600 text-green-600 dark:border-green-500 dark:text-green-500',
-				dark: /*tw*/ 'bg-transparent border-black text-black dark:border-neutral-700 dark:text-neutral-400',
+				dark: /*tw*/ 'bg-transparent border-neutral-800 text-neutral-800 dark:border-neutral-600 dark:text-neutral-400',
 			},
 		},
 		textColor: {
@@ -56,11 +56,11 @@ export const AVATAR_MANIFEST = {
 			},
 			outline: {
 				primary: /*tw*/ 'text-blue-600 dark:text-blue-500',
-				secondary: /*tw*/ 'text-gray-600 dark:text-neutral-400',
+				secondary: /*tw*/ 'text-neutral-600 dark:text-neutral-500',
 				destructive: /*tw*/ 'text-red-600 dark:text-red-500',
 				warning: /*tw*/ 'text-yellow-600 dark:text-yellow-500',
 				success: /*tw*/ 'text-green-600 dark:text-green-500',
-				dark: /*tw*/ 'text-black dark:text-neutral-400',
+				dark: /*tw*/ 'text-neutral-800 dark:text-neutral-400',
 			},
 		},
 		indicator: {

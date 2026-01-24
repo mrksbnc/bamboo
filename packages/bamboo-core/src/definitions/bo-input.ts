@@ -2,24 +2,9 @@ import { HTMLAttributes, InputHTMLAttributes } from 'vue';
 import { BoFontSize, BoIconSize, Icon } from './index.js';
 import { ComponentManifest } from '../manifests/types.js';
 
-export type BoInputSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
-
 export type BoInputType = InputHTMLAttributes['type'];
 
 export type BoInputState = 'default' | 'valid' | 'invalid';
-
-export type BoInputVariant = 'default' | 'filled';
-
-export interface BoInputPill {
-	/** Unique identifier for the pill */
-	id: string;
-	/** Data test ID for the pill */
-	dataTestId: string;
-	/** The label text to display on the pill */
-	text: string;
-	/** Optional icon to display before pill label */
-	icon?: Icon;
-}
 
 export interface BoInputProps {
 	/**
@@ -33,20 +18,10 @@ export interface BoInputProps {
 	 */
 	dataTestId?: string;
 	/**
-	 * The size of the input.
-	 * @default 'default'
-	 */
-	size?: BoInputSize;
-	/**
 	 * The state of the input.
 	 * @default 'default'
 	 */
 	state?: BoInputState;
-	/**
-	 * The variant of the input.
-	 * @default 'default'
-	 */
-	variant?: BoInputVariant;
 	/**
 	 * The type of the input.
 	 * @default 'text'
@@ -78,10 +53,6 @@ export interface BoInputProps {
 	suffixIcon?: Icon;
 	/** Whether the input should autofocus */
 	autofocus?: HTMLInputElement['autofocus'];
-	/** Array of pill items to display in the input */
-	pills?: BoInputPill[];
-	/** Whether to enable horizontal scrolling for pills */
-	horizontalScroll?: boolean;
 	/** Whether to show toggle button for password input */
 	revealPassword?: boolean;
 	/** The role of the element. */
@@ -90,11 +61,9 @@ export interface BoInputProps {
 	ariaLabel?: HTMLAttributes['aria-label'];
 }
 
-type BoInputManifestDefaults = Pick<BoInputProps, 'size' | 'state' | 'variant' | 'type' | 'role'>;
+type BoInputManifestDefaults = Pick<BoInputProps, 'state' | 'type' | 'role'>;
 
-type BoInputSizeStyleMap = Record<BoInputSize, string>;
 type BoInputStateStyleMap = Record<BoInputState, string>;
-type BoInputVariantStyleMap = Record<BoInputVariant, string>;
 
 interface BoInputStyleManifest {
 	base: string;
@@ -104,34 +73,20 @@ interface BoInputStyleManifest {
 	};
 	input: {
 		base: string;
-		withPills: string;
 	};
-	size: BoInputSizeStyleMap;
-	padding: BoInputSizeStyleMap;
 	state: BoInputStateStyleMap;
-	variant: BoInputVariantStyleMap;
 	icons: {
 		prefix: string;
 		suffix: string;
-		size: Record<BoInputSize, BoIconSize>;
-	};
-	inputContainer: {
-		base: string;
-		horizontalScroll: string;
-		flexWrap: string;
-		withPrefixIcon: string;
-		withSuffixIcon: string;
 	};
 	labels: {
 		container: string;
 		label: string;
 		required: string;
-		fontSize: BoFontSize;
 	};
 	helpers: {
 		container: string;
 		error: string;
-		fontSize: BoFontSize;
 	};
 }
 

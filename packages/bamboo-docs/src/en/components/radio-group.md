@@ -58,12 +58,15 @@ v-model="selectedSize"
 label="Select a size"
 description="Choose the size that best fits your needs"
 
-> <bo-radio value="small">Small</bo-radio>
-> <bo-radio value="medium">Medium</bo-radio>
-> <bo-radio value="large">Large</bo-radio>
-> <bo-radio value="extra-large">Extra Large</bo-radio>
-> </bo-radio-group>
-> :::
+>
+
+    <bo-radio value="small">Small</bo-radio>
+    <bo-radio value="medium">Medium</bo-radio>
+    <bo-radio value="large">Large</bo-radio>
+    <bo-radio value="extra-large">Extra Large</bo-radio>
+
+</bo-radio-group>
+:::
 
 ```vue
 <bo-radio-group
@@ -262,6 +265,7 @@ Radio buttons can contain rich content beyond simple text labels.
 ::: raw
 <bo-radio-group orientation="vertical" class="space-y-3">
 <bo-radio value="plan1" class="p-4 border rounded-lg">
+
 <div class="flex justify-between items-start">
 <div>
 <div class="font-semibold">Basic Plan</div>
@@ -271,25 +275,26 @@ Radio buttons can contain rich content beyond simple text labels.
 </div>
 </bo-radio>
 
-  <bo-radio value="plan2" class="p-4 border rounded-lg">
-    <div class="flex justify-between items-start">
-      <div>
-        <div class="font-semibold">Pro Plan</div>
-        <div class="text-sm text-gray-600">Great for small teams</div>
-      </div>
-      <div class="text-lg font-bold">$29/mo</div>
-    </div>
-  </bo-radio>
-  
-  <bo-radio value="plan3" class="p-4 border rounded-lg">
-    <div class="flex justify-between items-start">
-      <div>
-        <div class="font-semibold">Enterprise Plan</div>
-        <div class="text-sm text-gray-600">For large organizations</div>
-      </div>
-      <div class="text-lg font-bold">$99/mo</div>
-    </div>
-  </bo-radio>
+    <bo-radio value="plan2" class="p-4 border rounded-lg">
+    	<div class="flex justify-between items-start">
+    		<div>
+    			<div class="font-semibold">Pro Plan</div>
+    			<div class="text-sm text-gray-600">Great for small teams</div>
+    		</div>
+    		<div class="text-lg font-bold">$29/mo</div>
+    	</div>
+    </bo-radio>
+
+    <bo-radio value="plan3" class="p-4 border rounded-lg">
+    	<div class="flex justify-between items-start">
+    		<div>
+    			<div class="font-semibold">Enterprise Plan</div>
+    			<div class="text-sm text-gray-600">For large organizations</div>
+    		</div>
+    		<div class="text-lg font-bold">$99/mo</div>
+    	</div>
+    </bo-radio>
+
 </bo-radio-group>
 :::
 
@@ -312,6 +317,16 @@ Radio buttons can contain rich content beyond simple text labels.
         <div class="text-sm text-gray-600">Great for small teams</div>
       </div>
       <div class="text-lg font-bold">$29/mo</div>
+    </div>
+  </bo-radio>
+  
+  <bo-radio value="plan3" class="p-4 border rounded-lg">
+    <div class="flex justify-between items-start">
+      <div>
+        <div class="font-semibold">Enterprise Plan</div>
+        <div class="text-sm text-gray-600">For large organizations</div>
+      </div>
+      <div class="text-lg font-bold">$99/mo</div>
     </div>
   </bo-radio>
 </bo-radio-group>

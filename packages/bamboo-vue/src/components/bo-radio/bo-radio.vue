@@ -5,11 +5,11 @@
 				<input
 					:id="id"
 					:data-testid="dataTestId"
-					:name="name"
+					:name="effectiveName"
 					:value="value"
-					:checked="checked"
-					:disabled="disabled"
-					:required="required"
+					:checked="effectiveChecked"
+					:disabled="effectiveDisabled"
+					:required="effectiveRequired"
 					:class="inputClassValues"
 					:aria-describedby="helperTextId"
 					:aria-invalid="state === 'invalid'"
@@ -20,7 +20,7 @@
 				/>
 				<div :class="indicatorClassValues">
 					<div
-						v-if="checked"
+						v-if="effectiveChecked"
 						class="after:content-[''] after:block after:rounded-full after:bg-white"
 						:class="indicatorSizeClassValues"
 					/>
@@ -53,8 +53,9 @@
 		mergeTwClasses,
 		RADIO_MANIFEST,
 		type BoRadioProps,
+		type BoRadioSize,
 	} from '@workspace/bamboo-core';
-	import { computed, type ComputedRef } from 'vue';
+	import { computed, inject, type ComputedRef } from 'vue';
 	import BoIcon from '../bo-icon/bo-icon.vue';
 
 	const props = withDefaults(defineProps<BoRadioProps>(), {
@@ -70,10 +71,33 @@
 
 	const emit = defineEmits<Emits>();
 
+	// Inject group context
+	const groupValue = inject<string | number | boolean | undefined>('radioGroupValue', undefined);
+	const groupName = inject<string | undefined>('radioGroupName', undefined);
+	const groupSize = inject<BoRadioSize | undefined>('radioGroupSize', undefined);
+	const groupDisabled = inject<boolean>('radioGroupDisabled', false);
+	const groupRequired = inject<boolean>('radioGroupRequired', false);
+	const groupUpdateValue = inject<((value: string | number | boolean) => void) | null>(
+		'radioGroupUpdateValue',
+		null,
+	);
+
 	// Computed properties
 	const id = computed(() => props.id ?? generateComponentId('radio'));
 	const dataTestId = computed(() => props.dataTestId ?? generateDataTestId('radio'));
 	const helperTextId = computed(() => `${id.value}-helper`);
+
+	// Use group context when available
+	const effectiveName = computed(() => groupName || props.name);
+	const effectiveSize = computed(() => (groupSize || props.size || 'default') as BoRadioSize);
+	const effectiveDisabled = computed(() => groupDisabled || props.disabled);
+	const effectiveRequired = computed(() => groupRequired || props.required);
+	const effectiveChecked = computed(() => {
+		if (groupValue !== undefined && props.value !== undefined) {
+			return groupValue === props.value;
+		}
+		return props.checked;
+	});
 
 	// Class computations
 	const baseClassValues: ComputedRef<string> = computed(() =>
@@ -87,22 +111,22 @@
 	const inputClassValues: ComputedRef<string> = computed(() =>
 		mergeTwClasses(
 			RADIO_MANIFEST.styles.input.base,
-			RADIO_MANIFEST.styles.input.size[props.size],
+			RADIO_MANIFEST.styles.input.size[effectiveSize.value],
 			RADIO_MANIFEST.styles.input.state[props.state],
-			props.disabled ? RADIO_MANIFEST.styles.input.disabled : '',
-			props.checked ? 'bg-blue-600 border-blue-600 dark:bg-blue-500 dark:border-blue-500' : '',
+			effectiveDisabled.value ? RADIO_MANIFEST.styles.input.disabled : '',
+			effectiveChecked.value ? 'bg-primary border-primary' : '',
 		),
 	);
 
 	const indicatorClassValues: ComputedRef<string> = computed(() =>
 		mergeTwClasses(
 			RADIO_MANIFEST.styles.indicator.base,
-			RADIO_MANIFEST.styles.indicator.size[props.size],
+			RADIO_MANIFEST.styles.indicator.size[effectiveSize.value],
 		),
 	);
 
 	const indicatorSizeClassValues: ComputedRef<string> = computed(() =>
-		mergeTwClasses(RADIO_MANIFEST.styles.indicator.size[props.size]),
+		mergeTwClasses(RADIO_MANIFEST.styles.indicator.size[effectiveSize.value]),
 	);
 
 	const labelContainerClassValues: ComputedRef<string> = computed(() =>
@@ -112,26 +136,38 @@
 	const labelClassValues: ComputedRef<string> = computed(() =>
 		mergeTwClasses(
 			RADIO_MANIFEST.styles.label.base,
-			RADIO_MANIFEST.styles.label.size[props.size],
-			props.disabled ? RADIO_MANIFEST.styles.label.disabled : '',
+			RADIO_MANIFEST.styles.label.size[effectiveSize.value],
+			effectiveDisabled.value ? RADIO_MANIFEST.styles.label.disabled : '',
 		),
 	);
 
 	const descriptionClassValues: ComputedRef<string> = computed(() =>
 		mergeTwClasses(
 			RADIO_MANIFEST.styles.description.base,
-			RADIO_MANIFEST.styles.description.size[props.size],
+			RADIO_MANIFEST.styles.description.size[effectiveSize.value],
 		),
 	);
 
 	const errorClassValues: ComputedRef<string> = computed(() =>
-		mergeTwClasses(RADIO_MANIFEST.styles.error.base, RADIO_MANIFEST.styles.error.size[props.size]),
+		mergeTwClasses(
+			RADIO_MANIFEST.styles.error.base,
+			RADIO_MANIFEST.styles.error.size[effectiveSize.value],
+		),
 	);
 
 	// Event handlers
 	const onChange = (event: Event) => {
 		const target = event.target as HTMLInputElement;
-		emit('update:checked', target.checked);
+		const checked = target.checked;
+
+		// If part of a group and has a value, use group's update method
+		if (groupUpdateValue && props.value !== undefined && checked) {
+			groupUpdateValue(props.value);
+		} else {
+			// Otherwise emit the standard events
+			emit('update:checked', checked);
+		}
+
 		emit('change', event);
 	};
 </script>

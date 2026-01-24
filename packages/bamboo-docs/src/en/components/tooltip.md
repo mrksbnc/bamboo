@@ -231,6 +231,7 @@ Tooltips can contain rich HTML content using the content slot.
 ::: raw
 <bo-tooltip>
 <template #content>
+
 <div class="space-y-2">
 <div class="font-semibold">Rich Tooltip</div>
 <div class="text-sm">This tooltip contains <strong>formatted</strong> content with multiple lines and <em>styling</em>.</div>

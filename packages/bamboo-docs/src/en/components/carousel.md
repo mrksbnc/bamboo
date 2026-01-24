@@ -24,6 +24,7 @@ The `bo-carousel` component displays a rotating set of content items, such as im
 ::: raw
 <bo-carousel>
 <bo-carousel-item>
+
 <div class="h-64 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-xl font-semibold rounded-lg">
 Slide 1
 </div>
@@ -78,6 +79,7 @@ Enable automatic slide progression with customizable intervals.
 ::: raw
 <bo-carousel :autoplay="true" :interval="3000">
 <bo-carousel-item>
+
 <div class="h-48 bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center text-white text-lg font-semibold rounded-lg">
 Auto-play Slide 1
 </div>
@@ -120,6 +122,7 @@ Customize the appearance and behavior of navigation arrows.
 ::: raw
 <bo-carousel :show-arrows="true" arrow-position="outside">
 <bo-carousel-item>
+
 <div class="h-56 bg-gradient-to-r from-rose-500 to-orange-500 flex items-center justify-center text-white text-lg font-semibold rounded-lg">
 Navigation Slide 1
 </div>
@@ -162,6 +165,7 @@ Control the display and position of slide indicators.
 ::: raw
 <bo-carousel :show-indicators="true" indicator-position="bottom">
 <bo-carousel-item>
+
 <div class="h-52 bg-gradient-to-r from-amber-500 to-pink-500 flex items-center justify-center text-white text-lg font-semibold rounded-lg">
 Indicator Slide 1
 </div>
@@ -204,6 +208,7 @@ Enable looping to create an infinite scrolling experience.
 ::: raw
 <bo-carousel :loop="true" :autoplay="true" :interval="2500">
 <bo-carousel-item>
+
 <div class="h-48 bg-gradient-to-r from-red-500 to-yellow-500 flex items-center justify-center text-white text-lg font-semibold rounded-lg">
 Loop Slide 1
 </div>
@@ -246,6 +251,7 @@ Display multiple slides at once with customizable spacing.
 ::: raw
 <bo-carousel :items-per-view="2" :spacing="16">
 <bo-carousel-item>
+
 <div class="h-40 bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center text-white font-semibold rounded-lg">
 Multi Item 1
 </div>
@@ -294,6 +300,7 @@ Carousels support touch gestures and mouse dragging for navigation.
 ::: raw
 <bo-carousel :touch="true" :drag="true">
 <bo-carousel-item>
+
 <div class="h-48 bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center text-white text-lg font-semibold rounded-lg">
 Swipe me! 👆
 </div>

@@ -8,9 +8,9 @@
 					:data-testid="dataTestId"
 					:name="name"
 					:value="value"
-					:checked="checked"
-					:disabled="disabled"
-					:required="required"
+					:checked="effectiveChecked"
+					:disabled="effectiveDisabled"
+					:required="effectiveRequired"
 					:class="inputClassValues"
 					:aria-describedby="helperTextId"
 					:aria-invalid="state === 'invalid'"
@@ -20,7 +20,7 @@
 					@blur="emit('blur', $event)"
 				/>
 				<div :class="checkmarkClassValues">
-					<bo-icon v-if="checked && !indeterminate" icon="check" :size="iconSize" />
+					<bo-icon v-if="effectiveChecked && !indeterminate" icon="check" :size="iconSize" />
 					<bo-icon v-if="indeterminate" icon="minus" :size="iconSize" />
 				</div>
 			</div>
@@ -54,7 +54,7 @@
 		type BoCheckboxSize,
 		type BoIconSize,
 	} from '@workspace/bamboo-core';
-	import { computed, ref, watch, type ComputedRef } from 'vue';
+	import { computed, inject, ref, watch, type ComputedRef } from 'vue';
 	import BoIcon from '../bo-icon/bo-icon.vue';
 
 	const props = withDefaults(defineProps<BoCheckboxProps>(), {
@@ -70,6 +70,19 @@
 
 	const emit = defineEmits<Emits>();
 
+	// Inject group context
+	const groupValue = inject<(string | number | boolean)[]>('checkboxGroupValue', []);
+	const groupSize = inject<BoCheckboxSize | undefined>('checkboxGroupSize', undefined);
+	const groupDisabled = inject<boolean>('checkboxGroupDisabled', false);
+	const groupRequired = inject<boolean>('checkboxGroupRequired', false);
+	const groupUpdateValue = inject<
+		((value: string | number | boolean, checked: boolean) => void) | null
+	>('checkboxGroupUpdateValue', null);
+	const groupIsChecked = inject<((value: string | number | boolean) => boolean) | null>(
+		'checkboxGroupIsChecked',
+		null,
+	);
+
 	// Refs
 	const inputRef = ref<HTMLInputElement>();
 
@@ -77,6 +90,17 @@
 	const id = computed(() => props.id ?? generateComponentId('checkbox'));
 	const dataTestId = computed(() => props.dataTestId ?? generateDataTestId('checkbox'));
 	const helperTextId = computed(() => `${id.value}-helper`);
+
+	// Use group context when available
+	const effectiveSize = computed(() => (groupSize || props.size || 'default') as BoCheckboxSize);
+	const effectiveDisabled = computed(() => groupDisabled || props.disabled);
+	const effectiveRequired = computed(() => groupRequired || props.required);
+	const effectiveChecked = computed(() => {
+		if (groupIsChecked && props.value !== undefined) {
+			return groupIsChecked(props.value);
+		}
+		return props.checked;
+	});
 
 	const iconSize = computed<BoIconSize>(() => {
 		const sizeMap: Record<BoCheckboxSize, BoIconSize> = {
@@ -86,7 +110,7 @@
 			lg: 'lg',
 			xl: 'xl',
 		};
-		return sizeMap[props.size || 'default'];
+		return sizeMap[effectiveSize.value];
 	});
 
 	// Class computations
@@ -101,21 +125,19 @@
 	const inputClassValues: ComputedRef<string> = computed(() =>
 		mergeTwClasses(
 			CHECKBOX_MANIFEST.styles.input.base,
-			CHECKBOX_MANIFEST.styles.input.size[props.size],
+			CHECKBOX_MANIFEST.styles.input.size[effectiveSize.value],
 			CHECKBOX_MANIFEST.styles.input.state[props.state],
-			props.disabled ? CHECKBOX_MANIFEST.styles.input.disabled : '',
-			props.checked ? 'bg-blue-600 border-blue-600 dark:bg-blue-500 dark:border-blue-500' : '',
-			props.indeterminate
-				? 'bg-blue-600 border-blue-600 dark:bg-blue-500 dark:border-blue-500'
-				: '',
+			effectiveDisabled.value ? CHECKBOX_MANIFEST.styles.input.disabled : '',
+			effectiveChecked.value ? 'bg-primary border-primary' : '',
+			props.indeterminate ? 'bg-primary border-primary' : '',
 		),
 	);
 
 	const checkmarkClassValues: ComputedRef<string> = computed(() =>
 		mergeTwClasses(
 			CHECKBOX_MANIFEST.styles.checkmark.base,
-			CHECKBOX_MANIFEST.styles.checkmark.size[props.size],
-			props.checked || props.indeterminate ? 'opacity-100' : '',
+			CHECKBOX_MANIFEST.styles.checkmark.size[effectiveSize.value],
+			effectiveChecked.value || props.indeterminate ? 'opacity-100' : '',
 		),
 	);
 
@@ -126,29 +148,38 @@
 	const labelClassValues: ComputedRef<string> = computed(() =>
 		mergeTwClasses(
 			CHECKBOX_MANIFEST.styles.label.base,
-			CHECKBOX_MANIFEST.styles.label.size[props.size],
-			props.disabled ? CHECKBOX_MANIFEST.styles.label.disabled : '',
+			CHECKBOX_MANIFEST.styles.label.size[effectiveSize.value],
+			effectiveDisabled.value ? CHECKBOX_MANIFEST.styles.label.disabled : '',
 		),
 	);
 
 	const descriptionClassValues: ComputedRef<string> = computed(() =>
 		mergeTwClasses(
 			CHECKBOX_MANIFEST.styles.description.base,
-			CHECKBOX_MANIFEST.styles.description.size[props.size],
+			CHECKBOX_MANIFEST.styles.description.size[effectiveSize.value],
 		),
 	);
 
 	const errorClassValues: ComputedRef<string> = computed(() =>
 		mergeTwClasses(
 			CHECKBOX_MANIFEST.styles.error.base,
-			CHECKBOX_MANIFEST.styles.error.size[props.size],
+			CHECKBOX_MANIFEST.styles.error.size[effectiveSize.value],
 		),
 	);
 
 	// Event handlers
 	const onChange = (event: Event) => {
 		const target = event.target as HTMLInputElement;
-		emit('update:checked', target.checked);
+		const checked = target.checked;
+
+		// If part of a group and has a value, use group's update method
+		if (groupUpdateValue && props.value !== undefined) {
+			groupUpdateValue(props.value, checked);
+		} else {
+			// Otherwise emit the standard events
+			emit('update:checked', checked);
+		}
+
 		emit('change', event);
 	};
 

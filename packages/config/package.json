@@ -1,0 +1,13 @@
+{
+	"name": "@workspace/config",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Shared TypeScript configurations for the Bamboo monorepo",
+	"type": "module",
+	"files": [
+		"tsconfig.*.json"
+	],
+	"scripts": {
+		"purge": "rm -rf .turbo"
+	}
+}

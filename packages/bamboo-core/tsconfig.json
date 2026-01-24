@@ -1,15 +1,8 @@
 {
+	"extends": "@workspace/config/tsconfig.vue.json",
 	"compilerOptions": {
-		"declaration": true,
-		"declarationMap": true,
-		"outDir": "./dist",
-		"module": "esnext",
-		"moduleResolution": "bundler",
 		"types": ["node"],
-		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-		"lib": ["DOM", "DOM.Iterable", "ESNext"]
+		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo"
 	},
-	"exclude": ["./src/**/*.test.ts", "./src/**/*.spec.ts", "./dist"],
-	"extends": "../../tsconfig.json",
 	"include": ["./src/**/*.ts", "**/*.d.ts"]
 }
