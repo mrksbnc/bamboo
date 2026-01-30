@@ -1,0 +1,32 @@
+{
+	"name": "@workspace/bamboo-docs",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Documentation site for Bamboo component library",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mrksbnc/bamboo.git",
+		"directory": "packages/bamboo-docs"
+	},
+	"license": "MIT",
+	"author": "Bence Markus",
+	"type": "module",
+	"scripts": {
+		"build": "vitepress build",
+		"docs:dev": "vitepress dev",
+		"docs:preview": "vitepress preview",
+		"generate:docs": "tsx scripts/generate-docs-enhanced.ts",
+		"lint": "run-s lint:*",
+		"lint:spell": "cspell --config ../../cspell.yaml \"**/*.{md,mdx}\"",
+		"purge": "rm -rf .vitepress/dist .vitepress/cache .turbo"
+	},
+	"devDependencies": {
+		"@mrksbnc/bamboo-vue": "workspace:*",
+		"@vueuse/core": "^14.1.0",
+		"@workspace/bamboo-core": "workspace:*",
+		"@workspace/config": "workspace:*",
+		"vitepress": "2.0.0-alpha.15",
+		"vitepress-plugin-group-icons": "^1.7.1",
+		"vue": "^3.5.26"
+	}
+}

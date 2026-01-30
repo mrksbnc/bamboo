@@ -1,14 +1,18 @@
 {
 	"files": [],
+	"extends": "./packages/config/tsconfig.base.json",
 	"references": [
 		{
-			"path": "./tsconfig.node.json"
+			"path": "./packages/config"
 		},
 		{
-			"path": "./tsconfig.app.json"
+			"path": "./packages/bamboo-core"
 		},
 		{
-			"path": "./tsconfig.vitest.json"
+			"path": "./packages/bamboo-vue"
+		},
+		{
+			"path": "./packages/bamboo-docs"
 		}
 	]
 }

@@ -1,6 +1,6 @@
 {
 	"$schema": "./node_modules/oxlint/configuration_schema.json",
-	"plugins": ["eslint", "jsdoc", "jsx-a11y", "oxc", "typescript", "unicorn", "vitest", "vue"],
+	"plugins": ["jsdoc", "vitest", "vue"],
 	"categories": {
 		"correctness": "error",
 		"suspicious": "warn",
@@ -11,16 +11,8 @@
 		"unicorn/filename-case": "off"
 	},
 	"env": {
-		"browser": true,
-		"es2021": true,
-		"node": true
+		"node": true,
+		"browser": true
 	},
-	"ignorePatterns": [
-		"dist/",
-		"dist-ssr/",
-		"coverage/",
-		"node_modules/",
-		".vitepress/cache/",
-		"docs/.vitepress/"
-	]
+	"ignorePatterns": ["dist/**/*", "coverage/**/*", "node_modules/**/*", "**/.vitepress/cache/**/*"]
 }

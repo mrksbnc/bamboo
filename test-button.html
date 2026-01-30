@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Button Background Test</title>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body>
+		<div id="app" class="space-y-4 p-8">
+			<h1 class="mb-4 text-2xl font-bold">Button Background Test</h1>
+
+			<!-- Test different button variants -->
+			<div class="space-y-2">
+				<h2 class="text-lg font-semibold">Default (Filled) Buttons:</h2>
+				<div class="flex flex-wrap gap-2">
+					<button
+						class="[&_svg]:cursor-inherit inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-lg border-blue-600 bg-blue-600 px-4 text-sm font-medium whitespace-nowrap text-white shadow-lg shadow-blue-600/25 transition-all duration-200 ease-in-out hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-600/30 focus:ring-transparent focus:outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-blue-700 dark:hover:bg-blue-800 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+					>
+						Primary
+					</button>
+					<button
+						class="[&_svg]:cursor-inherit inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-lg border-neutral-600 bg-neutral-600 px-4 text-sm font-medium whitespace-nowrap text-white shadow-lg shadow-neutral-600/25 transition-all duration-200 ease-in-out hover:bg-neutral-700 hover:shadow-xl hover:shadow-neutral-600/30 focus:ring-transparent focus:outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-neutral-700 dark:hover:bg-neutral-800 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+					>
+						Secondary
+					</button>
+					<button
+						class="[&_svg]:cursor-inherit inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-lg border-green-600 bg-green-600 px-4 text-sm font-medium whitespace-nowrap text-white shadow-lg shadow-green-600/25 transition-all duration-200 ease-in-out hover:bg-green-700 hover:shadow-xl hover:shadow-green-600/30 focus:ring-transparent focus:outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-green-700 dark:hover:bg-green-800 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+					>
+						Success
+					</button>
+					<button
+						class="[&_svg]:cursor-inherit inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-lg border-red-600 bg-red-600 px-4 text-sm font-medium whitespace-nowrap text-white shadow-lg shadow-red-600/25 transition-all duration-200 ease-in-out hover:bg-red-700 hover:shadow-xl hover:shadow-red-600/30 focus:ring-transparent focus:outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-red-700 dark:hover:bg-red-800 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+					>
+						Destructive
+					</button>
+				</div>
+			</div>
+
+			<div class="space-y-2">
+				<h2 class="text-lg font-semibold">Outline Buttons:</h2>
+				<div class="flex flex-wrap gap-2">
+					<button
+						class="[&_svg]:cursor-inherit inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-lg border border-blue-600 px-4 text-sm font-medium whitespace-nowrap text-blue-600 shadow-md shadow-blue-600/10 transition-all duration-200 ease-in-out hover:bg-blue-600 hover:text-white hover:shadow-lg hover:shadow-blue-600/20 focus:ring-transparent focus:outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:text-blue-500 dark:hover:text-white [&_svg]:pointer-events-none [&_svg]:shrink-0"
+					>
+						Primary Outline
+					</button>
+					<button
+						class="[&_svg]:cursor-inherit inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-lg border border-green-600 px-4 text-sm font-medium whitespace-nowrap text-green-600 shadow-md shadow-green-600/10 transition-all duration-200 ease-in-out hover:bg-green-600 hover:text-white hover:shadow-lg hover:shadow-green-600/20 focus:ring-transparent focus:outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:text-green-500 dark:hover:text-white [&_svg]:pointer-events-none [&_svg]:shrink-0"
+					>
+						Success Outline
+					</button>
+				</div>
+			</div>
+
+			<div class="mt-8 rounded-lg bg-gray-100 p-4">
+				<p class="text-sm text-gray-600">
+					✅ <strong>Fixed:</strong> The button component now includes background styles from the
+					manifest.<br />
+					🔧 <strong>Issue:</strong> The <code>classValues</code> computed property was missing
+					<code>BUTTON_MANIFEST.styles.variants[kind][variant]</code><br />
+					🎯 <strong>Solution:</strong> Added the variant styles to the
+					<code>mergeTwClasses</code> call in the button component.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

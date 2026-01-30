@@ -41,9 +41,9 @@ cloudscale
 cloudsmith
 cloudversify
 cmplid
-codiepie
 codepen
 codesandbox
+codiepie
 connectdevelop
 contao
 covid
@@ -89,8 +89,8 @@ freebsd
 frontmatter
 futbol
 gantt
-gitter
 gitkraken
+gitter
 gofore
 goodreads
 gopuram
@@ -111,6 +111,7 @@ imdb
 indian
 innosoft
 instalod
+invalidcolor
 invision
 ioxhost
 itunes
@@ -160,9 +161,11 @@ mrksbnc
 napster
 navicon
 neos
+nesw
 nimblr
 nonoctal
 nordic
+notacolor
 notdef
 nutritionix
 oceania
@@ -215,8 +218,8 @@ shopify
 shopware
 simplybuilt
 sistrix
-sitrox
 sith
+sitrox
 skyatlas
 skype
 slideshare
@@ -267,6 +270,7 @@ viber
 vihara
 vimeo
 vsco
+vueuse
 waze
 wcag
 webflow
@@ -289,4 +293,5 @@ xmark
 xmarks
 yandex
 yoast
+yxxx
 zhihu
