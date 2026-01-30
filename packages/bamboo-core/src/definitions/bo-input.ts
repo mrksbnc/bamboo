@@ -1,5 +1,5 @@
 import { HTMLAttributes, InputHTMLAttributes } from 'vue';
-import { BoFontSize, BoIconSize, Icon } from './index.js';
+import { Icon } from './index.js';
 import { ComponentManifest } from '../manifests/types.js';
 
 export type BoInputType = InputHTMLAttributes['type'];
