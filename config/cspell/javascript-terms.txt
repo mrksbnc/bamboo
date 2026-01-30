@@ -7,6 +7,7 @@ burlywood
 cadetblue
 cornflowerblue
 cornsilk
+currentcolor
 darkcyan
 darkgoldenrod
 darkgray
@@ -77,6 +78,7 @@ mistyrose
 navajowhite
 nonconstructor
 nums
+oklab
 oklch
 oldlace
 oldstyle
