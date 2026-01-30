@@ -33,7 +33,7 @@ The component is called `bo-textarea` and can be used as follows:
 
 ## With Label
 
-Textareas can have labels for better accessibility and user experience:
+Textarea can have labels for better accessibility and user experience:
 
 <div class="flex gap-4">
   <bo-textarea label="Message" placeholder="Enter your message..." />
@@ -91,7 +91,7 @@ The `variant` prop allows you to customize the appearance. The default variant i
 
 ## With Icons
 
-Textareas support prefix and suffix icons:
+Textarea support prefix and suffix icons:
 
 <div class="flex flex-col gap-4">
   <bo-textarea prefix-icon="message_circle" placeholder="Write a comment..." />
@@ -135,7 +135,7 @@ Control whether the textarea can be resized:
 
 ## With Description and Hints
 
-Textareas can have descriptions and hint messages:
+Textarea can have descriptions and hint messages:
 
 <div class="flex flex-col gap-4">
   <bo-textarea 
@@ -169,7 +169,7 @@ Textareas can have descriptions and hint messages:
 
 ## Required Fields
 
-Mark textareas as required:
+Mark textarea as required:
 
 <div class="flex gap-4">
   <bo-textarea label="Description" placeholder="Enter description" required />
@@ -181,7 +181,7 @@ Mark textareas as required:
 
 ## Disabled State
 
-Textareas can be disabled:
+Textarea can be disabled:
 
 <div class="flex gap-4">
   <bo-textarea placeholder="Disabled textarea" disabled />
@@ -205,7 +205,7 @@ Set a maximum character limit:
 
 ## Full Width
 
-Textareas can take the full width of their container:
+Textarea can take the full width of their container:
 
 <div class="w-full">
   <bo-textarea placeholder="Full width textarea" full-width />
