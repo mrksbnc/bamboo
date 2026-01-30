@@ -10,6 +10,7 @@ cornsilk
 darkcyan
 darkgoldenrod
 darkgray
+darkgreen
 darkgrey
 darkkhaki
 darkmagenta
@@ -18,7 +19,6 @@ darkorange
 darkorchid
 darkred
 darksalmon
-darkgreen
 darkseagreen
 darkslateblue
 darkslategray
@@ -61,6 +61,7 @@ lightslategrey
 lightsteelblue
 lightyellow
 limegreen
+maxlength
 mediumaquamarine
 mediumblue
 mediumorchid
