@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/mrksbnc/bamboo/compare/v1.0.2...v1.0.3) (2026-01-30)
+
+### 🔧 Chores
+
+* **deps-dev:** bump @types/node from 25.0.9 to 25.0.10 ([#446](https://github.com/mrksbnc/bamboo/issues/446)) ([73e178d](https://github.com/mrksbnc/bamboo/commit/73e178dda8a177128f73760c2ee6da996b4aeaac))
+* **deps-dev:** bump cspell from 9.6.0 to 9.6.1 ([#448](https://github.com/mrksbnc/bamboo/issues/448)) ([fea99e6](https://github.com/mrksbnc/bamboo/commit/fea99e662f9c003419b0ba92a5da5d84dc2709fd))
+* **deps-dev:** bump oxlint from 1.39.0 to 1.41.0 ([#449](https://github.com/mrksbnc/bamboo/issues/449)) ([3c92409](https://github.com/mrksbnc/bamboo/commit/3c9240930249b0ab7cc7c6e7eccd7636ee71f6a5))
+* **deps-dev:** bump vue-tsc from 3.2.2 to 3.2.4 ([#445](https://github.com/mrksbnc/bamboo/issues/445)) ([d3758a6](https://github.com/mrksbnc/bamboo/commit/d3758a6c0db134c438415c8e9390fda0f9b65eea))
+
 ## [1.0.2](https://github.com/mrksbnc/bamboo/compare/v1.0.1...v1.0.2) (2026-01-21)
 
 ### 🔧 Chores
