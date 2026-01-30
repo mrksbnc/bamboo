@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import BoButtonGroup from './bo-button-group.vue';
-import BoButton from '../bo-button/bo-button.vue';
 
 describe('BoButtonGroup', () => {
 	it('renders button group with default props', () => {
