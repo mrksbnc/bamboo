@@ -165,6 +165,7 @@ nesw
 nimblr
 nonoctal
 nordic
+notacolor
 notdef
 nutritionix
 oceania
