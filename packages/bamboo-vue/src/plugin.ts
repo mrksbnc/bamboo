@@ -3,38 +3,24 @@ import {
 	BoAvatar,
 	BoBadge,
 	BoButton,
-	BoCard,
-	BoCheckbox,
-	BoDivider,
 	BoIcon,
 	BoInput,
 	BoLoadingPulse,
 	BoLoadingSpinner,
-	BoModal,
-	BoRadio,
-	BoTable,
 	BoText,
 	BoTextarea,
-	BoToggle,
 } from './components/index.js';
 
 const BambooComponents = {
 	BoAvatar,
 	BoBadge,
 	BoButton,
-	BoCard,
-	BoCheckbox,
-	BoDivider,
 	BoIcon,
 	BoInput,
 	BoLoadingPulse,
 	BoLoadingSpinner,
-	BoModal,
-	BoRadio,
-	BoTable,
 	BoText,
 	BoTextarea,
-	BoToggle,
 };
 
 export const BambooVue = {

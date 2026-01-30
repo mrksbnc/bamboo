@@ -1,17 +1,9 @@
-export { default as BoAlert } from './bo-alert/bo-alert.vue';
 export { default as BoAvatar } from './bo-avatar/bo-avatar.vue';
 export { default as BoBadge } from './bo-badge/bo-badge.vue';
 export { default as BoButton } from './bo-button/bo-button.vue';
-export { default as BoCard } from './bo-card/bo-card.vue';
-export { default as BoCheckbox } from './bo-checkbox/bo-checkbox.vue';
-export { default as BoDivider } from './bo-divider/bo-divider.vue';
 export { default as BoIcon } from './bo-icon/bo-icon.vue';
 export { default as BoInput } from './bo-input/bo-input.vue';
 export { default as BoLoadingPulse } from './bo-loading-pulse/bo-loading-pulse.vue';
 export { default as BoLoadingSpinner } from './bo-loading-spinner/bo-loading-spinner.vue';
-export { default as BoModal } from './bo-modal/bo-modal.vue';
-export { default as BoRadio } from './bo-radio/bo-radio.vue';
-export { default as BoTable } from './bo-table/bo-table.vue';
 export { default as BoText } from './bo-text/bo-text.vue';
 export { default as BoTextarea } from './bo-textarea/bo-textarea.vue';
-export { default as BoToggle } from './bo-toggle/bo-toggle.vue';

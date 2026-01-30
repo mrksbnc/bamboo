@@ -124,10 +124,6 @@
 			INPUT_MANIFEST.styles.state[props.state || 'default'],
 		];
 
-		if (props.disabled) {
-			classes.push(INPUT_MANIFEST.styles.container.disabled);
-		}
-
 		return mergeTwClasses(...classes);
 	});
 
