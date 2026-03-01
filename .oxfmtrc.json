@@ -1,0 +1,18 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"semi": true,
+	"tabWidth": 2,
+	"useTabs": true,
+	"printWidth": 100,
+	"singleQuote": true,
+	"vueIndentScriptAndStyle": true,
+	"sortTailwindcss": {},
+	"sortPackageJson": false,
+	"ignorePatterns": [
+		"package-lock.json",
+		"pnpm-lock.yaml",
+		"yarn.lock",
+		"**/static/",
+		"**/.vitepress/cache/"
+	]
+}

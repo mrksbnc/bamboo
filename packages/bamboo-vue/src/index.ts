@@ -11,6 +11,8 @@ export { default as BoIcon } from './components/bo-icon/bo-icon.vue';
 export { default as BoInput } from './components/bo-input/bo-input.vue';
 export { default as BoLoadingPulse } from './components/bo-loading-pulse/bo-loading-pulse.vue';
 export { default as BoLoadingSpinner } from './components/bo-loading-spinner/bo-loading-spinner.vue';
+export { default as BoNavbar } from './components/bo-navbar/bo-navbar.vue';
+export { default as BoSidebar } from './components/bo-sidebar/bo-sidebar.vue';
 export { default as BoText } from './components/bo-text/bo-text.vue';
 export { default as BoTextarea } from './components/bo-textarea/bo-textarea.vue';
 export { BoTooltip } from './components/bo-tooltip/index.js';

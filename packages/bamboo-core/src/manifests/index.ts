@@ -15,6 +15,9 @@ export { ICON_MANIFEST } from './icon.manifest';
 // # Input
 export { INPUT_MANIFEST } from './input.manifest';
 
+// # Navbar
+export { NAVBAR_MANIFEST } from './navbar.manifest';
+
 // # Loading Pulse
 export { LOADING_PULSE_MANIFEST } from './loading-pulse.manifest';
 
@@ -29,6 +32,9 @@ export { TEXTAREA_MANIFEST } from './textarea.manifest';
 
 // # Tooltip
 export { TOOLTIP_MANIFEST } from './tooltip.manifest';
+
+// # Sidebar
+export { SIDEBAR_MANIFEST } from './sidebar.manifest';
 
 // # Types
 export type { ComponentManifest } from './types';

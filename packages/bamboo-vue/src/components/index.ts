@@ -5,5 +5,7 @@ export { default as BoIcon } from './bo-icon/bo-icon.vue';
 export { default as BoInput } from './bo-input/bo-input.vue';
 export { default as BoLoadingPulse } from './bo-loading-pulse/bo-loading-pulse.vue';
 export { default as BoLoadingSpinner } from './bo-loading-spinner/bo-loading-spinner.vue';
+export { default as BoNavbar } from './bo-navbar/bo-navbar.vue';
+export { default as BoSidebar } from './bo-sidebar/bo-sidebar.vue';
 export { default as BoText } from './bo-text/bo-text.vue';
 export { default as BoTextarea } from './bo-textarea/bo-textarea.vue';

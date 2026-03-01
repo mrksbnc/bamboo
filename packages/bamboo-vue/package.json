@@ -47,7 +47,6 @@
 	"scripts": {
 		"build": "pnpm type-check && vite build --mode production",
 		"dev": "vite build --watch",
-		"format": "prettier --write .",
 		"prepublishOnly": "pnpm build",
 		"test": "vitest --coverage",
 		"type-check": "vue-tsc --noEmit",

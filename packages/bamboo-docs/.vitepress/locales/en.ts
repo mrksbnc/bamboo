@@ -1,4 +1,5 @@
 import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress';
+import { generateSidebar } from '../internal/sidebar';
 
 export const en: LocaleSpecificConfig<DefaultTheme.Config> = {
 	title: 'Bamboo',
@@ -9,7 +10,7 @@ export const en: LocaleSpecificConfig<DefaultTheme.Config> = {
 		sidebar: {
 			'/en': {
 				base: '/en/',
-				items: [...sidebarGuide(), ...sidebarComponents()],
+				items: sidebar(),
 			},
 		},
 		editLink: {
@@ -59,34 +60,13 @@ function nav(): DefaultTheme.NavItem[] {
 	];
 }
 
-function sidebarGuide(): DefaultTheme.SidebarItem[] {
-	return [
-		{
-			collapsed: false,
-			text: 'Introduction',
-			items: [{ text: 'Getting Started', link: '/guide/getting-started' }],
-		},
-	];
-}
-
-function sidebarComponents(): DefaultTheme.SidebarItem[] {
-	return [
-		{
-			text: 'Components',
-			link: '/components/index',
-			items: [
-				{ text: 'Avatar', link: '/components/avatar' },
-				{ text: 'Badge', link: '/components/badge' },
-				{ text: 'Button', link: '/components/button' },
-				{ text: 'Button Group', link: '/components/button-group' },
-				{ text: 'Icon', link: '/components/icon' },
-				{ text: 'Input', link: '/components/input' },
-				{ text: 'Loading Pulse', link: '/components/loading-pulse' },
-				{ text: 'Loading Spinner', link: '/components/loading-spinner' },
-				{ text: 'Text', link: '/components/text' },
-				{ text: 'Textarea', link: '/components/textarea' },
-				{ text: 'Tooltip', link: '/components/tooltip' },
-			],
-		},
-	];
+function sidebar(): DefaultTheme.SidebarItem[] {
+	return generateSidebar({
+		locale: 'en',
+		srcDir: 'src',
+		collapsed: false,
+		useFrontmatterTitle: true,
+		sortBy: 'name',
+		sortOrder: 'asc',
+	});
 }

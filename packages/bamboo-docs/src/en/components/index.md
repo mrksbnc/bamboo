@@ -18,7 +18,9 @@ The following components are available in bamboo:
 | [`bo-button`](./button)                   | Button component for submitting forms and triggering actions with support for icons, variants, and more                         |
 | [`bo-icon`](./icon)                       | SVG icon component with multiple sizes and color variants                                                                       |
 | [`bo-input`](./input)                     | Text input field component with support for icons, validation states, and pills                                                 |
+| [`bo-navbar`](./navbar)                   | Floating top navigation bar with brand, navigation, and action slots plus sticky/fixed positioning                              |
 | [`bo-loading-pulse`](./loading-pulse)     | Animated pulsing dots component for indicating loading states                                                                   |
 | [`bo-loading-spinner`](./loading-spinner) | Animated spinner component for indicating loading states                                                                        |
+| [`bo-sidebar`](./sidebar)                 | Collapsible vertical sidebar with floating/solid variants and sticky/fixed placement                                            |
 | [`bo-text`](./text)                       | Typography component for rendering text with various styles and formatting options                                              |
 | [`bo-textarea`](./textarea)               | Multi-line text input component with support for icons, validation, and auto-resize                                             |
