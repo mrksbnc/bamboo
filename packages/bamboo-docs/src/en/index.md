@@ -10,7 +10,7 @@ hero:
   actions:
     - theme: brand
       text: Quick start
-      link: ./guide/getting-started
+      link: /en/guide/getting-started
     - theme: alt
       text: GitHub
       link: https://github.com/mrksbnc/bamboo
