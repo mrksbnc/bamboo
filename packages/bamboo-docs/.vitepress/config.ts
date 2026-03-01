@@ -1,10 +1,13 @@
 import { defineConfig } from 'vitepress';
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 
-// Import locale-specific configs
+/**
+ * Import locale-specific configs
+ */
 import { en } from './locales/en';
-
-// https://vitepress.dev/reference/site-config
+/**
+ * https://vitepress.dev/reference/site-config
+ */
 export default defineConfig({
 	title: 'Bamboo',
 	description: 'Lightweight and flexible design system for the web.',

@@ -239,11 +239,9 @@ function buildSidebarItems(
 
 			// If directory only has index.md and no child items, add as direct link
 			if (hasIndexMdFile && childItems.length === 0) {
-				const linkPath = options.locale ? `/${options.locale}${relativePath}/` : `${relativePath}/`;
-
 				items.push({
 					text,
-					link: linkPath,
+					link: `${relativePath}/`,
 				});
 				continue;
 			}
@@ -255,8 +253,7 @@ function buildSidebarItems(
 			};
 
 			if (hasIndexMdFile) {
-				const linkPath = options.locale ? `/${options.locale}${relativePath}/` : `${relativePath}/`;
-				sidebarItem.link = linkPath;
+				sidebarItem.link = `${relativePath}/`;
 			}
 
 			if (childItems.length > 0) {
@@ -282,11 +279,9 @@ function buildSidebarItems(
 				continue;
 			}
 
-			const linkPath = options.locale ? `/${options.locale}${relativePath}` : relativePath;
-
 			items.push({
 				text,
-				link: linkPath,
+				link: relativePath,
 			});
 		}
 	}
@@ -327,15 +322,13 @@ export function generateSidebar(options: SidebarOptions): DefaultTheme.SidebarIt
 			return items;
 		}
 
-		const relativePath = `/${rootPath}`;
 		const sidebarItem: DefaultTheme.SidebarItem = {
 			text,
 			collapsed: options.collapsed ?? false,
 		};
 
 		if (hasIndexMdFile) {
-			const linkPath = locale ? `/${locale}${relativePath}/` : `${relativePath}/`;
-			sidebarItem.link = linkPath;
+			sidebarItem.link = `/${rootPath}/`;
 		}
 
 		if (items.length > 0) {
