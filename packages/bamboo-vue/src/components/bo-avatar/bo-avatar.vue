@@ -20,7 +20,7 @@
 			</span>
 
 			<span v-if="renderWithImage">
-				<img :src="src" :alt="alt" class="h-full w-full aspect-auto" @error="onImageError" />
+				<img :src="src" :alt="alt" class="aspect-auto h-full w-full" @error="onImageError" />
 			</span>
 
 			<span v-if="!renderWithImage && !renderWithLabel">

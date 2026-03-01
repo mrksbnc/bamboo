@@ -38,11 +38,11 @@
 			"inputs": ["src/**", "tsconfig*.json", "package.json"],
 			"outputLogs": "new-only"
 		},
-		"format": {
+		"fmt": {
 			"inputs": ["**/*.{ts,md,json,vue}"],
 			"outputLogs": "new-only"
 		},
-		"format:check": {
+		"fmt:check": {
 			"inputs": ["**/*.{ts,md,json,vue}"],
 			"outputLogs": "new-only"
 		},

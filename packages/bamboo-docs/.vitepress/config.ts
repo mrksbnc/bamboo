@@ -34,10 +34,9 @@ export default defineConfig({
 		},
 	},
 	locales: {
-		en: {
+		root: {
 			label: 'English',
-			lang: 'en',
-			link: '/en/',
+			lang: 'en-US',
 			...en,
 		},
 	},
