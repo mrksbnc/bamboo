@@ -3,35 +3,34 @@
 	"explorer.fileNesting.enabled": true,
 	"tailwindCSS.classAttributes": ["tw", "class"],
 	"typescript.experimental.useTsgo": true,
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.defaultFormatter": "oxc.oxc-vscode",
 	"explorer.fileNesting.patterns": {
 		"tsconfig.json": "tsconfig.*.json, env.d.ts",
 		"vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
-		"package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig",
+		"package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig, .oxfmtrc.json, .oxlintrc.json",
 		"README.md": "CODE_OF_CONDUCT.md, CONTRIBUTING.md, CHANGELOG.md, SECURITY.md",
 		".gitignore": ".gitattributes",
-		".nvmrc": ".node-version"
+		".nvmrc": ".node-version",
 	},
 	"tailwindCSS.experimental.classRegex": [
 		["/\\*\\s*tw\\s*\\*/\\s*`([^`]*)`", "([^`]*)"],
 		["/\\*\\s*tw\\s*\\*/\\s*'([^']*)'", "([^']*)"],
 		["/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"", "([^\"]*)"],
 		["/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"", "([^\"]*)"],
-		["class:\\s*['\"`]([^'\"`]*)['\"`]", "([^'\"`]*)"]
+		["class:\\s*['\"`]([^'\"`]*)['\"`]", "([^'\"`]*)"],
 	],
 	"editor.quickSuggestions": {
 		"other": "on",
 		"strings": "on",
-		"comments": "off"
+		"comments": "off",
 	},
 	"tailwindCSS.includeLanguages": {
 		"typescript": "javascript",
 		"typescriptreact": "javascript",
 		"vue": "html",
-		"vue-html": "html"
+		"vue-html": "html",
 	},
 	"files.associations": {
-		"*.css": "tailwindcss"
+		"*.css": "tailwindcss",
 	},
-	"cSpell.words": ["darkgreen"]
 }
