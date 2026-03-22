@@ -34,10 +34,6 @@
 			"outputs": ["coverage/**"],
 			"outputLogs": "new-only"
 		},
-		"lint": {
-			"inputs": ["src/**", "**/*.{ts,vue,md,json}"],
-			"outputLogs": "new-only"
-		},
 		"type-check": {
 			"dependsOn": ["^build"],
 			"inputs": ["src/**", "tsconfig*.json", "package.json"],
