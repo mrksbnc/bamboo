@@ -1,3 +1,9 @@
+## [1.0.4](https://github.com/mrksbnc/bamboo/compare/v1.0.3...v1.0.4) (2026-03-22)
+
+### 🔧 Chores
+
+* **deps-dev:** bump @semantic-release/github from 12.0.2 to 12.0.3 ([#451](https://github.com/mrksbnc/bamboo/issues/451)) ([23f710d](https://github.com/mrksbnc/bamboo/commit/23f710d248b068f769e8976769b7f460b91576f9))
+
 ## [1.0.3](https://github.com/mrksbnc/bamboo/compare/v1.0.2...v1.0.3) (2026-01-30)
 
 ### 🔧 Chores
