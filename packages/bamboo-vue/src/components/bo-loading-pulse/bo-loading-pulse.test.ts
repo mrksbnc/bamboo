@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import BoLoadingPulse from './bo-loading-pulse.vue';
 import { BoText } from '../bo-text';
+import BoLoadingPulse from './bo-loading-pulse.vue';
 
 describe('BoLoadingPulse', () => {
 	it('renders with default props', () => {

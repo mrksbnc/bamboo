@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'vue';
-import { BoCursor } from './component-types.js';
 import { ComponentManifest } from '../manifests/types.js';
+import { BoCursor } from './component-types.js';
 
 export type BoIconSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl' | number;
 

@@ -1,11 +1,11 @@
 import { HTMLAttributes } from 'vue';
+import { ComponentManifest } from '../manifests/types.js';
 import {
 	BoFontSize,
 	type BoLoaderTextPosition,
 	type BoLoaderSize,
 	type BoLoaderVariant,
 } from './index.js';
-import { ComponentManifest } from '../manifests/types.js';
 
 export interface BoLoadingSpinnerProps {
 	/** Unique id for the loading spinner */

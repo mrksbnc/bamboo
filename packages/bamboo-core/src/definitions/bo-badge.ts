@@ -1,8 +1,8 @@
 import { HTMLAttributes } from 'vue';
-import { Icon } from './bo-icon.js';
-import { BoFontSize } from './bo-text.js';
-import { BoIconSize } from './bo-icon.js';
 import { ComponentManifest } from '../manifests/types.js';
+import { Icon } from './bo-icon.js';
+import { BoIconSize } from './bo-icon.js';
+import { BoFontSize } from './bo-text.js';
 import { BoCursor } from './component-types.js';
 
 export type BoBadgeVariant =

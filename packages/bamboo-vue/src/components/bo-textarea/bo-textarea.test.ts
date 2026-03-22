@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import BoTextarea from './bo-textarea.vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
+import BoTextarea from './bo-textarea.vue';
 
 describe('BoTextarea', () => {
 	it('renders with default props', () => {

@@ -94,9 +94,9 @@ Toggle the `collapsed` prop to shrink the sidebar to an icon rail. Use `collapse
 
 ```vue
 <script setup>
-	import { ref } from 'vue';
+import { ref } from 'vue';
 
-	const collapsed = ref(false);
+const collapsed = ref(false);
 </script>
 
 <bo-sidebar :collapsed="collapsed" collapsed-width="icon">

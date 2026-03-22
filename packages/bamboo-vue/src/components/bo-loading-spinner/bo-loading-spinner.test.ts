@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import BoLoadingSpinner from './bo-loading-spinner.vue';
 import { BoText } from '../bo-text';
+import BoLoadingSpinner from './bo-loading-spinner.vue';
 
 describe('BoLoadingSpinner', () => {
 	it('renders with default props', () => {

@@ -1,7 +1,13 @@
 {
 	"$schema": "./node_modules/turbo/schema.json",
 	"concurrency": "100%",
-	"globalDependencies": ["tsconfig.json", "turbo.json", ".prettierrc.yaml", ".oxlintrc.json", ".oxfmtrc.json"],
+	"globalDependencies": [
+		"tsconfig.json",
+		"turbo.json",
+		".prettierrc.yaml",
+		".oxlintrc.json",
+		".oxfmtrc.json"
+	],
 	"globalEnv": ["NODE_ENV"],
 	"tasks": {
 		"build": {

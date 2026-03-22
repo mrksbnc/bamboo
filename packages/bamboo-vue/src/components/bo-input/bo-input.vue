@@ -69,109 +69,129 @@
 </template>
 
 <script lang="ts" setup>
-	import {
-		generateComponentId,
-		generateDataTestId,
-		INPUT_MANIFEST,
-		mergeTwClasses,
-		type BoInputProps,
-	} from '@workspace/bamboo-core';
-	import { computed, onMounted, ref } from 'vue';
-	import { BoIcon } from '../bo-icon';
+import {
+	generateComponentId,
+	generateDataTestId,
+	INPUT_MANIFEST,
+	mergeTwClasses,
+	type BoInputProps,
+} from '@workspace/bamboo-core';
+import { computed, onMounted, ref } from 'vue';
+import { BoIcon } from '../bo-icon';
 
-	const props = withDefaults(defineProps<BoInputProps>(), {
-		id: () => generateComponentId('input'),
-		dataTestId: () => generateDataTestId('input'),
-		role: () => INPUT_MANIFEST.defaults.role,
-		state: () => INPUT_MANIFEST.defaults.state,
-		type: () => INPUT_MANIFEST.defaults.type,
-	});
+const props = withDefaults(defineProps<BoInputProps>(), {
+	id: () => generateComponentId('input'),
+	dataTestId: () => generateDataTestId('input'),
+	role: () => INPUT_MANIFEST.defaults.role,
+	state: () => INPUT_MANIFEST.defaults.state,
+	type: () => INPUT_MANIFEST.defaults.type,
+});
 
-	const emit = defineEmits<{
-		focus: [];
-		blur: [event: FocusEvent];
-		change: [event: Event];
-		prefixIconClick: [];
-		suffixIconClick: [];
-	}>();
 
-	// Use defineModel for v-model
-	const model = defineModel<string>({ default: '' });
+const emit = defineEmits<{
+	focus: [];
+	blur: [event: FocusEvent];
+	change: [event: Event];
+	prefixIconClick: [];
+	suffixIconClick: [];
+}>();
 
-	const inputRef = ref<HTMLInputElement | null>(null);
-	const passwordVisible = ref(false);
 
-	const showPasswordToggle = computed<boolean>(() => {
-		return props.type === 'password' && !props.disabled && !!model.value && !!props.revealPassword;
-	});
+// Use defineModel for v-model
+const model = defineModel<string>({ default: '' });
 
-	const helperTextId = computed<string>(() => `${props.id}-helper`);
 
-	const inputType = computed<string>(() => {
-		if (props.type === 'password' && passwordVisible.value) {
-			return 'text';
-		}
-		return props.type || 'text';
-	});
+const inputRef = ref<HTMLInputElement | null>(null);
+const passwordVisible = ref(false);
 
-	const baseClasses = computed<string>(() => {
-		return mergeTwClasses(INPUT_MANIFEST.styles.base, props.fullWidth ? 'w-full' : '');
-	});
 
-	const containerClasses = computed<string>(() => {
-		const classes = [
-			INPUT_MANIFEST.styles.container.base,
-			INPUT_MANIFEST.styles.state[props.state || 'default'],
-		];
+const showPasswordToggle = computed<boolean>(() => {
+	return props.type === 'password' && !props.disabled && !!model.value && !!props.revealPassword;
+});
 
-		return mergeTwClasses(...classes);
-	});
 
-	const inputClasses = computed<string>(() => {
-		return mergeTwClasses(INPUT_MANIFEST.styles.input.base);
-	});
+const helperTextId = computed<string>(() => `${props.id}-helper`);
 
-	const prefixIconClasses = computed<string>(() => {
-		return mergeTwClasses(INPUT_MANIFEST.styles.icons.prefix);
-	});
 
-	const suffixIconClasses = computed<string>(() => {
-		return mergeTwClasses(INPUT_MANIFEST.styles.icons.suffix);
-	});
-
-	const labelContainerClasses = computed<string>(() => {
-		return mergeTwClasses(INPUT_MANIFEST.styles.labels.container);
-	});
-
-	const labelClasses = computed<string>(() => {
-		return mergeTwClasses(INPUT_MANIFEST.styles.labels.label);
-	});
-
-	const requiredClasses = computed<string>(() => {
-		return mergeTwClasses(INPUT_MANIFEST.styles.labels.required);
-	});
-
-	const helperContainerClasses = computed<string>(() => {
-		return mergeTwClasses(INPUT_MANIFEST.styles.helpers.container);
-	});
-
-	const errorClasses = computed<string>(() => {
-		return mergeTwClasses(INPUT_MANIFEST.styles.helpers.error);
-	});
-
-	function togglePasswordVisibility() {
-		passwordVisible.value = !passwordVisible.value;
+const inputType = computed<string>(() => {
+	if (props.type === 'password' && passwordVisible.value) {
+		return 'text';
 	}
+	return props.type || 'text';
+});
 
-	function focus(): void {
-		inputRef.value?.focus();
+
+const baseClasses = computed<string>(() => {
+	return mergeTwClasses(INPUT_MANIFEST.styles.base, props.fullWidth ? 'w-full' : '');
+});
+
+
+const containerClasses = computed<string>(() => {
+	const classes = [
+		INPUT_MANIFEST.styles.container.base,
+		INPUT_MANIFEST.styles.state[props.state || 'default'],
+	];
+
+	return mergeTwClasses(...classes);
+});
+
+
+const inputClasses = computed<string>(() => {
+	return mergeTwClasses(INPUT_MANIFEST.styles.input.base);
+});
+
+
+const prefixIconClasses = computed<string>(() => {
+	return mergeTwClasses(INPUT_MANIFEST.styles.icons.prefix);
+});
+
+
+const suffixIconClasses = computed<string>(() => {
+	return mergeTwClasses(INPUT_MANIFEST.styles.icons.suffix);
+});
+
+
+const labelContainerClasses = computed<string>(() => {
+	return mergeTwClasses(INPUT_MANIFEST.styles.labels.container);
+});
+
+
+const labelClasses = computed<string>(() => {
+	return mergeTwClasses(INPUT_MANIFEST.styles.labels.label);
+});
+
+
+const requiredClasses = computed<string>(() => {
+	return mergeTwClasses(INPUT_MANIFEST.styles.labels.required);
+});
+
+
+const helperContainerClasses = computed<string>(() => {
+	return mergeTwClasses(INPUT_MANIFEST.styles.helpers.container);
+});
+
+
+const errorClasses = computed<string>(() => {
+	return mergeTwClasses(INPUT_MANIFEST.styles.helpers.error);
+});
+
+
+function togglePasswordVisibility() {
+	passwordVisible.value = !passwordVisible.value;
+}
+
+
+function focus(): void {
+	inputRef.value?.focus();
+}
+
+
+defineExpose({ focus });
+
+
+onMounted(() => {
+	if (props.autofocus) {
+		setTimeout(() => inputRef.value?.focus(), 200);
 	}
-
-	defineExpose({ focus });
-
-	onMounted(() => {
-		if (props.autofocus) {
-			setTimeout(() => inputRef.value?.focus(), 200);
-		}
-	});
+});
 </script>
