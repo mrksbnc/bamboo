@@ -116,3 +116,4 @@ vitest
 whitesmoke
 yellowgree
 yellowgreen
+oxfmtrc
