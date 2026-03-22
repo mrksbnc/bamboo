@@ -15,11 +15,12 @@
 		"test": "turbo run test",
 		"purge": "turbo run purge && rm -rf node_modules .turbo",
 		"prepare": "husky",
-		"ib": "pnpm install && pnpm build"
+		"ib": "pnpm install && pnpm build",
+		"update:pnpm": "corepack use pnpm@latest"
 	},
 	"devDependencies": {
 		"@cspell/dict-vue": "^3.0.5",
-		"@tailwindcss/vite": "^4.1.18",
+		"@tailwindcss/vite": "^4.2.2",
 		"@tsconfig/node22": "^22.0.5",
 		"@types/jsdom": "^28.0.0",
 		"@types/node": "^25.0.9",
@@ -30,20 +31,20 @@
 		"globals": "^17.0.0",
 		"husky": "^9.1.7",
 		"jiti": "^2.6.1",
-		"jsdom": "^28.0.0",
+		"jsdom": "^29.0.1",
 		"npm-run-all2": "^8.0.4",
-		"oxfmt": "^0.35.0",
-		"oxlint": "~1.50.0",
-		"oxlint-tsgolint": "^0.15.0",
+		"oxfmt": "^0.41.0",
+		"oxlint": "~1.56.0",
+		"oxlint-tsgolint": "^0.17.1",
 		"postcss": "^8.5.6",
 		"tailwindcss": "^4.1.18",
 		"turbo": "^2.8.12",
 		"typescript": "^5.9.3",
-		"vite": "8.0.0-beta.14",
+		"vite": "8.0.1",
 		"vite-plugin-dts": "^4.5.4",
 		"vitest": "^4.0.17",
 		"vue": "^3.5.26",
 		"vue-tsc": "^3.2.2"
 	},
-	"packageManager": "pnpm@10.29.3+sha512.498e1fb4cca5aa06c1dcf2611e6fafc50972ffe7189998c409e90de74566444298ffe43e6cd2acdc775ba1aa7cc5e092a8b7054c811ba8c5770f84693d33d2dc"
+	"packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
 }
