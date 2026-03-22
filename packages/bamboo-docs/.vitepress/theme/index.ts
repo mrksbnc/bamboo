@@ -1,13 +1,12 @@
-// https://vitepress.dev/guide/custom-theme
-import { onMounted, watch } from 'vue';
 import type { Theme } from 'vitepress';
 import { useData } from 'vitepress';
-import Layout from './Layout.vue';
 import DefaultTheme from 'vitepress/theme';
-import 'virtual:group-icons.css';
-import '@mrksbnc/bamboo-vue/lib.css';
-
+// https://vitepress.dev/guide/custom-theme
+import { onMounted, watch } from 'vue';
+import Layout from './Layout.vue';
 import './style.css';
+import '@mrksbnc/bamboo-vue/lib.css';
+import 'virtual:group-icons.css';
 
 export default {
 	extends: DefaultTheme,

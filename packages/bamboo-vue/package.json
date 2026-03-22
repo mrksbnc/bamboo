@@ -3,29 +3,38 @@
 	"version": "0.0.1",
 	"description": "Lightweight and flexible Vue 3 components built for the modern web",
 	"keywords": [
-		"vue",
-		"vue3",
-		"components",
-		"ui",
-		"tailwind",
 		"component library",
-		"typescript"
+		"components",
+		"tailwind",
+		"typescript",
+		"ui",
+		"vue",
+		"vue3"
 	],
 	"homepage": "https://github.com/mrksbnc/bamboo#readme",
 	"bugs": {
 		"url": "https://github.com/mrksbnc/bamboo/issues"
 	},
+	"license": "MIT",
+	"author": "Bence Markus",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/mrksbnc/bamboo.git",
 		"directory": "packages/bamboo-vue"
 	},
-	"license": "MIT",
-	"author": "Bence Markus",
+	"files": [
+		"dist",
+		"LICENSE",
+		"README.md",
+		"!dist/**/*.test.*"
+	],
+	"type": "module",
 	"sideEffects": [
 		"**/*.css"
 	],
-	"type": "module",
+	"main": "./dist/index.umd.cjs",
+	"module": "./dist/index.es.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -35,19 +44,13 @@
 		},
 		"./lib.css": "./dist/lib.css"
 	},
-	"main": "./dist/index.umd.cjs",
-	"module": "./dist/index.es.js",
-	"types": "./dist/index.d.ts",
-	"files": [
-		"dist",
-		"LICENSE",
-		"README.md",
-		"!dist/**/*.test.*"
-	],
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
 	"scripts": {
 		"build": "pnpm type-check && vite build --mode production",
 		"dev": "vite build --watch",
-		"lint": "pnpm oxlint . --fix",
 		"prepublishOnly": "pnpm build",
 		"test": "vitest --coverage",
 		"type-check": "vue-tsc --noEmit",
@@ -69,9 +72,5 @@
 	"engines": {
 		"node": ">=18.0.0",
 		"pnpm": ">=10.0.0"
-	},
-	"publishConfig": {
-		"access": "public",
-		"registry": "https://registry.npmjs.org/"
 	}
 }

@@ -53,8 +53,8 @@ Button groups can manage selection state with `v-model`. Use the `data-value` at
 
 ```vue
 <script setup>
-	import { ref } from 'vue';
-	const selectedValue = ref('option1');
+import { ref } from 'vue';
+const selectedValue = ref('option1');
 </script>
 
 <bo-button-group v-model="selectedValue">
@@ -78,8 +78,8 @@ Enable multiple selection with the `multiple` prop.
 
 ```vue
 <script setup>
-	import { ref } from 'vue';
-	const selectedValues = ref(['bold', 'italic']);
+import { ref } from 'vue';
+const selectedValues = ref(['bold', 'italic']);
 </script>
 
 <bo-button-group v-model="selectedValues" :multiple="true">
@@ -103,8 +103,8 @@ Use the `required` prop to ensure at least one button remains selected.
 
 ```vue
 <script setup>
-	import { ref } from 'vue';
-	const requiredValue = ref('center');
+import { ref } from 'vue';
+const requiredValue = ref('center');
 </script>
 
 <bo-button-group v-model="requiredValue" :required="true">

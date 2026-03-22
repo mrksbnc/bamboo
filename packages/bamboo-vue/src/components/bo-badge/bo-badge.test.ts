@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import BoBadge from './bo-badge.vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
+import BoBadge from './bo-badge.vue';
 
 describe('BoBadge', () => {
 	it('renders with label', () => {

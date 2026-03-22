@@ -48,7 +48,7 @@ After that, you can start using the components in your application.
 </template>
 
 <script setup lang="ts">
-	import { BoText } from '@mrksbnc/bamboo-vue';
+import { BoText } from '@mrksbnc/bamboo-vue';
 </script>
 ```
 

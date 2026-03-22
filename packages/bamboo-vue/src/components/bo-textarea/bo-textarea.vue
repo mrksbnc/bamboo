@@ -54,155 +54,177 @@
 </template>
 
 <script lang="ts" setup>
-	import {
-		generateComponentId,
-		generateDataTestId,
-		mergeTwClasses,
-		TEXTAREA_MANIFEST,
-		type BoFontSize,
-		type BoIconSize,
-		type BoTextareaProps,
-	} from '@workspace/bamboo-core';
-	import { computed, onMounted, ref, type StyleValue } from 'vue';
-	import { BoIcon } from '../bo-icon';
-	import { BoText } from '../bo-text';
+import {
+	generateComponentId,
+	generateDataTestId,
+	mergeTwClasses,
+	TEXTAREA_MANIFEST,
+	type BoFontSize,
+	type BoIconSize,
+	type BoTextareaProps,
+} from '@workspace/bamboo-core';
+import { computed, onMounted, ref, type StyleValue } from 'vue';
+import { BoIcon } from '../bo-icon';
+import { BoText } from '../bo-text';
 
-	interface Props  extends /* @vue-ignore */ BoTextareaProps {
-		modelValue?: string;
+interface Props  extends /* @vue-ignore */ BoTextareaProps {
+	modelValue?: string;
+}
+
+
+const props = withDefaults(defineProps<Props>(), {
+	id: () => generateComponentId('textarea'),
+	dataTestId: () => generateDataTestId('textarea'),
+	size: 'default',
+	state: 'default',
+	variant: 'default',
+	rows: 4,
+	expand: false,
+	resizable: false,
+});
+
+
+const emit = defineEmits<{
+	'update:modelValue': [value: string];
+	blur: [event: FocusEvent];
+	focus: [];
+}>();
+
+
+const textareaRef = ref<HTMLTextAreaElement | null>(null);
+
+
+const iconSize = computed<BoIconSize>(() => {
+	return TEXTAREA_MANIFEST.styles.icons.size[props.size || 'default'];
+});
+
+
+const labelFontSize = computed<BoFontSize>(() => {
+	return TEXTAREA_MANIFEST.styles.labels.fontSize;
+});
+
+
+const hintFontSize = computed<BoFontSize>(() => {
+	return TEXTAREA_MANIFEST.styles.helpers.fontSize;
+});
+
+
+const helperTextId = computed<string>(() => `${props.id}-helper`);
+
+
+const containerClassValues = computed<string>(() => {
+	const classes: string[] = [
+		TEXTAREA_MANIFEST.styles.container.base,
+		TEXTAREA_MANIFEST.styles.variant[props.variant || 'default'],
+		TEXTAREA_MANIFEST.styles.state[props.state || 'default'],
+	];
+
+	if (props.disabled) {
+		classes.push(TEXTAREA_MANIFEST.styles.container.disabled as string);
 	}
 
-	const props = withDefaults(defineProps<Props>(), {
-		id: () => generateComponentId('textarea'),
-		dataTestId: () => generateDataTestId('textarea'),
-		size: 'default',
-		state: 'default',
-		variant: 'default',
-		rows: 4,
-		expand: false,
-		resizable: false,
-	});
-
-	const emit = defineEmits<{
-		'update:modelValue': [value: string];
-		blur: [event: FocusEvent];
-		focus: [];
-	}>();
-
-	const textareaRef = ref<HTMLTextAreaElement | null>(null);
-
-	const iconSize = computed<BoIconSize>(() => {
-		return TEXTAREA_MANIFEST.styles.icons.size[props.size || 'default'];
-	});
-
-	const labelFontSize = computed<BoFontSize>(() => {
-		return TEXTAREA_MANIFEST.styles.labels.fontSize;
-	});
-
-	const hintFontSize = computed<BoFontSize>(() => {
-		return TEXTAREA_MANIFEST.styles.helpers.fontSize;
-	});
-
-	const helperTextId = computed<string>(() => `${props.id}-helper`);
-
-	const containerClassValues = computed<string>(() => {
-		const classes: string[] = [
-			TEXTAREA_MANIFEST.styles.container.base,
-			TEXTAREA_MANIFEST.styles.variant[props.variant || 'default'],
-			TEXTAREA_MANIFEST.styles.state[props.state || 'default'],
-		];
-
-		if (props.disabled) {
-			classes.push(TEXTAREA_MANIFEST.styles.container.disabled as string);
-		}
-
-		if (props.expand) {
-			classes.push(TEXTAREA_MANIFEST.styles.container.expand as string);
-		}
-
-		return mergeTwClasses(...classes);
-	});
-
-	const textareaClassValues = computed<string>(() => {
-		const classes: string[] = [
-			TEXTAREA_MANIFEST.styles.textarea.base,
-			TEXTAREA_MANIFEST.styles.padding[props.size || 'default'],
-		];
-
-		if (props.prefixIcon && props.prefixIcon !== 'none') {
-			classes.push(TEXTAREA_MANIFEST.styles.textarea.withPrefixIcon as string);
-		}
-
-		if (props.suffixIcon && props.suffixIcon !== 'none') {
-			classes.push(TEXTAREA_MANIFEST.styles.textarea.withSuffixIcon as string);
-		}
-
-		if (props.expand) {
-			classes.push(TEXTAREA_MANIFEST.styles.textarea.expand as string);
-		}
-
-		if (props.resizable) {
-			classes.push(TEXTAREA_MANIFEST.styles.textarea.resizable as string);
-		}
-
-		return mergeTwClasses(...classes);
-	});
-
-	const prefixIconClassValues = computed<string>(() => {
-		return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.prefix[props.size || 'default']);
-	});
-
-	const suffixIconClassValues = computed<string>(() => {
-		return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.suffix[props.size || 'default']);
-	});
-
-	const labelContainerClassValues = computed<string>(() => {
-		return mergeTwClasses(TEXTAREA_MANIFEST.styles.labels.container);
-	});
-
-	const requiredIndicatorClassValues = computed<string>(() => {
-		return mergeTwClasses(TEXTAREA_MANIFEST.styles.labels.required);
-	});
-
-	const errorClassValues = computed<string>(() => {
-		return mergeTwClasses(TEXTAREA_MANIFEST.styles.helpers.error);
-	});
-
-	const hintClassValues = computed<string>(() => {
-		return mergeTwClasses(TEXTAREA_MANIFEST.styles.helpers.hint);
-	});
-
-	const classValues = computed<string>(() => {
-		return mergeTwClasses(TEXTAREA_MANIFEST.styles.base);
-	});
-
-	const styleValues = computed<StyleValue>(() => {
-		return {};
-	});
-
-	function onInput(event: Event) {
-		const target = event.target as HTMLTextAreaElement;
-		emit('update:modelValue', target.value);
+	if (props.expand) {
+		classes.push(TEXTAREA_MANIFEST.styles.container.expand as string);
 	}
 
-	function onBlur(event: FocusEvent) {
-		emit('blur', event);
+	return mergeTwClasses(...classes);
+});
+
+
+const textareaClassValues = computed<string>(() => {
+	const classes: string[] = [
+		TEXTAREA_MANIFEST.styles.textarea.base,
+		TEXTAREA_MANIFEST.styles.padding[props.size || 'default'],
+	];
+
+	if (props.prefixIcon && props.prefixIcon !== 'none') {
+		classes.push(TEXTAREA_MANIFEST.styles.textarea.withPrefixIcon as string);
 	}
 
-	function focus(): void {
-		textareaRef.value?.focus();
+	if (props.suffixIcon && props.suffixIcon !== 'none') {
+		classes.push(TEXTAREA_MANIFEST.styles.textarea.withSuffixIcon as string);
 	}
 
-	defineExpose({ focus });
+	if (props.expand) {
+		classes.push(TEXTAREA_MANIFEST.styles.textarea.expand as string);
+	}
 
-	onMounted(() => {
-		if (props.autofocus) {
-			setTimeout(() => textareaRef.value?.focus(), 200);
-		}
-	});
+	if (props.resizable) {
+		classes.push(TEXTAREA_MANIFEST.styles.textarea.resizable as string);
+	}
+
+	return mergeTwClasses(...classes);
+});
+
+
+const prefixIconClassValues = computed<string>(() => {
+	return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.prefix[props.size || 'default']);
+});
+
+
+const suffixIconClassValues = computed<string>(() => {
+	return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.suffix[props.size || 'default']);
+});
+
+
+const labelContainerClassValues = computed<string>(() => {
+	return mergeTwClasses(TEXTAREA_MANIFEST.styles.labels.container);
+});
+
+
+const requiredIndicatorClassValues = computed<string>(() => {
+	return mergeTwClasses(TEXTAREA_MANIFEST.styles.labels.required);
+});
+
+
+const errorClassValues = computed<string>(() => {
+	return mergeTwClasses(TEXTAREA_MANIFEST.styles.helpers.error);
+});
+
+
+const hintClassValues = computed<string>(() => {
+	return mergeTwClasses(TEXTAREA_MANIFEST.styles.helpers.hint);
+});
+
+
+const classValues = computed<string>(() => {
+	return mergeTwClasses(TEXTAREA_MANIFEST.styles.base);
+});
+
+
+const styleValues = computed<StyleValue>(() => {
+	return {};
+});
+
+
+function onInput(event: Event) {
+	const target = event.target as HTMLTextAreaElement;
+	emit('update:modelValue', target.value);
+}
+
+
+function onBlur(event: FocusEvent) {
+	emit('blur', event);
+}
+
+
+function focus(): void {
+	textareaRef.value?.focus();
+}
+
+
+defineExpose({ focus });
+
+
+onMounted(() => {
+	if (props.autofocus) {
+		setTimeout(() => textareaRef.value?.focus(), 200);
+	}
+});
 </script>
 
 <style>
-	textarea:focus {
-		outline: none;
-	}
+textarea:focus {
+	outline: none;
+}
 </style>

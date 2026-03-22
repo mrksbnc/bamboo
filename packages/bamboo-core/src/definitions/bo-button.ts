@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'vue';
+import { ComponentManifest } from '../manifests/types.js';
 import { BoIconSize, Icon } from './bo-icon.js';
 import { BoLoaderSize } from './bo-loader.js';
-import { ComponentManifest } from '../manifests/types.js';
 import { BoCursor } from './component-types.js';
 
 export type BoButtonVariant =

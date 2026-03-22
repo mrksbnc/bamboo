@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import BoButton from './bo-button.vue';
 import { BoIcon } from '../bo-icon';
-import { BoText } from '../bo-text';
-import { BoLoadingSpinner } from '../bo-loading-spinner';
 import { BoLoadingPulse } from '../bo-loading-pulse';
+import { BoLoadingSpinner } from '../bo-loading-spinner';
+import { BoText } from '../bo-text';
+import BoButton from './bo-button.vue';
 
 describe('BoButton', () => {
 	it('renders with label', () => {

@@ -10,27 +10,27 @@
 		"package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig, .oxfmtrc.json, .oxlintrc.json",
 		"README.md": "CODE_OF_CONDUCT.md, CONTRIBUTING.md, CHANGELOG.md, SECURITY.md",
 		".gitignore": ".gitattributes",
-		".nvmrc": ".node-version",
+		".nvmrc": ".node-version"
 	},
 	"tailwindCSS.experimental.classRegex": [
 		["/\\*\\s*tw\\s*\\*/\\s*`([^`]*)`", "([^`]*)"],
 		["/\\*\\s*tw\\s*\\*/\\s*'([^']*)'", "([^']*)"],
 		["/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"", "([^\"]*)"],
 		["/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\"", "([^\"]*)"],
-		["class:\\s*['\"`]([^'\"`]*)['\"`]", "([^'\"`]*)"],
+		["class:\\s*['\"`]([^'\"`]*)['\"`]", "([^'\"`]*)"]
 	],
 	"editor.quickSuggestions": {
 		"other": "on",
 		"strings": "on",
-		"comments": "off",
+		"comments": "off"
 	},
 	"tailwindCSS.includeLanguages": {
 		"typescript": "javascript",
 		"typescriptreact": "javascript",
 		"vue": "html",
-		"vue-html": "html",
+		"vue-html": "html"
 	},
 	"files.associations": {
-		"*.css": "tailwindcss",
-	},
+		"*.css": "tailwindcss"
+	}
 }

@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
-import BoAvatar from './bo-avatar.vue';
 import { BoText } from '../bo-text';
+import BoAvatar from './bo-avatar.vue';
 
 describe('BoAvatar', () => {
 	it('renders with default props', () => {

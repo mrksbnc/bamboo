@@ -7,14 +7,23 @@
 	"bugs": {
 		"url": "https://github.com/mrksbnc/bamboo/issues"
 	},
+	"license": "MIT",
+	"author": "Bence Markus",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/mrksbnc/bamboo.git/packages/bamboo-core",
 		"directory": "packages/bamboo-core"
 	},
-	"license": "MIT",
-	"author": "Bence Markus",
+	"files": [
+		"dist",
+		"LICENSE",
+		"README.md",
+		"!dist/**/*.test.*"
+	],
 	"type": "module",
+	"main": "./dist/index.es.js",
+	"module": "./dist/index.es.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -23,19 +32,9 @@
 		},
 		"./package.json": "./package.json"
 	},
-	"main": "./dist/index.es.js",
-	"module": "./dist/index.es.js",
-	"types": "./dist/index.d.ts",
-	"files": [
-		"dist",
-		"LICENSE",
-		"README.md",
-		"!dist/**/*.test.*"
-	],
 	"scripts": {
 		"build": "pnpm type-check && vite build --mode production",
 		"dev": "vite build --watch",
-		"lint": "pnpm oxlint . --fix",
 		"test": "vitest --coverage",
 		"type-check": "tsc --noEmit",
 		"purge": "rm -rf dist .turbo coverage"

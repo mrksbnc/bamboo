@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'vue';
-import { BoFontSize, BoIconSize, Icon } from './index.js';
 import { ComponentManifest } from '../manifests/types.js';
+import { BoFontSize, BoIconSize, Icon } from './index.js';
 
 export type BoTextareaSize = 'sm' | 'default' | 'lg';
 

@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import BoInput from './bo-input.vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
+import BoInput from './bo-input.vue';
 
 describe('BoInput', () => {
 	it('renders with default props', () => {
