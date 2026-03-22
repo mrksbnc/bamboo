@@ -1,6 +1,6 @@
 {
-	"name": "bamboo-monorepo",
-	"private": true,
+	"name": "@mrksbnc/bamboo",
+	"version": "1.0.3",
 	"type": "module",
 	"scripts": {
 		"build": "turbo run build",
