@@ -22,11 +22,11 @@
 	},
 	"devDependencies": {
 		"@mrksbnc/bamboo-vue": "workspace:*",
-		"@vueuse/core": "^14.1.0",
+		"@vueuse/core": "^14.2.1",
 		"@workspace/bamboo-core": "workspace:*",
 		"@workspace/config": "workspace:*",
-		"vitepress": "2.0.0-alpha.15",
+		"vitepress": "2.0.0-alpha.17",
 		"vitepress-plugin-group-icons": "^1.7.1",
-		"vue": "^3.5.26"
+		"vue": "^3.5.30"
 	}
 }

@@ -1,7 +1,7 @@
 {
 	"$schema": "./node_modules/turbo/schema.json",
 	"concurrency": "100%",
-	"globalDependencies": ["tsconfig.json", "turbo.json", ".prettierrc.yaml", ".oxlintrc.json"],
+	"globalDependencies": ["tsconfig.json", "turbo.json", ".prettierrc.yaml", ".oxlintrc.json", ".oxfmtrc.json"],
 	"globalEnv": ["NODE_ENV"],
 	"tasks": {
 		"build": {
@@ -29,21 +29,12 @@
 			"outputLogs": "new-only"
 		},
 		"lint": {
-			"dependsOn": ["^lint"],
 			"inputs": ["src/**", "**/*.{ts,vue,md,json}"],
 			"outputLogs": "new-only"
 		},
 		"type-check": {
-			"dependsOn": ["^type-check"],
+			"dependsOn": ["^build"],
 			"inputs": ["src/**", "tsconfig*.json", "package.json"],
-			"outputLogs": "new-only"
-		},
-		"fmt": {
-			"inputs": ["**/*.{ts,md,json,vue}"],
-			"outputLogs": "new-only"
-		},
-		"fmt:check": {
-			"inputs": ["**/*.{ts,md,json,vue}"],
 			"outputLogs": "new-only"
 		},
 		"purge": {
@@ -53,12 +44,6 @@
 			"cache": false,
 			"persistent": true,
 			"dependsOn": ["^build"]
-		},
-		"docs:build": {
-			"dependsOn": ["^build"],
-			"inputs": ["$TURBO_DEFAULT$", "**/*.md", ".vitepress/**"],
-			"outputs": [".vitepress/dist/**"],
-			"outputLogs": "new-only"
 		}
 	},
 	"ui": "tui"
