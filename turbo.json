@@ -1,0 +1,52 @@
+{
+	"$schema": "./node_modules/turbo/schema.json",
+	"concurrency": "100%",
+	"globalDependencies": [
+		"tsconfig.json",
+		"turbo.json",
+		".prettierrc.yaml",
+		".oxlintrc.json",
+		".oxfmtrc.json"
+	],
+	"globalEnv": ["NODE_ENV"],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build", "type-check"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				".env*",
+				"src/**",
+				"package.json",
+				"tsconfig*.json",
+				"vite.config.ts"
+			],
+			"outputs": ["dist/**", ".vitepress/dist/**", "!.turbo/**"],
+			"outputLogs": "new-only"
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true,
+			"dependsOn": ["^build"]
+		},
+		"test": {
+			"dependsOn": ["^build"],
+			"inputs": ["src/**", "**/*.test.ts", "vitest.config.ts"],
+			"outputs": ["coverage/**"],
+			"outputLogs": "new-only"
+		},
+		"type-check": {
+			"dependsOn": ["^build"],
+			"inputs": ["src/**", "tsconfig*.json", "package.json"],
+			"outputLogs": "new-only"
+		},
+		"purge": {
+			"cache": false
+		},
+		"docs:dev": {
+			"cache": false,
+			"persistent": true,
+			"dependsOn": ["^build"]
+		}
+	},
+	"ui": "tui"
+}

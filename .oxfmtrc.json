@@ -1,0 +1,19 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"semi": true,
+	"useTabs": true,
+	"singleQuote": true,
+	"sortPackageJson": true,
+	"sortImports": {
+		"paths": true,
+		"sortSideEffects": true,
+		"newlinesBetween": false
+	},
+	"ignorePatterns": [
+		"package-lock.json",
+		"pnpm-lock.yaml",
+		"yarn.lock",
+		"**/static/",
+		"**/.vitepress/cache/"
+	]
+}

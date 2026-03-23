@@ -1,0 +1,8 @@
+{
+	"extends": "@workspace/config/tsconfig.vue.json",
+	"compilerOptions": {
+		"types": ["node"],
+		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo"
+	},
+	"include": ["./src/**/*.ts", "**/*.d.ts"]
+}

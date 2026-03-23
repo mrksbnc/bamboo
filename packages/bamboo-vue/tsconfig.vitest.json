@@ -1,0 +1,4 @@
+{
+	"extends": "@workspace/config/tsconfig.vitest.json",
+	"include": ["src/**/*.test.ts", "src/**/*.spec.ts", "env.d.ts"]
+}

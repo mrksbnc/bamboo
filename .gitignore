@@ -12,6 +12,12 @@ dist
 coverage
 *.local
 
+# Output
+.output
+**/.svelte-kit
+**/build
+**/dist
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -23,9 +29,24 @@ coverage
 .kiro
 
 # Vitepress
-docs
 .vitepress/dist
 .vitepress/cache
 
 # Cspell
 .cspellcache
+
+# Turbo
+.turbo
+
+# Vite
+**/vite.config.js.timestamp-*
+**/vite.config.ts.timestamp-*
+
+# Vitepress
+**/.vitepress/cache
+
+# Storybook
+*storybook.log
+storybook-static
+
+temp

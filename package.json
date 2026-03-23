@@ -2,89 +2,49 @@
 	"name": "@mrksbnc/bamboo",
 	"version": "1.0.4",
 	"type": "module",
-	"exports": {
-		"./components": {
-			"types": "./dist/components/index.d.ts",
-			"require": "./dist/components.cjs",
-			"import": "./dist/components.js"
-		},
-		"./core": {
-			"types": "./dist/core/index.d.ts",
-			"require": "./dist/core.cjs",
-			"import": "./dist/core.js"
-		},
-		"./lib.css": {
-			"import": "./dist/lib.css",
-			"require": "./dist/lib.css"
-		}
-	},
-	"files": [
-		"dist",
-		"README.md",
-		"LICENSE"
-	],
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com"
-	},
 	"scripts": {
-		"build": "vite build --mode production",
-		"test": "vitest --coverage",
-		"type-check": "vue-tsc --noEmit",
-		"lint:oxlint": "oxlint . --fix --config .oxlintrc.json",
-		"lint:spell": "cspell . --cache --config cspell.yaml --verbose",
-		"lint:style": "stylelint \"**/*.{vue,css,scss}\" --fix --config stylelint.config.js",
-		"lint": "run-s lint:*",
-		"format": "prettier --write .",
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"docs:dev": "turbo run docs:dev",
+		"type-check": "turbo run type-check",
+		"fmt": "oxfmt",
+		"fmt:check": "oxfmt --check",
+		"lint": "run-p lint:*",
+		"lint:oxlint": "oxlint --fix",
+		"lint:spell": "cspell --config ./cspell.yaml \"**/*.{ts,md,json,vue}\" --verbose --show-perf-summary",
+		"test": "turbo run test",
+		"purge": "turbo run purge && rm -rf node_modules .turbo",
 		"prepare": "husky",
-		"prepublishOnly": "pnpm build",
-		"docs:dev": "vitepress dev",
-		"docs:build": "vitepress build",
-		"docs:preview": "vitepress preview"
-	},
-	"dependencies": {
-		"vue": "^3.5.27"
+		"ib": "pnpm install && pnpm build",
+		"update:pnpm": "corepack use pnpm@latest"
 	},
 	"devDependencies": {
 		"@cspell/dict-vue": "^3.0.5",
-		"@prettier/plugin-oxc": "^0.1.3",
-		"@semantic-release/changelog": "^6.0.3",
-		"@semantic-release/commit-analyzer": "^13.0.1",
-		"@semantic-release/git": "^10.0.1",
-		"@semantic-release/github": "^12.0.3",
-		"@semantic-release/release-notes-generator": "^14.1.0",
-		"@tsconfig/node22": "^22.0.5",
-		"@types/jsdom": "^27.0.0",
-		"@types/node": "^25.0.10",
-		"@vitejs/plugin-vue": "^6.0.3",
-		"@vitest/coverage-v8": "4.0.15",
+		"@tailwindcss/vite": "^4.2.2",
+		"@tsconfig/node24": "^24.0.4",
+		"@types/jsdom": "^28.0.1",
+		"@types/node": "^25.5.0",
+		"@vitest/coverage-v8": "4.1.0",
 		"@vue/test-utils": "^2.4.6",
-		"@vue/tsconfig": "^0.8.1",
-		"conventional-changelog-conventionalcommits": "^9.1.0",
-		"cspell": "^9.6.1",
+		"@vueuse/core": "^14.2.1",
+		"cspell": "^9.7.0",
+		"globals": "^17.4.0",
 		"husky": "^9.1.7",
 		"jiti": "^2.6.1",
-		"jsdom": "^27.4.0",
+		"jsdom": "^29.0.1",
 		"npm-run-all2": "^8.0.4",
-		"oxlint": "~1.41.0",
-		"oxlint-tsgolint": "^0.11.1",
-		"postcss-html": "^1.8.1",
-		"prettier": "3.8.0",
-		"prettier-plugin-organize-imports": "^4.3.0",
-		"sass-embedded": "^1.97.2",
-		"semantic-release": "^25.0.2",
-		"start-server-and-test": "^2.1.3",
-		"stylelint": "^16.26.1",
-		"stylelint-config-standard": "^39.0.1",
-		"stylelint-config-standard-scss": "^16.0.0",
-		"stylelint-config-standard-vue": "^1.0.0",
-		"typescript": "~5.9.3",
-		"vite": "npm:rolldown-vite@latest",
+		"oxfmt": "^0.41.0",
+		"oxlint": "~1.56.0",
+		"oxlint-tsgolint": "^0.17.1",
+		"postcss": "^8.5.8",
+		"tailwindcss": "^4.2.2",
+		"turbo": "^2.8.20",
+		"typescript": "^5.9.3",
+		"vite": "8.0.1",
 		"vite-plugin-dts": "^4.5.4",
-		"vite-plugin-vue-devtools": "^8.0.5",
-		"vite-svg-loader": "^5.1.0",
-		"vitepress": "2.0.0-alpha.15",
-		"vitest": "^4.0.15",
-		"vue-tsc": "^3.2.4"
+		"vitest": "^4.1.0",
+		"vue": "^3.5.30",
+		"vue-tsc": "^3.2.6"
 	},
-	"packageManager": "pnpm@10.26.0"
+	"packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
 }
