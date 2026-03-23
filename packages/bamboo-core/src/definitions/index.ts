@@ -48,6 +48,14 @@ export {
 	type IconManifest,
 } from './bo-icon.js';
 
+// # bo-modal
+export {
+	type BoModalVariant,
+	type BoModalSize,
+	type BoModalProps,
+	type ModalManifest,
+} from './bo-modal.js';
+
 // # bo-input
 export {
 	type BoInputType,
@@ -55,17 +63,6 @@ export {
 	type BoInputProps,
 	type InputManifest,
 } from './bo-input.js';
-
-// # bo-navbar
-export {
-	type BoNavbarVariant,
-	type BoNavbarPosition,
-	type BoNavbarPadding,
-	type BoNavbarMaxWidth,
-	type BoNavbarOffset,
-	type BoNavbarProps,
-	type NavbarManifest,
-} from './bo-navbar.js';
 
 // # bo-loader
 export {
@@ -88,20 +85,6 @@ export {
 	type BoLoadingSpinnerStyleManifest,
 	type LoadingSpinnerManifest,
 } from './bo-loading-spinner.js';
-
-// # bo-sidebar
-export {
-	type BoSidebarVariant,
-	type BoSidebarPosition,
-	type BoSidebarSide,
-	type BoSidebarWidth,
-	type BoSidebarCollapsedWidth,
-	type BoSidebarMaxWidth,
-	type BoSidebarPadding,
-	type BoSidebarOffset,
-	type BoSidebarProps,
-	type SidebarManifest,
-} from './bo-sidebar.js';
 
 // # bo-text
 export {

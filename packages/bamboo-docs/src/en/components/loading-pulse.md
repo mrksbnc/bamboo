@@ -74,7 +74,7 @@ The `variant` prop allows you to customize the color of the pulse dots. The defa
   <bo-loading-pulse variant="success" />
   <bo-loading-pulse variant="warning" />
   <bo-loading-pulse variant="destructive" />
-  <div class="bg-gray-800 p-2 rounded">
+  <div class="bg-neutral-800 p-2 rounded">
     <bo-loading-pulse variant="white" />
   </div>
   <bo-loading-pulse variant="black" />

@@ -1,7 +1,7 @@
 <template>
 	<div :class="classValues">
 		<div v-if="label || required" :class="labelContainerClassValues">
-			<bo-text v-if="label" :value="label" :font-size="labelFontSize" />
+			<bo-text v-if="label" :font-size="labelFontSize">{{ label }}</bo-text>
 			<span v-if="required" :class="requiredIndicatorClassValues">*</span>
 		</div>
 
@@ -39,17 +39,17 @@
 
 		<div v-if="error" :class="errorClassValues">
 			<bo-icon icon="alert_circle" size="sm" variant="destructive" />
-			<bo-text :value="error" :font-size="hintFontSize" variant="destructive" />
+			<bo-text :font-size="hintFontSize" variant="destructive">{{ error }}</bo-text>
 		</div>
 
 		<bo-text
 			v-else-if="hint"
 			:id="helperTextId"
-			:value="hint"
 			:font-size="hintFontSize"
 			variant="secondary"
 			:class="hintClassValues"
-		/>
+			>{{ hint }}</bo-text
+		>
 	</div>
 </template>
 
@@ -63,7 +63,7 @@ import {
 	type BoIconSize,
 	type BoTextareaProps,
 } from '@workspace/bamboo-core';
-import { computed, onMounted, ref, type StyleValue } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
 
@@ -192,11 +192,6 @@ const classValues = computed<string>(() => {
 });
 
 
-const styleValues = computed<StyleValue>(() => {
-	return {};
-});
-
-
 function onInput(event: Event) {
 	const target = event.target as HTMLTextAreaElement;
 	emit('update:modelValue', target.value);
@@ -222,9 +217,3 @@ onMounted(() => {
 	}
 });
 </script>
-
-<style>
-textarea:focus {
-	outline: none;
-}
-</style>

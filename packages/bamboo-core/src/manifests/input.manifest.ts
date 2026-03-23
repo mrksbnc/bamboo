@@ -9,38 +9,39 @@ export const INPUT_MANIFEST = {
 		base: /*tw*/ 'relative flex w-full flex-col gap-2',
 
 		container: {
-			base: /*tw*/ 'relative flex h-10 w-full items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm transition-colors hover:border-gray-400 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-gray-600 dark:focus-within:border-blue-400 dark:focus-within:ring-blue-400/20',
+			base: /*tw*/ 'relative flex h-10 w-full items-center rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm transition-colors hover:border-neutral-400 outline-2 -outline-offset-1 outline-transparent focus-within:outline-blue-500 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:border-neutral-600 dark:focus-within:outline-blue-400',
 			disabled:
-				/*tw*/ 'cursor-not-allowed bg-gray-50 border-gray-200 opacity-50 dark:bg-gray-800 dark:border-gray-700',
+				/*tw*/ 'cursor-not-allowed bg-neutral-50 border-neutral-200 opacity-50 dark:bg-neutral-800 dark:border-neutral-700',
 		},
 
 		input: {
-			base: /*tw*/ 'flex-1 bg-transparent border-none outline-none text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400 disabled:cursor-not-allowed',
+			base: /*tw*/ 'flex-1 bg-transparent border-none outline-none text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-500 dark:placeholder:text-neutral-400 disabled:cursor-not-allowed',
 		},
 
 		state: {
 			default: /*tw*/ '',
 			valid:
-				/*tw*/ 'border-green-500 focus-within:border-green-500 focus-within:ring-green-500/20 dark:border-green-400 dark:focus-within:border-green-400 dark:focus-within:ring-green-400/20',
+				/*tw*/ 'border-green-500 focus-within:outline-green-500 dark:border-green-400 dark:focus-within:outline-green-400',
 			invalid:
-				/*tw*/ 'border-red-500 focus-within:border-red-500 focus-within:ring-red-500/20 dark:border-red-400 dark:focus-within:border-red-400 dark:focus-within:ring-red-400/20',
+				/*tw*/ 'border-red-500 focus-within:outline-red-500 dark:border-red-400 dark:focus-within:outline-red-400',
 		},
 
 		icons: {
-			prefix: /*tw*/ 'flex items-center justify-center text-gray-500 dark:text-gray-400 mr-2',
+			prefix: /*tw*/ 'flex items-center justify-center text-neutral-500 dark:text-neutral-400 mr-2',
 			suffix:
-				/*tw*/ 'flex items-center justify-center text-gray-500 dark:text-gray-400 ml-2 cursor-pointer',
+				/*tw*/ 'flex items-center justify-center text-neutral-500 dark:text-neutral-400 ml-2 cursor-pointer',
 		},
 
 		labels: {
 			container: /*tw*/ 'flex justify-between items-center',
-			label: /*tw*/ 'text-sm font-medium text-gray-900 dark:text-gray-100',
+			label: /*tw*/ 'text-sm font-medium text-neutral-900 dark:text-neutral-100',
 			required: /*tw*/ 'text-red-500 dark:text-red-400 ml-1',
 		},
 
 		helpers: {
 			container: /*tw*/ 'flex flex-col gap-1',
 			error: /*tw*/ 'flex items-center gap-2 text-sm text-red-600 dark:text-red-400',
+			hint: /*tw*/ 'text-sm text-neutral-600 dark:text-neutral-400',
 		},
 	},
 	defaults: {

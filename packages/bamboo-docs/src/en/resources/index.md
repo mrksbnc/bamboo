@@ -1,3 +1,8 @@
+---
+title: Resources
+order: 3
+---
+
 # Resources
 
 ## Changelog

@@ -66,7 +66,12 @@ function sidebar(): DefaultTheme.SidebarItem[] {
 		srcDir: 'src',
 		collapsed: false,
 		useFrontmatterTitle: true,
-		sortBy: 'name',
+		sortBy: 'order',
 		sortOrder: 'asc',
+		sectionSort: {
+			'/guide': { sortBy: 'order', sortOrder: 'asc' },
+			'/components': { sortBy: 'order', sortOrder: 'asc' },
+			'/resources': { sortBy: 'order', sortOrder: 'asc' },
+		},
 	});
 }

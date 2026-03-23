@@ -64,10 +64,10 @@ export const AVATAR_MANIFEST = {
 			},
 		},
 		indicator: {
-			base: /*tw*/ 'absolute rounded-full border-2 border-white dark:border-gray-800 z-10',
+			base: /*tw*/ 'absolute rounded-full border-2 border-white dark:border-neutral-800 z-10',
 			status: {
 				online: /*tw*/ 'bg-green-500 dark:bg-green-400',
-				offline: /*tw*/ 'bg-gray-400 dark:bg-gray-500',
+				offline: /*tw*/ 'bg-neutral-400 dark:bg-neutral-500',
 				busy: /*tw*/ 'bg-red-500 dark:bg-red-400',
 				away: /*tw*/ 'bg-yellow-500 dark:bg-yellow-400',
 				none: '',

@@ -6,9 +6,9 @@ export const TOOLTIP_MANIFEST: TooltipManifest = {
 		version: '1.0.0',
 	},
 	styles: {
-		base: /*tw*/ 'absolute z-50 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-lg dark:bg-gray-700 max-w-xs wrap-break-word',
+		base: /*tw*/ 'absolute z-50 px-3 py-2 text-sm font-medium text-white bg-neutral-900 rounded-lg shadow-lg dark:bg-neutral-700 max-w-xs wrap-break-word',
 
-		arrow: /*tw*/ 'absolute w-2 h-2 bg-gray-900 dark:bg-gray-700 rotate-45',
+		arrow: /*tw*/ 'absolute w-2 h-2 bg-neutral-900 dark:bg-neutral-700 rotate-45',
 
 		placement: {
 			top: /*tw*/ 'mb-2',

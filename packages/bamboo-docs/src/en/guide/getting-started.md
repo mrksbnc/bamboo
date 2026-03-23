@@ -1,3 +1,8 @@
+---
+title: Getting Started
+order: 1
+---
+
 # Getting Started
 
 ## What is Bamboo?
@@ -44,7 +49,7 @@ After that, you can start using the components in your application.
 
 ```vue [App.vue]
 <template>
-	<bo-text value="Hello, World!" />
+	<bo-text>Hello, World!</bo-text>
 </template>
 
 <script setup lang="ts">
@@ -73,7 +78,7 @@ After that, you can start using the components in your application.
 
 ```vue [App.vue]
 <template>
-	<bo-text value="Hello, World!" />
+	<bo-text>Hello, World!</bo-text>
 </template>
 ```
 

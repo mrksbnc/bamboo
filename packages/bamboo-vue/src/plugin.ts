@@ -7,8 +7,7 @@ import {
 	BoInput,
 	BoLoadingPulse,
 	BoLoadingSpinner,
-	BoNavbar,
-	BoSidebar,
+	BoModal,
 	BoText,
 	BoTextarea,
 } from './components/index.js';
@@ -21,8 +20,7 @@ const BambooComponents = {
 	BoInput,
 	BoLoadingPulse,
 	BoLoadingSpinner,
-	BoNavbar,
-	BoSidebar,
+	BoModal,
 	BoText,
 	BoTextarea,
 };

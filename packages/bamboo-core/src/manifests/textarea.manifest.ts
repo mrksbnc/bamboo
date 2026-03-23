@@ -9,14 +9,14 @@ export const TEXTAREA_MANIFEST = {
 		base: /*tw*/ 'flex flex-col transition-all duration-200',
 
 		container: {
-			base: /*tw*/ 'relative flex w-full rounded-md border transition-colors focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 dark:focus-within:ring-blue-400 dark:focus-within:ring-offset-gray-900 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-red-500 aria-invalid:ring-red-500/20 dark:aria-invalid:border-red-400',
+			base: /*tw*/ 'relative flex w-full rounded-md border outline-2 -outline-offset-1 outline-transparent transition-colors disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-red-500 dark:aria-invalid:border-red-400',
 			disabled:
-				/*tw*/ 'cursor-not-allowed bg-gray-50 border-gray-200 opacity-50 dark:bg-gray-800 dark:border-gray-700',
+				/*tw*/ 'cursor-not-allowed bg-neutral-50 border-neutral-200 opacity-50 dark:bg-neutral-800 dark:border-neutral-700',
 			expand: /*tw*/ 'grow',
 		},
 
 		textarea: {
-			base: /*tw*/ 'w-full resize-none rounded-md border-none bg-transparent text-sm font-normal text-gray-900 dark:text-gray-100 outline-none placeholder:text-gray-500 dark:placeholder:text-gray-400 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:text-red-600 dark:aria-invalid:text-red-400',
+			base: /*tw*/ 'w-full resize-none rounded-md border-none bg-transparent text-sm font-normal text-neutral-900 dark:text-neutral-100 outline-none focus:outline-none placeholder:text-neutral-500 dark:placeholder:text-neutral-400 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:text-red-600 dark:aria-invalid:text-red-400',
 			withPrefixIcon: /*tw*/ 'pl-10',
 			withSuffixIcon: /*tw*/ 'pr-10',
 			expand: /*tw*/ 'grow',
@@ -31,29 +31,29 @@ export const TEXTAREA_MANIFEST = {
 
 		state: {
 			default:
-				/*tw*/ 'border-gray-300 bg-white hover:border-gray-400 focus-within:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-gray-600 dark:focus-within:border-blue-400',
+				/*tw*/ 'border-neutral-300 bg-white hover:border-neutral-400 focus-within:outline-blue-500 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:border-neutral-600 dark:focus-within:outline-blue-400',
 			valid:
-				/*tw*/ 'border-green-500 bg-white hover:border-green-600 focus-within:border-green-600 focus-within:ring-green-500/20 dark:border-green-500 dark:bg-gray-900 dark:hover:border-green-400 dark:focus-within:border-green-400',
+				/*tw*/ 'border-green-500 bg-white hover:border-green-600 focus-within:outline-green-500 dark:border-green-500 dark:bg-neutral-900 dark:hover:border-green-400 dark:focus-within:outline-green-400',
 			invalid:
-				/*tw*/ 'border-red-500 bg-white hover:border-red-600 focus-within:border-red-500 focus-within:ring-red-500/20 dark:border-red-500 dark:bg-gray-900 dark:hover:border-red-400 dark:focus-within:border-red-400',
+				/*tw*/ 'border-red-500 bg-white hover:border-red-600 focus-within:outline-red-500 dark:border-red-500 dark:bg-neutral-900 dark:hover:border-red-400 dark:focus-within:outline-red-400',
 		},
 
 		variant: {
-			default: /*tw*/ 'bg-white dark:bg-gray-900',
-			filled: /*tw*/ 'bg-gray-50 dark:bg-gray-800',
+			default: /*tw*/ 'bg-white dark:bg-neutral-900',
+			filled: /*tw*/ 'bg-neutral-50 dark:bg-neutral-800',
 		},
 
 		icons: {
 			prefix: {
-				sm: /*tw*/ 'absolute left-3 top-2.5 text-gray-500 dark:text-gray-400',
-				default: /*tw*/ 'absolute left-3 top-3 text-gray-500 dark:text-gray-400',
-				lg: /*tw*/ 'absolute left-3.5 top-4 text-gray-500 dark:text-gray-400',
+				sm: /*tw*/ 'absolute left-3 top-2.5 text-neutral-500 dark:text-neutral-400',
+				default: /*tw*/ 'absolute left-3 top-3 text-neutral-500 dark:text-neutral-400',
+				lg: /*tw*/ 'absolute left-3.5 top-4 text-neutral-500 dark:text-neutral-400',
 			},
 
 			suffix: {
-				sm: /*tw*/ 'absolute right-3 top-2.5 h-full text-gray-500 dark:text-gray-400',
-				default: /*tw*/ 'absolute right-3 top-3 h-full text-gray-500 dark:text-gray-400',
-				lg: /*tw*/ 'absolute right-3.5 top-4 h-full text-gray-500 dark:text-gray-400',
+				sm: /*tw*/ 'absolute right-3 top-2.5 h-full text-neutral-500 dark:text-neutral-400',
+				default: /*tw*/ 'absolute right-3 top-3 h-full text-neutral-500 dark:text-neutral-400',
+				lg: /*tw*/ 'absolute right-3.5 top-4 h-full text-neutral-500 dark:text-neutral-400',
 			},
 
 			size: {
@@ -64,14 +64,15 @@ export const TEXTAREA_MANIFEST = {
 		},
 
 		labels: {
-			container: /*tw*/ 'flex items-center justify-start pb-2 text-gray-900 dark:text-gray-100',
+			container:
+				/*tw*/ 'flex items-center justify-start pb-2 text-neutral-900 dark:text-neutral-100',
 			required: /*tw*/ 'ml-1 text-sm font-medium text-red-600 dark:text-red-400',
 			fontSize: 'sm',
 		},
 
 		helpers: {
 			error: /*tw*/ 'mt-1 flex items-center gap-1 text-sm text-red-600 dark:text-red-400',
-			hint: /*tw*/ 'mt-1 text-sm text-gray-600 dark:text-gray-400',
+			hint: /*tw*/ 'mt-1 text-sm text-neutral-600 dark:text-neutral-400',
 			fontSize: 'sm',
 		},
 	},
