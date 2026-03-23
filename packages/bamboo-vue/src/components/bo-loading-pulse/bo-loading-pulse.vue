@@ -18,7 +18,7 @@
 				<div :class="innerPulseClassValues" :style="styleValues"></div>
 			</div>
 		</div>
-		<bo-text v-if="loaderText" :value="loaderText" :font-size="pulseLabelFontSize" />
+		<bo-text v-if="loaderText" :font-size="pulseLabelFontSize">{{ loaderText }}</bo-text>
 	</div>
 </template>
 
@@ -89,11 +89,6 @@ const innerPulseClassValues = computed<string>(() => {
 		LOADING_PULSE_MANIFEST.styles.size[props.size || 'default'],
 		LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
 	);
-});
-
-
-const classValues = computed<string>(() => {
-	return innerPulseClassValues.value;
 });
 
 

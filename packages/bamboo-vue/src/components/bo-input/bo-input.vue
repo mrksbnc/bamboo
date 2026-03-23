@@ -61,7 +61,7 @@
 				<bo-icon size="sm" icon="alert_circle" />
 				<span :id="helperTextId">{{ error }}</span>
 			</div>
-			<span v-else-if="hint" :id="helperTextId" class="text-sm text-gray-600 dark:text-gray-400">
+			<span v-else-if="hint" :id="helperTextId" :class="hintClasses">
 				{{ hint }}
 			</span>
 		</div>
@@ -132,6 +132,10 @@ const containerClasses = computed<string>(() => {
 		INPUT_MANIFEST.styles.state[props.state || 'default'],
 	];
 
+	if (props.disabled) {
+		classes.push(INPUT_MANIFEST.styles.container.disabled);
+	}
+
 	return mergeTwClasses(...classes);
 });
 
@@ -173,6 +177,11 @@ const helperContainerClasses = computed<string>(() => {
 
 const errorClasses = computed<string>(() => {
 	return mergeTwClasses(INPUT_MANIFEST.styles.helpers.error);
+});
+
+
+const hintClasses = computed<string>(() => {
+	return mergeTwClasses(INPUT_MANIFEST.styles.helpers.hint);
 });
 
 

@@ -16,7 +16,7 @@ export const BUTTON_GROUP_MANIFEST: ButtonGroupManifest = {
 		fullWidth: /*tw*/ 'w-full',
 
 		selected:
-			/*tw*/ 'bg-primary-500 text-white border-primary-500 hover:bg-primary-600 focus:bg-primary-600',
+			/*tw*/ 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700 focus:bg-blue-700 dark:bg-blue-500 dark:border-blue-500 dark:hover:bg-blue-600 dark:focus:bg-blue-600',
 
 		attached: {
 			base: /*tw*/ '',

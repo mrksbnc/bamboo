@@ -19,11 +19,11 @@
 				</bo-text>
 			</span>
 
-			<span v-if="renderWithImage">
-				<img :src="src" :alt="alt" class="aspect-auto h-full w-full" @error="onImageError" />
+			<span v-if="renderWithImage" class="h-full w-full">
+				<img :src="src" :alt="alt" class="h-full w-full object-cover" @error="onImageError" />
 			</span>
 
-			<span v-if="!renderWithImage && !renderWithLabel">
+			<span v-if="!renderWithImage && !renderWithLabel" class="h-full w-full">
 				<img alt="avatar" src="./avatar.png" class="h-full w-full object-cover" />
 			</span>
 		</div>

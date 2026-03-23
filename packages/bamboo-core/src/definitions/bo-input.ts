@@ -87,6 +87,7 @@ interface BoInputStyleManifest {
 	helpers: {
 		container: string;
 		error: string;
+		hint: string;
 	};
 }
 

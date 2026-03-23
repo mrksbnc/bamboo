@@ -1,18 +1,18 @@
 {
 	"files": [],
-	"extends": "./packages/config/tsconfig.base.json",
+	"extends": "./packages/workspace-config/tsconfig.base.json",
 	"references": [
 		{
-			"path": "./packages/config"
+			"path": "./packages/workspace-config",
 		},
 		{
-			"path": "./packages/bamboo-core"
+			"path": "./packages/bamboo-core",
 		},
 		{
-			"path": "./packages/bamboo-vue"
+			"path": "./packages/bamboo-vue",
 		},
 		{
-			"path": "./packages/bamboo-docs"
-		}
-	]
+			"path": "./packages/bamboo-docs",
+		},
+	],
 }

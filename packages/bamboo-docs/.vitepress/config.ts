@@ -18,6 +18,7 @@ export default defineConfig({
 	base: process.env['VP_BASE'] || '/',
 	head: [
 		['script', { src: 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4' }],
+		['style', { type: 'text/tailwindcss' }, '@custom-variant dark (&:where(.dark, .dark *));'],
 		['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
 	],
 	sitemap: {

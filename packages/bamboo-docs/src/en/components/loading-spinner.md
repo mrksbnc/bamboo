@@ -73,7 +73,7 @@ The `variant` prop allows you to customize the color of the spinner. The default
   <bo-loading-spinner variant="success" />
   <bo-loading-spinner variant="warning" />
   <bo-loading-spinner variant="destructive" />
-  <div class="bg-gray-800 p-2 rounded">
+  <div class="bg-neutral-800 p-2 rounded">
     <bo-loading-spinner variant="white" />
   </div>
   <bo-loading-spinner variant="black" />

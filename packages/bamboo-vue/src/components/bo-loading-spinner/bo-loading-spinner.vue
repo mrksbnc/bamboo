@@ -9,12 +9,9 @@
 		:aria-busy="ariaBusy"
 	>
 		<div :class="classValues" :style="styleValues" aria-hidden="true"></div>
-		<bo-text
-			v-if="loaderText"
-			:value="loaderText"
-			:font-size="spinnerLabelFontSize"
-			:class="textClassValues"
-		/>
+		<bo-text v-if="loaderText" :font-size="spinnerLabelFontSize" :class="textClassValues">{{
+			loaderText
+		}}</bo-text>
 	</div>
 </template>
 

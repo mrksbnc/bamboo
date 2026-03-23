@@ -24,7 +24,7 @@ import {
 	TEXT_MANIFEST,
 	type BoTextProps,
 } from '@workspace/bamboo-core';
-import { computed, useSlots, type StyleValue } from 'vue';
+import { computed, type StyleValue } from 'vue';
 
 const props = withDefaults(defineProps<BoTextProps>(), {
 	id: () => generateComponentId('text'),
@@ -40,9 +40,6 @@ const props = withDefaults(defineProps<BoTextProps>(), {
 	textTransform: () => TEXT_MANIFEST.defaults.textTransform,
 	role: () => TEXT_MANIFEST.defaults.role,
 });
-
-
-const slots = useSlots();
 
 
 const cursor = computed<string>(() => {
@@ -105,5 +102,3 @@ const styleValues = computed<StyleValue>(() => {
 	return {};
 });
 </script>
-
-<style scoped lang="css"></style>

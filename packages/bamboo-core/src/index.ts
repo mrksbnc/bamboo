@@ -46,14 +46,11 @@ export {
 	type BoInputState,
 	type BoInputProps,
 
-	// Navbar
-	type BoNavbarVariant,
-	type BoNavbarPosition,
-	type BoNavbarPadding,
-	type BoNavbarMaxWidth,
-	type BoNavbarOffset,
-	type BoNavbarProps,
-	type NavbarManifest,
+	// Modal
+	type BoModalVariant,
+	type BoModalSize,
+	type BoModalProps,
+	type ModalManifest,
 
 	// Loader
 	type BoLoaderSize,
@@ -70,18 +67,6 @@ export {
 	type BoLoadingSpinnerProps,
 	type BoLoadingSpinnerStyleManifest,
 	type LoadingSpinnerManifest,
-
-	// Sidebar
-	type BoSidebarVariant,
-	type BoSidebarPosition,
-	type BoSidebarSide,
-	type BoSidebarWidth,
-	type BoSidebarCollapsedWidth,
-	type BoSidebarMaxWidth,
-	type BoSidebarPadding,
-	type BoSidebarOffset,
-	type BoSidebarProps,
-	type SidebarManifest,
 
 	// Text
 	type BoFontFamily,
@@ -122,8 +107,7 @@ export {
 	INPUT_MANIFEST,
 	LOADING_PULSE_MANIFEST,
 	LOADING_SPINNER_MANIFEST,
-	NAVBAR_MANIFEST,
-	SIDEBAR_MANIFEST,
+	MODAL_MANIFEST,
 	TEXT_MANIFEST,
 	TEXTAREA_MANIFEST,
 	TOOLTIP_MANIFEST,
