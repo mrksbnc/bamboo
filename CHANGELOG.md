@@ -1,3 +1,22 @@
+## [1.0.5](https://github.com/mrksbnc/bamboo/compare/v1.0.4...v1.0.5) (2026-06-11)
+
+### 🔧 Chores
+
+* **deps-dev:** bump oxlint-tsgolint from 0.11.1 to 0.17.1 ([#460](https://github.com/mrksbnc/bamboo/issues/460)) ([132b83e](https://github.com/mrksbnc/bamboo/commit/132b83e7df41e4239eb8105cbda6e7f845c6c81a))
+* **deps-dev:** bump vite-plugin-vue-devtools from 8.0.5 to 8.1.0 ([#456](https://github.com/mrksbnc/bamboo/issues/456)) ([e0d6c73](https://github.com/mrksbnc/bamboo/commit/e0d6c73d206db1297ea4f19bd35101999ca31398))
+* **deps-dev:** bump vitest from 4.0.15 to 4.1.0 ([#476](https://github.com/mrksbnc/bamboo/issues/476)) ([32168b4](https://github.com/mrksbnc/bamboo/commit/32168b4d5246c7576b68b725c1a8df764485ebbf))
+* **deps:** bump actions/configure-pages from 5 to 6 ([#467](https://github.com/mrksbnc/bamboo/issues/467)) ([a899fea](https://github.com/mrksbnc/bamboo/commit/a899fead2d2913af03dab509f65cda46df3f3ecb))
+* **deps:** bump actions/deploy-pages from 4 to 5 ([#466](https://github.com/mrksbnc/bamboo/issues/466)) ([fae5ffa](https://github.com/mrksbnc/bamboo/commit/fae5ffa5836728d92adc0976eb79dcbd1e65c983))
+* **deps:** bump actions/upload-pages-artifact from 4 to 5 ([#473](https://github.com/mrksbnc/bamboo/issues/473)) ([89fa50c](https://github.com/mrksbnc/bamboo/commit/89fa50cde66080f2364092c702e49a3ffe8bea88))
+* **deps:** bump axios from 1.13.2 to 1.16.0 ([#474](https://github.com/mrksbnc/bamboo/issues/474)) ([2cd8dee](https://github.com/mrksbnc/bamboo/commit/2cd8deecd4537d07db79ff5844ea7348a6cacb8c))
+* **deps:** bump brace-expansion from 2.0.2 to 2.0.3 ([#465](https://github.com/mrksbnc/bamboo/issues/465)) ([5d936cf](https://github.com/mrksbnc/bamboo/commit/5d936cf6c082f3811ec9bc474b299135c2cc7819))
+* **deps:** bump fast-uri from 3.1.0 to 3.1.2 ([#475](https://github.com/mrksbnc/bamboo/issues/475)) ([1368d6b](https://github.com/mrksbnc/bamboo/commit/1368d6b874ad11acebf64f68a6500a3bd1d0a00e))
+* **deps:** bump follow-redirects from 1.15.11 to 1.16.0 ([#472](https://github.com/mrksbnc/bamboo/issues/472)) ([70f7d50](https://github.com/mrksbnc/bamboo/commit/70f7d5047ce9299dd83a483c953fd83d3b4c1e2b))
+* **deps:** bump handlebars from 4.7.8 to 4.7.9 ([#463](https://github.com/mrksbnc/bamboo/issues/463)) ([c7c76e5](https://github.com/mrksbnc/bamboo/commit/c7c76e594dcf48433e0b9c525da80780fd1e3484))
+* **deps:** bump lodash from 4.17.21 to 4.17.23 ([#469](https://github.com/mrksbnc/bamboo/issues/469)) ([7b06224](https://github.com/mrksbnc/bamboo/commit/7b0622497b9c6995114581759b30446e966e5699))
+* **deps:** bump lodash-es from 4.17.21 to 4.18.1 ([#468](https://github.com/mrksbnc/bamboo/issues/468)) ([2ba786e](https://github.com/mrksbnc/bamboo/commit/2ba786e35d5389286f0eb6f69ab7ba28d237979f))
+* **deps:** bump yaml from 2.8.2 to 2.8.3 ([#464](https://github.com/mrksbnc/bamboo/issues/464)) ([f00850c](https://github.com/mrksbnc/bamboo/commit/f00850c6807facdbbde1413467650c385f1fd41d))
+
 ## [1.0.4](https://github.com/mrksbnc/bamboo/compare/v1.0.3...v1.0.4) (2026-03-22)
 
 ### 🔧 Chores
