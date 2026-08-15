@@ -38,7 +38,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup LTS Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 'lts/*'
           cache: pnpm
@@ -62,7 +62,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup LTS Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 'lts/*'
           cache: pnpm
@@ -86,7 +86,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup LTS Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 'lts/*'
           cache: pnpm
@@ -110,7 +110,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup LTS Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 'lts/*'
           cache: pnpm
@@ -134,7 +134,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup LTS Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 'lts/*'
           cache: pnpm
