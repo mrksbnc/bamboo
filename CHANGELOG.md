@@ -1,3 +1,12 @@
+## [1.0.6](https://github.com/mrksbnc/bamboo/compare/v1.0.5...v1.0.6) (2026-08-15)
+
+### 🔧 Chores
+
+* **deps-dev:** bump sass-embedded from 1.97.2 to 1.100.0 ([#480](https://github.com/mrksbnc/bamboo/issues/480)) ([a36189d](https://github.com/mrksbnc/bamboo/commit/a36189d6c7164ac6f20ef46d87be6eb0e6d0dc5e))
+* **deps:** bump actions/checkout from 6 to 7 ([#482](https://github.com/mrksbnc/bamboo/issues/482)) ([f3ff997](https://github.com/mrksbnc/bamboo/commit/f3ff99777127a9ecc2b8100a3be854a197eb161e))
+* **deps:** bump actions/setup-node from 6 to 7 ([#483](https://github.com/mrksbnc/bamboo/issues/483)) ([1a8b819](https://github.com/mrksbnc/bamboo/commit/1a8b819a308fa141db02d2df105b878e766b3a8b))
+* **deps:** bump picomatch from 2.3.1 to 2.3.2 ([#462](https://github.com/mrksbnc/bamboo/issues/462)) ([880b17f](https://github.com/mrksbnc/bamboo/commit/880b17f5f1912a1a3dccba6b8eea35bf5cd9857d))
+
 ## [1.0.5](https://github.com/mrksbnc/bamboo/compare/v1.0.4...v1.0.5) (2026-06-11)
 
 ### 🔧 Chores
