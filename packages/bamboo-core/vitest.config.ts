@@ -9,6 +9,12 @@ export default mergeConfig(
 			coverage: {
 				provider: 'v8',
 				reporter: ['text', 'json-summary', 'json'],
+				thresholds: {
+					statements: 60,
+					branches: 50,
+					functions: 60,
+					lines: 60,
+				},
 			},
 			environment: 'jsdom',
 			exclude: [...configDefaults.exclude],
