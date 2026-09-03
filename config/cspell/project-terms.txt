@@ -44,11 +44,13 @@ cmplid
 codepen
 codesandbox
 codiepie
+computeds
 connectdevelop
 contao
 covid
 cpanel
 crosshairs
+culori
 dailymotion
 dashcube
 davelosert
@@ -60,11 +62,13 @@ deskpro
 deviantart
 dharmachakra
 digg
+dismissable
 disqus
 dochub
 dribbble
 dropbox
 drupal
+dtcg
 duolingo
 dyalog
 earlybirds
@@ -102,6 +106,7 @@ hamsa
 hanukiah
 hashnode
 haykal
+histoire
 hooli
 hotjar
 houzz
@@ -256,6 +261,7 @@ uber
 uikit
 umbraco
 uniregistry
+unlayered
 unsplash
 untappd
 untapped
@@ -263,6 +269,7 @@ upwork
 usps
 ussunnah
 vaadin
+vaul
 vcard
 venus
 viacoin
