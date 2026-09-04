@@ -1,14 +1,18 @@
 <template>
-	<div class="relative inline-flex">
+	<div class="bo-avatar-shell">
 		<div
 			:id="id"
 			:data-testid="dataTestId"
+			data-slot="avatar"
+			:data-size="size"
+			:data-kind="kind"
+			:data-variant="variant"
 			:role="role"
 			:aria-label="ariaLabel"
 			:class="containerClassValues"
 			:style="styleValues"
 		>
-			<span v-if="renderWithLabel">
+			<span v-if="renderWithLabel" data-slot="avatar-label">
 				<bo-text
 					:cursor="cursor"
 					variant="inherit"
@@ -19,16 +23,23 @@
 				</bo-text>
 			</span>
 
-			<span v-if="renderWithImage" class="h-full w-full">
+			<span v-if="renderWithImage" data-slot="avatar-image">
 				<img :src="src" :alt="alt" class="h-full w-full object-cover" @error="onImageError" />
 			</span>
 
-			<span v-if="!renderWithImage && !renderWithLabel" class="h-full w-full">
+			<span v-if="!renderWithImage && !renderWithLabel" data-slot="avatar-image">
 				<img alt="avatar" src="./avatar.png" class="h-full w-full object-cover" />
 			</span>
 		</div>
 
-		<div v-if="indicatorKind !== 'none'" :class="indicatorClassValues"></div>
+		<div
+			v-if="indicatorKind !== 'none'"
+			data-slot="avatar-indicator"
+			:data-size="size"
+			:data-kind="indicatorKind"
+			:data-position="indicatorPosition"
+			:class="indicatorClassValues"
+		></div>
 	</div>
 </template>
 

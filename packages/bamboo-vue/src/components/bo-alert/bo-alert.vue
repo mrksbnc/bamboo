@@ -77,7 +77,10 @@ const iconValue = computed<Icon | null>(() => {
 });
 
 const iconClasses = computed<string>(() =>
-	mergeTwClasses('size-5 shrink-0', ALERT_MANIFEST.styles.icon[props.variant || 'default']),
+	mergeTwClasses(
+		'bo-alert__icon size-5 shrink-0',
+		ALERT_MANIFEST.styles.icon[props.variant || 'default'],
+	),
 );
 
 const classValues = computed<string>(() =>

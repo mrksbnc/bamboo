@@ -1,5 +1,4 @@
 import { AlertManifest } from '../definitions/index.js';
-import { RADIUS, VARIANT } from './shared.js';
 
 export const ALERT_MANIFEST = {
 	meta: {
@@ -7,23 +6,33 @@ export const ALERT_MANIFEST = {
 		version: '1.0.0',
 	},
 	styles: {
-		base: /*tw*/ `flex w-full min-w-0 items-start gap-2 ${RADIUS.lg} border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm text-neutral-900 dark:text-neutral-100`,
+		base: 'bo-alert',
 		variant: {
-			default: /*tw*/ '',
-			primary: /*tw*/ 'border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400',
-			warning:
-				/*tw*/ 'border-yellow-600 dark:border-yellow-400 text-yellow-700 dark:text-yellow-400',
-			destructive: /*tw*/ 'border-red-600 dark:border-red-400 text-red-600 dark:text-red-400',
+			default: 'bo-alert--default',
+			primary: 'bo-alert--primary',
+			warning: 'bo-alert--warning',
+			destructive: 'bo-alert--destructive',
 		},
 		icon: {
-			default: /*tw*/ 'text-neutral-900 dark:text-neutral-100',
-			primary: VARIANT.primary.text,
-			warning: VARIANT.warning.text,
-			destructive: VARIANT.destructive.text,
+			default: 'bo-alert__icon--default',
+			primary: 'bo-alert__icon--primary',
+			warning: 'bo-alert__icon--warning',
+			destructive: 'bo-alert__icon--destructive',
 		},
-		content: /*tw*/ 'flex min-w-0 flex-1 flex-col justify-between gap-1',
-		title: /*tw*/ 'font-medium tracking-tight text-neutral-900 dark:text-neutral-100',
-		description: /*tw*/ 'text-sm text-neutral-500 dark:text-neutral-400 [&_p]:leading-relaxed',
+		container: {
+			base: 'bo-alert-container',
+			position: {
+				'top-left': 'bo-alert-container--top-left',
+				'top-center': 'bo-alert-container--top-center',
+				'top-right': 'bo-alert-container--top-right',
+				'bottom-left': 'bo-alert-container--bottom-left',
+				'bottom-center': 'bo-alert-container--bottom-center',
+				'bottom-right': 'bo-alert-container--bottom-right',
+			},
+		},
+		content: 'bo-alert__content',
+		title: 'bo-alert__title',
+		description: 'bo-alert__description',
 	},
 	defaults: {
 		role: 'alert',
