@@ -8,6 +8,14 @@ export {
 	type BoAccordionStyleManifest,
 	type AccordionManifest,
 
+	// Alert
+	type BoAlertPosition,
+	type BoAlertVariant,
+	type BoAlertProps,
+	type BoAlertContainerProps,
+	type BoAlertStyleManifest,
+	type AlertManifest,
+
 	// Avatar
 	type BoAvatarSize,
 	type BoAvatarKind,
@@ -107,6 +115,7 @@ export {
 
 export {
 	ACCORDION_MANIFEST,
+	ALERT_MANIFEST,
 	AVATAR_MANIFEST,
 	BADGE_MANIFEST,
 	BUTTON_MANIFEST,
