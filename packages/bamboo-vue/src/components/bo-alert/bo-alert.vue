@@ -10,7 +10,7 @@
 		<bo-icon
 			v-if="showIcon && iconValue"
 			:icon="iconValue"
-			size="lg"
+			size="default"
 			:variant="iconVariant"
 			aria-hidden="true"
 		/>
@@ -54,8 +54,6 @@ import { computed, useSlots } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
 
-// --- props ---
-
 const props = withDefaults(defineProps<BoAlertProps>(), {
 	id: () => generateComponentId('alert'),
 	dataTestId: () => generateDataTestId('alert'),
@@ -64,11 +62,7 @@ const props = withDefaults(defineProps<BoAlertProps>(), {
 	showIcon: () => ALERT_MANIFEST.defaults.showIcon,
 });
 
-// --- consts ---
-
 const slots = useSlots();
-
-// --- computed ---
 
 const titleId = computed<string>(() => `${props.id}-title`);
 
@@ -78,9 +72,9 @@ const iconValue = computed<Icon | null>(() => {
 	if (props.icon) return props.icon;
 
 	const map: Record<string, Icon> = {
-		primary: 'fa_solid_circle_info',
-		warning: 'fa_solid_circle_exclamation',
-		destructive: 'fa_solid_circle_xmark',
+		primary: 'fa_regular_circle_question',
+		warning: 'fa_regular_circle_dot',
+		destructive: 'fa_regular_circle_xmark',
 	};
 
 	return map[props.variant || 'default'] ?? null;
