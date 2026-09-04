@@ -1,6 +1,6 @@
 ---
 title: Avatar
-description: An avatar is a graphical representation of an individual or entity. It can be used to represent a user, a product, or any other entity. Avatars are commonly used in web applications to provide visual cues and enhance the user experience.
+description: A graphical representation of a user or entity, rendered from an image, initials, or a fallback.
 category: display
 tags:
   - avatar
@@ -11,199 +11,164 @@ tags:
 outline: deep
 ---
 
-<script setup>
+<script setup lang="ts">
 import { BoAvatar } from '@mrksbnc/bamboo-vue';
-</script>
 
-# Avatar
-
-An avatar is a graphical representation of an individual or entity. It can be used to represent a user, a product, or any other entity. Avatars are commonly used in web applications to provide visual cues and enhance the user experience.
-
-::: tip
-In case neither `src` nor `label` is provided, the component will render a default image.
-:::
-
-## Basic Usage
-
-The component is called `bo-avatar` and can be used as follows:
-
-<div class="flex gap-4">
-  <bo-avatar label="Avatar" />
-  <bo-avatar src="../../assets/avatar.jpeg" />
-  <bo-avatar />
-</div>
-
-```vue
-<!-- With abbr -->
+const basicExample = `<!-- With initials -->
 <bo-avatar label="Avatar" />
 
 <!-- With image -->
 <bo-avatar src="someImageUrl" />
 
-<!-- With default/fallback image -->
-<bo-avatar />
-```
+<!-- Fallback image -->
+<bo-avatar />`;
 
-## With Image
-
-To display an image, simply provide the `src` prop with the URL or path to the image.
-
-<bo-avatar src="../../assets/avatar.jpeg" />
-
-```vue
-<bo-avatar src="https://example.com/avatar.png" />
-```
-
-## With Label
-
-To display a label, simply provide the `label` prop with the label text. The avatar automatically truncates the label if it exceeds 2 characters.
-
-<bo-avatar label="Avatar" />
-
-```vue
-<bo-avatar label="Avatar" />
-```
-
-## Variants
-
-The `variant` prop allows you to customize the color of the avatar. The default variant is `primary`.
-
-<div class="flex gap-4">
-  <bo-avatar label="Primary" variant="primary" />
-  <bo-avatar label="Secondary" variant="secondary" />
-  <bo-avatar label="Destructive" variant="destructive" />
-  <bo-avatar label="Warning" variant="warning" />
-  <bo-avatar label="Success" variant="success" />
-  <bo-avatar label="Dark" variant="dark" />
-</div>
-
-```vue
-<bo-avatar label="Primary" variant="primary" />
+const variantsExample = `<bo-avatar label="Primary" variant="primary" />
 <bo-avatar label="Secondary" variant="secondary" />
 <bo-avatar label="Destructive" variant="destructive" />
 <bo-avatar label="Warning" variant="warning" />
 <bo-avatar label="Success" variant="success" />
-<bo-avatar label="Dark" variant="dark" />
-```
+<bo-avatar label="Dark" variant="dark" />`;
 
-## Sizes
-
-The `size` prop allows you to customize the size of the avatar. The default size is `default`.
-
-<div class="flex gap-4">
-  <bo-avatar label="XS" size="xs" />
-  <bo-avatar label="SM" size="sm" />
-  <bo-avatar label="Default" size="default" />
-  <bo-avatar label="LG" size="lg" />
-  <bo-avatar label="XL" size="xl" />
-</div>
-
-```vue
-<bo-avatar label="XS" size="xs" />
+const sizesExample = `<bo-avatar label="XS" size="xs" />
 <bo-avatar label="SM" size="sm" />
 <bo-avatar label="Default" size="default" />
 <bo-avatar label="LG" size="lg" />
-<bo-avatar label="XL" size="xl" />
-```
+<bo-avatar label="XL" size="xl" />`;
+
+const shapesExample = `<bo-avatar label="Default" kind="default" />
+<bo-avatar label="Flat" kind="flat" />
+<bo-avatar label="Circle" kind="circle" />
+<bo-avatar label="Outline" kind="outline" />
+<bo-avatar label="Outline Flat" kind="outline-flat" />
+<bo-avatar label="Outline Circle" kind="outline-circle" />`;
+
+const indicatorsExample = `<bo-avatar label="Online" indicator-kind="online" />
+<bo-avatar label="Offline" indicator-kind="offline" />
+<bo-avatar label="Busy" indicator-kind="busy" />
+<bo-avatar label="Away" indicator-kind="away" />`;
+
+const indicatorPositionExample = `<bo-avatar label="TL" indicator-position="top-left" indicator-kind="online" />
+<bo-avatar label="TR" indicator-position="top-right" indicator-kind="offline" />
+<bo-avatar label="BL" indicator-position="bottom-left" indicator-kind="busy" />
+<bo-avatar label="BR" indicator-position="bottom-right" indicator-kind="away" />`;
+
+const customColorsExample = `<bo-avatar label="CB" custom-color="#880808" custom-text-color="#FFFFFF" />
+<bo-avatar label="CB" custom-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
+<bo-avatar label="CB" custom-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
+<bo-avatar label="OL" kind="outline" custom-color="oklch(84.5% 0.143 164.978)" />`;
+
+const cursorExample = `<bo-avatar label="cursor-auto" cursor="cursor-auto" />
+<bo-avatar label="cursor-pointer" cursor="cursor-pointer" />
+<bo-avatar label="cursor-not-allowed" cursor="cursor-not-allowed" />`;
+</script>
+
+# Avatar
+
+A graphical representation of a user or entity, rendered from an image, initials, or a fallback image.
+
+:::tip
+When neither `src` nor `label` is provided, a default fallback image is rendered.
+:::
+
+## Basic Usage
+
+<ExampleFrame :code="basicExample">
+  <div class="flex gap-4 items-center">
+    <bo-avatar label="Avatar" />
+    <bo-avatar src="../../assets/avatar.jpeg" />
+    <bo-avatar />
+  </div>
+</ExampleFrame>
+
+## Variants
+
+<ExampleFrame :code="variantsExample">
+  <div class="flex gap-4 items-center">
+    <bo-avatar label="Primary" variant="primary" />
+    <bo-avatar label="Secondary" variant="secondary" />
+    <bo-avatar label="Destructive" variant="destructive" />
+    <bo-avatar label="Warning" variant="warning" />
+    <bo-avatar label="Success" variant="success" />
+    <bo-avatar label="Dark" variant="dark" />
+  </div>
+</ExampleFrame>
+
+## Sizes
+
+<ExampleFrame :code="sizesExample">
+  <div class="flex gap-4 items-center">
+    <bo-avatar label="XS" size="xs" />
+    <bo-avatar label="SM" size="sm" />
+    <bo-avatar label="Default" size="default" />
+    <bo-avatar label="LG" size="lg" />
+    <bo-avatar label="XL" size="xl" />
+  </div>
+</ExampleFrame>
 
 ## Shapes
 
-The `kind` prop allows you to customize the shape of the avatar. The default shape is `default`.
+Use the `kind` prop to control the shape of the avatar.
 
-<div class="flex gap-4">
-  <bo-avatar label="Default" kind="default" />
-  <bo-avatar label="Flat" kind="flat" />
-  <bo-avatar label="Circle" kind="circle" />
-  <bo-avatar label="Outline Flat" kind="outline-flat" />
-  <bo-avatar label="Outline Default" kind="outline" />
-  <bo-avatar label="Outline Circle" kind="outline-circle" />
-</div>
-
-```vue
-<bo-avatar label="Default" kind="default" />
-<bo-avatar label="Flat" kind="flat" />
-<bo-avatar label="Circle" kind="circle" />
-<bo-avatar label="Outline Flat" kind="outline-flat" />
-<bo-avatar label="Outline Default" kind="outline" />
-<bo-avatar label="Outline Circle" kind="outline-circle" />
-```
+<ExampleFrame :code="shapesExample">
+  <div class="flex gap-4 items-center">
+    <bo-avatar label="Default" kind="default" />
+    <bo-avatar label="Flat" kind="flat" />
+    <bo-avatar label="Circle" kind="circle" />
+    <bo-avatar label="Outline" kind="outline" />
+    <bo-avatar label="Outline Flat" kind="outline-flat" />
+    <bo-avatar label="Outline Circle" kind="outline-circle" />
+  </div>
+</ExampleFrame>
 
 ## Indicators
 
-The `indicatorKind` prop allows you to display an indicator on the avatar. The default indicator is `none`.
+Use `indicatorKind` to display a status indicator on the avatar.
 
-<div class="flex gap-4">
-  <bo-avatar label="Online" indicator-kind="online" />
-  <bo-avatar label="Offline" indicator-kind="offline" />
-  <bo-avatar label="Busy" indicator-kind="busy" />
-  <bo-avatar label="Away" indicator-kind="away" />
-  <bo-avatar label="None" indicator-kind="none" />
-</div>
-
-```vue
-<bo-avatar label="Online" indicator-kind="online" />
-<bo-avatar label="Offline" indicator-kind="offline" />
-<bo-avatar label="Busy" indicator-kind="busy" />
-<bo-avatar label="Away" indicator-kind="away" />
-<bo-avatar label="None" indicator-kind="none" />
-```
+<ExampleFrame :code="indicatorsExample">
+  <div class="flex gap-4 items-center">
+    <bo-avatar label="Online" indicator-kind="online" />
+    <bo-avatar label="Offline" indicator-kind="offline" />
+    <bo-avatar label="Busy" indicator-kind="busy" />
+    <bo-avatar label="Away" indicator-kind="away" />
+  </div>
+</ExampleFrame>
 
 ## Indicator Position
 
-The `indicatorPosition` prop allows you to customize the position of the indicator. The default position is `top-right`.
+Use `indicatorPosition` to place the indicator. Defaults to `top-right`.
 
-<div class="flex gap-4">
-<bo-avatar label="Top Left" indicator-position="top-left" indicator-kind="online" />
-  <bo-avatar label="Top Right" indicator-position="top-right" indicator-kind="offline" />
-  <bo-avatar label="Bottom Left" indicator-position="bottom-left" indicator-kind="busy" />
-  <bo-avatar label="Bottom Right" indicator-position="bottom-right" indicator-kind="away" />
-</div>
-
-```vue
-<bo-avatar label="Top Left" indicator-position="top-left" indicator-kind="online" />
-<bo-avatar label="Top Right" indicator-position="top-right" indicator-kind="offline" />
-<bo-avatar label="Bottom Left" indicator-position="bottom-left" indicator-kind="busy" />
-<bo-avatar label="Bottom Right" indicator-position="bottom-right" indicator-kind="away" />
-```
+<ExampleFrame :code="indicatorPositionExample">
+  <div class="flex gap-4 items-center">
+    <bo-avatar label="TL" indicator-position="top-left" indicator-kind="online" />
+    <bo-avatar label="TR" indicator-position="top-right" indicator-kind="offline" />
+    <bo-avatar label="BL" indicator-position="bottom-left" indicator-kind="busy" />
+    <bo-avatar label="BR" indicator-position="bottom-right" indicator-kind="away" />
+  </div>
+</ExampleFrame>
 
 ## Custom Colors
 
-The avatar background and text colors can be customized using the `customColor` and `customTextColor` props. You can use hex colors, RGB/RGBA, OKLCH, or CSS variables.
+Use `customColor` and `customTextColor` for arbitrary colors. Accepts hex, RGB/RGBA, OKLCH, or CSS variables.
 
-<div class="flex gap-4">
-  <bo-avatar label="CB" custom-color="#880808" custom-text-color="#FFFFFF" />
-  <bo-avatar label="CB" custom-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
-  <bo-avatar label="CB" custom-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
-  <bo-avatar label="OL" kind="outline" custom-color="oklch(84.5% 0.143 164.978)" />
-</div>
-
-```vue
-<bo-avatar label="CB" custom-color="#880808" custom-text-color="#FFFFFF" />
-<bo-avatar label="CB" custom-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
-<bo-avatar label="CB" custom-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
-<bo-avatar label="OL" kind="outline" custom-color="oklch(84.5% 0.143 164.978)" />
-```
+<ExampleFrame :code="customColorsExample">
+  <div class="flex gap-4 items-center">
+    <bo-avatar label="CB" custom-color="#880808" custom-text-color="#FFFFFF" />
+    <bo-avatar label="CB" custom-color="rgb(34, 197, 94)" custom-text-color="#FFFFFF" />
+    <bo-avatar label="CB" custom-color="oklch(84.5% 0.143 164.978)" custom-text-color="#000000" />
+    <bo-avatar label="OL" kind="outline" custom-color="oklch(84.5% 0.143 164.978)" />
+  </div>
+</ExampleFrame>
 
 ## Cursor
 
-The `cursor` prop is used to control the cursor style of the avatar. The values are defined in the `BoCursor` type.
-
-<div class="flex gap-4">
-  <bo-avatar label="cursor-auto" cursor="cursor-auto" />
-  <bo-avatar label="cursor-pointer" cursor="cursor-pointer" />
-  <bo-avatar label="cursor-not-allowed" cursor="cursor-not-allowed" />
-</div>
-
-```vue
-<!-- cursor-auto -->
-<bo-avatar label="cursor-auto" cursor="cursor-auto" />
-
-<!-- cursor-pointer -->
-<bo-avatar label="cursor-pointer" cursor="cursor-pointer" />
-
-<!-- cursor-not-allowed -->
-<bo-avatar label="cursor-not-allowed" cursor="cursor-not-allowed" />
-```
+<ExampleFrame :code="cursorExample">
+  <div class="flex gap-4 items-center">
+    <bo-avatar label="cursor-auto" cursor="cursor-auto" />
+    <bo-avatar label="cursor-pointer" cursor="cursor-pointer" />
+    <bo-avatar label="cursor-not-allowed" cursor="cursor-not-allowed" />
+  </div>
+</ExampleFrame>
 
 ## API Reference
 
@@ -213,16 +178,16 @@ The `cursor` prop is used to control the cursor style of the avatar. The values 
 | ------------------- | ------------------------------ | --------------- | ------------------------------------------------------- |
 | `id`                | `string`                       | `Autogenerated` | The id of the element.                                  |
 | `dataTestId`        | `string`                       | `Autogenerated` | The data test id of the element.                        |
-| `label`             | `string`                       | -               | The label of the avatar.                                |
-| `src`               | `string`                       | -               | The data for the avatar.                                |
-| `alt`               | `string`                       | -               | The alt text for the avatar.                            |
+| `label`             | `string`                       | -               | The initials label of the avatar.                       |
+| `src`               | `string`                       | -               | The image URL for the avatar.                           |
+| `alt`               | `string`                       | -               | The alt text for the avatar image.                      |
 | `kind`              | `BoAvatarKind`                 | `'default'`     | The shape of the avatar.                                |
 | `size`              | `BoAvatarSize`                 | `'default'`     | The size of the avatar.                                 |
 | `cursor`            | `BoCursor`                     | `cursor-auto`   | The cursor style of the avatar.                         |
 | `variant`           | `BoAvatarVariant`              | `'primary'`     | The color variant of the avatar.                        |
 | `customColor`       | `string`                       | -               | Custom background color for the avatar.                 |
 | `customTextColor`   | `string`                       | -               | Custom text color for the avatar.                       |
-| `indicatorKind`     | `BoAvatarIndicatorKind`        | `'none'`        | The status of the indicator.                            |
+| `indicatorKind`     | `BoAvatarIndicatorKind`        | `'none'`        | The status indicator type.                              |
 | `indicatorPosition` | `BoAvatarIndicatorPosition`    | `'top-right'`   | The position of the indicator.                          |
 | `role`              | `HTMLAttributes['role']`       | -               | The role of the element.                                |
 | `ariaLabel`         | `HTMLAttributes['aria-label']` | -               | Defines a string value that labels the current element. |
