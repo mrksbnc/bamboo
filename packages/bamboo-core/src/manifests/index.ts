@@ -1,3 +1,9 @@
+// # Accordion
+export { ACCORDION_MANIFEST } from './accordion.manifest';
+
+// # Alert
+export { ALERT_MANIFEST } from './alert.manifest';
+
 // # Avatar
 export { AVATAR_MANIFEST } from './avatar.manifest';
 
