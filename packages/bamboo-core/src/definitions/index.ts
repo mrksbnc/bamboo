@@ -1,3 +1,12 @@
+// # bo-accordion
+export {
+	type BoAccordionValue,
+	type BoAccordionProps,
+	type BoAccordionItemProps,
+	type BoAccordionStyleManifest,
+	type AccordionManifest,
+} from './bo-accordion.js';
+
 // # bo-avatar
 export {
 	type BoAvatarSize,
