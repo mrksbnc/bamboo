@@ -1,5 +1,5 @@
 <template>
-	<p
+	<i
 		v-html="component"
 		:id="id"
 		:data-testid="dataTestId"
@@ -8,7 +8,7 @@
 		:style="styleValues"
 		:title="title"
 		:aria-hidden="decorative"
-	></p>
+	></i>
 </template>
 
 <script lang="ts" setup>
