@@ -5,6 +5,8 @@ import './lib.css';
 
 export { default as BoAccordion } from './components/bo-accordion/bo-accordion.vue';
 export { default as BoAccordionItem } from './components/bo-accordion/bo-accordion-item.vue';
+export { default as BoAlert } from './components/bo-alert/bo-alert.vue';
+export { default as BoAlertContainer } from './components/bo-alert/bo-alert-container.vue';
 export { default as BoAvatar } from './components/bo-avatar/bo-avatar.vue';
 export { default as BoBadge } from './components/bo-badge/bo-badge.vue';
 export { default as BoButton } from './components/bo-button/bo-button.vue';
@@ -21,3 +23,5 @@ export { BoTooltip } from './components/bo-tooltip/index.js';
 /** Plugin exports */
 
 export { BambooVue } from './plugin.js';
+export { useAlert } from './composables/use-alert.js';
+export type { AlertMessage, AlertOptions, AlertPosition } from './composables/use-alert.js';
