@@ -55,9 +55,9 @@ function toSet(value: BoAccordionValue | undefined): Set<string | number> {
 }
 
 const isControlled = computed(() => {
-	const vnodeProps = instance?.vnode.props;
+	const componentProps = instance?.vnode.props;
 
-	return vnodeProps !== null && vnodeProps !== undefined && 'modelValue' in vnodeProps;
+	return componentProps !== null && componentProps !== undefined && 'modelValue' in componentProps;
 });
 const uncontrolled = ref<Set<string | number>>(toSet(props.defaultValue));
 
