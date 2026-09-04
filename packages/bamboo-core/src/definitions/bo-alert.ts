@@ -43,8 +43,8 @@ export interface BoAlertStyleManifest {
 	readonly icon: BoAlertIconStyleMap;
 	readonly container: BoAlertContainerStyleManifest;
 	readonly content: 'bo-alert__content';
-	readonly title: 'bo-alert__title';
-	readonly description: 'bo-alert__description';
+	readonly title: 'bo-alert__title !text-neutral-900 dark:!text-neutral-100';
+	readonly description: 'bo-alert__description !text-neutral-500 dark:!text-neutral-400';
 }
 
 export type AlertManifest = ComponentManifest<
