@@ -3,6 +3,8 @@ import './lib.css';
 
 /** Component exports */
 
+export { default as BoAccordion } from './components/bo-accordion/bo-accordion.vue';
+export { default as BoAccordionItem } from './components/bo-accordion/bo-accordion-item.vue';
 export { default as BoAvatar } from './components/bo-avatar/bo-avatar.vue';
 export { default as BoBadge } from './components/bo-badge/bo-badge.vue';
 export { default as BoButton } from './components/bo-button/bo-button.vue';
