@@ -10,28 +10,22 @@ const { frontmatter } = useData();
 		<div class="landing-glow" aria-hidden="true"></div>
 
 		<main class="landing-main">
-			<img
-				class="landing-logo"
-				:src="withBase('/assets/logo.svg')"
-				alt="Bamboo logo"
-				width="56"
-				height="56"
-			/>
+			<img class="landing-logo" :src="withBase('/assets/logo.webp')" alt="Bamboo logo" width="96" />
 
 			<p class="landing-badge">
 				<span class="landing-badge-dot"></span>
-				Bamboo v1 — 47 components for Vue 3
+				Vue 3 component library
 			</p>
 
 			<h1 class="landing-title">
-				Build fast.
+				Build interfaces.
 				<br />
-				<span class="landing-title-accent">Stay flexible.</span>
+				<span class="landing-title-accent">Keep control.</span>
 			</h1>
 
 			<p class="landing-subtitle">
-				A lightweight, type-safe component library for Vue 3. Concrete utility styles with dark-mode
-				pairs, manifest-driven components and 47 accessible components.
+				Typed, manifest-driven components for Vue 3 with accessible states, concrete styles, and
+				room to make each surface your own.
 			</p>
 
 			<div class="landing-actions">
@@ -97,10 +91,7 @@ const { frontmatter } = useData();
 					</svg>
 				</span>
 				<h3>Vue 3</h3>
-				<p>
-					Composition API with <code>defineModel</code> for two-way state and typed templates
-					throughout.
-				</p>
+				<p>Composition API components that fit naturally into modern Vue applications.</p>
 			</div>
 			<div class="landing-feature">
 				<span class="landing-feature-icon">
@@ -113,7 +104,7 @@ const { frontmatter } = useData();
 					</svg>
 				</span>
 				<h3>TypeScript First</h3>
-				<p>Every component, prop and manifest is fully typed, so autocomplete works end to end.</p>
+				<p>Props, manifests, and public APIs stay typed from source to template.</p>
 			</div>
 			<div class="landing-feature">
 				<span class="landing-feature-icon">
@@ -124,9 +115,7 @@ const { frontmatter } = useData();
 					</svg>
 				</span>
 				<h3>Tailwind CSS 4</h3>
-				<p>
-					Every style is a Tailwind utility with its own dark-mode pair. Your overrides always win.
-				</p>
+				<p>Utility-first styling with concrete tokens and predictable dark-mode pairs.</p>
 			</div>
 			<div class="landing-feature">
 				<span class="landing-feature-icon">
@@ -149,11 +138,8 @@ const { frontmatter } = useData();
 						/>
 					</svg>
 				</span>
-				<h3>Themeable by default</h3>
-				<p>
-					One shared <code>VARIANT</code> map drives every component color. Swap the class strings
-					once and every component follows.
-				</p>
+				<h3>Composable</h3>
+				<p>Use the pieces you need and keep each surface as a normal Vue component.</p>
 			</div>
 			<div class="landing-feature">
 				<span class="landing-feature-icon">
@@ -164,10 +150,7 @@ const { frontmatter } = useData();
 					</svg>
 				</span>
 				<h3>Dark Mode Ready</h3>
-				<p>
-					Class-based dark mode with <code>color-scheme</code> support. Toggle one class, everything
-					swaps.
-				</p>
+				<p>Every surface ships with a deliberate light and dark treatment.</p>
 			</div>
 			<div class="landing-feature">
 				<span class="landing-feature-icon">
@@ -186,10 +169,7 @@ const { frontmatter } = useData();
 					</svg>
 				</span>
 				<h3>Accessible</h3>
-				<p>
-					ARIA roles, keyboard navigation, focus management and reduced-motion support in every
-					component.
-				</p>
+				<p>Semantic markup, keyboard-friendly interactions, and reduced-motion support.</p>
 			</div>
 		</section>
 
@@ -250,6 +230,8 @@ const { frontmatter } = useData();
 .landing-logo {
 	margin: 0 auto 20px;
 	display: block;
+	width: 96px;
+	height: auto;
 }
 
 .landing-badge {
