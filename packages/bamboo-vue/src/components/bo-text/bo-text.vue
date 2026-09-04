@@ -41,7 +41,6 @@ const props = withDefaults(defineProps<BoTextProps>(), {
 	role: () => TEXT_MANIFEST.defaults.role,
 });
 
-
 const cursor = computed<string>(() => {
 	if (props.cursor) {
 		return props.cursor as string;
@@ -53,7 +52,6 @@ const cursor = computed<string>(() => {
 
 	return TEXT_MANIFEST.styles.cursor.default;
 });
-
 
 const lineClamp = computed<string>(() => {
 	if (!props.lineClamp || props.lineClamp === 'none') {
@@ -75,7 +73,6 @@ const lineClamp = computed<string>(() => {
 	return TEXT_MANIFEST.styles.lineClamp.none;
 });
 
-
 const classValues = computed<string>(() => {
 	return mergeTwClasses(
 		cursor.value,
@@ -90,7 +87,6 @@ const classValues = computed<string>(() => {
 		TEXT_MANIFEST.styles.textTransform[props.textTransform || 'none'],
 	);
 });
-
 
 const styleValues = computed<StyleValue>(() => {
 	if (props.customColor && typeof props.customColor === 'string') {

@@ -33,32 +33,26 @@ const props = withDefaults(defineProps<BoTooltipProps>(), {
 	...TOOLTIP_MANIFEST.defaults,
 });
 
-
 const emit = defineEmits<{
 	show: [];
 	hide: [];
 }>();
 
-
 // Template refs
 const triggerRef = ref<HTMLElement>();
 const tooltipRef = ref<HTMLElement>();
-
 
 // State
 const isVisible = ref(false);
 const tooltipStyle = ref<Record<string, string | number>>({});
 
-
 // Computed
 const id = computed(() => props.id ?? generateComponentId('tooltip'));
 const dataTestId = computed(() => props.dataTestId ?? generateDataTestId('BoTooltip'));
 
-
 const tooltipClasses = computed(() =>
 	mergeTwClasses(TOOLTIP_MANIFEST.styles.base, TOOLTIP_MANIFEST.styles.placement[props.placement!]),
 );
-
 
 const arrowClasses = computed(() =>
 	mergeTwClasses(
@@ -67,11 +61,9 @@ const arrowClasses = computed(() =>
 	),
 );
 
-
 // Timers
 let showTimer: ReturnType<typeof setTimeout> | null = null;
 let hideTimer: ReturnType<typeof setTimeout> | null = null;
-
 
 // Methods
 const clearTimers = () => {
@@ -85,10 +77,8 @@ const clearTimers = () => {
 	}
 };
 
-
 const show = () => {
 	if (props.disabled) return;
-
 
 	clearTimers();
 	showTimer = setTimeout(() => {
@@ -100,7 +90,6 @@ const show = () => {
 	}, props.showDelay);
 };
 
-
 const hide = () => {
 	clearTimers();
 	hideTimer = setTimeout(() => {
@@ -109,19 +98,15 @@ const hide = () => {
 	}, props.hideDelay);
 };
 
-
 const updatePosition = () => {
 	if (!triggerRef.value || !tooltipRef.value) return;
-
 
 	const triggerRect = triggerRef.value.getBoundingClientRect();
 	const tooltipRect = tooltipRef.value.getBoundingClientRect();
 	const offset = props.offset!;
 
-
 	let top = 0;
 	let left = 0;
-
 
 	switch (props.placement) {
 		case 'top':
@@ -174,17 +159,14 @@ const updatePosition = () => {
 			break;
 	}
 
-
 	// Keep tooltip within viewport
 	const viewportWidth = window.innerWidth;
 	const viewportHeight = window.innerHeight;
-
 
 	if (left < 0) left = 8;
 	if (left + tooltipRect.width > viewportWidth) left = viewportWidth - tooltipRect.width - 8;
 	if (top < 0) top = 8;
 	if (top + tooltipRect.height > viewportHeight) top = viewportHeight - tooltipRect.height - 8;
-
 
 	tooltipStyle.value = {
 		position: 'fixed',
@@ -193,27 +175,22 @@ const updatePosition = () => {
 	};
 };
 
-
 // Event handlers
 const handleMouseEnter = () => {
 	if (props.trigger === 'hover') show();
 };
 
-
 const handleMouseLeave = () => {
 	if (props.trigger === 'hover') hide();
 };
-
 
 const handleFocus = () => {
 	if (props.trigger === 'focus') show();
 };
 
-
 const handleBlur = () => {
 	if (props.trigger === 'focus') hide();
 };
-
 
 const handleClick = () => {
 	if (props.trigger === 'click') {
@@ -222,7 +199,6 @@ const handleClick = () => {
 	}
 };
 
-
 // Watch for manual visibility changes
 const handleVisibilityChange = () => {
 	if (props.trigger === 'manual') {
@@ -230,7 +206,6 @@ const handleVisibilityChange = () => {
 		else hide();
 	}
 };
-
 
 // Lifecycle
 onMounted(() => {
@@ -258,7 +233,6 @@ onMounted(() => {
 	}
 });
 
-
 onUnmounted(() => {
 	clearTimers();
 
@@ -271,7 +245,6 @@ onUnmounted(() => {
 	trigger.removeEventListener('blur', handleBlur);
 	trigger.removeEventListener('click', handleClick);
 });
-
 
 // Watch for prop changes
 watch(() => props.visible, handleVisibilityChange, { immediate: true });

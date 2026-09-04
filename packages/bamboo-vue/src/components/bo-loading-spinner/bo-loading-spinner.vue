@@ -37,11 +37,9 @@ const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 	textPosition: () => LOADING_SPINNER_MANIFEST.defaults.textPosition,
 });
 
-
 const spinnerLabelFontSize = computed<BoFontSize>(() => {
 	return LOADING_SPINNER_MANIFEST.styles.labelFontSize[props.size || 'default'];
 });
-
 
 const containerClassValues = computed<string>(() => {
 	return mergeTwClasses(
@@ -50,11 +48,9 @@ const containerClassValues = computed<string>(() => {
 	);
 });
 
-
 const textClassValues = computed<string>(() => {
 	return LOADING_SPINNER_MANIFEST.styles.text;
 });
-
 
 const classValues = computed<string>(() => {
 	return mergeTwClasses(
@@ -63,7 +59,6 @@ const classValues = computed<string>(() => {
 		LOADING_SPINNER_MANIFEST.styles.variant[props.variant || 'primary'],
 	);
 });
-
 
 const styleValues = computed<StyleValue>(() => {
 	if (props.customColor) {
