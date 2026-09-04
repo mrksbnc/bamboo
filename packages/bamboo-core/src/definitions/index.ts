@@ -7,6 +7,16 @@ export {
 	type AccordionManifest,
 } from './bo-accordion.js';
 
+// # bo-alert
+export {
+	type BoAlertPosition,
+	type BoAlertVariant,
+	type BoAlertProps,
+	type BoAlertContainerProps,
+	type BoAlertStyleManifest,
+	type AlertManifest,
+} from './bo-alert.js';
+
 // # bo-avatar
 export {
 	type BoAvatarSize,
