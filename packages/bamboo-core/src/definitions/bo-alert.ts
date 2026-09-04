@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'vue';
-import { ComponentManifest } from '../manifests/types.js';
+import { ComponentManifest, ManifestDefaults } from '../manifests/types.js';
 import { Icon } from './bo-icon.js';
 
 export type BoAlertVariant = 'default' | 'primary' | 'warning' | 'destructive';
@@ -28,16 +28,27 @@ export interface BoAlertContainerProps {
 	position?: BoAlertPosition;
 }
 
-type BoAlertManifestDefaults = Pick<BoAlertProps, 'variant' | 'showIcon' | 'role'>;
-type BoAlertVariantStyleMap = Record<BoAlertVariant, string>;
+type BoAlertManifestDefaults = ManifestDefaults<BoAlertProps, 'variant' | 'showIcon' | 'role'>;
+type BoAlertVariantStyleMap = Readonly<Record<BoAlertVariant, `bo-alert--${string}`>>;
+type BoAlertIconStyleMap = Readonly<Record<BoAlertVariant, `bo-alert__icon--${string}`>>;
 
-export interface BoAlertStyleManifest {
-	base: string;
-	variant: BoAlertVariantStyleMap;
-	icon: BoAlertVariantStyleMap;
-	content: string;
-	title: string;
-	description: string;
+export interface BoAlertContainerStyleManifest {
+	readonly base: 'bo-alert-container';
+	readonly position: Readonly<Record<BoAlertPosition, `bo-alert-container--${string}`>>;
 }
 
-export type AlertManifest = ComponentManifest<BoAlertStyleManifest, BoAlertManifestDefaults>;
+export interface BoAlertStyleManifest {
+	readonly base: 'bo-alert';
+	readonly variant: BoAlertVariantStyleMap;
+	readonly icon: BoAlertIconStyleMap;
+	readonly container: BoAlertContainerStyleManifest;
+	readonly content: 'bo-alert__content';
+	readonly title: 'bo-alert__title';
+	readonly description: 'bo-alert__description';
+}
+
+export type AlertManifest = ComponentManifest<
+	BoAlertStyleManifest,
+	BoAlertManifestDefaults,
+	'Alert'
+>;
