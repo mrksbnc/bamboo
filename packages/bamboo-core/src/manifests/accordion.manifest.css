@@ -4,7 +4,12 @@
 	}
 
 	.bo-accordion__item {
-		@apply w-full min-w-0 border-b border-border;
+		@apply w-full min-w-0 border-b;
+		border-color: var(--color-neutral-200);
+	}
+
+	.dark .bo-accordion__item {
+		border-color: var(--color-neutral-800);
 	}
 
 	.bo-accordion__item:last-child {
@@ -16,15 +21,26 @@
 	}
 
 	.bo-accordion__trigger {
-		@apply flex min-w-0 flex-1 items-start justify-between gap-4 rounded-md py-4 text-start text-sm font-medium text-foreground transition-all hover:underline disabled:pointer-events-none disabled:opacity-50;
+		@apply flex min-w-0 flex-1 items-start justify-between gap-4 rounded-md py-4 text-start text-sm font-medium transition-all hover:underline disabled:pointer-events-none disabled:opacity-50;
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-accordion__trigger {
+		color: var(--color-neutral-100);
 	}
 
 	.bo-accordion__trigger:focus-visible {
-		@apply outline-none ring-[3px] ring-ring;
+		@apply outline-none ring-[3px];
+		--tw-ring-color: var(--color-blue-500);
 	}
 
 	.bo-accordion__icon {
-		@apply pointer-events-none size-4 shrink-0 translate-y-0.5 text-muted-foreground transition-transform duration-200;
+		@apply pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200;
+		color: var(--color-neutral-500);
+	}
+
+	.dark .bo-accordion__icon {
+		color: var(--color-neutral-400);
 	}
 
 	.bo-accordion__trigger[data-state='open'] .bo-accordion__icon {
@@ -32,7 +48,12 @@
 	}
 
 	.bo-accordion__content {
-		@apply grid w-full min-w-0 grid-rows-[minmax(0,1fr)] overflow-hidden text-sm text-muted-foreground transition-[grid-template-rows] duration-200 ease-out;
+		@apply grid w-full min-w-0 grid-rows-[minmax(0,1fr)] overflow-hidden text-sm transition-[grid-template-rows] duration-200 ease-out;
+		color: var(--color-neutral-500);
+	}
+
+	.dark .bo-accordion__content {
+		color: var(--color-neutral-400);
 	}
 
 	.bo-accordion__content[data-state='closed'] {

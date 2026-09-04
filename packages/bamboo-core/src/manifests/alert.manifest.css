@@ -28,43 +28,52 @@
 	}
 
 	.bo-alert {
-		@apply flex w-full min-w-0 items-start gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground;
+		@apply flex w-full min-w-0 items-center gap-2 rounded-lg px-3 py-2 text-sm;
+		border: 1px solid var(--color-neutral-300);
+		color: var(--color-neutral-900);
+		background-color: var(--color-white);
+	}
+
+	.dark .bo-alert {
+		border-color: var(--color-neutral-700);
+		color: var(--color-neutral-100);
+		background-color: var(--color-neutral-900);
 	}
 
 	.bo-alert--default {
-		@apply border-border text-foreground;
+		border-color: var(--color-neutral-300);
+	}
+
+	.dark .bo-alert--default {
+		border-color: var(--color-neutral-700);
 	}
 
 	.bo-alert--primary {
-		@apply border-primary text-primary;
+		@apply border-blue-500/50;
+	}
+
+	.dark .bo-alert--primary {
+		@apply border-blue-400/50;
 	}
 
 	.bo-alert--warning {
-		@apply border-warning text-warning;
+		@apply border-yellow-500/50;
+	}
+
+	.dark .bo-alert--warning {
+		@apply border-yellow-400/50;
 	}
 
 	.bo-alert--destructive {
-		@apply border-destructive text-destructive;
+		@apply border-red-500/50;
+	}
+
+	.dark .bo-alert--destructive {
+		@apply border-red-400/50;
 	}
 
 	.bo-alert__icon {
-		@apply size-5 shrink-0;
-	}
-
-	.bo-alert__icon--default {
-		@apply text-foreground;
-	}
-
-	.bo-alert__icon--primary {
-		@apply text-primary;
-	}
-
-	.bo-alert__icon--warning {
-		@apply text-warning;
-	}
-
-	.bo-alert__icon--destructive {
-		@apply text-destructive;
+		@apply shrink-0 mt-0.5;
 	}
 
 	.bo-alert__content {
@@ -72,10 +81,20 @@
 	}
 
 	.bo-alert__title {
-		@apply font-medium tracking-tight text-foreground;
+		@apply text-sm font-medium tracking-tight;
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-alert__title {
+		color: var(--color-neutral-100);
 	}
 
 	.bo-alert__description {
-		@apply text-sm text-muted-foreground [&_p]:leading-relaxed;
+		@apply text-sm [&_p]:leading-relaxed;
+		color: var(--color-neutral-500);
+	}
+
+	.dark .bo-alert__description {
+		color: var(--color-neutral-400);
 	}
 }
