@@ -14,6 +14,7 @@ export const ALERT_MANIFEST = {
 			destructive: 'bo-alert--destructive',
 		},
 		icon: {
+			base: 'bo-alert__icon',
 			default: 'bo-alert__icon--default',
 			primary: 'bo-alert__icon--primary',
 			warning: 'bo-alert__icon--warning',
