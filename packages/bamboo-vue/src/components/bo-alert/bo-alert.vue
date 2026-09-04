@@ -10,7 +10,7 @@
 		<bo-icon
 			v-if="showIcon && iconValue"
 			:icon="iconValue"
-			size="sm"
+			size="lg"
 			:variant="iconVariant"
 			aria-hidden="true"
 		/>
