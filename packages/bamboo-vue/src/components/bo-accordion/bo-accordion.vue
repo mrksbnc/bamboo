@@ -59,6 +59,7 @@ const isControlled = computed(() => {
 
 	return componentProps !== null && componentProps !== undefined && 'modelValue' in componentProps;
 });
+  
 const uncontrolled = ref<Set<string | number>>(toSet(props.defaultValue));
 
 const openValues = computed<Set<string | number>>(() =>
