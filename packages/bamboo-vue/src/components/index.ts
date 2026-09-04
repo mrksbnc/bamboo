@@ -1,3 +1,5 @@
+export { default as BoAccordion } from './bo-accordion/bo-accordion.vue';
+export { default as BoAccordionItem } from './bo-accordion/bo-accordion-item.vue';
 export { default as BoAvatar } from './bo-avatar/bo-avatar.vue';
 export { default as BoBadge } from './bo-badge/bo-badge.vue';
 export { default as BoButton } from './bo-button/bo-button.vue';
