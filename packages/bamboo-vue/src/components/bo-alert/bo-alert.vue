@@ -10,8 +10,8 @@
 		<bo-icon
 			v-if="showIcon && iconValue"
 			:icon="iconValue"
-			size="sm"
-			:class="iconClasses"
+			size="lg"
+			:variant="iconVariant"
 			aria-hidden="true"
 		/>
 		<div :class="ALERT_MANIFEST.styles.content">
@@ -30,6 +30,7 @@
 					v-if="description"
 					:id="descriptionId"
 					variant="inherit"
+					font-size="sm"
 					:class="ALERT_MANIFEST.styles.description"
 				>
 					{{ description }}
@@ -46,11 +47,14 @@ import {
 	generateDataTestId,
 	mergeTwClasses,
 	type BoAlertProps,
+	type BoIconVariant,
 	type Icon,
 } from '@workspace/bamboo-core';
 import { computed, useSlots } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
+
+// --- props ---
 
 const props = withDefaults(defineProps<BoAlertProps>(), {
 	id: () => generateComponentId('alert'),
@@ -60,9 +64,15 @@ const props = withDefaults(defineProps<BoAlertProps>(), {
 	showIcon: () => ALERT_MANIFEST.defaults.showIcon,
 });
 
+// --- consts ---
+
 const slots = useSlots();
-const titleId = computed(() => `${props.id}-title`);
-const descriptionId = computed(() => `${props.id}-description`);
+
+// --- computed ---
+
+const titleId = computed<string>(() => `${props.id}-title`);
+
+const descriptionId = computed<string>(() => `${props.id}-description`);
 
 const iconValue = computed<Icon | null>(() => {
 	if (props.icon) return props.icon;
@@ -76,12 +86,16 @@ const iconValue = computed<Icon | null>(() => {
 	return map[props.variant || 'default'] ?? null;
 });
 
-const iconClasses = computed<string>(() =>
-	mergeTwClasses(
-		'bo-alert__icon size-5 shrink-0',
-		ALERT_MANIFEST.styles.icon[props.variant || 'default'],
-	),
-);
+const iconVariant = computed<BoIconVariant>(() => {
+	const map: Record<string, BoIconVariant> = {
+		primary: 'primary',
+		warning: 'warning',
+		destructive: 'destructive',
+		default: 'secondary',
+	};
+
+	return map[props.variant || 'default'];
+});
 
 const classValues = computed<string>(() =>
 	mergeTwClasses(
