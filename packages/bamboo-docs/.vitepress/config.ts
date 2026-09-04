@@ -7,6 +7,11 @@ import { en } from './locales/en';
 /**
  * https://vitepress.dev/reference/site-config
  */
+const base = process.env['VP_BASE'] || '/';
+
+const assetPath = (path: string): string =>
+	`${base.replace(/\/?$/, '/')}${path.replace(/^\//, '')}`;
+
 export default defineConfig({
 	title: 'Bamboo',
 	description: 'Lightweight and flexible design system for the web.',
@@ -15,11 +20,11 @@ export default defineConfig({
 	metaChunk: true,
 	lastUpdated: true,
 	outDir: '.vitepress/dist',
-	base: process.env['VP_BASE'] || '/',
+	base,
 	head: [
 		['script', { src: 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4' }],
 		['style', { type: 'text/tailwindcss' }, '@custom-variant dark (&:where(.dark, .dark *));'],
-		['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+		['link', { rel: 'icon', type: 'image/png', href: assetPath('favicon.png') }],
 	],
 	sitemap: {
 		hostname: 'https://mrksbnc.github.io/bamboo/',
@@ -30,7 +35,7 @@ export default defineConfig({
 		},
 	},
 	themeConfig: {
-		logo: '/assets/logo.svg',
+		logo: assetPath('assets/logo.webp'),
 		socialLinks: [{ icon: 'github', link: 'https://github.com/mrksbnc/bamboo' }],
 		search: {
 			provider: 'local',
