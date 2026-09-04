@@ -30,7 +30,7 @@ export default defineConfig({
 		},
 	},
 	themeConfig: {
-		logo: '/assets/logo.webp',
+		logo: '/assets/logo.svg',
 		socialLinks: [{ icon: 'github', link: 'https://github.com/mrksbnc/bamboo' }],
 		search: {
 			provider: 'local',
