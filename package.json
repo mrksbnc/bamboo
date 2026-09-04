@@ -16,35 +16,55 @@
 		"purge": "turbo run purge && rm -rf node_modules .turbo",
 		"prepare": "husky",
 		"ib": "pnpm install && pnpm build",
-		"update:pnpm": "corepack use pnpm@latest"
+		"update:pnpm": "corepack use pnpm@latest",
+		"size": "size-limit"
 	},
+	"dependencies": {},
 	"devDependencies": {
 		"@cspell/dict-vue": "^3.0.5",
-		"@tailwindcss/vite": "^4.2.2",
-		"@tsconfig/node24": "^24.0.4",
-		"@types/jsdom": "^28.0.1",
-		"@types/node": "^25.5.0",
-		"@vitest/coverage-v8": "4.1.0",
-		"@vue/test-utils": "^2.4.6",
-		"@vueuse/core": "^14.2.1",
-		"cspell": "^9.7.0",
-		"globals": "^17.4.0",
+		"@size-limit/file": "^13.0.3",
+		"@size-limit/preset-big-lib": "^13.0.3",
+		"@tailwindcss/vite": "^4.3.3",
+		"@tsconfig/node24": "^24.0.5",
+		"@types/jsdom": "^30.0.0",
+		"@types/node": "^26.4.1",
+		"@vitest/coverage-v8": "4.1.11",
+		"@vue/test-utils": "^2.5.0",
+		"@vueuse/core": "^14.4.0",
+		"cspell": "^10.2.0",
+		"globals": "^17.12.0",
 		"husky": "^9.1.7",
-		"jiti": "^2.6.1",
-		"jsdom": "^29.0.1",
-		"npm-run-all2": "^8.0.4",
-		"oxfmt": "^0.41.0",
-		"oxlint": "~1.56.0",
-		"oxlint-tsgolint": "^0.17.1",
-		"postcss": "^8.5.8",
-		"tailwindcss": "^4.2.2",
-		"turbo": "^2.9.14",
-		"typescript": "^5.9.3",
-		"vite": "8.0.16",
-		"vite-plugin-dts": "^4.5.4",
-		"vitest": "^4.1.0",
-		"vue": "^3.5.30",
-		"vue-tsc": "^3.2.6"
+		"jiti": "^2.7.0",
+		"jsdom": "^30.0.1",
+		"npm-run-all2": "^9.0.3",
+		"oxfmt": "^0.66.0",
+		"oxlint": "~1.81.0",
+		"oxlint-tsgolint": "^7.0.2001",
+		"postcss": "^8.5.26",
+		"size-limit": "^13.0.3",
+		"tailwindcss": "^4.3.3",
+		"turbo": "^2.10.12",
+		"typescript": "^6.0.3",
+		"vite": "8.2.2",
+		"vite-plugin-dts": "^5.1.0",
+		"vitest": "^4.1.11",
+		"vitest-axe": "^0.1.0",
+		"vue": "^3.5.42",
+		"vue-tsc": "^3.3.11"
 	},
-	"packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
+	"size-limit": [
+		{
+			"path": "packages/bamboo-vue/dist/index.es.js",
+			"limit": "300 kB"
+		},
+		{
+			"path": "packages/bamboo-vue/dist/lib.css",
+			"limit": "100 kB"
+		},
+		{
+			"path": "packages/bamboo-core/dist/index.es.js",
+			"limit": "300 kB"
+		}
+	],
+	"packageManager": "pnpm@11.25.0+sha512.5cde925b4f075f725eb71fbae18a42ffe784524789f19b61c731cb8721ec28aaee160e01a8d5af4fedb2a42cdbf300efe23db356b0d4a17b4d63e11f8ab7c956"
 }

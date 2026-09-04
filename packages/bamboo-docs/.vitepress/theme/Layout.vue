@@ -2,9 +2,9 @@
 import { inBrowser, useData } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import { watchEffect } from 'vue';
+import LandingHome from './LandingHome.vue';
 
-const { lang } = useData();
-
+const { lang, frontmatter } = useData();
 
 watchEffect(() => {
 	if (inBrowser) {
@@ -14,5 +14,6 @@ watchEffect(() => {
 </script>
 
 <template>
-	<DefaultTheme.Layout />
+	<LandingHome v-if="frontmatter.layout === 'home'" />
+	<DefaultTheme.Layout v-else />
 </template>

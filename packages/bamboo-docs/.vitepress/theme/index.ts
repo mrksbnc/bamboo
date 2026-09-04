@@ -3,6 +3,7 @@ import { useData } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 // https://vitepress.dev/guide/custom-theme
 import { onMounted, watch } from 'vue';
+import ExampleFrame from './components/ExampleFrame.vue';
 import Layout from './Layout.vue';
 import './style.css';
 import '@mrksbnc/bamboo-vue/lib.css';
@@ -13,6 +14,8 @@ export default {
 	Layout,
 
 	enhanceApp({ app }) {
+		app.component('ExampleFrame', ExampleFrame);
+
 		if (typeof window !== 'undefined') {
 			app.mixin({
 				setup() {
