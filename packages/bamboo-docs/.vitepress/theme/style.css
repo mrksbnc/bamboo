@@ -8,6 +8,7 @@
 :root {
 	--vp-font-family-base: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--vp-font-family-mono: ui-monospace, 'SFMono-Regular', Menlo, Monaco, monospace;
+	--vp-code-font-size: 12px;
 
 	/* brand (blue-600 light / blue-500 dark) */
 	--vp-c-brand-1: #2563eb;
@@ -199,35 +200,48 @@
 .VPDoc .example-frame-code {
 	position: relative;
 	min-width: 0;
+	max-height: 500px;
+	overflow: auto;
 	border-top: 1px solid var(--vp-c-divider);
 	background: var(--vp-code-block-bg);
 }
 
 .VPDoc .example-frame-code pre {
-	height: auto;
-	max-height: 500px;
 	margin: 0;
 	padding: 24px 0;
-	overflow: auto;
+	overflow: visible;
 	border: 0;
 	border-radius: 0;
 	background: transparent;
-	font-size: 14px;
+	font-size: 12px;
 	line-height: 1.75;
 	tab-size: 2;
 }
 
-.VPDoc .example-frame-code[data-expanded='false'] pre {
-	max-height: 160px;
-	overflow: hidden;
+.VPDoc .example-frame-code .shiki {
+	background-color: var(--vp-code-block-bg) !important;
 }
 
-.VPDoc .example-frame-code[data-expanded='true'] pre {
-	max-height: 500px;
-	overflow: auto;
+.dark .VPDoc .example-frame-code .shiki,
+.dark .VPDoc .example-frame-code .shiki span,
+[data-theme='dark'] .VPDoc .example-frame-code .shiki,
+[data-theme='dark'] .VPDoc .example-frame-code .shiki span {
+	background-color: var(--vp-code-block-bg) !important;
+	color: var(--shiki-dark) !important;
 }
 
-.VPDoc .example-frame-code-line {
+.VPDoc .example-frame-code-content {
+	min-width: 0;
+}
+
+.VPDoc .example-frame-code pre code {
+	display: block;
+	width: max-content;
+	min-width: 100%;
+	counter-reset: line;
+}
+
+.VPDoc .example-frame-code pre .line {
 	display: grid;
 	min-width: max-content;
 	grid-template-columns: 48px minmax(0, 1fr);
@@ -235,7 +249,9 @@
 	white-space: pre;
 }
 
-.VPDoc .example-frame-line-number {
+.VPDoc .example-frame-code pre .line::before {
+	counter-increment: line;
+	content: counter(line);
 	padding-inline-end: 16px;
 	text-align: end;
 	color: var(--vp-c-text-3);
@@ -293,7 +309,7 @@
 		padding: 24px;
 	}
 
-	.VPDoc .example-frame-code-line {
+	.VPDoc .example-frame-code pre .line {
 		grid-template-columns: 36px minmax(0, 1fr);
 		padding-inline-end: 16px;
 	}

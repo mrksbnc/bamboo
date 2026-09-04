@@ -129,6 +129,9 @@ importers:
       '@workspace/config':
         specifier: workspace:*
         version: link:../workspace-config
+      shiki:
+        specifier: ^3.23.0
+        version: 3.23.0
       vitepress:
         specifier: 2.0.0-alpha.17
         version: 2.0.0-alpha.17(@types/node@26.4.1)(jiti@2.7.0)(lightningcss@1.33.0)(postcss@8.5.26)(terser@5.51.2)(typescript@6.0.3)(yaml@2.9.0)
