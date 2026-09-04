@@ -31,14 +31,6 @@ export interface BoAlertContainerProps {
 type BoAlertManifestDefaults = ManifestDefaults<BoAlertProps, 'variant' | 'showIcon' | 'role'>;
 type BoAlertVariantStyleMap = Readonly<Record<BoAlertVariant, `bo-alert--${string}`>>;
 
-export interface BoAlertIconManifest {
-	readonly base: 'bo-alert__icon';
-	readonly default: 'bo-alert__icon--default';
-	readonly primary: 'bo-alert__icon--primary';
-	readonly warning: 'bo-alert__icon--warning';
-	readonly destructive: 'bo-alert__icon--destructive';
-}
-
 export interface BoAlertContainerStyleManifest {
 	readonly base: 'bo-alert-container';
 	readonly position: Readonly<Record<BoAlertPosition, `bo-alert-container--${string}`>>;
@@ -47,7 +39,7 @@ export interface BoAlertContainerStyleManifest {
 export interface BoAlertStyleManifest {
 	readonly base: 'bo-alert';
 	readonly variant: BoAlertVariantStyleMap;
-	readonly icon: BoAlertIconManifest;
+	readonly icon: 'bo-alert__icon';
 	readonly container: BoAlertContainerStyleManifest;
 	readonly content: 'bo-alert__content';
 	readonly title: 'bo-alert__title';

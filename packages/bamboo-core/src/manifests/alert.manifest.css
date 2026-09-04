@@ -73,39 +73,7 @@
 	}
 
 	.bo-alert__icon {
-		@apply size-5 shrink-0;
-	}
-
-	.bo-alert__icon--default {
-		color: var(--color-neutral-300);
-	}
-
-	.dark .bo-alert__icon--default {
-		color: var(--color-neutral-700);
-	}
-
-	.bo-alert__icon--primary {
-		color: var(--color-blue-500);
-	}
-
-	.dark .bo-alert__icon--primary {
-		color: var(--color-blue-400);
-	}
-
-	.bo-alert__icon--warning {
-		color: var(--color-yellow-500);
-	}
-
-	.dark .bo-alert__icon--warning {
-		color: var(--color-yellow-400);
-	}
-
-	.bo-alert__icon--destructive {
-		color: var(--color-red-500);
-	}
-
-	.dark .bo-alert__icon--destructive {
-		color: var(--color-red-400);
+		@apply shrink-0 mt-0.5;
 	}
 
 	.bo-alert__content {

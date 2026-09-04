@@ -11,8 +11,7 @@
 			v-if="showIcon && iconValue"
 			:icon="iconValue"
 			size="sm"
-			variant="inherit"
-			:class="iconClasses"
+			:variant="iconVariant"
 			aria-hidden="true"
 		/>
 		<div :class="ALERT_MANIFEST.styles.content">
@@ -31,6 +30,7 @@
 					v-if="description"
 					:id="descriptionId"
 					variant="inherit"
+					font-size="sm"
 					:class="ALERT_MANIFEST.styles.description"
 				>
 					{{ description }}
@@ -47,6 +47,7 @@ import {
 	generateDataTestId,
 	mergeTwClasses,
 	type BoAlertProps,
+	type BoIconVariant,
 	type Icon,
 } from '@workspace/bamboo-core';
 import { computed, useSlots } from 'vue';
@@ -85,12 +86,16 @@ const iconValue = computed<Icon | null>(() => {
 	return map[props.variant || 'default'] ?? null;
 });
 
-const iconClasses = computed<string>(() =>
-	mergeTwClasses(
-		ALERT_MANIFEST.styles.icon.base,
-		ALERT_MANIFEST.styles.icon[props.variant || 'default'],
-	),
-);
+const iconVariant = computed<BoIconVariant>(() => {
+	const map: Record<string, BoIconVariant> = {
+		primary: 'primary',
+		warning: 'warning',
+		destructive: 'destructive',
+		default: 'secondary',
+	};
+
+	return map[props.variant || 'default'];
+});
 
 const classValues = computed<string>(() =>
 	mergeTwClasses(

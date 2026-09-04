@@ -13,13 +13,7 @@ export const ALERT_MANIFEST = {
 			warning: 'bo-alert--warning',
 			destructive: 'bo-alert--destructive',
 		},
-		icon: {
-			base: 'bo-alert__icon',
-			default: 'bo-alert__icon--default',
-			primary: 'bo-alert__icon--primary',
-			warning: 'bo-alert__icon--warning',
-			destructive: 'bo-alert__icon--destructive',
-		},
+		icon: 'bo-alert__icon',
 		container: {
 			base: 'bo-alert-container',
 			position: {
