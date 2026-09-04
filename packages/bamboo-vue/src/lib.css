@@ -1,4 +1,11 @@
 @import 'tailwindcss';
+@plugin 'tailwindcss-animate';
+
+@source './components/**/*.vue';
+@source './components/**/*.ts';
+@source '../../bamboo-core/src/manifests/**/*.ts';
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
 	color-scheme: light;
@@ -17,4 +24,18 @@
 		transition-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
 	}
+}
+
+/* Toast enter/leave (viewport TransitionGroup) */
+.bo-toast-enter-active,
+.bo-toast-leave-active {
+	transition:
+		opacity 0.25s ease,
+		transform 0.25s ease;
+}
+
+.bo-toast-enter-from,
+.bo-toast-leave-to {
+	opacity: 0;
+	transform: translateY(8px);
 }
