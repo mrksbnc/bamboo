@@ -1,6 +1,13 @@
 export { BO_ICON_REGISTRY } from './components/index.js';
 
 export {
+	// Accordion
+	type BoAccordionValue,
+	type BoAccordionProps,
+	type BoAccordionItemProps,
+	type BoAccordionStyleManifest,
+	type AccordionManifest,
+
 	// Avatar
 	type BoAvatarSize,
 	type BoAvatarKind,
@@ -99,6 +106,7 @@ export {
 } from './definitions/index.js';
 
 export {
+	ACCORDION_MANIFEST,
 	AVATAR_MANIFEST,
 	BADGE_MANIFEST,
 	BUTTON_MANIFEST,
