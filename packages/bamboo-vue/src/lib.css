@@ -8,6 +8,7 @@
 @import '../../bamboo-core/src/manifests/accordion.manifest.css';
 @import '../../bamboo-core/src/manifests/alert.manifest.css';
 @import '../../bamboo-core/src/manifests/avatar.manifest.css';
+@import '../../bamboo-core/src/manifests/badge.manifest.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 

@@ -14,7 +14,7 @@
 				:cursor="cursor"
 				:font-size="fontSize"
 				font-weight="semibold"
-				variant="currentColor"
+				variant="inherit"
 			>
 				{{ label }}
 			</bo-text>
@@ -49,6 +49,8 @@ const props = withDefaults(defineProps<BoBadgeProps>(), {
 	cursor: () => BADGE_MANIFEST.defaults.cursor,
 });
 
+const isOutlineKind = computed<boolean>(() => props.kind === 'outline');
+
 const isIconOnly = computed<boolean>(() => {
 	const hasIcon =
 		(props.prefixIcon && props.prefixIcon !== 'none') ||
@@ -57,92 +59,50 @@ const isIconOnly = computed<boolean>(() => {
 	return !!hasIcon && !props.label;
 });
 
-const showPrefixIcon = computed<boolean>(() => {
-	return (props.prefixIcon && props.prefixIcon !== 'none') || isIconOnly.value || isCircle.value;
-});
+const isCircle = computed<boolean>(() => props.shape === 'circle' && isIconOnly.value);
 
-const showSuffixIcon = computed<boolean>(() => {
-	return !!props.suffixIcon && props.suffixIcon !== 'none' && !isIconOnly.value && !isCircle.value;
-});
+const showPrefixIcon = computed<boolean>(
+	() => (props.prefixIcon && props.prefixIcon !== 'none') || isIconOnly.value || isCircle.value,
+);
 
-const fontSize = computed<BoFontSize>(() => {
-	return BADGE_MANIFEST.styles.fontSize[props.size || 'default'];
-});
+const showSuffixIcon = computed<boolean>(
+	() => !!props.suffixIcon && props.suffixIcon !== 'none' && !isIconOnly.value && !isCircle.value,
+);
 
-const isCircle = computed<boolean>(() => {
-	return props.shape === 'circle' && isIconOnly.value;
-});
+const fontSize = computed<BoFontSize>(
+	() => BADGE_MANIFEST.styles.fontSize[props.size || 'default'],
+);
 
-const iconSize = computed<BoIconSize>(() => {
-	return BADGE_MANIFEST.styles.iconSize[props.size || 'default'];
-});
+const iconSize = computed<BoIconSize>(
+	() => BADGE_MANIFEST.styles.iconSize[props.size || 'default'],
+);
 
-const gap = computed<string>(() => {
-	return !isIconOnly.value && props.label && (props.prefixIcon || props.suffixIcon)
-		? 'gap-1.5'
-		: '';
-});
+const gap = computed<string>(() =>
+	!isIconOnly.value && props.label && (props.prefixIcon || props.suffixIcon) ? 'gap-1.5' : '',
+);
 
-const isOutlineKind = computed<boolean>(() => {
-	return props.kind === 'outline';
-});
-
-const fontColor = computed<string>(() => {
-	if (props.customTextColor) {
-		return '';
-	}
+const variantClass = computed<string>(() => {
+	if (props.customColor) return '';
 
 	const variant = props.variant || 'primary';
 
-	if (isOutlineKind.value) {
-		return BADGE_MANIFEST.styles.textColor.outline[variant];
-	}
-
-	return BADGE_MANIFEST.styles.textColor.filled[variant];
+	return isOutlineKind.value
+		? BADGE_MANIFEST.styles.variants.outline[variant]
+		: BADGE_MANIFEST.styles.variants.filled[variant];
 });
 
-const backgroundClassValues = computed<string>(() => {
-	if (props.customColor) {
-		return '';
-	}
-
-	const variant = props.variant || 'primary';
-
-	if (isOutlineKind.value) {
-		return BADGE_MANIFEST.styles.variants.outline[variant];
-	}
-
-	return BADGE_MANIFEST.styles.variants.filled[variant];
-});
-
-const borderColorClassValues = computed<string>(() => {
-	if (props.customColor) {
-		return '';
-	}
-
-	const variant = props.variant || 'primary';
-
-	if (isOutlineKind.value) {
-		return BADGE_MANIFEST.styles.variants.outline[variant];
-	}
-
-	return '';
-});
-
-const classValues = computed<string>(() => {
-	return mergeTwClasses(
+const classValues = computed<string>(() =>
+	mergeTwClasses(
 		gap.value,
-		fontColor.value,
 		props.cursor,
 		BADGE_MANIFEST.styles.base,
 		BADGE_MANIFEST.styles.shape[props.shape || 'default'],
-		backgroundClassValues.value,
-		borderColorClassValues.value,
+		variantClass.value,
 		isCircle.value
 			? BADGE_MANIFEST.styles.size.circle[props.size || 'default']
 			: BADGE_MANIFEST.styles.size.default[props.size || 'default'],
-	);
-});
+	),
+);
 
 const styleValues = computed<StyleValue>(() => {
 	const style: StyleValue = {};
