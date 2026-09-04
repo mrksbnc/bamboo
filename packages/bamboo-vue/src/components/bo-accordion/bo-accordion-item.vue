@@ -17,7 +17,7 @@
 				:aria-expanded="isOpen ? 'true' : 'false'"
 				:aria-controls="contentId"
 				:class="ACCORDION_MANIFEST.styles.trigger"
-				@click="toggleItem"
+				@click="onItemToggle"
 			>
 				<slot name="trigger">
 					<slot />
@@ -65,9 +65,10 @@ const props = withDefaults(defineProps<BoAccordionItemProps>(), {
 	dataTestId: () => generateDataTestId('accordion-item'),
 });
 
-const openValues = inject(accordionOpenValuesKey, ref(new Set<string | number>()));
-const toggle = inject(accordionToggleKey);
 const groupDisabled = inject(accordionDisabledKey);
+const openValues = inject(accordionOpenValuesKey, ref(new Set<string | number>()));
+
+const onToggle = inject(accordionToggleKey);
 
 const isOpen = computed<boolean>(() => {
 	return openValues?.value.has(props.value) ?? false;
@@ -77,13 +78,30 @@ const isDisabled = computed<boolean>(() => {
 	return !!props.disabled || !!groupDisabled?.value;
 });
 
-const contentId = computed<string>(() => `${props.id}-content`);
-const triggerId = computed<string>(() => `${props.id}-trigger`);
-const state = computed<'open' | 'closed'>(() => (isOpen.value ? 'open' : 'closed'));
+const contentId = computed<string>(() => {
+	return `${props.id}-content`;
+});
 
-function toggleItem(): void {
-	if (!isDisabled.value && toggle) {
-		toggle(props.value);
+const triggerId = computed<string>(() => {
+	return `${props.id}-trigger`;
+});
+
+const state = computed<'open' | 'closed'>(() => {
+	return isOpen.value ? 'open' : 'closed';
+});
+
+function onItemToggle(): void {
+	if (isDisabled.value) {
+		return;
 	}
+
+	if (!onToggle) {
+		console.warn(
+			'BoAccordionItem: onToggle is not provided. Make sure to use BoAccordion within a BoAccordionGroup.',
+		);
+		return;
+	}
+
+	onToggle(props.value);
 }
 </script>

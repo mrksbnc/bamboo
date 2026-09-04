@@ -44,11 +44,9 @@ const props = withDefaults(defineProps<BoLoadingPulseProps>(), {
 	textPosition: () => LOADING_PULSE_MANIFEST.defaults.textPosition,
 });
 
-
 const pulseLabelFontSize = computed<BoFontSize>(() => {
 	return LOADING_PULSE_MANIFEST.styles.labelFontSize[props.size || 'default'];
 });
-
 
 const containerClassValues = computed<string>(() => {
 	return mergeTwClasses(
@@ -57,14 +55,12 @@ const containerClassValues = computed<string>(() => {
 	);
 });
 
-
 const outerPulseContainerClassValues = computed<string>(() => {
 	return mergeTwClasses(
 		LOADING_PULSE_MANIFEST.styles.base,
 		LOADING_PULSE_MANIFEST.styles.size[props.size || 'default'],
 	);
 });
-
 
 const outerPulseClassValues = computed<string>(() => {
 	if (props.customColor) {
@@ -75,7 +71,6 @@ const outerPulseClassValues = computed<string>(() => {
 		LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
 	);
 });
-
 
 const innerPulseClassValues = computed<string>(() => {
 	if (props.customColor) {
@@ -90,7 +85,6 @@ const innerPulseClassValues = computed<string>(() => {
 		LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
 	);
 });
-
 
 const styleValues = computed<StyleValue>(() => {
 	if (props.customColor) {

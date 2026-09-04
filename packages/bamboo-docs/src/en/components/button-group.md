@@ -152,7 +152,7 @@ Button groups inherit the variant styling from their child buttons, but you can 
     <bo-button variant="primary">Group</bo-button>
     <bo-button variant="primary">Buttons</bo-button>
   </bo-button-group>
-  
+
   <bo-button-group>
     <bo-button variant="secondary">Secondary</bo-button>
     <bo-button variant="secondary">Group</bo-button>
@@ -187,13 +187,13 @@ The `size` prop allows you to set a consistent size for all buttons in the group
     <bo-button>Group</bo-button>
     <bo-button>Buttons</bo-button>
   </bo-button-group>
-  
+
   <bo-button-group size="default">
     <bo-button>Default</bo-button>
     <bo-button>Group</bo-button>
     <bo-button>Buttons</bo-button>
   </bo-button-group>
-  
+
   <bo-button-group size="lg">
     <bo-button>Large</bo-button>
     <bo-button>Group</bo-button>
@@ -237,7 +237,7 @@ Button groups can be displayed horizontally (default) or vertically.
       <bo-button>Third</bo-button>
     </bo-button-group>
   </div>
-  
+
   <div>
     <h4 class="mb-2">Vertical</h4>
     <bo-button-group orientation="vertical">
@@ -277,7 +277,7 @@ Button groups work well with icon buttons and mixed content.
     <bo-button prefix-icon="italic">Italic</bo-button>
     <bo-button prefix-icon="underline">Underline</bo-button>
   </bo-button-group>
-  
+
   <bo-button-group>
     <bo-button prefix-icon="align-left" />
     <bo-button prefix-icon="align-center" />

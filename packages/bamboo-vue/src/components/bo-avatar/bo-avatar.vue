@@ -58,24 +58,19 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 	indicatorPosition: () => AVATAR_MANIFEST.defaults.indicatorPosition,
 });
 
-
 const imgError = ref<boolean>(false);
-
 
 const isOutlineKind = computed<boolean>(() => {
 	return props.kind?.includes('outline') ?? false;
 });
 
-
 const renderWithImage = computed<boolean>(() => {
 	return !!props.src && !imgError.value;
 });
 
-
 const renderWithLabel = computed<boolean>(() => {
 	return props.label !== undefined && props.label.length > 0 && !props.src;
 });
-
 
 const label = computed<string>(() => {
 	const safeStr = props?.label || '';
@@ -86,11 +81,9 @@ const label = computed<string>(() => {
 	return safeStr.toUpperCase();
 });
 
-
 const labelFontSize = computed<BoFontSize>(() => {
 	return AVATAR_MANIFEST.styles.labelSize[props.size || 'default'];
 });
-
 
 const fontColor = computed<string>(() => {
 	if (props.customTextColor) {
@@ -106,7 +99,6 @@ const fontColor = computed<string>(() => {
 	return AVATAR_MANIFEST.styles.textColor.filled[variant];
 });
 
-
 const backgroundClassValues = computed<string>(() => {
 	if (props.customColor) {
 		return '';
@@ -121,7 +113,6 @@ const backgroundClassValues = computed<string>(() => {
 	return AVATAR_MANIFEST.styles.variants.filled[variant];
 });
 
-
 const indicatorClassValues = computed<string>(() => {
 	if (!props.indicatorKind || props.indicatorKind === 'none') {
 		return '';
@@ -135,7 +126,6 @@ const indicatorClassValues = computed<string>(() => {
 	);
 });
 
-
 const containerClassValues = computed<string>(() => {
 	return mergeTwClasses(
 		fontColor.value,
@@ -146,7 +136,6 @@ const containerClassValues = computed<string>(() => {
 		AVATAR_MANIFEST.styles.kind[props.kind || 'default'],
 	);
 });
-
 
 const styleValues = computed<StyleValue>(() => {
 	const style: StyleValue = {};
@@ -169,7 +158,6 @@ const styleValues = computed<StyleValue>(() => {
 
 	return style;
 });
-
 
 function onImageError($event: Event): void {
 	imgError.value = true;

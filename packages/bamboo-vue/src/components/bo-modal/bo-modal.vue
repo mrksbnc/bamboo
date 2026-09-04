@@ -85,15 +85,12 @@ const props = withDefaults(defineProps<BoModalProps>(), {
 	role: () => MODAL_MANIFEST.defaults.role,
 });
 
-
 const emit = defineEmits<{
 	close: [];
 }>();
 
-
 const panelRef = ref<HTMLElement>();
 const titleId = computed(() => `${props.id}-title`);
-
 
 const variantIcon = computed<Icon | null>(() => {
 	const map: Record<string, Icon> = {
@@ -104,11 +101,9 @@ const variantIcon = computed<Icon | null>(() => {
 	return map[props.variant] ?? null;
 });
 
-
 const panelClasses = computed(() =>
 	mergeTwClasses(MODAL_MANIFEST.styles.panel.base, MODAL_MANIFEST.styles.panel.size[props.size]),
 );
-
 
 const headerClasses = computed(() =>
 	mergeTwClasses(
@@ -117,9 +112,7 @@ const headerClasses = computed(() =>
 	),
 );
 
-
 const onClose = () => emit('close');
-
 
 const onBackdropClick = () => {
 	if (props.closeOnBackdrop) {
@@ -127,13 +120,11 @@ const onBackdropClick = () => {
 	}
 };
 
-
 const onEscape = () => {
 	if (props.closeOnEscape) {
 		onClose();
 	}
 };
-
 
 // Focus trap: focus the panel when opened
 watch(
@@ -148,7 +139,6 @@ watch(
 		}
 	},
 );
-
 
 onUnmounted(() => {
 	document.body.style.overflow = '';

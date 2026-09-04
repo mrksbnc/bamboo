@@ -43,35 +43,35 @@ The `placement` prop controls where the tooltip appears relative to the target e
   <bo-tooltip content="Top tooltip" placement="top">
     <bo-button>Top</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Top start tooltip" placement="top-start">
     <bo-button>Top Start</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Top end tooltip" placement="top-end">
     <bo-button>Top End</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Left tooltip" placement="left">
     <bo-button>Left</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Center tooltip" placement="bottom">
     <bo-button>Center</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Right tooltip" placement="right">
     <bo-button>Right</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Bottom start tooltip" placement="bottom-start">
     <bo-button>Bottom Start</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Bottom tooltip" placement="bottom">
     <bo-button>Bottom</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Bottom end tooltip" placement="bottom-end">
     <bo-button>Bottom End</bo-button>
   </bo-tooltip>
@@ -106,23 +106,23 @@ Tooltips support different variants to match various contexts and importance lev
   <bo-tooltip content="Default tooltip" variant="default">
     <bo-button>Default</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Dark tooltip" variant="dark">
     <bo-button>Dark</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Light tooltip" variant="light">
     <bo-button>Light</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Success tooltip" variant="success">
     <bo-button variant="success">Success</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Warning tooltip" variant="warning">
     <bo-button variant="warning">Warning</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Error tooltip" variant="error">
     <bo-button variant="destructive">Error</bo-button>
   </bo-tooltip>
@@ -161,11 +161,11 @@ Control when the tooltip appears using different trigger events.
   <bo-tooltip content="Hover to show" trigger="hover">
     <bo-button>Hover</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Click to show" trigger="click">
     <bo-button>Click</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="Focus to show" trigger="focus">
     <bo-button>Focus</bo-button>
   </bo-tooltip>
@@ -199,11 +199,11 @@ Control the delay before showing and hiding the tooltip.
   <bo-tooltip content="No delay" :delay="0">
     <bo-button>No Delay</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="500ms delay" :delay="500">
     <bo-button>500ms Delay</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="1000ms delay" :delay="1000">
     <bo-button>1s Delay</bo-button>
   </bo-tooltip>
@@ -265,7 +265,7 @@ Tooltips can be disabled to prevent them from showing.
   <bo-tooltip content="This tooltip is enabled">
     <bo-button>Enabled Tooltip</bo-button>
   </bo-tooltip>
-  
+
   <bo-tooltip content="This tooltip is disabled" :disabled="true">
     <bo-button>Disabled Tooltip</bo-button>
   </bo-tooltip>
