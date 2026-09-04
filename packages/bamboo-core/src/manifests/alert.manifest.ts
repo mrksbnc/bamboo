@@ -31,8 +31,8 @@ export const ALERT_MANIFEST = {
 			},
 		},
 		content: 'bo-alert__content',
-		title: /*tw*/ 'bo-alert__title !text-neutral-900 dark:!text-neutral-100',
-		description: /*tw*/ 'bo-alert__description !text-neutral-500 dark:!text-neutral-400',
+		title: 'bo-alert__title',
+		description: 'bo-alert__description',
 	},
 	defaults: {
 		role: 'alert',

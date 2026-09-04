@@ -66,7 +66,9 @@ const slotsExample = `<bo-accordion default-value="one">
   <bo-accordion-item value="two">
     <template #trigger>
       <span class="font-semibold">Plans</span>
-      <span class="ms-auto rounded bg-neutral-600 px-1.5 py-0.5 text-xs">Pro</span>
+      <span class="ms-auto rounded bg-neutral-600 px-1.5 py-0.5 text-xs">
+        Pro
+      </span>
     </template>
     <template #content>Any markup can be placed in the content slot.</template>
   </bo-accordion-item>
@@ -156,7 +158,9 @@ The `value` prop identifies an item and accepts a string or number. Use the `tri
     <bo-accordion-item value="two">
       <template #trigger>
         <span class="font-semibold">Plans</span>
-        <span class="ms-auto rounded bg-neutral-600 px-1.5 py-0.5 text-xs">Pro</span>
+        <span class="ms-auto rounded bg-neutral-600 px-1.5 py-0.5 text-xs">
+          Pro
+        </span>
       </template>
       <template #content>Any markup can be placed in the content slot.</template>
     </bo-accordion-item>
