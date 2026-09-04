@@ -39,6 +39,10 @@
 		"type-check": "tsc --noEmit",
 		"purge": "rm -rf dist .turbo coverage"
 	},
+	"dependencies": {
+		"clsx": "^2.1.1",
+		"tailwind-merge": "^3.6.0"
+	},
 	"devDependencies": {
 		"@workspace/config": "workspace:*"
 	},

@@ -1,132 +1,296 @@
-@import 'tailwindcss';
-
 /**
- * Customize default theme styling by overriding CSS variables:
- * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ * Bamboo docs theme
+ *
+ * Light and dark. Component demos live in `.demo-frame` surfaces that
+ * follow the active theme through VitePress CSS variables.
  */
 
-/**
- * Colors
- *
- * Each colors have exact same color scale system with 3 levels of solid
- * colors with different brightness, and 1 soft color.
- *
- * - `XXX-1`: The most solid color used mainly for colored text. It must
- *   satisfy the contrast ratio against when used on top of `XXX-soft`.
- *
- * - `XXX-2`: The color used mainly for hover state of the button.
- *
- * - `XXX-3`: The color for solid background, such as bg color of the button.
- *   It must satisfy the contrast ratio with pure white (#ffffff) text on
- *   top of it.
- *
- * - `XXX-soft`: The color used for subtle background such as custom container
- *   or badges. It must satisfy the contrast ratio when putting `XXX-1` colors
- *   on top of it.
- *
- *   The soft color must be semi transparent alpha channel. This is crucial
- *   because it allows adding multiple "soft" colors on top of each other
- *   to create a accent, such as when having inline code block inside
- *   custom containers.
- *
- * - `default`: The color used purely for subtle indication without any
- *   special meanings attached to it such as bg color for menu hover state.
- *
- * - `brand`: Used for primary brand colors, such as link text, button with
- *   brand theme, etc.
- *
- * - `tip`: Used to indicate useful information. The default theme uses the
- *   brand color for this by default.
- *
- * - `warning`: Used to indicate warning to the users. Used in custom
- *   container, badges, etc.
- *
- * - `destructive`: Used to show error, or destructiveous message to the users. Used
- *   in custom container, badges, etc.
- * -------------------------------------------------------------------------- */
-
 :root {
-	--vp-c-default-1: var(--vp-c-gray-1);
-	--vp-c-default-2: var(--vp-c-gray-2);
-	--vp-c-default-3: var(--vp-c-gray-3);
-	--vp-c-default-soft: var(--vp-c-gray-soft);
+	--vp-font-family-base: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--vp-font-family-mono: ui-monospace, 'SFMono-Regular', Menlo, Monaco, monospace;
+	--vp-code-font-size: 12px;
 
-	--vp-c-brand-1: var(--vp-c-indigo-1);
-	--vp-c-brand-2: var(--vp-c-indigo-2);
-	--vp-c-brand-3: var(--vp-c-indigo-3);
-	--vp-c-brand-soft: var(--vp-c-indigo-soft);
+	/* brand (blue-600 light / blue-500 dark) */
+	--vp-c-brand-1: #2563eb;
+	--vp-c-brand-2: #3b82f6;
+	--vp-c-brand-3: #1d4ed8;
+	--vp-c-brand-soft: rgb(37 99 235 / 12%);
 
-	--vp-c-tip-1: var(--vp-c-brand-1);
-	--vp-c-tip-2: var(--vp-c-brand-2);
-	--vp-c-tip-3: var(--vp-c-brand-3);
-	--vp-c-tip-soft: var(--vp-c-brand-soft);
-
-	--vp-c-warning-1: var(--vp-c-yellow-1);
-	--vp-c-warning-2: var(--vp-c-yellow-2);
-	--vp-c-warning-3: var(--vp-c-yellow-3);
-	--vp-c-warning-soft: var(--vp-c-yellow-soft);
-
-	--vp-c-destructive-1: var(--vp-c-red-1);
-	--vp-c-destructive-2: var(--vp-c-red-2);
-	--vp-c-destructive-3: var(--vp-c-red-3);
-	--vp-c-destructive-soft: var(--vp-c-red-soft);
-}
-
-/**
- * Component: Button
- * -------------------------------------------------------------------------- */
-
-:root {
 	--vp-button-brand-border: transparent;
-	--vp-button-brand-text: var(--vp-c-white);
-	--vp-button-brand-bg: var(--vp-c-brand-3);
+	--vp-button-brand-text: #ffffff;
+	--vp-button-brand-bg: #2563eb;
 	--vp-button-brand-hover-border: transparent;
-	--vp-button-brand-hover-text: var(--vp-c-white);
-	--vp-button-brand-hover-bg: var(--vp-c-brand-2);
-	--vp-button-brand-active-border: transparent;
-	--vp-button-brand-active-text: var(--vp-c-white);
-	--vp-button-brand-active-bg: var(--vp-c-brand-1);
+	--vp-button-brand-hover-text: #ffffff;
+	--vp-button-brand-hover-bg: #1d4ed8;
 }
 
-/**
- * Component: Home
- * -------------------------------------------------------------------------- */
+.dark {
+	--vp-c-brand-1: #60a5fa;
+	--vp-c-brand-2: #3b82f6;
+	--vp-c-brand-3: #2563eb;
+	--vp-c-brand-soft: rgb(59 130 246 / 14%);
 
-:root {
-	--vp-home-hero-name-color: transparent;
-	--vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
-
-	--vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
-	--vp-home-hero-image-filter: blur(44px);
+	--vp-button-brand-text: #09090b;
+	--vp-button-brand-bg: #fafafa;
+	--vp-button-brand-hover-text: #09090b;
+	--vp-button-brand-hover-bg: #d4d4d8;
 }
 
-@media (min-width: 640px) {
-	:root {
-		--vp-home-hero-image-filter: blur(56px);
+/* Landing-style backdrop on content pages */
+.VPDoc {
+	background-image: radial-gradient(
+		ellipse 60% 40% at 50% 0%,
+		var(--vp-c-brand-soft),
+		transparent 70%
+	);
+}
+
+/* Keep the top nav consistent with the landing */
+.VPNav {
+	backdrop-filter: blur(12px);
+}
+
+.VPNavBarTitle .title {
+	font-weight: 600;
+	letter-spacing: -0.02em;
+}
+
+.VPSidebarItem.level-0 > .item > .text {
+	font-weight: 600;
+}
+
+/* Headings */
+.VPDoc h1 {
+	font-weight: 700;
+	letter-spacing: -0.035em;
+}
+
+.VPDoc h2 {
+	padding-top: 28px;
+	border-top: 1px solid var(--vp-c-divider);
+	font-weight: 600;
+	letter-spacing: -0.02em;
+}
+
+/* Legacy demos use the same joined preview/code shell as ExampleFrame. */
+.VPDoc .demo-frame {
+	position: relative;
+	display: flex;
+	width: 100%;
+	min-width: 0;
+	min-height: 288px;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	padding: 40px;
+	margin: 16px 0 48px;
+	border: 1px solid var(--vp-c-divider);
+	border-radius: 16px;
+	background: var(--vp-c-bg);
+	overflow: auto;
+	scrollbar-gutter: stable both-edges;
+}
+
+.VPDoc .demo-frame:has(+ div[class*='language-']) {
+	margin-bottom: 0;
+	border-radius: 16px 16px 0 0;
+}
+
+.VPDoc .demo-frame + div[class*='language-'] {
+	margin-top: 0;
+	margin-bottom: 48px;
+	border-top: 0;
+	border-radius: 0 0 16px 16px;
+}
+
+@media (max-width: 639px) {
+	.VPDoc .demo-frame {
+		min-height: 192px;
+		padding: 24px;
 	}
 }
 
-@media (min-width: 960px) {
-	:root {
-		--vp-home-hero-image-filter: blur(68px);
+/* Code blocks */
+.VPDoc div[class*='language-'] {
+	border: 1px solid var(--vp-c-divider);
+	border-radius: 12px;
+}
+
+.VPDoc div[class*='language-'] code {
+	background: transparent;
+}
+
+/* Tables */
+.VPDoc table {
+	font-size: 14px;
+}
+
+.VPDoc th {
+	background: var(--vp-c-bg-soft);
+}
+
+/* Inline code */
+.VPDoc :not(pre) > code {
+	padding: 1px 6px;
+	border: 1px solid var(--vp-c-divider);
+	border-radius: 5px;
+	background: var(--vp-c-bg-soft);
+	font-size: 0.9em;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	background: var(--vp-c-divider);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--vp-c-text-3);
+}
+
+/* Component demos render links the way consumers see them */
+.demo-frame a,
+.demo-frame a:hover,
+.demo-frame a:visited {
+	text-decoration: none;
+}
+
+/* Component preview: centered live result plus a shadcn-style code reveal. */
+.VPDoc .example-frame {
+	position: relative;
+	display: flex;
+	width: 100%;
+	min-width: 0;
+	flex-direction: column;
+	margin: 16px 0 48px;
+	overflow: hidden;
+	border: 1px solid var(--vp-c-divider);
+	border-radius: 16px;
+	background: var(--vp-c-bg);
+}
+
+.VPDoc .example-frame-preview {
+	display: flex;
+	width: 100%;
+	min-width: 0;
+	min-height: 288px;
+	justify-content: center;
+	padding: 40px;
+	background: var(--vp-c-bg);
+}
+
+.VPDoc .example-frame-preview[data-align='center'] {
+	align-items: center;
+}
+
+.VPDoc .example-frame-preview[data-align='start'] {
+	align-items: flex-start;
+}
+
+.VPDoc .example-frame-preview[data-align='end'] {
+	align-items: flex-end;
+}
+
+.VPDoc .example-frame-code {
+	position: relative;
+	min-width: 0;
+	max-height: 500px;
+	overflow: auto;
+	border-top: 1px solid var(--vp-c-divider);
+	background: var(--vp-code-block-bg);
+}
+
+.VPDoc .example-frame-code pre {
+	margin: 0;
+	padding: 24px 0;
+	overflow: visible;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	font-size: 12px;
+	line-height: 1.75;
+	tab-size: 2;
+}
+
+.VPDoc .example-frame-code[data-expanded='false'] {
+	max-height: 160px;
+	overflow: hidden;
+}
+
+.VPDoc .example-frame-code-line {
+	display: grid;
+	min-width: max-content;
+	grid-template-columns: 48px minmax(0, 1fr);
+	padding: 0 24px 0 8px;
+	white-space: pre;
+}
+
+.VPDoc .example-frame-line-number {
+	padding-inline-end: 16px;
+	text-align: end;
+	color: var(--vp-c-text-3);
+	user-select: none;
+}
+
+.VPDoc .example-frame-code-fade {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 16px;
+	background: linear-gradient(
+		to top,
+		var(--vp-code-block-bg) 15%,
+		color-mix(in srgb, var(--vp-code-block-bg) 82%, transparent) 48%,
+		transparent 100%
+	);
+}
+
+.VPDoc .example-frame-code-button {
+	position: relative;
+	z-index: 1;
+	display: inline-flex;
+	height: 40px;
+	align-items: center;
+	justify-content: center;
+	padding: 0 18px;
+	border: 1px solid var(--vp-c-divider);
+	border-radius: 12px;
+	background: var(--vp-c-bg);
+	box-shadow: 0 1px 2px rgb(0 0 0 / 6%);
+	color: var(--vp-c-text-1);
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 500;
+	transition:
+		background-color 0.15s ease,
+		border-color 0.15s ease;
+}
+
+.VPDoc .example-frame-code-button:hover {
+	background: var(--vp-c-bg-soft);
+}
+
+.VPDoc .example-frame-code-button:focus-visible {
+	outline: 3px solid rgb(59 130 246 / 45%);
+	outline-offset: 2px;
+}
+
+@media (max-width: 639px) {
+	.VPDoc .example-frame-preview {
+		min-height: 192px;
+		padding: 24px;
 	}
-}
 
-/**
- * Component: Custom Block
- * -------------------------------------------------------------------------- */
-
-:root {
-	--vp-custom-block-tip-border: transparent;
-	--vp-custom-block-tip-text: var(--vp-c-text-1);
-	--vp-custom-block-tip-bg: var(--vp-c-brand-soft);
-	--vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
-}
-
-/**
- * Component: Algolia
- * -------------------------------------------------------------------------- */
-
-.DocSearch {
-	--docsearch-primary-color: var(--vp-c-brand-1) !important;
+	.VPDoc .example-frame-code-line {
+		grid-template-columns: 36px minmax(0, 1fr);
+		padding-inline-end: 16px;
+	}
 }

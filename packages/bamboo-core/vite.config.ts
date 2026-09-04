@@ -20,7 +20,7 @@ export default defineConfig({
 			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 		},
 		rollupOptions: {
-			external: ['vue'],
+			external: ['vue', 'clsx', 'tailwind-merge'],
 			platform: 'neutral',
 			input: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
 			optimization: {

@@ -1,5 +1,5 @@
 {
-	"extends": "@workspace/config/tsconfig.vue.json",
+	"extends": "../../packages/workspace-config/tsconfig.vue.json",
 	"compilerOptions": {
 		"types": ["node"]
 	},
