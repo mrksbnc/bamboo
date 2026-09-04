@@ -62,30 +62,24 @@ const props = withDefaults(defineProps<BoButtonProps>(), {
 	shape: () => BUTTON_MANIFEST.defaults.shape,
 });
 
-
 const slots = useSlots();
-
 
 const isIconOnly = computed(() => {
 	return !slots['default'] && (props.prefixIcon || props.suffixIcon);
 });
 
-
 const iconSizeValue = computed<BoIconSize>(() => {
 	return BUTTON_MANIFEST.styles.iconSize[props.size] as BoIconSize;
 });
-
 
 const loaderSizeValue = computed<BoLoaderSize>(() => {
 	const size = props.size || 'default';
 	return BUTTON_MANIFEST.styles.loaderSize[size] as BoLoaderSize;
 });
 
-
 const isDisabled = computed<boolean>(() => {
 	return props.disabled || props.isLoading;
 });
-
 
 const cursorClassValues = computed<BoCursor>(() => {
 	if (props.isLoading) {
@@ -99,7 +93,6 @@ const cursorClassValues = computed<BoCursor>(() => {
 	return BUTTON_MANIFEST.styles.cursor.default;
 });
 
-
 const sizeClassValues = computed<string>(() => {
 	const classes = isIconOnly.value
 		? BUTTON_MANIFEST.styles.iconOnlySize[props.size]
@@ -108,18 +101,15 @@ const sizeClassValues = computed<string>(() => {
 	return classes;
 });
 
-
 const fullWidthClassValues = computed<string>(() => {
 	return props.fullWidth ? BUTTON_MANIFEST.styles.width.full : BUTTON_MANIFEST.styles.width.default;
 });
-
 
 const shadowClassValues = computed<string>(() => {
 	return props.customColor
 		? /*tw*/ 'shadow-md hover:shadow-xl'
 		: BUTTON_MANIFEST.styles.shadow[props.kind][props.variant];
 });
-
 
 const classValues = computed<string>(() => {
 	const kind = props.kind;
@@ -137,7 +127,6 @@ const classValues = computed<string>(() => {
 		BUTTON_MANIFEST.styles.textColor[kind][variant],
 	);
 });
-
 
 const styleValues = computed<StyleValue>(() => {
 	if (!props.customColor) {

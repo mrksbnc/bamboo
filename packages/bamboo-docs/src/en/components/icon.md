@@ -62,7 +62,7 @@ The `variant` prop is used to change the appearance of the icon. It accepts a st
   <span class="bg-neutral-300 rounded-md py-1.5 px-1 justify-center items-center flex" >
     <bo-icon icon="home" variant="black" />
   </span>
-  
+
 </div>
 
 ```vue

@@ -49,7 +49,6 @@ const props = withDefaults(defineProps<BoBadgeProps>(), {
 	cursor: () => BADGE_MANIFEST.defaults.cursor,
 });
 
-
 const isIconOnly = computed<boolean>(() => {
 	const hasIcon =
 		(props.prefixIcon && props.prefixIcon !== 'none') ||
@@ -58,31 +57,25 @@ const isIconOnly = computed<boolean>(() => {
 	return !!hasIcon && !props.label;
 });
 
-
 const showPrefixIcon = computed<boolean>(() => {
 	return (props.prefixIcon && props.prefixIcon !== 'none') || isIconOnly.value || isCircle.value;
 });
-
 
 const showSuffixIcon = computed<boolean>(() => {
 	return !!props.suffixIcon && props.suffixIcon !== 'none' && !isIconOnly.value && !isCircle.value;
 });
 
-
 const fontSize = computed<BoFontSize>(() => {
 	return BADGE_MANIFEST.styles.fontSize[props.size || 'default'];
 });
-
 
 const isCircle = computed<boolean>(() => {
 	return props.shape === 'circle' && isIconOnly.value;
 });
 
-
 const iconSize = computed<BoIconSize>(() => {
 	return BADGE_MANIFEST.styles.iconSize[props.size || 'default'];
 });
-
 
 const gap = computed<string>(() => {
 	return !isIconOnly.value && props.label && (props.prefixIcon || props.suffixIcon)
@@ -90,11 +83,9 @@ const gap = computed<string>(() => {
 		: '';
 });
 
-
 const isOutlineKind = computed<boolean>(() => {
 	return props.kind === 'outline';
 });
-
 
 const fontColor = computed<string>(() => {
 	if (props.customTextColor) {
@@ -110,7 +101,6 @@ const fontColor = computed<string>(() => {
 	return BADGE_MANIFEST.styles.textColor.filled[variant];
 });
 
-
 const backgroundClassValues = computed<string>(() => {
 	if (props.customColor) {
 		return '';
@@ -124,7 +114,6 @@ const backgroundClassValues = computed<string>(() => {
 
 	return BADGE_MANIFEST.styles.variants.filled[variant];
 });
-
 
 const borderColorClassValues = computed<string>(() => {
 	if (props.customColor) {
@@ -140,7 +129,6 @@ const borderColorClassValues = computed<string>(() => {
 	return '';
 });
 
-
 const classValues = computed<string>(() => {
 	return mergeTwClasses(
 		gap.value,
@@ -155,7 +143,6 @@ const classValues = computed<string>(() => {
 			: BADGE_MANIFEST.styles.size.default[props.size || 'default'],
 	);
 });
-
 
 const styleValues = computed<StyleValue>(() => {
 	const style: StyleValue = {};
@@ -178,7 +165,6 @@ const styleValues = computed<StyleValue>(() => {
 
 	return style;
 });
-
 
 function getSafeIcon(icon?: Icon): Icon {
 	return icon ?? 'none';

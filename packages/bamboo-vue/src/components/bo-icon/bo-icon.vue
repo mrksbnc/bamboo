@@ -33,16 +33,13 @@ const props = withDefaults(defineProps<BoIconProps>(), {
 	variant: () => ICON_MANIFEST.defaults.variant,
 });
 
-
 const component = computed<string>(() => {
 	return BO_ICON_REGISTRY[props.icon];
 });
 
-
 const role = computed<HTMLAttributes['role']>(() => {
 	return props.decorative ? 'presentation' : 'img';
 });
-
 
 const classValues = computed<string>(() => {
 	return mergeTwClasses(
@@ -54,7 +51,6 @@ const classValues = computed<string>(() => {
 			: ICON_MANIFEST.styles.size[props.size || 'default'],
 	);
 });
-
 
 const styleValues = computed<StyleValue>(() => {
 	const color = props.customColor ? getValidOrFallbackColorFromStr(props.customColor) : undefined;

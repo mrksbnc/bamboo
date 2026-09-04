@@ -67,10 +67,9 @@ import { computed, onMounted, ref } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
 
-interface Props  extends /* @vue-ignore */ BoTextareaProps {
+interface Props extends /* @vue-ignore */ BoTextareaProps {
 	modelValue?: string;
 }
-
 
 const props = withDefaults(defineProps<Props>(), {
 	id: () => generateComponentId('textarea'),
@@ -83,34 +82,27 @@ const props = withDefaults(defineProps<Props>(), {
 	resizable: false,
 });
 
-
 const emit = defineEmits<{
 	'update:modelValue': [value: string];
 	blur: [event: FocusEvent];
 	focus: [];
 }>();
 
-
 const textareaRef = ref<HTMLTextAreaElement | null>(null);
-
 
 const iconSize = computed<BoIconSize>(() => {
 	return TEXTAREA_MANIFEST.styles.icons.size[props.size || 'default'];
 });
 
-
 const labelFontSize = computed<BoFontSize>(() => {
 	return TEXTAREA_MANIFEST.styles.labels.fontSize;
 });
-
 
 const hintFontSize = computed<BoFontSize>(() => {
 	return TEXTAREA_MANIFEST.styles.helpers.fontSize;
 });
 
-
 const helperTextId = computed<string>(() => `${props.id}-helper`);
-
 
 const containerClassValues = computed<string>(() => {
 	const classes: string[] = [
@@ -129,7 +121,6 @@ const containerClassValues = computed<string>(() => {
 
 	return mergeTwClasses(...classes);
 });
-
 
 const textareaClassValues = computed<string>(() => {
 	const classes: string[] = [
@@ -156,60 +147,48 @@ const textareaClassValues = computed<string>(() => {
 	return mergeTwClasses(...classes);
 });
 
-
 const prefixIconClassValues = computed<string>(() => {
 	return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.prefix[props.size || 'default']);
 });
-
 
 const suffixIconClassValues = computed<string>(() => {
 	return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.suffix[props.size || 'default']);
 });
 
-
 const labelContainerClassValues = computed<string>(() => {
 	return mergeTwClasses(TEXTAREA_MANIFEST.styles.labels.container);
 });
-
 
 const requiredIndicatorClassValues = computed<string>(() => {
 	return mergeTwClasses(TEXTAREA_MANIFEST.styles.labels.required);
 });
 
-
 const errorClassValues = computed<string>(() => {
 	return mergeTwClasses(TEXTAREA_MANIFEST.styles.helpers.error);
 });
-
 
 const hintClassValues = computed<string>(() => {
 	return mergeTwClasses(TEXTAREA_MANIFEST.styles.helpers.hint);
 });
 
-
 const classValues = computed<string>(() => {
 	return mergeTwClasses(TEXTAREA_MANIFEST.styles.base);
 });
-
 
 function onInput(event: Event) {
 	const target = event.target as HTMLTextAreaElement;
 	emit('update:modelValue', target.value);
 }
 
-
 function onBlur(event: FocusEvent) {
 	emit('blur', event);
 }
-
 
 function focus(): void {
 	textareaRef.value?.focus();
 }
 
-
 defineExpose({ focus });
-
 
 onMounted(() => {
 	if (props.autofocus) {

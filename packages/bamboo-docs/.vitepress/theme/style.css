@@ -197,6 +197,10 @@
 	align-items: flex-end;
 }
 
+.VPDoc .example-frame-preview p {
+	margin: 0;
+}
+
 .VPDoc .example-frame-code {
 	position: relative;
 	min-width: 0;

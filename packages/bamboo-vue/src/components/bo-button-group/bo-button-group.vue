@@ -18,24 +18,19 @@ const props = withDefaults(defineProps<BoButtonGroupProps>(), {
 	...BUTTON_GROUP_MANIFEST.defaults,
 });
 
-
 const emit = defineEmits<{
 	'update:modelValue': [value: string | number | (string | number)[] | undefined];
 }>();
 
-
 // Template refs
 const groupRef = ref<HTMLElement>();
-
 
 // Internal state
 const selectedValues = ref<Set<string | number>>(new Set());
 
-
 // Computed
 const id = computed(() => props.id ?? generateComponentId('button-group'));
 const dataTestId = computed(() => props.dataTestId ?? generateDataTestId('BoButtonGroup'));
-
 
 const groupClasses = computed(() => {
 	return mergeTwClasses(
@@ -44,7 +39,6 @@ const groupClasses = computed(() => {
 		props.fullWidth ? BUTTON_GROUP_MANIFEST.styles.fullWidth : '',
 	);
 });
-
 
 // Initialize selected values from modelValue
 const initializeSelection = () => {
@@ -58,12 +52,10 @@ const initializeSelection = () => {
 	}
 };
 
-
 // Handle button selection
 const handleButtonClick = (buttonValue: string | number) => {
 	if (props.multiple) {
 		const newSelection = new Set(selectedValues.value);
-
 
 		if (newSelection.has(buttonValue)) {
 			// Deselect if not required or if other buttons are selected
@@ -73,7 +65,6 @@ const handleButtonClick = (buttonValue: string | number) => {
 		} else {
 			newSelection.add(buttonValue);
 		}
-
 
 		selectedValues.value = newSelection;
 		emit('update:modelValue', Array.from(newSelection));
@@ -92,12 +83,10 @@ const handleButtonClick = (buttonValue: string | number) => {
 	}
 };
 
-
 // Check if a button is selected
 const isButtonSelected = (buttonValue: string | number): boolean => {
 	return selectedValues.value.has(buttonValue);
 };
-
 
 // Provide context to child buttons
 provide('buttonGroupSize', props.size);
@@ -108,10 +97,8 @@ provide('buttonGroupFullWidth', props.fullWidth);
 provide('buttonGroupHandleClick', handleButtonClick);
 provide('buttonGroupIsSelected', isButtonSelected);
 
-
 // Watch for modelValue changes
 watch(() => props.modelValue, initializeSelection, { immediate: true });
-
 
 // Apply attached styles to child buttons using CSS classes
 onMounted(() => {
