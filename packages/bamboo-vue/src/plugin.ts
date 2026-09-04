@@ -1,6 +1,8 @@
 import type { App, ObjectPlugin } from 'vue';
 import {
 	BoAccordion,
+	BoAlert,
+	BoAlertContainer,
 	BoAvatar,
 	BoBadge,
 	BoButton,
@@ -15,6 +17,8 @@ import {
 
 const BambooComponents = {
 	BoAccordion,
+	BoAlert,
+	BoAlertContainer,
 	BoAvatar,
 	BoBadge,
 	BoButton,
