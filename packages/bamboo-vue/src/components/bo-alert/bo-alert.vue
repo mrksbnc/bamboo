@@ -3,6 +3,7 @@
 		:id="id"
 		:data-testid="dataTestId"
 		:role="role"
+		:data-has-icon="showIcon && iconValue ? 'true' : undefined"
 		:aria-labelledby="title && !slots['default'] ? titleId : undefined"
 		:aria-describedby="description && !slots['default'] ? descriptionId : undefined"
 		:class="classValues"
@@ -10,7 +11,7 @@
 		<bo-icon
 			v-if="showIcon && iconValue"
 			:icon="iconValue"
-			size="default"
+			size="sm"
 			:variant="iconVariant"
 			aria-hidden="true"
 		/>
