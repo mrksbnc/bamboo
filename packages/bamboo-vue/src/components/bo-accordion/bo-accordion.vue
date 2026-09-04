@@ -18,7 +18,7 @@ import {
 	type BoAccordionProps,
 	type BoAccordionValue,
 } from '@workspace/bamboo-core';
-import { computed, provide, ref, watch } from 'vue';
+import { computed, getCurrentInstance, provide, ref, watch } from 'vue';
 import {
 	accordionDisabledKey,
 	accordionMultipleKey,
@@ -34,6 +34,7 @@ const props = withDefaults(defineProps<BoAccordionProps>(), {
 });
 
 const model = defineModel<BoAccordionValue>();
+const instance = getCurrentInstance();
 
 function toSet(value: BoAccordionValue | undefined): Set<string | number> {
 	const result = new Set<string | number>();
@@ -53,7 +54,12 @@ function toSet(value: BoAccordionValue | undefined): Set<string | number> {
 	return result;
 }
 
-const isControlled = computed(() => model.value !== undefined);
+const isControlled = computed(() => {
+	const componentProps = instance?.vnode.props;
+
+	return componentProps !== null && componentProps !== undefined && 'modelValue' in componentProps;
+});
+  
 const uncontrolled = ref<Set<string | number>>(toSet(props.defaultValue));
 
 const openValues = computed<Set<string | number>>(() =>

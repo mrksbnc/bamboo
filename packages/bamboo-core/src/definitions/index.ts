@@ -13,6 +13,7 @@ export {
 	type BoAlertVariant,
 	type BoAlertProps,
 	type BoAlertContainerProps,
+	type BoAlertContainerStyleManifest,
 	type BoAlertStyleManifest,
 	type AlertManifest,
 } from './bo-alert.js';

@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'vue';
-import { ComponentManifest } from '../manifests/types.js';
+import { ComponentManifest, ManifestDefaults } from '../manifests/types.js';
 
 export type BoAccordionValue = string | number | (string | number)[];
 
@@ -26,22 +26,23 @@ export interface BoAccordionProps {
 	disabled?: boolean;
 }
 
-type BoAccordionManifestDefaults = Pick<BoAccordionProps, 'multiple' | 'collapsible'>;
+type BoAccordionManifestDefaults = ManifestDefaults<BoAccordionProps, 'multiple' | 'collapsible'>;
 
 export interface BoAccordionStyleManifest {
-	base: string;
-	item: string;
-	header: string;
-	trigger: string;
-	icon: string;
-	content: string;
-	contentInner: string;
-	contentBody: string;
+	readonly base: 'bo-accordion';
+	readonly item: 'bo-accordion__item';
+	readonly header: 'bo-accordion__header';
+	readonly trigger: 'bo-accordion__trigger';
+	readonly icon: 'bo-accordion__icon';
+	readonly content: 'bo-accordion__content';
+	readonly contentInner: 'bo-accordion__content-inner';
+	readonly contentBody: 'bo-accordion__content-body';
 }
 
 export type AccordionManifest = ComponentManifest<
 	BoAccordionStyleManifest,
-	BoAccordionManifestDefaults
+	BoAccordionManifestDefaults,
+	'Accordion'
 >;
 
 export interface BoAccordionItemProps {
