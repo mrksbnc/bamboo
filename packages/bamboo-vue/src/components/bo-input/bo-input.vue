@@ -87,7 +87,6 @@ const props = withDefaults(defineProps<BoInputProps>(), {
 	type: () => INPUT_MANIFEST.defaults.type,
 });
 
-
 const emit = defineEmits<{
 	focus: [];
 	blur: [event: FocusEvent];
@@ -96,22 +95,17 @@ const emit = defineEmits<{
 	suffixIconClick: [];
 }>();
 
-
 // Use defineModel for v-model
 const model = defineModel<string>({ default: '' });
 
-
 const inputRef = ref<HTMLInputElement | null>(null);
 const passwordVisible = ref(false);
-
 
 const showPasswordToggle = computed<boolean>(() => {
 	return props.type === 'password' && !props.disabled && !!model.value && !!props.revealPassword;
 });
 
-
 const helperTextId = computed<string>(() => `${props.id}-helper`);
-
 
 const inputType = computed<string>(() => {
 	if (props.type === 'password' && passwordVisible.value) {
@@ -120,11 +114,9 @@ const inputType = computed<string>(() => {
 	return props.type || 'text';
 });
 
-
 const baseClasses = computed<string>(() => {
 	return mergeTwClasses(INPUT_MANIFEST.styles.base, props.fullWidth ? 'w-full' : '');
 });
-
 
 const containerClasses = computed<string>(() => {
 	const classes = [
@@ -139,64 +131,51 @@ const containerClasses = computed<string>(() => {
 	return mergeTwClasses(...classes);
 });
 
-
 const inputClasses = computed<string>(() => {
 	return mergeTwClasses(INPUT_MANIFEST.styles.input.base);
 });
-
 
 const prefixIconClasses = computed<string>(() => {
 	return mergeTwClasses(INPUT_MANIFEST.styles.icons.prefix);
 });
 
-
 const suffixIconClasses = computed<string>(() => {
 	return mergeTwClasses(INPUT_MANIFEST.styles.icons.suffix);
 });
-
 
 const labelContainerClasses = computed<string>(() => {
 	return mergeTwClasses(INPUT_MANIFEST.styles.labels.container);
 });
 
-
 const labelClasses = computed<string>(() => {
 	return mergeTwClasses(INPUT_MANIFEST.styles.labels.label);
 });
-
 
 const requiredClasses = computed<string>(() => {
 	return mergeTwClasses(INPUT_MANIFEST.styles.labels.required);
 });
 
-
 const helperContainerClasses = computed<string>(() => {
 	return mergeTwClasses(INPUT_MANIFEST.styles.helpers.container);
 });
-
 
 const errorClasses = computed<string>(() => {
 	return mergeTwClasses(INPUT_MANIFEST.styles.helpers.error);
 });
 
-
 const hintClasses = computed<string>(() => {
 	return mergeTwClasses(INPUT_MANIFEST.styles.helpers.hint);
 });
-
 
 function togglePasswordVisibility() {
 	passwordVisible.value = !passwordVisible.value;
 }
 
-
 function focus(): void {
 	inputRef.value?.focus();
 }
 
-
 defineExpose({ focus });
-
 
 onMounted(() => {
 	if (props.autofocus) {
