@@ -1,5 +1,6 @@
 import type { App, ObjectPlugin } from 'vue';
 import {
+	BoAccordion,
 	BoAvatar,
 	BoBadge,
 	BoButton,
@@ -13,6 +14,7 @@ import {
 } from './components/index.js';
 
 const BambooComponents = {
+	BoAccordion,
 	BoAvatar,
 	BoBadge,
 	BoButton,
