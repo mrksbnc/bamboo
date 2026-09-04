@@ -24,11 +24,11 @@
 			</span>
 
 			<span v-if="renderWithImage" data-slot="avatar-image">
-				<img :src="src" :alt="alt" class="h-full w-full object-cover" @error="onImageError" />
+				<img :src="src" :alt="alt" @error="onImageError" />
 			</span>
 
 			<span v-if="!renderWithImage && !renderWithLabel" data-slot="avatar-image">
-				<img alt="avatar" src="./avatar.png" class="h-full w-full object-cover" />
+				<img alt="avatar" src="./avatar.png" />
 			</span>
 		</div>
 
