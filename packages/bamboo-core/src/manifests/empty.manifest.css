@@ -1,34 +1,31 @@
 @layer components {
 	.bo-empty {
 		@apply flex min-w-0 flex-1 flex-col items-center justify-center gap-4 text-balance rounded-lg border-dashed p-12 text-center;
-		border: 2px dashed var(--color-neutral-200);
+		@apply border-2 border-neutral-200;
 	}
 
 	.dark .bo-empty {
-		border-color: var(--color-neutral-700);
+		@apply border-neutral-700;
 	}
 
 	.bo-empty__media {
-		@apply mb-2 flex items-center justify-center;
-		color: var(--color-neutral-400);
+		@apply mb-2 flex items-center justify-center text-neutral-400;
 	}
 
 	.bo-empty__title {
-		@apply text-lg font-medium;
-		color: var(--color-neutral-900);
+		@apply text-lg font-medium text-neutral-900;
 	}
 
 	.dark .bo-empty__title {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-empty__description {
-		@apply text-sm;
-		color: var(--color-neutral-500);
+		@apply text-sm text-neutral-500;
 	}
 
 	.dark .bo-empty__description {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-empty__action {

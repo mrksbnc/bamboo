@@ -4,12 +4,10 @@
 	}
 	.bo-hover-card-content {
 		@apply fixed z-50 w-72 rounded-2xl border p-4 text-sm shadow-md outline-none;
-		background-color: var(--color-white);
-		border-color: var(--color-neutral-200);
+		@apply border-neutral-200 bg-white;
 	}
 	.dark .bo-hover-card-content {
-		background-color: var(--color-neutral-900);
-		border-color: var(--color-neutral-800);
+		@apply border-neutral-800 bg-neutral-900;
 	}
 	.bo-hover-card-content[data-state='open'] {
 		@apply animate-in fade-in-0 zoom-in-95;

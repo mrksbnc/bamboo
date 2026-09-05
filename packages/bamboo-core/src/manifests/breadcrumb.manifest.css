@@ -12,37 +12,35 @@
 	}
 
 	.bo-breadcrumb__link {
-		@apply transition-colors;
-		color: var(--color-neutral-500);
+		@apply text-neutral-500 transition-colors;
 	}
 
 	.bo-breadcrumb__link:hover {
-		color: var(--color-neutral-900);
+		@apply text-neutral-900;
 	}
 
 	.dark .bo-breadcrumb__link {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.dark .bo-breadcrumb__link:hover {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-breadcrumb__current {
-		@apply font-normal;
-		color: var(--color-neutral-900);
+		@apply font-normal text-neutral-900;
 	}
 
 	.dark .bo-breadcrumb__current {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-breadcrumb__separator {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.dark .bo-breadcrumb__separator {
-		color: var(--color-neutral-600);
+		@apply text-neutral-600;
 	}
 
 	.bo-breadcrumb__icon {

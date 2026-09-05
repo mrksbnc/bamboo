@@ -28,7 +28,7 @@
 	}
 
 	.bo-loading-spinner__track--sm {
-		@apply size-4;
+		@apply size-3.5;
 	}
 
 	.bo-loading-spinner__track--default {
@@ -44,43 +44,43 @@
 	}
 
 	.bo-loading-spinner--primary {
-		color: var(--color-blue-600);
+		@apply text-blue-600;
 	}
 
 	.dark .bo-loading-spinner--primary {
-		color: var(--color-blue-500);
+		@apply text-blue-500;
 	}
 
 	.bo-loading-spinner--secondary {
-		color: var(--color-neutral-600);
+		@apply text-neutral-600;
 	}
 
 	.dark .bo-loading-spinner--secondary {
-		color: var(--color-neutral-500);
+		@apply text-neutral-500;
 	}
 
 	.bo-loading-spinner--success {
-		color: var(--color-green-600);
+		@apply text-green-600;
 	}
 
 	.dark .bo-loading-spinner--success {
-		color: var(--color-green-500);
+		@apply text-green-500;
 	}
 
 	.bo-loading-spinner--warning {
-		color: var(--color-yellow-600);
+		@apply text-yellow-600;
 	}
 
 	.dark .bo-loading-spinner--warning {
-		color: var(--color-yellow-500);
+		@apply text-yellow-500;
 	}
 
 	.bo-loading-spinner--destructive {
-		color: var(--color-red-600);
+		@apply text-red-600;
 	}
 
 	.dark .bo-loading-spinner--destructive {
-		color: var(--color-red-500);
+		@apply text-red-500;
 	}
 
 	.bo-loading-spinner--white {
@@ -88,11 +88,11 @@
 	}
 
 	.bo-loading-spinner--black {
-		color: var(--color-neutral-800);
+		@apply text-neutral-800;
 	}
 
 	.dark .bo-loading-spinner--black {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-loading-spinner--current {

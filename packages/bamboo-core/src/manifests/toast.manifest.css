@@ -29,31 +29,43 @@
 
 	.bo-toast {
 		@apply pointer-events-auto relative grid w-full grid-cols-[auto_1fr_auto] items-start gap-3 rounded-lg border px-4 py-3 text-sm shadow-lg;
-		background-color: var(--color-white);
-		border-color: var(--color-neutral-300);
-		color: var(--color-neutral-900);
+		@apply border-neutral-300 bg-white text-neutral-900;
 	}
 
 	.dark .bo-toast {
-		background-color: var(--color-neutral-900);
-		border-color: var(--color-neutral-700);
-		color: var(--color-neutral-100);
+		@apply border-neutral-700 bg-neutral-900 text-neutral-100;
 	}
 
 	.bo-toast--primary {
-		@apply border-blue-500/50;
+		@apply border-blue-500/50 text-blue-700;
 	}
 
 	.bo-toast--success {
-		@apply border-green-500/50;
+		@apply border-green-500/50 text-green-700;
 	}
 
 	.bo-toast--warning {
-		@apply border-yellow-500/50;
+		@apply border-yellow-500/50 text-yellow-700;
 	}
 
 	.bo-toast--destructive {
-		@apply border-red-500/50;
+		@apply border-red-500/50 text-red-700;
+	}
+
+	.dark .bo-toast--primary {
+		@apply border-blue-400/50 text-blue-300;
+	}
+
+	.dark .bo-toast--success {
+		@apply border-green-400/50 text-green-300;
+	}
+
+	.dark .bo-toast--warning {
+		@apply border-yellow-400/50 text-yellow-300;
+	}
+
+	.dark .bo-toast--destructive {
+		@apply border-red-400/50 text-red-300;
 	}
 
 	.bo-toast__icon {
@@ -69,12 +81,11 @@
 	}
 
 	.bo-toast__description {
-		@apply leading-relaxed;
-		color: var(--color-neutral-500);
+		@apply leading-relaxed text-neutral-500;
 	}
 
 	.dark .bo-toast__description {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-toast__close {
@@ -83,18 +94,15 @@
 
 	.bo-toast-enter-active,
 	.bo-toast-leave-active {
-		transition:
-			opacity 0.2s ease,
-			transform 0.2s ease;
+		@apply transition-[opacity,transform] duration-200 ease-in-out;
 	}
 
 	.bo-toast-enter-from,
 	.bo-toast-leave-to {
-		opacity: 0;
-		transform: translateY(-8px);
+		@apply -translate-y-2 opacity-0;
 	}
 
 	.bo-toast-move {
-		transition: transform 0.2s ease;
+		@apply transition-transform duration-200 ease-in-out;
 	}
 }

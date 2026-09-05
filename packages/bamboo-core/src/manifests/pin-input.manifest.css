@@ -8,8 +8,7 @@
 	}
 
 	.bo-pin-input__label {
-		@apply text-sm font-medium;
-		color: var(--color-neutral-900);
+		@apply text-sm font-medium text-neutral-900;
 	}
 
 	.bo-pin-input__required {
@@ -21,28 +20,30 @@
 	}
 
 	.bo-pin-input__input {
-		@apply size-9 rounded-md border bg-transparent text-center text-sm outline-none transition-[color,box-shadow];
-		border-color: var(--color-neutral-300);
-		color: var(--color-neutral-900);
+		@apply size-9 rounded-md border border-neutral-300 bg-transparent text-center text-sm text-neutral-900 outline-none transition-[color,box-shadow];
 	}
 
 	.bo-pin-input__input:focus {
-		border-color: var(--color-blue-500);
+		@apply border-blue-500;
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 30%, transparent);
+	}
+
+	.dark .bo-pin-input__input:focus {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 30%, transparent);
 	}
 
 	.bo-pin-input__input:disabled {
 		@apply cursor-not-allowed opacity-50;
-		background-color: var(--color-neutral-50);
+		@apply bg-neutral-50;
 	}
 
 	.dark .bo-pin-input__input {
-		border-color: var(--color-neutral-700);
-		color: var(--color-neutral-100);
+		@apply border-neutral-700 text-neutral-100;
 	}
 
 	.dark .bo-pin-input__input:disabled {
-		background-color: var(--color-neutral-800);
+		@apply bg-neutral-800;
 	}
 
 	.bo-pin-input__helpers {
@@ -51,23 +52,23 @@
 
 	.bo-pin-input__description,
 	.bo-pin-input__hint {
-		color: var(--color-neutral-600);
+		@apply text-neutral-600;
 	}
 
 	.bo-pin-input__error {
-		color: var(--color-red-600);
+		@apply text-red-600;
 	}
 
 	.dark .bo-pin-input__label {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.dark .bo-pin-input__description,
 	.dark .bo-pin-input__hint {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.dark .bo-pin-input__error {
-		color: var(--color-red-400);
+		@apply text-red-400;
 	}
 }

@@ -12,13 +12,11 @@
 	}
 
 	.bo-pagination__button {
-		@apply inline-flex size-9 items-center justify-center rounded-md text-sm font-medium transition-colors;
-		color: var(--color-neutral-700);
+		@apply inline-flex size-9 items-center justify-center rounded-md text-sm font-medium text-neutral-700 transition-colors;
 	}
 
 	.bo-pagination__button:hover:not(:disabled) {
-		background-color: var(--color-neutral-100);
-		color: var(--color-neutral-900);
+		@apply bg-neutral-100 text-neutral-900;
 	}
 
 	.bo-pagination__button:disabled {
@@ -26,29 +24,26 @@
 	}
 
 	.dark .bo-pagination__button {
-		color: var(--color-neutral-300);
+		@apply text-neutral-300;
 	}
 
 	.dark .bo-pagination__button:hover:not(:disabled) {
-		background-color: var(--color-neutral-800);
-		color: var(--color-neutral-100);
+		@apply bg-neutral-800 text-neutral-100;
 	}
 
 	.bo-pagination__button--active {
-		background-color: var(--color-blue-600);
-		color: var(--color-white);
+		@apply bg-blue-600 text-white;
 	}
 
 	.bo-pagination__button--active:hover:not(:disabled) {
-		background-color: var(--color-blue-700);
+		@apply bg-blue-700;
 	}
 
 	.dark .bo-pagination__button--active {
-		background-color: var(--color-blue-500);
+		@apply bg-blue-500;
 	}
 
 	.bo-pagination__ellipsis {
-		@apply inline-flex size-9 items-center justify-center text-sm;
-		color: var(--color-neutral-500);
+		@apply inline-flex size-9 items-center justify-center text-sm text-neutral-500;
 	}
 }

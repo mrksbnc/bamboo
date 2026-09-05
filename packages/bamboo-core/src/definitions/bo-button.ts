@@ -175,6 +175,7 @@ type BoButtonWidthStyleMap = {
 export interface BoButtonStyleManifest {
 	base: string;
 	pressed: string;
+	linkVariantWithShadow: string;
 	size: BoButtonSizeStyleMap;
 	shape: BoButtonShapeStyleMap;
 	shadow: BoButtonShadowStyleMap;

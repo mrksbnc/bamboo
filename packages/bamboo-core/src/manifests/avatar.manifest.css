@@ -51,57 +51,45 @@
 	}
 
 	.bo-avatar[data-kind^='outline'][data-variant='primary'] {
-		border-color: var(--color-blue-600);
-		color: var(--color-blue-600);
+		@apply border-blue-600 text-blue-600;
 	}
 	.dark .bo-avatar[data-kind^='outline'][data-variant='primary'] {
-		border-color: var(--color-blue-500);
-		color: var(--color-blue-500);
+		@apply border-blue-500 text-blue-500;
 	}
 
 	.bo-avatar[data-kind^='outline'][data-variant='secondary'] {
-		border-color: var(--color-neutral-600);
-		color: var(--color-neutral-600);
+		@apply border-neutral-600 text-neutral-600;
 	}
 	.dark .bo-avatar[data-kind^='outline'][data-variant='secondary'] {
-		border-color: var(--color-neutral-500);
-		color: var(--color-neutral-500);
+		@apply border-neutral-500 text-neutral-500;
 	}
 
 	.bo-avatar[data-kind^='outline'][data-variant='destructive'] {
-		border-color: var(--color-red-600);
-		color: var(--color-red-600);
+		@apply border-red-600 text-red-600;
 	}
 	.dark .bo-avatar[data-kind^='outline'][data-variant='destructive'] {
-		border-color: var(--color-red-500);
-		color: var(--color-red-500);
+		@apply border-red-500 text-red-500;
 	}
 
 	.bo-avatar[data-kind^='outline'][data-variant='warning'] {
-		border-color: var(--color-yellow-600);
-		color: var(--color-yellow-600);
+		@apply border-yellow-600 text-yellow-600;
 	}
 	.dark .bo-avatar[data-kind^='outline'][data-variant='warning'] {
-		border-color: var(--color-yellow-500);
-		color: var(--color-yellow-500);
+		@apply border-yellow-500 text-yellow-500;
 	}
 
 	.bo-avatar[data-kind^='outline'][data-variant='success'] {
-		border-color: var(--color-green-600);
-		color: var(--color-green-600);
+		@apply border-green-600 text-green-600;
 	}
 	.dark .bo-avatar[data-kind^='outline'][data-variant='success'] {
-		border-color: var(--color-green-500);
-		color: var(--color-green-500);
+		@apply border-green-500 text-green-500;
 	}
 
 	.bo-avatar[data-kind^='outline'][data-variant='dark'] {
-		border-color: var(--color-neutral-800);
-		color: var(--color-neutral-800);
+		@apply border-neutral-800 text-neutral-800;
 	}
 	.dark .bo-avatar[data-kind^='outline'][data-variant='dark'] {
-		border-color: var(--color-neutral-600);
-		color: var(--color-neutral-400);
+		@apply border-neutral-600 text-neutral-400;
 	}
 
 	.bo-avatar[data-kind]:not([data-kind^='outline'])[data-variant='primary'] {
@@ -130,8 +118,7 @@
 
 	.bo-avatar [data-slot='avatar-image'],
 	.bo-avatar [data-slot='avatar-label'] {
-		@apply flex size-full items-center justify-center;
-		overflow: hidden;
+		@apply flex size-full items-center justify-center overflow-hidden;
 	}
 
 	.bo-avatar img {

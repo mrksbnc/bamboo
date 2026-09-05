@@ -6,11 +6,11 @@
 	.bo-tooltip {
 		@apply fixed z-50 inline-flex w-fit max-w-xs items-center gap-1.5 rounded-2xl px-3 py-1.5 text-xs font-medium text-white shadow-md text-balance;
 		@apply animate-in fade-in-0 zoom-in-95;
-		background-color: var(--color-neutral-900);
+		@apply bg-neutral-900;
 	}
 
 	.dark .bo-tooltip {
-		background-color: var(--color-neutral-700);
+		@apply bg-neutral-700;
 	}
 
 	.bo-tooltip--top {
@@ -63,11 +63,11 @@
 
 	.bo-tooltip__arrow {
 		@apply absolute size-2.5 rotate-45 rounded-[2px];
-		background-color: var(--color-neutral-900);
+		@apply bg-neutral-900;
 	}
 
 	.dark .bo-tooltip__arrow {
-		background-color: var(--color-neutral-700);
+		@apply bg-neutral-700;
 	}
 
 	.bo-tooltip__arrow--top {

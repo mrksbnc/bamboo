@@ -98,6 +98,7 @@ export const AVATAR_MANIFEST = {
 		kind: 'default',
 		size: 'default',
 		variant: 'primary',
+		cursor: 'cursor-auto',
 		indicatorKind: 'none',
 		indicatorPosition: 'top-right',
 	},

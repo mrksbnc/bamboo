@@ -12,18 +12,22 @@
 	}
 
 	.bo-radio-group-item__indicator {
-		@apply flex aspect-square size-4 shrink-0 items-center justify-center rounded-full border bg-white shadow-xs transition-[color,box-shadow];
-		border-color: var(--color-neutral-300);
+		@apply flex aspect-square size-4 shrink-0 items-center justify-center rounded-full border border-neutral-300 bg-white shadow-xs transition-[color,box-shadow];
 	}
 
 	.bo-radio-group-item__input:focus-visible + .bo-radio-group-item__indicator {
 		@apply outline-none ring-[3px];
-		border-color: var(--color-blue-500);
+		@apply border-blue-500;
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
 	}
 
+	.dark .bo-radio-group-item__input:focus-visible + .bo-radio-group-item__indicator {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
+	}
+
 	.bo-radio-group-item__input:checked + .bo-radio-group-item__indicator {
-		border-color: var(--color-blue-600);
+		@apply border-blue-600;
 	}
 
 	.bo-radio-group-item__dot {
@@ -39,29 +43,26 @@
 	}
 
 	.bo-radio-group-item__label {
-		@apply text-sm font-medium select-none;
-		color: var(--color-neutral-900);
+		@apply text-sm font-medium select-none text-neutral-900;
 	}
 
 	.bo-radio-group-item__description {
-		@apply text-sm;
-		color: var(--color-neutral-500);
+		@apply text-sm text-neutral-500;
 	}
 
 	.dark .bo-radio-group-item__indicator {
-		border-color: var(--color-neutral-700);
-		background-color: var(--color-neutral-900);
+		@apply border-neutral-700 bg-neutral-900;
 	}
 
 	.dark .bo-radio-group-item__input:checked + .bo-radio-group-item__indicator {
-		border-color: var(--color-blue-500);
+		@apply border-blue-500;
 	}
 
 	.dark .bo-radio-group-item__label {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.dark .bo-radio-group-item__description {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 }

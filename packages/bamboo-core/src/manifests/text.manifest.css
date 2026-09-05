@@ -4,7 +4,7 @@
 	}
 
 	.bo-text--font-inherit {
-		font-family: inherit;
+		@apply [font-family:inherit];
 	}
 
 	.bo-text--font-sans {
@@ -124,11 +124,11 @@
 	}
 
 	.bo-text--variant-default {
-		color: var(--color-neutral-900);
+		@apply text-neutral-900;
 	}
 
 	.dark .bo-text--variant-default {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-text--variant-inherit {
@@ -140,52 +140,51 @@
 	}
 
 	.bo-text--variant-primary {
-		color: var(--color-blue-600);
+		@apply text-blue-600;
 	}
 
 	.dark .bo-text--variant-primary {
-		color: var(--color-blue-500);
+		@apply text-blue-500;
 	}
 
 	.bo-text--variant-secondary {
-		color: var(--color-neutral-600);
+		@apply text-neutral-600;
 	}
 
 	.dark .bo-text--variant-secondary {
-		color: var(--color-neutral-500);
+		@apply text-neutral-500;
 	}
 
 	.bo-text--variant-disabled {
-		color: var(--color-neutral-500);
-		@apply opacity-50 cursor-not-allowed select-none;
+		@apply cursor-not-allowed select-none text-neutral-500 opacity-50;
 	}
 
 	.dark .bo-text--variant-disabled {
-		color: var(--color-neutral-300);
+		@apply text-neutral-300;
 	}
 
 	.bo-text--variant-success {
-		color: var(--color-green-600);
+		@apply text-green-600;
 	}
 
 	.dark .bo-text--variant-success {
-		color: var(--color-green-500);
+		@apply text-green-500;
 	}
 
 	.bo-text--variant-warning {
-		color: var(--color-yellow-600);
+		@apply text-yellow-600;
 	}
 
 	.dark .bo-text--variant-warning {
-		color: var(--color-yellow-500);
+		@apply text-yellow-500;
 	}
 
 	.bo-text--variant-destructive {
-		color: var(--color-red-600);
+		@apply text-red-600;
 	}
 
 	.dark .bo-text--variant-destructive {
-		color: var(--color-red-500);
+		@apply text-red-500;
 	}
 
 	.bo-text--variant-white {
@@ -193,11 +192,11 @@
 	}
 
 	.bo-text--variant-black {
-		color: var(--color-neutral-800);
+		@apply text-neutral-800;
 	}
 
 	.dark .bo-text--variant-black {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-text--transform-none {
@@ -253,9 +252,8 @@
 	}
 
 	.bo-text--line-clamp {
-		display: -webkit-box;
-		overflow: hidden;
-		-webkit-box-orient: vertical;
+		@apply [display:-webkit-box] overflow-hidden;
+		@apply [-webkit-box-orient:vertical];
 		-webkit-line-clamp: var(--bo-text-line-clamp);
 	}
 }

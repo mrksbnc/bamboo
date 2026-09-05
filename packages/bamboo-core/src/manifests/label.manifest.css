@@ -1,11 +1,10 @@
 @layer components {
 	.bo-label {
-		@apply flex items-center gap-2 select-none font-medium leading-none;
-		color: var(--color-neutral-900);
+		@apply flex items-center gap-2 select-none font-medium leading-none text-neutral-900;
 	}
 
 	.dark .bo-label {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-label--sm {
@@ -25,10 +24,10 @@
 	}
 
 	.bo-label__required {
-		color: var(--color-red-500);
+		@apply text-red-500;
 	}
 
 	.dark .bo-label__required {
-		color: var(--color-red-400);
+		@apply text-red-400;
 	}
 }

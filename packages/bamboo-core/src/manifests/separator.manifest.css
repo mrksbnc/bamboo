@@ -1,11 +1,11 @@
 @layer components {
 	.bo-separator {
 		@apply shrink-0;
-		background-color: var(--color-neutral-200);
+		@apply bg-neutral-200;
 	}
 
 	.dark .bo-separator {
-		background-color: var(--color-neutral-800);
+		@apply bg-neutral-800;
 	}
 
 	.bo-separator--horizontal {
@@ -18,26 +18,25 @@
 
 	.bo-separator--with-label {
 		@apply flex items-center gap-3;
-		background-color: transparent;
+		@apply bg-transparent;
 	}
 
 	.bo-separator--with-label::before,
 	.bo-separator--with-label::after {
 		@apply h-px flex-1 content-[''];
-		background-color: var(--color-neutral-200);
+		@apply bg-neutral-200;
 	}
 
 	.dark .bo-separator--with-label::before,
 	.dark .bo-separator--with-label::after {
-		background-color: var(--color-neutral-800);
+		@apply bg-neutral-800;
 	}
 
 	.bo-separator__label {
-		@apply text-xs whitespace-nowrap;
-		color: var(--color-neutral-500);
+		@apply whitespace-nowrap text-xs text-neutral-500;
 	}
 
 	.dark .bo-separator__label {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 }

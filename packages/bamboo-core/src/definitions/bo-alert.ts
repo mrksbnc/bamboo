@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'vue';
 import { ComponentManifest, ManifestDefaults } from '../manifests/types.js';
 import { Icon } from './bo-icon.js';
 
-export type BoAlertVariant = 'default' | 'primary' | 'warning' | 'destructive';
+export type BoAlertVariant = 'default' | 'primary' | 'warning' | 'destructive' | 'success';
 
 export type BoAlertPosition =
 	| 'top-left'
@@ -34,6 +34,9 @@ type BoAlertVariantStyleMap = Readonly<Record<BoAlertVariant, `bo-alert--${strin
 export interface BoAlertContainerStyleManifest {
 	readonly base: 'bo-alert-container';
 	readonly item: 'bo-alert-container__item';
+	readonly stack: 'bo-alert-container__stack';
+	readonly stackExpanded: 'bo-alert-container__stack--expanded';
+	readonly itemExpanded: 'bo-alert-container__item--expanded';
 	readonly position: Readonly<Record<BoAlertPosition, `bo-alert-container--${string}`>>;
 }
 

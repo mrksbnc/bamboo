@@ -12,11 +12,15 @@ export const ALERT_MANIFEST = {
 			primary: 'bo-alert--primary',
 			warning: 'bo-alert--warning',
 			destructive: 'bo-alert--destructive',
+			success: 'bo-alert--success',
 		},
 		icon: 'bo-alert__icon',
 		container: {
 			base: 'bo-alert-container',
 			item: 'bo-alert-container__item',
+			stack: 'bo-alert-container__stack',
+			stackExpanded: 'bo-alert-container__stack--expanded',
+			itemExpanded: 'bo-alert-container__item--expanded',
 			position: {
 				'top-left': 'bo-alert-container--top-left',
 				'top-center': 'bo-alert-container--top-center',

@@ -1,12 +1,12 @@
 @layer components {
 	.bo-sidebar {
 		@apply flex h-full shrink-0 flex-col gap-4 border-e bg-neutral-50 text-neutral-900;
-		border-color: var(--color-neutral-200);
+		@apply border-neutral-200;
 	}
 
 	.dark .bo-sidebar {
 		@apply bg-neutral-800 text-neutral-100;
-		border-color: var(--color-neutral-700);
+		@apply border-neutral-700;
 	}
 
 	.bo-sidebar--left {
@@ -51,8 +51,17 @@
 	}
 
 	.bo-sidebar__group-action {
-		@apply ms-auto inline-flex size-5 shrink-0 items-center justify-center rounded-md transition-transform focus-visible:outline-none focus-visible:ring-[3px];
-		--tw-ring-color: var(--color-blue-500);
+		@apply ms-auto inline-flex size-5 shrink-0 items-center justify-center rounded-md transition-transform focus-visible:outline-none;
+	}
+
+	.bo-sidebar__group-action:focus-visible {
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-sidebar__group-action:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-sidebar__group-content {
@@ -83,13 +92,13 @@
 	.bo-sidebar__menu-item,
 	.bo-sidebar__menu-item {
 		@apply flex h-9 w-full items-center gap-2 overflow-hidden rounded-lg px-3 py-2 text-start text-sm no-underline transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
-		color: inherit;
+		@apply text-inherit;
 	}
 
 	.bo-sidebar__menu-sub-button,
 	.bo-sidebar__menu-sub-item {
 		@apply flex h-7 w-full items-center gap-2 overflow-hidden rounded-md px-2 text-start text-sm no-underline transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
-		color: inherit;
+		@apply text-inherit;
 	}
 
 	.bo-sidebar__menu-button--active,
@@ -108,14 +117,34 @@
 		@apply bg-neutral-800;
 	}
 
+	.dark .bo-sidebar__menu-sub-button[data-active='true'],
+	.dark .bo-sidebar__menu-sub-item[data-active='true'] {
+		@apply bg-neutral-800 font-medium;
+	}
+
+	.dark .bo-sidebar__trigger:hover {
+		@apply bg-neutral-800;
+	}
+
 	.bo-sidebar__menu-button:focus-visible,
 	.bo-sidebar__menu-item:focus-visible,
 	.bo-sidebar__menu-action:focus-visible,
 	.bo-sidebar__menu-sub-button:focus-visible,
 	.bo-sidebar__menu-sub-item:focus-visible,
 	.bo-sidebar__trigger:focus-visible {
-		@apply outline-none ring-[3px];
-		--tw-ring-color: var(--color-blue-500);
+		@apply outline-none;
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-sidebar__menu-button:focus-visible,
+	.dark .bo-sidebar__menu-item:focus-visible,
+	.dark .bo-sidebar__menu-action:focus-visible,
+	.dark .bo-sidebar__menu-sub-button:focus-visible,
+	.dark .bo-sidebar__menu-sub-item:focus-visible,
+	.dark .bo-sidebar__trigger:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-sidebar__menu-item-label {
@@ -132,16 +161,16 @@
 
 	.bo-sidebar__menu-sub {
 		@apply mx-3.5 flex min-w-0 list-none flex-col gap-1 border-s px-2.5 py-0.5;
-		border-color: var(--color-neutral-200);
+		@apply border-neutral-200;
 	}
 
 	.dark .bo-sidebar__menu-sub {
-		border-color: var(--color-neutral-700);
+		@apply border-neutral-700;
 	}
 
 	.bo-sidebar__rail {
 		@apply absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 border-s sm:flex;
-		border-color: var(--color-neutral-200);
+		@apply border-neutral-200;
 	}
 
 	.bo-sidebar__trigger {

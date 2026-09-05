@@ -14,8 +14,7 @@
 	.bo-checkbox__box--sm,
 	.bo-checkbox__box--default,
 	.bo-checkbox__box--lg {
-		@apply flex shrink-0 items-center justify-center rounded-[4px] border bg-white shadow-xs transition-[color,box-shadow];
-		border-color: var(--color-neutral-300);
+		@apply flex shrink-0 items-center justify-center rounded-[4px] border border-neutral-300 bg-white shadow-xs transition-[color,box-shadow];
 	}
 
 	.bo-checkbox__box--sm {
@@ -34,8 +33,15 @@
 	.bo-checkbox__input:focus-visible + .bo-checkbox__box--default,
 	.bo-checkbox__input:focus-visible + .bo-checkbox__box--lg {
 		@apply outline-none ring-[3px];
-		border-color: var(--color-blue-500);
+		@apply border-blue-500;
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-checkbox__input:focus-visible + .bo-checkbox__box--sm,
+	.dark .bo-checkbox__input:focus-visible + .bo-checkbox__box--default,
+	.dark .bo-checkbox__input:focus-visible + .bo-checkbox__box--lg {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-checkbox__input:checked + .bo-checkbox__box--sm,
@@ -44,8 +50,7 @@
 	.bo-checkbox__input:indeterminate + .bo-checkbox__box--sm,
 	.bo-checkbox__input:indeterminate + .bo-checkbox__box--default,
 	.bo-checkbox__input:indeterminate + .bo-checkbox__box--lg {
-		border-color: var(--color-blue-600);
-		background-color: var(--color-blue-600);
+		@apply border-blue-600 bg-blue-600;
 	}
 
 	.bo-checkbox__input:disabled + .bo-checkbox__box--sm,
@@ -57,7 +62,7 @@
 	.bo-checkbox__input[aria-invalid='true'] + .bo-checkbox__box--sm,
 	.bo-checkbox__input[aria-invalid='true'] + .bo-checkbox__box--default,
 	.bo-checkbox__input[aria-invalid='true'] + .bo-checkbox__box--lg {
-		border-color: var(--color-red-500);
+		@apply border-red-500;
 	}
 
 	.bo-checkbox__icon--sm {
@@ -77,17 +82,15 @@
 	}
 
 	.bo-checkbox__label {
-		@apply text-sm font-medium select-none;
-		color: var(--color-neutral-900);
+		@apply text-sm font-medium select-none text-neutral-900;
 	}
 
 	.dark .bo-checkbox__label {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-checkbox__required {
-		@apply ms-1;
-		color: var(--color-red-500);
+		@apply ms-1 text-red-500;
 	}
 
 	.bo-checkbox__helpers {
@@ -95,24 +98,21 @@
 	}
 
 	.bo-checkbox__error {
-		@apply text-sm;
-		color: var(--color-red-600);
+		@apply text-sm text-red-600;
 	}
 
 	.bo-checkbox__hint {
-		@apply text-sm;
-		color: var(--color-neutral-600);
+		@apply text-sm text-neutral-600;
 	}
 
 	.dark .bo-checkbox__hint {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.dark .bo-checkbox__box--sm,
 	.dark .bo-checkbox__box--default,
 	.dark .bo-checkbox__box--lg {
-		border-color: var(--color-neutral-700);
-		background-color: var(--color-neutral-900);
+		@apply border-neutral-700 bg-neutral-900;
 	}
 
 	.dark .bo-checkbox__input:checked + .bo-checkbox__box--sm,
@@ -121,7 +121,6 @@
 	.dark .bo-checkbox__input:indeterminate + .bo-checkbox__box--sm,
 	.dark .bo-checkbox__input:indeterminate + .bo-checkbox__box--default,
 	.dark .bo-checkbox__input:indeterminate + .bo-checkbox__box--lg {
-		border-color: var(--color-blue-500);
-		background-color: var(--color-blue-700);
+		@apply border-blue-500 bg-blue-700;
 	}
 }

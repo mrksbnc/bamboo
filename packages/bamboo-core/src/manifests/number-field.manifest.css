@@ -8,12 +8,11 @@
 	}
 
 	.bo-number-field__label {
-		@apply text-sm font-medium;
-		color: var(--color-neutral-900);
+		@apply text-sm font-medium text-neutral-900;
 	}
 
 	.dark .bo-number-field__label {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-number-field__required {
@@ -22,17 +21,21 @@
 
 	.bo-number-field__container {
 		@apply flex h-9 w-full items-center overflow-hidden rounded-md border bg-transparent shadow-xs transition-[color,box-shadow];
-		border-color: var(--color-neutral-300);
+		@apply border-neutral-300;
 	}
 
 	.bo-number-field__container:focus-within {
-		border-color: var(--color-blue-500);
+		@apply border-blue-500;
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 30%, transparent);
 	}
 
+	.dark .bo-number-field__container:focus-within {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 30%, transparent);
+	}
+
 	.bo-number-field__input {
-		@apply min-w-0 flex-1 border-none bg-transparent px-3 py-1 text-base outline-none md:text-sm;
-		color: var(--color-neutral-900);
+		@apply min-w-0 flex-1 border-none bg-transparent px-3 py-1 text-base text-neutral-900 outline-none md:text-sm;
 	}
 
 	.bo-number-field__input::-webkit-inner-spin-button,
@@ -45,14 +48,11 @@
 	}
 
 	.bo-number-field__button {
-		@apply flex w-9 items-center justify-center border-s-1 text-lg leading-none transition-colors;
-		border-color: var(--color-neutral-300);
-		color: var(--color-neutral-600);
+		@apply flex w-9 items-center justify-center border-s-1 border-neutral-300 text-lg leading-none text-neutral-600 transition-colors;
 	}
 
 	.bo-number-field__button:hover:not(:disabled) {
-		background-color: var(--color-neutral-100);
-		color: var(--color-neutral-900);
+		@apply bg-neutral-100 text-neutral-900;
 	}
 
 	.bo-number-field__button:disabled {
@@ -65,34 +65,33 @@
 
 	.bo-number-field__description,
 	.bo-number-field__hint {
-		color: var(--color-neutral-600);
+		@apply text-neutral-600;
 	}
 
 	.bo-number-field__error {
-		color: var(--color-red-600);
+		@apply text-red-600;
 	}
 
 	.dark .bo-number-field__label,
 	.dark .bo-number-field__input {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.dark .bo-number-field__container,
 	.dark .bo-number-field__button {
-		border-color: var(--color-neutral-700);
+		@apply border-neutral-700;
 	}
 
 	.dark .bo-number-field__button:hover:not(:disabled) {
-		background-color: var(--color-neutral-800);
-		color: var(--color-neutral-100);
+		@apply bg-neutral-800 text-neutral-100;
 	}
 
 	.dark .bo-number-field__description,
 	.dark .bo-number-field__hint {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.dark .bo-number-field__error {
-		color: var(--color-red-400);
+		@apply text-red-400;
 	}
 }

@@ -8,12 +8,11 @@
 	}
 
 	.bo-tags-input__label {
-		@apply text-sm font-medium;
-		color: var(--color-neutral-900);
+		@apply text-sm font-medium text-neutral-900;
 	}
 
 	.dark .bo-tags-input__label {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-tags-input__required {
@@ -21,13 +20,34 @@
 	}
 
 	.bo-tags-input__container {
-		@apply flex min-h-9 w-full flex-wrap items-center gap-1.5 rounded-4xl border px-2 py-1 shadow-xs transition-[color,box-shadow];
-		border-color: var(--color-neutral-300);
+		@apply flex min-h-9 w-full flex-wrap items-center gap-1.5 rounded-md border px-2 py-1 shadow-xs transition-[color,box-shadow];
+		@apply border-neutral-300;
+	}
+
+	.bo-tags-input__container:hover {
+		@apply border-neutral-400;
+	}
+
+	.dark .bo-tags-input__container:hover {
+		@apply border-neutral-600;
 	}
 
 	.bo-tags-input__container:focus-within {
-		border-color: var(--color-blue-500);
-		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 30%, transparent);
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-tags-input__container:focus-within {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
+	}
+
+	.bo-tags-input__container--invalid {
+		@apply border-red-500;
+	}
+
+	.dark .bo-tags-input__container--invalid {
+		@apply border-red-400;
 	}
 
 	.bo-tags-input__tags {
@@ -35,8 +55,7 @@
 	}
 
 	.bo-tags-input__tag {
-		@apply inline-flex items-center gap-1 rounded bg-blue-100 px-2 py-0.5 text-sm;
-		color: var(--color-blue-800);
+		@apply inline-flex items-center gap-1 rounded bg-blue-100 px-2 py-0.5 text-sm text-blue-800;
 	}
 
 	.bo-tags-input__remove {
@@ -48,8 +67,7 @@
 	}
 
 	.bo-tags-input__input {
-		@apply min-w-24 flex-1 border-none bg-transparent px-1 py-0.5 text-base outline-none md:text-sm;
-		color: var(--color-neutral-900);
+		@apply min-w-24 flex-1 border-none bg-transparent px-1 py-0.5 text-base text-neutral-900 outline-none md:text-sm;
 	}
 
 	.bo-tags-input__input:disabled {
@@ -62,33 +80,32 @@
 
 	.bo-tags-input__description,
 	.bo-tags-input__hint {
-		color: var(--color-neutral-600);
+		@apply text-neutral-600;
 	}
 
 	.bo-tags-input__error {
-		color: var(--color-red-600);
+		@apply text-red-600;
 	}
 
 	.dark .bo-tags-input__label,
 	.dark .bo-tags-input__input {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.dark .bo-tags-input__container {
-		border-color: var(--color-neutral-700);
+		@apply border-neutral-700;
 	}
 
 	.dark .bo-tags-input__tag {
-		background-color: var(--color-blue-950);
-		color: var(--color-blue-200);
+		@apply bg-blue-950 text-blue-200;
 	}
 
 	.dark .bo-tags-input__description,
 	.dark .bo-tags-input__hint {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.dark .bo-tags-input__error {
-		color: var(--color-red-400);
+		@apply text-red-400;
 	}
 }

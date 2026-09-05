@@ -17,11 +17,11 @@
 
 	.bo-navigation-menu__link {
 		@apply inline-flex items-center gap-1.5 rounded-2xl p-3 text-sm font-medium no-underline transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
-		color: var(--color-neutral-900);
+		@apply text-neutral-900;
 	}
 
 	.bo-navigation-menu__trigger {
-		color: var(--color-neutral-900);
+		@apply text-neutral-900;
 	}
 
 	.bo-navigation-menu__link > svg,
@@ -31,37 +31,41 @@
 
 	.dark .bo-navigation-menu__link,
 	.dark .bo-navigation-menu__trigger {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-navigation-menu__link:focus-visible,
 	.bo-navigation-menu__trigger:focus-visible {
-		@apply outline-none ring-[3px];
-		--tw-ring-color: var(--color-blue-500);
+		@apply outline-none;
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-navigation-menu__link:focus-visible,
+	.dark .bo-navigation-menu__trigger:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-navigation-menu__link:hover,
 	.bo-navigation-menu__trigger:hover,
 	.bo-navigation-menu__trigger[data-state='open'] {
-		background-color: var(--color-neutral-100);
+		@apply bg-neutral-100;
 	}
 
 	.dark .bo-navigation-menu__link:hover,
 	.dark .bo-navigation-menu__trigger:hover,
 	.dark .bo-navigation-menu__trigger[data-state='open'] {
-		background-color: var(--color-neutral-800);
+		@apply bg-neutral-800;
 	}
 
 	.bo-navigation-menu__viewport {
 		@apply absolute top-full z-20 mt-1.5 min-h-10 w-max min-w-48 overflow-hidden rounded-2xl border bg-white shadow-sm;
-		border-color: var(--color-neutral-200);
-		color: var(--color-neutral-900);
+		@apply border-neutral-200 text-neutral-900;
 	}
 
 	.dark .bo-navigation-menu__viewport {
-		@apply bg-neutral-900;
-		border-color: var(--color-neutral-800);
-		color: var(--color-neutral-100);
+		@apply border-neutral-800 bg-neutral-900 text-neutral-100;
 	}
 
 	.bo-navigation-menu__content {

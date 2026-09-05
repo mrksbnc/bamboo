@@ -12,141 +12,130 @@
 	}
 
 	.bo-input__label {
-		@apply flex items-center text-sm font-medium;
-		color: var(--color-neutral-900);
+		@apply flex items-center text-sm font-medium text-neutral-900;
 	}
 
 	.dark .bo-input__label {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-input__required {
-		@apply ms-1 text-sm font-medium;
-		color: var(--color-red-500);
+		@apply ms-1 text-sm font-medium text-red-500;
 	}
 
 	.dark .bo-input__required {
-		color: var(--color-red-400);
+		@apply text-red-400;
 	}
 
 	.bo-input__container {
-		@apply relative flex h-9 w-full items-center rounded-4xl border px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none;
-		border-color: var(--color-neutral-300);
-		background-color: transparent;
+		@apply relative flex h-9 w-full items-center rounded-md border px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none;
+		@apply border-neutral-300 bg-transparent;
 	}
 
 	.dark .bo-input__container {
-		border-color: var(--color-neutral-700);
+		@apply border-neutral-700;
 	}
 
 	.bo-input__container:hover {
-		border-color: var(--color-neutral-400);
+		@apply border-neutral-400;
 	}
 
 	.dark .bo-input__container:hover {
-		border-color: var(--color-neutral-600);
+		@apply border-neutral-600;
 	}
 
 	.bo-input__container:focus-within {
-		@apply ring-[3px];
-		border-color: var(--color-blue-500);
+		@apply border-blue-500 ring-[3px];
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
 	}
 
 	.dark .bo-input__container:focus-within {
-		border-color: var(--color-blue-400);
+		@apply border-blue-400;
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
-	.bo-input__container--disabled {
-		@apply pointer-events-none opacity-50;
-		background-color: var(--color-neutral-50);
-		border-color: var(--color-neutral-200);
-	}
-
-	.dark .bo-input__container--disabled {
-		background-color: var(--color-neutral-800);
-		border-color: var(--color-neutral-700);
-	}
-
 	.bo-input__container--valid {
-		border-color: var(--color-green-500);
+		@apply border-green-500;
 	}
 
 	.bo-input__container--valid:focus-within {
-		border-color: var(--color-green-500);
+		@apply border-green-500;
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-green-500) 50%, transparent);
 	}
 
 	.dark .bo-input__container--valid {
-		border-color: var(--color-green-400);
+		@apply border-green-400;
 	}
 
 	.dark .bo-input__container--valid:focus-within {
-		border-color: var(--color-green-400);
+		@apply border-green-400;
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-green-400) 50%, transparent);
 	}
 
 	.bo-input__container--invalid {
-		border-color: var(--color-red-500);
+		@apply border-red-500;
 	}
 
 	.bo-input__container--invalid:focus-within {
-		border-color: var(--color-red-500);
+		@apply border-red-500;
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-red-500) 20%, transparent);
 	}
 
 	.dark .bo-input__container--invalid {
-		border-color: var(--color-red-400);
+		@apply border-red-400;
 	}
 
 	.dark .bo-input__container--invalid:focus-within {
-		border-color: var(--color-red-400);
+		@apply border-red-400;
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-red-400) 40%, transparent);
 	}
 
 	.bo-input__field {
-		@apply min-w-0 flex-1 border-none bg-transparent text-base outline-none md:text-sm;
-		color: var(--color-neutral-900);
+		@apply min-w-0 flex-1 border-none bg-transparent text-base text-neutral-900 outline-none md:text-sm;
 	}
 
 	.dark .bo-input__field {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-input__field::placeholder {
-		color: var(--color-neutral-500);
+		@apply text-neutral-500;
 	}
 
 	.dark .bo-input__field::placeholder {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-input__field::selection {
-		background-color: var(--color-blue-600);
-		color: var(--color-white);
+		@apply bg-blue-600 text-white;
 	}
 
 	.dark .bo-input__field::selection {
-		background-color: var(--color-blue-700);
+		@apply bg-blue-700;
 	}
 
 	.bo-input__field:disabled {
 		@apply pointer-events-none cursor-not-allowed;
 	}
 
+	.bo-input__container--disabled {
+		@apply pointer-events-none border-neutral-200 bg-neutral-50 opacity-50;
+	}
+
+	.dark .bo-input__container--disabled {
+		@apply border-neutral-700 bg-neutral-800;
+	}
+
 	.bo-input__prefix-icon {
-		@apply me-2 flex items-center justify-center;
-		color: var(--color-neutral-500);
+		@apply me-2 flex items-center justify-center text-neutral-500;
 	}
 
 	.dark .bo-input__prefix-icon {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-input__suffix-icon {
-		@apply ms-2 flex cursor-pointer items-center justify-center;
-		color: var(--color-neutral-500);
+		@apply ms-2 flex cursor-pointer items-center justify-center text-neutral-500;
 	}
 
 	.bo-input__password-toggle {
@@ -154,7 +143,7 @@
 	}
 
 	.dark .bo-input__suffix-icon {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-input__helpers {
@@ -162,20 +151,18 @@
 	}
 
 	.bo-input__error {
-		@apply flex items-center gap-2 text-sm;
-		color: var(--color-red-600);
+		@apply flex items-center gap-2 text-sm text-red-600;
 	}
 
 	.dark .bo-input__error {
-		color: var(--color-red-400);
+		@apply text-red-400;
 	}
 
 	.bo-input__hint {
-		@apply text-sm;
-		color: var(--color-neutral-600);
+		@apply text-sm text-neutral-600;
 	}
 
 	.dark .bo-input__hint {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 }

@@ -19,12 +19,10 @@
 	}
 	.bo-sheet-panel {
 		@apply relative flex w-full flex-col gap-6 overflow-hidden border bg-white shadow-lg outline-none;
-		background-color: var(--color-white);
-		border-color: var(--color-neutral-200);
+		@apply border-neutral-200;
 	}
 	.dark .bo-sheet-panel {
-		background-color: var(--color-neutral-900);
-		border-color: var(--color-neutral-800);
+		@apply border-neutral-800 bg-neutral-900;
 	}
 	.bo-sheet-panel--top,
 	.bo-sheet-panel--bottom {
@@ -68,50 +66,48 @@
 		@apply flex-1 leading-none;
 	}
 	.bo-sheet-close {
-		@apply absolute end-4 top-4 inline-flex items-center justify-center rounded-sm opacity-70 transition-opacity hover:opacity-100;
-		color: var(--color-neutral-500);
+		@apply absolute end-4 top-4 inline-flex items-center justify-center rounded-sm text-neutral-500 opacity-70 transition-opacity hover:opacity-100;
+	}
+	.dark .bo-sheet-close {
+		@apply text-neutral-400;
 	}
 	.bo-sheet-body {
-		@apply min-h-0 overflow-y-auto overscroll-contain text-sm;
-		color: var(--color-neutral-700);
+		@apply min-h-0 overflow-y-auto overscroll-contain text-sm text-neutral-700;
 	}
 	.dark .bo-sheet-body {
-		color: var(--color-neutral-300);
+		@apply text-neutral-300;
 	}
 	.bo-sheet-description {
-		@apply text-sm leading-relaxed;
-		color: var(--color-neutral-500);
+		@apply text-sm leading-relaxed text-neutral-500;
 	}
 	.dark .bo-sheet-description {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 	.bo-sheet-footer {
 		@apply flex flex-col-reverse gap-2 p-6 sm:flex-row sm:justify-end;
 	}
 	.bo-sheet-enter-active,
 	.bo-sheet-leave-active {
-		transition:
-			transform 0.2s ease,
-			opacity 0.2s ease;
+		@apply transition-[transform,opacity] duration-200 ease-[ease];
 	}
 	.bo-sheet-enter-from,
 	.bo-sheet-leave-to {
-		opacity: 0;
+		@apply opacity-0;
 	}
 	.bo-sheet-wrapper[data-side='top'] .bo-sheet-enter-from .bo-sheet-panel,
 	.bo-sheet-wrapper[data-side='top'] .bo-sheet-leave-to .bo-sheet-panel {
-		transform: translateY(-100%);
+		@apply -translate-y-full;
 	}
 	.bo-sheet-wrapper[data-side='bottom'] .bo-sheet-enter-from .bo-sheet-panel,
 	.bo-sheet-wrapper[data-side='bottom'] .bo-sheet-leave-to .bo-sheet-panel {
-		transform: translateY(100%);
+		@apply translate-y-full;
 	}
 	.bo-sheet-wrapper[data-side='left'] .bo-sheet-enter-from .bo-sheet-panel,
 	.bo-sheet-wrapper[data-side='left'] .bo-sheet-leave-to .bo-sheet-panel {
-		transform: translateX(-100%);
+		@apply -translate-x-full;
 	}
 	.bo-sheet-wrapper[data-side='right'] .bo-sheet-enter-from .bo-sheet-panel,
 	.bo-sheet-wrapper[data-side='right'] .bo-sheet-leave-to .bo-sheet-panel {
-		transform: translateX(100%);
+		@apply translate-x-full;
 	}
 }

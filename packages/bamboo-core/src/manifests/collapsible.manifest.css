@@ -4,36 +4,39 @@
 	}
 
 	.bo-collapsible__trigger {
-		@apply flex w-full items-center justify-between gap-3 rounded-md px-3 py-2 text-start text-sm font-medium transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
-		color: var(--color-neutral-900);
+		@apply flex w-full items-center justify-between gap-3 rounded-md px-3 py-2 text-start text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
 	}
 
 	.dark .bo-collapsible__trigger {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-collapsible__trigger:focus-visible {
-		@apply outline-none ring-[3px];
-		--tw-ring-color: var(--color-blue-500);
+		@apply outline-none;
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-collapsible__trigger:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-collapsible__icon {
-		@apply shrink-0 transition-transform duration-200;
-		color: var(--color-neutral-500);
+		@apply shrink-0 text-neutral-500 transition-transform duration-200;
 	}
 
 	.bo-collapsible__content {
-		@apply min-w-0 overflow-hidden px-3 py-2 text-sm;
-		color: var(--color-neutral-500);
+		@apply min-w-0 overflow-hidden px-3 py-2 text-sm text-neutral-500;
 	}
 
 	.dark .bo-collapsible__content {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
 	.bo-collapsible__icon {
-		transition: none;
+		@apply transition-none;
 	}
 }

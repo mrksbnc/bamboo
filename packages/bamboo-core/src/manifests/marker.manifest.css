@@ -4,50 +4,50 @@
 	}
 
 	.bo-marker--default {
-		background-color: var(--color-neutral-400);
+		@apply bg-neutral-400;
 	}
 
 	.dark .bo-marker--default {
-		background-color: var(--color-neutral-500);
+		@apply bg-neutral-500;
 	}
 
 	.bo-marker--primary {
-		background-color: var(--color-blue-600);
+		@apply bg-blue-600;
 	}
 
 	.dark .bo-marker--primary {
-		background-color: var(--color-blue-400);
+		@apply bg-blue-400;
 	}
 
 	.bo-marker--secondary {
-		background-color: var(--color-neutral-600);
+		@apply bg-neutral-600;
 	}
 
 	.dark .bo-marker--secondary {
-		background-color: var(--color-neutral-400);
+		@apply bg-neutral-400;
 	}
 
 	.bo-marker--destructive {
-		background-color: var(--color-red-600);
+		@apply bg-red-600;
 	}
 
 	.dark .bo-marker--destructive {
-		background-color: var(--color-red-400);
+		@apply bg-red-400;
 	}
 
 	.bo-marker--warning {
-		background-color: var(--color-yellow-500);
+		@apply bg-yellow-500;
 	}
 
 	.dark .bo-marker--warning {
-		background-color: var(--color-yellow-400);
+		@apply bg-yellow-400;
 	}
 
 	.bo-marker--success {
-		background-color: var(--color-green-600);
+		@apply bg-green-600;
 	}
 
 	.dark .bo-marker--success {
-		background-color: var(--color-green-400);
+		@apply bg-green-400;
 	}
 }

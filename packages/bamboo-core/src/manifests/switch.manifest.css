@@ -10,11 +10,31 @@
 	.bo-switch__control--sm,
 	.bo-switch__control--default,
 	.bo-switch__control--lg {
-		@apply inline-flex shrink-0 cursor-pointer items-center rounded-full border border-transparent bg-neutral-300 shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-blue-600 dark:bg-neutral-700 dark:data-[state=checked]:bg-blue-700;
+		@apply inline-flex shrink-0 cursor-pointer items-center rounded-full border border-transparent bg-neutral-300 shadow-xs transition-colors disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-blue-600 dark:bg-neutral-700 dark:data-[state=checked]:bg-blue-600;
+	}
+
+	.bo-switch__control--sm,
+	.bo-switch__control--default,
+	.bo-switch__control--lg {
+		@apply focus-visible:outline-none;
+	}
+
+	.bo-switch__control--sm:focus-visible,
+	.bo-switch__control--default:focus-visible,
+	.bo-switch__control--lg:focus-visible {
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-switch__control--sm:focus-visible,
+	.dark .bo-switch__control--default:focus-visible,
+	.dark .bo-switch__control--lg:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-switch__control--sm {
-		@apply h-3.5 w-6;
+		@apply h-4 w-7;
 	}
 
 	.bo-switch__control--default {
@@ -32,15 +52,15 @@
 	}
 
 	.bo-switch__thumb--sm {
-		@apply size-3 data-[state=checked]:translate-x-[calc(100%-2px)];
+		@apply size-3 data-[state=checked]:translate-x-[calc(100%-1px)];
 	}
 
 	.bo-switch__thumb--default {
-		@apply size-4 data-[state=checked]:translate-x-[calc(100%-2px)];
+		@apply size-[0.875rem] data-[state=checked]:translate-x-[calc(100%-1px)];
 	}
 
 	.bo-switch__thumb--lg {
-		@apply size-4 data-[state=checked]:translate-x-[calc(100%-2px)];
+		@apply size-4 data-[state=checked]:translate-x-[calc(100%-1px)];
 	}
 
 	.bo-switch__label-group {
@@ -48,20 +68,18 @@
 	}
 
 	.bo-switch__label {
-		@apply text-sm font-medium select-none;
-		color: var(--color-neutral-900);
+		@apply text-sm font-medium select-none text-neutral-900;
 	}
 
 	.bo-switch__description {
-		@apply text-sm;
-		color: var(--color-neutral-500);
+		@apply text-sm text-neutral-500;
 	}
 
 	.dark .bo-switch__label {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.dark .bo-switch__description {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 }

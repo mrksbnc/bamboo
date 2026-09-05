@@ -8,6 +8,7 @@ export const BUTTON_MANIFEST: ButtonManifest = {
 	styles: {
 		base: 'bo-button',
 		pressed: 'bo-button--pressed',
+		linkVariantWithShadow: 'bo-button--link-shadow',
 		shape: {
 			default: 'bo-button--shape-default',
 			pill: 'bo-button--shape-pill',

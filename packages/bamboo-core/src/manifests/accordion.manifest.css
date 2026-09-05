@@ -1,20 +1,15 @@
 @layer components {
 	.bo-accordion {
-		@apply flex w-full min-w-0 flex-col overflow-hidden rounded-2xl border;
-		border-color: var(--color-neutral-200);
-	}
-
-	.dark .bo-accordion {
-		border-color: var(--color-neutral-800);
+		@apply flex w-full min-w-0 flex-col;
 	}
 
 	.bo-accordion__item {
 		@apply w-full min-w-0 border-b;
-		border-color: var(--color-neutral-200);
+		@apply border-neutral-200;
 	}
 
 	.dark .bo-accordion__item {
-		border-color: var(--color-neutral-800);
+		@apply border-neutral-800;
 	}
 
 	.bo-accordion__item:last-child {
@@ -26,26 +21,30 @@
 	}
 
 	.bo-accordion__trigger {
-		@apply flex min-w-0 flex-1 items-start justify-between gap-6 rounded-md p-4 text-start text-sm font-medium transition-all hover:underline disabled:pointer-events-none disabled:opacity-50;
-		color: var(--color-neutral-900);
+		@apply flex min-w-0 flex-1 items-start justify-between gap-4 rounded-md py-4 text-start text-sm font-medium text-neutral-900 transition-all hover:underline disabled:pointer-events-none disabled:opacity-50;
 	}
 
 	.dark .bo-accordion__trigger {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-accordion__trigger:focus-visible {
 		@apply outline-none ring-[3px];
-		--tw-ring-color: var(--color-blue-500);
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-accordion__trigger:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-accordion__icon {
-		@apply pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200;
-		color: var(--color-neutral-500);
+		@apply pointer-events-none size-4 shrink-0 translate-y-0.5 text-neutral-500 transition-transform duration-200;
 	}
 
 	.dark .bo-accordion__icon {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-accordion__trigger[data-state='open'] .bo-accordion__icon {
@@ -53,12 +52,12 @@
 	}
 
 	.bo-accordion__content {
-		@apply grid w-full min-w-0 grid-rows-[minmax(0,1fr)] overflow-hidden px-4 text-sm transition-[grid-template-rows] duration-200 ease-out;
-		color: var(--color-neutral-500);
+		@apply grid w-full min-w-0 grid-rows-[minmax(0,1fr)] overflow-hidden text-sm transition-[grid-template-rows] duration-200 ease-out;
+		@apply text-neutral-500;
 	}
 
 	.dark .bo-accordion__content {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-accordion__content[data-state='closed'] {
@@ -81,6 +80,6 @@
 @media (prefers-reduced-motion: reduce) {
 	.bo-accordion__content,
 	.bo-accordion__icon {
-		transition: none;
+		@apply transition-none;
 	}
 }

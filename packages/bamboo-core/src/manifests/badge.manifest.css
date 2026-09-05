@@ -29,15 +29,15 @@
 	}
 
 	.bo-badge--circle-sm {
-		@apply size-5.5;
+		@apply size-5;
 	}
 
 	.bo-badge--circle-default {
-		@apply size-6.5;
+		@apply size-6;
 	}
 
 	.bo-badge--circle-lg {
-		@apply size-8.5;
+		@apply size-8;
 	}
 
 	.bo-badge--filled-primary {
@@ -53,7 +53,8 @@
 	}
 
 	.bo-badge--filled-warning {
-		@apply bg-yellow-600 border border-yellow-600 text-white dark:bg-yellow-600 dark:text-white;
+		@apply bg-yellow-500 border border-yellow-600 dark:bg-yellow-500;
+		@apply text-neutral-950;
 	}
 
 	.bo-badge--filled-success {
@@ -62,11 +63,11 @@
 
 	.bo-badge--filled-light {
 		@apply bg-neutral-100 border border-neutral-200 dark:bg-neutral-200 dark:border-neutral-300;
-		color: var(--color-neutral-800);
+		@apply text-neutral-800;
 	}
 
 	.dark .bo-badge--filled-light {
-		color: var(--color-neutral-800);
+		@apply text-neutral-800;
 	}
 
 	.bo-badge--filled-black {

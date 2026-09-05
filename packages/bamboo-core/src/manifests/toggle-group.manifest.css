@@ -12,6 +12,16 @@
 	}
 
 	.bo-toggle-group__item {
-		@apply inline-flex items-center justify-center gap-1 rounded-4xl px-3 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-white data-[state=on]:text-neutral-900 data-[state=on]:shadow-sm dark:text-neutral-100 dark:hover:bg-neutral-900 dark:data-[state=on]:bg-neutral-900 dark:data-[state=on]:text-neutral-100;
+		@apply inline-flex items-center justify-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-white focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-white data-[state=on]:text-neutral-900 data-[state=on]:shadow-sm dark:text-neutral-100 dark:hover:bg-neutral-900 dark:data-[state=on]:bg-neutral-900 dark:data-[state=on]:text-neutral-100;
+	}
+
+	.bo-toggle-group__item:focus-visible {
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-toggle-group__item:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 }

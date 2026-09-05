@@ -5,21 +5,26 @@
 
 	.bo-scroll-area--masked {
 		mask-image: linear-gradient(to bottom, black calc(100% - 1.5rem), transparent);
-		mask-repeat: no-repeat;
+		@apply [mask-repeat:no-repeat];
 	}
 
 	.bo-scroll-area__viewport {
 		@apply size-full min-h-0 overflow-auto overscroll-contain rounded-[inherit] outline-none;
-		scrollbar-width: none;
+		@apply [scrollbar-width:none];
 	}
 
 	.bo-scroll-area__viewport::-webkit-scrollbar {
-		display: none;
+		@apply hidden;
 	}
 
 	.bo-scroll-area__viewport:focus-visible {
-		@apply ring-[3px];
-		--tw-ring-color: var(--color-blue-500);
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-scroll-area__viewport:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-scroll-area__scrollbar--vertical {

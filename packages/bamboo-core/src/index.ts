@@ -29,6 +29,7 @@ export {
 	type AvatarManifest,
 
 	// Badge
+	type BoBadgeSize,
 	type BoBadgeVariant,
 	type BoBadgeKind,
 	type BoBadgeShape,

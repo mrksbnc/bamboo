@@ -24,21 +24,18 @@
 	}
 
 	.bo-button-group--selected {
-		background-color: var(--color-blue-600);
-		border-color: var(--color-blue-600);
-		color: var(--color-white);
+		@apply border-blue-600 bg-blue-600 text-white;
 	}
 
 	.bo-button-group--selected:hover {
-		background-color: var(--color-blue-700);
+		@apply bg-blue-700;
 	}
 
 	.dark .bo-button-group--selected {
-		background-color: var(--color-blue-500);
-		border-color: var(--color-blue-500);
+		@apply border-blue-500 bg-blue-500;
 	}
 
 	.dark .bo-button-group--selected:hover {
-		background-color: var(--color-blue-600);
+		@apply bg-blue-600;
 	}
 }

@@ -33,6 +33,7 @@ export {
 
 // # bo-badge
 export {
+	type BoBadgeSize,
 	type BoBadgeVariant,
 	type BoBadgeKind,
 	type BoBadgeShape,

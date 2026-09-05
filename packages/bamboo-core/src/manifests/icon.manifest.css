@@ -40,43 +40,43 @@
 	}
 
 	.bo-icon--primary {
-		color: var(--color-blue-600);
+		@apply text-blue-600;
 	}
 
 	.dark .bo-icon--primary {
-		color: var(--color-blue-400);
+		@apply text-blue-400;
 	}
 
 	.bo-icon--secondary {
-		color: var(--color-neutral-600);
+		@apply text-neutral-600;
 	}
 
 	.dark .bo-icon--secondary {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-icon--success {
-		color: var(--color-green-700);
+		@apply text-green-700;
 	}
 
 	.dark .bo-icon--success {
-		color: var(--color-green-400);
+		@apply text-green-400;
 	}
 
 	.bo-icon--warning {
-		color: var(--color-yellow-700);
+		@apply text-yellow-700;
 	}
 
 	.dark .bo-icon--warning {
-		color: var(--color-yellow-400);
+		@apply text-yellow-400;
 	}
 
 	.bo-icon--destructive {
-		color: var(--color-red-600);
+		@apply text-red-600;
 	}
 
 	.dark .bo-icon--destructive {
-		color: var(--color-red-400);
+		@apply text-red-400;
 	}
 
 	.bo-icon--white {
@@ -84,10 +84,10 @@
 	}
 
 	.bo-icon--black {
-		color: var(--color-neutral-800);
+		@apply text-neutral-800;
 	}
 
 	.dark .bo-icon--black {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 }

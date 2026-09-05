@@ -1,12 +1,12 @@
 @layer components {
 	.bo-menubar {
 		@apply flex h-9 w-fit items-center rounded-md border bg-white p-1 shadow-xs;
-		border-color: var(--color-neutral-200);
+		@apply border-neutral-200;
 	}
 
 	.dark .bo-menubar {
 		@apply bg-neutral-900;
-		border-color: var(--color-neutral-800);
+		@apply border-neutral-800;
 	}
 
 	.bo-menubar__menu {
@@ -14,42 +14,45 @@
 	}
 
 	.bo-menubar__trigger {
-		@apply inline-flex shrink-0 cursor-default select-none items-center justify-center rounded-xl px-2 py-[3px] text-center text-sm font-medium transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
-		color: var(--color-neutral-900);
+		@apply inline-flex shrink-0 cursor-default select-none items-center justify-center rounded-xl px-2 py-[3px] text-center text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
 	}
 
 	.dark .bo-menubar__trigger {
-		color: var(--color-neutral-100);
+		@apply text-neutral-100;
 	}
 
 	.bo-menubar__trigger--active,
 	.bo-menubar__trigger[data-state='open'] {
-		background-color: var(--color-neutral-100);
+		@apply bg-neutral-100;
 	}
 
 	.dark .bo-menubar__trigger--active,
 	.dark .bo-menubar__trigger[data-state='open'] {
-		background-color: var(--color-neutral-800);
+		@apply bg-neutral-800;
 	}
 
 	.bo-menubar__trigger:focus-visible,
 	.bo-menubar__item:focus-visible {
-		@apply outline-none ring-[3px];
-		--tw-ring-color: var(--color-blue-500);
+		@apply outline-none;
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-menubar__trigger:focus-visible,
+	.dark .bo-menubar__item:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-menubar__content,
 	.bo-menubar__sub-content {
 		@apply z-50 min-w-48 max-h-[calc(100vh-1rem)] overflow-auto rounded-2xl border bg-white p-1 text-sm shadow-md;
-		border-color: var(--color-neutral-200);
-		color: var(--color-neutral-900);
+		@apply border-neutral-200 text-neutral-900;
 	}
 
 	.dark .bo-menubar__content,
 	.dark .bo-menubar__sub-content {
-		@apply bg-neutral-900;
-		border-color: var(--color-neutral-800);
-		color: var(--color-neutral-100);
+		@apply border-neutral-800 bg-neutral-900 text-neutral-100;
 	}
 
 	.bo-menubar__item {
