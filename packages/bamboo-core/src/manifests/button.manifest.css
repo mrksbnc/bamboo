@@ -29,7 +29,7 @@
 	}
 
 	.bo-button--shape-default {
-		@apply rounded-4xl;
+		@apply rounded-lg;
 	}
 
 	.bo-button--shape-pill {
@@ -45,15 +45,15 @@
 	}
 
 	.bo-button--sm {
-		@apply h-8 px-3 gap-1 text-sm;
+		@apply h-8 px-3 gap-1.5 text-sm;
 	}
 
 	.bo-button--default {
-		@apply h-9 px-3 gap-1.5 text-sm;
+		@apply h-10 px-4 gap-2 text-sm;
 	}
 
 	.bo-button--lg {
-		@apply h-10 px-4 gap-1.5 text-sm;
+		@apply h-12 px-6 gap-2 text-base;
 	}
 
 	.bo-button--xl {
@@ -79,11 +79,11 @@
 	}
 
 	.bo-button--icon-only-default {
-		@apply size-9;
+		@apply size-10;
 	}
 
 	.bo-button--icon-only-lg {
-		@apply size-10;
+		@apply size-12;
 	}
 
 	.bo-button--icon-only-xl {

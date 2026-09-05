@@ -14,8 +14,13 @@ outline: deep
 <script setup lang="ts">
 import { BoAvatar } from '@mrksbnc/bamboo-vue';
 
-const basicExample = `<bo-avatar label="Avatar" />
-<bo-avatar src="../../assets/avatar.jpeg" />
+const basicExample = `<!-- With initials -->
+<bo-avatar label="Avatar" />
+
+<!-- With image -->
+<bo-avatar src="someImageUrl" />
+
+<!-- Fallback image -->
 <bo-avatar />`;
 
 const variantsExample = `<bo-avatar label="Primary" variant="primary" />

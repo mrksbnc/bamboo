@@ -1,14 +1,10 @@
 @layer components {
 	.bo-badge {
-		@apply flex h-5 items-center justify-center gap-1 rounded-full px-2 py-0.5 text-center text-xs select-none shadow-sm cursor-default font-medium transition-colors leading-none;
-	}
-
-	.bo-badge > svg {
-		@apply size-3;
+		@apply flex items-center justify-center text-center select-none shadow-sm cursor-default font-medium transition-colors leading-none;
 	}
 
 	.bo-badge--shape-default {
-		@apply rounded-full;
+		@apply rounded-md;
 	}
 
 	.bo-badge--shape-pill,
@@ -20,8 +16,28 @@
 		@apply rounded-none;
 	}
 
-	.bo-badge--shape-circle {
-		@apply size-6 p-0;
+	.bo-badge--sm {
+		@apply px-1 py-0.5;
+	}
+
+	.bo-badge--default {
+		@apply px-2 py-1;
+	}
+
+	.bo-badge--lg {
+		@apply px-2.5 py-1.5;
+	}
+
+	.bo-badge--circle-sm {
+		@apply size-5.5;
+	}
+
+	.bo-badge--circle-default {
+		@apply size-6.5;
+	}
+
+	.bo-badge--circle-lg {
+		@apply size-8.5;
 	}
 
 	.bo-badge--filled-primary {

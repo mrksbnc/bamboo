@@ -95,7 +95,7 @@ export const AVATAR_MANIFEST = {
 	defaults: {
 		role: 'img',
 		alt: 'avatar',
-		kind: 'circle',
+		kind: 'default',
 		size: 'default',
 		variant: 'primary',
 		indicatorKind: 'none',

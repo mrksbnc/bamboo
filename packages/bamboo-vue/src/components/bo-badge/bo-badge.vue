@@ -9,14 +9,14 @@
 	>
 		<bo-icon
 			v-if="showPrefixIcon"
-			:size="BADGE_MANIFEST.styles.iconSize"
+			:size="iconSize"
 			:icon="getSafeIcon(prefixIcon)"
 		/>
 		<slot>
 			<bo-text
 				v-if="label && !isCircle"
 				:cursor="cursor"
-				font-size="xs"
+				:font-size="fontSize"
 				font-weight="semibold"
 				variant="inherit"
 			>
@@ -26,7 +26,7 @@
 		<bo-icon
 			v-if="showSuffixIcon"
 			:icon="getSafeIcon(suffixIcon)"
-			:size="BADGE_MANIFEST.styles.iconSize"
+			:size="iconSize"
 		/>
 	</span>
 </template>
@@ -48,6 +48,7 @@ import { BoText } from '../bo-text';
 const props = withDefaults(defineProps<BoBadgeProps>(), {
 	id: () => generateComponentId('badge'),
 	dataTestId: () => generateDataTestId('badge'),
+	size: () => BADGE_MANIFEST.defaults.size,
 	kind: () => BADGE_MANIFEST.defaults.kind,
 	shape: () => BADGE_MANIFEST.defaults.shape,
 	variant: () => BADGE_MANIFEST.defaults.variant,
@@ -74,6 +75,9 @@ const showSuffixIcon = computed<boolean>(
 	() => !!props.suffixIcon && props.suffixIcon !== 'none' && !isIconOnly.value && !isCircle.value,
 );
 
+const fontSize = computed(() => BADGE_MANIFEST.styles.fontSize[props.size || 'default']);
+const iconSize = computed(() => BADGE_MANIFEST.styles.iconSize[props.size || 'default']);
+
 const variantClass = computed<string>(() => {
 	if (props.customColor) return '';
 
@@ -89,6 +93,9 @@ const classValues = computed<string>(() =>
 		props.cursor,
 		BADGE_MANIFEST.styles.base,
 		BADGE_MANIFEST.styles.shape[props.shape || 'default'],
+		isCircle.value
+			? BADGE_MANIFEST.styles.size.circle[props.size || 'default']
+			: BADGE_MANIFEST.styles.size.default[props.size || 'default'],
 		variantClass.value,
 	),
 );
