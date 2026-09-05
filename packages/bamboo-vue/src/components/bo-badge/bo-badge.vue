@@ -7,11 +7,7 @@
 		:role="role"
 		:aria-label="ariaLabel"
 	>
-		<bo-icon
-			v-if="showPrefixIcon"
-			:size="iconSize"
-			:icon="getSafeIcon(prefixIcon)"
-		/>
+		<bo-icon v-if="showPrefixIcon" :size="iconSize" :icon="getSafeIcon(prefixIcon)" />
 		<slot>
 			<bo-text
 				v-if="label && !isCircle"
@@ -23,11 +19,7 @@
 				{{ label }}
 			</bo-text>
 		</slot>
-		<bo-icon
-			v-if="showSuffixIcon"
-			:icon="getSafeIcon(suffixIcon)"
-			:size="iconSize"
-		/>
+		<bo-icon v-if="showSuffixIcon" :icon="getSafeIcon(suffixIcon)" :size="iconSize" />
 	</span>
 </template>
 
