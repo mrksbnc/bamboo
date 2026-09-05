@@ -186,7 +186,7 @@ describe('BoInput', () => {
 				components: { BoIcon, BoText },
 			},
 		});
-		const iconContainer = wrapper.find('.absolute.left-3');
+		const iconContainer = wrapper.find('.bo-input__prefix-icon');
 		await iconContainer.trigger('click');
 		expect(wrapper.emitted('prefixIconClick')).toBeTruthy();
 	});
@@ -198,7 +198,7 @@ describe('BoInput', () => {
 				components: { BoIcon, BoText },
 			},
 		});
-		const iconContainer = wrapper.find('.absolute.right-3');
+		const iconContainer = wrapper.find('.bo-input__suffix-icon');
 		await iconContainer.trigger('click');
 		expect(wrapper.emitted('suffixIconClick')).toBeTruthy();
 	});

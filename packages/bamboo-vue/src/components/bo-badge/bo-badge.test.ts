@@ -134,12 +134,12 @@ describe('BoBadge', () => {
 			},
 		});
 		const element = wrapper.find('span[data-testid]');
-		expect(element.classes()).toContain('rounded-full');
+		expect(element.classes()).toContain('bo-badge--shape-circle');
 	});
 
 	it('applies custom color styles', () => {
 		const wrapper = mount(BoBadge, {
-			props: { label: 'Test', customColor: '#ff0000', kind: 'filled' },
+			props: { label: 'Test', customColor: '#ff0000', kind: 'default' },
 			global: {
 				components: { BoIcon, BoText },
 			},
@@ -214,8 +214,6 @@ describe('BoBadge', () => {
 			},
 		});
 		const element = wrapper.find('span[data-testid]');
-		expect(element.classes()).toContain('flex');
-		expect(element.classes()).toContain('items-center');
-		expect(element.classes()).toContain('justify-center');
+		expect(element.classes()).toContain('bo-badge');
 	});
 });

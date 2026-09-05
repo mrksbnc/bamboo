@@ -22,7 +22,7 @@ describe('BoButtonGroup', () => {
 		});
 
 		const groupElement = wrapper.find('[data-testid]');
-		expect(groupElement.classes()).toContain('flex-row');
+		expect(groupElement.classes()).toContain('bo-button-group--horizontal');
 	});
 
 	it('applies vertical orientation when specified', () => {
@@ -36,7 +36,7 @@ describe('BoButtonGroup', () => {
 		});
 
 		const groupElement = wrapper.find('[data-testid]');
-		expect(groupElement.classes()).toContain('flex-col');
+		expect(groupElement.classes()).toContain('bo-button-group--vertical');
 	});
 
 	it('applies full width when specified', () => {
@@ -50,7 +50,7 @@ describe('BoButtonGroup', () => {
 		});
 
 		const groupElement = wrapper.find('[data-testid]');
-		expect(groupElement.classes()).toContain('w-full');
+		expect(groupElement.classes()).toContain('bo-button-group--full-width');
 	});
 
 	it('provides context to child components', () => {
@@ -87,6 +87,8 @@ describe('BoButtonGroup', () => {
 		const buttons = wrapper.findAll('button');
 		expect(buttons[0].attributes('aria-pressed')).toBe('true');
 		expect(buttons[1].attributes('aria-pressed')).toBe('false');
+		expect(buttons[0].classes()).toContain('bo-button-group--selected');
+		expect(buttons[1].classes()).not.toContain('bo-button-group--selected');
 	});
 
 	it('handles multiple selection when multiple prop is true', async () => {
@@ -111,6 +113,9 @@ describe('BoButtonGroup', () => {
 		expect(buttons[0].attributes('aria-pressed')).toBe('true');
 		expect(buttons[1].attributes('aria-pressed')).toBe('false');
 		expect(buttons[2].attributes('aria-pressed')).toBe('true');
+		expect(buttons[0].classes()).toContain('bo-button-group--selected');
+		expect(buttons[1].classes()).not.toContain('bo-button-group--selected');
+		expect(buttons[2].classes()).toContain('bo-button-group--selected');
 	});
 
 	it('emits update:modelValue when button is clicked', async () => {
@@ -154,6 +159,7 @@ describe('BoButtonGroup', () => {
 
 		// Should still be selected due to required prop
 		expect(buttons[0].attributes('aria-pressed')).toBe('true');
+		expect(buttons[0].classes()).toContain('bo-button-group--selected');
 	});
 
 	it('handles more than 3 buttons correctly', async () => {
@@ -173,10 +179,5 @@ describe('BoButtonGroup', () => {
 
 		const buttons = wrapper.findAll('button');
 		expect(buttons).toHaveLength(5);
-
-		// All buttons should have group-button class
-		buttons.forEach((button) => {
-			expect(button.classes()).toContain('group-button');
-		});
 	});
 });

@@ -8,15 +8,13 @@
 		:aria-label="ariaLabel"
 		:aria-busy="ariaBusy"
 	>
-		<div :class="outerPulseContainerClassValues">
+		<div :class="LOADING_PULSE_MANIFEST.styles.base">
 			<div
-				v-for="(animation, index) in LOADING_PULSE_MANIFEST.styles.animation"
+				v-for="(delayClass, index) in LOADING_PULSE_MANIFEST.styles.animation"
 				:key="index"
-				:class="mergeTwClasses(outerPulseClassValues, animation)"
+				:class="[dotClassValues, delayClass]"
 				:style="styleValues"
-			>
-				<div :class="innerPulseClassValues" :style="styleValues"></div>
-			</div>
+			></div>
 		</div>
 		<bo-text v-if="loaderText" :font-size="pulseLabelFontSize">{{ loaderText }}</bo-text>
 	</div>
@@ -52,37 +50,14 @@ const containerClassValues = computed<string>(() => {
 	return mergeTwClasses(
 		LOADING_PULSE_MANIFEST.styles.container,
 		LOADING_PULSE_MANIFEST.styles.textPosition[props.textPosition || 'after'],
+		props.customColor ? '' : LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
 	);
 });
 
-const outerPulseContainerClassValues = computed<string>(() => {
-	return mergeTwClasses(
-		LOADING_PULSE_MANIFEST.styles.base,
-		LOADING_PULSE_MANIFEST.styles.size[props.size || 'default'],
-	);
-});
-
-const outerPulseClassValues = computed<string>(() => {
-	if (props.customColor) {
-		return LOADING_PULSE_MANIFEST.styles.dot;
-	}
-	return mergeTwClasses(
-		LOADING_PULSE_MANIFEST.styles.dot,
-		LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
-	);
-});
-
-const innerPulseClassValues = computed<string>(() => {
-	if (props.customColor) {
-		return mergeTwClasses(
-			LOADING_PULSE_MANIFEST.styles.dot,
-			LOADING_PULSE_MANIFEST.styles.size[props.size || 'default'],
-		);
-	}
+const dotClassValues = computed<string>(() => {
 	return mergeTwClasses(
 		LOADING_PULSE_MANIFEST.styles.dot,
 		LOADING_PULSE_MANIFEST.styles.size[props.size || 'default'],
-		LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
 	);
 });
 
@@ -95,3 +70,8 @@ const styleValues = computed<StyleValue>(() => {
 	return {};
 });
 </script>
+
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/loading-pulse.manifest.css';
+</style>

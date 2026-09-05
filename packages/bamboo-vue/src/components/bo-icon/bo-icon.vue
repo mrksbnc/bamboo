@@ -1,14 +1,15 @@
 <template>
-	<i
+	<span
 		v-html="component"
 		:id="id"
 		:data-testid="dataTestId"
-		:role="role"
+		:role="computedRole"
 		:class="classValues"
 		:style="styleValues"
 		:title="title"
-		:aria-hidden="decorative"
-	></i>
+		:aria-hidden="props.decorative ? 'true' : undefined"
+		:aria-label="props.decorative ? undefined : props.title"
+	></span>
 </template>
 
 <script lang="ts" setup>
@@ -27,43 +28,38 @@ const props = withDefaults(defineProps<BoIconProps>(), {
 	id: () => generateComponentId('icon'),
 	dataTestId: () => generateDataTestId('icon'),
 	decorative: true,
-	role: () => ICON_MANIFEST.defaults.role,
 	size: () => ICON_MANIFEST.defaults.size,
-	cursor: () => ICON_MANIFEST.defaults.cursor,
 	variant: () => ICON_MANIFEST.defaults.variant,
 });
 
-const component = computed<string>(() => {
-	return BO_ICON_REGISTRY[props.icon];
-});
+const component = computed<string>(() => BO_ICON_REGISTRY[props.icon]);
 
-const role = computed<HTMLAttributes['role']>(() => {
-	return props.decorative ? 'presentation' : 'img';
-});
+const computedRole = computed<HTMLAttributes['role'] | undefined>(() =>
+	props.decorative ? undefined : (props.role ?? 'img'),
+);
 
-const classValues = computed<string>(() => {
-	return mergeTwClasses(
-		props.cursor,
+const classValues = computed<string>(() =>
+	mergeTwClasses(
+		props.cursor || ICON_MANIFEST.styles.cursor.default,
 		ICON_MANIFEST.styles.base,
 		ICON_MANIFEST.styles.variant[props.variant || 'current'],
-		typeof props.size === 'number'
-			? `size-[${props.size}px]`
-			: ICON_MANIFEST.styles.size[props.size || 'default'],
-	);
-});
+		typeof props.size === 'number' ? '' : ICON_MANIFEST.styles.size[props.size || 'default'],
+	),
+);
 
 const styleValues = computed<StyleValue>(() => {
 	const color = props.customColor ? getValidOrFallbackColorFromStr(props.customColor) : undefined;
+	const size = typeof props.size === 'number' ? `${props.size}px` : undefined;
 
 	return {
 		color,
+		width: size,
+		height: size,
 	};
 });
 </script>
 
-<style lang="css" scoped>
-p {
-	margin: 0;
-	padding: 0;
-}
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/icon.manifest.css';
 </style>

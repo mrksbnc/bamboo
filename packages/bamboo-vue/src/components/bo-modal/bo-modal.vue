@@ -1,10 +1,20 @@
 <template>
 	<Teleport to="body">
 		<Transition name="bo-modal">
-			<div v-if="open" :class="MODAL_MANIFEST.styles.backdrop" @click.self="onBackdropClick" />
+			<div
+				v-if="open"
+				data-slot="modal-overlay"
+				:class="MODAL_MANIFEST.styles.backdrop"
+				@click.self="onBackdropClick"
+			/>
 		</Transition>
 		<Transition name="bo-modal">
-			<div v-if="open" :class="MODAL_MANIFEST.styles.wrapper" @click.self="onBackdropClick">
+			<div
+				v-if="open"
+				data-slot="modal-wrapper"
+				:class="MODAL_MANIFEST.styles.wrapper"
+				@click.self="onBackdropClick"
+			>
 				<div
 					:id="id"
 					:data-testid="dataTestId"
@@ -12,47 +22,56 @@
 					:aria-modal="true"
 					:aria-label="ariaLabel"
 					:aria-labelledby="ariaLabelledBy ?? titleId"
-					:aria-describedby="ariaDescribedBy"
+					:aria-describedby="ariaDescribedBy ?? descriptionId"
+					:data-state="'open'"
+					data-slot="modal-content"
 					:class="panelClasses"
-					@keydown.escape="onEscape"
 					tabindex="-1"
 					ref="panelRef"
+					@keydown.escape="onEscape"
 				>
-					<!-- Header -->
-					<div :class="headerClasses">
-						<bo-icon
-							v-if="variantIcon"
-							:icon="variantIcon"
-							size="sm"
-							:class="MODAL_MANIFEST.styles.icon.variant[variant]"
-						/>
-						<slot name="header">
-							<bo-text
-								:id="titleId"
-								font-size="lg"
-								font-weight="semibold"
-								variant="default"
-								class="flex-1"
-							>
-								{{ title }}
-							</bo-text>
-						</slot>
-						<button
-							v-if="showClose"
-							type="button"
-							:class="MODAL_MANIFEST.styles.close"
-							aria-label="Close"
-							@click="onClose"
-						>
-							<bo-icon icon="x" size="sm" variant="current" />
-						</button>
+					<div data-slot="modal-header" :class="headerClasses">
+						<div :class="MODAL_MANIFEST.styles.header.content">
+							<bo-icon
+								v-if="variantIcon"
+								:icon="variantIcon"
+								size="sm"
+								:class="MODAL_MANIFEST.styles.icon.variant[variant]"
+							/>
+							<slot name="header">
+								<bo-text
+									:id="titleId"
+									font-size="lg"
+									font-weight="semibold"
+									variant="default"
+									:class="MODAL_MANIFEST.styles.header.title"
+								>
+									{{ title }}
+								</bo-text>
+							</slot>
+						</div>
 					</div>
 
-					<div :class="MODAL_MANIFEST.styles.body">
+					<button
+						v-if="showClose"
+						type="button"
+						data-slot="modal-close"
+						:class="MODAL_MANIFEST.styles.close"
+						:aria-label="closeAriaLabel"
+						@click="onClose"
+					>
+						<bo-icon icon="x" size="sm" variant="current" aria-hidden="true" />
+					</button>
+
+					<div :id="descriptionId" data-slot="modal-body" :class="MODAL_MANIFEST.styles.body">
 						<slot />
 					</div>
 
-					<div v-if="$slots['footer']" :class="MODAL_MANIFEST.styles.footer">
+					<div
+						v-if="$slots['footer']"
+						data-slot="modal-footer"
+						:class="MODAL_MANIFEST.styles.footer"
+					>
 						<slot name="footer" />
 					</div>
 				</div>
@@ -70,7 +89,7 @@ import {
 	type BoModalProps,
 	type Icon,
 } from '@workspace/bamboo-core';
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, nextTick, onUnmounted, ref, watch } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
 
@@ -82,6 +101,7 @@ const props = withDefaults(defineProps<BoModalProps>(), {
 	closeOnBackdrop: () => MODAL_MANIFEST.defaults.closeOnBackdrop,
 	closeOnEscape: () => MODAL_MANIFEST.defaults.closeOnEscape,
 	showClose: () => MODAL_MANIFEST.defaults.showClose,
+	closeAriaLabel: () => MODAL_MANIFEST.defaults.closeAriaLabel,
 	role: () => MODAL_MANIFEST.defaults.role,
 });
 
@@ -89,44 +109,56 @@ const emit = defineEmits<{
 	close: [];
 }>();
 
+defineSlots<{
+	header?: () => unknown;
+	footer?: () => unknown;
+	default?: () => unknown;
+}>();
+
 const panelRef = ref<HTMLElement>();
-const titleId = computed(() => `${props.id}-title`);
+const titleId = computed<string>(() => `${props.id}-title`);
+const descriptionId = computed<string>(() => `${props.id}-description`);
 
 const variantIcon = computed<Icon | null>(() => {
 	const map: Record<string, Icon> = {
-		info: 'alert_circle',
+		primary: 'alert_circle',
 		warning: 'alert_triangle',
-		error: 'alert_octagon',
+		destructive: 'alert_octagon',
 	};
+
 	return map[props.variant] ?? null;
 });
 
-const panelClasses = computed(() =>
-	mergeTwClasses(MODAL_MANIFEST.styles.panel.base, MODAL_MANIFEST.styles.panel.size[props.size]),
-);
-
-const headerClasses = computed(() =>
+const panelClasses = computed<string>(() =>
 	mergeTwClasses(
-		MODAL_MANIFEST.styles.header.base,
-		MODAL_MANIFEST.styles.header.variant[props.variant],
+		MODAL_MANIFEST.styles.panel.base,
+		MODAL_MANIFEST.styles.panel.size[props.size || 'default'],
 	),
 );
 
-const onClose = () => emit('close');
+const headerClasses = computed<string>(() =>
+	mergeTwClasses(
+		MODAL_MANIFEST.styles.header.base,
+		MODAL_MANIFEST.styles.header.variant[props.variant || 'default'],
+	),
+);
 
-const onBackdropClick = () => {
+function onClose(): void {
+	emit('close');
+}
+
+function onBackdropClick(): void {
 	if (props.closeOnBackdrop) {
 		onClose();
 	}
-};
+}
 
-const onEscape = () => {
+function onEscape(): void {
 	if (props.closeOnEscape) {
 		onClose();
 	}
-};
+}
 
-// Focus trap: focus the panel when opened
 watch(
 	() => props.open,
 	async (isOpen) => {
@@ -145,21 +177,7 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped>
-.bo-modal-enter-active,
-.bo-modal-leave-active {
-	transition:
-		opacity 0.2s ease,
-		transform 0.2s ease;
-}
-
-.bo-modal-enter-from,
-.bo-modal-leave-to {
-	opacity: 0;
-}
-
-.bo-modal-enter-from [role],
-.bo-modal-leave-to [role] {
-	transform: scale(0.95);
-}
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/modal.manifest.css';
 </style>

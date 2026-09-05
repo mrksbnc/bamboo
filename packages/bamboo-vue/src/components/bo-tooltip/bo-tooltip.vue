@@ -1,5 +1,5 @@
 <template>
-	<div class="relative inline-block" ref="triggerRef">
+	<div :class="TOOLTIP_MANIFEST.styles.triggerWrapper" ref="triggerRef">
 		<slot />
 		<Teleport to="body">
 			<div
@@ -249,3 +249,9 @@ onUnmounted(() => {
 // Watch for prop changes
 watch(() => props.visible, handleVisibilityChange, { immediate: true });
 </script>
+
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/tooltip.manifest.css';
+@import '@workspace/bamboo-core/manifests/shared.css';
+</style>

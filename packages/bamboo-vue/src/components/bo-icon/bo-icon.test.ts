@@ -8,15 +8,15 @@ describe('BoIcon', () => {
 			props: { icon: 'check' },
 		});
 		expect(wrapper.exists()).toBe(true);
-		expect(wrapper.find('p').exists()).toBe(true);
+		expect(wrapper.find('span').exists()).toBe(true);
 	});
 
 	it('applies correct role for decorative icons', () => {
 		const wrapper = mount(BoIcon, {
 			props: { icon: 'check', decorative: true },
 		});
-		const element = wrapper.find('p');
-		expect(element.attributes('role')).toBe('presentation');
+		const element = wrapper.find('span');
+		expect(element.attributes('role')).toBeUndefined();
 		expect(element.attributes('aria-hidden')).toBe('true');
 	});
 
@@ -24,9 +24,9 @@ describe('BoIcon', () => {
 		const wrapper = mount(BoIcon, {
 			props: { icon: 'check', decorative: false },
 		});
-		const element = wrapper.find('p');
+		const element = wrapper.find('span');
 		expect(element.attributes('role')).toBe('img');
-		expect(element.attributes('aria-hidden')).toBe('false');
+		expect(element.attributes('aria-hidden')).toBeUndefined();
 	});
 
 	it('applies size classes correctly', () => {
@@ -35,8 +35,9 @@ describe('BoIcon', () => {
 			const wrapper = mount(BoIcon, {
 				props: { icon: 'check', size },
 			});
-			const element = wrapper.find('p');
+			const element = wrapper.find('span');
 			expect(element.exists()).toBe(true);
+			expect(element.classes()).toContain(`bo-icon--${size}`);
 		});
 	});
 
@@ -44,8 +45,9 @@ describe('BoIcon', () => {
 		const wrapper = mount(BoIcon, {
 			props: { icon: 'check', size: 24 },
 		});
-		const element = wrapper.find('p');
-		expect(element.classes()).toContain('size-[24px]');
+		const element = wrapper.find('span');
+		expect(element.attributes('style')).toContain('width: 24px');
+		expect(element.attributes('style')).toContain('height: 24px');
 	});
 
 	it('applies variant classes correctly', () => {
@@ -64,8 +66,9 @@ describe('BoIcon', () => {
 			const wrapper = mount(BoIcon, {
 				props: { icon: 'check', variant },
 			});
-			const element = wrapper.find('p');
+			const element = wrapper.find('span');
 			expect(element.exists()).toBe(true);
+			expect(element.classes()).toContain(`bo-icon--${variant}`);
 		});
 	});
 
@@ -73,7 +76,7 @@ describe('BoIcon', () => {
 		const wrapper = mount(BoIcon, {
 			props: { icon: 'check', customColor: '#ff0000' },
 		});
-		const element = wrapper.find('p');
+		const element = wrapper.find('span');
 		expect(element.attributes('style')).toContain('color');
 	});
 
@@ -81,7 +84,7 @@ describe('BoIcon', () => {
 		const wrapper = mount(BoIcon, {
 			props: { icon: 'check', cursor: 'cursor-pointer' },
 		});
-		const element = wrapper.find('p');
+		const element = wrapper.find('span');
 		expect(element.classes()).toContain('cursor-pointer');
 	});
 
@@ -98,7 +101,7 @@ describe('BoIcon', () => {
 		const wrapper = mount(BoIcon, {
 			props: { icon: 'check', title: 'Check icon' },
 		});
-		const element = wrapper.find('p');
+		const element = wrapper.find('span');
 		expect(element.attributes('title')).toBe('Check icon');
 	});
 
@@ -106,7 +109,7 @@ describe('BoIcon', () => {
 		const wrapper = mount(BoIcon, {
 			props: { icon: 'check' },
 		});
-		const element = wrapper.find('p');
+		const element = wrapper.find('span');
 		expect(element.html()).toBeTruthy();
 	});
 
@@ -114,21 +117,20 @@ describe('BoIcon', () => {
 		const wrapper = mount(BoIcon, {
 			props: { icon: 'check' },
 		});
-		const element = wrapper.find('p');
-		expect(element.classes()).toContain('box-border');
-		expect(element.classes()).toContain('inline-flex');
-		expect(element.classes()).toContain('items-center');
-		expect(element.classes()).toContain('justify-center');
-		expect(element.classes()).toContain('shrink-0');
+		const element = wrapper.find('span');
+		expect(element.classes()).toContain('bo-icon');
+		expect(element.classes()).toContain('bo-icon--cursor-auto');
+		expect(element.classes()).toContain('bo-icon--current');
+		expect(element.classes()).toContain('bo-icon--default');
 	});
 
-	it('has no margin or padding on p element', () => {
+	it('has no margin or padding on span element', () => {
 		const wrapper = mount(BoIcon, {
 			props: { icon: 'check' },
 		});
-		const element = wrapper.find('p');
+		const element = wrapper.find('span');
 		const styles = window.getComputedStyle(element.element);
-		expect(styles.margin).toBe('');
-		expect(styles.padding).toBe('');
+		expect(styles.margin).toBe('0');
+		expect(styles.padding).toBe('0');
 	});
 });

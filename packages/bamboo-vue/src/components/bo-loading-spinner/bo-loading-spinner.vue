@@ -8,7 +8,7 @@
 		:aria-label="ariaLabel"
 		:aria-busy="ariaBusy"
 	>
-		<div :class="classValues" :style="styleValues" aria-hidden="true"></div>
+		<div :class="trackClassValues" :style="styleValues" aria-hidden="true"></div>
 		<bo-text v-if="loaderText" :font-size="spinnerLabelFontSize" :class="textClassValues">{{
 			loaderText
 		}}</bo-text>
@@ -45,6 +45,7 @@ const containerClassValues = computed<string>(() => {
 	return mergeTwClasses(
 		LOADING_SPINNER_MANIFEST.styles.container,
 		LOADING_SPINNER_MANIFEST.styles.textPosition[props.textPosition || 'after'],
+		props.customColor ? '' : LOADING_SPINNER_MANIFEST.styles.variant[props.variant || 'primary'],
 	);
 });
 
@@ -52,11 +53,10 @@ const textClassValues = computed<string>(() => {
 	return LOADING_SPINNER_MANIFEST.styles.text;
 });
 
-const classValues = computed<string>(() => {
+const trackClassValues = computed<string>(() => {
 	return mergeTwClasses(
 		LOADING_SPINNER_MANIFEST.styles.base,
 		LOADING_SPINNER_MANIFEST.styles.size[props.size || 'default'],
-		LOADING_SPINNER_MANIFEST.styles.variant[props.variant || 'primary'],
 	);
 });
 
@@ -70,3 +70,8 @@ const styleValues = computed<StyleValue>(() => {
 	return {};
 });
 </script>
+
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/loading-spinner.manifest.css';
+</style>

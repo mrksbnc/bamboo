@@ -99,3 +99,8 @@ const classValues = computed<string>(() =>
 	),
 );
 </script>
+
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/alert.manifest.css';
+</style>

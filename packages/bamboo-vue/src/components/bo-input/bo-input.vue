@@ -1,22 +1,25 @@
 <template>
 	<div :class="baseClasses">
-		<!-- Label section -->
-		<div v-if="label || required || $slots.topRightContent" :class="labelContainerClasses">
-			<div :class="labelClasses">
+		<div
+			v-if="label || required || $slots['topRightContent']"
+			:class="INPUT_MANIFEST.styles.labels.container"
+		>
+			<label :for="id" :class="INPUT_MANIFEST.styles.labels.label">
 				<span v-if="label">{{ label }}</span>
-				<span v-if="required" :class="requiredClasses">*</span>
-			</div>
+				<span v-if="required" :class="INPUT_MANIFEST.styles.labels.required">*</span>
+			</label>
 			<slot name="topRightContent"></slot>
 		</div>
 
-		<!-- Input container -->
 		<div :class="containerClasses">
-			<!-- Prefix icon -->
-			<div v-if="prefixIcon" :class="prefixIconClasses" @click="emit('prefixIconClick')">
+			<div
+				v-if="prefixIcon"
+				:class="INPUT_MANIFEST.styles.icons.prefix"
+				@click="emit('prefixIconClick')"
+			>
 				<bo-icon :icon="prefixIcon" size="sm" aria-hidden="true" />
 			</div>
 
-			<!-- Input field -->
 			<input
 				ref="inputRef"
 				:id="id"
@@ -29,39 +32,46 @@
 				:required="required"
 				:autofocus="autofocus"
 				:placeholder="placeholder"
-				:class="inputClasses"
+				:class="INPUT_MANIFEST.styles.input.base"
 				:aria-label="ariaLabel"
 				:aria-describedby="helperTextId"
-				:aria-invalid="state === 'invalid'"
+				:aria-invalid="state === 'invalid' ? 'true' : undefined"
+				:aria-errormessage="error ? helperTextId : undefined"
 				@focus="emit('focus')"
 				@blur="emit('blur', $event)"
 				@change="emit('change', $event)"
 			/>
 
-			<!-- Suffix/action icons -->
-			<div v-if="suffixIcon || showPasswordToggle" :class="suffixIconClasses">
+			<div
+				v-if="suffixIcon || showPasswordToggle"
+				:class="INPUT_MANIFEST.styles.icons.suffix"
+				@click="emit('suffixIconClick')"
+			>
 				<bo-icon
 					v-if="suffixIcon && !showPasswordToggle"
 					:icon="suffixIcon"
 					size="sm"
 					aria-hidden="true"
 				/>
-				<bo-icon
+				<button
 					v-if="showPasswordToggle"
-					:icon="passwordVisible ? 'eye_off' : 'eye'"
-					size="sm"
-					@click.stop="togglePasswordVisibility"
-				/>
+					type="button"
+					:class="INPUT_MANIFEST.styles.icons.passwordToggle"
+					:aria-label="passwordVisible ? 'Hide password' : 'Show password'"
+					:aria-pressed="passwordVisible ? 'true' : 'false'"
+					@click="togglePasswordVisibility"
+				>
+					<bo-icon :icon="passwordVisible ? 'eye_off' : 'eye'" size="sm" aria-hidden="true" />
+				</button>
 			</div>
 		</div>
 
-		<!-- Helper text/error container -->
-		<div v-if="error || hint" :class="helperContainerClasses">
-			<div v-if="error" :class="errorClasses">
+		<div v-if="error || hint" :class="INPUT_MANIFEST.styles.helpers.container">
+			<div v-if="error" :class="INPUT_MANIFEST.styles.helpers.error">
 				<bo-icon size="sm" icon="alert_circle" />
 				<span :id="helperTextId">{{ error }}</span>
 			</div>
-			<span v-else-if="hint" :id="helperTextId" :class="hintClasses">
+			<span v-else-if="hint" :id="helperTextId" :class="INPUT_MANIFEST.styles.helpers.hint">
 				{{ hint }}
 			</span>
 		</div>
@@ -95,7 +105,11 @@ const emit = defineEmits<{
 	suffixIconClick: [];
 }>();
 
-// Use defineModel for v-model
+defineSlots<{
+	default?: () => unknown;
+	topRightContent?: () => unknown;
+}>();
+
 const model = defineModel<string>({ default: '' });
 
 const inputRef = ref<HTMLInputElement | null>(null);
@@ -115,11 +129,14 @@ const inputType = computed<string>(() => {
 });
 
 const baseClasses = computed<string>(() => {
-	return mergeTwClasses(INPUT_MANIFEST.styles.base, props.fullWidth ? 'w-full' : '');
+	return mergeTwClasses(
+		INPUT_MANIFEST.styles.base,
+		props.fullWidth ? INPUT_MANIFEST.styles.width.full : INPUT_MANIFEST.styles.width.default,
+	);
 });
 
 const containerClasses = computed<string>(() => {
-	const classes = [
+	const classes: string[] = [
 		INPUT_MANIFEST.styles.container.base,
 		INPUT_MANIFEST.styles.state[props.state || 'default'],
 	];
@@ -131,43 +148,7 @@ const containerClasses = computed<string>(() => {
 	return mergeTwClasses(...classes);
 });
 
-const inputClasses = computed<string>(() => {
-	return mergeTwClasses(INPUT_MANIFEST.styles.input.base);
-});
-
-const prefixIconClasses = computed<string>(() => {
-	return mergeTwClasses(INPUT_MANIFEST.styles.icons.prefix);
-});
-
-const suffixIconClasses = computed<string>(() => {
-	return mergeTwClasses(INPUT_MANIFEST.styles.icons.suffix);
-});
-
-const labelContainerClasses = computed<string>(() => {
-	return mergeTwClasses(INPUT_MANIFEST.styles.labels.container);
-});
-
-const labelClasses = computed<string>(() => {
-	return mergeTwClasses(INPUT_MANIFEST.styles.labels.label);
-});
-
-const requiredClasses = computed<string>(() => {
-	return mergeTwClasses(INPUT_MANIFEST.styles.labels.required);
-});
-
-const helperContainerClasses = computed<string>(() => {
-	return mergeTwClasses(INPUT_MANIFEST.styles.helpers.container);
-});
-
-const errorClasses = computed<string>(() => {
-	return mergeTwClasses(INPUT_MANIFEST.styles.helpers.error);
-});
-
-const hintClasses = computed<string>(() => {
-	return mergeTwClasses(INPUT_MANIFEST.styles.helpers.hint);
-});
-
-function togglePasswordVisibility() {
+function togglePasswordVisibility(): void {
 	passwordVisible.value = !passwordVisible.value;
 }
 
@@ -183,3 +164,8 @@ onMounted(() => {
 	}
 });
 </script>
+
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/input.manifest.css';
+</style>

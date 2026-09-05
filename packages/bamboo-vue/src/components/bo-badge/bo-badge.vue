@@ -7,19 +7,27 @@
 		:role="role"
 		:aria-label="ariaLabel"
 	>
-		<bo-icon v-if="showPrefixIcon" :size="iconSize" :icon="getSafeIcon(prefixIcon)" />
+		<bo-icon
+			v-if="showPrefixIcon"
+			:size="BADGE_MANIFEST.styles.iconSize"
+			:icon="getSafeIcon(prefixIcon)"
+		/>
 		<slot>
 			<bo-text
 				v-if="label && !isCircle"
 				:cursor="cursor"
-				:font-size="fontSize"
+				font-size="xs"
 				font-weight="semibold"
 				variant="inherit"
 			>
 				{{ label }}
 			</bo-text>
 		</slot>
-		<bo-icon v-if="showSuffixIcon" :icon="getSafeIcon(suffixIcon)" :size="iconSize" />
+		<bo-icon
+			v-if="showSuffixIcon"
+			:icon="getSafeIcon(suffixIcon)"
+			:size="BADGE_MANIFEST.styles.iconSize"
+		/>
 	</span>
 </template>
 
@@ -31,8 +39,6 @@ import {
 	getValidOrFallbackColorFromStr,
 	mergeTwClasses,
 	type BoBadgeProps,
-	type BoFontSize,
-	type BoIconSize,
 	type Icon,
 } from '@workspace/bamboo-core';
 import { computed, type StyleValue } from 'vue';
@@ -42,7 +48,6 @@ import { BoText } from '../bo-text';
 const props = withDefaults(defineProps<BoBadgeProps>(), {
 	id: () => generateComponentId('badge'),
 	dataTestId: () => generateDataTestId('badge'),
-	size: () => BADGE_MANIFEST.defaults.size,
 	kind: () => BADGE_MANIFEST.defaults.kind,
 	shape: () => BADGE_MANIFEST.defaults.shape,
 	variant: () => BADGE_MANIFEST.defaults.variant,
@@ -69,18 +74,6 @@ const showSuffixIcon = computed<boolean>(
 	() => !!props.suffixIcon && props.suffixIcon !== 'none' && !isIconOnly.value && !isCircle.value,
 );
 
-const fontSize = computed<BoFontSize>(
-	() => BADGE_MANIFEST.styles.fontSize[props.size || 'default'],
-);
-
-const iconSize = computed<BoIconSize>(
-	() => BADGE_MANIFEST.styles.iconSize[props.size || 'default'],
-);
-
-const gap = computed<string>(() =>
-	!isIconOnly.value && props.label && (props.prefixIcon || props.suffixIcon) ? 'gap-1.5' : '',
-);
-
 const variantClass = computed<string>(() => {
 	if (props.customColor) return '';
 
@@ -93,14 +86,10 @@ const variantClass = computed<string>(() => {
 
 const classValues = computed<string>(() =>
 	mergeTwClasses(
-		gap.value,
 		props.cursor,
 		BADGE_MANIFEST.styles.base,
 		BADGE_MANIFEST.styles.shape[props.shape || 'default'],
 		variantClass.value,
-		isCircle.value
-			? BADGE_MANIFEST.styles.size.circle[props.size || 'default']
-			: BADGE_MANIFEST.styles.size.default[props.size || 'default'],
 	),
 );
 
@@ -130,3 +119,8 @@ function getSafeIcon(icon?: Icon): Icon {
 	return icon ?? 'none';
 }
 </script>
+
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/badge.manifest.css';
+</style>

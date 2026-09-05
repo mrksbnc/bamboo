@@ -100,7 +100,7 @@ describe('BoAvatar', () => {
 		const wrapper = mount(BoAvatar, {
 			props: { indicatorKind: 'none' },
 		});
-		const container = wrapper.find('.relative');
+		const container = wrapper.find('.bo-avatar-shell');
 		const children = container.findAll('div');
 		expect(children.length).toBe(1);
 	});

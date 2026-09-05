@@ -149,6 +149,6 @@ describe('BoLoadingSpinner', () => {
 		});
 		const spinner = wrapper.find('div[aria-hidden="true"]');
 		expect(spinner.exists()).toBe(true);
-		expect(spinner.classes()).toContain('animate-spin');
+		expect(spinner.classes()).toContain('bo-loading-spinner__track');
 	});
 });
