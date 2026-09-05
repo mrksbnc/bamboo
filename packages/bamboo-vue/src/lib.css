@@ -5,11 +5,6 @@
 @source './components/**/*.ts';
 @source '../../bamboo-core/src/manifests/**/*.ts';
 
-@import '../../bamboo-core/src/manifests/accordion.manifest.css';
-@import '../../bamboo-core/src/manifests/alert.manifest.css';
-@import '../../bamboo-core/src/manifests/avatar.manifest.css';
-@import '../../bamboo-core/src/manifests/badge.manifest.css';
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
@@ -29,18 +24,4 @@
 		transition-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
 	}
-}
-
-/* Toast enter/leave (viewport TransitionGroup) */
-.bo-toast-enter-active,
-.bo-toast-leave-active {
-	transition:
-		opacity 0.25s ease,
-		transform 0.25s ease;
-}
-
-.bo-toast-enter-from,
-.bo-toast-leave-to {
-	opacity: 0;
-	transform: translateY(8px);
 }
