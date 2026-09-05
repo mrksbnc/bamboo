@@ -1,8 +1,7 @@
 import { HTMLAttributes } from 'vue';
 import { ComponentManifest } from '../manifests/types.js';
 import { BoIconSize, Icon } from './bo-icon.js';
-import { BoLoaderSize } from './bo-loader.js';
-import { BoCursor } from './component-types.js';
+import { BoLoaderSize, BoLoaderType } from './bo-loader.js';
 
 export type BoButtonVariant =
 	| 'primary'
@@ -53,6 +52,8 @@ export interface BoButtonProps {
 	 * the label.
 	 */
 	isLoading?: boolean;
+	/** The loader component shown while the button is loading. */
+	loaderType?: BoLoaderType;
 	/**
 	 * The kind of the button.
 	 *
@@ -161,9 +162,9 @@ type BoButtonShadowStyleMap = Record<BoButtonKind, BoButtonVariantStyleMap>;
 type BoButtonTextColorStyleMap = Record<BoButtonKind, BoButtonVariantStyleMap>;
 
 type BoButtonCursorStyleMap = {
-	default: BoCursor;
-	disabled: BoCursor;
-	loading: BoCursor;
+	default: string;
+	disabled: string;
+	loading: string;
 };
 
 type BoButtonWidthStyleMap = {

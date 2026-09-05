@@ -3188,6 +3188,9 @@ type BoIconVariantStyleMap = Record<BoIconVariant, string>;
 
 interface BoIconStyleManifest {
 	base: string;
+	cursor: {
+		default: string;
+	};
 	size: BoIconSizeStyleMap;
 	variant: BoIconVariantStyleMap;
 }

@@ -78,6 +78,11 @@ interface BoInputStyleManifest {
 	icons: {
 		prefix: string;
 		suffix: string;
+		passwordToggle: string;
+	};
+	width: {
+		default: string;
+		full: string;
 	};
 	labels: {
 		container: string;

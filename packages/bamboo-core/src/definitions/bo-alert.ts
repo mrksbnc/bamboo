@@ -33,6 +33,7 @@ type BoAlertVariantStyleMap = Readonly<Record<BoAlertVariant, `bo-alert--${strin
 
 export interface BoAlertContainerStyleManifest {
 	readonly base: 'bo-alert-container';
+	readonly item: 'bo-alert-container__item';
 	readonly position: Readonly<Record<BoAlertPosition, `bo-alert-container--${string}`>>;
 }
 
