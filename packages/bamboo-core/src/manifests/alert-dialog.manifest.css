@@ -1,0 +1,74 @@
+@layer components {
+	.bo-alert-dialog-backdrop {
+		@apply fixed inset-0 z-50 bg-black/80;
+	}
+
+	.bo-alert-dialog-wrapper {
+		@apply fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6;
+	}
+
+	.bo-alert-dialog-panel {
+		@apply relative grid w-full max-w-xs gap-6 rounded-4xl border p-6 shadow-lg outline-none sm:max-w-md;
+		background-color: var(--color-white);
+		border-color: var(--color-neutral-200);
+	}
+
+	.dark .bo-alert-dialog-panel {
+		background-color: var(--color-neutral-900);
+		border-color: var(--color-neutral-800);
+	}
+
+	.bo-alert-dialog-header {
+		@apply flex flex-col gap-1.5 text-center sm:text-left;
+	}
+
+	.bo-alert-dialog-title {
+		@apply text-base font-medium tracking-tight;
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-alert-dialog-title {
+		color: var(--color-neutral-100);
+	}
+
+	.bo-alert-dialog-description {
+		@apply text-sm leading-relaxed;
+		color: var(--color-neutral-500);
+	}
+
+	.dark .bo-alert-dialog-description {
+		color: var(--color-neutral-400);
+	}
+
+	.bo-alert-dialog-close {
+		@apply absolute end-4 top-4 inline-flex items-center justify-center rounded-sm opacity-70 transition-opacity hover:opacity-100;
+		color: var(--color-neutral-500);
+	}
+
+	.bo-alert-dialog-close:focus-visible {
+		@apply outline-none ring-[3px];
+		--tw-ring-color: var(--color-blue-500);
+	}
+
+	.bo-alert-dialog-footer {
+		@apply flex flex-col-reverse gap-2 sm:flex-row sm:justify-end;
+	}
+
+	.bo-alert-dialog--destructive .bo-alert-dialog-title {
+		color: var(--color-red-600);
+	}
+
+	.dark .bo-alert-dialog--destructive .bo-alert-dialog-title {
+		color: var(--color-red-500);
+	}
+
+	.bo-alert-dialog-enter-active,
+	.bo-alert-dialog-leave-active {
+		transition: opacity 0.2s ease;
+	}
+
+	.bo-alert-dialog-enter-from,
+	.bo-alert-dialog-leave-to {
+		opacity: 0;
+	}
+}

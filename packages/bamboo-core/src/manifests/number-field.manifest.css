@@ -1,0 +1,98 @@
+@layer components {
+	.bo-number-field {
+		@apply flex w-full flex-col gap-2;
+	}
+
+	.bo-number-field__label-container {
+		@apply flex items-center justify-between;
+	}
+
+	.bo-number-field__label {
+		@apply text-sm font-medium;
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-number-field__label {
+		color: var(--color-neutral-100);
+	}
+
+	.bo-number-field__required {
+		@apply ms-1 text-red-600;
+	}
+
+	.bo-number-field__container {
+		@apply flex h-9 w-full items-center overflow-hidden rounded-md border bg-transparent shadow-xs transition-[color,box-shadow];
+		border-color: var(--color-neutral-300);
+	}
+
+	.bo-number-field__container:focus-within {
+		border-color: var(--color-blue-500);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 30%, transparent);
+	}
+
+	.bo-number-field__input {
+		@apply min-w-0 flex-1 border-none bg-transparent px-3 py-1 text-base outline-none md:text-sm;
+		color: var(--color-neutral-900);
+	}
+
+	.bo-number-field__input::-webkit-inner-spin-button,
+	.bo-number-field__input::-webkit-outer-spin-button {
+		@apply m-0 appearance-none;
+	}
+
+	.bo-number-field__buttons {
+		@apply flex h-full;
+	}
+
+	.bo-number-field__button {
+		@apply flex w-9 items-center justify-center border-s-1 text-lg leading-none transition-colors;
+		border-color: var(--color-neutral-300);
+		color: var(--color-neutral-600);
+	}
+
+	.bo-number-field__button:hover:not(:disabled) {
+		background-color: var(--color-neutral-100);
+		color: var(--color-neutral-900);
+	}
+
+	.bo-number-field__button:disabled {
+		@apply cursor-not-allowed opacity-40;
+	}
+
+	.bo-number-field__helpers {
+		@apply flex flex-col gap-1 text-sm;
+	}
+
+	.bo-number-field__description,
+	.bo-number-field__hint {
+		color: var(--color-neutral-600);
+	}
+
+	.bo-number-field__error {
+		color: var(--color-red-600);
+	}
+
+	.dark .bo-number-field__label,
+	.dark .bo-number-field__input {
+		color: var(--color-neutral-100);
+	}
+
+	.dark .bo-number-field__container,
+	.dark .bo-number-field__button {
+		border-color: var(--color-neutral-700);
+	}
+
+	.dark .bo-number-field__button:hover:not(:disabled) {
+		background-color: var(--color-neutral-800);
+		color: var(--color-neutral-100);
+	}
+
+	.dark .bo-number-field__description,
+	.dark .bo-number-field__hint {
+		color: var(--color-neutral-400);
+	}
+
+	.dark .bo-number-field__error {
+		color: var(--color-red-400);
+	}
+}

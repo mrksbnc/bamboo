@@ -1,4 +1,4 @@
-import { ButtonGroupManifest } from '../definitions/bo-button-group';
+import { ButtonGroupManifest } from '../definitions/bo-button-group.js';
 
 export const BUTTON_GROUP_MANIFEST: ButtonGroupManifest = {
 	meta: {
@@ -6,44 +6,43 @@ export const BUTTON_GROUP_MANIFEST: ButtonGroupManifest = {
 		version: '1.0.0',
 	},
 	styles: {
-		base: /*tw*/ 'inline-flex isolate',
+		base: 'bo-button-group',
 
 		orientation: {
-			horizontal: /*tw*/ 'flex-row',
-			vertical: /*tw*/ 'flex-col',
+			horizontal: 'bo-button-group--horizontal',
+			vertical: 'bo-button-group--vertical',
 		},
 
-		fullWidth: /*tw*/ 'w-full',
+		fullWidth: 'bo-button-group--full-width',
 
-		selected:
-			/*tw*/ 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700 focus:bg-blue-700 dark:bg-blue-500 dark:border-blue-500 dark:hover:bg-blue-600 dark:focus:bg-blue-600',
+		selected: 'bo-button-group--selected',
 
 		attached: {
-			base: /*tw*/ '',
+			base: '',
 
 			orientation: {
-				horizontal: /*tw*/ '',
-				vertical: /*tw*/ '',
+				horizontal: 'bo-button-group--attached-horizontal',
+				vertical: 'bo-button-group--attached-vertical',
 			},
 
 			first: {
-				horizontal: /*tw*/ 'rounded-r-none',
-				vertical: /*tw*/ 'rounded-b-none',
+				horizontal: '',
+				vertical: '',
 			},
 
 			middle: {
-				horizontal: /*tw*/ 'rounded-none -ml-px',
-				vertical: /*tw*/ 'rounded-none -mt-px',
+				horizontal: '',
+				vertical: '',
 			},
 
 			last: {
-				horizontal: /*tw*/ 'rounded-l-none -ml-px',
-				vertical: /*tw*/ 'rounded-t-none -mt-px',
+				horizontal: '',
+				vertical: '',
 			},
 
 			single: {
-				horizontal: /*tw*/ '',
-				vertical: /*tw*/ '',
+				horizontal: '',
+				vertical: '',
 			},
 		},
 	},

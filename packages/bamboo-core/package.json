@@ -30,6 +30,7 @@
 			"import": "./dist/index.es.js",
 			"default": "./dist/index.es.js"
 		},
+		"./manifests/*.css": "./src/manifests/*.css",
 		"./package.json": "./package.json"
 	},
 	"scripts": {

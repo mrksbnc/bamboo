@@ -1,0 +1,67 @@
+@layer components {
+	.bo-tabs {
+		@apply flex w-full min-w-0 flex-col;
+	}
+
+	.bo-tabs__list {
+		@apply inline-flex w-full items-center gap-1 border-b;
+		border-color: var(--color-neutral-200);
+	}
+
+	.dark .bo-tabs__list {
+		border-color: var(--color-neutral-800);
+	}
+
+	.bo-tabs__list--vertical {
+		@apply w-auto flex-col items-stretch border-b-0 border-e;
+	}
+
+	.bo-tabs__trigger {
+		@apply relative inline-flex min-h-10 flex-1 items-center justify-center whitespace-nowrap rounded-sm px-3 py-2 text-sm font-medium transition-colors hover:text-blue-600 disabled:pointer-events-none disabled:opacity-50;
+		color: var(--color-neutral-500);
+	}
+
+	.dark .bo-tabs__trigger {
+		color: var(--color-neutral-400);
+	}
+
+	.bo-tabs__trigger:hover {
+		background-color: var(--color-neutral-100);
+	}
+
+	.dark .bo-tabs__trigger:hover {
+		background-color: var(--color-neutral-800);
+	}
+
+	.bo-tabs__trigger:focus-visible {
+		@apply outline-none ring-[3px];
+		--tw-ring-color: var(--color-blue-500);
+	}
+
+	.bo-tabs__trigger--active {
+		color: var(--color-blue-600);
+	}
+
+	.dark .bo-tabs__trigger--active {
+		color: var(--color-blue-400);
+	}
+
+	.bo-tabs__trigger--active::after {
+		@apply absolute bottom-[-1px] start-0 h-0.5 w-full;
+		background-color: currentColor;
+		content: '';
+	}
+
+	.bo-tabs__list--vertical .bo-tabs__trigger--active::after {
+		@apply bottom-0 end-[-1px] start-auto h-full w-0.5;
+	}
+
+	.bo-tabs__content {
+		@apply mt-4 min-w-0 outline-none;
+	}
+
+	.bo-tabs__content:focus-visible {
+		@apply rounded-md ring-[3px];
+		--tw-ring-color: var(--color-blue-500);
+	}
+}

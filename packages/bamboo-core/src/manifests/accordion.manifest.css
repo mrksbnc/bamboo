@@ -1,6 +1,11 @@
 @layer components {
 	.bo-accordion {
-		@apply flex w-full min-w-0 flex-col;
+		@apply flex w-full min-w-0 flex-col overflow-hidden rounded-2xl border;
+		border-color: var(--color-neutral-200);
+	}
+
+	.dark .bo-accordion {
+		border-color: var(--color-neutral-800);
 	}
 
 	.bo-accordion__item {
@@ -21,7 +26,7 @@
 	}
 
 	.bo-accordion__trigger {
-		@apply flex min-w-0 flex-1 items-start justify-between gap-4 rounded-md py-4 text-start text-sm font-medium transition-all hover:underline disabled:pointer-events-none disabled:opacity-50;
+		@apply flex min-w-0 flex-1 items-start justify-between gap-6 rounded-md p-4 text-start text-sm font-medium transition-all hover:underline disabled:pointer-events-none disabled:opacity-50;
 		color: var(--color-neutral-900);
 	}
 
@@ -48,7 +53,7 @@
 	}
 
 	.bo-accordion__content {
-		@apply grid w-full min-w-0 grid-rows-[minmax(0,1fr)] overflow-hidden text-sm transition-[grid-template-rows] duration-200 ease-out;
+		@apply grid w-full min-w-0 grid-rows-[minmax(0,1fr)] overflow-hidden px-4 text-sm transition-[grid-template-rows] duration-200 ease-out;
 		color: var(--color-neutral-500);
 	}
 

@@ -1,0 +1,9 @@
+@layer components {
+	.bo-visually-hidden {
+		@apply absolute size-px overflow-hidden whitespace-nowrap;
+		clip: rect(0, 0, 0, 0);
+		border: 0;
+		padding: 0;
+		margin: -1px;
+	}
+}

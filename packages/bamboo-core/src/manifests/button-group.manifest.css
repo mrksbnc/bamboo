@@ -1,0 +1,44 @@
+@layer components {
+	.bo-button-group {
+		@apply flex w-fit items-stretch isolate [&>*]:focus-visible:relative [&>*]:focus-visible:z-10;
+	}
+
+	.bo-button-group--horizontal {
+		@apply flex-row;
+	}
+
+	.bo-button-group--vertical {
+		@apply flex-col;
+	}
+
+	.bo-button-group--full-width {
+		@apply w-full [&>*]:flex-1;
+	}
+
+	.bo-button-group--attached-horizontal {
+		@apply [&>*:not(:first-child)]:rounded-s-none [&>*:not(:first-child)]:border-s-0 [&>*:not(:last-child)]:rounded-e-none;
+	}
+
+	.bo-button-group--attached-vertical {
+		@apply [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none;
+	}
+
+	.bo-button-group--selected {
+		background-color: var(--color-blue-600);
+		border-color: var(--color-blue-600);
+		color: var(--color-white);
+	}
+
+	.bo-button-group--selected:hover {
+		background-color: var(--color-blue-700);
+	}
+
+	.dark .bo-button-group--selected {
+		background-color: var(--color-blue-500);
+		border-color: var(--color-blue-500);
+	}
+
+	.dark .bo-button-group--selected:hover {
+		background-color: var(--color-blue-600);
+	}
+}

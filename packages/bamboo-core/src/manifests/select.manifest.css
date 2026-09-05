@@ -1,0 +1,118 @@
+@layer components {
+	.bo-select {
+		@apply relative flex flex-col gap-2;
+	}
+
+	.bo-select--full-width {
+		@apply w-full;
+	}
+
+	.bo-select__label-container {
+		@apply flex flex-col gap-1;
+	}
+
+	.bo-select__label {
+		@apply text-sm font-medium;
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-select__label {
+		color: var(--color-neutral-100);
+	}
+
+	.bo-select__required {
+		@apply ms-1;
+		color: var(--color-red-500);
+	}
+
+	.bo-select__description,
+	.bo-select__hint {
+		@apply text-sm;
+		color: var(--color-neutral-600);
+	}
+
+	.bo-select__trigger {
+		@apply relative flex w-full items-center justify-between gap-1.5 rounded-4xl px-3 py-2 text-start;
+	}
+
+	.bo-select__trigger--sm {
+		@apply h-8;
+	}
+
+	.bo-select__trigger--default,
+	.bo-select__trigger--lg {
+		@apply h-9;
+	}
+
+	.bo-select__trigger-content {
+		@apply min-w-0 flex-1 truncate text-start;
+	}
+
+	.bo-select__placeholder {
+		color: var(--color-neutral-500);
+	}
+
+	.bo-select__icon {
+		@apply pointer-events-none ms-2 size-4 shrink-0;
+		color: var(--color-neutral-500);
+	}
+
+	.bo-select__menu {
+		@apply absolute inset-x-0 top-full z-50 mt-1 max-h-60 overflow-auto rounded-md border p-1 shadow-lg;
+		border-color: var(--color-neutral-200);
+		background-color: var(--color-white);
+	}
+
+	.bo-select__option {
+		@apply flex w-full cursor-pointer flex-col gap-2.5 rounded-xl px-3 py-2 text-start text-sm;
+		color: var(--color-neutral-900);
+	}
+
+	.bo-select__option:hover,
+	.bo-select__option:focus-visible,
+	.bo-select__option--selected {
+		background-color: var(--color-neutral-100);
+	}
+
+	.bo-select__option:disabled {
+		@apply cursor-not-allowed opacity-50;
+	}
+
+	.bo-select__option-label {
+		@apply flex items-center justify-between;
+	}
+
+	.bo-select__option-description {
+		@apply text-xs;
+		color: var(--color-neutral-500);
+	}
+
+	.bo-select__empty {
+		@apply px-2 py-1.5 text-sm;
+		color: var(--color-neutral-500);
+	}
+
+	.bo-select__helpers {
+		@apply flex flex-col gap-1;
+	}
+
+	.bo-select__error {
+		@apply text-sm;
+		color: var(--color-red-600);
+	}
+
+	.dark .bo-select__menu {
+		border-color: var(--color-neutral-700);
+		background-color: var(--color-neutral-900);
+	}
+
+	.dark .bo-select__option {
+		color: var(--color-neutral-100);
+	}
+
+	.dark .bo-select__option:hover,
+	.dark .bo-select__option:focus-visible,
+	.dark .bo-select__option--selected {
+		background-color: var(--color-neutral-800);
+	}
+}

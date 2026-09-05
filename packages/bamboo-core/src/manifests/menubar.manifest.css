@@ -1,0 +1,98 @@
+@layer components {
+	.bo-menubar {
+		@apply flex h-9 w-fit items-center rounded-md border bg-white p-1 shadow-xs;
+		border-color: var(--color-neutral-200);
+	}
+
+	.dark .bo-menubar {
+		@apply bg-neutral-900;
+		border-color: var(--color-neutral-800);
+	}
+
+	.bo-menubar__menu {
+		@apply relative inline-block;
+	}
+
+	.bo-menubar__trigger {
+		@apply inline-flex shrink-0 cursor-default select-none items-center justify-center rounded-xl px-2 py-[3px] text-center text-sm font-medium transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-menubar__trigger {
+		color: var(--color-neutral-100);
+	}
+
+	.bo-menubar__trigger--active,
+	.bo-menubar__trigger[data-state='open'] {
+		background-color: var(--color-neutral-100);
+	}
+
+	.dark .bo-menubar__trigger--active,
+	.dark .bo-menubar__trigger[data-state='open'] {
+		background-color: var(--color-neutral-800);
+	}
+
+	.bo-menubar__trigger:focus-visible,
+	.bo-menubar__item:focus-visible {
+		@apply outline-none ring-[3px];
+		--tw-ring-color: var(--color-blue-500);
+	}
+
+	.bo-menubar__content,
+	.bo-menubar__sub-content {
+		@apply z-50 min-w-48 max-h-[calc(100vh-1rem)] overflow-auto rounded-2xl border bg-white p-1 text-sm shadow-md;
+		border-color: var(--color-neutral-200);
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-menubar__content,
+	.dark .bo-menubar__sub-content {
+		@apply bg-neutral-900;
+		border-color: var(--color-neutral-800);
+		color: var(--color-neutral-100);
+	}
+
+	.bo-menubar__item {
+		@apply relative flex w-full cursor-default select-none items-center gap-2.5 rounded-xl px-3 py-2 text-start text-sm outline-none transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
+	}
+
+	.bo-menubar__item > svg {
+		@apply size-4;
+	}
+
+	.dark .bo-menubar__item:hover {
+		@apply bg-neutral-800;
+	}
+
+	.bo-menubar__item[data-inset='true'] {
+		@apply ps-8;
+	}
+
+	.bo-menubar__item[data-variant='destructive'] {
+		@apply text-red-600;
+	}
+
+	.bo-menubar__item-shortcut {
+		@apply ms-auto text-xs tracking-widest text-neutral-500;
+	}
+
+	.bo-menubar__separator {
+		@apply -mx-1 my-1 h-px bg-neutral-200;
+	}
+
+	.dark .bo-menubar__separator {
+		@apply bg-neutral-800;
+	}
+
+	.bo-menubar__label {
+		@apply px-3.5 py-2.5 text-xs font-medium text-neutral-500;
+	}
+
+	.bo-menubar__sub-trigger[data-state='open'] {
+		@apply bg-neutral-100;
+	}
+
+	.dark .bo-menubar__sub-trigger[data-state='open'] {
+		@apply bg-neutral-800;
+	}
+}

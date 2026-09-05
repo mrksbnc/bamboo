@@ -1,0 +1,94 @@
+@layer components {
+	.bo-tags-input {
+		@apply flex w-full flex-col gap-2;
+	}
+
+	.bo-tags-input__label-container {
+		@apply flex items-center justify-between;
+	}
+
+	.bo-tags-input__label {
+		@apply text-sm font-medium;
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-tags-input__label {
+		color: var(--color-neutral-100);
+	}
+
+	.bo-tags-input__required {
+		@apply ms-1 text-red-600;
+	}
+
+	.bo-tags-input__container {
+		@apply flex min-h-9 w-full flex-wrap items-center gap-1.5 rounded-4xl border px-2 py-1 shadow-xs transition-[color,box-shadow];
+		border-color: var(--color-neutral-300);
+	}
+
+	.bo-tags-input__container:focus-within {
+		border-color: var(--color-blue-500);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 30%, transparent);
+	}
+
+	.bo-tags-input__tags {
+		@apply flex flex-wrap gap-1.5;
+	}
+
+	.bo-tags-input__tag {
+		@apply inline-flex items-center gap-1 rounded bg-blue-100 px-2 py-0.5 text-sm;
+		color: var(--color-blue-800);
+	}
+
+	.bo-tags-input__remove {
+		@apply inline-flex h-4 w-4 items-center justify-center rounded-full text-xs;
+	}
+
+	.bo-tags-input__remove:hover {
+		background-color: color-mix(in srgb, var(--color-blue-800) 15%, transparent);
+	}
+
+	.bo-tags-input__input {
+		@apply min-w-24 flex-1 border-none bg-transparent px-1 py-0.5 text-base outline-none md:text-sm;
+		color: var(--color-neutral-900);
+	}
+
+	.bo-tags-input__input:disabled {
+		@apply cursor-not-allowed opacity-50;
+	}
+
+	.bo-tags-input__helpers {
+		@apply flex flex-col gap-1 text-sm;
+	}
+
+	.bo-tags-input__description,
+	.bo-tags-input__hint {
+		color: var(--color-neutral-600);
+	}
+
+	.bo-tags-input__error {
+		color: var(--color-red-600);
+	}
+
+	.dark .bo-tags-input__label,
+	.dark .bo-tags-input__input {
+		color: var(--color-neutral-100);
+	}
+
+	.dark .bo-tags-input__container {
+		border-color: var(--color-neutral-700);
+	}
+
+	.dark .bo-tags-input__tag {
+		background-color: var(--color-blue-950);
+		color: var(--color-blue-200);
+	}
+
+	.dark .bo-tags-input__description,
+	.dark .bo-tags-input__hint {
+		color: var(--color-neutral-400);
+	}
+
+	.dark .bo-tags-input__error {
+		color: var(--color-red-400);
+	}
+}

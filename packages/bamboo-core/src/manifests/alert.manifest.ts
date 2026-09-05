@@ -16,6 +16,7 @@ export const ALERT_MANIFEST = {
 		icon: 'bo-alert__icon',
 		container: {
 			base: 'bo-alert-container',
+			item: 'bo-alert-container__item',
 			position: {
 				'top-left': 'bo-alert-container--top-left',
 				'top-center': 'bo-alert-container--top-center',

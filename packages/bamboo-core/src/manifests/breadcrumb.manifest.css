@@ -1,0 +1,51 @@
+@layer components {
+	.bo-breadcrumb {
+		@apply text-sm;
+	}
+
+	.bo-breadcrumb__list {
+		@apply flex flex-wrap items-center gap-1.5 sm:gap-2.5;
+	}
+
+	.bo-breadcrumb__item {
+		@apply inline-flex items-center gap-1.5;
+	}
+
+	.bo-breadcrumb__link {
+		@apply transition-colors;
+		color: var(--color-neutral-500);
+	}
+
+	.bo-breadcrumb__link:hover {
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-breadcrumb__link {
+		color: var(--color-neutral-400);
+	}
+
+	.dark .bo-breadcrumb__link:hover {
+		color: var(--color-neutral-100);
+	}
+
+	.bo-breadcrumb__current {
+		@apply font-normal;
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-breadcrumb__current {
+		color: var(--color-neutral-100);
+	}
+
+	.bo-breadcrumb__separator {
+		color: var(--color-neutral-400);
+	}
+
+	.dark .bo-breadcrumb__separator {
+		color: var(--color-neutral-600);
+	}
+
+	.bo-breadcrumb__icon {
+		@apply size-3.5;
+	}
+}

@@ -1,0 +1,48 @@
+@layer components {
+	.bo-scroll-area {
+		@apply relative overflow-hidden rounded-[inherit];
+	}
+
+	.bo-scroll-area--masked {
+		mask-image: linear-gradient(to bottom, black calc(100% - 1.5rem), transparent);
+		mask-repeat: no-repeat;
+	}
+
+	.bo-scroll-area__viewport {
+		@apply size-full min-h-0 overflow-auto overscroll-contain rounded-[inherit] outline-none;
+		scrollbar-width: none;
+	}
+
+	.bo-scroll-area__viewport::-webkit-scrollbar {
+		display: none;
+	}
+
+	.bo-scroll-area__viewport:focus-visible {
+		@apply ring-[3px];
+		--tw-ring-color: var(--color-blue-500);
+	}
+
+	.bo-scroll-area__scrollbar--vertical {
+		@apply absolute end-0 top-0 flex h-full w-2.5 touch-none select-none flex-col border-s border-transparent p-px;
+	}
+
+	.bo-scroll-area__scrollbar--horizontal {
+		@apply absolute bottom-0 start-0 flex h-2.5 w-full touch-none select-none border-t border-transparent p-px;
+	}
+
+	.bo-scroll-area__thumb {
+		@apply relative flex min-h-0 min-w-0 flex-1 rounded-full bg-neutral-300;
+	}
+
+	.dark .bo-scroll-area__thumb {
+		@apply bg-neutral-600;
+	}
+
+	.bo-scroll-area__corner {
+		@apply absolute bottom-0 end-0 size-2.5 bg-neutral-200;
+	}
+
+	.dark .bo-scroll-area__corner {
+		@apply bg-neutral-700;
+	}
+}

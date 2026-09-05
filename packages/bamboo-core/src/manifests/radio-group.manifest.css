@@ -1,0 +1,13 @@
+@layer components {
+	.bo-radio-group {
+		@apply grid gap-3;
+	}
+
+	.bo-radio-group--horizontal {
+		@apply grid-flow-col justify-start;
+	}
+
+	.bo-radio-group--vertical {
+		@apply grid-flow-row;
+	}
+}

@@ -1,0 +1,67 @@
+@layer components {
+	.bo-radio-group-item {
+		@apply flex cursor-pointer items-start gap-2.5;
+	}
+
+	.bo-radio-group-item:has(.bo-radio-group-item__input:disabled) {
+		@apply cursor-not-allowed opacity-50;
+	}
+
+	.bo-radio-group-item__input {
+		@apply sr-only;
+	}
+
+	.bo-radio-group-item__indicator {
+		@apply flex aspect-square size-4 shrink-0 items-center justify-center rounded-full border bg-white shadow-xs transition-[color,box-shadow];
+		border-color: var(--color-neutral-300);
+	}
+
+	.bo-radio-group-item__input:focus-visible + .bo-radio-group-item__indicator {
+		@apply outline-none ring-[3px];
+		border-color: var(--color-blue-500);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.bo-radio-group-item__input:checked + .bo-radio-group-item__indicator {
+		border-color: var(--color-blue-600);
+	}
+
+	.bo-radio-group-item__dot {
+		@apply size-2 scale-0 rounded-full bg-blue-600 transition-transform;
+	}
+
+	.bo-radio-group-item__label-group {
+		@apply flex flex-col gap-0.5;
+	}
+
+	.bo-radio-group-item__input:checked + .bo-radio-group-item__indicator .bo-radio-group-item__dot {
+		@apply scale-100;
+	}
+
+	.bo-radio-group-item__label {
+		@apply text-sm font-medium select-none;
+		color: var(--color-neutral-900);
+	}
+
+	.bo-radio-group-item__description {
+		@apply text-sm;
+		color: var(--color-neutral-500);
+	}
+
+	.dark .bo-radio-group-item__indicator {
+		border-color: var(--color-neutral-700);
+		background-color: var(--color-neutral-900);
+	}
+
+	.dark .bo-radio-group-item__input:checked + .bo-radio-group-item__indicator {
+		border-color: var(--color-blue-500);
+	}
+
+	.dark .bo-radio-group-item__label {
+		color: var(--color-neutral-100);
+	}
+
+	.dark .bo-radio-group-item__description {
+		color: var(--color-neutral-400);
+	}
+}
