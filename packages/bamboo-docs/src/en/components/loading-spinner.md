@@ -11,8 +11,37 @@ tags:
 outline: deep
 ---
 
-<script setup>
+<script setup lang="ts">
 import { BoLoadingSpinner } from '@mrksbnc/bamboo-vue';
+
+const basicExample = `<bo-loading-spinner />`;
+const textExample = `<bo-loading-spinner loader-text="Loading..." />`;
+const sizesExample = `<bo-loading-spinner size="xs" />
+<bo-loading-spinner size="sm" />
+<bo-loading-spinner size="default" />
+<bo-loading-spinner size="lg" />
+<bo-loading-spinner size="xl" />`;
+const variantsExample = `<div class="flex gap-4 items-center">
+  <bo-loading-spinner variant="primary" />
+  <bo-loading-spinner variant="secondary" />
+  <bo-loading-spinner variant="success" />
+  <bo-loading-spinner variant="warning" />
+  <bo-loading-spinner variant="destructive" />
+  <div class="bg-neutral-800 p-2 rounded">
+    <bo-loading-spinner variant="white" />
+  </div>
+  <bo-loading-spinner variant="black" />
+</div>`;
+const textPositionExample = `<bo-loading-spinner loader-text="Loading..." text-position="top" />
+<bo-loading-spinner loader-text="Loading..." text-position="bottom" />
+<bo-loading-spinner loader-text="Loading..." text-position="before" />
+<bo-loading-spinner loader-text="Loading..." text-position="after" />`;
+const customColorsExample = `<bo-loading-spinner custom-color="#ff6b6b" />
+<bo-loading-spinner custom-color="rgb(34, 197, 94)" />
+<bo-loading-spinner custom-color="oklch(84.5% 0.143 164.978)" />`;
+const combinedExample = `<bo-loading-spinner size="sm" loader-text="Small loader" />
+<bo-loading-spinner size="default" loader-text="Default loader" />
+<bo-loading-spinner size="lg" loader-text="Large loader" />`;
 </script>
 
 # Loading Spinner
@@ -23,51 +52,42 @@ An animated spinner component for indicating loading states. Provides visual fee
 
 The component is called `bo-loading-spinner` and can be used as follows:
 
-<div class="flex gap-4 items-center">
-  <bo-loading-spinner />
-</div>
-
-```vue
-<bo-loading-spinner />
-```
+<ExampleFrame :code="basicExample">
+  <div class="flex gap-4 items-center">
+    <bo-loading-spinner />
+  </div>
+</ExampleFrame>
 
 ## With Text
 
 Spinners can display loading text:
 
-<div class="flex gap-4 items-center">
-  <bo-loading-spinner loader-text="Loading..." />
-</div>
-
-```vue
-<bo-loading-spinner loader-text="Loading..." />
-```
+<ExampleFrame :code="textExample">
+  <div class="flex gap-4 items-center">
+    <bo-loading-spinner loader-text="Loading..." />
+  </div>
+</ExampleFrame>
 
 ## Sizes
 
 The `size` prop allows you to customize the size of the spinner. The default size is `default`.
 
-<div class="flex gap-4 items-center">
+<ExampleFrame :code="sizesExample">
+  <div class="flex gap-4 items-center">
   <bo-loading-spinner size="xs" />
   <bo-loading-spinner size="sm" />
   <bo-loading-spinner size="default" />
   <bo-loading-spinner size="lg" />
   <bo-loading-spinner size="xl" />
 </div>
-
-```vue
-<bo-loading-spinner size="xs" />
-<bo-loading-spinner size="sm" />
-<bo-loading-spinner size="default" />
-<bo-loading-spinner size="lg" />
-<bo-loading-spinner size="xl" />
-```
+</ExampleFrame>
 
 ## Variants
 
 The `variant` prop allows you to customize the color of the spinner. The default variant is `primary`.
 
-<div class="flex gap-4 items-center">
+<ExampleFrame :code="variantsExample">
+  <div class="flex gap-4 items-center">
   <bo-loading-spinner variant="primary" />
   <bo-loading-spinner variant="secondary" />
   <bo-loading-spinner variant="success" />
@@ -78,66 +98,44 @@ The `variant` prop allows you to customize the color of the spinner. The default
   </div>
   <bo-loading-spinner variant="black" />
 </div>
-
-```vue
-<bo-loading-spinner variant="primary" />
-<bo-loading-spinner variant="secondary" />
-<bo-loading-spinner variant="success" />
-<bo-loading-spinner variant="warning" />
-<bo-loading-spinner variant="destructive" />
-<bo-loading-spinner variant="white" />
-<bo-loading-spinner variant="black" />
-```
+</ExampleFrame>
 
 ## Text Positioning
 
 The `text-position` prop controls where the loading text appears relative to the spinner:
 
-<div class="flex flex-col gap-4">
+<ExampleFrame :code="textPositionExample">
+  <div class="flex flex-col gap-4">
   <bo-loading-spinner loader-text="Loading..." text-position="top" />
   <bo-loading-spinner loader-text="Loading..." text-position="bottom" />
   <bo-loading-spinner loader-text="Loading..." text-position="before" />
   <bo-loading-spinner loader-text="Loading..." text-position="after" />
 </div>
-
-```vue
-<bo-loading-spinner loader-text="Loading..." text-position="top" />
-<bo-loading-spinner loader-text="Loading..." text-position="bottom" />
-<bo-loading-spinner loader-text="Loading..." text-position="before" />
-<bo-loading-spinner loader-text="Loading..." text-position="after" />
-```
+</ExampleFrame>
 
 ## Custom Colors
 
 Use custom colors with the `custom-color` prop:
 
-<div class="flex gap-4 items-center">
+<ExampleFrame :code="customColorsExample">
+  <div class="flex gap-4 items-center">
   <bo-loading-spinner custom-color="#ff6b6b" />
   <bo-loading-spinner custom-color="rgb(34, 197, 94)" />
   <bo-loading-spinner custom-color="oklch(84.5% 0.143 164.978)" />
 </div>
-
-```vue
-<bo-loading-spinner custom-color="#ff6b6b" />
-<bo-loading-spinner custom-color="rgb(34, 197, 94)" />
-<bo-loading-spinner custom-color="oklch(84.5% 0.143 164.978)" />
-```
+</ExampleFrame>
 
 ## Different Sizes with Text
 
 Combine different sizes with loading text:
 
-<div class="flex flex-col gap-4">
+<ExampleFrame :code="combinedExample">
+  <div class="flex flex-col gap-4">
   <bo-loading-spinner size="sm" loader-text="Small loader" />
   <bo-loading-spinner size="default" loader-text="Default loader" />
   <bo-loading-spinner size="lg" loader-text="Large loader" />
 </div>
-
-```vue
-<bo-loading-spinner size="sm" loader-text="Small loader" />
-<bo-loading-spinner size="default" loader-text="Default loader" />
-<bo-loading-spinner size="lg" loader-text="Large loader" />
-```
+</ExampleFrame>
 
 ## API Reference
 

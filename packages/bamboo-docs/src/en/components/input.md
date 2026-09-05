@@ -11,8 +11,44 @@ tags:
 outline: deep
 ---
 
-<script setup>
+<script setup lang="ts">
 import { BoInput } from '@mrksbnc/bamboo-vue';
+
+const basicExample = `<bo-input placeholder="Enter text..." />`;
+const labelExample = `<bo-input label="Email Address" placeholder="Enter your email..." />`;
+const sizesExample = `<bo-input size="sm" placeholder="Small input" />
+<bo-input size="default" placeholder="Default input" />
+<bo-input size="lg" placeholder="Large input" />`;
+const statesExample = `<bo-input state="default" placeholder="Default state" />
+<bo-input state="valid" placeholder="Valid input" />
+<bo-input state="invalid" placeholder="Invalid input" error="This field is required" />`;
+const variantsExample = `<bo-input variant="default" placeholder="Default variant" />
+<bo-input variant="filled" placeholder="Filled variant" />`;
+const iconsExample = `<bo-input prefix-icon="mail" placeholder="Email address" />
+<bo-input suffix-icon="search" placeholder="Search..." />
+<bo-input prefix-icon="user" suffix-icon="eye" placeholder="Username" />`;
+const typesExample = `<bo-input type="text" placeholder="Text input" />
+<bo-input type="email" placeholder="Email input" />
+<bo-input type="password" placeholder="Password input" />
+<bo-input type="number" placeholder="Number input" />
+<bo-input type="tel" placeholder="Phone input" />
+<bo-input type="url" placeholder="URL input" />`;
+const descriptionsExample = `<bo-input
+  label="Username"
+  description="Choose a unique username"
+  hint="Must be at least 3 characters long"
+  placeholder="Enter username"
+ />
+<bo-input
+  label="Password"
+  state="invalid"
+  error="Password must contain at least 8 characters"
+  placeholder="Enter password"
+  type="password"
+ />`;
+const requiredExample = `<bo-input label="Email" placeholder="Enter email" required />`;
+const disabledExample = `<bo-input placeholder="Disabled input" disabled />`;
+const fullWidthExample = `<bo-input placeholder="Full width input" full-width />`;
 </script>
 
 # Input
@@ -23,181 +59,135 @@ A text input field component with support for icons, validation states, pills, a
 
 The component is called `bo-input` and can be used as follows:
 
-<div class="flex gap-4">
-  <bo-input placeholder="Enter text..." />
-</div>
-
-```vue
-<bo-input placeholder="Enter text..." />
-```
+<ExampleFrame :code="basicExample">
+  <div class="flex gap-4">
+    <bo-input placeholder="Enter text..." />
+  </div>
+</ExampleFrame>
 
 ## With Label
 
 Inputs can have labels for better accessibility and user experience:
 
-<div class="flex gap-4">
-  <bo-input label="Email Address" placeholder="Enter your email..." />
-</div>
-
-```vue
-<bo-input label="Email Address" placeholder="Enter your email..." />
-```
+<ExampleFrame :code="labelExample">
+  <div class="flex gap-4">
+    <bo-input label="Email Address" placeholder="Enter your email..." />
+  </div>
+</ExampleFrame>
 
 ## Sizes
 
 The `size` prop allows you to customize the size of the input. The default size is `default`.
 
-<div class="flex flex-col gap-4">
-  <bo-input size="sm" placeholder="Small input" />
-  <bo-input size="default" placeholder="Default input" />
-  <bo-input size="lg" placeholder="Large input" />
-</div>
-
-```vue
-<bo-input size="sm" placeholder="Small input" />
-<bo-input size="default" placeholder="Default input" />
-<bo-input size="lg" placeholder="Large input" />
-```
+<ExampleFrame :code="sizesExample">
+  <div class="flex flex-col gap-4">
+    <bo-input size="sm" placeholder="Small input" />
+    <bo-input size="default" placeholder="Default input" />
+    <bo-input size="lg" placeholder="Large input" />
+  </div>
+</ExampleFrame>
 
 ## States
 
 The `state` prop allows you to show validation states. The default state is `default`.
 
-<div class="flex flex-col gap-4">
-  <bo-input state="default" placeholder="Default state" />
-  <bo-input state="valid" placeholder="Valid input" />
-  <bo-input state="invalid" placeholder="Invalid input" error="This field is required" />
-</div>
-
-```vue
-<bo-input state="default" placeholder="Default state" />
-<bo-input state="valid" placeholder="Valid input" />
-<bo-input state="invalid" placeholder="Invalid input" error="This field is required" />
-```
+<ExampleFrame :code="statesExample">
+  <div class="flex flex-col gap-4">
+    <bo-input state="default" placeholder="Default state" />
+    <bo-input state="valid" placeholder="Valid input" />
+    <bo-input state="invalid" placeholder="Invalid input" error="This field is required" />
+  </div>
+</ExampleFrame>
 
 ## Variants
 
 The `variant` prop allows you to customize the appearance. The default variant is `default`.
 
-<div class="flex flex-col gap-4">
-  <bo-input variant="default" placeholder="Default variant" />
-  <bo-input variant="filled" placeholder="Filled variant" />
-</div>
-
-```vue
-<bo-input variant="default" placeholder="Default variant" />
-<bo-input variant="filled" placeholder="Filled variant" />
-```
+<ExampleFrame :code="variantsExample">
+  <div class="flex flex-col gap-4">
+    <bo-input variant="default" placeholder="Default variant" />
+    <bo-input variant="filled" placeholder="Filled variant" />
+  </div>
+</ExampleFrame>
 
 ## With Icons
 
 Inputs support prefix and suffix icons:
 
-<div class="flex flex-col gap-4">
-  <bo-input prefix-icon="mail" placeholder="Email address" />
-  <bo-input suffix-icon="search" placeholder="Search..." />
-  <bo-input prefix-icon="user" suffix-icon="eye" placeholder="Username" />
-</div>
-
-```vue
-<bo-input prefix-icon="mail" placeholder="Email address" />
-<bo-input suffix-icon="search" placeholder="Search..." />
-<bo-input prefix-icon="user" suffix-icon="eye" placeholder="Username" />
-```
+<ExampleFrame :code="iconsExample">
+  <div class="flex flex-col gap-4">
+    <bo-input prefix-icon="mail" placeholder="Email address" />
+    <bo-input suffix-icon="search" placeholder="Search..." />
+    <bo-input prefix-icon="user" suffix-icon="eye" placeholder="Username" />
+  </div>
+</ExampleFrame>
 
 ## Input Types
 
 The input supports various HTML input types:
 
-<div class="flex flex-col gap-4">
-  <bo-input type="text" placeholder="Text input" />
-  <bo-input type="email" placeholder="Email input" />
-  <bo-input type="password" placeholder="Password input" />
-  <bo-input type="number" placeholder="Number input" />
-  <bo-input type="tel" placeholder="Phone input" />
-  <bo-input type="url" placeholder="URL input" />
-</div>
-
-```vue
-<bo-input type="text" placeholder="Text input" />
-<bo-input type="email" placeholder="Email input" />
-<bo-input type="password" placeholder="Password input" />
-<bo-input type="number" placeholder="Number input" />
-<bo-input type="tel" placeholder="Phone input" />
-<bo-input type="url" placeholder="URL input" />
-```
+<ExampleFrame :code="typesExample">
+  <div class="flex flex-col gap-4">
+    <bo-input type="text" placeholder="Text input" />
+    <bo-input type="email" placeholder="Email input" />
+    <bo-input type="password" placeholder="Password input" />
+    <bo-input type="number" placeholder="Number input" />
+    <bo-input type="tel" placeholder="Phone input" />
+    <bo-input type="url" placeholder="URL input" />
+  </div>
+</ExampleFrame>
 
 ## With Description and Hints
 
 Inputs can have descriptions and hint messages:
 
-<div class="flex flex-col gap-4">
-  <bo-input 
-    label="Username" 
-    description="Choose a unique username" 
-    hint="Must be at least 3 characters long"
-    placeholder="Enter username" 
-  />
-  <bo-input 
-    label="Password" 
-    state="invalid"
-    error="Password must contain at least 8 characters"
-    placeholder="Enter password" 
-    type="password"
-  />
-</div>
-
-```vue
-<bo-input
-	label="Username"
-	description="Choose a unique username"
-	hint="Must be at least 3 characters long"
-	placeholder="Enter username"
-/>
-<bo-input
-	label="Password"
-	state="invalid"
-	error="Password must contain at least 8 characters"
-	placeholder="Enter password"
-	type="password"
-/>
-```
+<ExampleFrame :code="descriptionsExample">
+  <div class="flex flex-col gap-4">
+    <bo-input
+      label="Username"
+      description="Choose a unique username"
+      hint="Must be at least 3 characters long"
+      placeholder="Enter username"
+    />
+    <bo-input
+      label="Password"
+      state="invalid"
+      error="Password must contain at least 8 characters"
+      placeholder="Enter password"
+      type="password"
+    />
+  </div>
+</ExampleFrame>
 
 ## Required Fields
 
 Mark inputs as required:
 
-<div class="flex gap-4">
-  <bo-input label="Email" placeholder="Enter email" required />
-</div>
-
-```vue
-<bo-input label="Email" placeholder="Enter email" required />
-```
+<ExampleFrame :code="requiredExample">
+  <div class="flex gap-4">
+    <bo-input label="Email" placeholder="Enter email" required />
+  </div>
+</ExampleFrame>
 
 ## Disabled State
 
 Inputs can be disabled:
 
-<div class="flex gap-4">
-  <bo-input placeholder="Disabled input" disabled />
-</div>
-
-```vue
-<bo-input placeholder="Disabled input" disabled />
-```
+<ExampleFrame :code="disabledExample">
+  <div class="flex gap-4">
+    <bo-input placeholder="Disabled input" disabled />
+  </div>
+</ExampleFrame>
 
 ## Full Width
 
 Inputs can take the full width of their container:
 
-<div class="w-full">
-  <bo-input placeholder="Full width input" full-width />
-</div>
-
-```vue
-<bo-input placeholder="Full width input" full-width />
-```
+<ExampleFrame :code="fullWidthExample">
+  <div class="w-full">
+    <bo-input placeholder="Full width input" full-width />
+  </div>
+</ExampleFrame>
 
 ## API Reference
 

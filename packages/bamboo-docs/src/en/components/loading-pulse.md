@@ -12,8 +12,37 @@ tags:
 outline: deep
 ---
 
-<script setup>
+<script setup lang="ts">
 import { BoLoadingPulse } from '@mrksbnc/bamboo-vue';
+
+const basicExample = `<bo-loading-pulse />`;
+const textExample = `<bo-loading-pulse loader-text="Loading..." />`;
+const sizesExample = `<bo-loading-pulse size="xs" />
+<bo-loading-pulse size="sm" />
+<bo-loading-pulse size="default" />
+<bo-loading-pulse size="lg" />
+<bo-loading-pulse size="xl" />`;
+const variantsExample = `<div class="flex gap-4 items-center">
+  <bo-loading-pulse variant="primary" />
+  <bo-loading-pulse variant="secondary" />
+  <bo-loading-pulse variant="success" />
+  <bo-loading-pulse variant="warning" />
+  <bo-loading-pulse variant="destructive" />
+  <div class="bg-neutral-800 p-2 rounded">
+    <bo-loading-pulse variant="white" />
+  </div>
+  <bo-loading-pulse variant="black" />
+</div>`;
+const textPositionExample = `<bo-loading-pulse loader-text="Loading..." text-position="top" />
+<bo-loading-pulse loader-text="Loading..." text-position="bottom" />
+<bo-loading-pulse loader-text="Loading..." text-position="before" />
+<bo-loading-pulse loader-text="Loading..." text-position="after" />`;
+const customColorsExample = `<bo-loading-pulse custom-color="#ff6b6b" />
+<bo-loading-pulse custom-color="rgb(34, 197, 94)" />
+<bo-loading-pulse custom-color="oklch(84.5% 0.143 164.978)" />`;
+const combinedExample = `<bo-loading-pulse size="sm" loader-text="Small pulse" />
+<bo-loading-pulse size="default" loader-text="Default pulse" />
+<bo-loading-pulse size="lg" loader-text="Large pulse" />`;
 </script>
 
 # Loading Pulse
@@ -24,51 +53,42 @@ An animated pulsing dots component for indicating loading states. Provides a sub
 
 The component is called `bo-loading-pulse` and can be used as follows:
 
-<div class="flex gap-4 items-center">
-  <bo-loading-pulse />
-</div>
-
-```vue
-<bo-loading-pulse />
-```
+<ExampleFrame :code="basicExample">
+  <div class="flex gap-4 items-center">
+    <bo-loading-pulse />
+  </div>
+</ExampleFrame>
 
 ## With Text
 
 Pulse loaders can display loading text:
 
-<div class="flex gap-4 items-center">
-  <bo-loading-pulse loader-text="Loading..." />
-</div>
-
-```vue
-<bo-loading-pulse loader-text="Loading..." />
-```
+<ExampleFrame :code="textExample">
+  <div class="flex gap-4 items-center">
+    <bo-loading-pulse loader-text="Loading..." />
+  </div>
+</ExampleFrame>
 
 ## Sizes
 
 The `size` prop allows you to customize the size of the pulse dots. The default size is `default`.
 
-<div class="flex gap-4 items-center">
+<ExampleFrame :code="sizesExample">
+  <div class="flex gap-4 items-center">
   <bo-loading-pulse size="xs" />
   <bo-loading-pulse size="sm" />
   <bo-loading-pulse size="default" />
   <bo-loading-pulse size="lg" />
   <bo-loading-pulse size="xl" />
 </div>
-
-```vue
-<bo-loading-pulse size="xs" />
-<bo-loading-pulse size="sm" />
-<bo-loading-pulse size="default" />
-<bo-loading-pulse size="lg" />
-<bo-loading-pulse size="xl" />
-```
+</ExampleFrame>
 
 ## Variants
 
 The `variant` prop allows you to customize the color of the pulse dots. The default variant is `primary`.
 
-<div class="flex gap-4 items-center">
+<ExampleFrame :code="variantsExample">
+  <div class="flex gap-4 items-center">
   <bo-loading-pulse variant="primary" />
   <bo-loading-pulse variant="secondary" />
   <bo-loading-pulse variant="success" />
@@ -79,66 +99,44 @@ The `variant` prop allows you to customize the color of the pulse dots. The defa
   </div>
   <bo-loading-pulse variant="black" />
 </div>
-
-```vue
-<bo-loading-pulse variant="primary" />
-<bo-loading-pulse variant="secondary" />
-<bo-loading-pulse variant="success" />
-<bo-loading-pulse variant="warning" />
-<bo-loading-pulse variant="destructive" />
-<bo-loading-pulse variant="white" />
-<bo-loading-pulse variant="black" />
-```
+</ExampleFrame>
 
 ## Text Positioning
 
 The `text-position` prop controls where the loading text appears relative to the pulse dots:
 
-<div class="flex flex-col gap-4">
+<ExampleFrame :code="textPositionExample">
+  <div class="flex flex-col gap-4">
   <bo-loading-pulse loader-text="Loading..." text-position="top" />
   <bo-loading-pulse loader-text="Loading..." text-position="bottom" />
   <bo-loading-pulse loader-text="Loading..." text-position="before" />
   <bo-loading-pulse loader-text="Loading..." text-position="after" />
 </div>
-
-```vue
-<bo-loading-pulse loader-text="Loading..." text-position="top" />
-<bo-loading-pulse loader-text="Loading..." text-position="bottom" />
-<bo-loading-pulse loader-text="Loading..." text-position="before" />
-<bo-loading-pulse loader-text="Loading..." text-position="after" />
-```
+</ExampleFrame>
 
 ## Custom Colors
 
 Use custom colors with the `custom-color` prop:
 
-<div class="flex gap-4 items-center">
+<ExampleFrame :code="customColorsExample">
+  <div class="flex gap-4 items-center">
   <bo-loading-pulse custom-color="#ff6b6b" />
   <bo-loading-pulse custom-color="rgb(34, 197, 94)" />
   <bo-loading-pulse custom-color="oklch(84.5% 0.143 164.978)" />
 </div>
-
-```vue
-<bo-loading-pulse custom-color="#ff6b6b" />
-<bo-loading-pulse custom-color="rgb(34, 197, 94)" />
-<bo-loading-pulse custom-color="oklch(84.5% 0.143 164.978)" />
-```
+</ExampleFrame>
 
 ## Different Sizes with Text
 
 Combine different sizes with loading text:
 
-<div class="flex flex-col gap-4">
+<ExampleFrame :code="combinedExample">
+  <div class="flex flex-col gap-4">
   <bo-loading-pulse size="sm" loader-text="Small pulse" />
   <bo-loading-pulse size="default" loader-text="Default pulse" />
   <bo-loading-pulse size="lg" loader-text="Large pulse" />
 </div>
-
-```vue
-<bo-loading-pulse size="sm" loader-text="Small pulse" />
-<bo-loading-pulse size="default" loader-text="Default pulse" />
-<bo-loading-pulse size="lg" loader-text="Large pulse" />
-```
+</ExampleFrame>
 
 ## API Reference
 
