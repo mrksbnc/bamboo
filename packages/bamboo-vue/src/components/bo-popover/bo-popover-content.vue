@@ -3,7 +3,7 @@
 		<Transition name="bo-popover">
 			<div
 				v-if="context.open.value"
-				:id="id"
+				:id="id || popoverContext.contentId.value"
 				:data-testid="dataTestId"
 				:role="role"
 				:data-state="'open'"
@@ -23,12 +23,11 @@
 <script setup lang="ts">
 import type { BoPopoverProps } from '@workspace/bamboo-core';
 import { POPOVER_MANIFEST } from '@workspace/bamboo-core';
-import { generateComponentId, generateDataTestId, mergeTwClasses } from '@workspace/bamboo-core';
+import { generateDataTestId, mergeTwClasses } from '@workspace/bamboo-core';
 import { computed, inject, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { popoverContextKey } from './keys';
 
 const props = withDefaults(defineProps<BoPopoverProps>(), {
-	id: () => generateComponentId('popover-content'),
 	dataTestId: () => generateDataTestId('popover-content'),
 	role: () => POPOVER_MANIFEST.defaults.role,
 });
@@ -39,6 +38,13 @@ const popoverContext = context;
 const contentRef = ref<HTMLElement>();
 const contentStyle = ref<Record<string, string>>({});
 const placement = computed(() => props.placement ?? popoverContext.placement.value);
+watch(
+	() => props.id,
+	(value) => {
+		if (value) popoverContext.contentId.value = value;
+	},
+	{ immediate: true },
+);
 const contentClasses = computed(() =>
 	mergeTwClasses(
 		POPOVER_MANIFEST.styles.content,

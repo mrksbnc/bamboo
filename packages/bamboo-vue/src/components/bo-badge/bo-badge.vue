@@ -31,6 +31,8 @@ import {
 	getValidOrFallbackColorFromStr,
 	mergeTwClasses,
 	type BoBadgeProps,
+	type BoFontSize,
+	type BoIconSize,
 	type Icon,
 } from '@workspace/bamboo-core';
 import { computed, type StyleValue } from 'vue';
@@ -67,8 +69,13 @@ const showSuffixIcon = computed<boolean>(
 	() => !!props.suffixIcon && props.suffixIcon !== 'none' && !isIconOnly.value && !isCircle.value,
 );
 
-const fontSize = computed(() => BADGE_MANIFEST.styles.fontSize[props.size || 'default']);
-const iconSize = computed(() => BADGE_MANIFEST.styles.iconSize[props.size || 'default']);
+const fontSize = computed<BoFontSize>(
+	() => BADGE_MANIFEST.styles.fontSize[props.size || 'default'],
+);
+
+const iconSize = computed<BoIconSize>(
+	() => BADGE_MANIFEST.styles.iconSize[props.size || 'default'],
+);
 
 const variantClass = computed<string>(() => {
 	if (props.customColor) return '';

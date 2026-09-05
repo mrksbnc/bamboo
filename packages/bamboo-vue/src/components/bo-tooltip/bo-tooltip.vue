@@ -77,12 +77,32 @@ const clearTimers = () => {
 	}
 };
 
+function getTriggerElement(): HTMLElement | undefined {
+	const root = triggerRef.value;
+	if (!root) return undefined;
+
+	if (root.matches('button, a, input, select, textarea, [tabindex]')) return root;
+
+	return (
+		root.querySelector<HTMLElement>('button, a, input, select, textarea, [tabindex]') ?? undefined
+	);
+}
+
+function setTriggerDescription(visible: boolean): void {
+	const trigger = getTriggerElement();
+	if (!trigger) return;
+
+	if (visible) trigger.setAttribute('aria-describedby', id.value);
+	else trigger.removeAttribute('aria-describedby');
+}
+
 const show = () => {
 	if (props.disabled) return;
 
 	clearTimers();
 	showTimer = setTimeout(() => {
 		isVisible.value = true;
+		setTriggerDescription(true);
 		nextTick(() => {
 			updatePosition();
 			emit('show');
@@ -94,6 +114,7 @@ const hide = () => {
 	clearTimers();
 	hideTimer = setTimeout(() => {
 		isVisible.value = false;
+		setTriggerDescription(false);
 		emit('hide');
 	}, props.hideDelay);
 };
@@ -184,11 +205,12 @@ const handleMouseLeave = () => {
 	if (props.trigger === 'hover') hide();
 };
 
-const handleFocus = () => {
+const handleFocusIn = () => {
 	if (props.trigger === 'focus') show();
 };
 
-const handleBlur = () => {
+const handleFocusOut = (event: FocusEvent) => {
+	if (triggerRef.value?.contains(event.relatedTarget as Node | null)) return;
 	if (props.trigger === 'focus') hide();
 };
 
@@ -219,8 +241,8 @@ onMounted(() => {
 	}
 
 	if (props.trigger === 'focus') {
-		trigger.addEventListener('focus', handleFocus);
-		trigger.addEventListener('blur', handleBlur);
+		trigger.addEventListener('focusin', handleFocusIn);
+		trigger.addEventListener('focusout', handleFocusOut);
 	}
 
 	if (props.trigger === 'click') {
@@ -241,8 +263,8 @@ onUnmounted(() => {
 	const trigger = triggerRef.value;
 	trigger.removeEventListener('mouseenter', handleMouseEnter);
 	trigger.removeEventListener('mouseleave', handleMouseLeave);
-	trigger.removeEventListener('focus', handleFocus);
-	trigger.removeEventListener('blur', handleBlur);
+	trigger.removeEventListener('focusin', handleFocusIn);
+	trigger.removeEventListener('focusout', handleFocusOut);
 	trigger.removeEventListener('click', handleClick);
 });
 

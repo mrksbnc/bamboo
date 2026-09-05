@@ -12,8 +12,9 @@
 			v-if="showIcon && iconValue"
 			:icon="iconValue"
 			size="sm"
-			:variant="iconVariant"
+			variant="current"
 			aria-hidden="true"
+			:class="ALERT_MANIFEST.styles.icon"
 		/>
 		<div :class="ALERT_MANIFEST.styles.content">
 			<slot>
@@ -48,7 +49,6 @@ import {
 	generateDataTestId,
 	mergeTwClasses,
 	type BoAlertProps,
-	type BoIconVariant,
 	type Icon,
 } from '@workspace/bamboo-core';
 import { computed, useSlots } from 'vue';
@@ -76,20 +76,10 @@ const iconValue = computed<Icon | null>(() => {
 		primary: 'fa_regular_circle_question',
 		warning: 'fa_regular_circle_dot',
 		destructive: 'fa_regular_circle_xmark',
+		success: 'fa_regular_circle_check',
 	};
 
 	return map[props.variant || 'default'] ?? null;
-});
-
-const iconVariant = computed<BoIconVariant>(() => {
-	const map: Record<string, BoIconVariant> = {
-		primary: 'primary',
-		warning: 'warning',
-		destructive: 'destructive',
-		default: 'secondary',
-	};
-
-	return map[props.variant || 'default'];
 });
 
 const classValues = computed<string>(() =>
@@ -102,5 +92,6 @@ const classValues = computed<string>(() =>
 
 <style>
 @reference '../../lib.css';
+
 @import '@workspace/bamboo-core/manifests/alert.manifest.css';
 </style>

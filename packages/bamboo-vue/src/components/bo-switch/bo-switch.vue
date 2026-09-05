@@ -1,6 +1,5 @@
 <template>
 	<div
-		:id="id"
 		:data-testid="dataTestId"
 		:data-orientation="orientation"
 		:class="SWITCH_MANIFEST.styles.base"

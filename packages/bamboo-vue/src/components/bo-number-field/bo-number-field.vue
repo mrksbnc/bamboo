@@ -1,5 +1,5 @@
 <template>
-	<div :id="id" :data-testid="dataTestId" :class="NUMBER_FIELD_MANIFEST.styles.base">
+	<div :data-testid="dataTestId" :class="NUMBER_FIELD_MANIFEST.styles.base">
 		<div v-if="label || required" :class="NUMBER_FIELD_MANIFEST.styles.labels.container">
 			<label :for="id" :class="NUMBER_FIELD_MANIFEST.styles.labels.label">
 				{{ label

@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import type { BoPopoverProps } from '@workspace/bamboo-core';
-import { POPOVER_MANIFEST } from '@workspace/bamboo-core';
+import { generateComponentId, POPOVER_MANIFEST } from '@workspace/bamboo-core';
 import { computed, onMounted, onUnmounted, provide, ref } from 'vue';
 import { popoverContextKey } from './keys';
 
@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<BoPopoverProps>(), {
 const open = defineModel<boolean>('open', { default: false });
 const triggerRef = ref<HTMLElement>();
 const contentRef = ref<HTMLElement>();
+const contentId = ref(generateComponentId('popover-content'));
 const placement = computed(() => props.placement || POPOVER_MANIFEST.defaults.placement);
 const offset = computed(() => props.offset ?? POPOVER_MANIFEST.defaults.offset);
 
@@ -41,7 +42,7 @@ function onKeydown(event: KeyboardEvent): void {
 	}
 }
 
-provide(popoverContextKey, { open, placement, offset, triggerRef, contentRef, close });
+provide(popoverContextKey, { open, placement, offset, contentId, triggerRef, contentRef, close });
 onMounted(() => {
 	document.addEventListener('pointerdown', onPointerDown);
 	document.addEventListener('keydown', onKeydown);

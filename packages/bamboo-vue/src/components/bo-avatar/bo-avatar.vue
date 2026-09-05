@@ -63,6 +63,7 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 	size: () => AVATAR_MANIFEST.defaults.size,
 	kind: () => AVATAR_MANIFEST.defaults.kind,
 	role: () => AVATAR_MANIFEST.defaults.role,
+	cursor: () => AVATAR_MANIFEST.defaults.cursor,
 	variant: () => AVATAR_MANIFEST.defaults.variant,
 	indicatorKind: () => AVATAR_MANIFEST.defaults.indicatorKind,
 	indicatorPosition: () => AVATAR_MANIFEST.defaults.indicatorPosition,

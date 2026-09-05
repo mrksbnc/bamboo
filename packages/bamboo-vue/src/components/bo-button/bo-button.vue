@@ -108,6 +108,9 @@ const classValues = computed<string>(() => {
 		cursorClassValues.value,
 		widthClass,
 		pressedClass,
+		props.kind === 'link' && props.linkVariantWithShadow
+			? BUTTON_MANIFEST.styles.linkVariantWithShadow
+			: '',
 	]
 		.filter(Boolean)
 		.join(' ');
