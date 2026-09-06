@@ -310,3 +310,4 @@ vnode
 inputmode
 spinbutton
 activedescendant
+novalidate
