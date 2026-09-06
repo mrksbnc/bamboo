@@ -28,23 +28,23 @@
 	}
 
 	.bo-loading-pulse__dot--xs {
-		@apply size-3;
+		@apply size-2;
 	}
 
 	.bo-loading-pulse__dot--sm {
-		@apply size-4;
+		@apply size-3;
 	}
 
 	.bo-loading-pulse__dot--default {
-		@apply size-5;
+		@apply size-4;
 	}
 
 	.bo-loading-pulse__dot--lg {
-		@apply size-6;
+		@apply size-5;
 	}
 
 	.bo-loading-pulse__dot--xl {
-		@apply size-8;
+		@apply size-6;
 	}
 
 	.bo-loading-pulse__dot--delay-0 {

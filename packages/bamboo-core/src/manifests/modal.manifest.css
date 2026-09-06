@@ -104,7 +104,7 @@
 	}
 
 	.bo-modal-close {
-		@apply absolute end-4 top-4 inline-flex items-center justify-center rounded-sm text-neutral-500 opacity-70 transition-opacity hover:opacity-100;
+		@apply absolute end-4 top-4 inline-flex cursor-pointer items-center justify-center rounded-sm text-neutral-500 opacity-70 transition-opacity hover:opacity-100;
 	}
 
 	.dark .bo-modal-close {

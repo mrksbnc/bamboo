@@ -20,15 +20,15 @@
 	}
 
 	.bo-icon--default {
-		@apply size-5;
+		@apply size-4;
 	}
 
 	.bo-icon--lg {
-		@apply size-6;
+		@apply size-5;
 	}
 
 	.bo-icon--xl {
-		@apply size-8;
+		@apply size-6;
 	}
 
 	.bo-icon--current {

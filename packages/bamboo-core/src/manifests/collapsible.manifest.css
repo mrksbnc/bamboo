@@ -11,6 +11,10 @@
 		@apply text-neutral-100;
 	}
 
+	.dark .bo-collapsible__trigger:hover {
+		@apply bg-neutral-800 text-neutral-100;
+	}
+
 	.bo-collapsible__trigger:focus-visible {
 		@apply outline-none;
 		@apply border-blue-500;
