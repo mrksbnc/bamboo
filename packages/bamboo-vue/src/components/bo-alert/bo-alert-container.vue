@@ -10,7 +10,7 @@
 				@mouseenter="isExpanded = true"
 				@mouseleave="isExpanded = false"
 			>
-				<TransitionGroup name="bo-alert">
+				<TransitionGroup name="bo-alert" tag="div" move-class="bo-alert-move">
 					<div
 						v-for="(alert, i) in visibleAlerts"
 						:key="alert.id"
@@ -54,9 +54,13 @@ const props = withDefaults(defineProps<BoAlertContainerProps>(), {
 const { alerts } = useAlert();
 const isExpanded = ref<boolean>(false);
 
-const visibleAlerts = computed(() =>
-	alerts.value.filter((alert) => alert.position === undefined || alert.position === props.position),
-);
+const visibleAlerts = computed(() => {
+	const filtered = alerts.value.filter(
+		(alert) => alert.position === undefined || alert.position === props.position,
+	);
+
+	return isExpanded.value ? filtered : filtered.slice(-MAX_VISIBLE);
+});
 
 const containerClasses = computed<string>(() =>
 	mergeTwClasses(
@@ -68,7 +72,7 @@ const containerClasses = computed<string>(() =>
 const isBottomPosition = computed<boolean>(() => props.position.startsWith('bottom'));
 
 const stackStyle = computed<CSSProperties>(() => {
-	const count = Math.min(visibleAlerts.value.length, MAX_VISIBLE);
+	const count = visibleAlerts.value.length;
 	if (isExpanded.value) {
 		return {
 			'--stack-expanded-height': `${visibleAlerts.value.length * (ALERT_HEIGHT + 8)}px`,
@@ -95,8 +99,7 @@ function itemStyle(index: number, total: number): CSSProperties {
 
 	const offset = reverseIndex * ALERT_OFFSET;
 	const scale = 1 - reverseIndex * 0.04;
-	const opacity =
-		reverseIndex >= MAX_VISIBLE ? '0' : reverseIndex === MAX_VISIBLE - 1 ? '0.5' : '1';
+	const opacity = reverseIndex === MAX_VISIBLE - 1 ? '0.5' : '1';
 	const zIndex = 50 - reverseIndex;
 
 	const translateY = isBottomPosition.value ? `-${offset}px` : `${offset}px`;
