@@ -1,0 +1,105 @@
+@layer components {
+	.bo-dialog-backdrop {
+		@apply fixed inset-0 z-50 bg-black/80;
+	}
+
+	.bo-dialog-wrapper {
+		@apply fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6;
+	}
+
+	.bo-dialog-panel {
+		@apply relative grid w-full max-w-xs gap-6 overflow-hidden rounded-4xl border px-6 py-6 shadow-lg outline-none sm:max-w-md;
+		background-color: var(--color-white);
+		border-color: var(--color-neutral-200);
+		max-height: 90vh;
+	}
+
+	.dark .bo-dialog-panel {
+		background-color: var(--color-neutral-900);
+		border-color: var(--color-neutral-800);
+	}
+
+	.bo-dialog-panel--sm {
+		@apply max-w-sm;
+	}
+
+	.bo-dialog-panel--default {
+		@apply sm:max-w-md;
+	}
+
+	.bo-dialog-panel--lg {
+		@apply sm:max-w-lg md:max-w-2xl;
+	}
+
+	.bo-dialog-panel--xl {
+		@apply sm:max-w-lg md:max-w-2xl lg:max-w-4xl;
+	}
+
+	.bo-dialog-panel--full {
+		@apply max-w-full sm:max-w-[calc(100vw-3rem)];
+	}
+
+	.bo-dialog-header {
+		@apply flex flex-col gap-2 text-center sm:text-left;
+	}
+
+	.bo-dialog-header__content {
+		@apply flex items-center gap-3;
+	}
+
+	.bo-dialog-title {
+		@apply flex-1 text-base font-medium leading-none;
+	}
+
+	.bo-dialog-close {
+		@apply absolute end-4 top-4 inline-flex items-center justify-center rounded-sm opacity-70 transition-opacity hover:opacity-100;
+		color: var(--color-neutral-500);
+	}
+
+	.bo-dialog-close:focus-visible {
+		@apply outline-none ring-[3px];
+		--tw-ring-color: var(--color-blue-500);
+	}
+
+	.bo-dialog-body {
+		@apply min-h-0 flex-1 overflow-y-auto overscroll-contain text-sm;
+		color: var(--color-neutral-700);
+	}
+
+	.dark .bo-dialog-body {
+		color: var(--color-neutral-300);
+	}
+
+	.bo-dialog-description {
+		@apply text-sm leading-relaxed;
+		color: var(--color-neutral-500);
+	}
+
+	.dark .bo-dialog-description {
+		color: var(--color-neutral-400);
+	}
+
+	.bo-dialog-footer {
+		@apply flex flex-col-reverse gap-2 sm:flex-row sm:justify-end;
+	}
+
+	.bo-dialog-enter-active,
+	.bo-dialog-leave-active {
+		transition: opacity 0.2s ease;
+	}
+
+	.bo-dialog-enter-from,
+	.bo-dialog-leave-to {
+		opacity: 0;
+	}
+
+	.bo-dialog-enter-active .bo-dialog-panel,
+	.bo-dialog-leave-active .bo-dialog-panel {
+		transition: transform 0.2s ease;
+	}
+
+	.bo-dialog-enter-from .bo-dialog-panel,
+	.bo-dialog-leave-to .bo-dialog-panel {
+		transform: scale(0.95);
+	}
+}

@@ -1,12 +1,23 @@
 <template>
-	<div :class="classValues">
-		<div v-if="label || required" :class="labelContainerClassValues">
-			<bo-text v-if="label" :font-size="labelFontSize">{{ label }}</bo-text>
-			<span v-if="required" :class="requiredIndicatorClassValues">*</span>
+	<div :class="TEXTAREA_MANIFEST.styles.base">
+		<div v-if="label || required || description" :class="TEXTAREA_MANIFEST.styles.labels.container">
+			<label :for="id" :class="TEXTAREA_MANIFEST.styles.labels.label">
+				<bo-text v-if="label" :font-size="TEXTAREA_MANIFEST.styles.labels.fontSize">{{
+					label
+				}}</bo-text>
+				<span v-if="required" :class="TEXTAREA_MANIFEST.styles.labels.required">*</span>
+			</label>
+			<span
+				v-if="description"
+				:id="descriptionId"
+				:class="TEXTAREA_MANIFEST.styles.labels.description"
+			>
+				{{ description }}
+			</span>
 		</div>
 
-		<div :class="[containerClassValues, expand ? 'grow' : '']">
-			<div v-if="prefixIcon && prefixIcon !== 'none'" :class="prefixIconClassValues">
+		<div :class="containerClasses">
+			<div v-if="prefixIcon && prefixIcon !== 'none'" :class="prefixIconClasses">
 				<bo-icon :icon="prefixIcon" :size="iconSize" aria-hidden="true" />
 			</div>
 
@@ -15,7 +26,7 @@
 				:id="id"
 				:data-testid="dataTestId"
 				:name="name"
-				:value="modelValue"
+				v-model="model"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:readonly="readOnly"
@@ -23,31 +34,35 @@
 				:rows="rows"
 				:maxlength="maxLength"
 				:autofocus="autofocus"
-				:class="textareaClassValues"
+				:class="textareaClasses"
+				:role="role"
 				:aria-label="ariaLabel"
-				:aria-describedby="helperTextId"
-				:aria-invalid="state === 'invalid'"
+				:aria-describedby="describedBy"
+				:aria-invalid="state === 'invalid' ? 'true' : undefined"
 				@input="onInput"
 				@blur="onBlur"
 				@focus="emit('focus')"
+				@change="emit('change', $event)"
 			></textarea>
 
-			<div v-if="suffixIcon && suffixIcon !== 'none'" :class="suffixIconClassValues">
+			<div v-if="suffixIcon && suffixIcon !== 'none'" :class="suffixIconClasses">
 				<bo-icon :icon="suffixIcon" :size="iconSize" aria-hidden="true" />
 			</div>
 		</div>
 
-		<div v-if="error" :class="errorClassValues">
+		<div v-if="error" :id="helperTextId" :class="TEXTAREA_MANIFEST.styles.helpers.error">
 			<bo-icon icon="alert_circle" size="sm" variant="destructive" />
-			<bo-text :font-size="hintFontSize" variant="destructive">{{ error }}</bo-text>
+			<bo-text :font-size="TEXTAREA_MANIFEST.styles.helpers.fontSize" variant="destructive">{{
+				error
+			}}</bo-text>
 		</div>
 
 		<bo-text
 			v-else-if="hint"
 			:id="helperTextId"
-			:font-size="hintFontSize"
+			:font-size="TEXTAREA_MANIFEST.styles.helpers.fontSize"
 			variant="secondary"
-			:class="hintClassValues"
+			:class="TEXTAREA_MANIFEST.styles.helpers.hint"
 			>{{ hint }}</bo-text
 		>
 	</div>
@@ -59,7 +74,6 @@ import {
 	generateDataTestId,
 	mergeTwClasses,
 	TEXTAREA_MANIFEST,
-	type BoFontSize,
 	type BoIconSize,
 	type BoTextareaProps,
 } from '@workspace/bamboo-core';
@@ -67,11 +81,7 @@ import { computed, onMounted, ref } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
 
-interface Props extends /* @vue-ignore */ BoTextareaProps {
-	modelValue?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<BoTextareaProps>(), {
 	id: () => generateComponentId('textarea'),
 	dataTestId: () => generateDataTestId('textarea'),
 	size: 'default',
@@ -83,10 +93,12 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-	'update:modelValue': [value: string];
 	blur: [event: FocusEvent];
 	focus: [];
+	change: [event: Event];
 }>();
+
+const model = defineModel<string>({ default: '' });
 
 const textareaRef = ref<HTMLTextAreaElement | null>(null);
 
@@ -94,90 +106,70 @@ const iconSize = computed<BoIconSize>(() => {
 	return TEXTAREA_MANIFEST.styles.icons.size[props.size || 'default'];
 });
 
-const labelFontSize = computed<BoFontSize>(() => {
-	return TEXTAREA_MANIFEST.styles.labels.fontSize;
-});
-
-const hintFontSize = computed<BoFontSize>(() => {
-	return TEXTAREA_MANIFEST.styles.helpers.fontSize;
-});
-
 const helperTextId = computed<string>(() => `${props.id}-helper`);
+const descriptionId = computed<string>(() => `${props.id}-description`);
+const describedBy = computed<string | undefined>(() => {
+	const ids: string[] = [];
 
-const containerClassValues = computed<string>(() => {
+	if (props.description) ids.push(descriptionId.value);
+	if (props.error || props.hint) ids.push(helperTextId.value);
+
+	return ids.length ? ids.join(' ') : undefined;
+});
+
+const containerClasses = computed<string>(() => {
 	const classes: string[] = [
 		TEXTAREA_MANIFEST.styles.container.base,
-		TEXTAREA_MANIFEST.styles.variant[props.variant || 'default'],
 		TEXTAREA_MANIFEST.styles.state[props.state || 'default'],
+		TEXTAREA_MANIFEST.styles.variant[props.variant || 'default'],
 	];
 
 	if (props.disabled) {
-		classes.push(TEXTAREA_MANIFEST.styles.container.disabled as string);
+		classes.push(TEXTAREA_MANIFEST.styles.container.disabled);
 	}
 
 	if (props.expand) {
-		classes.push(TEXTAREA_MANIFEST.styles.container.expand as string);
+		classes.push(TEXTAREA_MANIFEST.styles.container.expand);
 	}
 
 	return mergeTwClasses(...classes);
 });
 
-const textareaClassValues = computed<string>(() => {
+const textareaClasses = computed<string>(() => {
 	const classes: string[] = [
 		TEXTAREA_MANIFEST.styles.textarea.base,
 		TEXTAREA_MANIFEST.styles.padding[props.size || 'default'],
 	];
 
 	if (props.prefixIcon && props.prefixIcon !== 'none') {
-		classes.push(TEXTAREA_MANIFEST.styles.textarea.withPrefixIcon as string);
+		classes.push(TEXTAREA_MANIFEST.styles.textarea.withPrefixIcon);
 	}
 
 	if (props.suffixIcon && props.suffixIcon !== 'none') {
-		classes.push(TEXTAREA_MANIFEST.styles.textarea.withSuffixIcon as string);
+		classes.push(TEXTAREA_MANIFEST.styles.textarea.withSuffixIcon);
 	}
 
 	if (props.expand) {
-		classes.push(TEXTAREA_MANIFEST.styles.textarea.expand as string);
+		classes.push(TEXTAREA_MANIFEST.styles.textarea.expand);
 	}
 
 	if (props.resizable) {
-		classes.push(TEXTAREA_MANIFEST.styles.textarea.resizable as string);
+		classes.push(TEXTAREA_MANIFEST.styles.textarea.resizable);
 	}
 
 	return mergeTwClasses(...classes);
 });
 
-const prefixIconClassValues = computed<string>(() => {
-	return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.prefix[props.size || 'default']);
+const prefixIconClasses = computed<string>(() => {
+	return TEXTAREA_MANIFEST.styles.icons.prefix[props.size || 'default'];
 });
 
-const suffixIconClassValues = computed<string>(() => {
-	return mergeTwClasses(TEXTAREA_MANIFEST.styles.icons.suffix[props.size || 'default']);
-});
-
-const labelContainerClassValues = computed<string>(() => {
-	return mergeTwClasses(TEXTAREA_MANIFEST.styles.labels.container);
-});
-
-const requiredIndicatorClassValues = computed<string>(() => {
-	return mergeTwClasses(TEXTAREA_MANIFEST.styles.labels.required);
-});
-
-const errorClassValues = computed<string>(() => {
-	return mergeTwClasses(TEXTAREA_MANIFEST.styles.helpers.error);
-});
-
-const hintClassValues = computed<string>(() => {
-	return mergeTwClasses(TEXTAREA_MANIFEST.styles.helpers.hint);
-});
-
-const classValues = computed<string>(() => {
-	return mergeTwClasses(TEXTAREA_MANIFEST.styles.base);
+const suffixIconClasses = computed<string>(() => {
+	return TEXTAREA_MANIFEST.styles.icons.suffix[props.size || 'default'];
 });
 
 function onInput(event: Event) {
-	const target = event.target as HTMLTextAreaElement;
-	emit('update:modelValue', target.value);
+	model.value = (event.target as HTMLTextAreaElement).value;
 }
 
 function onBlur(event: FocusEvent) {
@@ -196,3 +188,8 @@ onMounted(() => {
 	}
 });
 </script>
+
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/textarea.manifest.css';
+</style>

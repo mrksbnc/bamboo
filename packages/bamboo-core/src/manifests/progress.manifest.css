@@ -1,0 +1,76 @@
+@layer components {
+	.bo-progress__track {
+		@apply relative w-full overflow-hidden rounded-full;
+		background-color: var(--color-neutral-200);
+	}
+
+	.dark .bo-progress__track {
+		background-color: var(--color-neutral-700);
+	}
+
+	.bo-progress__track--sm {
+		@apply h-1.5;
+	}
+
+	.bo-progress__track--default {
+		@apply h-3;
+	}
+
+	.bo-progress__track--lg {
+		@apply h-3;
+	}
+
+	.bo-progress__indicator {
+		@apply h-full w-full flex-1 transition-all;
+		transform-origin: left;
+	}
+
+	.bo-progress__indicator--primary {
+		background-color: var(--color-blue-600);
+	}
+
+	.dark .bo-progress__indicator--primary {
+		background-color: var(--color-blue-500);
+	}
+
+	.bo-progress__indicator--secondary {
+		background-color: var(--color-neutral-600);
+	}
+
+	.dark .bo-progress__indicator--secondary {
+		background-color: var(--color-neutral-400);
+	}
+
+	.bo-progress__indicator--destructive {
+		background-color: var(--color-red-600);
+	}
+
+	.dark .bo-progress__indicator--destructive {
+		background-color: var(--color-red-500);
+	}
+
+	.bo-progress__indicator--warning {
+		background-color: var(--color-yellow-500);
+	}
+
+	.dark .bo-progress__indicator--warning {
+		background-color: var(--color-yellow-400);
+	}
+
+	.bo-progress__indicator--success {
+		background-color: var(--color-green-600);
+	}
+
+	.dark .bo-progress__indicator--success {
+		background-color: var(--color-green-500);
+	}
+
+	.bo-progress__label {
+		@apply flex items-center justify-between text-sm mb-1.5;
+		color: var(--color-neutral-700);
+	}
+
+	.dark .bo-progress__label {
+		color: var(--color-neutral-300);
+	}
+}

@@ -9,7 +9,7 @@ tags:
 outline: deep
 ---
 
-<script setup>
+<script setup lang="ts">
 import { BoIcon } from '@mrksbnc/bamboo-vue';
 import { BO_ICON_REGISTRY } from '@workspace/bamboo-core';
 import { ref, computed } from 'vue';
@@ -21,36 +21,14 @@ const searchString = ref('');
 const filteredIconNames = computed(() => {
   return iconNames.filter((icon) => icon.toLowerCase().includes(searchString.value.toLowerCase()));
 });
-</script>
 
-# Icon
-
-An icon is a graphical representation of an object or concept. It can be used to represent a product, service, or idea. Icons are commonly used in web applications to provide visual cues and enhance the user experience.
-
-## Basic Usage
-
-<div class="flex gap-4">
+const basicExample = `<div class="flex gap-4">
   <bo-icon icon="home" />
   <bo-icon icon="search" />
   <bo-icon icon="bell" />
-</div>
+</div>`;
 
-```vue
-<!-- With icon -->
-<bo-icon icon="home" />
-
-<!-- With icon and size -->
-<bo-icon icon="home" size="lg" />
-
-<!-- With icon and variant -->
-<bo-icon icon="home" variant="warning" />
-```
-
-## Variants
-
-The `variant` prop is used to change the appearance of the icon. It accepts a string value from the following list: `current`, `inherit`, `primary`, `secondary`, `success`, `warning`, `destructive`, `white`, `black`.
-
-<div class="flex gap-4 items-center" style="padding: 0.5rem;">
+const variantsExample = `<div class="flex gap-4 items-center" style="padding: 0.5rem;">
   <bo-icon icon="home" variant="primary" />
   <bo-icon icon="home" variant="secondary" />
   <bo-icon icon="home" variant="success" />
@@ -62,79 +40,106 @@ The `variant` prop is used to change the appearance of the icon. It accepts a st
   <span class="bg-neutral-300 rounded-md py-1.5 px-1 justify-center items-center flex" >
     <bo-icon icon="home" variant="black" />
   </span>
+</div>`;
 
-</div>
-
-```vue
-<!-- With variant -->
-<bo-icon icon="home" variant="primary" />
-<bo-icon icon="home" variant="secondary" />
-<bo-icon icon="home" variant="success" />
-<bo-icon icon="home" variant="warning" />
-<bo-icon icon="home" variant="destructive" />
-<bo-icon icon="home" variant="white" />
-<bo-icon icon="home" variant="black" />
-```
-
-## Sizes
-
-The `size` prop is used to change the size of the icon. It accepts a string value from the following list: `xs`, `sm`, `default`, `lg`, `xl` or a number that represents the size in pixels.
-
-<div class="flex gap-4">
+const sizesExample = `<div class="flex gap-4">
   <bo-icon icon="home" size="xs" />
   <bo-icon icon="home" size="sm" />
   <bo-icon icon="home" size="default" />
   <bo-icon icon="home" size="lg" />
   <bo-icon icon="home" size="xl" />
   <bo-icon icon="home" :size="100" />
-</div>
+</div>`;
 
-```vue
-<!-- With size -->
-<bo-icon icon="home" size="xs" />
-<bo-icon icon="home" size="sm" />
-<bo-icon icon="home" size="default" />
-<bo-icon icon="home" size="lg" />
-<bo-icon icon="home" size="xl" />
-<bo-icon icon="home" :size="100" />
-```
+const cursorExample = `<div class="flex gap-4">
+  <bo-icon icon="home" cursor="cursor-auto" />
+  <bo-icon icon="home" cursor="cursor-pointer" />
+  <bo-icon icon="home" cursor="cursor-not-allowed" />
+</div>`;
+
+const customColorsExample = `<div class="flex gap-4">
+  <bo-icon icon="home" custom-color="violet" />
+  <bo-icon icon="home" custom-color="#ff0000" />
+  <bo-icon icon="home" custom-color="oklch(79.5% 0.184 86.047)" />
+  <bo-icon icon="home" custom-color="rgba(255, 0, 0, 0.5)" />
+</div>`;
+</script>
+
+# Icon
+
+An icon is a graphical representation of an object or concept. It can be used to represent a product, service, or idea. Icons are commonly used in web applications to provide visual cues and enhance the user experience.
+
+## Basic Usage
+
+<ExampleFrame :code="basicExample">
+  <div class="flex gap-4">
+    <bo-icon icon="home" />
+    <bo-icon icon="search" />
+    <bo-icon icon="bell" />
+  </div>
+</ExampleFrame>
+
+## Variants
+
+The `variant` prop is used to change the appearance of the icon. It accepts a string value from the following list: `current`, `inherit`, `primary`, `secondary`, `success`, `warning`, `destructive`, `white`, `black`.
+
+<ExampleFrame :code="variantsExample">
+  <div class="flex gap-4 items-center" style="padding: 0.5rem;">
+    <bo-icon icon="home" variant="primary" />
+    <bo-icon icon="home" variant="secondary" />
+    <bo-icon icon="home" variant="success" />
+    <bo-icon icon="home" variant="warning" />
+    <bo-icon icon="home" variant="destructive" />
+    <span class="bg-neutral-600 rounded-md py-1.5 px-1 justify-center items-center flex" >
+      <bo-icon icon="home" variant="white" />
+    </span>
+    <span class="bg-neutral-300 rounded-md py-1.5 px-1 justify-center items-center flex" >
+      <bo-icon icon="home" variant="black" />
+    </span>
+
+</div>
+</ExampleFrame>
+
+## Sizes
+
+The `size` prop is used to change the size of the icon. It accepts a string value from the following list: `xs`, `sm`, `default`, `lg`, `xl` or a number that represents the size in pixels.
+
+<ExampleFrame :code="sizesExample">
+  <div class="flex gap-4">
+    <bo-icon icon="home" size="xs" />
+    <bo-icon icon="home" size="sm" />
+    <bo-icon icon="home" size="default" />
+    <bo-icon icon="home" size="lg" />
+    <bo-icon icon="home" size="xl" />
+    <bo-icon icon="home" :size="100" />
+  </div>
+</ExampleFrame>
 
 ## Cursor
 
 The `cursor` prop is used to control the cursor style of the icon. The values are defined in the `BoCursor` type.
 
-<div class="flex gap-4">
-  <bo-icon icon="home" cursor="cursor-auto" />
-  <bo-icon icon="home" cursor="cursor-pointer" />
-  <bo-icon icon="home" cursor="cursor-not-allowed" />
-</div>
-
-```vue
-<!-- With cursor -->
-<bo-icon icon="home" cursor="cursor-auto" />
-<bo-icon icon="home" cursor="cursor-pointer" />
-<bo-icon icon="home" cursor="cursor-not-allowed" />
-```
+<ExampleFrame :code="cursorExample">
+  <div class="flex gap-4">
+    <bo-icon icon="home" cursor="cursor-auto" />
+    <bo-icon icon="home" cursor="cursor-pointer" />
+    <bo-icon icon="home" cursor="cursor-not-allowed" />
+  </div>
+</ExampleFrame>
 
 ## Custom Colors
 
 To set a custom color for the icon, you can use the `customColor` prop. The value can be a string representing a color, a CSS variable,
 hex, or an RGB/RGBA color.
 
-<div class="flex gap-4">
-  <bo-icon icon="home" custom-color="violet" />
-  <bo-icon icon="home" custom-color="#ff0000" />
-  <bo-icon icon="home" custom-color="oklch(79.5% 0.184 86.047)" />
-  <bo-icon icon="home" custom-color="rgba(255, 0, 0, 0.5)" />
-</div>
-
-```vue
-<!-- With custom color -->
-<bo-icon icon="home" custom-color="violet" />
-<bo-icon icon="home" custom-color="#ff0000" />
-<bo-icon icon="home" custom-color="oklch(79.5% 0.184 86.047)" />
-<bo-icon icon="home" custom-color="rgba(255, 0, 0, 0.5)" />
-```
+<ExampleFrame :code="customColorsExample">
+  <div class="flex gap-4">
+    <bo-icon icon="home" custom-color="violet" />
+    <bo-icon icon="home" custom-color="#ff0000" />
+    <bo-icon icon="home" custom-color="oklch(79.5% 0.184 86.047)" />
+    <bo-icon icon="home" custom-color="rgba(255, 0, 0, 0.5)" />
+  </div>
+</ExampleFrame>
 
 ## API Reference
 

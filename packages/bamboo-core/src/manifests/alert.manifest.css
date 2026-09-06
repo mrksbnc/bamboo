@@ -3,6 +3,10 @@
 		@apply pointer-events-none fixed z-50 flex w-[calc(100%-2rem)] max-w-sm flex-col gap-2;
 	}
 
+	.bo-alert-container__item {
+		@apply pointer-events-auto;
+	}
+
 	.bo-alert-container--top-left {
 		@apply start-4 top-4 items-start;
 	}
@@ -100,5 +104,22 @@
 
 	.dark .bo-alert__description {
 		color: var(--color-neutral-400);
+	}
+
+	.bo-alert-enter-active,
+	.bo-alert-leave-active {
+		transition:
+			opacity 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.bo-alert-enter-from,
+	.bo-alert-leave-to {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+
+	.bo-alert-move {
+		transition: transform 0.2s ease;
 	}
 }

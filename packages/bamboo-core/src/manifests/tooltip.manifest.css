@@ -1,0 +1,120 @@
+@layer components {
+	.bo-tooltip__trigger {
+		@apply relative inline-block;
+	}
+
+	.bo-tooltip {
+		@apply fixed z-50 inline-flex w-fit max-w-xs items-center gap-1.5 rounded-2xl px-3 py-1.5 text-xs font-medium text-white shadow-md text-balance;
+		@apply animate-in fade-in-0 zoom-in-95;
+		background-color: var(--color-neutral-900);
+	}
+
+	.dark .bo-tooltip {
+		background-color: var(--color-neutral-700);
+	}
+
+	.bo-tooltip--top {
+		@apply mb-2;
+	}
+
+	.bo-tooltip--top-start {
+		@apply mb-2;
+	}
+
+	.bo-tooltip--top-end {
+		@apply mb-2;
+	}
+
+	.bo-tooltip--bottom {
+		@apply mt-2;
+	}
+
+	.bo-tooltip--bottom-start {
+		@apply mt-2;
+	}
+
+	.bo-tooltip--bottom-end {
+		@apply mt-2;
+	}
+
+	.bo-tooltip--left {
+		@apply mr-2;
+	}
+
+	.bo-tooltip--left-start {
+		@apply mr-2;
+	}
+
+	.bo-tooltip--left-end {
+		@apply mr-2;
+	}
+
+	.bo-tooltip--right {
+		@apply ml-2;
+	}
+
+	.bo-tooltip--right-start {
+		@apply ml-2;
+	}
+
+	.bo-tooltip--right-end {
+		@apply ml-2;
+	}
+
+	.bo-tooltip__arrow {
+		@apply absolute size-2.5 rotate-45 rounded-[2px];
+		background-color: var(--color-neutral-900);
+	}
+
+	.dark .bo-tooltip__arrow {
+		background-color: var(--color-neutral-700);
+	}
+
+	.bo-tooltip__arrow--top {
+		@apply top-full left-1/2 -translate-x-1/2 -translate-y-1/2;
+	}
+
+	.bo-tooltip__arrow--top-start {
+		@apply top-full left-4 -translate-y-1/2;
+	}
+
+	.bo-tooltip__arrow--top-end {
+		@apply top-full right-4 -translate-y-1/2;
+	}
+
+	.bo-tooltip__arrow--bottom {
+		@apply bottom-full left-1/2 -translate-x-1/2 translate-y-1/2;
+	}
+
+	.bo-tooltip__arrow--bottom-start {
+		@apply bottom-full left-4 translate-y-1/2;
+	}
+
+	.bo-tooltip__arrow--bottom-end {
+		@apply bottom-full right-4 translate-y-1/2;
+	}
+
+	.bo-tooltip__arrow--left {
+		@apply left-full top-1/2 -translate-y-1/2 -translate-x-1/2;
+	}
+
+	.bo-tooltip__arrow--left-start {
+		@apply left-full top-4 -translate-x-1/2;
+	}
+
+	.bo-tooltip__arrow--left-end {
+		@apply left-full bottom-4 -translate-x-1/2;
+	}
+
+	.bo-tooltip__arrow--right {
+		@apply right-full top-1/2 -translate-y-1/2 translate-x-1/2;
+	}
+
+	.bo-tooltip__arrow--right-start {
+		@apply right-full top-4 translate-x-1/2;
+	}
+
+	.bo-tooltip__arrow--right-end {
+		@apply right-full bottom-4 translate-x-1/2;
+	}
+}

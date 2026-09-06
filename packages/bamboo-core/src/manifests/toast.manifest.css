@@ -1,0 +1,100 @@
+@layer components {
+	.bo-toast-viewport {
+		@apply pointer-events-none fixed z-[100] flex w-[calc(100%-2rem)] max-w-sm flex-col gap-2;
+	}
+
+	.bo-toast-viewport--top-left {
+		@apply start-4 top-4 items-start;
+	}
+
+	.bo-toast-viewport--top-center {
+		@apply start-1/2 top-4 -translate-x-1/2 items-center;
+	}
+
+	.bo-toast-viewport--top-right {
+		@apply end-4 top-4 items-end;
+	}
+
+	.bo-toast-viewport--bottom-left {
+		@apply bottom-4 start-4 items-start;
+	}
+
+	.bo-toast-viewport--bottom-center {
+		@apply bottom-4 start-1/2 -translate-x-1/2 items-center;
+	}
+
+	.bo-toast-viewport--bottom-right {
+		@apply end-4 bottom-4 items-end;
+	}
+
+	.bo-toast {
+		@apply pointer-events-auto relative grid w-full grid-cols-[auto_1fr_auto] items-start gap-3 rounded-lg border px-4 py-3 text-sm shadow-lg;
+		background-color: var(--color-white);
+		border-color: var(--color-neutral-300);
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-toast {
+		background-color: var(--color-neutral-900);
+		border-color: var(--color-neutral-700);
+		color: var(--color-neutral-100);
+	}
+
+	.bo-toast--primary {
+		@apply border-blue-500/50;
+	}
+
+	.bo-toast--success {
+		@apply border-green-500/50;
+	}
+
+	.bo-toast--warning {
+		@apply border-yellow-500/50;
+	}
+
+	.bo-toast--destructive {
+		@apply border-red-500/50;
+	}
+
+	.bo-toast__icon {
+		@apply mt-0.5 size-4 shrink-0;
+	}
+
+	.bo-toast__content {
+		@apply col-start-2 flex min-w-0 flex-col gap-0.5;
+	}
+
+	.bo-toast__title {
+		@apply font-medium leading-none;
+	}
+
+	.bo-toast__description {
+		@apply leading-relaxed;
+		color: var(--color-neutral-500);
+	}
+
+	.dark .bo-toast__description {
+		color: var(--color-neutral-400);
+	}
+
+	.bo-toast__close {
+		@apply col-start-3 -me-2 -mt-2;
+	}
+
+	.bo-toast-enter-active,
+	.bo-toast-leave-active {
+		transition:
+			opacity 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.bo-toast-enter-from,
+	.bo-toast-leave-to {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+
+	.bo-toast-move {
+		transition: transform 0.2s ease;
+	}
+}

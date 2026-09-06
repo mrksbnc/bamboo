@@ -29,7 +29,6 @@ import { computed, type StyleValue } from 'vue';
 const props = withDefaults(defineProps<BoTextProps>(), {
 	id: () => generateComponentId('text'),
 	dataTestId: () => generateDataTestId('text'),
-	cursor: () => TEXT_MANIFEST.defaults.cursor,
 	variant: () => TEXT_MANIFEST.defaults.variant,
 	fontSize: () => TEXT_MANIFEST.defaults.fontSize,
 	lineClamp: () => TEXT_MANIFEST.defaults.lineClamp,
@@ -53,25 +52,21 @@ const cursor = computed<string>(() => {
 	return TEXT_MANIFEST.styles.cursor.default;
 });
 
-const lineClamp = computed<string>(() => {
+const lineClampValue = computed<string | undefined>(() => {
 	if (!props.lineClamp || props.lineClamp === 'none') {
-		return TEXT_MANIFEST.styles.lineClamp.none;
+		return undefined;
 	}
 
 	if (typeof props.lineClamp === 'number') {
-		return `${TEXT_MANIFEST.styles.lineClamp.template}${props.lineClamp}`;
+		return `${props.lineClamp}`;
 	}
 
-	if (typeof props.lineClamp === 'string') {
-		if (props.lineClamp.startsWith('--')) {
-			return `line-clamp-(${props.lineClamp})`;
-		}
-
-		return `line-clamp-[${props.lineClamp}]`;
-	}
-
-	return TEXT_MANIFEST.styles.lineClamp.none;
+	return props.lineClamp.startsWith('--') ? `var(${props.lineClamp})` : props.lineClamp;
 });
+
+const lineClamp = computed<string>(() =>
+	lineClampValue.value ? TEXT_MANIFEST.styles.lineClamp.base : TEXT_MANIFEST.styles.lineClamp.none,
+);
 
 const classValues = computed<string>(() => {
 	return mergeTwClasses(
@@ -89,12 +84,21 @@ const classValues = computed<string>(() => {
 });
 
 const styleValues = computed<StyleValue>(() => {
+	const style: StyleValue = {};
+
 	if (props.customColor && typeof props.customColor === 'string') {
-		return {
-			color: getValidOrFallbackColorFromStr(props.customColor),
-		};
+		style.color = getValidOrFallbackColorFromStr(props.customColor);
 	}
 
-	return {};
+	if (lineClampValue.value) {
+		style['--bo-text-line-clamp'] = lineClampValue.value;
+	}
+
+	return style;
 });
 </script>
+
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/text.manifest.css';
+</style>

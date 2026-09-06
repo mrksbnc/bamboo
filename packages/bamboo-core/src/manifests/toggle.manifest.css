@@ -1,0 +1,27 @@
+@layer components {
+	.bo-toggle,
+	.bo-toggle-group__item {
+		@apply inline-flex items-center justify-center gap-1 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-blue-600 data-[state=on]:text-white dark:data-[state=on]:bg-blue-700;
+	}
+
+	.bo-toggle--default,
+	.bo-toggle-group__item {
+		@apply rounded-4xl bg-transparent text-neutral-900 hover:bg-neutral-100 dark:text-neutral-100 dark:hover:bg-neutral-800;
+	}
+
+	.bo-toggle--outline {
+		@apply rounded-4xl border border-neutral-200 bg-transparent text-neutral-900 hover:bg-neutral-100 dark:border-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-800;
+	}
+
+	.bo-toggle--sm {
+		@apply h-8 px-2.5;
+	}
+
+	.bo-toggle--default-size {
+		@apply min-w-9 h-9 px-3;
+	}
+
+	.bo-toggle--lg {
+		@apply h-10 px-4;
+	}
+}

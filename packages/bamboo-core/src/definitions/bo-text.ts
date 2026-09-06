@@ -197,7 +197,7 @@ interface BoTextStyleManifest {
 	};
 	lineClamp: {
 		none: string;
-		template: string;
+		base: string;
 	};
 }
 

@@ -6,7 +6,7 @@
 					v-for="alert in visibleAlerts"
 					:id="alert.id"
 					:key="alert.id"
-					class="pointer-events-auto"
+					:class="ALERT_MANIFEST.styles.container.item"
 					:title="alert.title"
 					:description="alert.description"
 					:variant="alert.variant"
@@ -43,22 +43,3 @@ const containerClasses = computed<string>(() =>
 	),
 );
 </script>
-
-<style scoped>
-.bo-alert-enter-active,
-.bo-alert-leave-active {
-	transition:
-		opacity 0.2s ease,
-		transform 0.2s ease;
-}
-
-.bo-alert-enter-from,
-.bo-alert-leave-to {
-	opacity: 0;
-	transform: translateY(-8px);
-}
-
-.bo-alert-move {
-	transition: transform 0.2s ease;
-}
-</style>

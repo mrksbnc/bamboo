@@ -44,10 +44,6 @@ export interface BoButtonGroupProps {
 	 */
 	role?: HTMLAttributes['role'];
 	/**
-	 * The selected button value(s). Can be a single value or array for multiple selection.
-	 */
-	modelValue?: string | number | (string | number)[];
-	/**
 	 * Whether multiple buttons can be selected at once.
 	 * @default false
 	 */

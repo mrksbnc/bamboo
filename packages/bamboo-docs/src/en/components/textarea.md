@@ -11,8 +11,42 @@ tags:
 outline: deep
 ---
 
-<script setup>
+<script setup lang="ts">
 import { BoTextarea } from '@mrksbnc/bamboo-vue';
+
+const basicExample = `<bo-textarea placeholder="Enter your message..." />`;
+const labelExample = `<bo-textarea label="Message" placeholder="Enter your message..." />`;
+const sizesExample = `<bo-textarea size="sm" placeholder="Small textarea" />
+<bo-textarea size="default" placeholder="Default textarea" />
+<bo-textarea size="lg" placeholder="Large textarea" />`;
+const statesExample = `<bo-textarea state="default" placeholder="Default state" />
+<bo-textarea state="valid" placeholder="Valid textarea" />
+<bo-textarea state="invalid" placeholder="Invalid textarea" error="This field is required" />`;
+const variantsExample = `<bo-textarea variant="default" placeholder="Default variant" />
+<bo-textarea variant="filled" placeholder="Filled variant" />`;
+const iconsExample = `<bo-textarea prefix-icon="message_circle" placeholder="Write a comment..." />
+<bo-textarea suffix-icon="send" placeholder="Type your message..." />`;
+const rowsExample = `<bo-textarea rows="2" placeholder="2 rows" />
+<bo-textarea rows="4" placeholder="4 rows" />
+<bo-textarea rows="6" placeholder="6 rows" />`;
+const resizableExample = `<bo-textarea placeholder="Resizable textarea" resizable />
+<bo-textarea placeholder="Non-resizable textarea" :resizable="false" />`;
+const descriptionsExample = `<bo-textarea
+  label="Feedback"
+  description="Share your thoughts about our service"
+  hint="Maximum 500 characters"
+  placeholder="Enter your feedback..."
+ />
+<bo-textarea
+  label="Comments"
+  state="invalid"
+  error="Comments must be at least 10 characters long"
+  placeholder="Enter comments..."
+ />`;
+const requiredExample = `<bo-textarea label="Description" placeholder="Enter description" required />`;
+const disabledExample = `<bo-textarea placeholder="Disabled textarea" disabled />`;
+const characterLimitExample = `<bo-textarea placeholder="Max 100 characters" max-length="100" />`;
+const fullWidthExample = `<bo-textarea placeholder="Full width textarea" full-width />`;
 </script>
 
 # Textarea
@@ -23,121 +57,97 @@ A multi-line text input component with support for icons, validation, auto-resiz
 
 The component is called `bo-textarea` and can be used as follows:
 
-<div class="flex gap-4">
-  <bo-textarea placeholder="Enter your message..." />
-</div>
-
-```vue
-<bo-textarea placeholder="Enter your message..." />
-```
+<ExampleFrame :code="basicExample">
+  <div class="flex gap-4">
+    <bo-textarea placeholder="Enter your message..." />
+  </div>
+</ExampleFrame>
 
 ## With Label
 
 Textarea can have labels for better accessibility and user experience:
 
-<div class="flex gap-4">
-  <bo-textarea label="Message" placeholder="Enter your message..." />
-</div>
-
-```vue
-<bo-textarea label="Message" placeholder="Enter your message..." />
-```
+<ExampleFrame :code="labelExample">
+  <div class="flex gap-4">
+    <bo-textarea label="Message" placeholder="Enter your message..." />
+  </div>
+</ExampleFrame>
 
 ## Sizes
 
 The `size` prop allows you to customize the size of the textarea. The default size is `default`.
 
-<div class="flex flex-col gap-4">
+<ExampleFrame :code="sizesExample">
+  <div class="flex flex-col gap-4">
   <bo-textarea size="sm" placeholder="Small textarea" />
   <bo-textarea size="default" placeholder="Default textarea" />
   <bo-textarea size="lg" placeholder="Large textarea" />
 </div>
-
-```vue
-<bo-textarea size="sm" placeholder="Small textarea" />
-<bo-textarea size="default" placeholder="Default textarea" />
-<bo-textarea size="lg" placeholder="Large textarea" />
-```
+</ExampleFrame>
 
 ## States
 
 The `state` prop allows you to show validation states. The default state is `default`.
 
-<div class="flex flex-col gap-4">
+<ExampleFrame :code="statesExample">
+  <div class="flex flex-col gap-4">
   <bo-textarea state="default" placeholder="Default state" />
   <bo-textarea state="valid" placeholder="Valid textarea" />
   <bo-textarea state="invalid" placeholder="Invalid textarea" error="This field is required" />
 </div>
-
-```vue
-<bo-textarea state="default" placeholder="Default state" />
-<bo-textarea state="valid" placeholder="Valid textarea" />
-<bo-textarea state="invalid" placeholder="Invalid textarea" error="This field is required" />
-```
+</ExampleFrame>
 
 ## Variants
 
 The `variant` prop allows you to customize the appearance. The default variant is `default`.
 
-<div class="flex flex-col gap-4">
+<ExampleFrame :code="variantsExample">
+  <div class="flex flex-col gap-4">
   <bo-textarea variant="default" placeholder="Default variant" />
   <bo-textarea variant="filled" placeholder="Filled variant" />
 </div>
-
-```vue
-<bo-textarea variant="default" placeholder="Default variant" />
-<bo-textarea variant="filled" placeholder="Filled variant" />
-```
+</ExampleFrame>
 
 ## With Icons
 
 Textarea support prefix and suffix icons:
 
-<div class="flex flex-col gap-4">
+<ExampleFrame :code="iconsExample">
+  <div class="flex flex-col gap-4">
   <bo-textarea prefix-icon="message_circle" placeholder="Write a comment..." />
   <bo-textarea suffix-icon="send" placeholder="Type your message..." />
 </div>
-
-```vue
-<bo-textarea prefix-icon="message_circle" placeholder="Write a comment..." />
-<bo-textarea suffix-icon="send" placeholder="Type your message..." />
-```
+</ExampleFrame>
 
 ## Rows Configuration
 
 Control the number of visible rows:
 
-<div class="flex flex-col gap-4">
+<ExampleFrame :code="rowsExample">
+  <div class="flex flex-col gap-4">
   <bo-textarea rows="2" placeholder="2 rows" />
   <bo-textarea rows="4" placeholder="4 rows" />
   <bo-textarea rows="6" placeholder="6 rows" />
 </div>
-
-```vue
-<bo-textarea rows="2" placeholder="2 rows" />
-<bo-textarea rows="4" placeholder="4 rows" />
-<bo-textarea rows="6" placeholder="6 rows" />
-```
+</ExampleFrame>
 
 ## Resizable
 
 Control whether the textarea can be resized:
 
-<div class="flex flex-col gap-4">
+<ExampleFrame :code="resizableExample">
+  <div class="flex flex-col gap-4">
   <bo-textarea placeholder="Resizable textarea" resizable />
   <bo-textarea placeholder="Non-resizable textarea" :resizable="false" />
 </div>
-
-```vue
-<bo-textarea placeholder="Resizable textarea" resizable />
-<bo-textarea placeholder="Non-resizable textarea" :resizable="false" />
-```
+</ExampleFrame>
 
 ## With Description and Hints
 
 Textarea can have descriptions and hint messages:
 
-<div class="flex flex-col gap-4">
+<ExampleFrame :code="descriptionsExample">
+  <div class="flex flex-col gap-4">
   <bo-textarea 
     label="Feedback" 
     description="Share your thoughts about our service" 
@@ -151,69 +161,47 @@ Textarea can have descriptions and hint messages:
     placeholder="Enter comments..." 
   />
 </div>
-
-```vue
-<bo-textarea
-	label="Feedback"
-	description="Share your thoughts about our service"
-	hint="Maximum 500 characters"
-	placeholder="Enter your feedback..."
-/>
-<bo-textarea
-	label="Comments"
-	state="invalid"
-	error="Comments must be at least 10 characters long"
-	placeholder="Enter comments..."
-/>
-```
+</ExampleFrame>
 
 ## Required Fields
 
 Mark textarea as required:
 
-<div class="flex gap-4">
-  <bo-textarea label="Description" placeholder="Enter description" required />
-</div>
-
-```vue
-<bo-textarea label="Description" placeholder="Enter description" required />
-```
+<ExampleFrame :code="requiredExample">
+  <div class="flex gap-4">
+    <bo-textarea label="Description" placeholder="Enter description" required />
+  </div>
+</ExampleFrame>
 
 ## Disabled State
 
 Textarea can be disabled:
 
-<div class="flex gap-4">
-  <bo-textarea placeholder="Disabled textarea" disabled />
-</div>
-
-```vue
-<bo-textarea placeholder="Disabled textarea" disabled />
-```
+<ExampleFrame :code="disabledExample">
+  <div class="flex gap-4">
+    <bo-textarea placeholder="Disabled textarea" disabled />
+  </div>
+</ExampleFrame>
 
 ## Character Limit
 
 Set a maximum character limit:
 
-<div class="flex gap-4">
-  <bo-textarea placeholder="Max 100 characters" max-length="100" />
-</div>
-
-```vue
-<bo-textarea placeholder="Max 100 characters" max-length="100" />
-```
+<ExampleFrame :code="characterLimitExample">
+  <div class="flex gap-4">
+    <bo-textarea placeholder="Max 100 characters" max-length="100" />
+  </div>
+</ExampleFrame>
 
 ## Full Width
 
 Textarea can take the full width of their container:
 
-<div class="w-full">
-  <bo-textarea placeholder="Full width textarea" full-width />
-</div>
-
-```vue
-<bo-textarea placeholder="Full width textarea" full-width />
-```
+<ExampleFrame :code="fullWidthExample">
+  <div class="w-full">
+    <bo-textarea placeholder="Full width textarea" full-width />
+  </div>
+</ExampleFrame>
 
 ## API Reference
 

@@ -1,0 +1,98 @@
+@layer components {
+	.bo-drawer-backdrop {
+		@apply fixed inset-0 z-50 bg-black/80;
+	}
+
+	.bo-drawer-wrapper {
+		@apply fixed inset-0 z-50 flex;
+	}
+
+	.bo-drawer-wrapper[data-side='left'] {
+		@apply justify-start;
+	}
+
+	.bo-drawer-wrapper[data-side='right'] {
+		@apply justify-end;
+	}
+
+	.bo-drawer-panel {
+		@apply relative flex h-full w-3/4 flex-col gap-4 overflow-hidden border-y bg-white p-4 shadow-lg outline-none sm:max-w-sm;
+		background-color: var(--color-white);
+		border-color: var(--color-neutral-200);
+	}
+
+	.dark .bo-drawer-panel {
+		background-color: var(--color-neutral-900);
+		border-color: var(--color-neutral-800);
+	}
+
+	.bo-drawer-panel--left {
+		@apply border-s-0 border-e;
+	}
+
+	.bo-drawer-panel--right {
+		@apply border-e-0 border-s;
+	}
+
+	.bo-drawer-panel--sm {
+		@apply max-w-sm;
+	}
+	.bo-drawer-panel--default {
+		@apply max-w-md;
+	}
+	.bo-drawer-panel--lg {
+		@apply max-w-lg;
+	}
+	.bo-drawer-panel--full {
+		@apply max-w-full;
+	}
+
+	.bo-drawer-header {
+		@apply flex flex-col gap-0.5 p-4 text-start;
+	}
+	.bo-drawer-header__content {
+		@apply flex items-center gap-3;
+	}
+	.bo-drawer-title {
+		@apply flex-1 leading-none;
+	}
+	.bo-drawer-close {
+		@apply absolute end-4 top-4 inline-flex items-center justify-center rounded-sm opacity-70 transition-opacity hover:opacity-100;
+		color: var(--color-neutral-500);
+	}
+	.bo-drawer-body {
+		@apply min-h-0 overflow-y-auto overscroll-contain text-sm;
+		color: var(--color-neutral-700);
+	}
+	.dark .bo-drawer-body {
+		color: var(--color-neutral-300);
+	}
+	.bo-drawer-description {
+		@apply text-sm leading-relaxed;
+		color: var(--color-neutral-500);
+	}
+	.dark .bo-drawer-description {
+		color: var(--color-neutral-400);
+	}
+	.bo-drawer-footer {
+		@apply flex flex-col-reverse gap-2 p-4 sm:flex-row sm:justify-end;
+	}
+	.bo-drawer-enter-active,
+	.bo-drawer-leave-active {
+		transition:
+			transform 0.2s ease,
+			opacity 0.2s ease;
+	}
+	.bo-drawer-enter-from,
+	.bo-drawer-leave-to {
+		opacity: 0;
+	}
+	.bo-drawer-enter-from .bo-drawer-panel,
+	.bo-drawer-leave-to .bo-drawer-panel {
+		transform: translateX(100%);
+	}
+	.bo-drawer-wrapper[data-side='left'] .bo-drawer-enter-from .bo-drawer-panel,
+	.bo-drawer-wrapper[data-side='left'] .bo-drawer-leave-to .bo-drawer-panel {
+		transform: translateX(-100%);
+	}
+}

@@ -1,0 +1,37 @@
+@layer components {
+	.bo-hover-card-trigger {
+		@apply inline-flex;
+	}
+	.bo-hover-card-content {
+		@apply fixed z-50 w-72 rounded-2xl border p-4 text-sm shadow-md outline-none;
+		background-color: var(--color-white);
+		border-color: var(--color-neutral-200);
+	}
+	.dark .bo-hover-card-content {
+		background-color: var(--color-neutral-900);
+		border-color: var(--color-neutral-800);
+	}
+	.bo-hover-card-content[data-state='open'] {
+		@apply animate-in fade-in-0 zoom-in-95;
+	}
+	.bo-hover-card-content--top,
+	.bo-hover-card-content--top-start,
+	.bo-hover-card-content--top-end {
+		@apply mb-2;
+	}
+	.bo-hover-card-content--bottom,
+	.bo-hover-card-content--bottom-start,
+	.bo-hover-card-content--bottom-end {
+		@apply mt-2;
+	}
+	.bo-hover-card-content--left,
+	.bo-hover-card-content--left-start,
+	.bo-hover-card-content--left-end {
+		@apply me-2;
+	}
+	.bo-hover-card-content--right,
+	.bo-hover-card-content--right-start,
+	.bo-hover-card-content--right-end {
+		@apply ms-2;
+	}
+}

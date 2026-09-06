@@ -1,35 +1,5 @@
 import type { App, ObjectPlugin } from 'vue';
-import {
-	BoAccordion,
-	BoAlert,
-	BoAlertContainer,
-	BoAvatar,
-	BoBadge,
-	BoButton,
-	BoIcon,
-	BoInput,
-	BoLoadingPulse,
-	BoLoadingSpinner,
-	BoModal,
-	BoText,
-	BoTextarea,
-} from './components/index.js';
-
-const BambooComponents = {
-	BoAccordion,
-	BoAlert,
-	BoAlertContainer,
-	BoAvatar,
-	BoBadge,
-	BoButton,
-	BoIcon,
-	BoInput,
-	BoLoadingPulse,
-	BoLoadingSpinner,
-	BoModal,
-	BoText,
-	BoTextarea,
-};
+import * as BambooComponents from './components/index.js';
 
 export const BambooVue = {
 	install(app: App): void {

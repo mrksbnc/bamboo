@@ -307,3 +307,6 @@ Triggerable
 valuenow
 nwse
 vnode
+inputmode
+spinbutton
+activedescendant

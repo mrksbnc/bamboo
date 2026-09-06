@@ -63,7 +63,6 @@ const props = withDefaults(defineProps<BoAvatarProps>(), {
 	size: () => AVATAR_MANIFEST.defaults.size,
 	kind: () => AVATAR_MANIFEST.defaults.kind,
 	role: () => AVATAR_MANIFEST.defaults.role,
-	cursor: () => AVATAR_MANIFEST.defaults.cursor,
 	variant: () => AVATAR_MANIFEST.defaults.variant,
 	indicatorKind: () => AVATAR_MANIFEST.defaults.indicatorKind,
 	indicatorPosition: () => AVATAR_MANIFEST.defaults.indicatorPosition,
@@ -142,7 +141,7 @@ const containerClassValues = computed<string>(() => {
 		fontColor.value,
 		AVATAR_MANIFEST.styles.base,
 		backgroundClassValues.value,
-		props.cursor || 'cursor-auto',
+		props.cursor || AVATAR_MANIFEST.styles.cursor.default,
 		AVATAR_MANIFEST.styles.size[props.size || 'default'],
 		AVATAR_MANIFEST.styles.kind[props.kind || 'default'],
 	);
@@ -175,3 +174,8 @@ function onImageError($event: Event): void {
 	console.error('[bo-avatar]: failed to load image', $event);
 }
 </script>
+
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/avatar.manifest.css';
+</style>

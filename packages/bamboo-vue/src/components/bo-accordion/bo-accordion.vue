@@ -117,3 +117,8 @@ provide(
 	computed(() => props.disabled),
 );
 </script>
+
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/accordion.manifest.css';
+</style>

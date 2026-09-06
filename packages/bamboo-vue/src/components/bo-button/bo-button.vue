@@ -20,37 +20,31 @@
 		:aria-describedby="ariaDescribedBy"
 		:aria-busy="isLoading ? 'true' : undefined"
 	>
-		<bo-loading-spinner v-if="isLoading" :size="loaderSizeValue" variant="white" />
-		<bo-icon
-			v-if="prefixIcon && !isLoading"
-			:icon="prefixIcon"
-			:size="iconSizeValue"
-			:cursor="cursorClassValues"
+		<bo-loading-spinner
+			v-if="isLoading && loaderType !== 'pulse'"
+			:size="loaderSizeValue"
+			variant="current"
 		/>
+		<bo-loading-pulse v-else-if="isLoading" :size="loaderSizeValue" variant="current" />
+		<bo-icon v-if="prefixIcon && !isLoading" :icon="prefixIcon" :size="iconSizeValue" />
 		<slot></slot>
-		<bo-icon
-			v-if="suffixIcon"
-			:icon="suffixIcon"
-			:size="iconSizeValue"
-			:cursor="cursorClassValues"
-		/>
+		<bo-icon v-if="suffixIcon" :icon="suffixIcon" :size="iconSizeValue" />
 	</button>
 </template>
 
 <script setup lang="ts">
 import {
-	BoCursor,
 	BUTTON_MANIFEST,
 	generateComponentId,
 	generateDataTestId,
 	getValidOrFallbackColorFromStr,
-	mergeTwClasses,
 	type BoButtonProps,
 	type BoIconSize,
 	type BoLoaderSize,
 } from '@workspace/bamboo-core';
-import { computed, useSlots, type StyleValue } from 'vue';
+import { computed, useSlots, watch, type StyleValue } from 'vue';
 import { BoIcon } from '../bo-icon';
+import { BoLoadingPulse } from '../bo-loading-pulse';
 import { BoLoadingSpinner } from '../bo-loading-spinner';
 
 const props = withDefaults(defineProps<BoButtonProps>(), {
@@ -81,7 +75,7 @@ const isDisabled = computed<boolean>(() => {
 	return props.disabled || props.isLoading;
 });
 
-const cursorClassValues = computed<BoCursor>(() => {
+const cursorClassValues = computed<string>(() => {
 	if (props.isLoading) {
 		return BUTTON_MANIFEST.styles.cursor.loading;
 	}
@@ -93,39 +87,30 @@ const cursorClassValues = computed<BoCursor>(() => {
 	return BUTTON_MANIFEST.styles.cursor.default;
 });
 
-const sizeClassValues = computed<string>(() => {
-	const classes = isIconOnly.value
-		? BUTTON_MANIFEST.styles.iconOnlySize[props.size]
-		: BUTTON_MANIFEST.styles.size[props.size];
-
-	return classes;
-});
-
-const fullWidthClassValues = computed<string>(() => {
-	return props.fullWidth ? BUTTON_MANIFEST.styles.width.full : BUTTON_MANIFEST.styles.width.default;
-});
-
-const shadowClassValues = computed<string>(() => {
-	return props.customColor
-		? /*tw*/ 'shadow-md hover:shadow-xl'
-		: BUTTON_MANIFEST.styles.shadow[props.kind][props.variant];
-});
-
 const classValues = computed<string>(() => {
-	const kind = props.kind;
-	const shape = props.shape;
-	const variant = props.variant;
+	const kind = props.kind ?? BUTTON_MANIFEST.defaults.kind;
+	const shape = props.shape ?? BUTTON_MANIFEST.defaults.shape;
+	const variant = props.variant ?? BUTTON_MANIFEST.defaults.variant;
+	const size = props.size ?? BUTTON_MANIFEST.defaults.size;
 
-	return mergeTwClasses(
-		sizeClassValues.value,
-		cursorClassValues.value,
-		shadowClassValues.value,
-		fullWidthClassValues.value,
+	const sizeClass = isIconOnly.value
+		? BUTTON_MANIFEST.styles.iconOnlySize[size]
+		: BUTTON_MANIFEST.styles.size[size];
+
+	const widthClass = props.fullWidth ? BUTTON_MANIFEST.styles.width.full : '';
+	const pressedClass = props.pressed ? BUTTON_MANIFEST.styles.pressed : '';
+
+	return [
 		BUTTON_MANIFEST.styles.base,
+		sizeClass,
 		BUTTON_MANIFEST.styles.shape[shape],
 		BUTTON_MANIFEST.styles.variants[kind][variant],
-		BUTTON_MANIFEST.styles.textColor[kind][variant],
-	);
+		cursorClassValues.value,
+		widthClass,
+		pressedClass,
+	]
+		.filter(Boolean)
+		.join(' ');
 });
 
 const styleValues = computed<StyleValue>(() => {
@@ -149,4 +134,21 @@ const styleValues = computed<StyleValue>(() => {
 
 	return style;
 });
+
+watch(
+	isIconOnly,
+	(iconOnly) => {
+		if (import.meta.env.DEV && iconOnly && !props.ariaLabel && !props.ariaLabelledBy) {
+			console.warn(
+				'[bamboo] BoButton renders without visible text. Provide `aria-label` or `aria-labelledby` for an accessible name.',
+			);
+		}
+	},
+	{ immediate: true },
+);
 </script>
+
+<style>
+@reference '../../lib.css';
+@import '@workspace/bamboo-core/manifests/button.manifest.css';
+</style>

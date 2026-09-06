@@ -113,7 +113,7 @@ function getFileInfo(dirPath: string, ignoreList: string[]): FileInfo[] {
 	const items: string[] = readdirSync(dirPath);
 
 	const filteredItems = items.filter((item) => {
-		return ignoreList.includes(item) || item.startsWith('.') || item.startsWith('_') ? false : true;
+		return !ignoreList.includes(item) && !item.startsWith('.') && !item.startsWith('_');
 	});
 
 	const convertedFileItems: FileInfo[] = filteredItems.map((item) => {
@@ -222,7 +222,7 @@ function buildSidebarItems(
 
 	for (const info of fileInfos) {
 		if (info.isDirectory) {
-			const relativePath = info.path.replace(basePath, '').replace(/\\/g, '/');
+			const directoryRelativePath = info.path.replace(basePath, '').replace(/\\/g, '/');
 			const indexPath = join(info.path, 'index.md');
 			const hasIndexMdFile = existsSync(indexPath);
 
@@ -241,7 +241,7 @@ function buildSidebarItems(
 			if (hasIndexMdFile && childItems.length === 0) {
 				items.push({
 					text,
-					link: `${relativePath}/`,
+					link: `${directoryRelativePath}/`,
 				});
 				continue;
 			}
@@ -253,7 +253,7 @@ function buildSidebarItems(
 			};
 
 			if (hasIndexMdFile) {
-				sidebarItem.link = `${relativePath}/`;
+				sidebarItem.link = `${directoryRelativePath}/`;
 			}
 
 			if (childItems.length > 0) {
@@ -266,7 +266,7 @@ function buildSidebarItems(
 		} else if (info.name.endsWith('.md') && info.name.toLowerCase() !== 'index.md') {
 			// Handle markdown file (skip index.md as it's handled by parent)
 			const fileName = info.name.replace(/\.md$/i, '');
-			const relativePath = info.path
+			const fileRelativePath = info.path
 				.replace(basePath, '')
 				.replace(/\\/g, '/')
 				.replace(/\.md$/i, '');
@@ -281,7 +281,7 @@ function buildSidebarItems(
 
 			items.push({
 				text,
-				link: relativePath,
+				link: fileRelativePath,
 			});
 		}
 	}

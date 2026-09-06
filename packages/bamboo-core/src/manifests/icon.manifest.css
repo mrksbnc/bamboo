@@ -1,0 +1,93 @@
+@layer components {
+	.bo-icon {
+		@apply box-border inline-flex shrink-0 items-center justify-center;
+	}
+
+	.bo-icon--cursor-auto {
+		@apply cursor-auto;
+	}
+
+	.bo-icon > svg {
+		@apply size-full;
+	}
+
+	.bo-icon--xs {
+		@apply size-3;
+	}
+
+	.bo-icon--sm {
+		@apply size-4;
+	}
+
+	.bo-icon--default {
+		@apply size-5;
+	}
+
+	.bo-icon--lg {
+		@apply size-6;
+	}
+
+	.bo-icon--xl {
+		@apply size-8;
+	}
+
+	.bo-icon--current {
+		@apply text-current;
+	}
+
+	.bo-icon--inherit {
+		@apply text-inherit;
+	}
+
+	.bo-icon--primary {
+		color: var(--color-blue-600);
+	}
+
+	.dark .bo-icon--primary {
+		color: var(--color-blue-400);
+	}
+
+	.bo-icon--secondary {
+		color: var(--color-neutral-600);
+	}
+
+	.dark .bo-icon--secondary {
+		color: var(--color-neutral-400);
+	}
+
+	.bo-icon--success {
+		color: var(--color-green-700);
+	}
+
+	.dark .bo-icon--success {
+		color: var(--color-green-400);
+	}
+
+	.bo-icon--warning {
+		color: var(--color-yellow-700);
+	}
+
+	.dark .bo-icon--warning {
+		color: var(--color-yellow-400);
+	}
+
+	.bo-icon--destructive {
+		color: var(--color-red-600);
+	}
+
+	.dark .bo-icon--destructive {
+		color: var(--color-red-400);
+	}
+
+	.bo-icon--white {
+		@apply text-white;
+	}
+
+	.bo-icon--black {
+		color: var(--color-neutral-800);
+	}
+
+	.dark .bo-icon--black {
+		color: var(--color-neutral-400);
+	}
+}

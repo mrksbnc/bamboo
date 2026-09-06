@@ -1,0 +1,25 @@
+@layer components {
+	.bo-skeleton {
+		background-color: var(--color-neutral-200);
+	}
+
+	.dark .bo-skeleton {
+		background-color: var(--color-neutral-700);
+	}
+
+	.bo-skeleton--animated {
+		@apply animate-pulse;
+	}
+
+	.bo-skeleton--text {
+		@apply rounded h-4 w-full;
+	}
+
+	.bo-skeleton--circle {
+		@apply rounded-full size-10;
+	}
+
+	.bo-skeleton--rect {
+		@apply rounded-md w-full h-10;
+	}
+}

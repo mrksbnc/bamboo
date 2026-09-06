@@ -87,6 +87,7 @@ type BoTooltipPlacementStyleMap = Record<BoTooltipPlacement, string>;
 export interface BoTooltipStyleManifest {
 	base: string;
 	arrow: string;
+	triggerWrapper: string;
 	placement: BoTooltipPlacementStyleMap;
 	arrowPlacement: BoTooltipPlacementStyleMap;
 }

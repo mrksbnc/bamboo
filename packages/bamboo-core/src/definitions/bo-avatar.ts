@@ -107,6 +107,9 @@ type BoAvatarIndicatorPositionStyleMap = Record<BoAvatarIndicatorPosition, strin
 
 export interface BoAvatarStyleManifest {
 	base: string;
+	cursor: {
+		default: string;
+	};
 	size: BoAvatarSizeStyleMap;
 	kind: BoAvatarKindStyleMap;
 	variants: {

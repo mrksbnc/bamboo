@@ -1,0 +1,42 @@
+@layer components {
+	.bo-popover-trigger {
+		@apply inline-flex;
+	}
+	.bo-popover-content {
+		@apply fixed z-50 flex w-72 flex-col gap-4 rounded-2xl border p-4 text-sm shadow-md outline-none;
+		background-color: var(--color-white);
+		border-color: var(--color-neutral-200);
+	}
+	.dark .bo-popover-content {
+		background-color: var(--color-neutral-900);
+		border-color: var(--color-neutral-800);
+	}
+	.bo-popover-content[data-state='open'] {
+		@apply animate-in fade-in-0 zoom-in-95;
+	}
+	.bo-popover-content--top,
+	.bo-popover-content--top-start,
+	.bo-popover-content--top-end {
+		@apply mb-2;
+	}
+	.bo-popover-content--bottom,
+	.bo-popover-content--bottom-start,
+	.bo-popover-content--bottom-end {
+		@apply mt-2;
+	}
+	.bo-popover-content--left,
+	.bo-popover-content--left-start,
+	.bo-popover-content--left-end {
+		@apply me-2;
+	}
+	.bo-popover-content--right,
+	.bo-popover-content--right-start,
+	.bo-popover-content--right-end {
+		@apply ms-2;
+	}
+	.bo-popover-content__arrow {
+		@apply absolute size-2 rotate-45 border;
+		background-color: inherit;
+		border-color: inherit;
+	}
+}

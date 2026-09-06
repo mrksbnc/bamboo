@@ -111,7 +111,9 @@ interface BoTextareaStyleManifest {
 	};
 	labels: {
 		container: string;
+		label: string;
 		required: string;
+		description: string;
 		fontSize: BoFontSize;
 	};
 	helpers: {

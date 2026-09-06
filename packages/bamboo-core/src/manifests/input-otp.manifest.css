@@ -1,0 +1,73 @@
+@layer components {
+	.bo-input-otp {
+		@apply flex w-full flex-col gap-2;
+	}
+
+	.bo-input-otp__label-container {
+		@apply flex items-center justify-between;
+	}
+
+	.bo-input-otp__label {
+		@apply text-sm font-medium;
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-input-otp__label {
+		color: var(--color-neutral-100);
+	}
+
+	.bo-input-otp__required {
+		@apply ms-1 text-red-600;
+	}
+
+	.bo-input-otp__group {
+		@apply flex gap-2;
+	}
+
+	.bo-input-otp__input {
+		@apply size-9 rounded-4xl border bg-transparent text-center text-sm outline-none transition-[color,box-shadow];
+		border-color: var(--color-neutral-300);
+		color: var(--color-neutral-900);
+	}
+
+	.bo-input-otp__input:focus {
+		border-color: var(--color-blue-500);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 30%, transparent);
+	}
+
+	.bo-input-otp__input:disabled {
+		@apply cursor-not-allowed opacity-50;
+		background-color: var(--color-neutral-50);
+	}
+
+	.dark .bo-input-otp__input {
+		border-color: var(--color-neutral-700);
+		color: var(--color-neutral-100);
+	}
+
+	.dark .bo-input-otp__input:disabled {
+		background-color: var(--color-neutral-800);
+	}
+
+	.bo-input-otp__helpers {
+		@apply flex flex-col gap-1 text-sm;
+	}
+
+	.bo-input-otp__description,
+	.bo-input-otp__hint {
+		color: var(--color-neutral-600);
+	}
+
+	.bo-input-otp__error {
+		color: var(--color-red-600);
+	}
+
+	.dark .bo-input-otp__description,
+	.dark .bo-input-otp__hint {
+		color: var(--color-neutral-400);
+	}
+
+	.dark .bo-input-otp__error {
+		color: var(--color-red-400);
+	}
+}

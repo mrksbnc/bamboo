@@ -9,7 +9,7 @@ import BoButton from './bo-button.vue';
 describe('BoButton', () => {
 	it('renders with label', () => {
 		const wrapper = mount(BoButton, {
-			props: { label: 'Click me' },
+			slots: { default: 'Click me' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
@@ -34,7 +34,8 @@ describe('BoButton', () => {
 		const sizes = ['sm', 'default', 'lg'] as const;
 		sizes.forEach((size) => {
 			const wrapper = mount(BoButton, {
-				props: { label: 'Test', size },
+				props: { size },
+				slots: { default: 'Test' },
 				global: {
 					components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 				},
@@ -48,7 +49,8 @@ describe('BoButton', () => {
 		const shapes = ['default', 'pill', 'flat'] as const;
 		shapes.forEach((shape) => {
 			const wrapper = mount(BoButton, {
-				props: { label: 'Test', shape },
+				props: { shape },
+				slots: { default: 'Test' },
 				global: {
 					components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 				},
@@ -70,7 +72,8 @@ describe('BoButton', () => {
 		] as const;
 		variants.forEach((variant) => {
 			const wrapper = mount(BoButton, {
-				props: { label: 'Test', variant },
+				props: { variant },
+				slots: { default: 'Test' },
 				global: {
 					components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 				},
@@ -81,10 +84,11 @@ describe('BoButton', () => {
 	});
 
 	it('applies correct kind classes', () => {
-		const kinds = ['filled', 'outline', 'ghost'] as const;
+		const kinds = ['default', 'outline', 'ghost'] as const;
 		kinds.forEach((kind) => {
 			const wrapper = mount(BoButton, {
-				props: { label: 'Test', kind },
+				props: { kind },
+				slots: { default: 'Test' },
 				global: {
 					components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 				},
@@ -96,7 +100,8 @@ describe('BoButton', () => {
 
 	it('disables button when disabled prop is true', () => {
 		const wrapper = mount(BoButton, {
-			props: { label: 'Test', disabled: true },
+			props: { disabled: true },
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
@@ -108,7 +113,8 @@ describe('BoButton', () => {
 
 	it('shows loading spinner when isLoading is true', () => {
 		const wrapper = mount(BoButton, {
-			props: { label: 'Test', isLoading: true, loaderType: 'spinner' },
+			props: { isLoading: true, loaderType: 'spinner' },
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
@@ -120,7 +126,8 @@ describe('BoButton', () => {
 
 	it('shows loading pulse when isLoading is true and loaderType is pulse', () => {
 		const wrapper = mount(BoButton, {
-			props: { label: 'Test', isLoading: true, loaderType: 'pulse' },
+			props: { isLoading: true, loaderType: 'pulse' },
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
@@ -131,7 +138,8 @@ describe('BoButton', () => {
 
 	it('renders prefix icon', () => {
 		const wrapper = mount(BoButton, {
-			props: { label: 'Test', prefixIcon: 'check' },
+			props: { prefixIcon: 'check' },
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
@@ -142,7 +150,8 @@ describe('BoButton', () => {
 
 	it('renders suffix icon', () => {
 		const wrapper = mount(BoButton, {
-			props: { label: 'Test', suffixIcon: 'arrow_right' },
+			props: { suffixIcon: 'arrow_right' },
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
@@ -166,36 +175,39 @@ describe('BoButton', () => {
 
 	it('applies full width class', () => {
 		const wrapper = mount(BoButton, {
-			props: { label: 'Test', fullWidth: true },
+			props: { fullWidth: true },
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
 		});
 		const button = wrapper.find('button');
-		expect(button.classes()).toContain('w-full');
+		expect(button.classes()).toContain('bo-button--full-width');
 	});
 
 	it('applies pressed state', () => {
 		const wrapper = mount(BoButton, {
-			props: { label: 'Test', pressed: true },
+			props: { pressed: true },
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
 		});
 		const button = wrapper.find('button');
-		expect(button.classes()).toContain('scale-95');
+		expect(button.classes()).toContain('bo-button--pressed');
+		expect(button.attributes('aria-pressed')).toBe('true');
 	});
 
 	it('applies custom color styles', () => {
 		const wrapper = mount(BoButton, {
 			props: {
-				label: 'Test',
 				customColor: {
 					background: '#ff0000',
 					text: '#ffffff',
 					border: '#000000',
 				},
 			},
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
@@ -209,7 +221,8 @@ describe('BoButton', () => {
 
 	it('applies correct button type', () => {
 		const wrapper = mount(BoButton, {
-			props: { label: 'Test', type: 'submit' },
+			props: { type: 'submit' },
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
@@ -221,11 +234,11 @@ describe('BoButton', () => {
 	it('applies aria attributes', () => {
 		const wrapper = mount(BoButton, {
 			props: {
-				label: 'Test',
 				ariaLabel: 'Test button',
 				ariaExpanded: 'true',
 				ariaHasPopup: 'menu',
 			},
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
@@ -238,7 +251,8 @@ describe('BoButton', () => {
 
 	it('applies tabindex', () => {
 		const wrapper = mount(BoButton, {
-			props: { label: 'Test', tabIndex: -1 },
+			props: { tabIndex: -1 },
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
@@ -249,7 +263,8 @@ describe('BoButton', () => {
 
 	it('applies accesskey', () => {
 		const wrapper = mount(BoButton, {
-			props: { label: 'Test', accessKey: 's' },
+			props: { accessKey: 's' },
+			slots: { default: 'Test' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},

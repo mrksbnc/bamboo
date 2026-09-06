@@ -6,56 +6,50 @@ export const TEXTAREA_MANIFEST = {
 		version: '1.0.0',
 	},
 	styles: {
-		base: /*tw*/ 'flex flex-col transition-all duration-200',
+		base: 'bo-textarea',
 
 		container: {
-			base: /*tw*/ 'relative flex w-full rounded-md border outline-2 -outline-offset-1 outline-transparent transition-colors disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-red-500 dark:aria-invalid:border-red-400',
-			disabled:
-				/*tw*/ 'cursor-not-allowed bg-neutral-50 border-neutral-200 opacity-50 dark:bg-neutral-800 dark:border-neutral-700',
-			expand: /*tw*/ 'grow',
+			base: 'bo-textarea__container',
+			disabled: 'bo-textarea__container--disabled',
+			expand: 'bo-textarea__container--expand',
 		},
 
 		textarea: {
-			base: /*tw*/ 'w-full resize-none rounded-md border-none bg-transparent text-sm font-normal text-neutral-900 dark:text-neutral-100 outline-none focus:outline-none placeholder:text-neutral-500 dark:placeholder:text-neutral-400 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:text-red-600 dark:aria-invalid:text-red-400',
-			withPrefixIcon: /*tw*/ 'pl-10',
-			withSuffixIcon: /*tw*/ 'pr-10',
-			expand: /*tw*/ 'grow',
-			resizable: /*tw*/ 'resize-y',
+			base: 'bo-textarea__field',
+			withPrefixIcon: 'bo-textarea__field--with-prefix',
+			withSuffixIcon: 'bo-textarea__field--with-suffix',
+			expand: 'bo-textarea__field--expand',
+			resizable: 'bo-textarea__field--resizable',
 		},
 
 		padding: {
-			sm: /*tw*/ 'p-2',
-			default: /*tw*/ 'p-3',
-			lg: /*tw*/ 'p-4',
+			sm: 'bo-textarea__field--sm',
+			default: 'bo-textarea__field--default',
+			lg: 'bo-textarea__field--lg',
 		},
 
 		state: {
-			default:
-				/*tw*/ 'border-neutral-300 bg-white hover:border-neutral-400 focus-within:outline-blue-500 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:border-neutral-600 dark:focus-within:outline-blue-400',
-			valid:
-				/*tw*/ 'border-green-500 bg-white hover:border-green-600 focus-within:outline-green-500 dark:border-green-500 dark:bg-neutral-900 dark:hover:border-green-400 dark:focus-within:outline-green-400',
-			invalid:
-				/*tw*/ 'border-red-500 bg-white hover:border-red-600 focus-within:outline-red-500 dark:border-red-500 dark:bg-neutral-900 dark:hover:border-red-400 dark:focus-within:outline-red-400',
+			default: 'bo-textarea__container--default',
+			valid: 'bo-textarea__container--valid',
+			invalid: 'bo-textarea__container--invalid',
 		},
 
 		variant: {
-			default: /*tw*/ 'bg-white dark:bg-neutral-900',
-			filled: /*tw*/ 'bg-neutral-50 dark:bg-neutral-800',
+			default: 'bo-textarea__container--variant-default',
+			filled: 'bo-textarea__container--variant-filled',
 		},
 
 		icons: {
 			prefix: {
-				sm: /*tw*/ 'absolute left-3 top-2.5 text-neutral-500 dark:text-neutral-400',
-				default: /*tw*/ 'absolute left-3 top-3 text-neutral-500 dark:text-neutral-400',
-				lg: /*tw*/ 'absolute left-3.5 top-4 text-neutral-500 dark:text-neutral-400',
+				sm: 'bo-textarea__prefix-icon bo-textarea__prefix-icon--sm',
+				default: 'bo-textarea__prefix-icon bo-textarea__prefix-icon--default',
+				lg: 'bo-textarea__prefix-icon bo-textarea__prefix-icon--lg',
 			},
-
 			suffix: {
-				sm: /*tw*/ 'absolute right-3 top-2.5 h-full text-neutral-500 dark:text-neutral-400',
-				default: /*tw*/ 'absolute right-3 top-3 h-full text-neutral-500 dark:text-neutral-400',
-				lg: /*tw*/ 'absolute right-3.5 top-4 h-full text-neutral-500 dark:text-neutral-400',
+				sm: 'bo-textarea__suffix-icon bo-textarea__suffix-icon--sm',
+				default: 'bo-textarea__suffix-icon bo-textarea__suffix-icon--default',
+				lg: 'bo-textarea__suffix-icon bo-textarea__suffix-icon--lg',
 			},
-
 			size: {
 				sm: 'sm',
 				default: 'default',
@@ -64,15 +58,16 @@ export const TEXTAREA_MANIFEST = {
 		},
 
 		labels: {
-			container:
-				/*tw*/ 'flex items-center justify-start pb-2 text-neutral-900 dark:text-neutral-100',
-			required: /*tw*/ 'ml-1 text-sm font-medium text-red-600 dark:text-red-400',
+			container: 'bo-textarea__label-container',
+			label: 'bo-textarea__label',
+			required: 'bo-textarea__required',
+			description: 'bo-textarea__description',
 			fontSize: 'sm',
 		},
 
 		helpers: {
-			error: /*tw*/ 'mt-1 flex items-center gap-1 text-sm text-red-600 dark:text-red-400',
-			hint: /*tw*/ 'mt-1 text-sm text-neutral-600 dark:text-neutral-400',
+			error: 'bo-textarea__error',
+			hint: 'bo-textarea__hint',
 			fontSize: 'sm',
 		},
 	},

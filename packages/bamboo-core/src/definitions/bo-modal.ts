@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'vue';
 import { ComponentManifest } from '../manifests/types.js';
 
-export type BoModalVariant = 'default' | 'info' | 'warning' | 'error';
+export type BoModalVariant = 'default' | 'primary' | 'warning' | 'destructive';
 
 export type BoModalSize = 'sm' | 'default' | 'lg' | 'xl' | 'full';
 
@@ -15,9 +15,7 @@ export interface BoModalProps {
 	 * @default false
 	 */
 	open?: boolean;
-	/**
-	 * The title displayed in the modal header.
-	 */
+	/** The title displayed in the modal header. */
 	title?: string;
 	/**
 	 * The variant of the modal which determines the header icon and accent color.
@@ -44,6 +42,11 @@ export interface BoModalProps {
 	 * @default true
 	 */
 	showClose?: boolean;
+	/**
+	 * Accessible label for the close button.
+	 * @default 'Close'
+	 */
+	closeAriaLabel?: string;
 	/** The role of the element. */
 	role?: HTMLAttributes['role'];
 	/** Defines a string value that labels the current element. */
@@ -56,13 +59,13 @@ export interface BoModalProps {
 
 type BoModalManifestDefaults = Pick<
 	BoModalProps,
-	'variant' | 'size' | 'closeOnBackdrop' | 'closeOnEscape' | 'showClose' | 'role'
+	'variant' | 'size' | 'closeOnBackdrop' | 'closeOnEscape' | 'showClose' | 'closeAriaLabel' | 'role'
 >;
 
 type BoModalVariantStyleMap = Record<BoModalVariant, string>;
 type BoModalSizeStyleMap = Record<BoModalSize, string>;
 
-interface BoModalStyleManifest {
+export interface BoModalStyleManifest {
 	backdrop: string;
 	wrapper: string;
 	panel: {
@@ -71,6 +74,8 @@ interface BoModalStyleManifest {
 	};
 	header: {
 		base: string;
+		content: string;
+		title: string;
 		variant: BoModalVariantStyleMap;
 	};
 	close: string;

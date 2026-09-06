@@ -7,24 +7,28 @@
 		@apply inline-flex aspect-square select-none items-center justify-center overflow-hidden;
 	}
 
+	.bo-avatar--cursor-auto {
+		@apply cursor-auto;
+	}
+
 	.bo-avatar-size-xs {
-		@apply size-6;
+		@apply size-5;
 	}
 
 	.bo-avatar-size-sm {
-		@apply size-8;
+		@apply size-6;
 	}
 
 	.bo-avatar-size-default {
-		@apply size-10;
+		@apply size-8;
 	}
 
 	.bo-avatar-size-lg {
-		@apply size-14;
+		@apply size-10;
 	}
 
 	.bo-avatar-size-xl {
-		@apply size-20;
+		@apply size-14;
 	}
 
 	.bo-avatar[data-kind='circle'],

@@ -135,7 +135,9 @@ describe('BoText', () => {
 			slots: { default: 'Test' },
 			props: { lineClamp: 3 },
 		});
-		expect(wrapper.find('span').classes()).toContain('line-clamp-3');
+		const element = wrapper.find('span');
+		expect(element.classes()).toContain('bo-text--line-clamp');
+		expect(element.attributes('style')).toContain('--bo-text-line-clamp: 3');
 	});
 
 	it('applies line clamp with string', () => {
@@ -143,7 +145,9 @@ describe('BoText', () => {
 			slots: { default: 'Test' },
 			props: { lineClamp: '5' },
 		});
-		expect(wrapper.find('span').classes()).toContain('line-clamp-[5]');
+		const element = wrapper.find('span');
+		expect(element.classes()).toContain('bo-text--line-clamp');
+		expect(element.attributes('style')).toContain('--bo-text-line-clamp: 5');
 	});
 
 	it('applies line clamp none', () => {
@@ -151,7 +155,7 @@ describe('BoText', () => {
 			slots: { default: 'Test' },
 			props: { lineClamp: 'none' },
 		});
-		expect(wrapper.find('span').classes()).toContain('line-clamp-none');
+		expect(wrapper.find('span').classes()).toContain('bo-text--line-clamp-none');
 	});
 
 	it('applies custom cursor class', () => {
@@ -233,7 +237,6 @@ describe('BoText', () => {
 			slots: { default: 'Test' },
 		});
 		const element = wrapper.find('span');
-		expect(element.classes()).toContain('box-border');
-		expect(element.classes()).toContain('m-0');
+		expect(element.classes()).toContain('bo-text');
 	});
 });

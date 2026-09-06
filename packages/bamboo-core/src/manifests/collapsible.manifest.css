@@ -1,0 +1,39 @@
+@layer components {
+	.bo-collapsible {
+		@apply flex min-w-0 flex-col;
+	}
+
+	.bo-collapsible__trigger {
+		@apply flex w-full items-center justify-between gap-3 rounded-md px-3 py-2 text-start text-sm font-medium transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-collapsible__trigger {
+		color: var(--color-neutral-100);
+	}
+
+	.bo-collapsible__trigger:focus-visible {
+		@apply outline-none ring-[3px];
+		--tw-ring-color: var(--color-blue-500);
+	}
+
+	.bo-collapsible__icon {
+		@apply shrink-0 transition-transform duration-200;
+		color: var(--color-neutral-500);
+	}
+
+	.bo-collapsible__content {
+		@apply min-w-0 overflow-hidden px-3 py-2 text-sm;
+		color: var(--color-neutral-500);
+	}
+
+	.dark .bo-collapsible__content {
+		color: var(--color-neutral-400);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bo-collapsible__icon {
+		transition: none;
+	}
+}

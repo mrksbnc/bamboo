@@ -1,12 +1,14 @@
 @layer components {
 	.bo-badge {
-		@apply flex items-center justify-center text-center select-none shadow-sm cursor-default font-medium transition-colors leading-none;
+		@apply flex h-5 items-center justify-center gap-1 rounded-full px-2 py-0.5 text-center text-xs select-none shadow-sm cursor-default font-medium transition-colors leading-none;
 	}
 
-	/* --- shape --- */
+	.bo-badge > svg {
+		@apply size-3;
+	}
 
 	.bo-badge--shape-default {
-		@apply rounded-md;
+		@apply rounded-full;
 	}
 
 	.bo-badge--shape-pill,
@@ -18,35 +20,9 @@
 		@apply rounded-none;
 	}
 
-	/* --- size (default layout) --- */
-
-	.bo-badge--sm {
-		@apply px-1 py-0.5;
+	.bo-badge--shape-circle {
+		@apply size-6 p-0;
 	}
-
-	.bo-badge--default {
-		@apply px-2 py-1;
-	}
-
-	.bo-badge--lg {
-		@apply px-2.5 py-1.5;
-	}
-
-	/* --- size (circle layout) --- */
-
-	.bo-badge--circle-sm {
-		@apply size-5.5;
-	}
-
-	.bo-badge--circle-default {
-		@apply size-6.5;
-	}
-
-	.bo-badge--circle-lg {
-		@apply size-8.5;
-	}
-
-	/* --- filled variants --- */
 
 	.bo-badge--filled-primary {
 		@apply bg-blue-600 border border-blue-700 text-white dark:bg-blue-700 dark:text-white;
@@ -80,8 +56,6 @@
 	.bo-badge--filled-black {
 		@apply bg-neutral-800 border border-neutral-700 text-white dark:bg-neutral-800 dark:text-white;
 	}
-
-	/* --- outline variants --- */
 
 	.bo-badge--outline-primary {
 		@apply bg-transparent border border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-500;
