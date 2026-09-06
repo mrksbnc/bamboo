@@ -63,7 +63,7 @@
 		"tailwindcss-animate": "^1.0.7"
 	},
 	"devDependencies": {
-		"@vitejs/plugin-vue": "6.0.5",
+		"@vitejs/plugin-vue": "6.0.8",
 		"@vue/server-renderer": "^3.5.42",
 		"@vue/tsconfig": "^0.9.1",
 		"@workspace/config": "workspace:*"
