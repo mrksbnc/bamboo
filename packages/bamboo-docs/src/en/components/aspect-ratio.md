@@ -17,6 +17,9 @@ const basicExample = `<bo-aspect-ratio :ratio="16 / 9">
     16:9 content
   </div>
 </bo-aspect-ratio>`;
+const squareExample = `<bo-aspect-ratio :ratio="1">
+  <img class="h-full w-full object-cover" src="/assets/logo.webp" alt="Bamboo mark" />
+</bo-aspect-ratio>`;
 </script>
 
 # Aspect Ratio
@@ -33,6 +36,14 @@ Pass a numeric `ratio`, such as `16 / 9` or `1`, and place content in the defaul
       <div class="flex h-full items-center justify-center bg-neutral-200 dark:bg-neutral-800">
         16:9 content
       </div>
+    </bo-aspect-ratio>
+  </div>
+</ExampleFrame>
+
+<ExampleFrame :code="squareExample">
+  <div class="w-full max-w-sm">
+    <bo-aspect-ratio :ratio="1">
+      <img class="h-full w-full rounded-md object-cover" src="/assets/logo.webp" alt="Bamboo mark" />
     </bo-aspect-ratio>
   </div>
 </ExampleFrame>

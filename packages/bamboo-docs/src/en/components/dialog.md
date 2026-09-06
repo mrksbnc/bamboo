@@ -15,14 +15,19 @@ import { ref } from 'vue';
 import { BoButton, BoDialog } from '@mrksbnc/bamboo-vue';
 
 const open = ref(false);
+const detailsOpen = ref(false);
 
 const basicExample = `<bo-button @click="open = true">Open dialog</bo-button>
 <bo-dialog v-model:open="open" title="Edit profile" description="Update your public details.">
   <p>Dialog body content.</p>
   <template #footer>
-    <bo-button kind="outline" @click="open = false">Cancel</bo-button>
+    <bo-button variant="secondary" @click="open = false">Cancel</bo-button>
     <bo-button @click="open = false">Save</bo-button>
   </template>
+</bo-dialog>`;
+const detailsExample = `<bo-button variant="outline" @click="detailsOpen = true">View release details</bo-button>
+<bo-dialog v-model:open="detailsOpen" size="lg" title="Release details">
+  <p>Review the changes before publishing.</p>
 </bo-dialog>`;
 </script>
 
@@ -39,9 +44,16 @@ Control the panel with `v-model:open`. The default slot is the body; use `header
   <bo-dialog v-model:open="open" title="Edit profile" description="Update your public details.">
     <p>Dialog body content.</p>
     <template #footer>
-      <bo-button kind="outline" @click="open = false">Cancel</bo-button>
+      <bo-button variant="secondary" @click="open = false">Cancel</bo-button>
       <bo-button @click="open = false">Save</bo-button>
     </template>
+  </bo-dialog>
+</ExampleFrame>
+
+<ExampleFrame :code="detailsExample">
+  <bo-button variant="outline" @click="detailsOpen = true">View release details</bo-button>
+  <bo-dialog v-model:open="detailsOpen" size="lg" title="Release details">
+    <p>Review the changes before publishing.</p>
   </bo-dialog>
 </ExampleFrame>
 

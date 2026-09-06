@@ -16,6 +16,7 @@ import { ref } from 'vue';
 import { BoInputOtp } from '@mrksbnc/bamboo-vue';
 
 const code = ref('');
+const recoveryCode = ref('');
 
 const basicExample = `<bo-input-otp
   v-model="code"
@@ -24,6 +25,7 @@ const basicExample = `<bo-input-otp
   hint="Enter the code sent to your email."
   @complete="submitCode"
 />`;
+const passwordExample = `<bo-input-otp v-model="recoveryCode" type="password" :length="4" label="Recovery code" />`;
 </script>
 
 # Input OTP
@@ -44,6 +46,13 @@ Use `v-model` for the complete string. The `complete` event fires when the value
       @complete="code = $event"
     />
     <p class="mt-2 text-sm text-neutral-500">Value: {{ code || 'Waiting for code' }}</p>
+  </div>
+</ExampleFrame>
+
+<ExampleFrame :code="passwordExample">
+  <div>
+    <bo-input-otp v-model="recoveryCode" type="password" :length="4" label="Recovery code" />
+    <p class="mt-2 text-sm text-neutral-500">{{ recoveryCode ? 'Code entered' : 'Four characters required' }}</p>
   </div>
 </ExampleFrame>
 

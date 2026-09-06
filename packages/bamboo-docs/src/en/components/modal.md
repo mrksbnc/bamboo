@@ -68,7 +68,7 @@ const footerExample = `const showFooter = ref(false);
 <bo-modal :open="showFooter" title="Confirm Action" variant="warning" @close="showFooter = false">
   <bo-text>Are you sure you want to proceed?</bo-text>
   <template #footer>
-    <bo-button variant="light" size="sm" @click="showFooter = false">Cancel</bo-button>
+    <bo-button variant="secondary" size="sm" @click="showFooter = false">Cancel</bo-button>
     <bo-button variant="primary" size="sm" @click="showFooter = false">Confirm</bo-button>
   </template>
 </bo-modal>`;
@@ -134,7 +134,7 @@ Use the `footer` slot to add action buttons at the bottom of the modal.
   <bo-modal :open="showFooter" title="Confirm Action" variant="warning" @close="showFooter = false">
     <bo-text>Are you sure you want to proceed?</bo-text>
     <template #footer>
-      <bo-button variant="light" size="sm" @click="showFooter = false">Cancel</bo-button>
+      <bo-button variant="secondary" size="sm" @click="showFooter = false">Cancel</bo-button>
       <bo-button variant="primary" size="sm" @click="showFooter = false">Confirm</bo-button>
     </template>
   </bo-modal>

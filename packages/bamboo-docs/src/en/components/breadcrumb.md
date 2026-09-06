@@ -25,8 +25,8 @@ const basicExample = `<bo-breadcrumb :items="breadcrumbItems" />`;
 const customExample = `<bo-breadcrumb
   :items="[
     { label: 'Home', href: '/', icon: 'home' },
-    { label: 'Settings', href: '/settings' },
-    { label: 'Profile' },
+     { label: 'Settings', href: '/settings', icon: 'folder' },
+     { label: 'Profile', icon: 'user' },
   ]"
   separator="/"
 />`;
@@ -52,8 +52,8 @@ Each item can include an `icon` from Bamboo's icon registry. Set `separator` to 
   <bo-breadcrumb
     :items="[
       { label: 'Home', href: '/', icon: 'home' },
-      { label: 'Settings', href: '/settings' },
-      { label: 'Profile' },
+       { label: 'Settings', href: '/settings', icon: 'folder' },
+       { label: 'Profile', icon: 'user' },
     ]"
     separator="/"
   />

@@ -7,7 +7,7 @@ order: 1
 
 ## What is Bamboo?
 
-`bamboo` is a collection of lightweight and flexible components for Vue 3 and Svelte. It is designed to be easy to use and type-safe, providing a solid foundation for building modern, responsive web applications.
+`bamboo` is a collection of precise, type-safe components for modern Vue applications. It is designed to be easy to use while providing a consistent foundation for responsive product interfaces.
 
 ## Installation
 
@@ -37,7 +37,7 @@ Once the package is installed, you need to import the component styles in your a
 import App from './App.vue';
 import { createApp } from 'vue';
 
-<!-- Import the component styles -->
+// Import the component styles
 import '@mrksbnc/bamboo-vue/lib.css';
 
 const app = createApp(App);
@@ -88,7 +88,7 @@ The repository is organized into the following packages:
 
 - [`bamboo-core`](https://github.com/mrksbnc/bamboo/tree/main/packages/bamboo-core/README.md): Core components, types, and utilities
 - [`bamboo-docs`](https://github.com/mrksbnc/bamboo/tree/main/packages/bamboo-docs/README.md): Documentation website
-- [`bamboo-vue`](https://github.com/mrksbnc/bamboo/tree/main/packages/bamboo-vue/README.md): Vue 3 components and utilities
+- [`bamboo-vue`](https://github.com/mrksbnc/bamboo/tree/main/packages/bamboo-vue/README.md): Vue components and utilities
 
 ## Security
 

@@ -15,9 +15,14 @@ import { ref } from 'vue';
 import { BoCollapsible } from '@mrksbnc/bamboo-vue';
 
 const open = ref(false);
+const customOpen = ref(false);
 
 const basicExample = `<bo-collapsible v-model:open="open" label="Account details">
   <p>Additional account information is visible here.</p>
+</bo-collapsible>`;
+const customExample = `<bo-collapsible v-model:open="customOpen">
+  <template #trigger>Advanced settings</template>
+  <p>Optional settings live here.</p>
 </bo-collapsible>`;
 </script>
 
@@ -32,6 +37,13 @@ Use `v-model:open` for controlled visibility or set `open` through the model ini
 <ExampleFrame :code="basicExample">
   <bo-collapsible v-model:open="open" label="Account details">
     <p>Additional account information is visible here.</p>
+  </bo-collapsible>
+</ExampleFrame>
+
+<ExampleFrame :code="customExample">
+  <bo-collapsible v-model:open="customOpen">
+    <template #trigger>Advanced settings</template>
+    <p>Optional settings live here.</p>
   </bo-collapsible>
 </ExampleFrame>
 

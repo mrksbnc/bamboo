@@ -13,20 +13,17 @@ outline: deep
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BoAlertDialog, BoButton } from '@mrksbnc/bamboo-vue';
+import { BoAlertDialog, BoButton, BoText } from '@mrksbnc/bamboo-vue';
 
 const open = ref(false);
+const defaultOpen = ref(false);
 
 const basicExample = `<bo-button @click="open = true">Delete project</bo-button>
-<bo-alert-dialog
-  v-model:open="open"
-  title="Delete project?"
-  description="This action cannot be undone."
-  variant="destructive"
-  @confirm="open = false"
->
-  The project and its data will be permanently removed.
+<bo-alert-dialog v-model:open="open" title="Delete project?" description="This action cannot be undone." variant="destructive">
+  <bo-text font-size="sm" variant="secondary">The project and its data will be permanently removed.</bo-text>
 </bo-alert-dialog>`;
+const defaultExample = `<bo-button variant="outline" @click="defaultOpen = true">Continue setup</bo-button>
+<bo-alert-dialog v-model:open="defaultOpen" title="Continue setup?" description="You can change these settings later." :show-cancel="false" confirm-text="Continue" />`;
 </script>
 
 # Alert Dialog
@@ -45,8 +42,21 @@ Use `v-model:open` to control visibility. The component closes itself before emi
     description="This action cannot be undone."
     variant="destructive"
   >
-    The project and its data will be permanently removed.
+    <bo-text font-size="sm" variant="secondary">
+      The project and its data will be permanently removed.
+    </bo-text>
   </bo-alert-dialog>
+</ExampleFrame>
+
+<ExampleFrame :code="defaultExample">
+  <bo-button variant="outline" @click="defaultOpen = true">Continue setup</bo-button>
+  <bo-alert-dialog
+    v-model:open="defaultOpen"
+    title="Continue setup?"
+    description="You can change these settings later."
+    :show-cancel="false"
+    confirm-text="Continue"
+  />
 </ExampleFrame>
 
 ## Variants and Actions

@@ -21,6 +21,10 @@ const basicExample = `<bo-empty title="No projects yet" description="Create a pr
     <bo-button>Create project</bo-button>
   </template>
 </bo-empty>`;
+const customExample = `<bo-empty>
+  <template #default><strong>Nothing matches this filter.</strong><p>Try a broader search.</p></template>
+  <template #action><bo-button variant="outline">Clear filters</bo-button></template>
+</bo-empty>`;
 </script>
 
 # Empty
@@ -39,6 +43,13 @@ Use `title` and `description` for the generated text. The `media` and `action` s
     <template #action>
       <bo-button>Create project</bo-button>
     </template>
+  </bo-empty>
+</ExampleFrame>
+
+<ExampleFrame :code="customExample">
+  <bo-empty>
+    <template #default><strong>Nothing matches this filter.</strong><p>Try a broader search.</p></template>
+    <template #action><bo-button variant="outline">Clear filters</bo-button></template>
   </bo-empty>
 </ExampleFrame>
 
