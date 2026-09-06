@@ -66,7 +66,7 @@
 import type { BoDrawerProps } from '@workspace/bamboo-core';
 import { DRAWER_MANIFEST } from '@workspace/bamboo-core';
 import { generateComponentId, generateDataTestId, mergeTwClasses } from '@workspace/bamboo-core';
-import { computed, nextTick, onUnmounted, ref, watch } from 'vue';
+import { computed, nextTick, onUnmounted, ref, useTemplateRef, watch } from 'vue';
 import { BoButton } from '../bo-button';
 import { BoText } from '../bo-text';
 
@@ -83,20 +83,28 @@ const props = withDefaults(defineProps<BoDrawerProps>(), {
 });
 
 const open = defineModel<boolean>('open', { default: false });
-const emit = defineEmits<{ close: [] }>();
+const emit = defineEmits<{
+	(event: 'close'): void;
+}>();
 defineSlots<{ header?: () => unknown; footer?: () => unknown; default?: () => unknown }>();
 
-const panelRef = ref<HTMLElement>();
-const titleId = computed(() => `${props.id}-title`);
-const descriptionId = computed(() => `${props.id}-description`);
-const side = computed(() => props.side || DRAWER_MANIFEST.defaults.side);
-const panelClasses = computed(() =>
-	mergeTwClasses(
+const panelRef = useTemplateRef<HTMLElement>('panelRef');
+const titleId = computed(() => {
+	return `${props.id}-title`;
+});
+const descriptionId = computed(() => {
+	return `${props.id}-description`;
+});
+const side = computed(() => {
+	return props.side || DRAWER_MANIFEST.defaults.side;
+});
+const panelClasses = computed(() => {
+	return mergeTwClasses(
 		DRAWER_MANIFEST.styles.panel.base,
 		DRAWER_MANIFEST.styles.panel.side[side.value],
 		DRAWER_MANIFEST.styles.panel.size[props.size || DRAWER_MANIFEST.defaults.size],
-	),
-);
+	);
+});
 
 function onClose(): void {
 	open.value = false;

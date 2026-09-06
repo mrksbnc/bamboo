@@ -11,19 +11,22 @@ import {
 	generateDataTestId,
 	type BoButtonGroupProps,
 } from '@workspace/bamboo-core';
-import { computed, onMounted, provide, ref, watch } from 'vue';
+import { computed, onMounted, provide, ref, useTemplateRef, watch } from 'vue';
 
 const props = withDefaults(defineProps<BoButtonGroupProps>(), {
 	...BUTTON_GROUP_MANIFEST.defaults,
 });
 
-const groupRef = ref<HTMLElement>();
 const model = defineModel<string | number | (string | number)[]>();
-
+const groupRef = useTemplateRef<HTMLElement>('groupRef');
 const selectedValues = ref<Set<string | number>>(new Set());
 
-const id = computed(() => props.id ?? generateComponentId('button-group'));
-const dataTestId = computed(() => props.dataTestId ?? generateDataTestId('BoButtonGroup'));
+const id = computed(() => {
+	return props.id ?? generateComponentId('button-group');
+});
+const dataTestId = computed(() => {
+	return props.dataTestId ?? generateDataTestId('BoButtonGroup');
+});
 
 const groupClasses = computed(() => {
 	const orientation = props.orientation ?? BUTTON_GROUP_MANIFEST.defaults.orientation;

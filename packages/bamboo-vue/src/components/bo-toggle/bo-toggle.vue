@@ -32,14 +32,14 @@ const props = withDefaults(defineProps<BoToggleProps>(), {
 });
 
 const model = defineModel<boolean>({ default: false });
-const classValues = computed(() =>
-	mergeTwClasses(
+const classValues = computed(() => {
+	return mergeTwClasses(
 		TOGGLE_MANIFEST.styles.base,
 		TOGGLE_MANIFEST.styles.variant[props.variant || 'default'],
 		TOGGLE_MANIFEST.styles.size[props.size || 'default'],
 		model.value ? TOGGLE_MANIFEST.styles.pressed : '',
-	),
-);
+	);
+});
 
 function toggle(): void {
 	if (!props.disabled) model.value = !model.value;

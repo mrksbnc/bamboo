@@ -24,12 +24,12 @@ const props = withDefaults(defineProps<BoMarkerProps>(), {
 	variant: () => MARKER_MANIFEST.defaults.variant,
 });
 
-const classValues = computed<string>(() =>
-	mergeTwClasses(
+const classValues = computed<string>(() => {
+	return mergeTwClasses(
 		MARKER_MANIFEST.styles.base,
 		MARKER_MANIFEST.styles.variant[props.variant || 'default'],
-	),
-);
+	);
+});
 </script>
 
 <style>

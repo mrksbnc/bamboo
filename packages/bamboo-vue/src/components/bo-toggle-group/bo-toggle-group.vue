@@ -32,14 +32,18 @@ const selectedValues = computed(() => {
 	if (Array.isArray(model.value)) return new Set(model.value);
 	return model.value === undefined ? new Set<string>() : new Set([model.value]);
 });
-const variant = computed(() => props.variant || TOGGLE_GROUP_MANIFEST.defaults.variant);
-const size = computed(() => props.size || TOGGLE_GROUP_MANIFEST.defaults.size);
-const groupClasses = computed(() =>
-	mergeTwClasses(
+const variant = computed(() => {
+	return props.variant || TOGGLE_GROUP_MANIFEST.defaults.variant;
+});
+const size = computed(() => {
+	return props.size || TOGGLE_GROUP_MANIFEST.defaults.size;
+});
+const groupClasses = computed(() => {
+	return mergeTwClasses(
 		TOGGLE_GROUP_MANIFEST.styles.base,
 		TOGGLE_GROUP_MANIFEST.styles.orientation[props.orientation || 'horizontal'],
-	),
-);
+	);
+});
 
 function select(value: string): void {
 	if (props.disabled) return;
@@ -56,7 +60,9 @@ function select(value: string): void {
 provide(toggleGroupContextKey, {
 	selected: (value) => selectedValues.value.has(value),
 	select,
-	disabled: computed(() => !!props.disabled),
+	disabled: computed(() => {
+		return !!props.disabled;
+	}),
 	variant,
 	size,
 });

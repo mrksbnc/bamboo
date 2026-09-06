@@ -6,8 +6,8 @@ export interface PopoverContext {
 	placement: ComputedRef<BoPopoverPlacement>;
 	offset: ComputedRef<number>;
 	contentId: Ref<string>;
-	triggerRef: Ref<HTMLElement | undefined>;
-	contentRef: Ref<HTMLElement | undefined>;
+	triggerRef: Ref<HTMLElement | null>;
+	contentRef: Ref<HTMLElement | null>;
 	close: () => void;
 }
 

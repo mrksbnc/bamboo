@@ -73,7 +73,7 @@
 import type { BoTagsInputProps } from '@workspace/bamboo-core';
 import { TAGS_INPUT_MANIFEST } from '@workspace/bamboo-core';
 import { generateComponentId, generateDataTestId } from '@workspace/bamboo-core';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, useTemplateRef } from 'vue';
 
 const props = withDefaults(defineProps<BoTagsInputProps>(), {
 	id: () => generateComponentId('tags-input'),
@@ -84,17 +84,25 @@ const props = withDefaults(defineProps<BoTagsInputProps>(), {
 	role: 'combobox',
 });
 
-const emit = defineEmits<{ focus: []; blur: [event: FocusEvent] }>();
+const emit = defineEmits<{
+	(event: 'focus'): void;
+	(event: 'blur', payload: FocusEvent): void;
+}>();
 const model = defineModel<string[]>({ default: () => [] });
 const draft = ref('');
-const inputRef = ref<HTMLInputElement | null>(null);
-const inputId = computed(() => `${props.id}-input`);
-const helperTextId = computed(() => `${props.id}-helper`);
-const describedBy = computed(
-	() =>
+const inputRef = useTemplateRef<HTMLInputElement>('inputRef');
+const inputId = computed(() => {
+	return `${props.id}-input`;
+});
+const helperTextId = computed(() => {
+	return `${props.id}-helper`;
+});
+const describedBy = computed(() => {
+	return (
 		props.ariaDescribedBy ||
-		(props.description || props.error || props.hint ? helperTextId.value : undefined),
-);
+		(props.description || props.error || props.hint ? helperTextId.value : undefined)
+	);
+});
 
 function addTag(value = draft.value): void {
 	const tag = value.trim();

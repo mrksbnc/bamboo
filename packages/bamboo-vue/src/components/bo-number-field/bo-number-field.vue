@@ -34,6 +34,7 @@
 				:aria-valuenow="model"
 				:class="NUMBER_FIELD_MANIFEST.styles.input"
 				@input="onInput"
+				@keydown="onKeydown"
 				@focus="emit('focus')"
 				@blur="emit('blur', $event)"
 				@change="emit('change', $event)"
@@ -90,29 +91,33 @@
 import type { BoNumberFieldProps } from '@workspace/bamboo-core';
 import { NUMBER_FIELD_MANIFEST } from '@workspace/bamboo-core';
 import { generateComponentId, generateDataTestId } from '@workspace/bamboo-core';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, useTemplateRef } from 'vue';
 
 const props = withDefaults(defineProps<BoNumberFieldProps>(), {
 	id: () => generateComponentId('number-field'),
 	dataTestId: () => generateDataTestId('number-field'),
 	inputMode: 'decimal',
 	role: 'spinbutton',
+	allowExponent: false,
 });
 
 const emit = defineEmits<{
-	focus: [];
-	blur: [event: FocusEvent];
-	change: [event: Event];
+	(event: 'focus'): void;
+	(eventName: 'blur', event: FocusEvent): void;
+	(eventName: 'change', event: Event): void;
 }>();
 
 const model = defineModel<number | undefined>({ default: undefined });
-const inputRef = ref<HTMLInputElement | null>(null);
-const helperTextId = computed(() => `${props.id}-helper`);
-const describedBy = computed(
-	() =>
+const inputRef = useTemplateRef<HTMLInputElement>('inputRef');
+const helperTextId = computed(() => {
+	return `${props.id}-helper`;
+});
+const describedBy = computed(() => {
+	return (
 		props.ariaDescribedBy ||
-		(props.description || props.error || props.hint ? helperTextId.value : undefined),
-);
+		(props.description || props.error || props.hint ? helperTextId.value : undefined)
+	);
+});
 
 function boundValue(value: string | undefined): number | undefined {
 	if (value === undefined || value === '') return undefined;
@@ -120,22 +125,40 @@ function boundValue(value: string | undefined): number | undefined {
 	return Number.isFinite(number) ? number : undefined;
 }
 
-const minimum = computed(() => boundValue(props.min));
-const maximum = computed(() => boundValue(props.max));
+const minimum = computed(() => {
+	return boundValue(props.min);
+});
+const maximum = computed(() => {
+	return boundValue(props.max);
+});
 const step = computed(() => {
 	const value = boundValue(props.step);
 	return value && value > 0 ? value : 1;
 });
-const currentValue = computed(() => model.value ?? minimum.value ?? 0);
-const canDecrement = computed(
-	() => minimum.value === undefined || currentValue.value - step.value >= minimum.value,
-);
-const canIncrement = computed(
-	() => maximum.value === undefined || currentValue.value + step.value <= maximum.value,
-);
+const currentValue = computed(() => {
+	return model.value ?? minimum.value ?? 0;
+});
+const canDecrement = computed(() => {
+	return minimum.value === undefined || currentValue.value - step.value >= minimum.value;
+});
+const canIncrement = computed(() => {
+	return maximum.value === undefined || currentValue.value + step.value <= maximum.value;
+});
 
 function onInput(event: Event): void {
-	model.value = boundValue((event.target as HTMLInputElement).value);
+	const input = event.target as HTMLInputElement;
+	const allowedCharacters = props.allowExponent ? /[^0-9eE+.-]/g : /[^0-9+.-]/g;
+	input.value = input.value.replace(allowedCharacters, '');
+	if (!props.allowExponent && /[eE]/.test(input.value))
+		input.value = input.value.replace(/[eE].*$/, '');
+	model.value = boundValue(input.value);
+}
+
+function onKeydown(event: KeyboardEvent): void {
+	if (event.metaKey || event.ctrlKey || event.altKey) return;
+	if (/^[a-zA-Z]$/.test(event.key) && (!props.allowExponent || !/[eE]/.test(event.key))) {
+		event.preventDefault();
+	}
 }
 
 function stepValue(direction: -1 | 1): void {

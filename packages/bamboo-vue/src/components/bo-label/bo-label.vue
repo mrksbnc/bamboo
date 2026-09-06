@@ -29,13 +29,13 @@ const props = withDefaults(defineProps<BoLabelProps>(), {
 	size: () => LABEL_MANIFEST.defaults.size,
 });
 
-const classValues = computed<string>(() =>
-	mergeTwClasses(
+const classValues = computed<string>(() => {
+	return mergeTwClasses(
 		LABEL_MANIFEST.styles.base,
 		LABEL_MANIFEST.styles.size[props.size || 'default'],
 		props.disabled ? LABEL_MANIFEST.styles.disabled : '',
-	),
-);
+	);
+});
 </script>
 
 <style>

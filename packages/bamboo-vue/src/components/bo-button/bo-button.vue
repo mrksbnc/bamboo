@@ -20,12 +20,8 @@
 		:aria-describedby="ariaDescribedBy"
 		:aria-busy="isLoading ? 'true' : undefined"
 	>
-		<bo-loading-spinner
-			v-if="isLoading && loaderType !== 'pulse'"
-			:size="loaderSizeValue"
-			variant="current"
-		/>
-		<bo-loading-pulse v-else-if="isLoading" :size="loaderSizeValue" variant="current" />
+		<bo-loading-spinner v-if="isLoading && loaderType !== 'pulse'" :size="loaderSizeValue" />
+		<bo-loading-pulse v-else-if="isLoading" :size="loaderSizeValue" />
 		<bo-icon v-if="prefixIcon && !isLoading" :icon="prefixIcon" :size="iconSizeValue" />
 		<slot></slot>
 		<bo-icon v-if="suffixIcon" :icon="suffixIcon" :size="iconSizeValue" />
@@ -42,32 +38,37 @@ import {
 	type BoIconSize,
 	type BoLoaderSize,
 } from '@workspace/bamboo-core';
-import { computed, useSlots, watch, type StyleValue } from 'vue';
+import { computed, inject, useSlots, watch, type StyleValue } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoLoadingPulse } from '../bo-loading-pulse';
 import { BoLoadingSpinner } from '../bo-loading-spinner';
 
+const groupSize = inject<BoButtonProps['size']>('buttonGroupSize');
+const groupVariant = inject<BoButtonProps['variant']>('buttonGroupVariant');
+
 const props = withDefaults(defineProps<BoButtonProps>(), {
 	id: () => generateComponentId('button'),
 	dataTestId: () => generateDataTestId('button'),
-	size: () => BUTTON_MANIFEST.defaults.size,
-	variant: () => BUTTON_MANIFEST.defaults.variant,
 	kind: () => BUTTON_MANIFEST.defaults.kind,
 	shape: () => BUTTON_MANIFEST.defaults.shape,
 });
 
 const slots = useSlots();
+const sizeValue = computed(() => groupSize ?? props.size ?? BUTTON_MANIFEST.defaults.size);
+const variantValue = computed(
+	() => groupVariant ?? props.variant ?? BUTTON_MANIFEST.defaults.variant,
+);
 
 const isIconOnly = computed(() => {
 	return !slots['default'] && (props.prefixIcon || props.suffixIcon);
 });
 
 const iconSizeValue = computed<BoIconSize>(() => {
-	return BUTTON_MANIFEST.styles.iconSize[props.size] as BoIconSize;
+	return BUTTON_MANIFEST.styles.iconSize[sizeValue.value] as BoIconSize;
 });
 
 const loaderSizeValue = computed<BoLoaderSize>(() => {
-	const size = props.size || 'default';
+	const size = sizeValue.value || 'default';
 	return BUTTON_MANIFEST.styles.loaderSize[size] as BoLoaderSize;
 });
 
@@ -90,8 +91,8 @@ const cursorClassValues = computed<string>(() => {
 const classValues = computed<string>(() => {
 	const kind = props.kind ?? BUTTON_MANIFEST.defaults.kind;
 	const shape = props.shape ?? BUTTON_MANIFEST.defaults.shape;
-	const variant = props.variant ?? BUTTON_MANIFEST.defaults.variant;
-	const size = props.size ?? BUTTON_MANIFEST.defaults.size;
+	const variant = variantValue.value;
+	const size = sizeValue.value;
 
 	const sizeClass = isIconOnly.value
 		? BUTTON_MANIFEST.styles.iconOnlySize[size]

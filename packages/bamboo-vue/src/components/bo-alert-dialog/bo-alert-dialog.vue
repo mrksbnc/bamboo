@@ -55,7 +55,7 @@
 					<slot />
 
 					<div :class="ALERT_DIALOG_MANIFEST.styles.footer" data-slot="alert-dialog-footer">
-						<bo-button v-if="showCancel" kind="outline" @click="onCancel">
+						<bo-button v-if="showCancel" variant="secondary" @click="onCancel">
 							{{ cancelText }}
 						</bo-button>
 						<bo-button
@@ -79,7 +79,7 @@ import {
 	mergeTwClasses,
 	type BoAlertDialogProps,
 } from '@workspace/bamboo-core';
-import { computed, nextTick, onUnmounted, ref, watch } from 'vue';
+import { computed, nextTick, onUnmounted, ref, useTemplateRef, watch } from 'vue';
 import { BoButton } from '../bo-button';
 import { BoText } from '../bo-text';
 
@@ -96,19 +96,27 @@ const props = withDefaults(defineProps<BoAlertDialogProps>(), {
 });
 
 const open = defineModel<boolean>('open', { default: false });
-const emit = defineEmits<{ confirm: []; cancel: []; close: [] }>();
+const emit = defineEmits<{
+	(event: 'confirm'): void;
+	(event: 'cancel'): void;
+	(event: 'close'): void;
+}>();
 
 defineSlots<{ header?: () => unknown; default?: () => unknown }>();
 
-const panelRef = ref<HTMLElement>();
-const titleId = computed(() => `${props.id}-title`);
-const descriptionId = computed(() => `${props.id}-description`);
-const panelClasses = computed(() =>
-	mergeTwClasses(
+const panelRef = useTemplateRef<HTMLElement>('panelRef');
+const titleId = computed(() => {
+	return `${props.id}-title`;
+});
+const descriptionId = computed(() => {
+	return `${props.id}-description`;
+});
+const panelClasses = computed(() => {
+	return mergeTwClasses(
 		ALERT_DIALOG_MANIFEST.styles.panel,
 		ALERT_DIALOG_MANIFEST.styles.variant[props.variant || ALERT_DIALOG_MANIFEST.defaults.variant],
-	),
-);
+	);
+});
 
 function close(event: 'confirm' | 'cancel'): void {
 	open.value = false;

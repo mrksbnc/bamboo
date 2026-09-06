@@ -58,7 +58,7 @@
 import type { BoScrollAreaProps } from '@workspace/bamboo-core';
 import { SCROLL_AREA_MANIFEST } from '@workspace/bamboo-core';
 import { generateComponentId, generateDataTestId } from '@workspace/bamboo-core';
-import { computed, onBeforeUnmount, onMounted, ref, type StyleValue } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, type StyleValue, useTemplateRef } from 'vue';
 
 const props = withDefaults(defineProps<BoScrollAreaProps>(), {
 	id: () => generateComponentId('scroll-area'),
@@ -66,16 +66,15 @@ const props = withDefaults(defineProps<BoScrollAreaProps>(), {
 	masked: () => SCROLL_AREA_MANIFEST.defaults.masked,
 });
 
-const viewportRef = ref<HTMLElement>();
+const viewportRef = useTemplateRef<HTMLElement>('viewportRef');
 const isPointerOver = ref(false);
 const viewportTick = ref(0);
-const classValues = computed(() => [
-	SCROLL_AREA_MANIFEST.styles.base,
-	props.masked ? SCROLL_AREA_MANIFEST.styles.masked : '',
-]);
-const styleValues = computed<StyleValue>(() =>
-	props.maxHeight === undefined ? {} : { maxHeight: `${props.maxHeight}px` },
-);
+const classValues = computed(() => {
+	return [SCROLL_AREA_MANIFEST.styles.base, props.masked ? SCROLL_AREA_MANIFEST.styles.masked : ''];
+});
+const styleValues = computed<StyleValue>(() => {
+	return props.maxHeight === undefined ? {} : { maxHeight: `${props.maxHeight}px` };
+});
 
 function metrics() {
 	const viewport = viewportRef.value;

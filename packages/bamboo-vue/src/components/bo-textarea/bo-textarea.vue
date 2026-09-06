@@ -77,7 +77,7 @@ import {
 	type BoIconSize,
 	type BoTextareaProps,
 } from '@workspace/bamboo-core';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, useTemplateRef } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
 
@@ -93,21 +93,25 @@ const props = withDefaults(defineProps<BoTextareaProps>(), {
 });
 
 const emit = defineEmits<{
-	blur: [event: FocusEvent];
-	focus: [];
-	change: [event: Event];
+	(eventName: 'blur', event: FocusEvent): void;
+	(event: 'focus'): void;
+	(eventName: 'change', event: Event): void;
 }>();
 
 const model = defineModel<string>({ default: '' });
 
-const textareaRef = ref<HTMLTextAreaElement | null>(null);
+const textareaRef = useTemplateRef<HTMLTextAreaElement>('textareaRef');
 
 const iconSize = computed<BoIconSize>(() => {
 	return TEXTAREA_MANIFEST.styles.icons.size[props.size || 'default'];
 });
 
-const helperTextId = computed<string>(() => `${props.id}-helper`);
-const descriptionId = computed<string>(() => `${props.id}-description`);
+const helperTextId = computed<string>(() => {
+	return `${props.id}-helper`;
+});
+const descriptionId = computed<string>(() => {
+	return `${props.id}-description`;
+});
 const describedBy = computed<string | undefined>(() => {
 	const ids: string[] = [];
 

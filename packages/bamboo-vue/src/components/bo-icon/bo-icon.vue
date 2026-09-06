@@ -32,20 +32,22 @@ const props = withDefaults(defineProps<BoIconProps>(), {
 	variant: () => ICON_MANIFEST.defaults.variant,
 });
 
-const component = computed<string>(() => BO_ICON_REGISTRY[props.icon]);
+const component = computed<string>(() => {
+	return BO_ICON_REGISTRY[props.icon];
+});
 
-const computedRole = computed<HTMLAttributes['role'] | undefined>(() =>
-	props.decorative ? undefined : (props.role ?? 'img'),
-);
+const computedRole = computed<HTMLAttributes['role'] | undefined>(() => {
+	return props.decorative ? undefined : (props.role ?? 'img');
+});
 
-const classValues = computed<string>(() =>
-	mergeTwClasses(
+const classValues = computed<string>(() => {
+	return mergeTwClasses(
 		props.cursor || ICON_MANIFEST.styles.cursor.default,
 		ICON_MANIFEST.styles.base,
 		ICON_MANIFEST.styles.variant[props.variant || 'current'],
 		typeof props.size === 'number' ? '' : ICON_MANIFEST.styles.size[props.size || 'default'],
-	),
-);
+	);
+});
 
 const styleValues = computed<StyleValue>(() => {
 	const color = props.customColor ? getValidOrFallbackColorFromStr(props.customColor) : undefined;

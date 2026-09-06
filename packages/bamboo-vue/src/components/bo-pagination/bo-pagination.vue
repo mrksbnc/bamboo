@@ -71,9 +71,9 @@ const props = withDefaults(defineProps<BoPaginationProps>(), {
 
 const page = defineModel<number>('page', { default: 1 });
 
-const totalPages = computed<number>(() =>
-	Math.max(1, Math.ceil(props.total / (props.pageSize ?? 10))),
-);
+const totalPages = computed<number>(() => {
+	return Math.max(1, Math.ceil(props.total / (props.pageSize ?? 10)));
+});
 
 const visiblePages = computed<(number | string)[]>(() => {
 	const total = totalPages.value;

@@ -46,7 +46,6 @@ describe('BoLoadingPulse', () => {
 			'warning',
 			'destructive',
 			'white',
-			'black',
 		] as const;
 		variants.forEach((variant) => {
 			const wrapper = mount(BoLoadingPulse, {

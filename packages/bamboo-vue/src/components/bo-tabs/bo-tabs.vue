@@ -41,11 +41,15 @@ const props = withDefaults(defineProps<BoTabsProps>(), {
 const model = defineModel<BoTabsValue>();
 const selected = ref<BoTabsValue | undefined>(props.defaultValue);
 const items = ref<TabsItem[]>([]);
-const activeValue = computed(() => model.value ?? selected.value);
-const orientation = computed(() => props.orientation || TABS_MANIFEST.defaults.orientation);
-const activationMode = computed(
-	() => props.activationMode || TABS_MANIFEST.defaults.activationMode,
-);
+const activeValue = computed(() => {
+	return model.value ?? selected.value;
+});
+const orientation = computed(() => {
+	return props.orientation || TABS_MANIFEST.defaults.orientation;
+});
+const activationMode = computed(() => {
+	return props.activationMode || TABS_MANIFEST.defaults.activationMode;
+});
 
 function select(value: BoTabsValue): void {
 	if (props.disabled || items.value.find((item) => item.value === value)?.disabled) return;
@@ -74,7 +78,9 @@ provide(tabsOrientationKey, orientation);
 provide(tabsActivationModeKey, activationMode);
 provide(
 	tabsDisabledKey,
-	computed(() => props.disabled),
+	computed(() => {
+		return props.disabled;
+	}),
 );
 </script>
 

@@ -26,9 +26,11 @@ const props = withDefaults(defineProps<BoResizablePanelProps>(), {
 });
 
 const direction = inject(resizableDirectionKey);
-const panelStyle = computed<StyleValue>(() => ({
-	flexBasis: `${props.defaultSize}%`,
-	minWidth: direction?.value === 'vertical' ? undefined : `${props.minSize}%`,
-	minHeight: direction?.value === 'vertical' ? `${props.minSize}%` : undefined,
-}));
+const panelStyle = computed<StyleValue>(() => {
+	return {
+		flexBasis: `${props.defaultSize}%`,
+		minWidth: direction?.value === 'vertical' ? undefined : `${props.minSize}%`,
+		minHeight: direction?.value === 'vertical' ? `${props.minSize}%` : undefined,
+	};
+});
 </script>

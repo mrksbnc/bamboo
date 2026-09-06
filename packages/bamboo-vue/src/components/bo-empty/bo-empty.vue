@@ -10,7 +10,7 @@
 			<slot name="media" />
 		</div>
 
-		<div v-if="title || description || $slots['default']">
+		<div v-if="title || description || $slots['default']" :class="EMPTY_MANIFEST.styles.content">
 			<slot>
 				<bo-text
 					v-if="title"

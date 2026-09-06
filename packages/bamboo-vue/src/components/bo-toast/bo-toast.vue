@@ -75,18 +75,24 @@ const props = withDefaults(defineProps<BoToastProps>(), {
 });
 
 const open = defineModel<boolean>('open', { default: true });
-const emit = defineEmits<{ close: [] }>();
+const emit = defineEmits<{
+	(event: 'close'): void;
+}>();
 const slots = useSlots();
 let timer: ReturnType<typeof setTimeout> | undefined;
 
-const titleId = computed(() => `${props.id}-title`);
-const descriptionId = computed(() => `${props.id}-description`);
-const toastClasses = computed(() =>
-	mergeTwClasses(
+const titleId = computed(() => {
+	return `${props.id}-title`;
+});
+const descriptionId = computed(() => {
+	return `${props.id}-description`;
+});
+const toastClasses = computed(() => {
+	return mergeTwClasses(
 		TOAST_MANIFEST.styles.item,
 		TOAST_MANIFEST.styles.variant[props.variant || TOAST_MANIFEST.defaults.variant],
-	),
-);
+	);
+});
 const iconValue = computed<Icon | undefined>(() => {
 	const icons: Record<string, Icon> = {
 		primary: 'alert_circle',

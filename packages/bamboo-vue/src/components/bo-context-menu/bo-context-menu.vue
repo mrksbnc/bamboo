@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { CONTEXT_MENU_MANIFEST, type BoContextMenuProps } from '@workspace/bamboo-core';
-import { onMounted, onUnmounted, provide, ref } from 'vue';
+import { onMounted, onUnmounted, provide, ref, useTemplateRef } from 'vue';
 import { contextMenuContextKey } from './keys';
 
 const props = withDefaults(defineProps<BoContextMenuProps>(), {
@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<BoContextMenuProps>(), {
 
 const open = defineModel<boolean>('open', { default: false });
 const position = ref({ x: 0, y: 0 });
-const contentRef = ref<HTMLElement>();
+const contentRef = useTemplateRef<HTMLElement>('contentRef');
 
 function close(): void {
 	open.value = false;

@@ -63,7 +63,7 @@
 import type { BoInputOtpProps } from '@workspace/bamboo-core';
 import { INPUT_OTP_MANIFEST } from '@workspace/bamboo-core';
 import { generateComponentId, generateDataTestId } from '@workspace/bamboo-core';
-import { computed, nextTick, onMounted, ref } from 'vue';
+import { computed, nextTick, onMounted, useTemplateRef } from 'vue';
 
 const props = withDefaults(defineProps<BoInputOtpProps>(), {
 	id: () => generateComponentId('input-otp'),
@@ -76,20 +76,25 @@ const props = withDefaults(defineProps<BoInputOtpProps>(), {
 });
 
 const emit = defineEmits<{
-	complete: [value: string];
-	focus: [];
-	blur: [event: FocusEvent];
+	(event: 'complete', value: string): void;
+	(event: 'focus'): void;
+	(eventName: 'blur', event: FocusEvent): void;
 }>();
 
 const model = defineModel<string>({ default: '' });
-const rootRef = ref<HTMLElement | null>(null);
-const inputCount = computed(() => Math.max(1, props.length || INPUT_OTP_MANIFEST.defaults.length));
-const helperTextId = computed(() => `${props.id}-helper`);
-const describedBy = computed(
-	() =>
+const rootRef = useTemplateRef<HTMLElement>('rootRef');
+const inputCount = computed(() => {
+	return Math.max(1, props.length || INPUT_OTP_MANIFEST.defaults.length);
+});
+const helperTextId = computed(() => {
+	return `${props.id}-helper`;
+});
+const describedBy = computed(() => {
+	return (
 		props.ariaDescribedBy ||
-		(props.description || props.error || props.hint ? helperTextId.value : undefined),
-);
+		(props.description || props.error || props.hint ? helperTextId.value : undefined)
+	);
+});
 
 function inputId(index: number): string {
 	return `${props.id}-${index + 1}`;

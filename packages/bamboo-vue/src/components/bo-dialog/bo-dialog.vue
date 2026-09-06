@@ -82,7 +82,7 @@ import {
 	mergeTwClasses,
 	type BoDialogProps,
 } from '@workspace/bamboo-core';
-import { computed, nextTick, onUnmounted, ref, watch } from 'vue';
+import { computed, nextTick, onUnmounted, ref, useTemplateRef, watch } from 'vue';
 import { BoButton } from '../bo-button';
 import { BoText } from '../bo-text';
 
@@ -98,7 +98,9 @@ const props = withDefaults(defineProps<BoDialogProps>(), {
 });
 
 const open = defineModel<boolean>('open', { default: false });
-const emit = defineEmits<{ close: [] }>();
+const emit = defineEmits<{
+	(event: 'close'): void;
+}>();
 
 defineSlots<{
 	header?: () => unknown;
@@ -106,15 +108,19 @@ defineSlots<{
 	default?: () => unknown;
 }>();
 
-const panelRef = ref<HTMLElement>();
-const titleId = computed(() => `${props.id}-title`);
-const descriptionId = computed(() => `${props.id}-description`);
-const panelClasses = computed(() =>
-	mergeTwClasses(
+const panelRef = useTemplateRef<HTMLElement>('panelRef');
+const titleId = computed(() => {
+	return `${props.id}-title`;
+});
+const descriptionId = computed(() => {
+	return `${props.id}-description`;
+});
+const panelClasses = computed(() => {
+	return mergeTwClasses(
 		DIALOG_MANIFEST.styles.panel.base,
 		DIALOG_MANIFEST.styles.panel.size[props.size || DIALOG_MANIFEST.defaults.size],
-	),
-);
+	);
+});
 
 function onClose(): void {
 	open.value = false;

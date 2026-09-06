@@ -24,20 +24,34 @@
 import type { BoPopoverProps } from '@workspace/bamboo-core';
 import { POPOVER_MANIFEST } from '@workspace/bamboo-core';
 import { generateDataTestId, mergeTwClasses } from '@workspace/bamboo-core';
-import { computed, inject, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import {
+	computed,
+	inject,
+	nextTick,
+	onMounted,
+	onUnmounted,
+	ref,
+	useTemplateRef,
+	watch,
+	useAttrs,
+} from 'vue';
 import { popoverContextKey } from './keys';
 
 const props = withDefaults(defineProps<BoPopoverProps>(), {
 	dataTestId: () => generateDataTestId('popover-content'),
 	role: () => POPOVER_MANIFEST.defaults.role,
 });
+defineOptions({ inheritAttrs: false });
+const attrs = useAttrs();
 const context = inject(popoverContextKey);
 if (!context) throw new Error('BoPopoverContent must be used inside BoPopover');
 const popoverContext = context;
 
-const contentRef = ref<HTMLElement>();
+const contentRef = useTemplateRef<HTMLElement>('contentRef');
 const contentStyle = ref<Record<string, string>>({});
-const placement = computed(() => props.placement ?? popoverContext.placement.value);
+const placement = computed(() => {
+	return props.placement ?? popoverContext.placement.value;
+});
 watch(
 	() => props.id,
 	(value) => {
@@ -45,12 +59,13 @@ watch(
 	},
 	{ immediate: true },
 );
-const contentClasses = computed(() =>
-	mergeTwClasses(
+const contentClasses = computed(() => {
+	return mergeTwClasses(
 		POPOVER_MANIFEST.styles.content,
 		POPOVER_MANIFEST.styles.placement[placement.value],
-	),
-);
+		(attrs.class as string | undefined) ?? '',
+	);
+});
 
 function updatePosition(): void {
 	const trigger = popoverContext.triggerRef.value;
@@ -87,10 +102,15 @@ function updatePosition(): void {
 }
 
 function updateAfterOpen(isOpen: boolean): void {
-	if (isOpen) nextTick(updatePosition);
+	if (isOpen) {
+		void nextTick(() => {
+			updatePosition();
+			requestAnimationFrame(updatePosition);
+		});
+	}
 }
 
-watch(() => popoverContext.open.value, updateAfterOpen);
+watch(() => popoverContext.open.value, updateAfterOpen, { immediate: true });
 onMounted(() => {
 	window.addEventListener('resize', updatePosition);
 	window.addEventListener('scroll', updatePosition, true);

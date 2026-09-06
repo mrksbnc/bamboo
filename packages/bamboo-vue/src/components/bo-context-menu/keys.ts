@@ -3,7 +3,7 @@ import type { InjectionKey, Ref } from 'vue';
 export interface ContextMenuContext {
 	open: Ref<boolean>;
 	position: Ref<{ x: number; y: number }>;
-	contentRef: Ref<HTMLElement | undefined>;
+	contentRef: Ref<HTMLElement | null>;
 	close: () => void;
 	openAt: (x: number, y: number) => void;
 }

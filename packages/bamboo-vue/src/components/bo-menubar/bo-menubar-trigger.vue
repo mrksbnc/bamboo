@@ -42,12 +42,18 @@ const props = withDefaults(defineProps<BoMenubarTriggerProps>(), {
 	dataTestId: () => generateDataTestId('menubar-trigger'),
 });
 const model = defineModel<boolean>('open', { default: false });
-const wrapperId = computed(() => `${props.id}-wrapper`);
-const contentId = computed(() => `${props.id}-content`);
-const triggerClasses = computed(() => [
-	MENUBAR_MANIFEST.styles.trigger.base,
-	model.value ? MENUBAR_MANIFEST.styles.trigger.active : '',
-]);
+const wrapperId = computed(() => {
+	return `${props.id}-wrapper`;
+});
+const contentId = computed(() => {
+	return `${props.id}-content`;
+});
+const triggerClasses = computed(() => {
+	return [
+		MENUBAR_MANIFEST.styles.trigger.base,
+		model.value ? MENUBAR_MANIFEST.styles.trigger.active : '',
+	];
+});
 
 function open(): void {
 	if (!props.disabled) model.value = true;

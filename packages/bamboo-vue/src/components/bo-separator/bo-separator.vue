@@ -36,12 +36,12 @@ const props = withDefaults(defineProps<BoSeparatorProps>(), {
 	decorative: () => SEPARATOR_MANIFEST.defaults.decorative,
 });
 
-const classValues = computed<string>(() =>
-	mergeTwClasses(
+const classValues = computed<string>(() => {
+	return mergeTwClasses(
 		SEPARATOR_MANIFEST.styles.base,
 		SEPARATOR_MANIFEST.styles.orientation[props.orientation || 'horizontal'],
-	),
-);
+	);
+});
 </script>
 
 <style>

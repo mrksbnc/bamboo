@@ -1,6 +1,7 @@
 <template>
 	<button
 		ref="triggerRef"
+		v-bind="$attrs"
 		type="button"
 		:class="POPOVER_MANIFEST.styles.trigger"
 		:aria-expanded="context.open.value ? 'true' : 'false'"
@@ -13,13 +14,14 @@
 
 <script setup lang="ts">
 import { POPOVER_MANIFEST } from '@workspace/bamboo-core';
-import { inject, ref, watch } from 'vue';
+import { inject, useTemplateRef, watch } from 'vue';
 import { popoverContextKey } from './keys';
 
+defineOptions({ inheritAttrs: false });
 const context = inject(popoverContextKey);
 if (!context) throw new Error('BoPopoverTrigger must be used inside BoPopover');
 
-const triggerRef = ref<HTMLElement>();
+const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
 watch(
 	triggerRef,
 	(element) => {

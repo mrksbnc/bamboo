@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import type { BoPopoverProps } from '@workspace/bamboo-core';
 import { generateComponentId, POPOVER_MANIFEST } from '@workspace/bamboo-core';
-import { computed, onMounted, onUnmounted, provide, ref } from 'vue';
+import { computed, onMounted, onUnmounted, provide, ref, useTemplateRef } from 'vue';
 import { popoverContextKey } from './keys';
 
 const props = withDefaults(defineProps<BoPopoverProps>(), {
@@ -19,11 +19,15 @@ const props = withDefaults(defineProps<BoPopoverProps>(), {
 });
 
 const open = defineModel<boolean>('open', { default: false });
-const triggerRef = ref<HTMLElement>();
-const contentRef = ref<HTMLElement>();
+const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
+const contentRef = useTemplateRef<HTMLElement>('contentRef');
 const contentId = ref(generateComponentId('popover-content'));
-const placement = computed(() => props.placement || POPOVER_MANIFEST.defaults.placement);
-const offset = computed(() => props.offset ?? POPOVER_MANIFEST.defaults.offset);
+const placement = computed(() => {
+	return props.placement || POPOVER_MANIFEST.defaults.placement;
+});
+const offset = computed(() => {
+	return props.offset ?? POPOVER_MANIFEST.defaults.offset;
+});
 
 function close(): void {
 	open.value = false;

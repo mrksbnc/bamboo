@@ -60,15 +60,23 @@ const groupValue = inject(radioGroupValueKey);
 const setGroupValue = inject(radioGroupSetValueKey);
 const groupDisabled = inject(
 	radioGroupDisabledKey,
-	computed(() => false),
+	computed(() => {
+		return false;
+	}),
 );
 const groupName = inject(
 	radioGroupNameKey,
-	computed(() => generateComponentId('radio-group')),
+	computed(() => {
+		return generateComponentId('radio-group');
+	}),
 );
 
-const isSelected = computed(() => groupValue?.value === props.value);
-const isDisabled = computed(() => !!props.disabled || groupDisabled.value);
+const isSelected = computed(() => {
+	return groupValue?.value === props.value;
+});
+const isDisabled = computed(() => {
+	return !!props.disabled || groupDisabled.value;
+});
 
 function onChange(): void {
 	if (!isDisabled.value) {

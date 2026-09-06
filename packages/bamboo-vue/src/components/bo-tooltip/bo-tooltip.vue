@@ -27,39 +27,46 @@ import {
 	mergeTwClasses,
 	type BoTooltipProps,
 } from '@workspace/bamboo-core';
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue';
 
 const props = withDefaults(defineProps<BoTooltipProps>(), {
 	...TOOLTIP_MANIFEST.defaults,
 });
 
 const emit = defineEmits<{
-	show: [];
-	hide: [];
+	(event: 'show'): void;
+	(event: 'hide'): void;
 }>();
 
 // Template refs
-const triggerRef = ref<HTMLElement>();
-const tooltipRef = ref<HTMLElement>();
+const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
+const tooltipRef = useTemplateRef<HTMLElement>('tooltipRef');
 
 // State
 const isVisible = ref(false);
 const tooltipStyle = ref<Record<string, string | number>>({});
 
 // Computed
-const id = computed(() => props.id ?? generateComponentId('tooltip'));
-const dataTestId = computed(() => props.dataTestId ?? generateDataTestId('BoTooltip'));
+const id = computed(() => {
+	return props.id ?? generateComponentId('tooltip');
+});
+const dataTestId = computed(() => {
+	return props.dataTestId ?? generateDataTestId('BoTooltip');
+});
 
-const tooltipClasses = computed(() =>
-	mergeTwClasses(TOOLTIP_MANIFEST.styles.base, TOOLTIP_MANIFEST.styles.placement[props.placement!]),
-);
+const tooltipClasses = computed(() => {
+	return mergeTwClasses(
+		TOOLTIP_MANIFEST.styles.base,
+		TOOLTIP_MANIFEST.styles.placement[props.placement!],
+	);
+});
 
-const arrowClasses = computed(() =>
-	mergeTwClasses(
+const arrowClasses = computed(() => {
+	return mergeTwClasses(
 		TOOLTIP_MANIFEST.styles.arrow,
 		TOOLTIP_MANIFEST.styles.arrowPlacement[props.placement!],
-	),
-);
+	);
+});
 
 // Timers
 let showTimer: ReturnType<typeof setTimeout> | null = null;

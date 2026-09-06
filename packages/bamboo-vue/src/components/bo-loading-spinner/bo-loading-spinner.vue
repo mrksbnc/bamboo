@@ -33,8 +33,8 @@ const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 	dataTestId: () => generateDataTestId('loading-spinner'),
 	role: () => LOADING_SPINNER_MANIFEST.defaults.role,
 	size: () => LOADING_SPINNER_MANIFEST.defaults.size,
-	variant: () => LOADING_SPINNER_MANIFEST.defaults.variant,
 	textPosition: () => LOADING_SPINNER_MANIFEST.defaults.textPosition,
+	ariaLabel: 'Loading',
 });
 
 const spinnerLabelFontSize = computed<BoFontSize>(() => {
@@ -45,7 +45,7 @@ const containerClassValues = computed<string>(() => {
 	return mergeTwClasses(
 		LOADING_SPINNER_MANIFEST.styles.container,
 		LOADING_SPINNER_MANIFEST.styles.textPosition[props.textPosition || 'after'],
-		props.customColor ? '' : LOADING_SPINNER_MANIFEST.styles.variant[props.variant || 'primary'],
+		'text-blue-600 dark:text-blue-500',
 	);
 });
 

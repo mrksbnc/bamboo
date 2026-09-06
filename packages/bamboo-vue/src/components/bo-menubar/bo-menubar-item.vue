@@ -30,5 +30,7 @@ withDefaults(defineProps<BoMenubarItemProps>(), {
 	inset: false,
 	variant: 'default',
 });
-defineEmits<{ select: [value: string | number | undefined] }>();
+defineEmits<{
+	(event: 'select', value: string | number | undefined): void;
+}>();
 </script>

@@ -29,14 +29,16 @@ const props = withDefaults(defineProps<BoToggleGroupItemProps>(), {
 });
 
 const context = inject(toggleGroupContextKey);
-const selected = computed(() => context?.selected(props.value) ?? false);
-const classValues = computed(() =>
-	mergeTwClasses(
+const selected = computed(() => {
+	return context?.selected(props.value) ?? false;
+});
+const classValues = computed(() => {
+	return mergeTwClasses(
 		TOGGLE_GROUP_MANIFEST.styles.item,
 		context ? TOGGLE_MANIFEST.styles.variant[context.variant.value] : '',
 		context ? TOGGLE_MANIFEST.styles.size[context.size.value] : '',
-	),
-);
+	);
+});
 
 function select(): void {
 	if (!props.disabled && !context?.disabled.value) context?.select(props.value);

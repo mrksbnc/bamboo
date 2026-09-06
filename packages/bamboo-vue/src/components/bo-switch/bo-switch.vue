@@ -56,9 +56,15 @@ const props = withDefaults(defineProps<BoSwitchProps>(), {
 });
 
 const model = defineModel<boolean>({ default: false });
-const size = computed(() => props.size || SWITCH_MANIFEST.defaults.size);
-const labelId = computed(() => `${props.id}-label`);
-const descriptionId = computed(() => `${props.id}-description`);
+const size = computed(() => {
+	return props.size || SWITCH_MANIFEST.defaults.size;
+});
+const labelId = computed(() => {
+	return `${props.id}-label`;
+});
+const descriptionId = computed(() => {
+	return `${props.id}-description`;
+});
 
 function toggle(): void {
 	if (!props.disabled) model.value = !model.value;

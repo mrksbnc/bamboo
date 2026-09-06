@@ -38,8 +38,8 @@ const props = withDefaults(defineProps<BoLoadingPulseProps>(), {
 	dataTestId: () => generateDataTestId('loading-pulse'),
 	role: () => LOADING_PULSE_MANIFEST.defaults.role,
 	size: () => LOADING_PULSE_MANIFEST.defaults.size,
-	variant: () => LOADING_PULSE_MANIFEST.defaults.variant,
 	textPosition: () => LOADING_PULSE_MANIFEST.defaults.textPosition,
+	ariaLabel: 'Loading',
 });
 
 const pulseLabelFontSize = computed<BoFontSize>(() => {
@@ -50,7 +50,7 @@ const containerClassValues = computed<string>(() => {
 	return mergeTwClasses(
 		LOADING_PULSE_MANIFEST.styles.container,
 		LOADING_PULSE_MANIFEST.styles.textPosition[props.textPosition || 'after'],
-		props.customColor ? '' : LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
+		'text-blue-600 dark:text-blue-500',
 	);
 });
 

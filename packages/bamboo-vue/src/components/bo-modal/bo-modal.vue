@@ -89,7 +89,7 @@ import {
 	type BoModalProps,
 	type Icon,
 } from '@workspace/bamboo-core';
-import { computed, nextTick, onUnmounted, ref, watch } from 'vue';
+import { computed, nextTick, onUnmounted, ref, useTemplateRef, watch } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
 
@@ -106,7 +106,7 @@ const props = withDefaults(defineProps<BoModalProps>(), {
 });
 
 const emit = defineEmits<{
-	close: [];
+	(event: 'close'): void;
 }>();
 
 defineSlots<{
@@ -115,9 +115,13 @@ defineSlots<{
 	default?: () => unknown;
 }>();
 
-const panelRef = ref<HTMLElement>();
-const titleId = computed<string>(() => `${props.id}-title`);
-const descriptionId = computed<string>(() => `${props.id}-description`);
+const panelRef = useTemplateRef<HTMLElement>('panelRef');
+const titleId = computed<string>(() => {
+	return `${props.id}-title`;
+});
+const descriptionId = computed<string>(() => {
+	return `${props.id}-description`;
+});
 
 const variantIcon = computed<Icon | null>(() => {
 	const map: Record<string, Icon> = {
@@ -129,19 +133,19 @@ const variantIcon = computed<Icon | null>(() => {
 	return map[props.variant] ?? null;
 });
 
-const panelClasses = computed<string>(() =>
-	mergeTwClasses(
+const panelClasses = computed<string>(() => {
+	return mergeTwClasses(
 		MODAL_MANIFEST.styles.panel.base,
 		MODAL_MANIFEST.styles.panel.size[props.size || 'default'],
-	),
-);
+	);
+});
 
-const headerClasses = computed<string>(() =>
-	mergeTwClasses(
+const headerClasses = computed<string>(() => {
+	return mergeTwClasses(
 		MODAL_MANIFEST.styles.header.base,
 		MODAL_MANIFEST.styles.header.variant[props.variant || 'default'],
-	),
-);
+	);
+});
 
 function onClose(): void {
 	emit('close');

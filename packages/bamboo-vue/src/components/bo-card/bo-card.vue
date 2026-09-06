@@ -1,5 +1,11 @@
 <template>
-	<div :id="id" :data-testid="dataTestId" :role="role" :aria-label="ariaLabel" :class="classValues">
+	<div
+		:id="id"
+		:data-testid="dataTestId"
+		:role="role"
+		:aria-label="ariaLabel"
+		:class="CARD_MANIFEST.styles.base"
+	>
 		<div v-if="title || description || $slots['header']" :class="CARD_MANIFEST.styles.header">
 			<slot name="header">
 				<bo-text
@@ -7,7 +13,6 @@
 					:class="CARD_MANIFEST.styles.title"
 					font-size="lg"
 					font-weight="semibold"
-					variant="default"
 				>
 					{{ title }}
 				</bo-text>
@@ -20,6 +25,10 @@
 					{{ description }}
 				</bo-text>
 			</slot>
+		</div>
+
+		<div v-if="$slots['media']" :class="CARD_MANIFEST.styles.media">
+			<slot name="media" />
 		</div>
 
 		<div :class="CARD_MANIFEST.styles.body">
@@ -37,30 +46,21 @@ import {
 	CARD_MANIFEST,
 	generateComponentId,
 	generateDataTestId,
-	mergeTwClasses,
 	type BoCardProps,
 } from '@workspace/bamboo-core';
-import { computed } from 'vue';
 import { BoText } from '../bo-text';
 
 const props = withDefaults(defineProps<BoCardProps>(), {
 	id: () => generateComponentId('card'),
 	dataTestId: () => generateDataTestId('card'),
-	variant: () => CARD_MANIFEST.defaults.variant,
 });
 
 defineSlots<{
 	header?: () => unknown;
+	media?: () => unknown;
 	default?: () => unknown;
 	footer?: () => unknown;
 }>();
-
-const classValues = computed<string>(() =>
-	mergeTwClasses(
-		CARD_MANIFEST.styles.base,
-		CARD_MANIFEST.styles.variant[props.variant || 'default'],
-	),
-);
 </script>
 
 <style>

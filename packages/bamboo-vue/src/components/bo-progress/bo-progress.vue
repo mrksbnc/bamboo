@@ -39,23 +39,23 @@ const props = withDefaults(defineProps<BoProgressProps>(), {
 	value: 0,
 });
 
-const percentage = computed<number>(() =>
-	Math.round(Math.min(100, Math.max(0, ((props.value ?? 0) / (props.max ?? 100)) * 100))),
-);
+const percentage = computed<number>(() => {
+	return Math.round(Math.min(100, Math.max(0, ((props.value ?? 0) / (props.max ?? 100)) * 100)));
+});
 
-const trackClasses = computed<string>(() =>
-	mergeTwClasses(
+const trackClasses = computed<string>(() => {
+	return mergeTwClasses(
 		PROGRESS_MANIFEST.styles.track,
 		PROGRESS_MANIFEST.styles.size[props.size || 'default'],
-	),
-);
+	);
+});
 
-const indicatorClasses = computed<string>(() =>
-	mergeTwClasses(
+const indicatorClasses = computed<string>(() => {
+	return mergeTwClasses(
 		PROGRESS_MANIFEST.styles.indicator,
 		PROGRESS_MANIFEST.styles.variant[props.variant || 'primary'],
-	),
-);
+	);
+});
 </script>
 
 <style>

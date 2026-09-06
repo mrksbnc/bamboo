@@ -86,7 +86,7 @@ import {
 	mergeTwClasses,
 	type BoInputProps,
 } from '@workspace/bamboo-core';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, useTemplateRef } from 'vue';
 import { BoIcon } from '../bo-icon';
 
 const props = withDefaults(defineProps<BoInputProps>(), {
@@ -98,11 +98,11 @@ const props = withDefaults(defineProps<BoInputProps>(), {
 });
 
 const emit = defineEmits<{
-	focus: [];
-	blur: [event: FocusEvent];
-	change: [event: Event];
-	prefixIconClick: [];
-	suffixIconClick: [];
+	(event: 'focus'): void;
+	(eventName: 'blur', event: FocusEvent): void;
+	(eventName: 'change', event: Event): void;
+	(event: 'prefixIconClick'): void;
+	(event: 'suffixIconClick'): void;
 }>();
 
 defineSlots<{
@@ -112,14 +112,16 @@ defineSlots<{
 
 const model = defineModel<string>({ default: '' });
 
-const inputRef = ref<HTMLInputElement | null>(null);
+const inputRef = useTemplateRef<HTMLInputElement>('inputRef');
 const passwordVisible = ref(false);
 
 const showPasswordToggle = computed<boolean>(() => {
 	return props.type === 'password' && !props.disabled && !!model.value && !!props.revealPassword;
 });
 
-const helperTextId = computed<string>(() => `${props.id}-helper`);
+const helperTextId = computed<string>(() => {
+	return `${props.id}-helper`;
+});
 
 const inputType = computed<string>(() => {
 	if (props.type === 'password' && passwordVisible.value) {

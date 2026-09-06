@@ -37,13 +37,18 @@ function valueKey(value: BoTabsValue): string {
 	return String(value).replace(/[^a-zA-Z0-9_-]+/g, '-');
 }
 
-const isActive = computed(() => activeValue?.value === props.value);
-const contentId = computed(() => props.id ?? `tabs-content-${valueKey(props.value)}`);
-const triggerId = computed(
-	() =>
+const isActive = computed(() => {
+	return activeValue?.value === props.value;
+});
+const contentId = computed(() => {
+	return props.id ?? `tabs-content-${valueKey(props.value)}`;
+});
+const triggerId = computed(() => {
+	return (
 		items?.value.find((item) => item.value === props.value)?.id ??
-		`tabs-trigger-${valueKey(props.value)}`,
-);
+		`tabs-trigger-${valueKey(props.value)}`
+	);
+});
 </script>
 
 <style>
