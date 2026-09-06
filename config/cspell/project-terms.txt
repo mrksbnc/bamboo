@@ -1,4 +1,5 @@
 accusoft
+activedescendant
 adversal
 aesculapius
 affiliatetheme
@@ -115,6 +116,7 @@ hubspot
 imdb
 indian
 innosoft
+inputmode
 instalod
 invalidcolor
 invision
@@ -172,7 +174,9 @@ nonoctal
 nordic
 notacolor
 notdef
+novalidate
 nutritionix
+nwse
 oceania
 odnoklassniki
 odysee
@@ -233,6 +237,7 @@ snapchat
 soundcloud
 sourcetree
 speakap
+spinbutton
 spock
 spotify
 squarespace
@@ -254,6 +259,8 @@ tencent
 themeco
 themeisle
 tiktok
+Toggleable
+Triggerable
 tshirt
 tumblr
 turkish
@@ -269,6 +276,7 @@ upwork
 usps
 ussunnah
 vaadin
+valuenow
 vaul
 vcard
 venus
@@ -277,6 +285,7 @@ viadeo
 viber
 vihara
 vimeo
+vnode
 vsco
 vueuse
 waze
@@ -303,11 +312,3 @@ yandex
 yoast
 yxxx
 zhihu
-Triggerable
-valuenow
-nwse
-vnode
-inputmode
-spinbutton
-activedescendant
-novalidate
