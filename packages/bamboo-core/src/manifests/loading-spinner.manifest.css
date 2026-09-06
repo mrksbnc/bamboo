@@ -20,7 +20,10 @@
 	}
 
 	.bo-loading-spinner__track {
-		@apply block aspect-square animate-spin rounded-full border-2 border-current border-t-transparent;
+		@apply block size-4 shrink-0 rounded-full border-2 border-current border-t-transparent;
+		animation: bo-loading-spinner-spin 0.8s linear infinite;
+		transform-origin: center;
+		will-change: transform;
 	}
 
 	.bo-loading-spinner__track--xs {
@@ -43,8 +46,10 @@
 		@apply size-8;
 	}
 
-	.bo-loading-spinner--primary {
-		@apply text-blue-600;
+	@keyframes bo-loading-spinner-spin {
+		to {
+			transform: rotate(360deg);
+		}
 	}
 
 	.dark .bo-loading-spinner--primary {
@@ -52,7 +57,7 @@
 	}
 
 	.bo-loading-spinner--secondary {
-		@apply text-neutral-600;
+		@apply text-neutral-500;
 	}
 
 	.dark .bo-loading-spinner--secondary {
@@ -87,15 +92,13 @@
 		@apply text-white;
 	}
 
-	.bo-loading-spinner--black {
-		@apply text-neutral-800;
-	}
-
-	.dark .bo-loading-spinner--black {
-		@apply text-neutral-400;
-	}
-
 	.bo-loading-spinner--current {
 		@apply text-current;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bo-loading-spinner__track {
+		animation: none;
 	}
 }

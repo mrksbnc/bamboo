@@ -3,7 +3,7 @@
 		@apply contents;
 	}
 	.bo-context-menu-content {
-		@apply fixed z-50 min-w-48 overflow-hidden rounded-2xl border p-1 shadow-md outline-none;
+		@apply fixed z-50 min-w-48 overflow-hidden rounded-md border p-1 shadow-md outline-none;
 		@apply border-neutral-200 bg-white;
 	}
 	.dark .bo-context-menu-content {
@@ -13,7 +13,7 @@
 		@apply animate-in fade-in-0 zoom-in-95;
 	}
 	.bo-context-menu-item {
-		@apply relative flex w-full cursor-default select-none items-center gap-2.5 rounded-xl px-3 py-2 text-start text-sm text-neutral-700 outline-none;
+		@apply relative flex w-full cursor-default select-none items-center gap-2.5 rounded-sm px-3 py-2 text-start text-sm text-neutral-700 outline-none;
 	}
 
 	.bo-context-menu-item > svg {

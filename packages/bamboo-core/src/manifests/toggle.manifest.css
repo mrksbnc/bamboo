@@ -25,15 +25,20 @@
 		@apply rounded-md border border-neutral-200 bg-transparent text-neutral-900 hover:bg-neutral-100 dark:border-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-800;
 	}
 
+	.bo-toggle[data-state='on'],
+	.bo-toggle--pressed {
+		@apply bg-blue-600 text-white dark:bg-blue-700;
+	}
+
 	.bo-toggle--sm {
-		@apply h-8 px-2.5;
+		@apply h-9 px-2.5;
 	}
 
 	.bo-toggle--default-size {
-		@apply min-w-9 h-9 px-3;
+		@apply h-10 min-w-10 px-3;
 	}
 
 	.bo-toggle--lg {
-		@apply h-10 px-4;
+		@apply h-11 px-5;
 	}
 }

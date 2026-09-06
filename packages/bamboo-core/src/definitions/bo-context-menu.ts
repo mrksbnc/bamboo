@@ -1,28 +1,27 @@
-import { HTMLAttributes } from 'vue';
 import { ComponentManifest, ManifestDefaults } from '../manifests/types.js';
 
 export type BoContextMenuItemVariant = 'default' | 'destructive';
 
 export interface BoContextMenuProps {
-	id?: HTMLElement['id'];
+	id?: string;
 	dataTestId?: string;
 	open?: boolean;
 	closeOnOutside?: boolean;
 	closeOnEscape?: boolean;
-	role?: HTMLAttributes['role'];
+	role?: string;
 }
 
 export interface BoContextMenuItemProps {
-	id?: HTMLElement['id'];
+	id?: string;
 	dataTestId?: string;
 	disabled?: boolean;
 	inset?: boolean;
 	variant?: BoContextMenuItemVariant;
-	role?: HTMLAttributes['role'];
+	role?: string;
 }
 
 export interface BoContextMenuLabelProps {
-	id?: HTMLElement['id'];
+	id?: string;
 	dataTestId?: string;
 	inset?: boolean;
 }

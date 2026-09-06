@@ -1,11 +1,6 @@
 import { HTMLAttributes } from 'vue';
 import { ComponentManifest } from '../manifests/types.js';
-import {
-	BoFontSize,
-	type BoLoaderTextPosition,
-	type BoLoaderSize,
-	type BoLoaderVariant,
-} from './index.js';
+import { BoFontSize, type BoLoaderTextPosition, type BoLoaderSize } from './index.js';
 
 export interface BoLoadingSpinnerProps {
 	/** Unique id for the loading spinner */
@@ -17,11 +12,6 @@ export interface BoLoadingSpinnerProps {
 	 * @default 'default'
 	 */
 	size?: BoLoaderSize;
-	/**
-	 * Predefined color variant of the spinner
-	 * @default 'primary'
-	 */
-	variant?: BoLoaderVariant;
 	/** Optional loader text to display */
 	loaderText?: string;
 	/**
@@ -53,12 +43,11 @@ export interface BoLoadingSpinnerProps {
 }
 
 type BoLoadingSpinnerSizeStyleMap = Record<BoLoaderSize, string>;
-type BoLoadingSpinnerVariantStyleMap = Record<BoLoaderVariant, string>;
 type BoLoadingSpinnerTextPositionStyleMap = Record<BoLoaderTextPosition, string>;
 
 type BoLoadingSpinnerManifestDefaults = Pick<
 	BoLoadingSpinnerProps,
-	'size' | 'variant' | 'textPosition' | 'role'
+	'size' | 'textPosition' | 'role'
 >;
 
 export interface BoLoadingSpinnerStyleManifest {
@@ -66,7 +55,6 @@ export interface BoLoadingSpinnerStyleManifest {
 	container: string;
 	text: string;
 	size: BoLoadingSpinnerSizeStyleMap;
-	variant: BoLoadingSpinnerVariantStyleMap;
 	textPosition: BoLoadingSpinnerTextPositionStyleMap;
 	labelFontSize: Record<BoLoaderSize, BoFontSize>;
 }

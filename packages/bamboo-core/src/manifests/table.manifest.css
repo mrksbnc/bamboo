@@ -1,0 +1,54 @@
+@layer components {
+	.bo-table {
+		@apply w-full overflow-hidden rounded-lg border border-neutral-200;
+	}
+	.bo-table__wrapper {
+		@apply w-full overflow-x-auto;
+	}
+	.bo-table__table {
+		@apply w-full border-collapse text-sm;
+	}
+	.bo-table__caption {
+		@apply border-b px-4 py-3 text-start font-medium;
+	}
+	.bo-table__head {
+		@apply bg-neutral-50;
+	}
+	.dark .bo-table__head {
+		@apply bg-neutral-900;
+	}
+	.bo-table__header {
+		@apply h-12 border-b px-4 text-start align-middle font-medium text-neutral-500;
+	}
+	.dark .bo-table__header {
+		@apply text-neutral-400;
+	}
+	.bo-table__body .bo-table__row {
+		@apply border-b last:border-b-0;
+	}
+	.bo-table__body .bo-table__row:hover {
+		@apply bg-neutral-50;
+	}
+	.dark .bo-table__body .bo-table__row:hover {
+		@apply bg-neutral-900;
+	}
+	.bo-table__cell {
+		@apply p-4 align-middle;
+	}
+	.bo-table__empty {
+		@apply flex min-h-24 items-center justify-center text-sm text-neutral-500;
+	}
+	.dark .bo-table__empty {
+		@apply text-neutral-400;
+	}
+	.bo-table__actions {
+		@apply flex items-center justify-end gap-2;
+	}
+	.bo-table[data-striped='true'] .bo-table__body .bo-table__row:nth-child(even) {
+		@apply bg-neutral-50;
+	}
+	.bo-table[data-bordered='true'] .bo-table__header,
+	.bo-table[data-bordered='true'] .bo-table__cell {
+		@apply border-e last:border-e-0;
+	}
+}

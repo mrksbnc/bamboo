@@ -1,6 +1,6 @@
 @layer components {
 	.bo-menubar {
-		@apply flex h-9 w-fit items-center rounded-md border bg-white p-1 shadow-xs;
+		@apply flex h-10 w-fit items-center rounded-md border bg-white p-1 shadow-xs;
 		@apply border-neutral-200;
 	}
 
@@ -14,7 +14,7 @@
 	}
 
 	.bo-menubar__trigger {
-		@apply inline-flex shrink-0 cursor-default select-none items-center justify-center rounded-xl px-2 py-[3px] text-center text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
+		@apply inline-flex shrink-0 cursor-default select-none items-center justify-center rounded-md border border-transparent px-2 py-[3px] text-center text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
 	}
 
 	.dark .bo-menubar__trigger {
@@ -46,8 +46,16 @@
 
 	.bo-menubar__content,
 	.bo-menubar__sub-content {
-		@apply z-50 min-w-48 max-h-[calc(100vh-1rem)] overflow-auto rounded-2xl border bg-white p-1 text-sm shadow-md;
+		@apply absolute z-50 min-w-48 max-h-[calc(100vh-1rem)] overflow-auto rounded-md border bg-white p-1 text-sm shadow-md;
 		@apply border-neutral-200 text-neutral-900;
+	}
+
+	.bo-menubar__content {
+		@apply start-0 top-full mt-1;
+	}
+
+	.bo-menubar__sub-content {
+		@apply start-full top-0 ms-1;
 	}
 
 	.dark .bo-menubar__content,
@@ -56,7 +64,7 @@
 	}
 
 	.bo-menubar__item {
-		@apply relative flex w-full cursor-default select-none items-center gap-2.5 rounded-xl px-3 py-2 text-start text-sm outline-none transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
+		@apply relative flex w-full cursor-default select-none items-center gap-2.5 rounded-sm border border-transparent px-3 py-2 text-start text-sm outline-none transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
 	}
 
 	.bo-menubar__item > svg {
@@ -73,6 +81,10 @@
 
 	.bo-menubar__item[data-variant='destructive'] {
 		@apply text-red-600;
+	}
+
+	.dark .bo-menubar__item[data-variant='destructive'] {
+		@apply text-red-400;
 	}
 
 	.bo-menubar__item-shortcut {

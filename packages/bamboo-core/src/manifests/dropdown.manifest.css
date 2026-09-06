@@ -1,0 +1,30 @@
+@layer components {
+	.bo-dropdown {
+		@apply relative inline-flex;
+	}
+	.bo-dropdown__trigger {
+		@apply inline-flex h-10 items-center justify-center rounded-md border border-neutral-300 bg-transparent px-4 py-2 text-sm text-neutral-900 transition-colors hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-800;
+	}
+	.bo-dropdown__content {
+		@apply absolute end-0 top-full z-50 mt-1 min-w-40 rounded-md border border-neutral-200 bg-white p-1 shadow-lg;
+	}
+	.bo-dropdown__item {
+		@apply flex w-full cursor-pointer rounded-md px-3 py-2 text-start text-sm;
+	}
+	.bo-dropdown__item:hover,
+	.bo-dropdown__item:focus-visible {
+		@apply bg-neutral-100;
+	}
+	.bo-dropdown__item:disabled {
+		@apply cursor-not-allowed opacity-50;
+	}
+	.bo-dropdown__item--destructive {
+		@apply text-red-600;
+	}
+	.bo-dropdown__label {
+		@apply px-3 py-2 text-xs font-medium text-neutral-500;
+	}
+	.bo-dropdown__separator {
+		@apply -mx-1 my-1 h-px bg-neutral-200;
+	}
+}

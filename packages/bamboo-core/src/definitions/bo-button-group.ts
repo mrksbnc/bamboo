@@ -57,7 +57,7 @@ export interface BoButtonGroupProps {
 
 type BoButtonGroupManifestDefaults = Pick<
 	BoButtonGroupProps,
-	'orientation' | 'fullWidth' | 'attached' | 'role' | 'multiple' | 'required'
+	'orientation' | 'fullWidth' | 'attached' | 'role' | 'multiple' | 'required' | 'variant'
 >;
 
 type BoButtonGroupOrientationStyleMap = Record<BoButtonGroupOrientation, string>;

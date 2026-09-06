@@ -48,6 +48,7 @@ export const BUTTON_GROUP_MANIFEST: ButtonGroupManifest = {
 	},
 	defaults: {
 		orientation: 'horizontal',
+		variant: 'secondary',
 		fullWidth: false,
 		attached: true,
 		role: 'group',

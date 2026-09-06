@@ -1,0 +1,43 @@
+@layer components {
+	.bo-file-input {
+		@apply flex w-full flex-col gap-2;
+	}
+	.bo-file-input__label-container {
+		@apply flex flex-col gap-1;
+	}
+	.bo-file-input__label {
+		@apply text-sm font-medium text-neutral-900 dark:text-neutral-100;
+	}
+	.bo-file-input__required {
+		@apply ms-1 text-red-600 dark:text-red-400;
+	}
+	.bo-file-input__description,
+	.bo-file-input__hint {
+		@apply text-sm text-neutral-500 dark:text-neutral-400;
+	}
+	.bo-file-input__container {
+		@apply relative flex min-w-0 items-center;
+	}
+	.bo-file-input__icon {
+		@apply pointer-events-none absolute start-3 z-10 size-4 text-neutral-500 dark:text-neutral-400;
+	}
+	.bo-file-input__input {
+		@apply block h-10 min-w-0 w-full cursor-pointer rounded-md border border-neutral-300 bg-white ps-10 text-sm text-neutral-900 transition-colors file:me-3 file:h-9 file:cursor-pointer file:border-0 file:border-e file:border-neutral-300 file:bg-neutral-50 file:px-3 file:font-medium file:text-neutral-900 hover:border-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:file:border-neutral-700 dark:file:bg-neutral-800 dark:file:text-neutral-100;
+	}
+	.bo-file-input__file-list,
+	.bo-dropzone__file-list {
+		@apply flex flex-col gap-1;
+	}
+	.bo-file-input__file,
+	.bo-dropzone__file {
+		@apply flex items-center justify-between gap-2 text-sm text-neutral-700 dark:text-neutral-300;
+	}
+	.bo-file-input__remove,
+	.bo-dropzone__remove {
+		@apply cursor-pointer text-sm text-red-600 hover:underline dark:text-red-400;
+	}
+	.bo-file-input__error,
+	.bo-dropzone__error {
+		@apply text-sm text-red-600 dark:text-red-400;
+	}
+}

@@ -1,0 +1,37 @@
+@layer components {
+	.bo-form {
+		@apply flex w-full flex-col gap-4;
+	}
+
+	.bo-form-field {
+		@apply flex w-full flex-col gap-1.5;
+	}
+
+	.bo-form-field__label {
+		@apply text-sm font-medium text-neutral-900;
+	}
+
+	.dark .bo-form-field__label {
+		@apply text-neutral-100;
+	}
+
+	.bo-form-field__description {
+		@apply text-sm text-neutral-500;
+	}
+
+	.dark .bo-form-field__description {
+		@apply text-neutral-400;
+	}
+
+	.bo-form-field__error {
+		@apply text-sm text-red-600;
+	}
+
+	.dark .bo-form-field__error {
+		@apply text-red-400;
+	}
+
+	.bo-form-field__control {
+		@apply min-w-0;
+	}
+}

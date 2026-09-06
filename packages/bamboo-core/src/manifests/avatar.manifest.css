@@ -58,10 +58,10 @@
 	}
 
 	.bo-avatar[data-kind^='outline'][data-variant='secondary'] {
-		@apply border-neutral-600 text-neutral-600;
+		@apply border-neutral-300 text-neutral-500;
 	}
 	.dark .bo-avatar[data-kind^='outline'][data-variant='secondary'] {
-		@apply border-neutral-500 text-neutral-500;
+		@apply border-neutral-700 text-neutral-400;
 	}
 
 	.bo-avatar[data-kind^='outline'][data-variant='destructive'] {

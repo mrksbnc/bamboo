@@ -1,6 +1,6 @@
 @layer components {
 	.bo-card {
-		@apply flex flex-col gap-6 rounded-2xl border py-6 text-sm shadow-sm overflow-hidden;
+		@apply flex w-full min-w-0 flex-col overflow-hidden rounded-lg border text-sm shadow-sm;
 		@apply border-neutral-200 bg-white text-neutral-900;
 	}
 
@@ -8,60 +8,12 @@
 		@apply border-neutral-800 bg-neutral-900 text-neutral-100;
 	}
 
-	.bo-card--default {
-		@apply border-neutral-200;
-	}
-
-	.dark .bo-card--default {
-		@apply border-neutral-800;
-	}
-
-	.bo-card--primary {
-		@apply border-blue-500;
-	}
-
-	.dark .bo-card--primary {
-		@apply border-blue-400;
-	}
-
-	.bo-card--secondary {
-		@apply border-neutral-500;
-	}
-
-	.dark .bo-card--secondary {
-		@apply border-neutral-400;
-	}
-
-	.bo-card--destructive {
-		@apply border-red-500;
-	}
-
-	.dark .bo-card--destructive {
-		@apply border-red-400;
-	}
-
-	.bo-card--warning {
-		@apply border-yellow-500;
-	}
-
-	.dark .bo-card--warning {
-		@apply border-yellow-400;
-	}
-
-	.bo-card--success {
-		@apply border-green-500;
-	}
-
-	.dark .bo-card--success {
-		@apply border-green-400;
-	}
-
 	.bo-card__header {
-		@apply flex flex-col gap-2 px-6;
+		@apply flex flex-col gap-1.5 p-6;
 	}
 
 	.bo-card__title {
-		@apply text-base font-medium leading-none tracking-tight;
+		@apply text-2xl font-semibold leading-none tracking-tight;
 	}
 
 	.bo-card__description {
@@ -72,11 +24,15 @@
 		@apply text-neutral-400;
 	}
 
+	.bo-card__media {
+		@apply w-full overflow-hidden;
+	}
+
 	.bo-card__body {
-		@apply flex-1 px-6;
+		@apply min-h-0 flex-1 p-6 pt-0;
 	}
 
 	.bo-card__footer {
-		@apply flex items-center gap-2 px-6;
+		@apply flex items-center gap-2 p-6 pt-0;
 	}
 }

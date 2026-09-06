@@ -28,7 +28,7 @@
 	}
 
 	.bo-input__container {
-		@apply relative flex h-9 w-full items-center rounded-md border px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none;
+		@apply relative flex h-10 w-full items-center rounded-md border px-3 py-2 text-sm shadow-xs transition-[color,box-shadow] outline-none;
 		@apply border-neutral-300 bg-transparent;
 	}
 
@@ -159,7 +159,7 @@
 	}
 
 	.bo-input__hint {
-		@apply text-sm text-neutral-600;
+		@apply text-sm text-neutral-500;
 	}
 
 	.dark .bo-input__hint {

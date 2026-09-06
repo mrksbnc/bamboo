@@ -36,7 +36,7 @@
 	}
 
 	.bo-loading-pulse__dot--default {
-		@apply size-4;
+		@apply size-3;
 	}
 
 	.bo-loading-pulse__dot--lg {
@@ -44,7 +44,7 @@
 	}
 
 	.bo-loading-pulse__dot--xl {
-		@apply size-6;
+		@apply size-5;
 	}
 
 	.bo-loading-pulse__dot--delay-0 {
@@ -68,7 +68,7 @@
 	}
 
 	.bo-loading-pulse--secondary {
-		@apply text-neutral-600;
+		@apply text-neutral-500;
 	}
 
 	.dark .bo-loading-pulse--secondary {
@@ -101,14 +101,6 @@
 
 	.bo-loading-pulse--white {
 		@apply text-white;
-	}
-
-	.bo-loading-pulse--black {
-		@apply text-neutral-800;
-	}
-
-	.dark .bo-loading-pulse--black {
-		@apply text-neutral-400;
 	}
 
 	.bo-loading-pulse--current {

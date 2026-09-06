@@ -1,6 +1,6 @@
 @layer components {
 	.bo-empty {
-		@apply flex min-w-0 flex-1 flex-col items-center justify-center gap-4 text-balance rounded-lg border-dashed p-12 text-center;
+		@apply flex h-full w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-lg border-dashed p-12 text-center text-balance;
 		@apply border-2 border-neutral-200;
 	}
 
@@ -10,6 +10,10 @@
 
 	.bo-empty__media {
 		@apply mb-2 flex items-center justify-center text-neutral-400;
+	}
+
+	.bo-empty__content {
+		@apply flex w-full max-w-sm flex-col items-center gap-2 text-center;
 	}
 
 	.bo-empty__title {

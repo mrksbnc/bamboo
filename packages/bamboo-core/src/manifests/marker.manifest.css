@@ -1,6 +1,6 @@
 @layer components {
 	.bo-marker {
-		@apply inline-flex size-2 shrink-0 rounded-full;
+		@apply inline-flex size-3 shrink-0 rounded-full;
 	}
 
 	.bo-marker--default {

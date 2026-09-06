@@ -20,7 +20,7 @@
 	}
 
 	.bo-tags-input__container {
-		@apply flex min-h-9 w-full flex-wrap items-center gap-1.5 rounded-md border px-2 py-1 shadow-xs transition-[color,box-shadow];
+		@apply flex min-h-10 w-full max-w-full flex-wrap items-center gap-1.5 overflow-x-hidden rounded-md border px-2 py-1 shadow-xs transition-[color,box-shadow];
 		@apply border-neutral-300;
 	}
 
@@ -51,11 +51,11 @@
 	}
 
 	.bo-tags-input__tags {
-		@apply flex flex-wrap gap-1.5;
+		@apply flex min-w-0 max-w-full flex-wrap gap-1.5;
 	}
 
 	.bo-tags-input__tag {
-		@apply inline-flex items-center gap-1 rounded bg-blue-100 px-2 py-0.5 text-sm text-blue-800;
+		@apply inline-flex max-w-full items-center gap-1 break-all rounded bg-blue-100 px-2 py-0.5 text-sm text-blue-800;
 	}
 
 	.bo-tags-input__remove {
@@ -67,7 +67,7 @@
 	}
 
 	.bo-tags-input__input {
-		@apply min-w-24 flex-1 border-none bg-transparent px-1 py-0.5 text-base text-neutral-900 outline-none md:text-sm;
+		@apply min-w-24 max-w-full flex-[1_1_6rem] basis-24 border-none bg-transparent px-1 py-0.5 text-base text-neutral-900 outline-none md:text-sm;
 	}
 
 	.bo-tags-input__input:disabled {
@@ -80,7 +80,7 @@
 
 	.bo-tags-input__description,
 	.bo-tags-input__hint {
-		@apply text-neutral-600;
+		@apply text-neutral-500;
 	}
 
 	.bo-tags-input__error {

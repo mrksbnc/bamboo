@@ -1,0 +1,84 @@
+@layer components {
+	.bo-navbar {
+		@apply flex h-full w-full flex-col border-e border-neutral-200 bg-white text-neutral-900;
+		@apply md:h-svh md:min-h-0 md:w-64;
+	}
+
+	.dark .bo-navbar {
+		@apply border-neutral-700 bg-neutral-900 text-neutral-100;
+	}
+
+	.bo-navbar__header {
+		@apply flex min-h-14 shrink-0 items-center justify-between gap-4 border-b border-neutral-200 px-4;
+	}
+
+	.bo-navbar__toggle {
+		@apply inline-flex size-9 items-center justify-center rounded-md transition-colors hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 md:hidden;
+	}
+
+	.dark .bo-navbar__toggle {
+		@apply hover:bg-neutral-800;
+	}
+
+	.bo-navbar__content {
+		@apply hidden min-h-0 flex-1 flex-col overflow-y-auto border-b border-neutral-200 px-3 py-3;
+		@apply md:flex;
+	}
+
+	.bo-navbar__content--open {
+		@apply flex;
+	}
+
+	.dark .bo-navbar__content {
+		@apply border-neutral-700;
+	}
+
+	.bo-navbar__nav {
+		@apply flex min-w-0 flex-col gap-1;
+	}
+
+	.bo-navbar__link {
+		@apply rounded-md px-3 py-2 text-sm no-underline transition-colors hover:bg-neutral-100;
+	}
+
+	.bo-navbar__link--active {
+		@apply bg-neutral-100 font-medium;
+	}
+
+	.dark .bo-navbar__link:hover,
+	.dark .bo-navbar__link--active {
+		@apply bg-neutral-800;
+	}
+
+	.bo-navbar__actions {
+		@apply flex flex-wrap items-center gap-2;
+	}
+
+	.bo-navbar__top,
+	.bo-navbar__middle,
+	.bo-navbar__bottom {
+		@apply flex flex-col gap-2;
+	}
+
+	.bo-navbar__top {
+		@apply shrink-0;
+	}
+
+	.bo-navbar__middle {
+		@apply min-h-0 flex-1;
+	}
+
+	.bo-navbar__bottom {
+		@apply mt-auto shrink-0 border-t border-neutral-200 pt-3;
+	}
+
+	.dark .bo-navbar__header,
+	.dark .bo-navbar__content,
+	.dark .bo-navbar__bottom {
+		@apply border-neutral-700;
+	}
+
+	.bo-navbar__visually-hidden {
+		@apply sr-only;
+	}
+}

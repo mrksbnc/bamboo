@@ -3,7 +3,7 @@
 		@apply inline-flex;
 	}
 	.bo-popover-content {
-		@apply fixed z-50 flex w-72 flex-col gap-4 rounded-2xl border p-4 text-sm shadow-md outline-none;
+		@apply fixed z-50 flex w-72 flex-col gap-4 rounded-md border p-4 text-sm shadow-md outline-none;
 		@apply border-neutral-200 bg-white;
 	}
 	.dark .bo-popover-content {

@@ -1,0 +1,41 @@
+@layer components {
+	.bo-carousel {
+		@apply relative w-full;
+	}
+	.bo-carousel__viewport {
+		@apply overflow-hidden;
+	}
+	.bo-carousel__content {
+		@apply flex transition-transform duration-300 ease-out;
+	}
+	.bo-carousel__item {
+		@apply min-w-full shrink-0;
+	}
+	.bo-carousel__controls {
+		@apply mt-3 flex items-center justify-center gap-2;
+	}
+	.bo-carousel__button {
+		@apply inline-flex size-8 items-center justify-center rounded-md border border-neutral-200 text-sm transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
+	}
+	.dark .bo-carousel__button {
+		@apply border-neutral-800 hover:bg-neutral-800;
+	}
+	.bo-carousel__indicator {
+		@apply size-2 rounded-full bg-neutral-300 transition-colors;
+	}
+	.bo-carousel__indicator--active {
+		@apply bg-blue-600;
+	}
+	.dark .bo-carousel__indicator {
+		@apply bg-neutral-700;
+	}
+	.dark .bo-carousel__indicator--active {
+		@apply bg-blue-400;
+	}
+	.bo-carousel[data-orientation='vertical'] .bo-carousel__content {
+		@apply flex-col;
+	}
+	.bo-carousel[data-orientation='vertical'] .bo-carousel__item {
+		@apply min-h-full;
+	}
+}

@@ -79,7 +79,7 @@
 	}
 
 	.bo-badge--outline-secondary {
-		@apply bg-transparent border border-neutral-600 text-neutral-600 dark:border-neutral-500 dark:text-neutral-500;
+		@apply bg-transparent border border-neutral-300 text-neutral-500 dark:border-neutral-700 dark:text-neutral-400;
 	}
 
 	.bo-badge--outline-destructive {

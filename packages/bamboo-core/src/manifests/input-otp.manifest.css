@@ -56,7 +56,7 @@
 
 	.bo-input-otp__description,
 	.bo-input-otp__hint {
-		@apply text-neutral-600;
+		@apply text-neutral-500;
 	}
 
 	.bo-input-otp__error {

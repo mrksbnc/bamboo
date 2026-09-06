@@ -8,15 +8,6 @@ export {
 	type BoAccordionStyleManifest,
 	type AccordionManifest,
 
-	// Alert
-	type BoAlertPosition,
-	type BoAlertVariant,
-	type BoAlertProps,
-	type BoAlertContainerProps,
-	type BoAlertContainerStyleManifest,
-	type BoAlertStyleManifest,
-	type AlertManifest,
-
 	// Avatar
 	type BoAvatarSize,
 	type BoAvatarKind,
@@ -43,11 +34,18 @@ export {
 	type BoButtonShape,
 	type BoButtonProps,
 	type ButtonManifest,
-
 	// Button Group
 	type BoButtonGroupOrientation,
 	type BoButtonGroupProps,
 	type ButtonGroupManifest,
+
+	// Form
+	type BoFormProps,
+	type BoFormFieldProps,
+	type BoFormStyleManifest,
+	type BoFormFieldStyleManifest,
+	type FormManifest,
+	type FormFieldManifest,
 
 	// Icon
 	type Icon,
@@ -61,6 +59,12 @@ export {
 	type BoInputType,
 	type BoInputState,
 	type BoInputProps,
+	type BoFileInputProps,
+	type BoFileInputStyleManifest,
+	type FileInputManifest,
+	type BoDropzoneProps,
+	type BoDropzoneStyleManifest,
+	type DropzoneManifest,
 
 	// Modal
 	type BoModalVariant,
@@ -120,7 +124,6 @@ export {
 	type BreadcrumbManifest,
 
 	// Card
-	type BoCardVariant,
 	type BoCardProps,
 	type BoCardStyleManifest,
 	type CardManifest,
@@ -221,6 +224,23 @@ export {
 	type BoVisuallyHiddenStyleManifest,
 	type VisuallyHiddenManifest,
 
+	// Carousel
+	type BoCarouselProps,
+	type BoCarouselStyleManifest,
+	type CarouselManifest,
+
+	// Slider
+	type BoSliderProps,
+	type BoSliderStyleManifest,
+	type SliderManifest,
+
+	// Table
+	type BoTableColumn,
+	type BoTableAction,
+	type BoTableProps,
+	type BoTableStyleManifest,
+	type TableManifest,
+
 	// Component Types
 	type Booleanish,
 	type ConditionalCssProperties,
@@ -231,13 +251,14 @@ export type * from './definitions/index.js';
 
 export {
 	ACCORDION_MANIFEST,
-	ALERT_MANIFEST,
 	AVATAR_MANIFEST,
 	BADGE_MANIFEST,
 	BUTTON_MANIFEST,
 	BUTTON_GROUP_MANIFEST,
 	ICON_MANIFEST,
 	INPUT_MANIFEST,
+	FILE_INPUT_MANIFEST,
+	DROPZONE_MANIFEST,
 	LOADING_PULSE_MANIFEST,
 	LOADING_SPINNER_MANIFEST,
 	MODAL_MANIFEST,
@@ -254,6 +275,9 @@ export {
 	PROGRESS_MANIFEST,
 	SEPARATOR_MANIFEST,
 	SKELETON_MANIFEST,
+	CAROUSEL_MANIFEST,
+	SLIDER_MANIFEST,
+	TABLE_MANIFEST,
 	VISUALLY_HIDDEN_MANIFEST,
 	CHECKBOX_MANIFEST,
 	RADIO_GROUP_MANIFEST,

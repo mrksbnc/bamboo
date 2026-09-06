@@ -48,7 +48,7 @@
 	}
 
 	.bo-icon--secondary {
-		@apply text-neutral-600;
+		@apply text-neutral-500;
 	}
 
 	.dark .bo-icon--secondary {

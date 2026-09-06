@@ -1,9 +1,6 @@
 // # Accordion
 export { ACCORDION_MANIFEST } from './accordion.manifest';
 
-// # Alert
-export { ALERT_MANIFEST } from './alert.manifest';
-
 // # Avatar
 export { AVATAR_MANIFEST } from './avatar.manifest';
 
@@ -20,6 +17,8 @@ export { ICON_MANIFEST } from './icon.manifest';
 
 // # Input
 export { INPUT_MANIFEST } from './input.manifest';
+export { FILE_INPUT_MANIFEST } from './file-input.manifest';
+export { DROPZONE_MANIFEST } from './dropzone.manifest';
 
 // # Loading Pulse
 export { LOADING_PULSE_MANIFEST } from './loading-pulse.manifest';
@@ -91,22 +90,28 @@ export { TABS_MANIFEST } from './tabs.manifest';
 // # Toast
 export { TOAST_MANIFEST } from './toast.manifest';
 
+export { CAROUSEL_MANIFEST } from './carousel.manifest';
+export { SLIDER_MANIFEST } from './slider.manifest';
+export { TABLE_MANIFEST } from './table.manifest';
+
 // # generated component manifests
 export { COLLAPSIBLE_MANIFEST } from './collapsible.manifest';
 export { CONTEXT_MENU_MANIFEST } from './context-menu.manifest';
 export { DRAWER_MANIFEST } from './drawer.manifest';
-export { HOVER_CARD_MANIFEST } from './hover-card.manifest';
 export { INPUT_OTP_MANIFEST } from './input-otp.manifest';
 export { MENUBAR_MANIFEST } from './menubar.manifest';
-export { NAVIGATION_MENU_MANIFEST } from './navigation-menu.manifest';
+export { NAVBAR_MANIFEST } from './navbar.manifest';
+export { FORM_MANIFEST, FORM_FIELD_MANIFEST } from './form.manifest';
+export { CALENDAR_MANIFEST } from './calendar.manifest';
+export {
+	DATE_PICKER_MANIFEST,
+	RANGE_CALENDAR_MANIFEST,
+	DATE_RANGE_PICKER_MANIFEST,
+} from './date-picker.manifest';
 export { NUMBER_FIELD_MANIFEST } from './number-field.manifest';
-export { PIN_INPUT_MANIFEST } from './pin-input.manifest';
 export { POPOVER_MANIFEST } from './popover.manifest';
 export { RESIZABLE_MANIFEST } from './resizable.manifest';
 export { SCROLL_AREA_MANIFEST } from './scroll-area.manifest';
-export { SELECT_MANIFEST } from './select.manifest';
-export { SHEET_MANIFEST } from './sheet.manifest';
-export { SIDEBAR_MANIFEST } from './sidebar.manifest';
 export { SWITCH_MANIFEST } from './switch.manifest';
 export { TAGS_INPUT_MANIFEST } from './tags-input.manifest';
 export { TOGGLE_GROUP_MANIFEST } from './toggle-group.manifest';
@@ -114,3 +119,5 @@ export { TOGGLE_MANIFEST } from './toggle.manifest';
 
 // # Types
 export type { ComponentManifest } from './types';
+
+export { DROPDOWN_MANIFEST } from './dropdown.manifest';

@@ -1,6 +1,6 @@
 @layer components {
 	.bo-button {
-		@apply inline-flex shrink-0 items-center justify-center whitespace-nowrap font-medium transition-all duration-200 ease-in-out outline-none disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0;
+		@apply inline-flex shrink-0 items-center justify-center whitespace-nowrap font-medium transition-colors outline-none disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0;
 	}
 
 	.bo-button > * {
@@ -55,23 +55,23 @@
 	}
 
 	.bo-button--xs {
-		@apply h-6 px-2 gap-1 text-xs;
+		@apply h-8 gap-1 px-2 text-xs;
 	}
 
 	.bo-button--sm {
-		@apply h-8 px-3 gap-1.5 text-sm;
+		@apply h-9 gap-1.5 px-3 text-sm;
 	}
 
 	.bo-button--default {
-		@apply h-9 px-4 gap-2 text-sm;
+		@apply h-10 gap-2 px-4 text-sm;
 	}
 
 	.bo-button--lg {
-		@apply h-10 px-6 gap-2 text-sm;
+		@apply h-11 gap-2 px-8 text-sm;
 	}
 
 	.bo-button--xl {
-		@apply h-16 px-8 gap-2.5 text-lg;
+		@apply h-12 gap-2.5 px-8 text-base;
 	}
 
 	.bo-button--xs > svg {
@@ -89,31 +89,31 @@
 	}
 
 	.bo-button--icon-only-xs {
-		@apply size-6;
-	}
-
-	.bo-button--icon-only-sm {
 		@apply size-8;
 	}
 
-	.bo-button--icon-only-default {
+	.bo-button--icon-only-sm {
 		@apply size-9;
 	}
 
-	.bo-button--icon-only-lg {
+	.bo-button--icon-only-default {
 		@apply size-10;
 	}
 
+	.bo-button--icon-only-lg {
+		@apply size-11;
+	}
+
 	.bo-button--icon-only-xl {
-		@apply size-16;
+		@apply size-12;
 	}
 
 	.bo-button[class*='bo-button--default-'] {
-		@apply shadow-lg;
+		@apply shadow-none;
 	}
 
 	.bo-button[class*='bo-button--outline-'] {
-		@apply shadow-md;
+		@apply shadow-none;
 	}
 
 	.bo-button[class*='bo-button--ghost-'],
@@ -142,19 +142,19 @@
 	}
 
 	.bo-button--default-secondary {
-		@apply border-neutral-600 bg-neutral-600 text-white;
+		@apply border-neutral-200 bg-neutral-100 text-neutral-900;
 	}
 
 	.bo-button--default-secondary:hover:not(:disabled) {
-		@apply bg-neutral-700;
+		@apply border-neutral-300 bg-neutral-200;
 	}
 
 	.dark .bo-button--default-secondary {
-		@apply border-neutral-700 bg-neutral-700;
+		@apply border-neutral-800 bg-neutral-800 text-neutral-100;
 	}
 
 	.dark .bo-button--default-secondary:hover:not(:disabled) {
-		@apply bg-neutral-800;
+		@apply border-neutral-700 bg-neutral-700;
 	}
 
 	.bo-button--default-destructive {
@@ -243,7 +243,7 @@
 	}
 
 	.bo-button--outline-primary:hover:not(:disabled) {
-		@apply bg-blue-600 text-white;
+		@apply border-blue-600 bg-blue-600 text-white;
 	}
 
 	.dark .bo-button--outline-primary {
@@ -256,11 +256,11 @@
 
 	.bo-button--outline-secondary {
 		@apply border bg-transparent;
-		@apply border-neutral-600 text-neutral-600;
+		@apply border-neutral-300 text-neutral-700;
 	}
 
 	.bo-button--outline-secondary:hover:not(:disabled) {
-		@apply bg-neutral-600 text-white;
+		@apply border-neutral-300 bg-neutral-100 text-neutral-900;
 	}
 
 	.dark .bo-button--outline-secondary {
@@ -277,7 +277,7 @@
 	}
 
 	.bo-button--outline-destructive:hover:not(:disabled) {
-		@apply bg-red-600 text-white;
+		@apply border-red-600 bg-red-600 text-white;
 	}
 
 	.dark .bo-button--outline-destructive {
@@ -294,7 +294,7 @@
 	}
 
 	.bo-button--outline-warning:hover:not(:disabled) {
-		@apply bg-yellow-500 text-neutral-950;
+		@apply border-yellow-500 bg-yellow-500 text-neutral-950;
 	}
 
 	.dark .bo-button--outline-warning {
@@ -311,7 +311,7 @@
 	}
 
 	.bo-button--outline-success:hover:not(:disabled) {
-		@apply bg-green-700 text-white;
+		@apply border-green-700 bg-green-700 text-white;
 	}
 
 	.dark .bo-button--outline-success {
@@ -328,7 +328,7 @@
 	}
 
 	.bo-button--outline-light:hover:not(:disabled) {
-		@apply bg-neutral-50 text-neutral-900;
+		@apply border-neutral-50 bg-neutral-50 text-neutral-900;
 	}
 
 	.dark .bo-button--outline-light {
@@ -345,7 +345,7 @@
 	}
 
 	.bo-button--outline-dark:hover:not(:disabled) {
-		@apply bg-neutral-800 text-white;
+		@apply border-neutral-800 bg-neutral-800 text-white;
 	}
 
 	.dark .bo-button--outline-dark {
@@ -375,7 +375,7 @@
 
 	.bo-button--ghost-secondary {
 		@apply bg-transparent border-transparent;
-		@apply text-neutral-600;
+		@apply text-neutral-500;
 	}
 
 	.bo-button--ghost-secondary:hover:not(:disabled) {
@@ -443,7 +443,7 @@
 
 	.bo-button--ghost-light {
 		@apply bg-transparent border-transparent;
-		@apply text-neutral-600;
+		@apply text-neutral-500;
 	}
 
 	.bo-button--ghost-light:hover:not(:disabled) {
@@ -494,7 +494,7 @@
 
 	.bo-button--link-secondary {
 		@apply bg-transparent border-transparent underline-offset-4 hover:underline;
-		@apply text-neutral-600;
+		@apply text-neutral-500;
 	}
 
 	.bo-button--link-secondary:hover:not(:disabled) {

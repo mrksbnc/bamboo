@@ -17,6 +17,7 @@ export interface BoEmptyStyleManifest {
 	readonly title: 'bo-empty__title';
 	readonly description: 'bo-empty__description';
 	readonly media: 'bo-empty__media';
+	readonly content: 'bo-empty__content';
 	readonly action: 'bo-empty__action';
 }
 

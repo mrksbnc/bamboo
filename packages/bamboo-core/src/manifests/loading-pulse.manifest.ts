@@ -16,16 +16,6 @@ export const LOADING_PULSE_MANIFEST = {
 			lg: 'bo-loading-pulse__dot--lg',
 			xl: 'bo-loading-pulse__dot--xl',
 		},
-		variant: {
-			primary: 'bo-loading-pulse--primary',
-			secondary: 'bo-loading-pulse--secondary',
-			success: 'bo-loading-pulse--success',
-			warning: 'bo-loading-pulse--warning',
-			destructive: 'bo-loading-pulse--destructive',
-			white: 'bo-loading-pulse--white',
-			black: 'bo-loading-pulse--black',
-			current: 'bo-loading-pulse--current',
-		},
 		textPosition: {
 			top: 'bo-loading-pulse--top',
 			bottom: 'bo-loading-pulse--bottom',
@@ -48,7 +38,6 @@ export const LOADING_PULSE_MANIFEST = {
 	defaults: {
 		role: 'status',
 		size: 'default',
-		variant: 'primary',
 		textPosition: 'after',
 	},
 } as const satisfies LoadingPulseManifest;

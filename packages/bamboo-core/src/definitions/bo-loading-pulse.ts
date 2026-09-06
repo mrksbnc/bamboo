@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'vue';
 import { ComponentManifest } from '../manifests/types.js';
-import { BoLoaderSize, BoLoaderTextPosition, BoLoaderVariant } from './bo-loader';
+import { BoLoaderSize, BoLoaderTextPosition } from './bo-loader';
 import { BoFontSize } from './bo-text';
 
 export interface BoLoadingPulseProps {
@@ -13,11 +13,6 @@ export interface BoLoadingPulseProps {
 	 * @default 'default'
 	 */
 	size?: BoLoaderSize;
-	/**
-	 * Predefined color variant of the spinner
-	 * @default 'primary'
-	 */
-	variant?: BoLoaderVariant;
 	/** Optional loader text to display */
 	loaderText?: string;
 	/**
@@ -49,20 +44,15 @@ export interface BoLoadingPulseProps {
 }
 
 type BoLoadingPulseSizeStyleMap = Record<BoLoaderSize, string>;
-type BoLoadingPulseVariantStyleMap = Record<BoLoaderVariant, string>;
 type BoLoadingPulseTextPositionStyleMap = Record<BoLoaderTextPosition, string>;
 
-type BoLoadingPulseManifestDefaults = Pick<
-	BoLoadingPulseProps,
-	'size' | 'variant' | 'textPosition' | 'role'
->;
+type BoLoadingPulseManifestDefaults = Pick<BoLoadingPulseProps, 'size' | 'textPosition' | 'role'>;
 
 export interface BoLoadingPulseStyleManifest {
 	base: string;
 	container: string;
 	dot: string;
 	size: BoLoadingPulseSizeStyleMap;
-	variant: BoLoadingPulseVariantStyleMap;
 	textPosition: BoLoadingPulseTextPositionStyleMap;
 	labelFontSize: Record<BoLoaderSize, BoFontSize>;
 	/** Animation keyframes for the pulse loader */

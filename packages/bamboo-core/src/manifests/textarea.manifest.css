@@ -1,6 +1,6 @@
 @layer components {
 	.bo-textarea {
-		@apply flex w-full flex-col transition-all duration-200;
+		@apply flex w-full max-w-none flex-col transition-all duration-200;
 	}
 
 	.bo-textarea__label-container {
@@ -13,7 +13,7 @@
 	}
 
 	.bo-textarea__description {
-		@apply text-sm text-neutral-600;
+		@apply text-sm text-neutral-500;
 	}
 
 	.dark .bo-textarea__description {
@@ -33,7 +33,7 @@
 	}
 
 	.bo-textarea__container {
-		@apply relative flex w-full rounded-xl border shadow-xs outline-none transition-[color,box-shadow];
+		@apply relative flex w-full min-w-0 max-w-none rounded-md border shadow-xs outline-none transition-[color,box-shadow];
 	}
 
 	.bo-textarea__container:focus-within {
@@ -143,7 +143,7 @@
 	}
 
 	.bo-textarea__field {
-		@apply field-sizing-content min-h-32 w-full resize-none overflow-hidden rounded-md border-none bg-transparent text-base font-normal text-neutral-900 outline-none md:text-sm;
+		@apply field-sizing-content min-h-20 min-w-0 w-full flex-1 resize-none overflow-hidden rounded-md border-none bg-transparent text-base font-normal text-neutral-900 outline-none md:text-sm;
 	}
 
 	.dark .bo-textarea__field {
@@ -191,7 +191,7 @@
 	}
 
 	.bo-textarea__field--default {
-		@apply p-3;
+		@apply px-3 py-2;
 	}
 
 	.bo-textarea__field--lg {
@@ -247,7 +247,7 @@
 	}
 
 	.bo-textarea__hint {
-		@apply mt-1 text-sm text-neutral-600;
+		@apply mt-1 text-sm text-neutral-500;
 	}
 
 	.dark .bo-textarea__hint {

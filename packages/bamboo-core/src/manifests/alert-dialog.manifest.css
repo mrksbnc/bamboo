@@ -8,7 +8,7 @@
 	}
 
 	.bo-alert-dialog-panel {
-		@apply relative grid w-full max-w-xs gap-6 rounded-xl border p-6 shadow-lg outline-none sm:max-w-md;
+		@apply relative grid w-full max-w-sm gap-4 rounded-lg border p-6 shadow-lg outline-none sm:max-w-lg;
 		@apply border-neutral-200 bg-white;
 	}
 
@@ -17,7 +17,7 @@
 	}
 
 	.bo-alert-dialog-header {
-		@apply flex flex-col gap-1.5 text-center sm:text-left;
+		@apply flex flex-col gap-1 text-center sm:text-left;
 	}
 
 	.bo-alert-dialog-title {

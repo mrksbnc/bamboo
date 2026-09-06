@@ -102,7 +102,7 @@
 	}
 
 	.bo-checkbox__hint {
-		@apply text-sm text-neutral-600;
+		@apply text-sm text-neutral-500;
 	}
 
 	.dark .bo-checkbox__hint {

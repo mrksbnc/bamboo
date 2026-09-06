@@ -31,7 +31,7 @@
 	}
 
 	.bo-modal-panel {
-		@apply relative grid w-full max-w-xs gap-6 overflow-hidden rounded-xl border px-6 py-6 shadow-lg outline-none transition-all duration-200 sm:max-w-md;
+		@apply relative grid w-full max-w-sm gap-4 overflow-hidden rounded-lg border p-6 shadow-lg outline-none transition-all duration-200 sm:max-w-lg;
 		@apply max-h-[90vh] border-neutral-200 bg-white;
 	}
 

@@ -7,6 +7,7 @@ export const EMPTY_MANIFEST = {
 		title: 'bo-empty__title',
 		description: 'bo-empty__description',
 		media: 'bo-empty__media',
+		content: 'bo-empty__content',
 		action: 'bo-empty__action',
 	},
 	defaults: {},

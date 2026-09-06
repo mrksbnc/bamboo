@@ -20,7 +20,7 @@
 	}
 
 	.bo-number-field__container {
-		@apply flex h-9 w-full items-center overflow-hidden rounded-md border bg-transparent shadow-xs transition-[color,box-shadow];
+		@apply flex h-10 w-full items-center overflow-hidden rounded-md border bg-transparent shadow-xs transition-[color,box-shadow];
 		@apply border-neutral-300;
 	}
 
@@ -48,7 +48,7 @@
 	}
 
 	.bo-number-field__button {
-		@apply flex w-9 items-center justify-center border-s-1 border-neutral-300 text-lg leading-none text-neutral-600 transition-colors;
+		@apply flex w-10 items-center justify-center border-s-1 border-neutral-300 text-lg leading-none text-neutral-500 transition-colors;
 	}
 
 	.bo-number-field__button:hover:not(:disabled) {
@@ -65,7 +65,7 @@
 
 	.bo-number-field__description,
 	.bo-number-field__hint {
-		@apply text-neutral-600;
+		@apply text-neutral-500;
 	}
 
 	.bo-number-field__error {

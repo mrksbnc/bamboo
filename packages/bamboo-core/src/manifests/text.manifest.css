@@ -148,11 +148,11 @@
 	}
 
 	.bo-text--variant-secondary {
-		@apply text-neutral-600;
+		@apply text-neutral-500;
 	}
 
 	.dark .bo-text--variant-secondary {
-		@apply text-neutral-500;
+		@apply text-neutral-400;
 	}
 
 	.bo-text--variant-disabled {

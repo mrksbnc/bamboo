@@ -7,17 +7,6 @@ export {
 	type AccordionManifest,
 } from './bo-accordion.js';
 
-// # bo-alert
-export {
-	type BoAlertPosition,
-	type BoAlertVariant,
-	type BoAlertProps,
-	type BoAlertContainerProps,
-	type BoAlertContainerStyleManifest,
-	type BoAlertStyleManifest,
-	type AlertManifest,
-} from './bo-alert.js';
-
 // # bo-avatar
 export {
 	type BoAvatarSize,
@@ -83,6 +72,20 @@ export {
 	type BoInputProps,
 	type InputManifest,
 } from './bo-input.js';
+
+// # bo-file-input
+export {
+	type BoFileInputProps,
+	type BoFileInputStyleManifest,
+	type FileInputManifest,
+} from './bo-file-input.js';
+
+// # bo-dropzone
+export {
+	type BoDropzoneProps,
+	type BoDropzoneStyleManifest,
+	type DropzoneManifest,
+} from './bo-dropzone.js';
 
 // # bo-loader
 export {
@@ -153,12 +156,7 @@ export {
 } from './bo-breadcrumb.js';
 
 // # bo-card
-export {
-	type BoCardVariant,
-	type BoCardProps,
-	type BoCardStyleManifest,
-	type CardManifest,
-} from './bo-card.js';
+export { type BoCardProps, type BoCardStyleManifest, type CardManifest } from './bo-card.js';
 
 // # bo-checkbox
 export { type BoCheckboxSize, type BoCheckboxProps, type CheckboxManifest } from './bo-checkbox.js';
@@ -274,22 +272,39 @@ export {
 	type VisuallyHiddenManifest,
 } from './bo-visually-hidden.js';
 
+// # bo-carousel
+export {
+	type BoCarouselProps,
+	type BoCarouselStyleManifest,
+	type CarouselManifest,
+} from './bo-carousel.js';
+export {
+	type BoSliderProps,
+	type BoSliderStyleManifest,
+	type SliderManifest,
+} from './bo-slider.js';
+export {
+	type BoTableColumn,
+	type BoTableAction,
+	type BoTableProps,
+	type BoTableStyleManifest,
+	type TableManifest,
+} from './bo-table.js';
+
 // # generated component definitions
 export * from './bo-collapsible.js';
 export * from './bo-context-menu.js';
 export * from './bo-drawer.js';
-export * from './bo-hover-card.js';
 export * from './bo-input-otp.js';
 export * from './bo-menubar.js';
-export * from './bo-navigation-menu.js';
+export * from './bo-navbar.js';
+export * from './bo-form.js';
+export * from './bo-calendar.js';
+export * from './bo-date-picker.js';
 export * from './bo-number-field.js';
-export * from './bo-pin-input.js';
 export * from './bo-popover.js';
 export * from './bo-resizable.js';
 export * from './bo-scroll-area.js';
-export * from './bo-select.js';
-export * from './bo-sheet.js';
-export * from './bo-sidebar.js';
 export * from './bo-switch.js';
 export * from './bo-tags-input.js';
 export * from './bo-toggle-group.js';
@@ -301,3 +316,5 @@ export {
 	type ConditionalCssProperties,
 	type BoCursor,
 } from './component-types.js';
+
+export * from './bo-dropdown.js';
