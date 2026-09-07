@@ -1,52 +1,178 @@
 ---
 title: File Input
-description: An accessible file picker with client-side validation.
-category: forms
-tags: [file, upload, forms, accessibility]
+description: Select one or more files with a native file control.
+category: form
+tags:
+  - file-input
+  - upload
+  - files
 outline: deep
 ---
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { BoFileInput } from '@mrksbnc/bamboo-vue';
-const file = ref<File | File[] | null>(null);
-const files = ref<File | File[] | null>(null);
-const singleExample = `<bo-file-input v-model="file" label="Profile image" accept="image/*" />`;
-const multipleExample = `<bo-file-input v-model="files" label="Attachments" accept=".pdf,.png" multiple :max-files="4" />`;
+
+const selectedFile = ref<File | File[] | null>(null);
+const multipleFiles = ref<File | File[] | null>(null);
+const imageFile = ref<File | File[] | null>(null);
+
+const emptyExample = `<bo-file-input label="Attachments" description="Choose a file to attach." />`;
+
+const selectedExample = `<bo-file-input
+  v-model="selectedFile"
+  label="Selected file"
+  accept=".pdf,.png"
+/>`;
+
+const multipleExample = `<bo-file-input
+  v-model="multipleFiles"
+  label="Attachments"
+  description="Up to four PDF or PNG files"
+  accept=".pdf,.png"
+  multiple
+  :max-files="4"
+/>`;
+
+const acceptedExample = `<bo-file-input
+  v-model="imageFile"
+  label="Profile image"
+  accept="image/*"
+/>`;
+
+const stateExample = `<bo-file-input label="Disabled input" disabled />
+<bo-file-input
+  label="Required upload"
+  full-width
+  required
+  error="A project document is required."
+/>`;
 </script>
 
 # File Input
 
-Use `bo-file-input` when users need to choose files from their device. It is an input-style native file control with a leading file indicator. In single-file mode the control contains the selected filename; multiple-file mode also renders removable filename rows.
+Use `bo-file-input` for compact native file selection. It renders a native `<input type="file">`, displays selected file rows, validates accepted types and limits, and lets users remove selected files.
 
-## Basic usage
+## Basic Usage
 
-<ExampleFrame :code="singleExample"><div class="w-full max-w-xl"><bo-file-input v-model="file" label="Profile image" accept="image/*" /><p class="mt-3 text-sm text-neutral-500">{{ file && !Array.isArray(file) ? file.name : 'No file selected' }}</p></div></ExampleFrame>
+The input starts empty. `v-model` is `File | null` for a single file and `File[]` for a multiple input. The browser controls how files are selected; the live examples become selected after you choose a file.
 
-## Multiple files
+<ExampleFrame :code="emptyExample">
+  <div class="w-full max-w-xl">
+    <bo-file-input label="Attachments" description="Choose a file to attach." />
+  </div>
+</ExampleFrame>
 
-<ExampleFrame :code="multipleExample"><div class="w-full max-w-xl"><bo-file-input v-model="files" label="Attachments" accept=".pdf,.png" multiple :max-files="4" /><p class="mt-3 text-sm text-neutral-500">{{ Array.isArray(files) ? files.map(file => file.name).join(', ') || 'No files selected' : 'No files selected' }}</p></div></ExampleFrame>
+## Selected File
 
-## States and validation
+Bind `v-model` to observe the selected file. After a selection, the component renders the file name and a `Remove` action.
 
-Support idle, selected, disabled, and invalid states. Display the accepted types and size limit before selection; report validation errors next to the control and preserve the user's valid files. Client-side checks improve feedback but do not replace server-side validation.
+<ExampleFrame :code="selectedExample">
+  <div class="grid w-full max-w-xl gap-2">
+    <bo-file-input
+      v-model="selectedFile"
+      label="Selected file"
+      accept=".pdf,.png"
+    />
+    <span class="text-sm text-neutral-500">
+      {{ selectedFile ? 'A file is selected. Remove it from the row to clear it.' : 'Choose a PDF or PNG file.' }}
+    </span>
+  </div>
+</ExampleFrame>
 
-## Accessibility and responsive guidance
+## Multiple Files
 
-Always supply a visible `label`. The native input remains keyboard and screen-reader accessible. Stack filename rows and remove actions vertically on narrow screens and truncate long names only when the full name is available to assistive technology.
+Set `multiple` to allow more than one file. `maxFiles` limits the number accepted by the selection composable and is measured in files.
 
-## API reference
+<ExampleFrame :code="multipleExample">
+  <div class="grid w-full max-w-xl gap-2">
+    <bo-file-input
+      v-model="multipleFiles"
+      label="Attachments"
+      description="Up to four PDF or PNG files"
+      accept=".pdf,.png"
+      multiple
+      :max-files="4"
+    />
+    <span class="text-sm text-neutral-500">{{ multipleFiles ? 'Selection updated.' : 'No files selected.' }}</span>
+  </div>
+</ExampleFrame>
 
-| Prop         | Type                     | Description                                            |
-| ------------ | ------------------------ | ------------------------------------------------------ |
-| `label`      | `string`                 | Visible accessible label.                              |
-| `accept`     | `string`                 | Accepted MIME types or extensions.                     |
-| `multiple`   | `boolean`                | Allow multiple files.                                  |
-| `maxFiles`   | `number`                 | Maximum file count.                                    |
-| `maxSize`    | `number`                 | Maximum file size in bytes.                            |
-| `disabled`   | `boolean`                | Disable selection.                                     |
-| `modelValue` | `File \| File[] \| null` | One file, multiple files, or no selection (`v-model`). |
+## Accepted Types
+
+Pass the native `accept` value to limit the file picker. MIME types, extensions, and comma-separated combinations are supported by the browser.
+
+<ExampleFrame :code="acceptedExample">
+  <div class="w-full max-w-xl">
+    <bo-file-input
+      v-model="imageFile"
+      label="Profile image"
+      accept="image/*"
+    />
+  </div>
+</ExampleFrame>
+
+## Disabled, Full Width, and Error
+
+Use `disabled` to prevent selection, `fullWidth` when the control should participate in a full-width form layout, and `error` to show a validation message. `required` adds the native required state and visual marker.
+
+<ExampleFrame :code="stateExample">
+  <div class="grid w-full max-w-xl gap-4">
+    <bo-file-input label="Disabled input" disabled />
+    <bo-file-input
+      label="Required upload"
+      full-width
+      required
+      error="A project document is required."
+    />
+  </div>
+</ExampleFrame>
+
+## Limits and Validation
+
+`maxSize` is measured in bytes. When a selection violates `accept`, `maxFiles`, or `maxSize`, the component displays the validation error and emits `error`. The `error` prop is useful for server-side or external validation.
+
+## Usage Guidance
+
+- Always give a file input a visible `label` or an `ariaLabel`.
+- Tell users which formats and size limits are accepted before they open the picker.
+- Use `multiple` only when the receiving workflow can handle an array of files.
+- Validate file content and permissions on the server as well as in the browser.
+
+## API Reference
+
+### Props
+
+| Prop          | Type                           | Default       | Description                                       |
+| ------------- | ------------------------------ | ------------- | ------------------------------------------------- |
+| `id`          | `string`                       | Autogenerated | Native input id.                                  |
+| `dataTestId`  | `string`                       | Autogenerated | The test id attribute.                            |
+| `name`        | `string`                       | -             | Native form field name.                           |
+| `accept`      | `string`                       | -             | Accepted MIME types or file extensions.           |
+| `multiple`    | `boolean`                      | `false`       | Allows multiple files and returns an array.       |
+| `maxFiles`    | `number`                       | -             | Maximum number of files accepted.                 |
+| `maxSize`     | `number`                       | -             | Maximum file size in bytes.                       |
+| `label`       | `string`                       | -             | Visible input label.                              |
+| `description` | `string`                       | -             | Supporting text below the label.                  |
+| `error`       | `string`                       | -             | External validation message.                      |
+| `hint`        | `string`                       | -             | Supporting hint when there is no error.           |
+| `required`    | `boolean`                      | `false`       | Native required state.                            |
+| `disabled`    | `boolean`                      | `false`       | Prevents file selection.                          |
+| `fullWidth`   | `boolean`                      | `false`       | Full-width form layout option.                    |
+| `ariaLabel`   | `HTMLAttributes['aria-label']` | -             | Accessible name when a visible label is not used. |
+| `modelValue`  | `File \| File[] \| null`       | `null`        | Selected file value used by `v-model`.            |
 
 ### Events
 
-`change` emits the selected `File[]`. `update:modelValue` follows the model shape: `File` for single selection, `File[]` for multiple selection, and `null` when empty. Validation failures emit an error state without replacing valid files.
+| Event               | Payload                  | Description                                    |
+| ------------------- | ------------------------ | ---------------------------------------------- |
+| `update:modelValue` | `File \| File[] \| null` | Emitted when the selection or removal changes. |
+| `change`            | `File[]`                 | Emitted after selection or removal.            |
+| `error`             | `string`                 | Emitted when selection validation fails.       |
+
+### Exposed Methods
+
+| Method  | Signature    | Description                          |
+| ------- | ------------ | ------------------------------------ |
+| `focus` | `() => void` | Opens the native file picker.        |
+| `reset` | `() => void` | Clears selected files and the input. |
