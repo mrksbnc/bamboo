@@ -11,6 +11,8 @@ describe('BoFileInput', () => {
 		await input.trigger('change');
 		expect(wrapper.emitted('change')?.[0]).toEqual([[file]]);
 		expect(wrapper.text()).toContain('document.txt');
+		expect(wrapper.find('ul').classes()).toContain('bo-file-input__file-list');
+		expect(wrapper.find('li').classes()).toContain('bo-file-input__file');
 	});
 
 	it('rejects files that do not match accept', async () => {

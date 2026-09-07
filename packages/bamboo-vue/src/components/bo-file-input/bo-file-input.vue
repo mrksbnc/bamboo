@@ -5,12 +5,14 @@
 				>{{ label
 				}}<span v-if="required" :class="FILE_INPUT_MANIFEST.styles.labels.required">*</span></label
 			>
-			<span v-if="description" :class="FILE_INPUT_MANIFEST.styles.labels.description">{{
-				description
-			}}</span>
+			<span
+				v-if="description"
+				:id="`${id}-description`"
+				:class="FILE_INPUT_MANIFEST.styles.labels.description"
+				>{{ description }}</span
+			>
 		</div>
 		<div :class="FILE_INPUT_MANIFEST.styles.container">
-			<bo-icon icon="file" :class="FILE_INPUT_MANIFEST.styles.icon" aria-hidden="true" />
 			<input
 				ref="inputRef"
 				:id="id"
@@ -21,10 +23,34 @@
 				:disabled="disabled"
 				:required="required"
 				:aria-label="ariaLabel"
+				:aria-describedby="describedBy"
+				:aria-invalid="error || selectionError ? 'true' : undefined"
 				:class="FILE_INPUT_MANIFEST.styles.input"
 				type="file"
 				@change="onInputChange"
 			/>
+			<label
+				:for="id"
+				:data-disabled="disabled ? 'true' : undefined"
+				:class="FILE_INPUT_MANIFEST.styles.trigger"
+			>
+				<bo-icon icon="upload_cloud" :class="FILE_INPUT_MANIFEST.styles.icon" aria-hidden="true" />
+				<span :class="FILE_INPUT_MANIFEST.styles.triggerContent">
+					<span :class="FILE_INPUT_MANIFEST.styles.triggerTitle">
+						{{
+							selectedFiles.length
+								? 'Choose another file'
+								: multiple
+									? 'Choose files'
+									: 'Choose a file'
+						}}
+					</span>
+					<span :class="FILE_INPUT_MANIFEST.styles.triggerHint">
+						{{ accept || 'Any supported file type' }}
+					</span>
+				</span>
+				<span :class="FILE_INPUT_MANIFEST.styles.triggerAction">Browse</span>
+			</label>
 		</div>
 		<ul v-if="selectedFiles.length" :class="FILE_INPUT_MANIFEST.styles.fileList">
 			<li
@@ -44,6 +70,7 @@
 		</ul>
 		<div
 			v-if="error || selectionError || hint"
+			:id="`${id}-help`"
 			:class="FILE_INPUT_MANIFEST.styles.helpers.container"
 		>
 			<span v-if="error || selectionError" :class="FILE_INPUT_MANIFEST.styles.helpers.error">{{
@@ -83,6 +110,12 @@ const selection = useFileSelection({
 });
 const selectedFiles = computed(() => {
 	return selection.files.value;
+});
+const describedBy = computed(() => {
+	const ids: string[] = [];
+	if (props.description) ids.push(`${props.id}-description`);
+	if (props.error || selectionError.value || props.hint) ids.push(`${props.id}-help`);
+	return ids.length ? ids.join(' ') : undefined;
 });
 const selectionError = computed(() => {
 	return selection.error.value;
