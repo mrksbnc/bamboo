@@ -7,22 +7,27 @@
 		<button
 			:id="id"
 			:type="'button'"
-			:aria-checked="model ? 'true' : 'false'"
-			:aria-label="ariaLabel || (!label ? undefined : label)"
-			:aria-labelledby="ariaLabelledBy || (label ? labelId : undefined)"
+			:aria-checked="isChecked ? 'true' : 'false'"
+			:aria-label="ariaLabel ?? (!label ? undefined : label)"
+			:aria-labelledby="ariaLabel ? undefined : ariaLabelledBy || (label ? labelId : undefined)"
 			:aria-describedby="ariaDescribedBy || (description ? descriptionId : undefined)"
 			:disabled="disabled"
+			:aria-disabled="disabled ? 'true' : undefined"
+			:aria-required="required ? 'true' : undefined"
 			:name="name"
 			:value="value"
 			:required="required"
 			:role="role"
-			:data-state="model ? 'checked' : 'unchecked'"
-			:class="SWITCH_MANIFEST.styles.control[size]"
+			:data-state="isChecked ? 'checked' : 'unchecked'"
+			:class="SWITCH_MANIFEST.styles.control"
+			:style="controlStyleValues"
 			@click="toggle"
+			@keydown="onKeydown"
 		>
 			<span
-				:data-state="model ? 'checked' : 'unchecked'"
-				:class="SWITCH_MANIFEST.styles.thumb[size]"
+				:data-state="isChecked ? 'checked' : 'unchecked'"
+				:class="SWITCH_MANIFEST.styles.thumb"
+				:style="thumbStyleValues"
 			/>
 		</button>
 		<span
@@ -41,23 +46,32 @@
 </template>
 
 <script setup lang="ts">
-import { generateComponentId, generateDataTestId } from '@workspace/bamboo-core';
+import {
+	generateComponentId,
+	generateDataTestId,
+	getValidOrFallbackColorFromStr,
+} from '@workspace/bamboo-core';
 import type { BoSwitchProps } from '@workspace/bamboo-core';
 import { SWITCH_MANIFEST } from '@workspace/bamboo-core';
-import { computed } from 'vue';
+import { computed, getCurrentInstance, ref, type StyleValue } from 'vue';
 import { BoText } from '../bo-text';
 
 const props = withDefaults(defineProps<BoSwitchProps>(), {
 	id: () => generateComponentId('switch'),
 	dataTestId: () => generateDataTestId('switch'),
-	size: () => SWITCH_MANIFEST.defaults.size,
 	orientation: () => SWITCH_MANIFEST.defaults.orientation,
 	role: () => SWITCH_MANIFEST.defaults.role,
 });
 
-const model = defineModel<boolean>({ default: false });
-const size = computed(() => {
-	return props.size || SWITCH_MANIFEST.defaults.size;
+const model = defineModel<boolean>();
+const instance = getCurrentInstance();
+const uncontrolledValue = ref(props.defaultValue ?? false);
+const isControlled = computed(() => {
+	const componentProps = instance?.vnode.props;
+	return componentProps !== null && componentProps !== undefined && 'modelValue' in componentProps;
+});
+const isChecked = computed(() => {
+	return isControlled.value ? (props.modelValue ?? false) : uncontrolledValue.value;
 });
 const labelId = computed(() => {
 	return `${props.id}-label`;
@@ -65,9 +79,50 @@ const labelId = computed(() => {
 const descriptionId = computed(() => {
 	return `${props.id}-description`;
 });
+const controlStyleValues = computed<StyleValue>(() => {
+	const customColor = props.customColor;
+	if (!customColor) return {};
+
+	if (typeof customColor === 'string') {
+		return { backgroundColor: getValidOrFallbackColorFromStr(customColor) };
+	}
+
+	const background = isChecked.value
+		? (customColor.checkedBackground ?? customColor.background)
+		: customColor.background;
+	const style: StyleValue = {};
+	if (background) style.backgroundColor = getValidOrFallbackColorFromStr(background);
+	if (customColor.border) style.borderColor = getValidOrFallbackColorFromStr(customColor.border);
+	if (customColor.text) style.color = getValidOrFallbackColorFromStr(customColor.text);
+	return style;
+});
+const thumbStyleValues = computed<StyleValue>(() => {
+	const customColor = props.customColor;
+	const customThumbColor = props.customThumbColor;
+	const thumbColor =
+		customThumbColor ||
+		(typeof customColor === 'string'
+			? undefined
+			: isChecked.value
+				? (customColor?.checkedThumb ?? customColor?.thumb)
+				: customColor?.thumb);
+
+	return thumbColor ? { backgroundColor: getValidOrFallbackColorFromStr(thumbColor) } : {};
+});
 
 function toggle(): void {
-	if (!props.disabled) model.value = !model.value;
+	if (props.disabled) return;
+
+	const nextValue = !isChecked.value;
+	if (!isControlled.value) uncontrolledValue.value = nextValue;
+	model.value = nextValue;
+}
+
+function onKeydown(event: KeyboardEvent): void {
+	if (event.key !== 'Enter' && event.key !== ' ') return;
+
+	event.preventDefault();
+	toggle();
 }
 </script>
 
