@@ -32,15 +32,19 @@
 	}
 
 	.bo-pagination__button--active {
-		@apply bg-blue-600 text-white;
+		@apply bg-neutral-900 text-white;
 	}
 
 	.bo-pagination__button--active:hover:not(:disabled) {
-		@apply bg-blue-700;
+		@apply bg-neutral-800;
 	}
 
 	.dark .bo-pagination__button--active {
-		@apply bg-blue-500;
+		@apply bg-neutral-800 text-neutral-100;
+	}
+
+	.dark .bo-pagination__button--active:hover:not(:disabled) {
+		@apply bg-neutral-700 text-neutral-100;
 	}
 
 	.bo-pagination__ellipsis {
