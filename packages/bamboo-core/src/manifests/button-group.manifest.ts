@@ -7,6 +7,25 @@ export const BUTTON_GROUP_MANIFEST: ButtonGroupManifest = {
 	},
 	styles: {
 		base: 'bo-button-group',
+		item: 'bo-button-group__item',
+
+		size: {
+			xs: 'bo-button-group__item--xs',
+			sm: 'bo-button-group__item--sm',
+			default: 'bo-button-group__item--default',
+			lg: 'bo-button-group__item--lg',
+			xl: 'bo-button-group__item--xl',
+		},
+
+		variant: {
+			primary: 'bo-button-group__item--primary',
+			secondary: 'bo-button-group__item--secondary',
+			destructive: 'bo-button-group__item--destructive',
+			warning: 'bo-button-group__item--warning',
+			success: 'bo-button-group__item--success',
+			light: 'bo-button-group__item--light',
+			dark: 'bo-button-group__item--dark',
+		},
 
 		orientation: {
 			horizontal: 'bo-button-group--horizontal',
@@ -15,7 +34,7 @@ export const BUTTON_GROUP_MANIFEST: ButtonGroupManifest = {
 
 		fullWidth: 'bo-button-group--full-width',
 
-		selected: 'bo-button-group--selected',
+		selected: 'bo-button-group__item--selected',
 
 		attached: {
 			base: '',

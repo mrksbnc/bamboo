@@ -1,6 +1,166 @@
 @layer components {
 	.bo-button-group {
-		@apply flex w-fit items-stretch isolate [&>*]:focus-visible:relative [&>*]:focus-visible:z-10;
+		@apply isolate flex w-fit items-stretch gap-2 [&>*]:focus-visible:relative [&>*]:focus-visible:z-10;
+	}
+
+	.bo-button-group__item {
+		@apply inline-flex shrink-0 items-center justify-center rounded-md whitespace-nowrap border border-neutral-300 bg-white font-medium text-neutral-700 shadow-xs transition-colors outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50;
+	}
+
+	.bo-button-group__item:focus-visible {
+		@apply border-neutral-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-neutral-500) 35%, transparent);
+	}
+
+	.bo-button-group__item--xs {
+		@apply h-7 gap-1 px-2 text-xs;
+	}
+
+	.bo-button-group__item--sm {
+		@apply h-8 gap-1.5 px-3 text-sm;
+	}
+
+	.bo-button-group__item--default {
+		@apply h-9 gap-2 px-4 text-sm;
+	}
+
+	.bo-button-group__item--lg {
+		@apply h-10 gap-2 px-6 text-sm;
+	}
+
+	.bo-button-group__item--xl {
+		@apply h-11 gap-2.5 px-8 text-base;
+	}
+
+	.bo-button-group__item--primary {
+		@apply border-blue-600 bg-blue-600 text-white;
+	}
+
+	.bo-button-group__item--primary:hover:not(:disabled) {
+		@apply bg-blue-700;
+	}
+
+	.bo-button-group__item--secondary {
+		@apply border-neutral-300 bg-neutral-50 text-neutral-900;
+	}
+
+	.bo-button-group__item--secondary:hover:not(:disabled) {
+		@apply border-neutral-400 bg-neutral-100;
+	}
+
+	.bo-button-group__item--destructive {
+		@apply border-red-600 bg-red-600 text-white;
+	}
+
+	.bo-button-group__item--destructive:hover:not(:disabled) {
+		@apply bg-red-700;
+	}
+
+	.bo-button-group__item--warning {
+		@apply border-yellow-500 bg-yellow-500 text-neutral-950;
+	}
+
+	.bo-button-group__item--warning:hover:not(:disabled) {
+		@apply bg-yellow-600;
+	}
+
+	.bo-button-group__item--success {
+		@apply border-green-700 bg-green-700 text-white;
+	}
+
+	.bo-button-group__item--success:hover:not(:disabled) {
+		@apply bg-green-800;
+	}
+
+	.bo-button-group__item--light {
+		@apply border-neutral-200 bg-white text-neutral-900;
+	}
+
+	.bo-button-group__item--light:hover:not(:disabled) {
+		@apply bg-neutral-50;
+	}
+
+	.bo-button-group__item--dark {
+		@apply border-neutral-800 bg-neutral-800 text-white;
+	}
+
+	.bo-button-group__item--dark:hover:not(:disabled) {
+		@apply bg-neutral-900;
+	}
+
+	.dark .bo-button-group__item {
+		@apply border-neutral-700 bg-neutral-900 text-neutral-100;
+	}
+
+	.dark .bo-button-group__item--secondary {
+		@apply border-neutral-700 bg-neutral-800 text-neutral-100;
+	}
+
+	.dark .bo-button-group__item--secondary:hover:not(:disabled) {
+		@apply border-neutral-600 bg-neutral-700;
+	}
+
+	.dark .bo-button-group__item--primary {
+		@apply border-blue-700 bg-blue-700;
+	}
+
+	.dark .bo-button-group__item--primary:hover:not(:disabled) {
+		@apply bg-blue-800;
+	}
+
+	.dark .bo-button-group__item--destructive {
+		@apply border-red-700 bg-red-700;
+	}
+
+	.dark .bo-button-group__item--destructive:hover:not(:disabled) {
+		@apply bg-red-800;
+	}
+
+	.dark .bo-button-group__item--warning {
+		@apply border-yellow-500 bg-yellow-500 text-neutral-950;
+	}
+
+	.dark .bo-button-group__item--warning:hover:not(:disabled) {
+		@apply bg-yellow-600;
+	}
+
+	.dark .bo-button-group__item--success {
+		@apply border-green-700 bg-green-700;
+	}
+
+	.dark .bo-button-group__item--success:hover:not(:disabled) {
+		@apply bg-green-800;
+	}
+
+	.dark .bo-button-group__item--light {
+		@apply border-neutral-200 bg-neutral-100 text-neutral-900;
+	}
+
+	.dark .bo-button-group__item--light:hover:not(:disabled) {
+		@apply bg-neutral-200;
+	}
+
+	.dark .bo-button-group__item--dark {
+		@apply border-neutral-800 bg-neutral-800 text-white;
+	}
+
+	.dark .bo-button-group__item--dark:hover:not(:disabled) {
+		@apply bg-neutral-900;
+	}
+
+	.bo-button-group__item--selected,
+	.bo-button-group__item--selected:hover:not(:disabled) {
+		@apply border-neutral-900 bg-neutral-900 text-white;
+	}
+
+	.dark .bo-button-group__item--selected,
+	.dark .bo-button-group__item--selected:hover:not(:disabled) {
+		@apply border-neutral-600 bg-neutral-700 text-neutral-100;
+	}
+
+	.dark .bo-button-group__item:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-button-group--horizontal {
@@ -12,30 +172,22 @@
 	}
 
 	.bo-button-group--full-width {
-		@apply w-full [&>*]:flex-1;
+		@apply w-full;
+	}
+
+	.bo-button-group--full-width.bo-button-group--horizontal {
+		@apply [&>*]:min-w-0 [&>*]:flex-1;
+	}
+
+	.bo-button-group--full-width.bo-button-group--vertical {
+		@apply [&>*]:w-full;
 	}
 
 	.bo-button-group--attached-horizontal {
-		@apply [&>*:not(:first-child)]:rounded-s-none [&>*:not(:first-child)]:border-s-0 [&>*:not(:last-child)]:rounded-e-none;
+		@apply gap-0 [&>*]:shadow-none [&>*:first-child]:rounded-s-md [&>*:last-child]:rounded-e-md [&>*:only-child]:rounded-md [&>*:not(:first-child)]:rounded-s-none [&>*:not(:first-child)]:border-s-0 [&>*:not(:last-child)]:rounded-e-none;
 	}
 
 	.bo-button-group--attached-vertical {
-		@apply [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none;
-	}
-
-	.bo-button-group--selected {
-		@apply border-blue-600 bg-blue-600 text-white;
-	}
-
-	.bo-button-group--selected:hover {
-		@apply bg-blue-700;
-	}
-
-	.dark .bo-button-group--selected {
-		@apply border-blue-500 bg-blue-500;
-	}
-
-	.dark .bo-button-group--selected:hover {
-		@apply bg-blue-600;
+		@apply gap-0 [&>*]:shadow-none [&>*:first-child]:rounded-t-md [&>*:last-child]:rounded-b-md [&>*:only-child]:rounded-md [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none;
 	}
 }
