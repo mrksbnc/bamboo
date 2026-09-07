@@ -25,9 +25,10 @@
 			:aria-label="ariaLabel || label"
 			:class="DROPZONE_MANIFEST.styles.input"
 			type="file"
+			@click.stop
 			@change="onInputChange"
 		/>
-		<div :class="DROPZONE_MANIFEST.styles.content">
+		<div v-if="!selectedFiles.length" :class="DROPZONE_MANIFEST.styles.content">
 			<bo-icon icon="upload" :class="DROPZONE_MANIFEST.styles.icon" aria-hidden="true" /><span
 				:class="DROPZONE_MANIFEST.styles.label"
 				>{{ label || 'Drop files here or click to browse' }}</span
@@ -42,11 +43,7 @@
 				:class="DROPZONE_MANIFEST.styles.file"
 			>
 				<span>{{ file.name }}</span
-				><button
-					type="button"
-					:class="DROPZONE_MANIFEST.styles.remove"
-					@click="selection.removeFile(index)"
-				>
+				><button type="button" :class="DROPZONE_MANIFEST.styles.remove" @click="removeFile(index)">
 					Remove
 				</button>
 			</li>
@@ -113,6 +110,11 @@ function onInputChange(event: Event): void {
 }
 function onDrop(event: DragEvent): void {
 	selection.onDrop(event);
+	publish();
+}
+
+function removeFile(index: number): void {
+	selection.removeFile(index);
 	publish();
 }
 </script>
