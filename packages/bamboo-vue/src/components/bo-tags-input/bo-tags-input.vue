@@ -7,7 +7,19 @@
 			</label>
 		</div>
 
-		<div :class="TAGS_INPUT_MANIFEST.styles.container">
+		<div
+			:data-invalid="error ? 'true' : undefined"
+			:class="[
+				TAGS_INPUT_MANIFEST.styles.container,
+				error ? TAGS_INPUT_MANIFEST.styles.invalid : '',
+			]"
+		>
+			<input
+				v-if="name"
+				type="hidden"
+				:name="name"
+				:value="model.join(props.delimiters[0] || ',')"
+			/>
 			<div v-if="model.length" :class="TAGS_INPUT_MANIFEST.styles.tags">
 				<span
 					v-for="(tag, index) in model"
@@ -30,7 +42,6 @@
 				ref="inputRef"
 				:id="inputId"
 				:data-testid="`${dataTestId}-input`"
-				:name="name"
 				:placeholder="placeholder"
 				:inputmode="inputMode"
 				:value="draft"
