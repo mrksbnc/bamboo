@@ -1,13 +1,19 @@
 <template>
-	<div>
+	<div
+		:id="id"
+		:data-testid="dataTestId"
+		:data-state="open ? 'open' : 'closed'"
+		:class="POPOVER_MANIFEST.styles.base"
+	>
+		<slot name="trigger" />
 		<slot />
 	</div>
 </template>
 
 <script setup lang="ts">
 import type { BoPopoverProps } from '@workspace/bamboo-core';
-import { generateComponentId, POPOVER_MANIFEST } from '@workspace/bamboo-core';
-import { computed, onMounted, onUnmounted, provide, ref, useTemplateRef } from 'vue';
+import { generateComponentId, generateDataTestId, POPOVER_MANIFEST } from '@workspace/bamboo-core';
+import { computed, onMounted, onUnmounted, provide, ref } from 'vue';
 import { popoverContextKey } from './keys';
 
 const props = withDefaults(defineProps<BoPopoverProps>(), {
@@ -16,11 +22,13 @@ const props = withDefaults(defineProps<BoPopoverProps>(), {
 	closeOnOutside: () => POPOVER_MANIFEST.defaults.closeOnOutside,
 	closeOnEscape: () => POPOVER_MANIFEST.defaults.closeOnEscape,
 	role: () => POPOVER_MANIFEST.defaults.role,
+	id: () => generateComponentId('popover'),
+	dataTestId: () => generateDataTestId('popover'),
 });
 
 const open = defineModel<boolean>('open', { default: false });
-const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
-const contentRef = useTemplateRef<HTMLElement>('contentRef');
+const triggerRef = ref<HTMLElement | null>(null);
+const contentRef = ref<HTMLElement | null>(null);
 const contentId = ref(generateComponentId('popover-content'));
 const placement = computed(() => {
 	return props.placement || POPOVER_MANIFEST.defaults.placement;
