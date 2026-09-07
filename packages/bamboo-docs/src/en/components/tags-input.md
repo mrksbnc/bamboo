@@ -1,13 +1,8 @@
 ---
 title: Tags Input
-description: A multiple-token entry control with delimiters and removal.
+description: Enter and remove multiple text tokens.
 category: form
-tags:
-  - tags-input
-  - input
-  - form
-  - a11y
-outline: deep
+tags: [tags-input, input, form]
 ---
 
 <script setup lang="ts">
@@ -15,42 +10,67 @@ import { ref } from 'vue';
 import { BoTagsInput } from '@mrksbnc/bamboo-vue';
 
 const tags = ref(['Vue']);
-const basicExample = `<bo-tags-input v-model="tags" label="Technologies" placeholder="Add a tag" hint="Press Enter or type a comma." />`;
-const constrainedExample = `<bo-tags-input v-model="tags" label="Keywords" :max-tags="3" :delimiters="[';']" :allow-duplicates="false" />`;
+const example = `<bo-tags-input
+  v-model="tags"
+  label="Technologies"
+  placeholder="Add a tag"
+  hint="Press Enter or type a comma."
+/>`;
+const limitsExample = `<bo-tags-input
+  v-model="tags"
+  label="Keywords"
+  :max-tags="3"
+  :allow-duplicates="false"
+  :delimiters="[';']"
+/>`;
 </script>
 
 # Tags Input
 
-`bo-tags-input` keeps a `string[]` model and commits draft text when Enter is pressed or a configured delimiter is typed. Backspace removes the last tag when the draft is empty.
+Use `bo-tags-input` when users can enter a list of short text values. Enter or a delimiter commits the draft value.
 
-## Basic Usage
+## Usage
 
-<ExampleFrame :code="basicExample">
-  <div><bo-tags-input v-model="tags" label="Technologies" placeholder="Add a tag" hint="Press Enter or type a comma." /><p class="mt-2 text-sm text-neutral-500">{{ tags.join(', ') || 'No tags' }}</p></div>
+<ExampleFrame :code="example">
+  <div class="grid w-full max-w-md gap-2">
+    <bo-tags-input
+      v-model="tags"
+      label="Technologies"
+      placeholder="Add a tag"
+      hint="Press Enter or type a comma."
+    />
+    <span class="text-sm text-neutral-500">{{ tags.join(', ') }}</span>
+  </div>
 </ExampleFrame>
 
-## Limits and Delimiters
+## Limits and delimiters
 
-`delimiters` defaults to `[',']`. Set `maxTags` to limit entries and `allowDuplicates` to permit repeated tag text.
+Use `max-tags` to limit entries and `delimiters` to change the commit characters.
 
-<ExampleFrame :code="constrainedExample">
-  <bo-tags-input v-model="tags" label="Keywords" :max-tags="3" :delimiters="[';']" :allow-duplicates="false" />
+<ExampleFrame :code="limitsExample">
+  <bo-tags-input
+    v-model="tags"
+    label="Keywords"
+    :max-tags="3"
+    :allow-duplicates="false"
+    :delimiters="[';']"
+  />
 </ExampleFrame>
 
-## API Reference
+## API
 
-| Prop                                               | Type                               | Default    | Description                        |
-| -------------------------------------------------- | ---------------------------------- | ---------- | ---------------------------------- |
-| `modelValue`                                       | `string[]`                         | `[]`       | Tags used by `v-model`.            |
-| `placeholder`                                      | `string`                           | -          | Draft input placeholder.           |
-| `delimiters`                                       | `string[]`                         | `[',']`    | Characters that commit tags.       |
-| `maxTags`                                          | `number`                           | -          | Maximum tag count.                 |
-| `allowDuplicates`                                  | `boolean`                          | `false`    | Allows duplicate tag text.         |
-| `inputMode`                                        | `InputHTMLAttributes['inputmode']` | `text`     | Keyboard hint.                     |
-| `name`                                             | `string`                           | -          | Native form name.                  |
-| `label` / `description` / `error` / `hint`         | `string`                           | -          | Label and helper text; error wins. |
-| `required` / `disabled` / `readOnly` / `autofocus` | `boolean`                          | `false`    | Common form states.                |
-| `role`                                             | `HTMLAttributes['role']`           | `combobox` | Input role.                        |
-| `ariaLabel` / `ariaLabelledBy` / `ariaDescribedBy` | `string`                           | -          | Accessible naming and description. |
-
-The component emits `update:modelValue`, `focus`, and `blur`, and exposes `focus()`, `addTag()`, and `removeTag()`.
+| Prop / event                                                | Type                       | Default        | Description                                      |
+| ----------------------------------------------------------- | -------------------------- | -------------- | ------------------------------------------------ |
+| `id` / `dataTestId`                                         | `string`                   | autogenerated  | Root and input attributes.                       |
+| `modelValue`                                                | `string[]`                 | `[]`           | Tags used by `v-model`.                          |
+| `placeholder`                                               | `string`                   | -              | Draft input placeholder.                         |
+| `delimiters`                                                | `string[]`                 | `[',']`        | Characters that commit a tag.                    |
+| `maxTags`                                                   | `number`                   | -              | Maximum tag count.                               |
+| `allowDuplicates`                                           | `boolean`                  | `false`        | Allows repeated tag text.                        |
+| `inputMode` / `name`                                        | native input types         | `text` / -     | Keyboard hint and hidden form value.             |
+| `label` / `description` / `error` / `hint`                  | `string`                   | -              | Field messaging.                                 |
+| `required` / `disabled` / `readOnly` / `autofocus`          | `boolean`                  | `false`        | Input states and initial focus.                  |
+| `role` / `ariaLabel` / `ariaLabelledBy` / `ariaDescribedBy` | native accessibility types | `combobox` / - | Input semantics.                                 |
+| `update:modelValue`                                         | `(value: string[])` event  | -              | Emitted when tags change.                        |
+| `focus` / `blur`                                            | event                      | -              | Emitted by the draft input.                      |
+| `focus` / `addTag` / `removeTag`                            | exposed methods            | -              | Focuses, adds, or removes tags programmatically. |
