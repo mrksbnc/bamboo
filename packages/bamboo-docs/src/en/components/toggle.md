@@ -1,30 +1,155 @@
 ---
 title: Toggle
-description: A pressed or unpressed action control.
-category: forms
-tags: [toggle, pressed, accessibility]
+description: Represent one pressed or unpressed action.
+category: form
+tags:
+  - toggle
+  - pressed
+  - keyboard
 outline: deep
 ---
 
 <script setup lang="ts">
 import { ref } from 'vue';
-const enabled = ref(false);
-const basicExample = `<bo-toggle v-model="enabled" label="Notifications" />`;
-const slotExample = `<bo-toggle v-model="enabled" aria-label="Pin item"><bo-icon icon="pin" /></bo-toggle>`;
+import { BoToggle } from '@mrksbnc/bamboo-vue';
+
+const pressed = ref(false);
+const keyboardPressed = ref(false);
+
+const basicExample = `<bo-toggle v-model="pressed">Notifications</bo-toggle>`;
+
+const variantsExample = `<bo-toggle variant="default">Default</bo-toggle>
+<bo-toggle variant="outline">Outline</bo-toggle>`;
+
+const sizesExample = `<bo-toggle size="sm">Small</bo-toggle>
+<bo-toggle size="default">Default</bo-toggle>
+<bo-toggle size="lg">Large</bo-toggle>`;
+
+const statesExample = `<bo-toggle disabled>Disabled</bo-toggle>
+<bo-toggle default-value>Initially pressed</bo-toggle>
+<bo-toggle v-model="pressed" :disabled="pressed">Disable when pressed</bo-toggle>`;
+
+const labelExample = `<bo-toggle label="Label prop" />
+<bo-toggle>Default slot content</bo-toggle>`;
+
+const keyboardExample = `<bo-toggle v-model="keyboardPressed" aria-label="Keyboard toggle">
+  Keyboard toggle
+</bo-toggle>`;
 </script>
 
 # Toggle
 
-Use `bo-toggle` for a reversible action whose pressed state is meaningful.
+Use `bo-toggle` for one reversible action with a meaningful on/off or pressed/unpressed state, such as notifications, formatting, or a display mode. Use [`Toggle Group`](./toggle-group) when several toggles share a selection model.
 
-## Controlled state
+## Basic Usage
 
-<ExampleFrame :code="basicExample"><div class="flex items-center gap-3"><bo-toggle v-model="enabled" label="Notifications" /><span class="text-sm text-neutral-500">{{ enabled ? 'On' : 'Off' }}</span></div></ExampleFrame>
+Use `v-model` for a controlled pressed state. The component emits `update:modelValue` after a user activation.
 
-## Slotted content
+<ExampleFrame :code="basicExample">
+  <div class="grid justify-items-start gap-2">
+    <bo-toggle v-model="pressed">Notifications</bo-toggle>
+    <span class="text-sm text-neutral-500">{{ pressed ? 'Pressed' : 'Not pressed' }}</span>
+  </div>
+</ExampleFrame>
 
-Use an accessible label when the toggle contains only an icon.
+## Variants
 
-<ExampleFrame :code="slotExample"><bo-toggle v-model="enabled" aria-label="Pin item"><bo-icon icon="pin" /></bo-toggle></ExampleFrame>
+The `default` variant has no border until interaction, while `outline` keeps a visible border.
 
-The component exposes `aria-pressed` and `data-state` and supports `disabled`, `size`, and `variant` props.
+<ExampleFrame :code="variantsExample">
+  <div class="flex flex-wrap gap-2">
+    <bo-toggle variant="default">Default</bo-toggle>
+    <bo-toggle variant="outline">Outline</bo-toggle>
+  </div>
+</ExampleFrame>
+
+## Sizes
+
+Toggle supports `sm`, `default`, and `lg`.
+
+<ExampleFrame :code="sizesExample">
+  <div class="flex flex-wrap items-center gap-2">
+    <bo-toggle size="sm">Small</bo-toggle>
+    <bo-toggle size="default">Default</bo-toggle>
+    <bo-toggle size="lg">Large</bo-toggle>
+  </div>
+</ExampleFrame>
+
+## States
+
+Use `disabled` to prevent activation. `defaultValue` initializes an uncontrolled toggle as pressed; use `v-model` when the parent owns the state. There is no separate `pressed` prop on `bo-toggle`.
+
+<ExampleFrame :code="statesExample">
+  <div class="flex flex-wrap items-center gap-2">
+    <bo-toggle disabled>Disabled</bo-toggle>
+    <bo-toggle default-value>Initially pressed</bo-toggle>
+    <bo-toggle v-model="pressed" :disabled="pressed">Disable when pressed</bo-toggle>
+  </div>
+</ExampleFrame>
+
+## Label and Default Slot
+
+Use `label` when the content is plain text. The default slot is used when `label` is omitted and supports custom markup.
+
+<ExampleFrame :code="labelExample">
+  <div class="flex flex-wrap gap-2">
+    <bo-toggle label="Label prop" />
+    <bo-toggle>Default slot content</bo-toggle>
+  </div>
+</ExampleFrame>
+
+## Pressed and Keyboard Behavior
+
+The component exposes its state as `aria-pressed="true"` or `aria-pressed="false"` and `data-state="on"` or `data-state="off"`. Mouse clicks, `Enter`, and `Space` toggle the state. Disabled toggles ignore all three activation paths.
+
+<ExampleFrame :code="keyboardExample">
+  <div class="grid justify-items-start gap-2">
+    <bo-toggle v-model="keyboardPressed" aria-label="Keyboard toggle">
+      Keyboard toggle
+    </bo-toggle>
+    <span class="text-sm text-neutral-500">{{ keyboardPressed ? 'On' : 'Off' }}; focus it and press Enter or Space.</span>
+  </div>
+</ExampleFrame>
+
+## Accessibility
+
+The default role is `button`. The label is used as the accessible name when `ariaLabel` is not provided. For custom slot content, provide `ariaLabel` or `ariaLabelledBy` when the visible content is not an adequate accessible name.
+
+## Usage Guidance
+
+- Use a toggle only when the action has a persistent binary state.
+- Make the label describe the setting or state rather than the implementation.
+- Prefer controlled `v-model` when the state affects other parts of the interface.
+- Do not use a toggle for mutually exclusive choices; use a button group or toggle group.
+
+## API Reference
+
+### Props
+
+| Prop             | Type                                | Default       | Description                                    |
+| ---------------- | ----------------------------------- | ------------- | ---------------------------------------------- |
+| `id`             | `string`                            | Autogenerated | The toggle id.                                 |
+| `dataTestId`     | `string`                            | Autogenerated | The test id attribute.                         |
+| `modelValue`     | `boolean`                           | `false`       | Controlled pressed state used by `v-model`.    |
+| `defaultValue`   | `boolean`                           | `false`       | Initial pressed state for uncontrolled use.    |
+| `disabled`       | `boolean`                           | `false`       | Prevents mouse and keyboard activation.        |
+| `variant`        | `BoToggleVariant`                   | `default`     | Surface variant: `default` or `outline`.       |
+| `size`           | `BoToggleSize`                      | `default`     | Size: `sm`, `default`, or `lg`.                |
+| `label`          | `string`                            | -             | Text rendered when the default slot is absent. |
+| `ariaLabel`      | `HTMLAttributes['aria-label']`      | -             | Accessible name override.                      |
+| `ariaLabelledBy` | `HTMLAttributes['aria-labelledby']` | -             | Id of an element that labels the toggle.       |
+| `role`           | `HTMLAttributes['role']`            | `button`      | Accessibility role.                            |
+
+### Events
+
+| Event               | Payload   | Description                         |
+| ------------------- | --------- | ----------------------------------- |
+| `update:modelValue` | `boolean` | Emitted when pressed state changes. |
+
+Native button events such as `click`, `focus`, `blur`, `keydown`, and `keyup` can also be listened to directly.
+
+### Slots
+
+| Name      | Description                                    |
+| --------- | ---------------------------------------------- |
+| `default` | Custom toggle content when `label` is omitted. |
