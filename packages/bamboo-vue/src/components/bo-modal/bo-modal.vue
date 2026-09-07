@@ -21,7 +21,9 @@
 					:role="role"
 					:aria-modal="true"
 					:aria-label="ariaLabel"
-					:aria-labelledby="ariaLabelledBy ?? titleId"
+					:aria-labelledby="
+						ariaLabel ? undefined : (ariaLabelledBy ?? (title ? titleId : undefined))
+					"
 					:aria-describedby="ariaDescribedBy ?? descriptionId"
 					:data-state="'open'"
 					data-slot="modal-content"
@@ -32,18 +34,11 @@
 				>
 					<div data-slot="modal-header" :class="headerClasses">
 						<div :class="MODAL_MANIFEST.styles.header.content">
-							<bo-icon
-								v-if="variantIcon"
-								:icon="variantIcon"
-								size="sm"
-								:class="MODAL_MANIFEST.styles.icon.variant[variant]"
-							/>
 							<slot name="header">
 								<bo-text
 									:id="titleId"
-									font-size="lg"
+									font-size="xl"
 									font-weight="semibold"
-									variant="default"
 									:class="MODAL_MANIFEST.styles.header.title"
 								>
 									{{ title }}
@@ -87,16 +82,14 @@ import {
 	generateDataTestId,
 	mergeTwClasses,
 	type BoModalProps,
-	type Icon,
 } from '@workspace/bamboo-core';
-import { computed, nextTick, onUnmounted, ref, useTemplateRef, watch } from 'vue';
+import { computed, nextTick, onUnmounted, useTemplateRef, watch } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
 
 const props = withDefaults(defineProps<BoModalProps>(), {
 	id: () => generateComponentId('modal'),
 	dataTestId: () => generateDataTestId('modal'),
-	variant: () => MODAL_MANIFEST.defaults.variant,
 	size: () => MODAL_MANIFEST.defaults.size,
 	closeOnBackdrop: () => MODAL_MANIFEST.defaults.closeOnBackdrop,
 	closeOnEscape: () => MODAL_MANIFEST.defaults.closeOnEscape,
@@ -123,16 +116,6 @@ const descriptionId = computed<string>(() => {
 	return `${props.id}-description`;
 });
 
-const variantIcon = computed<Icon | null>(() => {
-	const map: Record<string, Icon> = {
-		primary: 'alert_circle',
-		warning: 'alert_triangle',
-		destructive: 'alert_octagon',
-	};
-
-	return map[props.variant] ?? null;
-});
-
 const panelClasses = computed<string>(() => {
 	return mergeTwClasses(
 		MODAL_MANIFEST.styles.panel.base,
@@ -141,10 +124,7 @@ const panelClasses = computed<string>(() => {
 });
 
 const headerClasses = computed<string>(() => {
-	return mergeTwClasses(
-		MODAL_MANIFEST.styles.header.base,
-		MODAL_MANIFEST.styles.header.variant[props.variant || 'default'],
-	);
+	return MODAL_MANIFEST.styles.header.base;
 });
 
 function onClose(): void {
