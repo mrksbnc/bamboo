@@ -10,6 +10,7 @@ export const TAGS_INPUT_MANIFEST = {
 			required: 'bo-tags-input__required',
 		},
 		container: 'bo-tags-input__container',
+		invalid: 'bo-tags-input__container--invalid',
 		tags: 'bo-tags-input__tags',
 		tag: 'bo-tags-input__tag',
 		remove: 'bo-tags-input__remove',

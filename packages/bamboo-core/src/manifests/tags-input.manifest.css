@@ -20,7 +20,7 @@
 	}
 
 	.bo-tags-input__container {
-		@apply flex min-h-10 w-full max-w-full flex-wrap items-center gap-1.5 overflow-x-hidden rounded-md border px-2 py-1 shadow-xs transition-[color,box-shadow];
+		@apply box-border flex min-h-10 w-full min-w-0 max-w-full flex-wrap items-center gap-1.5 overflow-hidden rounded-md border px-2 py-1 shadow-xs transition-[color,box-shadow];
 		@apply border-neutral-300;
 	}
 
@@ -46,6 +46,12 @@
 		@apply border-red-500;
 	}
 
+	.bo-tags-input__container--invalid:hover,
+	.bo-tags-input__container--invalid:focus-within {
+		@apply border-red-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-red-500) 20%, transparent);
+	}
+
 	.dark .bo-tags-input__container--invalid {
 		@apply border-red-400;
 	}
@@ -55,7 +61,7 @@
 	}
 
 	.bo-tags-input__tag {
-		@apply inline-flex max-w-full items-center gap-1 break-all rounded bg-blue-100 px-2 py-0.5 text-sm text-blue-800;
+		@apply inline-flex max-w-[calc(100%-0.375rem)] items-center gap-1 break-all rounded border border-neutral-200 bg-neutral-100 px-2 py-0.5 text-sm text-neutral-700;
 	}
 
 	.bo-tags-input__remove {
@@ -63,11 +69,11 @@
 	}
 
 	.bo-tags-input__remove:hover {
-		background-color: color-mix(in srgb, var(--color-blue-800) 15%, transparent);
+		@apply bg-neutral-200;
 	}
 
 	.bo-tags-input__input {
-		@apply min-w-24 max-w-full flex-[1_1_6rem] basis-24 border-none bg-transparent px-1 py-0.5 text-base text-neutral-900 outline-none md:text-sm;
+		@apply h-6 w-0 min-w-0 max-w-full flex-1 border-none bg-transparent px-1 py-0.5 text-sm text-neutral-900 outline-none;
 	}
 
 	.bo-tags-input__input:disabled {
@@ -96,8 +102,19 @@
 		@apply border-neutral-700;
 	}
 
+	.dark .bo-tags-input__container--invalid,
+	.dark .bo-tags-input__container--invalid:hover,
+	.dark .bo-tags-input__container--invalid:focus-within {
+		@apply border-red-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-red-400) 20%, transparent);
+	}
+
 	.dark .bo-tags-input__tag {
-		@apply bg-blue-950 text-blue-200;
+		@apply border-neutral-700 bg-neutral-800 text-neutral-200;
+	}
+
+	.dark .bo-tags-input__remove:hover {
+		@apply bg-neutral-700;
 	}
 
 	.dark .bo-tags-input__description,
