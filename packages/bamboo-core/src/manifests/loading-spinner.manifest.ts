@@ -8,7 +8,16 @@ export const LOADING_SPINNER_MANIFEST = {
 	styles: {
 		base: 'bo-loading-spinner__track',
 		container: 'bo-loading-spinner',
-		text: '',
+		text: 'bo-loading-spinner__text',
+		variant: {
+			primary: 'bo-loading-spinner--primary',
+			secondary: 'bo-loading-spinner--secondary',
+			success: 'bo-loading-spinner--success',
+			warning: 'bo-loading-spinner--warning',
+			destructive: 'bo-loading-spinner--destructive',
+			white: 'bo-loading-spinner--white',
+			current: 'bo-loading-spinner--current',
+		},
 		size: {
 			xs: 'bo-loading-spinner__track--xs',
 			sm: 'bo-loading-spinner__track--sm',
@@ -25,14 +34,15 @@ export const LOADING_SPINNER_MANIFEST = {
 		labelFontSize: {
 			xs: 'xs',
 			sm: 'sm',
-			default: 'sm',
-			lg: 'default',
-			xl: 'default',
+			default: 'default',
+			lg: 'lg',
+			xl: 'xl',
 		},
 	},
 	defaults: {
 		role: 'status',
 		size: 'default',
+		variant: 'primary',
 		textPosition: 'after',
 	},
 } as const satisfies LoadingSpinnerManifest;

@@ -20,10 +20,24 @@
 	}
 
 	.bo-loading-spinner__track {
-		@apply block size-4 shrink-0 rounded-full border-2 border-current border-t-transparent;
-		animation: bo-loading-spinner-spin 0.8s linear infinite;
+		@apply block shrink-0;
+	}
+
+	.bo-loading-spinner__track > svg {
+		@apply block size-full overflow-visible;
+	}
+
+	.bo-loading-spinner__ring {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2.5;
+		stroke-linecap: round;
+		stroke-dasharray: 42 57;
 		transform-origin: center;
-		will-change: transform;
+		animation:
+			bo-loading-spinner-dash 1.15s ease-in-out infinite,
+			bo-loading-spinner-spin 1.15s linear infinite;
+		will-change: transform, stroke-dashoffset;
 	}
 
 	.bo-loading-spinner__track--xs {
@@ -50,6 +64,22 @@
 		to {
 			transform: rotate(360deg);
 		}
+	}
+
+	@keyframes bo-loading-spinner-dash {
+		0% {
+			stroke-dashoffset: 72;
+		}
+		50% {
+			stroke-dashoffset: 20;
+		}
+		100% {
+			stroke-dashoffset: -72;
+		}
+	}
+
+	.bo-loading-spinner--primary {
+		@apply text-blue-600;
 	}
 
 	.dark .bo-loading-spinner--primary {
@@ -99,6 +129,143 @@
 
 @media (prefers-reduced-motion: reduce) {
 	.bo-loading-spinner__track {
+		animation: none;
+	}
+
+	.bo-loading-spinner__ring {
+		animation: none;
+	}
+}
+
+@layer components {
+	.bo-loading-ring {
+		@apply flex max-w-fit content-center items-center justify-center gap-2;
+	}
+
+	.bo-loading-ring--top {
+		@apply flex-col-reverse;
+	}
+
+	.bo-loading-ring--bottom {
+		@apply flex-col;
+	}
+
+	.bo-loading-ring--before {
+		@apply flex-row-reverse;
+	}
+
+	.bo-loading-ring--after {
+		@apply flex-row;
+	}
+
+	.bo-loading-ring__ring {
+		@apply block shrink-0;
+		perspective: 1000px;
+	}
+
+	.bo-loading-ring__ring > svg {
+		@apply block size-full overflow-visible;
+	}
+
+	.bo-loading-ring__ring circle {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-dasharray: 30 18;
+		transform-box: fill-box;
+		transform-origin: center;
+	}
+
+	.bo-loading-ring__ring circle:first-child {
+		animation: bo-loading-ring-spin 1.2s linear infinite;
+	}
+
+	.bo-loading-ring__ring circle:last-child {
+		stroke-dasharray: 24 24;
+		animation: bo-loading-ring-spin-reverse 1.2s linear infinite;
+		opacity: 0.7;
+	}
+
+	.bo-loading-ring__ring--xs {
+		@apply size-3;
+	}
+
+	.bo-loading-ring__ring--sm {
+		@apply size-3.5;
+	}
+
+	.bo-loading-ring__ring--default {
+		@apply size-4;
+	}
+
+	.bo-loading-ring__ring--lg {
+		@apply size-6;
+	}
+
+	.bo-loading-ring__ring--xl {
+		@apply size-8;
+	}
+
+	.bo-loading-ring--primary {
+		@apply text-blue-600;
+	}
+
+	.dark .bo-loading-ring--primary {
+		@apply text-blue-500;
+	}
+
+	.bo-loading-ring--secondary {
+		@apply text-neutral-500;
+	}
+
+	.bo-loading-ring--success {
+		@apply text-green-600;
+	}
+
+	.dark .bo-loading-ring--success {
+		@apply text-green-500;
+	}
+
+	.bo-loading-ring--warning {
+		@apply text-yellow-600;
+	}
+
+	.dark .bo-loading-ring--warning {
+		@apply text-yellow-500;
+	}
+
+	.bo-loading-ring--destructive {
+		@apply text-red-600;
+	}
+
+	.dark .bo-loading-ring--destructive {
+		@apply text-red-500;
+	}
+
+	.bo-loading-ring--white {
+		@apply text-white;
+	}
+
+	.bo-loading-ring--current {
+		@apply text-current;
+	}
+
+	@keyframes bo-loading-ring-spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes bo-loading-ring-spin-reverse {
+		to {
+			transform: rotate(-360deg);
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bo-loading-ring__ring circle {
 		animation: none;
 	}
 }
