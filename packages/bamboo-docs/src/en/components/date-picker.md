@@ -1,58 +1,187 @@
 ---
 title: Date Picker
-description: Compact date and date-range selection controls built on Calendar.
-category: forms
-tags: [date, calendar, forms, accessibility]
+description: Select a date or date range from a compact popover.
+category: form
+tags:
+  - date-picker
+  - date
+  - calendar
 outline: deep
 ---
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { BoDatePicker, BoDateRangePicker, BoRangeCalendar } from '@mrksbnc/bamboo-vue';
-const date = ref<Date>();
+
+const date = ref<Date | undefined>();
+const placementDate = ref<Date | undefined>();
+const localeDate = ref<Date | undefined>();
 const range = ref<{ start?: Date; end?: Date }>({});
-const dateExample = `<bo-date-picker v-model="date" placeholder="Choose a date" />`;
-const rangeExample = `<bo-date-range-picker v-model="range" placeholder="Choose a range" />`;
+const limitedRange = ref<{ start?: Date; end?: Date }>({});
+
+const today = new Date();
+const minDate = new Date(today);
+minDate.setDate(today.getDate() - 2);
+const maxDate = new Date(today);
+maxDate.setDate(today.getDate() + 14);
+
+const basicExample = `<bo-date-picker v-model="date" placeholder="Select date" />`;
+
+const placementExample = `<bo-date-picker
+  v-model="placementDate"
+  placeholder="Opens bottom-start"
+/>`;
+
+const stateExample = `<bo-date-picker disabled placeholder="Unavailable" />
+<bo-date-picker
+  v-model="localeDate"
+  locale="de-DE"
+  placeholder="Datum auswählen"
+/>`;
+
+const rangeExample = `<bo-date-range-picker v-model="range" placeholder="Select range" />`;
+
+const rangeCalendarExample = `<bo-range-calendar
+  v-model="limitedRange"
+  :min-date="minDate"
+  :max-date="maxDate"
+/>`;
 </script>
 
 # Date Picker
 
-Use `bo-date-picker` when one date is selected from a compact calendar. Use `bo-date-range-picker` for a start/end interval; use `bo-range-calendar` when both calendars should remain visible.
+Use `bo-date-picker` for one date, `bo-date-range-picker` for a compact interval, or `bo-range-calendar` when both calendars should stay visible. Each component uses a `Date` value, not a formatted date string.
 
-## Single date
+## Basic Usage
 
-<ExampleFrame :code="dateExample"><div class="w-full max-w-sm"><bo-date-picker v-model="date" placeholder="Choose a date" /><p class="mt-3 text-sm text-neutral-500">{{ date ? date.toLocaleDateString() : 'No date selected' }}</p></div></ExampleFrame>
+`v-model` is `Date | undefined`. The trigger displays the selected date using the configured locale.
 
-## Date range
+<ExampleFrame :code="basicExample">
+  <div class="grid max-w-xs gap-2">
+    <bo-date-picker v-model="date" placeholder="Select date" />
+    <span class="text-sm text-neutral-500">{{ date ? date.toLocaleDateString() : 'No date selected' }}</span>
+  </div>
+</ExampleFrame>
 
-<ExampleFrame :code="rangeExample"><div class="w-full max-w-sm"><bo-date-range-picker v-model="range" placeholder="Choose a range" /><p class="mt-3 text-sm text-neutral-500">{{ range.start ? `${range.start.toLocaleDateString()} – ${range.end?.toLocaleDateString() || 'Choose an end date'}` : 'Choose a range' }}</p></div></ExampleFrame>
+## Placement
 
-## Range calendar
+The date and range picker wrappers use an internal `bottom-start` popover. They do not expose a `placement` prop. The example below documents the supported behavior without passing an unsupported prop. Use [`Popover`](./popover) directly when arbitrary placement control is required.
 
-`bo-range-calendar` renders two calendars and models `{ start, end }`. The range picker uses the same model while keeping the calendars behind a compact trigger.
+<ExampleFrame :code="placementExample">
+  <div class="grid max-w-xs gap-2">
+    <bo-date-picker v-model="placementDate" placeholder="Opens bottom-start" />
+    <span class="text-sm text-neutral-500">The calendar opens below the trigger, aligned to its start.</span>
+  </div>
+</ExampleFrame>
 
-<ExampleFrame :code="rangeExample"><div class="w-full"><bo-range-calendar v-model="range" /><p class="mt-3 text-sm text-neutral-500">{{ range.start ? `${range.start.toLocaleDateString()} – ${range.end?.toLocaleDateString() || 'Choose an end date'}` : 'Choose a range' }}</p></div></ExampleFrame>
+## Disabled and Locale
 
-## States and validation
+Set `disabled` to prevent opening the picker. `locale` controls weekday labels, month labels, and the formatted trigger value.
 
-The current calendar accepts `min-date`, `max-date`, and `disabled-dates`. The picker trigger accepts `placeholder`, `locale`, and `disabled`. A range remains incomplete until both endpoints are chosen; communicate that state rather than silently submitting it.
+<ExampleFrame :code="stateExample">
+  <div class="grid max-w-xs gap-3">
+    <bo-date-picker disabled placeholder="Unavailable" />
+    <bo-date-picker
+      v-model="localeDate"
+      locale="de-DE"
+      placeholder="Datum auswählen"
+    />
+  </div>
+</ExampleFrame>
 
-## Accessibility and responsive guidance
+## Single Date
 
-Provide a visible label and an `aria-label` that describes the value. Store dates in a timezone-safe representation and format them for the user's locale. The range calendar currently renders two adjacent calendar surfaces, so place it in a container wide enough for both.
+Use `bo-date-picker` when only one boundary is needed. It forwards the locale to its calendar, and selecting a date closes the popover.
 
-## API reference
+<ExampleFrame :code="basicExample">
+  <bo-date-picker v-model="date" placeholder="Select a date" />
+</ExampleFrame>
 
-| Prop            | Type                        | Description                                           |
-| --------------- | --------------------------- | ----------------------------------------------------- |
-| `modelValue`    | `Date \| undefined` / range | Selected date or `{ start?: Date; end?: Date }`.      |
-| `minDate`       | `Date`                      | Earliest selectable date for calendar/range calendar. |
-| `maxDate`       | `Date`                      | Latest selectable date for calendar/range calendar.   |
-| `disabledDates` | `Date[]`                    | Dates excluded from the single calendar.              |
-| `placeholder`   | `string`                    | Trigger text when empty.                              |
-| `locale`        | `string`                    | Date formatting locale.                               |
-| `disabled`      | `boolean`                   | Disables the picker trigger.                          |
+## Date Range
 
-### Events
+`bo-date-range-picker` models a range as `{ start?: Date; end?: Date }`. The value can be partial while the user is choosing the second boundary.
 
-Both controls emit `update:modelValue` and `change`; range controls emit a value only after the active endpoint changes.
+<ExampleFrame :code="rangeExample">
+  <div class="grid max-w-xs gap-2">
+    <bo-date-range-picker v-model="range" placeholder="Select range" />
+    <span class="text-sm text-neutral-500">{{ range.start && range.end ? 'Range selected' : 'Select two dates' }}</span>
+  </div>
+</ExampleFrame>
+
+## Range Calendar and Limits
+
+`bo-range-calendar` keeps two `bo-calendar` instances visible. It is the date-picker component that supports `minDate` and `maxDate`; those limits apply to both calendars, and the second calendar cannot select a date before the selected start.
+
+<ExampleFrame :code="rangeCalendarExample">
+  <div class="max-w-2xl overflow-x-auto">
+    <bo-range-calendar
+      v-model="limitedRange"
+      :min-date="minDate"
+      :max-date="maxDate"
+    />
+  </div>
+</ExampleFrame>
+
+:::warning
+`minDate` and `maxDate` are supported by `bo-range-calendar`, not by `bo-date-picker` or `bo-date-range-picker`. Those compact wrappers currently expose only `placeholder`, `disabled`, and `locale` in addition to their model.
+:::
+
+## Usage Guidance
+
+- Keep the model as `Date` values and format it only when displaying or submitting it.
+- Use an explicit locale when the application locale is not `en-US`.
+- Use `bo-range-calendar` for workflows where comparing both months at once is important.
+- Use the separate [`Calendar`](./calendar) component when the calendar should remain visible without a popover.
+
+## API Reference
+
+### `BoDatePicker` Props
+
+| Prop          | Type                | Default       | Description                                |
+| ------------- | ------------------- | ------------- | ------------------------------------------ |
+| `id`          | `string`            | Autogenerated | The picker root id.                        |
+| `dataTestId`  | `string`            | Autogenerated | The test id attribute.                     |
+| `placeholder` | `string`            | `Select date` | Text shown when no date is selected.       |
+| `disabled`    | `boolean`           | `false`       | Prevents opening and selection.            |
+| `locale`      | `string`            | `en-US`       | Locale for calendar labels and formatting. |
+| `modelValue`  | `Date \| undefined` | `undefined`   | Selected date used by `v-model`.           |
+
+### `BoDatePicker` Events
+
+| Event               | Payload             | Description                             |
+| ------------------- | ------------------- | --------------------------------------- |
+| `update:modelValue` | `Date \| undefined` | Emitted when the selected date changes. |
+
+### `BoDateRangePicker` Props
+
+| Prop          | Type                           | Default             | Description                                    |
+| ------------- | ------------------------------ | ------------------- | ---------------------------------------------- |
+| `id`          | `string`                       | Autogenerated       | The picker root id.                            |
+| `dataTestId`  | `string`                       | Autogenerated       | The test id attribute.                         |
+| `placeholder` | `string`                       | `Select date range` | Text shown when no complete range is selected. |
+| `disabled`    | `boolean`                      | `false`             | Prevents opening and selection.                |
+| `locale`      | `string`                       | `en-US`             | Locale for calendar labels and formatting.     |
+| `modelValue`  | `{ start?: Date; end?: Date }` | `{}`                | Range used by `v-model`.                       |
+
+### `BoDateRangePicker` Events
+
+| Event               | Payload                        | Description                           |
+| ------------------- | ------------------------------ | ------------------------------------- |
+| `update:modelValue` | `{ start?: Date; end?: Date }` | Emitted when either boundary changes. |
+
+### `BoRangeCalendar` Props
+
+| Prop         | Type                           | Default       | Description                      |
+| ------------ | ------------------------------ | ------------- | -------------------------------- |
+| `id`         | `string`                       | Autogenerated | The range calendar id.           |
+| `dataTestId` | `string`                       | Autogenerated | The test id attribute.           |
+| `locale`     | `string`                       | `en-US`       | Locale for both calendar labels. |
+| `minDate`    | `Date`                         | -             | Earliest selectable date.        |
+| `maxDate`    | `Date`                         | -             | Latest selectable date.          |
+| `modelValue` | `{ start?: Date; end?: Date }` | `{}`          | Range used by `v-model`.         |
+
+### `BoRangeCalendar` Events
+
+| Event               | Payload                        | Description                           |
+| ------------------- | ------------------------------ | ------------------------------------- |
+| `update:modelValue` | `{ start?: Date; end?: Date }` | Emitted when either boundary changes. |
