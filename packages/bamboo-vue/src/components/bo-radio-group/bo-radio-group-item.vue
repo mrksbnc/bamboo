@@ -1,10 +1,5 @@
 <template>
-	<bo-label
-		:for="id"
-		:disabled="isDisabled"
-		:class="RADIO_GROUP_ITEM_MANIFEST.styles.base"
-		:aria-label="ariaLabel"
-	>
+	<label :for="id" :class="RADIO_GROUP_ITEM_MANIFEST.styles.base" :aria-label="ariaLabel">
 		<input
 			:id="id"
 			:data-testid="dataTestId"
@@ -32,7 +27,7 @@
 			</span>
 			<slot />
 		</span>
-	</bo-label>
+	</label>
 </template>
 
 <script setup lang="ts">
@@ -43,7 +38,6 @@ import {
 	type BoRadioGroupItemProps,
 } from '@workspace/bamboo-core';
 import { computed, inject } from 'vue';
-import { BoLabel } from '../bo-label';
 import {
 	radioGroupDisabledKey,
 	radioGroupNameKey,
