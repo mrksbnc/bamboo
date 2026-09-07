@@ -65,9 +65,6 @@ export {
 	type BoDropzoneProps,
 	type BoDropzoneStyleManifest,
 	type DropzoneManifest,
-
-	// Modal
-	type BoModalVariant,
 	type BoModalSize,
 	type BoModalProps,
 	type ModalManifest,
@@ -99,9 +96,6 @@ export {
 	type BoTextWhiteSpace,
 	type BoTextProps,
 	type TextManifest,
-
-	// Textarea
-	type BoTextareaSize,
 	type BoTextareaState,
 	type BoTextareaVariant,
 	type BoTextareaProps,
@@ -144,15 +138,10 @@ export {
 
 	// Dialog
 	type BoDialogSize,
+	type BoDialogVariant,
 	type BoDialogProps,
 	type BoDialogStyleManifest,
 	type DialogManifest,
-
-	// Alert Dialog
-	type BoAlertDialogVariant,
-	type BoAlertDialogProps,
-	type BoAlertDialogStyleManifest,
-	type AlertDialogManifest,
 
 	// Tabs
 	type BoTabsValue,
@@ -177,18 +166,6 @@ export {
 	type BoEmptyProps,
 	type BoEmptyStyleManifest,
 	type EmptyManifest,
-
-	// Label
-	type BoLabelSize,
-	type BoLabelProps,
-	type BoLabelStyleManifest,
-	type LabelManifest,
-
-	// Marker
-	type BoMarkerVariant,
-	type BoMarkerProps,
-	type BoMarkerStyleManifest,
-	type MarkerManifest,
 
 	// Pagination
 	type BoPaginationProps,
@@ -269,8 +246,6 @@ export {
 	BREADCRUMB_MANIFEST,
 	CARD_MANIFEST,
 	EMPTY_MANIFEST,
-	LABEL_MANIFEST,
-	MARKER_MANIFEST,
 	PAGINATION_MANIFEST,
 	PROGRESS_MANIFEST,
 	SEPARATOR_MANIFEST,
@@ -283,7 +258,6 @@ export {
 	RADIO_GROUP_MANIFEST,
 	RADIO_GROUP_ITEM_MANIFEST,
 	DIALOG_MANIFEST,
-	ALERT_DIALOG_MANIFEST,
 	TABS_MANIFEST,
 	TOAST_MANIFEST,
 	type ComponentManifest,

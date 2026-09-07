@@ -44,6 +44,7 @@ export {
 export {
 	type BoButtonGroupOrientation,
 	type BoButtonGroupProps,
+	type BoButtonGroupItemProps,
 	type ButtonGroupManifest,
 } from './bo-button-group.js';
 
@@ -58,12 +59,7 @@ export {
 } from './bo-icon.js';
 
 // # bo-modal
-export {
-	type BoModalVariant,
-	type BoModalSize,
-	type BoModalProps,
-	type ModalManifest,
-} from './bo-modal.js';
+export { type BoModalSize, type BoModalProps, type ModalManifest } from './bo-modal.js';
 
 // # bo-input
 export {
@@ -109,6 +105,9 @@ export {
 	type LoadingSpinnerManifest,
 } from './bo-loading-spinner.js';
 
+// # bo-loading-ring
+export type { BoLoadingRingProps } from './bo-loading-ring.js';
+
 // # bo-text
 export {
 	type BoFontFamily,
@@ -125,7 +124,6 @@ export {
 
 // # bo-textarea
 export {
-	type BoTextareaSize,
 	type BoTextareaState,
 	type BoTextareaVariant,
 	type BoTextareaProps,
@@ -175,18 +173,11 @@ export {
 // # bo-dialog
 export {
 	type BoDialogSize,
+	type BoDialogVariant,
 	type BoDialogProps,
 	type BoDialogStyleManifest,
 	type DialogManifest,
 } from './bo-dialog.js';
-
-// # bo-alert-dialog
-export {
-	type BoAlertDialogVariant,
-	type BoAlertDialogProps,
-	type BoAlertDialogStyleManifest,
-	type AlertDialogManifest,
-} from './bo-alert-dialog.js';
 
 // # bo-tabs
 export {
@@ -213,22 +204,6 @@ export {
 
 // # bo-empty
 export { type BoEmptyProps, type BoEmptyStyleManifest, type EmptyManifest } from './bo-empty.js';
-
-// # bo-label
-export {
-	type BoLabelSize,
-	type BoLabelProps,
-	type BoLabelStyleManifest,
-	type LabelManifest,
-} from './bo-label.js';
-
-// # bo-marker
-export {
-	type BoMarkerVariant,
-	type BoMarkerProps,
-	type BoMarkerStyleManifest,
-	type MarkerManifest,
-} from './bo-marker.js';
 
 // # bo-pagination
 export {
