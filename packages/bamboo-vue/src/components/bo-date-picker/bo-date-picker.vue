@@ -1,12 +1,17 @@
 <template>
 	<div :id="id" :data-testid="dataTestId" :class="DATE_PICKER_MANIFEST.styles.base">
-		<bo-popover v-model:open="open" placement="bottom-start">
+		<bo-popover :open="open" placement="bottom-start" @update:open="setOpen">
 			<bo-popover-trigger :class="DATE_PICKER_MANIFEST.styles.trigger" :disabled="disabled">
 				{{ formattedValue || placeholder }}
 				<span aria-hidden="true">▾</span>
 			</bo-popover-trigger>
-			<bo-popover-content class="w-auto p-0">
-				<bo-calendar v-model="model" :locale="locale" @select="open = false" />
+			<bo-popover-content class="w-auto border-0 p-0 shadow-none">
+				<bo-calendar
+					:model-value="model"
+					:locale="locale"
+					@update:model-value="setDate"
+					@select="setOpen(false)"
+				/>
 			</bo-popover-content>
 		</bo-popover>
 	</div>
@@ -45,6 +50,14 @@ const formattedValue = computed(() => {
 		? new Intl.DateTimeFormat(props.locale, { dateStyle: 'medium' }).format(model.value)
 		: '';
 });
+
+function setOpen(value: boolean): void {
+	open.value = value;
+}
+
+function setDate(value: Date | undefined): void {
+	model.value = value;
+}
 </script>
 
 <style>

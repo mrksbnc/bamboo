@@ -1,12 +1,12 @@
 <template>
 	<div :id="id" :data-testid="dataTestId" :class="DATE_RANGE_PICKER_MANIFEST.styles.base">
-		<bo-popover v-model:open="open" placement="bottom-start">
+		<bo-popover :open="open" placement="bottom-start" @update:open="setOpen">
 			<bo-popover-trigger :class="DATE_RANGE_PICKER_MANIFEST.styles.trigger" :disabled="disabled">
 				{{ formattedValue || placeholder }}
 				<span aria-hidden="true">▾</span>
 			</bo-popover-trigger>
-			<bo-popover-content class="w-auto p-0">
-				<bo-range-calendar v-model="model" :locale="locale" />
+			<bo-popover-content class="w-auto border-0 p-0 shadow-none">
+				<bo-range-calendar :model-value="model" :locale="locale" @update:model-value="setRange" />
 			</bo-popover-content>
 		</bo-popover>
 	</div>
@@ -48,6 +48,14 @@ const formattedValue = computed(() => {
 		? `${formatter.format(model.value.start)} – ${formatter.format(model.value.end)}`
 		: '';
 });
+
+function setOpen(value: boolean): void {
+	open.value = value;
+}
+
+function setRange(value: { start?: Date; end?: Date }): void {
+	model.value = value;
+}
 </script>
 
 <style>

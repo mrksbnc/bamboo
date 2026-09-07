@@ -1,7 +1,19 @@
 <template>
 	<div :id="id" :data-testid="dataTestId" :class="RANGE_CALENDAR_MANIFEST.styles.base">
-		<bo-calendar v-model="start" :locale="locale" :min-date="minDate" :max-date="maxDate" />
-		<bo-calendar v-model="end" :locale="locale" :min-date="start || minDate" :max-date="maxDate" />
+		<bo-calendar
+			:model-value="start"
+			:locale="locale"
+			:min-date="minDate"
+			:max-date="maxDate"
+			@update:model-value="setStart"
+		/>
+		<bo-calendar
+			:model-value="end"
+			:locale="locale"
+			:min-date="start || minDate"
+			:max-date="maxDate"
+			@update:model-value="setEnd"
+		/>
 	</div>
 </template>
 
@@ -43,6 +55,14 @@ const end = computed({
 		model.value = { ...model.value, end: value };
 	},
 });
+
+function setStart(value: Date | undefined): void {
+	start.value = value;
+}
+
+function setEnd(value: Date | undefined): void {
+	end.value = value;
+}
 </script>
 
 <style>
