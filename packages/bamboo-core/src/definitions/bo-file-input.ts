@@ -23,6 +23,11 @@ export interface BoFileInputStyleManifest {
 	base: string;
 	labels: { container: string; label: string; required: string; description: string };
 	container: string;
+	trigger: string;
+	triggerContent: string;
+	triggerTitle: string;
+	triggerHint: string;
+	triggerAction: string;
 	icon: string;
 	input: string;
 	fileList: string;
