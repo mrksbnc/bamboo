@@ -61,6 +61,7 @@ import { BoText } from '@mrksbnc/bamboo-vue';
 
 ```ts [main.ts]
 import App from './App.vue';
+import { BambooVue } from '@mrksbnc/bamboo-vue';
 import { createApp } from 'vue';
 
 // Import the component styles
