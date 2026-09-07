@@ -11,11 +11,17 @@
 		<p v-if="description" :id="descriptionId" :class="FORM_FIELD_MANIFEST.styles.description">
 			{{ description }}
 		</p>
-		<div :class="FORM_FIELD_MANIFEST.styles.control">
+		<div
+			:class="[
+				FORM_FIELD_MANIFEST.styles.control,
+				error ? FORM_FIELD_MANIFEST.styles.controlInvalid : '',
+			]"
+			:aria-invalid="error ? 'true' : undefined"
+		>
 			<slot
 				:id="controlId"
-				:aria-describedby="describedBy"
-				:aria-invalid="error ? 'true' : undefined"
+				:ariaDescribedBy="describedBy"
+				:ariaInvalid="error ? 'true' : undefined"
 			/>
 		</div>
 		<p v-if="error" :id="errorId" :class="FORM_FIELD_MANIFEST.styles.error" role="alert">
@@ -61,6 +67,10 @@ const describedBy = computed(() => {
 	if (props.error) ids.push(errorId.value);
 	return ids.join(' ') || undefined;
 });
+
+defineSlots<{
+	default?: (props: { id: string; ariaDescribedBy?: string; ariaInvalid?: 'true' }) => unknown;
+}>();
 </script>
 
 <style>
