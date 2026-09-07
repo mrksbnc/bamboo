@@ -2,16 +2,23 @@ import { HTMLAttributes } from 'vue';
 import { ComponentManifest } from '../manifests/types.js';
 import { Icon } from './bo-icon.js';
 
+export type BoMenubarPlacement = 'top' | 'bottom';
+
 export interface BoMenubarProps {
 	id?: HTMLElement['id'];
 	dataTestId?: string;
 	ariaLabel?: HTMLAttributes['aria-label'];
+	placement?: BoMenubarPlacement;
 }
 
-type BoMenubarManifestDefaults = Record<string, never>;
+type BoMenubarManifestDefaults = Pick<BoMenubarProps, 'placement'>;
 
 export interface BoMenubarStyleManifest {
 	readonly base: 'bo-menubar';
+	readonly start: 'bo-menubar__start';
+	readonly end: 'bo-menubar__end';
+	readonly main: 'bo-menubar__main';
+	readonly placement: Record<BoMenubarPlacement, string>;
 	readonly menu: 'bo-menubar__menu';
 	readonly trigger: {
 		readonly base: 'bo-menubar__trigger';
