@@ -11,6 +11,10 @@
 		@apply mb-2 flex items-center justify-between gap-1;
 	}
 
+	.bo-calendar__header > button {
+		@apply inline-flex size-7 items-center justify-center rounded-md text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400;
+	}
+
 	.bo-calendar__title {
 		@apply text-sm font-semibold;
 	}
@@ -28,11 +32,11 @@
 	}
 
 	.bo-calendar__day--selected {
-		@apply bg-blue-600 text-white hover:bg-blue-700;
+		@apply bg-neutral-900 text-white hover:bg-neutral-800;
 	}
 
 	.bo-calendar__day--today {
-		@apply font-bold ring-1 ring-blue-500;
+		@apply font-bold ring-1 ring-neutral-500;
 	}
 
 	.bo-calendar__day--outside {
@@ -45,5 +49,21 @@
 
 	.dark .bo-calendar__day:hover {
 		@apply bg-neutral-800;
+	}
+
+	.dark .bo-calendar__header > button {
+		@apply text-neutral-400 hover:bg-neutral-800 hover:text-neutral-100;
+	}
+
+	.dark .bo-calendar__weekday {
+		@apply text-neutral-400;
+	}
+
+	.dark .bo-calendar__day--outside {
+		@apply text-neutral-500;
+	}
+
+	.dark .bo-calendar__day--selected {
+		@apply bg-neutral-800 text-neutral-100 hover:bg-neutral-700;
 	}
 }
