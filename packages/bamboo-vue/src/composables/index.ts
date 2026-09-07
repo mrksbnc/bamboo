@@ -1,5 +1,7 @@
 export { useToast } from './use-toast.js';
 export type { ToastMessage, ToastOptions, ToastPosition } from './use-toast.js';
+export { useDrawer } from './use-drawer.js';
+export type { DrawerMessage, DrawerOptions } from './use-drawer.js';
 export { useFileSelection } from './use-file-selection.js';
 export type { FileSelectionOptions } from './use-file-selection.js';
 export * from './use-form.js';

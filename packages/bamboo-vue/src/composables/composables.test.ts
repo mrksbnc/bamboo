@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { nextTick, ref } from 'vue';
-import { useForm, useFormField, useModal } from './index.js';
+import { useDrawer, useForm, useFormField, useModal } from './index.js';
 
 describe('useForm', () => {
 	it('validates, submits, and resets values', async () => {
@@ -41,5 +41,20 @@ describe('useModal', () => {
 		await modal.closeAndRestoreFocus(null);
 		await nextTick();
 		expect(modal.instances.value).toHaveLength(0);
+	});
+});
+
+describe('useDrawer', () => {
+	it('opens and dismisses shared drawer messages', () => {
+		const drawer = useDrawer();
+		drawer.clear();
+		const id = drawer.show({ title: 'Details', side: 'left' });
+
+		expect(drawer.drawers.value[0]).toMatchObject({
+			id,
+			props: { title: 'Details', side: 'left' },
+		});
+		drawer.dismiss(id);
+		expect(drawer.drawers.value).toHaveLength(0);
 	});
 });
