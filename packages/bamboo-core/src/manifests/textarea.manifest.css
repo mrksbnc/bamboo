@@ -1,11 +1,10 @@
 @layer components {
 	.bo-textarea {
-		@apply flex w-full max-w-none flex-col transition-all duration-200;
+		@apply flex w-full min-w-0 max-w-full flex-col transition-all duration-200;
 	}
 
 	.bo-textarea__label-container {
-		@apply flex flex-col items-start gap-1 pb-2;
-		@apply text-neutral-900;
+		@apply flex flex-col items-start gap-1 pb-2 text-neutral-900;
 	}
 
 	.bo-textarea__label {
@@ -33,7 +32,7 @@
 	}
 
 	.bo-textarea__container {
-		@apply relative flex w-full min-w-0 max-w-none rounded-md border shadow-xs outline-none transition-[color,box-shadow];
+		@apply relative flex h-auto w-full min-w-0 max-w-full rounded-md border shadow-xs outline-none transition-[color,box-shadow];
 	}
 
 	.bo-textarea__container:focus-within {
@@ -74,52 +73,24 @@
 		@apply border-green-500 bg-transparent;
 	}
 
-	.bo-textarea__container--valid:hover {
-		@apply border-green-600;
-	}
-
 	.bo-textarea__container--valid:focus-within {
-		@apply border-green-500;
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-green-500) 50%, transparent);
-	}
-
-	.dark .bo-textarea__container--valid {
-		@apply border-green-500;
-	}
-
-	.dark .bo-textarea__container--valid:hover {
-		@apply border-green-400;
-	}
-
-	.dark .bo-textarea__container--valid:focus-within {
-		@apply border-green-400;
-		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-green-400) 50%, transparent);
 	}
 
 	.bo-textarea__container--invalid {
 		@apply border-red-500 bg-transparent;
 	}
 
-	.bo-textarea__container--invalid:hover {
-		@apply border-red-600;
+	.bo-textarea__container--invalid:focus-within {
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-red-500) 20%, transparent);
 	}
 
-	.bo-textarea__container--invalid:focus-within {
-		@apply border-red-500;
-		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-red-500) 20%, transparent);
+	.dark .bo-textarea__container--valid {
+		@apply border-green-500;
 	}
 
 	.dark .bo-textarea__container--invalid {
 		@apply border-red-500;
-	}
-
-	.dark .bo-textarea__container--invalid:hover {
-		@apply border-red-400;
-	}
-
-	.dark .bo-textarea__container--invalid:focus-within {
-		@apply border-red-400;
-		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-red-400) 40%, transparent);
 	}
 
 	.bo-textarea__container--variant-default {
@@ -143,7 +114,7 @@
 	}
 
 	.bo-textarea__field {
-		@apply field-sizing-content min-h-20 min-w-0 w-full flex-1 resize-none overflow-hidden rounded-md border-none bg-transparent text-base font-normal text-neutral-900 outline-none md:text-sm;
+		@apply field-sizing-content min-h-20 min-w-0 w-full flex-1 resize-none overflow-hidden rounded-md border-none bg-transparent px-3 py-2 text-base font-normal text-neutral-900 outline-none md:text-sm;
 	}
 
 	.dark .bo-textarea__field {
@@ -179,63 +150,29 @@
 	}
 
 	.bo-textarea__field--expand {
-		@apply grow;
+		@apply h-full grow;
 	}
 
 	.bo-textarea__field--resizable {
 		@apply resize-y overflow-auto;
 	}
 
-	.bo-textarea__field--sm {
-		@apply p-2;
-	}
-
-	.bo-textarea__field--default {
-		@apply px-3 py-2;
-	}
-
-	.bo-textarea__field--lg {
-		@apply p-4;
+	.bo-textarea__prefix-icon,
+	.bo-textarea__suffix-icon {
+		@apply absolute top-3 text-neutral-500;
 	}
 
 	.bo-textarea__prefix-icon {
-		@apply absolute start-3 top-3 text-neutral-500;
-	}
-
-	.dark .bo-textarea__prefix-icon {
-		@apply text-neutral-400;
-	}
-
-	.bo-textarea__prefix-icon--sm {
-		@apply top-2.5;
-	}
-
-	.bo-textarea__prefix-icon--default {
-		@apply top-3;
-	}
-
-	.bo-textarea__prefix-icon--lg {
-		@apply start-3.5 top-4;
+		@apply start-3;
 	}
 
 	.bo-textarea__suffix-icon {
-		@apply absolute end-3 top-3 h-full text-neutral-500;
+		@apply end-3;
 	}
 
+	.dark .bo-textarea__prefix-icon,
 	.dark .bo-textarea__suffix-icon {
 		@apply text-neutral-400;
-	}
-
-	.bo-textarea__suffix-icon--sm {
-		@apply top-2.5;
-	}
-
-	.bo-textarea__suffix-icon--default {
-		@apply top-3;
-	}
-
-	.bo-textarea__suffix-icon--lg {
-		@apply end-3.5 top-4;
 	}
 
 	.bo-textarea__error {

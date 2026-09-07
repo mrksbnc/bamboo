@@ -22,12 +22,6 @@ export const TEXTAREA_MANIFEST = {
 			resizable: 'bo-textarea__field--resizable',
 		},
 
-		padding: {
-			sm: 'bo-textarea__field--sm',
-			default: 'bo-textarea__field--default',
-			lg: 'bo-textarea__field--lg',
-		},
-
 		state: {
 			default: 'bo-textarea__container--default',
 			valid: 'bo-textarea__container--valid',
@@ -40,21 +34,8 @@ export const TEXTAREA_MANIFEST = {
 		},
 
 		icons: {
-			prefix: {
-				sm: 'bo-textarea__prefix-icon bo-textarea__prefix-icon--sm',
-				default: 'bo-textarea__prefix-icon bo-textarea__prefix-icon--default',
-				lg: 'bo-textarea__prefix-icon bo-textarea__prefix-icon--lg',
-			},
-			suffix: {
-				sm: 'bo-textarea__suffix-icon bo-textarea__suffix-icon--sm',
-				default: 'bo-textarea__suffix-icon bo-textarea__suffix-icon--default',
-				lg: 'bo-textarea__suffix-icon bo-textarea__suffix-icon--lg',
-			},
-			size: {
-				sm: 'sm',
-				default: 'default',
-				lg: 'lg',
-			},
+			prefix: 'bo-textarea__prefix-icon',
+			suffix: 'bo-textarea__suffix-icon',
 		},
 
 		labels: {
