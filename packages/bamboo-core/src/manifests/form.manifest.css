@@ -34,4 +34,36 @@
 	.bo-form-field__control {
 		@apply min-w-0;
 	}
+
+	.bo-form-field__control--invalid {
+		@apply text-red-600;
+	}
+
+	.bo-form-field__control--invalid :where(input, textarea, select) {
+		@apply border-red-500;
+	}
+
+	.bo-form-field__control--invalid :where(input, textarea, select):focus,
+	.bo-form-field__control--invalid :where(input, textarea, select):focus-visible {
+		@apply border-red-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-red-500) 20%, transparent);
+	}
+
+	.bo-form-field__control--invalid .bo-input__container,
+	.bo-form-field__control--invalid .bo-textarea__container {
+		@apply border-red-500;
+	}
+
+	.dark .bo-form-field__control--invalid {
+		@apply text-red-400;
+	}
+
+	.dark .bo-form-field__control--invalid :where(input, textarea, select) {
+		@apply border-red-400;
+	}
+
+	.dark .bo-form-field__control--invalid .bo-input__container,
+	.dark .bo-form-field__control--invalid .bo-textarea__container {
+		@apply border-red-400;
+	}
 }

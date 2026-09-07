@@ -14,6 +14,7 @@ export const FORM_FIELD_MANIFEST = {
 		description: 'bo-form-field__description',
 		error: 'bo-form-field__error',
 		control: 'bo-form-field__control',
+		controlInvalid: 'bo-form-field__control--invalid',
 	},
 	defaults: {},
 } as const satisfies FormFieldManifest;
