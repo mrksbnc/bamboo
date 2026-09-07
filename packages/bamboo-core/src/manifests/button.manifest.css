@@ -55,23 +55,23 @@
 	}
 
 	.bo-button--xs {
-		@apply h-8 gap-1 px-2 text-xs;
+		@apply h-7 gap-1 px-2 text-xs;
 	}
 
 	.bo-button--sm {
-		@apply h-9 gap-1.5 px-3 text-sm;
+		@apply h-8 gap-1.5 px-3 text-sm;
 	}
 
 	.bo-button--default {
-		@apply h-10 gap-2 px-4 text-sm;
+		@apply h-9 gap-2 px-4 text-sm;
 	}
 
 	.bo-button--lg {
-		@apply h-11 gap-2 px-8 text-sm;
+		@apply h-10 gap-2 px-6 text-sm;
 	}
 
 	.bo-button--xl {
-		@apply h-12 gap-2.5 px-8 text-base;
+		@apply h-11 gap-2.5 px-8 text-base;
 	}
 
 	.bo-button--xs > svg {
@@ -89,23 +89,23 @@
 	}
 
 	.bo-button--icon-only-xs {
-		@apply size-8;
+		@apply size-7;
 	}
 
 	.bo-button--icon-only-sm {
-		@apply size-9;
+		@apply size-8;
 	}
 
 	.bo-button--icon-only-default {
-		@apply size-10;
+		@apply size-9;
 	}
 
 	.bo-button--icon-only-lg {
-		@apply size-11;
+		@apply size-10;
 	}
 
 	.bo-button--icon-only-xl {
-		@apply size-12;
+		@apply size-11;
 	}
 
 	.bo-button[class*='bo-button--default-'] {
@@ -455,7 +455,7 @@
 	}
 
 	.dark .bo-button--ghost-light:hover:not(:disabled) {
-		@apply bg-neutral-100 text-neutral-200;
+		@apply bg-neutral-800 text-neutral-100;
 	}
 
 	.bo-button--ghost-dark {
@@ -562,11 +562,11 @@
 
 	.bo-button--link-light {
 		@apply bg-transparent border-transparent underline-offset-4 hover:underline;
-		@apply text-neutral-400;
+		@apply text-neutral-600;
 	}
 
 	.bo-button--link-light:hover:not(:disabled) {
-		@apply text-neutral-300;
+		@apply text-neutral-700;
 	}
 
 	.dark .bo-button--link-light {
