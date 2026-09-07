@@ -36,7 +36,7 @@
 	}
 
 	.bo-loading-pulse__dot--default {
-		@apply size-3;
+		@apply size-4;
 	}
 
 	.bo-loading-pulse__dot--lg {
@@ -44,7 +44,7 @@
 	}
 
 	.bo-loading-pulse__dot--xl {
-		@apply size-5;
+		@apply size-6;
 	}
 
 	.bo-loading-pulse__dot--delay-0 {

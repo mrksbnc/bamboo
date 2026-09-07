@@ -9,6 +9,15 @@ export const LOADING_PULSE_MANIFEST = {
 		base: 'bo-loading-pulse__dots',
 		container: 'bo-loading-pulse',
 		dot: 'bo-loading-pulse__dot',
+		variant: {
+			primary: 'bo-loading-pulse--primary',
+			secondary: 'bo-loading-pulse--secondary',
+			success: 'bo-loading-pulse--success',
+			warning: 'bo-loading-pulse--warning',
+			destructive: 'bo-loading-pulse--destructive',
+			white: 'bo-loading-pulse--white',
+			current: 'bo-loading-pulse--current',
+		},
 		size: {
 			xs: 'bo-loading-pulse__dot--xs',
 			sm: 'bo-loading-pulse__dot--sm',
@@ -25,9 +34,9 @@ export const LOADING_PULSE_MANIFEST = {
 		labelFontSize: {
 			xs: 'xs',
 			sm: 'sm',
-			default: 'sm',
-			lg: 'default',
-			xl: 'default',
+			default: 'default',
+			lg: 'lg',
+			xl: 'xl',
 		},
 		animation: [
 			'bo-loading-pulse__dot--delay-0',
@@ -38,6 +47,7 @@ export const LOADING_PULSE_MANIFEST = {
 	defaults: {
 		role: 'status',
 		size: 'default',
+		variant: 'primary',
 		textPosition: 'after',
 	},
 } as const satisfies LoadingPulseManifest;
