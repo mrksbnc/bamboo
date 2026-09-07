@@ -4,85 +4,135 @@
 		:data-testid="dataTestId"
 		:data-striped="striped"
 		:data-bordered="bordered"
+		:data-empty="rows.length === 0 ? 'true' : undefined"
+		:aria-label="ariaLabel"
+		:aria-describedby="caption ? captionId : undefined"
+		:aria-rowcount="rows.length ? rows.length + 1 : 2"
+		:aria-colcount="columns.length + (hasActions ? 1 : 0)"
+		role="table"
 		:class="TABLE_MANIFEST.styles.base"
 	>
 		<div :class="TABLE_MANIFEST.styles.wrapper">
-			<table :class="TABLE_MANIFEST.styles.table" :aria-label="ariaLabel">
-				<caption v-if="caption" :class="TABLE_MANIFEST.styles.caption">
-					{{
-						caption
-					}}
-				</caption>
-				<thead :class="TABLE_MANIFEST.styles.head">
-					<tr :class="TABLE_MANIFEST.styles.row">
-						<th
-							v-for="column in columns"
-							:key="column.key"
-							scope="col"
-							:class="TABLE_MANIFEST.styles.header"
-							:style="{ textAlign: column.align }"
+			<div v-if="caption" :id="captionId" role="caption" :class="TABLE_MANIFEST.styles.caption">
+				{{ caption }}
+			</div>
+
+			<div role="rowgroup" :class="TABLE_MANIFEST.styles.head">
+				<div
+					role="row"
+					:aria-rowindex="1"
+					:class="TABLE_MANIFEST.styles.row"
+					:style="{ gridTemplateColumns }"
+				>
+					<div
+						v-for="(column, columnIndex) in columns"
+						:key="column.key"
+						role="columnheader"
+						:aria-colindex="columnIndex + 1"
+						:class="TABLE_MANIFEST.styles.header"
+						:style="{
+							textAlign: column.align,
+							justifyContent:
+								column.align === 'center'
+									? 'center'
+									: column.align === 'end'
+										? 'flex-end'
+										: 'flex-start',
+						}"
+					>
+						{{ column.label }}
+					</div>
+					<div
+						v-if="hasActions"
+						role="columnheader"
+						:aria-colindex="columns.length + 1"
+						:class="[TABLE_MANIFEST.styles.header, 'min-w-max whitespace-nowrap']"
+						style="text-align: end; justify-content: flex-end"
+					>
+						{{ actionsLabel }}
+					</div>
+				</div>
+			</div>
+
+			<div role="rowgroup" :class="TABLE_MANIFEST.styles.body">
+				<div
+					v-for="(row, rowIndex) in rows"
+					:key="rowIndex"
+					role="row"
+					:aria-rowindex="rowIndex + 2"
+					:class="TABLE_MANIFEST.styles.row"
+					:style="{ gridTemplateColumns }"
+				>
+					<div
+						v-for="(column, columnIndex) in columns"
+						:key="column.key"
+						role="cell"
+						:aria-colindex="columnIndex + 1"
+						:class="TABLE_MANIFEST.styles.cell"
+						:style="{
+							textAlign: column.align,
+							justifyContent:
+								column.align === 'center'
+									? 'center'
+									: column.align === 'end'
+										? 'flex-end'
+										: 'flex-start',
+						}"
+					>
+						<slot
+							:name="`cell-${column.key}`"
+							:value="row[column.key]"
+							:row="row"
+							:index="rowIndex"
 						>
-							{{ column.label }}
-						</th>
-						<th
-							v-if="hasActions"
-							scope="col"
-							:class="[TABLE_MANIFEST.styles.header, 'w-px whitespace-nowrap']"
-							:style="{ textAlign: 'end' }"
-						>
-							{{ actionsLabel }}
-						</th>
-					</tr>
-				</thead>
-				<tbody :class="TABLE_MANIFEST.styles.body">
-					<tr v-for="(row, rowIndex) in rows" :key="rowIndex" :class="TABLE_MANIFEST.styles.row">
-						<td
-							v-for="column in columns"
-							:key="column.key"
-							:class="TABLE_MANIFEST.styles.cell"
-							:style="{ textAlign: column.align }"
-						>
-							<slot
-								:name="`cell-${column.key}`"
-								:value="row[column.key]"
-								:row="row"
-								:index="rowIndex"
-								>{{ row[column.key] }}</slot
-							>
-						</td>
-						<td
-							v-if="hasActions"
-							:class="[TABLE_MANIFEST.styles.cell, 'w-px whitespace-nowrap']"
-							:style="{ textAlign: 'end' }"
-						>
-							<slot name="actions" :actions="actions" :row="row" :index="rowIndex">
-								<div :class="TABLE_MANIFEST.styles.actions">
-									<bo-button
+							{{ row[column.key] }}
+						</slot>
+					</div>
+					<div
+						v-if="hasActions"
+						role="cell"
+						:aria-colindex="columns.length + 1"
+						:class="[TABLE_MANIFEST.styles.cell, 'min-w-max whitespace-nowrap']"
+						style="justify-content: flex-end"
+					>
+						<slot name="actions" :actions="actions" :row="row" :index="rowIndex">
+							<div :class="TABLE_MANIFEST.styles.actions">
+								<bo-dropdown :aria-label="`${actionsLabel} for row ${rowIndex + 1}`">
+									<template #trigger>
+										<bo-icon icon="more_vertical" size="sm" aria-hidden="true" />
+									</template>
+									<bo-dropdown-item
 										v-for="action in actions"
 										:key="action.label"
-										:variant="action.variant"
-										:kind="action.kind"
 										:disabled="action.disabled"
-										:aria-label="action.ariaLabel ?? action.label"
-										size="sm"
-										@click="action.onClick?.(row, rowIndex)"
+										:destructive="action.variant === 'destructive'"
+										@select="action.onClick?.(row, rowIndex)"
 									>
 										{{ action.label }}
-									</bo-button>
-								</div>
-							</slot>
-						</td>
-					</tr>
-					<tr v-if="!rows.length">
-						<td
-							:colspan="columns.length + (hasActions ? 1 : 0)"
-							:class="TABLE_MANIFEST.styles.cell"
-						>
-							<div :class="TABLE_MANIFEST.styles.empty"><slot name="empty">No results.</slot></div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+									</bo-dropdown-item>
+								</bo-dropdown>
+							</div>
+						</slot>
+					</div>
+				</div>
+
+				<div
+					v-if="!rows.length"
+					role="row"
+					aria-rowindex="2"
+					:class="TABLE_MANIFEST.styles.row"
+					:style="{ gridTemplateColumns }"
+				>
+					<div
+						role="cell"
+						:aria-colspan="columns.length + (hasActions ? 1 : 0)"
+						:class="TABLE_MANIFEST.styles.cell"
+						:style="{ gridColumn: '1 / -1' }"
+					>
+						<div :class="TABLE_MANIFEST.styles.empty"><slot name="empty">No results.</slot></div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -96,7 +146,9 @@ import {
 	type BoTableProps,
 } from '@workspace/bamboo-core';
 import { computed, useSlots } from 'vue';
-import { BoButton } from '../bo-button';
+import { BoDropdown, BoDropdownItem } from '../bo-dropdown';
+import { BoIcon } from '../bo-icon';
+
 const props = withDefaults(defineProps<BoTableProps>(), {
 	id: () => generateComponentId('table'),
 	dataTestId: () => generateDataTestId('table'),
@@ -105,13 +157,17 @@ const props = withDefaults(defineProps<BoTableProps>(), {
 	actions: () => [],
 	actionsLabel: 'Actions',
 });
+
 const columns = computed(() => props.columns);
 const rows = computed(() => props.rows);
 const actions = computed<BoTableAction[]>(() => props.actions ?? []);
 const actionsLabel = computed(() => props.actionsLabel ?? 'Actions');
+const captionId = computed(() => `${props.id}-caption`);
 const slots = useSlots();
-const hasActions = computed(() => {
-	return actions.value.length > 0 || !!slots['actions'];
+const hasActions = computed(() => actions.value.length > 0 || !!slots['actions']);
+const gridTemplateColumns = computed(() => {
+	const columnCount = Math.max(columns.value.length, 1);
+	return `repeat(${columnCount}, minmax(0, 1fr))${hasActions.value ? ' auto' : ''}`;
 });
 
 defineSlots<{

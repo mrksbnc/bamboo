@@ -10,8 +10,9 @@ describe('BoTable', () => {
 				rows: [{ name: 'Bamboo' }],
 			},
 		});
-		expect(wrapper.find('th').text()).toBe('Name');
-		expect(wrapper.find('tbody').text()).toContain('Bamboo');
+		expect(wrapper.find('[role="columnheader"]').text()).toBe('Name');
+		expect(wrapper.find('[role="cell"]').text()).toContain('Bamboo');
+		expect(wrapper.attributes('role')).toBe('table');
 	});
 
 	it('renders actions in an accessible column at the end of each row', async () => {
@@ -25,10 +26,14 @@ describe('BoTable', () => {
 			},
 		});
 
-		expect(wrapper.findAll('th').map((header) => header.text())).toEqual(['Name', 'Actions']);
-		expect(wrapper.find('button').attributes('aria-label')).toBe('Edit');
+		expect(wrapper.findAll('[role="columnheader"]').map((header) => header.text())).toEqual([
+			'Name',
+			'Actions',
+		]);
+		expect(wrapper.find('button').attributes('aria-label')).toBe('Actions for row 1');
 
 		await wrapper.find('button').trigger('click');
+		await wrapper.find('[role="menuitem"]').trigger('click');
 		expect(onEdit).toHaveBeenCalledWith(row, 0);
 	});
 
@@ -43,7 +48,29 @@ describe('BoTable', () => {
 			},
 		});
 
-		expect(wrapper.find('th').text()).toBe('Name');
+		expect(wrapper.find('[role="columnheader"]').text()).toBe('Name');
 		expect(wrapper.find('button').text()).toBe('View');
+	});
+
+	it('uses one column track definition for headers and body rows', () => {
+		const wrapper = mount(BoTable, {
+			props: {
+				columns: [
+					{ key: 'name', label: 'Name' },
+					{ key: 'status', label: 'Status', align: 'end' },
+				],
+				rows: [{ name: 'Bamboo', status: 'Ready' }],
+			},
+		});
+		const rows = wrapper.findAll('[role="row"]');
+
+		expect(rows[0].element.style.gridTemplateColumns).toBe('repeat(2, minmax(0, 1fr))');
+		expect(rows[1].element.style.gridTemplateColumns).toBe(
+			rows[0].element.style.gridTemplateColumns,
+		);
+		expect(wrapper.findAll('[role="columnheader"]')[1].element.style.justifyContent).toBe(
+			'flex-end',
+		);
+		expect(wrapper.findAll('[role="cell"]')[1].element.style.justifyContent).toBe('flex-end');
 	});
 });
