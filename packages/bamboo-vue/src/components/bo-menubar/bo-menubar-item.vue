@@ -10,7 +10,8 @@
 		:data-variant="variant"
 		:value="value"
 		:class="MENUBAR_MANIFEST.styles.item.base"
-		@click="$emit('select', value)"
+		@click="select"
+		@keydown="onKeydown"
 	>
 		<bo-icon v-if="icon" :icon="icon" size="sm" aria-hidden="true" />
 		<slot>{{ value }}</slot>
@@ -22,15 +23,30 @@
 import type { BoMenubarItemProps } from '@workspace/bamboo-core';
 import { MENUBAR_MANIFEST } from '@workspace/bamboo-core';
 import { generateComponentId, generateDataTestId } from '@workspace/bamboo-core';
+import { inject } from 'vue';
 import { BoIcon } from '../bo-icon';
+import { menubarContextKey } from './keys';
 
-withDefaults(defineProps<BoMenubarItemProps>(), {
+const props = withDefaults(defineProps<BoMenubarItemProps>(), {
 	id: () => generateComponentId('menubar-item'),
 	dataTestId: () => generateDataTestId('menubar-item'),
 	inset: false,
 	variant: 'default',
 });
-defineEmits<{
+const emit = defineEmits<{
 	(event: 'select', value: string | number | undefined): void;
 }>();
+const context = inject(menubarContextKey, null);
+
+function select(): void {
+	if (props.disabled) return;
+	emit('select', props.value);
+	context?.closeAll();
+}
+
+function onKeydown(event: KeyboardEvent): void {
+	if (event.key !== 'Enter' && event.key !== ' ') return;
+	event.preventDefault();
+	select();
+}
 </script>
