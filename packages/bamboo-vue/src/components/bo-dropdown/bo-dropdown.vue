@@ -5,6 +5,7 @@
 			type="button"
 			:class="DROPDOWN_MANIFEST.styles.trigger"
 			:disabled="disabled"
+			:aria-label="props.ariaLabel"
 			:aria-expanded="open"
 			@click="toggle"
 			@keydown="onKeydown"

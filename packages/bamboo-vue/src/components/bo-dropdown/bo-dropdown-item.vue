@@ -15,13 +15,13 @@
 <script setup lang="ts">
 import { DROPDOWN_MANIFEST } from '@workspace/bamboo-core';
 import type { BoDropdownItemProps } from '@workspace/bamboo-core';
-import { inject } from 'vue';
+import { computed, inject } from 'vue';
 import { dropdownContextKey } from './keys';
 const props = withDefaults(defineProps<BoDropdownItemProps>(), {
 	destructive: false,
 });
-const disabled = props.disabled;
-const destructive = props.destructive;
+const disabled = computed(() => props.disabled);
+const destructive = computed(() => props.destructive);
 const emit = defineEmits<{
 	(event: 'select', payload: MouseEvent): void;
 }>();
