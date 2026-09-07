@@ -30,6 +30,7 @@ export interface BoFormFieldStyleManifest {
 	readonly description: 'bo-form-field__description';
 	readonly error: 'bo-form-field__error';
 	readonly control: 'bo-form-field__control';
+	readonly controlInvalid: 'bo-form-field__control--invalid';
 }
 
 export type FormFieldManifest = ComponentManifest<BoFormFieldStyleManifest, {}, 'Form Field'>;

@@ -59,6 +59,10 @@ export interface BoInputProps {
 	role?: HTMLAttributes['role'];
 	/** Defines a string value that labels the current element. */
 	ariaLabel?: HTMLAttributes['aria-label'];
+	/** Identifies supporting text for the input. */
+	ariaDescribedBy?: HTMLAttributes['aria-describedby'];
+	/** Overrides the computed invalid state. */
+	ariaInvalid?: HTMLAttributes['aria-invalid'];
 }
 
 type BoInputManifestDefaults = Pick<BoInputProps, 'state' | 'type' | 'role'>;
