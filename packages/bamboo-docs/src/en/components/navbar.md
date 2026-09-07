@@ -1,63 +1,88 @@
 ---
 title: Navbar
-description: A vertical navigation shell with top, middle, and bottom content slots.
+description: Build a vertical navigation shell with responsive regions.
 category: navigation
-tags: [navbar, navigation, responsive, accessibility]
-outline: deep
+tags: [navbar, navigation, responsive]
 ---
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { BoButton, BoNavbar } from '@mrksbnc/bamboo-vue';
-const isOpen = ref(false);
-const example = `<bo-navbar v-model:open="isOpen">\n  <template #header>Bamboo</template>\n  <template #content>...</template>\n  <template #footer><bo-button>Sign in</bo-button></template>\n</bo-navbar>`;
-const regionsExample = `<bo-navbar>
+
+const open = ref(false);
+const selectedNav = ref('home');
+const example = `<bo-navbar class="h-full shrink-0" v-model:open="open" aria-label="Workspace">
+  <template #header><span class="font-semibold">Bamboo</span></template>
+  <template #content>
+    <button type="button" class="bo-navbar__link" :class="{ 'bo-navbar__link--active': selectedNav === 'home' }" @click="selectedNav = 'home'">Home</button>
+    <button type="button" class="bo-navbar__link" :class="{ 'bo-navbar__link--active': selectedNav === 'projects' }" @click="selectedNav = 'projects'">Projects</button>
+  </template>
+  <template #footer><bo-button kind="outline" size="sm">Sign in</bo-button></template>
+</bo-navbar>`;
+const regionsExample = `<bo-navbar class="h-full shrink-0">
   <template #header>Workspace</template>
-  <template #top><span>Team switcher</span></template>
+  <template #top>Team switcher</template>
   <template #content>Primary links</template>
-  <template #middle>Secondary links</template>
   <template #bottom>Version 1.0</template>
-  <template #footer>Account actions</template>
 </bo-navbar>`;
 </script>
 
 # Navbar
 
-`bo-navbar` is a top-to-bottom navigation shell. It fills the available height on larger screens, with a header, scrollable navigation content, and footer. On smaller screens the content collapses behind an accessible menu toggle.
+Use `bo-navbar` as a vertical shell for product identity, navigation links, and account actions. Its menu toggle models the responsive open state.
 
-## Responsive navigation
+## Usage
 
-<ExampleFrame :code="example"><div class="flex min-h-96 w-full"><bo-navbar v-model:open="isOpen"><template #header><a href="/" class="font-semibold">Bamboo</a></template><template #content><a href="/" class="bo-navbar__link bo-navbar__link--active">Home</a><a href="/components" class="bo-navbar__link">Components</a><a href="/docs" class="bo-navbar__link">Docs</a></template><template #footer><bo-button kind="outline" size="sm">Sign in</bo-button></template></bo-navbar><p class="mt-3 text-sm text-neutral-500">Mobile menu: {{ isOpen ? 'open' : 'closed' }}</p></div></ExampleFrame>
+<ExampleFrame :code="example">
+  <div class="flex h-[32rem] w-full max-w-3xl overflow-hidden rounded-lg border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950">
+    <bo-navbar class="h-full shrink-0" v-model:open="open" aria-label="Workspace">
+      <template #header>
+        <div class="flex items-center gap-2 px-1">
+          <span class="flex size-7 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold text-white">B</span>
+          <span class="font-semibold tracking-tight">Bamboo</span>
+        </div>
+      </template>
+      <template #content>
+        <button type="button" class="bo-navbar__link" :class="{ 'bo-navbar__link--active': selectedNav === 'home' }" @click="selectedNav = 'home'">Home</button>
+        <button type="button" class="bo-navbar__link" :class="{ 'bo-navbar__link--active': selectedNav === 'projects' }" @click="selectedNav = 'projects'">Projects</button>
+      </template>
+      <template #footer><bo-button kind="outline" size="sm">Sign in</bo-button></template>
+    </bo-navbar>
+    <main class="hidden min-w-0 flex-1 p-6 md:block">
+      <h3 class="font-medium">Workspace overview</h3>
+      <p class="mt-2 text-sm text-neutral-500">The navbar stays in the side rail while page content occupies the remaining space.</p>
+    </main>
+  </div>
+</ExampleFrame>
 
-## Multiple regions
+## Regions
 
-The navbar is a vertical shell. Use the region slots to keep product identity, secondary content, navigation, and account actions separate instead of flattening everything into one link list.
+Use `top`, `middle`, and `bottom` for content around the primary `content` region.
 
-<ExampleFrame :code="regionsExample"><div class="flex min-h-96 w-full"><bo-navbar><template #header>Workspace</template><template #top><span class="text-xs text-neutral-500">Team switcher</span></template><template #content><a href="/" class="bo-navbar__link">Primary links</a></template><template #middle><a href="/settings" class="bo-navbar__link">Secondary links</a></template><template #bottom><span class="text-xs text-neutral-500">Version 1.0</span></template><template #footer>Account actions</template></bo-navbar></div></ExampleFrame>
+<ExampleFrame :code="regionsExample">
+  <div class="flex h-[32rem] w-full max-w-3xl overflow-hidden rounded-lg border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950">
+    <bo-navbar class="h-full shrink-0">
+      <template #header>Workspace</template>
+      <template #top><span class="text-xs text-neutral-500">Team switcher</span></template>
+       <template #content><button type="button" class="bo-navbar__link">Primary links</button></template>
+      <template #bottom><span class="text-xs text-neutral-500">Version 1.0</span></template>
+    </bo-navbar>
+    <main class="hidden min-w-0 flex-1 p-6 md:block">
+      <h3 class="font-medium">Primary content</h3>
+      <p class="mt-2 text-sm text-neutral-500">Use the named regions to keep the side navigation structured.</p>
+    </main>
+  </div>
+</ExampleFrame>
 
-## States and composition
+## API
 
-Use `header`, `content`, and `footer` for the primary regions. `top`, `middle`, and `bottom` are available for additional content in those regions. The legacy `brand`, `links`, and `actions` slots remain supported. Mark the current page with `bo-navbar__link--active` and `aria-current="page"`.
-
-## Accessibility and responsive guidance
-
-The toggle exposes `aria-expanded` and `aria-controls`; Escape closes the menu and returns focus to the toggle. Give the navbar a meaningful `aria-label` when more than one navigation landmark exists. Ensure links have a visible focus style, and keep mobile links at least 44px tall.
-
-## API reference
-
-| Prop        | Type      | Default           | Description                         |
-| ----------- | --------- | ----------------- | ----------------------------------- |
-| `open`      | `boolean` | `false`           | Mobile menu state (`v-model:open`). |
-| `ariaLabel` | `string`  | `Main navigation` | Accessible landmark name.           |
-| `id`        | `string`  | Generated         | Root element id.                    |
-
-### Slots
-
-| Slot      | Description                                           |
-| --------- | ----------------------------------------------------- |
-| `header`  | Logo or product name.                                 |
-| `content` | Primary navigation links.                             |
-| `footer`  | Sign-in, profile, or other actions.                   |
-| `top`     | Additional content above navigation.                  |
-| `middle`  | Additional content in the flexible navigation region. |
-| `bottom`  | Additional content below navigation.                  |
+| Prop / event / slot         | Type      | Default           | Description                                   |
+| --------------------------- | --------- | ----------------- | --------------------------------------------- |
+| `id` / `dataTestId`         | `string`  | autogenerated     | Navigation attributes.                        |
+| `open`                      | `boolean` | `false`           | Responsive menu state used by `v-model:open`. |
+| `update:open`               | event     | -                 | Emitted when the menu toggle changes state.   |
+| `ariaLabel`                 | `string`  | `Main navigation` | Navigation landmark label.                    |
+| `header` / `brand`          | slot      | -                 | Product name or logo.                         |
+| `content` / `links`         | slot      | -                 | Primary links.                                |
+| `top` / `middle` / `bottom` | slot      | -                 | Content around the primary link region.       |
+| `footer` / `actions`        | slot      | -                 | Account or secondary actions.                 |
