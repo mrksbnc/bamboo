@@ -17,7 +17,7 @@ let nextId = 0;
 
 function dismiss(id: string): void {
 	const timer = timers.get(id);
-	if (timer) {
+	if (timer !== undefined) {
 		clearTimeout(timer);
 		timers.delete(id);
 	}
@@ -26,11 +26,13 @@ function dismiss(id: string): void {
 
 function show(options: ToastOptions): string {
 	const id = `toast-${++nextId}`;
-	activeToasts.value = [...activeToasts.value, { ...options, id }];
-	if ((options.duration ?? 5000) > 0) {
+	const toast = { ...options, position: options.position ?? 'top-right', id };
+	activeToasts.value = [...activeToasts.value, toast];
+	const duration = options.duration ?? 10000;
+	if (duration > 0) {
 		timers.set(
 			id,
-			setTimeout(() => dismiss(id), options.duration ?? 5000),
+			setTimeout(() => dismiss(id), duration),
 		);
 	}
 	return id;
