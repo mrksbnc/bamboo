@@ -1,15 +1,13 @@
 <template>
 	<Teleport to="body">
 		<Transition name="bo-drawer">
-			<div v-if="open" :class="DRAWER_MANIFEST.styles.backdrop" @click.self="onBackdropClick" />
-		</Transition>
-		<Transition name="bo-drawer">
 			<div
 				v-if="open"
 				:data-side="side"
 				:class="DRAWER_MANIFEST.styles.wrapper"
 				@click.self="onBackdropClick"
 			>
+				<div :class="DRAWER_MANIFEST.styles.backdrop" aria-hidden="true" @click="onBackdropClick" />
 				<div
 					:id="id"
 					:data-testid="dataTestId"
@@ -37,6 +35,8 @@
 					<bo-button
 						v-if="showClose"
 						kind="ghost"
+						variant="secondary"
+						size="sm"
 						prefix-icon="x"
 						:aria-label="closeAriaLabel"
 						:class="DRAWER_MANIFEST.styles.close"
@@ -66,7 +66,7 @@
 import type { BoDrawerProps } from '@workspace/bamboo-core';
 import { DRAWER_MANIFEST } from '@workspace/bamboo-core';
 import { generateComponentId, generateDataTestId, mergeTwClasses } from '@workspace/bamboo-core';
-import { computed, nextTick, onUnmounted, ref, useTemplateRef, watch } from 'vue';
+import { computed, nextTick, onUnmounted, useTemplateRef, watch } from 'vue';
 import { BoButton } from '../bo-button';
 import { BoText } from '../bo-text';
 
@@ -119,15 +119,19 @@ function onEscape(): void {
 	if (props.closeOnEscape) onClose();
 }
 
-watch(open, async (isOpen) => {
-	if (isOpen) {
-		await nextTick();
-		panelRef.value?.focus();
-		document.body.style.overflow = 'hidden';
-	} else {
-		document.body.style.overflow = '';
-	}
-});
+watch(
+	open,
+	async (isOpen) => {
+		if (isOpen) {
+			await nextTick();
+			panelRef.value?.focus();
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+		}
+	},
+	{ immediate: true },
+);
 
 onUnmounted(() => {
 	document.body.style.overflow = '';
