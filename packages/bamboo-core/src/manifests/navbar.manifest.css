@@ -1,7 +1,7 @@
 @layer components {
 	.bo-navbar {
 		@apply flex h-full w-full flex-col border-e border-neutral-200 bg-white text-neutral-900;
-		@apply md:h-svh md:min-h-0 md:w-64;
+		@apply md:min-h-0 md:w-64;
 	}
 
 	.dark .bo-navbar {
@@ -38,16 +38,20 @@
 	}
 
 	.bo-navbar__link {
-		@apply rounded-md px-3 py-2 text-sm no-underline transition-colors hover:bg-neutral-100;
+		@apply rounded-md border-0 bg-transparent px-3 py-2 text-start text-sm text-neutral-700 no-underline transition-colors hover:bg-neutral-100 hover:text-neutral-950;
 	}
 
 	.bo-navbar__link--active {
-		@apply bg-neutral-100 font-medium;
+		@apply bg-neutral-100 font-medium text-neutral-950;
+	}
+
+	.dark .bo-navbar__link {
+		@apply text-neutral-300;
 	}
 
 	.dark .bo-navbar__link:hover,
 	.dark .bo-navbar__link--active {
-		@apply bg-neutral-800;
+		@apply bg-neutral-800 text-neutral-100;
 	}
 
 	.bo-navbar__actions {
