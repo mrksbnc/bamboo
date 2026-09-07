@@ -2,6 +2,7 @@ import { HTMLAttributes } from 'vue';
 import { ComponentManifest, ManifestDefaults } from '../manifests/types.js';
 
 export type BoDialogSize = 'sm' | 'default' | 'lg' | 'xl' | 'full';
+export type BoDialogVariant = 'default' | 'info' | 'warning' | 'destructive';
 
 export interface BoDialogProps {
 	id?: HTMLElement['id'];
@@ -10,6 +11,7 @@ export interface BoDialogProps {
 	title?: string;
 	description?: string;
 	size?: BoDialogSize;
+	variant?: BoDialogVariant;
 	closeOnBackdrop?: boolean;
 	closeOnEscape?: boolean;
 	showClose?: boolean;
@@ -22,10 +24,11 @@ export interface BoDialogProps {
 
 type BoDialogManifestDefaults = ManifestDefaults<
 	BoDialogProps,
-	'size' | 'closeOnBackdrop' | 'closeOnEscape' | 'showClose' | 'closeAriaLabel' | 'role'
+	'size' | 'variant' | 'closeOnBackdrop' | 'closeOnEscape' | 'showClose' | 'closeAriaLabel' | 'role'
 >;
 
 type BoDialogSizeStyleMap = Readonly<Record<BoDialogSize, `bo-dialog-panel--${string}`>>;
+type BoDialogVariantStyleMap = Readonly<Record<BoDialogVariant, `bo-dialog-panel--${string}`>>;
 
 export interface BoDialogStyleManifest {
 	readonly backdrop: 'bo-dialog-backdrop';
@@ -33,9 +36,11 @@ export interface BoDialogStyleManifest {
 	readonly panel: {
 		readonly base: 'bo-dialog-panel';
 		readonly size: BoDialogSizeStyleMap;
+		readonly variant: BoDialogVariantStyleMap;
 	};
 	readonly header: 'bo-dialog-header';
 	readonly headerContent: 'bo-dialog-header__content';
+	readonly icon: 'bo-dialog-icon';
 	readonly title: 'bo-dialog-title';
 	readonly close: 'bo-dialog-close';
 	readonly body: 'bo-dialog-body';
