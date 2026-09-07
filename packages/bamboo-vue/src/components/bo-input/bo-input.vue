@@ -26,6 +26,7 @@
 				:data-testid="dataTestId"
 				:name="name"
 				:type="inputType"
+				:role="role"
 				v-model="model"
 				:disabled="disabled"
 				:readonly="readOnly"
@@ -34,8 +35,8 @@
 				:placeholder="placeholder"
 				:class="INPUT_MANIFEST.styles.input.base"
 				:aria-label="ariaLabel"
-				:aria-describedby="helperTextId"
-				:aria-invalid="state === 'invalid' ? 'true' : undefined"
+				:aria-describedby="props.ariaDescribedBy ?? (hasHelper ? helperTextId : undefined)"
+				:aria-invalid="props.ariaInvalid || (props.state === 'invalid' ? 'true' : undefined)"
 				:aria-errormessage="error ? helperTextId : undefined"
 				@focus="emit('focus')"
 				@blur="emit('blur', $event)"
@@ -66,13 +67,13 @@
 			</div>
 		</div>
 
-		<div v-if="error || hint" :class="INPUT_MANIFEST.styles.helpers.container">
+		<div v-if="description || error || hint" :class="INPUT_MANIFEST.styles.helpers.container">
 			<div v-if="error" :class="INPUT_MANIFEST.styles.helpers.error">
 				<bo-icon size="sm" icon="alert_circle" />
 				<span :id="helperTextId">{{ error }}</span>
 			</div>
-			<span v-else-if="hint" :id="helperTextId" :class="INPUT_MANIFEST.styles.helpers.hint">
-				{{ hint }}
+			<span v-else :id="helperTextId" :class="INPUT_MANIFEST.styles.helpers.hint">
+				{{ description || hint }}
 			</span>
 		</div>
 	</div>
@@ -122,6 +123,7 @@ const showPasswordToggle = computed<boolean>(() => {
 const helperTextId = computed<string>(() => {
 	return `${props.id}-helper`;
 });
+const hasHelper = computed(() => Boolean(props.description || props.error || props.hint));
 
 const inputType = computed<string>(() => {
 	if (props.type === 'password' && passwordVisible.value) {
