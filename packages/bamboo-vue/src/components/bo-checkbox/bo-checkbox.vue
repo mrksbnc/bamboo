@@ -1,11 +1,6 @@
 <template>
 	<div :class="CHECKBOX_MANIFEST.styles.base">
-		<bo-label
-			:for="id"
-			:required="required"
-			:disabled="disabled"
-			:class="CHECKBOX_MANIFEST.styles.container"
-		>
+		<label :for="id" :class="CHECKBOX_MANIFEST.styles.container" :aria-label="ariaLabel">
 			<input
 				ref="inputRef"
 				:id="id"
@@ -37,7 +32,7 @@
 				<span v-if="label" :class="CHECKBOX_MANIFEST.styles.label">{{ label }}</span>
 				<slot />
 			</span>
-		</bo-label>
+		</label>
 
 		<div v-if="error || hint" :class="CHECKBOX_MANIFEST.styles.helpers.container">
 			<span v-if="error" :id="helperTextId" :class="CHECKBOX_MANIFEST.styles.helpers.error">
@@ -60,7 +55,6 @@ import {
 } from '@workspace/bamboo-core';
 import { computed, onMounted, useTemplateRef, watch } from 'vue';
 import { BoIcon } from '../bo-icon';
-import { BoLabel } from '../bo-label';
 
 const props = withDefaults(defineProps<BoCheckboxProps>(), {
 	id: () => generateComponentId('checkbox'),
