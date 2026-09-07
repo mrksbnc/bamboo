@@ -15,7 +15,6 @@ The following component families are currently exported by `@mrksbnc/bamboo-vue`
 | Component                                 | Description                                                    |
 | ----------------------------------------- | -------------------------------------------------------------- |
 | [`bo-accordion`](./accordion)             | Single or multiple expandable sections.                        |
-| [`bo-alert-dialog`](./alert-dialog)       | Confirmation surface for important or destructive actions.     |
 | [`bo-aspect-ratio`](./aspect-ratio)       | Container that preserves a configurable aspect ratio.          |
 | [`bo-avatar`](./avatar)                   | User image, initials, indicator, size, and shape presentation. |
 | [`bo-badge`](./badge)                     | Compact status, tag, and label treatment.                      |
@@ -39,11 +38,10 @@ The following component families are currently exported by `@mrksbnc/bamboo-vue`
 | [`bo-icon`](./icon)                       | SVG icon with size and color support.                          |
 | [`bo-input`](./input)                     | Text, password, email, and other native input types.           |
 | [`bo-input-otp`](./input-otp)             | Segmented one-time-password input.                             |
-| [`bo-label`](./label)                     | Form control label.                                            |
 | [`bo-loading-pulse`](./loading-pulse)     | Compact pulsing loading indicator.                             |
 | [`bo-loading-spinner`](./loading-spinner) | Rotating loading indicator.                                    |
+| [`bo-loading-ring`](./loading-ring)       | Intersecting-ring loading indicator.                           |
 | [`bo-menubar`](./menubar)                 | Horizontal menu bar with keyboard navigation.                  |
-| [`bo-marker`](./marker)                   | Small visual status marker.                                    |
 | [`bo-modal`](./modal)                     | Imperative or declarative modal overlay.                       |
 | [`bo-navbar`](./navbar)                   | Top-to-bottom responsive navigation shell.                     |
 | [`bo-number-field`](./number-field)       | Numeric input with increment and decrement controls.           |
