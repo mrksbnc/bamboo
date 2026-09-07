@@ -76,31 +76,7 @@
 	}
 
 	.bo-modal-header__title {
-		@apply flex-1 text-base font-medium leading-none;
-	}
-
-	.bo-modal-header--primary {
-		@apply text-blue-600;
-	}
-
-	.dark .bo-modal-header--primary {
-		@apply text-blue-500;
-	}
-
-	.bo-modal-header--warning {
-		@apply text-yellow-600;
-	}
-
-	.dark .bo-modal-header--warning {
-		@apply text-yellow-500;
-	}
-
-	.bo-modal-header--destructive {
-		@apply text-red-600;
-	}
-
-	.dark .bo-modal-header--destructive {
-		@apply text-red-500;
+		@apply flex-1 text-xl font-semibold leading-tight;
 	}
 
 	.bo-modal-close {
@@ -132,33 +108,5 @@
 
 	.bo-modal-footer {
 		@apply flex flex-col-reverse gap-2 sm:flex-row sm:justify-end;
-	}
-
-	.bo-modal-icon--default {
-		@apply text-inherit;
-	}
-
-	.bo-modal-icon--primary {
-		@apply text-blue-600;
-	}
-
-	.dark .bo-modal-icon--primary {
-		@apply text-blue-500;
-	}
-
-	.bo-modal-icon--warning {
-		@apply text-yellow-600;
-	}
-
-	.dark .bo-modal-icon--warning {
-		@apply text-yellow-500;
-	}
-
-	.bo-modal-icon--destructive {
-		@apply text-red-600;
-	}
-
-	.dark .bo-modal-icon--destructive {
-		@apply text-red-500;
 	}
 }

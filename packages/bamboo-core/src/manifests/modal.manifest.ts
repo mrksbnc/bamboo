@@ -22,27 +22,12 @@ export const MODAL_MANIFEST = {
 			base: 'bo-modal-header',
 			content: 'bo-modal-header__content',
 			title: 'bo-modal-header__title',
-			variant: {
-				default: '',
-				primary: 'bo-modal-header--primary',
-				warning: 'bo-modal-header--warning',
-				destructive: 'bo-modal-header--destructive',
-			},
 		},
 		close: 'bo-modal-close',
 		body: 'bo-modal-body',
 		footer: 'bo-modal-footer',
-		icon: {
-			variant: {
-				default: 'bo-modal-icon--default',
-				primary: 'bo-modal-icon--primary',
-				warning: 'bo-modal-icon--warning',
-				destructive: 'bo-modal-icon--destructive',
-			},
-		},
 	},
 	defaults: {
-		variant: 'default',
 		size: 'default',
 		closeOnBackdrop: true,
 		closeOnEscape: true,
