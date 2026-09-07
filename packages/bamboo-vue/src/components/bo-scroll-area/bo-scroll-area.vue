@@ -13,8 +13,6 @@
 			tabindex="0"
 			:class="SCROLL_AREA_MANIFEST.styles.viewport"
 			@scroll="onScroll"
-			@pointerenter="onPointerEnter"
-			@pointerleave="onPointerLeave"
 		>
 			<slot />
 		</div>
@@ -67,7 +65,6 @@ const props = withDefaults(defineProps<BoScrollAreaProps>(), {
 });
 
 const viewportRef = useTemplateRef<HTMLElement>('viewportRef');
-const isPointerOver = ref(false);
 const viewportTick = ref(0);
 const classValues = computed(() => {
 	return [SCROLL_AREA_MANIFEST.styles.base, props.masked ? SCROLL_AREA_MANIFEST.styles.masked : ''];
@@ -100,32 +97,32 @@ function metrics() {
 const showVerticalScrollbar = computed(() => {
 	void viewportTick.value;
 	const { scrollHeight, clientHeight } = metrics();
-	return isPointerOver.value && scrollHeight > clientHeight;
+	return scrollHeight > clientHeight;
 });
 const showHorizontalScrollbar = computed(() => {
 	void viewportTick.value;
 	const { scrollWidth, clientWidth } = metrics();
-	return isPointerOver.value && scrollWidth > clientWidth;
+	return scrollWidth > clientWidth;
 });
 
 function thumbStyle(orientation: 'vertical' | 'horizontal'): Record<string, string> {
 	void viewportTick.value;
-	const { scrollHeight, scrollWidth, clientHeight, clientWidth } = metrics();
-	return orientation === 'vertical'
-		? { height: `${Math.max((clientHeight / Math.max(scrollHeight, 1)) * 100, 10)}%` }
-		: { width: `${Math.max((clientWidth / Math.max(scrollWidth, 1)) * 100, 10)}%` };
+	const { scrollTop, scrollLeft, scrollHeight, scrollWidth, clientHeight, clientWidth } = metrics();
+	if (orientation === 'vertical') {
+		const size = Math.min(100, Math.max((clientHeight / Math.max(scrollHeight, 1)) * 100, 10));
+		const travel = Math.max(100 - size, 0);
+		const position = (scrollTop / Math.max(scrollHeight - clientHeight, 1)) * travel;
+		return { height: `${size}%`, top: `${position}%`, left: '1px', right: '1px' };
+	}
+	const size = Math.min(100, Math.max((clientWidth / Math.max(scrollWidth, 1)) * 100, 10));
+	const travel = Math.max(100 - size, 0);
+	const position = (scrollLeft / Math.max(scrollWidth - clientWidth, 1)) * travel;
+	return { width: `${size}%`, left: `${position}%`, top: '1px', bottom: '1px' };
 }
 
 function onScroll(): void {
 	viewportTick.value += 1;
 }
-function onPointerEnter(): void {
-	isPointerOver.value = true;
-}
-function onPointerLeave(): void {
-	isPointerOver.value = false;
-}
-
 function onThumbPointerDown(orientation: 'vertical' | 'horizontal', event: PointerEvent): void {
 	const viewport = viewportRef.value;
 	if (!viewport) return;
@@ -144,6 +141,7 @@ function onThumbPointerDown(orientation: 'vertical' | 'horizontal', event: Point
 		const delta = (vertical ? moveEvent.clientY : moveEvent.clientX) - startPointer;
 		if (vertical) viewport.scrollTop = startScroll + delta * scale;
 		else viewport.scrollLeft = startScroll + delta * scale;
+		viewportTick.value += 1;
 	};
 	const onUp = () => {
 		document.removeEventListener('pointermove', onMove);
@@ -156,14 +154,25 @@ function onThumbPointerDown(orientation: 'vertical' | 'horizontal', event: Point
 function onTrackPointerDown(orientation: 'vertical' | 'horizontal', event: PointerEvent): void {
 	const viewport = viewportRef.value;
 	if (!viewport) return;
-	const rect = viewport.getBoundingClientRect();
+	const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
 	const { scrollHeight, scrollWidth, clientHeight, clientWidth } = metrics();
 	if (orientation === 'vertical')
-		viewport.scrollTop =
-			((event.clientY - rect.top) / Math.max(rect.height, 1)) * (scrollHeight - clientHeight);
+		viewport.scrollTop = Math.min(
+			Math.max(
+				0,
+				((event.clientY - rect.top) / Math.max(rect.height, 1)) * (scrollHeight - clientHeight),
+			),
+			scrollHeight - clientHeight,
+		);
 	else
-		viewport.scrollLeft =
-			((event.clientX - rect.left) / Math.max(rect.width, 1)) * (scrollWidth - clientWidth);
+		viewport.scrollLeft = Math.min(
+			Math.max(
+				0,
+				((event.clientX - rect.left) / Math.max(rect.width, 1)) * (scrollWidth - clientWidth),
+			),
+			scrollWidth - clientWidth,
+		);
+	viewportTick.value += 1;
 }
 
 let resizeObserver: ResizeObserver | undefined;
@@ -173,6 +182,8 @@ onMounted(() => {
 			viewportTick.value += 1;
 		});
 		resizeObserver.observe(viewportRef.value);
+		if (viewportRef.value.firstElementChild)
+			resizeObserver.observe(viewportRef.value.firstElementChild);
 	}
 });
 onBeforeUnmount(() => resizeObserver?.disconnect());
