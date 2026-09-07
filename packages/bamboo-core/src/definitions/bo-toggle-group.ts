@@ -6,6 +6,7 @@ export interface BoToggleGroupProps {
 	id?: HTMLElement['id'];
 	dataTestId?: string;
 	modelValue?: string | string[];
+	defaultValue?: string | string[];
 	multiple?: boolean;
 	disabled?: boolean;
 	variant?: BoToggleVariant;
@@ -25,6 +26,9 @@ export interface BoToggleGroupStyleManifest {
 	base: string;
 	orientation: Record<BoToggleGroupOrientation, string>;
 	item: string;
+	variant: Record<BoToggleVariant, string>;
+	size: Record<BoToggleSize, string>;
+	selected: string;
 }
 
 export type ToggleGroupManifest = ComponentManifest<
