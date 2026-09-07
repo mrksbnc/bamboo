@@ -33,7 +33,6 @@ export interface BoTableProps {
 export interface BoTableStyleManifest {
 	readonly base: 'bo-table';
 	readonly wrapper: 'bo-table__wrapper';
-	readonly table: 'bo-table__table';
 	readonly caption: 'bo-table__caption';
 	readonly head: 'bo-table__head';
 	readonly header: 'bo-table__header';
