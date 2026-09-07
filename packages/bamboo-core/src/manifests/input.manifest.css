@@ -1,6 +1,6 @@
 @layer components {
 	.bo-input {
-		@apply relative flex w-full flex-col gap-2;
+		@apply relative flex w-full flex-col gap-1.5;
 	}
 
 	.bo-input--full-width {
@@ -28,7 +28,7 @@
 	}
 
 	.bo-input__container {
-		@apply relative flex h-10 w-full items-center rounded-md border px-3 py-2 text-sm shadow-xs transition-[color,box-shadow] outline-none;
+		@apply relative flex h-9 w-full items-center rounded-md border px-3 py-1.5 text-sm shadow-xs transition-[color,box-shadow] outline-none;
 		@apply border-neutral-300 bg-transparent;
 	}
 
@@ -91,7 +91,7 @@
 	}
 
 	.bo-input__field {
-		@apply min-w-0 flex-1 border-none bg-transparent text-base text-neutral-900 outline-none md:text-sm;
+		@apply min-w-0 flex-1 border-none bg-transparent text-sm text-neutral-900 outline-none;
 	}
 
 	.dark .bo-input__field {
