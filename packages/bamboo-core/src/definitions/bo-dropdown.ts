@@ -2,6 +2,7 @@ import type { ComponentManifest } from '../manifests/types.js';
 export interface BoDropdownProps {
 	id?: string;
 	dataTestId?: string;
+	ariaLabel?: string;
 	disabled?: boolean;
 	open?: boolean;
 }
