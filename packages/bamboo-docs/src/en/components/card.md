@@ -1,12 +1,11 @@
 ---
 title: Card
-description: A bordered container for grouping related content, metadata, and actions.
+description: Group related content into a bordered surface.
 category: layout
 tags:
   - card
-  - container
-  - content
   - layout
+  - content
 outline: deep
 ---
 
@@ -14,70 +13,171 @@ outline: deep
 import { BoButton, BoCard } from '@mrksbnc/bamboo-vue';
 
 const basicExample = `<bo-card title="Project settings" description="Manage access and notifications.">
-  <p>Card content belongs in the default slot.</p>
+  <p>Choose which updates you receive.</p>
   <template #footer>
     <bo-button size="sm">Save changes</bo-button>
   </template>
 </bo-card>`;
 
-const mediaExample = `<bo-card title="Usage" class="h-full">
-  <template #media>
-    <div class="aspect-[2/1] bg-neutral-100 dark:bg-neutral-800" />
-  </template>
-  <p>Media belongs above the flexible card body.</p>
+const headerlessExample = `<bo-card>
+  <p class="font-medium">A headerless card</p>
+  <p>Use the body slot when a generated title is not needed.</p>
 </bo-card>`;
 
+const mediaOnlyExample = `<bo-card class="h-64">
+  <template #media>
+    <div class="h-64 bg-gradient-to-br from-blue-500 to-violet-600" />
+  </template>
+</bo-card>`;
+
+const headerExample = `<bo-card>
+  <template #header>
+    <div class="flex items-center justify-between gap-4">
+      <div>
+        <p class="font-semibold">Custom header</p>
+        <p class="text-sm text-neutral-500">Header content is fully controlled.</p>
+      </div>
+      <bo-button size="sm" kind="outline">Edit</bo-button>
+    </div>
+  </template>
+  <p>Custom header content can contain actions or other layout.</p>
+</bo-card>`;
+
+const footerExample = `<bo-card title="Invite team">
+  <p>Send an invitation to a teammate.</p>
+  <template #footer>
+    <bo-button kind="outline" size="sm">Cancel</bo-button>
+    <bo-button size="sm">Send invite</bo-button>
+  </template>
+</bo-card>`;
+
+const contentExample = `<bo-card title="Usage">
+  <div class="grid gap-3">
+    <p>Monthly usage is shown here.</p>
+    <div class="h-2 rounded-full bg-neutral-200">
+      <div class="h-2 w-3/4 rounded-full bg-blue-600" />
+    </div>
+  </div>
+</bo-card>`;
 </script>
 
 # Card
 
-`bo-card` groups related content with optional header, media, body, and footer regions. It renders as a `div` and does not impose interaction behavior.
+Use `bo-card` for a self-contained block of related content, metadata, media, or actions. The component supplies the surface and layout; its slots let you choose how much structure to use.
 
 ## Basic Usage
 
-Use `title` and `description` for the standard header, the default slot for the body, and `footer` for actions.
+Passing `title` and `description` generates the standard header. The default slot becomes the body, and `footer` places content below it.
 
 <ExampleFrame :code="basicExample">
   <bo-card title="Project settings" description="Manage access and notifications.">
-    <p>Card content belongs in the default slot.</p>
+    <p>Choose which updates you receive.</p>
     <template #footer>
       <bo-button size="sm">Save changes</bo-button>
     </template>
   </bo-card>
 </ExampleFrame>
 
-## Custom Slots
+## Headerless Card
 
-The `header` slot replaces the generated title and description together. Use `media` for an edge-to-edge image or aspect-ratio region. The `footer` slot is omitted from the DOM when it is not provided.
+Omit both `title` and `description` when the content can stand on its own. The header is not rendered unless one of those props or the `header` slot is present.
 
-<ExampleFrame :code="mediaExample">
-  <bo-card title="Usage" class="h-full">
-    <template #media>
-      <div class="aspect-[2/1] bg-neutral-100 dark:bg-neutral-800" />
-    </template>
-    <p>Media belongs above the flexible card body.</p>
+<ExampleFrame :code="headerlessExample">
+  <bo-card>
+    <p class="font-medium">A headerless card</p>
+    <p>Use the body slot when a generated title is not needed.</p>
   </bo-card>
 </ExampleFrame>
+
+## Media-Only Top-Filling Card
+
+The `media` slot is rendered before the body and clips to the card surface. Give the card and media content an explicit height when the media should fill the top area. When the default slot is empty, no empty body wrapper is rendered.
+
+<ExampleFrame :code="mediaOnlyExample">
+  <bo-card class="h-64">
+    <template #media>
+      <div class="h-64 bg-gradient-to-br from-blue-500 to-violet-600" />
+    </template>
+  </bo-card>
+</ExampleFrame>
+
+## Media with Content
+
+Use media together with a generated header and body content for previews, summaries, and other visual cards.
+
+<ExampleFrame :code="contentExample">
+  <bo-card title="Usage">
+    <div class="grid gap-3">
+      <p>Monthly usage is shown here.</p>
+      <div class="h-2 rounded-full bg-neutral-200">
+        <div class="h-2 w-3/4 rounded-full bg-blue-600" />
+      </div>
+    </div>
+  </bo-card>
+</ExampleFrame>
+
+## Header Slot
+
+The `header` slot replaces the generated title and description together. Use it when the header needs actions, a custom hierarchy, or a different layout.
+
+<ExampleFrame :code="headerExample">
+  <bo-card>
+    <template #header>
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <p class="font-semibold">Custom header</p>
+          <p class="text-sm text-neutral-500">Header content is fully controlled.</p>
+        </div>
+        <bo-button size="sm" kind="outline">Edit</bo-button>
+      </div>
+    </template>
+    <p>Custom header content can contain actions or other layout.</p>
+  </bo-card>
+</ExampleFrame>
+
+## Footer
+
+The `footer` slot is rendered only when provided. Keep related actions together and use button variants to communicate their priority.
+
+<ExampleFrame :code="footerExample">
+  <bo-card title="Invite team">
+    <p>Send an invitation to a teammate.</p>
+    <template #footer>
+      <bo-button kind="outline" size="sm">Cancel</bo-button>
+      <bo-button size="sm">Send invite</bo-button>
+    </template>
+  </bo-card>
+</ExampleFrame>
+
+## Custom Content
+
+The default slot accepts arbitrary content. Cards do not impose a data model or interaction pattern on the body.
+
+## Usage Guidance
+
+- Use a concise title when the card needs a visible heading; use the `header` slot for more complex headings.
+- Keep the default slot focused on one related topic or task.
+- Use `media` for content that should touch the card edges and `footer` for actions below the body.
+- Do not use a card as a substitute for a page section when the content has no meaningful boundary.
 
 ## API Reference
 
 ### Props
 
-| Prop          | Type                     | Default       | Description                               |
-| ------------- | ------------------------ | ------------- | ----------------------------------------- |
-| `id`          | `string`                 | Autogenerated | The id of the card.                       |
-| `dataTestId`  | `string`                 | Autogenerated | The test id of the card.                  |
-| `title`       | `string`                 | -             | Header title.                             |
-| `description` | `string`                 | -             | Text below the title.                     |
-| `role`        | `HTMLAttributes['role']` | -             | Optional role for the card.               |
-| `ariaLabel`   | `string`                 | -             | Accessible name for the card.             |
-| `class`       | `string`                 | -             | Additional classes for sizing and layout. |
+| Prop          | Type                           | Default       | Description                              |
+| ------------- | ------------------------------ | ------------- | ---------------------------------------- |
+| `id`          | `string`                       | Autogenerated | The card id.                             |
+| `dataTestId`  | `string`                       | Autogenerated | The test id attribute.                   |
+| `title`       | `string`                       | -             | Title rendered in the generated header.  |
+| `description` | `string`                       | -             | Supporting text in the generated header. |
+| `role`        | `HTMLAttributes['role']`       | -             | Root accessibility role.                 |
+| `ariaLabel`   | `HTMLAttributes['aria-label']` | -             | Accessible name for the card.            |
 
 ### Slots
 
-| Name      | Description                                |
-| --------- | ------------------------------------------ |
-| `header`  | Replaces the generated header content.     |
-| `media`   | Full-width media displayed above the body. |
-| `default` | Card body content.                         |
-| `footer`  | Footer content, usually actions.           |
+| Name      | Description                                                   |
+| --------- | ------------------------------------------------------------- |
+| `header`  | Replaces the generated title and description header.          |
+| `media`   | Content rendered above the body.                              |
+| `default` | Card body content.                                            |
+| `footer`  | Content rendered below the body, usually actions or metadata. |
