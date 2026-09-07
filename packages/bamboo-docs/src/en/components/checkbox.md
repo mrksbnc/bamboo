@@ -2,13 +2,7 @@
 title: Checkbox
 description: A binary form control with checked, unchecked, and indeterminate states.
 category: form
-tags:
-  - checkbox
-  - form
-  - input
-  - validation
-  - a11y
-outline: deep
+tags: [checkbox, form, input, validation]
 ---
 
 <script setup lang="ts">
@@ -30,7 +24,7 @@ const statesExample = `<bo-checkbox v-model="accepted" label="Selected" />
 
 `bo-checkbox` wraps a native checkbox input with Bamboo styling, labels, helper text, and an indeterminate state.
 
-## Basic Usage
+## Usage
 
 Use `v-model` for the boolean checked state. The model defaults to `false`.
 
