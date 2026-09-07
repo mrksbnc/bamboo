@@ -33,8 +33,7 @@ describe('BoLoadingPulse', () => {
 					components: { BoText },
 				},
 			});
-			const container = wrapper.find('div[data-testid]');
-			expect(container.exists()).toBe(true);
+			expect(wrapper.find(`.bo-loading-pulse__dot--${size}`).exists()).toBe(true);
 		});
 	});
 
@@ -55,7 +54,7 @@ describe('BoLoadingPulse', () => {
 				},
 			});
 			const container = wrapper.find('div[data-testid]');
-			expect(container.exists()).toBe(true);
+			expect(container.classes()).toContain(`bo-loading-pulse--${variant}`);
 		});
 	});
 
@@ -80,9 +79,7 @@ describe('BoLoadingPulse', () => {
 				components: { BoText },
 			},
 		});
-		const pulses = wrapper.findAll('div[style]');
-		expect(pulses.length).toBeGreaterThan(0);
-		expect(pulses[0].attributes('style')).toContain('background-color');
+		expect(wrapper.find('div[data-testid]').attributes('style')).toContain('color');
 	});
 
 	it('applies custom id and data-testid', () => {
