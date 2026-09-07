@@ -36,12 +36,72 @@
 		@apply max-w-full sm:max-w-[calc(100vw-3rem)];
 	}
 
+	.bo-dialog-panel--variant-default {
+		@apply border-neutral-200;
+	}
+
+	.bo-dialog-panel--variant-destructive {
+		@apply border-red-200;
+	}
+
+	.bo-dialog-panel--variant-info {
+		@apply border-blue-200;
+	}
+
+	.bo-dialog-panel--variant-warning {
+		@apply border-amber-200;
+	}
+
+	.dark .bo-dialog-panel--variant-default {
+		@apply border-neutral-800;
+	}
+
+	.dark .bo-dialog-panel--variant-destructive {
+		@apply border-red-900;
+	}
+
+	.dark .bo-dialog-panel--variant-info {
+		@apply border-blue-900;
+	}
+
+	.dark .bo-dialog-panel--variant-warning {
+		@apply border-amber-900;
+	}
+
+	.bo-dialog-panel--variant-destructive .bo-dialog-title {
+		@apply text-red-700;
+	}
+
+	.bo-dialog-panel--variant-info .bo-dialog-title {
+		@apply text-blue-700;
+	}
+
+	.bo-dialog-panel--variant-warning .bo-dialog-title {
+		@apply text-amber-700;
+	}
+
+	.dark .bo-dialog-panel--variant-destructive .bo-dialog-title {
+		@apply text-red-300;
+	}
+
+	.dark .bo-dialog-panel--variant-info .bo-dialog-title {
+		@apply text-blue-300;
+	}
+
+	.dark .bo-dialog-panel--variant-warning .bo-dialog-title {
+		@apply text-amber-300;
+	}
+
 	.bo-dialog-header {
 		@apply flex flex-col gap-2 text-center sm:text-left;
 	}
 
 	.bo-dialog-header__content {
 		@apply flex items-center gap-3;
+	}
+
+	.bo-dialog-icon {
+		@apply size-5 shrink-0;
 	}
 
 	.bo-dialog-title {
