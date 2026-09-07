@@ -20,8 +20,12 @@
 		:aria-describedby="ariaDescribedBy"
 		:aria-busy="isLoading ? 'true' : undefined"
 	>
-		<bo-loading-spinner v-if="isLoading && loaderType !== 'pulse'" :size="loaderSizeValue" />
-		<bo-loading-pulse v-else-if="isLoading" :size="loaderSizeValue" />
+		<bo-loading-spinner
+			v-if="isLoading && loaderType !== 'pulse'"
+			:size="loaderSizeValue"
+			custom-color="currentColor"
+		/>
+		<bo-loading-pulse v-else-if="isLoading" :size="loaderSizeValue" custom-color="currentColor" />
 		<bo-icon v-if="prefixIcon && !isLoading" :icon="prefixIcon" :size="iconSizeValue" />
 		<slot></slot>
 		<bo-icon v-if="suffixIcon" :icon="suffixIcon" :size="iconSizeValue" />
@@ -43,8 +47,8 @@ import { BoIcon } from '../bo-icon';
 import { BoLoadingPulse } from '../bo-loading-pulse';
 import { BoLoadingSpinner } from '../bo-loading-spinner';
 
-const groupSize = inject<BoButtonProps['size']>('buttonGroupSize');
-const groupVariant = inject<BoButtonProps['variant']>('buttonGroupVariant');
+const groupSize = inject<BoButtonProps['size']>('buttonGroupSize', undefined);
+const groupVariant = inject<BoButtonProps['variant']>('buttonGroupVariant', undefined);
 
 const props = withDefaults(defineProps<BoButtonProps>(), {
 	id: () => generateComponentId('button'),
