@@ -41,6 +41,7 @@
 			<bo-button
 				v-if="closable"
 				kind="ghost"
+				variant="secondary"
 				prefix-icon="x"
 				:aria-label="closeAriaLabel"
 				:class="TOAST_MANIFEST.styles.close"

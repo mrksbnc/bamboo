@@ -7,17 +7,19 @@
 			aria-live="polite"
 			:class="viewportClasses"
 		>
-			<TransitionGroup name="bo-toast" tag="div" class="w-full">
+			<TransitionGroup name="bo-toast" tag="div" class="flex w-full flex-col gap-2">
 				<BoToast
 					v-for="toast in visibleToasts"
 					:key="toast.id"
 					:id="toast.id"
+					:data-testid="toast.id"
 					:title="toast.title"
 					:description="toast.description"
 					:variant="toast.variant"
 					:closable="toast.closable"
 					:close-aria-label="toast.closeAriaLabel"
 					:role="toast.role"
+					:data-position="toast.position"
 					:duration="0"
 					@close="dismiss(toast.id)"
 				/>
@@ -39,20 +41,18 @@ import { useToast } from '../../composables/use-toast.js';
 import BoToast from './bo-toast.vue';
 
 const props = withDefaults(defineProps<BoToastViewportProps>(), {
-	position: 'bottom-right' as BoToastPosition,
+	position: 'top-right' as BoToastPosition,
 	label: 'Notifications',
 });
 const { toasts, dismiss } = useToast();
 const visibleToasts = computed(() => {
-	return toasts.value.filter(
-		(toast) => toast.position === undefined || toast.position === props.position,
-	);
+	return toasts.value.filter((toast) => (toast.position ?? 'top-right') === props.position);
 });
 
 const viewportClasses = computed(() => {
 	return mergeTwClasses(
 		TOAST_MANIFEST.styles.viewport,
-		TOAST_MANIFEST.styles.viewportPosition[props.position || 'bottom-right'],
+		TOAST_MANIFEST.styles.viewportPosition[props.position || 'top-right'],
 	);
 });
 </script>
