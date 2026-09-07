@@ -1,89 +1,250 @@
 ---
 title: Toast
-description: A temporary feedback notification with viewport positioning.
+description: Show brief feedback after an action.
 category: feedback
 tags:
   - toast
   - notification
   - feedback
-  - a11y
+  - viewport
 outline: deep
 ---
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { BoButton, BoToast, BoToastViewport, useToast } from '@mrksbnc/bamboo-vue';
-import type { ToastPosition } from '@mrksbnc/bamboo-vue';
 
 const open = ref(false);
-const { show } = useToast();
-const toastPositions: ToastPosition[] = [
-  'top-left',
-  'top-center',
-  'top-right',
-  'bottom-left',
-  'bottom-center',
-  'bottom-right',
-];
-const basicExample = `<div><bo-button @click="open = true">Show toast</bo-button><bo-toast v-model:open="open" title="Saved" description="Your changes were saved." duration="0" /></div>`;
-const viewportExample = `<bo-toast-viewport position="top-right" label="Status notifications" />`;
-const composableExample = `<bo-button @click="show({ title: 'Saved', description: 'Your changes were saved.', position: 'top-center' })">Show toast</bo-button>`;
+const defaultToastOpen = ref(true);
+const primaryToastOpen = ref(true);
+const successToastOpen = ref(true);
+const warningToastOpen = ref(true);
+const destructiveToastOpen = ref(true);
+const closeMessage = ref('The toast is open.');
+const lastToastId = ref('');
 
-function showAt(position: ToastPosition): void {
+const { show, dismiss, clear } = useToast();
+
+function showAt(position: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'): void {
   show({
-    title: 'Saved',
-    description: `This toast was placed at ${position}.`,
+    title: 'Positioned toast',
+    description: `This toast is shown at ${position}.`,
     position,
-    variant: 'success',
+    duration: 1800,
   });
 }
+
+function addManagedToast(): void {
+  lastToastId.value = show({
+    title: 'Queued notification',
+    description: 'This id can be dismissed from the caller.',
+    duration: 0,
+  });
+}
+
+function dismissManagedToast(): void {
+  if (lastToastId.value) dismiss(lastToastId.value);
+}
+
+const basicExample = `<bo-button @click="open = true">Show toast</bo-button>
+<bo-toast
+  v-model:open="open"
+  title="Saved"
+  description="Your changes were saved."
+  :duration="0"
+/>`;
+
+const variantsExample = `<bo-toast v-model:open="defaultToastOpen" title="Default" :duration="0" />
+<bo-toast v-model:open="primaryToastOpen" variant="primary" title="Primary" :duration="0" />
+<bo-toast v-model:open="successToastOpen" variant="success" title="Success" :duration="0" />
+<bo-toast v-model:open="warningToastOpen" variant="warning" title="Warning" :duration="0" />
+<bo-toast v-model:open="destructiveToastOpen" variant="destructive" title="Destructive" :duration="0" />`;
+
+const positionsExample = `<bo-button @click="showAt('top-left')">Top left</bo-button>
+<bo-button @click="showAt('top-center')">Top center</bo-button>
+<bo-button @click="showAt('top-right')">Top right</bo-button>
+<bo-button @click="showAt('bottom-left')">Bottom left</bo-button>
+<bo-button @click="showAt('bottom-center')">Bottom center</bo-button>
+<bo-button @click="showAt('bottom-right')">Bottom right</bo-button>
+
+<bo-toast-viewport position="top-left" />
+<!-- Mount one viewport for each position your app uses. -->`;
+
+const closeExample = `<bo-toast
+  v-model:open="open"
+  title="Dismissible toast"
+  description="Close it with the button or programmatically."
+  :duration="0"
+  @close="closeMessage = 'Toast closed'"
+/>`;
+
+const stackingExample = `<bo-button @click="addManagedToast">Add queued toast</bo-button>
+<bo-button kind="outline" @click="dismissManagedToast">Dismiss last</bo-button>
+<bo-button kind="outline" @click="clear">Clear all</bo-button>
+   <bo-toast-viewport position="top-right" />`;
 </script>
 
 # Toast
 
-`bo-toast` displays a temporary notification. It is open by default, closes automatically after `duration` milliseconds, and can be placed in a teleported `bo-toast-viewport`.
+Use `bo-toast` for brief feedback that does not interrupt the current task. Use `useToast` with one or more `bo-toast-viewport` components when notifications originate from different parts of the application or need a shared queue.
 
-## Controlled Toast
+## Basic Usage
+
+`bo-toast` is a single notification. Control it with `v-model:open`; the default duration is ten seconds, while `duration="0"` keeps a demonstration toast open until it is closed.
 
 <ExampleFrame :code="basicExample">
-  <div><bo-button @click="open = true">Show toast</bo-button><bo-toast v-model:open="open" title="Saved" description="Your changes were saved." duration="0" /></div>
-</ExampleFrame>
-
-## Viewport and Variants
-
-`BoToastViewport` accepts six positions: `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, and `bottom-right`. Use `duration="0"` to disable automatic closing.
-
-<ExampleFrame :code="viewportExample"><bo-toast-viewport position="top-right" label="Status notifications" /></ExampleFrame>
-
-## Composable Queue
-
-`useToast` queues notifications for a viewport. Set `position` to any of the six supported locations; mount one `bo-toast-viewport` for each location you use. The controls below exercise every position through the composable.
-
-<ExampleFrame :code="composableExample">
-  <div class="flex max-w-xl flex-wrap justify-center gap-2">
-    <bo-button v-for="position in toastPositions" :key="position" size="sm" variant="outline" @click="showAt(position)">
-      {{ position }}
-    </bo-button>
+  <div class="grid justify-items-start gap-3">
+    <bo-button @click="open = true">Show toast</bo-button>
+    <bo-toast
+      v-model:open="open"
+      title="Saved"
+      description="Your changes were saved."
+      :duration="0"
+    />
   </div>
-  <bo-toast-viewport v-for="position in toastPositions" :key="`viewport-${position}`" :position="position" />
 </ExampleFrame>
+
+## Title and Description
+
+Use `title` for the short result and `description` for optional supporting detail. When the default slot is supplied, it replaces both generated text blocks.
+
+## Variants
+
+The supported variants are `default`, `primary`, `success`, `warning`, and `destructive`. The semantic variants also provide a corresponding status icon.
+
+<ExampleFrame :code="variantsExample">
+  <div class="grid max-w-xl gap-2">
+    <bo-toast v-model:open="defaultToastOpen" title="Default" :duration="0" />
+    <bo-toast v-model:open="primaryToastOpen" variant="primary" title="Primary" :duration="0" />
+    <bo-toast v-model:open="successToastOpen" variant="success" title="Success" :duration="0" />
+    <bo-toast v-model:open="warningToastOpen" variant="warning" title="Warning" :duration="0" />
+    <bo-toast v-model:open="destructiveToastOpen" variant="destructive" title="Destructive" :duration="0" />
+  </div>
+</ExampleFrame>
+
+## Toast Container and Positions
+
+`bo-toast-viewport` is the container for queued notifications. It teleports a fixed, pointer-aware region to `body`, announces it as a polite live region, and filters queued toasts by `position`. The default position is `top-right`. Supported positions are `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, and `bottom-right`.
+
+Mount one viewport for each position that the application uses. A toast shown with `useToast` is rendered only by the viewport with the matching position.
+
+<ExampleFrame :code="positionsExample">
+  <div class="flex max-w-xl flex-wrap gap-2">
+    <bo-button size="sm" @click="showAt('top-left')">Top left</bo-button>
+    <bo-button size="sm" @click="showAt('top-center')">Top center</bo-button>
+    <bo-button size="sm" @click="showAt('top-right')">Top right</bo-button>
+    <bo-button size="sm" @click="showAt('bottom-left')">Bottom left</bo-button>
+    <bo-button size="sm" @click="showAt('bottom-center')">Bottom center</bo-button>
+    <bo-button size="sm" @click="showAt('bottom-right')">Bottom right</bo-button>
+  </div>
+  <bo-toast-viewport position="top-left" />
+  <bo-toast-viewport position="top-center" />
+  <bo-toast-viewport position="top-right" />
+   <bo-toast-viewport position="bottom-left" />
+   <bo-toast-viewport position="bottom-center" />
+   <bo-toast-viewport position="bottom-right" />
+</ExampleFrame>
+
+## Close and Dismiss
+
+Toasts are closable by default. The close button updates `open` to false and emits `close`; set `closable` to `false` when an automatic duration or programmatic dismissal is the only close path. `useToast().dismiss(id)` removes one queued toast, while `clear()` removes all queued toasts.
+
+<ExampleFrame :code="closeExample">
+  <div class="grid max-w-xl gap-2">
+    <bo-button @click="open = true">Open dismissible toast</bo-button>
+    <bo-toast
+      v-model:open="open"
+      title="Dismissible toast"
+      description="Close it with the button or programmatically."
+      :duration="0"
+      @close="closeMessage = 'Toast closed'"
+    />
+    <span class="text-sm text-neutral-500">{{ closeMessage }}</span>
+  </div>
+</ExampleFrame>
+
+## Stacking and the `useToast` API
+
+Each call to `show` appends a toast to the shared queue and returns its id. Viewports stack their matching toasts; their top and bottom positions use the corresponding direction for new items.
+
+<ExampleFrame :code="stackingExample">
+  <div class="flex flex-wrap gap-2">
+    <bo-button @click="addManagedToast">Add queued toast</bo-button>
+    <bo-button kind="outline" @click="dismissManagedToast">Dismiss last</bo-button>
+    <bo-button kind="outline" @click="clear">Clear all</bo-button>
+  </div>
+  <bo-toast-viewport position="bottom-right" />
+</ExampleFrame>
+
+`useToast` is a shared composable. Call it in any component and mount the corresponding viewport once in the application shell.
+
+## Usage Guidance
+
+- Keep a toast short and useful; do not put required decisions in it.
+- Use `success` for completed work, `warning` for attention, and `destructive` for failed or dangerous outcomes.
+- Use a stable position per application region and avoid mounting duplicate viewports for the same position.
+- Give long-lived or persistent notifications an explicit close path.
 
 ## API Reference
 
-| Component / prop        | Type                                                                | Default              | Description                                                         |
-| ----------------------- | ------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------- |
-| `BoToast`               | component                                                           | -                    | Notification item.                                                  |
-| `open`                  | `boolean`                                                           | `true`               | Visibility used by `v-model:open`.                                  |
-| `title` / `description` | `string`                                                            | -                    | Default notification content.                                       |
-| `variant`               | `'default' \| 'primary' \| 'success' \| 'warning' \| 'destructive'` | `default`            | Visual variant and status icon.                                     |
-| `duration`              | `number`                                                            | `5000`               | Auto-close delay in milliseconds; `0` disables it.                  |
-| `closable`              | `boolean`                                                           | `true`               | Shows the close button.                                             |
-| `closeAriaLabel`        | `string`                                                            | `Close notification` | Close button label.                                                 |
-| `role`                  | `HTMLAttributes['role']`                                            | `status`             | Notification role.                                                  |
-| `BoToastViewport`       | component                                                           | -                    | Teleported live region that renders queued toasts for its position. |
-| `position`              | `BoToastPosition`                                                   | `bottom-right`       | Viewport position.                                                  |
-| `label`                 | `string`                                                            | `Notifications`      | Viewport accessible label.                                          |
-| `useToast().show`       | `ToastOptions`                                                      | -                    | Adds a toast to the global queue.                                   |
-| `ToastOptions.position` | `BoToastPosition`                                                   | -                    | Selects the viewport location.                                      |
+### `BoToast` Props
 
-The toast default slot replaces generated title and description content. `BoToast` emits `update:open` and `close`.
+| Prop             | Type                     | Default              | Description                                                   |
+| ---------------- | ------------------------ | -------------------- | ------------------------------------------------------------- |
+| `id`             | `string`                 | Autogenerated        | Toast id.                                                     |
+| `dataTestId`     | `string`                 | Autogenerated        | The test id attribute.                                        |
+| `open`           | `boolean`                | `true`               | Visibility state used by `v-model:open`.                      |
+| `title`          | `string`                 | -                    | Short notification title.                                     |
+| `description`    | `string`                 | -                    | Supporting notification text.                                 |
+| `variant`        | `BoToastVariant`         | `default`            | `default`, `primary`, `success`, `warning`, or `destructive`. |
+| `duration`       | `number`                 | `10000`              | Auto-close delay in milliseconds; `0` disables it.            |
+| `closable`       | `boolean`                | `true`               | Whether to render a close button.                             |
+| `closeAriaLabel` | `string`                 | `Close notification` | Accessible close-button label.                                |
+| `role`           | `HTMLAttributes['role']` | `status`             | Notification accessibility role.                              |
+
+### `BoToast` Events and Slots
+
+| Name          | Type      | Description                                |
+| ------------- | --------- | ------------------------------------------ |
+| `update:open` | `boolean` | Emitted when visibility changes.           |
+| `close`       | -         | Emitted after automatic or manual closing. |
+| `default`     | slot      | Replaces generated title and description.  |
+
+### `BoToastViewport` Props and Slots
+
+| Prop       | Type              | Default         | Description                               |
+| ---------- | ----------------- | --------------- | ----------------------------------------- |
+| `position` | `BoToastPosition` | `top-right`     | Queue position rendered by this viewport. |
+| `label`    | `string`          | `Notifications` | Accessible label for the live region.     |
+| `default`  | slot              | -               | Additional content inside the viewport.   |
+
+### `ToastOptions`
+
+`useToast().show` accepts all `BoToast` options except `id`, `dataTestId`, and `open`, plus `position`.
+
+| Field            | Type                     | Default              | Description                                    |
+| ---------------- | ------------------------ | -------------------- | ---------------------------------------------- |
+| `title`          | `string`                 | -                    | Short notification title.                      |
+| `description`    | `string`                 | -                    | Supporting notification text.                  |
+| `variant`        | `BoToastVariant`         | `default`            | Notification style.                            |
+| `duration`       | `number`                 | `10000`              | Auto-dismiss delay in milliseconds.            |
+| `closable`       | `boolean`                | `true`               | Whether the rendered toast has a close button. |
+| `closeAriaLabel` | `string`                 | `Close notification` | Accessible close label.                        |
+| `role`           | `HTMLAttributes['role']` | `status`             | Notification role.                             |
+| `position`       | `BoToastPosition`        | `top-right`          | Viewport that renders the toast.               |
+
+### `useToast()`
+
+| Method / value | Type                                     | Description                                |
+| -------------- | ---------------------------------------- | ------------------------------------------ |
+| `toasts`       | `Readonly<Ref<readonly ToastMessage[]>>` | Read-only shared queue.                    |
+| `show`         | `(options: ToastOptions) => string`      | Adds a toast and returns its generated id. |
+| `dismiss`      | `(id: string) => void`                   | Removes one queued toast by id.            |
+| `clear`        | `() => void`                             | Removes every queued toast.                |
+
+### `ToastMessage`
+
+| Field         | Type           | Description                              |
+| ------------- | -------------- | ---------------------------------------- |
+| `id`          | `string`       | Generated id returned by `show`.         |
+| Toast options | `ToastOptions` | Options used to render the notification. |
