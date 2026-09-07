@@ -50,12 +50,6 @@ export { CARD_MANIFEST } from './card.manifest';
 // # Empty
 export { EMPTY_MANIFEST } from './empty.manifest';
 
-// # Label
-export { LABEL_MANIFEST } from './label.manifest';
-
-// # Marker
-export { MARKER_MANIFEST } from './marker.manifest';
-
 // # Pagination
 export { PAGINATION_MANIFEST } from './pagination.manifest';
 
@@ -80,9 +74,6 @@ export { RADIO_GROUP_ITEM_MANIFEST } from './radio-group-item.manifest';
 
 // # Dialog
 export { DIALOG_MANIFEST } from './dialog.manifest';
-
-// # Alert Dialog
-export { ALERT_DIALOG_MANIFEST } from './alert-dialog.manifest';
 
 // # Tabs
 export { TABS_MANIFEST } from './tabs.manifest';
