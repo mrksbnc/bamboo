@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'vue';
 import { ComponentManifest } from '../manifests/types.js';
-import { BoLoaderSize, BoLoaderTextPosition } from './bo-loader';
-import { BoFontSize } from './bo-text';
+import { BoLoaderSize, BoLoaderTextPosition, BoLoaderVariant } from './bo-loader.js';
+import { BoFontSize } from './bo-text.js';
 
 export interface BoLoadingPulseProps {
 	/** Unique id for the loading spinner */
@@ -13,6 +13,8 @@ export interface BoLoadingPulseProps {
 	 * @default 'default'
 	 */
 	size?: BoLoaderSize;
+	/** Color variant of the loading pulse. */
+	variant?: BoLoaderVariant;
 	/** Optional loader text to display */
 	loaderText?: string;
 	/**
@@ -45,14 +47,19 @@ export interface BoLoadingPulseProps {
 
 type BoLoadingPulseSizeStyleMap = Record<BoLoaderSize, string>;
 type BoLoadingPulseTextPositionStyleMap = Record<BoLoaderTextPosition, string>;
+type BoLoadingPulseVariantStyleMap = Record<BoLoaderVariant, string>;
 
-type BoLoadingPulseManifestDefaults = Pick<BoLoadingPulseProps, 'size' | 'textPosition' | 'role'>;
+type BoLoadingPulseManifestDefaults = Pick<
+	BoLoadingPulseProps,
+	'size' | 'variant' | 'textPosition' | 'role'
+>;
 
 export interface BoLoadingPulseStyleManifest {
 	base: string;
 	container: string;
 	dot: string;
 	size: BoLoadingPulseSizeStyleMap;
+	variant: BoLoadingPulseVariantStyleMap;
 	textPosition: BoLoadingPulseTextPositionStyleMap;
 	labelFontSize: Record<BoLoaderSize, BoFontSize>;
 	/** Animation keyframes for the pulse loader */
