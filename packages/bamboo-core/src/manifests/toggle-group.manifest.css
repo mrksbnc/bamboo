@@ -1,10 +1,10 @@
 @layer components {
 	.bo-toggle-group {
-		@apply inline-flex items-center justify-center gap-0;
+		@apply inline-flex items-center justify-center gap-1;
 	}
 
 	.bo-toggle-group--horizontal {
-		@apply flex-row;
+		@apply flex-row [&>*]:min-w-0 [&>*]:flex-1;
 	}
 
 	.bo-toggle-group--vertical {
@@ -12,7 +12,7 @@
 	}
 
 	.bo-toggle-group__item {
-		@apply inline-flex items-center justify-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-white focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-white data-[state=on]:text-neutral-900 data-[state=on]:shadow-sm dark:text-neutral-100 dark:hover:bg-neutral-900 dark:data-[state=on]:bg-neutral-900 dark:data-[state=on]:text-neutral-100;
+		@apply inline-flex cursor-pointer items-center justify-center gap-1 rounded-md border border-transparent whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50;
 	}
 
 	.bo-toggle-group__item:focus-visible {
@@ -23,5 +23,35 @@
 	.dark .bo-toggle-group__item:focus-visible {
 		@apply border-blue-400;
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
+	}
+
+	.bo-toggle-group__item--default {
+		@apply bg-transparent px-3 py-2 text-neutral-900 hover:bg-neutral-100 dark:text-neutral-100 dark:hover:bg-neutral-800;
+	}
+
+	.bo-toggle-group__item--outline {
+		@apply rounded-md border border-neutral-200 bg-transparent px-3 py-2 text-neutral-900 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-800;
+	}
+
+	.bo-toggle-group__item--sm {
+		@apply h-9 px-2.5;
+	}
+
+	.bo-toggle-group__item--default-size {
+		@apply h-10 min-w-10 px-3;
+	}
+
+	.bo-toggle-group__item--lg {
+		@apply h-11 px-5;
+	}
+
+	.bo-toggle-group__item[data-state='on'],
+	.bo-toggle-group__item--selected {
+		@apply bg-neutral-100 text-neutral-900 shadow-sm dark:bg-neutral-800 dark:text-neutral-100;
+	}
+
+	.bo-toggle-group__item--outline[data-state='on'],
+	.bo-toggle-group__item--outline.bo-toggle-group__item--selected {
+		@apply border-neutral-300 bg-neutral-100 dark:border-neutral-600 dark:bg-neutral-800;
 	}
 }
