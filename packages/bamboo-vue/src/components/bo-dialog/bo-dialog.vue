@@ -27,6 +27,14 @@
 					<div :class="DIALOG_MANIFEST.styles.header" data-slot="dialog-header">
 						<slot name="header">
 							<div :class="DIALOG_MANIFEST.styles.headerContent">
+								<bo-icon
+									v-if="dialogIcon"
+									:icon="dialogIcon"
+									:variant="dialogIconVariant"
+									size="sm"
+									:class="DIALOG_MANIFEST.styles.icon"
+									aria-hidden="true"
+								/>
 								<bo-text
 									v-if="title"
 									:id="titleId"
@@ -43,6 +51,7 @@
 					<bo-button
 						v-if="showClose"
 						kind="ghost"
+						variant="secondary"
 						prefix-icon="x"
 						:aria-label="closeAriaLabel"
 						:class="DIALOG_MANIFEST.styles.close"
@@ -80,16 +89,21 @@ import {
 	generateComponentId,
 	generateDataTestId,
 	mergeTwClasses,
+	type BoDialogVariant,
+	type BoIconVariant,
 	type BoDialogProps,
+	type Icon,
 } from '@workspace/bamboo-core';
-import { computed, nextTick, onUnmounted, ref, useTemplateRef, watch } from 'vue';
+import { computed, nextTick, onUnmounted, useTemplateRef, watch } from 'vue';
 import { BoButton } from '../bo-button';
+import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
 
 const props = withDefaults(defineProps<BoDialogProps>(), {
 	id: () => generateComponentId('dialog'),
 	dataTestId: () => generateDataTestId('dialog'),
 	size: () => DIALOG_MANIFEST.defaults.size,
+	variant: () => DIALOG_MANIFEST.defaults.variant,
 	closeOnBackdrop: () => DIALOG_MANIFEST.defaults.closeOnBackdrop,
 	closeOnEscape: () => DIALOG_MANIFEST.defaults.closeOnEscape,
 	showClose: () => DIALOG_MANIFEST.defaults.showClose,
@@ -109,6 +123,22 @@ defineSlots<{
 }>();
 
 const panelRef = useTemplateRef<HTMLElement>('panelRef');
+const dialogIcon = computed<Icon | undefined>(() => {
+	const icons: Partial<Record<BoDialogVariant, Icon>> = {
+		info: 'alert_circle',
+		warning: 'alert_triangle',
+		destructive: 'alert_octagon',
+	};
+	return icons[props.variant || 'default'];
+});
+const dialogIconVariant = computed<BoIconVariant | undefined>(() => {
+	const variants: Partial<Record<BoDialogVariant, BoIconVariant>> = {
+		info: 'primary',
+		warning: 'warning',
+		destructive: 'destructive',
+	};
+	return variants[props.variant || 'default'];
+});
 const titleId = computed(() => {
 	return `${props.id}-title`;
 });
@@ -119,6 +149,7 @@ const panelClasses = computed(() => {
 	return mergeTwClasses(
 		DIALOG_MANIFEST.styles.panel.base,
 		DIALOG_MANIFEST.styles.panel.size[props.size || DIALOG_MANIFEST.defaults.size],
+		DIALOG_MANIFEST.styles.panel.variant[props.variant || DIALOG_MANIFEST.defaults.variant],
 	);
 });
 
