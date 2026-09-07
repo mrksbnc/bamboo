@@ -37,8 +37,16 @@
 	.bo-context-menu-item--destructive {
 		@apply text-red-600;
 	}
+	.bo-context-menu-item--destructive:hover,
+	.bo-context-menu-item--destructive:focus-visible {
+		@apply bg-red-50 text-red-700;
+	}
 	.dark .bo-context-menu-item--destructive {
 		@apply text-red-400;
+	}
+	.dark .bo-context-menu-item--destructive:hover,
+	.dark .bo-context-menu-item--destructive:focus-visible {
+		@apply bg-red-950 text-red-300;
 	}
 	.bo-context-menu-item:disabled {
 		@apply pointer-events-none opacity-50;
