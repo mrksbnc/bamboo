@@ -1,12 +1,29 @@
 @layer components {
 	.bo-menubar {
-		@apply flex h-10 w-fit items-center rounded-md border bg-white p-1 shadow-xs;
-		@apply border-neutral-200;
+		@apply fixed left-1/2 top-4 z-40 box-border flex min-h-12 w-fit max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-1 rounded-xl border bg-white/95 px-2 py-1.5 shadow-lg backdrop-blur;
+		@apply border-neutral-200 text-neutral-900;
+	}
+
+	.bo-menubar--top {
+		@apply top-4;
+	}
+
+	.bo-menubar--bottom {
+		@apply bottom-4 top-auto;
 	}
 
 	.dark .bo-menubar {
-		@apply bg-neutral-900;
-		@apply border-neutral-800;
+		@apply border-neutral-800 bg-neutral-950/95 text-neutral-100;
+	}
+
+	.bo-menubar__start,
+	.bo-menubar__end {
+		@apply flex min-w-0 shrink-0 items-center gap-1;
+	}
+
+	.bo-menubar__main {
+		@apply flex min-w-0 flex-1 items-center gap-1 overflow-x-auto;
+		scrollbar-width: thin;
 	}
 
 	.bo-menubar__menu {
@@ -14,21 +31,21 @@
 	}
 
 	.bo-menubar__trigger {
-		@apply inline-flex shrink-0 cursor-default select-none items-center justify-center rounded-md border border-transparent px-2 py-[3px] text-center text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
+		@apply inline-flex shrink-0 cursor-default select-none items-center justify-center rounded-md border border-transparent px-2.5 py-1.5 text-center text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950 disabled:pointer-events-none disabled:opacity-50;
 	}
 
 	.dark .bo-menubar__trigger {
-		@apply text-neutral-100;
+		@apply text-neutral-300 hover:bg-neutral-800 hover:text-neutral-100;
 	}
 
 	.bo-menubar__trigger--active,
 	.bo-menubar__trigger[data-state='open'] {
-		@apply bg-neutral-100;
+		@apply bg-neutral-100 text-neutral-950;
 	}
 
 	.dark .bo-menubar__trigger--active,
 	.dark .bo-menubar__trigger[data-state='open'] {
-		@apply bg-neutral-800;
+		@apply bg-neutral-800 text-neutral-100;
 	}
 
 	.bo-menubar__trigger:focus-visible,
@@ -46,12 +63,16 @@
 
 	.bo-menubar__content,
 	.bo-menubar__sub-content {
-		@apply absolute z-50 min-w-48 max-h-[calc(100vh-1rem)] overflow-auto rounded-md border bg-white p-1 text-sm shadow-md;
+		@apply absolute z-50 max-h-[calc(100vh-1rem)] min-w-48 overflow-auto rounded-md border bg-white p-1.5 text-sm shadow-lg;
 		@apply border-neutral-200 text-neutral-900;
 	}
 
 	.bo-menubar__content {
 		@apply start-0 top-full mt-1;
+	}
+
+	.bo-menubar--bottom .bo-menubar__content {
+		@apply bottom-full top-auto mb-1 mt-0;
 	}
 
 	.bo-menubar__sub-content {
@@ -64,15 +85,15 @@
 	}
 
 	.bo-menubar__item {
-		@apply relative flex w-full cursor-default select-none items-center gap-2.5 rounded-sm border border-transparent px-3 py-2 text-start text-sm outline-none transition-colors hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50;
+		@apply relative flex w-full cursor-default select-none items-center gap-2.5 rounded-sm border border-transparent px-3 py-2 text-start text-sm text-neutral-700 outline-none transition-colors hover:bg-neutral-100 hover:text-neutral-950 disabled:pointer-events-none disabled:opacity-50;
+	}
+
+	.dark .bo-menubar__item {
+		@apply text-neutral-200 hover:bg-neutral-800 hover:text-neutral-100;
 	}
 
 	.bo-menubar__item > svg {
 		@apply size-4;
-	}
-
-	.dark .bo-menubar__item:hover {
-		@apply bg-neutral-800;
 	}
 
 	.bo-menubar__item[data-inset='true'] {
@@ -92,7 +113,7 @@
 	}
 
 	.bo-menubar__separator {
-		@apply -mx-1 my-1 h-px bg-neutral-200;
+		@apply -mx-1.5 my-1.5 h-px bg-neutral-200;
 	}
 
 	.dark .bo-menubar__separator {
@@ -104,10 +125,25 @@
 	}
 
 	.bo-menubar__sub-trigger[data-state='open'] {
-		@apply bg-neutral-100;
+		@apply bg-neutral-100 text-neutral-950;
 	}
 
 	.dark .bo-menubar__sub-trigger[data-state='open'] {
-		@apply bg-neutral-800;
+		@apply bg-neutral-800 text-neutral-100;
+	}
+
+	.bo-menubar-enter-active,
+	.bo-menubar-leave-active {
+		@apply transition-[opacity,transform] duration-150 ease-out;
+	}
+
+	.bo-menubar-enter-from,
+	.bo-menubar-leave-to {
+		@apply -translate-y-1 opacity-0;
+	}
+
+	.bo-menubar--bottom .bo-menubar-enter-from,
+	.bo-menubar--bottom .bo-menubar-leave-to {
+		@apply translate-y-1;
 	}
 }
