@@ -4,7 +4,6 @@ export const TABLE_MANIFEST = {
 	styles: {
 		base: 'bo-table',
 		wrapper: 'bo-table__wrapper',
-		table: 'bo-table__table',
 		caption: 'bo-table__caption',
 		head: 'bo-table__head',
 		header: 'bo-table__header',
