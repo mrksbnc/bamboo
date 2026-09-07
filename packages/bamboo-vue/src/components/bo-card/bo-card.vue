@@ -31,7 +31,7 @@
 			<slot name="media" />
 		</div>
 
-		<div :class="CARD_MANIFEST.styles.body">
+		<div v-if="$slots['default']" :class="CARD_MANIFEST.styles.body">
 			<slot />
 		</div>
 
