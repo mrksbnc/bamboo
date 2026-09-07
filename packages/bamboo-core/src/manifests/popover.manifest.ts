@@ -3,6 +3,7 @@ import type { PopoverManifest } from '../definitions/bo-popover.js';
 export const POPOVER_MANIFEST = {
 	meta: { name: 'Popover', version: '1.0.0' },
 	styles: {
+		base: 'bo-popover',
 		trigger: 'bo-popover-trigger',
 		content: 'bo-popover-content',
 		arrow: 'bo-popover-content__arrow',
