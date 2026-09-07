@@ -5,6 +5,7 @@
 				{{ label }}<span v-if="required" :class="INPUT_OTP_MANIFEST.styles.labels.required">*</span>
 			</label>
 		</div>
+		<input v-if="name" type="hidden" :name="name" :value="model" />
 
 		<div
 			:class="INPUT_OTP_MANIFEST.styles.group"
@@ -21,7 +22,6 @@
 				:key="inputId(index - 1)"
 				:id="inputId(index - 1)"
 				:data-testid="`${dataTestId}-${index}`"
-				:name="index === 1 ? name : undefined"
 				:type="type || INPUT_OTP_MANIFEST.defaults.type"
 				:inputmode="inputMode || INPUT_OTP_MANIFEST.defaults.inputMode"
 				:pattern="pattern || INPUT_OTP_MANIFEST.defaults.pattern"
@@ -105,7 +105,9 @@ function characterAt(index: number): string {
 }
 
 function inputs(): HTMLInputElement[] {
-	return rootRef.value ? Array.from(rootRef.value.querySelectorAll<HTMLInputElement>('input')) : [];
+	return rootRef.value
+		? Array.from(rootRef.value.querySelectorAll<HTMLInputElement>('input:not([type="hidden"])'))
+		: [];
 }
 
 function focusInput(index: number): void {
@@ -157,9 +159,18 @@ function onKeydown(index: number, event: KeyboardEvent): void {
 	} else if (event.key === 'ArrowRight') {
 		event.preventDefault();
 		focusInput(index + 1);
-	} else if (event.key === 'Backspace' && !characterAt(index)) {
+	} else if (event.key === 'Backspace') {
+		if (props.disabled || props.readOnly) return;
 		event.preventDefault();
-		focusInput(index - 1);
+		if (characterAt(index)) {
+			model.value = model.value.slice(0, index);
+			return;
+		}
+
+		if (index > 0) {
+			model.value = model.value.slice(0, index - 1);
+			focusInput(index - 1);
+		}
 	}
 }
 
