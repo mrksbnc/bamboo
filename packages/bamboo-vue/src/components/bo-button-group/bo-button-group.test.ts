@@ -1,6 +1,12 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
+import BoButtonGroupItem from './bo-button-group-item.vue';
 import BoButtonGroup from './bo-button-group.vue';
+
+const buttonItems = `
+	<bo-button-group-item value="button1">Button 1</bo-button-group-item>
+	<bo-button-group-item value="button2">Button 2</bo-button-group-item>
+`;
 
 describe('BoButtonGroup', () => {
 	it('renders button group with default props', () => {
@@ -53,6 +59,38 @@ describe('BoButtonGroup', () => {
 		expect(groupElement.classes()).toContain('bo-button-group--full-width');
 	});
 
+	it('applies attached layout classes for horizontal and vertical groups', () => {
+		const horizontal = mount(BoButtonGroup, {
+			slots: { default: buttonItems },
+			global: { components: { BoButtonGroupItem } },
+		});
+		const vertical = mount(BoButtonGroup, {
+			props: { orientation: 'vertical' },
+			slots: { default: buttonItems },
+			global: { components: { BoButtonGroupItem } },
+		});
+
+		expect(horizontal.classes()).toContain('bo-button-group--attached-horizontal');
+		expect(vertical.classes()).toContain('bo-button-group--attached-vertical');
+
+		horizontal.unmount();
+		vertical.unmount();
+	});
+
+	it('keeps selected items in the neutral selected state', async () => {
+		const wrapper = mount(BoButtonGroup, {
+			props: { modelValue: 'button1' },
+			slots: { default: buttonItems },
+			global: { components: { BoButtonGroupItem } },
+		});
+
+		await wrapper.vm.$nextTick();
+
+		const [selected, unselected] = wrapper.findAll('button');
+		expect(selected.classes()).toContain('bo-button-group__item--selected');
+		expect(unselected.classes()).not.toContain('bo-button-group__item--selected');
+	});
+
 	it('provides context to child components', () => {
 		const wrapper = mount(BoButtonGroup, {
 			props: {
@@ -73,12 +111,8 @@ describe('BoButtonGroup', () => {
 			props: {
 				modelValue: 'button1',
 			},
-			slots: {
-				default: `
-					<button data-value="button1">Button 1</button>
-					<button data-value="button2">Button 2</button>
-				`,
-			},
+			slots: { default: buttonItems },
+			global: { components: { BoButtonGroupItem } },
 		});
 
 		await wrapper.vm.$nextTick();
@@ -87,8 +121,8 @@ describe('BoButtonGroup', () => {
 		const buttons = wrapper.findAll('button');
 		expect(buttons[0].attributes('aria-pressed')).toBe('true');
 		expect(buttons[1].attributes('aria-pressed')).toBe('false');
-		expect(buttons[0].classes()).toContain('bo-button-group--selected');
-		expect(buttons[1].classes()).not.toContain('bo-button-group--selected');
+		expect(buttons[0].classes()).toContain('bo-button-group__item--selected');
+		expect(buttons[1].classes()).not.toContain('bo-button-group__item--selected');
 	});
 
 	it('handles multiple selection when multiple prop is true', async () => {
@@ -99,11 +133,12 @@ describe('BoButtonGroup', () => {
 			},
 			slots: {
 				default: `
-					<button data-value="button1">Button 1</button>
-					<button data-value="button2">Button 2</button>
-					<button data-value="button3">Button 3</button>
+					<bo-button-group-item value="button1">Button 1</bo-button-group-item>
+					<bo-button-group-item value="button2">Button 2</bo-button-group-item>
+					<bo-button-group-item value="button3">Button 3</bo-button-group-item>
 				`,
 			},
+			global: { components: { BoButtonGroupItem } },
 		});
 
 		await wrapper.vm.$nextTick();
@@ -113,19 +148,15 @@ describe('BoButtonGroup', () => {
 		expect(buttons[0].attributes('aria-pressed')).toBe('true');
 		expect(buttons[1].attributes('aria-pressed')).toBe('false');
 		expect(buttons[2].attributes('aria-pressed')).toBe('true');
-		expect(buttons[0].classes()).toContain('bo-button-group--selected');
-		expect(buttons[1].classes()).not.toContain('bo-button-group--selected');
-		expect(buttons[2].classes()).toContain('bo-button-group--selected');
+		expect(buttons[0].classes()).toContain('bo-button-group__item--selected');
+		expect(buttons[1].classes()).not.toContain('bo-button-group__item--selected');
+		expect(buttons[2].classes()).toContain('bo-button-group__item--selected');
 	});
 
 	it('emits update:modelValue when button is clicked', async () => {
 		const wrapper = mount(BoButtonGroup, {
-			slots: {
-				default: `
-					<button data-value="button1">Button 1</button>
-					<button data-value="button2">Button 2</button>
-				`,
-			},
+			slots: { default: buttonItems },
+			global: { components: { BoButtonGroupItem } },
 		});
 
 		await wrapper.vm.$nextTick();
@@ -143,12 +174,8 @@ describe('BoButtonGroup', () => {
 				modelValue: 'button1',
 				required: true,
 			},
-			slots: {
-				default: `
-					<button data-value="button1">Button 1</button>
-					<button data-value="button2">Button 2</button>
-				`,
-			},
+			slots: { default: buttonItems },
+			global: { components: { BoButtonGroupItem } },
 		});
 
 		await wrapper.vm.$nextTick();
@@ -159,7 +186,7 @@ describe('BoButtonGroup', () => {
 
 		// Should still be selected due to required prop
 		expect(buttons[0].attributes('aria-pressed')).toBe('true');
-		expect(buttons[0].classes()).toContain('bo-button-group--selected');
+		expect(buttons[0].classes()).toContain('bo-button-group__item--selected');
 	});
 
 	it('handles more than 3 buttons correctly', async () => {
