@@ -2,6 +2,7 @@ export { BoAccordion, BoAccordionItem } from './bo-accordion/index.js';
 export { BoAspectRatio } from './bo-aspect-ratio/index.js';
 export { BoAvatar } from './bo-avatar/index.js';
 export { BoBadge } from './bo-badge/index.js';
+export { BoChart } from './bo-chart/index.js';
 export { BoBreadcrumb } from './bo-breadcrumb/index.js';
 export { BoButton } from './bo-button/index.js';
 export { BoButtonGroup, BoButtonGroupItem } from './bo-button-group/index.js';

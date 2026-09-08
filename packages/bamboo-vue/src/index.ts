@@ -7,6 +7,7 @@ export { BoAccordion, BoAccordionItem } from './components/bo-accordion/index.js
 export { BoAspectRatio } from './components/bo-aspect-ratio/index.js';
 export { BoAvatar } from './components/bo-avatar/index.js';
 export { BoBadge } from './components/bo-badge/index.js';
+export { BoChart } from './components/bo-chart/index.js';
 export { BoBreadcrumb } from './components/bo-breadcrumb/index.js';
 export { BoButton } from './components/bo-button/index.js';
 export { BoButtonGroup, BoButtonGroupItem } from './components/bo-button-group/index.js';
@@ -49,15 +50,15 @@ export { BoTable } from './components/bo-table/index.js';
 /** Plugin exports */
 
 export { BambooVue } from './plugin.js';
-export { useToast } from './composables/use-toast.js';
+export { createToastState, useToast } from './composables/use-toast.js';
 export type { ToastMessage, ToastOptions, ToastPosition } from './composables/use-toast.js';
-export { useDrawer } from './composables/use-drawer.js';
+export { createDrawerState, useDrawer } from './composables/use-drawer.js';
 export type { DrawerMessage, DrawerOptions } from './composables/use-drawer.js';
 export { useFileSelection } from './composables/use-file-selection.js';
 export type { FileSelectionOptions } from './composables/use-file-selection.js';
 export { useForm } from './composables/use-form.js';
 export { useFormField } from './composables/use-form-field.js';
-export { useModal } from './composables/use-modal.js';
+export { createModalState, useModal } from './composables/use-modal.js';
 
 export * from './components/index.js';
 
