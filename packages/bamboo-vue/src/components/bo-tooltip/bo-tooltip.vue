@@ -230,6 +230,7 @@ const handleClick = () => {
 
 // Watch for manual visibility changes
 const handleVisibilityChange = () => {
+	if (typeof window === 'undefined') return;
 	if (props.trigger === 'manual') {
 		if (props.visible) show();
 		else hide();
