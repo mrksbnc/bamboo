@@ -146,6 +146,7 @@ function onEscape(): void {
 watch(
 	() => props.open,
 	async (isOpen) => {
+		if (typeof document === 'undefined') return;
 		if (isOpen) {
 			await nextTick();
 			panelRef.value?.focus();
@@ -157,6 +158,7 @@ watch(
 );
 
 onUnmounted(() => {
+	if (typeof document === 'undefined') return;
 	document.body.style.overflow = '';
 });
 </script>
