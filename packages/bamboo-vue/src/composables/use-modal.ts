@@ -1,13 +1,31 @@
-import { nextTick, ref, type Component, type Ref } from 'vue';
+import {
+	hasInjectionContext,
+	inject,
+	nextTick,
+	readonly,
+	ref,
+	type Component,
+	type InjectionKey,
+	type Ref,
+} from 'vue';
 
 export interface ModalInstance {
 	component: Component;
 	props?: Record<string, unknown>;
 }
 
-const instances: Ref<ModalInstance[]> = ref([]);
+export interface ModalState {
+	instances: Readonly<Ref<readonly ModalInstance[]>>;
+	open: (instance: ModalInstance) => void;
+	close: (component?: Component) => void;
+	closeAndRestoreFocus: (element?: HTMLElement | null) => Promise<void>;
+}
 
-export function useModal() {
+export const MODAL_STATE_KEY: InjectionKey<ModalState> = Symbol('bamboo.modal');
+
+export function createModalState(): ModalState {
+	const instances = ref<ModalInstance[]>([]);
+
 	function open(instance: ModalInstance): void {
 		instances.value.push(instance);
 	}
@@ -26,5 +44,16 @@ export function useModal() {
 		element?.focus();
 	}
 
-	return { instances, open, close, closeAndRestoreFocus };
+	return {
+		instances: readonly(instances) as unknown as Readonly<Ref<readonly ModalInstance[]>>,
+		open,
+		close,
+		closeAndRestoreFocus,
+	};
+}
+
+const fallbackModalState = createModalState();
+
+export function useModal(): ModalState {
+	return (hasInjectionContext() ? inject(MODAL_STATE_KEY) : undefined) ?? fallbackModalState;
 }
