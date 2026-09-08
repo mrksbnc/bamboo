@@ -102,7 +102,7 @@ function updateAfterOpen(isOpen: boolean): void {
 	if (isOpen) {
 		void nextTick(() => {
 			updatePosition();
-			requestAnimationFrame(updatePosition);
+			if (typeof requestAnimationFrame === 'function') requestAnimationFrame(updatePosition);
 		});
 	}
 }
