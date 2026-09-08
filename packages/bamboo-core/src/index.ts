@@ -179,6 +179,13 @@ export {
 	type BoProgressStyleManifest,
 	type ProgressManifest,
 
+	// Chart
+	type BoChartType,
+	type BoChartSeries,
+	type BoChartProps,
+	type BoChartStyleManifest,
+	type ChartManifest,
+
 	// Radio
 	type BoRadioSize,
 	type BoRadioProps,
@@ -248,6 +255,7 @@ export {
 	EMPTY_MANIFEST,
 	PAGINATION_MANIFEST,
 	PROGRESS_MANIFEST,
+	CHART_MANIFEST,
 	SEPARATOR_MANIFEST,
 	SKELETON_MANIFEST,
 	CAROUSEL_MANIFEST,

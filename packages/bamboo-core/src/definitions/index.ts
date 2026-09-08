@@ -221,6 +221,15 @@ export {
 	type ProgressManifest,
 } from './bo-progress.js';
 
+// # bo-chart
+export {
+	type BoChartType,
+	type BoChartSeries,
+	type BoChartProps,
+	type BoChartStyleManifest,
+	type ChartManifest,
+} from './bo-chart.js';
+
 // # bo-radio
 export { type BoRadioSize, type BoRadioProps, type RadioManifest } from './bo-radio.js';
 

@@ -26,5 +26,6 @@ describe('component manifests', () => {
 		expect(manifests.MENUBAR_MANIFEST.meta.name).toBe('Menubar');
 		expect(manifests.POPOVER_MANIFEST.meta.name).toBe('Popover');
 		expect(manifests.SCROLL_AREA_MANIFEST.meta.name).toBe('ScrollArea');
+		expect(manifests.CHART_MANIFEST.meta.name).toBe('Chart');
 	});
 });

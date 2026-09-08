@@ -55,6 +55,7 @@ export { PAGINATION_MANIFEST } from './pagination.manifest';
 
 // # Progress
 export { PROGRESS_MANIFEST } from './progress.manifest';
+export { CHART_MANIFEST } from './chart.manifest';
 
 // # Separator
 export { SEPARATOR_MANIFEST } from './separator.manifest';

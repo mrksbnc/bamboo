@@ -1,0 +1,99 @@
+@layer components {
+	.bo-chart {
+		@apply w-full min-w-0 rounded-lg border p-4;
+		@apply border-neutral-200 bg-white text-neutral-900;
+	}
+
+	.dark .bo-chart {
+		@apply border-neutral-800 bg-neutral-950 text-neutral-100;
+	}
+
+	.bo-chart__header {
+		@apply mb-3 flex items-center justify-between gap-4;
+	}
+
+	.bo-chart__title {
+		@apply text-sm font-semibold;
+	}
+
+	.bo-chart__plot {
+		@apply w-full overflow-hidden;
+	}
+
+	.bo-chart__svg {
+		@apply block h-auto w-full;
+	}
+
+	.bo-chart__grid {
+		@apply stroke-neutral-200;
+		stroke-width: 1;
+	}
+
+	.dark .bo-chart__grid {
+		@apply stroke-neutral-800;
+	}
+
+	.bo-chart__axis {
+		@apply fill-neutral-500 text-[11px];
+	}
+
+	.dark .bo-chart__axis {
+		@apply fill-neutral-400;
+	}
+
+	.bo-chart__line {
+		fill: none;
+		stroke-width: 3;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.bo-chart__area {
+		fill-opacity: 0.16;
+	}
+
+	.bo-chart__bar,
+	.bo-chart__point,
+	.bo-chart__pie {
+		@apply transition-opacity;
+	}
+
+	.bo-chart__bar:hover,
+	.bo-chart__point:hover,
+	.bo-chart__pie:hover {
+		opacity: 0.78;
+	}
+
+	.bo-chart__point {
+		stroke: white;
+		stroke-width: 2;
+	}
+
+	.dark .bo-chart__point {
+		stroke: #171717;
+	}
+
+	.bo-chart__legend {
+		@apply mt-3 flex flex-wrap gap-x-4 gap-y-2;
+	}
+
+	.bo-chart__legend-item {
+		@apply inline-flex items-center gap-2 text-xs text-neutral-600;
+	}
+
+	.dark .bo-chart__legend-item {
+		@apply text-neutral-300;
+	}
+
+	.bo-chart__legend-swatch {
+		@apply size-2.5 rounded-full;
+	}
+
+	.bo-chart__empty {
+		@apply flex items-center justify-center text-sm text-neutral-500;
+	}
+
+	.dark .bo-chart__empty {
+		@apply text-neutral-400;
+	}
+}
