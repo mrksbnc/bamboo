@@ -24,6 +24,7 @@ The following component families are currently exported by `@mrksbnc/bamboo-vue`
 | [`bo-calendar`](./calendar)               | Month grid with date selection and constraints.                |
 | [`bo-carousel`](./carousel)               | Controlled responsive content carousel.                        |
 | [`bo-card`](./card)                       | Header, content, media, and footer surface.                    |
+| [`bo-chart`](./chart)                     | Responsive SVG charts for common data visualizations.          |
 | [`bo-checkbox`](./checkbox)               | Boolean input with label and helper states.                    |
 | [`bo-collapsible`](./collapsible)         | Disclosure control for showing and hiding content.             |
 | [`bo-context-menu`](./context-menu)       | Pointer and keyboard context menu.                             |
