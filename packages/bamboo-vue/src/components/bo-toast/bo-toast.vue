@@ -113,7 +113,7 @@ function clearTimer(): void {
 
 function startTimer(): void {
 	clearTimer();
-	if (open.value && props.duration > 0) {
+	if (typeof window !== 'undefined' && open.value && props.duration > 0) {
 		timer = setTimeout(() => onClose(), props.duration);
 	}
 }

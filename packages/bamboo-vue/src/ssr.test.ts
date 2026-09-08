@@ -12,6 +12,16 @@ const renderCases: RenderCase[] = [
 	['aspect ratio', () => h(Bamboo.BoAspectRatio)],
 	['avatar', () => h(Bamboo.BoAvatar)],
 	['badge', () => h(Bamboo.BoBadge)],
+	['chart', () => h(Bamboo.BoChart, { series: [{ name: 'Revenue', data: [10, 20] }] })],
+	[
+		'chart pie',
+		() =>
+			h(Bamboo.BoChart, {
+				type: 'pie',
+				labels: ['One', 'Two'],
+				series: [{ name: 'Share', data: [40, 60] }],
+			}),
+	],
 	['breadcrumb', () => h(Bamboo.BoBreadcrumb)],
 	['button', () => h(Bamboo.BoButton)],
 	['button group', () => h(Bamboo.BoButtonGroup)],
@@ -94,6 +104,112 @@ const renderCases: RenderCase[] = [
 	['tags input', () => h(Bamboo.BoTagsInput)],
 	['toggle group', () => h(Bamboo.BoToggleGroup)],
 	['toggle', () => h(Bamboo.BoToggle)],
+	[
+		'accordion composition',
+		() =>
+			h(Bamboo.BoAccordion, null, () =>
+				h(Bamboo.BoAccordionItem, { value: 'one', trigger: 'One' }, { content: () => 'Content' }),
+			),
+	],
+	[
+		'button group composition',
+		() =>
+			h(Bamboo.BoButtonGroup, null, () =>
+				h(Bamboo.BoButtonGroupItem, { value: 'one' }, () => 'One'),
+			),
+	],
+	[
+		'dropdown composition',
+		() =>
+			h(Bamboo.BoDropdown, { open: true }, () => [
+				h(Bamboo.BoDropdownTrigger, null, () => 'More'),
+				h(Bamboo.BoDropdownContent, null, () => [
+					h(Bamboo.BoDropdownLabel, null, () => 'Actions'),
+					h(Bamboo.BoDropdownSeparator),
+					h(Bamboo.BoDropdownItem, null, () => 'Open'),
+				]),
+			]),
+	],
+	[
+		'form field composition',
+		() =>
+			h(Bamboo.BoForm, null, () =>
+				h(Bamboo.BoFormField, { label: 'Email' }, () => h('input', { type: 'email' })),
+			),
+	],
+	[
+		'radio group composition',
+		() =>
+			h(Bamboo.BoRadioGroup, { modelValue: 'one' }, () =>
+				h(Bamboo.BoRadioGroupItem, { value: 'one' }, () => 'One'),
+			),
+	],
+	[
+		'tabs composition',
+		() =>
+			h(Bamboo.BoTabs, { defaultValue: 'one' }, () => [
+				h(Bamboo.BoTabsList, null, () => h(Bamboo.BoTabsTrigger, { value: 'one' }, () => 'One')),
+				h(Bamboo.BoTabsContent, { value: 'one' }, () => 'Content'),
+			]),
+	],
+	[
+		'context menu composition',
+		() =>
+			h(Bamboo.BoContextMenu, { open: true }, () => [
+				h(Bamboo.BoContextMenuTrigger, null, () => 'Target'),
+				h(Bamboo.BoContextMenuContent, null, () => [
+					h(Bamboo.BoContextMenuLabel, null, () => 'Actions'),
+					h(Bamboo.BoContextMenuSeparator),
+					h(Bamboo.BoContextMenuItem, null, () => 'Open'),
+					h(Bamboo.BoContextMenuCheckboxItem, { checked: true }, () => 'Grid'),
+					h(Bamboo.BoContextMenuRadioGroup, { value: 'one' }, () =>
+						h(Bamboo.BoContextMenuRadioItem, { value: 'one' }, () => 'One'),
+					),
+				]),
+			]),
+	],
+	[
+		'menubar composition',
+		() =>
+			h(Bamboo.BoMenubar, null, () =>
+				h(Bamboo.BoMenubarTrigger, { open: true, label: 'File' }, () => [
+					h(Bamboo.BoMenubarLabel, null, () => 'File actions'),
+					h(Bamboo.BoMenubarSeparator),
+					h(Bamboo.BoMenubarItem, { value: 'Open' }, () => 'Open'),
+					h(Bamboo.BoMenubarSubTrigger, { value: 'More' }, () =>
+						h(Bamboo.BoMenubarItem, { value: 'Nested' }, () => 'Nested'),
+					),
+				]),
+			),
+	],
+	[
+		'popover composition',
+		() =>
+			h(
+				Bamboo.BoPopover,
+				{ open: true },
+				{
+					trigger: () => h(Bamboo.BoPopoverTrigger, null, () => 'Open'),
+					default: () => h(Bamboo.BoPopoverContent, null, () => 'Content'),
+				},
+			),
+	],
+	[
+		'resizable composition',
+		() =>
+			h(Bamboo.BoResizable, null, () => [
+				h(Bamboo.BoResizablePanel, null, () => 'A'),
+				h(Bamboo.BoResizableHandle),
+				h(Bamboo.BoResizablePanel, null, () => 'B'),
+			]),
+	],
+	[
+		'toggle group composition',
+		() =>
+			h(Bamboo.BoToggleGroup, null, () =>
+				h(Bamboo.BoToggleGroupItem, { value: 'one' }, () => 'One'),
+			),
+	],
 ];
 
 describe('public components SSR', () => {
