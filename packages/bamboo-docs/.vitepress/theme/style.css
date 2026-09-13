@@ -182,7 +182,6 @@
 	text-decoration: none;
 }
 
-/* Component preview: centered live result plus a shadcn-style code reveal. */
 .VPDoc .example-frame {
 	position: relative;
 	display: flex;
