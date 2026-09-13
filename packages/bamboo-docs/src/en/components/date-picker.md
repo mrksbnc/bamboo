@@ -36,7 +36,7 @@ const stateExample = `<bo-date-picker disabled placeholder="Unavailable" />
 <bo-date-picker
   v-model="localeDate"
   locale="de-DE"
-  placeholder="Datum auswählen"
+  placeholder="Select a date"
 />`;
 
 const rangeExample = `<bo-date-range-picker v-model="range" placeholder="Select range" />`;
@@ -84,7 +84,7 @@ Set `disabled` to prevent opening the picker. `locale` controls weekday labels, 
     <bo-date-picker
       v-model="localeDate"
       locale="de-DE"
-      placeholder="Datum auswählen"
+      placeholder="Select a date"
     />
   </div>
 </ExampleFrame>
