@@ -4,23 +4,25 @@ on:
     branches:
       - main
     paths:
-      - 'src/**'
+      - 'packages/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'tsconfig*.json'
       - 'vite.config.ts'
       - 'vitest.config.ts'
+      - 'turbo.json'
       - '.github/workflows/tests.yaml'
   push:
     branches:
       - main
     paths:
-      - 'src/**'
+      - 'packages/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'tsconfig*.json'
       - 'vite.config.ts'
       - 'vitest.config.ts'
+      - 'turbo.json'
       - '.github/workflows/tests.yaml'
 
 permissions:
@@ -63,3 +65,13 @@ jobs:
         # Only works if you set `reportOnFailure: true` in your vite config as specified above
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          name: bamboo-core
+          working-directory: packages/bamboo-core
+
+      - name: 'Report Vue Coverage'
+        if: always()
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          name: bamboo-vue
+          working-directory: packages/bamboo-vue

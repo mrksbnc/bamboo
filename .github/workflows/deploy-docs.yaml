@@ -4,8 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src-docs/**'
-      - '.vitepress/**'
+      - 'packages/bamboo-docs/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - '.github/workflows/deploy-docs.yaml'
@@ -54,7 +53,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .vitepress/dist
+          path: packages/bamboo-docs/.vitepress/dist
 
   deploy:
     environment:

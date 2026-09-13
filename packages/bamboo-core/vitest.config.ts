@@ -9,6 +9,7 @@ export default mergeConfig(
 			coverage: {
 				provider: 'v8',
 				reporter: ['text', 'json-summary', 'json'],
+				reportOnFailure: true,
 				thresholds: {
 					statements: 60,
 					branches: 50,
