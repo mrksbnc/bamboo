@@ -1,0 +1,125 @@
+@layer components {
+	.bo-alert-container {
+		@apply pointer-events-none fixed z-50 flex w-[calc(100%-2rem)] max-w-sm flex-col gap-2;
+	}
+
+	.bo-alert-container__item {
+		@apply pointer-events-auto;
+	}
+
+	.bo-alert-container--top-left {
+		@apply start-4 top-4 items-start;
+	}
+
+	.bo-alert-container--top-center {
+		@apply start-1/2 top-4 -translate-x-1/2 items-center;
+	}
+
+	.bo-alert-container--top-right {
+		@apply end-4 top-4 items-end;
+	}
+
+	.bo-alert-container--bottom-left {
+		@apply bottom-4 start-4 items-start;
+	}
+
+	.bo-alert-container--bottom-center {
+		@apply bottom-4 start-1/2 -translate-x-1/2 items-center;
+	}
+
+	.bo-alert-container--bottom-right {
+		@apply end-4 bottom-4 items-end;
+	}
+
+	.bo-alert {
+		@apply relative w-full grid grid-cols-[0_1fr] items-start gap-x-3 gap-y-0.5 rounded-lg border px-4 py-3 text-sm;
+		border-color: var(--color-neutral-300);
+		background-color: var(--color-white);
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-alert {
+		border-color: var(--color-neutral-700);
+		background-color: var(--color-neutral-900);
+		color: var(--color-neutral-100);
+	}
+
+	.bo-alert[data-has-icon] {
+		grid-template-columns: 1rem 1fr;
+	}
+
+	.bo-alert--default {
+		border-color: var(--color-neutral-300);
+	}
+
+	.dark .bo-alert--default {
+		border-color: var(--color-neutral-700);
+	}
+
+	.bo-alert--primary {
+		@apply border-blue-500/50;
+	}
+
+	.dark .bo-alert--primary {
+		@apply border-blue-400/50;
+	}
+
+	.bo-alert--warning {
+		@apply border-yellow-500/50;
+	}
+
+	.dark .bo-alert--warning {
+		@apply border-yellow-400/50;
+	}
+
+	.bo-alert--destructive {
+		@apply border-red-500/50;
+	}
+
+	.dark .bo-alert--destructive {
+		@apply border-red-400/50;
+	}
+
+	.bo-alert__icon {
+		@apply size-4 translate-y-0.5 shrink-0;
+	}
+
+	.bo-alert__content {
+		@apply col-start-2 flex min-w-0 flex-col gap-0.5;
+	}
+
+	.bo-alert__title {
+		@apply min-h-4 font-medium tracking-tight leading-none;
+		color: var(--color-neutral-900);
+	}
+
+	.dark .bo-alert__title {
+		color: var(--color-neutral-100);
+	}
+
+	.bo-alert__description {
+		@apply text-sm [&_p]:leading-relaxed;
+		color: var(--color-neutral-500);
+	}
+
+	.dark .bo-alert__description {
+		color: var(--color-neutral-400);
+	}
+
+	.bo-alert-enter-active,
+	.bo-alert-leave-active {
+		transition:
+			opacity 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.bo-alert-enter-from,
+	.bo-alert-leave-to {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+
+	.bo-alert-move {
+		transition: transform 0.2s ease;
+	}
+}

@@ -13,18 +13,6 @@ export const BADGE_MANIFEST = {
 			pill: 'bo-badge--shape-pill',
 			flat: 'bo-badge--shape-flat',
 		},
-		size: {
-			default: {
-				sm: 'bo-badge--sm',
-				default: 'bo-badge--default',
-				lg: 'bo-badge--lg',
-			},
-			circle: {
-				sm: 'bo-badge--circle-sm',
-				default: 'bo-badge--circle-default',
-				lg: 'bo-badge--circle-lg',
-			},
-		},
 		variants: {
 			filled: {
 				primary: 'bo-badge--filled-primary',
@@ -71,7 +59,6 @@ export const BADGE_MANIFEST = {
 	defaults: {
 		role: 'status',
 		kind: 'default',
-		size: 'default',
 		shape: 'default',
 		variant: 'primary',
 		cursor: 'cursor-auto',

@@ -95,10 +95,9 @@ export const AVATAR_MANIFEST = {
 	defaults: {
 		role: 'img',
 		alt: 'avatar',
-		kind: 'default',
+		kind: 'circle',
 		size: 'default',
 		variant: 'primary',
-		cursor: 'cursor-auto',
 		indicatorKind: 'none',
 		indicatorPosition: 'top-right',
 	},

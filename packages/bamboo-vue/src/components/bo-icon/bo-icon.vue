@@ -32,9 +32,7 @@ const props = withDefaults(defineProps<BoIconProps>(), {
 	variant: () => ICON_MANIFEST.defaults.variant,
 });
 
-const component = computed<string>(() => {
-	return BO_ICON_REGISTRY[props.icon];
-});
+const component = computed<string>(() => BO_ICON_REGISTRY[props.icon]);
 
 const computedRole = computed<HTMLAttributes['role'] | undefined>(() => {
 	return props.decorative ? undefined : (props.role ?? 'img');

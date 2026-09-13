@@ -1,0 +1,40 @@
+import type { SidebarManifest } from '../definitions/bo-sidebar.js';
+
+export const SIDEBAR_MANIFEST = {
+	meta: { name: 'Sidebar', version: '1.0.0' },
+	styles: {
+		base: 'bo-sidebar',
+		side: {
+			left: 'bo-sidebar--left',
+			right: 'bo-sidebar--right',
+			top: 'bo-sidebar--top',
+		},
+		collapsed: 'bo-sidebar--collapsed',
+		header: 'bo-sidebar__header',
+		content: 'bo-sidebar__content',
+		footer: 'bo-sidebar__footer',
+		group: 'bo-sidebar__group',
+		groupLabel: 'bo-sidebar__group-label',
+		groupLabelContainer: 'bo-sidebar__group-label-container',
+		groupAction: 'bo-sidebar__group-action',
+		groupContent: 'bo-sidebar__group-content',
+		groupContentInner: 'bo-sidebar__group-content-inner',
+		visuallyHidden: 'bo-sidebar__visually-hidden',
+		menu: 'bo-sidebar__menu',
+		menuButton: { base: 'bo-sidebar__menu-button', active: 'bo-sidebar__menu-button--active' },
+		menuItem: {
+			base: 'bo-sidebar__menu-item',
+			active: 'bo-sidebar__menu-item--active',
+			label: 'bo-sidebar__menu-item-label',
+		},
+		menuAction: 'bo-sidebar__menu-action',
+		menuBadge: 'bo-sidebar__menu-badge',
+		menuSub: 'bo-sidebar__menu-sub',
+		menuSubButton: 'bo-sidebar__menu-sub-button',
+		menuSubItem: 'bo-sidebar__menu-sub-item',
+		rail: 'bo-sidebar__rail',
+		trigger: 'bo-sidebar__trigger',
+		inset: 'bo-sidebar__inset',
+	},
+	defaults: { side: 'left', collapsible: false },
+} as const satisfies SidebarManifest;

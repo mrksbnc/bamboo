@@ -74,7 +74,9 @@ const itemExample = `<bo-button-group v-model="view">
 </bo-button-group>`;
 </script>
 
-# Button Group
+const selectedValue = ref('option1');
+const selectedValues = ref(['bold', 'italic']);
+const requiredValue = ref('center');
 
 Use `bo-button-group` for adjacent actions or a compact selection control. Use `bo-button-group-item` for every child; items receive their size, variant, selection, and disabled state from the group unless overridden.
 

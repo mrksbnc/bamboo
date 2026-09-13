@@ -70,6 +70,10 @@ const lineClamp = computed<string>(() => {
 		: TEXT_MANIFEST.styles.lineClamp.none;
 });
 
+const lineClamp = computed<string>(() =>
+	lineClampValue.value ? TEXT_MANIFEST.styles.lineClamp.base : TEXT_MANIFEST.styles.lineClamp.none,
+);
+
 const classValues = computed<string>(() => {
 	return mergeTwClasses(
 		cursor.value,
