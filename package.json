@@ -12,7 +12,7 @@
 		"fmt:check": "oxfmt --check",
 		"lint": "run-p lint:*",
 		"lint:oxlint": "oxlint --fix",
-		"lint:spell": "cspell --config ./cspell.yaml \"**/*.{ts,md,json,vue}\" --verbose --show-perf-summary",
+		"lint:spell": "cspell --config ./cspell.yaml \"**/*.{ts,md,json,vue}\" --verbose",
 		"test": "turbo run test",
 		"purge": "turbo run purge && rm -rf node_modules .turbo",
 		"prepare": "husky",
