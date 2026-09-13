@@ -21,8 +21,12 @@ export function useFormField(options: UseFormFieldOptions) {
 		const description =
 			typeof options.description === 'string' ? options.description : options.description?.value;
 		const error = typeof options.error === 'string' ? options.error : options.error?.value;
-		if (description) ids.push(descriptionId.value);
-		if (error) ids.push(errorId.value);
+		if (description) {
+			ids.push(descriptionId.value);
+		}
+		if (error) {
+			ids.push(errorId.value);
+		}
 		return ids.join(' ') || undefined;
 	});
 	return { id, descriptionId, errorId, describedBy };

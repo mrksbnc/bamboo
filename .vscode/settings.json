@@ -2,6 +2,7 @@
 	"editor.formatOnSave": true,
 	"explorer.fileNesting.enabled": true,
 	"tailwindCSS.classAttributes": ["tw", "class"],
+	"css.lint.unknownAtRules": "ignore",
 	"typescript.experimental.useTsgo": true,
 	"editor.defaultFormatter": "oxc.oxc-vscode",
 	"explorer.fileNesting.patterns": {

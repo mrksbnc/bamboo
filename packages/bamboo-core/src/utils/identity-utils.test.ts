@@ -40,7 +40,7 @@ describe('identity-utils', () => {
 		it('should generate id with correct length', () => {
 			const id = generateComponentId('test');
 			const parts = id.split('-');
-			const randomPart = parts[parts.length - 1];
+			const randomPart = parts.at(-1) ?? '';
 			expect(randomPart.length).toBe(9);
 		});
 
@@ -114,7 +114,7 @@ describe('identity-utils', () => {
 		it('should generate test id with correct length', () => {
 			const id = generateDataTestId('test');
 			const parts = id.split('-');
-			const randomPart = parts[parts.length - 1];
+			const randomPart = parts.at(-1) ?? '';
 			expect(randomPart.length).toBe(9);
 		});
 

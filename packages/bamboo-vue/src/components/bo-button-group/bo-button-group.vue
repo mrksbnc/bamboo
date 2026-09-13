@@ -58,7 +58,9 @@ function select(value: string | number): void {
 	if (props.multiple) {
 		const nextSelection = new Set(selectedValues.value);
 		if (nextSelection.has(value)) {
-			if (!props.required || nextSelection.size > 1) nextSelection.delete(value);
+			if (!props.required || nextSelection.size > 1) {
+				nextSelection.delete(value);
+			}
 		} else {
 			nextSelection.add(value);
 		}

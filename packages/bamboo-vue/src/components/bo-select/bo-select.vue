@@ -135,13 +135,17 @@ function isSelected(value: string | number): boolean {
 }
 
 function selectOption(value: string | number, disabled = false): void {
-	if (props.disabled || disabled) return;
+	if (props.disabled || disabled) {
+		return;
+	}
 	model.value = value;
 	open.value = false;
 }
 
 function toggle(): void {
-	if (props.disabled) return;
+	if (props.disabled) {
+		return;
+	}
 	open.value = !open.value;
 	if (open.value) {
 		highlightedIndex.value = Math.max(
@@ -155,7 +159,9 @@ function moveHighlight(direction: 1 | -1): void {
 	const enabled = options.value
 		.map((option, index) => (option.disabled ? -1 : index))
 		.filter((index) => index >= 0);
-	if (!enabled.length) return;
+	if (!enabled.length) {
+		return;
+	}
 	const current = enabled.indexOf(highlightedIndex.value);
 	const next = current < 0 ? (direction === 1 ? 0 : enabled.length - 1) : current + direction;
 	highlightedIndex.value = enabled[(next + enabled.length) % enabled.length] ?? enabled[0]!;
@@ -171,7 +177,9 @@ function onKeydown(event: KeyboardEvent): void {
 		toggle();
 		return;
 	}
-	if (!open.value) return;
+	if (!open.value) {
+		return;
+	}
 	if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
 		event.preventDefault();
 		moveHighlight(1);
@@ -181,7 +189,9 @@ function onKeydown(event: KeyboardEvent): void {
 	} else if (event.key === 'Enter' || event.key === ' ') {
 		event.preventDefault();
 		const option = options.value[highlightedIndex.value];
-		if (option) selectOption(option.value, option.disabled);
+		if (option) {
+			selectOption(option.value, option.disabled);
+		}
 	}
 }
 
@@ -193,7 +203,9 @@ function optionClasses(value: string | number): string {
 }
 
 function onDocumentPointerdown(event: PointerEvent): void {
-	if (open.value && !rootRef.value?.contains(event.target as Node)) open.value = false;
+	if (open.value && !rootRef.value?.contains(event.target as Node)) {
+		open.value = false;
+	}
 }
 
 provide(selectContextKey, {

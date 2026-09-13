@@ -45,13 +45,17 @@ function toggle(id: string): void {
 }
 
 function onKeydown(event: KeyboardEvent): void {
-	if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+	if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) {
+		return;
+	}
 	const triggers = Array.from(
 		(event.currentTarget as HTMLElement).querySelectorAll<HTMLElement>(
 			'[data-slot="navigation-menu-trigger"]:not(:disabled)',
 		),
 	);
-	if (!triggers.length) return;
+	if (!triggers.length) {
+		return;
+	}
 	event.preventDefault();
 	const current = triggers.indexOf(document.activeElement as HTMLElement);
 	const next =

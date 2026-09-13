@@ -8,7 +8,7 @@
 		".oxlintrc.json",
 		".oxfmtrc.json"
 	],
-	"globalEnv": ["NODE_ENV"],
+	"globalEnv": ["NODE_ENV", "VP_BASE"],
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build", "type-check"],

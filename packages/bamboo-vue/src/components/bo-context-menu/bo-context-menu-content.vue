@@ -26,7 +26,7 @@ import {
 	generateDataTestId,
 	type BoContextMenuProps,
 } from '@workspace/bamboo-core';
-import { computed, inject, nextTick, ref, useTemplateRef, watch } from 'vue';
+import { computed, inject, nextTick, useTemplateRef, watch } from 'vue';
 import { contextMenuContextKey } from './keys';
 
 const props = withDefaults(defineProps<BoContextMenuProps>(), {
@@ -35,7 +35,9 @@ const props = withDefaults(defineProps<BoContextMenuProps>(), {
 	role: () => CONTEXT_MENU_MANIFEST.defaults.role,
 });
 const context = inject(contextMenuContextKey);
-if (!context) throw new Error('BoContextMenuContent must be used inside BoContextMenu');
+if (!context) {
+	throw new Error('BoContextMenuContent must be used inside BoContextMenu');
+}
 const menuContext = context;
 
 const contentRef = useTemplateRef<HTMLElement>('contentRef');
@@ -55,7 +57,9 @@ function onKeydown(event: KeyboardEvent): void {
 	const items = [
 		...(contentRef.value?.querySelectorAll<HTMLElement>('[role="menuitem"]') ?? []),
 	].filter((item) => !item.hasAttribute('disabled'));
-	if (!items.length || !['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+	if (!items.length || !['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+		return;
+	}
 	event.preventDefault();
 	const active = document.activeElement;
 	const current = items.indexOf(active as HTMLElement);
@@ -67,13 +71,15 @@ function onKeydown(event: KeyboardEvent): void {
 				: event.key === 'ArrowDown'
 					? (current + 1) % items.length
 					: (current - 1 + items.length) % items.length;
-	items[next].focus();
+	items[next]?.focus();
 }
 
 watch(
 	() => menuContext.open.value,
 	(isOpen) => {
-		if (isOpen) nextTick(() => contentRef.value?.focus());
+		if (isOpen) {
+			nextTick(() => contentRef.value?.focus());
+		}
 	},
 );
 watch(

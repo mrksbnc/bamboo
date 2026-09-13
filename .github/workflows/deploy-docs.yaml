@@ -3,11 +3,6 @@ name: deploy docs to github pages
 on:
   push:
     branches: [main]
-    paths:
-      - 'packages/bamboo-docs/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - '.github/workflows/deploy-docs.yaml'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -48,7 +43,9 @@ jobs:
         run: pnpm install
 
       - name: Build with VitePress
-        run: VP_BASE=/bamboo/ pnpm docs:build
+        env:
+          VP_BASE: /bamboo/
+        run: pnpm docs:build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

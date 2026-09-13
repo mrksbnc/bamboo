@@ -36,7 +36,9 @@ const props = withDefaults(defineProps<BoHoverCardProps>(), {
 	role: () => HOVER_CARD_MANIFEST.defaults.role,
 });
 const context = inject(hoverCardContextKey);
-if (!context) throw new Error('BoHoverCardContent must be used inside BoHoverCard');
+if (!context) {
+	throw new Error('BoHoverCardContent must be used inside BoHoverCard');
+}
 const hoverContext = context;
 
 const contentRef = ref<HTMLElement>();
@@ -52,14 +54,18 @@ const contentClasses = computed(() =>
 function updatePosition(): void {
 	const trigger = hoverContext.triggerRef.value;
 	const content = contentRef.value;
-	if (!trigger || !content) return;
+	if (!trigger || !content) {
+		return;
+	}
 	const triggerRect = trigger.getBoundingClientRect();
 	const contentRect = content.getBoundingClientRect();
 	const gap = props.offset ?? hoverContext.offset.value;
 	let top = triggerRect.bottom + gap;
 	let left = triggerRect.left + (triggerRect.width - contentRect.width) / 2;
 	const value = placement.value;
-	if (value.startsWith('top')) top = triggerRect.top - contentRect.height - gap;
+	if (value.startsWith('top')) {
+		top = triggerRect.top - contentRect.height - gap;
+	}
 	if (value.startsWith('left')) {
 		top = triggerRect.top + (triggerRect.height - contentRect.height) / 2;
 		left = triggerRect.left - contentRect.width - gap;
@@ -86,7 +92,9 @@ function updatePosition(): void {
 watch(
 	() => hoverContext.open.value,
 	(isOpen) => {
-		if (isOpen) nextTick(updatePosition);
+		if (isOpen) {
+			nextTick(updatePosition);
+		}
 	},
 );
 watch(

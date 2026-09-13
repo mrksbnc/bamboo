@@ -46,7 +46,9 @@ const classValues = computed(() =>
 );
 
 function select(): void {
-	if (!isDisabled.value) context?.select(props.value);
+	if (!isDisabled.value) {
+		context?.select(props.value);
+	}
 }
 </script>
 

@@ -36,7 +36,9 @@ const props = withDefaults(defineProps<BoContextMenuCheckboxItemProps>(), {
 });
 const checked = defineModel<boolean>('checked', { default: false });
 const context = inject(contextMenuContextKey);
-if (!context) throw new Error('BoContextMenuCheckboxItem must be used inside BoContextMenu');
+if (!context) {
+	throw new Error('BoContextMenuCheckboxItem must be used inside BoContextMenu');
+}
 const menuContext = context;
 const itemClasses = computed(() => {
 	return mergeTwClasses(

@@ -35,7 +35,7 @@ export default defineConfig({
 		},
 	},
 	themeConfig: {
-		logo: assetPath('assets/logo.webp'),
+		logo: '/assets/logo.webp',
 		socialLinks: [{ icon: 'github', link: 'https://github.com/mrksbnc/bamboo' }],
 		search: {
 			provider: 'local',

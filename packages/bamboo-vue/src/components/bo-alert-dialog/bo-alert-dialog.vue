@@ -112,8 +112,9 @@ const panelClasses = computed(() =>
 
 function close(event: 'confirm' | 'cancel'): void {
 	open.value = false;
-	if (event === 'confirm') emit('confirm');
-	else emit('cancel');
+	if (event === 'confirm') {
+		emit('confirm');
+	} else emit('cancel');
 	emit('close');
 }
 
@@ -126,7 +127,9 @@ function onCancel(): void {
 }
 
 function onEscape(): void {
-	if (props.closeOnEscape) onCancel();
+	if (props.closeOnEscape) {
+		onCancel();
+	}
 }
 
 watch(open, async (isOpen) => {

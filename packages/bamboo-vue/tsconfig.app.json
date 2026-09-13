@@ -1,9 +1,10 @@
 {
-	"extends": "@workspace/config/tsconfig.vue.json",
 	"compilerOptions": {
 		"declaration": true,
 		"declarationMap": true,
-		"outDir": "./dist"
+		"outDir": "./dist",
+		"rootDir": "./src"
 	},
+	"extends": "@workspace/config/tsconfig.vue.json",
 	"include": ["env.d.ts", "src/**/*.ts", "src/**/*.vue"]
 }

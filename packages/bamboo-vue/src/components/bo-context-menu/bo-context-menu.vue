@@ -27,8 +27,12 @@ function openAt(x: number, y: number): void {
 }
 
 function onPointerDown(event: PointerEvent): void {
-	if (!props.closeOnOutside || !open.value) return;
-	if (!contentRef.value?.contains(event.target as Node)) close();
+	if (!props.closeOnOutside || !open.value) {
+		return;
+	}
+	if (!contentRef.value?.contains(event.target as Node)) {
+		close();
+	}
 }
 
 function onKeydown(event: KeyboardEvent): void {

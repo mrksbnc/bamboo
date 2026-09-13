@@ -110,9 +110,15 @@ const descriptionId = computed<string>(() => {
 const describedBy = computed<string | undefined>(() => {
 	const ids: string[] = [];
 
-	if (props.ariaDescribedBy) return props.ariaDescribedBy;
-	if (props.description) ids.push(descriptionId.value);
-	if (props.error || props.hint) ids.push(helperTextId.value);
+	if (props.ariaDescribedBy) {
+		return props.ariaDescribedBy;
+	}
+	if (props.description) {
+		ids.push(descriptionId.value);
+	}
+	if (props.error || props.hint) {
+		ids.push(helperTextId.value);
+	}
 
 	return ids.length ? ids.join(' ') : undefined;
 });
@@ -165,18 +171,19 @@ const suffixIconClasses = computed<string>(() => {
 	return TEXTAREA_MANIFEST.styles.icons.suffix;
 });
 
-function cssDimension(value: number | string | undefined): string | undefined {
-	if (value === undefined) return undefined;
-	return typeof value === 'number' ? `${value}px` : value;
-}
-
 const dimensionStyles = computed<Record<string, string>>(() => {
 	const styles: Record<string, string> = {};
 	const height = cssDimension(props.height);
 	const maxHeight = cssDimension(props.maxHeight);
-	if (height) styles['height'] = height;
-	if (maxHeight) styles['maxHeight'] = maxHeight;
-	if (maxHeight || props.resizable) styles['overflowY'] = 'auto';
+	if (height) {
+		styles['height'] = height;
+	}
+	if (maxHeight) {
+		styles['maxHeight'] = maxHeight;
+	}
+	if (maxHeight || props.resizable) {
+		styles['overflowY'] = 'auto';
+	}
 	return styles;
 });
 
@@ -184,12 +191,26 @@ const fieldStyles = computed<Record<string, string>>(() => {
 	const styles: Record<string, string> = {};
 	const height = cssDimension(props.height);
 	const maxHeight = cssDimension(props.maxHeight);
-	if (height) styles['height'] = height;
-	else if (props.expand) styles['height'] = '100%';
-	if (maxHeight) styles['maxHeight'] = maxHeight;
-	if (props.maxHeight || props.resizable) styles['overflowY'] = 'auto';
+	if (height) {
+		styles['height'] = height;
+	} else if (props.expand) {
+		styles['height'] = '100%';
+	}
+	if (maxHeight) {
+		styles['maxHeight'] = maxHeight;
+	}
+	if (props.maxHeight || props.resizable) {
+		styles['overflowY'] = 'auto';
+	}
 	return styles;
 });
+
+function cssDimension(value: number | string | undefined): string | undefined {
+	if (value === undefined) {
+		return undefined;
+	}
+	return typeof value === 'number' ? `${value}px` : value;
+}
 
 function onInput(event: Event) {
 	model.value = (event.target as HTMLTextAreaElement).value;

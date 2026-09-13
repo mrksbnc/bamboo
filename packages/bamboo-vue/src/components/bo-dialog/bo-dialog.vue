@@ -159,15 +159,21 @@ function onClose(): void {
 }
 
 function onBackdropClick(): void {
-	if (props.closeOnBackdrop) onClose();
+	if (props.closeOnBackdrop) {
+		onClose();
+	}
 }
 
 function onEscape(): void {
-	if (props.closeOnEscape) onClose();
+	if (props.closeOnEscape) {
+		onClose();
+	}
 }
 
 watch(open, async (isOpen) => {
-	if (typeof document === 'undefined') return;
+	if (typeof document === 'undefined') {
+		return;
+	}
 	if (isOpen) {
 		await nextTick();
 		panelRef.value?.focus();
@@ -178,7 +184,9 @@ watch(open, async (isOpen) => {
 });
 
 onUnmounted(() => {
-	if (typeof document === 'undefined') return;
+	if (typeof document === 'undefined') {
+		return;
+	}
 	document.body.style.overflow = '';
 });
 </script>

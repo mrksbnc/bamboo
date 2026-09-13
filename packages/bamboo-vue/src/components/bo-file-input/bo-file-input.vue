@@ -113,8 +113,12 @@ const selectedFiles = computed(() => {
 });
 const describedBy = computed(() => {
 	const ids: string[] = [];
-	if (props.description) ids.push(`${props.id}-description`);
-	if (props.error || selectionError.value || props.hint) ids.push(`${props.id}-help`);
+	if (props.description) {
+		ids.push(`${props.id}-description`);
+	}
+	if (props.error || selectionError.value || props.hint) {
+		ids.push(`${props.id}-help`);
+	}
 	return ids.length ? ids.join(' ') : undefined;
 });
 const selectionError = computed(() => {
@@ -124,7 +128,9 @@ function onInputChange(event: Event): void {
 	selection.onInputChange(event);
 	model.value = props.multiple ? selection.files.value : (selection.files.value[0] ?? null);
 	emit('change', selection.files.value);
-	if (selection.error.value) emit('error', selection.error.value);
+	if (selection.error.value) {
+		emit('error', selection.error.value);
+	}
 }
 
 function syncModel(): void {
@@ -139,7 +145,9 @@ function removeFile(index: number): void {
 
 function reset(): void {
 	selection.reset();
-	if (inputRef.value) inputRef.value.value = '';
+	if (inputRef.value) {
+		inputRef.value.value = '';
+	}
 	syncModel();
 }
 

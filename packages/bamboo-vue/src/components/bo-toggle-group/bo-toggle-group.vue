@@ -44,7 +44,9 @@ const orientation = computed(() => {
 });
 const selectedValues = computed(() => {
 	const value = isControlled.value ? props.modelValue : uncontrolledValue.value;
-	if (Array.isArray(value)) return new Set(value);
+	if (Array.isArray(value)) {
+		return new Set(value);
+	}
 	return value === undefined ? new Set<string>() : new Set([value]);
 });
 const variant = computed(() => {
@@ -61,16 +63,21 @@ const groupClasses = computed(() => {
 });
 
 function updateValue(value: string | string[] | undefined): void {
-	if (!isControlled.value) uncontrolledValue.value = value;
+	if (!isControlled.value) {
+		uncontrolledValue.value = value;
+	}
 	model.value = value;
 }
 
 function select(value: string): void {
-	if (props.disabled) return;
+	if (props.disabled) {
+		return;
+	}
 	if (props.multiple) {
 		const values = new Set(selectedValues.value);
-		if (values.has(value)) values.delete(value);
-		else values.add(value);
+		if (values.has(value)) {
+			values.delete(value);
+		} else values.add(value);
 		updateValue(Array.from(values));
 		return;
 	}
@@ -91,13 +98,17 @@ function onKeydown(event: KeyboardEvent): void {
 	);
 	const currentItem = event.target as HTMLButtonElement;
 	const currentIndex = items.indexOf(currentItem);
-	if (items.length === 0 || currentIndex === -1) return;
+	if (items.length === 0 || currentIndex === -1) {
+		return;
+	}
 
 	event.preventDefault();
 	let nextIndex = currentIndex;
-	if (event.key === 'Home') nextIndex = 0;
-	else if (event.key === 'End') nextIndex = items.length - 1;
-	else {
+	if (event.key === 'Home') {
+		nextIndex = 0;
+	} else if (event.key === 'End') {
+		nextIndex = items.length - 1;
+	} else {
 		const direction = event.key === nextKey ? 1 : -1;
 		nextIndex = (currentIndex + direction + items.length) % items.length;
 	}

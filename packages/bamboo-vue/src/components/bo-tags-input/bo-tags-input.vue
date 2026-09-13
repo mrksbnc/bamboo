@@ -117,8 +117,12 @@ const describedBy = computed(() => {
 
 function addTag(value = draft.value): void {
 	const tag = value.trim();
-	if (!tag || props.disabled || props.readOnly) return;
-	if (props.maxTags !== undefined && model.value.length >= props.maxTags) return;
+	if (!tag || props.disabled || props.readOnly) {
+		return;
+	}
+	if (props.maxTags !== undefined && model.value.length >= props.maxTags) {
+		return;
+	}
 	if (!props.allowDuplicates && model.value.includes(tag)) {
 		draft.value = '';
 		return;
@@ -128,7 +132,9 @@ function addTag(value = draft.value): void {
 }
 
 function removeTag(index: number): void {
-	if (props.disabled || props.readOnly) return;
+	if (props.disabled || props.readOnly) {
+		return;
+	}
 	model.value = model.value.filter((_, tagIndex) => tagIndex !== index);
 }
 
@@ -160,7 +166,9 @@ function focus(): void {
 defineExpose({ focus, addTag, removeTag });
 
 onMounted(() => {
-	if (props.autofocus) focus();
+	if (props.autofocus) {
+		focus();
+	}
 });
 </script>
 

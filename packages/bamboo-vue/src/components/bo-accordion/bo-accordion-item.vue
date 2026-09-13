@@ -60,6 +60,8 @@ import { computed, inject, ref } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { accordionDisabledKey, accordionOpenValuesKey, accordionToggleKey } from './keys.js';
 
+type ComponentState = 'open' | 'closed';
+
 const props = withDefaults(defineProps<BoAccordionItemProps>(), {
 	id: () => generateComponentId('accordion-item'),
 	dataTestId: () => generateDataTestId('accordion-item'),
@@ -86,7 +88,7 @@ const triggerId = computed<string>(() => {
 	return `${props.id}-trigger`;
 });
 
-const state = computed<'open' | 'closed'>(() => {
+const state = computed<ComponentState>(() => {
 	return isOpen.value ? 'open' : 'closed';
 });
 

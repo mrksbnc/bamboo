@@ -2,10 +2,9 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
-		"target": "esnext",
-		"module": "esnext",
-		"moduleResolution": "bundler",
-		"lib": ["ESNext"],
+		"target": "es2025",
+		"module": "nodenext",
+		"lib": ["es2025", "DOM", "DOM.Iterable", "ESNext.Collection", "ESNext.Temporal"],
 		"types": ["node"],
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true

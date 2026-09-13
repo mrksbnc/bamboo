@@ -31,7 +31,9 @@ const rootRef = useTemplateRef<HTMLElement>('rootRef');
 const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
 const disabled = computed(() => props.disabled);
 function toggle(): void {
-	if (!disabled.value) open.value = !open.value;
+	if (!disabled.value) {
+		open.value = !open.value;
+	}
 }
 function close(): void {
 	open.value = false;
@@ -52,11 +54,15 @@ function onKeydown(event: KeyboardEvent): void {
 	const current = items.indexOf(document.activeElement as HTMLElement);
 	if (event.key === 'ArrowDown') {
 		event.preventDefault();
-		if (!open.value) open.value = true;
+		if (!open.value) {
+			open.value = true;
+		}
 		focusItem(current < 0 ? 0 : (current + 1) % items.length);
 	} else if (event.key === 'ArrowUp') {
 		event.preventDefault();
-		if (!open.value) open.value = true;
+		if (!open.value) {
+			open.value = true;
+		}
 		focusItem(current < 0 ? items.length - 1 : (current - 1 + items.length) % items.length);
 	} else if (event.key === 'Home') {
 		event.preventDefault();
@@ -71,7 +77,9 @@ function onKeydown(event: KeyboardEvent): void {
 }
 provide(dropdownContextKey, { open, toggle, close, triggerRef });
 function onPointerdown(event: PointerEvent): void {
-	if (open.value && !rootRef.value?.contains(event.target as Node)) open.value = false;
+	if (open.value && !rootRef.value?.contains(event.target as Node)) {
+		open.value = false;
+	}
 }
 onMounted(() => document.addEventListener('pointerdown', onPointerdown));
 onBeforeUnmount(() => document.removeEventListener('pointerdown', onPointerdown));

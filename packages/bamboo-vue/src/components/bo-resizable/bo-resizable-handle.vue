@@ -37,7 +37,9 @@ let panels: [HTMLElement, HTMLElement] | undefined;
 
 function getPanels(event: Event): [HTMLElement, HTMLElement] | undefined {
 	const group = (event.currentTarget as HTMLElement).parentElement;
-	if (!group) return undefined;
+	if (!group) {
+		return undefined;
+	}
 	const found = Array.from(group.querySelectorAll<HTMLElement>('[data-resizable-panel]'));
 	return found.length >= 2 ? [found[0]!, found[1]!] : undefined;
 }
@@ -50,7 +52,9 @@ function setPercent(found: [HTMLElement, HTMLElement], percent: number): void {
 }
 
 function onPointerMove(event: PointerEvent): void {
-	if (!groupRect || !panels) return;
+	if (!groupRect || !panels) {
+		return;
+	}
 	const position =
 		direction.value === 'horizontal'
 			? event.clientX - groupRect.left
@@ -70,9 +74,13 @@ function onPointerUp(): void {
 function onPointerDown(event: PointerEvent): void {
 	event.preventDefault();
 	const found = getPanels(event);
-	if (!found) return;
+	if (!found) {
+		return;
+	}
 	groupRect = (event.currentTarget as HTMLElement).parentElement?.getBoundingClientRect();
-	if (!groupRect) return;
+	if (!groupRect) {
+		return;
+	}
 	panels = found;
 	firstPanelPercent.value = Number.parseFloat(found[0].style.flexBasis || '50') || 50;
 	document.addEventListener('pointermove', onPointerMove);
@@ -85,10 +93,14 @@ function onKeydown(event: KeyboardEvent): void {
 		direction.value === 'horizontal' ? event.key === 'ArrowLeft' : event.key === 'ArrowUp';
 	const increases =
 		direction.value === 'horizontal' ? event.key === 'ArrowRight' : event.key === 'ArrowDown';
-	if (!['Home', 'End'].includes(event.key) && !decreases && !increases) return;
+	if (!['Home', 'End'].includes(event.key) && !decreases && !increases) {
+		return;
+	}
 	event.preventDefault();
 	const found = getPanels(event);
-	if (!found) return;
+	if (!found) {
+		return;
+	}
 	const current = Number.parseFloat(found[0].style.flexBasis || '50') || 50;
 	setPercent(
 		found,

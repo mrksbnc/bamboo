@@ -104,11 +104,15 @@ function onClose(): void {
 }
 
 function onBackdropClick(): void {
-	if (props.closeOnBackdrop) onClose();
+	if (props.closeOnBackdrop) {
+		onClose();
+	}
 }
 
 function onEscape(): void {
-	if (props.closeOnEscape) onClose();
+	if (props.closeOnEscape) {
+		onClose();
+	}
 }
 
 watch(open, async (isOpen) => {

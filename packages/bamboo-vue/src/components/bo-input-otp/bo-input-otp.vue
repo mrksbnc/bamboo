@@ -147,14 +147,18 @@ function onInput(index: number, event: Event): void {
 }
 
 function onPaste(event: ClipboardEvent): void {
-	if (props.disabled || props.readOnly) return;
+	if (props.disabled || props.readOnly) {
+		return;
+	}
 	event.preventDefault();
 	const value = validCharacters(event.clipboardData?.getData('text') || '').slice(
 		0,
 		inputCount.value,
 	);
 	model.value = value;
-	if (value.length === inputCount.value) emit('complete', value);
+	if (value.length === inputCount.value) {
+		emit('complete', value);
+	}
 	focusInput(value.length);
 }
 
@@ -191,12 +195,12 @@ async function focusInput(index: number): Promise<void> {
 	await nextTick(() => inputs()[Math.max(0, Math.min(index, inputCount.value - 1))]?.focus());
 }
 
-async function a() {}
-
 defineExpose({ focus });
 
 onMounted(() => {
-	if (props.autofocus) focus();
+	if (props.autofocus) {
+		focus();
+	}
 });
 </script>
 

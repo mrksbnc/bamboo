@@ -33,10 +33,6 @@ const props = withDefaults(defineProps<BoTabsContentProps>(), {
 const activeValue = inject(tabsActiveValueKey);
 const items = inject(tabsItemsKey);
 
-function valueKey(value: BoTabsValue): string {
-	return String(value).replace(/[^a-zA-Z0-9_-]+/g, '-');
-}
-
 const isActive = computed(() => {
 	return activeValue?.value === props.value;
 });
@@ -49,6 +45,10 @@ const triggerId = computed(() => {
 		`tabs-trigger-${valueKey(props.value)}`
 	);
 });
+
+function valueKey(value: BoTabsValue): string {
+	return String(value).replace(/[^a-zA-Z0-9_-]+/g, '-');
+}
 </script>
 
 <style>

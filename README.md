@@ -12,4 +12,4 @@ Main monorepo for the Bamboo project.
 
 ## Release Process
 
-This project uses [Release Please](https://github.com/googleapis/release-please) for automated releases. See [RELEASE.md](./RELEASE.md) for detailed information about the release workflow and npm publishing setup.
+Releases are automated with [semantic-release](https://semantic-release.gitbook.io/semantic-release/) on every push to `main`. The Vue library is published to GitHub Packages, and the documentation site is deployed to GitHub Pages.

@@ -81,7 +81,9 @@ const descriptionId = computed(() => {
 });
 const controlStyleValues = computed<StyleValue>(() => {
 	const customColor = props.customColor;
-	if (!customColor) return {};
+	if (!customColor) {
+		return {};
+	}
 
 	if (typeof customColor === 'string') {
 		return { backgroundColor: getValidOrFallbackColorFromStr(customColor) };
@@ -91,9 +93,15 @@ const controlStyleValues = computed<StyleValue>(() => {
 		? (customColor.checkedBackground ?? customColor.background)
 		: customColor.background;
 	const style: StyleValue = {};
-	if (background) style.backgroundColor = getValidOrFallbackColorFromStr(background);
-	if (customColor.border) style.borderColor = getValidOrFallbackColorFromStr(customColor.border);
-	if (customColor.text) style.color = getValidOrFallbackColorFromStr(customColor.text);
+	if (background) {
+		style.backgroundColor = getValidOrFallbackColorFromStr(background);
+	}
+	if (customColor.border) {
+		style.borderColor = getValidOrFallbackColorFromStr(customColor.border);
+	}
+	if (customColor.text) {
+		style.color = getValidOrFallbackColorFromStr(customColor.text);
+	}
 	return style;
 });
 const thumbStyleValues = computed<StyleValue>(() => {
@@ -111,15 +119,21 @@ const thumbStyleValues = computed<StyleValue>(() => {
 });
 
 function toggle(): void {
-	if (props.disabled) return;
+	if (props.disabled) {
+		return;
+	}
 
 	const nextValue = !isChecked.value;
-	if (!isControlled.value) uncontrolledValue.value = nextValue;
+	if (!isControlled.value) {
+		uncontrolledValue.value = nextValue;
+	}
 	model.value = nextValue;
 }
 
 function onKeydown(event: KeyboardEvent): void {
-	if (event.key !== 'Enter' && event.key !== ' ') return;
+	if (event.key !== 'Enter' && event.key !== ' ') {
+		return;
+	}
 
 	event.preventDefault();
 	toggle();

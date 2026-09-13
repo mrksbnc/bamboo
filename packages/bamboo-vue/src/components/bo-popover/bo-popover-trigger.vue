@@ -20,7 +20,9 @@ import { popoverContextKey } from './keys';
 
 defineOptions({ inheritAttrs: false });
 const context = inject(popoverContextKey);
-if (!context) throw new Error('BoPopoverTrigger must be used inside BoPopover');
+if (!context) {
+	throw new Error('BoPopoverTrigger must be used inside BoPopover');
+}
 
 const triggerRef = ref<HTMLElement | null>(null);
 watch(

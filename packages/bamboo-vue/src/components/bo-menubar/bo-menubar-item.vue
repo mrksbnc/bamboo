@@ -39,13 +39,17 @@ const emit = defineEmits<{
 const context = inject(menubarContextKey, null);
 
 function select(): void {
-	if (props.disabled) return;
+	if (props.disabled) {
+		return;
+	}
 	emit('select', props.value);
 	context?.closeAll();
 }
 
 function onKeydown(event: KeyboardEvent): void {
-	if (event.key !== 'Enter' && event.key !== ' ') return;
+	if (event.key !== 'Enter' && event.key !== ' ') {
+		return;
+	}
 	event.preventDefault();
 	select();
 }

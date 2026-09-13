@@ -63,8 +63,12 @@ const errorId = computed(() => {
 });
 const describedBy = computed(() => {
 	const ids = [];
-	if (props.description) ids.push(descriptionId.value);
-	if (props.error) ids.push(errorId.value);
+	if (props.description) {
+		ids.push(descriptionId.value);
+	}
+	if (props.error) {
+		ids.push(errorId.value);
+	}
 	return ids.join(' ') || undefined;
 });
 

@@ -48,7 +48,9 @@ const contentId = computed(() => `${props.id}-content`);
 const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
 
 function onKeydown(event: KeyboardEvent): void {
-	if (props.disabled) return;
+	if (props.disabled) {
+		return;
+	}
 	if (event.key === 'Enter' || event.key === ' ') {
 		event.preventDefault();
 		event.stopPropagation();
@@ -67,12 +69,16 @@ function onKeydown(event: KeyboardEvent): void {
 function toggle(): void {
 	if (!props.disabled) {
 		model.value = !model.value;
-		if (model.value) void nextTick(() => focusMenuItem(0));
+		if (model.value) {
+			void nextTick(() => focusMenuItem(0));
+		}
 	}
 }
 
 function openAndFocus(): void {
-	if (props.disabled) return;
+	if (props.disabled) {
+		return;
+	}
 	model.value = true;
 	void nextTick(() => focusMenuItem(0));
 }
@@ -89,11 +95,15 @@ function onContentKeydown(event: KeyboardEvent): void {
 		closeAndFocus();
 		return;
 	}
-	if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+	if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+		return;
+	}
 	event.preventDefault();
 	event.stopPropagation();
 	const items = menuItems(event.currentTarget as HTMLElement);
-	if (!items.length) return;
+	if (!items.length) {
+		return;
+	}
 	const current = items.indexOf(
 		(event.target as HTMLElement).closest('[role="menuitem"]') as HTMLElement,
 	);

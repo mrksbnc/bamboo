@@ -23,8 +23,12 @@ let openTimer: ReturnType<typeof setTimeout> | undefined;
 let closeTimer: ReturnType<typeof setTimeout> | undefined;
 
 function clearTimers(): void {
-	if (openTimer) clearTimeout(openTimer);
-	if (closeTimer) clearTimeout(closeTimer);
+	if (openTimer) {
+		clearTimeout(openTimer);
+	}
+	if (closeTimer) {
+		clearTimeout(closeTimer);
+	}
 	openTimer = undefined;
 	closeTimer = undefined;
 }

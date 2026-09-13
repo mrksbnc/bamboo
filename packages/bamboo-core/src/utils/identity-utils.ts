@@ -1,7 +1,9 @@
 import { getCurrentInstance, useId } from 'vue';
 
 function generateSuffix(): string {
-	if (getCurrentInstance()) return useId();
+	if (getCurrentInstance()) {
+		return useId();
+	}
 	return Math.random().toString(36).slice(2, 11);
 }
 

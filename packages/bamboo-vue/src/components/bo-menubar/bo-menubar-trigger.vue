@@ -62,8 +62,9 @@ const triggerClasses = computed(() => {
 
 function open(): void {
 	if (!props.disabled) {
-		if (context) context.openTrigger(props.id, true);
-		else model.value = true;
+		if (context) {
+			context.openTrigger(props.id, true);
+		} else model.value = true;
 	}
 }
 
@@ -78,17 +79,21 @@ function openAndFocusLast(): void {
 }
 
 function close(): void {
-	if (context) context.openTrigger(props.id, false);
-	else model.value = false;
+	if (context) {
+		context.openTrigger(props.id, false);
+	} else model.value = false;
 }
 function toggle(): void {
 	if (!props.disabled) {
-		if (context) context.openTrigger(props.id, !model.value);
-		else model.value = !model.value;
+		if (context) {
+			context.openTrigger(props.id, !model.value);
+		} else model.value = !model.value;
 	}
 }
 function onTriggerKeydown(event: KeyboardEvent): void {
-	if (props.disabled) return;
+	if (props.disabled) {
+		return;
+	}
 	if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
 		event.preventDefault();
 		openAndFocus();
@@ -116,10 +121,14 @@ function onContentKeydown(event: KeyboardEvent): void {
 		return;
 	}
 
-	if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+	if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+		return;
+	}
 	event.preventDefault();
 	const items = menuItems(event.currentTarget as HTMLElement);
-	if (!items.length) return;
+	if (!items.length) {
+		return;
+	}
 	const current = items.indexOf(
 		(event.target as HTMLElement).closest('[role="menuitem"]') as HTMLElement,
 	);

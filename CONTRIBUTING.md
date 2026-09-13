@@ -57,7 +57,10 @@ pnpm type-check && pnpm lint && pnpm test && pnpm build && pnpm fmt:check
 
 Use conventional commits (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`).
 Husky runs the lint/format hooks before commit. Releases are automated with
-Release Please — the changelog is generated, never hand-edited.
+semantic-release — the changelog is generated, never hand-edited. The merged
+PR title controls the release: `feat:` creates a major release, `chore:` and
+`refactor:` create minor releases, and `patch:` creates a patch release. PRs
+must be squash-merged so the PR title is the commit analyzed by semantic-release.
 
 ## Breaking changes
 

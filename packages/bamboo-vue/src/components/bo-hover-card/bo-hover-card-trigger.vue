@@ -17,7 +17,9 @@ import { inject, ref, watch } from 'vue';
 import { hoverCardContextKey } from './keys';
 
 const context = inject(hoverCardContextKey);
-if (!context) throw new Error('BoHoverCardTrigger must be used inside BoHoverCard');
+if (!context) {
+	throw new Error('BoHoverCardTrigger must be used inside BoHoverCard');
+}
 const triggerRef = ref<HTMLElement>();
 watch(
 	triggerRef,

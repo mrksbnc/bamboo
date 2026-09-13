@@ -210,19 +210,6 @@ const maxValue = computed(() => Math.max(0, ...values.value, 1));
 const range = computed(() => Math.max(maxValue.value - minValue.value, 1));
 const baseline = computed(() => scaleY(0));
 
-function scaleY(value: number): number {
-	return PLOT_TOP + ((maxValue.value - value) / range.value) * PLOT_HEIGHT;
-}
-
-function xPosition(index: number, count = labels.value.length, centered = false): number {
-	if (count <= 1) return PLOT_LEFT + PLOT_WIDTH / 2;
-	return PLOT_LEFT + ((index + (centered ? 0.5 : 0)) / (centered ? count : count - 1)) * PLOT_WIDTH;
-}
-
-function xLabel(index: number): number {
-	return xPosition(index, labels.value.length, type.value === 'bar');
-}
-
 const yTicks = computed(() =>
 	Array.from({ length: 5 }, (_, index) => {
 		const value = minValue.value + (range.value * index) / 4;
@@ -234,10 +221,6 @@ const yTicks = computed(() =>
 	}),
 );
 
-function pathFor(points: Point[]): string {
-	return points.map((point, index) => `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`).join(' ');
-}
-
 const lines = computed<LineMark[]>(() =>
 	chartSeries.value.map((series, seriesIndex) => {
 		const points = series.data.map((value, index) => ({
@@ -247,14 +230,22 @@ const lines = computed<LineMark[]>(() =>
 		}));
 		const path = pathFor(points);
 		const areaPath = points.length
-			? `${path} L ${points[points.length - 1].x} ${baseline.value} L ${points[0].x} ${baseline.value} Z`
+			? `${path} L ${points.at(-1)!.x} ${baseline.value} L ${points[0]!.x} ${baseline.value} Z`
 			: '';
-		return { key: `line-${seriesIndex}`, color: series.color, path, areaPath, points };
+		return {
+			key: `line-${seriesIndex}`,
+			color: series.color ?? paletteColor(seriesIndex),
+			path,
+			areaPath,
+			points,
+		};
 	}),
 );
 
 const bars = computed<BarMark[]>(() => {
-	if (!labels.value.length) return [];
+	if (!labels.value.length) {
+		return [];
+	}
 	const groupWidth = (PLOT_WIDTH / labels.value.length) * 0.76;
 	const seriesCount = Math.max(chartSeries.value.length, 1);
 	const marks: BarMark[] = [];
@@ -269,8 +260,9 @@ const bars = computed<BarMark[]>(() => {
 			const lower = props.stacked ? (value >= 0 ? positiveStack : negativeStack) : 0;
 			const upper = lower + value;
 			if (props.stacked) {
-				if (value >= 0) positiveStack = upper;
-				else negativeStack = upper;
+				if (value >= 0) {
+					positiveStack = upper;
+				} else negativeStack = upper;
 			}
 			const y = Math.min(scaleY(lower), scaleY(upper));
 			marks.push({
@@ -279,12 +271,84 @@ const bars = computed<BarMark[]>(() => {
 				y,
 				width: Math.max(width - 2, 1),
 				height: Math.max(Math.abs(scaleY(lower) - scaleY(upper)), 1),
-				color: series.color ?? PALETTE[seriesIndex % PALETTE.length],
+				color: series.color ?? paletteColor(seriesIndex),
 			});
 		});
 	});
 	return marks;
 });
+
+const slices = computed<SliceMark[]>(() => {
+	const data = chartSeries.value[0]?.data ?? [];
+	const total = data.reduce((sum, value) => sum + Math.max(value, 0), 0);
+	if (!total) {
+		return [];
+	}
+	const outerRadius = Math.min(PLOT_WIDTH, height.value - 40) / 2;
+	const innerRadius = type.value === 'donut' ? outerRadius * 0.55 : 0;
+	let angle = -Math.PI / 2;
+	return data.map((value, index) => {
+		const end = angle + (Math.max(value, 0) / total) * Math.PI * 2;
+		const slice = {
+			key: `slice-${index}`,
+			path: arcPath(angle, end, outerRadius, innerRadius),
+			color:
+				chartSeries.value[0]?.color && data.length === 1
+					? chartSeries.value[0].color
+					: paletteColor(index),
+		};
+		angle = end;
+		return slice;
+	});
+});
+
+const legend = computed<LegendMark[]>(() => {
+	if (type.value === 'pie' || type.value === 'donut') {
+		return labels.value.map((label, index) => ({
+			key: `legend-${index}`,
+			label,
+			color: paletteColor(index),
+		}));
+	}
+	return chartSeries.value.map((series, index) => ({
+		key: `legend-${index}`,
+		label: series.name,
+		color: series.color ?? paletteColor(index),
+	}));
+});
+
+const summary = computed(() => {
+	if (!hasData.value) {
+		return 'No chart data available.';
+	}
+	if (type.value === 'pie' || type.value === 'donut') {
+		return `${type.value} chart with ${labels.value.length} segments.`;
+	}
+	return `${type.value} chart with ${chartSeries.value.length} series and ${labels.value.length} categories.`;
+});
+
+function paletteColor(index: number): string {
+	return PALETTE[index % PALETTE.length]!;
+}
+
+function scaleY(value: number): number {
+	return PLOT_TOP + ((maxValue.value - value) / range.value) * PLOT_HEIGHT;
+}
+
+function xPosition(index: number, count = labels.value.length, centered = false): number {
+	if (count <= 1) {
+		return PLOT_LEFT + PLOT_WIDTH / 2;
+	}
+	return PLOT_LEFT + ((index + (centered ? 0.5 : 0)) / (centered ? count : count - 1)) * PLOT_WIDTH;
+}
+
+function xLabel(index: number): number {
+	return xPosition(index, labels.value.length, type.value === 'bar');
+}
+
+function pathFor(points: Point[]): string {
+	return points.map((point, index) => `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`).join(' ');
+}
 
 function arcPath(start: number, end: number, outerRadius: number, innerRadius: number): string {
 	const cx = WIDTH / 2;
@@ -306,51 +370,6 @@ function arcPath(start: number, end: number, outerRadius: number, innerRadius: n
 	const innerEnd = [cx + Math.cos(start) * innerRadius, cy + Math.sin(start) * innerRadius];
 	return `M ${outerStart[0]} ${outerStart[1]} A ${outerRadius} ${outerRadius} 0 ${largeArc} 1 ${outerEnd[0]} ${outerEnd[1]} L ${innerStart[0]} ${innerStart[1]} A ${innerRadius} ${innerRadius} 0 ${largeArc} 0 ${innerEnd[0]} ${innerEnd[1]} Z`;
 }
-
-const slices = computed<SliceMark[]>(() => {
-	const data = chartSeries.value[0]?.data ?? [];
-	const total = data.reduce((sum, value) => sum + Math.max(value, 0), 0);
-	if (!total) return [];
-	const outerRadius = Math.min(PLOT_WIDTH, height.value - 40) / 2;
-	const innerRadius = type.value === 'donut' ? outerRadius * 0.55 : 0;
-	let angle = -Math.PI / 2;
-	return data.map((value, index) => {
-		const end = angle + (Math.max(value, 0) / total) * Math.PI * 2;
-		const slice = {
-			key: `slice-${index}`,
-			path: arcPath(angle, end, outerRadius, innerRadius),
-			color:
-				chartSeries.value[0]?.color && data.length === 1
-					? chartSeries.value[0].color
-					: PALETTE[index % PALETTE.length],
-		};
-		angle = end;
-		return slice;
-	});
-});
-
-const legend = computed<LegendMark[]>(() => {
-	if (type.value === 'pie' || type.value === 'donut') {
-		return labels.value.map((label, index) => ({
-			key: `legend-${index}`,
-			label,
-			color: PALETTE[index % PALETTE.length],
-		}));
-	}
-	return chartSeries.value.map((series, index) => ({
-		key: `legend-${index}`,
-		label: series.name,
-		color: series.color ?? PALETTE[index % PALETTE.length],
-	}));
-});
-
-const summary = computed(() => {
-	if (!hasData.value) return 'No chart data available.';
-	if (type.value === 'pie' || type.value === 'donut') {
-		return `${type.value} chart with ${labels.value.length} segments.`;
-	}
-	return `${type.value} chart with ${chartSeries.value.length} series and ${labels.value.length} categories.`;
-});
 </script>
 
 <style>

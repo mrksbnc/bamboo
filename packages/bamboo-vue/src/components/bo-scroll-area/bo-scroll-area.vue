@@ -74,6 +74,17 @@ const styleValues = computed<StyleValue>(() => {
 	return props.maxHeight === undefined ? {} : { maxHeight: `${props.maxHeight}px` };
 });
 
+const showVerticalScrollbar = computed(() => {
+	void viewportTick.value;
+	const { scrollHeight, clientHeight } = metrics();
+	return scrollHeight > clientHeight;
+});
+const showHorizontalScrollbar = computed(() => {
+	void viewportTick.value;
+	const { scrollWidth, clientWidth } = metrics();
+	return scrollWidth > clientWidth;
+});
+
 function metrics() {
 	const viewport = viewportRef.value;
 	return viewport
@@ -95,17 +106,6 @@ function metrics() {
 			};
 }
 
-const showVerticalScrollbar = computed(() => {
-	void viewportTick.value;
-	const { scrollHeight, clientHeight } = metrics();
-	return scrollHeight > clientHeight;
-});
-const showHorizontalScrollbar = computed(() => {
-	void viewportTick.value;
-	const { scrollWidth, clientWidth } = metrics();
-	return scrollWidth > clientWidth;
-});
-
 function thumbStyle(orientation: 'vertical' | 'horizontal'): Record<string, string> {
 	void viewportTick.value;
 	const { scrollTop, scrollLeft, scrollHeight, scrollWidth, clientHeight, clientWidth } = metrics();
@@ -126,7 +126,9 @@ function onScroll(): void {
 }
 function onThumbPointerDown(orientation: 'vertical' | 'horizontal', event: PointerEvent): void {
 	const viewport = viewportRef.value;
-	if (!viewport) return;
+	if (!viewport) {
+		return;
+	}
 	event.preventDefault();
 	const vertical = orientation === 'vertical';
 	const startPointer = vertical ? event.clientY : event.clientX;
@@ -140,8 +142,9 @@ function onThumbPointerDown(orientation: 'vertical' | 'horizontal', event: Point
 	const scale = trackSize > thumbSize && maxScroll > 0 ? maxScroll / (trackSize - thumbSize) : 0;
 	const onMove = (moveEvent: PointerEvent) => {
 		const delta = (vertical ? moveEvent.clientY : moveEvent.clientX) - startPointer;
-		if (vertical) viewport.scrollTop = startScroll + delta * scale;
-		else viewport.scrollLeft = startScroll + delta * scale;
+		if (vertical) {
+			viewport.scrollTop = startScroll + delta * scale;
+		} else viewport.scrollLeft = startScroll + delta * scale;
 		viewportTick.value += 1;
 	};
 	const onUp = () => {
@@ -154,7 +157,9 @@ function onThumbPointerDown(orientation: 'vertical' | 'horizontal', event: Point
 
 function onTrackPointerDown(orientation: 'vertical' | 'horizontal', event: PointerEvent): void {
 	const viewport = viewportRef.value;
-	if (!viewport) return;
+	if (!viewport) {
+		return;
+	}
 	const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
 	const { scrollHeight, scrollWidth, clientHeight, clientWidth } = metrics();
 	if (orientation === 'vertical')

@@ -80,30 +80,42 @@ const visiblePages = computed<(number | string)[]>(() => {
 	const current = page.value;
 	const siblings = props.siblingCount ?? 1;
 
-	if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+	if (total <= 7) {
+		return Array.from({ length: total }, (_, i) => i + 1);
+	}
 
 	const left = Math.max(2, current - siblings);
 	const right = Math.min(total - 1, current + siblings);
 	const pages: (number | string)[] = [1];
 
-	if (left > 2) pages.push('...');
+	if (left > 2) {
+		pages.push('...');
+	}
 	for (let i = left; i <= right; i++) pages.push(i);
-	if (right < total - 1) pages.push('...');
+	if (right < total - 1) {
+		pages.push('...');
+	}
 	pages.push(total);
 
 	return pages;
 });
 
 function onPage(p: number): void {
-	if (!props.disabled) page.value = p;
+	if (!props.disabled) {
+		page.value = p;
+	}
 }
 
 function onPrev(): void {
-	if (!props.disabled && page.value > 1) page.value--;
+	if (!props.disabled && page.value > 1) {
+		page.value--;
+	}
 }
 
 function onNext(): void {
-	if (!props.disabled && page.value < totalPages.value) page.value++;
+	if (!props.disabled && page.value < totalPages.value) {
+		page.value++;
+	}
 }
 </script>
 

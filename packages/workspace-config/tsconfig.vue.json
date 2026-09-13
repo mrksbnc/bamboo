@@ -10,6 +10,7 @@
 		"jsxImportSource": "vue",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
+		"exactOptionalPropertyTypes": false,
 		"useDefineForClassFields": true,
 		"declaration": true,
 		"declarationMap": true,

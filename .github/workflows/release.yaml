@@ -38,8 +38,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build library
+        run: pnpm --filter @mrksbnc/bamboo-vue... build
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm dlx semantic-release
+        run: pnpm exec semantic-release

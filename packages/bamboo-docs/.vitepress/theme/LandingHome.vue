@@ -30,7 +30,10 @@ const version = packageJson.version;
 			</p>
 
 			<div class="landing-actions">
-				<a class="landing-button landing-button-primary" href="/en/guide/getting-started">
+				<a
+					class="landing-button landing-button-primary"
+					:href="withBase('/en/guide/getting-started')"
+				>
 					Get started
 					<svg
 						width="16"
@@ -187,9 +190,9 @@ const version = packageJson.version;
 		<footer class="landing-footer">
 			<span>MIT Licensed</span>
 			<span>·</span>
-			<a href="/en/components/index">Components</a>
+			<a :href="withBase('/en/components/index')">Components</a>
 			<span>·</span>
-			<a href="/en/guide/theming">Theming</a>
+			<a :href="withBase('/en/guide/theming')">Theming</a>
 		</footer>
 	</div>
 </template>

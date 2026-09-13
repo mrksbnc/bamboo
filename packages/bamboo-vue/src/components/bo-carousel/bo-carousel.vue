@@ -105,7 +105,9 @@ function previous(): void {
 		goTo(current.value === 0 ? (props.loop ? itemCount.value - 1 : 0) : current.value - 1);
 }
 function pause(): void {
-	if (timer) clearInterval(timer);
+	if (timer) {
+		clearInterval(timer);
+	}
 	timer = undefined;
 }
 function resume(): void {

@@ -117,7 +117,9 @@ const firstFocusableDayKey = computed(() => {
 });
 
 function changeMonth(offset: number): void {
-	if (props.disabled) return;
+	if (props.disabled) {
+		return;
+	}
 	visibleMonth.value = new Date(
 		visibleMonth.value.getFullYear(),
 		visibleMonth.value.getMonth() + offset,
@@ -126,7 +128,9 @@ function changeMonth(offset: number): void {
 }
 
 function isDisabled(date: Date): boolean {
-	if (props.disabled) return true;
+	if (props.disabled) {
+		return true;
+	}
 	const day = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 	return Boolean(
 		(props.minDate && day < startOfDay(props.minDate)) ||
@@ -159,7 +163,9 @@ function onDayKeydown(date: Date, event: KeyboardEvent): void {
 		ArrowDown: 7,
 	};
 	const offset = offsets[event.key];
-	if (!offset) return;
+	if (!offset) {
+		return;
+	}
 	event.preventDefault();
 	const nextDate = new Date(date);
 	nextDate.setDate(nextDate.getDate() + offset);
@@ -170,7 +176,9 @@ function onDayKeydown(date: Date, event: KeyboardEvent): void {
 }
 
 function select(date: Date): void {
-	if (props.disabled || isDisabled(date)) return;
+	if (props.disabled || isDisabled(date)) {
+		return;
+	}
 	model.value = new Date(date);
 	emit('select', new Date(date));
 }

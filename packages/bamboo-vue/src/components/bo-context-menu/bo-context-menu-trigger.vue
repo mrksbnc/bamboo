@@ -10,7 +10,9 @@ import { inject } from 'vue';
 import { contextMenuContextKey } from './keys';
 
 const context = inject(contextMenuContextKey);
-if (!context) throw new Error('BoContextMenuTrigger must be used inside BoContextMenu');
+if (!context) {
+	throw new Error('BoContextMenuTrigger must be used inside BoContextMenu');
+}
 const menuContext = context;
 
 function onContextMenu(event: MouseEvent): void {

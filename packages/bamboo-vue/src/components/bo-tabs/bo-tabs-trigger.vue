@@ -51,10 +51,6 @@ const orientation = inject(tabsOrientationKey);
 const activationMode = inject(tabsActivationModeKey);
 const groupDisabled = inject(tabsDisabledKey);
 
-function valueKey(value: BoTabsValue): string {
-	return String(value).replace(/[^a-zA-Z0-9_-]+/g, '-');
-}
-
 const triggerId = computed(() => {
 	return props.id ?? `tabs-trigger-${valueKey(props.value)}`;
 });
@@ -74,14 +70,22 @@ const triggerClasses = computed(() => {
 	);
 });
 
+function valueKey(value: BoTabsValue): string {
+	return String(value).replace(/[^a-zA-Z0-9_-]+/g, '-');
+}
+
 function onClick(): void {
-	if (!isDisabled.value) select?.(props.value);
+	if (!isDisabled.value) {
+		select?.(props.value);
+	}
 }
 
 function focusItem(item: { value: BoTabsValue; id: string }): void {
 	const element = document.getElementById(item.id);
 	element?.focus();
-	if (activationMode?.value === 'automatic') select?.(item.value);
+	if (activationMode?.value === 'automatic') {
+		select?.(item.value);
+	}
 }
 
 function onKeydown(event: KeyboardEvent): void {
@@ -92,23 +96,37 @@ function onKeydown(event: KeyboardEvent): void {
 
 	if (key === 'Enter' || key === ' ') {
 		event.preventDefault();
-		if (!isDisabled.value) select?.(props.value);
+		if (!isDisabled.value) {
+			select?.(props.value);
+		}
 		return;
 	}
 
-	if (!items || ![previousKey, nextKey, 'Home', 'End'].includes(key)) return;
+	if (!items || ![previousKey, nextKey, 'Home', 'End'].includes(key)) {
+		return;
+	}
 	event.preventDefault();
 	const enabledItems = items.value.filter((item) => !item.disabled);
 	const currentIndex = enabledItems.findIndex((item) => item.value === props.value);
-	if (currentIndex < 0 || enabledItems.length === 0) return;
+	if (currentIndex < 0 || enabledItems.length === 0) {
+		return;
+	}
 
 	let nextIndex = currentIndex;
-	if (key === 'Home') nextIndex = 0;
-	else if (key === 'End') nextIndex = enabledItems.length - 1;
-	else if (key === nextKey) nextIndex = (currentIndex + 1) % enabledItems.length;
-	else nextIndex = (currentIndex - 1 + enabledItems.length) % enabledItems.length;
+	if (key === 'Home') {
+		nextIndex = 0;
+	} else if (key === 'End') {
+		nextIndex = enabledItems.length - 1;
+	} else if (key === nextKey) {
+		nextIndex = (currentIndex + 1) % enabledItems.length;
+	} else {
+		nextIndex = (currentIndex - 1 + enabledItems.length) % enabledItems.length;
+	}
 
-	focusItem(enabledItems[nextIndex]);
+	const nextItem = enabledItems[nextIndex];
+	if (nextItem) {
+		focusItem(nextItem);
+	}
 }
 
 onMounted(() => {

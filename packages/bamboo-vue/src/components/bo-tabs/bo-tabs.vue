@@ -52,7 +52,9 @@ const activationMode = computed(() => {
 });
 
 function select(value: BoTabsValue): void {
-	if (props.disabled || items.value.find((item) => item.value === value)?.disabled) return;
+	if (props.disabled || items.value.find((item) => item.value === value)?.disabled) {
+		return;
+	}
 	selected.value = value;
 	model.value = value;
 }
@@ -62,7 +64,9 @@ function register(item: TabsItem): void {
 		items.value = [...items.value, item];
 	}
 
-	if (activeValue.value === undefined && !item.disabled) select(item.value);
+	if (activeValue.value === undefined && !item.disabled) {
+		select(item.value);
+	}
 }
 
 function unregister(value: BoTabsValue): void {

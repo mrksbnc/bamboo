@@ -26,7 +26,9 @@ export function useForm<T extends Record<string, unknown>>(
 	});
 
 	async function submit(): Promise<boolean> {
-		if (Object.values(errors.value).some(Boolean)) return false;
+		if (Object.values(errors.value).some(Boolean)) {
+			return false;
+		}
 		await options.onSubmit?.(values);
 		return true;
 	}

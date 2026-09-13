@@ -113,24 +113,32 @@ function updateValue(index: number, value: string): void {
 	const nextValue = model.value.split('');
 	nextValue.splice(index, 1, ...validCharacters(value).slice(0, inputCount.value - index));
 	model.value = nextValue.slice(0, inputCount.value).join('');
-	if (model.value.length === inputCount.value) emit('complete', model.value);
+	if (model.value.length === inputCount.value) {
+		emit('complete', model.value);
+	}
 }
 function onInput(index: number, event: Event): void {
 	const input = event.target as HTMLInputElement;
 	const value = validCharacters(input.value);
 	input.value = value.charAt(0);
 	updateValue(index, value);
-	if (value) focusInput(index + 1);
+	if (value) {
+		focusInput(index + 1);
+	}
 }
 function onPaste(event: ClipboardEvent): void {
-	if (props.disabled || props.readOnly) return;
+	if (props.disabled || props.readOnly) {
+		return;
+	}
 	event.preventDefault();
 	const value = validCharacters(event.clipboardData?.getData('text') || '').slice(
 		0,
 		inputCount.value,
 	);
 	model.value = value;
-	if (value.length === inputCount.value) emit('complete', value);
+	if (value.length === inputCount.value) {
+		emit('complete', value);
+	}
 	focusInput(value.length);
 }
 function onKeydown(index: number, event: KeyboardEvent): void {
@@ -150,7 +158,9 @@ function focus(): void {
 }
 defineExpose({ focus });
 onMounted(() => {
-	if (props.autofocus) focus();
+	if (props.autofocus) {
+		focus();
+	}
 });
 </script>
 

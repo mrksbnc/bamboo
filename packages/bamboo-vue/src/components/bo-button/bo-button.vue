@@ -47,9 +47,6 @@ import { BoIcon } from '../bo-icon';
 import { BoLoadingPulse } from '../bo-loading-pulse';
 import { BoLoadingSpinner } from '../bo-loading-spinner';
 
-const groupSize = inject<BoButtonProps['size']>('buttonGroupSize', undefined);
-const groupVariant = inject<BoButtonProps['variant']>('buttonGroupVariant', undefined);
-
 const props = withDefaults(defineProps<BoButtonProps>(), {
 	id: () => generateComponentId('button'),
 	dataTestId: () => generateDataTestId('button'),
@@ -57,6 +54,8 @@ const props = withDefaults(defineProps<BoButtonProps>(), {
 	shape: () => BUTTON_MANIFEST.defaults.shape,
 });
 
+const groupSize = inject<BoButtonProps['size']>('buttonGroupSize', undefined);
+const groupVariant = inject<BoButtonProps['variant']>('buttonGroupVariant', undefined);
 const slots = useSlots();
 const sizeValue = computed(() => groupSize ?? props.size ?? BUTTON_MANIFEST.defaults.size);
 const variantValue = computed(

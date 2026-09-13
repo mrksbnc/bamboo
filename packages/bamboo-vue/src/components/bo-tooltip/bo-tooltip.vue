@@ -86,9 +86,13 @@ const clearTimers = () => {
 
 function getTriggerElement(): HTMLElement | undefined {
 	const root = triggerRef.value;
-	if (!root) return undefined;
+	if (!root) {
+		return undefined;
+	}
 
-	if (root.matches('button, a, input, select, textarea, [tabindex]')) return root;
+	if (root.matches('button, a, input, select, textarea, [tabindex]')) {
+		return root;
+	}
 
 	return (
 		root.querySelector<HTMLElement>('button, a, input, select, textarea, [tabindex]') ?? undefined
@@ -97,14 +101,19 @@ function getTriggerElement(): HTMLElement | undefined {
 
 function setTriggerDescription(visible: boolean): void {
 	const trigger = getTriggerElement();
-	if (!trigger) return;
+	if (!trigger) {
+		return;
+	}
 
-	if (visible) trigger.setAttribute('aria-describedby', id.value);
-	else trigger.removeAttribute('aria-describedby');
+	if (visible) {
+		trigger.setAttribute('aria-describedby', id.value);
+	} else trigger.removeAttribute('aria-describedby');
 }
 
 const show = () => {
-	if (props.disabled) return;
+	if (props.disabled) {
+		return;
+	}
 
 	clearTimers();
 	showTimer = setTimeout(() => {
@@ -127,7 +136,9 @@ const hide = () => {
 };
 
 const updatePosition = () => {
-	if (!triggerRef.value || !tooltipRef.value) return;
+	if (!triggerRef.value || !tooltipRef.value) {
+		return;
+	}
 
 	const triggerRect = triggerRef.value.getBoundingClientRect();
 	const tooltipRect = tooltipRef.value.getBoundingClientRect();
@@ -191,10 +202,18 @@ const updatePosition = () => {
 	const viewportWidth = window.innerWidth;
 	const viewportHeight = window.innerHeight;
 
-	if (left < 0) left = 8;
-	if (left + tooltipRect.width > viewportWidth) left = viewportWidth - tooltipRect.width - 8;
-	if (top < 0) top = 8;
-	if (top + tooltipRect.height > viewportHeight) top = viewportHeight - tooltipRect.height - 8;
+	if (left < 0) {
+		left = 8;
+	}
+	if (left + tooltipRect.width > viewportWidth) {
+		left = viewportWidth - tooltipRect.width - 8;
+	}
+	if (top < 0) {
+		top = 8;
+	}
+	if (top + tooltipRect.height > viewportHeight) {
+		top = viewportHeight - tooltipRect.height - 8;
+	}
 
 	tooltipStyle.value = {
 		position: 'fixed',
@@ -205,41 +224,57 @@ const updatePosition = () => {
 
 // Event handlers
 const handleMouseEnter = () => {
-	if (props.trigger === 'hover') show();
+	if (props.trigger === 'hover') {
+		show();
+	}
 };
 
 const handleMouseLeave = () => {
-	if (props.trigger === 'hover') hide();
+	if (props.trigger === 'hover') {
+		hide();
+	}
 };
 
 const handleFocusIn = () => {
-	if (props.trigger === 'focus') show();
+	if (props.trigger === 'focus') {
+		show();
+	}
 };
 
 const handleFocusOut = (event: FocusEvent) => {
-	if (triggerRef.value?.contains(event.relatedTarget as Node | null)) return;
-	if (props.trigger === 'focus') hide();
+	if (triggerRef.value?.contains(event.relatedTarget as Node | null)) {
+		return;
+	}
+	if (props.trigger === 'focus') {
+		hide();
+	}
 };
 
 const handleClick = () => {
 	if (props.trigger === 'click') {
-		if (isVisible.value) hide();
-		else show();
+		if (isVisible.value) {
+			hide();
+		} else show();
 	}
 };
 
 // Watch for manual visibility changes
 const handleVisibilityChange = () => {
-	if (typeof window === 'undefined') return;
+	if (typeof window === 'undefined') {
+		return;
+	}
 	if (props.trigger === 'manual') {
-		if (props.visible) show();
-		else hide();
+		if (props.visible) {
+			show();
+		} else hide();
 	}
 };
 
 // Lifecycle
 onMounted(() => {
-	if (!triggerRef.value) return;
+	if (!triggerRef.value) {
+		return;
+	}
 
 	const trigger = triggerRef.value;
 
@@ -266,7 +301,9 @@ onMounted(() => {
 onUnmounted(() => {
 	clearTimers();
 
-	if (!triggerRef.value) return;
+	if (!triggerRef.value) {
+		return;
+	}
 
 	const trigger = triggerRef.value;
 	trigger.removeEventListener('mouseenter', handleMouseEnter);

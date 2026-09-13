@@ -3,8 +3,8 @@
 		:id="id"
 		:data-testid="dataTestId"
 		:role="role"
-		:data-has-icon="showIcon && iconValue ? 'true' : undefined"
-		:aria-labelledby="title && !slots['default'] ? titleId : undefined"
+		:data-has-icon="dataHasIcon"
+		:aria-labelledby="ariaLabelledBy"
 		:aria-describedby="description && !slots['default'] ? descriptionId : undefined"
 		:class="classValues"
 	>
@@ -70,7 +70,9 @@ const titleId = computed<string>(() => `${props.id}-title`);
 const descriptionId = computed<string>(() => `${props.id}-description`);
 
 const iconValue = computed<Icon | null>(() => {
-	if (props.icon) return props.icon;
+	if (props.icon) {
+		return props.icon;
+	}
 
 	const map: Record<string, Icon> = {
 		primary: 'fa_regular_circle_question',
@@ -89,7 +91,7 @@ const iconVariant = computed<BoIconVariant>(() => {
 		default: 'secondary',
 	};
 
-	return map[props.variant || 'default'];
+	return map[props.variant || 'default'] ?? 'secondary';
 });
 
 const classValues = computed<string>(() =>
@@ -98,6 +100,14 @@ const classValues = computed<string>(() =>
 		ALERT_MANIFEST.styles.variant[props.variant || 'default'],
 	),
 );
+
+const dataHasIcon = computed<string | undefined>(() => {
+	return props.showIcon && iconValue.value ? 'true' : undefined;
+});
+
+const ariaLabelledBy = computed<string | undefined>(() => {
+	return props.title && !slots['default'] ? titleId.value : undefined;
+});
 </script>
 
 <style>

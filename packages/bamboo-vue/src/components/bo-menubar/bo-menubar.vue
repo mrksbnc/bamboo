@@ -41,7 +41,9 @@ const registrations = shallowRef(new Map<string, MenubarTriggerRegistration>());
 const rootRef = useTemplateRef<HTMLElement>('rootRef');
 const activeId = computed<string | null>(() => {
 	for (const trigger of registrations.value.values()) {
-		if (trigger.open.value) return trigger.id;
+		if (trigger.open.value) {
+			return trigger.id;
+		}
 	}
 	return null;
 });
@@ -72,7 +74,9 @@ provide(menubarContextKey, { activeId, register, unregister, openTrigger, closeA
 function onKeydown(event: KeyboardEvent): void {
 	const target = event.target as HTMLElement | null;
 	if (event.key === 'Escape') {
-		if (!activeId.value) return;
+		if (!activeId.value) {
+			return;
+		}
 		event.preventDefault();
 		const trigger = registrations.value.get(activeId.value)?.element.value;
 		closeAll();
@@ -80,13 +84,19 @@ function onKeydown(event: KeyboardEvent): void {
 		return;
 	}
 
-	if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
-	if (!target?.matches('[data-menubar-trigger]')) return;
+	if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) {
+		return;
+	}
+	if (!target?.matches('[data-menubar-trigger]')) {
+		return;
+	}
 	const triggers = Array.from(
 		(event.currentTarget as HTMLElement).querySelectorAll<HTMLElement>('[data-menubar-trigger]'),
 	);
 	const enabledTriggers = triggers.filter((trigger) => !trigger.hasAttribute('disabled'));
-	if (!enabledTriggers.length) return;
+	if (!enabledTriggers.length) {
+		return;
+	}
 	event.preventDefault();
 	const current = enabledTriggers.indexOf(target);
 	const next =
@@ -101,7 +111,9 @@ function onKeydown(event: KeyboardEvent): void {
 }
 
 function onPointerdown(event: PointerEvent): void {
-	if (activeId.value && !rootRef.value?.contains(event.target as Node)) closeAll();
+	if (activeId.value && !rootRef.value?.contains(event.target as Node)) {
+		closeAll();
+	}
 }
 
 onMounted(() => document.addEventListener('pointerdown', onPointerdown));

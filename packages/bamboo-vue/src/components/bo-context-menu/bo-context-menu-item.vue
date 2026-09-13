@@ -35,7 +35,9 @@ const emit = defineEmits<{
 	(event: 'select'): void;
 }>();
 const context = inject(contextMenuContextKey);
-if (!context) throw new Error('BoContextMenuItem must be used inside BoContextMenu');
+if (!context) {
+	throw new Error('BoContextMenuItem must be used inside BoContextMenu');
+}
 const menuContext = context;
 const itemClasses = computed(() => {
 	return mergeTwClasses(

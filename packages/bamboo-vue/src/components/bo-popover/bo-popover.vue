@@ -42,9 +42,13 @@ function close(): void {
 }
 
 function onPointerDown(event: PointerEvent): void {
-	if (!props.closeOnOutside || !open.value) return;
+	if (!props.closeOnOutside || !open.value) {
+		return;
+	}
 	const target = event.target as Node;
-	if (!triggerRef.value?.contains(target) && !contentRef.value?.contains(target)) close();
+	if (!triggerRef.value?.contains(target) && !contentRef.value?.contains(target)) {
+		close();
+	}
 }
 
 function onKeydown(event: KeyboardEvent): void {

@@ -36,7 +36,9 @@ const props = withDefaults(defineProps<BoPopoverProps>(), {
 defineOptions({ inheritAttrs: false });
 const attrs = useAttrs();
 const context = inject(popoverContextKey);
-if (!context) throw new Error('BoPopoverContent must be used inside BoPopover');
+if (!context) {
+	throw new Error('BoPopoverContent must be used inside BoPopover');
+}
 const popoverContext = context;
 
 const contentRef = ref<HTMLElement | null>(null);
@@ -47,7 +49,9 @@ const placement = computed(() => {
 watch(
 	() => props.id,
 	(value) => {
-		if (value) popoverContext.contentId.value = value;
+		if (value) {
+			popoverContext.contentId.value = value;
+		}
 	},
 	{ immediate: true },
 );
@@ -62,7 +66,9 @@ const contentClasses = computed(() => {
 function updatePosition(): void {
 	const trigger = popoverContext.triggerRef.value;
 	const content = contentRef.value;
-	if (!trigger || !content) return;
+	if (!trigger || !content) {
+		return;
+	}
 	const triggerRect = trigger.getBoundingClientRect();
 	const contentRect = content.getBoundingClientRect();
 	const gap = props.offset ?? popoverContext.offset.value;
@@ -73,18 +79,28 @@ function updatePosition(): void {
 	let top = triggerRect.top + (triggerRect.height - contentRect.height) / 2;
 	let left = triggerRect.left + (triggerRect.width - contentRect.width) / 2;
 
-	if (side === 'top') top = triggerRect.top - contentRect.height - gap;
-	if (side === 'bottom') top = triggerRect.bottom + gap;
-	if (side === 'left') left = triggerRect.left - contentRect.width - gap;
-	if (side === 'right') left = triggerRect.right + gap;
+	if (side === 'top') {
+		top = triggerRect.top - contentRect.height - gap;
+	}
+	if (side === 'bottom') {
+		top = triggerRect.bottom + gap;
+	}
+	if (side === 'left') {
+		left = triggerRect.left - contentRect.width - gap;
+	}
+	if (side === 'right') {
+		left = triggerRect.right + gap;
+	}
 
 	if (alignment === 'start') {
-		if (side === 'top' || side === 'bottom') left = triggerRect.left;
-		else top = triggerRect.top;
+		if (side === 'top' || side === 'bottom') {
+			left = triggerRect.left;
+		} else top = triggerRect.top;
 	}
 	if (alignment === 'end') {
-		if (side === 'top' || side === 'bottom') left = triggerRect.right - contentRect.width;
-		else top = triggerRect.bottom - contentRect.height;
+		if (side === 'top' || side === 'bottom') {
+			left = triggerRect.right - contentRect.width;
+		} else top = triggerRect.bottom - contentRect.height;
 	}
 
 	const padding = 8;
@@ -102,7 +118,9 @@ function updateAfterOpen(isOpen: boolean): void {
 	if (isOpen) {
 		void nextTick(() => {
 			updatePosition();
-			if (typeof requestAnimationFrame === 'function') requestAnimationFrame(updatePosition);
+			if (typeof requestAnimationFrame === 'function') {
+				requestAnimationFrame(updatePosition);
+			}
 		});
 	}
 }

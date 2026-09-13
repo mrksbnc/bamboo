@@ -82,7 +82,9 @@ const iconSize = computed<BoIconSize>(() => {
 });
 
 const variantClass = computed<string>(() => {
-	if (props.customColor) return '';
+	if (props.customColor) {
+		return '';
+	}
 
 	const variant = props.variant || 'primary';
 

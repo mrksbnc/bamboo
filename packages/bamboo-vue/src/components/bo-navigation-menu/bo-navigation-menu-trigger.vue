@@ -45,12 +45,16 @@ const isOpen = computed(() => context.activeId.value === itemId);
 const iconClasses = computed(() => (isOpen.value ? 'rotate-180' : ''));
 provide(navigationMenuTriggerKey, { id: itemId });
 function open(): void {
-	if (!props.disabled) context.open(itemId);
+	if (!props.disabled) {
+		context.open(itemId);
+	}
 }
 function close(): void {
 	context.close();
 }
 function toggle(): void {
-	if (!props.disabled) context.toggle(itemId);
+	if (!props.disabled) {
+		context.toggle(itemId);
+	}
 }
 </script>

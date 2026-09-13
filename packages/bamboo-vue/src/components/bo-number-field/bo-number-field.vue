@@ -119,12 +119,6 @@ const describedBy = computed(() => {
 	);
 });
 
-function boundValue(value: string | undefined): number | undefined {
-	if (value === undefined || value === '') return undefined;
-	const number = Number(value);
-	return Number.isFinite(number) ? number : undefined;
-}
-
 const minimum = computed(() => {
 	return boundValue(props.min);
 });
@@ -145,6 +139,14 @@ const canIncrement = computed(() => {
 	return maximum.value === undefined || currentValue.value + step.value <= maximum.value;
 });
 
+function boundValue(value: string | undefined): number | undefined {
+	if (value === undefined || value === '') {
+		return undefined;
+	}
+	const number = Number(value);
+	return Number.isFinite(number) ? number : undefined;
+}
+
 function onInput(event: Event): void {
 	const input = event.target as HTMLInputElement;
 	const allowedCharacters = props.allowExponent ? /[^0-9eE+.-]/g : /[^0-9+.-]/g;
@@ -155,14 +157,18 @@ function onInput(event: Event): void {
 }
 
 function onKeydown(event: KeyboardEvent): void {
-	if (event.metaKey || event.ctrlKey || event.altKey) return;
+	if (event.metaKey || event.ctrlKey || event.altKey) {
+		return;
+	}
 	if (/^[a-zA-Z]$/.test(event.key) && (!props.allowExponent || !/[eE]/.test(event.key))) {
 		event.preventDefault();
 	}
 }
 
 function stepValue(direction: -1 | 1): void {
-	if (props.disabled || props.readOnly) return;
+	if (props.disabled || props.readOnly) {
+		return;
+	}
 	const next = currentValue.value + step.value * direction;
 	const bounded = Math.min(maximum.value ?? next, Math.max(minimum.value ?? next, next));
 	model.value = Number.isFinite(bounded) ? bounded : undefined;
@@ -175,7 +181,9 @@ function focus(): void {
 defineExpose({ focus });
 
 onMounted(() => {
-	if (props.autofocus) focus();
+	if (props.autofocus) {
+		focus();
+	}
 });
 </script>
 

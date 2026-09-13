@@ -53,7 +53,9 @@ const iconClasses = computed(() => {
 });
 
 function toggle(): void {
-	if (!props.disabled) model.value = !model.value;
+	if (!props.disabled) {
+		model.value = !model.value;
+	}
 }
 </script>
 

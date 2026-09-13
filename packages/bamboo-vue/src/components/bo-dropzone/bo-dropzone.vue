@@ -91,7 +91,9 @@ const isDragging = computed(() => {
 	return selection.isDragging.value;
 });
 function open(): void {
-	if (!props.disabled) inputRef.value?.click();
+	if (!props.disabled) {
+		inputRef.value?.click();
+	}
 }
 function onDragEnter(): void {
 	selection.isDragging.value = true;
@@ -102,7 +104,9 @@ function onDragLeave(): void {
 function publish(): void {
 	model.value = props.multiple ? selection.files.value : (selection.files.value[0] ?? null);
 	emit('change', selection.files.value);
-	if (selection.error.value) emit('error', selection.error.value);
+	if (selection.error.value) {
+		emit('error', selection.error.value);
+	}
 }
 function onInputChange(event: Event): void {
 	selection.onInputChange(event);

@@ -6,6 +6,7 @@ import BoAvatar from './bo-avatar.vue';
 describe('BoAvatar', () => {
 	it('renders with default props', () => {
 		const wrapper = mount(BoAvatar);
+
 		expect(wrapper.exists()).toBe(true);
 		expect(wrapper.find('div').exists()).toBe(true);
 	});
@@ -13,6 +14,7 @@ describe('BoAvatar', () => {
 	it('renders with default avatar image when no src or label provided', () => {
 		const wrapper = mount(BoAvatar);
 		const img = wrapper.find('img');
+
 		expect(img.exists()).toBe(true);
 		expect(img.attributes('src')).toContain('avatar.png');
 		expect(img.attributes('alt')).toBe('avatar');
@@ -23,7 +25,9 @@ describe('BoAvatar', () => {
 		const wrapper = mount(BoAvatar, {
 			props: { src, alt: 'User avatar' },
 		});
+
 		const img = wrapper.find('img');
+
 		expect(img.attributes('src')).toBe(src);
 		expect(img.attributes('alt')).toBe('User avatar');
 	});
@@ -35,6 +39,7 @@ describe('BoAvatar', () => {
 				components: { BoText },
 			},
 		});
+
 		expect(wrapper.text()).toContain('JO');
 	});
 
@@ -45,18 +50,20 @@ describe('BoAvatar', () => {
 				components: { BoText },
 			},
 		});
+
 		expect(wrapper.text()).toContain('AB');
 	});
 
 	it('applies correct size classes', () => {
 		const sizes = ['xs', 'sm', 'default', 'lg', 'xl'] as const;
-		sizes.forEach((size) => {
+
+		for (const size of sizes) {
 			const wrapper = mount(BoAvatar, {
 				props: { size },
 			});
 			const container = wrapper.find('[data-testid]');
 			expect(container.exists()).toBe(true);
-		});
+		}
 	});
 
 	it('applies correct kind classes', () => {
@@ -68,24 +75,27 @@ describe('BoAvatar', () => {
 			'outline-circle',
 			'outline-flat',
 		] as const;
-		kinds.forEach((kind) => {
+
+		for (const kind of kinds) {
 			const wrapper = mount(BoAvatar, {
 				props: { kind },
 			});
 			const container = wrapper.find('[data-testid]');
 			expect(container.exists()).toBe(true);
-		});
+		}
 	});
 
 	it('applies correct variant classes', () => {
 		const variants = ['primary', 'secondary', 'destructive', 'warning', 'success', 'dark'] as const;
-		variants.forEach((variant) => {
+
+		for (const variant of variants) {
 			const wrapper = mount(BoAvatar, {
 				props: { variant },
 			});
 			const container = wrapper.find('[data-testid]');
+
 			expect(container.exists()).toBe(true);
-		});
+		}
 	});
 
 	it('renders indicator when indicatorKind is provided', () => {
@@ -93,6 +103,7 @@ describe('BoAvatar', () => {
 			props: { indicatorKind: 'online' },
 		});
 		const indicators = wrapper.findAll('div');
+
 		expect(indicators.length).toBeGreaterThan(1);
 	});
 
@@ -102,6 +113,7 @@ describe('BoAvatar', () => {
 		});
 		const container = wrapper.find('.bo-avatar-shell');
 		const children = container.findAll('div');
+
 		expect(children.length).toBe(1);
 	});
 
@@ -110,6 +122,7 @@ describe('BoAvatar', () => {
 			props: { customColor: '#ff0000', kind: 'default' },
 		});
 		const container = wrapper.find('[data-testid]');
+
 		expect(container.attributes('style')).toContain('background-color');
 	});
 
@@ -121,6 +134,7 @@ describe('BoAvatar', () => {
 			},
 		});
 		const container = wrapper.find('[data-testid]');
+
 		expect(container.attributes('style')).toContain('color');
 	});
 
@@ -142,6 +156,7 @@ describe('BoAvatar', () => {
 			props: { id: 'custom-id', dataTestId: 'custom-test-id' },
 		});
 		const container = wrapper.find('[data-testid="custom-test-id"]');
+
 		expect(container.exists()).toBe(true);
 		expect(container.attributes('id')).toBe('custom-id');
 	});
@@ -151,6 +166,7 @@ describe('BoAvatar', () => {
 			props: { role: 'button' },
 		});
 		const container = wrapper.find('[data-testid]');
+
 		expect(container.attributes('role')).toBe('button');
 	});
 
@@ -159,17 +175,19 @@ describe('BoAvatar', () => {
 			props: { cursor: 'cursor-pointer' },
 		});
 		const container = wrapper.find('[data-testid]');
+
 		expect(container.classes()).toContain('cursor-pointer');
 	});
 
 	it('applies indicator position classes', () => {
 		const positions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'] as const;
-		positions.forEach((position) => {
+
+		for (const position of positions) {
 			const wrapper = mount(BoAvatar, {
 				props: { indicatorKind: 'online', indicatorPosition: position },
 			});
 			expect(wrapper.exists()).toBe(true);
-		});
+		}
 	});
 
 	it('prefers image over label when both provided', () => {
@@ -180,6 +198,7 @@ describe('BoAvatar', () => {
 			},
 		});
 		const img = wrapper.find('img');
+
 		expect(img.attributes('src')).toBe('https://example.com/avatar.jpg');
 		expect(wrapper.text()).not.toContain('AB');
 	});

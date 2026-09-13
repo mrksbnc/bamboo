@@ -36,6 +36,18 @@ const props = withDefaults(defineProps<BoAccordionProps>(), {
 const model = defineModel<BoAccordionValue>();
 const instance = getCurrentInstance();
 
+const uncontrolled = ref<Set<string | number>>(toSet(props.defaultValue));
+
+const isControlled = computed<boolean>(() => {
+	const componentProps = instance?.vnode.props;
+
+	return componentProps !== null && componentProps !== undefined && 'modelValue' in componentProps;
+});
+
+const openValues = computed<Set<string | number>>(() => {
+	return isControlled.value ? toSet(model.value) : uncontrolled.value;
+});
+
 function toSet(value: BoAccordionValue | undefined): Set<string | number> {
 	const result = new Set<string | number>();
 
@@ -44,7 +56,7 @@ function toSet(value: BoAccordionValue | undefined): Set<string | number> {
 	}
 
 	if (Array.isArray(value)) {
-		const items = props.multiple ? value : [value[value.length - 1]];
+		const items = props.multiple ? value : value.length ? [value[value.length - 1]!] : [];
 
 		items.forEach((item) => result.add(item));
 	} else {
@@ -53,28 +65,6 @@ function toSet(value: BoAccordionValue | undefined): Set<string | number> {
 
 	return result;
 }
-
-const isControlled = computed(() => {
-	const componentProps = instance?.vnode.props;
-
-	return componentProps !== null && componentProps !== undefined && 'modelValue' in componentProps;
-});
-
-const uncontrolled = ref<Set<string | number>>(toSet(props.defaultValue));
-
-const openValues = computed<Set<string | number>>(() => {
-	return isControlled.value ? toSet(model.value) : uncontrolled.value;
-});
-
-// If modelValue appears again after uncontrolled usage, reset the internal state so
-// switching between modes never leaves stale values behind.
-watch(isControlled, (controlled) => {
-	if (controlled) {
-		uncontrolled.value = toSet(model.value);
-	} else {
-		uncontrolled.value = toSet(props.defaultValue);
-	}
-});
 
 function toggle(value: string | number): void {
 	const current = openValues.value;
@@ -94,7 +84,7 @@ function toggle(value: string | number): void {
 		next.add(value);
 	}
 
-	const nextValue: BoAccordionValue = props.multiple
+	const nextValue: BoAccordionValue | undefined = props.multiple
 		? Array.from(next)
 		: (Array.from(next)[0] ?? undefined);
 
@@ -105,6 +95,14 @@ function toggle(value: string | number): void {
 		model.value = nextValue;
 	}
 }
+
+watch(isControlled, (controlled) => {
+	if (controlled) {
+		uncontrolled.value = toSet(model.value);
+	} else {
+		uncontrolled.value = toSet(props.defaultValue);
+	}
+});
 
 provide(accordionOpenValuesKey, openValues);
 provide(accordionToggleKey, toggle);

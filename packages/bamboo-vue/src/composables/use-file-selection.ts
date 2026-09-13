@@ -16,7 +16,9 @@ export function useFileSelection(options: Ref<FileSelectionOptions> | FileSelect
 	const isDragging = ref(false);
 
 	function matchesAccept(file: File): boolean {
-		if (!config.value.accept) return true;
+		if (!config.value.accept) {
+			return true;
+		}
 		return config.value.accept.split(',').some((value) => {
 			const rule = value.trim().toLowerCase();
 			return rule.startsWith('.')

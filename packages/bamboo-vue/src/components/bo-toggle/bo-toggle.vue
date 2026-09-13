@@ -55,15 +55,21 @@ const toggleClasses = computed(() => {
 });
 
 function toggle(): void {
-	if (props.disabled) return;
+	if (props.disabled) {
+		return;
+	}
 
 	const nextValue = !isPressed.value;
-	if (!isControlled.value) uncontrolledValue.value = nextValue;
+	if (!isControlled.value) {
+		uncontrolledValue.value = nextValue;
+	}
 	model.value = nextValue;
 }
 
 function onKeydown(event: KeyboardEvent): void {
-	if (event.key !== 'Enter' && event.key !== ' ') return;
+	if (event.key !== 'Enter' && event.key !== ' ') {
+		return;
+	}
 
 	event.preventDefault();
 	toggle();

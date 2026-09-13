@@ -49,11 +49,15 @@ const classValues = computed(() => {
 });
 
 function select(): void {
-	if (!isDisabled.value) context?.select(props.value);
+	if (!isDisabled.value) {
+		context?.select(props.value);
+	}
 }
 
 function onKeydown(event: KeyboardEvent): void {
-	if (event.key !== 'Enter' && event.key !== ' ') return;
+	if (event.key !== 'Enter' && event.key !== ' ') {
+		return;
+	}
 
 	event.preventDefault();
 	select();
