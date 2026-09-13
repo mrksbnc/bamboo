@@ -27,7 +27,7 @@
 		"@tailwindcss/vite": "^4.3.3",
 		"@tsconfig/node24": "^24.0.5",
 		"@types/jsdom": "^30.0.0",
-		"@types/node": "^26.4.1",
+		"@types/node": "^26.5.1",
 		"@vitest/coverage-v8": "4.1.11",
 		"@vue/test-utils": "^2.5.0",
 		"@vueuse/core": "^14.4.0",
