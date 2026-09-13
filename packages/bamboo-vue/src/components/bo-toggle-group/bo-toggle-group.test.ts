@@ -52,20 +52,20 @@ describe('BoToggleGroup', () => {
 	it('moves focus to the next enabled item with arrow keys', async () => {
 		const wrapper = mountGroup();
 		const items = wrapper.findAll('[role="button"]');
-		const first = items[0];
+		const first = items[0]!;
 		const focus = vi.spyOn(items[1]!.element as HTMLButtonElement, 'focus');
 
-		(first?.element as HTMLButtonElement).focus();
-		await first?.trigger('keydown', { key: 'ArrowRight' });
+		(first.element as HTMLButtonElement).focus();
+		await first.trigger('keydown', { key: 'ArrowRight' });
 
 		expect(focus).toHaveBeenCalledOnce();
 	});
 
 	it('activates an item with Enter', async () => {
 		const wrapper = mountGroup();
-		const first = wrapper.findAll('[role="button"]')[0];
+		const first = wrapper.findAll('[role="button"]')[0]!;
 
-		await first?.trigger('keydown', { key: 'Enter' });
+		await first.trigger('keydown', { key: 'Enter' });
 
 		expect(wrapper.emitted('update:modelValue')).toEqual([['one']]);
 	});
