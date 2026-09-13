@@ -40,7 +40,7 @@ describe('BoNumberField', () => {
 	});
 
 	it('honors read-only and disabled guards and emits focus events', async () => {
-		const focus = vi.fn();
+		const focus = vi.fn<() => void>();
 		const wrapper = mount(BoNumberField, {
 			props: { modelValue: 2, readOnly: true, min: '0', max: '3', onFocus: focus },
 		});
