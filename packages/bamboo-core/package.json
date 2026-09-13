@@ -1,6 +1,6 @@
 {
 	"name": "@workspace/bamboo-core",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"private": true,
 	"description": "Core utilities and definitions for Bamboo Vue component library",
 	"homepage": "https://github.com/mrksbnc/bamboo#readme",
