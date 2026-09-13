@@ -1,10 +1,10 @@
 @layer components {
 	.bo-badge {
-		@apply flex h-5 items-center justify-center gap-1 rounded-full px-2 py-0.5 text-center text-xs select-none shadow-sm cursor-default font-medium transition-colors leading-none;
+		@apply flex items-center justify-center text-center select-none shadow-sm cursor-default font-medium transition-colors leading-none;
 	}
 
 	.bo-badge--shape-default {
-		@apply rounded-full;
+		@apply rounded-md;
 	}
 
 	.bo-badge--shape-pill,

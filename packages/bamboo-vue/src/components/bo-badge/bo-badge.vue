@@ -7,27 +7,19 @@
 		:role="role"
 		:aria-label="ariaLabel"
 	>
-		<bo-icon
-			v-if="showPrefixIcon"
-			:size="BADGE_MANIFEST.styles.iconSize"
-			:icon="getSafeIcon(prefixIcon)"
-		/>
+		<bo-icon v-if="showPrefixIcon" :size="iconSize" :icon="getSafeIcon(prefixIcon)" />
 		<slot>
 			<bo-text
 				v-if="label && !isCircle"
 				:cursor="cursor"
-				font-size="xs"
+				:font-size="fontSize"
 				font-weight="semibold"
 				variant="inherit"
 			>
 				{{ label }}
 			</bo-text>
 		</slot>
-		<bo-icon
-			v-if="showSuffixIcon"
-			:icon="getSafeIcon(suffixIcon)"
-			:size="BADGE_MANIFEST.styles.iconSize"
-		/>
+		<bo-icon v-if="showSuffixIcon" :icon="getSafeIcon(suffixIcon)" :size="iconSize" />
 	</span>
 </template>
 
@@ -39,6 +31,8 @@ import {
 	getValidOrFallbackColorFromStr,
 	mergeTwClasses,
 	type BoBadgeProps,
+	type BoFontSize,
+	type BoIconSize,
 	type Icon,
 } from '@workspace/bamboo-core';
 import { computed, type StyleValue } from 'vue';
@@ -48,6 +42,7 @@ import { BoText } from '../bo-text';
 const props = withDefaults(defineProps<BoBadgeProps>(), {
 	id: () => generateComponentId('badge'),
 	dataTestId: () => generateDataTestId('badge'),
+	size: () => BADGE_MANIFEST.defaults.size,
 	kind: () => BADGE_MANIFEST.defaults.kind,
 	shape: () => BADGE_MANIFEST.defaults.shape,
 	variant: () => BADGE_MANIFEST.defaults.variant,
