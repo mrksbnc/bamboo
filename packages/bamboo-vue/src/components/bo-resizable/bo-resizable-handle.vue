@@ -28,7 +28,9 @@ withDefaults(defineProps<BoResizableHandleProps>(), {
 });
 
 const injectedDirection = inject(resizableDirectionKey);
-const direction = computed<BoResizableDirection>(() => injectedDirection?.value || 'horizontal');
+const direction = computed<BoResizableDirection>(() => {
+	return injectedDirection?.value || 'horizontal';
+});
 const firstPanelPercent = ref(50);
 let groupRect: DOMRect | undefined;
 let panels: [HTMLElement, HTMLElement] | undefined;

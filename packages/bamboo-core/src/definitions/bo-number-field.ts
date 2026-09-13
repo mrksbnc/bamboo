@@ -12,6 +12,8 @@ export interface BoNumberFieldProps {
 	max?: HTMLInputElement['max'];
 	/** The amount changed by the stepper buttons. */
 	step?: HTMLInputElement['step'];
+	/** Whether exponent notation such as 1e3 is accepted. */
+	allowExponent?: boolean;
 	/** Placeholder text. */
 	placeholder?: HTMLInputElement['placeholder'];
 	/** Input keyboard hint. */

@@ -1,10 +1,10 @@
 @layer components {
 	.bo-skeleton {
-		background-color: var(--color-neutral-200);
+		@apply bg-neutral-200;
 	}
 
 	.dark .bo-skeleton {
-		background-color: var(--color-neutral-700);
+		@apply bg-neutral-700;
 	}
 
 	.bo-skeleton--animated {

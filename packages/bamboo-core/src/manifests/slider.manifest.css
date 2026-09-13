@@ -1,0 +1,41 @@
+@layer components {
+	.bo-slider {
+		@apply relative flex w-full items-center;
+	}
+	.bo-slider__input {
+		@apply h-5 w-full cursor-pointer appearance-none bg-transparent;
+	}
+	.bo-slider__input::-webkit-slider-runnable-track {
+		@apply h-1.5 rounded-full bg-neutral-200;
+	}
+	.bo-slider__input::-webkit-slider-thumb {
+		@apply mt-[-5px] size-4 appearance-none rounded-full border-2 border-white bg-blue-600 shadow ring-1 ring-blue-600;
+	}
+	.bo-slider__input::-moz-range-track {
+		@apply h-1.5 rounded-full bg-neutral-200;
+	}
+	.bo-slider__input::-moz-range-thumb {
+		@apply size-4 rounded-full border-2 border-white bg-blue-600 shadow ring-1 ring-blue-600;
+	}
+	.dark .bo-slider__input::-webkit-slider-runnable-track {
+		@apply bg-neutral-700;
+	}
+	.dark .bo-slider__input::-moz-range-track {
+		@apply bg-neutral-700;
+	}
+	.dark .bo-slider__input::-webkit-slider-thumb,
+	.dark .bo-slider__input::-moz-range-thumb {
+		@apply border-neutral-900;
+	}
+	.bo-slider__input:disabled {
+		@apply cursor-not-allowed opacity-50;
+	}
+	.bo-slider[data-orientation='vertical'] {
+		@apply h-40 w-5;
+	}
+	.bo-slider[data-orientation='vertical'] .bo-slider__input {
+		@apply h-full w-5;
+		writing-mode: vertical-lr;
+		direction: rtl;
+	}
+}

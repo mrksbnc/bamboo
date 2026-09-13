@@ -7,7 +7,7 @@ import LandingHome from './LandingHome.vue';
 const { lang, frontmatter } = useData();
 
 watchEffect(() => {
-	if (inBrowser) {
+	if (inBrowser && typeof document !== 'undefined') {
 		document.cookie = `nf_lang=${lang.value}; expires=Mon, 1 Jan 2035 00:00:00 UTC; path=/`;
 	}
 });

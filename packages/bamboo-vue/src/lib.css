@@ -1,9 +1,10 @@
 @import 'tailwindcss';
+
 @plugin 'tailwindcss-animate';
 
 @source './components/**/*.vue';
 @source './components/**/*.ts';
-@source '../../bamboo-core/src/manifests/**/*.ts';
+@source '@workspace/bamboo-core/src/manifests/**/*.ts';
 
 @custom-variant dark (&:where(.dark, .dark *));
 

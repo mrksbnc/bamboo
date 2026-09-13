@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useData, withBase } from 'vitepress';
+import { withBase } from 'vitepress';
+import packageJson from '../../../../package.json';
 
-const { frontmatter } = useData();
+const version = packageJson.version;
 </script>
 
 <template>
@@ -14,7 +15,7 @@ const { frontmatter } = useData();
 
 			<p class="landing-badge">
 				<span class="landing-badge-dot"></span>
-				Vue 3 component library
+				Bamboo v{{ version }}
 			</p>
 
 			<h1 class="landing-title">
@@ -24,8 +25,8 @@ const { frontmatter } = useData();
 			</h1>
 
 			<p class="landing-subtitle">
-				Typed, manifest-driven components for Vue 3 with accessible states, concrete styles, and
-				room to make each surface your own.
+				Typed, manifest-driven components for modern Vue applications with accessible states,
+				concrete styles, and room to make each surface your own.
 			</p>
 
 			<div class="landing-actions">
@@ -90,8 +91,8 @@ const { frontmatter } = useData();
 						<path fill="#35495E" d="M50.56 0 128 133.12 204.8 0h-47.36L128 51.2 97.92 0H50.56Z" />
 					</svg>
 				</span>
-				<h3>Vue 3</h3>
-				<p>Composition API components that fit naturally into modern Vue applications.</p>
+				<h3>Production-ready primitives</h3>
+				<p>Focused surfaces for forms, overlays, navigation, feedback, and everyday product UI.</p>
 			</div>
 			<div class="landing-feature">
 				<span class="landing-feature-icon">
@@ -103,8 +104,10 @@ const { frontmatter } = useData();
 						/>
 					</svg>
 				</span>
-				<h3>TypeScript First</h3>
-				<p>Props, manifests, and public APIs stay typed from source to template.</p>
+				<h3>Typed by design</h3>
+				<p>
+					Props, manifests, events, slots, and public exports stay typed from source to template.
+				</p>
 			</div>
 			<div class="landing-feature">
 				<span class="landing-feature-icon">
@@ -114,8 +117,11 @@ const { frontmatter } = useData();
 						/>
 					</svg>
 				</span>
-				<h3>Tailwind CSS 4</h3>
-				<p>Utility-first styling with concrete tokens and predictable dark-mode pairs.</p>
+				<h3>Token-led styling</h3>
+				<p>
+					Small, predictable spacing and color decisions that stay coherent in light and dark
+					themes.
+				</p>
 			</div>
 			<div class="landing-feature">
 				<span class="landing-feature-icon">
@@ -138,8 +144,8 @@ const { frontmatter } = useData();
 						/>
 					</svg>
 				</span>
-				<h3>Composable</h3>
-				<p>Use the pieces you need and keep each surface as a normal Vue component.</p>
+				<h3>Composable APIs</h3>
+				<p>Use the pieces you need, keep markup readable, and customize content through slots.</p>
 			</div>
 			<div class="landing-feature">
 				<span class="landing-feature-icon">
@@ -149,8 +155,11 @@ const { frontmatter } = useData();
 						/>
 					</svg>
 				</span>
-				<h3>Dark Mode Ready</h3>
-				<p>Every surface ships with a deliberate light and dark treatment.</p>
+				<h3>Light and dark, deliberately</h3>
+				<p>
+					Every retained surface ships with a calm palette, clear contrast, and intentional state
+					colors.
+				</p>
 			</div>
 			<div class="landing-feature">
 				<span class="landing-feature-icon">
@@ -168,8 +177,10 @@ const { frontmatter } = useData();
 						<path d="m9 12 2 2 4-4" />
 					</svg>
 				</span>
-				<h3>Accessible</h3>
-				<p>Semantic markup, keyboard-friendly interactions, and reduced-motion support.</p>
+				<h3>Accessible interactions</h3>
+				<p>
+					Semantic markup, keyboard-friendly states, focus treatment, and reduced-motion support.
+				</p>
 			</div>
 		</section>
 

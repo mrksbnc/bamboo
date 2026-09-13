@@ -28,18 +28,20 @@ const props = withDefaults(defineProps<BoSkeletonProps>(), {
 	role: () => SKELETON_MANIFEST.defaults.role,
 });
 
-const classValues = computed<string>(() =>
-	mergeTwClasses(
+const classValues = computed<string>(() => {
+	return mergeTwClasses(
 		SKELETON_MANIFEST.styles.base,
 		SKELETON_MANIFEST.styles.variant[props.variant || 'rect'],
 		props.animated ? SKELETON_MANIFEST.styles.animated : '',
-	),
-);
+	);
+});
 
-const styleValues = computed<StyleValue>(() => ({
-	width: props.width ?? undefined,
-	height: props.height ?? undefined,
-}));
+const styleValues = computed<StyleValue>(() => {
+	return {
+		width: props.width ?? undefined,
+		height: props.height ?? undefined,
+	};
+});
 </script>
 
 <style>

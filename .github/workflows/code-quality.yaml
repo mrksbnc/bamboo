@@ -4,23 +4,23 @@ on:
     branches:
       - main
     paths:
-      - 'src/**'
-      - 'config/**'
+      - 'packages/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'tsconfig*.json'
       - 'vite.config.ts'
+      - 'turbo.json'
       - '.github/workflows/code-quality.yaml'
   push:
     branches:
       - main
     paths:
-      - 'src/**'
-      - 'config/**'
+      - 'packages/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'tsconfig*.json'
       - 'vite.config.ts'
+      - 'turbo.json'
       - '.github/workflows/code-quality.yaml'
 
 permissions:

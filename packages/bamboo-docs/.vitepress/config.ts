@@ -3,7 +3,7 @@ import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-i
 /**
  * Import locale-specific configs
  */
-import { en } from './locales/en';
+import { en } from './locales/en.js';
 /**
  * https://vitepress.dev/reference/site-config
  */

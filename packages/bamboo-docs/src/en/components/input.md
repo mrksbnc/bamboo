@@ -1,219 +1,78 @@
 ---
 title: Input
-description: A text input field component with support for icons, validation states, pills, and various input types. Perfect for forms and user data collection.
+description: Collect single-line text and form values.
 category: form
-tags:
-  - input
-  - form
-  - field
-  - validation
-  - pills
-outline: deep
+tags: [input, form, validation]
 ---
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { BoInput } from '@mrksbnc/bamboo-vue';
 
-const basicExample = `<bo-input placeholder="Enter text..." />`;
-const labelExample = `<bo-input label="Email Address" placeholder="Enter your email..." />`;
-const sizesExample = `<bo-input size="sm" placeholder="Small input" />
-<bo-input size="default" placeholder="Default input" />
-<bo-input size="lg" placeholder="Large input" />`;
-const statesExample = `<bo-input state="default" placeholder="Default state" />
-<bo-input state="valid" placeholder="Valid input" />
-<bo-input state="invalid" placeholder="Invalid input" error="This field is required" />`;
-const variantsExample = `<bo-input variant="default" placeholder="Default variant" />
-<bo-input variant="filled" placeholder="Filled variant" />`;
-const iconsExample = `<bo-input prefix-icon="mail" placeholder="Email address" />
-<bo-input suffix-icon="search" placeholder="Search..." />
-<bo-input prefix-icon="user" suffix-icon="eye" placeholder="Username" />`;
-const typesExample = `<bo-input type="text" placeholder="Text input" />
-<bo-input type="email" placeholder="Email input" />
-<bo-input type="password" placeholder="Password input" />
-<bo-input type="number" placeholder="Number input" />
-<bo-input type="tel" placeholder="Phone input" />
-<bo-input type="url" placeholder="URL input" />`;
-const descriptionsExample = `<bo-input
-  label="Username"
-  description="Choose a unique username"
-  hint="Must be at least 3 characters long"
-  placeholder="Enter username"
- />
-<bo-input
-  label="Password"
-  state="invalid"
-  error="Password must contain at least 8 characters"
-  placeholder="Enter password"
-  type="password"
- />`;
-const requiredExample = `<bo-input label="Email" placeholder="Enter email" required />`;
-const disabledExample = `<bo-input placeholder="Disabled input" disabled />`;
-const fullWidthExample = `<bo-input placeholder="Full width input" full-width />`;
+const password = ref('secret');
+const basicExample = `<bo-input label="Email" placeholder="you@example.com" />`;
+const descriptionExample = `<div class="grid gap-3">
+  <bo-input label="Username" description="Choose a public name." />
+  <bo-input label="Invite code" state="invalid" error="Code not found." />
+</div>`;
+const typeExample = `<div class="grid gap-3">
+  <bo-input label="Email" type="email" />
+  <bo-input v-model="password" label="Password" type="password" reveal-password />
+</div>`;
 </script>
 
 # Input
 
-A text input field component with support for icons, validation states, pills, and various input types. Perfect for forms and user data collection.
+Use `bo-input` for single-line values with optional labels, helper text, icons, and validation states.
 
-## Basic Usage
-
-The component is called `bo-input` and can be used as follows:
+## Usage
 
 <ExampleFrame :code="basicExample">
-  <div class="flex gap-4">
-    <bo-input placeholder="Enter text..." />
+  <div class="w-full max-w-sm">
+    <bo-input label="Email" placeholder="you@example.com" />
   </div>
 </ExampleFrame>
 
-## With Label
+## Description and validation
 
-Inputs can have labels for better accessibility and user experience:
+Use `description` for supporting text and `error` with `state="invalid"` for failed validation.
 
-<ExampleFrame :code="labelExample">
-  <div class="flex gap-4">
-    <bo-input label="Email Address" placeholder="Enter your email..." />
+<ExampleFrame :code="descriptionExample">
+  <div class="grid w-full max-w-sm gap-3">
+    <bo-input label="Username" description="Choose a public name." />
+    <bo-input label="Invite code" state="invalid" error="Code not found." />
   </div>
 </ExampleFrame>
 
-## Sizes
+## Types
 
-The `size` prop allows you to customize the size of the input. The default size is `default`.
+The `type` prop maps to the native input type. `reveal-password` adds a password visibility control.
 
-<ExampleFrame :code="sizesExample">
-  <div class="flex flex-col gap-4">
-    <bo-input size="sm" placeholder="Small input" />
-    <bo-input size="default" placeholder="Default input" />
-    <bo-input size="lg" placeholder="Large input" />
+<ExampleFrame :code="typeExample">
+  <div class="grid w-full max-w-sm gap-3">
+    <bo-input label="Email" type="email" />
+    <bo-input v-model="password" label="Password" type="password" reveal-password />
   </div>
 </ExampleFrame>
 
-## States
+## API
 
-The `state` prop allows you to show validation states. The default state is `default`.
-
-<ExampleFrame :code="statesExample">
-  <div class="flex flex-col gap-4">
-    <bo-input state="default" placeholder="Default state" />
-    <bo-input state="valid" placeholder="Valid input" />
-    <bo-input state="invalid" placeholder="Invalid input" error="This field is required" />
-  </div>
-</ExampleFrame>
-
-## Variants
-
-The `variant` prop allows you to customize the appearance. The default variant is `default`.
-
-<ExampleFrame :code="variantsExample">
-  <div class="flex flex-col gap-4">
-    <bo-input variant="default" placeholder="Default variant" />
-    <bo-input variant="filled" placeholder="Filled variant" />
-  </div>
-</ExampleFrame>
-
-## With Icons
-
-Inputs support prefix and suffix icons:
-
-<ExampleFrame :code="iconsExample">
-  <div class="flex flex-col gap-4">
-    <bo-input prefix-icon="mail" placeholder="Email address" />
-    <bo-input suffix-icon="search" placeholder="Search..." />
-    <bo-input prefix-icon="user" suffix-icon="eye" placeholder="Username" />
-  </div>
-</ExampleFrame>
-
-## Input Types
-
-The input supports various HTML input types:
-
-<ExampleFrame :code="typesExample">
-  <div class="flex flex-col gap-4">
-    <bo-input type="text" placeholder="Text input" />
-    <bo-input type="email" placeholder="Email input" />
-    <bo-input type="password" placeholder="Password input" />
-    <bo-input type="number" placeholder="Number input" />
-    <bo-input type="tel" placeholder="Phone input" />
-    <bo-input type="url" placeholder="URL input" />
-  </div>
-</ExampleFrame>
-
-## With Description and Hints
-
-Inputs can have descriptions and hint messages:
-
-<ExampleFrame :code="descriptionsExample">
-  <div class="flex flex-col gap-4">
-    <bo-input
-      label="Username"
-      description="Choose a unique username"
-      hint="Must be at least 3 characters long"
-      placeholder="Enter username"
-    />
-    <bo-input
-      label="Password"
-      state="invalid"
-      error="Password must contain at least 8 characters"
-      placeholder="Enter password"
-      type="password"
-    />
-  </div>
-</ExampleFrame>
-
-## Required Fields
-
-Mark inputs as required:
-
-<ExampleFrame :code="requiredExample">
-  <div class="flex gap-4">
-    <bo-input label="Email" placeholder="Enter email" required />
-  </div>
-</ExampleFrame>
-
-## Disabled State
-
-Inputs can be disabled:
-
-<ExampleFrame :code="disabledExample">
-  <div class="flex gap-4">
-    <bo-input placeholder="Disabled input" disabled />
-  </div>
-</ExampleFrame>
-
-## Full Width
-
-Inputs can take the full width of their container:
-
-<ExampleFrame :code="fullWidthExample">
-  <div class="w-full">
-    <bo-input placeholder="Full width input" full-width />
-  </div>
-</ExampleFrame>
-
-## API Reference
-
-### Props
-
-| Prop             | Type                           | Default         | Description                                             |
-| ---------------- | ------------------------------ | --------------- | ------------------------------------------------------- |
-| `id`             | `string`                       | `Autogenerated` | The id of the element.                                  |
-| `dataTestId`     | `string`                       | `Autogenerated` | The data test id of the element.                        |
-| `size`           | `BoInputSize`                  | `'default'`     | The size of the input.                                  |
-| `state`          | `BoInputState`                 | `'default'`     | The state of the input.                                 |
-| `variant`        | `BoInputVariant`               | `'default'`     | The variant of the input.                               |
-| `type`           | `BoInputType`                  | `'text'`        | The type of the input.                                  |
-| `placeholder`    | `string`                       | -               | The placeholder of the input.                           |
-| `label`          | `string`                       | -               | The label of the input.                                 |
-| `description`    | `string`                       | -               | Description for the input.                              |
-| `error`          | `string`                       | -               | Error message to display when in invalid state.         |
-| `hint`           | `string`                       | -               | Hint message to display below the input.                |
-| `required`       | `boolean`                      | `false`         | Whether the input is required.                          |
-| `name`           | `string`                       | -               | The name of the input.                                  |
-| `disabled`       | `boolean`                      | `false`         | Whether the input is disabled.                          |
-| `readOnly`       | `boolean`                      | `false`         | Whether the input is read-only.                         |
-| `fullWidth`      | `boolean`                      | `false`         | Whether the input is full width or not.                 |
-| `prefixIcon`     | `Icon`                         | -               | The prefix icon to render.                              |
-| `suffixIcon`     | `Icon`                         | -               | The suffix icon to render.                              |
-| `autofocus`      | `boolean`                      | `false`         | Whether the input should autofocus.                     |
-| `revealPassword` | `boolean`                      | `false`         | Whether to show toggle button for password input.       |
-| `role`           | `HTMLAttributes['role']`       | -               | The role of the element.                                |
-| `ariaLabel`      | `HTMLAttributes['aria-label']` | -               | Defines a string value that labels the current element. |
+| Prop / event / slot                                      | Type                          | Default       | Description                                                                       |
+| -------------------------------------------------------- | ----------------------------- | ------------- | --------------------------------------------------------------------------------- |
+| `id` / `dataTestId`                                      | `string`                      | autogenerated | Input attributes.                                                                 |
+| `modelValue`                                             | `string`                      | `''`          | Value used by `v-model`.                                                          |
+| `type`                                                   | native input type             | `text`        | Input value type.                                                                 |
+| `label` / `description`                                  | `string`                      | -             | Visible label and supporting text.                                                |
+| `placeholder` / `name`                                   | `string`                      | -             | Empty hint and native form name.                                                  |
+| `state`                                                  | `default \| valid \| invalid` | `default`     | Validation appearance.                                                            |
+| `error` / `hint`                                         | `string`                      | -             | Validation or supporting text. `description` takes precedence over `hint`.        |
+| `required` / `disabled` / `readOnly` / `autofocus`       | `boolean`                     | `false`       | Native input states.                                                              |
+| `prefixIcon` / `suffixIcon`                              | `Icon`                        | -             | Icons inside the input.                                                           |
+| `revealPassword`                                         | `boolean`                     | `false`       | Shows a password visibility toggle when a value exists.                           |
+| `fullWidth`                                              | `boolean`                     | `false`       | Fills the available width.                                                        |
+| `role` / `ariaLabel` / `ariaDescribedBy` / `ariaInvalid` | native accessibility types    | `textbox` / - | Input semantics; description and error are wired automatically unless overridden. |
+| `update:modelValue`                                      | event                         | -             | Emitted when the value changes.                                                   |
+| `focus` / `blur` / `change`                              | native component events       | -             | Emitted from the native input.                                                    |
+| `prefixIconClick` / `suffixIconClick`                    | event                         | -             | Emitted when an icon container is clicked.                                        |
+| `default` / `topRightContent`                            | slot                          | -             | Additional content and content beside the label.                                  |
+| `focus`                                                  | exposed method                | -             | Focuses the native input.                                                         |

@@ -16,44 +16,70 @@
 	}
 
 	.bo-toast-viewport--bottom-left {
-		@apply bottom-4 start-4 items-start;
+		@apply bottom-4 start-4 flex-col-reverse items-start;
 	}
 
 	.bo-toast-viewport--bottom-center {
-		@apply bottom-4 start-1/2 -translate-x-1/2 items-center;
+		@apply bottom-4 start-1/2 -translate-x-1/2 flex-col-reverse items-center;
 	}
 
 	.bo-toast-viewport--bottom-right {
-		@apply end-4 bottom-4 items-end;
+		@apply end-4 bottom-4 flex-col-reverse items-end;
+	}
+
+	.bo-toast-viewport--bottom-left > div,
+	.bo-toast-viewport--bottom-center > div,
+	.bo-toast-viewport--bottom-right > div {
+		@apply flex-col-reverse;
 	}
 
 	.bo-toast {
 		@apply pointer-events-auto relative grid w-full grid-cols-[auto_1fr_auto] items-start gap-3 rounded-lg border px-4 py-3 text-sm shadow-lg;
-		background-color: var(--color-white);
-		border-color: var(--color-neutral-300);
-		color: var(--color-neutral-900);
+		@apply border-neutral-300 bg-white text-neutral-900;
+	}
+
+	.bo-toast--default {
+		@apply border-neutral-300 bg-white text-neutral-900;
 	}
 
 	.dark .bo-toast {
-		background-color: var(--color-neutral-900);
-		border-color: var(--color-neutral-700);
-		color: var(--color-neutral-100);
+		@apply border-neutral-700 bg-neutral-900 text-neutral-100;
+	}
+
+	.dark .bo-toast--default {
+		@apply border-neutral-700 bg-neutral-900 text-neutral-100;
 	}
 
 	.bo-toast--primary {
-		@apply border-blue-500/50;
+		@apply border-blue-200 bg-blue-50 text-blue-800;
 	}
 
 	.bo-toast--success {
-		@apply border-green-500/50;
+		@apply border-green-200 bg-green-50 text-green-800;
 	}
 
 	.bo-toast--warning {
-		@apply border-yellow-500/50;
+		@apply border-yellow-200 bg-yellow-50 text-yellow-900;
 	}
 
 	.bo-toast--destructive {
-		@apply border-red-500/50;
+		@apply border-red-200 bg-red-50 text-red-800;
+	}
+
+	.dark .bo-toast--primary {
+		@apply border-blue-800 bg-blue-950 text-blue-200;
+	}
+
+	.dark .bo-toast--success {
+		@apply border-green-800 bg-green-950 text-green-200;
+	}
+
+	.dark .bo-toast--warning {
+		@apply border-yellow-800 bg-yellow-950 text-yellow-200;
+	}
+
+	.dark .bo-toast--destructive {
+		@apply border-red-800 bg-red-950 text-red-200;
 	}
 
 	.bo-toast__icon {
@@ -69,12 +95,43 @@
 	}
 
 	.bo-toast__description {
-		@apply leading-relaxed;
-		color: var(--color-neutral-500);
+		@apply leading-relaxed text-neutral-500;
 	}
 
 	.dark .bo-toast__description {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
+	}
+
+	.bo-toast--primary .bo-toast__description {
+		@apply text-blue-700;
+	}
+
+	.bo-toast--success .bo-toast__description {
+		@apply text-green-700;
+	}
+
+	.bo-toast--warning .bo-toast__description {
+		@apply text-yellow-800;
+	}
+
+	.bo-toast--destructive .bo-toast__description {
+		@apply text-red-700;
+	}
+
+	.dark .bo-toast--primary .bo-toast__description {
+		@apply text-blue-200;
+	}
+
+	.dark .bo-toast--success .bo-toast__description {
+		@apply text-green-200;
+	}
+
+	.dark .bo-toast--warning .bo-toast__description {
+		@apply text-yellow-200;
+	}
+
+	.dark .bo-toast--destructive .bo-toast__description {
+		@apply text-red-200;
 	}
 
 	.bo-toast__close {
@@ -83,18 +140,29 @@
 
 	.bo-toast-enter-active,
 	.bo-toast-leave-active {
-		transition:
-			opacity 0.2s ease,
-			transform 0.2s ease;
+		@apply transition-[opacity,transform] duration-200 ease-in-out;
 	}
 
 	.bo-toast-enter-from,
 	.bo-toast-leave-to {
-		opacity: 0;
-		transform: translateY(-8px);
+		@apply translate-y-2 opacity-0;
+	}
+
+	.bo-toast-viewport--top-left .bo-toast-enter-from,
+	.bo-toast-viewport--top-left .bo-toast-leave-to,
+	.bo-toast-viewport--bottom-left .bo-toast-enter-from,
+	.bo-toast-viewport--bottom-left .bo-toast-leave-to {
+		@apply -translate-x-4 translate-y-0;
+	}
+
+	.bo-toast-viewport--top-right .bo-toast-enter-from,
+	.bo-toast-viewport--top-right .bo-toast-leave-to,
+	.bo-toast-viewport--bottom-right .bo-toast-enter-from,
+	.bo-toast-viewport--bottom-right .bo-toast-leave-to {
+		@apply translate-x-4 translate-y-0;
 	}
 
 	.bo-toast-move {
-		transition: transform 0.2s ease;
+		@apply transition-transform duration-200 ease-in-out;
 	}
 }

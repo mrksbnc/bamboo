@@ -33,8 +33,7 @@ describe('BoLoadingSpinner', () => {
 					components: { BoText },
 				},
 			});
-			const container = wrapper.find('div[data-testid]');
-			expect(container.exists()).toBe(true);
+			expect(wrapper.find(`.bo-loading-spinner__track--${size}`).exists()).toBe(true);
 		});
 	});
 
@@ -46,7 +45,6 @@ describe('BoLoadingSpinner', () => {
 			'warning',
 			'destructive',
 			'white',
-			'black',
 		] as const;
 		variants.forEach((variant) => {
 			const wrapper = mount(BoLoadingSpinner, {
@@ -56,7 +54,7 @@ describe('BoLoadingSpinner', () => {
 				},
 			});
 			const container = wrapper.find('div[data-testid]');
-			expect(container.exists()).toBe(true);
+			expect(container.classes()).toContain(`bo-loading-spinner--${variant}`);
 		});
 	});
 

@@ -1,0 +1,20 @@
+@layer components {
+	.bo-date-picker,
+	.bo-date-range-picker {
+		@apply relative inline-flex;
+	}
+
+	.bo-date-picker__trigger,
+	.bo-date-range-picker__trigger {
+		@apply inline-flex min-w-44 items-center justify-between rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 shadow-sm transition-colors hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50;
+	}
+
+	.dark .bo-date-picker__trigger,
+	.dark .bo-date-range-picker__trigger {
+		@apply border-neutral-700 bg-neutral-900 text-neutral-100 hover:bg-neutral-800;
+	}
+
+	.bo-range-calendar {
+		@apply flex flex-wrap gap-4;
+	}
+}

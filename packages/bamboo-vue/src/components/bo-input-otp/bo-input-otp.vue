@@ -5,6 +5,7 @@
 				{{ label }}<span v-if="required" :class="INPUT_OTP_MANIFEST.styles.labels.required">*</span>
 			</label>
 		</div>
+		<input v-if="name" type="hidden" :name="name" :value="model" />
 
 		<div
 			:class="INPUT_OTP_MANIFEST.styles.group"
@@ -21,7 +22,6 @@
 				:key="inputId(index - 1)"
 				:id="inputId(index - 1)"
 				:data-testid="`${dataTestId}-${index}`"
-				:name="index === 1 ? name : undefined"
 				:type="type || INPUT_OTP_MANIFEST.defaults.type"
 				:inputmode="inputMode || INPUT_OTP_MANIFEST.defaults.inputMode"
 				:pattern="pattern || INPUT_OTP_MANIFEST.defaults.pattern"
@@ -63,7 +63,7 @@
 import type { BoInputOtpProps } from '@workspace/bamboo-core';
 import { INPUT_OTP_MANIFEST } from '@workspace/bamboo-core';
 import { generateComponentId, generateDataTestId } from '@workspace/bamboo-core';
-import { computed, nextTick, onMounted, ref } from 'vue';
+import { computed, nextTick, onMounted, useTemplateRef } from 'vue';
 
 const props = withDefaults(defineProps<BoInputOtpProps>(), {
 	id: () => generateComponentId('input-otp'),
@@ -76,20 +76,28 @@ const props = withDefaults(defineProps<BoInputOtpProps>(), {
 });
 
 const emit = defineEmits<{
-	complete: [value: string];
-	focus: [];
-	blur: [event: FocusEvent];
+	(event: 'complete', value: string): void;
+	(event: 'focus'): void;
+	(eventName: 'blur', event: FocusEvent): void;
 }>();
 
+const rootRef = useTemplateRef('rootRef');
 const model = defineModel<string>({ default: '' });
-const rootRef = ref<HTMLElement | null>(null);
-const inputCount = computed(() => Math.max(1, props.length || INPUT_OTP_MANIFEST.defaults.length));
-const helperTextId = computed(() => `${props.id}-helper`);
-const describedBy = computed(
-	() =>
+
+const inputCount = computed(() => {
+	return Math.max(1, props.length || INPUT_OTP_MANIFEST.defaults.length);
+});
+
+const helperTextId = computed(() => {
+	return `${props.id}-helper`;
+});
+
+const describedBy = computed(() => {
+	return (
 		props.ariaDescribedBy ||
-		(props.description || props.error || props.hint ? helperTextId.value : undefined),
-);
+		(props.description || props.error || props.hint ? helperTextId.value : undefined)
+	);
+});
 
 function inputId(index: number): string {
 	return `${props.id}-${index + 1}`;
@@ -100,11 +108,9 @@ function characterAt(index: number): string {
 }
 
 function inputs(): HTMLInputElement[] {
-	return rootRef.value ? Array.from(rootRef.value.querySelectorAll<HTMLInputElement>('input')) : [];
-}
-
-function focusInput(index: number): void {
-	void nextTick(() => inputs()[Math.max(0, Math.min(index, inputCount.value - 1))]?.focus());
+	return rootRef.value
+		? Array.from(rootRef.value.querySelectorAll<HTMLInputElement>('input:not([type="hidden"])'))
+		: [];
 }
 
 function validCharacters(value: string): string {
@@ -122,15 +128,22 @@ function updateValue(index: number, value: string): void {
 	const nextValue = model.value.split('');
 	nextValue.splice(index, 1, ...validCharacters(value).slice(0, inputCount.value - index));
 	model.value = nextValue.slice(0, inputCount.value).join('');
-	if (model.value.length === inputCount.value) emit('complete', model.value);
+
+	if (model.value.length === inputCount.value) {
+		emit('complete', model.value);
+	}
 }
 
 function onInput(index: number, event: Event): void {
 	const input = event.target as HTMLInputElement;
+
 	const value = validCharacters(input.value);
 	input.value = value.charAt(0);
+
 	updateValue(index, value);
-	if (value) focusInput(index + 1);
+	if (value) {
+		focusInput(index + 1);
+	}
 }
 
 function onPaste(event: ClipboardEvent): void {
@@ -152,15 +165,33 @@ function onKeydown(index: number, event: KeyboardEvent): void {
 	} else if (event.key === 'ArrowRight') {
 		event.preventDefault();
 		focusInput(index + 1);
-	} else if (event.key === 'Backspace' && !characterAt(index)) {
+	} else if (event.key === 'Backspace') {
+		if (props.disabled || props.readOnly) {
+			return;
+		}
+
 		event.preventDefault();
-		focusInput(index - 1);
+		if (characterAt(index)) {
+			model.value = model.value.slice(0, index);
+			return;
+		}
+
+		if (index > 0) {
+			model.value = model.value.slice(0, index - 1);
+			focusInput(index - 1);
+		}
 	}
 }
 
 function focus(): void {
 	focusInput(0);
 }
+
+async function focusInput(index: number): Promise<void> {
+	await nextTick(() => inputs()[Math.max(0, Math.min(index, inputCount.value - 1))]?.focus());
+}
+
+async function a() {}
 
 defineExpose({ focus });
 

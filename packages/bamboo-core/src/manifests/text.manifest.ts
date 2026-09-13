@@ -96,7 +96,7 @@ export const TEXT_MANIFEST = {
 		role: 'paragraph',
 		fontFamily: 'sans',
 		variant: 'default',
-		fontSize: 'default',
+		fontSize: 'sm',
 		whiteSpace: 'normal',
 		fontWeight: 'regular',
 		textTransform: 'none',

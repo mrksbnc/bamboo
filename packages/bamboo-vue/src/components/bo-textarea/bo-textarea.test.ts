@@ -36,18 +36,16 @@ describe('BoTextarea', () => {
 		expect(textarea.attributes('placeholder')).toBe('Enter description');
 	});
 
-	it('applies correct size classes', () => {
-		const sizes = ['sm', 'default', 'lg'] as const;
-		sizes.forEach((size) => {
-			const wrapper = mount(BoTextarea, {
-				props: { size },
-				global: {
-					components: { BoIcon, BoText },
-				},
-			});
-			const container = wrapper.find('textarea').element.parentElement;
-			expect(container).toBeTruthy();
+	it('uses explicit height and max height without a size prop', () => {
+		const wrapper = mount(BoTextarea, {
+			props: { height: 120, maxHeight: '20rem' },
+			global: {
+				components: { BoIcon, BoText },
+			},
 		});
+		const container = wrapper.find('textarea').element.parentElement;
+		expect(container?.getAttribute('style')).toContain('height: 120px');
+		expect(container?.getAttribute('style')).toContain('max-height: 20rem');
 	});
 
 	it('applies correct state classes', () => {

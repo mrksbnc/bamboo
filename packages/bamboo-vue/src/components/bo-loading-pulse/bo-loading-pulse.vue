@@ -4,6 +4,7 @@
 		:data-testid="dataTestId"
 		:role="role"
 		:class="containerClassValues"
+		:style="styleValues"
 		:aria-live="ariaLive"
 		:aria-label="ariaLabel"
 		:aria-busy="ariaBusy"
@@ -16,7 +17,9 @@
 				:style="styleValues"
 			></div>
 		</div>
-		<bo-text v-if="loaderText" :font-size="pulseLabelFontSize">{{ loaderText }}</bo-text>
+		<bo-text v-if="loaderText" :font-size="pulseLabelFontSize" variant="inherit">{{
+			loaderText
+		}}</bo-text>
 	</div>
 </template>
 
@@ -40,6 +43,7 @@ const props = withDefaults(defineProps<BoLoadingPulseProps>(), {
 	size: () => LOADING_PULSE_MANIFEST.defaults.size,
 	variant: () => LOADING_PULSE_MANIFEST.defaults.variant,
 	textPosition: () => LOADING_PULSE_MANIFEST.defaults.textPosition,
+	ariaLabel: 'Loading',
 });
 
 const pulseLabelFontSize = computed<BoFontSize>(() => {
@@ -50,7 +54,7 @@ const containerClassValues = computed<string>(() => {
 	return mergeTwClasses(
 		LOADING_PULSE_MANIFEST.styles.container,
 		LOADING_PULSE_MANIFEST.styles.textPosition[props.textPosition || 'after'],
-		props.customColor ? '' : LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
+		LOADING_PULSE_MANIFEST.styles.variant[props.variant || 'primary'],
 	);
 });
 
@@ -64,7 +68,7 @@ const dotClassValues = computed<string>(() => {
 const styleValues = computed<StyleValue>(() => {
 	if (props.customColor) {
 		return {
-			backgroundColor: getValidOrFallbackColorFromStr(props.customColor),
+			color: getValidOrFallbackColorFromStr(props.customColor),
 		};
 	}
 	return {};

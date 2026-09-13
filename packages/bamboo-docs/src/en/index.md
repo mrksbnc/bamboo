@@ -2,8 +2,8 @@
 layout: home
 
 title: Bamboo
-description: A lightweight, type-safe component library for Vue 3
+description: A premium, type-safe component library for modern Vue applications
 hero:
   name: Bamboo
-  tagline: Manifest-driven components for the modern web.
+  tagline: Precise primitives for interfaces that feel considered.
 ---

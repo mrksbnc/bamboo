@@ -9,11 +9,13 @@ export interface BoToggleProps {
 	id?: HTMLElement['id'];
 	dataTestId?: string;
 	modelValue?: boolean;
+	defaultValue?: boolean;
 	disabled?: boolean;
 	variant?: BoToggleVariant;
 	size?: BoToggleSize;
 	label?: string;
 	ariaLabel?: HTMLAttributes['aria-label'];
+	ariaLabelledBy?: HTMLAttributes['aria-labelledby'];
 	role?: HTMLAttributes['role'];
 }
 

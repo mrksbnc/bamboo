@@ -39,4 +39,25 @@ describe('BoTabs', () => {
 		expect(triggers[1].attributes('aria-selected')).toBe('true');
 		expect(wrapper.find('[role="tabpanel"]')?.text()).toContain('Second content');
 	});
+
+	it('supports manual activation, disabled tabs, and keyboard navigation', async () => {
+		const wrapper = mount(BoTabs, {
+			attachTo: document.body,
+			props: { defaultValue: 'first', activationMode: 'manual', orientation: 'vertical' },
+			global: { components: { BoTabsList, BoTabsTrigger, BoTabsContent } },
+			slots: {
+				default:
+					'<BoTabsList><BoTabsTrigger value="first">First</BoTabsTrigger><BoTabsTrigger value="disabled" disabled>Disabled</BoTabsTrigger><BoTabsTrigger value="second">Second</BoTabsTrigger></BoTabsList><BoTabsContent value="first" forceMount>First content</BoTabsContent><BoTabsContent value="second">Second content</BoTabsContent>',
+			},
+		});
+		const triggers = wrapper.findAll('[role="tab"]');
+		expect(wrapper.attributes('data-orientation')).toBe('vertical');
+		expect(triggers[1]?.attributes('disabled')).toBeDefined();
+		await triggers[0]!.trigger('keydown', { key: 'ArrowDown' });
+		expect(document.activeElement).toBe(triggers[2]!.element);
+		expect(triggers[2]?.attributes('aria-selected')).toBe('false');
+		await triggers[2]!.trigger('keydown', { key: 'Enter' });
+		expect(triggers[2]?.attributes('aria-selected')).toBe('true');
+		expect(wrapper.findAll('[role="tabpanel"]')).toHaveLength(2);
+	});
 });

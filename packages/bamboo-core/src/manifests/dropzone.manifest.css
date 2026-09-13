@@ -1,0 +1,38 @@
+@layer components {
+	.bo-dropzone {
+		@apply relative flex min-h-28 w-full cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-neutral-300 bg-white p-4 text-center text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:bg-neutral-800;
+	}
+	.bo-dropzone--dragging {
+		@apply border-neutral-500 bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-800;
+	}
+	.bo-dropzone--disabled {
+		@apply pointer-events-none cursor-not-allowed border-neutral-200 bg-neutral-50 text-neutral-400 opacity-60 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-500;
+	}
+	.bo-dropzone__input {
+		@apply absolute inset-0 z-0 h-full w-full cursor-pointer opacity-0;
+	}
+	.bo-dropzone__content {
+		@apply relative z-10 flex flex-col items-center gap-1.5 pointer-events-none;
+	}
+	.bo-dropzone__icon {
+		@apply size-5 text-neutral-500 dark:text-neutral-400;
+	}
+	.bo-dropzone__label {
+		@apply text-sm font-medium text-neutral-800 dark:text-neutral-100;
+	}
+	.bo-dropzone__description {
+		@apply text-xs text-neutral-500 dark:text-neutral-400;
+	}
+	.bo-dropzone__file-list {
+		@apply relative z-10 mt-2 flex w-full flex-col gap-1 border-t border-neutral-200 pt-2 text-start dark:border-neutral-700;
+	}
+	.bo-dropzone__file {
+		@apply flex items-center justify-between gap-2 text-xs text-neutral-700 dark:text-neutral-300;
+	}
+	.bo-dropzone__remove {
+		@apply shrink-0 cursor-pointer text-xs text-neutral-500 underline-offset-2 hover:text-neutral-900 hover:underline dark:text-neutral-400 dark:hover:text-neutral-100;
+	}
+	.bo-dropzone__error {
+		@apply relative z-10 mt-2 text-xs text-red-600 dark:text-red-400;
+	}
+}

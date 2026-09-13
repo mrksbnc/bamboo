@@ -32,6 +32,7 @@ type BoPopoverManifestDefaults = ManifestDefaults<
 >;
 
 export interface BoPopoverStyleManifest {
+	base: string;
 	trigger: string;
 	content: string;
 	arrow: string;

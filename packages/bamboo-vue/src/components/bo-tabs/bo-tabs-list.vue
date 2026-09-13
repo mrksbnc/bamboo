@@ -29,14 +29,16 @@ const props = withDefaults(defineProps<BoTabsListProps>(), {
 
 const orientation = inject(
 	tabsOrientationKey,
-	computed(() => TABS_MANIFEST.defaults.orientation),
+	computed(() => {
+		return TABS_MANIFEST.defaults.orientation;
+	}),
 );
-const listClasses = computed(() =>
-	mergeTwClasses(
+const listClasses = computed(() => {
+	return mergeTwClasses(
 		TABS_MANIFEST.styles.list,
 		TABS_MANIFEST.styles.listOrientation[orientation.value],
-	),
-);
+	);
+});
 </script>
 
 <style>

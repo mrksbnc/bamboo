@@ -1,5 +1,5 @@
 import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress';
-import { generateSidebar } from '../internal/sidebar';
+import { generateSidebar } from '../internal/sidebar.js';
 
 export const en: LocaleSpecificConfig<DefaultTheme.Config> = {
 	title: 'Bamboo',

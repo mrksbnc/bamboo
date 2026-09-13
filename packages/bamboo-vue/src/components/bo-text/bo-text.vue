@@ -64,9 +64,11 @@ const lineClampValue = computed<string | undefined>(() => {
 	return props.lineClamp.startsWith('--') ? `var(${props.lineClamp})` : props.lineClamp;
 });
 
-const lineClamp = computed<string>(() =>
-	lineClampValue.value ? TEXT_MANIFEST.styles.lineClamp.base : TEXT_MANIFEST.styles.lineClamp.none,
-);
+const lineClamp = computed<string>(() => {
+	return lineClampValue.value
+		? TEXT_MANIFEST.styles.lineClamp.base
+		: TEXT_MANIFEST.styles.lineClamp.none;
+});
 
 const classValues = computed<string>(() => {
 	return mergeTwClasses(

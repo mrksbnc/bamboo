@@ -5,11 +5,11 @@
 
 	.bo-tabs__list {
 		@apply inline-flex w-full items-center gap-1 border-b;
-		border-color: var(--color-neutral-200);
+		@apply border-neutral-200;
 	}
 
 	.dark .bo-tabs__list {
-		border-color: var(--color-neutral-800);
+		@apply border-neutral-800;
 	}
 
 	.bo-tabs__list--vertical {
@@ -17,38 +17,43 @@
 	}
 
 	.bo-tabs__trigger {
-		@apply relative inline-flex min-h-10 flex-1 items-center justify-center whitespace-nowrap rounded-sm px-3 py-2 text-sm font-medium transition-colors hover:text-blue-600 disabled:pointer-events-none disabled:opacity-50;
-		color: var(--color-neutral-500);
+		@apply relative inline-flex min-h-10 flex-1 items-center justify-center whitespace-nowrap rounded-sm px-3 py-2 text-sm font-medium text-neutral-500 transition-colors hover:text-blue-600 disabled:pointer-events-none disabled:opacity-50;
 	}
 
 	.dark .bo-tabs__trigger {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-tabs__trigger:hover {
-		background-color: var(--color-neutral-100);
+		@apply bg-neutral-100;
 	}
 
 	.dark .bo-tabs__trigger:hover {
-		background-color: var(--color-neutral-800);
+		@apply bg-neutral-800 text-blue-400;
 	}
 
 	.bo-tabs__trigger:focus-visible {
 		@apply outline-none ring-[3px];
-		--tw-ring-color: var(--color-blue-500);
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-tabs__trigger:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-tabs__trigger--active {
-		color: var(--color-blue-600);
+		@apply text-blue-600;
 	}
 
 	.dark .bo-tabs__trigger--active {
-		color: var(--color-blue-400);
+		@apply text-blue-400;
 	}
 
 	.bo-tabs__trigger--active::after {
 		@apply absolute bottom-[-1px] start-0 h-0.5 w-full;
-		background-color: currentColor;
+		@apply bg-current;
 		content: '';
 	}
 
@@ -61,7 +66,13 @@
 	}
 
 	.bo-tabs__content:focus-visible {
-		@apply rounded-md ring-[3px];
-		--tw-ring-color: var(--color-blue-500);
+		@apply rounded-md;
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-tabs__content:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 }

@@ -1,233 +1,283 @@
 ---
 title: Button
-description: Interactive button component with multiple variants, sizes, and states
+description: Trigger actions with compact, styled controls.
 category: form
 tags:
   - button
   - action
   - form
-  - interactive
+  - variants
 outline: deep
 ---
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { BoButton } from '@mrksbnc/bamboo-vue';
 
-const basicExample = `<bo-button>Button</bo-button>`;
+const pressed = ref(false);
+const buttonVariants = ['primary', 'secondary', 'success', 'warning', 'destructive', 'light', 'dark'] as const;
+const buttonKinds = ['default', 'outline', 'ghost', 'link'] as const;
 
-const variantsExample = `<div class="flex gap-4 flex-wrap items-center">
+const basicExample = `<bo-button>Save changes</bo-button>`;
+
+const variantsExample = `<div class="flex flex-wrap gap-2">
   <bo-button variant="primary">Primary</bo-button>
   <bo-button variant="secondary">Secondary</bo-button>
   <bo-button variant="success">Success</bo-button>
   <bo-button variant="warning">Warning</bo-button>
   <bo-button variant="destructive">Destructive</bo-button>
-  <div class="p-2 bg-neutral-900 rounded">
-    <bo-button variant="light">Light</bo-button>
-  </div>
-  <div class="p-2 bg-neutral-400 rounded">
-    <bo-button variant="dark">Dark</bo-button>
-  </div>
+  <bo-button variant="light">Light</bo-button>
+  <bo-button variant="dark">Dark</bo-button>
 </div>`;
 
-const sizesExample = `<div class="flex gap-4 items-center flex-wrap">
-  <bo-button size="xs">XS</bo-button>
-  <bo-button size="sm">SM</bo-button>
-  <bo-button size="default">Default</bo-button>
-  <bo-button size="lg">LG</bo-button>
-  <bo-button size="xl">XL</bo-button>
-</div>`;
-
-const kindsExample = `<div class="flex gap-4 flex-wrap">
-  <bo-button kind="default">Filled</bo-button>
+const kindsExample = `<div class="flex flex-wrap gap-2">
+  <bo-button kind="default">Default</bo-button>
   <bo-button kind="outline">Outline</bo-button>
   <bo-button kind="ghost">Ghost</bo-button>
   <bo-button kind="link">Link</bo-button>
 </div>`;
 
-const iconsExample = `<div class="flex gap-4 flex-wrap">
-  <bo-button prefix-icon="home">Home</bo-button>
-  <bo-button suffix-icon="search">Search</bo-button>
-  <bo-button prefix-icon="download" suffix-icon="heart">Download</bo-button>
-  <bo-button prefix-icon="droplet" />
+const outlineExample = `<div class="flex flex-wrap gap-2">
+  <bo-button kind="outline" variant="primary">Primary outline</bo-button>
+  <bo-button kind="outline" variant="secondary">Secondary outline</bo-button>
+  <bo-button kind="outline" variant="destructive">Destructive outline</bo-button>
 </div>`;
 
-const loadingExample = `<div class="flex gap-4 flex-wrap">
-  <bo-button :is-loading="true">Loading</bo-button>
+const ghostExample = `<div class="flex flex-wrap gap-2">
+  <bo-button kind="ghost" variant="primary">Primary ghost</bo-button>
+  <bo-button kind="ghost" variant="secondary">Secondary ghost</bo-button>
+  <bo-button kind="ghost" variant="destructive">Destructive ghost</bo-button>
 </div>`;
 
-const disabledExample = `<div class="flex gap-4 flex-wrap">
-  <bo-button :disabled="true">Disabled</bo-button>
-  <bo-button :disabled="true" variant="secondary">Disabled Secondary</bo-button>
-  <bo-button :disabled="true" kind="outline">Disabled Outline</bo-button>
+const matrixExample = `<div class="min-w-[44rem] space-y-3">
+  <div v-for="kind in buttonKinds" :key="kind" class="grid grid-cols-[5rem_1fr] items-center gap-3">
+    <span class="text-sm font-medium">{{ kind }}</span>
+    <div class="flex flex-wrap gap-2">
+      <bo-button v-for="variant in buttonVariants" :key="\`\${kind}-\${variant}\`" :kind="kind" :variant="variant">
+        {{ variant }}
+      </bo-button>
+    </div>
+  </div>
 </div>`;
 
-const fullWidthExample = `<div class="w-full">
-  <bo-button :full-width="true">Full Width Button</bo-button>
+const sizesExample = `<div class="flex flex-wrap items-center gap-2">
+  <bo-button size="xs">Extra small</bo-button>
+  <bo-button size="sm">Small</bo-button>
+  <bo-button size="default">Default</bo-button>
+  <bo-button size="lg">Large</bo-button>
+  <bo-button size="xl">Extra large</bo-button>
 </div>`;
 
-const customColorsExample = `<div class="flex gap-4 flex-wrap">
-  <bo-button :custom-color="{ background: '#ff6b6b', text: '#ffffff' }">Custom Red</bo-button>
+const shapesExample = `<div class="flex flex-wrap gap-2">
+  <bo-button shape="default">Default radius</bo-button>
+  <bo-button shape="pill">Pill</bo-button>
+  <bo-button shape="flat">Flat</bo-button>
 </div>`;
 
-const typesExample = `<bo-button type="button">Button</bo-button>
-<bo-button type="submit">Submit</bo-button>
-<bo-button type="reset">Reset</bo-button>`;
+const statesExample = `<div class="flex flex-wrap items-center gap-2">
+  <bo-button is-loading>Saving</bo-button>
+  <bo-button is-loading loader-type="pulse">Publishing</bo-button>
+  <bo-button disabled>Disabled</bo-button>
+  <bo-button :pressed="pressed" @click="pressed = !pressed">{{ pressed ? 'Pressed' : 'Press me' }}</bo-button>
+</div>`;
+
+const iconsExample = `<div class="flex flex-wrap gap-2">
+  <bo-button prefix-icon="plus">New project</bo-button>
+  <bo-button suffix-icon="arrow_right">Continue</bo-button>
+  <bo-button prefix-icon="download" aria-label="Download" />
+</div>`;
+
+const layoutExample = `<div class="grid w-full max-w-sm gap-3">
+  <bo-button full-width>Full width action</bo-button>
+  <bo-button type="submit">Submit form</bo-button>
+</div>`;
+
+const customColorExample = `<bo-button
+  kind="default"
+  :custom-color="{ background: '#0f766e', border: '#115e59', text: '#ffffff' }"
+>
+  Custom color
+</bo-button>`;
 </script>
 
 # Button
 
-The `bo-button` component is used to render a button with various styles and functionality. It can be used to trigger actions, navigate to different pages, or display a call to action.
+Use `bo-button` for actions, form submission, navigation triggers, and other explicit user commands. Use `variant` for semantic emphasis and `kind` for the surface treatment.
 
 ## Basic Usage
 
 <ExampleFrame :code="basicExample">
-  <bo-button>Button</bo-button>
+  <bo-button>Save changes</bo-button>
+</ExampleFrame>
+
+## Outline Buttons
+
+Use `kind="outline"` when the button needs a visible boundary without a filled background. Pair it with `variant` to preserve the action’s semantic color.
+
+<ExampleFrame :code="outlineExample">
+  <div class="flex flex-wrap gap-2">
+    <bo-button kind="outline" variant="primary">Primary outline</bo-button>
+    <bo-button kind="outline" variant="secondary">Secondary outline</bo-button>
+    <bo-button kind="outline" variant="destructive">Destructive outline</bo-button>
+  </div>
+</ExampleFrame>
+
+## Ghost Buttons
+
+Use `kind="ghost"` for low-emphasis actions that should gain a surface only on hover or focus.
+
+<ExampleFrame :code="ghostExample">
+  <div class="flex flex-wrap gap-2">
+    <bo-button kind="ghost" variant="primary">Primary ghost</bo-button>
+    <bo-button kind="ghost" variant="secondary">Secondary ghost</bo-button>
+    <bo-button kind="ghost" variant="destructive">Destructive ghost</bo-button>
+  </div>
 </ExampleFrame>
 
 ## Variants
 
-The `variant` prop allows you to customize the color of the button. The default variant is `primary`.
+Variants express the meaning or emphasis of an action.
 
 <ExampleFrame :code="variantsExample">
-  <div class="flex gap-4 flex-wrap items-center">
+  <div class="flex flex-wrap gap-2">
     <bo-button variant="primary">Primary</bo-button>
     <bo-button variant="secondary">Secondary</bo-button>
     <bo-button variant="success">Success</bo-button>
     <bo-button variant="warning">Warning</bo-button>
     <bo-button variant="destructive">Destructive</bo-button>
-    <div class="p-2 bg-neutral-900 rounded">
-      <bo-button variant="light">Light</bo-button>
-    </div>
-    <div class="p-2 bg-neutral-400 rounded">
-      <bo-button variant="dark">Dark</bo-button>
-    </div>
-  </div>
-</ExampleFrame>
-
-## Sizes
-
-The `size` prop allows you to customize the size of the button. The default size is `default`.
-
-<ExampleFrame :code="sizesExample">
-  <div class="flex gap-4 items-center flex-wrap">
-    <bo-button size="xs">XS</bo-button>
-    <bo-button size="sm">SM</bo-button>
-    <bo-button size="default">Default</bo-button>
-    <bo-button size="lg">LG</bo-button>
-    <bo-button size="xl">XL</bo-button>
+    <bo-button variant="light">Light</bo-button>
+    <bo-button variant="dark">Dark</bo-button>
   </div>
 </ExampleFrame>
 
 ## Kinds
 
-The `kind` prop allows you to customize the style of the button. The default kind is `filled`.
+Kinds change the surface treatment without changing the semantic variant.
 
 <ExampleFrame :code="kindsExample">
-  <div class="flex gap-4 flex-wrap">
-    <bo-button kind="default">Filled</bo-button>
+  <div class="flex flex-wrap gap-2">
+    <bo-button kind="default">Default</bo-button>
     <bo-button kind="outline">Outline</bo-button>
     <bo-button kind="ghost">Ghost</bo-button>
     <bo-button kind="link">Link</bo-button>
   </div>
 </ExampleFrame>
 
-## With Icons
+## Variant and Kind Matrix
 
-Buttons can include prefix and suffix icons to enhance their visual appeal and functionality.
+Every semantic variant works with every surface kind. Use this matrix to compare the combinations in both light and dark themes.
+
+<ExampleFrame :code="matrixExample" align="start">
+  <div class="w-full overflow-x-auto">
+    <div class="min-w-[44rem] space-y-3">
+      <div v-for="kind in buttonKinds" :key="kind" class="grid grid-cols-[5rem_1fr] items-center gap-3">
+        <span class="text-sm font-medium">{{ kind }}</span>
+        <div class="flex flex-wrap gap-2">
+          <bo-button v-for="variant in buttonVariants" :key="`${kind}-${variant}`" :kind="kind" :variant="variant">
+            {{ variant }}
+          </bo-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ExampleFrame>
+
+## Sizes
+
+The default height is compact. Use the smaller sizes for dense toolbars and the larger sizes for prominent actions.
+
+<ExampleFrame :code="sizesExample">
+  <div class="flex flex-wrap items-center gap-2">
+    <bo-button size="xs">Extra small</bo-button>
+    <bo-button size="sm">Small</bo-button>
+    <bo-button size="default">Default</bo-button>
+    <bo-button size="lg">Large</bo-button>
+    <bo-button size="xl">Extra large</bo-button>
+  </div>
+</ExampleFrame>
+
+## Shapes
+
+`shape` controls the corner treatment. Prefer `kind` for new surface styling; `shape` remains available for explicit geometry.
+
+<ExampleFrame :code="shapesExample">
+  <div class="flex flex-wrap gap-2">
+    <bo-button shape="default">Default radius</bo-button>
+    <bo-button shape="pill">Pill</bo-button>
+    <bo-button shape="flat">Flat</bo-button>
+  </div>
+</ExampleFrame>
+
+## States
+
+Loading buttons are disabled while their loader is visible. `pressed` exposes an `aria-pressed` state for reversible actions.
+
+<ExampleFrame :code="statesExample">
+  <div class="flex flex-wrap items-center gap-2">
+    <bo-button is-loading>Saving</bo-button>
+    <bo-button is-loading loader-type="pulse">Publishing</bo-button>
+    <bo-button disabled>Disabled</bo-button>
+    <bo-button :pressed="pressed" @click="pressed = !pressed">{{ pressed ? 'Pressed' : 'Press me' }}</bo-button>
+  </div>
+</ExampleFrame>
+
+## Icons
+
+Use `prefixIcon` and `suffixIcon` for text buttons. An icon-only button must provide `ariaLabel` or `ariaLabelledBy`.
 
 <ExampleFrame :code="iconsExample">
-  <div class="flex gap-4 flex-wrap">
-    <bo-button prefix-icon="home">Home</bo-button>
-    <bo-button suffix-icon="search">Search</bo-button>
-    <bo-button prefix-icon="download" suffix-icon="heart">Download</bo-button>
-    <bo-button prefix-icon="droplet" />
+  <div class="flex flex-wrap gap-2">
+    <bo-button prefix-icon="plus">New project</bo-button>
+    <bo-button suffix-icon="arrow_right">Continue</bo-button>
+    <bo-button prefix-icon="download" aria-label="Download" />
   </div>
 </ExampleFrame>
 
-## Loading State
+## Layout and Custom Colors
 
-Buttons can display a loading state to indicate ongoing processes.
+Use `fullWidth` for form actions and `customColor` only when a semantic variant cannot express the product-specific color.
 
-<ExampleFrame :code="loadingExample">
-  <div class="flex gap-4 flex-wrap">
-    <bo-button :is-loading="true">Loading</bo-button>
+<ExampleFrame :code="layoutExample">
+  <div class="grid w-full max-w-sm gap-3">
+    <bo-button full-width>Full width action</bo-button>
+    <bo-button type="submit">Submit form</bo-button>
   </div>
 </ExampleFrame>
 
-## Disabled State
-
-Buttons can be disabled to prevent user interaction.
-
-<ExampleFrame :code="disabledExample">
-  <div class="flex gap-4 flex-wrap">
-    <bo-button :disabled="true">Disabled</bo-button>
-    <bo-button :disabled="true" variant="secondary">Disabled Secondary</bo-button>
-    <bo-button :disabled="true" kind="outline">Disabled Outline</bo-button>
-  </div>
+<ExampleFrame :code="customColorExample">
+  <bo-button
+    kind="default"
+    :custom-color="{ background: '#0f766e', border: '#115e59', text: '#ffffff' }"
+  >
+    Custom color
+  </bo-button>
 </ExampleFrame>
 
-## Full Width
+## API Reference
 
-Buttons can span the full width of their container.
+### Props
 
-<ExampleFrame :code="fullWidthExample">
-  <div class="w-full">
-    <bo-button :full-width="true">Full Width Button</bo-button>
-  </div>
-</ExampleFrame>
+| Prop                                                   | Type                                                      | Default       | Description                                                                      |
+| ------------------------------------------------------ | --------------------------------------------------------- | ------------- | -------------------------------------------------------------------------------- |
+| `id` / `dataTestId`                                    | `string`                                                  | autogenerated | Root button attributes.                                                          |
+| `variant`                                              | `BoButtonVariant`                                         | `primary`     | `primary`, `secondary`, `success`, `warning`, `destructive`, `light`, or `dark`. |
+| `kind`                                                 | `BoButtonKind`                                            | `default`     | `default`, `outline`, `ghost`, or `link`.                                        |
+| `shape`                                                | `BoButtonShape`                                           | `default`     | `default`, `pill`, or `flat` corner treatment.                                   |
+| `size`                                                 | `BoButtonSize`                                            | `default`     | `xs`, `sm`, `default`, `lg`, or `xl`.                                            |
+| `disabled` / `isLoading`                               | `boolean`                                                 | `false`       | Prevents activation; loading also displays a loader.                             |
+| `loaderType`                                           | `BoLoaderType`                                            | `spinner`     | `spinner` or `pulse`.                                                            |
+| `pressed`                                              | `boolean`                                                 | -             | Adds the pressed state and `aria-pressed`.                                       |
+| `fullWidth`                                            | `boolean`                                                 | `false`       | Expands the button to its container width.                                       |
+| `type` / `name`                                        | `string`                                                  | `button` / -  | Native button attributes.                                                        |
+| `prefixIcon` / `suffixIcon`                            | `Icon`                                                    | -             | Icons around the slot content.                                                   |
+| `customColor`                                          | `{ text?: string; border?: string; background?: string }` | -             | CSS color overrides.                                                             |
+| `role` / `ariaLabel` / `ariaLabelledBy`                | native ARIA types                                         | `button` / -  | Accessible semantics and naming.                                                 |
+| `ariaDescribedBy` / `ariaExpanded` / `ariaHasPopup`    | native ARIA types                                         | -             | Additional accessible state.                                                     |
+| `ariaDisabled` / `ariaLive` / `tabIndex` / `accessKey` | native attribute types                                    | -             | Native accessibility and keyboard attributes.                                    |
 
-## Custom Colors
+### Slots and Events
 
-Buttons can use custom colors for background, border, and text.
-
-::: warning
-Custom color props like `customColor.background` will take precedence over the `variant` and `kind` props.
-:::
-
-<ExampleFrame :code="customColorsExample">
-  <div class="flex gap-4 flex-wrap">
-    <bo-button :custom-color="{ background: '#ff6b6b', text: '#ffffff' }">Custom Red</bo-button>
-  </div>
-</ExampleFrame>
-
-## Button Types
-
-Buttons can have different HTML types for form usage. The `type` prop accepts `button`, `submit`, and `reset`.
-
-<ExampleFrame :code="typesExample">
-  <div class="flex gap-4 flex-wrap">
-    <bo-button type="button">Button</bo-button>
-    <bo-button type="submit">Submit</bo-button>
-    <bo-button type="reset">Reset</bo-button>
-  </div>
-</ExampleFrame>
-
-## Props
-
-| Prop                    | Type                                                                                       | Default     | Description                                                      |
-| ----------------------- | ------------------------------------------------------------------------------------------ | ----------- | ---------------------------------------------------------------- |
-| `size`                  | `'xs' \| 'sm' \| 'default' \| 'lg' \| 'xl'`                                                | `'default'` | The size of the button.                                          |
-| `variant`               | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'destructive' \| 'light' \| 'dark'` | `'primary'` | The color variant of the button.                                 |
-| `kind`                  | `'default' \| 'outline' \| 'ghost' \| 'link'`                                              | `'default'` | The style kind of the button.                                    |
-| `disabled`              | `boolean`                                                                                  | `false`     | Whether the button is disabled.                                  |
-| `isLoading`             | `boolean`                                                                                  | `false`     | Whether the button shows a loading state.                        |
-| `pressed`               | `boolean`                                                                                  | `false`     | Whether the button is in a pressed state (for toggles).          |
-| `fullWidth`             | `boolean`                                                                                  | `false`     | Whether the button spans the full width of its container.        |
-| `type`                  | `'button' \| 'submit' \| 'reset'`                                                          | `'button'`  | The HTML button type.                                            |
-| `prefixIcon`            | `Icon`                                                                                     | -           | Icon to display before the button text.                          |
-| `suffixIcon`            | `Icon`                                                                                     | -           | Icon to display after the button text.                           |
-| `customColor`           | `{ background?: string; border?: string; text?: string }`                                  | -           | Custom colors for the button.                                    |
-| `linkVariantWithShadow` | `boolean`                                                                                  | `false`     | Whether link variants should have shadow.                        |
-| `name`                  | `string`                                                                                   | -           | The name attribute of the button.                                |
-| `id`                    | `string`                                                                                   | -           | The id attribute of the button (auto-generated if not provided). |
-| `dataTestId`            | `string`                                                                                   | -           | The data-testid attribute (auto-generated if not provided).      |
-| `role`                  | `string`                                                                                   | `'button'`  | The ARIA role of the element.                                    |
-| `ariaLabel`             | `string`                                                                                   | -           | Accessible label for the button.                                 |
-| `ariaLabelledBy`        | `string`                                                                                   | -           | ID of element that labels this button.                           |
-| `ariaDescribedBy`       | `string`                                                                                   | -           | ID of element that describes this button.                        |
-| `ariaExpanded`          | `boolean`                                                                                  | -           | Whether the button controls expanded content.                    |
-| `ariaHasPopup`          | `boolean \| 'menu' \| 'listbox' \| 'tree' \| 'grid' \| 'dialog'`                           | -           | Indicates the button has a popup.                                |
-| `ariaDisabled`          | `boolean`                                                                                  | -           | ARIA disabled state (prefer using `disabled` prop).              |
-| `ariaLive`              | `'off' \| 'polite' \| 'assertive'`                                                         | `'polite'`  | ARIA live region setting.                                        |
-| `tabIndex`              | `number`                                                                                   | -           | Tab index for keyboard navigation.                               |
-| `accessKey`             | `string`                                                                                   | -           | Keyboard shortcut to activate the button.                        |
+| Name          | Description                                                          |
+| ------------- | -------------------------------------------------------------------- |
+| `default`     | Button label and custom content.                                     |
+| native events | `click`, `focus`, `blur`, `keydown`, and other native button events. |

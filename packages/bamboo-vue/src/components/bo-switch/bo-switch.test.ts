@@ -20,6 +20,32 @@ describe('BoSwitch', () => {
 		expect(wrapper.emitted('update:modelValue')).toEqual([[true]]);
 	});
 
+	it('uses its default value and custom track color', () => {
+		const wrapper = mount(BoSwitch, {
+			props: { defaultValue: true, customColor: '#123456' },
+		});
+		const control = wrapper.find('button');
+
+		expect(control.attributes('aria-checked')).toBe('true');
+		expect((control.element as HTMLButtonElement).style.backgroundColor).toBe('rgb(18, 52, 86)');
+	});
+
+	it('supports separate checked and thumb colors', () => {
+		const wrapper = mount(BoSwitch, {
+			props: {
+				modelValue: true,
+				customColor: { checkedBackground: '#123456', checkedThumb: '#ffffff' },
+			},
+		});
+
+		expect((wrapper.find('button').element as HTMLButtonElement).style.backgroundColor).toBe(
+			'rgb(18, 52, 86)',
+		);
+		expect((wrapper.find('span').element as HTMLSpanElement).style.backgroundColor).toBe(
+			'rgb(255, 255, 255)',
+		);
+	});
+
 	it('does not toggle when disabled', async () => {
 		const wrapper = mount(BoSwitch, { props: { disabled: true } });
 

@@ -1,12 +1,18 @@
 <template>
-	<div>
+	<div
+		:id="id"
+		:data-testid="dataTestId"
+		:data-state="open ? 'open' : 'closed'"
+		:class="POPOVER_MANIFEST.styles.base"
+	>
+		<slot name="trigger" />
 		<slot />
 	</div>
 </template>
 
 <script setup lang="ts">
 import type { BoPopoverProps } from '@workspace/bamboo-core';
-import { POPOVER_MANIFEST } from '@workspace/bamboo-core';
+import { generateComponentId, generateDataTestId, POPOVER_MANIFEST } from '@workspace/bamboo-core';
 import { computed, onMounted, onUnmounted, provide, ref } from 'vue';
 import { popoverContextKey } from './keys';
 
@@ -16,13 +22,20 @@ const props = withDefaults(defineProps<BoPopoverProps>(), {
 	closeOnOutside: () => POPOVER_MANIFEST.defaults.closeOnOutside,
 	closeOnEscape: () => POPOVER_MANIFEST.defaults.closeOnEscape,
 	role: () => POPOVER_MANIFEST.defaults.role,
+	id: () => generateComponentId('popover'),
+	dataTestId: () => generateDataTestId('popover'),
 });
 
 const open = defineModel<boolean>('open', { default: false });
-const triggerRef = ref<HTMLElement>();
-const contentRef = ref<HTMLElement>();
-const placement = computed(() => props.placement || POPOVER_MANIFEST.defaults.placement);
-const offset = computed(() => props.offset ?? POPOVER_MANIFEST.defaults.offset);
+const triggerRef = ref<HTMLElement | null>(null);
+const contentRef = ref<HTMLElement | null>(null);
+const contentId = ref(generateComponentId('popover-content'));
+const placement = computed(() => {
+	return props.placement || POPOVER_MANIFEST.defaults.placement;
+});
+const offset = computed(() => {
+	return props.offset ?? POPOVER_MANIFEST.defaults.offset;
+});
 
 function close(): void {
 	open.value = false;
@@ -41,7 +54,7 @@ function onKeydown(event: KeyboardEvent): void {
 	}
 }
 
-provide(popoverContextKey, { open, placement, offset, triggerRef, contentRef, close });
+provide(popoverContextKey, { open, placement, offset, contentId, triggerRef, contentRef, close });
 onMounted(() => {
 	document.addEventListener('pointerdown', onPointerDown);
 	document.addEventListener('keydown', onKeydown);

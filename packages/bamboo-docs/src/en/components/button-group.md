@@ -1,311 +1,220 @@
 ---
 title: Button Group
-description: Group related buttons together with consistent styling and behavior
+description: Group related buttons with shared styling and selection.
 category: form
 tags:
   - button-group
   - buttons
-  - group
-  - form
-  - actions
+  - selection
+  - toolbar
 outline: deep
 ---
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BoButtonGroup, BoButton } from '@mrksbnc/bamboo-vue';
+import { BoButtonGroup, BoButtonGroupItem, BoIcon } from '@mrksbnc/bamboo-vue';
+
+const alignment = ref<string | number>('left');
+const filters = ref<string[]>(['open']);
+const view = ref<string | number>('list');
+
+const basicExample = `<bo-button-group>
+  <bo-button-group-item value="back">Back</bo-button-group-item>
+  <bo-button-group-item value="next">Next</bo-button-group-item>
+</bo-button-group>`;
+
+const singleExample = `<bo-button-group v-model="alignment">
+  <bo-button-group-item value="left">Left</bo-button-group-item>
+  <bo-button-group-item value="center">Center</bo-button-group-item>
+  <bo-button-group-item value="right">Right</bo-button-group-item>
+</bo-button-group>`;
+
+const multipleExample = `<bo-button-group v-model="filters" multiple variant="secondary">
+  <bo-button-group-item value="open">Open</bo-button-group-item>
+  <bo-button-group-item value="assigned">Assigned</bo-button-group-item>
+  <bo-button-group-item value="review">Review</bo-button-group-item>
+</bo-button-group>`;
+
+const layoutExample = `<div class="grid gap-4">
+  <bo-button-group :attached="false">
+    <bo-button-group-item value="list">List</bo-button-group-item>
+    <bo-button-group-item value="board">Board</bo-button-group-item>
+  </bo-button-group>
+  <bo-button-group orientation="vertical" full-width>
+    <bo-button-group-item value="overview">Overview</bo-button-group-item>
+    <bo-button-group-item value="activity">Activity</bo-button-group-item>
+  </bo-button-group>
+</div>`;
+
+const variantsExample = `<div class="flex flex-wrap gap-3">
+  <bo-button-group variant="primary">
+    <bo-button-group-item value="new">New</bo-button-group-item>
+    <bo-button-group-item value="import">Import</bo-button-group-item>
+  </bo-button-group>
+  <bo-button-group variant="secondary">
+    <bo-button-group-item value="draft">Draft</bo-button-group-item>
+    <bo-button-group-item value="published">Published</bo-button-group-item>
+  </bo-button-group>
+</div>`;
+
+const sizesExample = `<div class="grid gap-3">
+  <bo-button-group size="sm"><bo-button-group-item value="sm">Small</bo-button-group-item><bo-button-group-item value="sm-2">Small</bo-button-group-item></bo-button-group>
+  <bo-button-group size="default"><bo-button-group-item value="default">Default</bo-button-group-item><bo-button-group-item value="default-2">Default</bo-button-group-item></bo-button-group>
+  <bo-button-group size="lg"><bo-button-group-item value="lg">Large</bo-button-group-item><bo-button-group-item value="lg-2">Large</bo-button-group-item></bo-button-group>
+</div>`;
+
+const itemExample = `<bo-button-group v-model="view">
+  <bo-button-group-item value="list" size="sm" aria-label="List view">
+    <bo-icon icon="list" aria-hidden="true" />
+  </bo-button-group-item>
+  <bo-button-group-item value="board" size="lg" aria-label="Board view">
+    <bo-icon icon="grid" aria-hidden="true" />
+  </bo-button-group-item>
+  <bo-button-group-item value="disabled" disabled>Unavailable</bo-button-group-item>
+</bo-button-group>`;
+</script>
 
 const selectedValue = ref('option1');
 const selectedValues = ref(['bold', 'italic']);
 const requiredValue = ref('center');
 
-const basicExample = `<bo-button-group>
-  <bo-button>First</bo-button>
-  <bo-button>Second</bo-button>
-  <bo-button>Third</bo-button>
-</bo-button-group>`;
-
-const singleSelectionExample = `const selectedValue = ref('option1');
-
-<bo-button-group v-model="selectedValue">
-  <bo-button data-value="option1">Option 1</bo-button>
-  <bo-button data-value="option2">Option 2</bo-button>
-  <bo-button data-value="option3">Option 3</bo-button>
-</bo-button-group>`;
-
-const multipleSelectionExample = `const selectedValues = ref(['bold', 'italic']);
-
-<bo-button-group v-model="selectedValues" :multiple="true">
-  <bo-button data-value="bold">Bold</bo-button>
-  <bo-button data-value="italic">Italic</bo-button>
-  <bo-button data-value="underline">Underline</bo-button>
-</bo-button-group>`;
-
-const requiredSelectionExample = `const requiredValue = ref('center');
-
-<bo-button-group v-model="requiredValue" :required="true">
-  <bo-button data-value="left">Left</bo-button>
-  <bo-button data-value="center">Center</bo-button>
-  <bo-button data-value="right">Right</bo-button>
-</bo-button-group>`;
-
-const scalabilityExample = `<bo-button-group>
-  <bo-button data-value="1">One</bo-button>
-  <bo-button data-value="2">Two</bo-button>
-  <bo-button data-value="3">Three</bo-button>
-  <bo-button data-value="4">Four</bo-button>
-  <bo-button data-value="5">Five</bo-button>
-  <bo-button data-value="6">Six</bo-button>
-</bo-button-group>`;
-
-const variantsExample = `<div class="space-y-4">
-  <bo-button-group>
-    <bo-button variant="primary">Primary</bo-button>
-    <bo-button variant="primary">Group</bo-button>
-    <bo-button variant="primary">Buttons</bo-button>
-  </bo-button-group>
-
-  <bo-button-group>
-    <bo-button variant="secondary">Secondary</bo-button>
-    <bo-button variant="secondary">Group</bo-button>
-    <bo-button variant="secondary">Buttons</bo-button>
-  </bo-button-group>
-</div>`;
-
-const sizesExample = `<div class="space-y-4">
-  <bo-button-group size="sm">
-    <bo-button>Small</bo-button>
-    <bo-button>Group</bo-button>
-    <bo-button>Buttons</bo-button>
-  </bo-button-group>
-
-  <bo-button-group size="default">
-    <bo-button>Default</bo-button>
-    <bo-button>Group</bo-button>
-    <bo-button>Buttons</bo-button>
-  </bo-button-group>
-
-  <bo-button-group size="lg">
-    <bo-button>Large</bo-button>
-    <bo-button>Group</bo-button>
-    <bo-button>Buttons</bo-button>
-  </bo-button-group>
-</div>`;
-
-const orientationExample = `<div class="flex gap-8">
-  <div>
-    <h4 class="mb-2">Horizontal (default)</h4>
-    <bo-button-group orientation="horizontal">
-      <bo-button>First</bo-button>
-      <bo-button>Second</bo-button>
-      <bo-button>Third</bo-button>
-    </bo-button-group>
-  </div>
-
-  <div>
-    <h4 class="mb-2">Vertical</h4>
-    <bo-button-group orientation="vertical">
-      <bo-button>First</bo-button>
-      <bo-button>Second</bo-button>
-      <bo-button>Third</bo-button>
-    </bo-button-group>
-  </div>
-</div>`;
-
-const iconsExample = `<div class="space-y-4">
-  <bo-button-group>
-    <bo-button prefix-icon="bold">Bold</bo-button>
-    <bo-button prefix-icon="italic">Italic</bo-button>
-    <bo-button prefix-icon="underline">Underline</bo-button>
-  </bo-button-group>
-
-  <bo-button-group>
-    <bo-button prefix-icon="align-left" />
-    <bo-button prefix-icon="align-center" />
-    <bo-button prefix-icon="align-right" />
-    <bo-button prefix-icon="align-justify" />
-  </bo-button-group>
-</div>`;
-
-const fullWidthExample = `<bo-button-group :full-width="true">
-  <bo-button>First</bo-button>
-  <bo-button>Second</bo-button>
-  <bo-button>Third</bo-button>
-</bo-button-group>`;
-</script>
-
-# Button Group
-
-The `bo-button-group` component is used to group related buttons together, providing a cohesive visual appearance, consistent spacing, and optional selection state management.
+Use `bo-button-group` for adjacent actions or a compact selection control. Use `bo-button-group-item` for every child; items receive their size, variant, selection, and disabled state from the group unless overridden.
 
 ## Basic Usage
 
+The default group is horizontal, attached, and uses the neutral secondary treatment.
+
 <ExampleFrame :code="basicExample">
   <bo-button-group>
-    <bo-button>First</bo-button>
-    <bo-button>Second</bo-button>
-    <bo-button>Third</bo-button>
+    <bo-button-group-item value="back">Back</bo-button-group-item>
+    <bo-button-group-item value="next">Next</bo-button-group-item>
   </bo-button-group>
 </ExampleFrame>
 
-## Selection State
+## Single Selection
 
-Button groups can manage selection state with `v-model`. Use the `data-value` attribute on buttons to specify their values.
+With the default `multiple="false"`, `v-model` contains one selected string or number. Selecting the current item clears it unless `required` is set.
 
-### Single Selection
-
-<ExampleFrame :code="singleSelectionExample">
-  <bo-button-group v-model="selectedValue">
-    <bo-button data-value="option1">Option 1</bo-button>
-    <bo-button data-value="option2">Option 2</bo-button>
-    <bo-button data-value="option3">Option 3</bo-button>
-  </bo-button-group>
+<ExampleFrame :code="singleExample">
+  <div class="grid gap-2">
+    <bo-button-group v-model="alignment">
+      <bo-button-group-item value="left">Left</bo-button-group-item>
+      <bo-button-group-item value="center">Center</bo-button-group-item>
+      <bo-button-group-item value="right">Right</bo-button-group-item>
+    </bo-button-group>
+    <span class="text-sm text-neutral-500">Selected: {{ alignment }}</span>
+  </div>
 </ExampleFrame>
 
-### Multiple Selection
+## Multiple Selection
 
-Enable multiple selection with the `multiple` prop.
+Set `multiple` to make `v-model` an array. Set `required` when at least one item must remain selected.
 
-<ExampleFrame :code="multipleSelectionExample">
-  <bo-button-group v-model="selectedValues" :multiple="true">
-    <bo-button data-value="bold">Bold</bo-button>
-    <bo-button data-value="italic">Italic</bo-button>
-    <bo-button data-value="underline">Underline</bo-button>
-  </bo-button-group>
+<ExampleFrame :code="multipleExample">
+  <div class="grid gap-2">
+    <bo-button-group v-model="filters" multiple variant="secondary">
+      <bo-button-group-item value="open">Open</bo-button-group-item>
+      <bo-button-group-item value="assigned">Assigned</bo-button-group-item>
+      <bo-button-group-item value="review">Review</bo-button-group-item>
+    </bo-button-group>
+    <span class="text-sm text-neutral-500">{{ filters.length ? filters.join(', ') : 'Nothing selected' }}</span>
+  </div>
 </ExampleFrame>
 
-### Required Selection
+## Layout and Attachment
 
-Use the `required` prop to ensure at least one button remains selected.
+Attached groups use shared edges and retain a rounded outer silhouette. Set `attached="false"` for separated rounded buttons. Use `orientation="vertical"` and `fullWidth` for stacked controls.
 
-<ExampleFrame :code="requiredSelectionExample">
-  <bo-button-group v-model="requiredValue" :required="true">
-    <bo-button data-value="left">Left</bo-button>
-    <bo-button data-value="center">Center</bo-button>
-    <bo-button data-value="right">Right</bo-button>
-  </bo-button-group>
-</ExampleFrame>
-
-## Scalability
-
-Button groups can handle any number of buttons, not just three. The component automatically applies appropriate styling for first, middle, and last buttons.
-
-<ExampleFrame :code="scalabilityExample">
-  <bo-button-group>
-    <bo-button data-value="1">One</bo-button>
-    <bo-button data-value="2">Two</bo-button>
-    <bo-button data-value="3">Three</bo-button>
-    <bo-button data-value="4">Four</bo-button>
-    <bo-button data-value="5">Five</bo-button>
-    <bo-button data-value="6">Six</bo-button>
-  </bo-button-group>
+<ExampleFrame :code="layoutExample">
+  <div class="grid w-full max-w-sm gap-4">
+    <bo-button-group :attached="false">
+      <bo-button-group-item value="list">List</bo-button-group-item>
+      <bo-button-group-item value="board">Board</bo-button-group-item>
+    </bo-button-group>
+    <bo-button-group orientation="vertical" full-width>
+      <bo-button-group-item value="overview">Overview</bo-button-group-item>
+      <bo-button-group-item value="activity">Activity</bo-button-group-item>
+    </bo-button-group>
+  </div>
 </ExampleFrame>
 
 ## Variants
 
-Button groups inherit the variant styling from their child buttons, but you can also set a consistent variant for the entire group.
+The group variant is inherited by its items. Use item-level `variant` when a specific action needs a different treatment.
 
 <ExampleFrame :code="variantsExample">
-  <div class="space-y-4">
-    <bo-button-group>
-      <bo-button variant="primary">Primary</bo-button>
-      <bo-button variant="primary">Group</bo-button>
-      <bo-button variant="primary">Buttons</bo-button>
+  <div class="flex flex-wrap gap-3">
+    <bo-button-group variant="primary">
+      <bo-button-group-item value="new">New</bo-button-group-item>
+      <bo-button-group-item value="import">Import</bo-button-group-item>
     </bo-button-group>
-
-    <bo-button-group>
-      <bo-button variant="secondary">Secondary</bo-button>
-      <bo-button variant="secondary">Group</bo-button>
-      <bo-button variant="secondary">Buttons</bo-button>
+    <bo-button-group variant="secondary">
+      <bo-button-group-item value="draft">Draft</bo-button-group-item>
+      <bo-button-group-item value="published">Published</bo-button-group-item>
     </bo-button-group>
-
   </div>
 </ExampleFrame>
 
 ## Sizes
 
-The `size` prop allows you to set a consistent size for all buttons in the group.
+Group size is inherited by every item unless the item supplies its own `size`.
 
 <ExampleFrame :code="sizesExample">
-  <div class="space-y-4">
-    <bo-button-group size="sm">
-      <bo-button>Small</bo-button>
-      <bo-button>Group</bo-button>
-      <bo-button>Buttons</bo-button>
-    </bo-button-group>
-
-    <bo-button-group size="default">
-      <bo-button>Default</bo-button>
-      <bo-button>Group</bo-button>
-      <bo-button>Buttons</bo-button>
-    </bo-button-group>
-
-    <bo-button-group size="lg">
-      <bo-button>Large</bo-button>
-      <bo-button>Group</bo-button>
-      <bo-button>Buttons</bo-button>
-    </bo-button-group>
-
+  <div class="grid gap-3">
+    <bo-button-group size="sm"><bo-button-group-item value="sm">Small</bo-button-group-item><bo-button-group-item value="sm-2">Small</bo-button-group-item></bo-button-group>
+    <bo-button-group size="default"><bo-button-group-item value="default">Default</bo-button-group-item><bo-button-group-item value="default-2">Default</bo-button-group-item></bo-button-group>
+    <bo-button-group size="lg"><bo-button-group-item value="lg">Large</bo-button-group-item><bo-button-group-item value="lg-2">Large</bo-button-group-item></bo-button-group>
   </div>
 </ExampleFrame>
 
-## Orientation
+## Item Overrides, Icons, and Disabled Items
 
-Button groups can be displayed horizontally (default) or vertically.
+An item can override the inherited size or variant. Icon-only items should include `ariaLabel`; disabled items are skipped and cannot change the model.
 
-<ExampleFrame :code="orientationExample">
-  <div class="flex gap-8">
-    <div>
-      <h4 class="mb-2">Horizontal (default)</h4>
-      <bo-button-group orientation="horizontal">
-        <bo-button>First</bo-button>
-        <bo-button>Second</bo-button>
-        <bo-button>Third</bo-button>
-      </bo-button-group>
-    </div>
-
-    <div>
-      <h4 class="mb-2">Vertical</h4>
-      <bo-button-group orientation="vertical">
-        <bo-button>First</bo-button>
-        <bo-button>Second</bo-button>
-        <bo-button>Third</bo-button>
-      </bo-button-group>
-    </div>
-
+<ExampleFrame :code="itemExample">
+  <div class="flex flex-wrap items-center gap-3">
+    <bo-button-group v-model="view">
+      <bo-button-group-item value="list" size="sm" aria-label="List view">
+        <bo-icon icon="list" aria-hidden="true" />
+      </bo-button-group-item>
+      <bo-button-group-item value="board" size="lg" aria-label="Board view">
+        <bo-icon icon="grid" aria-hidden="true" />
+      </bo-button-group-item>
+      <bo-button-group-item value="disabled" disabled>Unavailable</bo-button-group-item>
+    </bo-button-group>
+    <span class="text-sm text-neutral-500">{{ view }}</span>
   </div>
 </ExampleFrame>
 
-## With Icons
+## API Reference
 
-Button groups work well with icon buttons and mixed content.
+### `BoButtonGroup` Props
 
-<ExampleFrame :code="iconsExample">
-  <div class="space-y-4">
-    <bo-button-group>
-      <bo-button prefix-icon="bold">Bold</bo-button>
-      <bo-button prefix-icon="italic">Italic</bo-button>
-      <bo-button prefix-icon="underline">Underline</bo-button>
-    </bo-button-group>
+| Prop                    | Type                                       | Default       | Description                                               |
+| ----------------------- | ------------------------------------------ | ------------- | --------------------------------------------------------- |
+| `id` / `dataTestId`     | `string`                                   | autogenerated | Root attributes.                                          |
+| `modelValue`            | `string \| number \| (string \| number)[]` | -             | Selected value or values.                                 |
+| `orientation`           | `horizontal \| vertical`                   | `horizontal`  | Item direction.                                           |
+| `size`                  | `BoButtonSize`                             | `default`     | Size inherited by items.                                  |
+| `variant`               | `BoButtonVariant`                          | `secondary`   | Variant inherited by items.                               |
+| `fullWidth`             | `boolean`                                  | `false`       | Expands the group and its items.                          |
+| `attached`              | `boolean`                                  | `true`        | Joins item edges and preserves outer rounding.            |
+| `multiple` / `required` | `boolean`                                  | `false`       | Selection mode and whether one item must remain selected. |
+| `role`                  | `HTMLAttributes['role']`                   | `group`       | Group semantics.                                          |
 
-    <bo-button-group>
-      <bo-button prefix-icon="align-left" />
-      <bo-button prefix-icon="align-center" />
-      <bo-button prefix-icon="align-right" />
-      <bo-button prefix-icon="align-justify" />
-    </bo-button-group>
+### `BoButtonGroupItem` Props
 
-  </div>
-</ExampleFrame>
+| Prop                | Type                               | Default       | Description                          |
+| ------------------- | ---------------------------------- | ------------- | ------------------------------------ |
+| `id` / `dataTestId` | `string`                           | autogenerated | Item attributes.                     |
+| `value`             | `string \| number`                 | required      | Value represented by the item.       |
+| `disabled`          | `boolean`                          | `false`       | Prevents selection and focus.        |
+| `variant` / `size`  | `BoButtonVariant` / `BoButtonSize` | inherited     | Item-level overrides.                |
+| `ariaLabel`         | `string`                           | -             | Accessible name for icon-only items. |
 
-## Full Width
+### Events and Slots
 
-Button groups can span the full width of their container with equal-width buttons.
-
-<ExampleFrame :code="fullWidthExample">
-  <bo-button-group :full-width="true">
-    <bo-button>First</bo-button>
-    <bo-button>Second</bo-button>
-    <bo-button>Third</bo-button>
-  </bo-button-group>
-</ExampleFrame>
+| Name                | Description                     |
+| ------------------- | ------------------------------- |
+| `update:modelValue` | Emitted when selection changes. |
+| `default`           | Group or item content.          |

@@ -4,12 +4,15 @@
 		:data-testid="dataTestId"
 		type="button"
 		role="button"
-		:disabled="disabled || context?.disabled.value"
+		:disabled="isDisabled"
+		:tabindex="isDisabled ? -1 : 0"
 		:aria-label="ariaLabel"
-		:aria-pressed="selected ? 'true' : 'false'"
-		:data-state="selected ? 'on' : 'off'"
+		:aria-pressed="isSelected ? 'true' : 'false'"
+		:aria-disabled="isDisabled ? 'true' : undefined"
+		:data-state="isSelected ? 'on' : 'off'"
 		:class="classValues"
 		@click="select"
+		@keydown="onKeydown"
 	>
 		<slot />
 	</button>
@@ -19,7 +22,6 @@
 import { generateComponentId, generateDataTestId, mergeTwClasses } from '@workspace/bamboo-core';
 import type { BoToggleGroupItemProps } from '@workspace/bamboo-core';
 import { TOGGLE_GROUP_MANIFEST } from '@workspace/bamboo-core';
-import { TOGGLE_MANIFEST } from '@workspace/bamboo-core';
 import { computed, inject } from 'vue';
 import { toggleGroupContextKey } from './keys.js';
 
@@ -29,17 +31,32 @@ const props = withDefaults(defineProps<BoToggleGroupItemProps>(), {
 });
 
 const context = inject(toggleGroupContextKey);
-const selected = computed(() => context?.selected(props.value) ?? false);
-const classValues = computed(() =>
-	mergeTwClasses(
+const isSelected = computed(() => {
+	return context?.selected(props.value) ?? false;
+});
+const isDisabled = computed(() => {
+	return !!props.disabled || !!context?.disabled.value;
+});
+const classValues = computed(() => {
+	return mergeTwClasses(
 		TOGGLE_GROUP_MANIFEST.styles.item,
-		context ? TOGGLE_MANIFEST.styles.variant[context.variant.value] : '',
-		context ? TOGGLE_MANIFEST.styles.size[context.size.value] : '',
-	),
-);
+		TOGGLE_GROUP_MANIFEST.styles.variant[
+			context?.variant.value || TOGGLE_GROUP_MANIFEST.defaults.variant
+		],
+		TOGGLE_GROUP_MANIFEST.styles.size[context?.size.value || TOGGLE_GROUP_MANIFEST.defaults.size],
+		isSelected.value ? TOGGLE_GROUP_MANIFEST.styles.selected : '',
+	);
+});
 
 function select(): void {
-	if (!props.disabled && !context?.disabled.value) context?.select(props.value);
+	if (!isDisabled.value) context?.select(props.value);
+}
+
+function onKeydown(event: KeyboardEvent): void {
+	if (event.key !== 'Enter' && event.key !== ' ') return;
+
+	event.preventDefault();
+	select();
 }
 </script>
 

@@ -48,6 +48,7 @@ export interface BoTagsInputStyleManifest {
 	base: string;
 	labels: { container: string; label: string; required: string };
 	container: string;
+	invalid: string;
 	tags: string;
 	tag: string;
 	remove: string;

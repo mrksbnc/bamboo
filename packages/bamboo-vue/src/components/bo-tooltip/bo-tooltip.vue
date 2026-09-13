@@ -27,39 +27,46 @@ import {
 	mergeTwClasses,
 	type BoTooltipProps,
 } from '@workspace/bamboo-core';
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue';
 
 const props = withDefaults(defineProps<BoTooltipProps>(), {
 	...TOOLTIP_MANIFEST.defaults,
 });
 
 const emit = defineEmits<{
-	show: [];
-	hide: [];
+	(event: 'show'): void;
+	(event: 'hide'): void;
 }>();
 
 // Template refs
-const triggerRef = ref<HTMLElement>();
-const tooltipRef = ref<HTMLElement>();
+const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
+const tooltipRef = useTemplateRef<HTMLElement>('tooltipRef');
 
 // State
 const isVisible = ref(false);
 const tooltipStyle = ref<Record<string, string | number>>({});
 
 // Computed
-const id = computed(() => props.id ?? generateComponentId('tooltip'));
-const dataTestId = computed(() => props.dataTestId ?? generateDataTestId('BoTooltip'));
+const id = computed(() => {
+	return props.id ?? generateComponentId('tooltip');
+});
+const dataTestId = computed(() => {
+	return props.dataTestId ?? generateDataTestId('BoTooltip');
+});
 
-const tooltipClasses = computed(() =>
-	mergeTwClasses(TOOLTIP_MANIFEST.styles.base, TOOLTIP_MANIFEST.styles.placement[props.placement!]),
-);
+const tooltipClasses = computed(() => {
+	return mergeTwClasses(
+		TOOLTIP_MANIFEST.styles.base,
+		TOOLTIP_MANIFEST.styles.placement[props.placement!],
+	);
+});
 
-const arrowClasses = computed(() =>
-	mergeTwClasses(
+const arrowClasses = computed(() => {
+	return mergeTwClasses(
 		TOOLTIP_MANIFEST.styles.arrow,
 		TOOLTIP_MANIFEST.styles.arrowPlacement[props.placement!],
-	),
-);
+	);
+});
 
 // Timers
 let showTimer: ReturnType<typeof setTimeout> | null = null;
@@ -77,12 +84,32 @@ const clearTimers = () => {
 	}
 };
 
+function getTriggerElement(): HTMLElement | undefined {
+	const root = triggerRef.value;
+	if (!root) return undefined;
+
+	if (root.matches('button, a, input, select, textarea, [tabindex]')) return root;
+
+	return (
+		root.querySelector<HTMLElement>('button, a, input, select, textarea, [tabindex]') ?? undefined
+	);
+}
+
+function setTriggerDescription(visible: boolean): void {
+	const trigger = getTriggerElement();
+	if (!trigger) return;
+
+	if (visible) trigger.setAttribute('aria-describedby', id.value);
+	else trigger.removeAttribute('aria-describedby');
+}
+
 const show = () => {
 	if (props.disabled) return;
 
 	clearTimers();
 	showTimer = setTimeout(() => {
 		isVisible.value = true;
+		setTriggerDescription(true);
 		nextTick(() => {
 			updatePosition();
 			emit('show');
@@ -94,6 +121,7 @@ const hide = () => {
 	clearTimers();
 	hideTimer = setTimeout(() => {
 		isVisible.value = false;
+		setTriggerDescription(false);
 		emit('hide');
 	}, props.hideDelay);
 };
@@ -184,11 +212,12 @@ const handleMouseLeave = () => {
 	if (props.trigger === 'hover') hide();
 };
 
-const handleFocus = () => {
+const handleFocusIn = () => {
 	if (props.trigger === 'focus') show();
 };
 
-const handleBlur = () => {
+const handleFocusOut = (event: FocusEvent) => {
+	if (triggerRef.value?.contains(event.relatedTarget as Node | null)) return;
 	if (props.trigger === 'focus') hide();
 };
 
@@ -201,6 +230,7 @@ const handleClick = () => {
 
 // Watch for manual visibility changes
 const handleVisibilityChange = () => {
+	if (typeof window === 'undefined') return;
 	if (props.trigger === 'manual') {
 		if (props.visible) show();
 		else hide();
@@ -219,8 +249,8 @@ onMounted(() => {
 	}
 
 	if (props.trigger === 'focus') {
-		trigger.addEventListener('focus', handleFocus);
-		trigger.addEventListener('blur', handleBlur);
+		trigger.addEventListener('focusin', handleFocusIn);
+		trigger.addEventListener('focusout', handleFocusOut);
 	}
 
 	if (props.trigger === 'click') {
@@ -241,8 +271,8 @@ onUnmounted(() => {
 	const trigger = triggerRef.value;
 	trigger.removeEventListener('mouseenter', handleMouseEnter);
 	trigger.removeEventListener('mouseleave', handleMouseLeave);
-	trigger.removeEventListener('focus', handleFocus);
-	trigger.removeEventListener('blur', handleBlur);
+	trigger.removeEventListener('focusin', handleFocusIn);
+	trigger.removeEventListener('focusout', handleFocusOut);
 	trigger.removeEventListener('click', handleClick);
 });
 

@@ -28,7 +28,7 @@ export const TOAST_MANIFEST = {
 	},
 	defaults: {
 		variant: 'default',
-		duration: 5000,
+		duration: 10000,
 		closable: true,
 		closeAriaLabel: 'Close notification',
 		role: 'status',

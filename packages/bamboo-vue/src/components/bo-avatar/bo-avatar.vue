@@ -79,7 +79,7 @@ const renderWithImage = computed<boolean>(() => {
 });
 
 const renderWithLabel = computed<boolean>(() => {
-	return props.label !== undefined && props.label.length > 0 && !props.src;
+	return props.label !== undefined && props.label.length > 0 && !renderWithImage.value;
 });
 
 const label = computed<string>(() => {

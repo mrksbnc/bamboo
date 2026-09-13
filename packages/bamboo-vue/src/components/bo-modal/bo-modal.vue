@@ -21,7 +21,9 @@
 					:role="role"
 					:aria-modal="true"
 					:aria-label="ariaLabel"
-					:aria-labelledby="ariaLabelledBy ?? titleId"
+					:aria-labelledby="
+						ariaLabel ? undefined : (ariaLabelledBy ?? (title ? titleId : undefined))
+					"
 					:aria-describedby="ariaDescribedBy ?? descriptionId"
 					:data-state="'open'"
 					data-slot="modal-content"
@@ -32,18 +34,11 @@
 				>
 					<div data-slot="modal-header" :class="headerClasses">
 						<div :class="MODAL_MANIFEST.styles.header.content">
-							<bo-icon
-								v-if="variantIcon"
-								:icon="variantIcon"
-								size="sm"
-								:class="MODAL_MANIFEST.styles.icon.variant[variant]"
-							/>
 							<slot name="header">
 								<bo-text
 									:id="titleId"
-									font-size="lg"
+									font-size="xl"
 									font-weight="semibold"
-									variant="default"
 									:class="MODAL_MANIFEST.styles.header.title"
 								>
 									{{ title }}
@@ -87,16 +82,14 @@ import {
 	generateDataTestId,
 	mergeTwClasses,
 	type BoModalProps,
-	type Icon,
 } from '@workspace/bamboo-core';
-import { computed, nextTick, onUnmounted, ref, watch } from 'vue';
+import { computed, nextTick, onUnmounted, useTemplateRef, watch } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
 
 const props = withDefaults(defineProps<BoModalProps>(), {
 	id: () => generateComponentId('modal'),
 	dataTestId: () => generateDataTestId('modal'),
-	variant: () => MODAL_MANIFEST.defaults.variant,
 	size: () => MODAL_MANIFEST.defaults.size,
 	closeOnBackdrop: () => MODAL_MANIFEST.defaults.closeOnBackdrop,
 	closeOnEscape: () => MODAL_MANIFEST.defaults.closeOnEscape,
@@ -106,7 +99,7 @@ const props = withDefaults(defineProps<BoModalProps>(), {
 });
 
 const emit = defineEmits<{
-	close: [];
+	(event: 'close'): void;
 }>();
 
 defineSlots<{
@@ -115,33 +108,24 @@ defineSlots<{
 	default?: () => unknown;
 }>();
 
-const panelRef = ref<HTMLElement>();
-const titleId = computed<string>(() => `${props.id}-title`);
-const descriptionId = computed<string>(() => `${props.id}-description`);
-
-const variantIcon = computed<Icon | null>(() => {
-	const map: Record<string, Icon> = {
-		primary: 'alert_circle',
-		warning: 'alert_triangle',
-		destructive: 'alert_octagon',
-	};
-
-	return map[props.variant] ?? null;
+const panelRef = useTemplateRef<HTMLElement>('panelRef');
+const titleId = computed<string>(() => {
+	return `${props.id}-title`;
+});
+const descriptionId = computed<string>(() => {
+	return `${props.id}-description`;
 });
 
-const panelClasses = computed<string>(() =>
-	mergeTwClasses(
+const panelClasses = computed<string>(() => {
+	return mergeTwClasses(
 		MODAL_MANIFEST.styles.panel.base,
 		MODAL_MANIFEST.styles.panel.size[props.size || 'default'],
-	),
-);
+	);
+});
 
-const headerClasses = computed<string>(() =>
-	mergeTwClasses(
-		MODAL_MANIFEST.styles.header.base,
-		MODAL_MANIFEST.styles.header.variant[props.variant || 'default'],
-	),
-);
+const headerClasses = computed<string>(() => {
+	return MODAL_MANIFEST.styles.header.base;
+});
 
 function onClose(): void {
 	emit('close');
@@ -162,6 +146,7 @@ function onEscape(): void {
 watch(
 	() => props.open,
 	async (isOpen) => {
+		if (typeof document === 'undefined') return;
 		if (isOpen) {
 			await nextTick();
 			panelRef.value?.focus();
@@ -173,6 +158,7 @@ watch(
 );
 
 onUnmounted(() => {
+	if (typeof document === 'undefined') return;
 	document.body.style.overflow = '';
 });
 </script>

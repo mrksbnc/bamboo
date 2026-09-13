@@ -39,14 +39,16 @@ if (!context || !value)
 	throw new Error('BoContextMenuRadioItem must be used inside a radio group and context menu');
 const menuContext = context;
 const radioValue = value;
-const isSelected = computed(() => radioValue.value === props.value);
-const itemClasses = computed(() =>
-	mergeTwClasses(
+const isSelected = computed(() => {
+	return radioValue.value === props.value;
+});
+const itemClasses = computed(() => {
+	return mergeTwClasses(
 		CONTEXT_MENU_MANIFEST.styles.item,
 		props.inset ? CONTEXT_MENU_MANIFEST.styles.itemInset : '',
 		props.variant === 'destructive' ? CONTEXT_MENU_MANIFEST.styles.itemDestructive : '',
-	),
-);
+	);
+});
 function onClick(): void {
 	if (!props.disabled) {
 		radioValue.value = props.value;

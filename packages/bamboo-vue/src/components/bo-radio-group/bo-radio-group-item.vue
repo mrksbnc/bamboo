@@ -1,10 +1,5 @@
 <template>
-	<bo-label
-		:for="id"
-		:disabled="isDisabled"
-		:class="RADIO_GROUP_ITEM_MANIFEST.styles.base"
-		:aria-label="ariaLabel"
-	>
+	<label :for="id" :class="RADIO_GROUP_ITEM_MANIFEST.styles.base" :aria-label="ariaLabel">
 		<input
 			:id="id"
 			:data-testid="dataTestId"
@@ -32,7 +27,7 @@
 			</span>
 			<slot />
 		</span>
-	</bo-label>
+	</label>
 </template>
 
 <script setup lang="ts">
@@ -43,7 +38,6 @@ import {
 	type BoRadioGroupItemProps,
 } from '@workspace/bamboo-core';
 import { computed, inject } from 'vue';
-import { BoLabel } from '../bo-label';
 import {
 	radioGroupDisabledKey,
 	radioGroupNameKey,
@@ -60,15 +54,23 @@ const groupValue = inject(radioGroupValueKey);
 const setGroupValue = inject(radioGroupSetValueKey);
 const groupDisabled = inject(
 	radioGroupDisabledKey,
-	computed(() => false),
+	computed(() => {
+		return false;
+	}),
 );
 const groupName = inject(
 	radioGroupNameKey,
-	computed(() => generateComponentId('radio-group')),
+	computed(() => {
+		return generateComponentId('radio-group');
+	}),
 );
 
-const isSelected = computed(() => groupValue?.value === props.value);
-const isDisabled = computed(() => !!props.disabled || groupDisabled.value);
+const isSelected = computed(() => {
+	return groupValue?.value === props.value;
+});
+const isDisabled = computed(() => {
+	return !!props.disabled || groupDisabled.value;
+});
 
 function onChange(): void {
 	if (!isDisabled.value) {

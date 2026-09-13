@@ -39,14 +39,18 @@ const props = withDefaults(defineProps<BoRadioGroupProps>(), {
 });
 
 const model = defineModel<string | number>();
-const orientation = computed(() => props.orientation || RADIO_GROUP_MANIFEST.defaults.orientation);
-const groupName = computed(() => props.name || props.id || generateComponentId('radio-group'));
-const groupClasses = computed(() =>
-	mergeTwClasses(
+const orientation = computed(() => {
+	return props.orientation || RADIO_GROUP_MANIFEST.defaults.orientation;
+});
+const groupName = computed(() => {
+	return props.name || props.id || generateComponentId('radio-group');
+});
+const groupClasses = computed(() => {
+	return mergeTwClasses(
 		RADIO_GROUP_MANIFEST.styles.base,
 		RADIO_GROUP_MANIFEST.styles.orientation[orientation.value],
-	),
-);
+	);
+});
 
 function setValue(value: string | number): void {
 	model.value = value;
@@ -84,7 +88,9 @@ provide(radioGroupValueKey, model);
 provide(radioGroupSetValueKey, setValue);
 provide(
 	radioGroupDisabledKey,
-	computed(() => !!props.disabled),
+	computed(() => {
+		return !!props.disabled;
+	}),
 );
 provide(radioGroupNameKey, groupName);
 provide(radioGroupOrientationKey, orientation);

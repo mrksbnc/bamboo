@@ -8,15 +8,6 @@ export {
 	type BoAccordionStyleManifest,
 	type AccordionManifest,
 
-	// Alert
-	type BoAlertPosition,
-	type BoAlertVariant,
-	type BoAlertProps,
-	type BoAlertContainerProps,
-	type BoAlertContainerStyleManifest,
-	type BoAlertStyleManifest,
-	type AlertManifest,
-
 	// Avatar
 	type BoAvatarSize,
 	type BoAvatarKind,
@@ -29,6 +20,7 @@ export {
 	type AvatarManifest,
 
 	// Badge
+	type BoBadgeSize,
 	type BoBadgeVariant,
 	type BoBadgeKind,
 	type BoBadgeShape,
@@ -42,11 +34,18 @@ export {
 	type BoButtonShape,
 	type BoButtonProps,
 	type ButtonManifest,
-
 	// Button Group
 	type BoButtonGroupOrientation,
 	type BoButtonGroupProps,
 	type ButtonGroupManifest,
+
+	// Form
+	type BoFormProps,
+	type BoFormFieldProps,
+	type BoFormStyleManifest,
+	type BoFormFieldStyleManifest,
+	type FormManifest,
+	type FormFieldManifest,
 
 	// Icon
 	type Icon,
@@ -60,9 +59,12 @@ export {
 	type BoInputType,
 	type BoInputState,
 	type BoInputProps,
-
-	// Modal
-	type BoModalVariant,
+	type BoFileInputProps,
+	type BoFileInputStyleManifest,
+	type FileInputManifest,
+	type BoDropzoneProps,
+	type BoDropzoneStyleManifest,
+	type DropzoneManifest,
 	type BoModalSize,
 	type BoModalProps,
 	type ModalManifest,
@@ -94,9 +96,6 @@ export {
 	type BoTextWhiteSpace,
 	type BoTextProps,
 	type TextManifest,
-
-	// Textarea
-	type BoTextareaSize,
 	type BoTextareaState,
 	type BoTextareaVariant,
 	type BoTextareaProps,
@@ -119,7 +118,6 @@ export {
 	type BreadcrumbManifest,
 
 	// Card
-	type BoCardVariant,
 	type BoCardProps,
 	type BoCardStyleManifest,
 	type CardManifest,
@@ -140,15 +138,10 @@ export {
 
 	// Dialog
 	type BoDialogSize,
+	type BoDialogVariant,
 	type BoDialogProps,
 	type BoDialogStyleManifest,
 	type DialogManifest,
-
-	// Alert Dialog
-	type BoAlertDialogVariant,
-	type BoAlertDialogProps,
-	type BoAlertDialogStyleManifest,
-	type AlertDialogManifest,
 
 	// Tabs
 	type BoTabsValue,
@@ -174,18 +167,6 @@ export {
 	type BoEmptyStyleManifest,
 	type EmptyManifest,
 
-	// Label
-	type BoLabelSize,
-	type BoLabelProps,
-	type BoLabelStyleManifest,
-	type LabelManifest,
-
-	// Marker
-	type BoMarkerVariant,
-	type BoMarkerProps,
-	type BoMarkerStyleManifest,
-	type MarkerManifest,
-
 	// Pagination
 	type BoPaginationProps,
 	type BoPaginationStyleManifest,
@@ -197,6 +178,13 @@ export {
 	type BoProgressProps,
 	type BoProgressStyleManifest,
 	type ProgressManifest,
+
+	// Chart
+	type BoChartType,
+	type BoChartSeries,
+	type BoChartProps,
+	type BoChartStyleManifest,
+	type ChartManifest,
 
 	// Radio
 	type BoRadioSize,
@@ -220,6 +208,23 @@ export {
 	type BoVisuallyHiddenStyleManifest,
 	type VisuallyHiddenManifest,
 
+	// Carousel
+	type BoCarouselProps,
+	type BoCarouselStyleManifest,
+	type CarouselManifest,
+
+	// Slider
+	type BoSliderProps,
+	type BoSliderStyleManifest,
+	type SliderManifest,
+
+	// Table
+	type BoTableColumn,
+	type BoTableAction,
+	type BoTableProps,
+	type BoTableStyleManifest,
+	type TableManifest,
+
 	// Component Types
 	type Booleanish,
 	type ConditionalCssProperties,
@@ -230,13 +235,14 @@ export type * from './definitions/index.js';
 
 export {
 	ACCORDION_MANIFEST,
-	ALERT_MANIFEST,
 	AVATAR_MANIFEST,
 	BADGE_MANIFEST,
 	BUTTON_MANIFEST,
 	BUTTON_GROUP_MANIFEST,
 	ICON_MANIFEST,
 	INPUT_MANIFEST,
+	FILE_INPUT_MANIFEST,
+	DROPZONE_MANIFEST,
 	LOADING_PULSE_MANIFEST,
 	LOADING_SPINNER_MANIFEST,
 	MODAL_MANIFEST,
@@ -247,18 +253,19 @@ export {
 	BREADCRUMB_MANIFEST,
 	CARD_MANIFEST,
 	EMPTY_MANIFEST,
-	LABEL_MANIFEST,
-	MARKER_MANIFEST,
 	PAGINATION_MANIFEST,
 	PROGRESS_MANIFEST,
+	CHART_MANIFEST,
 	SEPARATOR_MANIFEST,
 	SKELETON_MANIFEST,
+	CAROUSEL_MANIFEST,
+	SLIDER_MANIFEST,
+	TABLE_MANIFEST,
 	VISUALLY_HIDDEN_MANIFEST,
 	CHECKBOX_MANIFEST,
 	RADIO_GROUP_MANIFEST,
 	RADIO_GROUP_ITEM_MANIFEST,
 	DIALOG_MANIFEST,
-	ALERT_DIALOG_MANIFEST,
 	TABS_MANIFEST,
 	TOAST_MANIFEST,
 	type ComponentManifest,

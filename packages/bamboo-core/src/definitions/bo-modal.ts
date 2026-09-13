@@ -1,8 +1,6 @@
 import { HTMLAttributes } from 'vue';
 import { ComponentManifest } from '../manifests/types.js';
 
-export type BoModalVariant = 'default' | 'primary' | 'warning' | 'destructive';
-
 export type BoModalSize = 'sm' | 'default' | 'lg' | 'xl' | 'full';
 
 export interface BoModalProps {
@@ -17,11 +15,6 @@ export interface BoModalProps {
 	open?: boolean;
 	/** The title displayed in the modal header. */
 	title?: string;
-	/**
-	 * The variant of the modal which determines the header icon and accent color.
-	 * @default 'default'
-	 */
-	variant?: BoModalVariant;
 	/**
 	 * The size of the modal panel.
 	 * @default 'default'
@@ -59,10 +52,9 @@ export interface BoModalProps {
 
 type BoModalManifestDefaults = Pick<
 	BoModalProps,
-	'variant' | 'size' | 'closeOnBackdrop' | 'closeOnEscape' | 'showClose' | 'closeAriaLabel' | 'role'
+	'size' | 'closeOnBackdrop' | 'closeOnEscape' | 'showClose' | 'closeAriaLabel' | 'role'
 >;
 
-type BoModalVariantStyleMap = Record<BoModalVariant, string>;
 type BoModalSizeStyleMap = Record<BoModalSize, string>;
 
 export interface BoModalStyleManifest {
@@ -76,14 +68,10 @@ export interface BoModalStyleManifest {
 		base: string;
 		content: string;
 		title: string;
-		variant: BoModalVariantStyleMap;
 	};
 	close: string;
 	body: string;
 	footer: string;
-	icon: {
-		variant: BoModalVariantStyleMap;
-	};
 }
 
 export type ModalManifest = ComponentManifest<BoModalStyleManifest, BoModalManifestDefaults>;

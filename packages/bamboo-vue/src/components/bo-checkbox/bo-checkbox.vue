@@ -1,11 +1,6 @@
 <template>
 	<div :class="CHECKBOX_MANIFEST.styles.base">
-		<bo-label
-			:for="id"
-			:required="required"
-			:disabled="disabled"
-			:class="CHECKBOX_MANIFEST.styles.container"
-		>
+		<label :for="id" :class="CHECKBOX_MANIFEST.styles.container" :aria-label="ariaLabel">
 			<input
 				ref="inputRef"
 				:id="id"
@@ -37,7 +32,7 @@
 				<span v-if="label" :class="CHECKBOX_MANIFEST.styles.label">{{ label }}</span>
 				<slot />
 			</span>
-		</bo-label>
+		</label>
 
 		<div v-if="error || hint" :class="CHECKBOX_MANIFEST.styles.helpers.container">
 			<span v-if="error" :id="helperTextId" :class="CHECKBOX_MANIFEST.styles.helpers.error">
@@ -60,7 +55,6 @@ import {
 } from '@workspace/bamboo-core';
 import { computed, onMounted, useTemplateRef, watch } from 'vue';
 import { BoIcon } from '../bo-icon';
-import { BoLabel } from '../bo-label';
 
 const props = withDefaults(defineProps<BoCheckboxProps>(), {
 	id: () => generateComponentId('checkbox'),
@@ -71,13 +65,21 @@ const props = withDefaults(defineProps<BoCheckboxProps>(), {
 const model = defineModel<boolean>({ default: false });
 const inputRef = useTemplateRef<HTMLInputElement>('inputRef');
 
-const helperTextId = computed(() => `${props.id}-helper`);
-const state = computed(() =>
-	props.indeterminate ? 'indeterminate' : model.value ? 'checked' : 'unchecked',
-);
-const boxClasses = computed(() => CHECKBOX_MANIFEST.styles.box[props.size || 'default']);
-const iconClasses = computed(() => CHECKBOX_MANIFEST.styles.icon[props.size || 'default']);
-const iconSize = computed<BoIconSize>(() => (props.size === 'lg' ? 'default' : 'sm'));
+const helperTextId = computed(() => {
+	return `${props.id}-helper`;
+});
+const state = computed(() => {
+	return props.indeterminate ? 'indeterminate' : model.value ? 'checked' : 'unchecked';
+});
+const boxClasses = computed(() => {
+	return CHECKBOX_MANIFEST.styles.box[props.size || 'default'];
+});
+const iconClasses = computed(() => {
+	return CHECKBOX_MANIFEST.styles.icon[props.size || 'default'];
+});
+const iconSize = computed<BoIconSize>(() => {
+	return props.size === 'lg' ? 'default' : 'sm';
+});
 
 function setIndeterminate(value: boolean): void {
 	if (inputRef.value) {

@@ -8,15 +8,12 @@
 	}
 
 	.bo-dialog-panel {
-		@apply relative grid w-full max-w-xs gap-6 overflow-hidden rounded-4xl border px-6 py-6 shadow-lg outline-none sm:max-w-md;
-		background-color: var(--color-white);
-		border-color: var(--color-neutral-200);
-		max-height: 90vh;
+		@apply relative grid w-full max-w-sm gap-4 overflow-hidden rounded-lg border p-6 shadow-lg outline-none sm:max-w-lg;
+		@apply max-h-[90vh] border-neutral-200 bg-white;
 	}
 
 	.dark .bo-dialog-panel {
-		background-color: var(--color-neutral-900);
-		border-color: var(--color-neutral-800);
+		@apply border-neutral-800 bg-neutral-900;
 	}
 
 	.bo-dialog-panel--sm {
@@ -39,6 +36,62 @@
 		@apply max-w-full sm:max-w-[calc(100vw-3rem)];
 	}
 
+	.bo-dialog-panel--variant-default {
+		@apply border-neutral-200;
+	}
+
+	.bo-dialog-panel--variant-destructive {
+		@apply border-red-200;
+	}
+
+	.bo-dialog-panel--variant-info {
+		@apply border-blue-200;
+	}
+
+	.bo-dialog-panel--variant-warning {
+		@apply border-amber-200;
+	}
+
+	.dark .bo-dialog-panel--variant-default {
+		@apply border-neutral-800;
+	}
+
+	.dark .bo-dialog-panel--variant-destructive {
+		@apply border-red-900;
+	}
+
+	.dark .bo-dialog-panel--variant-info {
+		@apply border-blue-900;
+	}
+
+	.dark .bo-dialog-panel--variant-warning {
+		@apply border-amber-900;
+	}
+
+	.bo-dialog-panel--variant-destructive .bo-dialog-title {
+		@apply text-red-700;
+	}
+
+	.bo-dialog-panel--variant-info .bo-dialog-title {
+		@apply text-blue-700;
+	}
+
+	.bo-dialog-panel--variant-warning .bo-dialog-title {
+		@apply text-amber-700;
+	}
+
+	.dark .bo-dialog-panel--variant-destructive .bo-dialog-title {
+		@apply text-red-300;
+	}
+
+	.dark .bo-dialog-panel--variant-info .bo-dialog-title {
+		@apply text-blue-300;
+	}
+
+	.dark .bo-dialog-panel--variant-warning .bo-dialog-title {
+		@apply text-amber-300;
+	}
+
 	.bo-dialog-header {
 		@apply flex flex-col gap-2 text-center sm:text-left;
 	}
@@ -47,36 +100,47 @@
 		@apply flex items-center gap-3;
 	}
 
+	.bo-dialog-icon {
+		@apply size-5 shrink-0;
+	}
+
 	.bo-dialog-title {
 		@apply flex-1 text-base font-medium leading-none;
 	}
 
 	.bo-dialog-close {
-		@apply absolute end-4 top-4 inline-flex items-center justify-center rounded-sm opacity-70 transition-opacity hover:opacity-100;
-		color: var(--color-neutral-500);
+		@apply absolute end-4 top-4 inline-flex items-center justify-center rounded-sm text-neutral-500 opacity-70 transition-opacity hover:opacity-100;
+	}
+
+	.dark .bo-dialog-close {
+		@apply text-neutral-400;
 	}
 
 	.bo-dialog-close:focus-visible {
-		@apply outline-none ring-[3px];
-		--tw-ring-color: var(--color-blue-500);
+		@apply outline-none;
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-dialog-close:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-dialog-body {
-		@apply min-h-0 flex-1 overflow-y-auto overscroll-contain text-sm;
-		color: var(--color-neutral-700);
+		@apply min-h-0 flex-1 overflow-y-auto overscroll-contain text-sm text-neutral-700;
 	}
 
 	.dark .bo-dialog-body {
-		color: var(--color-neutral-300);
+		@apply text-neutral-300;
 	}
 
 	.bo-dialog-description {
-		@apply text-sm leading-relaxed;
-		color: var(--color-neutral-500);
+		@apply text-sm leading-relaxed text-neutral-500;
 	}
 
 	.dark .bo-dialog-description {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
 	}
 
 	.bo-dialog-footer {
@@ -85,21 +149,21 @@
 
 	.bo-dialog-enter-active,
 	.bo-dialog-leave-active {
-		transition: opacity 0.2s ease;
+		@apply transition-opacity duration-200 ease-[ease];
 	}
 
 	.bo-dialog-enter-from,
 	.bo-dialog-leave-to {
-		opacity: 0;
+		@apply opacity-0;
 	}
 
 	.bo-dialog-enter-active .bo-dialog-panel,
 	.bo-dialog-leave-active .bo-dialog-panel {
-		transition: transform 0.2s ease;
+		@apply transition-transform duration-200 ease-[ease];
 	}
 
 	.bo-dialog-enter-from .bo-dialog-panel,
 	.bo-dialog-leave-to .bo-dialog-panel {
-		transform: scale(0.95);
+		@apply scale-95;
 	}
 }

@@ -1,5 +1,11 @@
 <template>
-	<div ref="groupRef" :id="id" :data-testid="dataTestId" :role="role" :class="groupClasses">
+	<div
+		:id="id"
+		:data-testid="dataTestId"
+		:role="role"
+		:aria-orientation="orientation"
+		:class="groupClasses"
+	>
 		<slot />
 	</div>
 </template>
@@ -10,116 +16,76 @@ import {
 	generateComponentId,
 	generateDataTestId,
 	type BoButtonGroupProps,
+	type BoButtonGroupOrientation,
+	type BoButtonSize,
+	type BoButtonVariant,
 } from '@workspace/bamboo-core';
-import { computed, onMounted, provide, ref, watch } from 'vue';
+import { computed, provide, ref, watch } from 'vue';
+import { buttonGroupContextKey } from './keys.js';
 
 const props = withDefaults(defineProps<BoButtonGroupProps>(), {
 	...BUTTON_GROUP_MANIFEST.defaults,
 });
 
-const groupRef = ref<HTMLElement>();
 const model = defineModel<string | number | (string | number)[]>();
-
 const selectedValues = ref<Set<string | number>>(new Set());
 
 const id = computed(() => props.id ?? generateComponentId('button-group'));
-const dataTestId = computed(() => props.dataTestId ?? generateDataTestId('BoButtonGroup'));
-
+const dataTestId = computed(() => props.dataTestId ?? generateDataTestId('button-group'));
+const orientation = computed<BoButtonGroupOrientation>(
+	() => props.orientation ?? BUTTON_GROUP_MANIFEST.defaults.orientation,
+);
+const size = computed<BoButtonSize>(() => props.size ?? 'default');
+const variant = computed<BoButtonVariant>(
+	() => props.variant ?? BUTTON_GROUP_MANIFEST.defaults.variant,
+);
 const groupClasses = computed(() => {
-	const orientation = props.orientation ?? BUTTON_GROUP_MANIFEST.defaults.orientation;
-	const attached = props.attached ?? BUTTON_GROUP_MANIFEST.defaults.attached;
-
 	const classes = [
 		BUTTON_GROUP_MANIFEST.styles.base,
-		BUTTON_GROUP_MANIFEST.styles.orientation[orientation],
+		BUTTON_GROUP_MANIFEST.styles.orientation[orientation.value],
 		props.fullWidth ? BUTTON_GROUP_MANIFEST.styles.fullWidth : '',
-		attached ? BUTTON_GROUP_MANIFEST.styles.attached.orientation[orientation] : '',
+		props.attached ? BUTTON_GROUP_MANIFEST.styles.attached.orientation[orientation.value] : '',
 	];
 
 	return classes.filter(Boolean).join(' ');
 });
 
-const initializeSelection = () => {
-	selectedValues.value.clear();
-	if (model.value !== undefined) {
-		if (Array.isArray(model.value)) {
-			model.value.forEach((value) => selectedValues.value.add(value));
-		} else {
-			selectedValues.value.add(model.value);
-		}
-	}
-};
+function initializeSelection(value: string | number | (string | number)[] | undefined): void {
+	selectedValues.value = new Set(Array.isArray(value) ? value : value === undefined ? [] : [value]);
+}
 
-const handleButtonClick = (buttonValue: string | number) => {
+function select(value: string | number): void {
 	if (props.multiple) {
-		const newSelection = new Set(selectedValues.value);
-
-		if (newSelection.has(buttonValue)) {
-			if (!props.required || newSelection.size > 1) {
-				newSelection.delete(buttonValue);
-			}
+		const nextSelection = new Set(selectedValues.value);
+		if (nextSelection.has(value)) {
+			if (!props.required || nextSelection.size > 1) nextSelection.delete(value);
 		} else {
-			newSelection.add(buttonValue);
+			nextSelection.add(value);
 		}
-
-		selectedValues.value = newSelection;
-		model.value = Array.from(newSelection);
-	} else {
-		if (selectedValues.value.has(buttonValue) && !props.required) {
-			selectedValues.value.clear();
-			model.value = undefined;
-		} else {
-			selectedValues.value.clear();
-			selectedValues.value.add(buttonValue);
-			model.value = buttonValue;
-		}
+		selectedValues.value = nextSelection;
+		model.value = Array.from(nextSelection);
+		return;
 	}
-};
 
-const isButtonSelected = (buttonValue: string | number): boolean => {
-	return selectedValues.value.has(buttonValue);
-};
+	if (selectedValues.value.has(value) && !props.required) {
+		selectedValues.value = new Set();
+		model.value = undefined;
+		return;
+	}
 
-provide('buttonGroupSize', props.size);
-provide('buttonGroupVariant', props.variant);
-provide('buttonGroupOrientation', props.orientation);
-provide('buttonGroupAttached', props.attached);
-provide('buttonGroupFullWidth', props.fullWidth);
-provide('buttonGroupHandleClick', handleButtonClick);
-provide('buttonGroupIsSelected', isButtonSelected);
+	selectedValues.value = new Set([value]);
+	model.value = value;
+}
 
 watch(model, initializeSelection, { immediate: true });
 
-onMounted(() => {
-	if (!groupRef.value) return;
-
-	const buttons = Array.from(groupRef.value.querySelectorAll('button'));
-
-	buttons.forEach((button, index) => {
-		const buttonValue =
-			button.getAttribute('data-value') || button.textContent?.trim() || index.toString();
-
-		button.addEventListener('click', (e) => {
-			e.preventDefault();
-			handleButtonClick(buttonValue);
-		});
-
-		const updateButtonSelection = () => {
-			const selectedClass = BUTTON_GROUP_MANIFEST.styles.selected;
-
-			if (isButtonSelected(buttonValue)) {
-				button.classList.add(selectedClass);
-				button.setAttribute('aria-pressed', 'true');
-			} else {
-				button.classList.remove(selectedClass);
-				button.setAttribute('aria-pressed', 'false');
-			}
-		};
-
-		updateButtonSelection();
-
-		watch(selectedValues, updateButtonSelection, { deep: true });
-	});
+provide(buttonGroupContextKey, {
+	selected: (value) => selectedValues.value.has(value),
+	select,
+	disabled: computed(() => false),
+	size,
+	variant,
+	orientation,
 });
 </script>
 

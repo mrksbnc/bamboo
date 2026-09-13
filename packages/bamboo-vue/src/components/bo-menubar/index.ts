@@ -6,6 +6,7 @@ export { default as BoMenubarSeparator } from './bo-menubar-separator.vue';
 export { default as BoMenubarSubTrigger } from './bo-menubar-sub-trigger.vue';
 export type {
 	BoMenubarProps,
+	BoMenubarPlacement,
 	BoMenubarTriggerProps,
 	BoMenubarContentProps,
 	BoMenubarItemProps,

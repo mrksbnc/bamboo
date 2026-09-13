@@ -1,87 +1,42 @@
 @layer components {
 	.bo-card {
-		@apply flex flex-col gap-6 rounded-2xl border py-6 text-sm shadow-sm overflow-hidden;
-		background-color: var(--color-white);
-		border-color: var(--color-neutral-200);
-		color: var(--color-neutral-900);
+		@apply flex w-full min-w-0 flex-col overflow-hidden rounded-lg border text-sm shadow-sm;
+		@apply border-neutral-200 bg-white text-neutral-900;
 	}
 
 	.dark .bo-card {
-		background-color: var(--color-neutral-900);
-		border-color: var(--color-neutral-800);
-		color: var(--color-neutral-100);
-	}
-
-	.bo-card--default {
-		border-color: var(--color-neutral-200);
-	}
-
-	.dark .bo-card--default {
-		border-color: var(--color-neutral-800);
-	}
-
-	.bo-card--primary {
-		border-color: var(--color-blue-500);
-	}
-
-	.dark .bo-card--primary {
-		border-color: var(--color-blue-400);
-	}
-
-	.bo-card--secondary {
-		border-color: var(--color-neutral-500);
-	}
-
-	.dark .bo-card--secondary {
-		border-color: var(--color-neutral-400);
-	}
-
-	.bo-card--destructive {
-		border-color: var(--color-red-500);
-	}
-
-	.dark .bo-card--destructive {
-		border-color: var(--color-red-400);
-	}
-
-	.bo-card--warning {
-		border-color: var(--color-yellow-500);
-	}
-
-	.dark .bo-card--warning {
-		border-color: var(--color-yellow-400);
-	}
-
-	.bo-card--success {
-		border-color: var(--color-green-500);
-	}
-
-	.dark .bo-card--success {
-		border-color: var(--color-green-400);
+		@apply border-neutral-800 bg-neutral-900 text-neutral-100;
 	}
 
 	.bo-card__header {
-		@apply flex flex-col gap-2 px-6;
+		@apply flex flex-col gap-1.5 p-6;
 	}
 
 	.bo-card__title {
-		@apply text-base font-medium leading-none tracking-tight;
+		@apply text-2xl font-semibold leading-none tracking-tight;
 	}
 
 	.bo-card__description {
-		@apply text-sm;
-		color: var(--color-neutral-500);
+		@apply text-sm text-neutral-500;
 	}
 
 	.dark .bo-card__description {
-		color: var(--color-neutral-400);
+		@apply text-neutral-400;
+	}
+
+	.bo-card__media {
+		@apply w-full overflow-hidden;
 	}
 
 	.bo-card__body {
-		@apply flex-1 px-6;
+		@apply min-h-0 flex-1 p-6 pt-0;
+	}
+
+	.bo-card > .bo-card__body:first-child {
+		@apply pt-6;
 	}
 
 	.bo-card__footer {
-		@apply flex items-center gap-2 px-6;
+		@apply flex items-center gap-2 p-6 pt-0;
 	}
 }

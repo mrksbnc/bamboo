@@ -1,15 +1,8 @@
 ---
 title: Loading Pulse
-description: An animated pulsing dots component for indicating loading states. Provides a subtle and elegant visual feedback during asynchronous operations with customizable sizes, colors, and text positioning.
+description: Indicate pending work with animated dots.
 category: feedback
-tags:
-  - loading
-  - pulse
-  - dots
-  - feedback
-  - async
-  - indicator
-outline: deep
+tags: [loading, pulse, feedback]
 ---
 
 <script setup lang="ts">
@@ -17,141 +10,45 @@ import { BoLoadingPulse } from '@mrksbnc/bamboo-vue';
 
 const basicExample = `<bo-loading-pulse />`;
 const textExample = `<bo-loading-pulse loader-text="Loading..." />`;
-const sizesExample = `<bo-loading-pulse size="xs" />
-<bo-loading-pulse size="sm" />
-<bo-loading-pulse size="default" />
-<bo-loading-pulse size="lg" />
-<bo-loading-pulse size="xl" />`;
-const variantsExample = `<div class="flex gap-4 items-center">
-  <bo-loading-pulse variant="primary" />
-  <bo-loading-pulse variant="secondary" />
-  <bo-loading-pulse variant="success" />
-  <bo-loading-pulse variant="warning" />
-  <bo-loading-pulse variant="destructive" />
-  <div class="bg-neutral-800 p-2 rounded">
-    <bo-loading-pulse variant="white" />
-  </div>
-  <bo-loading-pulse variant="black" />
+const sizesExample = `<div class="flex items-center gap-3">
+  <bo-loading-pulse size="sm" />
+  <bo-loading-pulse size="default" />
+  <bo-loading-pulse size="lg" />
 </div>`;
-const textPositionExample = `<bo-loading-pulse loader-text="Loading..." text-position="top" />
-<bo-loading-pulse loader-text="Loading..." text-position="bottom" />
-<bo-loading-pulse loader-text="Loading..." text-position="before" />
-<bo-loading-pulse loader-text="Loading..." text-position="after" />`;
-const customColorsExample = `<bo-loading-pulse custom-color="#ff6b6b" />
-<bo-loading-pulse custom-color="rgb(34, 197, 94)" />
-<bo-loading-pulse custom-color="oklch(84.5% 0.143 164.978)" />`;
-const combinedExample = `<bo-loading-pulse size="sm" loader-text="Small pulse" />
-<bo-loading-pulse size="default" loader-text="Default pulse" />
-<bo-loading-pulse size="lg" loader-text="Large pulse" />`;
 </script>
 
 # Loading Pulse
 
-An animated pulsing dots component for indicating loading states. Provides a subtle and elegant visual feedback during asynchronous operations with customizable sizes, colors, and text positioning.
+Use `bo-loading-pulse` for a lightweight pending indicator.
 
-## Basic Usage
-
-The component is called `bo-loading-pulse` and can be used as follows:
+## Usage
 
 <ExampleFrame :code="basicExample">
-  <div class="flex gap-4 items-center">
-    <bo-loading-pulse />
-  </div>
+  <bo-loading-pulse />
 </ExampleFrame>
 
-## With Text
-
-Pulse loaders can display loading text:
+## Text and sizes
 
 <ExampleFrame :code="textExample">
-  <div class="flex gap-4 items-center">
-    <bo-loading-pulse loader-text="Loading..." />
-  </div>
+  <bo-loading-pulse loader-text="Loading..." />
 </ExampleFrame>
-
-## Sizes
-
-The `size` prop allows you to customize the size of the pulse dots. The default size is `default`.
 
 <ExampleFrame :code="sizesExample">
-  <div class="flex gap-4 items-center">
-  <bo-loading-pulse size="xs" />
-  <bo-loading-pulse size="sm" />
-  <bo-loading-pulse size="default" />
-  <bo-loading-pulse size="lg" />
-  <bo-loading-pulse size="xl" />
-</div>
-</ExampleFrame>
-
-## Variants
-
-The `variant` prop allows you to customize the color of the pulse dots. The default variant is `primary`.
-
-<ExampleFrame :code="variantsExample">
-  <div class="flex gap-4 items-center">
-  <bo-loading-pulse variant="primary" />
-  <bo-loading-pulse variant="secondary" />
-  <bo-loading-pulse variant="success" />
-  <bo-loading-pulse variant="warning" />
-  <bo-loading-pulse variant="destructive" />
-  <div class="bg-neutral-800 p-2 rounded">
-    <bo-loading-pulse variant="white" />
+  <div class="flex items-center gap-3">
+    <bo-loading-pulse size="sm" />
+    <bo-loading-pulse size="default" />
+    <bo-loading-pulse size="lg" />
   </div>
-  <bo-loading-pulse variant="black" />
-</div>
 </ExampleFrame>
 
-## Text Positioning
+## API
 
-The `text-position` prop controls where the loading text appears relative to the pulse dots:
-
-<ExampleFrame :code="textPositionExample">
-  <div class="flex flex-col gap-4">
-  <bo-loading-pulse loader-text="Loading..." text-position="top" />
-  <bo-loading-pulse loader-text="Loading..." text-position="bottom" />
-  <bo-loading-pulse loader-text="Loading..." text-position="before" />
-  <bo-loading-pulse loader-text="Loading..." text-position="after" />
-</div>
-</ExampleFrame>
-
-## Custom Colors
-
-Use custom colors with the `custom-color` prop:
-
-<ExampleFrame :code="customColorsExample">
-  <div class="flex gap-4 items-center">
-  <bo-loading-pulse custom-color="#ff6b6b" />
-  <bo-loading-pulse custom-color="rgb(34, 197, 94)" />
-  <bo-loading-pulse custom-color="oklch(84.5% 0.143 164.978)" />
-</div>
-</ExampleFrame>
-
-## Different Sizes with Text
-
-Combine different sizes with loading text:
-
-<ExampleFrame :code="combinedExample">
-  <div class="flex flex-col gap-4">
-  <bo-loading-pulse size="sm" loader-text="Small pulse" />
-  <bo-loading-pulse size="default" loader-text="Default pulse" />
-  <bo-loading-pulse size="lg" loader-text="Large pulse" />
-</div>
-</ExampleFrame>
-
-## API Reference
-
-### Props
-
-| Prop           | Type                           | Default         | Description                                                 |
-| -------------- | ------------------------------ | --------------- | ----------------------------------------------------------- |
-| `id`           | `string`                       | `Autogenerated` | Unique id for the loading pulse.                            |
-| `dataTestId`   | `string`                       | `Autogenerated` | Unique data-test-id for the pulse container.                |
-| `size`         | `BoLoaderSize`                 | `'default'`     | The size of the loading pulse.                              |
-| `variant`      | `BoLoaderVariant`              | `'primary'`     | Predefined color variant of the pulse.                      |
-| `loaderText`   | `string`                       | -               | Optional loader text to display.                            |
-| `textPosition` | `BoLoaderTextPosition`         | `'after'`       | Position of the text relative to the pulse.                 |
-| `customColor`  | `string`                       | -               | Custom color of the loading pulse in CSS compatible format. |
-| `role`         | `HTMLAttributes['role']`       | `'status'`      | Accessibility role of the pulse.                            |
-| `ariaLive`     | `HTMLAttributes['aria-live']`  | `'polite'`      | Indicates that an element will be updated.                  |
-| `ariaLabel`    | `HTMLAttributes['aria-label']` | -               | Accessible label describing the pulse state.                |
-| `ariaBusy`     | `HTMLAttributes['aria-busy']`  | -               | Mark the region as busy while the pulse is visible.         |
+| Prop                                           | Type                                                                            | Default                             | Description                    |
+| ---------------------------------------------- | ------------------------------------------------------------------------------- | ----------------------------------- | ------------------------------ |
+| `id` / `dataTestId`                            | `string`                                                                        | autogenerated                       | Root attributes.               |
+| `size`                                         | `xs \| sm \| default \| lg \| xl`                                               | `default`                           | Dot size.                      |
+| `variant`                                      | `primary \| secondary \| success \| warning \| destructive \| white \| current` | `primary`                           | Color variant.                 |
+| `loaderText`                                   | `string`                                                                        | -                                   | Text shown with the indicator. |
+| `textPosition`                                 | `top \| bottom \| before \| after`                                              | `after`                             | Text position.                 |
+| `customColor`                                  | `string`                                                                        | -                                   | CSS color override.            |
+| `role` / `ariaLive` / `ariaLabel` / `ariaBusy` | native accessibility types                                                      | `status` / `polite` / `Loading` / - | Live-region semantics.         |

@@ -31,17 +31,19 @@ const props = withDefaults(defineProps<BoContextMenuItemProps>(), {
 	dataTestId: () => generateDataTestId('context-menu-item'),
 	variant: 'default',
 });
-const emit = defineEmits<{ select: [] }>();
+const emit = defineEmits<{
+	(event: 'select'): void;
+}>();
 const context = inject(contextMenuContextKey);
 if (!context) throw new Error('BoContextMenuItem must be used inside BoContextMenu');
 const menuContext = context;
-const itemClasses = computed(() =>
-	mergeTwClasses(
+const itemClasses = computed(() => {
+	return mergeTwClasses(
 		CONTEXT_MENU_MANIFEST.styles.item,
 		props.inset ? CONTEXT_MENU_MANIFEST.styles.itemInset : '',
 		props.variant === 'destructive' ? CONTEXT_MENU_MANIFEST.styles.itemDestructive : '',
-	),
-);
+	);
+});
 function onClick(): void {
 	if (!props.disabled) {
 		emit('select');

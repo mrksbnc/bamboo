@@ -18,10 +18,10 @@ const props = withDefaults(defineProps<BoContextMenuLabelProps>(), {
 	id: () => generateComponentId('context-menu-label'),
 	dataTestId: () => generateDataTestId('context-menu-label'),
 });
-const labelClasses = computed(() =>
-	mergeTwClasses(
+const labelClasses = computed(() => {
+	return mergeTwClasses(
 		CONTEXT_MENU_MANIFEST.styles.label,
 		props.inset ? CONTEXT_MENU_MANIFEST.styles.labelInset : '',
-	),
-);
+	);
+});
 </script>

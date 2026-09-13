@@ -1,11 +1,7 @@
 import { HTMLAttributes } from 'vue';
 import { ComponentManifest } from '../manifests/types.js';
-import {
-	BoFontSize,
-	type BoLoaderTextPosition,
-	type BoLoaderSize,
-	type BoLoaderVariant,
-} from './index.js';
+import { BoLoaderSize, BoLoaderTextPosition, BoLoaderVariant } from './bo-loader.js';
+import { BoFontSize } from './bo-text.js';
 
 export interface BoLoadingSpinnerProps {
 	/** Unique id for the loading spinner */
@@ -17,10 +13,7 @@ export interface BoLoadingSpinnerProps {
 	 * @default 'default'
 	 */
 	size?: BoLoaderSize;
-	/**
-	 * Predefined color variant of the spinner
-	 * @default 'primary'
-	 */
+	/** Color variant of the loading spinner. */
 	variant?: BoLoaderVariant;
 	/** Optional loader text to display */
 	loaderText?: string;
@@ -53,8 +46,8 @@ export interface BoLoadingSpinnerProps {
 }
 
 type BoLoadingSpinnerSizeStyleMap = Record<BoLoaderSize, string>;
-type BoLoadingSpinnerVariantStyleMap = Record<BoLoaderVariant, string>;
 type BoLoadingSpinnerTextPositionStyleMap = Record<BoLoaderTextPosition, string>;
+type BoLoadingSpinnerVariantStyleMap = Record<BoLoaderVariant, string>;
 
 type BoLoadingSpinnerManifestDefaults = Pick<
 	BoLoadingSpinnerProps,

@@ -11,5 +11,4 @@ export type BoLoaderVariant =
 	| 'warning'
 	| 'destructive'
 	| 'white'
-	| 'black'
 	| 'current';

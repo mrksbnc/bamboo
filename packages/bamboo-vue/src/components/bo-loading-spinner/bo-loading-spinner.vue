@@ -4,14 +4,23 @@
 		:data-testid="dataTestId"
 		:role="role"
 		:class="containerClassValues"
+		:style="styleValues"
 		:aria-live="ariaLive"
 		:aria-label="ariaLabel"
 		:aria-busy="ariaBusy"
 	>
-		<div :class="trackClassValues" :style="styleValues" aria-hidden="true"></div>
-		<bo-text v-if="loaderText" :font-size="spinnerLabelFontSize" :class="textClassValues">{{
-			loaderText
-		}}</bo-text>
+		<div :class="trackClassValues" :style="styleValues" aria-hidden="true">
+			<svg viewBox="0 0 24 24" aria-hidden="true">
+				<circle class="bo-loading-spinner__ring" cx="12" cy="12" r="9" />
+			</svg>
+		</div>
+		<bo-text
+			v-if="loaderText"
+			:font-size="spinnerLabelFontSize"
+			:class="textClassValues"
+			variant="inherit"
+			>{{ loaderText }}</bo-text
+		>
 	</div>
 </template>
 
@@ -35,6 +44,7 @@ const props = withDefaults(defineProps<BoLoadingSpinnerProps>(), {
 	size: () => LOADING_SPINNER_MANIFEST.defaults.size,
 	variant: () => LOADING_SPINNER_MANIFEST.defaults.variant,
 	textPosition: () => LOADING_SPINNER_MANIFEST.defaults.textPosition,
+	ariaLabel: 'Loading',
 });
 
 const spinnerLabelFontSize = computed<BoFontSize>(() => {
@@ -45,7 +55,7 @@ const containerClassValues = computed<string>(() => {
 	return mergeTwClasses(
 		LOADING_SPINNER_MANIFEST.styles.container,
 		LOADING_SPINNER_MANIFEST.styles.textPosition[props.textPosition || 'after'],
-		props.customColor ? '' : LOADING_SPINNER_MANIFEST.styles.variant[props.variant || 'primary'],
+		LOADING_SPINNER_MANIFEST.styles.variant[props.variant || 'primary'],
 	);
 });
 

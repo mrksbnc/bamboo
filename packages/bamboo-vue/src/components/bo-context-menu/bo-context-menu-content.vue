@@ -26,7 +26,7 @@ import {
 	generateDataTestId,
 	type BoContextMenuProps,
 } from '@workspace/bamboo-core';
-import { computed, inject, nextTick, ref, watch } from 'vue';
+import { computed, inject, nextTick, ref, useTemplateRef, watch } from 'vue';
 import { contextMenuContextKey } from './keys';
 
 const props = withDefaults(defineProps<BoContextMenuProps>(), {
@@ -38,11 +38,13 @@ const context = inject(contextMenuContextKey);
 if (!context) throw new Error('BoContextMenuContent must be used inside BoContextMenu');
 const menuContext = context;
 
-const contentRef = ref<HTMLElement>();
-const contentStyle = computed(() => ({
-	left: `${menuContext.position.value.x}px`,
-	top: `${menuContext.position.value.y}px`,
-}));
+const contentRef = useTemplateRef<HTMLElement>('contentRef');
+const contentStyle = computed(() => {
+	return {
+		left: `${menuContext.position.value.x}px`,
+		top: `${menuContext.position.value.y}px`,
+	};
+});
 
 function onKeydown(event: KeyboardEvent): void {
 	if (event.key === 'Escape') {

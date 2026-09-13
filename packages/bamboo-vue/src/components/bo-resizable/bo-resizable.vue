@@ -24,7 +24,9 @@ const props = withDefaults(defineProps<BoResizableProps>(), {
 	direction: () => RESIZABLE_MANIFEST.defaults.direction,
 });
 
-const direction = computed(() => props.direction || RESIZABLE_MANIFEST.defaults.direction);
+const direction = computed(() => {
+	return props.direction || RESIZABLE_MANIFEST.defaults.direction;
+});
 provide(resizableDirectionKey, direction);
 </script>
 

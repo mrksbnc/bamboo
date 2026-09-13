@@ -9,13 +9,6 @@ export const LOADING_PULSE_MANIFEST = {
 		base: 'bo-loading-pulse__dots',
 		container: 'bo-loading-pulse',
 		dot: 'bo-loading-pulse__dot',
-		size: {
-			xs: 'bo-loading-pulse__dot--xs',
-			sm: 'bo-loading-pulse__dot--sm',
-			default: 'bo-loading-pulse__dot--default',
-			lg: 'bo-loading-pulse__dot--lg',
-			xl: 'bo-loading-pulse__dot--xl',
-		},
 		variant: {
 			primary: 'bo-loading-pulse--primary',
 			secondary: 'bo-loading-pulse--secondary',
@@ -23,8 +16,14 @@ export const LOADING_PULSE_MANIFEST = {
 			warning: 'bo-loading-pulse--warning',
 			destructive: 'bo-loading-pulse--destructive',
 			white: 'bo-loading-pulse--white',
-			black: 'bo-loading-pulse--black',
 			current: 'bo-loading-pulse--current',
+		},
+		size: {
+			xs: 'bo-loading-pulse__dot--xs',
+			sm: 'bo-loading-pulse__dot--sm',
+			default: 'bo-loading-pulse__dot--default',
+			lg: 'bo-loading-pulse__dot--lg',
+			xl: 'bo-loading-pulse__dot--xl',
 		},
 		textPosition: {
 			top: 'bo-loading-pulse--top',
@@ -35,9 +34,9 @@ export const LOADING_PULSE_MANIFEST = {
 		labelFontSize: {
 			xs: 'xs',
 			sm: 'sm',
-			default: 'sm',
-			lg: 'default',
-			xl: 'default',
+			default: 'default',
+			lg: 'lg',
+			xl: 'xl',
 		},
 		animation: [
 			'bo-loading-pulse__dot--delay-0',

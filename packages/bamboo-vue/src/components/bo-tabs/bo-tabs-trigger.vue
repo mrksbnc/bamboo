@@ -55,16 +55,24 @@ function valueKey(value: BoTabsValue): string {
 	return String(value).replace(/[^a-zA-Z0-9_-]+/g, '-');
 }
 
-const triggerId = computed(() => props.id ?? `tabs-trigger-${valueKey(props.value)}`);
-const contentId = computed(() => `tabs-content-${valueKey(props.value)}`);
-const isActive = computed(() => activeValue?.value === props.value);
-const isDisabled = computed(() => !!props.disabled || !!groupDisabled?.value);
-const triggerClasses = computed(() =>
-	mergeTwClasses(
+const triggerId = computed(() => {
+	return props.id ?? `tabs-trigger-${valueKey(props.value)}`;
+});
+const contentId = computed(() => {
+	return `tabs-content-${valueKey(props.value)}`;
+});
+const isActive = computed(() => {
+	return activeValue?.value === props.value;
+});
+const isDisabled = computed(() => {
+	return !!props.disabled || !!groupDisabled?.value;
+});
+const triggerClasses = computed(() => {
+	return mergeTwClasses(
 		TABS_MANIFEST.styles.trigger,
 		isActive.value ? TABS_MANIFEST.styles.triggerActive : '',
-	),
-);
+	);
+});
 
 function onClick(): void {
 	if (!isDisabled.value) select?.(props.value);

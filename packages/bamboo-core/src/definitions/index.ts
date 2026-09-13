@@ -7,17 +7,6 @@ export {
 	type AccordionManifest,
 } from './bo-accordion.js';
 
-// # bo-alert
-export {
-	type BoAlertPosition,
-	type BoAlertVariant,
-	type BoAlertProps,
-	type BoAlertContainerProps,
-	type BoAlertContainerStyleManifest,
-	type BoAlertStyleManifest,
-	type AlertManifest,
-} from './bo-alert.js';
-
 // # bo-avatar
 export {
 	type BoAvatarSize,
@@ -33,6 +22,7 @@ export {
 
 // # bo-badge
 export {
+	type BoBadgeSize,
 	type BoBadgeVariant,
 	type BoBadgeKind,
 	type BoBadgeShape,
@@ -54,6 +44,7 @@ export {
 export {
 	type BoButtonGroupOrientation,
 	type BoButtonGroupProps,
+	type BoButtonGroupItemProps,
 	type ButtonGroupManifest,
 } from './bo-button-group.js';
 
@@ -68,12 +59,7 @@ export {
 } from './bo-icon.js';
 
 // # bo-modal
-export {
-	type BoModalVariant,
-	type BoModalSize,
-	type BoModalProps,
-	type ModalManifest,
-} from './bo-modal.js';
+export { type BoModalSize, type BoModalProps, type ModalManifest } from './bo-modal.js';
 
 // # bo-input
 export {
@@ -82,6 +68,20 @@ export {
 	type BoInputProps,
 	type InputManifest,
 } from './bo-input.js';
+
+// # bo-file-input
+export {
+	type BoFileInputProps,
+	type BoFileInputStyleManifest,
+	type FileInputManifest,
+} from './bo-file-input.js';
+
+// # bo-dropzone
+export {
+	type BoDropzoneProps,
+	type BoDropzoneStyleManifest,
+	type DropzoneManifest,
+} from './bo-dropzone.js';
 
 // # bo-loader
 export {
@@ -105,6 +105,9 @@ export {
 	type LoadingSpinnerManifest,
 } from './bo-loading-spinner.js';
 
+// # bo-loading-ring
+export type { BoLoadingRingProps } from './bo-loading-ring.js';
+
 // # bo-text
 export {
 	type BoFontFamily,
@@ -121,7 +124,6 @@ export {
 
 // # bo-textarea
 export {
-	type BoTextareaSize,
 	type BoTextareaState,
 	type BoTextareaVariant,
 	type BoTextareaProps,
@@ -152,12 +154,7 @@ export {
 } from './bo-breadcrumb.js';
 
 // # bo-card
-export {
-	type BoCardVariant,
-	type BoCardProps,
-	type BoCardStyleManifest,
-	type CardManifest,
-} from './bo-card.js';
+export { type BoCardProps, type BoCardStyleManifest, type CardManifest } from './bo-card.js';
 
 // # bo-checkbox
 export { type BoCheckboxSize, type BoCheckboxProps, type CheckboxManifest } from './bo-checkbox.js';
@@ -176,18 +173,11 @@ export {
 // # bo-dialog
 export {
 	type BoDialogSize,
+	type BoDialogVariant,
 	type BoDialogProps,
 	type BoDialogStyleManifest,
 	type DialogManifest,
 } from './bo-dialog.js';
-
-// # bo-alert-dialog
-export {
-	type BoAlertDialogVariant,
-	type BoAlertDialogProps,
-	type BoAlertDialogStyleManifest,
-	type AlertDialogManifest,
-} from './bo-alert-dialog.js';
 
 // # bo-tabs
 export {
@@ -215,22 +205,6 @@ export {
 // # bo-empty
 export { type BoEmptyProps, type BoEmptyStyleManifest, type EmptyManifest } from './bo-empty.js';
 
-// # bo-label
-export {
-	type BoLabelSize,
-	type BoLabelProps,
-	type BoLabelStyleManifest,
-	type LabelManifest,
-} from './bo-label.js';
-
-// # bo-marker
-export {
-	type BoMarkerVariant,
-	type BoMarkerProps,
-	type BoMarkerStyleManifest,
-	type MarkerManifest,
-} from './bo-marker.js';
-
 // # bo-pagination
 export {
 	type BoPaginationProps,
@@ -246,6 +220,15 @@ export {
 	type BoProgressStyleManifest,
 	type ProgressManifest,
 } from './bo-progress.js';
+
+// # bo-chart
+export {
+	type BoChartType,
+	type BoChartSeries,
+	type BoChartProps,
+	type BoChartStyleManifest,
+	type ChartManifest,
+} from './bo-chart.js';
 
 // # bo-radio
 export { type BoRadioSize, type BoRadioProps, type RadioManifest } from './bo-radio.js';
@@ -273,26 +256,53 @@ export {
 	type VisuallyHiddenManifest,
 } from './bo-visually-hidden.js';
 
+// # bo-carousel
+export {
+	type BoCarouselProps,
+	type BoCarouselStyleManifest,
+	type CarouselManifest,
+} from './bo-carousel.js';
+export {
+	type BoSliderProps,
+	type BoSliderStyleManifest,
+	type SliderManifest,
+} from './bo-slider.js';
+export {
+	type BoTableColumn,
+	type BoTableAction,
+	type BoTableProps,
+	type BoTableStyleManifest,
+	type TableManifest,
+} from './bo-table.js';
+
 // # generated component definitions
 export * from './bo-collapsible.js';
 export * from './bo-context-menu.js';
 export * from './bo-drawer.js';
-export * from './bo-hover-card.js';
 export * from './bo-input-otp.js';
 export * from './bo-menubar.js';
-export * from './bo-navigation-menu.js';
+export * from './bo-navbar.js';
+export * from './bo-form.js';
+export * from './bo-calendar.js';
+export * from './bo-date-picker.js';
 export * from './bo-number-field.js';
-export * from './bo-pin-input.js';
 export * from './bo-popover.js';
 export * from './bo-resizable.js';
 export * from './bo-scroll-area.js';
-export * from './bo-select.js';
-export * from './bo-sheet.js';
-export * from './bo-sidebar.js';
 export * from './bo-switch.js';
 export * from './bo-tags-input.js';
 export * from './bo-toggle-group.js';
 export * from './bo-toggle.js';
+export * from './bo-alert.js';
+export * from './bo-alert-dialog.js';
+export * from './bo-hover-card.js';
+export * from './bo-label.js';
+export * from './bo-marker.js';
+export * from './bo-navigation-menu.js';
+export * from './bo-pin-input.js';
+export * from './bo-select.js';
+export * from './bo-sheet.js';
+export * from './bo-sidebar.js';
 
 // # component-types
 export {
@@ -300,3 +310,5 @@ export {
 	type ConditionalCssProperties,
 	type BoCursor,
 } from './component-types.js';
+
+export * from './bo-dropdown.js';

@@ -2,18 +2,28 @@
 	<nav
 		:id="id"
 		:data-testid="dataTestId"
+		:role="role"
 		:aria-label="ariaLabel ?? 'Breadcrumb'"
 		:class="BREADCRUMB_MANIFEST.styles.nav"
 	>
 		<ol :class="BREADCRUMB_MANIFEST.styles.list">
 			<li v-for="(item, index) in items" :key="index" :class="BREADCRUMB_MANIFEST.styles.item">
-				<span v-if="index > 0" :class="BREADCRUMB_MANIFEST.styles.separator" aria-hidden="true">
-					{{ separator }}
-				</span>
-
-				<component
-					:is="item.href && index < items.length - 1 ? 'a' : 'span'"
-					:href="item.href && index < items.length - 1 ? item.href : undefined"
+				<a
+					v-if="item.href && index < items.length - 1"
+					:href="item.href"
+					:class="BREADCRUMB_MANIFEST.styles.link"
+				>
+					<bo-icon
+						v-if="item.icon"
+						:icon="item.icon"
+						size="sm"
+						variant="inherit"
+						:class="BREADCRUMB_MANIFEST.styles.icon"
+					/>
+					{{ item.label }}
+				</a>
+				<span
+					v-else
 					:class="
 						index === items.length - 1
 							? BREADCRUMB_MANIFEST.styles.current
@@ -29,7 +39,14 @@
 						:class="BREADCRUMB_MANIFEST.styles.icon"
 					/>
 					{{ item.label }}
-				</component>
+				</span>
+				<span
+					v-if="index < items.length - 1"
+					:class="BREADCRUMB_MANIFEST.styles.separator"
+					aria-hidden="true"
+				>
+					{{ separator }}
+				</span>
 			</li>
 		</ol>
 	</nav>

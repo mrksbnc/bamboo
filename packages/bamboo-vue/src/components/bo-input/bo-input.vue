@@ -26,6 +26,7 @@
 				:data-testid="dataTestId"
 				:name="name"
 				:type="inputType"
+				:role="role"
 				v-model="model"
 				:disabled="disabled"
 				:readonly="readOnly"
@@ -34,8 +35,8 @@
 				:placeholder="placeholder"
 				:class="INPUT_MANIFEST.styles.input.base"
 				:aria-label="ariaLabel"
-				:aria-describedby="helperTextId"
-				:aria-invalid="state === 'invalid' ? 'true' : undefined"
+				:aria-describedby="props.ariaDescribedBy ?? (hasHelper ? helperTextId : undefined)"
+				:aria-invalid="props.ariaInvalid || (props.state === 'invalid' ? 'true' : undefined)"
 				:aria-errormessage="error ? helperTextId : undefined"
 				@focus="emit('focus')"
 				@blur="emit('blur', $event)"
@@ -66,13 +67,13 @@
 			</div>
 		</div>
 
-		<div v-if="error || hint" :class="INPUT_MANIFEST.styles.helpers.container">
+		<div v-if="description || error || hint" :class="INPUT_MANIFEST.styles.helpers.container">
 			<div v-if="error" :class="INPUT_MANIFEST.styles.helpers.error">
 				<bo-icon size="sm" icon="alert_circle" />
 				<span :id="helperTextId">{{ error }}</span>
 			</div>
-			<span v-else-if="hint" :id="helperTextId" :class="INPUT_MANIFEST.styles.helpers.hint">
-				{{ hint }}
+			<span v-else :id="helperTextId" :class="INPUT_MANIFEST.styles.helpers.hint">
+				{{ description || hint }}
 			</span>
 		</div>
 	</div>
@@ -86,7 +87,7 @@ import {
 	mergeTwClasses,
 	type BoInputProps,
 } from '@workspace/bamboo-core';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, useTemplateRef } from 'vue';
 import { BoIcon } from '../bo-icon';
 
 const props = withDefaults(defineProps<BoInputProps>(), {
@@ -98,11 +99,11 @@ const props = withDefaults(defineProps<BoInputProps>(), {
 });
 
 const emit = defineEmits<{
-	focus: [];
-	blur: [event: FocusEvent];
-	change: [event: Event];
-	prefixIconClick: [];
-	suffixIconClick: [];
+	(event: 'focus'): void;
+	(eventName: 'blur', event: FocusEvent): void;
+	(eventName: 'change', event: Event): void;
+	(event: 'prefixIconClick'): void;
+	(event: 'suffixIconClick'): void;
 }>();
 
 defineSlots<{
@@ -112,14 +113,17 @@ defineSlots<{
 
 const model = defineModel<string>({ default: '' });
 
-const inputRef = ref<HTMLInputElement | null>(null);
+const inputRef = useTemplateRef<HTMLInputElement>('inputRef');
 const passwordVisible = ref(false);
 
 const showPasswordToggle = computed<boolean>(() => {
 	return props.type === 'password' && !props.disabled && !!model.value && !!props.revealPassword;
 });
 
-const helperTextId = computed<string>(() => `${props.id}-helper`);
+const helperTextId = computed<string>(() => {
+	return `${props.id}-helper`;
+});
+const hasHelper = computed(() => Boolean(props.description || props.error || props.hint));
 
 const inputType = computed<string>(() => {
 	if (props.type === 'password' && passwordVisible.value) {

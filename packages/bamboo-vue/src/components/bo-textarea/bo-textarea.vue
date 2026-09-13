@@ -16,9 +16,9 @@
 			</span>
 		</div>
 
-		<div :class="containerClasses">
+		<div :class="containerClasses" :style="dimensionStyles">
 			<div v-if="prefixIcon && prefixIcon !== 'none'" :class="prefixIconClasses">
-				<bo-icon :icon="prefixIcon" :size="iconSize" aria-hidden="true" />
+				<bo-icon :icon="prefixIcon" size="sm" aria-hidden="true" />
 			</div>
 
 			<textarea
@@ -38,7 +38,8 @@
 				:role="role"
 				:aria-label="ariaLabel"
 				:aria-describedby="describedBy"
-				:aria-invalid="state === 'invalid' ? 'true' : undefined"
+				:aria-invalid="props.ariaInvalid || (props.state === 'invalid' ? 'true' : undefined)"
+				:style="fieldStyles"
 				@input="onInput"
 				@blur="onBlur"
 				@focus="emit('focus')"
@@ -46,7 +47,7 @@
 			></textarea>
 
 			<div v-if="suffixIcon && suffixIcon !== 'none'" :class="suffixIconClasses">
-				<bo-icon :icon="suffixIcon" :size="iconSize" aria-hidden="true" />
+				<bo-icon :icon="suffixIcon" size="sm" aria-hidden="true" />
 			</div>
 		</div>
 
@@ -74,17 +75,15 @@ import {
 	generateDataTestId,
 	mergeTwClasses,
 	TEXTAREA_MANIFEST,
-	type BoIconSize,
 	type BoTextareaProps,
 } from '@workspace/bamboo-core';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, useTemplateRef } from 'vue';
 import { BoIcon } from '../bo-icon';
 import { BoText } from '../bo-text';
 
 const props = withDefaults(defineProps<BoTextareaProps>(), {
 	id: () => generateComponentId('textarea'),
 	dataTestId: () => generateDataTestId('textarea'),
-	size: 'default',
 	state: 'default',
 	variant: 'default',
 	rows: 4,
@@ -93,24 +92,25 @@ const props = withDefaults(defineProps<BoTextareaProps>(), {
 });
 
 const emit = defineEmits<{
-	blur: [event: FocusEvent];
-	focus: [];
-	change: [event: Event];
+	(eventName: 'blur', event: FocusEvent): void;
+	(event: 'focus'): void;
+	(eventName: 'change', event: Event): void;
 }>();
 
 const model = defineModel<string>({ default: '' });
 
-const textareaRef = ref<HTMLTextAreaElement | null>(null);
+const textareaRef = useTemplateRef<HTMLTextAreaElement>('textareaRef');
 
-const iconSize = computed<BoIconSize>(() => {
-	return TEXTAREA_MANIFEST.styles.icons.size[props.size || 'default'];
+const helperTextId = computed<string>(() => {
+	return `${props.id}-helper`;
 });
-
-const helperTextId = computed<string>(() => `${props.id}-helper`);
-const descriptionId = computed<string>(() => `${props.id}-description`);
+const descriptionId = computed<string>(() => {
+	return `${props.id}-description`;
+});
 const describedBy = computed<string | undefined>(() => {
 	const ids: string[] = [];
 
+	if (props.ariaDescribedBy) return props.ariaDescribedBy;
 	if (props.description) ids.push(descriptionId.value);
 	if (props.error || props.hint) ids.push(helperTextId.value);
 
@@ -136,10 +136,7 @@ const containerClasses = computed<string>(() => {
 });
 
 const textareaClasses = computed<string>(() => {
-	const classes: string[] = [
-		TEXTAREA_MANIFEST.styles.textarea.base,
-		TEXTAREA_MANIFEST.styles.padding[props.size || 'default'],
-	];
+	const classes: string[] = [TEXTAREA_MANIFEST.styles.textarea.base];
 
 	if (props.prefixIcon && props.prefixIcon !== 'none') {
 		classes.push(TEXTAREA_MANIFEST.styles.textarea.withPrefixIcon);
@@ -161,11 +158,37 @@ const textareaClasses = computed<string>(() => {
 });
 
 const prefixIconClasses = computed<string>(() => {
-	return TEXTAREA_MANIFEST.styles.icons.prefix[props.size || 'default'];
+	return TEXTAREA_MANIFEST.styles.icons.prefix;
 });
 
 const suffixIconClasses = computed<string>(() => {
-	return TEXTAREA_MANIFEST.styles.icons.suffix[props.size || 'default'];
+	return TEXTAREA_MANIFEST.styles.icons.suffix;
+});
+
+function cssDimension(value: number | string | undefined): string | undefined {
+	if (value === undefined) return undefined;
+	return typeof value === 'number' ? `${value}px` : value;
+}
+
+const dimensionStyles = computed<Record<string, string>>(() => {
+	const styles: Record<string, string> = {};
+	const height = cssDimension(props.height);
+	const maxHeight = cssDimension(props.maxHeight);
+	if (height) styles['height'] = height;
+	if (maxHeight) styles['maxHeight'] = maxHeight;
+	if (maxHeight || props.resizable) styles['overflowY'] = 'auto';
+	return styles;
+});
+
+const fieldStyles = computed<Record<string, string>>(() => {
+	const styles: Record<string, string> = {};
+	const height = cssDimension(props.height);
+	const maxHeight = cssDimension(props.maxHeight);
+	if (height) styles['height'] = height;
+	else if (props.expand) styles['height'] = '100%';
+	if (maxHeight) styles['maxHeight'] = maxHeight;
+	if (props.maxHeight || props.resizable) styles['overflowY'] = 'auto';
+	return styles;
 });
 
 function onInput(event: Event) {

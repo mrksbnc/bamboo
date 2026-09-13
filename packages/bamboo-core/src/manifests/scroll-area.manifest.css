@@ -1,37 +1,42 @@
 @layer components {
 	.bo-scroll-area {
-		@apply relative overflow-hidden rounded-[inherit];
+		@apply relative h-full max-h-full w-full max-w-full overflow-hidden rounded-[inherit];
 	}
 
 	.bo-scroll-area--masked {
 		mask-image: linear-gradient(to bottom, black calc(100% - 1.5rem), transparent);
-		mask-repeat: no-repeat;
+		@apply [mask-repeat:no-repeat];
 	}
 
 	.bo-scroll-area__viewport {
-		@apply size-full min-h-0 overflow-auto overscroll-contain rounded-[inherit] outline-none;
-		scrollbar-width: none;
+		@apply size-full min-h-0 min-w-0 overflow-auto overscroll-contain rounded-[inherit] outline-none;
+		@apply [scrollbar-width:none];
 	}
 
 	.bo-scroll-area__viewport::-webkit-scrollbar {
-		display: none;
+		@apply hidden;
 	}
 
 	.bo-scroll-area__viewport:focus-visible {
-		@apply ring-[3px];
-		--tw-ring-color: var(--color-blue-500);
+		@apply border-blue-500;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-500) 50%, transparent);
+	}
+
+	.dark .bo-scroll-area__viewport:focus-visible {
+		@apply border-blue-400;
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-400) 50%, transparent);
 	}
 
 	.bo-scroll-area__scrollbar--vertical {
-		@apply absolute end-0 top-0 flex h-full w-2.5 touch-none select-none flex-col border-s border-transparent p-px;
+		@apply pointer-events-auto absolute end-0 top-0 flex h-full w-2.5 touch-none select-none flex-col border-s border-transparent p-px;
 	}
 
 	.bo-scroll-area__scrollbar--horizontal {
-		@apply absolute bottom-0 start-0 flex h-2.5 w-full touch-none select-none border-t border-transparent p-px;
+		@apply pointer-events-auto absolute bottom-0 start-0 flex h-2.5 w-full touch-none select-none border-t border-transparent p-px;
 	}
 
 	.bo-scroll-area__thumb {
-		@apply relative flex min-h-0 min-w-0 flex-1 rounded-full bg-neutral-300;
+		@apply absolute rounded-full bg-neutral-300 transition-[top,left,height,width] duration-75;
 	}
 
 	.dark .bo-scroll-area__thumb {

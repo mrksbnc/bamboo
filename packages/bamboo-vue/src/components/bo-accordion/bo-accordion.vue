@@ -62,9 +62,9 @@ const isControlled = computed(() => {
 
 const uncontrolled = ref<Set<string | number>>(toSet(props.defaultValue));
 
-const openValues = computed<Set<string | number>>(() =>
-	isControlled.value ? toSet(model.value) : uncontrolled.value,
-);
+const openValues = computed<Set<string | number>>(() => {
+	return isControlled.value ? toSet(model.value) : uncontrolled.value;
+});
 
 // If modelValue appears again after uncontrolled usage, reset the internal state so
 // switching between modes never leaves stale values behind.
@@ -110,11 +110,15 @@ provide(accordionOpenValuesKey, openValues);
 provide(accordionToggleKey, toggle);
 provide(
 	accordionMultipleKey,
-	computed(() => props.multiple),
+	computed(() => {
+		return props.multiple;
+	}),
 );
 provide(
 	accordionDisabledKey,
-	computed(() => props.disabled),
+	computed(() => {
+		return props.disabled;
+	}),
 );
 </script>
 

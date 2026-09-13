@@ -45,11 +45,12 @@ const props = withDefaults(defineProps<BoCollapsibleProps>(), {
 });
 
 const model = defineModel<boolean>('open', { default: false });
-const contentId = computed(() => `${props.id}-content`);
-const iconClasses = computed(() => [
-	COLLAPSIBLE_MANIFEST.styles.icon,
-	model.value ? 'rotate-180' : '',
-]);
+const contentId = computed(() => {
+	return `${props.id}-content`;
+});
+const iconClasses = computed(() => {
+	return [COLLAPSIBLE_MANIFEST.styles.icon, model.value ? 'rotate-180' : ''];
+});
 
 function toggle(): void {
 	if (!props.disabled) model.value = !model.value;
