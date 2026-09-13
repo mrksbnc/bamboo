@@ -4,3 +4,27 @@ packages:
 allowBuilds:
   esbuild: true
   '@parcel/watcher': true
+
+minimumReleaseAgeExclude:
+  - '@cspell/cspell-bundled-dicts@10.3.1'
+  - '@cspell/cspell-json-reporter@10.3.1'
+  - '@cspell/cspell-performance-monitor@10.3.1'
+  - '@cspell/cspell-pipe@10.3.1'
+  - '@cspell/cspell-resolver@10.3.1'
+  - '@cspell/cspell-service-bus@10.3.1'
+  - '@cspell/cspell-types@10.3.1'
+  - '@cspell/cspell-worker@10.3.1'
+  - '@cspell/dynamic-import@10.3.1'
+  - '@cspell/filetypes@10.3.1'
+  - '@cspell/rpc@10.3.1'
+  - '@cspell/strong-weak-map@10.3.1'
+  - '@cspell/url@10.3.1'
+  - cspell-config-lib@10.3.1
+  - cspell-dictionary@10.3.1
+  - cspell-gitignore@10.3.1
+  - cspell-glob@10.3.1
+  - cspell-grammar@10.3.1
+  - cspell-io@10.3.1
+  - cspell-lib@10.3.1
+  - cspell-trie-lib@10.3.1
+  - cspell@10.3.1
