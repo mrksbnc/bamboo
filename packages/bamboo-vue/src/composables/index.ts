@@ -1,3 +1,5 @@
+export { useAlert } from './use-alert.js';
+export type { AlertMessage, AlertOptions, AlertPosition } from './use-alert.js';
 export { createToastState, useToast } from './use-toast.js';
 export type { ToastMessage, ToastOptions, ToastPosition } from './use-toast.js';
 export { createDrawerState, useDrawer } from './use-drawer.js';

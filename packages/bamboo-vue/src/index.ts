@@ -50,6 +50,8 @@ export { BoTable } from './components/bo-table/index.js';
 /** Plugin exports */
 
 export { BambooVue } from './plugin.js';
+export { useAlert } from './composables/use-alert.js';
+export type { AlertMessage, AlertOptions, AlertPosition } from './composables/use-alert.js';
 export { createToastState, useToast } from './composables/use-toast.js';
 export type { ToastMessage, ToastOptions, ToastPosition } from './composables/use-toast.js';
 export { createDrawerState, useDrawer } from './composables/use-drawer.js';
