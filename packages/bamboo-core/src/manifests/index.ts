@@ -113,3 +113,13 @@ export { TOGGLE_MANIFEST } from './toggle.manifest';
 export type { ComponentManifest } from './types';
 
 export { DROPDOWN_MANIFEST } from './dropdown.manifest';
+export { ALERT_MANIFEST } from './alert.manifest';
+export { ALERT_DIALOG_MANIFEST } from './alert-dialog.manifest';
+export { HOVER_CARD_MANIFEST } from './hover-card.manifest';
+export { LABEL_MANIFEST } from './label.manifest';
+export { MARKER_MANIFEST } from './marker.manifest';
+export { NAVIGATION_MENU_MANIFEST } from './navigation-menu.manifest';
+export { PIN_INPUT_MANIFEST } from './pin-input.manifest';
+export { SELECT_MANIFEST } from './select.manifest';
+export { SHEET_MANIFEST } from './sheet.manifest';
+export { SIDEBAR_MANIFEST } from './sidebar.manifest';
