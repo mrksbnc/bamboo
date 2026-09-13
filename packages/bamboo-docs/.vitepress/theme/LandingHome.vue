@@ -191,8 +191,6 @@ const version = packageJson.version;
 			<span>MIT Licensed</span>
 			<span>·</span>
 			<a :href="withBase('/en/components/index')">Components</a>
-			<span>·</span>
-			<a :href="withBase('/en/guide/theming')">Theming</a>
 		</footer>
 	</div>
 </template>
