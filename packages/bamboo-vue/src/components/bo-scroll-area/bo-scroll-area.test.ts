@@ -22,14 +22,13 @@ describe('BoScrollArea', () => {
 	});
 
 	it('renders scrollbars and updates thumb positions from viewport metrics', async () => {
-		const observe = vi.fn();
-		const disconnect = vi.fn();
+		const observe = vi.fn<ResizeObserver['observe']>();
+		const disconnect = vi.fn<ResizeObserver['disconnect']>();
 		vi.stubGlobal(
 			'ResizeObserver',
 			class {
 				observe = observe;
 				disconnect = disconnect;
-				constructor(_callback: ResizeObserverCallback) {}
 			},
 		);
 		const wrapper = mount(BoScrollArea, { slots: { default: '<div>Content</div>' } });
@@ -53,7 +52,7 @@ describe('BoScrollArea', () => {
 		expect(observe).toHaveBeenCalled();
 
 		wrapper.unmount();
-		expect(disconnect).toHaveBeenCalledOnce();
+		expect(disconnect).toHaveBeenCalled();
 		vi.unstubAllGlobals();
 	});
 

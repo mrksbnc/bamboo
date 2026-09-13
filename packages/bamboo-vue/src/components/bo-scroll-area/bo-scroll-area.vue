@@ -53,10 +53,11 @@
 </template>
 
 <script setup lang="ts">
+import { useResizeObserver } from '@vueuse/core';
 import type { BoScrollAreaProps } from '@workspace/bamboo-core';
 import { SCROLL_AREA_MANIFEST } from '@workspace/bamboo-core';
 import { generateComponentId, generateDataTestId } from '@workspace/bamboo-core';
-import { computed, onBeforeUnmount, onMounted, ref, type StyleValue, useTemplateRef } from 'vue';
+import { computed, ref, type StyleValue, useTemplateRef } from 'vue';
 
 const props = withDefaults(defineProps<BoScrollAreaProps>(), {
 	id: () => generateComponentId('scroll-area'),
@@ -175,18 +176,9 @@ function onTrackPointerDown(orientation: 'vertical' | 'horizontal', event: Point
 	viewportTick.value += 1;
 }
 
-let resizeObserver: ResizeObserver | undefined;
-onMounted(() => {
-	if (typeof ResizeObserver !== 'undefined' && viewportRef.value) {
-		resizeObserver = new ResizeObserver(() => {
-			viewportTick.value += 1;
-		});
-		resizeObserver.observe(viewportRef.value);
-		if (viewportRef.value.firstElementChild)
-			resizeObserver.observe(viewportRef.value.firstElementChild);
-	}
+useResizeObserver(viewportRef, () => {
+	viewportTick.value += 1;
 });
-onBeforeUnmount(() => resizeObserver?.disconnect());
 </script>
 
 <style>
