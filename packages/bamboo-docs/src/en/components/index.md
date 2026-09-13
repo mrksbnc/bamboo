@@ -15,6 +15,7 @@ The following component families are currently exported by `@mrksbnc/bamboo-vue`
 | Component                                 | Description                                                    |
 | ----------------------------------------- | -------------------------------------------------------------- |
 | [`bo-accordion`](./accordion)             | Single or multiple expandable sections.                        |
+| [`bo-alert`](./alert)                     | Contextual feedback and temporary notifications.              |
 | [`bo-aspect-ratio`](./aspect-ratio)       | Container that preserves a configurable aspect ratio.          |
 | [`bo-avatar`](./avatar)                   | User image, initials, indicator, size, and shape presentation. |
 | [`bo-badge`](./badge)                     | Compact status, tag, and label treatment.                      |
