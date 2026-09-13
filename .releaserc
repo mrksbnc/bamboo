@@ -6,9 +6,10 @@
 			"@semantic-release/commit-analyzer",
 			{
 				"releaseRules": [
-					{ "type": "feat", "release": "major" },
-					{ "type": "chore", "release": "minor" },
-					{ "type": "refactor", "release": "minor" },
+					{ "type": "breaking", "release": "major" },
+					{ "type": "feat", "release": "minor" },
+					{ "type": "chore", "release": "patch" },
+					{ "type": "refactor", "release": "patch" },
 					{ "type": "patch", "release": "patch" },
 					{ "type": "*", "release": false }
 				]
