@@ -81,14 +81,17 @@ const emit = defineEmits<{
 	(eventName: 'blur', event: FocusEvent): void;
 }>();
 
+const rootRef = useTemplateRef('rootRef');
 const model = defineModel<string>({ default: '' });
-const rootRef = useTemplateRef<HTMLElement>('rootRef');
+
 const inputCount = computed(() => {
 	return Math.max(1, props.length || INPUT_OTP_MANIFEST.defaults.length);
 });
+
 const helperTextId = computed(() => {
 	return `${props.id}-helper`;
 });
+
 const describedBy = computed(() => {
 	return (
 		props.ariaDescribedBy ||
@@ -110,10 +113,6 @@ function inputs(): HTMLInputElement[] {
 		: [];
 }
 
-function focusInput(index: number): void {
-	void nextTick(() => inputs()[Math.max(0, Math.min(index, inputCount.value - 1))]?.focus());
-}
-
 function validCharacters(value: string): string {
 	try {
 		const matcher = new RegExp(props.pattern || INPUT_OTP_MANIFEST.defaults.pattern);
@@ -129,15 +128,22 @@ function updateValue(index: number, value: string): void {
 	const nextValue = model.value.split('');
 	nextValue.splice(index, 1, ...validCharacters(value).slice(0, inputCount.value - index));
 	model.value = nextValue.slice(0, inputCount.value).join('');
-	if (model.value.length === inputCount.value) emit('complete', model.value);
+
+	if (model.value.length === inputCount.value) {
+		emit('complete', model.value);
+	}
 }
 
 function onInput(index: number, event: Event): void {
 	const input = event.target as HTMLInputElement;
+
 	const value = validCharacters(input.value);
 	input.value = value.charAt(0);
+
 	updateValue(index, value);
-	if (value) focusInput(index + 1);
+	if (value) {
+		focusInput(index + 1);
+	}
 }
 
 function onPaste(event: ClipboardEvent): void {
@@ -160,7 +166,10 @@ function onKeydown(index: number, event: KeyboardEvent): void {
 		event.preventDefault();
 		focusInput(index + 1);
 	} else if (event.key === 'Backspace') {
-		if (props.disabled || props.readOnly) return;
+		if (props.disabled || props.readOnly) {
+			return;
+		}
+
 		event.preventDefault();
 		if (characterAt(index)) {
 			model.value = model.value.slice(0, index);
@@ -177,6 +186,12 @@ function onKeydown(index: number, event: KeyboardEvent): void {
 function focus(): void {
 	focusInput(0);
 }
+
+async function focusInput(index: number): Promise<void> {
+	await nextTick(() => inputs()[Math.max(0, Math.min(index, inputCount.value - 1))]?.focus());
+}
+
+async function a() {}
 
 defineExpose({ focus });
 
