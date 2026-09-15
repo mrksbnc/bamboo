@@ -209,12 +209,14 @@
 
 .VPDoc .example-frame-preview .bo-menubar {
 	position: relative;
-	top: auto;
-	right: auto;
-	bottom: auto;
-	left: auto;
+	inset: auto;
+	width: 100%;
 	max-width: 100%;
 	transform: none;
+}
+
+.VPDoc .example-frame-preview .bo-menubar__main {
+	overflow: visible;
 }
 
 .VPDoc .example-frame-preview[data-align='center'] {

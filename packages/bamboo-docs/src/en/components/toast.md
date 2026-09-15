@@ -25,6 +25,14 @@ const lastToastId = ref('');
 
 const { show, dismiss, clear } = useToast();
 
+function showBasicToast(): void {
+  show({
+    title: 'Saved',
+    description: 'Your changes were saved.',
+    duration: 0,
+  });
+}
+
 function showAt(position: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'): void {
   show({
     title: 'Positioned toast',
@@ -46,13 +54,8 @@ function dismissManagedToast(): void {
   if (lastToastId.value) dismiss(lastToastId.value);
 }
 
-const basicExample = `<bo-button @click="open = true">Show toast</bo-button>
-<bo-toast
-  v-model:open="open"
-  title="Saved"
-  description="Your changes were saved."
-  :duration="0"
-/>`;
+const basicExample = `<bo-button @click="showBasicToast">Show toast</bo-button>
+<bo-toast-viewport position="top-right" />`;
 
 const variantsExample = `<bo-toast v-model:open="defaultToastOpen" title="Default" :duration="0" />
 <bo-toast v-model:open="primaryToastOpen" variant="primary" title="Primary" :duration="0" />
@@ -90,18 +93,13 @@ Use `bo-toast` for brief feedback that does not interrupt the current task. Use 
 
 ## Basic Usage
 
-`bo-toast` is a single notification. Control it with `v-model:open`; the default duration is ten seconds, while `duration="0"` keeps a demonstration toast open until it is closed.
+`bo-toast` is a single notification. Use `v-model:open` when rendering it directly; use `useToast` with a viewport for application notifications. The default duration is ten seconds, while `duration="0"` keeps a demonstration toast open until it is closed.
 
 <ExampleFrame :code="basicExample">
-  <div class="grid justify-items-start gap-3">
-    <bo-button @click="open = true">Show toast</bo-button>
-    <bo-toast
-      v-model:open="open"
-      title="Saved"
-      description="Your changes were saved."
-      :duration="0"
-    />
+  <div class="flex w-full justify-start">
+    <bo-button @click="showBasicToast">Show toast</bo-button>
   </div>
+  <bo-toast-viewport position="top-right" />
 </ExampleFrame>
 
 ## Title and Description
@@ -139,10 +137,8 @@ Mount one viewport for each position that the application uses. A toast shown wi
   </div>
   <bo-toast-viewport position="top-left" />
   <bo-toast-viewport position="top-center" />
-  <bo-toast-viewport position="top-right" />
-   <bo-toast-viewport position="bottom-left" />
-   <bo-toast-viewport position="bottom-center" />
-   <bo-toast-viewport position="bottom-right" />
+  <bo-toast-viewport position="bottom-left" />
+  <bo-toast-viewport position="bottom-center" />
 </ExampleFrame>
 
 ## Close and Dismiss
@@ -165,7 +161,7 @@ Toasts are closable by default. The close button updates `open` to false and emi
 
 ## Stacking and the `useToast` API
 
-Each call to `show` appends a toast to the shared queue and returns its id. Viewports stack their matching toasts; their top and bottom positions use the corresponding direction for new items.
+Each call to `show` appends a toast to the shared queue and returns its id. Viewports stack their matching toasts with a small overlap. Hover or focus the stack to unwrap it; the individual close buttons remain available in both states. Timers pause while the stack is hovered and resume when the pointer leaves, so a toast still closes automatically when its remaining duration expires.
 
 <ExampleFrame :code="stackingExample">
   <div class="flex flex-wrap gap-2">
