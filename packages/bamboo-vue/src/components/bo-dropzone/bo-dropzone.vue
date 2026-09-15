@@ -42,9 +42,15 @@
 				:key="`${file.name}-${index}`"
 				:class="DROPZONE_MANIFEST.styles.file"
 			>
-				<span>{{ file.name }}</span
-				><button type="button" :class="DROPZONE_MANIFEST.styles.remove" @click="removeFile(index)">
-					Remove
+				<span class="min-w-0 flex-1 truncate" :title="file.name">{{ file.name }}</span
+				><button
+					type="button"
+					:class="DROPZONE_MANIFEST.styles.remove"
+					:aria-label="`Remove ${file.name}`"
+					:title="`Remove ${file.name}`"
+					@click="removeFile(index)"
+				>
+					<bo-icon icon="trash_2" size="sm" aria-hidden="true" />
 				</button>
 			</li>
 		</ul>

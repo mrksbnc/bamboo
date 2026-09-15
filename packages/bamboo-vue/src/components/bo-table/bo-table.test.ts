@@ -6,7 +6,10 @@ describe('BoTable', () => {
 	it('renders headers and cells', () => {
 		const wrapper = mount(BoTable, {
 			props: {
-				columns: [{ key: 'name', label: 'Name' }],
+				columns: [
+					{ key: 'name', label: 'Name', width: 60 },
+					{ key: 'status', label: 'Status', width: 40 },
+				],
 				rows: [{ name: 'Bamboo' }],
 			},
 		});
@@ -52,19 +55,19 @@ describe('BoTable', () => {
 		expect(wrapper.find('button').text()).toBe('View');
 	});
 
-	it('uses one column track definition for headers and body rows', () => {
+	it('uses configured column widths for headers and body rows', () => {
 		const wrapper = mount(BoTable, {
 			props: {
 				columns: [
-					{ key: 'name', label: 'Name' },
-					{ key: 'status', label: 'Status', align: 'end' },
+					{ key: 'name', label: 'Name', width: 60 },
+					{ key: 'status', label: 'Status', align: 'end', width: 40 },
 				],
 				rows: [{ name: 'Bamboo', status: 'Ready' }],
 			},
 		});
 		const rows = wrapper.findAll('[role="row"]');
 
-		expect(rows[0].element.style.gridTemplateColumns).toBe('repeat(2, minmax(0, 1fr))');
+		expect(rows[0].element.style.gridTemplateColumns).toBe('60% 40%');
 		expect(rows[1].element.style.gridTemplateColumns).toBe(
 			rows[0].element.style.gridTemplateColumns,
 		);

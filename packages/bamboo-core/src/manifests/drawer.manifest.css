@@ -36,10 +36,10 @@
 		@apply max-w-sm;
 	}
 	.bo-drawer-panel--default {
-		@apply max-w-md;
+		@apply max-w-lg;
 	}
 	.bo-drawer-panel--lg {
-		@apply max-w-lg;
+		@apply max-w-xl;
 	}
 	.bo-drawer-panel--full {
 		@apply max-w-full;
@@ -85,21 +85,21 @@
 	}
 	.bo-drawer-wrapper.bo-drawer-enter-from .bo-drawer-panel,
 	.bo-drawer-wrapper.bo-drawer-leave-to .bo-drawer-panel {
-		@apply translate-x-full;
+		transform: translateX(100%);
 	}
 	.bo-drawer-wrapper[data-side='left'].bo-drawer-enter-from .bo-drawer-panel,
 	.bo-drawer-wrapper[data-side='left'].bo-drawer-leave-to .bo-drawer-panel {
-		@apply -translate-x-full;
+		transform: translateX(-100%);
 	}
 	.bo-drawer-panel {
-		@apply transition-transform duration-200 ease-out;
+		transition: transform 200ms ease-out;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
 		.bo-drawer-enter-active,
 		.bo-drawer-leave-active,
 		.bo-drawer-panel {
-			@apply transition-none;
+			transition: none;
 		}
 	}
 }

@@ -4,7 +4,7 @@
 			v-if="label || required || $slots['topRightContent']"
 			:class="INPUT_MANIFEST.styles.labels.container"
 		>
-			<label :for="id" :class="INPUT_MANIFEST.styles.labels.label">
+			<label :for="resolvedId" :class="INPUT_MANIFEST.styles.labels.label">
 				<span v-if="label">{{ label }}</span>
 				<span v-if="required" :class="INPUT_MANIFEST.styles.labels.required">*</span>
 			</label>
@@ -22,11 +22,15 @@
 
 			<input
 				ref="inputRef"
-				:id="id"
-				:data-testid="dataTestId"
+				:id="resolvedId"
+				:data-testid="resolvedDataTestId"
 				:name="name"
+				:autocomplete="
+					inputProps.autocomplete ||
+					(inputProps.type === 'password' ? 'current-password' : undefined)
+				"
 				:type="inputType"
-				:role="role"
+				:role="resolvedRole"
 				v-model="model"
 				:disabled="disabled"
 				:readonly="readOnly"
@@ -35,8 +39,10 @@
 				:placeholder="placeholder"
 				:class="INPUT_MANIFEST.styles.input.base"
 				:aria-label="ariaLabel"
-				:aria-describedby="props.ariaDescribedBy ?? (hasHelper ? helperTextId : undefined)"
-				:aria-invalid="props.ariaInvalid || (props.state === 'invalid' ? 'true' : undefined)"
+				:aria-describedby="inputProps.ariaDescribedBy ?? (hasHelper ? helperTextId : undefined)"
+				:aria-invalid="
+					inputProps.ariaInvalid || (inputProps.state === 'invalid' ? 'true' : undefined)
+				"
 				:aria-errormessage="error ? helperTextId : undefined"
 				@focus="emit('focus')"
 				@blur="emit('blur', $event)"
@@ -90,13 +96,24 @@ import {
 import { computed, onMounted, ref, useTemplateRef } from 'vue';
 import { BoIcon } from '../bo-icon';
 
-const props = withDefaults(defineProps<BoInputProps>(), {
-	id: () => generateComponentId('input'),
-	dataTestId: () => generateDataTestId('input'),
-	role: () => INPUT_MANIFEST.defaults.role,
-	state: () => INPUT_MANIFEST.defaults.state,
-	type: () => INPUT_MANIFEST.defaults.type,
-});
+const props = defineProps<BoInputProps>();
+
+interface InputRuntimeProps {
+	autocomplete?: string;
+	type?: string;
+	state?: 'default' | 'valid' | 'invalid';
+	description?: string;
+	error?: string;
+	hint?: string;
+	ariaDescribedBy?: string;
+	ariaInvalid?: boolean | 'true' | 'false' | 'grammar' | 'spelling';
+	disabled?: boolean;
+	fullWidth?: boolean;
+	revealPassword?: boolean;
+	autofocus?: boolean;
+}
+
+const inputProps = props as unknown as InputRuntimeProps;
 
 const emit = defineEmits<{
 	(event: 'focus'): void;
@@ -115,37 +132,53 @@ const model = defineModel<string>({ default: '' });
 
 const inputRef = useTemplateRef<HTMLInputElement>('inputRef');
 const passwordVisible = ref(false);
+const resolvedId = computed<string>(() => {
+	return (props as unknown as { id?: string }).id ?? generateComponentId('input');
+});
+const resolvedDataTestId = computed<string>(() => {
+	return (props as unknown as { dataTestId?: string }).dataTestId ?? generateDataTestId('input');
+});
+const resolvedRole = computed<string>(() => {
+	return (props as unknown as { role?: string }).role ?? INPUT_MANIFEST.defaults.role;
+});
 
 const showPasswordToggle = computed<boolean>(() => {
-	return props.type === 'password' && !props.disabled && !!model.value && !!props.revealPassword;
+	return (
+		inputProps.type === 'password' &&
+		!inputProps.disabled &&
+		!!model.value &&
+		!!inputProps.revealPassword
+	);
 });
 
 const helperTextId = computed<string>(() => {
-	return `${props.id}-helper`;
+	return `${resolvedId.value}-helper`;
 });
-const hasHelper = computed(() => Boolean(props.description || props.error || props.hint));
+const hasHelper = computed(() =>
+	Boolean(inputProps.description || inputProps.error || inputProps.hint),
+);
 
 const inputType = computed<string>(() => {
-	if (props.type === 'password' && passwordVisible.value) {
+	if (inputProps.type === 'password' && passwordVisible.value) {
 		return 'text';
 	}
-	return props.type || 'text';
+	return inputProps.type || 'text';
 });
 
 const baseClasses = computed<string>(() => {
 	return mergeTwClasses(
 		INPUT_MANIFEST.styles.base,
-		props.fullWidth ? INPUT_MANIFEST.styles.width.full : INPUT_MANIFEST.styles.width.default,
+		inputProps.fullWidth ? INPUT_MANIFEST.styles.width.full : INPUT_MANIFEST.styles.width.default,
 	);
 });
 
 const containerClasses = computed<string>(() => {
 	const classes: string[] = [
 		INPUT_MANIFEST.styles.container.base,
-		INPUT_MANIFEST.styles.state[props.state || 'default'],
+		INPUT_MANIFEST.styles.state[inputProps.state || 'default'],
 	];
 
-	if (props.disabled) {
+	if (inputProps.disabled) {
 		classes.push(INPUT_MANIFEST.styles.container.disabled);
 	}
 
@@ -163,7 +196,7 @@ function focus(): void {
 defineExpose({ focus });
 
 onMounted(() => {
-	if (props.autofocus) {
+	if (inputProps.autofocus) {
 		setTimeout(() => inputRef.value?.focus(), 200);
 	}
 });

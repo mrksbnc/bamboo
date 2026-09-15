@@ -71,7 +71,9 @@ const classValues = computed(() => {
 	return [SCROLL_AREA_MANIFEST.styles.base, props.masked ? SCROLL_AREA_MANIFEST.styles.masked : ''];
 });
 const styleValues = computed<StyleValue>(() => {
-	return props.maxHeight === undefined ? {} : { maxHeight: `${props.maxHeight}px` };
+	return props.maxHeight === undefined
+		? {}
+		: { height: `${props.maxHeight}px`, maxHeight: `${props.maxHeight}px` };
 });
 
 const showVerticalScrollbar = computed(() => {
