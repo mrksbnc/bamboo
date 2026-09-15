@@ -20,4 +20,23 @@ describe('useToast', () => {
 		expect(toast.toasts.value).toHaveLength(0);
 		vi.useRealTimers();
 	});
+
+	it('pauses and resumes a toast timer', () => {
+		vi.useFakeTimers();
+		const toast = useToast();
+		toast.clear();
+		const id = toast.show({ title: 'Saved', duration: 100 });
+
+		vi.advanceTimersByTime(50);
+		toast.pause(id);
+		vi.advanceTimersByTime(100);
+		expect(toast.toasts.value).toHaveLength(1);
+
+		toast.resume(id);
+		vi.advanceTimersByTime(49);
+		expect(toast.toasts.value).toHaveLength(1);
+		vi.advanceTimersByTime(1);
+		expect(toast.toasts.value).toHaveLength(0);
+		vi.useRealTimers();
+	});
 });

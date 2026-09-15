@@ -1,6 +1,30 @@
 @layer components {
 	.bo-toast-viewport {
-		@apply pointer-events-none fixed z-[100] flex w-[calc(100%-2rem)] max-w-sm flex-col gap-2;
+		@apply pointer-events-none fixed z-[100] flex w-[calc(100%-2rem)] max-w-sm flex-col;
+	}
+
+	.bo-toast-viewport__list {
+		@apply pointer-events-auto flex w-full flex-col;
+	}
+
+	.bo-toast-viewport__list > .bo-toast {
+		--bo-toast-stack-offset: 0.65rem;
+		margin-top: calc(var(--bo-toast-index, 0) * -1 * var(--bo-toast-stack-offset));
+		transform: scale(calc(1 - (var(--bo-toast-index, 0) * 0.035)));
+		transform-origin: top right;
+		transition:
+			margin 300ms cubic-bezier(0.22, 1, 0.36, 1),
+			transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.bo-toast-viewport__list:hover > .bo-toast,
+	.bo-toast-viewport__list:focus-within > .bo-toast {
+		margin-top: 0;
+		transform: scale(1);
+	}
+
+	.bo-toast-viewport__list > .bo-toast:first-child {
+		margin-top: 0;
 	}
 
 	.bo-toast-viewport--top-left {
@@ -31,6 +55,29 @@
 	.bo-toast-viewport--bottom-center > div,
 	.bo-toast-viewport--bottom-right > div {
 		@apply flex-col-reverse;
+	}
+
+	.bo-toast-viewport--bottom-left .bo-toast-viewport__list,
+	.bo-toast-viewport--bottom-center .bo-toast-viewport__list,
+	.bo-toast-viewport--bottom-right .bo-toast-viewport__list {
+		@apply flex-col-reverse;
+	}
+
+	.bo-toast-viewport--bottom-left .bo-toast-viewport__list > .bo-toast,
+	.bo-toast-viewport--bottom-center .bo-toast-viewport__list > .bo-toast,
+	.bo-toast-viewport--bottom-right .bo-toast-viewport__list > .bo-toast {
+		margin-bottom: calc(var(--bo-toast-index, 0) * -1 * var(--bo-toast-stack-offset));
+		margin-top: 0;
+		transform-origin: bottom right;
+	}
+
+	.bo-toast-viewport--bottom-left .bo-toast-viewport__list:hover > .bo-toast,
+	.bo-toast-viewport--bottom-center .bo-toast-viewport__list:hover > .bo-toast,
+	.bo-toast-viewport--bottom-right .bo-toast-viewport__list:hover > .bo-toast,
+	.bo-toast-viewport--bottom-left .bo-toast-viewport__list:focus-within > .bo-toast,
+	.bo-toast-viewport--bottom-center .bo-toast-viewport__list:focus-within > .bo-toast,
+	.bo-toast-viewport--bottom-right .bo-toast-viewport__list:focus-within > .bo-toast {
+		margin-bottom: 0;
 	}
 
 	.bo-toast {
@@ -163,6 +210,6 @@
 	}
 
 	.bo-toast-move {
-		@apply transition-transform duration-200 ease-in-out;
+		@apply transition-transform duration-300 ease-out;
 	}
 }
