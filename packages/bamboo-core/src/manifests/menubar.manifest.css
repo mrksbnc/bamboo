@@ -22,8 +22,7 @@
 	}
 
 	.bo-menubar__main {
-		@apply flex min-w-0 flex-1 items-center gap-1 overflow-x-auto;
-		scrollbar-width: thin;
+		@apply flex min-w-0 flex-1 flex-wrap items-center gap-1;
 	}
 
 	.bo-menubar__menu {

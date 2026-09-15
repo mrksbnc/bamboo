@@ -57,11 +57,11 @@
 	}
 
 	.bo-tags-input__tags {
-		@apply flex min-w-0 max-w-full flex-wrap gap-1.5;
+		@apply contents;
 	}
 
 	.bo-tags-input__tag {
-		@apply inline-flex max-w-[calc(100%-0.375rem)] items-center gap-1 break-all rounded border border-neutral-200 bg-neutral-100 px-2 py-0.5 text-sm text-neutral-700;
+		@apply inline-flex min-w-0 max-w-[calc(100%-0.375rem)] shrink-0 items-center gap-1 break-all rounded border border-neutral-200 bg-neutral-100 px-2 py-0.5 text-sm text-neutral-700;
 	}
 
 	.bo-tags-input__remove {
@@ -73,7 +73,7 @@
 	}
 
 	.bo-tags-input__input {
-		@apply h-6 w-0 min-w-0 max-w-full flex-1 border-none bg-transparent px-1 py-0.5 text-sm text-neutral-900 outline-none;
+		@apply h-7 w-0 min-w-32 max-w-full flex-1 border-none bg-transparent px-1 py-0.5 text-sm text-neutral-900 outline-none;
 	}
 
 	.bo-tags-input__input:disabled {

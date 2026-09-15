@@ -20,7 +20,7 @@
 	}
 
 	.bo-number-field__container {
-		@apply flex h-10 w-full items-center overflow-hidden rounded-md border bg-transparent shadow-xs transition-[color,box-shadow];
+		@apply flex h-9 w-full items-center overflow-hidden rounded-md border bg-transparent shadow-xs transition-[color,box-shadow];
 		@apply border-neutral-300;
 	}
 

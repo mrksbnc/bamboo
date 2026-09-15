@@ -16,6 +16,7 @@
 </template>
 
 <script setup lang="ts">
+import { useEventListener } from '@vueuse/core';
 import type { BoResizableDirection, BoResizableHandleProps } from '@workspace/bamboo-core';
 import { RESIZABLE_MANIFEST } from '@workspace/bamboo-core';
 import { generateComponentId, generateDataTestId } from '@workspace/bamboo-core';
@@ -66,9 +67,6 @@ function onPointerMove(event: PointerEvent): void {
 function onPointerUp(): void {
 	groupRect = undefined;
 	panels = undefined;
-	document.removeEventListener('pointermove', onPointerMove);
-	document.removeEventListener('pointerup', onPointerUp);
-	document.removeEventListener('pointercancel', onPointerUp);
 }
 
 function onPointerDown(event: PointerEvent): void {
@@ -83,10 +81,11 @@ function onPointerDown(event: PointerEvent): void {
 	}
 	panels = found;
 	firstPanelPercent.value = Number.parseFloat(found[0].style.flexBasis || '50') || 50;
-	document.addEventListener('pointermove', onPointerMove);
-	document.addEventListener('pointerup', onPointerUp);
-	document.addEventListener('pointercancel', onPointerUp);
 }
+
+useEventListener('pointermove', onPointerMove);
+useEventListener('pointerup', onPointerUp);
+useEventListener('pointercancel', onPointerUp);
 
 function onKeydown(event: KeyboardEvent): void {
 	const decreases =
