@@ -60,5 +60,7 @@ export function createDrawerState(): DrawerState {
 const fallbackDrawerState = createDrawerState();
 
 export function useDrawer(): DrawerState {
-	return (hasInjectionContext() ? inject(DRAWER_STATE_KEY) : undefined) ?? fallbackDrawerState;
+	return hasInjectionContext()
+		? inject(DRAWER_STATE_KEY, fallbackDrawerState)
+		: fallbackDrawerState;
 }

@@ -55,5 +55,5 @@ export function createModalState(): ModalState {
 const fallbackModalState = createModalState();
 
 export function useModal(): ModalState {
-	return (hasInjectionContext() ? inject(MODAL_STATE_KEY) : undefined) ?? fallbackModalState;
+	return hasInjectionContext() ? inject(MODAL_STATE_KEY, fallbackModalState) : fallbackModalState;
 }

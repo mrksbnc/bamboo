@@ -10,17 +10,10 @@ import { ref } from 'vue';
 import { BoButton, BoModal } from '@mrksbnc/bamboo-vue';
 
 const open = ref(false);
-const footerOpen = ref(false);
 const example = `<bo-button @click="open = true">Open modal</bo-button>
 <bo-modal :open="open" title="Project settings" @close="open = false">
+  <img src="/assets/avatar.jpeg" alt="Project preview" />
   <p>Update the project details here.</p>
-</bo-modal>`;
-const footerExample = `<bo-modal :open="footerOpen" title="Delete project" size="sm" @close="footerOpen = false">
-  <p>This action cannot be undone.</p>
-  <template #footer>
-    <bo-button kind="outline" @click="footerOpen = false">Cancel</bo-button>
-    <bo-button variant="destructive" @click="footerOpen = false">Delete</bo-button>
-  </template>
 </bo-modal>`;
 </script>
 
@@ -33,24 +26,16 @@ Use `bo-modal` for content that needs the user's attention before returning to t
 <ExampleFrame :code="example">
   <bo-button @click="open = true">Open modal</bo-button>
   <bo-modal :open="open" title="Project settings" @close="open = false">
-    <p>Update the project details here.</p>
+    <div class="grid gap-4">
+      <img class="h-40 w-full rounded-lg object-cover" src="/assets/avatar.jpeg" alt="Project preview" />
+      <p>Update the project details here.</p>
+    </div>
   </bo-modal>
 </ExampleFrame>
 
 ## Footer actions
 
 Use the `footer` slot for modal actions. The component emits `close`; update `open` in the parent.
-
-<ExampleFrame :code="footerExample">
-  <bo-button variant="destructive" @click="footerOpen = true">Delete project</bo-button>
-  <bo-modal :open="footerOpen" title="Delete project" size="sm" @close="footerOpen = false">
-    <p>This action cannot be undone.</p>
-    <template #footer>
-      <bo-button kind="outline" @click="footerOpen = false">Cancel</bo-button>
-      <bo-button variant="destructive" @click="footerOpen = false">Delete</bo-button>
-    </template>
-  </bo-modal>
-</ExampleFrame>
 
 ## API
 
