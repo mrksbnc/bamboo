@@ -162,7 +162,7 @@ describe('BoButton', () => {
 
 	it('renders as icon-only button', () => {
 		const wrapper = mount(BoButton, {
-			props: { prefixIcon: 'check' },
+			props: { prefixIcon: 'check', ariaLabel: 'Confirm' },
 			global: {
 				components: { BoIcon, BoText, BoLoadingSpinner, BoLoadingPulse },
 			},
