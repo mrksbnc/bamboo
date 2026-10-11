@@ -7,7 +7,15 @@
 			aria-live="polite"
 			:class="viewportClasses"
 		>
-			<TransitionGroup name="bo-toast" tag="div" class="flex w-full flex-col gap-2">
+			<TransitionGroup
+				name="bo-toast"
+				tag="div"
+				:class="TOAST_MANIFEST.styles.list"
+				@mouseenter="pauseVisibleToasts"
+				@mouseleave="resumeVisibleToasts"
+				@focusin="pauseVisibleToasts"
+				@focusout="resumeOnFocusOut"
+			>
 				<BoToast
 					v-for="toast in visibleToasts"
 					:key="toast.id"
@@ -21,6 +29,7 @@
 					:role="toast.role"
 					:data-position="toast.position"
 					:duration="0"
+					:stack-index="visibleToasts.indexOf(toast)"
 					@close="dismiss(toast.id)"
 				/>
 				<slot />
@@ -44,10 +53,28 @@ const props = withDefaults(defineProps<BoToastViewportProps>(), {
 	position: 'top-right' as BoToastPosition,
 	label: 'Notifications',
 });
-const { toasts, dismiss } = useToast();
+const { toasts, dismiss, pause, resume } = useToast();
 const visibleToasts = computed(() => {
 	return toasts.value.filter((toast) => (toast.position ?? 'top-right') === props.position);
 });
+
+function pauseVisibleToasts(): void {
+	visibleToasts.value.forEach(({ id }) => pause(id));
+}
+
+function resumeVisibleToasts(): void {
+	visibleToasts.value.forEach(({ id }) => resume(id));
+}
+
+function resumeOnFocusOut(event: FocusEvent): void {
+	if (
+		event.relatedTarget instanceof Node &&
+		(event.currentTarget as HTMLElement).contains(event.relatedTarget)
+	) {
+		return;
+	}
+	resumeVisibleToasts();
+}
 
 const viewportClasses = computed(() => {
 	return mergeTwClasses(

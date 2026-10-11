@@ -3,6 +3,7 @@ import { ToastManifest } from '../definitions/index.js';
 export const TOAST_MANIFEST = {
 	meta: { name: 'Toast', version: '1.0.0' },
 	styles: {
+		list: 'bo-toast-viewport__list',
 		viewport: 'bo-toast-viewport',
 		viewportPosition: {
 			'top-left': 'bo-toast-viewport--top-left',

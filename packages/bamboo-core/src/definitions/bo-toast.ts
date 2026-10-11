@@ -21,6 +21,8 @@ export interface BoToastProps {
 	closable?: boolean;
 	closeAriaLabel?: string;
 	role?: HTMLAttributes['role'];
+	/** Internal stack position used by the toast viewport. */
+	stackIndex?: number;
 }
 
 export interface BoToastViewportProps {
@@ -34,6 +36,7 @@ type BoToastManifestDefaults = ManifestDefaults<
 >;
 
 export interface BoToastStyleManifest {
+	readonly list: 'bo-toast-viewport__list';
 	readonly viewport: 'bo-toast-viewport';
 	readonly viewportPosition: Readonly<Record<BoToastPosition, `bo-toast-viewport--${string}`>>;
 	readonly item: 'bo-toast';

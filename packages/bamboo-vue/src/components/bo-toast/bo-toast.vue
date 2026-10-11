@@ -8,7 +8,9 @@
 			:aria-labelledby="title && !slots['default'] ? titleId : undefined"
 			:aria-describedby="description && !slots['default'] ? descriptionId : undefined"
 			:data-state="'open'"
+			:data-stack-index="props.stackIndex"
 			:class="toastClasses"
+			:style="toastStyle"
 		>
 			<bo-icon
 				v-if="iconValue"
@@ -93,6 +95,9 @@ const toastClasses = computed(() => {
 		TOAST_MANIFEST.styles.item,
 		TOAST_MANIFEST.styles.variant[props.variant || TOAST_MANIFEST.defaults.variant],
 	);
+});
+const toastStyle = computed(() => {
+	return props.stackIndex === undefined ? undefined : { '--bo-toast-index': props.stackIndex };
 });
 const iconValue = computed<Icon | undefined>(() => {
 	const icons: Record<string, Icon> = {

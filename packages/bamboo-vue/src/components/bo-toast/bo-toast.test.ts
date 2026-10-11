@@ -63,8 +63,8 @@ describe('BoToast', () => {
 		const topRight = document.body.querySelector<HTMLElement>(
 			'.bo-toast-viewport[data-position="top-right"]',
 		);
-		expect(topRight?.firstElementChild?.classList).toContain('flex');
-		expect(topRight?.firstElementChild?.classList).toContain('gap-2');
+		expect(topRight?.firstElementChild?.classList).toContain('bo-toast-viewport__list');
+		expect(topRight?.querySelector('.bo-toast[data-stack-index="2"]')).not.toBeNull();
 		expect(topRight?.querySelectorAll('.bo-toast')).toHaveLength(3);
 		expect(topRight?.querySelector('.bo-toast--default')).not.toBeNull();
 		expect(topRight?.querySelector('.bo-toast--destructive')).not.toBeNull();
