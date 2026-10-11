@@ -6,5 +6,5 @@
 		"rootDir": "./src"
 	},
 	"extends": "@workspace/config/tsconfig.vue.json",
-	"include": ["env.d.ts", "src/**/*.ts", "src/**/*.vue"]
+	"include": ["src/env.d.ts", "src/**/*.ts", "src/**/*.vue"]
 }

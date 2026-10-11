@@ -173,17 +173,17 @@
 		stroke-width: 2;
 		stroke-linecap: round;
 		stroke-dasharray: 30 18;
-		transform-box: fill-box;
-		transform-origin: center;
+		transform-box: view-box;
+		transform-origin: 50% 50%;
 	}
 
 	.bo-loading-ring__ring circle:first-child {
-		animation: bo-loading-ring-spin 1.2s linear infinite;
+		animation: bo-loading-ring-spin 2s linear infinite;
 	}
 
 	.bo-loading-ring__ring circle:last-child {
 		stroke-dasharray: 24 24;
-		animation: bo-loading-ring-spin-reverse 1.2s linear infinite;
+		animation: bo-loading-ring-spin-reverse 2s linear infinite;
 		opacity: 0.7;
 	}
 

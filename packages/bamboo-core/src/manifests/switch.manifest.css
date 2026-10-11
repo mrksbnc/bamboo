@@ -30,7 +30,7 @@
 	}
 
 	.bo-switch__thumb {
-		@apply size-[0.875rem] data-[state=checked]:translate-x-[calc(100%-1px)];
+		@apply size-[0.875rem] data-[state=checked]:translate-x-4;
 	}
 
 	.bo-switch__label-group {

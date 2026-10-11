@@ -58,13 +58,15 @@
 				:key="`${file.name}-${index}`"
 				:class="FILE_INPUT_MANIFEST.styles.file"
 			>
-				<span>{{ file.name }}</span
+				<span class="min-w-0 flex-1 truncate" :title="file.name">{{ file.name }}</span
 				><button
 					type="button"
 					:class="FILE_INPUT_MANIFEST.styles.remove"
+					:aria-label="`Remove ${file.name}`"
+					:title="`Remove ${file.name}`"
 					@click="removeFile(index)"
 				>
-					Remove
+					<bo-icon icon="trash_2" size="sm" aria-hidden="true" />
 				</button>
 			</li>
 		</ul>

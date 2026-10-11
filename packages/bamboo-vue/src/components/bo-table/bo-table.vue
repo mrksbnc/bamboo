@@ -166,8 +166,16 @@ const captionId = computed(() => `${props.id}-caption`);
 const slots = useSlots();
 const hasActions = computed(() => actions.value.length > 0 || !!slots['actions']);
 const gridTemplateColumns = computed(() => {
-	const columnCount = Math.max(columns.value.length, 1);
-	return `repeat(${columnCount}, minmax(0, 1fr))${hasActions.value ? ' auto' : ''}`;
+	const tracks = columns.value.map((column) => {
+		if (column.width === undefined) {
+			return 'minmax(0, 1fr)';
+		}
+		return `${Math.min(100, Math.max(0, column.width))}%`;
+	});
+	if (!tracks.length) {
+		tracks.push('minmax(0, 1fr)');
+	}
+	return `${tracks.join(' ')}${hasActions.value ? ' auto' : ''}`;
 });
 
 defineSlots<{

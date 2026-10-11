@@ -24,13 +24,13 @@
 		@apply text-xs text-neutral-500 dark:text-neutral-400;
 	}
 	.bo-dropzone__file-list {
-		@apply relative z-10 mt-2 flex w-full flex-col gap-1 border-t border-neutral-200 pt-2 text-start dark:border-neutral-700;
+		@apply relative z-10 mt-2 max-h-48 w-full overflow-y-auto border-t border-neutral-200 px-3 pt-2 text-start dark:border-neutral-700;
 	}
 	.bo-dropzone__file {
-		@apply flex items-center justify-between gap-2 text-xs text-neutral-700 dark:text-neutral-300;
+		@apply flex min-w-0 items-center justify-between gap-2 py-1 text-sm font-medium text-neutral-700 dark:text-neutral-300;
 	}
 	.bo-dropzone__remove {
-		@apply shrink-0 cursor-pointer text-xs text-neutral-500 underline-offset-2 hover:text-neutral-900 hover:underline dark:text-neutral-400 dark:hover:text-neutral-100;
+		@apply inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md p-1 text-neutral-400 transition-colors hover:bg-red-50 hover:text-red-600 dark:text-neutral-500 dark:hover:bg-red-950/40 dark:hover:text-red-400;
 	}
 	.bo-dropzone__error {
 		@apply relative z-10 mt-2 text-xs text-red-600 dark:text-red-400;

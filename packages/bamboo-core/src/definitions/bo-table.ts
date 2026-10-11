@@ -6,6 +6,8 @@ export interface BoTableColumn {
 	key: string;
 	label: string;
 	align?: 'start' | 'center' | 'end';
+	/** Column width as a percentage of the table width. */
+	width?: number;
 }
 
 export interface BoTableAction {
