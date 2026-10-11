@@ -3,7 +3,7 @@
 		v-for="drawer in drawers"
 		:key="drawer.id"
 		:id="drawer.id"
-		:data-testid="drawer.id"
+		:data-test-id="drawer.id"
 		:open="true"
 		v-bind="drawer.props"
 		@close="dismiss(drawer.id)"

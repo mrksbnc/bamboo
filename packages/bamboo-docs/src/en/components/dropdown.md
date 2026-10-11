@@ -26,13 +26,17 @@ const selected = ref('No action selected');
 const controlledOpen = ref(false);
 const showAdvanced = ref(false);
 
+function selectAction(action: string): void {
+  selected.value = action;
+}
+
 const basicExample = `<bo-dropdown>
   <template #trigger>Actions</template>
   <bo-dropdown-label>Project</bo-dropdown-label>
-  <bo-dropdown-item @select="selected = 'Rename'">Rename</bo-dropdown-item>
-  <bo-dropdown-item @select="selected = 'Duplicate'">Duplicate</bo-dropdown-item>
+  <bo-dropdown-item @select="selectAction('Rename')">Rename</bo-dropdown-item>
+  <bo-dropdown-item @select="selectAction('Duplicate')">Duplicate</bo-dropdown-item>
   <bo-dropdown-separator />
-  <bo-dropdown-item destructive @select="selected = 'Delete'">Delete</bo-dropdown-item>
+  <bo-dropdown-item destructive @select="selectAction('Delete')">Delete</bo-dropdown-item>
 </bo-dropdown>`;
 
 const iconsExample = `<bo-dropdown>
@@ -101,10 +105,10 @@ Use `bo-dropdown` for a compact set of related commands that does not need persi
     <bo-dropdown>
       <template #trigger>Actions</template>
       <bo-dropdown-label>Project</bo-dropdown-label>
-      <bo-dropdown-item @select="selected = 'Rename'">Rename</bo-dropdown-item>
-      <bo-dropdown-item @select="selected = 'Duplicate'">Duplicate</bo-dropdown-item>
+      <bo-dropdown-item @select="selectAction('Rename')">Rename</bo-dropdown-item>
+      <bo-dropdown-item @select="selectAction('Duplicate')">Duplicate</bo-dropdown-item>
       <bo-dropdown-separator />
-      <bo-dropdown-item destructive @select="selected = 'Delete'">Delete</bo-dropdown-item>
+      <bo-dropdown-item destructive @select="selectAction('Delete')">Delete</bo-dropdown-item>
     </bo-dropdown>
     <span class="text-sm text-neutral-500">{{ selected }}</span>
   </div>

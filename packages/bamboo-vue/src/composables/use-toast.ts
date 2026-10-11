@@ -96,5 +96,5 @@ export function createToastState(): ToastState {
 const fallbackToastState = createToastState();
 
 export function useToast(): ToastState {
-	return (hasInjectionContext() ? inject(TOAST_STATE_KEY) : undefined) ?? fallbackToastState;
+	return hasInjectionContext() ? inject(TOAST_STATE_KEY, fallbackToastState) : fallbackToastState;
 }

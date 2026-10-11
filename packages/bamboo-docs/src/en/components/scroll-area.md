@@ -8,7 +8,7 @@ tags: [scroll-area, scrolling, layout]
 <script setup lang="ts">
 import { BoScrollArea } from '@mrksbnc/bamboo-vue';
 
-const items = Array.from({ length: 10 }, (_, index) => `Notification ${index + 1}`);
+const items = Array.from({ length: 18 }, (_, index) => `Notification ${index + 1}`);
 const basicExample = `<bo-scroll-area :max-height="160" aria-label="Notifications">
   <div class="grid gap-2 p-3">
     <p v-for="item in items" :key="item">{{ item }}</p>
@@ -26,7 +26,7 @@ Use `bo-scroll-area` when content needs a bounded viewport with custom scrollbar
 ## Usage
 
 <ExampleFrame :code="basicExample">
-  <bo-scroll-area :max-height="160" aria-label="Notifications">
+  <bo-scroll-area :max-height="160" class="max-w-sm" aria-label="Notifications">
     <div class="grid gap-2 p-3">
       <p v-for="item in items" :key="item">{{ item }}</p>
     </div>

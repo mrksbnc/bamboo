@@ -1,10 +1,5 @@
 <template>
-	<div
-		ref="rootRef"
-		:id="resolvedId"
-		:data-testid="resolvedDataTestId"
-		:class="INPUT_OTP_MANIFEST.styles.base"
-	>
+	<div ref="rootRef" :id="id" :data-testid="dataTestId" :class="INPUT_OTP_MANIFEST.styles.base">
 		<div v-if="label || required" :class="INPUT_OTP_MANIFEST.styles.labels.container">
 			<label :for="inputId(0)" :class="INPUT_OTP_MANIFEST.styles.labels.label">
 				{{ label }}<span v-if="required" :class="INPUT_OTP_MANIFEST.styles.labels.required">*</span>
@@ -26,7 +21,7 @@
 				v-for="index in inputCount"
 				:key="inputId(index - 1)"
 				:id="inputId(index - 1)"
-				:data-testid="`${resolvedDataTestId}-${index}`"
+				:data-testid="`${dataTestId}-${index}`"
 				:type="type || INPUT_OTP_MANIFEST.defaults.type"
 				:autocomplete="index === 1 ? autocomplete || 'one-time-code' : 'off'"
 				:inputmode="inputMode || INPUT_OTP_MANIFEST.defaults.inputMode"
@@ -71,19 +66,15 @@ import { INPUT_OTP_MANIFEST } from '@workspace/bamboo-core';
 import { generateComponentId, generateDataTestId } from '@workspace/bamboo-core';
 import { computed, nextTick, onMounted, useTemplateRef } from 'vue';
 
-const props = defineProps<BoInputOtpProps>();
-interface InputOtpRuntimeProps {
-	length?: number;
-	ariaDescribedBy?: string;
-	description?: string;
-	error?: string;
-	hint?: string;
-	pattern?: string;
-	disabled?: boolean;
-	readOnly?: boolean;
-	autofocus?: boolean;
-}
-const otpProps = props as unknown as InputOtpRuntimeProps;
+const props = withDefaults(defineProps<BoInputOtpProps>(), {
+	id: () => generateComponentId('input-otp'),
+	dataTestId: () => generateDataTestId('input-otp'),
+	length: () => INPUT_OTP_MANIFEST.defaults.length,
+	type: () => INPUT_OTP_MANIFEST.defaults.type,
+	inputMode: () => INPUT_OTP_MANIFEST.defaults.inputMode,
+	pattern: () => INPUT_OTP_MANIFEST.defaults.pattern,
+	role: () => INPUT_OTP_MANIFEST.defaults.role,
+});
 
 const emit = defineEmits<{
 	(event: 'complete', value: string): void;
@@ -93,32 +84,24 @@ const emit = defineEmits<{
 
 const rootRef = useTemplateRef('rootRef');
 const model = defineModel<string>({ default: '' });
-const resolvedId = computed<string>(() => {
-	return (props as unknown as { id?: string }).id ?? generateComponentId('input-otp');
-});
-const resolvedDataTestId = computed<string>(() => {
-	return (
-		(props as unknown as { dataTestId?: string }).dataTestId ?? generateDataTestId('input-otp')
-	);
-});
 
 const inputCount = computed(() => {
-	return Math.max(1, otpProps.length || INPUT_OTP_MANIFEST.defaults.length);
+	return Math.max(1, props.length || INPUT_OTP_MANIFEST.defaults.length);
 });
 
 const helperTextId = computed(() => {
-	return `${resolvedId.value}-helper`;
+	return `${props.id}-helper`;
 });
 
 const describedBy = computed(() => {
 	return (
-		otpProps.ariaDescribedBy ||
-		(otpProps.description || otpProps.error || otpProps.hint ? helperTextId.value : undefined)
+		props.ariaDescribedBy ||
+		(props.description || props.error || props.hint ? helperTextId.value : undefined)
 	);
 });
 
 function inputId(index: number): string {
-	return `${resolvedId.value}-${index + 1}`;
+	return `${props.id}-${index + 1}`;
 }
 
 function characterAt(index: number): string {
@@ -133,7 +116,7 @@ function inputs(): HTMLInputElement[] {
 
 function validCharacters(value: string): string {
 	try {
-		const matcher = new RegExp(otpProps.pattern || INPUT_OTP_MANIFEST.defaults.pattern);
+		const matcher = new RegExp(props.pattern || INPUT_OTP_MANIFEST.defaults.pattern);
 		return Array.from(value)
 			.filter((character) => matcher.test(character))
 			.join('');
@@ -165,7 +148,7 @@ function onInput(index: number, event: Event): void {
 }
 
 function onPaste(event: ClipboardEvent): void {
-	if (otpProps.disabled || otpProps.readOnly) {
+	if (props.disabled || props.readOnly) {
 		return;
 	}
 	event.preventDefault();
@@ -188,7 +171,7 @@ function onKeydown(index: number, event: KeyboardEvent): void {
 		event.preventDefault();
 		focusInput(index + 1);
 	} else if (event.key === 'Backspace') {
-		if (otpProps.disabled || otpProps.readOnly) {
+		if (props.disabled || props.readOnly) {
 			return;
 		}
 
@@ -216,7 +199,7 @@ async function focusInput(index: number): Promise<void> {
 defineExpose({ focus });
 
 onMounted(() => {
-	if (otpProps.autofocus) {
+	if (props.autofocus) {
 		focus();
 	}
 });

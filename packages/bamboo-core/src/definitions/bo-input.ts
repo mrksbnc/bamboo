@@ -1,8 +1,29 @@
-import { HTMLAttributes, InputHTMLAttributes } from 'vue';
 import { ComponentManifest } from '../manifests/types.js';
 import { Icon } from './index.js';
 
-export type BoInputType = InputHTMLAttributes['type'];
+export type BoInputType =
+	| 'button'
+	| 'checkbox'
+	| 'color'
+	| 'date'
+	| 'datetime-local'
+	| 'email'
+	| 'file'
+	| 'hidden'
+	| 'image'
+	| 'month'
+	| 'number'
+	| 'password'
+	| 'radio'
+	| 'range'
+	| 'reset'
+	| 'search'
+	| 'submit'
+	| 'tel'
+	| 'text'
+	| 'time'
+	| 'url'
+	| 'week';
 
 export type BoInputState = 'default' | 'valid' | 'invalid';
 
@@ -28,7 +49,7 @@ export interface BoInputProps {
 	 */
 	type?: BoInputType;
 	/** The placeholder of the input. */
-	placeholder?: HTMLInputElement['placeholder'];
+	placeholder?: string;
 	/** The label of the input. */
 	label?: string;
 	/** Description for the input. */
@@ -40,13 +61,13 @@ export interface BoInputProps {
 	/** Whether the input is required. */
 	required?: boolean;
 	/** The name of the input. */
-	name?: HTMLInputElement['name'];
+	name?: string;
 	/** Browser autofill and password-manager hint. */
-	autocomplete?: HTMLInputElement['autocomplete'];
+	autocomplete?: string;
 	/** Whether the input is disabled. */
-	disabled?: HTMLInputElement['disabled'];
+	disabled?: boolean;
 	/** Whether the input is read-only. */
-	readOnly?: HTMLInputElement['readOnly'];
+	readOnly?: boolean;
 	/** Whether the input is full width or not. */
 	fullWidth?: boolean;
 	/** The prefix icon to render */
@@ -54,17 +75,17 @@ export interface BoInputProps {
 	/** The suffix icon to render */
 	suffixIcon?: Icon;
 	/** Whether the input should autofocus */
-	autofocus?: HTMLInputElement['autofocus'];
+	autofocus?: boolean;
 	/** Whether to show toggle button for password input */
 	revealPassword?: boolean;
 	/** The role of the element. */
-	role?: HTMLAttributes['role'];
+	role?: string;
 	/** Defines a string value that labels the current element. */
-	ariaLabel?: HTMLAttributes['aria-label'];
+	ariaLabel?: string;
 	/** Identifies supporting text for the input. */
-	ariaDescribedBy?: HTMLAttributes['aria-describedby'];
+	ariaDescribedBy?: string;
 	/** Overrides the computed invalid state. */
-	ariaInvalid?: HTMLAttributes['aria-invalid'];
+	ariaInvalid?: boolean | 'true' | 'false' | 'grammar' | 'spelling';
 }
 
 type BoInputManifestDefaults = Pick<BoInputProps, 'state' | 'type' | 'role'>;

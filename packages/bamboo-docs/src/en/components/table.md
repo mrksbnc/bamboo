@@ -14,9 +14,9 @@ import { ref } from 'vue';
 import { BoButton, BoTable } from '@mrksbnc/bamboo-vue';
 
 const columns = [
-  { key: 'name', label: 'Project', align: 'start' as const },
-  { key: 'owner', label: 'Owner', align: 'center' as const },
-  { key: 'status', label: 'Status', align: 'end' as const },
+  { key: 'name', label: 'Project', align: 'start' as const, width: 50 },
+  { key: 'owner', label: 'Owner', align: 'center' as const, width: 25 },
+  { key: 'status', label: 'Status', align: 'end' as const, width: 25 },
 ];
 const rows: Record<string, unknown>[] = [
   { name: 'Bamboo docs', owner: 'Mina', status: 'Ready' },
@@ -109,7 +109,7 @@ Use `bo-table` when columns and rows are data-driven. Columns define the order a
 
 ## Aligned Headers and Columns
 
-Set `align` on each column to align both its header and its cells. Supported values are `start`, `center`, and `end`.
+Set `align` on each column to align both its header and its cells. Set `width` to a percentage of the table width; column widths are defined directly on each column object and should total 100. Supported alignments are `start`, `center`, and `end`.
 
 <ExampleFrame :code="basicExample">
   <div class="w-full overflow-x-auto">
@@ -224,11 +224,12 @@ The current table API has no `loading` prop or loading slot. While data is being
 
 ### `BoTableColumn`
 
-| Field   | Type                           | Default  | Description                       |
-| ------- | ------------------------------ | -------- | --------------------------------- |
-| `key`   | `string`                       | required | Row property used for the column. |
-| `label` | `string`                       | required | Header text.                      |
-| `align` | `'start' \| 'center' \| 'end'` | `start`  | Header and cell alignment.        |
+| Field   | Type                           | Default  | Description                                      |
+| ------- | ------------------------------ | -------- | ------------------------------------------------ |
+| `key`   | `string`                       | required | Row property used for the column.                |
+| `label` | `string`                       | required | Header text.                                     |
+| `align` | `'start' \| 'center' \| 'end'` | `start`  | Header and cell alignment.                       |
+| `width` | `number`                       | -        | Column width as a percentage of the table width. |
 
 ### `BoTableAction`
 

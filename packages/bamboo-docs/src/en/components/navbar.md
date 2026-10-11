@@ -7,12 +7,12 @@ tags: [navbar, navigation, responsive]
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BoButton, BoNavbar } from '@mrksbnc/bamboo-vue';
+import { BoAvatar, BoButton, BoNavbar } from '@mrksbnc/bamboo-vue';
 
 const open = ref(false);
 const selectedNav = ref('home');
 const example = `<bo-navbar class="h-full shrink-0" v-model:open="open" aria-label="Workspace">
-  <template #header><span class="font-semibold">Bamboo</span></template>
+  <template #header><bo-avatar label="BM" size="sm" /></template>
   <template #content>
     <button type="button" class="bo-navbar__link" :class="{ 'bo-navbar__link--active': selectedNav === 'home' }" @click="selectedNav = 'home'">Home</button>
     <button type="button" class="bo-navbar__link" :class="{ 'bo-navbar__link--active': selectedNav === 'projects' }" @click="selectedNav = 'projects'">Projects</button>
@@ -38,7 +38,7 @@ Use `bo-navbar` as a vertical shell for product identity, navigation links, and 
     <bo-navbar class="h-full shrink-0" v-model:open="open" aria-label="Workspace">
       <template #header>
         <div class="flex items-center gap-2 px-1">
-          <span class="flex size-7 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold text-white">B</span>
+          <bo-avatar label="BM" size="sm" />
           <span class="font-semibold tracking-tight">Bamboo</span>
         </div>
       </template>
