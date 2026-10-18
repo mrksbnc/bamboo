@@ -32,7 +32,7 @@
 		"@size-limit/preset-big-lib": "^13.1.1",
 		"@tailwindcss/vite": "^4.3.3",
 		"@types/jsdom": "^30.0.0",
-		"@types/node": "^26.5.1",
+		"@types/node": "^26.6.1",
 		"@vitest/coverage-v8": "5.0.0",
 		"@vue/test-utils": "^2.5.0",
 		"@vueuse/core": "^14.4.0",
