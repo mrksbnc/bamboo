@@ -64,7 +64,7 @@
 	},
 	"devDependencies": {
 		"@vitejs/plugin-vue": "6.0.5",
-		"@vue/server-renderer": "^3.5.42",
+		"@vue/server-renderer": "^3.5.43",
 		"@vue/tsconfig": "^0.9.1",
 		"@workspace/config": "workspace:*"
 	},
